@@ -19,27 +19,27 @@ extension Waf {
     public struct ModifyWafAutoDenyRulesRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 攻击次数阈值
         public let attackThreshold: Int64
-        
+
         /// 攻击时间阈值
         public let timeThreshold: Int64
-        
+
         /// 自动封禁时间
         public let denyTimeThreshold: Int64
-        
+
         /// 自动封禁状态
         public let defenseStatus: Int64
-        
-        public init (domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64) {
+
+        public init(domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64) {
             self.domain = domain
             self.attackThreshold = attackThreshold
             self.timeThreshold = timeThreshold
             self.denyTimeThreshold = denyTimeThreshold
             self.defenseStatus = defenseStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case attackThreshold = "AttackThreshold"
@@ -48,39 +48,39 @@ extension Waf {
             case defenseStatus = "DefenseStatus"
         }
     }
-    
+
     /// ModifyWafAutoDenyRules返回参数结构体
     public struct ModifyWafAutoDenyRulesResponse: TCResponseModel {
         /// 成功的状态码，需要JSON解码后再使用，返回的格式是{"域名":"状态"}，成功的状态码为Success，其它的为失败的状态码（yunapi定义的错误码）
         public let success: ResponseCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改ip惩罚规则
     @inlinable
-    public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyRulesResponse > {
+    public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafAutoDenyRulesResponse> {
         self.client.execute(action: "ModifyWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改ip惩罚规则
     @inlinable
     public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyRulesResponse {
         try await self.client.execute(action: "ModifyWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改ip惩罚规则
     @inlinable
-    public func modifyWafAutoDenyRules(domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyRulesResponse > {
+    public func modifyWafAutoDenyRules(domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafAutoDenyRulesResponse> {
         self.modifyWafAutoDenyRules(ModifyWafAutoDenyRulesRequest(domain: domain, attackThreshold: attackThreshold, timeThreshold: timeThreshold, denyTimeThreshold: denyTimeThreshold, defenseStatus: defenseStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改ip惩罚规则
     @inlinable
     public func modifyWafAutoDenyRules(domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyRulesResponse {

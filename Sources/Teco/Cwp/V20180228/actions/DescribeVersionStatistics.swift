@@ -17,24 +17,24 @@
 extension Cwp {
     /// DescribeVersionStatistics请求参数结构体
     public struct DescribeVersionStatisticsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVersionStatistics返回参数结构体
     public struct DescribeVersionStatisticsResponse: TCResponseModel {
         /// 基础版数量
         public let basicVersionNum: UInt64
-        
+
         /// 专业版数量
         public let proVersionNum: UInt64
-        
+
         /// 旗舰版数量
         public let ultimateVersionNum: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case basicVersionNum = "BasicVersionNum"
             case proVersionNum = "ProVersionNum"
@@ -42,15 +42,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取专业版和基础版机器数
     ///
     /// 用于统计专业版和基础版机器数。
     @inlinable
-    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionStatisticsResponse > {
+    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionStatisticsResponse> {
         self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业版和基础版机器数
     ///
     /// 用于统计专业版和基础版机器数。
@@ -58,15 +58,15 @@ extension Cwp {
     public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
         try await self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取专业版和基础版机器数
     ///
     /// 用于统计专业版和基础版机器数。
     @inlinable
-    public func describeVersionStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionStatisticsResponse > {
+    public func describeVersionStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionStatisticsResponse> {
         self.describeVersionStatistics(DescribeVersionStatisticsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业版和基础版机器数
     ///
     /// 用于统计专业版和基础版机器数。

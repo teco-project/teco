@@ -19,36 +19,36 @@ extension Tbm {
     public struct DescribeUserPortraitRequest: TCRequestModel {
         /// 品牌ID
         public let brandId: String
-        
-        public init (brandId: String) {
+
+        public init(brandId: String) {
             self.brandId = brandId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case brandId = "BrandId"
         }
     }
-    
+
     /// DescribeUserPortrait返回参数结构体
     public struct DescribeUserPortraitResponse: TCResponseModel {
         /// 年龄画像
         public let age: AgePortraitInfo
-        
+
         /// 性别画像
         public let gender: GenderPortraitInfo
-        
+
         /// 省份画像
         public let province: ProvincePortraitInfo
-        
+
         /// 电影喜好画像
         public let movie: MoviePortraitInfo
-        
+
         /// 明星喜好画像
         public let star: StarPortraitInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case age = "Age"
             case gender = "Gender"
@@ -58,15 +58,15 @@ extension Tbm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取品牌画像结果
     ///
     /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
     @inlinable
-    public func describeUserPortrait(_ input: DescribeUserPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserPortraitResponse > {
+    public func describeUserPortrait(_ input: DescribeUserPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserPortraitResponse> {
         self.client.execute(action: "DescribeUserPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取品牌画像结果
     ///
     /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
@@ -74,15 +74,15 @@ extension Tbm {
     public func describeUserPortrait(_ input: DescribeUserPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserPortraitResponse {
         try await self.client.execute(action: "DescribeUserPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取品牌画像结果
     ///
     /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
     @inlinable
-    public func describeUserPortrait(brandId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserPortraitResponse > {
+    public func describeUserPortrait(brandId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserPortraitResponse> {
         self.describeUserPortrait(DescribeUserPortraitRequest(brandId: brandId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取品牌画像结果
     ///
     /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。

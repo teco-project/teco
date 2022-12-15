@@ -19,27 +19,27 @@ extension Mps {
     public struct DescribeWatermarkTemplatesRequest: TCRequestModel {
         /// 水印模板唯一标识过滤条件，数组长度限制：100。
         public let definitions: [Int64]?
-        
+
         /// 水印类型过滤条件，可选值：
         /// <li>image：图片水印；</li>
         /// <li>text：文字水印。</li>
         public let type: String?
-        
+
         /// 分页偏移量，默认值：0。
         public let offset: UInt64?
-        
+
         /// 返回记录条数
         /// <li>默认值：10；</li>
         /// <li>最大值：100。</li>
         public let limit: UInt64?
-        
-        public init (definitions: [Int64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(definitions: [Int64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.definitions = definitions
             self.type = type
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definitions = "Definitions"
             case type = "Type"
@@ -47,33 +47,33 @@ extension Mps {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeWatermarkTemplates返回参数结构体
     public struct DescribeWatermarkTemplatesResponse: TCResponseModel {
         /// 符合过滤条件的记录总数。
         public let totalCount: UInt64
-        
+
         /// 水印模板详情列表。
         public let watermarkTemplateSet: [WatermarkTemplate]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case watermarkTemplateSet = "WatermarkTemplateSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取水印模板列表
     ///
     /// 查询用户自定义水印模板，支持根据条件，分页查询。
     @inlinable
-    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWatermarkTemplatesResponse > {
+    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWatermarkTemplatesResponse> {
         self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取水印模板列表
     ///
     /// 查询用户自定义水印模板，支持根据条件，分页查询。
@@ -81,15 +81,15 @@ extension Mps {
     public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
         try await self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取水印模板列表
     ///
     /// 查询用户自定义水印模板，支持根据条件，分页查询。
     @inlinable
-    public func describeWatermarkTemplates(definitions: [Int64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWatermarkTemplatesResponse > {
+    public func describeWatermarkTemplates(definitions: [Int64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWatermarkTemplatesResponse> {
         self.describeWatermarkTemplates(DescribeWatermarkTemplatesRequest(definitions: definitions, type: type, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取水印模板列表
     ///
     /// 查询用户自定义水印模板，支持根据条件，分页查询。

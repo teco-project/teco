@@ -19,114 +19,114 @@ extension Ssa {
     public struct DescribeVulDetailRequest: TCRequestModel {
         /// 漏洞唯一标识符
         public let uniqId: String
-        
+
         /// 查看详情来源
         public let source: String?
-        
-        public init (uniqId: String, source: String? = nil) {
+
+        public init(uniqId: String, source: String? = nil) {
             self.uniqId = uniqId
             self.source = source
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uniqId = "UniqId"
             case source = "Source"
         }
     }
-    
+
     /// DescribeVulDetail返回参数结构体
     public struct DescribeVulDetailResponse: TCResponseModel {
         /// 漏洞类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulType: Int64?
-        
+
         /// 漏洞子类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subVulType: String?
-        
+
         /// cvss分数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cvssScore: String?
-        
+
         /// cvss值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cvss: String?
-        
+
         /// cve编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cve: String?
-        
+
         /// cnvd编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cnvd: String?
-        
+
         /// cnnvd编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cnnvd: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desc: String?
-        
+
         /// 参考
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reference: String?
-        
+
         /// 修复意见
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repair: String?
-        
+
         /// 披露时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 漏洞名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: Int64?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 受影响资产唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let impactAsset: String?
-        
+
         /// 受影响资产名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let impactAssetName: String?
-        
+
         /// 受影响资产是否已删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAssetDeleted: Bool?
-        
+
         /// 漏洞来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let source: String?
-        
+
         /// 漏洞URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulUrl: String?
-        
+
         /// 资产归属
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaAssetCategory: Int64?
-        
+
         /// 资产文件路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulPath: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vulType = "VulType"
             case subVulType = "SubVulType"
@@ -153,15 +153,15 @@ extension Ssa {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 漏洞列表-漏洞详情
     ///
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
-    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDetailResponse > {
+    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDetailResponse> {
         self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞列表-漏洞详情
     ///
     /// 漏洞列表页，获取漏洞详情信息
@@ -169,15 +169,15 @@ extension Ssa {
     public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
         try await self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 漏洞列表-漏洞详情
     ///
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
-    public func describeVulDetail(uniqId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDetailResponse > {
+    public func describeVulDetail(uniqId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDetailResponse> {
         self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞列表-漏洞详情
     ///
     /// 漏洞列表页，获取漏洞详情信息

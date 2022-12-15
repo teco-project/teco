@@ -19,35 +19,35 @@ extension Chdfs {
     public struct CreateFileSystemRequest: TCRequestModel {
         /// 文件系统名称
         public let fileSystemName: String
-        
+
         /// 文件系统容量（byte），下限为1GB，上限为1PB，且必须是1GB的整数倍
         public let capacityQuota: UInt64
-        
+
         /// 是否校验POSIX ACL
         public let posixAcl: Bool
-        
+
         /// 文件系统描述，默认为空字符串
         public let description: String?
-        
+
         /// 超级用户名列表，默认为空数组
         public let superUsers: [String]?
-        
+
         /// 根目录Inode用户名，默认为hadoop
         public let rootInodeUser: String?
-        
+
         /// 根目录Inode组名，默认为supergroup
         public let rootInodeGroup: String?
-        
+
         /// 是否打开Ranger地址校验
         public let enableRanger: Bool?
-        
+
         /// Ranger地址列表，默认为空数组
         public let rangerServiceAddresses: [String]?
-        
+
         /// 多个资源标签，可以为空数组
         public let tags: [Tag]?
-        
-        public init (fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil) {
+
+        public init(fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil) {
             self.fileSystemName = fileSystemName
             self.capacityQuota = capacityQuota
             self.posixAcl = posixAcl
@@ -59,7 +59,7 @@ extension Chdfs {
             self.rangerServiceAddresses = rangerServiceAddresses
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemName = "FileSystemName"
             case capacityQuota = "CapacityQuota"
@@ -73,29 +73,29 @@ extension Chdfs {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateFileSystem返回参数结构体
     public struct CreateFileSystemResponse: TCResponseModel {
         /// 文件系统
         public let fileSystem: FileSystem
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystem = "FileSystem"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建文件系统
     ///
     /// 创建文件系统（异步）。
     @inlinable
-    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSystemResponse > {
+    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSystemResponse> {
         self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件系统
     ///
     /// 创建文件系统（异步）。
@@ -103,15 +103,15 @@ extension Chdfs {
     public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
         try await self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建文件系统
     ///
     /// 创建文件系统（异步）。
     @inlinable
-    public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSystemResponse > {
+    public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSystemResponse> {
         self.createFileSystem(CreateFileSystemRequest(fileSystemName: fileSystemName, capacityQuota: capacityQuota, posixAcl: posixAcl, description: description, superUsers: superUsers, rootInodeUser: rootInodeUser, rootInodeGroup: rootInodeGroup, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件系统
     ///
     /// 创建文件系统（异步）。

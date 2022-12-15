@@ -19,23 +19,23 @@ extension Gse {
     public struct DescribeGameServerSessionDetailsRequest: TCRequestModel {
         /// 别名ID
         public let aliasId: String?
-        
+
         /// 舰队ID
         public let fleetId: String?
-        
+
         /// 游戏服务器会话ID，最小长度不小于1个ASCII字符，最大长度不超过48个ASCII字符
         public let gameServerSessionId: String?
-        
+
         /// 单次查询记录数上限
         public let limit: UInt64?
-        
+
         /// 页偏移，用于查询下一页，最小长度不小于1个ASCII字符，最大长度不超过1024个ASCII字符
         public let nextToken: String?
-        
+
         /// 游戏服务器会话状态(ACTIVE,ACTIVATING,TERMINATED,TERMINATING,ERROR)
         public let statusFilter: String?
-        
-        public init (aliasId: String? = nil, fleetId: String? = nil, gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, statusFilter: String? = nil) {
+
+        public init(aliasId: String? = nil, fleetId: String? = nil, gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, statusFilter: String? = nil) {
             self.aliasId = aliasId
             self.fleetId = fleetId
             self.gameServerSessionId = gameServerSessionId
@@ -43,7 +43,7 @@ extension Gse {
             self.nextToken = nextToken
             self.statusFilter = statusFilter
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case aliasId = "AliasId"
             case fleetId = "FleetId"
@@ -53,36 +53,36 @@ extension Gse {
             case statusFilter = "StatusFilter"
         }
     }
-    
+
     /// DescribeGameServerSessionDetails返回参数结构体
     public struct DescribeGameServerSessionDetailsResponse: TCResponseModel {
         /// 游戏服务器会话详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSessionDetails: [GameServerSessionDetail]?
-        
+
         /// 页偏移，用于查询下一页，最小长度不小于1个ASCII字符，最大长度不超过1024个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextToken: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSessionDetails = "GameServerSessionDetails"
             case nextToken = "NextToken"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询游戏服务器会话详情列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeGameServerSessionDetails）用于查询游戏服务器会话详情列表。
     @inlinable
-    public func describeGameServerSessionDetails(_ input: DescribeGameServerSessionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGameServerSessionDetailsResponse > {
+    public func describeGameServerSessionDetails(_ input: DescribeGameServerSessionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGameServerSessionDetailsResponse> {
         self.client.execute(action: "DescribeGameServerSessionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询游戏服务器会话详情列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -91,16 +91,16 @@ extension Gse {
     public func describeGameServerSessionDetails(_ input: DescribeGameServerSessionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionDetailsResponse {
         try await self.client.execute(action: "DescribeGameServerSessionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询游戏服务器会话详情列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeGameServerSessionDetails）用于查询游戏服务器会话详情列表。
     @inlinable
-    public func describeGameServerSessionDetails(aliasId: String? = nil, fleetId: String? = nil, gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, statusFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGameServerSessionDetailsResponse > {
+    public func describeGameServerSessionDetails(aliasId: String? = nil, fleetId: String? = nil, gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, statusFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGameServerSessionDetailsResponse> {
         self.describeGameServerSessionDetails(DescribeGameServerSessionDetailsRequest(aliasId: aliasId, fleetId: fleetId, gameServerSessionId: gameServerSessionId, limit: limit, nextToken: nextToken, statusFilter: statusFilter), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询游戏服务器会话详情列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

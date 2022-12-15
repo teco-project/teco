@@ -19,31 +19,31 @@ extension Tione {
     public struct CreateModelServiceRequest: TCRequestModel {
         /// 镜像信息，配置服务运行所需的镜像地址等信息
         public let imageInfo: ImageInfo
-        
+
         /// 新增版本时需要填写
         public let serviceGroupId: String?
-        
+
         /// 不超过60个字，仅支持英文、数字、下划线"_"、短横"-"，只能以英文、数字开头
         public let serviceGroupName: String?
-        
+
         /// 模型服务的描述
         public let serviceDescription: String?
-        
+
         /// 付费模式,有 PREPAID 、 POSTPAID_BY_HOUR 和 HYBRID_PAID 三种
         public let chargeType: String?
-        
+
         /// 预付费模式下所属的资源组id，同服务组下唯一
         public let resourceGroupId: String?
-        
+
         /// 模型信息，需要挂载模型时填写
         public let modelInfo: ModelInfo?
-        
+
         /// 环境变量，可选参数，用于配置容器中的环境变量
         public let env: [EnvVar]?
-        
+
         /// 资源描述，指定预付费模式下的cpu,mem,gpu等信息，后付费无需填写
         public let resources: ResourceInfo?
-        
+
         /// 使用DescribeBillingSpecs接口返回的规格列表中的值，或者参考实例列表:
         /// TI.S.MEDIUM.POST	2C4G
         /// TI.S.LARGE.POST	4C8G
@@ -63,10 +63,10 @@ extension Tione {
         /// TI.GN7.10XLARGE160.POST	40C160G T4*2
         /// TI.GN7.20XLARGE320.POST	80C320G T4*4
         public let instanceType: String?
-        
+
         /// 扩缩容类型 支持：自动 - "AUTO", 手动 - "MANUAL",默认为MANUAL
         public let scaleMode: String?
-        
+
         /// 实例数量, 不同计费模式和调节模式下对应关系如下
         /// PREPAID 和 POSTPAID_BY_HOUR:
         /// 手动调节模式下对应 实例数量
@@ -75,50 +75,50 @@ extension Tione {
         /// 后付费实例手动调节模式下对应 实例数量
         /// 后付费实例自动调节模式下对应 时间策略的默认策略的实例数量
         public let replicas: Int64?
-        
+
         /// 自动伸缩信息
         public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
-        
+
         /// 是否开启日志投递，开启后需填写配置投递到指定cls
         public let logEnable: Bool?
-        
+
         /// 日志配置，需要投递服务日志到指定cls时填写
         public let logConfig: LogConfig?
-        
+
         /// 是否开启接口鉴权，开启后自动生成token信息，访问需要token鉴权
         public let authorizationEnable: Bool?
-        
+
         /// 腾讯云标签
         public let tags: [Tag]?
-        
+
         /// 是否新增版本
         public let newVersion: Bool?
-        
+
         /// 定时任务配置，使用定时策略时填写
         public let cronScaleJobs: [CronScaleJob]?
-        
+
         /// 自动伸缩策略配置 HPA : 通过HPA进行弹性伸缩 CRON 通过定时任务进行伸缩
         public let scaleStrategy: String?
-        
+
         /// 计费模式[HYBRID_PAID]时生效, 用于标识混合计费模式下的预付费实例数
         public let hybridBillingPrepaidReplicas: Int64?
-        
+
         /// [AUTO_ML 自动学习，自动学习正式发布 AUTO_ML_FORMAL, DEFAULT 默认]
         public let createSource: String?
-        
+
         /// 是否开启模型的热更新。默认不开启
         public let modelHotUpdateEnable: Bool?
-        
+
         /// 定时停止配置
         public let scheduledAction: ScheduledAction?
-        
+
         /// 挂载配置，目前只支持CFS
         public let volumeMount: VolumeMount?
-        
+
         /// 服务限速限流相关配置
         public let serviceLimit: ServiceLimit?
-        
-        public init (imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil) {
+
+        public init(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil) {
             self.imageInfo = imageInfo
             self.serviceGroupId = serviceGroupId
             self.serviceGroupName = serviceGroupName
@@ -146,7 +146,7 @@ extension Tione {
             self.volumeMount = volumeMount
             self.serviceLimit = serviceLimit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageInfo = "ImageInfo"
             case serviceGroupId = "ServiceGroupId"
@@ -176,30 +176,30 @@ extension Tione {
             case serviceLimit = "ServiceLimit"
         }
     }
-    
+
     /// CreateModelService返回参数结构体
     public struct CreateModelServiceResponse: TCResponseModel {
         /// 生成的模型服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let service: Service?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case service = "Service"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelServiceResponse > {
+    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
         self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务
@@ -207,15 +207,15 @@ extension Tione {
     public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
         try await self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelServiceResponse > {
+    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
         self.createModelService(CreateModelServiceRequest(imageInfo: imageInfo, serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务

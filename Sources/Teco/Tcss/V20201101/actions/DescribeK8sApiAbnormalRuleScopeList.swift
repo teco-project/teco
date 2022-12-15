@@ -19,25 +19,25 @@ extension Tcss {
     public struct DescribeK8sApiAbnormalRuleScopeListRequest: TCRequestModel {
         /// 规则ID
         public let ruleID: String
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Action - string -是否必填: 否 - 执行动作</li>
         /// <li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li>
         public let filters: [RunTimeFilters]?
-        
-        public init (ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil) {
+
+        public init(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil) {
             self.ruleID = ruleID
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleID = "RuleID"
             case offset = "Offset"
@@ -45,43 +45,43 @@ extension Tcss {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeK8sApiAbnormalRuleScopeList返回参数结构体
     public struct DescribeK8sApiAbnormalRuleScopeListResponse: TCResponseModel {
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 列表
         public let list: [K8sApiAbnormalRuleScopeInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询k8s api 异常规则中范围列表
     @inlinable
-    public func describeK8sApiAbnormalRuleScopeList(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalRuleScopeListResponse > {
+    public func describeK8sApiAbnormalRuleScopeList(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleScopeListResponse> {
         self.client.execute(action: "DescribeK8sApiAbnormalRuleScopeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询k8s api 异常规则中范围列表
     @inlinable
     public func describeK8sApiAbnormalRuleScopeList(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleScopeListResponse {
         try await self.client.execute(action: "DescribeK8sApiAbnormalRuleScopeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询k8s api 异常规则中范围列表
     @inlinable
-    public func describeK8sApiAbnormalRuleScopeList(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalRuleScopeListResponse > {
+    public func describeK8sApiAbnormalRuleScopeList(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleScopeListResponse> {
         self.describeK8sApiAbnormalRuleScopeList(DescribeK8sApiAbnormalRuleScopeListRequest(ruleID: ruleID, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询k8s api 异常规则中范围列表
     @inlinable
     public func describeK8sApiAbnormalRuleScopeList(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleScopeListResponse {

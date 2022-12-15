@@ -19,23 +19,23 @@ extension Privatedns {
     public struct DescribeAccountVpcListRequest: TCRequestModel {
         /// 关联账号的uin
         public let accountUin: String
-        
+
         /// 分页偏移量，从0开始
         public let offset: Int64?
-        
+
         /// 分页限制数目， 最大100，默认20
         public let limit: Int64?
-        
+
         /// 过滤参数
         public let filters: [Filter]?
-        
-        public init (accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
+
+        public init(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.accountUin = accountUin
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountUin = "AccountUin"
             case offset = "Offset"
@@ -43,43 +43,43 @@ extension Privatedns {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeAccountVpcList返回参数结构体
     public struct DescribeAccountVpcListResponse: TCResponseModel {
         /// VPC数量
         public let totalCount: Int64
-        
+
         /// VPC 列表
         public let vpcSet: [AccountVpcInfoOut]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case vpcSet = "VpcSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取私有域解析账号的VPC列表
     @inlinable
-    public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountVpcListResponse > {
+    public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountVpcListResponse> {
         self.client.execute(action: "DescribeAccountVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有域解析账号的VPC列表
     @inlinable
     public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountVpcListResponse {
         try await self.client.execute(action: "DescribeAccountVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取私有域解析账号的VPC列表
     @inlinable
-    public func describeAccountVpcList(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountVpcListResponse > {
+    public func describeAccountVpcList(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountVpcListResponse> {
         self.describeAccountVpcList(DescribeAccountVpcListRequest(accountUin: accountUin, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有域解析账号的VPC列表
     @inlinable
     public func describeAccountVpcList(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountVpcListResponse {

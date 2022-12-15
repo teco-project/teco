@@ -20,45 +20,45 @@ extension TCBmError {
             case deviceInsufficient = "ResourceInsufficient.DeviceInsufficient"
             case other = "ResourceInsufficient"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 设备不足。
         public static var deviceInsufficient: ResourceInsufficient {
             ResourceInsufficient(.deviceInsufficient)
         }
-        
+
         /// 资源不足。
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-        
+
         public func asBmError() -> TCBmError {
             let code: TCBmError.Code
             switch self.error {
-            case .deviceInsufficient: 
+            case .deviceInsufficient:
                 code = .resourceInsufficient_DeviceInsufficient
-            case .other: 
+            case .other:
                 code = .resourceInsufficient
             }
             return TCBmError(code, context: self.context)

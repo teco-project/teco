@@ -19,26 +19,26 @@ extension Iotexplorer {
     public struct CreateBatchProductionRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String
-        
+
         /// 产品ID
         public let productId: String
-        
+
         /// 烧录方式，0为直接烧录，1为动态注册。
         public let burnMethod: Int64
-        
+
         /// 生成方式，0为系统生成，1为文件上传。
         public let generationMethod: Int64
-        
+
         /// 文件上传URL，用于文件上传时填写。
         public let uploadUrl: String?
-        
+
         /// 量产数量，用于系统生成时填写。
         public let batchCnt: Int64?
-        
+
         /// 是否生成二维码,0为不生成，1为生成。
         public let generationQRCode: Int64?
-        
-        public init (projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String? = nil, batchCnt: Int64? = nil, generationQRCode: Int64? = nil) {
+
+        public init(projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String? = nil, batchCnt: Int64? = nil, generationQRCode: Int64? = nil) {
             self.projectId = projectId
             self.productId = productId
             self.burnMethod = burnMethod
@@ -47,7 +47,7 @@ extension Iotexplorer {
             self.batchCnt = batchCnt
             self.generationQRCode = generationQRCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case productId = "ProductId"
@@ -58,21 +58,21 @@ extension Iotexplorer {
             case generationQRCode = "GenerationQRCode"
         }
     }
-    
+
     /// CreateBatchProduction返回参数结构体
     public struct CreateBatchProductionResponse: TCResponseModel {
         /// 项目Id
         public let projectId: String
-        
+
         /// 产品Id
         public let productId: String
-        
+
         /// 量产id
         public let batchProductionId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case productId = "ProductId"
@@ -80,15 +80,15 @@ extension Iotexplorer {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建量产任务
     ///
     /// 用于新建批量生产设备
     @inlinable
-    public func createBatchProduction(_ input: CreateBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchProductionResponse > {
+    public func createBatchProduction(_ input: CreateBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchProductionResponse> {
         self.client.execute(action: "CreateBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建量产任务
     ///
     /// 用于新建批量生产设备
@@ -96,15 +96,15 @@ extension Iotexplorer {
     public func createBatchProduction(_ input: CreateBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchProductionResponse {
         try await self.client.execute(action: "CreateBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建量产任务
     ///
     /// 用于新建批量生产设备
     @inlinable
-    public func createBatchProduction(projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String? = nil, batchCnt: Int64? = nil, generationQRCode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchProductionResponse > {
+    public func createBatchProduction(projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String? = nil, batchCnt: Int64? = nil, generationQRCode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchProductionResponse> {
         self.createBatchProduction(CreateBatchProductionRequest(projectId: projectId, productId: productId, burnMethod: burnMethod, generationMethod: generationMethod, uploadUrl: uploadUrl, batchCnt: batchCnt, generationQRCode: generationQRCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建量产任务
     ///
     /// 用于新建批量生产设备

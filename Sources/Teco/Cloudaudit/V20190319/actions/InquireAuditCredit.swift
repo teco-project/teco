@@ -17,42 +17,42 @@
 extension Cloudaudit {
     /// InquireAuditCredit请求参数结构体
     public struct InquireAuditCreditRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// InquireAuditCredit返回参数结构体
     public struct InquireAuditCreditResponse: TCResponseModel {
         /// 可创建跟踪集的数量
         public let auditAmount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case auditAmount = "AuditAmount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户可创建跟踪集的数量
     @inlinable
-    public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireAuditCreditResponse > {
+    public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireAuditCreditResponse> {
         self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户可创建跟踪集的数量
     @inlinable
     public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireAuditCreditResponse {
         try await self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户可创建跟踪集的数量
     @inlinable
-    public func inquireAuditCredit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireAuditCreditResponse > {
+    public func inquireAuditCredit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireAuditCreditResponse> {
         self.inquireAuditCredit(InquireAuditCreditRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户可创建跟踪集的数量
     @inlinable
     public func inquireAuditCredit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireAuditCreditResponse {

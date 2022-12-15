@@ -19,34 +19,34 @@ extension Chdfs {
     public struct DeleteAccessRulesRequest: TCRequestModel {
         /// 多个权限规则ID，上限为10
         public let accessRuleIds: [UInt64]
-        
-        public init (accessRuleIds: [UInt64]) {
+
+        public init(accessRuleIds: [UInt64]) {
             self.accessRuleIds = accessRuleIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessRuleIds = "AccessRuleIds"
         }
     }
-    
+
     /// DeleteAccessRules返回参数结构体
     public struct DeleteAccessRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除权限规则
     ///
     /// 批量删除权限规则。
     @inlinable
-    public func deleteAccessRules(_ input: DeleteAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessRulesResponse > {
+    public func deleteAccessRules(_ input: DeleteAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessRulesResponse> {
         self.client.execute(action: "DeleteAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除权限规则
     ///
     /// 批量删除权限规则。
@@ -54,15 +54,15 @@ extension Chdfs {
     public func deleteAccessRules(_ input: DeleteAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessRulesResponse {
         try await self.client.execute(action: "DeleteAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除权限规则
     ///
     /// 批量删除权限规则。
     @inlinable
-    public func deleteAccessRules(accessRuleIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessRulesResponse > {
+    public func deleteAccessRules(accessRuleIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessRulesResponse> {
         self.deleteAccessRules(DeleteAccessRulesRequest(accessRuleIds: accessRuleIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除权限规则
     ///
     /// 批量删除权限规则。

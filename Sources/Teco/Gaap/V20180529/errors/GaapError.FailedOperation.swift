@@ -72,407 +72,407 @@ extension TCGaapError {
             case vendorServerError = "FailedOperation.VendorServerError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账户余额不足，无法创建该通道。
         public static var accountBalanceInsufficient: FailedOperation {
             FailedOperation(.accountBalanceInsufficient)
         }
-        
+
         /// 操作正在执行中，请勿重复操作。
         public static var actionIsDoing: FailedOperation {
             FailedOperation(.actionIsDoing)
         }
-        
+
         /// 接口操作太频繁，请稍后重试。
         public static var actionOperateTooQuickly: FailedOperation {
             FailedOperation(.actionOperateTooQuickly)
         }
-        
+
         /// 该批通道归属于不同的通道组，无法批量操作。
         public static var belongDifferentGroup: FailedOperation {
             FailedOperation(.belongDifferentGroup)
         }
-        
+
         /// 证书正在使用中，无法操作。
         public static var certificateIsUsing: FailedOperation {
             FailedOperation(.certificateIsUsing)
         }
-        
+
         /// 相同加速间隔时间过短。
         public static var createQosExceedLimit: FailedOperation {
             FailedOperation(.createQosExceedLimit)
         }
-        
+
         /// 中国电信加速token过期。
         public static var ctccTokenExpired: FailedOperation {
             FailedOperation(.ctccTokenExpired)
         }
-        
+
         /// 通道组中存在通道，无法删除。
         public static var deleteProxyGroupProxyRemained: FailedOperation {
             FailedOperation(.deleteProxyGroupProxyRemained)
         }
-        
+
         /// 该域名在监听器下已使用。
         public static var domainAlreadyExisted: FailedOperation {
             FailedOperation(.domainAlreadyExisted)
         }
-        
+
         /// 域名状态为非运行状态，无法操作。
         public static var domainStatusNotInRunning: FailedOperation {
             FailedOperation(.domainStatusNotInRunning)
         }
-        
+
         /// 重复的请求，请检查ClientToken的值。
         public static var duplicatedRequest: FailedOperation {
             FailedOperation(.duplicatedRequest)
         }
-        
+
         /// 通道组状态为非运行状态，无法操作。
         public static var groupStatusNotInRuning: FailedOperation {
             FailedOperation(.groupStatusNotInRuning)
         }
-        
+
         /// 通道状态为非运行状态，无法操作。
         public static var instanceStatusNotInRuning: FailedOperation {
             FailedOperation(.instanceStatusNotInRuning)
         }
-        
+
         /// 无效的监听器协议。
         public static var invalidListenerProtocol: FailedOperation {
             FailedOperation(.invalidListenerProtocol)
         }
-        
+
         /// 加速目标IP与绑定的通道IP不匹配。
         public static var ipUnmatched: FailedOperation {
             FailedOperation(.ipUnmatched)
         }
-        
+
         /// 监听器数量超过限制。
         public static var limitNumofListener: FailedOperation {
             FailedOperation(.limitNumofListener)
         }
-        
+
         /// 通道组下通道数量超过限制。
         public static var limitNumofProxiesInGroup: FailedOperation {
             FailedOperation(.limitNumofProxiesInGroup)
         }
-        
+
         /// 转发规则数超过限制。
         public static var limitNumofRules: FailedOperation {
             FailedOperation(.limitNumofRules)
         }
-        
+
         /// 绑定源站数量超过限制。
         public static var limitRealServerNum: FailedOperation {
             FailedOperation(.limitRealServerNum)
         }
-        
+
         /// 监听器正在操作中，请勿重复操作。
         public static var listenerHasTask: FailedOperation {
             FailedOperation(.listenerHasTask)
         }
-        
+
         /// 监听器当前状态无法支持该操作。
         public static var listenerStatusError: FailedOperation {
             FailedOperation(.listenerStatusError)
         }
-        
+
         /// 加速通道在升级中，暂不支持配置变更，请提工单申请。
         public static var migration: FailedOperation {
             FailedOperation(.migration)
         }
-        
+
         /// 该应用模版没有绑定通道。
         public static var noResourceBound: FailedOperation {
             FailedOperation(.noResourceBound)
         }
-        
+
         /// 该通道为非标通道，限制所有写操作。
         ///
         /// 通道已锁定，无法配置，请联系腾讯云工程师或提交工单进行配置。
         public static var nonStandardProxy: FailedOperation {
             FailedOperation(.nonStandardProxy)
         }
-        
+
         /// 仅支持Version2.0的通道。
         public static var notSupportOldVersionProxy: FailedOperation {
             FailedOperation(.notSupportOldVersionProxy)
         }
-        
+
         /// 该操作不支持通道组。
         public static var notSupportProxyGroup: FailedOperation {
             FailedOperation(.notSupportProxyGroup)
         }
-        
+
         /// 不支持配置变更。
         public static var notSupportScalar: FailedOperation {
             FailedOperation(.notSupportScalar)
         }
-        
+
         /// 单次操作端口过多，超过数量上限。
         public static var operateLimitNumofListener: FailedOperation {
             FailedOperation(.operateLimitNumofListener)
         }
-        
+
         /// 安全策略已关闭，请勿重复操作。
         public static var proxySecurityAlreadyClose: FailedOperation {
             FailedOperation(.proxySecurityAlreadyClose)
         }
-        
+
         /// 安全策略已开启，请勿重复操作。
         public static var proxySecurityAlreadyOpen: FailedOperation {
             FailedOperation(.proxySecurityAlreadyOpen)
         }
-        
+
         /// 添加规则失败：禁止拒绝默认的通道访问规则。
         public static var proxySecurityPolicyDefaultRule: FailedOperation {
             FailedOperation(.proxySecurityPolicyDefaultRule)
         }
-        
+
         /// 添加规则失败：安全防护访问规则重复。
         public static var proxySecurityPolicyDuplicatedRule: FailedOperation {
             FailedOperation(.proxySecurityPolicyDuplicatedRule)
         }
-        
+
         /// 安全策略已经存在，请勿重复创建。
         public static var proxySecurityPolicyExisted: FailedOperation {
             FailedOperation(.proxySecurityPolicyExisted)
         }
-        
+
         /// 通道安全策略操作中。
         public static var proxySecurityPolicyOperating: FailedOperation {
             FailedOperation(.proxySecurityPolicyOperating)
         }
-        
+
         /// 线路售罄或资源不足，请提工单申请。
         public static var proxySellOut: FailedOperation {
             FailedOperation(.proxySellOut)
         }
-        
+
         /// 通道处于非运行状态，不能添加监听器。
         public static var proxyStatusNotInRuning: FailedOperation {
             FailedOperation(.proxyStatusNotInRuning)
         }
-        
+
         /// 不支持该版本通道。
         public static var proxyVersionNotSupport: FailedOperation {
             FailedOperation(.proxyVersionNotSupport)
         }
-        
+
         /// 已经绑定了源站，无法删除。
         public static var realServerAlreadyBound: FailedOperation {
             FailedOperation(.realServerAlreadyBound)
         }
-        
+
         /// 源站不归属于该项目。
         public static var realServerNotInProject: FailedOperation {
             FailedOperation(.realServerNotInProject)
         }
-        
+
         /// 请求运营商超时。
         public static var requestVendorTimeout: FailedOperation {
             FailedOperation(.requestVendorTimeout)
         }
-        
+
         /// 该资源不可访问。
         public static var resourceCanNotAccess: FailedOperation {
             FailedOperation(.resourceCanNotAccess)
         }
-        
+
         public static var resourceHadBeenDone: FailedOperation {
             FailedOperation(.resourceHadBeenDone)
         }
-        
+
         /// 应用ID填写有误，请检查应用ID是否存在。
         public static var resourceNotFound: FailedOperation {
             FailedOperation(.resourceNotFound)
         }
-        
+
         /// 资源升级中。
         public static var resourceUpgrading: FailedOperation {
             FailedOperation(.resourceUpgrading)
         }
-        
+
         /// 规则已经存在。
         public static var ruleAlreadyExisted: FailedOperation {
             FailedOperation(.ruleAlreadyExisted)
         }
-        
+
         /// Session不存在或已经被取消。
         public static var sessionNotExist: FailedOperation {
             FailedOperation(.sessionNotExist)
         }
-        
+
         public static var tagResourcesFailed: FailedOperation {
             FailedOperation(.tagResourcesFailed)
         }
-        
+
         public static var unTagResourcesFailed: FailedOperation {
             FailedOperation(.unTagResourcesFailed)
         }
-        
+
         /// 用户未认证。
         public static var userNotAuthenticated: FailedOperation {
             FailedOperation(.userNotAuthenticated)
         }
-        
+
         public static var userNotConfirmProtocol: FailedOperation {
             FailedOperation(.userNotConfirmProtocol)
         }
-        
+
         /// 该用户不在运营商网络可加速范围内。
         public static var userOutOfCoverage: FailedOperation {
             FailedOperation(.userOutOfCoverage)
         }
-        
+
         /// 运营商返回结果错误。
         public static var vendorReturnError: FailedOperation {
             FailedOperation(.vendorReturnError)
         }
-        
+
         /// 运营商服务器临时错误。
         public static var vendorServerError: FailedOperation {
             FailedOperation(.vendorServerError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asGaapError() -> TCGaapError {
             let code: TCGaapError.Code
             switch self.error {
-            case .accountBalanceInsufficient: 
+            case .accountBalanceInsufficient:
                 code = .failedOperation_AccountBalanceInsufficient
-            case .actionIsDoing: 
+            case .actionIsDoing:
                 code = .failedOperation_ActionIsDoing
-            case .actionOperateTooQuickly: 
+            case .actionOperateTooQuickly:
                 code = .failedOperation_ActionOperateTooQuickly
-            case .belongDifferentGroup: 
+            case .belongDifferentGroup:
                 code = .failedOperation_BelongDifferentGroup
-            case .certificateIsUsing: 
+            case .certificateIsUsing:
                 code = .failedOperation_CertificateIsUsing
-            case .createQosExceedLimit: 
+            case .createQosExceedLimit:
                 code = .failedOperation_CreateQosExceedLimit
-            case .ctccTokenExpired: 
+            case .ctccTokenExpired:
                 code = .failedOperation_CTCCTokenExpired
-            case .deleteProxyGroupProxyRemained: 
+            case .deleteProxyGroupProxyRemained:
                 code = .failedOperation_DeleteProxyGroupProxyRemained
-            case .domainAlreadyExisted: 
+            case .domainAlreadyExisted:
                 code = .failedOperation_DomainAlreadyExisted
-            case .domainStatusNotInRunning: 
+            case .domainStatusNotInRunning:
                 code = .failedOperation_DomainStatusNotInRunning
-            case .duplicatedRequest: 
+            case .duplicatedRequest:
                 code = .failedOperation_DuplicatedRequest
-            case .groupStatusNotInRuning: 
+            case .groupStatusNotInRuning:
                 code = .failedOperation_GroupStatusNotInRuning
-            case .instanceStatusNotInRuning: 
+            case .instanceStatusNotInRuning:
                 code = .failedOperation_InstanceStatusNotInRuning
-            case .invalidListenerProtocol: 
+            case .invalidListenerProtocol:
                 code = .failedOperation_InvalidListenerProtocol
-            case .ipUnmatched: 
+            case .ipUnmatched:
                 code = .failedOperation_IPUnmatched
-            case .limitNumofListener: 
+            case .limitNumofListener:
                 code = .failedOperation_LimitNumofListener
-            case .limitNumofProxiesInGroup: 
+            case .limitNumofProxiesInGroup:
                 code = .failedOperation_LimitNumofProxiesInGroup
-            case .limitNumofRules: 
+            case .limitNumofRules:
                 code = .failedOperation_LimitNumofRules
-            case .limitRealServerNum: 
+            case .limitRealServerNum:
                 code = .failedOperation_LimitRealServerNum
-            case .listenerHasTask: 
+            case .listenerHasTask:
                 code = .failedOperation_ListenerHasTask
-            case .listenerStatusError: 
+            case .listenerStatusError:
                 code = .failedOperation_ListenerStatusError
-            case .migration: 
+            case .migration:
                 code = .failedOperation_Migration
-            case .noResourceBound: 
+            case .noResourceBound:
                 code = .failedOperation_NoResourceBound
-            case .nonStandardProxy: 
+            case .nonStandardProxy:
                 code = .failedOperation_NonStandardProxy
-            case .notSupportOldVersionProxy: 
+            case .notSupportOldVersionProxy:
                 code = .failedOperation_NotSupportOldVersionProxy
-            case .notSupportProxyGroup: 
+            case .notSupportProxyGroup:
                 code = .failedOperation_NotSupportProxyGroup
-            case .notSupportScalar: 
+            case .notSupportScalar:
                 code = .failedOperation_NotSupportScalar
-            case .operateLimitNumofListener: 
+            case .operateLimitNumofListener:
                 code = .failedOperation_OperateLimitNumofListener
-            case .proxySecurityAlreadyClose: 
+            case .proxySecurityAlreadyClose:
                 code = .failedOperation_ProxySecurityAlreadyClose
-            case .proxySecurityAlreadyOpen: 
+            case .proxySecurityAlreadyOpen:
                 code = .failedOperation_ProxySecurityAlreadyOpen
-            case .proxySecurityPolicyDefaultRule: 
+            case .proxySecurityPolicyDefaultRule:
                 code = .failedOperation_ProxySecurityPolicyDefaultRule
-            case .proxySecurityPolicyDuplicatedRule: 
+            case .proxySecurityPolicyDuplicatedRule:
                 code = .failedOperation_ProxySecurityPolicyDuplicatedRule
-            case .proxySecurityPolicyExisted: 
+            case .proxySecurityPolicyExisted:
                 code = .failedOperation_ProxySecurityPolicyExisted
-            case .proxySecurityPolicyOperating: 
+            case .proxySecurityPolicyOperating:
                 code = .failedOperation_ProxySecurityPolicyOperating
-            case .proxySellOut: 
+            case .proxySellOut:
                 code = .failedOperation_ProxySellOut
-            case .proxyStatusNotInRuning: 
+            case .proxyStatusNotInRuning:
                 code = .failedOperation_ProxyStatusNotInRuning
-            case .proxyVersionNotSupport: 
+            case .proxyVersionNotSupport:
                 code = .failedOperation_ProxyVersionNotSupport
-            case .realServerAlreadyBound: 
+            case .realServerAlreadyBound:
                 code = .failedOperation_RealServerAlreadyBound
-            case .realServerNotInProject: 
+            case .realServerNotInProject:
                 code = .failedOperation_RealServerNotInProject
-            case .requestVendorTimeout: 
+            case .requestVendorTimeout:
                 code = .failedOperation_RequestVendorTimeout
-            case .resourceCanNotAccess: 
+            case .resourceCanNotAccess:
                 code = .failedOperation_ResourceCanNotAccess
-            case .resourceHadBeenDone: 
+            case .resourceHadBeenDone:
                 code = .failedOperation_ResourceHadBeenDone
-            case .resourceNotFound: 
+            case .resourceNotFound:
                 code = .failedOperation_ResourceNotFound
-            case .resourceUpgrading: 
+            case .resourceUpgrading:
                 code = .failedOperation_ResourceUpgrading
-            case .ruleAlreadyExisted: 
+            case .ruleAlreadyExisted:
                 code = .failedOperation_RuleAlreadyExisted
-            case .sessionNotExist: 
+            case .sessionNotExist:
                 code = .failedOperation_SessionNotExist
-            case .tagResourcesFailed: 
+            case .tagResourcesFailed:
                 code = .failedOperation_TagResourcesFailed
-            case .unTagResourcesFailed: 
+            case .unTagResourcesFailed:
                 code = .failedOperation_UnTagResourcesFailed
-            case .userNotAuthenticated: 
+            case .userNotAuthenticated:
                 code = .failedOperation_UserNotAuthenticated
-            case .userNotConfirmProtocol: 
+            case .userNotConfirmProtocol:
                 code = .failedOperation_UserNotConfirmProtocol
-            case .userOutOfCoverage: 
+            case .userOutOfCoverage:
                 code = .failedOperation_UserOutOfCoverage
-            case .vendorReturnError: 
+            case .vendorReturnError:
                 code = .failedOperation_VendorReturnError
-            case .vendorServerError: 
+            case .vendorServerError:
                 code = .failedOperation_VendorServerError
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCGaapError(code, context: self.context)

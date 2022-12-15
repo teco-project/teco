@@ -19,27 +19,27 @@ extension Mna {
     public struct GetFlowStatisticRequest: TCRequestModel {
         /// 设备ID，ID="-1"时默认查找所有设备
         public let deviceId: String
-        
+
         /// 开始查找时间
         public let beginTime: Int64
-        
+
         /// 截止时间
         public let endTime: Int64
-        
+
         /// 流量种类（1：上行流量，2：下行流量）
         public let type: Int64
-        
+
         /// 时间粒度（1：按小时统计，2：按天统计）
         public let timeGranularity: Int64
-        
-        public init (deviceId: String, beginTime: Int64, endTime: Int64, type: Int64, timeGranularity: Int64) {
+
+        public init(deviceId: String, beginTime: Int64, endTime: Int64, type: Int64, timeGranularity: Int64) {
             self.deviceId = deviceId
             self.beginTime = beginTime
             self.endTime = endTime
             self.type = type
             self.timeGranularity = timeGranularity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case beginTime = "BeginTime"
@@ -48,24 +48,24 @@ extension Mna {
             case timeGranularity = "TimeGranularity"
         }
     }
-    
+
     /// GetFlowStatistic返回参数结构体
     public struct GetFlowStatisticResponse: TCResponseModel {
         /// 流量详细信息
         public let netDetails: [NetDetails]
-        
+
         /// 查找时间段流量使用最大值（单位：bit）
         public let maxValue: Float
-        
+
         /// 查找时间段流量使用平均值（单位：bit）
         public let avgValue: Float
-        
+
         /// 查找时间段流量使用总量（单位：bit）
         public let totalValue: Float
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case netDetails = "NetDetails"
             case maxValue = "MaxValue"
@@ -74,15 +74,15 @@ extension Mna {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取数据流量统计数据
     ///
     /// 获取指定设备Id，指定时间点数据流量使用情况
     @inlinable
-    public func getFlowStatistic(_ input: GetFlowStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFlowStatisticResponse > {
+    public func getFlowStatistic(_ input: GetFlowStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFlowStatisticResponse> {
         self.client.execute(action: "GetFlowStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据流量统计数据
     ///
     /// 获取指定设备Id，指定时间点数据流量使用情况
@@ -90,15 +90,15 @@ extension Mna {
     public func getFlowStatistic(_ input: GetFlowStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFlowStatisticResponse {
         try await self.client.execute(action: "GetFlowStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取数据流量统计数据
     ///
     /// 获取指定设备Id，指定时间点数据流量使用情况
     @inlinable
-    public func getFlowStatistic(deviceId: String, beginTime: Int64, endTime: Int64, type: Int64, timeGranularity: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFlowStatisticResponse > {
+    public func getFlowStatistic(deviceId: String, beginTime: Int64, endTime: Int64, type: Int64, timeGranularity: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFlowStatisticResponse> {
         self.getFlowStatistic(GetFlowStatisticRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, type: type, timeGranularity: timeGranularity), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据流量统计数据
     ///
     /// 获取指定设备Id，指定时间点数据流量使用情况

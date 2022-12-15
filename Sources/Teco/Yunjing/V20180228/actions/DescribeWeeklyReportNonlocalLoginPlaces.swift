@@ -27,52 +27,52 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
-        public init (beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.beginDate = beginDate
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginDate = "BeginDate"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeWeeklyReportNonlocalLoginPlaces返回参数结构体
     public struct DescribeWeeklyReportNonlocalLoginPlacesResponse: TCResponseModel {
         /// 专业周报异地登录数据。
         public let weeklyReportNonlocalLoginPlaces: [WeeklyReportNonlocalLoginPlace]
-        
+
         /// 记录总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case weeklyReportNonlocalLoginPlaces = "WeeklyReportNonlocalLoginPlaces"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取专业周报异地登录数据
     ///
     /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
     @inlinable
-    public func describeWeeklyReportNonlocalLoginPlaces(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportNonlocalLoginPlacesResponse > {
+    public func describeWeeklyReportNonlocalLoginPlaces(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportNonlocalLoginPlacesResponse> {
         self.client.execute(action: "DescribeWeeklyReportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业周报异地登录数据
     ///
     /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
@@ -80,15 +80,15 @@ extension Yunjing {
     public func describeWeeklyReportNonlocalLoginPlaces(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportNonlocalLoginPlacesResponse {
         try await self.client.execute(action: "DescribeWeeklyReportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取专业周报异地登录数据
     ///
     /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
     @inlinable
-    public func describeWeeklyReportNonlocalLoginPlaces(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportNonlocalLoginPlacesResponse > {
+    public func describeWeeklyReportNonlocalLoginPlaces(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportNonlocalLoginPlacesResponse> {
         self.describeWeeklyReportNonlocalLoginPlaces(DescribeWeeklyReportNonlocalLoginPlacesRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业周报异地登录数据
     ///
     /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。

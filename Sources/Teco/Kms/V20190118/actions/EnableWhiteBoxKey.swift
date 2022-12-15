@@ -19,44 +19,44 @@ extension Kms {
     public struct EnableWhiteBoxKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// EnableWhiteBoxKey返回参数结构体
     public struct EnableWhiteBoxKeyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用白盒密钥
     @inlinable
-    public func enableWhiteBoxKey(_ input: EnableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableWhiteBoxKeyResponse > {
+    public func enableWhiteBoxKey(_ input: EnableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWhiteBoxKeyResponse> {
         self.client.execute(action: "EnableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用白盒密钥
     @inlinable
     public func enableWhiteBoxKey(_ input: EnableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWhiteBoxKeyResponse {
         try await self.client.execute(action: "EnableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用白盒密钥
     @inlinable
-    public func enableWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableWhiteBoxKeyResponse > {
+    public func enableWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWhiteBoxKeyResponse> {
         self.enableWhiteBoxKey(EnableWhiteBoxKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用白盒密钥
     @inlinable
     public func enableWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWhiteBoxKeyResponse {

@@ -19,27 +19,27 @@ extension Wedata {
     public struct CommitExportTaskRequest: TCRequestModel {
         /// 项目id
         public let projectId: String?
-        
+
         /// 规则执行Id
         public let ruleExecId: UInt64?
-        
+
         /// 导出类型(1.全部,2.触发行,3.通过行)
         public let exportType: UInt64?
-        
+
         /// 执行资源组id
         public let executorGroupId: String?
-        
+
         /// 计算资源队列
         public let queueName: String?
-        
-        public init (projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil) {
+
+        public init(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil) {
             self.projectId = projectId
             self.ruleExecId = ruleExecId
             self.exportType = exportType
             self.executorGroupId = executorGroupId
             self.queueName = queueName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case ruleExecId = "RuleExecId"
@@ -48,40 +48,40 @@ extension Wedata {
             case queueName = "QueueName"
         }
     }
-    
+
     /// CommitExportTask返回参数结构体
     public struct CommitExportTaskResponse: TCResponseModel {
         /// 提交结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 提交数据导出任务
     @inlinable
-    public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitExportTaskResponse > {
+    public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitExportTaskResponse> {
         self.client.execute(action: "CommitExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 提交数据导出任务
     @inlinable
     public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitExportTaskResponse {
         try await self.client.execute(action: "CommitExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 提交数据导出任务
     @inlinable
-    public func commitExportTask(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitExportTaskResponse > {
+    public func commitExportTask(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitExportTaskResponse> {
         self.commitExportTask(CommitExportTaskRequest(projectId: projectId, ruleExecId: ruleExecId, exportType: exportType, executorGroupId: executorGroupId, queueName: queueName), logger: logger, on: eventLoop)
     }
-    
+
     /// 提交数据导出任务
     @inlinable
     public func commitExportTask(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitExportTaskResponse {

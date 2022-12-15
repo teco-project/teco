@@ -19,10 +19,10 @@ extension Sslpod {
     public struct DescribeDomainsRequest: TCRequestModel {
         /// 偏移量
         public let offset: Int64
-        
+
         /// 获取数量
         public let limit: Int64
-        
+
         /// 搜索的类型有：none，tags，grade，brand，code，hash，limit，domain。
         /// 选tags，入参请填Tag，
         /// 选grade，入参请填Grade，
@@ -32,32 +32,32 @@ extension Sslpod {
         /// 选limit，标识只返回数量信息
         /// 选domain，入参请填Domain
         public let searchType: String
-        
+
         /// 标签，多个标签用逗号分隔
         public let tag: String?
-        
+
         /// 等级
         public let grade: String?
-        
+
         /// 品牌
         public let brand: String?
-        
+
         /// 混合搜索
         public let code: String?
-        
+
         /// 证书指纹
         public let hash: String?
-        
+
         /// 搜索图标类型
         public let item: String?
-        
+
         /// 搜索图标值
         public let status: String?
-        
+
         /// 搜索域名
         public let domain: String?
-        
-        public init (offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil) {
+
+        public init(offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchType = searchType
@@ -70,7 +70,7 @@ extension Sslpod {
             self.status = status
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -85,29 +85,29 @@ extension Sslpod {
             case domain = "Domain"
         }
     }
-    
+
     /// DescribeDomains返回参数结构体
     public struct DescribeDomainsResponse: TCResponseModel {
         /// 列表数据
         public let data: DescribeDomains
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 搜索域名
     ///
     /// 通过searchType搜索已经添加的域名
     @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
         self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索域名
     ///
     /// 通过searchType搜索已经添加的域名
@@ -115,15 +115,15 @@ extension Sslpod {
     public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
         try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 搜索域名
     ///
     /// 通过searchType搜索已经添加的域名
     @inlinable
-    public func describeDomains(offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
+    public func describeDomains(offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
         self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, searchType: searchType, tag: tag, grade: grade, brand: brand, code: code, hash: hash, item: item, status: status, domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索域名
     ///
     /// 通过searchType搜索已经添加的域名

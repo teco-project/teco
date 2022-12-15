@@ -19,39 +19,39 @@ extension Vpc {
     public struct ResetNatGatewayConnectionRequest: TCRequestModel {
         /// NAT网关ID。
         public let natGatewayId: String
-        
+
         /// NAT网关并发连接上限，形如：1000000、3000000、10000000。
         public let maxConcurrentConnection: UInt64
-        
-        public init (natGatewayId: String, maxConcurrentConnection: UInt64) {
+
+        public init(natGatewayId: String, maxConcurrentConnection: UInt64) {
             self.natGatewayId = natGatewayId
             self.maxConcurrentConnection = maxConcurrentConnection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natGatewayId = "NatGatewayId"
             case maxConcurrentConnection = "MaxConcurrentConnection"
         }
     }
-    
+
     /// ResetNatGatewayConnection返回参数结构体
     public struct ResetNatGatewayConnectionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
     @inlinable
-    public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetNatGatewayConnectionResponse > {
+    public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetNatGatewayConnectionResponse> {
         self.client.execute(action: "ResetNatGatewayConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
@@ -59,15 +59,15 @@ extension Vpc {
     public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetNatGatewayConnectionResponse {
         try await self.client.execute(action: "ResetNatGatewayConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
     @inlinable
-    public func resetNatGatewayConnection(natGatewayId: String, maxConcurrentConnection: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetNatGatewayConnectionResponse > {
+    public func resetNatGatewayConnection(natGatewayId: String, maxConcurrentConnection: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetNatGatewayConnectionResponse> {
         self.resetNatGatewayConnection(ResetNatGatewayConnectionRequest(natGatewayId: natGatewayId, maxConcurrentConnection: maxConcurrentConnection), logger: logger, on: eventLoop)
     }
-    
+
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。

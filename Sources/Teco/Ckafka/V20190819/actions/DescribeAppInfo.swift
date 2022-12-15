@@ -19,53 +19,53 @@ extension Ckafka {
     public struct DescribeAppInfoRequest: TCRequestModel {
         /// 偏移位置
         public let offset: Int64?
-        
+
         /// 本次查询用户数目最大数量限制，最大值为50，默认50
         public let limit: Int64?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil) {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAppInfo返回参数结构体
     public struct DescribeAppInfoResponse: TCResponseModel {
         /// 返回的符合要求的App Id列表
         public let result: AppIdResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户列表
     @inlinable
-    public func describeAppInfo(_ input: DescribeAppInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppInfoResponse > {
+    public func describeAppInfo(_ input: DescribeAppInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppInfoResponse> {
         self.client.execute(action: "DescribeAppInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户列表
     @inlinable
     public func describeAppInfo(_ input: DescribeAppInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppInfoResponse {
         try await self.client.execute(action: "DescribeAppInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户列表
     @inlinable
-    public func describeAppInfo(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppInfoResponse > {
+    public func describeAppInfo(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppInfoResponse> {
         self.describeAppInfo(DescribeAppInfoRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户列表
     @inlinable
     public func describeAppInfo(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppInfoResponse {

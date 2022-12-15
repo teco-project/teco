@@ -19,54 +19,54 @@ extension Tcr {
     public struct CreateInstanceCustomizedDomainRequest: TCRequestModel {
         /// 主实例iD
         public let registryId: String
-        
+
         /// 自定义域名
         public let domainName: String
-        
+
         /// 证书ID
         public let certificateId: String
-        
-        public init (registryId: String, domainName: String, certificateId: String) {
+
+        public init(registryId: String, domainName: String, certificateId: String) {
             self.registryId = registryId
             self.domainName = domainName
             self.certificateId = certificateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case domainName = "DomainName"
             case certificateId = "CertificateId"
         }
     }
-    
+
     /// CreateInstanceCustomizedDomain返回参数结构体
     public struct CreateInstanceCustomizedDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建自定义域名
     @inlinable
-    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceCustomizedDomainResponse > {
+    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceCustomizedDomainResponse> {
         self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义域名
     @inlinable
     public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
         try await self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建自定义域名
     @inlinable
-    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceCustomizedDomainResponse > {
+    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceCustomizedDomainResponse> {
         self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义域名
     @inlinable
     public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {

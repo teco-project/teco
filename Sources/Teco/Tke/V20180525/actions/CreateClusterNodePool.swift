@@ -19,47 +19,47 @@ extension Tke {
     public struct CreateClusterNodePoolRequest: TCRequestModel {
         /// cluster id
         public let clusterId: String
-        
+
         /// AutoScalingGroupPara AS组参数，参考 https://cloud.tencent.com/document/product/377/20440
         public let autoScalingGroupPara: String
-        
+
         /// LaunchConfigurePara 运行参数，参考 https://cloud.tencent.com/document/product/377/20447
         public let launchConfigurePara: String
-        
+
         /// InstanceAdvancedSettings 示例参数
         public let instanceAdvancedSettings: InstanceAdvancedSettings
-        
+
         /// 是否启用自动伸缩
         public let enableAutoscale: Bool
-        
+
         /// 节点池名称
         public let name: String?
-        
+
         /// Labels标签
         public let labels: [Label]?
-        
+
         /// Taints互斥
         public let taints: [Taint]?
-        
+
         /// 节点池纬度运行时类型及版本
         public let containerRuntime: String?
-        
+
         /// 运行时版本
         public let runtimeVersion: String?
-        
+
         /// 节点池os，当为自定义镜像时，传镜像id；否则为公共镜像的osName
         public let nodePoolOs: String?
-        
+
         /// 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         public let osCustomizeType: String?
-        
+
         /// 资源标签
         public let tags: [Tag]?
-        
+
         /// 删除保护开关
         public let deletionProtection: Bool?
-        
-        public init (clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil) {
+
+        public init(clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil) {
             self.clusterId = clusterId
             self.autoScalingGroupPara = autoScalingGroupPara
             self.launchConfigurePara = launchConfigurePara
@@ -75,7 +75,7 @@ extension Tke {
             self.tags = tags
             self.deletionProtection = deletionProtection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case autoScalingGroupPara = "AutoScalingGroupPara"
@@ -93,39 +93,39 @@ extension Tke {
             case deletionProtection = "DeletionProtection"
         }
     }
-    
+
     /// CreateClusterNodePool返回参数结构体
     public struct CreateClusterNodePoolResponse: TCResponseModel {
         /// 节点池id
         public let nodePoolId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nodePoolId = "NodePoolId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建节点池
     @inlinable
-    public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolResponse > {
+    public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterNodePoolResponse> {
         self.client.execute(action: "CreateClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建节点池
     @inlinable
     public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolResponse {
         try await self.client.execute(action: "CreateClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建节点池
     @inlinable
-    public func createClusterNodePool(clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolResponse > {
+    public func createClusterNodePool(clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterNodePoolResponse> {
         self.createClusterNodePool(CreateClusterNodePoolRequest(clusterId: clusterId, autoScalingGroupPara: autoScalingGroupPara, launchConfigurePara: launchConfigurePara, instanceAdvancedSettings: instanceAdvancedSettings, enableAutoscale: enableAutoscale, name: name, labels: labels, taints: taints, containerRuntime: containerRuntime, runtimeVersion: runtimeVersion, nodePoolOs: nodePoolOs, osCustomizeType: osCustomizeType, tags: tags, deletionProtection: deletionProtection), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建节点池
     @inlinable
     public func createClusterNodePool(clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolResponse {

@@ -19,43 +19,43 @@ extension Wav {
     public struct QueryExternalContactDetailRequest: TCRequestModel {
         /// 外部联系人的userid，注意不是企业成员的帐号
         public let externalUserId: String
-        
+
         /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填。当客户在企业内的跟进人超过500人时需要使用cursor参数进行分页获取
         public let cursor: String?
-        
+
         /// 当前接口Limit不需要传参， 保留Limit只是为了保持向后兼容性， Limit默认值为500，当返回结果超过500时， NextCursor才有返回值
         public let limit: UInt64?
-        
-        public init (externalUserId: String, cursor: String? = nil, limit: UInt64? = nil) {
+
+        public init(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil) {
             self.externalUserId = externalUserId
             self.cursor = cursor
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case externalUserId = "ExternalUserId"
             case cursor = "Cursor"
             case limit = "Limit"
         }
     }
-    
+
     /// QueryExternalContactDetail返回参数结构体
     public struct QueryExternalContactDetailResponse: TCResponseModel {
         /// 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextCursor: String?
-        
+
         /// 客户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customer: ExternalContact?
-        
+
         /// 添加了此外部联系人的企业成员信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followUser: [FollowUser]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nextCursor = "NextCursor"
             case customer = "Customer"
@@ -63,15 +63,15 @@ extension Wav {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
-    public func queryExternalContactDetail(_ input: QueryExternalContactDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExternalContactDetailResponse > {
+    public func queryExternalContactDetail(_ input: QueryExternalContactDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactDetailResponse> {
         self.client.execute(action: "QueryExternalContactDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
@@ -79,15 +79,15 @@ extension Wav {
     public func queryExternalContactDetail(_ input: QueryExternalContactDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactDetailResponse {
         try await self.client.execute(action: "QueryExternalContactDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
-    public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExternalContactDetailResponse > {
+    public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactDetailResponse> {
         self.queryExternalContactDetail(QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情

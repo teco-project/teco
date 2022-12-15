@@ -19,52 +19,52 @@ extension Ms {
     public struct CreateShieldPlanInstanceRequest: TCRequestModel {
         /// 资源id
         public let resourceId: String
-        
+
         /// 策略名称
         public let planName: String
-        
+
         /// 策略具体信息
         public let planInfo: PlanInfo
-        
-        public init (resourceId: String, planName: String, planInfo: PlanInfo) {
+
+        public init(resourceId: String, planName: String, planInfo: PlanInfo) {
             self.resourceId = resourceId
             self.planName = planName
             self.planInfo = planInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case planName = "PlanName"
             case planInfo = "PlanInfo"
         }
     }
-    
+
     /// CreateShieldPlanInstance返回参数结构体
     public struct CreateShieldPlanInstanceResponse: TCResponseModel {
         /// 策略id
         public let planId: UInt64
-        
+
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let progress: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case planId = "PlanId"
             case progress = "Progress"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增加固策略
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createShieldPlanInstance(_ input: CreateShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateShieldPlanInstanceResponse > {
+    public func createShieldPlanInstance(_ input: CreateShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShieldPlanInstanceResponse> {
         self.client.execute(action: "CreateShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增加固策略
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
@@ -72,15 +72,15 @@ extension Ms {
     public func createShieldPlanInstance(_ input: CreateShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldPlanInstanceResponse {
         try await self.client.execute(action: "CreateShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增加固策略
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateShieldPlanInstanceResponse > {
+    public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShieldPlanInstanceResponse> {
         self.createShieldPlanInstance(CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增加固策略
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）

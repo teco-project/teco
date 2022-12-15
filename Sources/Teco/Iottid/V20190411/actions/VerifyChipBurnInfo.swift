@@ -19,30 +19,30 @@ extension Iottid {
     public struct VerifyChipBurnInfoRequest: TCRequestModel {
         /// 验证数据
         public let data: String
-        
-        public init (data: String) {
+
+        public init(data: String) {
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
         }
     }
-    
+
     /// VerifyChipBurnInfo返回参数结构体
     public struct VerifyChipBurnInfoResponse: TCResponseModel {
         /// 验证结果
         public let pass: Bool
-        
+
         /// 已验证次数
         public let verifiedTimes: UInt64
-        
+
         /// 剩余验证次数
         public let leftTimes: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pass = "Pass"
             case verifiedTimes = "VerifiedTimes"
@@ -50,34 +50,34 @@ extension Iottid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 验证芯片烧录TID信息
     ///
-    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
+    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
-    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyChipBurnInfoResponse > {
+    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyChipBurnInfoResponse> {
         self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 验证芯片烧录TID信息
     ///
-    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
+    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
     public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
         try await self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 验证芯片烧录TID信息
     ///
-    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
+    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
-    public func verifyChipBurnInfo(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyChipBurnInfoResponse > {
+    public func verifyChipBurnInfo(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyChipBurnInfoResponse> {
         self.verifyChipBurnInfo(VerifyChipBurnInfoRequest(data: data), logger: logger, on: eventLoop)
     }
-    
+
     /// 验证芯片烧录TID信息
     ///
-    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
+    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
     public func verifyChipBurnInfo(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
         try await self.verifyChipBurnInfo(VerifyChipBurnInfoRequest(data: data), logger: logger, on: eventLoop)

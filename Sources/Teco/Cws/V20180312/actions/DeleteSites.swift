@@ -19,34 +19,34 @@ extension Cws {
     public struct DeleteSitesRequest: TCRequestModel {
         /// 站点ID列表
         public let siteIds: [UInt64]
-        
-        public init (siteIds: [UInt64]) {
+
+        public init(siteIds: [UInt64]) {
             self.siteIds = siteIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case siteIds = "SiteIds"
         }
     }
-    
+
     /// DeleteSites返回参数结构体
     public struct DeleteSitesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除站点
     ///
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable
-    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSitesResponse > {
+    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
         self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除站点
     ///
     /// 本接口 (DeleteSites) 用于删除站点。
@@ -54,15 +54,15 @@ extension Cws {
     public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
         try await self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除站点
     ///
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable
-    public func deleteSites(siteIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSitesResponse > {
+    public func deleteSites(siteIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
         self.deleteSites(DeleteSitesRequest(siteIds: siteIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除站点
     ///
     /// 本接口 (DeleteSites) 用于删除站点。

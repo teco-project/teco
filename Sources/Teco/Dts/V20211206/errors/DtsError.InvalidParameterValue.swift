@@ -21,52 +21,52 @@ extension TCDtsError {
             case invalidParameterValue = "InvalidParameterValue.InvalidParameterValue"
             case invalidParameterValueError = "InvalidParameterValue.InvalidParameterValueError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 数据转换错误。
         public static var dataConvertError: InvalidParameterValue {
             InvalidParameterValue(.dataConvertError)
         }
-        
+
         /// 参数值错误。
         public static var invalidParameterValue: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValue)
         }
-        
+
         /// 非法参数。
         public static var invalidParameterValueError: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueError)
         }
-        
+
         public func asDtsError() -> TCDtsError {
             let code: TCDtsError.Code
             switch self.error {
-            case .dataConvertError: 
+            case .dataConvertError:
                 code = .invalidParameterValue_DataConvertError
-            case .invalidParameterValue: 
+            case .invalidParameterValue:
                 code = .invalidParameterValue_InvalidParameterValue
-            case .invalidParameterValueError: 
+            case .invalidParameterValueError:
                 code = .invalidParameterValue_InvalidParameterValueError
             }
             return TCDtsError(code, context: self.context)

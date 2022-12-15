@@ -19,52 +19,52 @@ extension Tdid {
     public struct GetAgencyTDidRequest: TCRequestModel {
         /// 网络ID
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// GetAgencyTDid返回参数结构体
     public struct GetAgencyTDidResponse: TCResponseModel {
         /// 固定前缀
         public let prefix: String
-        
+
         /// did详情
         public let identity: [Identity]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case prefix = "Prefix"
             case identity = "Identity"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 本机构DID详情
     @inlinable
-    public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAgencyTDidResponse > {
+    public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAgencyTDidResponse> {
         self.client.execute(action: "GetAgencyTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 本机构DID详情
     @inlinable
     public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
         try await self.client.execute(action: "GetAgencyTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 本机构DID详情
     @inlinable
-    public func getAgencyTDid(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAgencyTDidResponse > {
+    public func getAgencyTDid(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAgencyTDidResponse> {
         self.getAgencyTDid(GetAgencyTDidRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 本机构DID详情
     @inlinable
     public func getAgencyTDid(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {

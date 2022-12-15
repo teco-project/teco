@@ -19,27 +19,27 @@ extension Mmps {
     public struct DescribeScanTaskReportUrlRequest: TCRequestModel {
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         public let source: Int64
-        
+
         /// 任务id
         public let taskID: String
-        
+
         /// 应用平台, 0:android, 1:ios, 2:小程序
         public let platform: Int64
-        
+
         /// 报告类型, 0:诊断报告, 1:堆栈报告(预留), 2:视频证据(预留), 3:报告json结果
         public let reportType: Int64
-        
+
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
         public let taskType: Int64
-        
-        public init (source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64) {
+
+        public init(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64) {
             self.source = source
             self.taskID = taskID
             self.platform = platform
             self.reportType = reportType
             self.taskType = taskType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case source = "Source"
             case taskID = "TaskID"
@@ -48,26 +48,26 @@ extension Mmps {
             case taskType = "TaskType"
         }
     }
-    
+
     /// DescribeScanTaskReportUrl返回参数结构体
     public struct DescribeScanTaskReportUrlResponse: TCResponseModel {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let result: Int64
-        
+
         /// 诊断报告/堆栈信息下载链接
         public let reportUrl: String
-        
+
         /// 诊断报告/堆栈名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportTitle: String?
-        
+
         /// 诊断json结果内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportResult: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case reportUrl = "ReportUrl"
@@ -76,15 +76,15 @@ extension Mmps {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取合规诊断任务报告url
     ///
     /// 获取小程序合规诊断任务报告url
     @inlinable
-    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskReportUrlResponse > {
+    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskReportUrlResponse> {
         self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取合规诊断任务报告url
     ///
     /// 获取小程序合规诊断任务报告url
@@ -92,15 +92,15 @@ extension Mmps {
     public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
         try await self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取合规诊断任务报告url
     ///
     /// 获取小程序合规诊断任务报告url
     @inlinable
-    public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskReportUrlResponse > {
+    public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskReportUrlResponse> {
         self.describeScanTaskReportUrl(DescribeScanTaskReportUrlRequest(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取合规诊断任务报告url
     ///
     /// 获取小程序合规诊断任务报告url

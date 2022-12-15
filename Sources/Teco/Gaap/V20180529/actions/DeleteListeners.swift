@@ -19,23 +19,23 @@ extension Gaap {
     public struct DeleteListenersRequest: TCRequestModel {
         /// 待删除的监听器ID列表
         public let listenerIds: [String]
-        
+
         /// 已绑定源站的监听器是否允许强制删除，1：允许， 0：不允许
         public let force: UInt64
-        
+
         /// 通道组ID，该参数和GroupId必须设置一个，但不能同时设置。
         public let groupId: String?
-        
+
         /// 通道ID，该参数和GroupId必须设置一个，但不能同时设置。
         public let proxyId: String?
-        
-        public init (listenerIds: [String], force: UInt64, groupId: String? = nil, proxyId: String? = nil) {
+
+        public init(listenerIds: [String], force: UInt64, groupId: String? = nil, proxyId: String? = nil) {
             self.listenerIds = listenerIds
             self.force = force
             self.groupId = groupId
             self.proxyId = proxyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerIds = "ListenerIds"
             case force = "Force"
@@ -43,21 +43,21 @@ extension Gaap {
             case proxyId = "ProxyId"
         }
     }
-    
+
     /// DeleteListeners返回参数结构体
     public struct DeleteListenersResponse: TCResponseModel {
         /// 删除操作失败的监听器ID列表
         public let operationFailedListenerSet: [String]
-        
+
         /// 删除操作成功的监听器ID列表
         public let operationSucceedListenerSet: [String]
-        
+
         /// 无效的监听器ID列表，如：监听器不存在，监听器对应实例不匹配
         public let invalidStatusListenerSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case operationFailedListenerSet = "OperationFailedListenerSet"
             case operationSucceedListenerSet = "OperationSucceedListenerSet"
@@ -65,15 +65,15 @@ extension Gaap {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除通道监听器
     ///
     /// 该接口（DeleteListeners）用于批量删除通道或通道组的监听器，包括4/7层监听器。
     @inlinable
-    public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenersResponse > {
+    public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenersResponse> {
         self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除通道监听器
     ///
     /// 该接口（DeleteListeners）用于批量删除通道或通道组的监听器，包括4/7层监听器。
@@ -81,15 +81,15 @@ extension Gaap {
     public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
         try await self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除通道监听器
     ///
     /// 该接口（DeleteListeners）用于批量删除通道或通道组的监听器，包括4/7层监听器。
     @inlinable
-    public func deleteListeners(listenerIds: [String], force: UInt64, groupId: String? = nil, proxyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenersResponse > {
+    public func deleteListeners(listenerIds: [String], force: UInt64, groupId: String? = nil, proxyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenersResponse> {
         self.deleteListeners(DeleteListenersRequest(listenerIds: listenerIds, force: force, groupId: groupId, proxyId: proxyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除通道监听器
     ///
     /// 该接口（DeleteListeners）用于批量删除通道或通道组的监听器，包括4/7层监听器。

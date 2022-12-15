@@ -19,27 +19,27 @@ extension Tdmq {
     public struct CreateClusterRequest: TCRequestModel {
         /// 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
         public let clusterName: String
-        
+
         /// 用户专享物理集群ID，如果不传，则默认在公共集群上创建用户集群资源。
         public let bindClusterId: UInt64?
-        
+
         /// 说明，128个字符以内。
         public let remark: String?
-        
+
         /// 集群的标签列表(已废弃)
         public let tags: [Tag]?
-        
+
         /// 是否开启公网访问，不填时默认开启
         public let publicAccessEnabled: Bool?
-        
-        public init (clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil) {
+
+        public init(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil) {
             self.clusterName = clusterName
             self.bindClusterId = bindClusterId
             self.remark = remark
             self.tags = tags
             self.publicAccessEnabled = publicAccessEnabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterName = "ClusterName"
             case bindClusterId = "BindClusterId"
@@ -48,29 +48,29 @@ extension Tdmq {
             case publicAccessEnabled = "PublicAccessEnabled"
         }
     }
-    
+
     /// CreateCluster返回参数结构体
     public struct CreateClusterResponse: TCResponseModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建集群
     ///
     /// 创建用户的集群
     @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
         self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建集群
     ///
     /// 创建用户的集群
@@ -78,15 +78,15 @@ extension Tdmq {
     public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
         try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建集群
     ///
     /// 创建用户的集群
     @inlinable
-    public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+    public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
         self.createCluster(CreateClusterRequest(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建集群
     ///
     /// 创建用户的集群

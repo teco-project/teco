@@ -19,44 +19,44 @@ extension Cls {
     public struct DeleteMachineGroupRequest: TCRequestModel {
         /// 机器组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DeleteMachineGroup返回参数结构体
     public struct DeleteMachineGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除机器组
     @inlinable
-    public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupResponse > {
+    public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupResponse> {
         self.client.execute(action: "DeleteMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除机器组
     @inlinable
     public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
         try await self.client.execute(action: "DeleteMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除机器组
     @inlinable
-    public func deleteMachineGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupResponse > {
+    public func deleteMachineGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupResponse> {
         self.deleteMachineGroup(DeleteMachineGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除机器组
     @inlinable
     public func deleteMachineGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {

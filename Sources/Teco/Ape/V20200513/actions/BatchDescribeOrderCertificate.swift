@@ -19,48 +19,48 @@ extension Ape {
     public struct BatchDescribeOrderCertificateRequest: TCRequestModel {
         /// 要下载授权书的订单id
         public let orderIds: [String]
-        
-        public init (orderIds: [String]) {
+
+        public init(orderIds: [String]) {
             self.orderIds = orderIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case orderIds = "OrderIds"
         }
     }
-    
+
     /// BatchDescribeOrderCertificate返回参数结构体
     public struct BatchDescribeOrderCertificateResponse: TCResponseModel {
         /// 授权书的下载地址
         public let certificateUrls: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateUrls = "CertificateUrls"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量获取授权书下载地址
     @inlinable
-    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeOrderCertificateResponse > {
+    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeOrderCertificateResponse> {
         self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量获取授权书下载地址
     @inlinable
     public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
         try await self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量获取授权书下载地址
     @inlinable
-    public func batchDescribeOrderCertificate(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeOrderCertificateResponse > {
+    public func batchDescribeOrderCertificate(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeOrderCertificateResponse> {
         self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量获取授权书下载地址
     @inlinable
     public func batchDescribeOrderCertificate(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {

@@ -19,27 +19,27 @@ extension Cpdp {
     public struct DistributeRemoveReceiverRequest: TCRequestModel {
         /// 使用门店OpenId
         public let openId: String
-        
+
         /// 使用门店OpenKey
         public let openKey: String
-        
+
         /// 商户编号
         public let merchantNo: String
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
-        
-        public init (openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil) {
+
+        public init(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.merchantNo = merchantNo
             self.remark = remark
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case openId = "OpenId"
             case openKey = "OpenKey"
@@ -48,23 +48,23 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// DistributeRemoveReceiver返回参数结构体
     public struct DistributeRemoveReceiverResponse: TCResponseModel {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 业务系统返回码
         public let errCode: String
-        
+
         /// 解除分账接收方响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: DistributeReceiverResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errMessage = "ErrMessage"
             case errCode = "ErrCode"
@@ -72,25 +72,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云支付-分账解除分账接收方接口
     @inlinable
-    public func distributeRemoveReceiver(_ input: DistributeRemoveReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeRemoveReceiverResponse > {
+    public func distributeRemoveReceiver(_ input: DistributeRemoveReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeRemoveReceiverResponse> {
         self.client.execute(action: "DistributeRemoveReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-分账解除分账接收方接口
     @inlinable
     public func distributeRemoveReceiver(_ input: DistributeRemoveReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeRemoveReceiverResponse {
         try await self.client.execute(action: "DistributeRemoveReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云支付-分账解除分账接收方接口
     @inlinable
-    public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeRemoveReceiverResponse > {
+    public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeRemoveReceiverResponse> {
         self.distributeRemoveReceiver(DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-分账解除分账接收方接口
     @inlinable
     public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeRemoveReceiverResponse {

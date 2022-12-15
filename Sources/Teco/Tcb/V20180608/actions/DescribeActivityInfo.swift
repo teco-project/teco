@@ -19,48 +19,48 @@ extension Tcb {
     public struct DescribeActivityInfoRequest: TCRequestModel {
         /// 活动id列表
         public let activityIdList: [Int64]?
-        
-        public init (activityIdList: [Int64]? = nil) {
+
+        public init(activityIdList: [Int64]? = nil) {
             self.activityIdList = activityIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case activityIdList = "ActivityIdList"
         }
     }
-    
+
     /// DescribeActivityInfo返回参数结构体
     public struct DescribeActivityInfoResponse: TCResponseModel {
         /// 活动详情
         public let activityInfoList: [ActivityInfoItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case activityInfoList = "ActivityInfoList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询活动信息
     @inlinable
-    public func describeActivityInfo(_ input: DescribeActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActivityInfoResponse > {
+    public func describeActivityInfo(_ input: DescribeActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeActivityInfoResponse> {
         self.client.execute(action: "DescribeActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询活动信息
     @inlinable
     public func describeActivityInfo(_ input: DescribeActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityInfoResponse {
         try await self.client.execute(action: "DescribeActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询活动信息
     @inlinable
-    public func describeActivityInfo(activityIdList: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActivityInfoResponse > {
+    public func describeActivityInfo(activityIdList: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeActivityInfoResponse> {
         self.describeActivityInfo(DescribeActivityInfoRequest(activityIdList: activityIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询活动信息
     @inlinable
     public func describeActivityInfo(activityIdList: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityInfoResponse {

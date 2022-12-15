@@ -21,52 +21,52 @@ extension TCCbsError {
             case overRefundQuota = "ResourceInsufficient.OverRefundQuota"
             case other = "ResourceInsufficient"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 配额不足。
         public static var overQuota: ResourceInsufficient {
             ResourceInsufficient(.overQuota)
         }
-        
+
         /// 云盘退还数量已达上限，不能再退还。
         public static var overRefundQuota: ResourceInsufficient {
             ResourceInsufficient(.overRefundQuota)
         }
-        
+
         /// 资源不足。
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-        
+
         public func asCbsError() -> TCCbsError {
             let code: TCCbsError.Code
             switch self.error {
-            case .overQuota: 
+            case .overQuota:
                 code = .resourceInsufficient_OverQuota
-            case .overRefundQuota: 
+            case .overRefundQuota:
                 code = .resourceInsufficient_OverRefundQuota
-            case .other: 
+            case .other:
                 code = .resourceInsufficient
             }
             return TCCbsError(code, context: self.context)

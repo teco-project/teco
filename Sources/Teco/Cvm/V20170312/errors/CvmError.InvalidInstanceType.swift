@@ -19,38 +19,38 @@ extension TCCvmError {
         enum Code: String {
             case malformed = "InvalidInstanceType.Malformed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 指定InstanceType参数格式不合法。
         public static var malformed: InvalidInstanceType {
             InvalidInstanceType(.malformed)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .malformed: 
+            case .malformed:
                 code = .invalidInstanceType_Malformed
             }
             return TCCvmError(code, context: self.context)

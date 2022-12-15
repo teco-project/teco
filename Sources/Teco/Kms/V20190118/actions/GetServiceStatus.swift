@@ -17,45 +17,45 @@
 extension Kms {
     /// GetServiceStatus请求参数结构体
     public struct GetServiceStatusRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetServiceStatus返回参数结构体
     public struct GetServiceStatusResponse: TCResponseModel {
         /// KMS服务是否开通， true 表示已开通
         public let serviceEnabled: Bool
-        
+
         /// 服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invalidType: Int64?
-        
+
         /// 0-普通版，1-旗舰版
         public let userLevel: UInt64
-        
+
         /// 旗舰版到期时间（Epoch Unix Timestamp）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proExpireTime: UInt64?
-        
+
         /// 旗舰版是否自动续费：0-不自动续费，1-自动续费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proRenewFlag: UInt64?
-        
+
         /// 旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proResourceId: String?
-        
+
         /// 是否开通 KMS 托管版
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exclusiveVSMEnabled: Bool?
-        
+
         /// 是否开通 KMS 独享版
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exclusiveHSMEnabled: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceEnabled = "ServiceEnabled"
             case invalidType = "InvalidType"
@@ -68,15 +68,15 @@ extension Kms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询服务状态
     ///
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
-    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceStatusResponse > {
+    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
         self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询服务状态
     ///
     /// 用于查询该用户是否已开通KMS服务
@@ -84,15 +84,15 @@ extension Kms {
     public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
         try await self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询服务状态
     ///
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
-    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceStatusResponse > {
+    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
         self.getServiceStatus(GetServiceStatusRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询服务状态
     ///
     /// 用于查询该用户是否已开通KMS服务

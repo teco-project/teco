@@ -22,144 +22,144 @@ extension Monitor {
     public struct AlarmEvent: TCOutputModel {
         /// 事件名
         public let eventName: String
-        
+
         /// 展示的事件名
         public let description: String
-        
+
         /// 告警策略类型
         public let namespace: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eventName = "EventName"
             case description = "Description"
             case namespace = "Namespace"
         }
     }
-    
+
     /// 通知模版ID及通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
     public struct AlarmHierarchicalNotice: TCInputModel, TCOutputModel {
         /// 通知模板ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeId: String?
-        
+
         /// 通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classification: [String]?
-        
-        public init (noticeId: String? = nil, classification: [String]? = nil) {
+
+        public init(noticeId: String? = nil, classification: [String]? = nil) {
             self.noticeId = noticeId
             self.classification = classification
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case noticeId = "NoticeId"
             case classification = "Classification"
         }
     }
-    
+
     /// 告警分级阈值配置
     public struct AlarmHierarchicalValue: TCInputModel, TCOutputModel {
         /// 提醒等级阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remind: String?
-        
+
         /// 警告等级阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warn: String?
-        
+
         /// 严重等级阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serious: String?
-        
-        public init (remind: String? = nil, warn: String? = nil, serious: String? = nil) {
+
+        public init(remind: String? = nil, warn: String? = nil, serious: String? = nil) {
             self.remind = remind
             self.warn = warn
             self.serious = serious
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case remind = "Remind"
             case warn = "Warn"
             case serious = "Serious"
         }
     }
-    
+
     /// 告警历史数据
     public struct AlarmHistory: TCOutputModel {
         /// 告警历史Id
         public let alarmId: String
-        
+
         /// 监控类型
         public let monitorType: String
-        
+
         /// 策略类型
         public let namespace: String
-        
+
         /// 告警对象
         public let alarmObject: String
-        
+
         /// 告警内容
         public let content: String
-        
+
         /// 时间戳，首次出现时间
         public let firstOccurTime: Int64
-        
+
         /// 时间戳，最后出现时间
         public let lastOccurTime: Int64
-        
+
         /// 告警状态，ALARM=未恢复 OK=已恢复 NO_CONF=已失效 NO_DATA=数据不足
         public let alarmStatus: String
-        
+
         /// 告警策略 Id
         public let policyId: String
-        
+
         /// 策略名称
         public let policyName: String
-        
+
         /// 基础产品告警的告警对象所属网络
         public let vpc: String
-        
+
         /// 项目 Id
         public let projectId: Int64
-        
+
         /// 项目名字
         public let projectName: String
-        
+
         /// 告警对象所属实例组
         public let instanceGroup: [InstanceGroups]
-        
+
         /// 接收人列表
         public let receiverUids: [Int64]
-        
+
         /// 接收组列表
         public let receiverGroups: [Int64]
-        
+
         /// 告警渠道列表 SMS=短信 EMAIL=邮件 CALL=电话 WECHAT=微信
         public let noticeWays: [String]
-        
+
         /// 可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
         public let originId: String
-        
+
         /// 告警类型
         public let alarmType: String
-        
+
         /// 事件Id
         public let eventId: Int64
-        
+
         /// 地域
         public let region: String
-        
+
         /// 策略是否存在 0=不存在 1=存在
         public let policyExists: Int64
-        
+
         /// 指标信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricsInfo: [AlarmHistoryMetric]?
-        
+
         /// 告警实例的维度信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensions: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmId = "AlarmId"
             case monitorType = "MonitorType"
@@ -187,24 +187,24 @@ extension Monitor {
             case dimensions = "Dimensions"
         }
     }
-    
+
     /// 告警历史的指标信息
     public struct AlarmHistoryMetric: TCOutputModel {
         /// 云产品监控类型查询数据使用的命名空间
         public let qceNamespace: String
-        
+
         /// 指标名
         public let metricName: String
-        
+
         /// 统计周期
         public let period: Int64
-        
+
         /// 触发告警的数值
         public let value: String
-        
+
         /// 指标的展示名
         public let description: String
-        
+
         enum CodingKeys: String, CodingKey {
             case qceNamespace = "QceNamespace"
             case metricName = "MetricName"
@@ -213,61 +213,61 @@ extension Monitor {
             case description = "Description"
         }
     }
-    
+
     /// 告警通知模板详情
     public struct AlarmNotice: TCOutputModel {
         /// 告警通知模板 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 告警通知模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 上次修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         /// 上次修改人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedBy: String?
-        
+
         /// 告警通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=全部通知
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeType: String?
-        
+
         /// 用户通知列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userNotices: [UserNotice]?
-        
+
         /// 回调通知列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlNotices: [URLNotice]?
-        
+
         /// 是否是系统预设通知模板 0=否 1=是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPreset: Int64?
-        
+
         /// 通知语言 zh-CN=中文 en-US=英文
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeLanguage: String?
-        
+
         /// 告警通知模板绑定的告警策略ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyIds: [String]?
-        
+
         /// 后台 amp consumer id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ampConsumerId: String?
-        
+
         /// 推送cls渠道
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clsNotices: [CLSNotice]?
-        
+
         /// 通知模版绑定的标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -284,152 +284,152 @@ extension Monitor {
             case tags = "Tags"
         }
     }
-    
+
     /// 告警策略详情
     public struct AlarmPolicy: TCOutputModel {
         /// 告警策略 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyId: String?
-        
+
         /// 告警策略名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyName: String?
-        
+
         /// 备注信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 监控类型 MT_QCE=云产品监控
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorType: String?
-        
+
         /// 启停状态 0=停用 1=启用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enable: Int64?
-        
+
         /// 策略组绑定的实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let useSum: Int64?
-        
+
         /// 项目 Id -1=无项目 0=默认项目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: Int64?
-        
+
         /// 项目名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
-        
+
         /// 告警策略类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 触发条件模板 Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionTemplateId: String?
-        
+
         /// 指标触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let condition: AlarmPolicyCondition?
-        
+
         /// 事件触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventCondition: AlarmPolicyEventCondition?
-        
+
         /// 通知规则 id 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeIds: [String]?
-        
+
         /// 通知规则 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notices: [AlarmNotice]?
-        
+
         /// 触发任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerTasks: [AlarmPolicyTriggerTask]?
-        
+
         /// 模板策略组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionsTemp: ConditionsTemp?
-        
+
         /// 最后编辑的用户uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastEditUin: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let insertTime: Int64?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: [String]?
-        
+
         /// namespace显示名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceShowName: String?
-        
+
         /// 是否默认策略，1是，0否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDefault: Int64?
-        
+
         /// 能否设置默认策略，1是，0否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let canSetDefault: Int64?
-        
+
         /// 实例分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceGroupId: Int64?
-        
+
         /// 实例分组总实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceSum: Int64?
-        
+
         /// 实例分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceGroupName: String?
-        
+
         /// 触发条件类型 STATIC=静态阈值 DYNAMIC=动态类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originId: String?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagInstances: [TagInstance]?
-        
+
         /// 策略关联的过滤维度信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterDimensionsParam: String?
-        
+
         /// 是否为一键告警策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isOneClick: Int64?
-        
+
         /// 一键告警策略是否开启
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oneClickStatus: Int64?
-        
+
         /// 高级指标数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedMetricNumber: Int64?
-        
+
         /// 策略是否是全部对象策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isBindAll: Int64?
-        
+
         /// 策略标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case policyName = "PolicyName"
@@ -468,74 +468,74 @@ extension Monitor {
             case tags = "Tags"
         }
     }
-    
+
     /// 告警策略指标触发条件
     public struct AlarmPolicyCondition: TCInputModel, TCOutputModel {
         /// 指标触发与或条件，0=或，1=与
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUnionRule: Int64?
-        
+
         /// 告警触发条件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [AlarmPolicyRule]?
-        
-        public init (isUnionRule: Int64, rules: [AlarmPolicyRule]) {
+
+        public init(isUnionRule: Int64, rules: [AlarmPolicyRule]) {
             self.isUnionRule = isUnionRule
             self.rules = rules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case isUnionRule = "IsUnionRule"
             case rules = "Rules"
         }
     }
-    
+
     /// 告警策略事件触发条件
     public struct AlarmPolicyEventCondition: TCInputModel, TCOutputModel {
         /// 告警触发条件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [AlarmPolicyRule]?
-        
-        public init (rules: [AlarmPolicyRule]) {
+
+        public init(rules: [AlarmPolicyRule]) {
             self.rules = rules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
         }
     }
-    
+
     /// 告警策略过滤条件
     public struct AlarmPolicyFilter: TCInputModel, TCOutputModel {
         /// 过滤条件类型 DIMENSION=使用 Dimensions 做过滤
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// AlarmPolicyDimension 二维数组序列化后的json字符串，一维数组之间互为或关系，一维数组内的元素互为与关系
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensions: String?
-        
-        public init (type: String, dimensions: String? = nil) {
+
+        public init(type: String, dimensions: String? = nil) {
             self.type = type
             self.dimensions = dimensions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case dimensions = "Dimensions"
         }
     }
-    
+
     /// 告警策略触发条件
     public struct AlarmPolicyRule: TCInputModel, TCOutputModel {
         /// 指标名或事件名，支持的指标可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询，支持的事件可以从 [DescribeAlarmEvents](https://cloud.tencent.com/document/product/248/51284) 查询 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricName: String?
-        
+
         /// 秒数 统计周期，支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let period: Int64?
-        
+
         /// 英文运算符
         /// intelligent=无阈值智能检测
         /// eq=等于
@@ -557,64 +557,64 @@ extension Monitor {
         /// 支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
-        
+
         /// 阈值，支持的范围可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 周期数 持续通知周期 1=持续1个周期 2=持续2个周期...，支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let continuePeriod: Int64?
-        
+
         /// 秒数 告警间隔  0=不重复 300=每5分钟告警一次 600=每10分钟告警一次 900=每15分钟告警一次 1800=每30分钟告警一次 3600=每1小时告警一次 7200=每2小时告警一次 10800=每3小时告警一次 21600=每6小时告警一次 43200=每12小时告警一次 86400=每1天告警一次
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeFrequency: Int64?
-        
+
         /// 告警频率是否指数增长 0=否 1=是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPowerNotice: Int64?
-        
+
         /// 对于单个触发规则的过滤条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filter: AlarmPolicyFilter?
-        
+
         /// 指标展示名，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 单位，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?
-        
+
         /// 触发条件类型 STATIC=静态阈值 DYNAMIC=动态阈值。创建或编辑策略时，如不填则默认为 STATIC。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// 是否为高级指标，0否，1是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAdvanced: Int64?
-        
+
         /// 高级指标是否开通，0否，1是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isOpen: Int64?
-        
+
         /// 集成中心产品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
-        
+
         /// 最大值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueMax: Float?
-        
+
         /// 最小值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueMin: Float?
-        
+
         /// 告警分级阈值配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hierarchicalValue: AlarmHierarchicalValue?
-        
-        public init (metricName: String? = nil, period: Int64? = nil, operator: String? = nil, value: String? = nil, continuePeriod: Int64? = nil, noticeFrequency: Int64? = nil, isPowerNotice: Int64? = nil, filter: AlarmPolicyFilter? = nil, description: String? = nil, unit: String? = nil, ruleType: String? = nil, isAdvanced: Int64? = nil, isOpen: Int64? = nil, productId: String? = nil, valueMax: Float? = nil, valueMin: Float? = nil, hierarchicalValue: AlarmHierarchicalValue? = nil) {
+
+        public init(metricName: String? = nil, period: Int64? = nil, operator: String? = nil, value: String? = nil, continuePeriod: Int64? = nil, noticeFrequency: Int64? = nil, isPowerNotice: Int64? = nil, filter: AlarmPolicyFilter? = nil, description: String? = nil, unit: String? = nil, ruleType: String? = nil, isAdvanced: Int64? = nil, isOpen: Int64? = nil, productId: String? = nil, valueMax: Float? = nil, valueMin: Float? = nil, hierarchicalValue: AlarmHierarchicalValue? = nil) {
             self.metricName = metricName
             self.period = period
             self.`operator` = `operator`
@@ -633,7 +633,7 @@ extension Monitor {
             self.valueMin = valueMin
             self.hierarchicalValue = hierarchicalValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case period = "Period"
@@ -654,51 +654,51 @@ extension Monitor {
             case hierarchicalValue = "HierarchicalValue"
         }
     }
-    
+
     /// 告警策略触发任务
     public struct AlarmPolicyTriggerTask: TCInputModel, TCOutputModel {
         /// 触发任务类型 AS=弹性伸缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 用 json 表示配置信息 {"Key1":"Value1","Key2":"Value2"}
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskConfig: String?
-        
-        public init (type: String, taskConfig: String) {
+
+        public init(type: String, taskConfig: String) {
             self.type = type
             self.taskConfig = taskConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case taskConfig = "TaskConfig"
         }
     }
-    
+
     /// 策略绑定实例维度信息
     public struct BindingPolicyObjectDimension: TCInputModel {
         /// 地域名
         public let region: String
-        
+
         /// 地域ID
         public let regionId: Int64?
-        
+
         /// 实例的维度信息，格式为
         /// {"unInstanceId":"ins-00jvv9mo"}。不同云产品的维度信息不同，详见
         /// [指标维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
         public let dimensions: String?
-        
+
         /// 事件维度信息
         public let eventDimensions: String?
-        
-        public init (region: String, regionId: Int64? = nil, dimensions: String? = nil, eventDimensions: String? = nil) {
+
+        public init(region: String, regionId: Int64? = nil, dimensions: String? = nil, eventDimensions: String? = nil) {
             self.region = region
             self.regionId = regionId
             self.dimensions = dimensions
             self.eventDimensions = eventDimensions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionId = "RegionId"
@@ -706,28 +706,28 @@ extension Monitor {
             case eventDimensions = "EventDimensions"
         }
     }
-    
+
     /// 告警通知中的推送CLS操作
     public struct CLSNotice: TCInputModel, TCOutputModel {
         /// 地域
         public let region: String
-        
+
         /// 日志集Id
         public let logSetId: String
-        
+
         /// 主题Id
         public let topicId: String
-        
+
         /// 启停状态，可不传，默认启用。0=停用，1=启用
         public let enable: Int64?
-        
-        public init (region: String, logSetId: String, topicId: String, enable: Int64? = nil) {
+
+        public init(region: String, logSetId: String, topicId: String, enable: Int64? = nil) {
             self.region = region
             self.logSetId = logSetId
             self.topicId = topicId
             self.enable = enable
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case logSetId = "LogSetId"
@@ -735,33 +735,33 @@ extension Monitor {
             case enable = "Enable"
         }
     }
-    
+
     /// 统一的命名空间信息
     public struct CommonNamespace: TCOutputModel {
         /// 命名空间标示
         public let id: String
-        
+
         /// 命名空间名称
         public let name: String
-        
+
         /// 命名空间值
         public let value: String
-        
+
         /// 产品名称
         public let productName: String
-        
+
         /// 配置信息
         public let config: String
-        
+
         /// 支持地域列表
         public let availableRegions: [String]
-        
+
         /// 排序Id
         public let sortId: Int64
-        
+
         /// Dashboard中的唯一表示
         public let dashboardId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -773,21 +773,21 @@ extension Monitor {
             case dashboardId = "DashboardId"
         }
     }
-    
+
     /// 策略类型信息
     public struct CommonNamespaceNew: TCOutputModel {
         /// 命名空间标示
         public let id: String
-        
+
         /// 命名空间名称
         public let name: String
-        
+
         /// 监控类型
         public let monitorType: String
-        
+
         /// 维度信息
         public let dimensions: [DimensionNew]
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -795,52 +795,52 @@ extension Monitor {
             case dimensions = "Dimensions"
         }
     }
-    
+
     /// 告警条件
     public struct Condition: TCOutputModel {
         /// 告警通知频率
         public let alarmNotifyPeriod: Int64
-        
+
         /// 重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）
         public let alarmNotifyType: Int64
-        
+
         /// 检测方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let calcType: String?
-        
+
         /// 检测值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let calcValue: String?
-        
+
         /// 持续时间，单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let continueTime: String?
-        
+
         /// 指标ID
         public let metricID: Int64
-        
+
         /// 指标展示名称（对外）
         public let metricDisplayName: String
-        
+
         /// 周期
         public let period: Int64
-        
+
         /// 规则ID
         public let ruleID: Int64
-        
+
         /// 指标单位
         public let unit: String
-        
+
         /// 是否为高级指标，0：否；1：是
         public let isAdvanced: Int64
-        
+
         /// 是否开通高级指标，0：否；1：是
         public let isOpen: Int64
-        
+
         /// 产品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmNotifyPeriod = "AlarmNotifyPeriod"
             case alarmNotifyType = "AlarmNotifyType"
@@ -857,55 +857,55 @@ extension Monitor {
             case productId = "ProductId"
         }
     }
-    
+
     /// 告警条件模版
     public struct ConditionsTemp: TCOutputModel {
         /// 模版名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateName: String?
-        
+
         /// 指标触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let condition: AlarmPolicyCondition?
-        
+
         /// 事件触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventCondition: AlarmPolicyEventCondition?
-        
+
         enum CodingKeys: String, CodingKey {
             case templateName = "TemplateName"
             case condition = "Condition"
             case eventCondition = "EventCondition"
         }
     }
-    
+
     /// 创建策略传入的阈值告警条件
     public struct CreatePolicyGroupCondition: TCInputModel {
         /// 指标Id
         public let metricId: Int64
-        
+
         /// 告警发送收敛类型。0连续告警，1指数告警
         public let alarmNotifyType: Int64
-        
+
         /// 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         public let alarmNotifyPeriod: Int64
-        
+
         /// 比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等。如果指标有配置默认比较类型值可以不填。
         public let calcType: Int64?
-        
+
         /// 比较的值，如果指标不必须CalcValue可不填
         public let calcValue: Float?
-        
+
         /// 数据聚合周期(单位秒)，若指标有默认值可不填
         public let calcPeriod: Int64?
-        
+
         /// 持续几个检测周期触发规则会告警
         public let continuePeriod: Int64?
-        
+
         /// 如果通过模版创建，需要传入模版中该指标的对应RuleId
         public let ruleId: Int64?
-        
-        public init (metricId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, calcType: Int64? = nil, calcValue: Float? = nil, calcPeriod: Int64? = nil, continuePeriod: Int64? = nil, ruleId: Int64? = nil) {
+
+        public init(metricId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, calcType: Int64? = nil, calcValue: Float? = nil, calcPeriod: Int64? = nil, continuePeriod: Int64? = nil, ruleId: Int64? = nil) {
             self.metricId = metricId
             self.alarmNotifyType = alarmNotifyType
             self.alarmNotifyPeriod = alarmNotifyPeriod
@@ -915,7 +915,7 @@ extension Monitor {
             self.continuePeriod = continuePeriod
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metricId = "MetricId"
             case alarmNotifyType = "AlarmNotifyType"
@@ -927,28 +927,28 @@ extension Monitor {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// 创建策略传入的事件告警条件
     public struct CreatePolicyGroupEventCondition: TCInputModel {
         /// 告警事件的Id
         public let eventId: Int64
-        
+
         /// 告警发送收敛类型。0连续告警，1指数告警
         public let alarmNotifyType: Int64
-        
+
         /// 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         public let alarmNotifyPeriod: Int64
-        
+
         /// 如果通过模版创建，需要传入模版中该指标的对应RuleId
         public let ruleId: Int64?
-        
-        public init (eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
+
+        public init(eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
             self.eventId = eventId
             self.alarmNotifyType = alarmNotifyType
             self.alarmNotifyPeriod = alarmNotifyPeriod
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case alarmNotifyType = "AlarmNotifyType"
@@ -956,59 +956,59 @@ extension Monitor {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// 监控数据点
     public struct DataPoint: TCOutputModel {
         /// 实例对象维度组合
         public let dimensions: [Dimension]
-        
+
         /// 时间戳数组，表示那些时间点有数据，缺失的时间戳，没有数据点，可以理解为掉点了
         public let timestamps: [Float]
-        
+
         /// 监控值数组，该数组和Timestamps一一对应
         public let values: [Float]
-        
+
         enum CodingKeys: String, CodingKey {
             case dimensions = "Dimensions"
             case timestamps = "Timestamps"
             case values = "Values"
         }
     }
-    
+
     /// DescribeAccidentEventList接口的出参类型
     public struct DescribeAccidentEventListAlarms: TCOutputModel {
         /// 事件分类
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessTypeDesc: String?
-        
+
         /// 事件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accidentTypeDesc: String?
-        
+
         /// 事件分类的ID，1表示服务问题，2表示其他订阅
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessID: Int64?
-        
+
         /// 事件状态的ID，0表示已恢复，1表示未恢复
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventStatus: Int64?
-        
+
         /// 影响的对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let affectResource: String?
-        
+
         /// 事件的地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 事件发生的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let occurTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case businessTypeDesc = "BusinessTypeDesc"
             case accidentTypeDesc = "AccidentTypeDesc"
@@ -1020,96 +1020,96 @@ extension Monitor {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// DescribeBasicAlarmList返回的Alarms
     public struct DescribeBasicAlarmListAlarms: TCOutputModel {
         /// 该条告警的ID
         public let id: UInt64
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: Int64?
-        
+
         /// 项目名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
-        
+
         /// 告警状态ID，0表示未恢复；1表示已恢复；2,3,5表示数据不足；4表示已失效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 告警状态，ALARM表示未恢复；OK表示已恢复；NO_DATA表示数据不足；NO_CONF表示已失效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmStatus: String?
-        
+
         /// 策略组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: Int64?
-        
+
         /// 策略组名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 发生时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstOccurTime: String?
-        
+
         /// 持续时间，单位s
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Int64?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastOccurTime: String?
-        
+
         /// 告警内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         /// 告警对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objName: String?
-        
+
         /// 告警对象ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objId: String?
-        
+
         /// 策略类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewName: String?
-        
+
         /// VPC，只有CVM有
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpc: String?
-        
+
         /// 指标ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricId: Int64?
-        
+
         /// 指标名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricName: String?
-        
+
         /// 告警类型，0表示指标告警，2表示产品事件告警，3表示平台事件告警
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmType: Int64?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 告警对象维度信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensions: String?
-        
+
         /// 通知方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notifyWay: [String]?
-        
+
         /// 所属实例组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceGroup: [InstanceGroup]?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case projectId = "ProjectId"
@@ -1135,28 +1135,28 @@ extension Monitor {
             case instanceGroup = "InstanceGroup"
         }
     }
-    
+
     /// DescribeBindingPolicyObjectList接口的Dimension
     public struct DescribeBindingPolicyObjectListDimension: TCInputModel {
         /// 地域id
         public let regionId: Int64
-        
+
         /// 地域简称
         public let region: String
-        
+
         /// 维度组合json字符串
         public let dimensions: String
-        
+
         /// 事件维度组合json字符串
         public let eventDimensions: String
-        
-        public init (regionId: Int64, region: String, dimensions: String, eventDimensions: String) {
+
+        public init(regionId: Int64, region: String, dimensions: String, eventDimensions: String) {
             self.regionId = regionId
             self.region = region
             self.dimensions = dimensions
             self.eventDimensions = eventDimensions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
             case region = "Region"
@@ -1164,21 +1164,21 @@ extension Monitor {
             case eventDimensions = "EventDimensions"
         }
     }
-    
+
     /// 查询策略绑定对象列表接口返回的对象实例信息
     public struct DescribeBindingPolicyObjectListInstance: TCOutputModel {
         /// 对象唯一id
         public let uniqueId: String
-        
+
         /// 表示对象实例的维度集合，jsonObj字符串
         public let dimensions: String
-        
+
         /// 对象是否被屏蔽，0表示未屏蔽，1表示被屏蔽
         public let isShielded: Int64
-        
+
         /// 对象所在的地域
         public let region: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uniqueId = "UniqueId"
             case dimensions = "Dimensions"
@@ -1186,34 +1186,34 @@ extension Monitor {
             case region = "Region"
         }
     }
-    
+
     /// DescribeBindingPolicyObjectList返回的是实例分组信息
     public struct DescribeBindingPolicyObjectListInstanceGroup: TCOutputModel {
         /// 实例分组id
         public let instanceGroupId: Int64
-        
+
         /// 告警策略类型名称
         public let viewName: String
-        
+
         /// 最后编辑uin
         public let lastEditUin: String
-        
+
         /// 实例分组名称
         public let groupName: String
-        
+
         /// 实例数量
         public let instanceSum: Int64
-        
+
         /// 更新时间
         public let updateTime: Int64
-        
+
         /// 创建时间
         public let insertTime: Int64
-        
+
         /// 实例所在的地域集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regions: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceGroupId = "InstanceGroupId"
             case viewName = "ViewName"
@@ -1225,36 +1225,36 @@ extension Monitor {
             case regions = "Regions"
         }
     }
-    
+
     /// DescribePolicyConditionList策略条件
     public struct DescribePolicyConditionListCondition: TCOutputModel {
         /// 策略视图名称
         public let policyViewName: String
-        
+
         /// 事件告警条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventMetrics: [DescribePolicyConditionListEventMetric]?
-        
+
         /// 是否支持多地域
         public let isSupportMultiRegion: Bool
-        
+
         /// 指标告警条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metrics: [DescribePolicyConditionListMetric]?
-        
+
         /// 策略类型名称
         public let name: String
-        
+
         /// 排序id
         public let sortId: Int64
-        
+
         /// 是否支持默认策略
         public let supportDefault: Bool
-        
+
         /// 支持该策略类型的地域列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let supportRegions: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case policyViewName = "PolicyViewName"
             case eventMetrics = "EventMetrics"
@@ -1266,33 +1266,33 @@ extension Monitor {
             case supportRegions = "SupportRegions"
         }
     }
-    
+
     /// DescribePolicyConditionList.ConfigManual
     public struct DescribePolicyConditionListConfigManual: TCOutputModel {
         /// 检测方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let calcType: DescribePolicyConditionListConfigManualCalcType?
-        
+
         /// 检测阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let calcValue: DescribePolicyConditionListConfigManualCalcValue?
-        
+
         /// 持续时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let continueTime: DescribePolicyConditionListConfigManualContinueTime?
-        
+
         /// 数据周期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let period: DescribePolicyConditionListConfigManualPeriod?
-        
+
         /// 持续周期个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let periodNum: DescribePolicyConditionListConfigManualPeriodNum?
-        
+
         /// 聚合方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statType: DescribePolicyConditionListConfigManualStatType?
-        
+
         enum CodingKeys: String, CodingKey {
             case calcType = "CalcType"
             case calcValue = "CalcValue"
@@ -1302,43 +1302,43 @@ extension Monitor {
             case statType = "StatType"
         }
     }
-    
+
     /// DescribePolicyConditionList.ConfigManual.CalcType
     public struct DescribePolicyConditionListConfigManualCalcType: TCOutputModel {
         /// CalcType 取值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [Int64]?
-        
+
         /// 是否必须
         public let need: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case keys = "Keys"
             case need = "Need"
         }
     }
-    
+
     /// DescribePolicyConditionList.ConfigManual.CalcValue
     public struct DescribePolicyConditionListConfigManualCalcValue: TCOutputModel {
         /// 默认值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `default`: String?
-        
+
         /// 固定值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fixed: String?
-        
+
         /// 最大值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let max: String?
-        
+
         /// 最小值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let min: String?
-        
+
         /// 是否必须
         public let need: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case `default` = "Default"
             case fixed = "Fixed"
@@ -1347,101 +1347,101 @@ extension Monitor {
             case need = "Need"
         }
     }
-    
+
     /// DescribePolicyConditionList.ConfigManual.ContinueTime
     public struct DescribePolicyConditionListConfigManualContinueTime: TCOutputModel {
         /// 默认持续时间，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `default`: Int64?
-        
+
         /// 可选持续时间，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [Int64]?
-        
+
         /// 是否必须
         public let need: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case `default` = "Default"
             case keys = "Keys"
             case need = "Need"
         }
     }
-    
+
     /// DescribePolicyConditionList.ConfigManual.Period
     public struct DescribePolicyConditionListConfigManualPeriod: TCOutputModel {
         /// 默认周期，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `default`: Int64?
-        
+
         /// 可选周期，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [Int64]?
-        
+
         /// 是否必须
         public let need: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case `default` = "Default"
             case keys = "Keys"
             case need = "Need"
         }
     }
-    
+
     /// DescribePolicyConditionList.ConfigManual.PeriodNum
     public struct DescribePolicyConditionListConfigManualPeriodNum: TCOutputModel {
         /// 默认周期数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `default`: Int64?
-        
+
         /// 可选周期数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [Int64]?
-        
+
         /// 是否必须
         public let need: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case `default` = "Default"
             case keys = "Keys"
             case need = "Need"
         }
     }
-    
+
     /// DescribePolicyConditionList.ConfigManual.StatType
     public struct DescribePolicyConditionListConfigManualStatType: TCOutputModel {
         /// 数据聚合方式，周期5秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p5: String?
-        
+
         /// 数据聚合方式，周期10秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p10: String?
-        
+
         /// 数据聚合方式，周期1分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p60: String?
-        
+
         /// 数据聚合方式，周期5分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p300: String?
-        
+
         /// 数据聚合方式，周期10分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p600: String?
-        
+
         /// 数据聚合方式，周期30分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p1800: String?
-        
+
         /// 数据聚合方式，周期1小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p3600: String?
-        
+
         /// 数据聚合方式，周期1天
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p86400: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case p5 = "P5"
             case p10 = "P10"
@@ -1453,21 +1453,21 @@ extension Monitor {
             case p86400 = "P86400"
         }
     }
-    
+
     /// DescribePolicyConditionList.EventMetric
     public struct DescribePolicyConditionListEventMetric: TCOutputModel {
         /// 事件id
         public let eventId: Int64
-        
+
         /// 事件名称
         public let eventShowName: String
-        
+
         /// 是否需要恢复
         public let needRecovered: Bool
-        
+
         /// 事件类型，预留字段，当前固定取值为2
         public let type: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case eventShowName = "EventShowName"
@@ -1475,22 +1475,22 @@ extension Monitor {
             case type = "Type"
         }
     }
-    
+
     /// 指标告警配置
     public struct DescribePolicyConditionListMetric: TCOutputModel {
         /// 指标配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configManual: DescribePolicyConditionListConfigManual?
-        
+
         /// 指标id
         public let metricId: Int64
-        
+
         /// 指标名称
         public let metricShowName: String
-        
+
         /// 指标单位
         public let metricUnit: String
-        
+
         enum CodingKeys: String, CodingKey {
             case configManual = "ConfigManual"
             case metricId = "MetricId"
@@ -1498,64 +1498,64 @@ extension Monitor {
             case metricUnit = "MetricUnit"
         }
     }
-    
+
     /// 查询策略输出的用户回调信息
     public struct DescribePolicyGroupInfoCallback: TCOutputModel {
         /// 用户回调接口地址
         public let callbackUrl: String
-        
+
         /// 用户回调接口状态，0表示未验证，1表示已验证，2表示存在url但没有通过验证
         public let validFlag: Int64
-        
+
         /// 用户回调接口验证码
         public let verifyCode: String
-        
+
         enum CodingKeys: String, CodingKey {
             case callbackUrl = "CallbackUrl"
             case validFlag = "ValidFlag"
             case verifyCode = "VerifyCode"
         }
     }
-    
+
     /// 查询策略输出的阈值告警条件
     public struct DescribePolicyGroupInfoCondition: TCOutputModel {
         /// 指标名称
         public let metricShowName: String
-        
+
         /// 数据聚合周期(单位秒)
         public let period: Int64
-        
+
         /// 指标id
         public let metricId: Int64
-        
+
         /// 阈值规则id
         public let ruleId: Int64
-        
+
         /// 指标单位
         public let unit: String
-        
+
         /// 告警发送收敛类型。0连续告警，1指数告警
         public let alarmNotifyType: Int64
-        
+
         /// 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         public let alarmNotifyPeriod: Int64
-        
+
         /// 比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等，7表示日同比上涨，8表示日同比下降，9表示周同比上涨，10表示周同比下降，11表示周期环比上涨，12表示周期环比下降
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let calcType: Int64?
-        
+
         /// 检测阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let calcValue: String?
-        
+
         /// 持续多长时间触发规则会告警(单位秒)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let continueTime: Int64?
-        
+
         /// 告警指标名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case metricShowName = "MetricShowName"
             case period = "Period"
@@ -1570,36 +1570,36 @@ extension Monitor {
             case metricName = "MetricName"
         }
     }
-    
+
     /// 查询策略输出的模板策略组信息
     public struct DescribePolicyGroupInfoConditionTpl: TCOutputModel {
         /// 策略组id
         public let groupId: Int64
-        
+
         /// 策略组名称
         public let groupName: String
-        
+
         /// 策略类型
         public let viewName: String
-        
+
         /// 策略组说明
         public let remark: String
-        
+
         /// 最后编辑的用户uin
         public let lastEditUin: String
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let insertTime: Int64?
-        
+
         /// 是否且规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUnionRule: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1611,24 +1611,24 @@ extension Monitor {
             case isUnionRule = "IsUnionRule"
         }
     }
-    
+
     /// 查询策略输出的事件告警条件
     public struct DescribePolicyGroupInfoEventCondition: TCOutputModel {
         /// 事件id
         public let eventId: Int64
-        
+
         /// 事件告警规则id
         public let ruleId: Int64
-        
+
         /// 事件名称
         public let eventShowName: String
-        
+
         /// 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         public let alarmNotifyPeriod: Int64
-        
+
         /// 告警发送收敛类型。0连续告警，1指数告警
         public let alarmNotifyType: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case ruleId = "RuleId"
@@ -1637,53 +1637,53 @@ extension Monitor {
             case alarmNotifyType = "AlarmNotifyType"
         }
     }
-    
+
     /// 查询策略输出的告警接收人信息
     public struct DescribePolicyGroupInfoReceiverInfo: TCOutputModel {
         /// 告警接收组id列表
         public let receiverGroupList: [Int64]
-        
+
         /// 告警接收人id列表
         public let receiverUserList: [Int64]
-        
+
         /// 告警时间段开始时间。范围[0,86400)，作为 UNIX 时间戳转成北京时间后去掉日期，例如7200表示"10:0:0"
         public let startTime: Int64
-        
+
         /// 告警时间段结束时间。含义同StartTime
         public let endTime: Int64
-        
+
         /// 接收类型。“group”(接收组)或“user”(接收人)
         public let receiverType: String
-        
+
         /// 告警通知方式。可选 "SMS","SITE","EMAIL","CALL","WECHAT"
         public let notifyWay: [String]
-        
+
         /// 电话告警接收者uid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uidList: [Int64]?
-        
+
         /// 电话告警轮数
         public let roundNumber: Int64
-        
+
         /// 电话告警每轮间隔（秒）
         public let roundInterval: Int64
-        
+
         /// 电话告警对个人间隔（秒）
         public let personInterval: Int64
-        
+
         /// 是否需要电话告警触达提示。0不需要，1需要
         public let needSendNotice: Int64
-        
+
         /// 电话告警通知时机。可选"OCCUR"(告警时通知),"RECOVER"(恢复时通知)
         public let sendFor: [String]
-        
+
         /// 恢复通知方式。可选"SMS"
         public let recoverNotify: [String]
-        
+
         /// 告警发送语言
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiveLanguage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case receiverGroupList = "ReceiverGroupList"
             case receiverUserList = "ReceiverUserList"
@@ -1701,75 +1701,75 @@ extension Monitor {
             case receiveLanguage = "ReceiveLanguage"
         }
     }
-    
+
     /// DescribePolicyGroupList.Group
     public struct DescribePolicyGroupListGroup: TCOutputModel {
         /// 策略组id
         public let groupId: Int64
-        
+
         /// 策略组名称
         public let groupName: String
-        
+
         /// 是否开启
         public let isOpen: Bool
-        
+
         /// 策略视图名称
         public let viewName: String
-        
+
         /// 最近编辑的用户uin
         public let lastEditUin: String
-        
+
         /// 最后修改时间
         public let updateTime: Int64
-        
+
         /// 创建时间
         public let insertTime: Int64
-        
+
         /// 策略组绑定的实例数
         public let useSum: Int64
-        
+
         /// 策略组绑定的未屏蔽实例数
         public let noShieldedSum: Int64
-        
+
         /// 是否为默认策略，0表示非默认策略，1表示默认策略
         public let isDefault: Int64
-        
+
         /// 是否可以设置成默认策略
         public let canSetDefault: Bool
-        
+
         /// 父策略组id
         public let parentGroupId: Int64
-        
+
         /// 策略组备注
         public let remark: String
-        
+
         /// 策略组所属项目id
         public let projectId: Int64
-        
+
         /// 阈值规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditions: [DescribePolicyGroupInfoCondition]?
-        
+
         /// 产品事件规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventConditions: [DescribePolicyGroupInfoEventCondition]?
-        
+
         /// 用户接收人列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverInfos: [DescribePolicyGroupInfoReceiverInfo]?
-        
+
         /// 模板策略组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionsTemp: DescribePolicyGroupInfoConditionTpl?
-        
+
         /// 策略组绑定的实例组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceGroup: DescribePolicyGroupListGroupInstanceGroup?
-        
+
         /// 且或规则标识, 0表示或规则(任意一条规则满足阈值条件就告警), 1表示且规则(所有规则都满足阈值条件才告警)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUnionRule: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1793,30 +1793,30 @@ extension Monitor {
             case isUnionRule = "IsUnionRule"
         }
     }
-    
+
     /// DescribePolicyGroupList接口策略组绑定的实例分组信息
     public struct DescribePolicyGroupListGroupInstanceGroup: TCOutputModel {
         /// 实例分组名称id
         public let instanceGroupId: Int64
-        
+
         /// 策略类型视图名称
         public let viewName: String
-        
+
         /// 最近编辑的用户uin
         public let lastEditUin: String
-        
+
         /// 实例分组名称
         public let groupName: String
-        
+
         /// 实例数量
         public let instanceSum: Int64
-        
+
         /// 更新时间
         public let updateTime: Int64
-        
+
         /// 创建时间
         public let insertTime: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceGroupId = "InstanceGroupId"
             case viewName = "ViewName"
@@ -1827,112 +1827,112 @@ extension Monitor {
             case insertTime = "InsertTime"
         }
     }
-    
+
     /// DescribeProductEventList的入参Dimensions
     public struct DescribeProductEventListDimensions: TCInputModel {
         /// 维度名
         public let name: String
-        
+
         /// 维度值
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// DescribeProductEventList返回的Events
     public struct DescribeProductEventListEvents: TCOutputModel {
         /// 事件ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventId: Int64?
-        
+
         /// 事件中文名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventCName: String?
-        
+
         /// 事件英文名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventEName: String?
-        
+
         /// 事件简称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventName: String?
-        
+
         /// 产品中文名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productCName: String?
-        
+
         /// 产品英文名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productEName: String?
-        
+
         /// 产品简称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productName: String?
-        
+
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 是否支持告警
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let supportAlarm: Int64?
-        
+
         /// 事件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: Int64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         /// 实例对象信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensions: [DescribeProductEventListEventsDimensions]?
-        
+
         /// 实例对象附加信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let additionMsg: [DescribeProductEventListEventsDimensions]?
-        
+
         /// 是否配置告警
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAlarmConfig: Int64?
-        
+
         /// 策略信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupInfo: [DescribeProductEventListEventsGroupInfo]?
-        
+
         /// 显示名称ViewName
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case eventCName = "EventCName"
@@ -1957,62 +1957,62 @@ extension Monitor {
             case viewName = "ViewName"
         }
     }
-    
+
     /// DescribeProductEventList返回的Events的Dimensions
     public struct DescribeProductEventListEventsDimensions: TCOutputModel {
         /// 维度名（英文）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 维度名（中文）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 维度值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// DescribeProductEventList返回的Events里的GroupInfo
     public struct DescribeProductEventListEventsGroupInfo: TCOutputModel {
         /// 策略ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: Int64?
-        
+
         /// 策略名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
         }
     }
-    
+
     /// DescribeProductEventList返回的OverView对象
     public struct DescribeProductEventListOverView: TCOutputModel {
         /// 状态变更的事件数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusChangeAmount: Int64?
-        
+
         /// 告警状态未配置的事件数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unConfigAlarmAmount: Int64?
-        
+
         /// 异常事件数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unNormalEventAmount: Int64?
-        
+
         /// 未恢复的事件数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unRecoverAmount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case statusChangeAmount = "StatusChangeAmount"
             case unConfigAlarmAmount = "UnConfigAlarmAmount"
@@ -2020,65 +2020,65 @@ extension Monitor {
             case unRecoverAmount = "UnRecoverAmount"
         }
     }
-    
+
     /// 实例对象的维度组合
     public struct Dimension: TCInputModel {
         /// 实例维度名称
         public let name: String
-        
+
         /// 实例维度值
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 策略类型的维度信息
     public struct DimensionNew: TCOutputModel {
         /// 维度 key 标示，后台英文名
         public let key: String
-        
+
         /// 维度 key 名称，中英文前台展示名
         public let name: String
-        
+
         /// 是否必选
         public let isRequired: Bool
-        
+
         /// 支持的操作符列表
         public let operators: [Operator]
-        
+
         /// 是否支持多选
         public let isMultiple: Bool
-        
+
         /// 创建后是否可以修改
         public let isMutable: Bool
-        
+
         /// 是否展示给用户
         public let isVisible: Bool
-        
+
         /// 能否用来过滤策略列表
         public let canFilterPolicy: Bool
-        
+
         /// 能否用来过滤告警历史
         public let canFilterHistory: Bool
-        
+
         /// 能否作为聚合维度
         public let canGroupBy: Bool
-        
+
         /// 是否必须作为聚合维度
         public let mustGroupBy: Bool
-        
+
         /// 前端翻译要替换的 key
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let showValueReplace: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case name = "Name"
@@ -2094,36 +2094,36 @@ extension Monitor {
             case showValueReplace = "ShowValueReplace"
         }
     }
-    
+
     /// 维度信息
     public struct DimensionsDesc: TCOutputModel {
         /// 维度名数组
         public let dimensions: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case dimensions = "Dimensions"
         }
     }
-    
+
     /// 事件告警条件
     public struct EventCondition: TCOutputModel {
         /// 告警通知频率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmNotifyPeriod: String?
-        
+
         /// 重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmNotifyType: String?
-        
+
         /// 事件ID
         public let eventID: String
-        
+
         /// 事件展示名称（对外）
         public let eventDisplayName: String
-        
+
         /// 规则ID
         public let ruleID: String
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmNotifyPeriod = "AlarmNotifyPeriod"
             case alarmNotifyType = "AlarmNotifyType"
@@ -2132,18 +2132,18 @@ extension Monitor {
             case ruleID = "RuleID"
         }
     }
-    
+
     /// Grafana可视化服务 授权账户信息
     public struct GrafanaAccountInfo: TCOutputModel {
         /// 用户账号ID
         public let userId: String
-        
+
         /// 用户权限
         public let role: [GrafanaAccountRole]
-        
+
         /// 备注
         public let notes: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2151,14 +2151,14 @@ extension Monitor {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createAt: Date
-        
+
         /// 实例 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 用户主账号 UIN
         public let uin: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case role = "Role"
@@ -2168,37 +2168,37 @@ extension Monitor {
             case uin = "Uin"
         }
     }
-    
+
     /// Grafana可视化服务 账号权限
     public struct GrafanaAccountRole: TCInputModel, TCOutputModel {
         /// 组织
         public let organization: String?
-        
+
         /// 权限
         public let role: String?
-        
-        public init (organization: String? = nil, role: String? = nil) {
+
+        public init(organization: String? = nil, role: String? = nil) {
             self.organization = organization
             self.role = role
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case organization = "Organization"
             case role = "Role"
         }
     }
-    
+
     /// Grafana 告警渠道
     public struct GrafanaChannel: TCOutputModel {
         /// 渠道 ID
         public let channelId: String
-        
+
         /// 渠道名
         public let channelName: String
-        
+
         /// 告警通道模板 ID 数组
         public let receivers: [String]
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2206,7 +2206,7 @@ extension Monitor {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2214,11 +2214,11 @@ extension Monitor {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date
-        
+
         /// 告警渠道的所有生效组织
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationIds: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelId = "ChannelId"
             case channelName = "ChannelName"
@@ -2228,30 +2228,30 @@ extension Monitor {
             case organizationIds = "OrganizationIds"
         }
     }
-    
+
     /// 查询 Grafana 实例时的实例类型
     public struct GrafanaInstanceInfo: TCOutputModel {
         /// 实例名
         public let instanceName: String
-        
+
         /// 实例 ID
         public let instanceId: String
-        
+
         /// 地域
         public let region: String
-        
+
         /// VPC ID
         public let vpcId: String
-        
+
         /// 子网 ID 数组
         public let subnetIds: [String]
-        
+
         /// Grafana 内网地址
         public let internetUrl: String
-        
+
         /// Grafana 公网地址
         public let internalUrl: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2259,41 +2259,41 @@ extension Monitor {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdAt: Date
-        
+
         /// 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:停机中； 6:已停机； 7: 已删除）
         public let instanceStatus: Int64
-        
+
         /// 实例的标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSpecification: [PrometheusTag]
-        
+
         /// 实例的可用区
         public let zone: String
-        
+
         /// 计费模式（1:包年包月）
         public let instanceChargeType: Int64
-        
+
         /// VPC 名称
         public let vpcName: String
-        
+
         /// 子网名称
         public let subnetName: String
-        
+
         /// 地域 ID
         public let regionId: Int64
-        
+
         /// 可访问此实例的完整 URL
         public let rootUrl: String
-        
+
         /// 是否开启 SSO
         public let enableSSO: Bool
-        
+
         /// 版本号
         public let version: String
-        
+
         /// SSO登录时是否开启cam鉴权
         public let enableSSOCamCheck: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceName = "InstanceName"
             case instanceId = "InstanceId"
@@ -2316,25 +2316,25 @@ extension Monitor {
             case enableSSOCamCheck = "EnableSSOCamCheck"
         }
     }
-    
+
     /// Grafana 集成实例配置
     public struct GrafanaIntegrationConfig: TCOutputModel {
         /// 集成 ID
         public let integrationId: String
-        
+
         /// 集成类型
         public let kind: String
-        
+
         /// 集成内容
         public let content: String
-        
+
         /// 集成描述
         public let description: String
-        
+
         /// Grafana 跳转地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaURL: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case integrationId = "IntegrationId"
             case kind = "Kind"
@@ -2343,18 +2343,18 @@ extension Monitor {
             case grafanaURL = "GrafanaURL"
         }
     }
-    
+
     /// Grafana 告警渠道
     public struct GrafanaNotificationChannel: TCOutputModel {
         /// 渠道 ID
         public let channelId: String
-        
+
         /// 渠道名
         public let channelName: String
-        
+
         /// 告警通道模板 ID 数组
         public let receivers: [String]
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2362,7 +2362,7 @@ extension Monitor {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2370,22 +2370,22 @@ extension Monitor {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var updatedAt: Date
-        
+
         /// 默认生效组织，已废弃，请使用 OrganizationIds
         public let orgId: String
-        
+
         /// 额外生效组织，已废弃，请使用 OrganizationIds
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraOrgIds: [String]?
-        
+
         /// 生效组织，已废弃，请使用 OrganizationIds
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orgIds: String?
-        
+
         /// 告警渠道的所有生效组织
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationIds: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelId = "ChannelId"
             case channelName = "ChannelName"
@@ -2398,94 +2398,94 @@ extension Monitor {
             case organizationIds = "OrganizationIds"
         }
     }
-    
+
     /// Grafana 插件
     public struct GrafanaPlugin: TCInputModel, TCOutputModel {
         /// Grafana 插件 ID
         public let pluginId: String
-        
+
         /// Grafana 插件版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
-        
-        public init (pluginId: String, version: String) {
+
+        public init(pluginId: String, version: String) {
             self.pluginId = pluginId
             self.version = version
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginId = "PluginId"
             case version = "Version"
         }
     }
-    
+
     /// 实例维度组合数组
     public struct Instance: TCInputModel {
         /// 实例的维度组合
         public let dimensions: [Dimension]
-        
-        public init (dimensions: [Dimension]) {
+
+        public init(dimensions: [Dimension]) {
             self.dimensions = dimensions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dimensions = "Dimensions"
         }
     }
-    
+
     /// DescribeBasicAlarmList返回的Alarms里的InstanceGroup
     public struct InstanceGroup: TCOutputModel {
         /// 实例组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceGroupId: Int64?
-        
+
         /// 实例组名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceGroupName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceGroupId = "InstanceGroupId"
             case instanceGroupName = "InstanceGroupName"
         }
     }
-    
+
     /// 告警对象所属实例组
     public struct InstanceGroups: TCOutputModel {
         /// 实例组 Id
         public let id: Int64
-        
+
         /// 实例组名称
         public let name: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
         }
     }
-    
+
     /// export 集成配置
     public struct IntegrationConfiguration: TCOutputModel {
         /// 名字
         public let name: String
-        
+
         /// 类型
         public let kind: String
-        
+
         /// 内容
         public let content: String
-        
+
         /// 状态
         public let status: Int64
-        
+
         /// 实例类型
         public let category: String
-        
+
         /// 实例描述
         public let instanceDesc: String
-        
+
         /// dashboard 的 URL
         public let grafanaDashboardURL: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case kind = "Kind"
@@ -2496,28 +2496,28 @@ extension Monitor {
             case grafanaDashboardURL = "GrafanaDashboardURL"
         }
     }
-    
+
     /// 日志告警请求信息
     public struct LogAlarmReq: TCInputModel, TCOutputModel {
         /// apm实例id
         public let instanceId: String
-        
+
         /// 检索条件信息
         public let filter: [LogFilterInfo]
-        
+
         /// 告警合并开启/暂停
         public let alarmMerge: String
-        
+
         /// 告警合并时间
         public let alarmMergeTime: String
-        
-        public init (instanceId: String, filter: [LogFilterInfo], alarmMerge: String, alarmMergeTime: String) {
+
+        public init(instanceId: String, filter: [LogFilterInfo], alarmMerge: String, alarmMergeTime: String) {
             self.instanceId = instanceId
             self.filter = filter
             self.alarmMerge = alarmMerge
             self.alarmMergeTime = alarmMergeTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case filter = "Filter"
@@ -2525,53 +2525,53 @@ extension Monitor {
             case alarmMergeTime = "AlarmMergeTime"
         }
     }
-    
+
     /// 日志告警检索条件结构体
     public struct LogFilterInfo: TCInputModel, TCOutputModel {
         /// 字段名
         public let key: String
-        
+
         /// 比较符号
         public let `operator`: String
-        
+
         /// 字段值
         public let value: String
-        
-        public init (key: String, operator: String, value: String) {
+
+        public init(key: String, operator: String, value: String) {
             self.key = key
             self.`operator` = `operator`
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case `operator` = "Operator"
             case value = "Value"
         }
     }
-    
+
     /// Prometheus Agent 管理命令行
     public struct ManagementCommand: TCOutputModel {
         /// Agent 安装命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let install: String?
-        
+
         /// Agent 重启命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restart: String?
-        
+
         /// Agent 停止命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stop: String?
-        
+
         /// Agent 状态检测命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusCheck: String?
-        
+
         /// Agent 日志检测命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logCheck: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case install = "Install"
             case restart = "Restart"
@@ -2580,46 +2580,46 @@ extension Monitor {
             case logCheck = "LogCheck"
         }
     }
-    
+
     /// 指标，可用于设置告警、查询数据
     public struct Metric: TCOutputModel {
         /// 告警策略类型
         public let namespace: String
-        
+
         /// 指标名
         public let metricName: String
-        
+
         /// 指标展示名
         public let description: String
-        
+
         /// 最小值
         public let min: Float
-        
+
         /// 最大值
         public let max: Float
-        
+
         /// 维度列表
         public let dimensions: [String]
-        
+
         /// 单位
         public let unit: String
-        
+
         /// 指标配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricConfig: MetricConfig?
-        
+
         /// 是否为高级指标。1是 0否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAdvanced: Int64?
-        
+
         /// 高级指标是否开通。1是 0否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isOpen: Int64?
-        
+
         /// 集成中心产品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case metricName = "MetricName"
@@ -2634,120 +2634,120 @@ extension Monitor {
             case productId = "ProductId"
         }
     }
-    
+
     /// 指标配置
     public struct MetricConfig: TCOutputModel {
         /// 允许使用的运算符
         public let `operator`: [String]
-        
+
         /// 允许配置的数据周期，以秒为单位
         public let period: [Int64]
-        
+
         /// 允许配置的持续周期个数
         public let continuePeriod: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case period = "Period"
             case continuePeriod = "ContinuePeriod"
         }
     }
-    
+
     /// DescribeMetricData接口出参
     public struct MetricData: TCOutputModel {
         /// 指标名
         public let metricName: String
-        
+
         /// 监控数据点
         public let points: [MetricDataPoint]
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case points = "Points"
         }
     }
-    
+
     /// DescribeMetricData出参
     public struct MetricDataPoint: TCOutputModel {
         /// 实例对象维度组合
         public let dimensions: [Dimension]
-        
+
         /// 数据点列表
         public let values: [Point]
-        
+
         enum CodingKeys: String, CodingKey {
             case dimensions = "Dimensions"
             case values = "Values"
         }
     }
-    
+
     /// 指标名称和值的封装
     public struct MetricDatum: TCInputModel {
         /// 指标名称
         public let metricName: String
-        
+
         /// 指标的值
         public let value: UInt64
-        
-        public init (metricName: String, value: UInt64) {
+
+        public init(metricName: String, value: UInt64) {
             self.metricName = metricName
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case value = "Value"
         }
     }
-    
+
     /// 指标数据的解释
     public struct MetricObjectMeaning: TCOutputModel {
         /// 指标英文解释
         public let en: String
-        
+
         /// 指标中文解释
         public let zh: String
-        
+
         enum CodingKeys: String, CodingKey {
             case en = "En"
             case zh = "Zh"
         }
     }
-    
+
     /// 对业务指标的单位及支持统计周期的描述
     public struct MetricSet: TCOutputModel {
         /// 命名空间，每个云产品会有一个命名空间
         public let namespace: String
-        
+
         /// 指标名称
         public let metricName: String
-        
+
         /// 指标使用的单位
         public let unit: String
-        
+
         /// 指标使用的单位
         public let unitCname: String
-        
+
         /// 指标支持的统计周期，单位是秒，如60、300
         public let period: [Int64]
-        
+
         /// 统计周期内指标方式
         public let periods: [PeriodsSt]
-        
+
         /// 统计指标含义解释
         public let meaning: MetricObjectMeaning
-        
+
         /// 维度描述信息
         public let dimensions: [DimensionsDesc]
-        
+
         /// 指标中文名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricCName: String?
-        
+
         /// 指标英文名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricEName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case metricName = "MetricName"
@@ -2761,58 +2761,58 @@ extension Monitor {
             case metricEName = "MetricEName"
         }
     }
-    
+
     /// DescribeMidDimensionValueList的查询条件
     public struct MidQueryCondition: TCInputModel {
         /// 维度
         public let key: String
-        
+
         /// 操作符，支持等于(eq)、不等于(ne)，以及in
         public let `operator`: String
-        
+
         /// 维度值，当Op是eq、ne时，只使用第一个元素
         public let value: [String]
-        
-        public init (key: String, operator: String, value: [String]) {
+
+        public init(key: String, operator: String, value: [String]) {
             self.key = key
             self.`operator` = `operator`
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case `operator` = "Operator"
             case value = "Value"
         }
     }
-    
+
     /// 修改告警策略组传入的指标阈值条件
     public struct ModifyPolicyGroupCondition: TCInputModel {
         /// 指标id
         public let metricId: Int64
-        
+
         /// 比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等
         public let calcType: Int64
-        
+
         /// 检测阈值
         public let calcValue: String
-        
+
         /// 检测指标的数据周期
         public let calcPeriod: Int64
-        
+
         /// 持续周期个数
         public let continuePeriod: Int64
-        
+
         /// 告警发送收敛类型。0连续告警，1指数告警
         public let alarmNotifyType: Int64
-        
+
         /// 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         public let alarmNotifyPeriod: Int64
-        
+
         /// 规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改
         public let ruleId: Int64?
-        
-        public init (metricId: Int64, calcType: Int64, calcValue: String, calcPeriod: Int64, continuePeriod: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
+
+        public init(metricId: Int64, calcType: Int64, calcValue: String, calcPeriod: Int64, continuePeriod: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
             self.metricId = metricId
             self.calcType = calcType
             self.calcValue = calcValue
@@ -2822,7 +2822,7 @@ extension Monitor {
             self.alarmNotifyPeriod = alarmNotifyPeriod
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metricId = "MetricId"
             case calcType = "CalcType"
@@ -2834,28 +2834,28 @@ extension Monitor {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// 修改告警策略组传入的事件告警条件
     public struct ModifyPolicyGroupEventCondition: TCInputModel {
         /// 事件id
         public let eventId: Int64
-        
+
         /// 告警发送收敛类型。0连续告警，1指数告警
         public let alarmNotifyType: Int64
-        
+
         /// 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         public let alarmNotifyPeriod: Int64
-        
+
         /// 规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改
         public let ruleId: Int64?
-        
-        public init (eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
+
+        public init(eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
             self.eventId = eventId
             self.alarmNotifyType = alarmNotifyType
             self.alarmNotifyPeriod = alarmNotifyPeriod
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case alarmNotifyType = "AlarmNotifyType"
@@ -2863,138 +2863,138 @@ extension Monitor {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// 监控类型详细信息
     public struct MonitorTypeInfo: TCOutputModel {
         /// 监控类型ID
         public let id: String
-        
+
         /// 监控类型
         public let name: String
-        
+
         /// 排列顺序
         public let sortId: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case sortId = "SortId"
         }
     }
-    
+
     /// 策略类型
     public struct MonitorTypeNamespace: TCInputModel {
         /// 监控类型
         public let monitorType: String
-        
+
         /// 策略类型值
         public let namespace: String
-        
-        public init (monitorType: String, namespace: String) {
+
+        public init(monitorType: String, namespace: String) {
             self.monitorType = monitorType
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case monitorType = "MonitorType"
             case namespace = "Namespace"
         }
     }
-    
+
     /// 维度支持的操作符信息
     public struct Operator: TCOutputModel {
         /// 运算符标识
         public let id: String
-        
+
         /// 运算符展示名
         public let name: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
         }
     }
-    
+
     /// 周期内的统计方式
     public struct PeriodsSt: TCOutputModel {
         /// 周期
         public let period: String
-        
+
         /// 统计方式
         public let statType: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case statType = "StatType"
         }
     }
-    
+
     /// 监控数据点
     public struct Point: TCOutputModel {
         /// 该监控数据点生成的时间点
         public let timestamp: UInt64
-        
+
         /// 监控数据点的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case value = "Value"
         }
     }
-    
+
     /// 策略组信息
     public struct PolicyGroup: TCOutputModel {
         /// 是否可设为默认告警策略
         public let canSetDefault: Bool
-        
+
         /// 告警策略组ID
         public let groupID: Int64
-        
+
         /// 告警策略组名称
         public let groupName: String
-        
+
         /// 创建时间
         public let insertTime: Int64
-        
+
         /// 是否为默认告警策略
         public let isDefault: Int64
-        
+
         /// 告警策略启用状态
         public let enable: Bool
-        
+
         /// 最后修改人UIN
         public let lastEditUin: Int64
-        
+
         /// 未屏蔽的实例数
         public let noShieldedInstanceCount: Int64
-        
+
         /// 父策略组ID
         public let parentGroupID: Int64
-        
+
         /// 所属项目ID
         public let projectID: Int64
-        
+
         /// 告警接收对象信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverInfos: [PolicyGroupReceiverInfo]?
-        
+
         /// 备注信息
         public let remark: String
-        
+
         /// 修改时间
         public let updateTime: Int64
-        
+
         /// 总绑定实例数
         public let totalInstanceCount: Int64
-        
+
         /// 视图
         public let viewName: String
-        
+
         /// 是否为与关系规则
         public let isUnionRule: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case canSetDefault = "CanSetDefault"
             case groupID = "GroupID"
@@ -3014,54 +3014,54 @@ extension Monitor {
             case isUnionRule = "IsUnionRule"
         }
     }
-    
+
     /// 2018版策略模板列表接收人信息
     public struct PolicyGroupReceiverInfo: TCOutputModel {
         /// 有效时段结束时间
         public let endTime: Int64
-        
+
         /// 是否需要发送通知
         public let needSendNotice: Int64
-        
+
         /// 告警接收渠道
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notifyWay: [String]?
-        
+
         /// 电话告警对个人间隔（秒）
         public let personInterval: Int64
-        
+
         /// 消息接收组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverGroupList: [Int64]?
-        
+
         /// 接受者类型
         public let receiverType: String
-        
+
         /// 接收人列表。通过平台接口查询到的接收人id列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverUserList: [Int64]?
-        
+
         /// 告警恢复通知方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recoverNotify: [String]?
-        
+
         /// 电话告警每轮间隔（秒）
         public let roundInterval: Int64
-        
+
         /// 电话告警轮数
         public let roundNumber: Int64
-        
+
         /// 电话告警通知时机。可选"OCCUR"(告警时通知),"RECOVER"(恢复时通知)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sendFor: [String]?
-        
+
         /// 有效时段开始时间
         public let startTime: Int64
-        
+
         /// 电话告警接收者uid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uidList: [Int64]?
-        
+
         enum CodingKeys: String, CodingKey {
             case endTime = "EndTime"
             case needSendNotice = "NeedSendNotice"
@@ -3078,76 +3078,76 @@ extension Monitor {
             case uidList = "UIDList"
         }
     }
-    
+
     /// 策略标签
     public struct PolicyTag: TCInputModel {
         /// 标签Key
         public let key: String
-        
+
         /// 标签Value
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 云监控支持的产品简要信息
     public struct ProductSimple: TCOutputModel {
         /// 命名空间
         public let namespace: String
-        
+
         /// 产品中文名称
         public let productName: String
-        
+
         /// 产品英文名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productEnName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case productName = "ProductName"
             case productEnName = "ProductEnName"
         }
     }
-    
+
     /// prometheus agent
     public struct PrometheusAgent: TCOutputModel {
         /// Agent 名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// Agent ID
         public let agentId: String
-        
+
         /// 实例 ID
         public let instanceId: String
-        
+
         /// Agent IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv4: String?
-        
+
         /// 心跳时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let heartbeatTime: String?
-        
+
         /// 最近一次错误
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastError: String?
-        
+
         /// Agent 版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentVersion: String?
-        
+
         /// Agent 状态
         public let status: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case agentId = "AgentId"
@@ -3159,27 +3159,27 @@ extension Monitor {
             case status = "Status"
         }
     }
-    
+
     /// 实例的授权信息
     public struct PrometheusInstanceGrantInfo: TCOutputModel {
         /// 是否有计费操作权限(1=有，2=无)
         public let hasChargeOperation: Int64
-        
+
         /// 是否显示VPC信息的权限(1=有，2=无)
         public let hasVpcDisplay: Int64
-        
+
         /// 是否可修改Grafana的状态(1=有，2=无)
         public let hasGrafanaStatusChange: Int64
-        
+
         /// 是否有管理agent的权限(1=有，2=无)
         public let hasAgentManage: Int64
-        
+
         /// 是否有管理TKE集成的权限(1=有，2=无)
         public let hasTkeManage: Int64
-        
+
         /// 是否显示API等信息(1=有, 2=无)
         public let hasApiOperation: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case hasChargeOperation = "HasChargeOperation"
             case hasVpcDisplay = "HasVpcDisplay"
@@ -3189,38 +3189,38 @@ extension Monitor {
             case hasApiOperation = "HasApiOperation"
         }
     }
-    
+
     /// Prometheus 服务响应体
     public struct PrometheusInstancesItem: TCOutputModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 实例名称。
         public let instanceName: String
-        
+
         /// 实例计费模式。取值范围：
         /// <ul>
         /// <li>2：包年包月</li>
         /// <li>3：按量</li>
         /// </ul>
         public let instanceChargeType: Int64
-        
+
         /// 地域 ID
         public let regionId: Int64
-        
+
         /// 可用区
         public let zone: String
-        
+
         /// VPC ID
         public let vpcId: String
-        
+
         /// 子网 ID
         public let subnetId: String
-        
+
         /// 存储周期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataRetentionTime: Int64?
-        
+
         /// 实例业务状态。取值范围：
         /// <ul>
         /// <li>1：正在创建</li>
@@ -3233,31 +3233,31 @@ extension Monitor {
         /// <li>9：欠费已停服</li>
         /// </ul>
         public let instanceStatus: Int64
-        
+
         /// Grafana 面板 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaURL: String?
-        
+
         /// 创建时间
         public let createdAt: String
-        
+
         /// 是否开启 Grafana
         /// <li>0：不开启</li>
         /// <li>1：开启</li>
         public let enableGrafana: Int64
-        
+
         /// 实例IPV4地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let iPv4Address: String?
-        
+
         /// 实例关联的标签列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSpecification: [PrometheusTag]?
-        
+
         /// 购买的实例过期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTime: String?
-        
+
         /// 计费状态
         /// <ul>
         /// <li>1：正常</li>
@@ -3268,11 +3268,11 @@ extension Monitor {
         /// </ul>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeStatus: Int64?
-        
+
         /// 规格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let specName: String?
-        
+
         /// 自动续费标记
         /// <ul>
         /// <li>0：不自动续费</li>
@@ -3282,7 +3282,7 @@ extension Monitor {
         /// </ul>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlag: Int64?
-        
+
         /// 是否快过期
         /// <ul>
         /// <li>0：否</li>
@@ -3290,23 +3290,23 @@ extension Monitor {
         /// </ul>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isNearExpire: Int64?
-        
+
         /// 数据写入需要的 Token
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authToken: String?
-        
+
         /// Prometheus Remote Write 的地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remoteWrite: String?
-        
+
         /// Prometheus HTTP Api 根地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiRootPath: String?
-        
+
         /// Proxy 的地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyAddress: String?
-        
+
         /// Grafana 运行状态
         /// <ul>
         /// <li>1：正在创建</li>
@@ -3319,31 +3319,31 @@ extension Monitor {
         /// </ul>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaStatus: Int64?
-        
+
         /// Grafana IP 白名单列表，使用英文分号分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaIpWhiteList: String?
-        
+
         /// 实例的授权信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grant: PrometheusInstanceGrantInfo?
-        
+
         /// 绑定的 Grafana 实例 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaInstanceId: String?
-        
+
         /// 告警规则限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertRuleLimit: Int64?
-        
+
         /// 预聚合规则限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordingRuleLimit: Int64?
-        
+
         /// 迁移状态，0-不在迁移中，1-迁移中、原实例，2-迁移中、目标实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let migrationType: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -3377,76 +3377,76 @@ extension Monitor {
             case migrationType = "MigrationType"
         }
     }
-    
+
     /// prometheus 报警规则 KV 参数
     public struct PrometheusRuleKV: TCInputModel, TCOutputModel {
         /// 键
         public let key: String
-        
+
         /// 值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// prometheus 报警规则集
     public struct PrometheusRuleSet: TCOutputModel {
         /// 规则 ID
         public let ruleId: String
-        
+
         /// 规则名称
         public let ruleName: String
-        
+
         /// 规则状态码
         public let ruleState: Int64
-        
+
         /// 规则类别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 规则标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [PrometheusRuleKV]?
-        
+
         /// 规则注释列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let annotations: [PrometheusRuleKV]?
-        
+
         /// 规则表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expr: String?
-        
+
         /// 规则报警持续时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: String?
-        
+
         /// 报警接收组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receivers: [String]?
-        
+
         /// 规则运行健康状态，取值如下：
         /// <li>unknown 未知状态</li>
         /// <li>pending 加载中</li>
         /// <li>ok 运行正常</li>
         /// <li>err 运行错误</li>
         public let health: String
-        
+
         /// 规则创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdAt: String?
-        
+
         /// 规则更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case ruleName = "RuleName"
@@ -3462,23 +3462,23 @@ extension Monitor {
             case updatedAt = "UpdatedAt"
         }
     }
-    
+
     /// Prometheus 抓取任务
     public struct PrometheusScrapeJob: TCOutputModel {
         /// 任务名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// Agent ID
         public let agentId: String
-        
+
         /// 任务 ID
         public let jobId: String
-        
+
         /// 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let config: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case agentId = "AgentId"
@@ -3486,44 +3486,44 @@ extension Monitor {
             case config = "Config"
         }
     }
-    
+
     /// Prometheus 托管服务标签
     public struct PrometheusTag: TCInputModel, TCOutputModel {
         /// 标签的健值
         public let key: String
-        
+
         /// 标签对应的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// PrometheusZoneItem 响应结构体内的地域信息
     public struct PrometheusZoneItem: TCOutputModel {
         /// 可用区
         public let zone: String
-        
+
         /// 可用区 ID
         public let zoneId: Int64
-        
+
         /// 可用区状态( 0: 不可用；1: 可用)
         public let zoneState: Int64
-        
+
         /// 地域 ID
         public let regionId: Int64
-        
+
         /// 可用区名（目前为中文）
         public let zoneName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case zoneId = "ZoneId"
@@ -3532,55 +3532,55 @@ extension Monitor {
             case zoneName = "ZoneName"
         }
     }
-    
+
     /// 接收人信息
     public struct ReceiverInfo: TCInputModel {
         /// 告警时间段开始时间。范围[0,86400)，作为 UNIX 时间戳转成北京时间后去掉日期，例如7200表示"10:0:0"
         public let startTime: Int64
-        
+
         /// 告警时间段结束时间。含义同StartTime
         public let endTime: Int64
-        
+
         /// 告警通知方式。可选 "SMS","SITE","EMAIL","CALL","WECHAT"
         public let notifyWay: [String]
-        
+
         /// 接收人类型。“group” 或 “user”
         public let receiverType: String
-        
+
         /// ReceiverId
         public let id: Int64?
-        
+
         /// 电话告警通知时机。可选"OCCUR"(告警时通知),"RECOVER"(恢复时通知)
         public let sendFor: [String]?
-        
+
         /// 电话告警接收者 UID
         public let uidList: [Int64]?
-        
+
         /// 电话告警轮数
         public let roundNumber: Int64?
-        
+
         /// 电话告警对个人间隔（秒）
         public let personInterval: Int64?
-        
+
         /// 电话告警每轮间隔（秒）
         public let roundInterval: Int64?
-        
+
         /// 恢复通知方式。可选"SMS"
         public let recoverNotify: [String]?
-        
+
         /// 是否需要电话告警触达提示。0不需要，1需要
         public let needSendNotice: Int64?
-        
+
         /// 接收组列表。通过平台接口查询到的接收组 ID 列表
         public let receiverGroupList: [Int64]?
-        
+
         /// 接收人列表。通过平台接口查询到的接收人 ID 列表
         public let receiverUserList: [Int64]?
-        
+
         /// 告警接收语言，枚举值（zh-CN，en-US）
         public let receiveLanguage: String?
-        
-        public init (startTime: Int64, endTime: Int64, notifyWay: [String], receiverType: String, id: Int64? = nil, sendFor: [String]? = nil, uidList: [Int64]? = nil, roundNumber: Int64? = nil, personInterval: Int64? = nil, roundInterval: Int64? = nil, recoverNotify: [String]? = nil, needSendNotice: Int64? = nil, receiverGroupList: [Int64]? = nil, receiverUserList: [Int64]? = nil, receiveLanguage: String? = nil) {
+
+        public init(startTime: Int64, endTime: Int64, notifyWay: [String], receiverType: String, id: Int64? = nil, sendFor: [String]? = nil, uidList: [Int64]? = nil, roundNumber: Int64? = nil, personInterval: Int64? = nil, roundInterval: Int64? = nil, recoverNotify: [String]? = nil, needSendNotice: Int64? = nil, receiverGroupList: [Int64]? = nil, receiverUserList: [Int64]? = nil, receiveLanguage: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.notifyWay = notifyWay
@@ -3597,7 +3597,7 @@ extension Monitor {
             self.receiverUserList = receiverUserList
             self.receiveLanguage = receiveLanguage
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -3616,34 +3616,34 @@ extension Monitor {
             case receiveLanguage = "ReceiveLanguage"
         }
     }
-    
+
     /// Prometheus 聚合规则响应结构体内信息
     public struct RecordingRuleSet: TCOutputModel {
         /// 规则 ID
         public let ruleId: String
-        
+
         /// 规则状态码
         public let ruleState: Int64
-        
+
         /// 分组名称
         public let name: String
-        
+
         /// 规则内容组
         public let group: String
-        
+
         /// 规则数量
         public let total: Int64
-        
+
         /// 规则创建时间
         public let createdAt: String
-        
+
         /// 规则最近更新时间
         public let updatedAt: String
-        
+
         /// 规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case ruleState = "RuleState"
@@ -3655,33 +3655,33 @@ extension Monitor {
             case ruleName = "RuleName"
         }
     }
-    
+
     /// Prometheus 服务发现信息
     public struct ServiceDiscoveryItem: TCOutputModel {
         /// 服务发现名称
         public let name: String
-        
+
         /// 服务发现属于的 Namespace
         public let namespace: String
-        
+
         /// 服务发现类型: ServiceMonitor/PodMonitor
         public let kind: String
-        
+
         /// Namespace 选取方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceSelector: String?
-        
+
         /// Label 选取方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selector: String?
-        
+
         /// Endpoints 信息（PodMonitor 不含该参数）
         public let endpoints: String
-        
+
         /// 服务发现对应的配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yaml: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -3692,56 +3692,56 @@ extension Monitor {
             case yaml = "Yaml"
         }
     }
-    
+
     /// 标签
     public struct Tag: TCInputModel {
         /// 标签key
         public let key: String
-        
+
         /// 标签value
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 策略列表详情标签返回体
     public struct TagInstance: TCOutputModel {
         /// 标签Key
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 标签Value
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 实例个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceSum: Int64?
-        
+
         /// 产品类型，如：cvm
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceType: String?
-        
+
         /// 地域ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionId: Int64?
-        
+
         /// 绑定状态，2：绑定成功，1：绑定中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bindingStatus: Int64?
-        
+
         /// 标签状态，2：标签存在，1：标签不存在
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagStatus: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
@@ -3752,45 +3752,45 @@ extension Monitor {
             case tagStatus = "TagStatus"
         }
     }
-    
+
     /// 模板列表
     public struct TemplateGroup: TCOutputModel {
         /// 指标告警规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditions: [Condition]?
-        
+
         /// 事件告警规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventConditions: [EventCondition]?
-        
+
         /// 关联告警策略组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyGroups: [PolicyGroup]?
-        
+
         /// 模板策略组ID
         public let groupID: Int64
-        
+
         /// 模板策略组名称
         public let groupName: String
-        
+
         /// 创建时间
         public let insertTime: Int64
-        
+
         /// 最后修改人UIN
         public let lastEditUin: Int64
-        
+
         /// 备注
         public let remark: String
-        
+
         /// 更新时间
         public let updateTime: Int64
-        
+
         /// 视图
         public let viewName: String
-        
+
         /// 是否为与关系
         public let isUnionRule: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case conditions = "Conditions"
             case eventConditions = "EventConditions"
@@ -3805,34 +3805,34 @@ extension Monitor {
             case isUnionRule = "IsUnionRule"
         }
     }
-    
+
     /// 云监控告警通知模板 - 回调通知详情
     public struct URLNotice: TCInputModel, TCOutputModel {
         /// 回调 url（限长256字符）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 是否通过验证 0=否 1=是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isValid: Int64?
-        
+
         /// 验证码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let validationCode: String?
-        
+
         /// 通知开始时间 一天开始的秒数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: Int64?
-        
+
         /// 通知结束时间 一天开始的秒数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: Int64?
-        
+
         /// 通知周期 1-7表示周一到周日
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekday: [Int64]?
-        
-        public init (url: String, isValid: Int64? = nil, validationCode: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, weekday: [Int64]? = nil) {
+
+        public init(url: String, isValid: Int64? = nil, validationCode: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, weekday: [Int64]? = nil) {
             self.url = url
             self.isValid = isValid
             self.validationCode = validationCode
@@ -3840,7 +3840,7 @@ extension Monitor {
             self.endTime = endTime
             self.weekday = weekday
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "URL"
             case isValid = "IsValid"
@@ -3850,62 +3850,62 @@ extension Monitor {
             case weekday = "Weekday"
         }
     }
-    
+
     /// 云监控告警通知模板 - 用户通知详情
     public struct UserNotice: TCInputModel, TCOutputModel {
         /// 接收者类型 USER=用户 GROUP=用户组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverType: String?
-        
+
         /// 通知开始时间 00:00:00 开始的秒数（取值范围0-86399）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: Int64?
-        
+
         /// 通知结束时间 00:00:00 开始的秒数（取值范围0-86399）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: Int64?
-        
+
         /// 通知渠道列表 EMAIL=邮件 SMS=短信 CALL=电话 WECHAT=微信 RTX=企业微信
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeWay: [String]?
-        
+
         /// 用户 uid 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userIds: [Int64]?
-        
+
         /// 用户组 group id 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupIds: [Int64]?
-        
+
         /// 电话轮询列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneOrder: [Int64]?
-        
+
         /// 电话轮询次数 （取值范围1-5）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneCircleTimes: Int64?
-        
+
         /// 单次轮询内拨打间隔 秒数 （取值范围60-900）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneInnerInterval: Int64?
-        
+
         /// 两次轮询间隔 秒数（取值范围60-900）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneCircleInterval: Int64?
-        
+
         /// 是否需要触达通知 0=否 1=是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let needPhoneArriveNotice: Int64?
-        
+
         /// 电话拨打类型 SYNC=同时拨打 CIRCLE=轮询拨打 不指定时默认是轮询
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneCallType: String?
-        
+
         /// 通知周期 1-7表示周一到周日
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekday: [Int64]?
-        
-        public init (receiverType: String, startTime: Int64, endTime: Int64, noticeWay: [String], userIds: [Int64]? = nil, groupIds: [Int64]? = nil, phoneOrder: [Int64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, needPhoneArriveNotice: Int64? = nil, phoneCallType: String? = nil, weekday: [Int64]? = nil) {
+
+        public init(receiverType: String, startTime: Int64, endTime: Int64, noticeWay: [String], userIds: [Int64]? = nil, groupIds: [Int64]? = nil, phoneOrder: [Int64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, needPhoneArriveNotice: Int64? = nil, phoneCallType: String? = nil, weekday: [Int64]? = nil) {
             self.receiverType = receiverType
             self.startTime = startTime
             self.endTime = endTime
@@ -3920,7 +3920,7 @@ extension Monitor {
             self.phoneCallType = phoneCallType
             self.weekday = weekday
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case receiverType = "ReceiverType"
             case startTime = "StartTime"

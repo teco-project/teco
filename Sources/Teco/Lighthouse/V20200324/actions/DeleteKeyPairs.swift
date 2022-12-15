@@ -19,34 +19,34 @@ extension Lighthouse {
     public struct DeleteKeyPairsRequest: TCRequestModel {
         /// 密钥对 ID 列表，每次请求批量密钥对的上限为 10。
         public let keyIds: [String]
-        
-        public init (keyIds: [String]) {
+
+        public init(keyIds: [String]) {
             self.keyIds = keyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
         }
     }
-    
+
     /// DeleteKeyPairs返回参数结构体
     public struct DeleteKeyPairsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable
-    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteKeyPairsResponse > {
+    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
@@ -54,15 +54,15 @@ extension Lighthouse {
     public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
         try await self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable
-    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteKeyPairsResponse > {
+    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。

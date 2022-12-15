@@ -20,45 +20,45 @@ extension TCCvmError {
             case hpcCluster = "ResourceInUse.HpcCluster"
             case other = "ResourceInUse"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 高性能计算集群使用中。
         public static var hpcCluster: ResourceInUse {
             ResourceInUse(.hpcCluster)
         }
-        
+
         /// 资源被占用。
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .hpcCluster: 
+            case .hpcCluster:
                 code = .resourceInUse_HpcCluster
-            case .other: 
+            case .other:
                 code = .resourceInUse
             }
             return TCCvmError(code, context: self.context)

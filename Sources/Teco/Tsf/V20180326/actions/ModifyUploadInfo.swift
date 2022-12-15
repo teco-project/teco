@@ -19,26 +19,26 @@ extension Tsf {
     public struct ModifyUploadInfoRequest: TCRequestModel {
         /// 应用ID
         public let applicationId: String
-        
+
         /// 调用DescribeUploadInfo接口时返回的软件包ID
         public let pkgId: String
-        
+
         /// COS返回上传结果（默认为0：成功，其他值表示失败）
         public let result: Int64
-        
+
         /// 程序包MD5
         public let md5: String
-        
+
         /// 程序包大小（单位字节）
         public let size: UInt64?
-        
+
         /// 程序包仓库类型
         public let repositoryType: String?
-        
+
         /// 程序包仓库id
         public let repositoryId: String?
-        
-        public init (applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil) {
+
+        public init(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil) {
             self.applicationId = applicationId
             self.pkgId = pkgId
             self.result = result
@@ -47,7 +47,7 @@ extension Tsf {
             self.repositoryType = repositoryType
             self.repositoryId = repositoryId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case pkgId = "PkgId"
@@ -58,26 +58,26 @@ extension Tsf {
             case repositoryId = "RepositoryId"
         }
     }
-    
+
     /// ModifyUploadInfo返回参数结构体
     public struct ModifyUploadInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新上传程序包信息
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable
-    public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUploadInfoResponse > {
+    public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
         self.client.execute(action: "ModifyUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新上传程序包信息
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
@@ -86,16 +86,16 @@ extension Tsf {
     public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
         try await self.client.execute(action: "ModifyUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新上传程序包信息
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable
-    public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUploadInfoResponse > {
+    public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
         self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新上传程序包信息
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。

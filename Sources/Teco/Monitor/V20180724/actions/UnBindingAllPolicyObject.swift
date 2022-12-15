@@ -19,54 +19,54 @@ extension Monitor {
     public struct UnBindingAllPolicyObjectRequest: TCRequestModel {
         /// 固定值，为"monitor"
         public let module: String
-        
+
         /// 策略组id，如传入 PolicyId 则该字段被忽略可传入任意值如 0
         public let groupId: Int64
-        
+
         /// 告警策略ID，使用此字段时 GroupId 会被忽略
         public let policyId: String?
-        
-        public init (module: String, groupId: Int64, policyId: String? = nil) {
+
+        public init(module: String, groupId: Int64, policyId: String? = nil) {
             self.module = module
             self.groupId = groupId
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case groupId = "GroupId"
             case policyId = "PolicyId"
         }
     }
-    
+
     /// UnBindingAllPolicyObject返回参数结构体
     public struct UnBindingAllPolicyObjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除全部的关联对象
     @inlinable
-    public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindingAllPolicyObjectResponse > {
+    public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingAllPolicyObjectResponse> {
         self.client.execute(action: "UnBindingAllPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除全部的关联对象
     @inlinable
     public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
         try await self.client.execute(action: "UnBindingAllPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除全部的关联对象
     @inlinable
-    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindingAllPolicyObjectResponse > {
+    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingAllPolicyObjectResponse> {
         self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除全部的关联对象
     @inlinable
     public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {

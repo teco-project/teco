@@ -19,18 +19,18 @@ extension Cme {
     public struct AccountInfo: TCOutputModel {
         /// 用户 Id。
         public let userId: String
-        
+
         /// 用户手机号码。
         public let phone: String
-        
+
         /// 用户昵称。
         public let nick: String
-        
+
         /// 账号状态，取值：
         /// <li>Normal：有效；</li>
         /// <li>Stopped：无效。</li>
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case phone = "Phone"
@@ -38,54 +38,54 @@ extension Cme {
             case status = "Status"
         }
     }
-    
+
     /// 添加的团队成员信息
     public struct AddMemberInfo: TCInputModel {
         /// 团队成员 ID。
         public let memberId: String
-        
+
         /// 团队成员备注。
         public let remark: String?
-        
+
         /// 团队成员角色，不填则默认添加普通成员。可选值：
         /// <li>Admin：团队管理员；</li>
         /// <li>Member：普通成员。</li>
         public let role: String?
-        
-        public init (memberId: String, remark: String? = nil, role: String? = nil) {
+
+        public init(memberId: String, remark: String? = nil, role: String? = nil) {
             self.memberId = memberId
             self.remark = remark
             self.role = role
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case memberId = "MemberId"
             case remark = "Remark"
             case role = "Role"
         }
     }
-    
+
     /// 音频素材信息
     public struct AudioMaterial: TCOutputModel {
         /// 素材元信息。
         public let metaData: MediaMetaData
-        
+
         /// 素材媒体文件的播放 URL 地址。
         public let materialUrl: String
-        
+
         /// 素材媒体文件的封面图片地址。
         public let coverUrl: String
-        
+
         /// 素材状态。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let materialStatus: MaterialStatus?
-        
+
         /// 素材媒体文件的原始 URL 地址。
         public let originalUrl: String
-        
+
         /// 云点播媒资 FileId。
         public let vodFileId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metaData = "MetaData"
             case materialUrl = "MaterialUrl"
@@ -95,25 +95,25 @@ extension Cme {
             case vodFileId = "VodFileId"
         }
     }
-    
+
     /// 音频流信息。
     public struct AudioStreamInfo: TCOutputModel {
         /// 码率，单位：bps。
         public let bitrate: UInt64
-        
+
         /// 采样率，单位：hz。
         public let samplingRate: UInt64
-        
+
         /// 编码格式。
         public let codec: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case samplingRate = "SamplingRate"
             case codec = "Codec"
         }
     }
-    
+
     /// 音频轨道上的音频片段信息。
     public struct AudioTrackItem: TCInputModel {
         /// 音频媒体来源类型，取值有：
@@ -123,7 +123,7 @@ extension Cme {
         /// <li>EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。</li>
         /// </ul>
         public let sourceType: String
-        
+
         /// 音频媒体，可取值为：
         /// <ul>
         /// <li>当 SourceType 为 VOD 时，参数填云点播 FileId ；</li>
@@ -134,20 +134,20 @@ extension Cme {
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp3`)，参数为：`1000000:www.example.com/a.mp3`。</li>
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp3`)，参数为：`1000001:www.example.com/b.mp3`。</li>
         public let sourceMedia: String
-        
+
         /// 音频片段取自媒体文件的起始时间，单位为秒。0 表示从媒体开始位置截取。默认为0。
         public let sourceMediaStartTime: Float?
-        
+
         /// 音频片段的时长，单位为秒。默认和媒体本身长度一致，表示截取全部媒体。
         public let duration: Float?
-        
-        public init (sourceType: String, sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil) {
+
+        public init(sourceType: String, sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil) {
             self.sourceType = sourceType
             self.sourceMedia = sourceMedia
             self.sourceMediaStartTime = sourceMediaStartTime
             self.duration = duration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceType = "SourceType"
             case sourceMedia = "SourceMedia"
@@ -155,67 +155,67 @@ extension Cme {
             case duration = "Duration"
         }
     }
-    
+
     /// 资源权限信息
     public struct AuthorizationInfo: TCOutputModel {
         /// 被授权者实体。
         public let authorizee: Entity
-        
+
         /// 详细授权值。 取值有：
         /// <li>R：可读，可以浏览素材，但不能使用该素材（将其添加到 Project），或复制到自己的媒资库中</li>
         /// <li>X：可用，可以使用该素材（将其添加到 Project），但不能将其复制到自己的媒资库中，意味着被授权者无法将该资源进一步扩散给其他个人或团队。</li>
         /// <li>C：可复制，既可以使用该素材（将其添加到 Project），也可以将其复制到自己的媒资库中。</li>
         /// <li>W：可修改、删除媒资。</li>
         public let permissionSet: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case authorizee = "Authorizee"
             case permissionSet = "PermissionSet"
         }
     }
-    
+
     /// 授权者
     public struct Authorizer: TCInputModel, TCOutputModel {
         /// 授权者类型，取值有：
         /// <li>PERSON：个人。</li>
         /// <li>TEAM：团队。</li>
         public let type: String
-        
+
         /// Id，当 Type=PERSON，取值为用户 Id。当Type=TEAM，取值为团队 ID。
         public let id: String
-        
-        public init (type: String, id: String) {
+
+        public init(type: String, id: String) {
             self.type = type
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case id = "Id"
         }
     }
-    
+
     /// 多媒体创作引擎导出信息。
     public struct CMEExportInfo: TCInputModel {
         /// 导出媒体归属，个人或团队。
         public let owner: Entity
-        
+
         /// 导出的媒体名称，不得超过30个字符。
         public let name: String?
-        
+
         /// 导出的媒体信息，不得超过50个字符。
         public let description: String?
-        
+
         /// 导出的媒体分类路径，长度不能超过15字符。不存在默认创建。
         public let classPath: String?
-        
+
         /// 导出的媒体标签，单个标签不得超过10个字符。
         public let tagSet: [String]?
-        
+
         /// 第三方平台发布信息列表。暂未正式对外，请勿使用。
         public let thirdPartyPublishInfos: [ThirdPartyPublishInfo]?
-        
-        public init (owner: Entity, name: String? = nil, description: String? = nil, classPath: String? = nil, tagSet: [String]? = nil, thirdPartyPublishInfos: [ThirdPartyPublishInfo]? = nil) {
+
+        public init(owner: Entity, name: String? = nil, description: String? = nil, classPath: String? = nil, tagSet: [String]? = nil, thirdPartyPublishInfos: [ThirdPartyPublishInfo]? = nil) {
             self.owner = owner
             self.name = name
             self.description = description
@@ -223,7 +223,7 @@ extension Cme {
             self.tagSet = tagSet
             self.thirdPartyPublishInfos = thirdPartyPublishInfos
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case owner = "Owner"
             case name = "Name"
@@ -233,63 +233,63 @@ extension Cme {
             case thirdPartyPublishInfos = "ThirdPartyPublishInfos"
         }
     }
-    
+
     /// 分类创建事件。
     public struct ClassCreatedEvent: TCOutputModel {
         /// 分类归属。
         public let owner: Entity
-        
+
         /// 分类路径。
         public let classPath: String
-        
+
         enum CodingKeys: String, CodingKey {
             case owner = "Owner"
             case classPath = "ClassPath"
         }
     }
-    
+
     /// 分类删除事件。
     public struct ClassDeletedEvent: TCOutputModel {
         /// 删除的分类归属。
         public let owner: Entity
-        
+
         /// 删除的分类路径列表。
         public let classPathSet: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case owner = "Owner"
             case classPathSet = "ClassPathSet"
         }
     }
-    
+
     /// 分类信息
     public struct ClassInfo: TCOutputModel {
         /// 归属者。
         public let owner: Entity
-        
+
         /// 分类路径。
         public let classPath: String
-        
+
         enum CodingKeys: String, CodingKey {
             case owner = "Owner"
             case classPath = "ClassPath"
         }
     }
-    
+
     /// 分类移动事件。
     public struct ClassMovedEvent: TCOutputModel {
         /// 源分类归属。
         public let sourceOwner: Entity
-        
+
         /// 源分类路径列表。
         public let sourceClassPathSet: [String]
-        
+
         /// 目标分类归属。
         public let destinationOwner: Entity
-        
+
         /// 目标分类归属。
         public let destinationClassPath: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceOwner = "SourceOwner"
             case sourceClassPathSet = "SourceClassPathSet"
@@ -297,28 +297,28 @@ extension Cme {
             case destinationClassPath = "DestinationClassPath"
         }
     }
-    
+
     /// COS 发布信息。
     public struct CosPublishInputInfo: TCInputModel {
         /// 发布生成的对象存储文件所在的 COS Bucket 名，如 TopRankVideo-125xxx88。
         public let bucket: String
-        
+
         /// 发布生成的对象存储文件所在的 COS Bucket 所属园区，如 ap-chongqing。
         public let region: String
-        
+
         /// 发布生成的视频在 COS 存储的对象键。对象键（ObjectKey）是对象（Object）在存储桶（Bucket）中的唯一标识。
         public let videoKey: String
-        
+
         /// 发布生成的封面在 COS 存储的对象键。
         public let coverKey: String
-        
-        public init (bucket: String, region: String, videoKey: String, coverKey: String) {
+
+        public init(bucket: String, region: String, videoKey: String, coverKey: String) {
             self.bucket = bucket
             self.region = region
             self.videoKey = videoKey
             self.coverKey = coverKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
             case region = "Region"
@@ -326,42 +326,42 @@ extension Cme {
             case coverKey = "CoverKey"
         }
     }
-    
+
     /// 空的轨道片段，用来进行时间轴的占位。如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。
     public struct EmptyTrackItem: TCInputModel {
         /// 持续时间，单位为秒。
         public let duration: Float
-        
-        public init (duration: Float) {
+
+        public init(duration: Float) {
             self.duration = duration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case duration = "Duration"
         }
     }
-    
+
     /// 用于描述资源的归属，归属者为个人或者团队。
     public struct Entity: TCInputModel, TCOutputModel {
         /// 类型，取值有：
         /// <li>PERSON：个人。</li>
         /// <li>TEAM：团队。</li>
         public let type: String
-        
+
         /// Id，当 Type=PERSON，取值为用户 Id，当 Type=TEAM，取值为团队 Id。
         public let id: String
-        
-        public init (type: String, id: String) {
+
+        public init(type: String, id: String) {
             self.type = type
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case id = "Id"
         }
     }
-    
+
     /// 回调事件内容。
     public struct EventContent: TCOutputModel {
         /// 事件类型，可取值有：
@@ -379,60 +379,60 @@ extension Cme {
         /// <li>Task.VideoExportCompleted：视频导出完成事件； </li>
         /// <li>Project.MediaCast.StatusChanged：点播转直播项目状态变更事件。 </li>
         public let eventType: String
-        
+
         /// 操作者，表示触发事件的操作者。如果是 `cmeid_system` 表示平台管理员操作。
         public let `operator`: String
-        
+
         /// 新文件产生事件。仅当 EventType 为 Storage.NewFileCreated 时有效。
         public let storageNewFileCreatedEvent: StorageNewFileCreatedEvent
-        
+
         /// 云转推项目状态变更事件。仅当 EventType 为 Project.StreamConnect.StatusChanged 时有效。
         public let projectStreamConnectStatusChangedEvent: ProjectStreamConnectStatusChangedEvent
-        
+
         /// 导播台项目状态变更事件。仅当 EventType 为 Project.Switcher.StatusChanged 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectSwitcherStatusChangedEvent: ProjectSwitcherStatusChangedEvent?
-        
+
         /// 媒体导入事件。仅当 EventType 为 Material.Imported 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let materialImportedEvent: MaterialImportedEvent?
-        
+
         /// 媒体添加事件。仅当 EventType 为 Material.Added 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let materialAddedEvent: MaterialAddedEvent?
-        
+
         /// 媒体移动事件。仅当 EventType 为 Material.Moved 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let materialMovedEvent: MaterialMovedEvent?
-        
+
         /// 媒体更新事件。仅当 EventType 为 Material.Modified 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let materialModifiedEvent: MaterialModifiedEvent?
-        
+
         /// 媒体删除事件。仅当 EventType 为 Material.Deleted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let materialDeletedEvent: MaterialDeletedEvent?
-        
+
         /// 分类创建事件。仅当 EventType 为 Class.Created 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classCreatedEvent: ClassCreatedEvent?
-        
+
         /// 分类移动事件。仅当 EventType 为 Class.Moved 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classMovedEvent: ClassMovedEvent?
-        
+
         /// 分类删除事件。仅当 EventType 为 Class.Deleted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classDeletedEvent: ClassDeletedEvent?
-        
+
         /// 视频导出完成事件。仅当 EventType 为 Task.VideoExportCompleted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoExportCompletedEvent: VideoExportCompletedEvent?
-        
+
         /// 点播转直播项目状态变更事件。仅当 EventType 为 Project.MediaCast.StatusChanged 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectMediaCastStatusChangedEvent: ProjectMediaCastStatusChangedEvent?
-        
+
         enum CodingKeys: String, CodingKey {
             case eventType = "EventType"
             case `operator` = "Operator"
@@ -451,51 +451,51 @@ extension Cme {
             case projectMediaCastStatusChangedEvent = "ProjectMediaCastStatusChangedEvent"
         }
     }
-    
+
     /// 媒资绑定资源信息，包含媒资绑定模板 ID 和文件信息。
     public struct ExternalMediaInfo: TCInputModel {
         /// 目前仅支持绑定 COS 桶的媒体，请填写存储对象 Key 值，例如：`example-folder/example.mp4`。
         public let mediaKey: String
-        
+
         /// 该字段废弃，请勿使用。
         public let definition: Int64?
-        
+
         /// 媒资挂载的存储 Id。
         public let storageId: String?
-        
-        public init (mediaKey: String, definition: Int64? = nil, storageId: String? = nil) {
+
+        public init(mediaKey: String, definition: Int64? = nil, storageId: String? = nil) {
             self.mediaKey = mediaKey
             self.definition = definition
             self.storageId = storageId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaKey = "MediaKey"
             case definition = "Definition"
             case storageId = "StorageId"
         }
     }
-    
+
     /// 图片素材信息
     public struct ImageMaterial: TCOutputModel {
         /// 图片高度，单位：px。
         public let height: Int64
-        
+
         /// 图片宽度，单位：px。
         public let width: Int64
-        
+
         /// 素材媒体文件的展示 URL 地址。
         public let materialUrl: String
-        
+
         /// 图片大小，单位：字节。
         public let size: Int64
-        
+
         /// 素材媒体文件的原始 URL 地址。
         public let originalUrl: String
-        
+
         /// 云点播媒资 FileId。
         public let vodFileId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case height = "Height"
             case width = "Width"
@@ -505,57 +505,57 @@ extension Cme {
             case vodFileId = "VodFileId"
         }
     }
-    
+
     /// 导入媒资信息
     public struct ImportMediaInfo: TCOutputModel {
         /// 云点播文件 FileId。
         public let fileId: String
-        
+
         /// 媒体 Id。
         public let materialId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case materialId = "MaterialId"
         }
     }
-    
+
     /// 整型范围
     public struct IntegerRange: TCInputModel {
         /// 按整形代表值的下限检索。
         public let lowerBound: Int64
-        
+
         /// 按整形代表值的上限检索。
         public let upperBound: Int64
-        
-        public init (lowerBound: Int64, upperBound: Int64) {
+
+        public init(lowerBound: Int64, upperBound: Int64) {
             self.lowerBound = lowerBound
             self.upperBound = upperBound
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case lowerBound = "LowerBound"
             case upperBound = "UpperBound"
         }
     }
-    
+
     /// 加入的团队信息
     public struct JoinTeamInfo: TCOutputModel {
         /// 团队 ID。
         public let teamId: String
-        
+
         /// 团队名称。
         public let name: String
-        
+
         /// 团队成员个数。
         public let memberCount: UInt64
-        
+
         /// 成员在团队中的角色，取值有：
         /// <li>Owner：团队所有者，添加团队成员及修改团队成员解决时不能填此角色；</li>
         /// <li>Admin：团队管理员；</li>
         /// <li>Member：普通成员。</li>
         public let role: String
-        
+
         enum CodingKeys: String, CodingKey {
             case teamId = "TeamId"
             case name = "Name"
@@ -563,41 +563,41 @@ extension Cme {
             case role = "Role"
         }
     }
-    
+
     /// 快手视频发布信息。
     public struct KuaishouPublishInfo: TCInputModel, TCOutputModel {
         /// 视频发布标题，限30个字符。
         public let title: String?
-        
-        public init (title: String? = nil) {
+
+        public init(title: String? = nil) {
             self.title = title
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case title = "Title"
         }
     }
-    
+
     /// 链接类型的素材信息
     public struct LinkMaterial: TCOutputModel {
         /// 链接类型取值:
         /// <li>CLASS: 分类链接;</li>
         /// <li> MATERIAL：素材链接。</li>
         public let linkType: String
-        
+
         /// 链接状态取值：
         /// <li> Normal：正常 ；</li>
         /// <li>NotFound：链接目标不存在；</li> <li>Forbidden：无权限。</li>
         public let linkStatus: String
-        
+
         /// 素材链接详细信息，当LinkType="MATERIAL"时有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let linkMaterialInfo: LinkMaterialInfo?
-        
+
         /// 分类链接目标信息，当LinkType=“CLASS”时有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let linkClassInfo: ClassInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case linkType = "LinkType"
             case linkStatus = "LinkStatus"
@@ -605,24 +605,24 @@ extension Cme {
             case linkClassInfo = "LinkClassInfo"
         }
     }
-    
+
     /// 链接素材信息
     public struct LinkMaterialInfo: TCOutputModel {
         /// 素材基本信息。
         public let basicInfo: MaterialBasicInfo
-        
+
         /// 视频素材信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoMaterial: VideoMaterial?
-        
+
         /// 音频素材信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioMaterial: AudioMaterial?
-        
+
         /// 图片素材信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageMaterial: ImageMaterial?
-        
+
         enum CodingKeys: String, CodingKey {
             case basicInfo = "BasicInfo"
             case videoMaterial = "VideoMaterial"
@@ -630,79 +630,79 @@ extension Cme {
             case imageMaterial = "ImageMaterial"
         }
     }
-    
+
     /// 直播拉流信息
     public struct LivePullInputInfo: TCInputModel, TCOutputModel {
         /// 直播拉流地址。
         public let inputUrl: String
-        
-        public init (inputUrl: String) {
+
+        public init(inputUrl: String) {
             self.inputUrl = inputUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case inputUrl = "InputUrl"
         }
     }
-    
+
     /// 直播剪辑项目输入参数。
     public struct LiveStreamClipProjectInput: TCInputModel {
         /// 直播流播放地址，目前仅支持 HLS 和 FLV 格式。
         public let url: String
-        
+
         /// 直播流录制时长，单位为秒，最大值为 7200。
         public let streamRecordDuration: UInt64
-        
-        public init (url: String, streamRecordDuration: UInt64) {
+
+        public init(url: String, streamRecordDuration: UInt64) {
             self.url = url
             self.streamRecordDuration = streamRecordDuration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case streamRecordDuration = "StreamRecordDuration"
         }
     }
-    
+
     /// 登录态信息
     public struct LoginStatusInfo: TCOutputModel {
         /// 用户 Id。
         public let userId: String
-        
+
         /// 用户登录状态。
         /// <li>Online：在线；</li>
         /// <li>Offline：离线。</li>
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case status = "Status"
         }
     }
-    
+
     /// 媒体添加事件。
     public struct MaterialAddedEvent: TCOutputModel {
         /// 添加的媒体 Id 列表。
         public let materialIdSet: [String]
-        
+
         /// 添加的媒体归属。
         public let owner: Entity
-        
+
         /// 添加的媒体分类路径。
         public let classPath: String
-        
+
         enum CodingKeys: String, CodingKey {
             case materialIdSet = "MaterialIdSet"
             case owner = "Owner"
             case classPath = "ClassPath"
         }
     }
-    
+
     /// 媒体基本信息。
     public struct MaterialBasicInfo: TCOutputModel {
         /// 媒体 Id。
         public let materialId: String
-        
+
         /// 媒体类型，取值为：
         /// <li> AUDIO :音频;</li>
         /// <li> VIDEO :视频;</li>
@@ -710,36 +710,36 @@ extension Cme {
         /// <li> LINK  :链接.</li>
         /// <li> OTHER : 其他.</li>
         public let materialType: String
-        
+
         /// 媒体归属实体。
         public let owner: Entity
-        
+
         /// 媒体名称。
         public let name: String
-        
+
         /// 媒体文件的创建时间，使用 ISO 日期格式。
         public let createTime: String
-        
+
         /// 媒体文件的最近更新时间（如修改视频属性、发起视频处理等会触发更新媒体文件信息的操作），使用 ISO 日期格式。
         public let updateTime: String
-        
+
         /// 媒体的分类路径。
         public let classPath: String
-        
+
         /// 预置标签列表。
         public let presetTagSet: [PresetTagInfo]
-        
+
         /// 人工标签列表。
         public let tagSet: [String]
-        
+
         /// 媒体文件的预览图。
         public let previewUrl: String
-        
+
         /// 媒体绑定的标签信息列表 。
         /// 该字段已废弃。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagInfoSet: [MaterialTagInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case materialId = "MaterialId"
             case materialType = "MaterialType"
@@ -754,64 +754,64 @@ extension Cme {
             case tagInfoSet = "TagInfoSet"
         }
     }
-    
+
     /// 媒体删除事件。
     public struct MaterialDeletedEvent: TCOutputModel {
         /// 删除的媒体 Id 列表。
         public let materialIdSet: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case materialIdSet = "MaterialIdSet"
         }
     }
-    
+
     /// 媒体导入事件
     public struct MaterialImportedEvent: TCOutputModel {
         /// 导入的媒体信息列表。
         public let mediaInfoSet: [ImportMediaInfo]
-        
+
         /// 媒体归属。
         public let owner: Entity
-        
+
         /// 媒体分类路径。
         public let classPath: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaInfoSet = "MediaInfoSet"
             case owner = "Owner"
             case classPath = "ClassPath"
         }
     }
-    
+
     /// 媒体详情信息
     public struct MaterialInfo: TCOutputModel {
         /// 媒体基本信息。
         public let basicInfo: MaterialBasicInfo?
-        
+
         /// 视频媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoMaterial: VideoMaterial?
-        
+
         /// 音频媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioMaterial: AudioMaterial?
-        
+
         /// 图片媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageMaterial: ImageMaterial?
-        
+
         /// 链接媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let linkMaterial: LinkMaterial?
-        
+
         /// 模板媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoEditTemplateMaterial: VideoEditTemplateMaterial?
-        
+
         /// 其他类型媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let otherMaterial: OtherMaterial?
-        
+
         enum CodingKeys: String, CodingKey {
             case basicInfo = "BasicInfo"
             case videoMaterial = "VideoMaterial"
@@ -822,21 +822,21 @@ extension Cme {
             case otherMaterial = "OtherMaterial"
         }
     }
-    
+
     /// 媒体更新事件。
     public struct MaterialModifiedEvent: TCOutputModel {
         /// 媒体 Id。
         public let materialId: String
-        
+
         /// 更新后的媒体名称。如未更新则为空。
         public let name: String
-        
+
         /// 更新后的媒体预置标签列表。如未更新媒体预置标签，则该字段为空数组。
         public let presetTagIdSet: [String]
-        
+
         /// 更新后的媒体自定义标签列表。如未更新媒体自定义标签，则该字段为空数组。
         public let tagSet: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case materialId = "MaterialId"
             case name = "Name"
@@ -844,24 +844,24 @@ extension Cme {
             case tagSet = "TagSet"
         }
     }
-    
+
     /// 媒体移动事件
     public struct MaterialMovedEvent: TCOutputModel {
         /// 要移动的媒体 Id 列表。
         public let materialIdSet: [String]
-        
+
         /// 源媒体归属。
         public let sourceOwner: Entity
-        
+
         /// 源媒体分类路径。
         public let sourceClassPath: String
-        
+
         /// 目标媒体分类归属。
         public let destinationOwner: Entity
-        
+
         /// 目标媒体分类路径。
         public let destinationClassPath: String
-        
+
         enum CodingKeys: String, CodingKey {
             case materialIdSet = "MaterialIdSet"
             case sourceOwner = "SourceOwner"
@@ -870,7 +870,7 @@ extension Cme {
             case destinationClassPath = "DestinationClassPath"
         }
     }
-    
+
     /// 素材的状态，目前仅包含素材编辑可用状态。
     public struct MaterialStatus: TCOutputModel {
         /// 素材编辑可用状态，取值有：
@@ -878,135 +878,135 @@ extension Cme {
         /// <li>ABNORMAL : 异常，不可用于编辑；</li>
         /// <li>PROCESSING：处理中，暂不可用于编辑。</li>
         public let editorUsableStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case editorUsableStatus = "EditorUsableStatus"
         }
     }
-    
+
     /// 素材标签信息
     public struct MaterialTagInfo: TCInputModel, TCOutputModel {
         /// 标签类型，取值为：
         /// <li>PRESET：预置标签；</li>
         public let type: String
-        
+
         /// 标签 Id 。当标签类型为 PRESET 时，标签 Id 为预置标签 Id 。
         public let id: String
-        
+
         /// 标签名称。
         public let name: String
-        
-        public init (type: String, id: String, name: String) {
+
+        public init(type: String, id: String, name: String) {
             self.type = type
             self.id = id
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case id = "Id"
             case name = "Name"
         }
     }
-    
+
     /// 点播转直播输出信息。
     public struct MediaCastDestinationInfo: TCInputModel, TCOutputModel {
         /// 输出源序号。由系统进行分配。
         public let index: Int64?
-        
+
         /// 输出源的名称。
         public let name: String?
-        
+
         /// 输出直播流地址。支持的直播流类型为 RTMP 和 SRT。
         public let pushUrl: String?
-        
-        public init (index: Int64? = nil, name: String? = nil, pushUrl: String? = nil) {
+
+        public init(index: Int64? = nil, name: String? = nil, pushUrl: String? = nil) {
             self.index = index
             self.name = name
             self.pushUrl = pushUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case index = "Index"
             case name = "Name"
             case pushUrl = "PushUrl"
         }
     }
-    
+
     /// 点播转直播输出断流信息。
     public struct MediaCastDestinationInterruptInfo: TCOutputModel {
         /// 发生断流的输出源信息。
         public let destinationInfo: MediaCastDestinationInfo
-        
+
         /// 输出源断流原因，取值有：
         /// <li>SystemError：系统错误；</li>
         /// <li>Unknown：未知错误。</li>
         public let reason: String
-        
+
         enum CodingKeys: String, CodingKey {
             case destinationInfo = "DestinationInfo"
             case reason = "Reason"
         }
     }
-    
+
     /// 点播转直播输出媒体配置。
     public struct MediaCastOutputMediaSetting: TCInputModel, TCOutputModel {
         /// 视频配置。
         public let videoSetting: MediaCastVideoSetting
-        
-        public init (videoSetting: MediaCastVideoSetting) {
+
+        public init(videoSetting: MediaCastVideoSetting) {
             self.videoSetting = videoSetting
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case videoSetting = "VideoSetting"
         }
     }
-    
+
     /// 播放控制参数。
     public struct MediaCastPlaySetting: TCInputModel, TCOutputModel {
         /// 循环播放次数。LoopCount 和 EndTime 同时只能有一个生效。默认循环播放次数为一次。如果同时设置了 LoopCount 和 EndTime 参数，优先使用 LoopCount 参数。
         public let loopCount: Int64?
-        
+
         /// 结束时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String?
-        
-        public init (loopCount: Int64? = nil, endTime: String? = nil) {
+
+        public init(loopCount: Int64? = nil, endTime: String? = nil) {
             self.loopCount = loopCount
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loopCount = "LoopCount"
             case endTime = "EndTime"
         }
     }
-    
+
     /// 点播转直播项目信息。
     public struct MediaCastProjectInfo: TCOutputModel {
         /// 点播转直播项目状态，取值有：
         /// <li>Working ：运行中；</li>
         /// <li>Idle ：空闲。</li>
         public let status: String
-        
+
         /// 输入源列表。
         public let sourceInfos: [MediaCastSourceInfo]
-        
+
         /// 输出源列表。
         public let destinationInfos: [MediaCastDestinationInfo]
-        
+
         /// 输出媒体配置。
         public let outputMediaSetting: MediaCastOutputMediaSetting
-        
+
         /// 播放参数。
         public let playSetting: MediaCastPlaySetting
-        
+
         /// 项目启动时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
-        
+
         /// 项目结束时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如果项目还在运行中，改字段为空。
         public let stopTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case sourceInfos = "SourceInfos"
@@ -1017,30 +1017,30 @@ extension Cme {
             case stopTime = "StopTime"
         }
     }
-    
+
     /// 点播转直播输入源信息。
     public struct MediaCastSourceInfo: TCInputModel {
         /// 输入源的媒体类型，取值有：
         /// <li>CME：多媒体创作引擎的媒体文件；</li>
         /// <li>VOD：云点播的媒资文件。</li>
         public let type: String
-        
+
         /// 多媒体创作引擎的媒体 ID。当 Type = CME  时必填。
         public let materialId: String?
-        
+
         /// 云点播媒体文件 ID。当 Type = VOD 时必填。
         public let fileId: String?
-        
+
         /// 序号，位于输入源列表中的序号，由系统分配。
         public let index: Int64?
-        
-        public init (type: String, materialId: String? = nil, fileId: String? = nil, index: Int64? = nil) {
+
+        public init(type: String, materialId: String? = nil, fileId: String? = nil, index: Int64? = nil) {
             self.type = type
             self.materialId = materialId
             self.fileId = fileId
             self.index = index
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case materialId = "MaterialId"
@@ -1048,44 +1048,44 @@ extension Cme {
             case index = "Index"
         }
     }
-    
+
     /// 点播转直播输入断流信息。
     public struct MediaCastSourceInterruptInfo: TCOutputModel {
         /// 发生断流的输入源信息。
         public let sourceInfo: MediaCastSourceInfo
-        
+
         /// 输入源断开原因。取值有：
         /// <li>SystemError：系统错误；</li>
         /// <li>Unknown：未知错误。</li>
         public let reason: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceInfo = "SourceInfo"
             case reason = "Reason"
         }
     }
-    
+
     /// 点播转直播视频配置
     public struct MediaCastVideoSetting: TCInputModel, TCOutputModel {
         /// 视频宽度，单位：px，默认值为1280。
         public let width: Int64
-        
+
         /// 视频高度，单位：px，默认值为720。支持的视频分辨率最大为1920*1080。
         public let height: Int64
-        
+
         /// 视频码率，单位：kbps，默认值为2500。最大值为10000 kbps。
         public let bitrate: Int64?
-        
+
         /// 视频帧率，单位：Hz，默认值为25。最大值为60。
         public let frameRate: Float?
-        
-        public init (width: Int64, height: Int64, bitrate: Int64? = nil, frameRate: Float? = nil) {
+
+        public init(width: Int64, height: Int64, bitrate: Int64? = nil, frameRate: Float? = nil) {
             self.width = width
             self.height = height
             self.bitrate = bitrate
             self.frameRate = frameRate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case width = "Width"
             case height = "Height"
@@ -1093,24 +1093,24 @@ extension Cme {
             case frameRate = "FrameRate"
         }
     }
-    
+
     /// 雪碧图
     public struct MediaImageSpriteInfo: TCOutputModel {
         /// 雪碧图小图的高度。
         public let height: Int64
-        
+
         /// 雪碧图小图的宽度。
         public let width: Int64
-        
+
         /// 雪碧图小图的总数量。
         public let totalCount: Int64
-        
+
         /// 截取雪碧图输出的地址。
         public let imageUrlSet: [String]
-        
+
         /// 雪碧图子图位置与时间关系的 WebVtt 文件地址。WebVtt 文件表明了各个雪碧图小图对应的时间点，以及在雪碧大图里的坐标位置，一般被播放器用于实现预览。
         public let webVttUrl: String
-        
+
         enum CodingKeys: String, CodingKey {
             case height = "Height"
             case width = "Width"
@@ -1119,36 +1119,36 @@ extension Cme {
             case webVttUrl = "WebVttUrl"
         }
     }
-    
+
     /// 文件元信息。
     public struct MediaMetaData: TCOutputModel {
         /// 大小。
         public let size: UInt64
-        
+
         /// 容器类型。
         public let container: String
-        
+
         /// 视频流码率平均值与音频流码率平均值之和，单位：bps。
         public let bitrate: UInt64
-        
+
         /// 视频流高度的最大值，单位：px。
         public let height: UInt64
-        
+
         /// 视频流宽度的最大值，单位：px。
         public let width: UInt64
-        
+
         /// 时长，单位：秒。
         public let duration: Float
-        
+
         /// 视频拍摄时的选择角度，单位：度
         public let rotate: Int64
-        
+
         /// 视频流信息。
         public let videoStreamInfoSet: [VideoStreamInfo]
-        
+
         /// 音频流信息。
         public let audioStreamInfoSet: [AudioStreamInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case size = "Size"
             case container = "Container"
@@ -1161,28 +1161,28 @@ extension Cme {
             case audioStreamInfoSet = "AudioStreamInfoSet"
         }
     }
-    
+
     /// 媒体处理视频合成任务的预处理操作。
     public struct MediaPreprocessOperation: TCInputModel {
         /// 预处理操作的类型，取值范围：
         /// <li>ImageTextMask：图片文字遮罩。</li>
         public let type: String
-        
+
         /// 预处理操作参数。
         /// 当 Type 取值 ImageTextMask 时，参数为要保留的文字。
         public let args: [String]?
-        
-        public init (type: String, args: [String]? = nil) {
+
+        public init(type: String, args: [String]? = nil) {
             self.type = type
             self.args = args
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case args = "Args"
         }
     }
-    
+
     /// 媒体替换信息。
     public struct MediaReplacementInfo: TCInputModel {
         /// 替换的媒体类型，取值有：
@@ -1190,31 +1190,31 @@ extension Cme {
         /// <li>ImageUrl：替换的媒体类型为图片 URL；</li>
         /// 注：默认为 CMEMaterialId 。
         public let mediaType: String?
-        
+
         /// 媒体 ID。
         /// 当媒体类型取值为 CMEMaterialId 时有效。
         public let materialId: String?
-        
+
         /// 媒体 URL。
         /// 当媒体类型取值为 ImageUrl 时有效，
         /// 图片仅支持 jpg、png 格式，且大小不超过 2M 。
         public let mediaUrl: String?
-        
+
         /// 替换媒体选取的开始时间，单位为秒，默认为 0。
         public let startTimeOffset: Float?
-        
+
         /// 预处理操作。
         /// 注：目前该功能暂不支持，请勿使用。
         public let preprocessOperation: MediaPreprocessOperation?
-        
-        public init (mediaType: String? = nil, materialId: String? = nil, mediaUrl: String? = nil, startTimeOffset: Float? = nil, preprocessOperation: MediaPreprocessOperation? = nil) {
+
+        public init(mediaType: String? = nil, materialId: String? = nil, mediaUrl: String? = nil, startTimeOffset: Float? = nil, preprocessOperation: MediaPreprocessOperation? = nil) {
             self.mediaType = mediaType
             self.materialId = materialId
             self.mediaUrl = mediaUrl
             self.startTimeOffset = startTimeOffset
             self.preprocessOperation = preprocessOperation
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaType = "MediaType"
             case materialId = "MaterialId"
@@ -1223,7 +1223,7 @@ extension Cme {
             case preprocessOperation = "PreprocessOperation"
         }
     }
-    
+
     /// 轨道信息
     public struct MediaTrack: TCInputModel {
         /// 轨道类型，取值有：
@@ -1232,21 +1232,21 @@ extension Cme {
         /// <li>Audio ：音频轨道。音频轨道由以下 Item 组成：<ul><li>AudioTrackItem</li><li>EmptyTrackItem</li></ul> </li>
         /// </ul>
         public let type: String
-        
+
         /// 轨道上的媒体片段列表。
         public let trackItems: [MediaTrackItem]
-        
-        public init (type: String, trackItems: [MediaTrackItem]) {
+
+        public init(type: String, trackItems: [MediaTrackItem]) {
             self.type = type
             self.trackItems = trackItems
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case trackItems = "TrackItems"
         }
     }
-    
+
     /// 媒体轨道的片段信息
     public struct MediaTrackItem: TCInputModel {
         /// 片段类型。取值有：
@@ -1255,28 +1255,28 @@ extension Cme {
         /// <li>Empty：空白片段；</li>
         /// <li>Transition：转场。</li>
         public let type: String
-        
+
         /// 视频片段，当 Type = Video 时有效。
         public let videoItem: VideoTrackItem?
-        
+
         /// 音频片段，当 Type = Audio 时有效。
         public let audioItem: AudioTrackItem?
-        
+
         /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。<li>如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。</li>
         /// <li>使用 EmptyTrackItem 进行占位，来定位某个Item。</li>
         public let emptyItem: EmptyTrackItem?
-        
+
         /// 转场，当 Type = Transition 时有效。
         public let transitionItem: MediaTransitionItem?
-        
-        public init (type: String, videoItem: VideoTrackItem? = nil, audioItem: AudioTrackItem? = nil, emptyItem: EmptyTrackItem? = nil, transitionItem: MediaTransitionItem? = nil) {
+
+        public init(type: String, videoItem: VideoTrackItem? = nil, audioItem: AudioTrackItem? = nil, emptyItem: EmptyTrackItem? = nil, transitionItem: MediaTransitionItem? = nil) {
             self.type = type
             self.videoItem = videoItem
             self.audioItem = audioItem
             self.emptyItem = emptyItem
             self.transitionItem = transitionItem
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case videoItem = "VideoItem"
@@ -1285,61 +1285,61 @@ extension Cme {
             case transitionItem = "TransitionItem"
         }
     }
-    
+
     /// 转场信息
     public struct MediaTransitionItem: TCInputModel {
         /// 转场 Id 。暂只支持一个转场。
         public let transitionId: String
-        
+
         /// 转场持续时间，单位为秒，默认为2秒。进行转场处理的两个媒体片段，第二个片段在轨道上的起始时间会自动进行调整，设置为前面一个片段的结束时间减去转场的持续时间。
         public let duration: Float?
-        
-        public init (transitionId: String, duration: Float? = nil) {
+
+        public init(transitionId: String, duration: Float? = nil) {
             self.transitionId = transitionId
             self.duration = duration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case transitionId = "TransitionId"
             case duration = "Duration"
         }
     }
-    
+
     /// 其他类型素材
     public struct OtherMaterial: TCOutputModel {
         /// 素材媒体文件的播放 URL 地址。
         public let materialUrl: String
-        
+
         /// 云点播媒资 FileId。
         public let vodFileId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case materialUrl = "MaterialUrl"
             case vodFileId = "VodFileId"
         }
     }
-    
+
     /// 企鹅号发布信息。
     public struct PenguinMediaPlatformPublishInfo: TCInputModel {
         /// 视频发布标题。
         public let title: String?
-        
+
         /// 视频发布描述信息。
         public let description: String?
-        
+
         /// 视频标签。
         public let tags: [String]?
-        
+
         /// 视频分类，详见[企鹅号官网](https://open.om.qq.com/resources/resourcesCenter)视频分类。
         public let category: Int64?
-        
-        public init (title: String? = nil, description: String? = nil, tags: [String]? = nil, category: Int64? = nil) {
+
+        public init(title: String? = nil, description: String? = nil, tags: [String]? = nil, category: Int64? = nil) {
             self.title = title
             self.description = description
             self.tags = tags
             self.category = category
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case title = "Title"
             case description = "Description"
@@ -1347,33 +1347,33 @@ extension Cme {
             case category = "Category"
         }
     }
-    
+
     /// 平台信息。
     public struct PlatformInfo: TCOutputModel {
         /// 平台标识。
         public let platform: String
-        
+
         /// 平台描述。
         public let description: String
-        
+
         /// 云点播子应用 Id。
         public let vodSubAppId: UInt64
-        
+
         /// 平台绑定的 license Id。
         public let licenseId: String
-        
+
         /// 平台状态，可取值为：
         /// <li>Normal：正常，可使用。；</li>
         /// <li>Stopped：已停用，暂无法使用；</li>
         /// <li>Expired：已过期，需要重新购买会员包。</li>
         public let status: String
-        
+
         /// 创建时间，格式按照 ISO 8601 标准表示。
         public let createTime: String
-        
+
         /// 更新时间，格式按照 ISO 8601 标准表示。
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case description = "Description"
@@ -1384,42 +1384,42 @@ extension Cme {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 预置标签信息
     public struct PresetTagInfo: TCInputModel, TCOutputModel {
         /// 标签 Id 。
         public let id: String
-        
+
         /// 标签名称。
         public let name: String
-        
+
         /// 父级预设 Id。
         public let parentTagId: String?
-        
-        public init (id: String, name: String, parentTagId: String? = nil) {
+
+        public init(id: String, name: String, parentTagId: String? = nil) {
             self.id = id
             self.name = name
             self.parentTagId = parentTagId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case parentTagId = "ParentTagId"
         }
     }
-    
+
     /// 项目信息。
     public struct ProjectInfo: TCOutputModel {
         /// 项目 Id。
         public let projectId: String
-        
+
         /// 项目名称。
         public let name: String
-        
+
         /// 画布宽高比。
         public let aspectRatio: String
-        
+
         /// 项目类别，取值有：
         /// <li>VIDEO_EDIT：视频编辑。</li>
         /// <li>SWITCHER：导播台。</li>
@@ -1427,27 +1427,27 @@ extension Cme {
         /// <li>STREAM_CONNECT：云转推。</li>
         /// <li>RECORD_REPLAY：录制回放。</li>
         public let category: String
-        
+
         /// 归属者。
         public let owner: Entity
-        
+
         /// 项目封面图片地址。
         public let coverUrl: String
-        
+
         /// 云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamConnectProjectInfo: StreamConnectProjectInfo?
-        
+
         /// 点播转直播项目信息，仅当项目类别取值为 MEDIA_CAST 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaCastProjectInfo: MediaCastProjectInfo?
-        
+
         /// 项目更新时间，格式按照 ISO 8601 标准表示。
         public let updateTime: String
-        
+
         /// 项目创建时间，格式按照 ISO 8601 标准表示。
         public let createTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case name = "Name"
@@ -1461,25 +1461,25 @@ extension Cme {
             case createTime = "CreateTime"
         }
     }
-    
+
     ///  点播转直播项目状态变更事件。
     public struct ProjectMediaCastStatusChangedEvent: TCOutputModel {
         /// 项目 Id。
         public let projectId: String
-        
+
         /// 项目状态，取值有：
         /// <li>Started：点播转直播开始；</li>
         /// <li>Stopped：点播转直播结束；</li>
         /// <li>SourceInterrupted：点播转直播输入断流；</li>
         /// <li>DestinationInterrupted：点播转直播输出断流。</li>
         public let status: String
-        
+
         /// 点播转直播输入断流信息，仅当 Status 取值 SourceInterrupted 时有效。
         public let sourceInterruptInfo: MediaCastSourceInterruptInfo
-        
+
         /// 点播转直播输出断流信息，仅当 Status 取值 DestinationInterrupted 时有效。
         public let destinationInterruptInfo: MediaCastDestinationInterruptInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case status = "Status"
@@ -1487,27 +1487,27 @@ extension Cme {
             case destinationInterruptInfo = "DestinationInterruptInfo"
         }
     }
-    
+
     /// 云转推项目状态变更事件。
     public struct ProjectStreamConnectStatusChangedEvent: TCOutputModel {
         /// 项目 Id。
         public let projectId: String
-        
+
         /// 项目状态，取值有：
         /// <li>Working：云转推推流开始；</li>
         /// <li>Stopped：云转推推流结束；</li>
         /// <li>InputInterrupted：云转推输入断流；</li>
         /// <li>OutputInterrupted：云转推输出断流。</li>
         public let status: String
-        
+
         /// 云转推输入断流信息，仅当 Status 取值 InputInterrupted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputInterruptInfo: StreamConnectInputInterruptInfo?
-        
+
         /// 云转推输出断流信息，仅当 Status 取值 OutputInterrupted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputInterruptInfo: StreamConnectOutputInterruptInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case status = "Status"
@@ -1515,12 +1515,12 @@ extension Cme {
             case outputInterruptInfo = "OutputInterruptInfo"
         }
     }
-    
+
     /// 导播台项目状态变更事件
     public struct ProjectSwitcherStatusChangedEvent: TCOutputModel {
         /// 导播台项目 Id。
         public let projectId: String
-        
+
         /// 导播台项目状态，可取值有：
         /// <li>Started：导播台启动；</li>
         /// <li>Stopped：导播台停止；</li>
@@ -1529,34 +1529,34 @@ extension Cme {
         /// <li>PvwStopped：导播台 PVW 停止；</li>
         /// <li>PgmStopped：导播台 PGM 停止，输出推流结束。</li>
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case status = "Status"
         }
     }
-    
+
     /// 录制回放项目输入信息。
     public struct RecordReplayProjectInput: TCInputModel {
         /// 录制拉流地址。
         public let pullStreamUrl: String
-        
+
         /// 录制文件归属者。
         public let materialOwner: Entity
-        
+
         /// 录制文件存储分类路径。
         public let materialClassPath: String
-        
+
         /// 回放推流地址。
         public let pushStreamUrl: String
-        
-        public init (pullStreamUrl: String, materialOwner: Entity, materialClassPath: String, pushStreamUrl: String) {
+
+        public init(pullStreamUrl: String, materialOwner: Entity, materialClassPath: String, pushStreamUrl: String) {
             self.pullStreamUrl = pullStreamUrl
             self.materialOwner = materialOwner
             self.materialClassPath = materialClassPath
             self.pushStreamUrl = pushStreamUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pullStreamUrl = "PullStreamUrl"
             case materialOwner = "MaterialOwner"
@@ -1564,108 +1564,108 @@ extension Cme {
             case pushStreamUrl = "PushStreamUrl"
         }
     }
-    
+
     /// 用于描述资源
     public struct Resource: TCInputModel, TCOutputModel {
         /// 类型，取值有：
         /// <li>MATERIAL：素材。</li>
         /// <li>CLASS：分类。</li>
         public let type: String
-        
+
         /// 资源 Id，当 Type 为 MATERIAL 时，取值为素材 Id；当 Type 为 CLASS 时，取值为分类路径 ClassPath。
         public let id: String
-        
-        public init (type: String, id: String) {
+
+        public init(type: String, id: String) {
             self.type = type
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case id = "Id"
         }
     }
-    
+
     /// 资源信息，包含资源以及归属信息
     public struct ResourceInfo: TCInputModel {
         /// 媒资和分类资源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: Resource?
-        
+
         /// 资源归属，个人或团队。
         public let owner: Entity
-        
-        public init (resource: Resource, owner: Entity) {
+
+        public init(resource: Resource, owner: Entity) {
             self.resource = resource
             self.owner = owner
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case owner = "Owner"
         }
     }
-    
+
     /// 直播推流信息，包括推流地址有效时长，多媒体创作引擎后端生成直播推流地址。
     public struct RtmpPushInputInfo: TCInputModel, TCOutputModel {
         /// 直播推流地址有效期，单位：秒 。
         public let expiredSecond: UInt64
-        
+
         /// 直播推流地址，入参不填默认由多媒体创作引擎生成。
         public let pushUrl: String?
-        
-        public init (expiredSecond: UInt64, pushUrl: String? = nil) {
+
+        public init(expiredSecond: UInt64, pushUrl: String? = nil) {
             self.expiredSecond = expiredSecond
             self.pushUrl = pushUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case expiredSecond = "ExpiredSecond"
             case pushUrl = "PushUrl"
         }
     }
-    
+
     /// 搜索空间
     public struct SearchScope: TCInputModel {
         /// 分类路径归属。
         public let owner: Entity
-        
+
         /// 按分类路径检索。 不填则默认按根分类路径检索。
         public let classPath: String?
-        
-        public init (owner: Entity, classPath: String? = nil) {
+
+        public init(owner: Entity, classPath: String? = nil) {
             self.owner = owner
             self.classPath = classPath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case owner = "Owner"
             case classPath = "ClassPath"
         }
     }
-    
+
     /// 卡槽信息。
     public struct SlotInfo: TCOutputModel {
         /// 卡槽 Id。
         public let id: Int64
-        
+
         /// 卡槽类型，可取值有：
         /// <li> AUDIO：音频卡槽，可替换素材类型为 AUDIO 的音频素材;</li>
         /// <li> VIDEO：视频卡槽，可替换素材类型为 VIDEO 的视频素材;</li>
         /// <li> IMAGE：图片卡槽，可替换素材类型为 IMAGE 的图片素材;</li>
         /// <li> TEXT：文本卡槽，可替换文本内容。</li>
         public let type: String
-        
+
         /// 默认素材ID。当卡槽类型为 AUDIO，VIDEO，或 IMAGE 中的一种时有效。
         public let defaultMaterialId: String
-        
+
         /// 默认文本卡槽信息。当卡槽类型为 TEXT 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defaultTextSlotInfo: TextSlotInfo?
-        
+
         /// 素材时长，单位秒。
         public let duration: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case type = "Type"
@@ -1674,12 +1674,12 @@ extension Cme {
             case duration = "Duration"
         }
     }
-    
+
     /// 卡槽替换信息。
     public struct SlotReplacementInfo: TCInputModel {
         /// 卡槽 Id。
         public let id: Int64
-        
+
         /// 替换类型，可取值有：
         /// <li> AUDIO ：音频；</li>
         /// <li> VIDEO ：视频；</li>
@@ -1687,20 +1687,20 @@ extension Cme {
         /// <li> TEXT ：文本。</li>
         /// 注意：这里必须保证替换的素材类型与模板轨道数据的素材类型一致。如果替换的类型为Text,，则必须保证模板轨道数据中相应卡槽的位置标记的是文本。
         public let replacementType: String
-        
+
         /// 媒体替换信息，仅当要替换的媒体类型为音频、视频、图片时有效。
         public let mediaReplacementInfo: MediaReplacementInfo?
-        
+
         /// 文本替换信息，仅当要替换的卡槽类型为文本时有效。
         public let textReplacementInfo: TextReplacementInfo?
-        
-        public init (id: Int64, replacementType: String, mediaReplacementInfo: MediaReplacementInfo? = nil, textReplacementInfo: TextReplacementInfo? = nil) {
+
+        public init(id: Int64, replacementType: String, mediaReplacementInfo: MediaReplacementInfo? = nil, textReplacementInfo: TextReplacementInfo? = nil) {
             self.id = id
             self.replacementType = replacementType
             self.mediaReplacementInfo = mediaReplacementInfo
             self.textReplacementInfo = textReplacementInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case replacementType = "ReplacementType"
@@ -1708,37 +1708,37 @@ extension Cme {
             case textReplacementInfo = "TextReplacementInfo"
         }
     }
-    
+
     /// 排序
     public struct SortBy: TCInputModel {
         /// 排序字段。
         public let field: String
-        
+
         /// 排序方式，可选值：Asc（升序）、Desc（降序），默认降序。
         public let order: String?
-        
-        public init (field: String, order: String? = nil) {
+
+        public init(field: String, order: String? = nil) {
             self.field = field
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case field = "Field"
             case order = "Order"
         }
     }
-    
+
     /// 新文件生成事件
     public struct StorageNewFileCreatedEvent: TCOutputModel {
         /// 云点播文件  Id。
         public let fileId: String
-        
+
         /// 媒体 Id。
         public let materialId: String
-        
+
         /// 操作者 Id。（废弃，请勿使用）
         public let `operator`: String
-        
+
         /// 操作类型，可取值有：
         /// <li>Upload：本地上传；</li>
         /// <li>PullUpload：拉取上传；</li>
@@ -1746,19 +1746,19 @@ extension Cme {
         /// <li>LiveStreamClip：直播流剪辑；</li>
         /// <li>LiveStreamRecord：直播流录制。</li>
         public let operationType: String
-        
+
         /// 媒体归属。
         public let owner: Entity
-        
+
         /// 媒体分类路径。
         public let classPath: String
-        
+
         /// 生成文件的任务 Id。当生成新文件是拉取上传、视频剪辑、直播流剪辑时为任务 Id。
         public let taskId: String
-        
+
         /// 来源上下文信息。视频剪辑生成新文件时此字段为项目 Id；直播流剪辑或者直播流录制生成新文件则为原始流地址。
         public let sourceContext: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case materialId = "MaterialId"
@@ -1770,42 +1770,42 @@ extension Cme {
             case sourceContext = "SourceContext"
         }
     }
-    
+
     /// 云转推输入断流信息。
     public struct StreamConnectInputInterruptInfo: TCOutputModel {
         /// 云转推输入源标识，取值有：
         /// <li>Main：主源；</li>
         /// <li>Backup：备源。</li>
         public let endPoint: String
-        
+
         enum CodingKeys: String, CodingKey {
             case endPoint = "EndPoint"
         }
     }
-    
+
     /// 云转推输出源。
     public struct StreamConnectOutput: TCInputModel, TCOutputModel {
         /// 云转推输出源标识，转推项目级别唯一。若不填则由后端生成。
         public let id: String?
-        
+
         /// 云转推输出源名称。
         public let name: String?
-        
+
         /// 云转推输出源类型，取值：
         /// <li>URL ：URL类型</li>
         /// 不填默认为URL类型。
         public let type: String?
-        
+
         /// 云转推推流地址。
         public let pushUrl: String?
-        
-        public init (id: String? = nil, name: String? = nil, type: String? = nil, pushUrl: String? = nil) {
+
+        public init(id: String? = nil, name: String? = nil, type: String? = nil, pushUrl: String? = nil) {
             self.id = id
             self.name = name
             self.type = type
             self.pushUrl = pushUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -1813,74 +1813,74 @@ extension Cme {
             case pushUrl = "PushUrl"
         }
     }
-    
+
     /// 云转推输出源信息，包含输出源和输出源转推状态。
     public struct StreamConnectOutputInfo: TCOutputModel {
         /// 输出源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamConnectOutput: StreamConnectOutput?
-        
+
         /// 输出流状态：
         /// <li>On ：开；</li>
         /// <li>Off ：关 。</li>
         public let pushSwitch: String
-        
+
         enum CodingKeys: String, CodingKey {
             case streamConnectOutput = "StreamConnectOutput"
             case pushSwitch = "PushSwitch"
         }
     }
-    
+
     /// 云转推输出断流信息
     public struct StreamConnectOutputInterruptInfo: TCOutputModel {
         /// 云转推输出标识。
         public let id: String
-        
+
         /// 云转推输出名称。
         public let name: String
-        
+
         /// 云转推输出地址。
         public let url: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case url = "Url"
         }
     }
-    
+
     /// 云转推项目信息，包含输入源、输出源、当前转推开始时间等信息。
     public struct StreamConnectProjectInfo: TCOutputModel {
         /// 转推项目状态，取值有：
         /// <li>Working ：转推中；</li>
         /// <li>Idle ：空闲中。</li>
         public let status: String
-        
+
         /// 当前转推输入源，取值有：
         /// <li>Main ：主输入源；</li>
         /// <li>Backup ：备输入源。</li>
         public let currentInputEndpoint: String
-        
+
         /// 当前转推开始时间， 采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。仅 Status 取值 Working 时有效。
         public let currentStartTime: String
-        
+
         /// 当前转推计划结束时间， 采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。仅 Status 取值 Working 时有效。
         public let currentStopTime: String
-        
+
         /// 上一次转推结束时间， 采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。仅 Status 取值 Idle 时有效。
         public let lastStopTime: String
-        
+
         /// 云转推主输入源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mainInput: StreamInputInfo?
-        
+
         /// 云转推备输入源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupInput: StreamInputInfo?
-        
+
         /// 云转推输出源。
         public let outputSet: [StreamConnectOutputInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case currentInputEndpoint = "CurrentInputEndpoint"
@@ -1892,31 +1892,31 @@ extension Cme {
             case outputSet = "OutputSet"
         }
     }
-    
+
     /// 云转推项目输入信息。
     public struct StreamConnectProjectInput: TCInputModel {
         /// 云转推主输入源信息。
         public let mainInput: StreamInputInfo?
-        
+
         /// 云转推备输入源信息。
         public let backupInput: StreamInputInfo?
-        
+
         /// 云转推输出源信息。
         public let outputs: [StreamConnectOutput]?
-        
-        public init (mainInput: StreamInputInfo? = nil, backupInput: StreamInputInfo? = nil, outputs: [StreamConnectOutput]? = nil) {
+
+        public init(mainInput: StreamInputInfo? = nil, backupInput: StreamInputInfo? = nil, outputs: [StreamConnectOutput]? = nil) {
             self.mainInput = mainInput
             self.backupInput = backupInput
             self.outputs = outputs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mainInput = "MainInput"
             case backupInput = "BackupInput"
             case outputs = "Outputs"
         }
     }
-    
+
     /// 输入流信息。
     public struct StreamInputInfo: TCInputModel, TCOutputModel {
         /// 流输入类型，取值：
@@ -1924,26 +1924,26 @@ extension Cme {
         /// <li>LivePull ：直播拉流；</li>
         /// <li>RtmpPush ： 直播推流。</li>
         public let inputType: String
-        
+
         /// 点播拉流信息，当 InputType = VodPull 时必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vodPullInputInfo: VodPullInputInfo?
-        
+
         /// 直播拉流信息，当 InputType = LivePull  时必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let livePullInputInfo: LivePullInputInfo?
-        
+
         /// 直播推流信息，当 InputType = RtmpPush 时必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtmpPushInputInfo: RtmpPushInputInfo?
-        
-        public init (inputType: String, vodPullInputInfo: VodPullInputInfo? = nil, livePullInputInfo: LivePullInputInfo? = nil, rtmpPushInputInfo: RtmpPushInputInfo? = nil) {
+
+        public init(inputType: String, vodPullInputInfo: VodPullInputInfo? = nil, livePullInputInfo: LivePullInputInfo? = nil, rtmpPushInputInfo: RtmpPushInputInfo? = nil) {
             self.inputType = inputType
             self.vodPullInputInfo = vodPullInputInfo
             self.livePullInputInfo = livePullInputInfo
             self.rtmpPushInputInfo = rtmpPushInputInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case inputType = "InputType"
             case vodPullInputInfo = "VodPullInputInfo"
@@ -1951,7 +1951,7 @@ extension Cme {
             case rtmpPushInputInfo = "RtmpPushInputInfo"
         }
     }
-    
+
     /// 导播台主监输出配置信息
     public struct SwitcherPgmOutputConfig: TCInputModel, TCOutputModel {
         /// 导播台输出模板 ID，可取值：
@@ -1959,27 +1959,27 @@ extension Cme {
         /// <li>10002：分辨率为720 P；</li>
         /// <li>10003：分辨率为480 P。</li>
         public let templateId: Int64?
-        
+
         /// 导播台输出宽，单位：像素。
         public let width: UInt64?
-        
+
         /// 导播台输出高，单位：像素。
         public let height: UInt64?
-        
+
         /// 导播台输出帧率，单位：帧/秒
         public let fps: UInt64?
-        
+
         /// 导播台输出码率， 单位：bit/s。
         public let bitRate: UInt64?
-        
-        public init (templateId: Int64? = nil, width: UInt64? = nil, height: UInt64? = nil, fps: UInt64? = nil, bitRate: UInt64? = nil) {
+
+        public init(templateId: Int64? = nil, width: UInt64? = nil, height: UInt64? = nil, fps: UInt64? = nil, bitRate: UInt64? = nil) {
             self.templateId = templateId
             self.width = width
             self.height = height
             self.fps = fps
             self.bitRate = bitRate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case width = "Width"
@@ -1988,55 +1988,55 @@ extension Cme {
             case bitRate = "BitRate"
         }
     }
-    
+
     /// 导播台项目输入信息
     public struct SwitcherProjectInput: TCInputModel {
         /// 导播台停止时间，格式按照 ISO 8601 标准表示。若不填，该值默认为当前时间加七天。
         public let stopTime: String?
-        
+
         /// 导播台主监输出配置信息。若不填，默认输出 720P。
         public let pgmOutputConfig: SwitcherPgmOutputConfig?
-        
-        public init (stopTime: String? = nil, pgmOutputConfig: SwitcherPgmOutputConfig? = nil) {
+
+        public init(stopTime: String? = nil, pgmOutputConfig: SwitcherPgmOutputConfig? = nil) {
             self.stopTime = stopTime
             self.pgmOutputConfig = pgmOutputConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case stopTime = "StopTime"
             case pgmOutputConfig = "PgmOutputConfig"
         }
     }
-    
+
     /// 任务基础信息。
     public struct TaskBaseInfo: TCOutputModel {
         /// 任务 Id。
         public let taskId: String
-        
+
         /// 任务类型，取值有：
         /// <li>VIDEO_EDIT_PROJECT_EXPORT：项目导出。</li>
         public let taskType: String
-        
+
         /// 任务状态，取值有：
         /// <li>PROCESSING：处理中：</li>
         /// <li>SUCCESS：成功；</li>
         /// <li>FAIL：失败。</li>
         public let status: String
-        
+
         /// 任务进度，取值为：0~100。
         public let progress: UInt64
-        
+
         /// 错误码。
         /// <li>0：成功；</li>
         /// <li>其他值：失败。</li>
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let errMsg: String
-        
+
         /// 创建时间，格式按照 ISO 8601 标准表示。
         public let createTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskType = "TaskType"
@@ -2047,24 +2047,24 @@ extension Cme {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 团队信息
     public struct TeamInfo: TCOutputModel {
         /// 团队 ID。
         public let teamId: String
-        
+
         /// 团队名称。
         public let name: String
-        
+
         /// 团队成员个数
         public let memberCount: UInt64?
-        
+
         /// 团队创建时间，格式按照 ISO 8601 标准表示。
         public let createTime: String?
-        
+
         /// 团队最后更新时间，格式按照 ISO 8601 标准表示。
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case teamId = "TeamId"
             case name = "Name"
@@ -2073,83 +2073,83 @@ extension Cme {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 团队成员信息
     public struct TeamMemberInfo: TCInputModel, TCOutputModel {
         /// 团队成员 ID。
         public let memberId: String
-        
+
         /// 团队成员备注。
         public let remark: String?
-        
+
         /// 团队成员角色，取值：
         /// <li>Owner：团队所有者，添加团队成员及修改团队成员解决时不能填此角色；</li>
         /// <li>Admin：团队管理员；</li>
         /// <li>Member：普通成员。</li>
         public let role: String?
-        
-        public init (memberId: String, remark: String? = nil, role: String? = nil) {
+
+        public init(memberId: String, remark: String? = nil, role: String? = nil) {
             self.memberId = memberId
             self.remark = remark
             self.role = role
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case memberId = "MemberId"
             case remark = "Remark"
             case role = "Role"
         }
     }
-    
+
     /// 模板插槽文本替换信息。
     public struct TextReplacementInfo: TCInputModel {
         /// 替换的文本信息。
         public let text: String
-        
-        public init (text: String) {
+
+        public init(text: String) {
             self.text = text
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
         }
     }
-    
+
     /// 文本类型卡槽信息。
     public struct TextSlotInfo: TCOutputModel {
         /// 文本内容。
         public let text: String
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
         }
     }
-    
+
     /// 第三方平台视频发布信息。
     public struct ThirdPartyPublishInfo: TCInputModel {
         /// 发布通道  ID。
         public let channelMaterialId: String
-        
+
         /// 企鹅号发布信息，如果使用的发布通道为企鹅号时必填。
         public let penguinMediaPlatformPublishInfo: PenguinMediaPlatformPublishInfo?
-        
+
         /// 新浪微博发布信息，如果使用的发布通道为新浪微博时必填。
         public let weiboPublishInfo: WeiboPublishInfo?
-        
+
         /// 快手发布信息，如果使用的发布通道为快手时必填。
         public let kuaishouPublishInfo: KuaishouPublishInfo?
-        
+
         /// 腾讯云对象存储发布信息， 如果使用的发布通道为腾讯云对象存储时必填。
         public let cosPublishInfo: CosPublishInputInfo?
-        
-        public init (channelMaterialId: String, penguinMediaPlatformPublishInfo: PenguinMediaPlatformPublishInfo? = nil, weiboPublishInfo: WeiboPublishInfo? = nil, kuaishouPublishInfo: KuaishouPublishInfo? = nil, cosPublishInfo: CosPublishInputInfo? = nil) {
+
+        public init(channelMaterialId: String, penguinMediaPlatformPublishInfo: PenguinMediaPlatformPublishInfo? = nil, weiboPublishInfo: WeiboPublishInfo? = nil, kuaishouPublishInfo: KuaishouPublishInfo? = nil, cosPublishInfo: CosPublishInputInfo? = nil) {
             self.channelMaterialId = channelMaterialId
             self.penguinMediaPlatformPublishInfo = penguinMediaPlatformPublishInfo
             self.weiboPublishInfo = weiboPublishInfo
             self.kuaishouPublishInfo = kuaishouPublishInfo
             self.cosPublishInfo = cosPublishInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelMaterialId = "ChannelMaterialId"
             case penguinMediaPlatformPublishInfo = "PenguinMediaPlatformPublishInfo"
@@ -2158,50 +2158,50 @@ extension Cme {
             case cosPublishInfo = "CosPublishInfo"
         }
     }
-    
+
     /// 时间范围
     public struct TimeRange: TCInputModel {
         /// 开始时间，使用 ISO 日期格式。
         public let startTime: String
-        
+
         /// 结束时间，使用 ISO 日期格式。
         public let endTime: String
-        
-        public init (startTime: String, endTime: String) {
+
+        public init(startTime: String, endTime: String) {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// 云点播导出信息。
     public struct VODExportInfo: TCInputModel {
         /// 导出的媒资名称。
         public let name: String?
-        
+
         /// 导出的媒资分类 Id。
         public let classId: UInt64?
-        
+
         /// 第三方平台发布信息列表。暂未正式对外，请勿使用。
         public let thirdPartyPublishInfos: [ThirdPartyPublishInfo]?
-        
-        public init (name: String? = nil, classId: UInt64? = nil, thirdPartyPublishInfos: [ThirdPartyPublishInfo]? = nil) {
+
+        public init(name: String? = nil, classId: UInt64? = nil, thirdPartyPublishInfos: [ThirdPartyPublishInfo]? = nil) {
             self.name = name
             self.classId = classId
             self.thirdPartyPublishInfos = thirdPartyPublishInfos
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case classId = "ClassId"
             case thirdPartyPublishInfos = "ThirdPartyPublishInfos"
         }
     }
-    
+
     /// 视频编辑项目输入参数
     public struct VideoEditProjectInput: TCInputModel {
         /// 画布宽高比，取值有：
@@ -2210,42 +2210,42 @@ extension Cme {
         /// <li>2:1。</li>
         /// 默认值 16:9 。
         public let aspectRatio: String?
-        
+
         /// 视频编辑模板媒体 ID ，通过模板媒体导入项目轨道数据时填写。
         public let videoEditTemplateId: String?
-        
+
         /// 输入的媒体轨道列表，包括视频、音频，等媒体组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
         /// 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
         public let initTracks: [MediaTrack]?
-        
-        public init (aspectRatio: String? = nil, videoEditTemplateId: String? = nil, initTracks: [MediaTrack]? = nil) {
+
+        public init(aspectRatio: String? = nil, videoEditTemplateId: String? = nil, initTracks: [MediaTrack]? = nil) {
             self.aspectRatio = aspectRatio
             self.videoEditTemplateId = videoEditTemplateId
             self.initTracks = initTracks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case aspectRatio = "AspectRatio"
             case videoEditTemplateId = "VideoEditTemplateId"
             case initTracks = "InitTracks"
         }
     }
-    
+
     /// 项目导出信息。
     public struct VideoEditProjectOutput: TCOutputModel {
         /// 导出的多媒体创作引擎媒体 Id，仅当导出目标为多媒体创作引擎媒体时有效。
         public let materialId: String
-        
+
         /// 云点播媒资 FileId。
         public let vodFileId: String
-        
+
         /// 导出的媒资 URL。
         public let url: String
-        
+
         /// 元信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaData: MediaMetaData?
-        
+
         enum CodingKeys: String, CodingKey {
             case materialId = "MaterialId"
             case vodFileId = "VodFileId"
@@ -2253,56 +2253,56 @@ extension Cme {
             case metaData = "MetaData"
         }
     }
-    
+
     /// 视频编辑模板素材信息。
     public struct VideoEditTemplateMaterial: TCOutputModel {
         /// 视频编辑模板宽高比。
         public let aspectRatio: String
-        
+
         /// 卡槽信息。
         public let slotSet: [SlotInfo]
-        
+
         /// 模板预览视频 URL 地址 。
         public let previewVideoUrl: String
-        
+
         enum CodingKeys: String, CodingKey {
             case aspectRatio = "AspectRatio"
             case slotSet = "SlotSet"
             case previewVideoUrl = "PreviewVideoUrl"
         }
     }
-    
+
     /// 视频编码配置
     public struct VideoEncodingPreset: TCOutputModel {
         /// 配置 ID。
         public let id: UInt64
-        
+
         /// 配置名。
         public let name: String
-        
+
         /// 封装格式，可选值：
         /// <li>mp4 ；</li>
         /// <li>mov 。</li>
         public let container: String
-        
+
         /// 是否去除视频数据，可选值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         /// 默认值：0。
         public let removeVideo: Int64
-        
+
         /// 是否去除音频数据，可选值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         /// 默认值：0。
         public let removeAudio: Int64
-        
+
         /// 视频编码配置中的视频设置。
         public let videoSetting: VideoEncodingPresetVideoSetting
-        
+
         /// 视频编码配置中的音频设置。
         public let audioSetting: VideoEncodingPresetAudioSetting
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -2313,35 +2313,35 @@ extension Cme {
             case audioSetting = "AudioSetting"
         }
     }
-    
+
     /// 视频编码配置中的音频设置
     public struct VideoEncodingPresetAudioSetting: TCInputModel, TCOutputModel {
         /// 音频流的编码格式，可选值：
         /// AAC：AAC 编码。
         /// 默认值：AAC。
         public let codec: String?
-        
+
         /// 音频码率，单位：bps。
         /// 默认值：64K。
         public let bitrate: UInt64?
-        
-        /// 音频声道数，可选值： 
+
+        /// 音频声道数，可选值：
         /// <li>1：单声道；</li>
-        /// <li>2：双声道。</li> 
+        /// <li>2：双声道。</li>
         /// 默认值：2。
         public let channels: UInt64?
-        
-        /// 音频流的采样率，仅支持 16000； 32000； 44100； 48000。单位：Hz。 
+
+        /// 音频流的采样率，仅支持 16000； 32000； 44100； 48000。单位：Hz。
         /// 默认值：16000。
         public let sampleRate: UInt64?
-        
-        public init (codec: String? = nil, bitrate: UInt64? = nil, channels: UInt64? = nil, sampleRate: UInt64? = nil) {
+
+        public init(codec: String? = nil, bitrate: UInt64? = nil, channels: UInt64? = nil, sampleRate: UInt64? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.channels = channels
             self.sampleRate = sampleRate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case codec = "Codec"
             case bitrate = "Bitrate"
@@ -2349,42 +2349,42 @@ extension Cme {
             case sampleRate = "SampleRate"
         }
     }
-    
+
     /// 视频编码配置中的音频设置更新信息
     public struct VideoEncodingPresetAudioSettingForUpdate: TCInputModel {
         /// 音频码率，单位：bps。
         /// 不填则不修改。
         public let bitrate: String?
-        
-        /// 音频声道数，可选值： 
+
+        /// 音频声道数，可选值：
         /// <li>1：单声道；</li>
-        /// <li>2：双声道。</li> 
+        /// <li>2：双声道。</li>
         /// 不填则不修改。
         public let channels: UInt64?
-        
+
         /// 音频流的采样率，目前仅支持： 16000； 32000； 44100； 48000。单位：Hz。
         /// 不填则不修改。
         public let sampleRate: UInt64?
-        
-        public init (bitrate: String? = nil, channels: UInt64? = nil, sampleRate: UInt64? = nil) {
+
+        public init(bitrate: String? = nil, channels: UInt64? = nil, sampleRate: UInt64? = nil) {
             self.bitrate = bitrate
             self.channels = channels
             self.sampleRate = sampleRate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case channels = "Channels"
             case sampleRate = "SampleRate"
         }
     }
-    
+
     /// 视频编码配置中的视频设置信息
     public struct VideoEncodingPresetVideoSetting: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
         /// <li>H264：H.264 编码。</li>
         public let codec: String?
-        
+
         /// 视频短边尺寸，取值范围： [128, 4096]，单位：px。
         /// 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
         /// 例：如果项目的宽高比是 16：9 ：
@@ -2395,24 +2395,24 @@ extension Cme {
         /// <li>短边尺寸为 720，则导出视频的分辨率为 720 * 1280。</li>
         /// 默认值：1080。
         public let shortEdge: UInt64?
-        
+
         /// 指定码率，单位 bps。当该参数为'0'时则不强制限定码率。
         /// 默认值：0。
         public let bitrate: UInt64?
-        
-        public init (codec: String? = nil, shortEdge: UInt64? = nil, bitrate: UInt64? = nil) {
+
+        public init(codec: String? = nil, shortEdge: UInt64? = nil, bitrate: UInt64? = nil) {
             self.codec = codec
             self.shortEdge = shortEdge
             self.bitrate = bitrate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case codec = "Codec"
             case shortEdge = "ShortEdge"
             case bitrate = "Bitrate"
         }
     }
-    
+
     /// 视频编码配置的视频设置更新信息
     public struct VideoEncodingPresetVideoSettingForUpdate: TCInputModel {
         /// 视频短边尺寸，取值范围： [128, 4096]，单位：px。
@@ -2425,50 +2425,50 @@ extension Cme {
         /// <li>短边尺寸为 720，则导出视频的分辨率为 720 * 1280。</li>
         /// 不填则不修改。
         public let shortEdge: UInt64?
-        
+
         /// 指定码率，单位 bps。当该参数为'0' 时则不强制限定码率。
         /// 不填则不修改。
         public let bitrate: UInt64?
-        
+
         /// 指定帧率。单位 Hz。
         /// 不填则不修改。
         public let frameRate: Float?
-        
-        public init (shortEdge: UInt64? = nil, bitrate: UInt64? = nil, frameRate: Float? = nil) {
+
+        public init(shortEdge: UInt64? = nil, bitrate: UInt64? = nil, frameRate: Float? = nil) {
             self.shortEdge = shortEdge
             self.bitrate = bitrate
             self.frameRate = frameRate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case shortEdge = "ShortEdge"
             case bitrate = "Bitrate"
             case frameRate = "FrameRate"
         }
     }
-    
+
     /// 视频导出完成事件。
     public struct VideoExportCompletedEvent: TCOutputModel {
         /// 任务 Id。
         public let taskId: String
-        
+
         /// 任务状态，取值有：
         /// <li>SUCCESS：成功；</li>
         /// <li>FAIL：失败。</li>
         public let status: String
-        
+
         /// 错误码，取值有：
         /// <li>0：成功；</li>
         /// <li>其他值：失败。</li>
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let errMsg: String
-        
+
         /// 任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: VideoEditProjectOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -2477,7 +2477,7 @@ extension Cme {
             case output = "Output"
         }
     }
-    
+
     /// 视频导出扩展参数
     public struct VideoExportExtensionArgs: TCInputModel {
         /// 封装格式，可选值：
@@ -2485,7 +2485,7 @@ extension Cme {
         /// <li>mov </li>
         /// 不填则使用视频导出编码配置。
         public let container: String?
-        
+
         /// 视频短边尺寸，取值范围： [128, 4096]，单位：px。
         /// 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
         /// 例如：项目的宽高比是 16：9 ：
@@ -2493,33 +2493,33 @@ extension Cme {
         /// <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720</li>
         /// 不填则使用视频导出编码配置。
         public let shortEdge: UInt64?
-        
+
         /// 指定码率，单位 bps。当该参数为 0 时则不强制限定码率。
         /// 不填则使用视频导出编码配置。
         public let videoBitrate: UInt64?
-        
+
         /// 帧率。取值范围：[15, 60]，不填默认值为 25。
         public let frameRate: Float?
-        
+
         /// 是否去除视频数据，可选值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         /// 不填则使用视频导出编码配置。
         public let removeVideo: Int64?
-        
+
         /// 是否去除音频数据，可选值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         /// 不填则使用视频导出编码配置。
         public let removeAudio: Int64?
-        
+
         /// 片段起始时间，单位：毫秒。
         public let startTime: Int64?
-        
+
         /// 片段结束时间，单位：毫秒。
         public let endTime: Int64?
-        
-        public init (container: String? = nil, shortEdge: UInt64? = nil, videoBitrate: UInt64? = nil, frameRate: Float? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
+
+        public init(container: String? = nil, shortEdge: UInt64? = nil, videoBitrate: UInt64? = nil, frameRate: Float? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
             self.container = container
             self.shortEdge = shortEdge
             self.videoBitrate = videoBitrate
@@ -2529,7 +2529,7 @@ extension Cme {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case container = "Container"
             case shortEdge = "ShortEdge"
@@ -2541,34 +2541,34 @@ extension Cme {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 视频素材信息
     public struct VideoMaterial: TCOutputModel {
         /// 素材元信息。
         public let metaData: MediaMetaData
-        
+
         /// 雪碧图信息。
         public let imageSpriteInfo: MediaImageSpriteInfo
-        
+
         /// 素材媒体文件的播放 URL 地址。
         public let materialUrl: String
-        
+
         /// 素材媒体文件的封面图片地址。
         public let coverUrl: String
-        
+
         /// 媒体文件分辨率。取值为：LD/SD/HD/FHD/2K/4K。
         public let resolution: String
-        
+
         /// 素材状态。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let materialStatus: MaterialStatus?
-        
+
         /// 素材媒体文件的原始 URL 地址。
         public let originalUrl: String
-        
+
         /// 云点播媒资 FileId。
         public let vodFileId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metaData = "MetaData"
             case imageSpriteInfo = "ImageSpriteInfo"
@@ -2580,7 +2580,7 @@ extension Cme {
             case vodFileId = "VodFileId"
         }
     }
-    
+
     /// 视频拆条项目的输入信息。
     public struct VideoSegmentationProjectInput: TCInputModel {
         /// 画布宽高比，取值有：
@@ -2589,7 +2589,7 @@ extension Cme {
         /// <li>2:1。</li>
         /// 默认值 16:9 。
         public let aspectRatio: String?
-        
+
         /// 视频拆条处理模型，不填则默认为手工分割视频。取值 ：
         /// <li>AI.GameHighlights.PUBG：和平精英集锦 ;</li>
         /// <li>AI.GameHighlights.Honor OfKings：王者荣耀集锦 ;</li>
@@ -2598,35 +2598,35 @@ extension Cme {
         /// <li>AI.PersonSegmentation：人物集锦  ;</li>
         /// <li>AI.NewsSegmentation：新闻拆条。</li>
         public let processModel: String?
-        
-        public init (aspectRatio: String? = nil, processModel: String? = nil) {
+
+        public init(aspectRatio: String? = nil, processModel: String? = nil) {
             self.aspectRatio = aspectRatio
             self.processModel = processModel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case aspectRatio = "AspectRatio"
             case processModel = "ProcessModel"
         }
     }
-    
+
     /// 视频流信息。
     public struct VideoStreamInfo: TCOutputModel {
         /// 码率，单位：bps。
         public let bitrate: UInt64
-        
+
         /// 高度，单位：px。
         public let height: UInt64
-        
+
         /// 宽度，单位：px。
         public let width: UInt64
-        
+
         /// 编码格式。
         public let codec: String
-        
+
         /// 帧率，单位：hz。
         public let fps: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case height = "Height"
@@ -2635,7 +2635,7 @@ extension Cme {
             case fps = "Fps"
         }
     }
-    
+
     /// 视频轨的视频片段信息。
     public struct VideoTrackItem: TCInputModel {
         /// 视频媒体来源类型，取值有：
@@ -2645,7 +2645,7 @@ extension Cme {
         /// <li>EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。</li>
         /// </ul>
         public let sourceType: String
-        
+
         /// 视频媒体，可取值为：
         /// <ul>
         /// <li>当 SourceType 为 VOD 时，参数填云点播 FileId ；</li>
@@ -2656,30 +2656,30 @@ extension Cme {
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp4`)，参数为：`1000000:www.example.com/a.mp4`。</li>
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp4`)，参数为：`1000001:www.example.com/b.mp4`。</li>
         public let sourceMedia: String
-        
+
         /// 视频片段取自媒体文件的起始时间，单位为秒。默认为0。
         public let sourceMediaStartTime: Float?
-        
+
         /// 视频片段时长，单位为秒。默认取视频媒体文件本身长度，表示截取全部媒体文件。如果源文件是图片，Duration需要大于0。
         public let duration: Float?
-        
+
         /// 视频片段原点距离画布原点的水平位置。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示视频片段 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布口宽度的 10%。</li>
         /// <li>当字符串以 px 结尾，表示视频片段 XPos 单位为像素，如 100px 表示 XPos 为100像素。</li>
         /// 默认值：0px。
         public let xPos: String?
-        
+
         /// 视频片段原点距离画布原点的垂直位置。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示视频片段 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。</li>
         /// <li>当字符串以 px 结尾，表示视频片段 YPos 单位为像素，如 100px 表示 YPos 为100像素。</li>
         /// 默认值：0px。
         public let yPos: String?
-        
+
         /// 视频原点位置，取值有：
         /// <li>Center：坐标原点为中心位置，如画布中心。</li>
         /// 默认值 ：Center。
         public let coordinateOrigin: String?
-        
+
         /// 视频片段的高度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示视频片段 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示视频片段 Height 单位为像素，如 100px 表示 Height 为100像素；</li>
@@ -2687,7 +2687,7 @@ extension Cme {
         /// <li>当 Width 为空，Height 非空，则 Width 按比例缩放；</li>
         /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
         public let height: String?
-        
+
         /// 视频片段的宽度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示视频片段 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示视频片段 Width 单位为像素，如 100px 表示 Width 为100像素；</li>
@@ -2695,8 +2695,8 @@ extension Cme {
         /// <li>当 Width 为空，Height 非空，则 Width 按比例缩放；</li>
         /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
         public let width: String?
-        
-        public init (sourceType: String, sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil, xPos: String? = nil, yPos: String? = nil, coordinateOrigin: String? = nil, height: String? = nil, width: String? = nil) {
+
+        public init(sourceType: String, sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil, xPos: String? = nil, yPos: String? = nil, coordinateOrigin: String? = nil, height: String? = nil, width: String? = nil) {
             self.sourceType = sourceType
             self.sourceMedia = sourceMedia
             self.sourceMediaStartTime = sourceMediaStartTime
@@ -2707,7 +2707,7 @@ extension Cme {
             self.height = height
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceType = "SourceType"
             case sourceMedia = "SourceMedia"
@@ -2720,64 +2720,64 @@ extension Cme {
             case width = "Width"
         }
     }
-    
+
     /// 点播拉流信息，包括输入拉流地址和播放次数。
     public struct VodPullInputInfo: TCInputModel, TCOutputModel {
         /// 点播输入拉流 URL 。
         public let inputUrls: [String]
-        
+
         /// 播放次数，取值有：
         /// <li>-1 : 循环播放，直到转推结束；</li>
         /// <li>0 : 不循环；</li>
         /// <li>大于0 : 具体循环次数，次数和时间以先结束的为准。</li>
         /// 默认不循环。
         public let loopTimes: Int64?
-        
-        public init (inputUrls: [String], loopTimes: Int64? = nil) {
+
+        public init(inputUrls: [String], loopTimes: Int64? = nil) {
             self.inputUrls = inputUrls
             self.loopTimes = loopTimes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case inputUrls = "InputUrls"
             case loopTimes = "LoopTimes"
         }
     }
-    
+
     /// 点播文件播放信息，包含当前在播地址和该地址已播时长 。
     public struct VodPullInputPlayInfo: TCOutputModel {
         /// 当前正在播放文件 Url 。
         public let url: String
-        
+
         /// 点播文件已播放时长，单位：秒。
         public let timeOffset: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case timeOffset = "TimeOffset"
         }
     }
-    
+
     /// 微博发布信息。
     public struct WeiboPublishInfo: TCInputModel {
         /// 视频发布标题。
         public let title: String?
-        
+
         /// 视频发布描述信息。
         public let description: String?
-        
+
         /// 微博可见性，可取值为：
         /// <li>Public：公开，所有人可见；</li>
         /// <li>Private：私有，仅自己可见。</li>
         /// 默认为 Public，所有人可见。
         public let visible: String?
-        
-        public init (title: String? = nil, description: String? = nil, visible: String? = nil) {
+
+        public init(title: String? = nil, description: String? = nil, visible: String? = nil) {
             self.title = title
             self.description = description
             self.visible = visible
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case title = "Title"
             case description = "Description"

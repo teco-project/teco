@@ -19,53 +19,53 @@ extension Trp {
     public struct CreateTraceChainRequest: TCRequestModel {
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 溯源ID
         public let traceId: String?
-        
-        public init (corpId: UInt64? = nil, traceId: String? = nil) {
+
+        public init(corpId: UInt64? = nil, traceId: String? = nil) {
             self.corpId = corpId
             self.traceId = traceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
             case traceId = "TraceId"
         }
     }
-    
+
     /// CreateTraceChain返回参数结构体
     public struct CreateTraceChainResponse: TCResponseModel {
         /// 溯源ID
         public let traceId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case traceId = "TraceId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上链溯源信息
     @inlinable
-    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceChainResponse > {
+    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceChainResponse> {
         self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上链溯源信息
     @inlinable
     public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
         try await self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上链溯源信息
     @inlinable
-    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceChainResponse > {
+    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceChainResponse> {
         self.createTraceChain(CreateTraceChainRequest(corpId: corpId, traceId: traceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 上链溯源信息
     @inlinable
     public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {

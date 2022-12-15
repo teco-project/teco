@@ -20,45 +20,45 @@ extension TCTdmqError {
             case consumerRunning = "OperationDenied.ConsumerRunning"
             case defaultEnvironment = "OperationDenied.DefaultEnvironment"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 订阅仍在消费中。
         public static var consumerRunning: OperationDenied {
             OperationDenied(.consumerRunning)
         }
-        
+
         /// 默认环境不允许操作。
         public static var defaultEnvironment: OperationDenied {
             OperationDenied(.defaultEnvironment)
         }
-        
+
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
-            case .consumerRunning: 
+            case .consumerRunning:
                 code = .operationDenied_ConsumerRunning
-            case .defaultEnvironment: 
+            case .defaultEnvironment:
                 code = .operationDenied_DefaultEnvironment
             }
             return TCTdmqError(code, context: self.context)

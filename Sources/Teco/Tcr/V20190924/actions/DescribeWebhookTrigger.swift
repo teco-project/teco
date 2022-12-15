@@ -19,23 +19,23 @@ extension Tcr {
     public struct DescribeWebhookTriggerRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 分页单页数量
         public let limit: Int64?
-        
+
         /// 分页偏移量
         public let offset: Int64?
-        
+
         /// 命名空间
         public let namespace: String?
-        
-        public init (registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil) {
+
+        public init(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil) {
             self.registryId = registryId
             self.limit = limit
             self.offset = offset
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case limit = "Limit"
@@ -43,43 +43,43 @@ extension Tcr {
             case namespace = "Namespace"
         }
     }
-    
+
     /// DescribeWebhookTrigger返回参数结构体
     public struct DescribeWebhookTriggerResponse: TCResponseModel {
         /// 触发器总数
         public let totalCount: Int64
-        
+
         /// 触发器列表
         public let triggers: [WebhookTrigger]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case triggers = "Triggers"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询触发器
     @inlinable
-    public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebhookTriggerResponse > {
+    public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebhookTriggerResponse> {
         self.client.execute(action: "DescribeWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询触发器
     @inlinable
     public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerResponse {
         try await self.client.execute(action: "DescribeWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询触发器
     @inlinable
-    public func describeWebhookTrigger(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebhookTriggerResponse > {
+    public func describeWebhookTrigger(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebhookTriggerResponse> {
         self.describeWebhookTrigger(DescribeWebhookTriggerRequest(registryId: registryId, limit: limit, offset: offset, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询触发器
     @inlinable
     public func describeWebhookTrigger(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerResponse {

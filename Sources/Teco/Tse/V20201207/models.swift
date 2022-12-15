@@ -19,23 +19,23 @@ extension Tse {
     public struct ApolloEnvParam: TCInputModel {
         /// 环境名称
         public let name: String
-        
+
         /// 环境内引擎的节点规格 ID
         public let engineResourceSpec: String
-        
+
         /// 环境内引擎的节点数量
         public let engineNodeNum: Int64
-        
+
         /// 配置存储空间大小，以GB为单位
         public let storageCapacity: Int64
-        
+
         /// VPC ID。在 VPC 的子网内分配一个 IP 作为 ConfigServer 的访问地址
         public let vpcId: String
-        
+
         /// 子网 ID。在 VPC 的子网内分配一个 IP 作为 ConfigServer 的访问地址
         public let subnetId: String
-        
-        public init (name: String, engineResourceSpec: String, engineNodeNum: Int64, storageCapacity: Int64, vpcId: String, subnetId: String) {
+
+        public init(name: String, engineResourceSpec: String, engineNodeNum: Int64, storageCapacity: Int64, vpcId: String, subnetId: String) {
             self.name = name
             self.engineResourceSpec = engineResourceSpec
             self.engineNodeNum = engineNodeNum
@@ -43,7 +43,7 @@ extension Tse {
             self.vpcId = vpcId
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case engineResourceSpec = "EngineResourceSpec"
@@ -53,83 +53,83 @@ extension Tse {
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// 服务治理引擎绑定的kubernetes信息
     public struct BoundK8SInfo: TCInputModel, TCOutputModel {
         /// 绑定的kubernetes集群ID
         public let boundClusterId: String
-        
+
         /// 绑定的kubernetes的集群类型，分tke和eks两种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let boundClusterType: String?
-        
+
         /// 服务同步模式，all为全量同步，demand为按需同步
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let syncMode: String?
-        
-        public init (boundClusterId: String, boundClusterType: String, syncMode: String? = nil) {
+
+        public init(boundClusterId: String, boundClusterType: String, syncMode: String? = nil) {
             self.boundClusterId = boundClusterId
             self.boundClusterType = boundClusterType
             self.syncMode = syncMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case boundClusterId = "BoundClusterId"
             case boundClusterType = "BoundClusterType"
             case syncMode = "SyncMode"
         }
     }
-    
+
     /// 云原生API网关节点信息。
     public struct CloudNativeAPIGatewayNode: TCOutputModel {
         /// 云原生网关节点 id
         public let nodeId: String
-        
+
         /// 节点 ip
         public let nodeIp: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case nodeIp = "NodeIp"
         }
     }
-    
+
     /// 获取网关节点信息
     public struct DescribeCloudNativeAPIGatewayNodesResult: TCOutputModel {
         /// 获取云原生API网关节点列表响应结果。
         public let totalCount: Int64
-        
+
         /// 云原生API网关节点列表。
         public let nodeList: [CloudNativeAPIGatewayNode]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case nodeList = "NodeList"
         }
     }
-    
+
     /// 实例地域信息描述
     public struct DescribeInstanceRegionInfo: TCOutputModel {
         /// 引擎部署地域信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let engineRegion: String?
-        
+
         /// 引擎在该地域的副本数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let replica: Int64?
-        
+
         /// 引擎在该地域的规格id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let specId: String?
-        
+
         /// 内网的网络信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intranetVpcInfos: [VpcInfo]?
-        
+
         /// 是否开公网
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableClientInternet: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case engineRegion = "EngineRegion"
             case replica = "Replica"
@@ -138,46 +138,46 @@ extension Tse {
             case enableClientInternet = "EnableClientInternet"
         }
     }
-    
+
     /// 引擎的初始管理帐号
     public struct EngineAdmin: TCInputModel, TCOutputModel {
         /// 控制台初始用户名
         public let name: String?
-        
+
         /// 控制台初始密码
         public let password: String?
-        
+
         /// 引擎接口的管理员 Token
         public let token: String?
-        
-        public init (name: String? = nil, password: String? = nil, token: String? = nil) {
+
+        public init(name: String? = nil, password: String? = nil, token: String? = nil) {
             self.name = name
             self.password = password
             self.token = token
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case password = "Password"
             case token = "Token"
         }
     }
-    
+
     /// 多环境网络信息
     public struct EnvAddressInfo: TCOutputModel {
         /// 环境名
         public let envName: String
-        
+
         /// 是否开启config公网
         public let enableConfigInternet: Bool
-        
+
         /// config公网ip
         public let configInternetServiceIp: String
-        
+
         /// config内网访问地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configIntranetAddress: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case envName = "EnvName"
             case enableConfigInternet = "EnableConfigInternet"
@@ -185,52 +185,52 @@ extension Tse {
             case configIntranetAddress = "ConfigIntranetAddress"
         }
     }
-    
+
     /// 环境具体信息
     public struct EnvInfo: TCInputModel, TCOutputModel {
         /// 环境名称
         public let envName: String
-        
+
         /// 环境对应的网络信息
         public let vpcInfos: [VpcInfo]
-        
+
         /// 云硬盘容量
         public let storageCapacity: Int64
-        
+
         /// 运行状态
         public let status: String?
-        
+
         /// Admin service 访问地址
         public let adminServiceIp: String?
-        
+
         /// Config service访问地址
         public let configServiceIp: String?
-        
+
         /// 是否开启config-server公网
         public let enableConfigInternet: Bool?
-        
+
         /// config-server公网访问地址
         public let configInternetServiceIp: String?
-        
+
         /// 规格ID
         public let specId: String?
-        
+
         /// 环境的节点数
         public let envReplica: Int64?
-        
+
         /// 环境运行的节点数
         public let runningCount: Int64?
-        
+
         /// 环境别名
         public let aliasEnvName: String?
-        
+
         /// 环境描述
         public let envDesc: String?
-        
+
         /// 客户端带宽
         public let clientBandWidth: UInt64?
-        
-        public init (envName: String, vpcInfos: [VpcInfo], storageCapacity: Int64, status: String? = nil, adminServiceIp: String? = nil, configServiceIp: String? = nil, enableConfigInternet: Bool? = nil, configInternetServiceIp: String? = nil, specId: String? = nil, envReplica: Int64? = nil, runningCount: Int64? = nil, aliasEnvName: String? = nil, envDesc: String? = nil, clientBandWidth: UInt64? = nil) {
+
+        public init(envName: String, vpcInfos: [VpcInfo], storageCapacity: Int64, status: String? = nil, adminServiceIp: String? = nil, configServiceIp: String? = nil, enableConfigInternet: Bool? = nil, configInternetServiceIp: String? = nil, specId: String? = nil, envReplica: Int64? = nil, runningCount: Int64? = nil, aliasEnvName: String? = nil, envDesc: String? = nil, clientBandWidth: UInt64? = nil) {
             self.envName = envName
             self.vpcInfos = vpcInfos
             self.storageCapacity = storageCapacity
@@ -246,7 +246,7 @@ extension Tse {
             self.envDesc = envDesc
             self.clientBandWidth = clientBandWidth
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envName = "EnvName"
             case vpcInfos = "VpcInfos"
@@ -264,82 +264,82 @@ extension Tse {
             case clientBandWidth = "ClientBandWidth"
         }
     }
-    
+
     /// 查询过滤通用对象
     public struct Filter: TCInputModel {
         /// 过滤参数名
         public let name: String
-        
+
         /// 过滤参数值
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 引擎实例的标签信息
     public struct InstanceTagInfo: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String?
-        
+
         /// 标签值
         public let tagValue: String?
-        
-        public init (tagKey: String? = nil, tagValue: String? = nil) {
+
+        public init(tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 键值对
     public struct KVPair: TCOutputModel {
         /// 键
         public let key: String
-        
+
         /// 值
         public let value: String
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// Nacos副本信息
     public struct NacosReplica: TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 角色
         public let role: String
-        
+
         /// 状态
         public let status: String
-        
+
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 可用区ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// 可用区ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case role = "Role"
@@ -349,143 +349,143 @@ extension Tse {
             case zoneId = "ZoneId"
         }
     }
-    
+
     /// nacos服务端接口列表，用于云监控
     public struct NacosServerInterface: TCOutputModel {
         /// 接口名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let interface: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case interface = "Interface"
         }
     }
-    
+
     /// 查询Limiter的接入地址
     public struct PolarisLimiterAddress: TCOutputModel {
         /// VPC接入IP列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intranetAddress: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case intranetAddress = "IntranetAddress"
         }
     }
-    
+
     /// 微服务注册引擎实例
     public struct SREInstance: TCOutputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 名称
         public let name: String
-        
+
         /// 版本号
         public let edition: String
-        
+
         /// 状态, 枚举值:creating/create_fail/running/updating/update_fail/restarting/restart_fail/destroying/destroy_fail
         public let status: String
-        
+
         /// 规格ID
         public let specId: String
-        
+
         /// 副本数
         public let replica: Int64
-        
+
         /// 类型
         public let type: String
-        
+
         /// Vpc iD
         public let vpcId: String
-        
+
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetIds: [String]?
-        
+
         /// 是否开启持久化存储
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableStorage: Bool?
-        
+
         /// 数据存储方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageType: String?
-        
+
         /// 云硬盘容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageCapacity: Int64?
-        
+
         /// 计费方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymode: String?
-        
+
         /// EKS集群的ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eksClusterID: String?
-        
+
         /// 集群创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 环境配置信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envInfos: [EnvInfo]?
-        
+
         /// 引擎所在的区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let engineRegion: String?
-        
+
         /// 注册引擎是否开启公网
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableInternet: Bool?
-        
+
         /// 私有网络列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcInfos: [VpcInfo]?
-        
+
         /// 服务治理相关信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceGovernanceInfos: [ServiceGovernanceInfo]?
-        
+
         /// 实例的标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [KVPair]?
-        
+
         /// 引擎实例是否开启控制台公网访问地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableConsoleInternet: Bool?
-        
+
         /// 引擎实例是否开启控制台内网访问地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableConsoleIntranet: Bool?
-        
+
         /// 引擎实例是否展示参数配置页面
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configInfoVisible: Bool?
-        
+
         /// 引擎实例控制台默认密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let consoleDefaultPwd: String?
-        
+
         /// 交易付费类型，0后付费/1预付费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeType: Int64?
-        
+
         /// 自动续费标记：0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlag: Int64?
-        
+
         /// 预付费到期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let curDeadline: String?
-        
+
         /// 隔离开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isolateTime: String?
-        
+
         /// 实例地域相关的描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionInfos: [DescribeInstanceRegionInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
@@ -519,34 +519,34 @@ extension Tse {
             case regionInfos = "RegionInfos"
         }
     }
-    
+
     /// 服务治理相关的信息
     public struct ServiceGovernanceInfo: TCInputModel, TCOutputModel {
         /// 引擎所在的地域
         public let engineRegion: String
-        
+
         /// 服务治理引擎绑定的kubernetes集群信息
         public let boundK8SInfos: [BoundK8SInfo]?
-        
+
         /// 服务治理引擎绑定的网络信息
         public let vpcInfos: [VpcInfo]?
-        
+
         /// 当前实例鉴权是否开启
         public let authOpen: Bool?
-        
+
         /// 该实例支持的功能，鉴权就是 Auth
         public let features: [String]?
-        
+
         /// 主账户名默认为 polaris，该值为主账户的默认密码
         public let mainPassword: String?
-        
+
         /// 服务治理pushgateway引擎绑定的网络信息
         public let pgwVpcInfos: [VpcInfo]?
-        
+
         /// 服务治理限流server引擎绑定的网络信息
         public let limiterVpcInfos: [VpcInfo]?
-        
-        public init (engineRegion: String, boundK8SInfos: [BoundK8SInfo]? = nil, vpcInfos: [VpcInfo]? = nil, authOpen: Bool? = nil, features: [String]? = nil, mainPassword: String? = nil, pgwVpcInfos: [VpcInfo]? = nil, limiterVpcInfos: [VpcInfo]? = nil) {
+
+        public init(engineRegion: String, boundK8SInfos: [BoundK8SInfo]? = nil, vpcInfos: [VpcInfo]? = nil, authOpen: Bool? = nil, features: [String]? = nil, mainPassword: String? = nil, pgwVpcInfos: [VpcInfo]? = nil, limiterVpcInfos: [VpcInfo]? = nil) {
             self.engineRegion = engineRegion
             self.boundK8SInfos = boundK8SInfos
             self.vpcInfos = vpcInfos
@@ -556,7 +556,7 @@ extension Tse {
             self.pgwVpcInfos = pgwVpcInfos
             self.limiterVpcInfos = limiterVpcInfos
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case engineRegion = "EngineRegion"
             case boundK8SInfos = "BoundK8SInfos"
@@ -568,59 +568,59 @@ extension Tse {
             case limiterVpcInfos = "LimiterVpcInfos"
         }
     }
-    
+
     /// 私有网络信息
     public struct VpcInfo: TCInputModel, TCOutputModel {
         /// Vpc Id
         public let vpcId: String
-        
+
         /// 子网ID
         public let subnetId: String
-        
+
         /// 内网访问地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intranetAddress: String?
-        
-        public init (vpcId: String, subnetId: String, intranetAddress: String? = nil) {
+
+        public init(vpcId: String, subnetId: String, intranetAddress: String? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.intranetAddress = intranetAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
             case intranetAddress = "IntranetAddress"
         }
     }
-    
+
     /// Zookeeper副本信息
     public struct ZookeeperReplica: TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 角色
         public let role: String
-        
+
         /// 状态
         public let status: String
-        
+
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 可用区ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// 可用区ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneId: String?
-        
+
         /// 别名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aliasName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case role = "Role"
@@ -631,13 +631,13 @@ extension Tse {
             case aliasName = "AliasName"
         }
     }
-    
+
     /// Zookeeper服务端接口列表，用于云监控
     public struct ZookeeperServerInterface: TCOutputModel {
         /// 接口名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let interface: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case interface = "Interface"
         }

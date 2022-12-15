@@ -19,54 +19,54 @@ extension Monitor {
     public struct ModifyAlarmPolicyStatusRequest: TCRequestModel {
         /// 模块名，固定值 monitor
         public let module: String
-        
+
         /// 告警策略 ID
         public let policyId: String
-        
+
         /// 启停状态 0=停用 1=启用
         public let enable: Int64
-        
-        public init (module: String, policyId: String, enable: Int64) {
+
+        public init(module: String, policyId: String, enable: Int64) {
             self.module = module
             self.policyId = policyId
             self.enable = enable
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case policyId = "PolicyId"
             case enable = "Enable"
         }
     }
-    
+
     /// ModifyAlarmPolicyStatus返回参数结构体
     public struct ModifyAlarmPolicyStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启停告警策略
     @inlinable
-    public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyStatusResponse > {
+    public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyStatusResponse> {
         self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启停告警策略
     @inlinable
     public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启停告警策略
     @inlinable
-    public func modifyAlarmPolicyStatus(module: String, policyId: String, enable: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyStatusResponse > {
+    public func modifyAlarmPolicyStatus(module: String, policyId: String, enable: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyStatusResponse> {
         self.modifyAlarmPolicyStatus(ModifyAlarmPolicyStatusRequest(module: module, policyId: policyId, enable: enable), logger: logger, on: eventLoop)
     }
-    
+
     /// 启停告警策略
     @inlinable
     public func modifyAlarmPolicyStatus(module: String, policyId: String, enable: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {

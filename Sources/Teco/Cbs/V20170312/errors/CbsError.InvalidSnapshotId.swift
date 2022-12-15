@@ -19,38 +19,38 @@ extension TCCbsError {
         enum Code: String {
             case notFound = "InvalidSnapshotId.NotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 输入的<code>SnapshotId</code>不存在。
         public static var notFound: InvalidSnapshotId {
             InvalidSnapshotId(.notFound)
         }
-        
+
         public func asCbsError() -> TCCbsError {
             let code: TCCbsError.Code
             switch self.error {
-            case .notFound: 
+            case .notFound:
                 code = .invalidSnapshotId_NotFound
             }
             return TCCbsError(code, context: self.context)

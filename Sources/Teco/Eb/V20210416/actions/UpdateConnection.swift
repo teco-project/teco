@@ -19,27 +19,27 @@ extension Eb {
     public struct UpdateConnectionRequest: TCRequestModel {
         /// 连接器ID
         public let connectionId: String
-        
+
         /// 事件集ID
         public let eventBusId: String
-        
+
         /// 使能开关
         public let enable: Bool?
-        
+
         /// 描述
         public let description: String?
-        
+
         /// 连接器名称
         public let connectionName: String?
-        
-        public init (connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil) {
+
+        public init(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil) {
             self.connectionId = connectionId
             self.eventBusId = eventBusId
             self.enable = enable
             self.description = description
             self.connectionName = connectionName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case connectionId = "ConnectionId"
             case eventBusId = "EventBusId"
@@ -48,35 +48,35 @@ extension Eb {
             case connectionName = "ConnectionName"
         }
     }
-    
+
     /// UpdateConnection返回参数结构体
     public struct UpdateConnectionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新事件连接器
     @inlinable
-    public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateConnectionResponse > {
+    public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateConnectionResponse> {
         self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新事件连接器
     @inlinable
     public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {
         try await self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新事件连接器
     @inlinable
-    public func updateConnection(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateConnectionResponse > {
+    public func updateConnection(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateConnectionResponse> {
         self.updateConnection(UpdateConnectionRequest(connectionId: connectionId, eventBusId: eventBusId, enable: enable, description: description, connectionName: connectionName), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新事件连接器
     @inlinable
     public func updateConnection(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {

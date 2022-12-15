@@ -34,143 +34,143 @@ extension TCOceanusError {
             case unknownStopType = "InvalidParameterValue.UnknownStopType"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 集群Id指定错误，为空或者不存在。
         public static var clusterId: InvalidParameterValue {
             InvalidParameterValue(.clusterId)
         }
-        
+
         /// 群集Id报错。
         public static var clusterIds: InvalidParameterValue {
             InvalidParameterValue(.clusterIds)
         }
-        
+
         /// CU内存规格不匹配。
         public static var cuMem: InvalidParameterValue {
             InvalidParameterValue(.cuMem)
         }
-        
+
         /// 无效启动模式。
         public static var invalidStartMode: InvalidParameterValue {
             InvalidParameterValue(.invalidStartMode)
         }
-        
+
         /// 作业id的参数无效。
         public static var jobIdValueError: InvalidParameterValue {
             InvalidParameterValue(.jobIdValueError)
         }
-        
+
         /// Illegal JobName。
         public static var jobName: InvalidParameterValue {
             InvalidParameterValue(.jobName)
         }
-        
+
         /// 作业名称已存在。
         public static var jobNameExisted: InvalidParameterValue {
             InvalidParameterValue(.jobNameExisted)
         }
-        
+
         /// 集群模式与作业类型不匹配。
         public static var jobTypeCombineWithClusterType: InvalidParameterValue {
             InvalidParameterValue(.jobTypeCombineWithClusterType)
         }
-        
+
         /// SQL作业不能指定EntrypointClass，JAR作业则必须指定。
         public static var jobTypeCombineWithEntrypointClass: InvalidParameterValue {
             InvalidParameterValue(.jobTypeCombineWithEntrypointClass)
         }
-        
+
         /// OrderType值错误。
         public static var orderType: InvalidParameterValue {
             InvalidParameterValue(.orderType)
         }
-        
+
         /// 未找到资源ID。
         public static var resourceIdsNotFound: InvalidParameterValue {
             InvalidParameterValue(.resourceIdsNotFound)
         }
-        
+
         /// 批量运行作业个数超过上限。
         public static var runJobDescriptionsCount: InvalidParameterValue {
             InvalidParameterValue(.runJobDescriptionsCount)
         }
-        
+
         /// RunType错误。
         public static var runType: InvalidParameterValue {
             InvalidParameterValue(.runType)
         }
-        
+
         /// 不支持的复合类型。
         public static var unSupportedComposite: InvalidParameterValue {
             InvalidParameterValue(.unSupportedComposite)
         }
-        
+
         /// 未知停止类型错误。
         public static var unknownStopType: InvalidParameterValue {
             InvalidParameterValue(.unknownStopType)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asOceanusError() -> TCOceanusError {
             let code: TCOceanusError.Code
             switch self.error {
-            case .clusterId: 
+            case .clusterId:
                 code = .invalidParameterValue_ClusterId
-            case .clusterIds: 
+            case .clusterIds:
                 code = .invalidParameterValue_ClusterIds
-            case .cuMem: 
+            case .cuMem:
                 code = .invalidParameterValue_CuMem
-            case .invalidStartMode: 
+            case .invalidStartMode:
                 code = .invalidParameterValue_InvalidStartMode
-            case .jobIdValueError: 
+            case .jobIdValueError:
                 code = .invalidParameterValue_JobIdValueError
-            case .jobName: 
+            case .jobName:
                 code = .invalidParameterValue_JobName
-            case .jobNameExisted: 
+            case .jobNameExisted:
                 code = .invalidParameterValue_JobNameExisted
-            case .jobTypeCombineWithClusterType: 
+            case .jobTypeCombineWithClusterType:
                 code = .invalidParameterValue_JobTypeCombineWithClusterType
-            case .jobTypeCombineWithEntrypointClass: 
+            case .jobTypeCombineWithEntrypointClass:
                 code = .invalidParameterValue_JobTypeCombineWithEntrypointClass
-            case .orderType: 
+            case .orderType:
                 code = .invalidParameterValue_OrderType
-            case .resourceIdsNotFound: 
+            case .resourceIdsNotFound:
                 code = .invalidParameterValue_ResourceIdsNotFound
-            case .runJobDescriptionsCount: 
+            case .runJobDescriptionsCount:
                 code = .invalidParameterValue_RunJobDescriptionsCount
-            case .runType: 
+            case .runType:
                 code = .invalidParameterValue_RunType
-            case .unSupportedComposite: 
+            case .unSupportedComposite:
                 code = .invalidParameterValue_UnSupportedComposite
-            case .unknownStopType: 
+            case .unknownStopType:
                 code = .invalidParameterValue_UnknownStopType
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCOceanusError(code, context: self.context)

@@ -30,115 +30,115 @@ extension TCAsrError {
             case failAccessRedis = "InternalError.FailAccessRedis"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 初始化配置失败。
         public static var errorConfigure: InternalError {
             InternalError(.errorConfigure)
         }
-        
+
         /// 创建日志失败。
         public static var errorCreateLog: InternalError {
             InternalError(.errorCreateLog)
         }
-        
+
         /// 下载音频文件失败。
         public static var errorDownFile: InternalError {
             InternalError(.errorDownFile)
         }
-        
+
         /// 新建数组失败。
         public static var errorFailNewprequest: InternalError {
             InternalError(.errorFailNewprequest)
         }
-        
+
         /// 写入数据库失败。
         public static var errorFailWritetodb: InternalError {
             InternalError(.errorFailWritetodb)
         }
-        
+
         /// 文件无法打开。
         public static var errorFileCannotopen: InternalError {
             InternalError(.errorFileCannotopen)
         }
-        
+
         /// 获取路由失败。
         public static var errorGetRoute: InternalError {
             InternalError(.errorGetRoute)
         }
-        
+
         /// 创建日志路径失败。
         public static var errorMakeLogpath: InternalError {
             InternalError(.errorMakeLogpath)
         }
-        
+
         /// 识别失败。
         public static var errorRecognize: InternalError {
             InternalError(.errorRecognize)
         }
-        
+
         /// 访问数据库失败。
         public static var failAccessDatabase: InternalError {
             InternalError(.failAccessDatabase)
         }
-        
+
         /// 访问Redis失败。
         public static var failAccessRedis: InternalError {
             InternalError(.failAccessRedis)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asAsrError() -> TCAsrError {
             let code: TCAsrError.Code
             switch self.error {
-            case .errorConfigure: 
+            case .errorConfigure:
                 code = .internalError_ErrorConfigure
-            case .errorCreateLog: 
+            case .errorCreateLog:
                 code = .internalError_ErrorCreateLog
-            case .errorDownFile: 
+            case .errorDownFile:
                 code = .internalError_ErrorDownFile
-            case .errorFailNewprequest: 
+            case .errorFailNewprequest:
                 code = .internalError_ErrorFailNewprequest
-            case .errorFailWritetodb: 
+            case .errorFailWritetodb:
                 code = .internalError_ErrorFailWritetodb
-            case .errorFileCannotopen: 
+            case .errorFileCannotopen:
                 code = .internalError_ErrorFileCannotopen
-            case .errorGetRoute: 
+            case .errorGetRoute:
                 code = .internalError_ErrorGetRoute
-            case .errorMakeLogpath: 
+            case .errorMakeLogpath:
                 code = .internalError_ErrorMakeLogpath
-            case .errorRecognize: 
+            case .errorRecognize:
                 code = .internalError_ErrorRecognize
-            case .failAccessDatabase: 
+            case .failAccessDatabase:
                 code = .internalError_FailAccessDatabase
-            case .failAccessRedis: 
+            case .failAccessRedis:
                 code = .internalError_FailAccessRedis
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCAsrError(code, context: self.context)

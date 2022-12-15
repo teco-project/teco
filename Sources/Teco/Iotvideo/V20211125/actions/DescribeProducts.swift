@@ -19,57 +19,57 @@ extension Iotvideo {
     public struct DescribeProductsRequest: TCRequestModel {
         /// 分页的大小，最大100
         public let limit: UInt64
-        
+
         /// 偏移量，Offset从0开始
         public let offset: UInt64
-        
-        public init (limit: UInt64, offset: UInt64) {
+
+        public init(limit: UInt64, offset: UInt64) {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeProducts返回参数结构体
     public struct DescribeProductsResponse: TCResponseModel {
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 产品详情列表
         public let data: [VideoProduct]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取产品列表
     @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
         self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品列表
     @inlinable
     public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
         try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取产品列表
     @inlinable
-    public func describeProducts(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+    public func describeProducts(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
         self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品列表
     @inlinable
     public func describeProducts(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {

@@ -19,38 +19,38 @@ extension Kms {
     public struct CancelKeyDeletionRequest: TCRequestModel {
         /// 需要被取消删除的CMK的唯一标志
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// CancelKeyDeletion返回参数结构体
     public struct CancelKeyDeletionResponse: TCResponseModel {
         /// 唯一标志被取消删除的CMK。
         public let keyId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消CMK计划删除操作
     ///
     /// 取消CMK的计划删除操作
     @inlinable
-    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKeyDeletionResponse > {
+    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyDeletionResponse> {
         self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消CMK计划删除操作
     ///
     /// 取消CMK的计划删除操作
@@ -58,15 +58,15 @@ extension Kms {
     public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
         try await self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消CMK计划删除操作
     ///
     /// 取消CMK的计划删除操作
     @inlinable
-    public func cancelKeyDeletion(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKeyDeletionResponse > {
+    public func cancelKeyDeletion(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyDeletionResponse> {
         self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消CMK计划删除操作
     ///
     /// 取消CMK的计划删除操作

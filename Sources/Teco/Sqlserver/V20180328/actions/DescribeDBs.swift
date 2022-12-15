@@ -19,27 +19,27 @@ extension Sqlserver {
     public struct DescribeDBsRequest: TCRequestModel {
         /// 实例ID
         public let instanceIdSet: [String]
-        
+
         /// 分页返回，每页返回的数目，取值为1-100，默认值为20
         public let limit: UInt64?
-        
+
         /// 分页返回，页编号，默认值为第0页
         public let offset: UInt64?
-        
+
         /// 数据库名称
         public let name: String?
-        
+
         /// 排序规则（desc-降序，asc-升序），默认desc
         public let orderByType: String?
-        
-        public init (instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil) {
+
+        public init(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil) {
             self.instanceIdSet = instanceIdSet
             self.limit = limit
             self.offset = offset
             self.name = name
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIdSet = "InstanceIdSet"
             case limit = "Limit"
@@ -48,33 +48,33 @@ extension Sqlserver {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeDBs返回参数结构体
     public struct DescribeDBsResponse: TCResponseModel {
         /// 数据库数量
         public let totalCount: Int64
-        
+
         /// 实例数据库列表
         public let dbInstances: [InstanceDBDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case dbInstances = "DBInstances"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsResponse > {
+    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
         self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
@@ -82,15 +82,15 @@ extension Sqlserver {
     public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
         try await self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsResponse > {
+    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
         self.describeDBs(DescribeDBsRequest(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。

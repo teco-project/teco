@@ -33,73 +33,73 @@ public struct TCBpaasError: TCBpaasErrorType {
         case invalidParameter_IllegalNode = "InvalidParameter.IllegalNode"
         case unauthorizedOperation_PermissionDenied = "UnauthorizedOperation.PermissionDenied"
     }
-    
+
     /// Error domains affliated to ``TCBpaasError``.
     public static var domains: [TCErrorType.Type] {
         [FailedOperation.self, InternalError.self, InvalidParameter.self, UnauthorizedOperation.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 操作失败。
     public static var failedOperation: TCBpaasError {
         TCBpaasError(.failedOperation)
     }
-    
+
     public static var failedOperation_SendToCkafka: TCBpaasError {
         TCBpaasError(.failedOperation_SendToCkafka)
     }
-    
+
     /// 鉴权失败。
     public static var internalError_CauthError: TCBpaasError {
         TCBpaasError(.internalError_CauthError)
     }
-    
+
     /// 插入db失败。
     public static var internalError_DbError: TCBpaasError {
         TCBpaasError(.internalError_DbError)
     }
-    
+
     /// 已经审批。
     public static var invalidParameter_HasBeenApproved: TCBpaasError {
         TCBpaasError(.invalidParameter_HasBeenApproved)
     }
-    
+
     /// id不存在。
     public static var invalidParameter_IdNotExist: TCBpaasError {
         TCBpaasError(.invalidParameter_IdNotExist)
     }
-    
+
     /// 非法流程节点。
     public static var invalidParameter_IllegalNode: TCBpaasError {
         TCBpaasError(.invalidParameter_IllegalNode)
     }
-    
+
     /// 没有权限审批。
     public static var unauthorizedOperation_PermissionDenied: TCBpaasError {
         TCBpaasError(.unauthorizedOperation_PermissionDenied)
     }
-    
+
     public func asBpaasError() -> TCBpaasError {
         return self
     }

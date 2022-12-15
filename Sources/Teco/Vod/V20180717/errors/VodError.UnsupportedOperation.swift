@@ -20,45 +20,45 @@ extension TCVodError {
             case classNotEmpty = "UnsupportedOperation.ClassNotEmpty"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不支持删除非空分类。
         public static var classNotEmpty: UnsupportedOperation {
             UnsupportedOperation(.classNotEmpty)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asVodError() -> TCVodError {
             let code: TCVodError.Code
             switch self.error {
-            case .classNotEmpty: 
+            case .classNotEmpty:
                 code = .unsupportedOperation_ClassNotEmpty
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCVodError(code, context: self.context)

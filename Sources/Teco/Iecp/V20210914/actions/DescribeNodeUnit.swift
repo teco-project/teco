@@ -19,23 +19,23 @@ extension Iecp {
     public struct DescribeNodeUnitRequest: TCRequestModel {
         /// 边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// NodeUnit所属的NodeGroup名称
         public let nodeGroupName: String
-        
+
         /// 命名空间，默认default
         public let namespace: String?
-        
+
         /// 分页查询limit，默认20
         public let limit: Int64?
-        
+
         /// 分页查询offset，默认0
         public let offset: Int64?
-        
+
         /// 模糊匹配
         public let nameFilter: String?
-        
-        public init (edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil) {
+
+        public init(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeGroupName = nodeGroupName
             self.namespace = namespace
@@ -43,7 +43,7 @@ extension Iecp {
             self.offset = offset
             self.nameFilter = nameFilter
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case nodeGroupName = "NodeGroupName"
@@ -53,44 +53,44 @@ extension Iecp {
             case nameFilter = "NameFilter"
         }
     }
-    
+
     /// DescribeNodeUnit返回参数结构体
     public struct DescribeNodeUnitResponse: TCResponseModel {
         /// 符合查询条件的记录总数
         public let totalCount: Int64
-        
+
         /// NodeUnit信息数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeGridInfo: [NodeUnitInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case nodeGridInfo = "NodeGridInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询边缘单元NodeUnit列表
     @inlinable
-    public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitResponse > {
+    public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeUnitResponse> {
         self.client.execute(action: "DescribeNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元NodeUnit列表
     @inlinable
     public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitResponse {
         try await self.client.execute(action: "DescribeNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询边缘单元NodeUnit列表
     @inlinable
-    public func describeNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitResponse > {
+    public func describeNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeUnitResponse> {
         self.describeNodeUnit(DescribeNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元NodeUnit列表
     @inlinable
     public func describeNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitResponse {

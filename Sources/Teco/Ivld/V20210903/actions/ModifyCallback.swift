@@ -19,31 +19,31 @@ extension Ivld {
     public struct ModifyCallbackRequest: TCRequestModel {
         /// 任务分析完成后回调地址
         public let taskFinishNotifyURL: String
-        
+
         /// 媒体导入完成后回调地址
         public let mediaFinishNotifyURL: String
-        
-        public init (taskFinishNotifyURL: String, mediaFinishNotifyURL: String) {
+
+        public init(taskFinishNotifyURL: String, mediaFinishNotifyURL: String) {
             self.taskFinishNotifyURL = taskFinishNotifyURL
             self.mediaFinishNotifyURL = mediaFinishNotifyURL
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskFinishNotifyURL = "TaskFinishNotifyURL"
             case mediaFinishNotifyURL = "MediaFinishNotifyURL"
         }
     }
-    
+
     /// ModifyCallback返回参数结构体
     public struct ModifyCallbackResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 编辑回调地址
     ///
     /// 用户设置对应事件的回调地址
@@ -73,10 +73,10 @@ extension Ivld {
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable
-    public func modifyCallback(_ input: ModifyCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCallbackResponse > {
+    public func modifyCallback(_ input: ModifyCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
         self.client.execute(action: "ModifyCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑回调地址
     ///
     /// 用户设置对应事件的回调地址
@@ -109,7 +109,7 @@ extension Ivld {
     public func modifyCallback(_ input: ModifyCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
         try await self.client.execute(action: "ModifyCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 编辑回调地址
     ///
     /// 用户设置对应事件的回调地址
@@ -139,10 +139,10 @@ extension Ivld {
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable
-    public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCallbackResponse > {
+    public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
         self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑回调地址
     ///
     /// 用户设置对应事件的回调地址

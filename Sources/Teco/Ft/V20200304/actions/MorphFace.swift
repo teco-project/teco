@@ -17,37 +17,37 @@
 extension Ft {
     /// MorphFace请求参数结构体
     public struct MorphFaceRequest: TCRequestModel {
-        /// 图片 base64 数据，base64 编码后大小不可超过5M。 
-        /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。 
-        /// 人员人脸总数量至少2张，不可超过5张。 
-        /// 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。 
+        /// 图片 base64 数据，base64 编码后大小不可超过5M。
+        /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        /// 人员人脸总数量至少2张，不可超过5张。
+        /// 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let images: [String]?
-        
-        /// 图片的 Url 。对应图片 base64 编码后大小不可超过5M。jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。 
-        /// Url、Image必须提供一个，如果都提供，只使用 Url。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。 
-        /// 非腾讯云存储的Url速度和稳定性可能受一定影响。 
-        /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。 
-        /// 人员人脸总数量不可超过5张。 
+
+        /// 图片的 Url 。对应图片 base64 编码后大小不可超过5M。jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        /// Url、Image必须提供一个，如果都提供，只使用 Url。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        /// 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        /// 人员人脸总数量不可超过5张。
         /// 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
         public let urls: [String]?
-        
+
         /// 人脸渐变参数。可调整每张图片的展示时长、人像渐变的最长时间
         public let gradientInfos: [GradientInfo]?
-        
+
         /// 视频帧率，取值[1,25]。默认10
         public let fps: Int64?
-        
+
         /// 视频类型，取值0。目前仅支持MP4格式，默认为MP4格式
         public let outputType: Int64?
-        
+
         /// 视频宽度，取值[128,1280]。默认值720
         public let outputWidth: Int64?
-        
+
         /// 视频高度，取值[128,1280]。默认值1280
         public let outputHeight: Int64?
-        
-        public init (images: [String]? = nil, urls: [String]? = nil, gradientInfos: [GradientInfo]? = nil, fps: Int64? = nil, outputType: Int64? = nil, outputWidth: Int64? = nil, outputHeight: Int64? = nil) {
+
+        public init(images: [String]? = nil, urls: [String]? = nil, gradientInfos: [GradientInfo]? = nil, fps: Int64? = nil, outputType: Int64? = nil, outputWidth: Int64? = nil, outputHeight: Int64? = nil) {
             self.images = images
             self.urls = urls
             self.gradientInfos = gradientInfos
@@ -56,7 +56,7 @@ extension Ft {
             self.outputWidth = outputWidth
             self.outputHeight = outputHeight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case images = "Images"
             case urls = "Urls"
@@ -67,33 +67,33 @@ extension Ft {
             case outputHeight = "OutputHeight"
         }
     }
-    
+
     /// MorphFace返回参数结构体
     public struct MorphFaceResponse: TCResponseModel {
         /// 人像渐变任务的Job id
         public let jobId: String
-        
+
         /// 预估处理时间，粒度为秒
         public let estimatedProcessTime: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case estimatedProcessTime = "EstimatedProcessTime"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 人像渐变
     ///
     /// 输入2-5张人脸照片，生成一段以人脸为焦点的渐变视频或GIF图，支持自定义图片播放速度、视频每秒传输帧数，可用于短视频、表情包、创意H5等应用场景，丰富静态图片的玩法。
     @inlinable
-    public func morphFace(_ input: MorphFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MorphFaceResponse > {
+    public func morphFace(_ input: MorphFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MorphFaceResponse> {
         self.client.execute(action: "MorphFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 人像渐变
     ///
     /// 输入2-5张人脸照片，生成一段以人脸为焦点的渐变视频或GIF图，支持自定义图片播放速度、视频每秒传输帧数，可用于短视频、表情包、创意H5等应用场景，丰富静态图片的玩法。
@@ -101,15 +101,15 @@ extension Ft {
     public func morphFace(_ input: MorphFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MorphFaceResponse {
         try await self.client.execute(action: "MorphFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 人像渐变
     ///
     /// 输入2-5张人脸照片，生成一段以人脸为焦点的渐变视频或GIF图，支持自定义图片播放速度、视频每秒传输帧数，可用于短视频、表情包、创意H5等应用场景，丰富静态图片的玩法。
     @inlinable
-    public func morphFace(images: [String]? = nil, urls: [String]? = nil, gradientInfos: [GradientInfo]? = nil, fps: Int64? = nil, outputType: Int64? = nil, outputWidth: Int64? = nil, outputHeight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MorphFaceResponse > {
+    public func morphFace(images: [String]? = nil, urls: [String]? = nil, gradientInfos: [GradientInfo]? = nil, fps: Int64? = nil, outputType: Int64? = nil, outputWidth: Int64? = nil, outputHeight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MorphFaceResponse> {
         self.morphFace(MorphFaceRequest(images: images, urls: urls, gradientInfos: gradientInfos, fps: fps, outputType: outputType, outputWidth: outputWidth, outputHeight: outputHeight), logger: logger, on: eventLoop)
     }
-    
+
     /// 人像渐变
     ///
     /// 输入2-5张人脸照片，生成一段以人脸为焦点的渐变视频或GIF图，支持自定义图片播放速度、视频每秒传输帧数，可用于短视频、表情包、创意H5等应用场景，丰富静态图片的玩法。

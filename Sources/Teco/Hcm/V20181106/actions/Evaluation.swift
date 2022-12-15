@@ -19,44 +19,44 @@ extension Hcm {
     public struct EvaluationRequest: TCRequestModel {
         /// 图片唯一标识，一张图片一个SessionId；
         public let sessionId: String
-        
+
         /// 图片数据，需要使用base64对图片的二进制数据进行编码，与url参数二者填一即可；
         public let image: String?
-        
+
         /// 业务应用ID，与账号应用APPID无关，是用来方便客户管理服务的参数，新的 HcmAppid 可以在[控制台](https://console.cloud.tencent.com/hcm)【应用管理】下新建。
         public let hcmAppid: String?
-        
+
         /// 图片url，与Image参数二者填一即可；
         public let url: String?
-        
+
         /// 横屏拍摄开关，若开启则支持传输横屏拍摄的图片；
         public let supportHorizontalImage: Bool?
-        
+
         /// 拒绝非速算图（如风景图、人物图）开关，若开启，则遇到非速算图会快速返回拒绝的结果，但极端情况下可能会影响评估结果（比如算式截图贴到风景画里可能被判为非速算图直接返回了）。
         public let rejectNonArithmeticImage: Bool?
-        
+
         /// 异步模式标识，0：同步模式，1：异步模式。默认为同步模式
         public let isAsync: Int64?
-        
+
         /// 是否展开耦合算式中的竖式计算
         public let enableDispRelatedVertical: Bool?
-        
+
         /// 是否展示竖式算式的中间结果和格式控制字符
         public let enableDispMidresult: Bool?
-        
+
         /// 是否开启pdf识别，默认开启
         public let enablePdfRecognize: Bool?
-        
+
         /// pdf页码，从0开始，默认为0
         public let pdfPageIndex: Int64?
-        
+
         /// 是否返回LaTex，默认为0返回普通格式，设置成1返回LaTex格式
         public let laTex: Int64?
-        
+
         /// 用于选择是否拒绝模糊题 目。打开则丢弃模糊题目， 不进行后续的判题返回结 果。
         public let rejectVagueArithmetic: Bool?
-        
-        public init (sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil) {
+
+        public init(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil) {
             self.sessionId = sessionId
             self.image = image
             self.hcmAppid = hcmAppid
@@ -71,7 +71,7 @@ extension Hcm {
             self.laTex = laTex
             self.rejectVagueArithmetic = rejectVagueArithmetic
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionId = "SessionId"
             case image = "Image"
@@ -88,22 +88,22 @@ extension Hcm {
             case rejectVagueArithmetic = "RejectVagueArithmetic"
         }
     }
-    
+
     /// Evaluation返回参数结构体
     public struct EvaluationResponse: TCResponseModel {
         /// 图片唯一标识，一张图片一个SessionId；
         public let sessionId: String
-        
+
         /// 识别出的算式信息；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [Item]?
-        
+
         /// 任务 id，用于查询接口
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionId = "SessionId"
             case items = "Items"
@@ -111,15 +111,15 @@ extension Hcm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 速算题目批改接口
     ///
     /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
     @inlinable
-    public func evaluation(_ input: EvaluationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EvaluationResponse > {
+    public func evaluation(_ input: EvaluationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluationResponse> {
         self.client.execute(action: "Evaluation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 速算题目批改接口
     ///
     /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
@@ -127,15 +127,15 @@ extension Hcm {
     public func evaluation(_ input: EvaluationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluationResponse {
         try await self.client.execute(action: "Evaluation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 速算题目批改接口
     ///
     /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
     @inlinable
-    public func evaluation(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EvaluationResponse > {
+    public func evaluation(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluationResponse> {
         self.evaluation(EvaluationRequest(sessionId: sessionId, image: image, hcmAppid: hcmAppid, url: url, supportHorizontalImage: supportHorizontalImage, rejectNonArithmeticImage: rejectNonArithmeticImage, isAsync: isAsync, enableDispRelatedVertical: enableDispRelatedVertical, enableDispMidresult: enableDispMidresult, enablePdfRecognize: enablePdfRecognize, pdfPageIndex: pdfPageIndex, laTex: laTex, rejectVagueArithmetic: rejectVagueArithmetic), logger: logger, on: eventLoop)
     }
-    
+
     /// 速算题目批改接口
     ///
     /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。

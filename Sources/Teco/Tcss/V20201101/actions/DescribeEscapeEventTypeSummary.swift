@@ -17,27 +17,27 @@
 extension Tcss {
     /// DescribeEscapeEventTypeSummary请求参数结构体
     public struct DescribeEscapeEventTypeSummaryRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeEscapeEventTypeSummary返回参数结构体
     public struct DescribeEscapeEventTypeSummaryResponse: TCResponseModel {
         /// 容器逃逸事件数
         public let containerEscapeEventCount: Int64
-        
+
         /// 程序提权事件数
         public let processPrivilegeEventCount: Int64
-        
+
         /// 风险容器事件数
         public let riskContainerEventCount: Int64
-        
+
         /// 逃逸事件待处理数
         public let pendingEscapeEventCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case containerEscapeEventCount = "ContainerEscapeEventCount"
             case processPrivilegeEventCount = "ProcessPrivilegeEventCount"
@@ -46,25 +46,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 统计容器逃逸各事件类型和待处理事件数
     @inlinable
-    public func describeEscapeEventTypeSummary(_ input: DescribeEscapeEventTypeSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTypeSummaryResponse > {
+    public func describeEscapeEventTypeSummary(_ input: DescribeEscapeEventTypeSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTypeSummaryResponse> {
         self.client.execute(action: "DescribeEscapeEventTypeSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 统计容器逃逸各事件类型和待处理事件数
     @inlinable
     public func describeEscapeEventTypeSummary(_ input: DescribeEscapeEventTypeSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTypeSummaryResponse {
         try await self.client.execute(action: "DescribeEscapeEventTypeSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 统计容器逃逸各事件类型和待处理事件数
     @inlinable
-    public func describeEscapeEventTypeSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTypeSummaryResponse > {
+    public func describeEscapeEventTypeSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTypeSummaryResponse> {
         self.describeEscapeEventTypeSummary(DescribeEscapeEventTypeSummaryRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 统计容器逃逸各事件类型和待处理事件数
     @inlinable
     public func describeEscapeEventTypeSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTypeSummaryResponse {

@@ -19,73 +19,73 @@ extension Tia {
     public struct Job: TCOutputModel {
         /// 任务名称
         public let name: String
-        
+
         /// 任务创建时间，格式为：2006-01-02 15:04:05.999999999 -0700 MST
         public let createTime: String
-        
+
         /// 任务开始时间，格式为：2006-01-02 15:04:05.999999999 -0700 MST
         public let startTime: String
-        
+
         /// 任务结束时间，格式为：2006-01-02 15:04:05.999999999 -0700 MST
         public let endTime: String
-        
+
         /// 任务状态，可能的状态为Created（已创建），Running（运行中），Succeeded（运行完成：成功），Failed（运行完成：失败）
         public let state: String
-        
+
         /// 任务状态信息
         public let message: String
-        
+
         /// 运行任务的配置信息
         public let scaleTier: String
-        
+
         /// （ScaleTier为Custom时）master机器类型
         public let masterType: String
-        
+
         /// （ScaleTier为Custom时）worker机器类型
         public let workerType: String
-        
+
         /// （ScaleTier为Custom时）parameter server机器类型
         public let parameterServerType: String
-        
+
         /// （ScaleTier为Custom时）worker机器数量
         public let workerCount: UInt64
-        
+
         /// （ScaleTier为Custom时）parameter server机器数量
         public let parameterServerCount: UInt64
-        
+
         /// 挂载的路径
         public let packageDir: [String]
-        
+
         /// 任务启动命令
         public let command: [String]
-        
+
         /// 任务启动参数
         public let args: [String]
-        
+
         /// 运行任务的集群
         public let cluster: String
-        
+
         /// 运行任务的环境
         public let runtimeVersion: String
-        
+
         /// 任务删除时间，格式为：2006-01-02 15:04:05.999999999 -0700 MST
         public let delTime: String
-        
+
         /// 创建任务的AppId
         public let appId: UInt64
-        
+
         /// 创建任务的Uin
         public let uin: String
-        
+
         /// 创建任务的Debug模式
         public let debug: Bool
-        
+
         /// Runtime的额外配置信息
         public let runtimeConf: [String]
-        
+
         /// 任务Id
         public let id: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case createTime = "CreateTime"
@@ -112,27 +112,27 @@ extension Tia {
             case id = "Id"
         }
     }
-    
+
     /// 日志
     public struct Log: TCOutputModel {
         /// 容器名
         public let containerName: String
-        
+
         /// 日志内容
         public let log: String
-        
+
         /// 空间名
         public let namespace: String
-        
+
         /// Pod Id
         public let podId: String
-        
+
         /// Pod名
         public let podName: String
-        
+
         /// 日志日期，格式为“2018-07-02T09:10:04.916553368Z”
         public let time: String
-        
+
         enum CodingKeys: String, CodingKey {
             case containerName = "ContainerName"
             case log = "Log"
@@ -142,7 +142,7 @@ extension Tia {
             case time = "Time"
         }
     }
-    
+
     /// 用于描述模型的详细情况
     ///         "Model": {
     ///             "Name": "test-model",
@@ -160,52 +160,52 @@ extension Tia {
     public struct Model: TCOutputModel {
         /// 模型名称
         public let name: String
-        
+
         /// 模型描述
         public let description: String
-        
+
         /// 集群名称
         public let cluster: String
-        
+
         /// 模型地址
         public let model: String
-        
+
         /// 运行环境编号
         public let runtimeVersion: String
-        
+
         /// 模型创建时间
         public let createTime: String
-        
+
         /// 模型运行状态
         public let state: String
-        
+
         /// 提供服务的url
         public let servingUrl: String
-        
+
         /// 相关消息
         public let message: String
-        
+
         /// 编号
         public let appId: UInt64
-        
+
         /// 机型
         public let servType: String
-        
+
         /// 模型暴露方式
         public let expose: String
-        
+
         /// 部署副本数量
         public let replicas: UInt64
-        
+
         /// 模型Id
         public let id: String
-        
+
         /// 创建任务的Uin
         public let uin: String
-        
+
         /// 模型删除时间，格式为：2006-01-02 15:04:05.999999999 -0700 MST
         public let delTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"

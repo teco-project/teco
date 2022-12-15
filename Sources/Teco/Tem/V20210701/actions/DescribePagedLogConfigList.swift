@@ -19,23 +19,23 @@ extension Tem {
     public struct DescribePagedLogConfigListRequest: TCRequestModel {
         /// 环境 ID
         public let environmentId: String
-        
+
         /// 应用 ID
         public let applicationId: String?
-        
+
         /// 应用名
         public let applicationName: String?
-        
+
         /// 规则名
         public let name: String?
-        
+
         /// 分页大小，默认 20
         public let limit: Int64?
-        
+
         /// 翻页游标
         public let continueToken: String?
-        
-        public init (environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil) {
+
+        public init(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil) {
             self.environmentId = environmentId
             self.applicationId = applicationId
             self.applicationName = applicationName
@@ -43,7 +43,7 @@ extension Tem {
             self.limit = limit
             self.continueToken = continueToken
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case applicationId = "ApplicationId"
@@ -53,39 +53,39 @@ extension Tem {
             case continueToken = "ContinueToken"
         }
     }
-    
+
     /// DescribePagedLogConfigList返回参数结构体
     public struct DescribePagedLogConfigListResponse: TCResponseModel {
         /// 日志收集配置列表
         public let result: LogConfigListPage
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询分页的日志收集配置列表
     @inlinable
-    public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePagedLogConfigListResponse > {
+    public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePagedLogConfigListResponse> {
         self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询分页的日志收集配置列表
     @inlinable
     public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {
         try await self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询分页的日志收集配置列表
     @inlinable
-    public func describePagedLogConfigList(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePagedLogConfigListResponse > {
+    public func describePagedLogConfigList(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePagedLogConfigListResponse> {
         self.describePagedLogConfigList(DescribePagedLogConfigListRequest(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询分页的日志收集配置列表
     @inlinable
     public func describePagedLogConfigList(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {

@@ -28,101 +28,101 @@ extension TCRedisError {
             case permissionDenied = "InvalidParameter.PermissionDenied"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 没有找到对应接口。
         public static var actionNotFound: InvalidParameter {
             InvalidParameter(.actionNotFound)
         }
-        
+
         /// 参数为空。
         public static var emptyParam: InvalidParameter {
             InvalidParameter(.emptyParam)
         }
-        
+
         /// 非法参数错误。
         public static var illegalParameterError: InvalidParameter {
             InvalidParameter(.illegalParameterError)
         }
-        
+
         /// 实例安全组超过限制。
         public static var instanceSGOverLimitError: InvalidParameter {
             InvalidParameter(.instanceSGOverLimitError)
         }
-        
+
         /// 业务参数错误。
         public static var invalidParameter: InvalidParameter {
             InvalidParameter(.invalidParameter)
         }
-        
+
         /// 参数错误，不支持操作。
         public static var notSupported: InvalidParameter {
             InvalidParameter(.notSupported)
         }
-        
+
         /// 上海金融只提供vpc网络。
         public static var onlyVPCOnSpecZoneId: InvalidParameter {
             InvalidParameter(.onlyVPCOnSpecZoneId)
         }
-        
+
         /// 时间格式或者范围不符合要求。
         public static var period: InvalidParameter {
             InvalidParameter(.period)
         }
-        
+
         /// 接口没有cam权限。
         public static var permissionDenied: InvalidParameter {
             InvalidParameter(.permissionDenied)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {
-            case .actionNotFound: 
+            case .actionNotFound:
                 code = .invalidParameter_ActionNotFound
-            case .emptyParam: 
+            case .emptyParam:
                 code = .invalidParameter_EmptyParam
-            case .illegalParameterError: 
+            case .illegalParameterError:
                 code = .invalidParameter_IllegalParameterError
-            case .instanceSGOverLimitError: 
+            case .instanceSGOverLimitError:
                 code = .invalidParameter_InstanceSGOverLimitError
-            case .invalidParameter: 
+            case .invalidParameter:
                 code = .invalidParameter_InvalidParameter
-            case .notSupported: 
+            case .notSupported:
                 code = .invalidParameter_NotSupported
-            case .onlyVPCOnSpecZoneId: 
+            case .onlyVPCOnSpecZoneId:
                 code = .invalidParameter_OnlyVPCOnSpecZoneId
-            case .period: 
+            case .period:
                 code = .invalidParameter_Period
-            case .permissionDenied: 
+            case .permissionDenied:
                 code = .invalidParameter_PermissionDenied
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCRedisError(code, context: self.context)

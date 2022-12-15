@@ -22,23 +22,23 @@ extension Bmlb {
     public struct BindL4Backend: TCInputModel, TCOutputModel {
         /// 待绑定的主机端口，可选值1~65535。
         public let port: Int64
-        
+
         /// 待绑定的黑石物理机主机ID、虚拟机IP或者是半托管主机ID。
         public let instanceId: String
-        
+
         /// 待绑定的主机权重，可选值0~100。
         public let weight: Int64
-        
+
         /// 自定义探测的主机端口，可选值1~65535。（需要监听器开启自定义健康检查）
         public let probePort: Int64?
-        
-        public init (port: Int64, instanceId: String, weight: Int64, probePort: Int64? = nil) {
+
+        public init(port: Int64, instanceId: String, weight: Int64, probePort: Int64? = nil) {
             self.port = port
             self.instanceId = instanceId
             self.weight = weight
             self.probePort = probePort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case instanceId = "InstanceId"
@@ -46,76 +46,76 @@ extension Bmlb {
             case probePort = "ProbePort"
         }
     }
-    
+
     /// 待与七层监听器转发规则绑定的物理机主机、虚拟机或半托管主机信息。目前一个七层转发路径下面最多允许绑定255个主机端口。
     public struct BindL7Backend: TCInputModel, TCOutputModel {
         /// 待绑定的主机端口，可选值1~65535。
         public let port: Int64?
-        
+
         /// 黑石物理机主机ID、虚拟机IP或者是半托管主机ID。
         public let instanceId: String?
-        
+
         /// 待绑定的主机权重，可选值0~100。
         public let weight: Int64?
-        
-        public init (port: Int64? = nil, instanceId: String? = nil, weight: Int64? = nil) {
+
+        public init(port: Int64? = nil, instanceId: String? = nil, weight: Int64? = nil) {
             self.port = port
             self.instanceId = instanceId
             self.weight = weight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case instanceId = "InstanceId"
             case weight = "Weight"
         }
     }
-    
+
     /// 待与流量镜像绑定的接收机信息。
     public struct BindTrafficMirrorReceiver: TCInputModel, TCOutputModel {
         /// 待绑定的主机端口，可选值1~65535。
         public let port: Int64
-        
+
         /// 待绑定的主机实例ID。
         public let instanceId: String
-        
+
         /// 待绑定的主机权重，可选值0~100。
         public let weight: Int64
-        
-        public init (port: Int64, instanceId: String, weight: Int64) {
+
+        public init(port: Int64, instanceId: String, weight: Int64) {
             self.port = port
             self.instanceId = instanceId
             self.weight = weight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case instanceId = "InstanceId"
             case weight = "Weight"
         }
     }
-    
+
     /// 获取证书信息时返回的所用在的负载均衡信息。
     public struct CertDetailLoadBalancer: TCInputModel, TCOutputModel {
         /// 黑石负载均衡实例ID。
         public let loadBalancerId: String?
-        
+
         /// 黑石负载均衡实例名称。
         public let loadBalancerName: String?
-        
+
         /// 该黑石负载均衡所在的VpcId。
         public let vpcId: String?
-        
+
         /// 该黑石负载均衡所在的regionId。
         public let regionId: Int64?
-        
-        public init (loadBalancerId: String? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, regionId: Int64? = nil) {
+
+        public init(loadBalancerId: String? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, regionId: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.vpcId = vpcId
             self.regionId = regionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case loadBalancerName = "LoadBalancerName"
@@ -123,58 +123,58 @@ extension Bmlb {
             case regionId = "RegionId"
         }
     }
-    
+
     /// 用于创建四层监听器的监听器信息。目前一个负载均衡下面最多允许创建50个监听器。
     public struct CreateL4Listener: TCInputModel, TCOutputModel {
         /// 监听器监听端口，可选值1~65535。
         public let loadBalancerPort: Int64
-        
+
         /// 监听器协议类型，可选值tcp，udp。
         public let `protocol`: String
-        
+
         /// 监听器名称。
         public let listenerName: String
-        
+
         /// 监听器的会话保持时间，单位：秒。可选值：900~3600,不传表示不开启会话保持。
         public let sessionExpire: Int64?
-        
+
         /// 是否开启健康检查：1（开启）、0（关闭）。默认值0，表示关闭。
         public let healthSwitch: Int64?
-        
+
         /// 健康检查的响应超时时间，可选值：2-60，默认值：2，单位:秒。<br><font color="red">响应超时时间要小于检查间隔时间。</font>
         public let timeOut: Int64?
-        
+
         /// 健康检查检查间隔时间，默认值：5，可选值：5-300，单位：秒。
         public let intervalTime: Int64?
-        
+
         /// 健康阈值，默认值：3，表示当连续探测三次健康则表示该转发正常，可选值：2-10，单位：次。
         public let healthNum: Int64?
-        
+
         /// 不健康阈值，默认值：3，表示当连续探测三次不健康则表示该转发不正常，可选值：2-10，单位：次。
         public let unhealthNum: Int64?
-        
+
         /// 监听器最大带宽值，用于计费模式为固定带宽计费，可选值：0-1000，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 是否开启自定义健康检查：1（开启）、0（关闭）。默认值0，表示关闭。（该字段在健康检查开启的情况下才生效）
         public let customHealthSwitch: Int64?
-        
+
         /// 自定义健康探测内容类型，可选值：text（文本）、hexadecimal（十六进制）。
         public let inputType: String?
-        
+
         /// 探测内容类型为文本方式时，针对请求文本中换行替换方式。可选值：1（替换为LF）、2（替换为CR）、3（替换为LF+CR）。
         public let lineSeparatorType: Int64?
-        
+
         /// 自定义探测请求内容。
         public let healthRequest: String?
-        
+
         /// 自定义探测返回内容。
         public let healthResponse: String?
-        
+
         /// 是否开启toa。可选值：0（关闭）、1（开启），默认关闭。（该字段在负载均衡为fullnat类型下才生效）
         public let toaFlag: Int64?
-        
-        public init (loadBalancerPort: Int64, protocol: String, listenerName: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil) {
+
+        public init(loadBalancerPort: Int64, protocol: String, listenerName: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
             self.`protocol` = `protocol`
             self.listenerName = listenerName
@@ -192,7 +192,7 @@ extension Bmlb {
             self.healthResponse = healthResponse
             self.toaFlag = toaFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerPort = "LoadBalancerPort"
             case `protocol` = "Protocol"
@@ -212,49 +212,49 @@ extension Bmlb {
             case toaFlag = "ToaFlag"
         }
     }
-    
+
     /// 用于创建四层监听器的监听器信息。目前一个负载均衡下面最多允许创建50个七层监听器。
     public struct CreateL7Listener: TCInputModel, TCOutputModel {
         /// 七层监听器端口，可选值1~65535。
         public let loadBalancerPort: Int64
-        
+
         /// 七层监听器协议类型，可选值：http,https。
         public let `protocol`: String
-        
+
         /// 七层监听器名称。
         public let listenerName: String
-        
+
         /// 认证方式：0（不认证，用于http），1（单向认证，用于https），2（双向认证，用于https）。当创建的是https类型的监听器时，此值必选。
         public let sslMode: Int64?
-        
+
         /// 服务端证书ID。当创建的是https类型的监听器时，此值必选。
         public let certId: String?
-        
+
         /// 服务端证书名称。
         public let certName: String?
-        
+
         /// 服务端证书内容。
         public let certContent: String?
-        
+
         /// 服务端证书密钥。
         public let certKey: String?
-        
+
         /// 客户端证书ID。
         public let certCaId: String?
-        
+
         /// 客户端证书名称。
         public let certCaName: String?
-        
+
         /// 客户端证书内容。
         public let certCaContent: String?
-        
+
         /// 用于计费模式为固定带宽计费，指定监听器最大带宽值，可选值：0-1000，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 转发协议。当Protocol为https时并且SslMode为1或2时，有意义。可选的值为0：https，1：spdy，2：http2，3：spdy+http2。
         public let forwardProtocol: Int64?
-        
-        public init (loadBalancerPort: Int64, protocol: String, listenerName: String, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
+
+        public init(loadBalancerPort: Int64, protocol: String, listenerName: String, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
             self.`protocol` = `protocol`
             self.listenerName = listenerName
@@ -269,7 +269,7 @@ extension Bmlb {
             self.bandwidth = bandwidth
             self.forwardProtocol = forwardProtocol
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerPort = "LoadBalancerPort"
             case `protocol` = "Protocol"
@@ -286,43 +286,43 @@ extension Bmlb {
             case forwardProtocol = "ForwardProtocol"
         }
     }
-    
+
     /// 用于创建七层监听器的转发规则的信息。目前一个七层监听器下面最多允许创建50个七层转发域名，而每一个转发域名下最多可以创建100个转发规则。
     public struct CreateL7Rule: TCInputModel {
         /// 七层转发规则的转发域名。
         public let domain: String
-        
+
         /// 七层转发规则的转发路径。
         public let url: String
-        
+
         /// 会话保持时间，单位：秒。可选值：30~3600。默认值0，表示不开启会话保持。
         public let sessionExpire: Int64?
-        
+
         /// 健康检查开关：1（开启）、0（关闭）。默认值0，表示关闭。
         public let healthSwitch: Int64?
-        
+
         /// 健康检查检查间隔时间，默认值：5，可选值：5-300，单位：秒。
         public let intervalTime: Int64?
-        
+
         /// 健康检查健康阈值，默认值：3，表示当连续探测三次健康则表示该转发正常，可选值：2-10，单位：次。
         public let healthNum: Int64?
-        
+
         /// 健康检查不健康阈值，默认值：5，表示当连续探测五次不健康则表示该转发不正常，可选值：2-10，单位：次。
         public let unhealthNum: Int64?
-        
+
         /// 健康检查中认为健康的HTTP返回码的组合。可选值为1~5的集合，1表示HTTP返回码为1xx认为健康。2表示HTTP返回码为2xx认为健康。3表示HTTP返回码为3xx认为健康。4表示HTTP返回码为4xx认为健康。5表示HTTP返回码为5xx认为健康。
         public let httpCodes: [UInt64]?
-        
+
         /// 健康检查检查路径。
         public let httpCheckPath: String?
-        
+
         /// 健康检查检查域名。如果创建规则的域名使用通配符或正则表达式，则健康检查检查域名可自定义，否则必须跟健康检查检查域名一样。
         public let httpCheckDomain: String?
-        
+
         /// 均衡方式：ip_hash、wrr。默认值wrr。
         public let balanceMode: String?
-        
-        public init (domain: String, url: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, balanceMode: String? = nil) {
+
+        public init(domain: String, url: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, balanceMode: String? = nil) {
             self.domain = domain
             self.url = url
             self.sessionExpire = sessionExpire
@@ -335,7 +335,7 @@ extension Bmlb {
             self.httpCheckDomain = httpCheckDomain
             self.balanceMode = balanceMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case url = "Url"
@@ -350,109 +350,109 @@ extension Bmlb {
             case balanceMode = "BalanceMode"
         }
     }
-    
+
     /// 用于创建负载均衡的个性化配置。
     public struct CreateLoadBalancerBzConf: TCInputModel {
         /// 按月/按小时计费。
         public let bzPayMode: String?
-        
+
         /// 四层可选按带宽，连接数衡量。
         public let bzL4Metrics: String?
-        
+
         /// 七层可选按qps衡量。
         public let bzL7Metrics: String?
-        
-        public init (bzPayMode: String? = nil, bzL4Metrics: String? = nil, bzL7Metrics: String? = nil) {
+
+        public init(bzPayMode: String? = nil, bzL4Metrics: String? = nil, bzL7Metrics: String? = nil) {
             self.bzPayMode = bzPayMode
             self.bzL4Metrics = bzL4Metrics
             self.bzL7Metrics = bzL7Metrics
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bzPayMode = "BzPayMode"
             case bzL4Metrics = "BzL4Metrics"
             case bzL7Metrics = "BzL7Metrics"
         }
     }
-    
+
     /// 待查询四层监听器绑定的主机信息。
     public struct DescribeL4Backend: TCInputModel, TCOutputModel {
         /// 待绑定的主机端口，可选值1~65535。
         public let port: Int64?
-        
+
         /// 黑石物理机的主机ID。
         public let instanceId: String?
-        
-        public init (port: Int64? = nil, instanceId: String? = nil) {
+
+        public init(port: Int64? = nil, instanceId: String? = nil) {
             self.port = port
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 流量镜像进行健康检查的接收机信息。
     public struct DescribeTrafficMirrorReceiver: TCInputModel {
         /// 物理机实例ID。
         public let instanceId: String
-        
+
         /// 物理机绑定的端口。
         public let port: Int64
-        
-        public init (instanceId: String, port: Int64) {
+
+        public init(instanceId: String, port: Int64) {
             self.instanceId = instanceId
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case port = "Port"
         }
     }
-    
+
     /// 获取设备绑定信息时返回的所绑定的主机信息。
     public struct DevicesBindInfoBackend: TCInputModel, TCOutputModel {
         /// 黑石物理机的主机ID、托管主机ID或虚拟机IP。
         public let instanceId: String?
-        
+
         /// 主机端口。
         public let port: Int64?
-        
-        public init (instanceId: String? = nil, port: Int64? = nil) {
+
+        public init(instanceId: String? = nil, port: Int64? = nil) {
             self.instanceId = instanceId
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case port = "Port"
         }
     }
-    
+
     /// 获取设备绑定信息时返回的四层监听器信息。
     public struct DevicesBindInfoL4Listener: TCInputModel, TCOutputModel {
         /// 七层监听器实例ID。
         public let listenerId: String?
-        
+
         /// 七层监听器协议类型，可选值：http,https。
         public let `protocol`: String?
-        
+
         /// 七层监听器的监听端口。
         public let loadBalancerPort: Int64?
-        
+
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [DevicesBindInfoBackend]?
-        
-        public init (listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
+
+        public init(listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.backendSet = backendSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case `protocol` = "Protocol"
@@ -460,28 +460,28 @@ extension Bmlb {
             case backendSet = "BackendSet"
         }
     }
-    
+
     /// 获取设备绑定信息时返回的七层监听器信息。
     public struct DevicesBindInfoL7Listener: TCInputModel, TCOutputModel {
         /// 七层监听器实例ID。
         public let listenerId: String?
-        
+
         /// 七层监听器协议类型，可选值：http,https。
         public let `protocol`: String?
-        
+
         /// 七层监听器的监听端口。
         public let loadBalancerPort: Int64?
-        
+
         /// 返回的转发规则列表。
         public let ruleSet: [DevicesBindInfoRule]?
-        
-        public init (listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, ruleSet: [DevicesBindInfoRule]? = nil) {
+
+        public init(listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, ruleSet: [DevicesBindInfoRule]? = nil) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.ruleSet = ruleSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case `protocol` = "Protocol"
@@ -489,37 +489,37 @@ extension Bmlb {
             case ruleSet = "RuleSet"
         }
     }
-    
+
     /// 获取设备绑定信息时返回的设备被绑定所在的负载均衡信息。
     public struct DevicesBindInfoLoadBalancer: TCInputModel, TCOutputModel {
         /// 负载均衡实例ID。
         public let loadBalancerId: String?
-        
+
         /// 开发商AppId。
         public let appId: Int64?
-        
+
         /// 负载均衡所属的项目ID。
         public let projectId: Int64?
-        
+
         /// 黑石私有网络唯一ID。
         public let vpcId: String?
-        
+
         /// 负载均衡的IP地址。
         public let vip: String?
-        
+
         /// 负载均衡对应的TGW集群类别，取值为tunnel或fullnat。tunnel表示隧道集群，fullnat表示FULLNAT集群。
         public let tgwSetType: String?
-        
+
         /// 是否独占TGW集群。
         public let exclusive: Int64?
-        
+
         /// 具有该绑定关系的四层监听器列表。
         public let l4ListenerSet: [DevicesBindInfoL4Listener]?
-        
+
         /// 具有该绑定关系的七层监听器列表。
         public let l7ListenerSet: [DevicesBindInfoL7Listener]?
-        
-        public init (loadBalancerId: String? = nil, appId: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, vip: String? = nil, tgwSetType: String? = nil, exclusive: Int64? = nil, l4ListenerSet: [DevicesBindInfoL4Listener]? = nil, l7ListenerSet: [DevicesBindInfoL7Listener]? = nil) {
+
+        public init(loadBalancerId: String? = nil, appId: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, vip: String? = nil, tgwSetType: String? = nil, exclusive: Int64? = nil, l4ListenerSet: [DevicesBindInfoL4Listener]? = nil, l7ListenerSet: [DevicesBindInfoL7Listener]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.appId = appId
             self.projectId = projectId
@@ -530,7 +530,7 @@ extension Bmlb {
             self.l4ListenerSet = l4ListenerSet
             self.l7ListenerSet = l7ListenerSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case appId = "AppId"
@@ -543,104 +543,104 @@ extension Bmlb {
             case l7ListenerSet = "L7ListenerSet"
         }
     }
-    
+
     /// 获取设备绑定信息时返回的设备所绑定的转发路径信息。
     public struct DevicesBindInfoLocation: TCInputModel, TCOutputModel {
         /// 转发路径。
         public let url: String?
-        
+
         /// 转发路径实例ID。
         public let locationId: String?
-        
+
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [DevicesBindInfoBackend]?
-        
-        public init (url: String? = nil, locationId: String? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
+
+        public init(url: String? = nil, locationId: String? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
             self.url = url
             self.locationId = locationId
             self.backendSet = backendSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case locationId = "LocationId"
             case backendSet = "BackendSet"
         }
     }
-    
+
     /// 获取设备绑定信息时返回的设备所绑定的转发规则信息。
     public struct DevicesBindInfoRule: TCInputModel, TCOutputModel {
         /// 转发域名。
         public let domain: String?
-        
+
         /// 转发域名ID。
         public let domainId: String?
-        
+
         /// 转发路径列表。
         public let locationSet: [DevicesBindInfoLocation]?
-        
-        public init (domain: String? = nil, domainId: String? = nil, locationSet: [DevicesBindInfoLocation]? = nil) {
+
+        public init(domain: String? = nil, domainId: String? = nil, locationSet: [DevicesBindInfoLocation]? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.locationSet = locationSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
             case locationSet = "LocationSet"
         }
     }
-    
+
     /// 过滤器
     public struct Filter: TCInputModel {
         /// 属性名称, 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
         public let name: String
-        
+
         /// 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 查询四层监听器返回的与监听器绑定关系的主机信息。
     public struct L4Backend: TCInputModel, TCOutputModel {
         /// 绑定类别（0代表黑石物理机，1代表虚拟机IP）。
         public let bindType: Int64?
-        
+
         /// 主机端口。
         public let port: Int64?
-        
+
         /// 权重。
         public let weight: Int64?
-        
+
         /// 当前绑定关系的健康检查状态（Dead代表不健康，Alive代表健康）。
         public let status: String?
-        
+
         /// 黑石物理机的主机ID。
         public let instanceId: String?
-        
+
         /// 黑石物理机的别名。
         public let alias: String?
-        
+
         /// 主机IP。
         public let lanIp: String?
-        
+
         /// 黑石物理机当前可以执行的操作。
         public let operates: [String]?
-        
+
         /// 主机探测端口。
         public let probePort: Int64?
-        
-        public init (bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil, operates: [String]? = nil, probePort: Int64? = nil) {
+
+        public init(bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil, operates: [String]? = nil, probePort: Int64? = nil) {
             self.bindType = bindType
             self.port = port
             self.weight = weight
@@ -651,7 +651,7 @@ extension Bmlb {
             self.operates = operates
             self.probePort = probePort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bindType = "BindType"
             case port = "Port"
@@ -664,66 +664,66 @@ extension Bmlb {
             case probePort = "ProbePort"
         }
     }
-    
+
     /// 查询四层监听器时返回的四层监听器信息。
     public struct L4Listener: TCInputModel, TCOutputModel {
         /// 监听器ID。
         public let listenerId: String?
-        
+
         /// 用户自定义的监听器名称。
         public let listenerName: String?
-        
+
         /// 负载均衡实例监听器协议类型，可选值tcp，udp。
         public let `protocol`: String?
-        
+
         /// 负载均衡监听器的监听接口，可选值1~65535。
         public let loadBalancerPort: Int64?
-        
+
         /// 用于计费模式为固定带宽计费，指定监听器最大带宽值，可选值：0-1000，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 监听器的类别：L4Listener（四层监听器），L7Listener（七层监听器）。
         public let listenerType: String?
-        
+
         /// 会话保持时间。单位：秒
         public let sessionExpire: Int64?
-        
+
         /// 是否开启了检查：1（开启）、0（关闭）。
         public let healthSwitch: Int64?
-        
+
         /// 响应超时时间，单位：秒。
         public let timeOut: Int64?
-        
+
         /// 检查间隔，单位：秒。
         public let intervalTime: Int64?
-        
+
         /// 负载均衡监听器健康阈值，默认值：3，表示当连续探测三次健康则表示该转发正常，可选值：2-10，单位：次。
         public let healthNum: Int64?
-        
+
         /// 负载均衡监听器不健康阈值，默认值：3，表示当连续探测三次不健康则表示该转发不正常，可选值：2-10，单位：次。
         public let unhealthNum: Int64?
-        
+
         /// 是否开启自定义健康检查：1（开启）、0（关闭）。默认值0，表示关闭。（该字段在健康检查开启的情况下才生效）
         public let customHealthSwitch: Int64?
-        
+
         /// 自定义健康探测内容类型，可选值：text（文本）、hexadecimal（十六进制）。
         public let inputType: String?
-        
+
         /// 探测内容类型为文本方式时，针对请求文本中换行替换方式。可选值：1（替换为LF）、2（替换为CR）、3（替换为LF+CR）。
         public let lineSeparatorType: Int64?
-        
+
         /// 自定义探测请求内容。
         public let healthRequest: String?
-        
+
         /// 自定义探测返回内容。
         public let healthResponse: String?
-        
+
         /// 是否开启toa：1（开启）、0（关闭）。
         public let toaFlag: Int64?
-        
+
         /// 监听器当前状态（0代表创建中，1代表正常运行，2代表创建失败，3代表删除中，4代表删除失败）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -731,11 +731,11 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
+
         /// 转发后端服务器调度类型。
         public let balanceMode: String?
-        
-        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, balanceMode: String? = nil) {
+
+        public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -758,7 +758,7 @@ extension Bmlb {
             self.addTimestamp = addTimestamp
             self.balanceMode = balanceMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -783,48 +783,48 @@ extension Bmlb {
             case balanceMode = "BalanceMode"
         }
     }
-    
+
     /// 查询绑定了某主机的四层监听器时返回的四层监听器信息。
     public struct L4ListenerInfo: TCInputModel, TCOutputModel {
         /// 监听器ID。
         public let listenerId: String?
-        
+
         /// 用户自定义的监听器名称。
         public let listenerName: String?
-        
+
         /// 负载均衡实例监听器协议类型，可选值tcp，udp。
         public let `protocol`: String?
-        
+
         /// 负载均衡监听器的监听接口，可选值1~65535。
         public let loadBalancerPort: Int64?
-        
+
         /// 用于计费模式为固定带宽计费，指定监听器最大带宽值，可选值：0-1000，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 监听器的类别：L4Listener（四层监听器），L7Listener（七层监听器）。
         public let listenerType: String?
-        
+
         /// 会话保持时间。单位：秒
         public let sessionExpire: Int64?
-        
+
         /// 是否开启了检查：1（开启）、0（关闭）。
         public let healthSwitch: Int64?
-        
+
         /// 响应超时时间，单位：秒。
         public let timeOut: Int64?
-        
+
         /// 检查间隔，单位：秒。
         public let intervalTime: Int64?
-        
+
         /// 负载均衡监听器健康阈值，默认值：3，表示当连续探测三次健康则表示该转发正常，可选值：2-10，单位：次。
         public let healthNum: Int64?
-        
+
         /// 负载均衡监听器不健康阈值，默认值：3，表示当连续探测三次不健康则表示该转发不正常，可选值：2-10，单位：次。
         public let unhealthNum: Int64?
-        
+
         /// 监听器当前状态（0代表创建中，1代表正常运行，2代表创建失败，3代表删除中，4代表删除失败）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -832,29 +832,29 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
+
         /// 是否开启自定义健康检查：1（开启）、0（关闭）。默认值0，表示关闭。（该字段在健康检查开启的情况下才生效）
         public let customHealthSwitch: Int64?
-        
+
         /// 自定义健康探测内容类型，可选值：text（文本）、hexadecimal（十六进制）。
         public let inputType: String?
-        
+
         /// 探测内容类型为文本方式时，针对请求文本中换行替换方式。可选值：1（替换为LF）、2（替换为CR）、3（替换为LF+CR）。
         public let lineSeparatorType: Int64?
-        
+
         /// 自定义探测请求内容。
         public let healthRequest: String?
-        
+
         /// 自定义探测返回内容。
         public let healthResponse: String?
-        
+
         /// 是否开启toa：1（开启）、0（关闭）。
         public let toaFlag: Int64?
-        
+
         /// 转发后端服务器调度类型。
         public let balanceMode: String?
-        
-        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil) {
+
+        public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -877,7 +877,7 @@ extension Bmlb {
             self.toaFlag = toaFlag
             self.balanceMode = balanceMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -902,37 +902,37 @@ extension Bmlb {
             case balanceMode = "BalanceMode"
         }
     }
-    
+
     /// 获取七层转发路径绑定的主机列表时返回的主机信息。
     public struct L7Backend: TCInputModel, TCOutputModel {
         /// 绑定类别（0代表黑石物理机，1代表虚拟机IP）。
         public let bindType: Int64?
-        
+
         /// 主机端口。
         public let port: Int64?
-        
+
         /// 权重。
         public let weight: Int64?
-        
+
         /// 当前绑定关系的健康检查状态（Dead代表不健康，Alive代表健康）。
         public let status: String?
-        
+
         /// 黑石物理机的主机ID。
         public let instanceId: String?
-        
+
         /// 黑石物理机的别名。
         public let alias: String?
-        
+
         /// 主机IP。
         public let lanIp: String?
-        
+
         /// 黑石物理机的管理IP。
         public let mgtIp: String?
-        
+
         /// 黑石物理机当前可以执行的操作。
         public let operates: [String]?
-        
-        public init (bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil, mgtIp: String? = nil, operates: [String]? = nil) {
+
+        public init(bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil, mgtIp: String? = nil, operates: [String]? = nil) {
             self.bindType = bindType
             self.port = port
             self.weight = weight
@@ -943,7 +943,7 @@ extension Bmlb {
             self.mgtIp = mgtIp
             self.operates = operates
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bindType = "BindType"
             case port = "Port"
@@ -956,39 +956,39 @@ extension Bmlb {
             case operates = "Operates"
         }
     }
-    
+
     /// 监听器信息。
     public struct L7ExListener: TCOutputModel {
         /// 绑定的监听器唯一ID。
         public let listenerId: String?
-        
+
         /// 监听器名称。
         public let listenerName: String?
-        
+
         /// 七层监听器协议类型，可选值：http,https。
         public let `protocol`: String
-        
+
         /// 监听器的监听端口。
         public let loadBalancerPort: UInt64
-        
+
         /// 当前带宽。
         public let bandwidth: UInt64
-        
+
         /// 带宽上限。
         public let maxBandwidth: UInt64
-        
+
         /// 监听器类型。
         public let listenerType: String
-        
+
         /// 认证方式：0（不认证，用于http），1（单向认证，用于https），2（双向认证，用于https）。
         public let sslMode: Int64
-        
+
         /// 服务端证书ID。
         public let certId: String
-        
+
         /// 客户端证书ID。
         public let certCaId: String
-        
+
         /// 添加时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -996,31 +996,31 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date
-        
+
         /// 负载均衡名ID。
         public let loadBalancerId: String
-        
+
         /// 私有网络名称。
         public let vpcName: String
-        
+
         /// 私有网络Cidr。
         public let vpcCidrBlock: String
-        
+
         /// 负载均衡的VIP。
         public let loadBalancerVips: [String]
-        
+
         /// 负载均衡名称。
         public let loadBalancerName: String
-        
+
         /// 负载均衡IPV6的VIP。
         public let loadBalancerVipv6s: [String]
-        
+
         /// 支持的IP协议类型。ipv4或者是ipv6。
         public let ipProtocolType: String
-        
+
         /// 是否绑定在入参指定的流量镜像中。
         public let bindTrafficMirror: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -1043,39 +1043,39 @@ extension Bmlb {
             case bindTrafficMirror = "BindTrafficMirror"
         }
     }
-    
+
     /// 获取黑石负载均衡七层监听器时返回的七层监听器信息。
     public struct L7Listener: TCInputModel, TCOutputModel {
         /// 七层监听器实例ID。
         public let listenerId: String?
-        
+
         /// 七层监听器名称。
         public let listenerName: String?
-        
+
         /// 七层监听器协议类型，可选值：http,https。
         public let `protocol`: String?
-        
+
         /// 七层监听器的监听端口。
         public let loadBalancerPort: Int64?
-        
+
         /// 计费模式为按固定带宽方式时监听器的限速值，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 监听器的类别：L4Listener（四层监听器），L7Listener（七层监听器）。
         public let listenerType: String?
-        
+
         /// 七层监听器的认证方式：0（不认证，用于http），1（单向认证，用于https），2（双向认证，用于https）。
         public let sslMode: Int64?
-        
+
         /// 七层监听器关联的服务端证书ID。
         public let certId: String?
-        
+
         /// 七层监听器关联的客户端证书ID。
         public let certCaId: String?
-        
+
         /// 监听器当前状态（0代表创建中，1代表正常运行，2代表创建失败，3代表删除中，4代表删除失败）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1083,11 +1083,11 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
+
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
         public let forwardProtocol: Int64?
-        
-        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, forwardProtocol: Int64? = nil) {
+
+        public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -1101,7 +1101,7 @@ extension Bmlb {
             self.addTimestamp = addTimestamp
             self.forwardProtocol = forwardProtocol
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -1117,39 +1117,39 @@ extension Bmlb {
             case forwardProtocol = "ForwardProtocol"
         }
     }
-    
+
     /// 查询绑定了某主机的七层监听器时返回的七层监听器信息。
     public struct L7ListenerInfo: TCInputModel, TCOutputModel {
         /// 七层监听器实例ID。
         public let listenerId: String?
-        
+
         /// 七层监听器名称。
         public let listenerName: String?
-        
+
         /// 七层监听器协议类型，可选值：http,https。
         public let `protocol`: String?
-        
+
         /// 七层监听器的监听端口。
         public let loadBalancerPort: Int64?
-        
+
         /// 计费模式为按固定带宽方式时监听器的限速值，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 监听器的类别：L4Listener（四层监听器），L7Listener（七层监听器）。
         public let listenerType: String?
-        
+
         /// 七层监听器的认证方式：0（不认证，用于http），1（单向认证，用于https），2（双向认证，用于https）。
         public let sslMode: Int64?
-        
+
         /// 七层监听器关联的服务端证书ID。
         public let certId: String?
-        
+
         /// 七层监听器关联的客户端证书ID。
         public let certCaId: String?
-        
+
         /// 当前绑定关系的健康检查状态（Dead代表不健康，Alive代表健康）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1157,14 +1157,14 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
+
         /// 返回的转发规则列表。
         public let ruleSet: [L7ListenerInfoRule]?
-        
+
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
         public let forwardProtocol: Int64?
-        
-        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, ruleSet: [L7ListenerInfoRule]? = nil, forwardProtocol: Int64? = nil) {
+
+        public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, ruleSet: [L7ListenerInfoRule]? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -1179,7 +1179,7 @@ extension Bmlb {
             self.ruleSet = ruleSet
             self.forwardProtocol = forwardProtocol
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -1196,31 +1196,31 @@ extension Bmlb {
             case forwardProtocol = "ForwardProtocol"
         }
     }
-    
+
     /// 查询绑定了某主机七层监听器时返回的与转发路径所绑定的主机信息。
     public struct L7ListenerInfoBackend: TCInputModel, TCOutputModel {
         /// 绑定类别（0代表黑石物理机，1代表虚拟机IP）。
         public let bindType: Int64?
-        
+
         /// 主机端口。
         public let port: Int64?
-        
+
         /// 权重。
         public let weight: Int64?
-        
+
         /// 当前绑定关系的健康检查状态（Dead代表不健康，Alive代表健康）。
         public let status: String?
-        
+
         /// 黑石物理机的主机ID。
         public let instanceId: String?
-        
+
         /// 黑石物理机的别名。
         public let alias: String?
-        
+
         /// 主机IP。
         public let lanIp: String?
-        
-        public init (bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil) {
+
+        public init(bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil) {
             self.bindType = bindType
             self.port = port
             self.weight = weight
@@ -1229,7 +1229,7 @@ extension Bmlb {
             self.alias = alias
             self.lanIp = lanIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bindType = "BindType"
             case port = "Port"
@@ -1240,45 +1240,45 @@ extension Bmlb {
             case lanIp = "LanIp"
         }
     }
-    
+
     /// 查询绑定了某主机的七层监听器时返回的转发路径。
     public struct L7ListenerInfoLocation: TCInputModel, TCOutputModel {
         /// 转发路径。
         public let url: String?
-        
+
         /// 转发路径实例ID。
         public let locationId: String?
-        
+
         /// 会话保持时间。
         public let sessionExpire: Int64?
-        
+
         /// 是否开启健康检查。
         public let healthSwitch: Int64?
-        
+
         /// 健康检查检查路径。
         public let httpCheckPath: String?
-        
+
         /// 健康检查检查域名。
         public let httpCheckDomain: String?
-        
+
         /// 健康检查检查间隔时间。
         public let intervalTime: Int64?
-        
+
         /// 健康检查健康阈值。
         public let healthNum: Int64?
-        
+
         /// 健康检查不健康阈值。
         public let unhealthNum: Int64?
-        
+
         /// 健康检查中认为健康的HTTP返回码的组合。可选值为1~5的集合，1表示HTTP返回码为1xx认为健康。2表示HTTP返回码为2xx认为健康。3表示HTTP返回码为3xx认为健康。4表示HTTP返回码为4xx认为健康。5表示HTTP返回码为5xx认为健康。
         public let httpCodes: [UInt64]?
-        
+
         /// 均衡方式。
         public let balanceMode: String?
-        
+
         /// 当前绑定关系的健康检查状态（Dead代表不健康，Alive代表健康）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1286,11 +1286,11 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
+
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [L7ListenerInfoBackend]?
-        
-        public init (url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, backendSet: [L7ListenerInfoBackend]? = nil) {
+
+        public init(url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, backendSet: [L7ListenerInfoBackend]? = nil) {
             self.url = url
             self.locationId = locationId
             self.sessionExpire = sessionExpire
@@ -1306,7 +1306,7 @@ extension Bmlb {
             self.addTimestamp = addTimestamp
             self.backendSet = backendSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case locationId = "LocationId"
@@ -1324,18 +1324,18 @@ extension Bmlb {
             case backendSet = "BackendSet"
         }
     }
-    
+
     /// 查询绑定了某主机的七层监听器时返回的转发规则。
     public struct L7ListenerInfoRule: TCInputModel, TCOutputModel {
         /// 转发域名。
         public let domain: String?
-        
+
         /// 转发域名实例ID。
         public let domainId: String?
-        
+
         /// 当前绑定关系的健康检查状态（Dead代表不健康，Alive代表健康）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1343,18 +1343,18 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
+
         /// 该转发域名下面的转发路径列表。
         public let locationSet: [L7ListenerInfoLocation]?
-        
-        public init (domain: String? = nil, domainId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, locationSet: [L7ListenerInfoLocation]? = nil) {
+
+        public init(domain: String? = nil, domainId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, locationSet: [L7ListenerInfoLocation]? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.status = status
             self.addTimestamp = addTimestamp
             self.locationSet = locationSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
@@ -1363,18 +1363,18 @@ extension Bmlb {
             case locationSet = "LocationSet"
         }
     }
-    
+
     /// 获取七层监听器转发规则时返回的转发规则。
     public struct L7Rule: TCInputModel, TCOutputModel {
         /// 转发域名。
         public let domain: String?
-        
+
         /// 转发域名实例ID。
         public let domainId: String?
-        
+
         /// 转发路径当前状态（0代表创建中，1代表正常运行，2代表创建失败，3代表删除中，4代表删除失败）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1382,18 +1382,18 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
+
         /// 该转发域名下面的转发路径列表。
         public let locationSet: [L7RulesLocation]?
-        
-        public init (domain: String? = nil, domainId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, locationSet: [L7RulesLocation]? = nil) {
+
+        public init(domain: String? = nil, domainId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, locationSet: [L7RulesLocation]? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.status = status
             self.addTimestamp = addTimestamp
             self.locationSet = locationSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
@@ -1402,45 +1402,45 @@ extension Bmlb {
             case locationSet = "LocationSet"
         }
     }
-    
+
     /// 获取七层转发规则时返回的转发域名下面的转发路径。
     public struct L7RulesLocation: TCInputModel, TCOutputModel {
         /// 转发路径。
         public let url: String?
-        
+
         /// 转发路径实例ID。
         public let locationId: String?
-        
+
         /// 会话保持时间。
         public let sessionExpire: Int64?
-        
+
         /// 是否开启健康检查。
         public let healthSwitch: Int64?
-        
+
         /// 健康检查检查路径。
         public let httpCheckPath: String?
-        
+
         /// 健康检查检查域名。
         public let httpCheckDomain: String?
-        
+
         /// 健康检查检查间隔时间。
         public let intervalTime: Int64?
-        
+
         /// 健康检查健康阈值。
         public let healthNum: Int64?
-        
+
         /// 健康检查不健康阈值。
         public let unhealthNum: Int64?
-        
+
         /// 健康检查中认为健康的HTTP返回码的组合。可选值为1~5的集合，1表示HTTP返回码为1xx认为健康。2表示HTTP返回码为2xx认为健康。3表示HTTP返回码为3xx认为健康。4表示HTTP返回码为4xx认为健康。5表示HTTP返回码为5xx认为健康。
         public let httpCodes: [UInt64]?
-        
+
         /// 均衡方式。
         public let balanceMode: String?
-        
+
         /// 转发路径当前状态（0代表创建中，1代表正常运行，2代表创建失败，3代表删除中，4代表删除失败）。
         public let status: Int64?
-        
+
         /// 创建时间戳。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1448,8 +1448,8 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date?
-        
-        public init (url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil) {
+
+        public init(url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil) {
             self.url = url
             self.locationId = locationId
             self.sessionExpire = sessionExpire
@@ -1464,7 +1464,7 @@ extension Bmlb {
             self.status = status
             self.addTimestamp = addTimestamp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case locationId = "LocationId"
@@ -1481,45 +1481,45 @@ extension Bmlb {
             case addTimestamp = "AddTimestamp"
         }
     }
-    
+
     /// 获取负载均衡实例列表时返回的负载均衡信息。
     public struct LoadBalancer: TCInputModel, TCOutputModel {
         /// 负载均衡器ID
         public let loadBalancerId: String?
-        
+
         /// 项目ID，通过v2/DescribeProject 接口获得
         public let projectId: UInt64?
-        
+
         /// 负载均衡器名称
         public let loadBalancerName: String?
-        
+
         /// 负载均衡的类型 : open表示公网负载均衡类型，internal表示内网负载均衡类型
         public let loadBalancerType: String?
-        
+
         /// 是否筛选独占集群，0表示非独占集群，1表示四层独占集群，2表示七层独占集群，3表示四层和七层独占集群，4表示共享容灾
         public let exclusive: UInt64?
-        
+
         /// 该负载均衡对应的tgw集群（fullnat,tunnel,dnat）
         public let tgwSetType: String?
-        
+
         /// 负载均衡域名。规则：1-60个小写英文字母、数字、点号“.”或连接线“-”。内网类型的负载均衡不能配置该字段
         public let domain: String?
-        
+
         /// 该负载均衡对应的所在的VpcId
         public let vpcId: String?
-        
+
         /// 该负载均衡对应的所在的SubnetId
         public let subnetId: String?
-        
+
         /// 无
         public let status: UInt64?
-        
+
         /// 无
         public let payMode: String?
-        
+
         /// 无
         public let latestPayMode: String?
-        
+
         /// 无
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1527,7 +1527,7 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 无
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1535,51 +1535,51 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var statusTime: Date?
-        
+
         /// 私有网络名称。
         public let vpcName: String?
-        
+
         /// 私有网络Cidr。
         public let vpcCidrBlock: String?
-        
+
         /// 负载均衡的IPV4的VIP。
         public let loadBalancerVips: [String]?
-        
+
         /// 无
         public let supportListenerTypes: [String]?
-        
+
         /// 无
         public let bandwidth: UInt64?
-        
+
         /// 负载均衡个性化配置ID
         public let confId: String?
-        
+
         /// 无
         public let confName: String?
-        
+
         /// 负载均衡的IPV6的VIP。
         public let loadBalancerVipv6s: [String]?
-        
+
         /// 负载均衡IP协议类型。ipv4或者ipv6。
         public let ipProtocolType: String?
-        
+
         /// 保障型网关计费形式
         public let bzPayMode: String?
-        
+
         /// 保障型网关四层计费指标
         public let bzL4Metrics: String?
-        
+
         /// 保障型网关七层计费指标
         public let bzL7Metrics: String?
-        
+
         /// 该负载均衡对应的所在的整形类型的VpcId
         public let intVpcId: UInt64?
-        
+
         /// 负载均衡的IPV6或者IPV4的VIP。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let curVips: [String]?
-        
-        public init (loadBalancerId: String? = nil, projectId: UInt64? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, domain: String? = nil, vpcId: String? = nil, subnetId: String? = nil, status: UInt64? = nil, payMode: String? = nil, latestPayMode: String? = nil, createTime: Date? = nil, statusTime: Date? = nil, vpcName: String? = nil, vpcCidrBlock: String? = nil, loadBalancerVips: [String]? = nil, supportListenerTypes: [String]? = nil, bandwidth: UInt64? = nil, confId: String? = nil, confName: String? = nil, loadBalancerVipv6s: [String]? = nil, ipProtocolType: String? = nil, bzPayMode: String? = nil, bzL4Metrics: String? = nil, bzL7Metrics: String? = nil, intVpcId: UInt64? = nil, curVips: [String]? = nil) {
+
+        public init(loadBalancerId: String? = nil, projectId: UInt64? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, domain: String? = nil, vpcId: String? = nil, subnetId: String? = nil, status: UInt64? = nil, payMode: String? = nil, latestPayMode: String? = nil, createTime: Date? = nil, statusTime: Date? = nil, vpcName: String? = nil, vpcCidrBlock: String? = nil, loadBalancerVips: [String]? = nil, supportListenerTypes: [String]? = nil, bandwidth: UInt64? = nil, confId: String? = nil, confName: String? = nil, loadBalancerVipv6s: [String]? = nil, ipProtocolType: String? = nil, bzPayMode: String? = nil, bzL4Metrics: String? = nil, bzL7Metrics: String? = nil, intVpcId: UInt64? = nil, curVips: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.projectId = projectId
             self.loadBalancerName = loadBalancerName
@@ -1609,7 +1609,7 @@ extension Bmlb {
             self.intVpcId = intVpcId
             self.curVips = curVips
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case projectId = "ProjectId"
@@ -1641,30 +1641,30 @@ extension Bmlb {
             case curVips = "CurVips"
         }
     }
-    
+
     /// 获取黑石负载均衡端口相关信息时返回的监听器信息（四层和七层）。
     public struct LoadBalancerPortInfoListener: TCOutputModel {
         /// 负载均衡监听器ID。
         public let listenerId: String?
-        
+
         /// 监听器名称。
         public let listenerName: String?
-        
+
         /// 监听器协议类型，可选值：http，https，tcp，udp。
         public let `protocol`: String?
-        
+
         /// 监听器的监听端口。
         public let loadBalancerPort: Int64?
-        
+
         /// 计费模式为按固定带宽方式时监听器的限速值，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 监听器当前状态（0代表创建中，1代表正常运行，2代表创建失败，3代表删除中，4代表删除失败）。
         public let status: Int64?
-        
+
         /// 与监听器绑定的主机端口。
         public let port: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -1675,49 +1675,49 @@ extension Bmlb {
             case port = "Port"
         }
     }
-    
+
     /// 修改黑石负载均衡七层转发路径时待修改的七层转发规则信息。
     public struct ModifyL7LocationRule: TCInputModel, TCOutputModel {
         /// 转发域名实例ID，可通过接口DescribeL7Rules查询。
         public let domainId: String
-        
+
         /// 转发路径实例ID，可通过接口DescribeL7Rules查询。
         public let locationId: String
-        
+
         /// 转发路径。
         public let url: String?
-        
+
         /// 会话保持时间，单位：秒。可选值：30~3600。默认值0，表示不开启会话保持。
         public let sessionExpire: Int64?
-        
+
         /// 健康检查开关：1（开启）、0（关闭）。默认值0，表示关闭。
         public let healthSwitch: Int64?
-        
+
         /// 健康检查检查间隔时间，默认值：5，可选值：5-300，单位：秒。
         public let intervalTime: Int64?
-        
+
         /// 健康检查健康阈值，默认值：3，表示当连续探测三次健康则表示该转发正常，可选值：2-10，单位：次。
         public let healthNum: Int64?
-        
+
         /// 健康检查不健康阈值，默认值：5，表示当连续探测五次不健康则表示该转发不正常，可选值：2-10，单位：次。
         public let unhealthNum: Int64?
-        
+
         /// 健康检查中认为健康的HTTP返回码的组合。可选值为1~5的集合，1表示HTTP返回码为1xx认为健康。2表示HTTP返回码为2xx认为健康。3表示HTTP返回码为3xx认为健康。4表示HTTP返回码为4xx认为健康。5表示HTTP返回码为5xx认为健康。
         public let httpCodes: [UInt64]?
-        
+
         /// 健康检查检查路径。
         public let httpCheckPath: String?
-        
+
         /// 健康检查检查域名。如果规则的域名使用通配符或正则表达式，则健康检查检查域名可自定义，否则必须跟健康检查检查域名一样。不填表示不修改。
         public let httpCheckDomain: String?
-        
+
         /// 均衡方式：ip_hash、wrr。默认值wrr。
         public let balanceMode: String?
-        
+
         /// 转发域名。
         public let domain: String?
-        
-        public init (domainId: String, locationId: String, url: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, balanceMode: String? = nil, domain: String? = nil) {
+
+        public init(domainId: String, locationId: String, url: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, balanceMode: String? = nil, domain: String? = nil) {
             self.domainId = domainId
             self.locationId = locationId
             self.url = url
@@ -1732,7 +1732,7 @@ extension Bmlb {
             self.balanceMode = balanceMode
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case locationId = "LocationId"
@@ -1749,66 +1749,66 @@ extension Bmlb {
             case domain = "Domain"
         }
     }
-    
+
     /// 修改负载均衡计费方式的监听器信息。
     public struct ModifyLoadBalancerChargeModeListener: TCInputModel {
         /// 监听器ID。
         public let listenerId: String
-        
+
         /// 协议类型。
         public let `protocol`: String
-        
+
         /// 带宽。
         public let bandwidth: UInt64
-        
-        public init (listenerId: String, protocol: String, bandwidth: UInt64) {
+
+        public init(listenerId: String, protocol: String, bandwidth: UInt64) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.bandwidth = bandwidth
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case `protocol` = "Protocol"
             case bandwidth = "Bandwidth"
         }
     }
-    
+
     /// 获取流量镜像实例的列表信息时返回的流量镜像信息。
     public struct TrafficMirror: TCInputModel, TCOutputModel {
         /// 流量镜像ID。
         public let trafficMirrorId: String?
-        
+
         /// 流量镜像名称。
         public let alias: String?
-        
+
         /// 流量镜像所在的私有网络ID。
         public let vpcId: String?
-        
+
         /// 接收机负载均衡方式。wrr，ip_hash，wlc。
         public let loadBalancerType: String?
-        
+
         /// 是否开始对接收机的健康检查。0：关闭，非0：开启。
         public let healthSwitch: Int64?
-        
+
         /// 健康阈值。
         public let healthNum: Int64?
-        
+
         /// 不健康阈值。
         public let unhealthNum: Int64?
-        
+
         /// 检查间隔。
         public let intervalTime: Int64?
-        
+
         /// 检查域名。
         public let httpCheckDomain: String?
-        
+
         /// 检查目录。
         public let httpCheckPath: String?
-        
+
         /// 健康检查返回码。 1：1xx，2：2xx，3：3xx，4：4xx，5：5xx。
         public let httpCodes: [Int64]?
-        
+
         /// 创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1816,14 +1816,14 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 流量镜像所在私有网络的Cidr。
         public let vpcCidrBlock: String?
-        
+
         /// 流量镜像所在私有网络的名称。
         public let vpcName: String?
-        
-        public init (trafficMirrorId: String? = nil, alias: String? = nil, vpcId: String? = nil, loadBalancerType: String? = nil, healthSwitch: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, createTime: Date? = nil, vpcCidrBlock: String? = nil, vpcName: String? = nil) {
+
+        public init(trafficMirrorId: String? = nil, alias: String? = nil, vpcId: String? = nil, loadBalancerType: String? = nil, healthSwitch: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, createTime: Date? = nil, vpcCidrBlock: String? = nil, vpcName: String? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.alias = alias
             self.vpcId = vpcId
@@ -1839,7 +1839,7 @@ extension Bmlb {
             self.vpcCidrBlock = vpcCidrBlock
             self.vpcName = vpcName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorId = "TrafficMirrorId"
             case alias = "Alias"
@@ -1857,39 +1857,39 @@ extension Bmlb {
             case vpcName = "VpcName"
         }
     }
-    
+
     /// 获取流量镜像的监听器列表信息时返回的与流量镜像绑定的监听器信息。
     public struct TrafficMirrorListener: TCOutputModel {
         /// 监听器ID。
         public let listenerId: String
-        
+
         /// 监听器名称。
         public let listenerName: String
-        
+
         /// 七层监听器协议类型，可选值：http,https。
         public let `protocol`: String
-        
+
         /// 监听器的监听端口。
         public let loadBalancerPort: UInt64
-        
+
         /// 当前带宽。
         public let bandwidth: UInt64
-        
+
         /// 带宽上限。
         public let maxBandwidth: UInt64
-        
+
         /// 监听器类型。
         public let listenerType: String
-        
+
         /// 认证方式：0（不认证，用于http），1（单向认证，用于https），2（双向认证，用于https）。
         public let sslMode: Int64
-        
+
         /// 服务端证书ID。
         public let certId: String
-        
+
         /// 客户端证书ID。
         public let certCaId: String
-        
+
         /// 添加时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1897,28 +1897,28 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTimestamp: Date
-        
+
         /// 负载均衡ID。
         public let loadBalancerId: String
-        
+
         /// 私有网络名称。
         public let vpcName: String
-        
+
         /// 私有网络Cidr。
         public let vpcCidrBlock: String
-        
+
         /// 负载均衡的VIP。
         public let loadBalancerVips: [String]
-        
+
         /// 负载均衡名称。
         public let loadBalancerName: String
-        
+
         /// 负载均衡的IPV6的VIP。
         public let loadBalancerVipv6s: [String]
-        
+
         /// 支持的IP协议类型。ipv4或者是ipv6。
         public let ipProtocolType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -1940,65 +1940,65 @@ extension Bmlb {
             case ipProtocolType = "IpProtocolType"
         }
     }
-    
+
     /// 流量镜像健康检查返回的接收机的端口及状态信息。
     public struct TrafficMirrorPortStatus: TCOutputModel {
         /// 接收机端口。
         public let port: UInt64
-        
+
         /// 状态。
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case status = "Status"
         }
     }
-    
+
     /// 获取与流量镜像绑定的接收机信息时返回的接收机信息。
     public struct TrafficMirrorReceiver: TCOutputModel {
         /// 接收机实例ID。
         public let instanceId: String?
-        
+
         /// 接收机接收端口。
         public let port: Int64?
-        
+
         /// 接收机权重。
         public let weight: Int64?
-        
+
         /// 流量镜像ID。
         public let trafficMirrorId: String
-        
+
         /// 接收机别名。
         public let alias: String
-        
+
         /// 接收机内网IP地址。
         public let lanIp: String
-        
+
         /// 接收机所在的子网的ID。
         public let subnetId: String
-        
+
         /// 接收机所在的子网的名称。
         public let subnetName: String
-        
+
         /// 接收机所在的子网的Cidr。
         public let subnetCidrBlock: String
-        
+
         /// 接收机所在的私有网络的ID。
         public let vpcId: String
-        
+
         /// 接收机所在的私有网络的名称。
         public let vpcName: String
-        
+
         /// 接收机所在的私有网络的Cidr。
         public let vpcCidrBlock: String
-        
+
         /// 接收机的健康状态。
         public let healthStatus: String
-        
+
         /// 接收机的可以执行的操作集合。
         public let operates: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case port = "Port"
@@ -2016,72 +2016,72 @@ extension Bmlb {
             case operates = "Operates"
         }
     }
-    
+
     /// 流量镜像健康检查返回的接收机状态信息。
     public struct TrafficMirrorReciversStatus: TCOutputModel {
         /// 内网IP。
         public let lanIp: String
-        
+
         /// 端口及对应的状态。
         public let receiversPortStatusSet: [TrafficMirrorPortStatus]
-        
+
         enum CodingKeys: String, CodingKey {
             case lanIp = "LanIp"
             case receiversPortStatusSet = "ReceiversPortStatusSet"
         }
     }
-    
+
     /// 待与四层监听器解绑的物理机主机、虚拟机或半托管主机信息。
     public struct UnbindL4Backend: TCInputModel, TCOutputModel {
         /// 待解绑的主机端口，可选值1~65535。
         public let port: Int64?
-        
+
         /// 黑石物理机主机ID、虚拟机IP或者是半托管主机ID。
         public let instanceId: String?
-        
-        public init (port: Int64? = nil, instanceId: String? = nil) {
+
+        public init(port: Int64? = nil, instanceId: String? = nil) {
             self.port = port
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 待与七层监听器转发规则解绑的物理机主机、虚拟机或半托管主机信息。
     public struct UnbindL7Backend: TCInputModel, TCOutputModel {
         /// 待解绑的主机端口，可选值1~65535。
         public let port: Int64?
-        
+
         /// 黑石物理机主机ID、虚拟机IP或者是半托管主机ID。
         public let instanceId: String?
-        
-        public init (port: Int64? = nil, instanceId: String? = nil) {
+
+        public init(port: Int64? = nil, instanceId: String? = nil) {
             self.port = port
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 待与流量镜像解绑的接收机信息。
     public struct UnbindTrafficMirrorReceiver: TCInputModel, TCOutputModel {
         /// 待解绑的主机端口，可选值1~65535。
         public let port: Int64
-        
+
         /// 待解绑的主机实例ID。
         public let instanceId: String
-        
-        public init (port: Int64, instanceId: String) {
+
+        public init(port: Int64, instanceId: String) {
             self.port = port
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case instanceId = "InstanceId"

@@ -19,27 +19,27 @@ extension Cdb {
     public struct ModifyRoGroupInfoRequest: TCRequestModel {
         /// RO 组的 ID。
         public let roGroupId: String
-        
+
         /// RO 组的详细信息。
         public let roGroupInfo: RoGroupAttr?
-        
+
         /// RO 组内实例的权重。若修改 RO 组的权重模式为用户自定义模式（custom），则必须设置该参数，且需要设置每个 RO 实例的权重值。
         public let roWeightValues: [RoWeightValue]?
-        
+
         /// 是否重新均衡 RO 组内的 RO 实例的负载。支持值包括：1 - 重新均衡负载；0 - 不重新均衡负载。默认值为 0。注意，设置为重新均衡负载时，RO 组内 RO 实例会有一次数据库连接瞬断，请确保应用程序能重连数据库。
         public let isBalanceRoLoad: Int64?
-        
+
         /// 废弃参数，无意义。
         public let replicationDelayTime: Int64?
-        
-        public init (roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil) {
+
+        public init(roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil) {
             self.roGroupId = roGroupId
             self.roGroupInfo = roGroupInfo
             self.roWeightValues = roWeightValues
             self.isBalanceRoLoad = isBalanceRoLoad
             self.replicationDelayTime = replicationDelayTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case roGroupId = "RoGroupId"
             case roGroupInfo = "RoGroupInfo"
@@ -48,30 +48,30 @@ extension Cdb {
             case replicationDelayTime = "ReplicationDelayTime"
         }
     }
-    
+
     /// ModifyRoGroupInfo返回参数结构体
     public struct ModifyRoGroupInfoResponse: TCResponseModel {
         /// 异步任务 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新实例Ro组的信息
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
     @inlinable
-    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoGroupInfoResponse > {
+    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoGroupInfoResponse> {
         self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新实例Ro组的信息
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
@@ -79,15 +79,15 @@ extension Cdb {
     public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoGroupInfoResponse {
         try await self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新实例Ro组的信息
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
     @inlinable
-    public func modifyRoGroupInfo(roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoGroupInfoResponse > {
+    public func modifyRoGroupInfo(roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoGroupInfoResponse> {
         self.modifyRoGroupInfo(ModifyRoGroupInfoRequest(roGroupId: roGroupId, roGroupInfo: roGroupInfo, roWeightValues: roWeightValues, isBalanceRoLoad: isBalanceRoLoad, replicationDelayTime: replicationDelayTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新实例Ro组的信息
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。

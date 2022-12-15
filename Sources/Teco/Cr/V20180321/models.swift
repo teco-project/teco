@@ -22,18 +22,18 @@ extension Cr {
     public struct BlackListData: TCInputModel, TCOutputModel {
         /// 黑名单类型，01代表手机号码。
         public let blackType: String
-        
+
         /// 操作类型，A为新增，D为删除。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operType: String?
-        
+
         /// 黑名单值，BlackType为01时，填写11位手机号码。
         public let blackValue: String
-        
+
         /// 备注。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blackDescription: String?
-        
+
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -42,7 +42,7 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var blackValidDate: Date?
-        
+
         /// 黑名单加入日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -51,11 +51,11 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var blackAddDate: Date?
-        
+
         /// 0-生效 1-失效
         public let blackStatus: String?
-        
-        public init (blackType: String, operType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil, blackAddDate: Date? = nil, blackStatus: String? = nil) {
+
+        public init(blackType: String, operType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil, blackAddDate: Date? = nil, blackStatus: String? = nil) {
             self.blackType = blackType
             self.operType = operType
             self.blackValue = blackValue
@@ -64,7 +64,7 @@ extension Cr {
             self.blackAddDate = blackAddDate
             self.blackStatus = blackStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case blackType = "BlackType"
             case operType = "OperType"
@@ -75,57 +75,57 @@ extension Cr {
             case blackStatus = "BlackStatus"
         }
     }
-    
+
     /// 机器人文件结构
     public struct BotFileData: TCOutputModel {
         /// 文件类型 A 拨打结果 T 记录详情
         public let fileType: String
-        
+
         /// 文件地址
         public let cosUrl: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fileType = "FileType"
             case cosUrl = "CosUrl"
         }
     }
-    
+
     /// 机器人对话流信息
     public struct BotFlow: TCOutputModel {
         /// 对话流ID
         public let botFlowId: String
-        
+
         /// 对话流名称
         public let botFlowName: String
-        
+
         /// 号码组信息列表
         public let phonePoolList: [PhonePool]
-        
+
         enum CodingKeys: String, CodingKey {
             case botFlowId = "BotFlowId"
             case botFlowName = "BotFlowName"
             case phonePoolList = "PhonePoolList"
         }
     }
-    
+
     /// 机器人列表
     public struct BotInfo: TCOutputModel {
         /// 机器人ID
         public let botId: String
-        
+
         /// 机器人名称
         public let botName: String
-        
+
         /// 机器人状态。0-停用 1-启用 2-待审核
         public let botStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case botId = "BotId"
             case botName = "BotName"
             case botStatus = "BotStatus"
         }
     }
-    
+
     /// 作业信息
     public struct CallInfo: TCOutputModel {
         /// 业务日期
@@ -135,23 +135,23 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var bizDate: Date
-        
+
         /// 状态 WAIT：待执行；DOING：执行中；ERROR：执行错误；DONE：已完成；
         public let status: String
-        
+
         /// 成功总数
         public let totalCount: Int64
-        
+
         /// 文件名称
         public let fileName: String
-        
+
         /// 文件类型 I：呼叫文件 R：停拨文件
         public let fileType: String
-        
+
         /// 作业唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let callId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case bizDate = "BizDate"
             case status = "Status"
@@ -161,31 +161,31 @@ extension Cr {
             case callId = "CallId"
         }
     }
-    
+
     /// 产品拨打时间集合
     public struct CallTimeDict: TCInputModel {
         /// 周一
         public let monday: CallTimeInfo?
-        
+
         /// 周二
         public let tuesday: CallTimeInfo?
-        
+
         /// 周三
         public let wednesday: CallTimeInfo?
-        
+
         /// 周四
         public let thursday: CallTimeInfo?
-        
+
         /// 周五
         public let friday: CallTimeInfo?
-        
+
         /// 周六
         public let saturday: CallTimeInfo?
-        
+
         /// 周日
         public let sunday: CallTimeInfo?
-        
-        public init (monday: CallTimeInfo? = nil, tuesday: CallTimeInfo? = nil, wednesday: CallTimeInfo? = nil, thursday: CallTimeInfo? = nil, friday: CallTimeInfo? = nil, saturday: CallTimeInfo? = nil, sunday: CallTimeInfo? = nil) {
+
+        public init(monday: CallTimeInfo? = nil, tuesday: CallTimeInfo? = nil, wednesday: CallTimeInfo? = nil, thursday: CallTimeInfo? = nil, friday: CallTimeInfo? = nil, saturday: CallTimeInfo? = nil, sunday: CallTimeInfo? = nil) {
             self.monday = monday
             self.tuesday = tuesday
             self.wednesday = wednesday
@@ -194,7 +194,7 @@ extension Cr {
             self.saturday = saturday
             self.sunday = sunday
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case monday = "Monday"
             case tuesday = "Tuesday"
@@ -205,60 +205,60 @@ extension Cr {
             case sunday = "Sunday"
         }
     }
-    
+
     /// 产品拨打时间信息
     public struct CallTimeInfo: TCInputModel {
         /// 产品开始拨打时间，HHmmss格式,默认090000
         public let startTime: String?
-        
+
         /// 产品结束拨打时间，HHmmss格式.默认200000
         public let endTime: String?
-        
-        public init (startTime: String? = nil, endTime: String? = nil) {
+
+        public init(startTime: String? = nil, endTime: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// 号码组信息
     public struct PhonePool: TCOutputModel {
         /// 号码组ID
         public let poolId: String
-        
+
         /// 号码组名称
         public let poolName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case poolId = "PoolId"
             case poolName = "PoolName"
         }
     }
-    
+
     /// QueryProducts接口对应数据结构。产品对应的相关信息。
     public struct ProductQueryInfo: TCOutputModel {
         /// 产品Id
         public let productId: String
-        
+
         /// 产品名称
         public let productName: String
-        
+
         /// 产品编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productCode: String?
-        
+
         /// 产品状态 0 禁用 1 启用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productStatus: Int64?
-        
+
         /// 场景类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sceneType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case productName = "ProductName"
@@ -267,15 +267,15 @@ extension Cr {
             case sceneType = "SceneType"
         }
     }
-    
+
     /// 录音文件详情
     public struct RecordInfo: TCOutputModel {
         /// 任务Id
         public let botId: String
-        
+
         /// 任务名称
         public let botName: String
-        
+
         /// 任务日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -283,10 +283,10 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var bizDate: Date
-        
+
         /// 被叫号码
         public let calledPhone: String
-        
+
         /// 开始通话时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -294,19 +294,19 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var callStartTime: Date
-        
+
         /// 通话时长
         public let duration: Int64
-        
+
         /// 录音文件地址
         public let cosUrl: String
-        
+
         /// 对话日志。JSON格式
         public let dialogueLog: String
-        
+
         /// 录音文件名
         public let cosFileName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case botId = "BotId"
             case botName = "BotName"
@@ -319,21 +319,21 @@ extension Cr {
             case cosFileName = "CosFileName"
         }
     }
-    
+
     /// 黑名单申请信息
     public struct SingleBlackApply: TCInputModel {
         /// 黑名单类型，01代表手机号码。
         public let blackType: String
-        
+
         /// 操作类型，A为新增，D为删除。
         public let operationType: String
-        
+
         /// 黑名单值，BlackType为01时，填写11位手机号码。
         public let blackValue: String
-        
+
         /// 备注。
         public let blackDescription: String
-        
+
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -341,15 +341,15 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var blackValidDate: Date?
-        
-        public init (blackType: String, operationType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil) {
+
+        public init(blackType: String, operationType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil) {
             self.blackType = blackType
             self.operationType = operationType
             self.blackValue = blackValue
             self.blackDescription = blackDescription
             self.blackValidDate = blackValidDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case blackType = "BlackType"
             case operationType = "OperationType"
@@ -358,12 +358,12 @@ extension Cr {
             case blackValidDate = "BlackValidDate"
         }
     }
-    
+
     /// 录音信息
     public struct SingleRecord: TCOutputModel {
         /// 案件编号。
         public let accountNum: String
-        
+
         /// 外呼日期。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -371,7 +371,7 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var bizDate: Date
-        
+
         /// 开始呼叫时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -379,24 +379,24 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var callStartTime: Date
-        
+
         /// 主叫号码。
         public let callerPhone: String
-        
+
         /// 呼叫方向，O为呼出，I为呼入。
         public let direction: String
-        
+
         /// 通话时长。
         public let duration: Int64
-        
+
         /// 产品ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
-        
+
         /// 录音下载链接。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordCosUrl: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case accountNum = "AccountNum"
             case bizDate = "BizDate"
@@ -408,29 +408,29 @@ extension Cr {
             case recordCosUrl = "RecordCosUrl"
         }
     }
-    
+
     /// 短信签名信息
     public struct SmsSign: TCOutputModel {
         /// 短信签名ID
         public let signId: String
-        
+
         /// 短信签名名称
         public let signName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case signId = "SignId"
             case signName = "SignName"
         }
     }
-    
+
     /// 短信模板信息
     public struct SmsTemplate: TCOutputModel {
         /// 短信模板ID
         public let templateId: String
-        
+
         /// 短信模板名称
         public let templateName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateName = "TemplateName"

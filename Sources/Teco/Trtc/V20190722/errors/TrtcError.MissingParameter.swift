@@ -50,255 +50,255 @@ extension TCTrtcError {
             case videoEncodeParams = "MissingParameter.VideoEncodeParams"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 缺少AccessKey参数。
         public static var accessKey: MissingParameter {
             MissingParameter(.accessKey)
         }
-        
+
         /// 缺少AppId参数。
         public static var appId: MissingParameter {
             MissingParameter(.appId)
         }
-        
+
         /// EncodeParams中缺少音频输出参数。
         public static var audioEncodeParams: MissingParameter {
             MissingParameter(.audioEncodeParams)
         }
-        
+
         /// 转推参数中缺少BizId。
         public static var bizId: MissingParameter {
             MissingParameter(.bizId)
         }
-        
+
         /// 缺少Bucket参数。
         public static var bucket: MissingParameter {
             MissingParameter(.bucket)
         }
-        
+
         /// 缺少CloudStorage参数。
         public static var cloudStorage: MissingParameter {
             MissingParameter(.cloudStorage)
         }
-        
+
         /// 缺少CommId参数。
         public static var commId: MissingParameter {
             MissingParameter(.commId)
         }
-        
+
         /// 缺少SdkAppId参数或CommID参数。
         public static var commIdOrSdkAppId: MissingParameter {
             MissingParameter(.commIdOrSdkAppId)
         }
-        
+
         /// 缺少EncodeParams参数。
         public static var encodeParams: MissingParameter {
             MissingParameter(.encodeParams)
         }
-        
+
         /// 缺少endTS_s参数。
         public static var endTs: MissingParameter {
             MissingParameter(.endTs)
         }
-        
+
         /// 缺少OutputParams参数。
         public static var outputParams: MissingParameter {
             MissingParameter(.outputParams)
         }
-        
+
         /// 缺少自定义布局参数。
         public static var presetLayoutConfig: MissingParameter {
             MissingParameter(.presetLayoutConfig)
         }
-        
+
         /// 缺少转推参数。
         public static var publishCdnParams: MissingParameter {
             MissingParameter(.publishCdnParams)
         }
-        
+
         /// 转推参数中缺少转推目的地址。
         public static var publishCdnUrls: MissingParameter {
             MissingParameter(.publishCdnUrls)
         }
-        
+
         /// 缺少RecordMode参数。
         public static var recordMode: MissingParameter {
             MissingParameter(.recordMode)
         }
-        
+
         /// 缺少RecordParams参数。
         public static var recordParams: MissingParameter {
             MissingParameter(.recordParams)
         }
-        
+
         /// 缺少Region参数。
         public static var region: MissingParameter {
             MissingParameter(.region)
         }
-        
+
         /// 缺少RoomId参数。
         public static var roomId: MissingParameter {
             MissingParameter(.roomId)
         }
-        
+
         /// 缺少RoomNum参数。
         public static var roomNum: MissingParameter {
             MissingParameter(.roomNum)
         }
-        
+
         /// 缺少SdkAppId参数。
         public static var sdkAppId: MissingParameter {
             MissingParameter(.sdkAppId)
         }
-        
+
         /// 缺少SecretKey参数。
         public static var secretKey: MissingParameter {
             MissingParameter(.secretKey)
         }
-        
+
         /// 缺少startTS_s参数。
         public static var startTs: MissingParameter {
             MissingParameter(.startTs)
         }
-        
+
         /// 缺少StorageParams参数。
         public static var storageParams: MissingParameter {
             MissingParameter(.storageParams)
         }
-        
+
         /// OutputParams中缺少StreamId参数。
         public static var streamId: MissingParameter {
             MissingParameter(.streamId)
         }
-        
+
         /// 缺少StreamType参数。
         public static var streamType: MissingParameter {
             MissingParameter(.streamType)
         }
-        
+
         /// 缺少TaskId参数。
         public static var taskId: MissingParameter {
             MissingParameter(.taskId)
         }
-        
+
         /// 缺少UserId参数。
         public static var userId: MissingParameter {
             MissingParameter(.userId)
         }
-        
+
         /// 缺少UserIds参数。
         public static var userIds: MissingParameter {
             MissingParameter(.userIds)
         }
-        
+
         /// 缺少UserSig参数。
         public static var userSig: MissingParameter {
             MissingParameter(.userSig)
         }
-        
+
         /// 缺少Vendor参数。
         public static var vendor: MissingParameter {
             MissingParameter(.vendor)
         }
-        
+
         /// EncodeParams中缺少视频输出参数。
         public static var videoEncodeParams: MissingParameter {
             MissingParameter(.videoEncodeParams)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asTrtcError() -> TCTrtcError {
             let code: TCTrtcError.Code
             switch self.error {
-            case .accessKey: 
+            case .accessKey:
                 code = .missingParameter_AccessKey
-            case .appId: 
+            case .appId:
                 code = .missingParameter_AppId
-            case .audioEncodeParams: 
+            case .audioEncodeParams:
                 code = .missingParameter_AudioEncodeParams
-            case .bizId: 
+            case .bizId:
                 code = .missingParameter_BizId
-            case .bucket: 
+            case .bucket:
                 code = .missingParameter_Bucket
-            case .cloudStorage: 
+            case .cloudStorage:
                 code = .missingParameter_CloudStorage
-            case .commId: 
+            case .commId:
                 code = .missingParameter_CommId
-            case .commIdOrSdkAppId: 
+            case .commIdOrSdkAppId:
                 code = .missingParameter_CommIdOrSdkAppId
-            case .encodeParams: 
+            case .encodeParams:
                 code = .missingParameter_EncodeParams
-            case .endTs: 
+            case .endTs:
                 code = .missingParameter_EndTs
-            case .outputParams: 
+            case .outputParams:
                 code = .missingParameter_OutputParams
-            case .presetLayoutConfig: 
+            case .presetLayoutConfig:
                 code = .missingParameter_PresetLayoutConfig
-            case .publishCdnParams: 
+            case .publishCdnParams:
                 code = .missingParameter_PublishCdnParams
-            case .publishCdnUrls: 
+            case .publishCdnUrls:
                 code = .missingParameter_PublishCdnUrls
-            case .recordMode: 
+            case .recordMode:
                 code = .missingParameter_RecordMode
-            case .recordParams: 
+            case .recordParams:
                 code = .missingParameter_RecordParams
-            case .region: 
+            case .region:
                 code = .missingParameter_Region
-            case .roomId: 
+            case .roomId:
                 code = .missingParameter_RoomId
-            case .roomNum: 
+            case .roomNum:
                 code = .missingParameter_RoomNum
-            case .sdkAppId: 
+            case .sdkAppId:
                 code = .missingParameter_SdkAppId
-            case .secretKey: 
+            case .secretKey:
                 code = .missingParameter_SecretKey
-            case .startTs: 
+            case .startTs:
                 code = .missingParameter_StartTs
-            case .storageParams: 
+            case .storageParams:
                 code = .missingParameter_StorageParams
-            case .streamId: 
+            case .streamId:
                 code = .missingParameter_StreamId
-            case .streamType: 
+            case .streamType:
                 code = .missingParameter_StreamType
-            case .taskId: 
+            case .taskId:
                 code = .missingParameter_TaskId
-            case .userId: 
+            case .userId:
                 code = .missingParameter_UserId
-            case .userIds: 
+            case .userIds:
                 code = .missingParameter_UserIds
-            case .userSig: 
+            case .userSig:
                 code = .missingParameter_UserSig
-            case .vendor: 
+            case .vendor:
                 code = .missingParameter_Vendor
-            case .videoEncodeParams: 
+            case .videoEncodeParams:
                 code = .missingParameter_VideoEncodeParams
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCTrtcError(code, context: self.context)

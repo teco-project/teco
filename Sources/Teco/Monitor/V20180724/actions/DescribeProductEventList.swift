@@ -19,50 +19,50 @@ extension Monitor {
     public struct DescribeProductEventListRequest: TCRequestModel {
         /// 接口模块名，固定值"monitor"
         public let module: String
-        
+
         /// 产品类型过滤，比如"cvm"表示云服务器
         public let productName: [String]?
-        
+
         /// 事件名称过滤，比如"guest_reboot"表示机器重启
         public let eventName: [String]?
-        
+
         /// 影响对象，比如"ins-19708ino"
         public let instanceId: [String]?
-        
+
         /// 维度过滤，比如外网IP:10.0.0.1
         public let dimensions: [DescribeProductEventListDimensions]?
-        
+
         /// 产品事件地域过滤参数，比如gz，各地域缩写可参见[地域列表](https://cloud.tencent.com/document/product/248/50863)
         public let regionList: [String]?
-        
+
         /// 事件类型过滤，取值范围["status_change","abnormal"]，分别表示状态变更、异常事件
         public let type: [String]?
-        
+
         /// 事件状态过滤，取值范围["recover","alarm","-"]，分别表示已恢复、未恢复、无状态
         public let status: [String]?
-        
+
         /// 项目ID过滤
         public let project: [String]?
-        
+
         /// 告警状态配置过滤，1表示已配置，0表示未配置
         public let isAlarmConfig: Int64?
-        
+
         /// 按更新时间排序，ASC表示升序，DESC表示降序，默认DESC
         public let timeOrder: String?
-        
+
         /// 起始时间，默认一天前的时间戳
         public let startTime: Int64?
-        
+
         /// 结束时间，默认当前时间戳
         public let endTime: Int64?
-        
+
         /// 页偏移量，默认0
         public let offset: Int64?
-        
+
         /// 每页返回的数量，默认20
         public let limit: Int64?
-        
-        public init (module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.module = module
             self.productName = productName
             self.eventName = eventName
@@ -79,7 +79,7 @@ extension Monitor {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case productName = "ProductName"
@@ -98,23 +98,23 @@ extension Monitor {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeProductEventList返回参数结构体
     public struct DescribeProductEventListResponse: TCResponseModel {
         /// 事件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let events: [DescribeProductEventListEvents]?
-        
+
         /// 事件统计
         public let overView: DescribeProductEventListOverView
-        
+
         /// 事件总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case events = "Events"
             case overView = "OverView"
@@ -122,15 +122,15 @@ extension Monitor {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取产品事件列表
     ///
     /// 分页获取产品事件的列表
     @inlinable
-    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductEventListResponse > {
+    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductEventListResponse> {
         self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品事件列表
     ///
     /// 分页获取产品事件的列表
@@ -138,15 +138,15 @@ extension Monitor {
     public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductEventListResponse {
         try await self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取产品事件列表
     ///
     /// 分页获取产品事件的列表
     @inlinable
-    public func describeProductEventList(module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductEventListResponse > {
+    public func describeProductEventList(module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductEventListResponse> {
         self.describeProductEventList(DescribeProductEventListRequest(module: module, productName: productName, eventName: eventName, instanceId: instanceId, dimensions: dimensions, regionList: regionList, type: type, status: status, project: project, isAlarmConfig: isAlarmConfig, timeOrder: timeOrder, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品事件列表
     ///
     /// 分页获取产品事件的列表

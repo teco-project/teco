@@ -19,35 +19,35 @@ extension Tem {
     public struct RollingUpdateApplicationByVersionRequest: TCRequestModel {
         /// 应用ID
         public let applicationId: String
-        
+
         /// 环境ID
         public let environmentId: String
-        
+
         /// 更新版本，IMAGE 部署为 tag 值；JAR/WAR 部署 为 Version
         public let deployVersion: String
-        
+
         /// JAR/WAR 包名，仅 JAR/WAR 部署时必填
         public let packageName: String?
-        
+
         /// 请求来源平台，含 IntelliJ，Coding
         public let from: String?
-        
+
         /// 部署策略，AUTO 为全自动；BETA 为小批量验证后自动；MANUAL 为全手动；
         public let deployStrategyType: String?
-        
+
         /// 发布批次数
         public let totalBatchCount: Int64?
-        
+
         /// 批次间隔时间
         public let batchInterval: Int64?
-        
+
         /// 小批量验证批次的实例数
         public let betaBatchNum: Int64?
-        
+
         /// 发布过程中保障的最小可用实例数
         public let minAvailable: Int64?
-        
-        public init (applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil) {
+
+        public init(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.deployVersion = deployVersion
@@ -59,7 +59,7 @@ extension Tem {
             self.betaBatchNum = betaBatchNum
             self.minAvailable = minAvailable
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case environmentId = "EnvironmentId"
@@ -73,39 +73,39 @@ extension Tem {
             case minAvailable = "MinAvailable"
         }
     }
-    
+
     /// RollingUpdateApplicationByVersion返回参数结构体
     public struct RollingUpdateApplicationByVersionResponse: TCResponseModel {
         /// 版本ID
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新应用部署版本
     @inlinable
-    public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollingUpdateApplicationByVersionResponse > {
+    public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollingUpdateApplicationByVersionResponse> {
         self.client.execute(action: "RollingUpdateApplicationByVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新应用部署版本
     @inlinable
     public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {
         try await self.client.execute(action: "RollingUpdateApplicationByVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新应用部署版本
     @inlinable
-    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollingUpdateApplicationByVersionResponse > {
+    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollingUpdateApplicationByVersionResponse> {
         self.rollingUpdateApplicationByVersion(RollingUpdateApplicationByVersionRequest(applicationId: applicationId, environmentId: environmentId, deployVersion: deployVersion, packageName: packageName, from: from, deployStrategyType: deployStrategyType, totalBatchCount: totalBatchCount, batchInterval: batchInterval, betaBatchNum: betaBatchNum, minAvailable: minAvailable), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新应用部署版本
     @inlinable
     public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {

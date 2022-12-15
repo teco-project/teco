@@ -19,27 +19,27 @@ extension Teo {
     public struct DescribeLoadBalancingRequest: TCRequestModel {
         /// 站点ID
         public let zoneId: String
-        
+
         /// 分页参数Offset
         public let offset: UInt64
-        
+
         /// 分页参数Limit
         public let limit: UInt64
-        
+
         /// 过滤参数Host
         public let host: String?
-        
+
         /// 过滤参数Host是否支持模糊匹配
         public let fuzzy: Bool?
-        
-        public init (zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil) {
+
+        public init(zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil) {
             self.zoneId = zoneId
             self.offset = offset
             self.limit = limit
             self.host = host
             self.fuzzy = fuzzy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case offset = "Offset"
@@ -48,43 +48,43 @@ extension Teo {
             case fuzzy = "Fuzzy"
         }
     }
-    
+
     /// DescribeLoadBalancing返回参数结构体
     public struct DescribeLoadBalancingResponse: TCResponseModel {
         /// 记录总数
         public let totalCount: UInt64
-        
+
         /// 负载均衡信息
         public let data: [LoadBalancing]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取负载均衡列表
     @inlinable
-    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingResponse > {
+    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancingResponse> {
         self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取负载均衡列表
     @inlinable
     public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
         try await self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取负载均衡列表
     @inlinable
-    public func describeLoadBalancing(zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingResponse > {
+    public func describeLoadBalancing(zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancingResponse> {
         self.describeLoadBalancing(DescribeLoadBalancingRequest(zoneId: zoneId, offset: offset, limit: limit, host: host, fuzzy: fuzzy), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取负载均衡列表
     @inlinable
     public func describeLoadBalancing(zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {

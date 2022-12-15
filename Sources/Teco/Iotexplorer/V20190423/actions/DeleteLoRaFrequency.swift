@@ -19,34 +19,34 @@ extension Iotexplorer {
     public struct DeleteLoRaFrequencyRequest: TCRequestModel {
         /// 频点唯一ID
         public let freqId: String?
-        
-        public init (freqId: String? = nil) {
+
+        public init(freqId: String? = nil) {
             self.freqId = freqId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case freqId = "FreqId"
         }
     }
-    
+
     /// DeleteLoRaFrequency返回参数结构体
     public struct DeleteLoRaFrequencyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除LoRa自定义频点
     ///
     /// 提供删除LoRa自定义频点的能力
     @inlinable
-    public func deleteLoRaFrequency(_ input: DeleteLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoRaFrequencyResponse > {
+    public func deleteLoRaFrequency(_ input: DeleteLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoRaFrequencyResponse> {
         self.client.execute(action: "DeleteLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除LoRa自定义频点
     ///
     /// 提供删除LoRa自定义频点的能力
@@ -54,15 +54,15 @@ extension Iotexplorer {
     public func deleteLoRaFrequency(_ input: DeleteLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoRaFrequencyResponse {
         try await self.client.execute(action: "DeleteLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除LoRa自定义频点
     ///
     /// 提供删除LoRa自定义频点的能力
     @inlinable
-    public func deleteLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoRaFrequencyResponse > {
+    public func deleteLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoRaFrequencyResponse> {
         self.deleteLoRaFrequency(DeleteLoRaFrequencyRequest(freqId: freqId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除LoRa自定义频点
     ///
     /// 提供删除LoRa自定义频点的能力

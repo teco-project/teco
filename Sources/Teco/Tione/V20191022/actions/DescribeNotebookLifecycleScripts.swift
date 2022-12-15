@@ -19,27 +19,27 @@ extension Tione {
     public struct DescribeNotebookLifecycleScriptsRequest: TCRequestModel {
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为20
         public let limit: UInt64?
-        
+
         /// 过滤条件。
         /// instance-name - String - 是否必填：否 -（过滤条件）按照名称过滤。
         /// search-by-name - String - 是否必填：否 -（过滤条件）按照名称检索，模糊匹配。
         public let filters: [Filter]?
-        
+
         /// 排序规则。默认取Descending
         /// Descending 按更新时间降序
         /// Ascending 按更新时间升序
         public let sortOrder: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.sortOrder = sortOrder
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -47,43 +47,43 @@ extension Tione {
             case sortOrder = "SortOrder"
         }
     }
-    
+
     /// DescribeNotebookLifecycleScripts返回参数结构体
     public struct DescribeNotebookLifecycleScriptsResponse: TCResponseModel {
         /// Notebook生命周期脚本列表
         public let notebookLifecycleScriptsSet: [NotebookLifecycleScriptsSummary]
-        
+
         /// Notebook生命周期脚本总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case notebookLifecycleScriptsSet = "NotebookLifecycleScriptsSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看notebook生命周期脚本列表
     @inlinable
-    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookLifecycleScriptsResponse > {
+    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptsResponse> {
         self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看notebook生命周期脚本列表
     @inlinable
     public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
         try await self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看notebook生命周期脚本列表
     @inlinable
-    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookLifecycleScriptsResponse > {
+    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptsResponse> {
         self.describeNotebookLifecycleScripts(DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看notebook生命周期脚本列表
     @inlinable
     public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {

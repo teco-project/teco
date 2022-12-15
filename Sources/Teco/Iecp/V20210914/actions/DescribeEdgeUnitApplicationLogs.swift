@@ -19,27 +19,27 @@ extension Iecp {
     public struct DescribeEdgeUnitApplicationLogsRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 应用ID
         public let applicationId: UInt64
-        
+
         /// 最大条数
         public let limit: UInt64
-        
+
         /// Pod名
         public let podName: String
-        
+
         /// 容器名
         public let containerName: String?
-        
-        public init (edgeUnitId: UInt64, applicationId: UInt64, limit: UInt64, podName: String, containerName: String? = nil) {
+
+        public init(edgeUnitId: UInt64, applicationId: UInt64, limit: UInt64, podName: String, containerName: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.applicationId = applicationId
             self.limit = limit
             self.podName = podName
             self.containerName = containerName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case applicationId = "ApplicationId"
@@ -48,40 +48,40 @@ extension Iecp {
             case containerName = "ContainerName"
         }
     }
-    
+
     /// DescribeEdgeUnitApplicationLogs返回参数结构体
     public struct DescribeEdgeUnitApplicationLogsResponse: TCResponseModel {
         /// 日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logSet: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case logSet = "LogSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取应用日志
     @inlinable
-    public func describeEdgeUnitApplicationLogs(_ input: DescribeEdgeUnitApplicationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationLogsResponse > {
+    public func describeEdgeUnitApplicationLogs(_ input: DescribeEdgeUnitApplicationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationLogsResponse> {
         self.client.execute(action: "DescribeEdgeUnitApplicationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取应用日志
     @inlinable
     public func describeEdgeUnitApplicationLogs(_ input: DescribeEdgeUnitApplicationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationLogsResponse {
         try await self.client.execute(action: "DescribeEdgeUnitApplicationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取应用日志
     @inlinable
-    public func describeEdgeUnitApplicationLogs(edgeUnitId: UInt64, applicationId: UInt64, limit: UInt64, podName: String, containerName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationLogsResponse > {
+    public func describeEdgeUnitApplicationLogs(edgeUnitId: UInt64, applicationId: UInt64, limit: UInt64, podName: String, containerName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationLogsResponse> {
         self.describeEdgeUnitApplicationLogs(DescribeEdgeUnitApplicationLogsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, limit: limit, podName: podName, containerName: containerName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取应用日志
     @inlinable
     public func describeEdgeUnitApplicationLogs(edgeUnitId: UInt64, applicationId: UInt64, limit: UInt64, podName: String, containerName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationLogsResponse {

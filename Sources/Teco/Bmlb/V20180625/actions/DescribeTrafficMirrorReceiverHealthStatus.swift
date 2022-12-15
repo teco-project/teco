@@ -19,43 +19,43 @@ extension Bmlb {
     public struct DescribeTrafficMirrorReceiverHealthStatusRequest: TCRequestModel {
         /// 查询所在的流量镜像ID。
         public let trafficMirrorId: String
-        
+
         /// 流量镜像接收机实例ID和端口数组。
         public let receiverSet: [DescribeTrafficMirrorReceiver]
-        
-        public init (trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver]) {
+
+        public init(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver]) {
             self.trafficMirrorId = trafficMirrorId
             self.receiverSet = receiverSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorId = "TrafficMirrorId"
             case receiverSet = "ReceiverSet"
         }
     }
-    
+
     /// DescribeTrafficMirrorReceiverHealthStatus返回参数结构体
     public struct DescribeTrafficMirrorReceiverHealthStatusResponse: TCResponseModel {
         /// 内网IP和端口对应的状态。
         public let receiversStatusSet: [TrafficMirrorReciversStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case receiversStatusSet = "ReceiversStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取流量镜像接收机健康状态
     ///
     /// 获取流量镜像接收机健康状态。
     @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiverHealthStatusResponse > {
+    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiverHealthStatusResponse> {
         self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取流量镜像接收机健康状态
     ///
     /// 获取流量镜像接收机健康状态。
@@ -63,15 +63,15 @@ extension Bmlb {
     public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
         try await self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取流量镜像接收机健康状态
     ///
     /// 获取流量镜像接收机健康状态。
     @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiverHealthStatusResponse > {
+    public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiverHealthStatusResponse> {
         self.describeTrafficMirrorReceiverHealthStatus(DescribeTrafficMirrorReceiverHealthStatusRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取流量镜像接收机健康状态
     ///
     /// 获取流量镜像接收机健康状态。

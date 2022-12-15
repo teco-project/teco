@@ -19,67 +19,67 @@ extension Iottid {
     public struct DeliverTidsRequest: TCRequestModel {
         /// 订单ID
         public let orderId: String
-        
+
         /// 数量，1~100
         public let quantity: UInt64
-        
-        public init (orderId: String, quantity: UInt64) {
+
+        public init(orderId: String, quantity: UInt64) {
             self.orderId = orderId
             self.quantity = quantity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case quantity = "Quantity"
         }
     }
-    
+
     /// DeliverTids返回参数结构体
     public struct DeliverTidsResponse: TCResponseModel {
         /// 空发的TID信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tidSet: [TidKeysInfo]?
-        
+
         /// 产品公钥
         public let productKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tidSet = "TidSet"
             case productKey = "ProductKey"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 请求空发TID信息
     ///
-    /// 设备服务商请求空发产品订单的TID信息 
+    /// 设备服务商请求空发产品订单的TID信息
     @inlinable
-    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidsResponse > {
+    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidsResponse> {
         self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 请求空发TID信息
     ///
-    /// 设备服务商请求空发产品订单的TID信息 
+    /// 设备服务商请求空发产品订单的TID信息
     @inlinable
     public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
         try await self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 请求空发TID信息
     ///
-    /// 设备服务商请求空发产品订单的TID信息 
+    /// 设备服务商请求空发产品订单的TID信息
     @inlinable
-    public func deliverTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidsResponse > {
+    public func deliverTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidsResponse> {
         self.deliverTids(DeliverTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)
     }
-    
+
     /// 请求空发TID信息
     ///
-    /// 设备服务商请求空发产品订单的TID信息 
+    /// 设备服务商请求空发产品订单的TID信息
     @inlinable
     public func deliverTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
         try await self.deliverTids(DeliverTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)

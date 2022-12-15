@@ -19,34 +19,34 @@ extension Asr {
     public struct DeleteAsrVocabRequest: TCRequestModel {
         /// 热词表Id
         public let vocabId: String
-        
-        public init (vocabId: String) {
+
+        public init(vocabId: String) {
             self.vocabId = vocabId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vocabId = "VocabId"
         }
     }
-    
+
     /// DeleteAsrVocab返回参数结构体
     public struct DeleteAsrVocabResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除热词表
     ///
     /// 用户通过本接口进行热词表的删除。
     @inlinable
-    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAsrVocabResponse > {
+    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAsrVocabResponse> {
         self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除热词表
     ///
     /// 用户通过本接口进行热词表的删除。
@@ -54,15 +54,15 @@ extension Asr {
     public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
         try await self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除热词表
     ///
     /// 用户通过本接口进行热词表的删除。
     @inlinable
-    public func deleteAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAsrVocabResponse > {
+    public func deleteAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAsrVocabResponse> {
         self.deleteAsrVocab(DeleteAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除热词表
     ///
     /// 用户通过本接口进行热词表的删除。

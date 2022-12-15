@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeIntegrationVersionNodesInfoRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// task version path
         public let taskVersionPath: String
-        
+
         /// task version
         public let taskVersion: String?
-        
-        public init (taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil) {
+
+        public init(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil) {
             self.taskId = taskId
             self.projectId = projectId
             self.taskVersionPath = taskVersionPath
             self.taskVersion = taskVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
@@ -43,23 +43,23 @@ extension Wedata {
             case taskVersion = "TaskVersion"
         }
     }
-    
+
     /// DescribeIntegrationVersionNodesInfo返回参数结构体
     public struct DescribeIntegrationVersionNodesInfoResponse: TCResponseModel {
         /// 任务节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodes: [IntegrationNodeInfo]?
-        
+
         /// 任务映射信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mappings: [IntegrationNodeMapping]?
-        
+
         /// 任务id
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nodes = "Nodes"
             case mappings = "Mappings"
@@ -67,25 +67,25 @@ extension Wedata {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集成任务版本节点信息
     @inlinable
-    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationVersionNodesInfoResponse > {
+    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationVersionNodesInfoResponse> {
         self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集成任务版本节点信息
     @inlinable
     public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
         try await self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集成任务版本节点信息
     @inlinable
-    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationVersionNodesInfoResponse > {
+    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationVersionNodesInfoResponse> {
         self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集成任务版本节点信息
     @inlinable
     public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {

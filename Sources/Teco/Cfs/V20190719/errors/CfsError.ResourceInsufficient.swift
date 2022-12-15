@@ -25,79 +25,79 @@ extension TCCfsError {
             case tagLimitExceeded = "ResourceInsufficient.TagLimitExceeded"
             case tagQuotasExceeded = "ResourceInsufficient.TagQuotasExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 文件系统数量达到上限。
         public static var fileSystemLimitExceeded: ResourceInsufficient {
             ResourceInsufficient(.fileSystemLimitExceeded)
         }
-        
+
         /// 权限组数量达到上限。
         public static var pgroupNumberLimitExceeded: ResourceInsufficient {
             ResourceInsufficient(.pgroupNumberLimitExceeded)
         }
-        
+
         /// 区域资源售罄。
         public static var regionSoldOut: ResourceInsufficient {
             ResourceInsufficient(.regionSoldOut)
         }
-        
+
         /// 规则条数超过上限。
         public static var ruleLimitExceeded: ResourceInsufficient {
             ResourceInsufficient(.ruleLimitExceeded)
         }
-        
+
         /// 该子网下已无可用IP。
         public static var subnetIpAllOccupied: ResourceInsufficient {
             ResourceInsufficient(.subnetIpAllOccupied)
         }
-        
+
         /// 该资源的标签个数达到最大限制。
         public static var tagLimitExceeded: ResourceInsufficient {
             ResourceInsufficient(.tagLimitExceeded)
         }
-        
+
         public static var tagQuotasExceeded: ResourceInsufficient {
             ResourceInsufficient(.tagQuotasExceeded)
         }
-        
+
         public func asCfsError() -> TCCfsError {
             let code: TCCfsError.Code
             switch self.error {
-            case .fileSystemLimitExceeded: 
+            case .fileSystemLimitExceeded:
                 code = .resourceInsufficient_FileSystemLimitExceeded
-            case .pgroupNumberLimitExceeded: 
+            case .pgroupNumberLimitExceeded:
                 code = .resourceInsufficient_PgroupNumberLimitExceeded
-            case .regionSoldOut: 
+            case .regionSoldOut:
                 code = .resourceInsufficient_RegionSoldOut
-            case .ruleLimitExceeded: 
+            case .ruleLimitExceeded:
                 code = .resourceInsufficient_RuleLimitExceeded
-            case .subnetIpAllOccupied: 
+            case .subnetIpAllOccupied:
                 code = .resourceInsufficient_SubnetIpAllOccupied
-            case .tagLimitExceeded: 
+            case .tagLimitExceeded:
                 code = .resourceInsufficient_TagLimitExceeded
-            case .tagQuotasExceeded: 
+            case .tagQuotasExceeded:
                 code = .resourceInsufficient_TagQuotasExceeded
             }
             return TCCfsError(code, context: self.context)

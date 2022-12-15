@@ -19,44 +19,44 @@ extension Tione {
     public struct DeleteBatchTaskRequest: TCRequestModel {
         /// 跑批任务ID
         public let batchTaskId: String
-        
-        public init (batchTaskId: String) {
+
+        public init(batchTaskId: String) {
             self.batchTaskId = batchTaskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchTaskId = "BatchTaskId"
         }
     }
-    
+
     /// DeleteBatchTask返回参数结构体
     public struct DeleteBatchTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除跑批任务
     @inlinable
-    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBatchTaskResponse > {
+    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
         self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除跑批任务
     @inlinable
     public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
         try await self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除跑批任务
     @inlinable
-    public func deleteBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBatchTaskResponse > {
+    public func deleteBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
         self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除跑批任务
     @inlinable
     public func deleteBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {

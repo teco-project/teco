@@ -19,26 +19,26 @@ extension Tsf {
     public struct ModifyContainerGroupRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String?
-        
+
         /// 0:公网 1:集群内访问 2：NodePort
         public let accessType: Int64?
-        
+
         /// ProtocolPorts数组
         public let protocolPorts: [ProtocolPort]?
-        
+
         /// 更新方式：0:快速更新 1:滚动更新
         public let updateType: Int64?
-        
+
         /// 更新间隔,单位秒
         public let updateIvl: Int64?
-        
+
         /// 子网ID
         public let subnetId: String?
-        
+
         /// 部署组备注
         public let alias: String?
-        
-        public init (groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil) {
+
+        public init(groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil) {
             self.groupId = groupId
             self.accessType = accessType
             self.protocolPorts = protocolPorts
@@ -47,7 +47,7 @@ extension Tsf {
             self.subnetId = subnetId
             self.alias = alias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case accessType = "AccessType"
@@ -58,7 +58,7 @@ extension Tsf {
             case alias = "Alias"
         }
     }
-    
+
     /// ModifyContainerGroup返回参数结构体
     public struct ModifyContainerGroupResponse: TCResponseModel {
         /// 更新部署组是否成功。
@@ -66,34 +66,34 @@ extension Tsf {
         /// false：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改容器部署组
     @inlinable
-    public func modifyContainerGroup(_ input: ModifyContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerGroupResponse > {
+    public func modifyContainerGroup(_ input: ModifyContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerGroupResponse> {
         self.client.execute(action: "ModifyContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器部署组
     @inlinable
     public func modifyContainerGroup(_ input: ModifyContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerGroupResponse {
         try await self.client.execute(action: "ModifyContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改容器部署组
     @inlinable
-    public func modifyContainerGroup(groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerGroupResponse > {
+    public func modifyContainerGroup(groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerGroupResponse> {
         self.modifyContainerGroup(ModifyContainerGroupRequest(groupId: groupId, accessType: accessType, protocolPorts: protocolPorts, updateType: updateType, updateIvl: updateIvl, subnetId: subnetId, alias: alias), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器部署组
     @inlinable
     public func modifyContainerGroup(groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerGroupResponse {

@@ -19,25 +19,25 @@ extension Vpc {
     public struct DescribeDirectConnectGatewayCcnRoutesRequest: TCRequestModel {
         /// 专线网关ID，形如：`dcg-prpqlmg1`。
         public let directConnectGatewayId: String
-        
+
         /// 云联网路由学习类型，可选值：
         /// <li>`BGP` - 自动学习。</li>
         /// <li>`STATIC` - 静态，即用户配置，默认值。</li>
         public let ccnRouteType: String?
-        
+
         /// 偏移量。
         public let offset: UInt64?
-        
+
         /// 返回数量。
         public let limit: UInt64?
-        
-        public init (directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.directConnectGatewayId = directConnectGatewayId
             self.ccnRouteType = ccnRouteType
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectGatewayId = "DirectConnectGatewayId"
             case ccnRouteType = "CcnRouteType"
@@ -45,33 +45,33 @@ extension Vpc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeDirectConnectGatewayCcnRoutes返回参数结构体
     public struct DescribeDirectConnectGatewayCcnRoutesResponse: TCResponseModel {
         /// 符合条件的对象数。
         public let totalCount: UInt64
-        
+
         /// 云联网路由（IDC网段）列表。
         public let routeSet: [DirectConnectGatewayCcnRoute]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case routeSet = "RouteSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询专线网关云联网路由
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
     @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectGatewayCcnRoutesResponse > {
+    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectGatewayCcnRoutesResponse> {
         self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专线网关云联网路由
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
@@ -79,15 +79,15 @@ extension Vpc {
     public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewayCcnRoutesResponse {
         try await self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询专线网关云联网路由
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
     @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectGatewayCcnRoutesResponse > {
+    public func describeDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectGatewayCcnRoutesResponse> {
         self.describeDirectConnectGatewayCcnRoutes(DescribeDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, ccnRouteType: ccnRouteType, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专线网关云联网路由
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）

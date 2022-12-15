@@ -22,41 +22,41 @@ extension Cis {
     public struct Container: TCInputModel, TCOutputModel {
         /// 容器启动命令
         public let command: String?
-        
+
         /// 容器启动参数
         public let args: [String]?
-        
+
         /// 容器环境变量
         public let environmentVars: [EnvironmentVar]?
-        
+
         /// 镜像
         public let image: String
-        
+
         /// 容器名，由小写字母、数字和 - 组成，由小写字母开头，小写字母或数字结尾，且长度不超过 63个字符
         public let name: String
-        
+
         /// CPU，单位：核
         public let cpu: Float
-        
+
         /// 内存，单位：Gi
         public let memory: Float
-        
+
         /// 重启次数
         public let restartCount: UInt64?
-        
+
         /// 当前状态
         public let currentState: ContainerState?
-        
+
         /// 上一次状态
         public let previousState: ContainerState?
-        
+
         /// 容器工作目录
         public let workingDir: String?
-        
+
         /// 容器ID
         public let containerId: String?
-        
-        public init (command: String? = nil, args: [String]? = nil, environmentVars: [EnvironmentVar]? = nil, image: String, name: String, cpu: Float, memory: Float, restartCount: UInt64? = nil, currentState: ContainerState? = nil, previousState: ContainerState? = nil, workingDir: String? = nil, containerId: String? = nil) {
+
+        public init(command: String? = nil, args: [String]? = nil, environmentVars: [EnvironmentVar]? = nil, image: String, name: String, cpu: Float, memory: Float, restartCount: UInt64? = nil, currentState: ContainerState? = nil, previousState: ContainerState? = nil, workingDir: String? = nil, containerId: String? = nil) {
             self.command = command
             self.args = args
             self.environmentVars = environmentVars
@@ -70,7 +70,7 @@ extension Cis {
             self.workingDir = workingDir
             self.containerId = containerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case command = "Command"
             case args = "Args"
@@ -86,30 +86,30 @@ extension Cis {
             case containerId = "ContainerId"
         }
     }
-    
+
     /// 容器实例的具体信息
     public struct ContainerInstance: TCInputModel, TCOutputModel {
         /// 容器实例ID
         public let instanceId: String?
-        
+
         /// 容器实例名称
         public let instanceName: String
-        
+
         /// 容器实例所属VpcId
         public let vpcId: String
-        
+
         /// 容器实例所属SubnetId
         public let subnetId: String
-        
+
         /// 容器实例状态
         public let state: String?
-        
+
         /// 容器列表
         public let containers: [Container]
-        
+
         /// 重启策略
         public let restartPolicy: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -117,7 +117,7 @@ extension Cis {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 启动时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -125,26 +125,26 @@ extension Cis {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date?
-        
+
         /// 可用区
         public let zone: String
-        
+
         /// Vpc名称
         public let vpcName: String?
-        
+
         /// VpcCidr
         public let vpcCidr: String?
-        
+
         /// SubnetName
         public let subnetName: String?
-        
+
         /// 子网Cidr
         public let subnetCidr: String?
-        
+
         /// 内网IP
         public let lanIp: String?
-        
-        public init (instanceId: String? = nil, instanceName: String, vpcId: String, subnetId: String, state: String? = nil, containers: [Container], restartPolicy: String, createTime: Date? = nil, startTime: Date? = nil, zone: String, vpcName: String? = nil, vpcCidr: String? = nil, subnetName: String? = nil, subnetCidr: String? = nil, lanIp: String? = nil) {
+
+        public init(instanceId: String? = nil, instanceName: String, vpcId: String, subnetId: String, state: String? = nil, containers: [Container], restartPolicy: String, createTime: Date? = nil, startTime: Date? = nil, zone: String, vpcName: String? = nil, vpcCidr: String? = nil, subnetName: String? = nil, subnetCidr: String? = nil, lanIp: String? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.vpcId = vpcId
@@ -161,7 +161,7 @@ extension Cis {
             self.subnetCidr = subnetCidr
             self.lanIp = lanIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -180,25 +180,25 @@ extension Cis {
             case lanIp = "LanIp"
         }
     }
-    
+
     /// 容器日志
     public struct ContainerLog: TCOutputModel {
         /// 容器名称
         public let name: String
-        
+
         /// 日志
         public let log: String
-        
+
         /// 日志记录时间
         public let time: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case log = "Log"
             case time = "Time"
         }
     }
-    
+
     /// 容器状态
     public struct ContainerState: TCOutputModel {
         /// 容器运行开始时间
@@ -208,13 +208,13 @@ extension Cis {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 容器状态
         public let state: String
-        
+
         /// 状态详情
         public let reason: String
-        
+
         /// 容器运行结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -222,10 +222,10 @@ extension Cis {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var finishTime: Date
-        
+
         /// 容器运行退出码
         public let exitCode: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case state = "State"
@@ -234,46 +234,46 @@ extension Cis {
             case exitCode = "ExitCode"
         }
     }
-    
+
     /// 容器环境变量
     public struct EnvironmentVar: TCInputModel, TCOutputModel {
         /// 环境变量名
         public let name: String
-        
+
         /// 环境变量值
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 容器实例事件
     public struct Event: TCOutputModel {
         /// 事件首次出现时间
         public let firstSeen: String
-        
+
         /// 事件上次出现时间
         public let lastSeen: String
-        
+
         /// 事件等级
         public let level: String
-        
+
         /// 事件出现次数
         public let count: String
-        
+
         /// 事件出现原因
         public let reason: String
-        
+
         /// 事件消息
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case firstSeen = "FirstSeen"
             case lastSeen = "LastSeen"
@@ -283,34 +283,34 @@ extension Cis {
             case message = "Message"
         }
     }
-    
+
     /// 过滤条件
     public struct Filter: TCInputModel {
         /// 过滤字段，可选值 - Zone，VpcId，InstanceName
         public let name: String
-        
+
         /// 过滤值列表
         public let valueList: [String]
-        
-        public init (name: String, valueList: [String]) {
+
+        public init(name: String, valueList: [String]) {
             self.name = name
             self.valueList = valueList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case valueList = "ValueList"
         }
     }
-    
+
     /// 价格
     public struct Price: TCOutputModel {
         /// 原价，单位：元
         public let discountPrice: Float
-        
+
         /// 折扣价，单位：元
         public let originalPrice: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case discountPrice = "DiscountPrice"
             case originalPrice = "OriginalPrice"

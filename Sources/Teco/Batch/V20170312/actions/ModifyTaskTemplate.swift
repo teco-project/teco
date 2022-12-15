@@ -19,23 +19,23 @@ extension Batch {
     public struct ModifyTaskTemplateRequest: TCRequestModel {
         /// 任务模板ID
         public let taskTemplateId: String
-        
+
         /// 任务模板名称
         public let taskTemplateName: String?
-        
+
         /// 任务模板描述
         public let taskTemplateDescription: String?
-        
+
         /// 任务模板信息
         public let taskTemplateInfo: Task?
-        
-        public init (taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil) {
+
+        public init(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil) {
             self.taskTemplateId = taskTemplateId
             self.taskTemplateName = taskTemplateName
             self.taskTemplateDescription = taskTemplateDescription
             self.taskTemplateInfo = taskTemplateInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskTemplateId = "TaskTemplateId"
             case taskTemplateName = "TaskTemplateName"
@@ -43,25 +43,25 @@ extension Batch {
             case taskTemplateInfo = "TaskTemplateInfo"
         }
     }
-    
+
     /// ModifyTaskTemplate返回参数结构体
     public struct ModifyTaskTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改任务模板
     ///
     /// 用于修改任务模板
     @inlinable
-    public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskTemplateResponse > {
+    public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskTemplateResponse> {
         self.client.execute(action: "ModifyTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改任务模板
     ///
     /// 用于修改任务模板
@@ -69,15 +69,15 @@ extension Batch {
     public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
         try await self.client.execute(action: "ModifyTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改任务模板
     ///
     /// 用于修改任务模板
     @inlinable
-    public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskTemplateResponse > {
+    public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskTemplateResponse> {
         self.modifyTaskTemplate(ModifyTaskTemplateRequest(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改任务模板
     ///
     /// 用于修改任务模板

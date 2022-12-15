@@ -19,40 +19,40 @@ extension Cdn {
     public struct DescribeScdnConfigRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// DescribeScdnConfig返回参数结构体
     public struct DescribeScdnConfigResponse: TCResponseModel {
         /// 自定义防护策略配置
         public let acl: ScdnAclConfig
-        
+
         /// Web 攻击防护（WAF）配置
         public let waf: ScdnWafConfig
-        
+
         /// CC 防护配置
         public let cc: ScdnConfig
-        
+
         /// DDOS 防护配置
         public let ddos: ScdnDdosConfig
-        
+
         /// BOT 防护配置
         public let bot: ScdnBotConfig
-        
+
         /// 当前状态，取值online | offline
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case acl = "Acl"
             case waf = "Waf"
@@ -63,15 +63,15 @@ extension Cdn {
             case requestId = "RequestId"
         }
     }
-    
+
     /// SCDN域名配置
     ///
     /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
     @inlinable
-    public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnConfigResponse > {
+    public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnConfigResponse> {
         self.client.execute(action: "DescribeScdnConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// SCDN域名配置
     ///
     /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
@@ -79,15 +79,15 @@ extension Cdn {
     public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnConfigResponse {
         try await self.client.execute(action: "DescribeScdnConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// SCDN域名配置
     ///
     /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
     @inlinable
-    public func describeScdnConfig(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnConfigResponse > {
+    public func describeScdnConfig(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnConfigResponse> {
         self.describeScdnConfig(DescribeScdnConfigRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// SCDN域名配置
     ///
     /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置

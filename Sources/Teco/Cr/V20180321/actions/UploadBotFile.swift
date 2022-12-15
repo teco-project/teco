@@ -19,26 +19,26 @@ extension Cr {
     public struct UploadBotFileRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
-        
+
         /// 操作名。默认值（固定）：Upload
         public let operation: String
-        
+
         /// 文件类型，输入input，停拨stop
         public let fileType: String
-        
+
         /// 文件链接
         public let fileUrl: String
-        
+
         /// 文件名
         public let fileName: String
-        
+
         /// 任务ID，二者必填一个
         public let botId: String?
-        
+
         /// 任务名称，二者必填一个
         public let botName: String?
-        
-        public init (module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil) {
+
+        public init(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.fileType = fileType
@@ -47,7 +47,7 @@ extension Cr {
             self.botId = botId
             self.botName = botName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -58,35 +58,35 @@ extension Cr {
             case botName = "BotName"
         }
     }
-    
+
     /// UploadBotFile返回参数结构体
     public struct UploadBotFileResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传机器人文件
     @inlinable
-    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotFileResponse > {
+    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotFileResponse> {
         self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传机器人文件
     @inlinable
     public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
         try await self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传机器人文件
     @inlinable
-    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotFileResponse > {
+    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotFileResponse> {
         self.uploadBotFile(UploadBotFileRequest(module: module, operation: operation, fileType: fileType, fileUrl: fileUrl, fileName: fileName, botId: botId, botName: botName), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传机器人文件
     @inlinable
     public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {

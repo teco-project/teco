@@ -19,23 +19,23 @@ extension Wedata {
     public struct ModifyIntegrationNodeRequest: TCRequestModel {
         /// 集成节点信息
         public let nodeInfo: IntegrationNodeInfo
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 任务类型
         public let taskType: UInt64?
-        
+
         /// 区分画布模式和表单模式
         public let taskMode: UInt64?
-        
-        public init (nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil) {
+
+        public init(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil) {
             self.nodeInfo = nodeInfo
             self.projectId = projectId
             self.taskType = taskType
             self.taskMode = taskMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeInfo = "NodeInfo"
             case projectId = "ProjectId"
@@ -43,44 +43,44 @@ extension Wedata {
             case taskMode = "TaskMode"
         }
     }
-    
+
     /// ModifyIntegrationNode返回参数结构体
     public struct ModifyIntegrationNodeResponse: TCResponseModel {
         /// 节点id
         public let id: String
-        
+
         /// 任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新集成节点
     @inlinable
-    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIntegrationNodeResponse > {
+    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationNodeResponse> {
         self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新集成节点
     @inlinable
     public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
         try await self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新集成节点
     @inlinable
-    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIntegrationNodeResponse > {
+    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationNodeResponse> {
         self.modifyIntegrationNode(ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新集成节点
     @inlinable
     public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {

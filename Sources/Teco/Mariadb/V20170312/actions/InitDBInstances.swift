@@ -19,47 +19,47 @@ extension Mariadb {
     public struct InitDBInstancesRequest: TCRequestModel {
         /// 待初始化的实例ID列表，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceIds: [String]
-        
+
         /// 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步）。
         public let params: [DBParamValue]
-        
-        public init (instanceIds: [String], params: [DBParamValue]) {
+
+        public init(instanceIds: [String], params: [DBParamValue]) {
             self.instanceIds = instanceIds
             self.params = params
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case params = "Params"
         }
     }
-    
+
     /// InitDBInstances返回参数结构体
     public struct InitDBInstancesResponse: TCResponseModel {
         /// 异步任务ID，可通过 DescribeFlow 查询任务状态。
         public let flowId: Int64
-        
+
         /// 透传入参。
         public let instanceIds: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 初始化实例
     ///
     /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
-    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitDBInstancesResponse > {
+    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
         self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 初始化实例
     ///
     /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
@@ -67,15 +67,15 @@ extension Mariadb {
     public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
         try await self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 初始化实例
     ///
     /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
-    public func initDBInstances(instanceIds: [String], params: [DBParamValue], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitDBInstancesResponse > {
+    public func initDBInstances(instanceIds: [String], params: [DBParamValue], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
         self.initDBInstances(InitDBInstancesRequest(instanceIds: instanceIds, params: params), logger: logger, on: eventLoop)
     }
-    
+
     /// 初始化实例
     ///
     /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。

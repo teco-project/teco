@@ -33,136 +33,136 @@ extension TCIotexplorerError {
             case timeout = "FailedOperation.Timeout"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 动作消息不可达。
         public static var actionUnreachable: FailedOperation {
             FailedOperation(.actionUnreachable)
         }
-        
+
         /// 广播任务正在执行。
         public static var broadcastTaskIsRunning: FailedOperation {
             FailedOperation(.broadcastTaskIsRunning)
         }
-        
+
         /// 设备已经被禁用。
         public static var deviceAlreadyDisabled: FailedOperation {
             FailedOperation(.deviceAlreadyDisabled)
         }
-        
+
         /// 设备已为目标升级版本。
         public static var deviceFirmwareIsUpdated: FailedOperation {
             FailedOperation(.deviceFirmwareIsUpdated)
         }
-        
+
         /// 设备固件版本错误。
         public static var deviceInfoOutdated: FailedOperation {
             FailedOperation(.deviceInfoOutdated)
         }
-        
+
         /// 返回:消息发送失败，设备未订阅Topic。
         public static var deviceNoSubscription: FailedOperation {
             FailedOperation(.deviceNoSubscription)
         }
-        
+
         /// 设备处于离线状态。
         public static var deviceOffline: FailedOperation {
             FailedOperation(.deviceOffline)
         }
-        
+
         /// 存在其他升级任务。
         public static var otherUpdateTaskExist: FailedOperation {
             FailedOperation(.otherUpdateTaskExist)
         }
-        
+
         /// 产品尚未发布。
         public static var productNotReleased: FailedOperation {
             FailedOperation(.productNotReleased)
         }
-        
+
         /// RRPC接口未收到设备端响应。
         public static var rrpcTimeout: FailedOperation {
             FailedOperation(.rrpcTimeout)
         }
-        
+
         /// 转发已经停止。
         public static var ruleAlreadyDisabled: FailedOperation {
             FailedOperation(.ruleAlreadyDisabled)
         }
-        
+
         /// 该规则已被启用。
         public static var ruleAlreadyEnabled: FailedOperation {
             FailedOperation(.ruleAlreadyEnabled)
         }
-        
+
         /// 部分产品已经被绑定。
         public static var someProductIsAlreadyBinded: FailedOperation {
             FailedOperation(.someProductIsAlreadyBinded)
         }
-        
+
         /// 超过时间。
         public static var timeout: FailedOperation {
             FailedOperation(.timeout)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asIotexplorerError() -> TCIotexplorerError {
             let code: TCIotexplorerError.Code
             switch self.error {
-            case .actionUnreachable: 
+            case .actionUnreachable:
                 code = .failedOperation_ActionUnreachable
-            case .broadcastTaskIsRunning: 
+            case .broadcastTaskIsRunning:
                 code = .failedOperation_BroadcastTaskIsRunning
-            case .deviceAlreadyDisabled: 
+            case .deviceAlreadyDisabled:
                 code = .failedOperation_DeviceAlreadyDisabled
-            case .deviceFirmwareIsUpdated: 
+            case .deviceFirmwareIsUpdated:
                 code = .failedOperation_DeviceFirmwareIsUpdated
-            case .deviceInfoOutdated: 
+            case .deviceInfoOutdated:
                 code = .failedOperation_DeviceInfoOutdated
-            case .deviceNoSubscription: 
+            case .deviceNoSubscription:
                 code = .failedOperation_DeviceNoSubscription
-            case .deviceOffline: 
+            case .deviceOffline:
                 code = .failedOperation_DeviceOffline
-            case .otherUpdateTaskExist: 
+            case .otherUpdateTaskExist:
                 code = .failedOperation_OtherUpdateTaskExist
-            case .productNotReleased: 
+            case .productNotReleased:
                 code = .failedOperation_ProductNotReleased
-            case .rrpcTimeout: 
+            case .rrpcTimeout:
                 code = .failedOperation_RRPCTimeout
-            case .ruleAlreadyDisabled: 
+            case .ruleAlreadyDisabled:
                 code = .failedOperation_RuleAlreadyDisabled
-            case .ruleAlreadyEnabled: 
+            case .ruleAlreadyEnabled:
                 code = .failedOperation_RuleAlreadyEnabled
-            case .someProductIsAlreadyBinded: 
+            case .someProductIsAlreadyBinded:
                 code = .failedOperation_SomeProductIsAlreadyBinded
-            case .timeout: 
+            case .timeout:
                 code = .failedOperation_Timeout
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCIotexplorerError(code, context: self.context)

@@ -19,44 +19,44 @@ extension Es {
     public struct UpdateLogstashPipelineDescRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例管道ID
         public let pipelineId: String
-        
+
         /// 管道描述信息
         public let pipelineDesc: String
-        
-        public init (instanceId: String, pipelineId: String, pipelineDesc: String) {
+
+        public init(instanceId: String, pipelineId: String, pipelineDesc: String) {
             self.instanceId = instanceId
             self.pipelineId = pipelineId
             self.pipelineDesc = pipelineDesc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case pipelineId = "PipelineId"
             case pipelineDesc = "PipelineDesc"
         }
     }
-    
+
     /// UpdateLogstashPipelineDesc返回参数结构体
     public struct UpdateLogstashPipelineDescResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息
     @inlinable
-    public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateLogstashPipelineDescResponse > {
+    public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashPipelineDescResponse> {
         self.client.execute(action: "UpdateLogstashPipelineDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息
@@ -64,15 +64,15 @@ extension Es {
     public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashPipelineDescResponse {
         try await self.client.execute(action: "UpdateLogstashPipelineDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息
     @inlinable
-    public func updateLogstashPipelineDesc(instanceId: String, pipelineId: String, pipelineDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateLogstashPipelineDescResponse > {
+    public func updateLogstashPipelineDesc(instanceId: String, pipelineId: String, pipelineDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashPipelineDescResponse> {
         self.updateLogstashPipelineDesc(UpdateLogstashPipelineDescRequest(instanceId: instanceId, pipelineId: pipelineId, pipelineDesc: pipelineDesc), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息

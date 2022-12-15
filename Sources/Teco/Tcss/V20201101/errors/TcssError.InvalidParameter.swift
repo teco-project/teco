@@ -26,93 +26,93 @@ extension TCTcssError {
             case ruleInfoInValid = "InvalidParameter.RuleInfoInValid"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// IP格式不合法。
         public static var errIpNoValid: InvalidParameter {
             InvalidParameter(.errIpNoValid)
         }
-        
+
         /// 参数格式错误。
         ///
         /// 修正参数格式。
         public static var invalidFormat: InvalidParameter {
             InvalidParameter(.invalidFormat)
         }
-        
+
         /// 缺少必须参数。
         ///
         /// 修正输入
         public static var missingParameter: InvalidParameter {
             InvalidParameter(.missingParameter)
         }
-        
+
         /// 参数解析错误。
         ///
         /// 修正输入参数
         public static var parsingError: InvalidParameter {
             InvalidParameter(.parsingError)
         }
-        
+
         /// 端口格式不合法。
         public static var portNoValid: InvalidParameter {
             InvalidParameter(.portNoValid)
         }
-        
+
         /// 进程名/目标IP/目标端口，不能同时为空。
         public static var reverShellKeyFieldAllEmpty: InvalidParameter {
             InvalidParameter(.reverShellKeyFieldAllEmpty)
         }
-        
+
         /// 前规则信息参数非法。
         public static var ruleInfoInValid: InvalidParameter {
             InvalidParameter(.ruleInfoInValid)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTcssError() -> TCTcssError {
             let code: TCTcssError.Code
             switch self.error {
-            case .errIpNoValid: 
+            case .errIpNoValid:
                 code = .invalidParameter_ErrIpNoValid
-            case .invalidFormat: 
+            case .invalidFormat:
                 code = .invalidParameter_InvalidFormat
-            case .missingParameter: 
+            case .missingParameter:
                 code = .invalidParameter_MissingParameter
-            case .parsingError: 
+            case .parsingError:
                 code = .invalidParameter_ParsingError
-            case .portNoValid: 
+            case .portNoValid:
                 code = .invalidParameter_PortNoValid
-            case .reverShellKeyFieldAllEmpty: 
+            case .reverShellKeyFieldAllEmpty:
                 code = .invalidParameter_ReverShellKeyFieldAllEmpty
-            case .ruleInfoInValid: 
+            case .ruleInfoInValid:
                 code = .invalidParameter_RuleInfoInValid
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCTcssError(code, context: self.context)

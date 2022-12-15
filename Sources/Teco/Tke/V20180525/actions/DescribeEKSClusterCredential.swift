@@ -19,39 +19,39 @@ extension Tke {
     public struct DescribeEKSClusterCredentialRequest: TCRequestModel {
         /// 集群Id
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DescribeEKSClusterCredential返回参数结构体
     public struct DescribeEKSClusterCredentialResponse: TCResponseModel {
         /// 集群的接入地址信息
         public let addresses: [IPAddress]
-        
+
         /// 集群的认证信息（token只有请求是主账号才返回，子账户请使用返回的kubeconfig）
         public let credential: ClusterCredential
-        
+
         /// 集群的公网访问信息
         public let publicLB: ClusterPublicLB
-        
+
         /// 集群的内网访问信息
         public let internalLB: ClusterInternalLB
-        
+
         /// 标记是否新的内外网功能
         public let proxyLB: Bool
-        
+
         /// 连接用户集群k8s 的Config
         public let kubeconfig: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case addresses = "Addresses"
             case credential = "Credential"
@@ -62,15 +62,15 @@ extension Tke {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取弹性容器集群的认证信息
     ///
     /// 获取弹性容器集群的接入认证信息
     @inlinable
-    public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClusterCredentialResponse > {
+    public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClusterCredentialResponse> {
         self.client.execute(action: "DescribeEKSClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取弹性容器集群的认证信息
     ///
     /// 获取弹性容器集群的接入认证信息
@@ -78,15 +78,15 @@ extension Tke {
     public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClusterCredentialResponse {
         try await self.client.execute(action: "DescribeEKSClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取弹性容器集群的认证信息
     ///
     /// 获取弹性容器集群的接入认证信息
     @inlinable
-    public func describeEKSClusterCredential(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClusterCredentialResponse > {
+    public func describeEKSClusterCredential(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClusterCredentialResponse> {
         self.describeEKSClusterCredential(DescribeEKSClusterCredentialRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取弹性容器集群的认证信息
     ///
     /// 获取弹性容器集群的接入认证信息

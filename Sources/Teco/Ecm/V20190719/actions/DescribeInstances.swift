@@ -37,30 +37,30 @@ extension Ecm {
         /// 若不传Filters参数则表示查询所有相关的实例信息。
         /// 单次请求的Filter.Values的上限为5。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20(如果查询结果数目大于等于20)，最大值为100。
         public let limit: Int64?
-        
+
         /// 指定排序字段。目前支持的可选值如下
         /// timestamp 按实例创建时间排序。
         /// 注意：目前仅支持按创建时间排序，后续可能会有扩展。
         /// 如果不传，默认按实例创建时间排序
         public let orderByField: String?
-        
+
         /// 指定排序是降序还是升序。0表示降序； 1表示升序。如果不传默认为降序
         public let orderDirection: Int64?
-        
-        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
             self.orderByField = orderByField
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
@@ -69,34 +69,34 @@ extension Ecm {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeInstances返回参数结构体
     public struct DescribeInstancesResponse: TCResponseModel {
         /// 返回的实例相关信息列表的长度。
         public let totalCount: Int64
-        
+
         /// 返回的实例相关信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceSet: [Instance]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例相关信息
     ///
     /// 获取实例的相关信息。
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例相关信息
     ///
     /// 获取实例的相关信息。
@@ -104,15 +104,15 @@ extension Ecm {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例相关信息
     ///
     /// 获取实例的相关信息。
     @inlinable
-    public func describeInstances(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(DescribeInstancesRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例相关信息
     ///
     /// 获取实例的相关信息。

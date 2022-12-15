@@ -19,54 +19,54 @@ extension Tcr {
     public struct ModifyWebhookTriggerRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 触发器参数
         public let trigger: WebhookTrigger
-        
+
         /// 命名空间
         public let namespace: String
-        
-        public init (registryId: String, trigger: WebhookTrigger, namespace: String) {
+
+        public init(registryId: String, trigger: WebhookTrigger, namespace: String) {
             self.registryId = registryId
             self.trigger = trigger
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case trigger = "Trigger"
             case namespace = "Namespace"
         }
     }
-    
+
     /// ModifyWebhookTrigger返回参数结构体
     public struct ModifyWebhookTriggerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新触发器
     @inlinable
-    public func modifyWebhookTrigger(_ input: ModifyWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebhookTriggerResponse > {
+    public func modifyWebhookTrigger(_ input: ModifyWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebhookTriggerResponse> {
         self.client.execute(action: "ModifyWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新触发器
     @inlinable
     public func modifyWebhookTrigger(_ input: ModifyWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebhookTriggerResponse {
         try await self.client.execute(action: "ModifyWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新触发器
     @inlinable
-    public func modifyWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebhookTriggerResponse > {
+    public func modifyWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebhookTriggerResponse> {
         self.modifyWebhookTrigger(ModifyWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新触发器
     @inlinable
     public func modifyWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebhookTriggerResponse {

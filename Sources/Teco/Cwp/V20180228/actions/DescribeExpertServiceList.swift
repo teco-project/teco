@@ -21,27 +21,27 @@ extension Cwp {
         /// <li>Keyword- String - 是否必填：否 - 关键词过滤，</li>
         /// <li>Uuids - String - 是否必填：否 - 主机id过滤</li>
         public let filters: [Filters]?
-        
+
         /// 需要返回的数量，最大值为100
         public let limit: UInt64?
-        
+
         /// 排序步长
         public let offset: UInt64?
-        
+
         /// 排序方法
         public let order: String?
-        
+
         /// 排序字段 StartTime，EndTime
         public let by: String?
-        
-        public init (filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
@@ -50,33 +50,33 @@ extension Cwp {
             case by = "By"
         }
     }
-    
+
     /// DescribeExpertServiceList返回参数结构体
     public struct DescribeExpertServiceListResponse: TCResponseModel {
         /// 总条数
         public let totalCount: UInt64
-        
+
         /// 安全管家数据
         public let list: [SecurityButlerInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全管家列表
     ///
     /// 专家服务-安全管家列表
     @inlinable
-    public func describeExpertServiceList(_ input: DescribeExpertServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceListResponse > {
+    public func describeExpertServiceList(_ input: DescribeExpertServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceListResponse> {
         self.client.execute(action: "DescribeExpertServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全管家列表
     ///
     /// 专家服务-安全管家列表
@@ -84,15 +84,15 @@ extension Cwp {
     public func describeExpertServiceList(_ input: DescribeExpertServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceListResponse {
         try await self.client.execute(action: "DescribeExpertServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全管家列表
     ///
     /// 专家服务-安全管家列表
     @inlinable
-    public func describeExpertServiceList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceListResponse > {
+    public func describeExpertServiceList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceListResponse> {
         self.describeExpertServiceList(DescribeExpertServiceListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全管家列表
     ///
     /// 专家服务-安全管家列表

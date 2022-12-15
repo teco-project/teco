@@ -38,186 +38,186 @@ extension TCCvmError {
             case userSpotQuota = "LimitExceeded.UserSpotQuota"
             case vpcSubnetNum = "LimitExceeded.VpcSubnetNum"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 一个实例绑定安全组数量不能超过5个
         ///
         /// 无
         public static var associateUSGLimitExceeded: LimitExceeded {
             LimitExceeded(.associateUSGLimitExceeded)
         }
-        
+
         /// 安全组关联云主机弹性网卡配额超限。
         public static var cvmsVifsPerSecGroupLimitExceeded: LimitExceeded {
             LimitExceeded(.cvmsVifsPerSecGroupLimitExceeded)
         }
-        
+
         /// 指定置放群组配额不足。
         public static var disasterRecoverGroup: LimitExceeded {
             LimitExceeded(.disasterRecoverGroup)
         }
-        
+
         /// 特定实例包含的某个ENI的EIP数量已超过目标实例类型的EIP允许的最大值，请删除部分EIP后重试。
         public static var eipNumLimit: LimitExceeded {
             LimitExceeded(.eipNumLimit)
         }
-        
+
         /// 特定实例当前ENI数量已超过目标实例类型的ENI允许的最大值，需删除部分ENI后重试。
         public static var eniNumLimit: LimitExceeded {
             LimitExceeded(.eniNumLimit)
         }
-        
+
         /// 正在运行中的镜像导出任务已达上限，请等待已有任务完成后，再次发起重试。
         public static var exportImageTaskLimitExceeded: LimitExceeded {
             LimitExceeded(.exportImageTaskLimitExceeded)
         }
-        
+
         /// 已达创建高性能计算集群数的上限。
         public static var hpcClusterQuota: LimitExceeded {
             LimitExceeded(.hpcClusterQuota)
         }
-        
+
         /// IP数量超过网卡上限。
         ///
         /// 暂无
         public static var iPv6AddressNum: LimitExceeded {
             LimitExceeded(.iPv6AddressNum)
         }
-        
+
         /// 实例指定的弹性网卡数目超过了实例弹性网卡数目配额。
         ///
         /// 请确认机型的弹性网卡配额后再操作。
         public static var instanceEniNumLimit: LimitExceeded {
             LimitExceeded(.instanceEniNumLimit)
         }
-        
+
         /// 当前配额不足够生产指定数量的实例
         ///
         /// 无
         public static var instanceQuota: LimitExceeded {
             LimitExceeded(.instanceQuota)
         }
-        
+
         /// 目标实例规格不支持当前规格的外网带宽上限，不支持调整。具体可参考<a href="https://cloud.tencent.com/document/product/213/12523">公网网络带宽上限</a>。
         public static var instanceTypeBandwidth: LimitExceeded {
             LimitExceeded(.instanceTypeBandwidth)
         }
-        
+
         /// 实例启动模板数量超限。
         public static var launchTemplateQuota: LimitExceeded {
             LimitExceeded(.launchTemplateQuota)
         }
-        
+
         /// 实例启动模板版本数量超限。
         public static var launchTemplateVersionQuota: LimitExceeded {
             LimitExceeded(.launchTemplateVersionQuota)
         }
-        
+
         /// 预付费实例已购买数量已达到最大配额，请提升配额后重试。
         public static var prepayQuota: LimitExceeded {
             LimitExceeded(.prepayQuota)
         }
-        
+
         /// 安全组限额不足
         ///
         /// 无
         public static var singleUSGQuota: LimitExceeded {
             LimitExceeded(.singleUSGQuota)
         }
-        
+
         /// 竞价实例类型配额不足
         ///
         /// 无
         public static var spotQuota: LimitExceeded {
             LimitExceeded(.spotQuota)
         }
-        
+
         public static var tagResourceQuota: LimitExceeded {
             LimitExceeded(.tagResourceQuota)
         }
-        
+
         /// 退还失败，退还配额已达上限。
         public static var userReturnQuota: LimitExceeded {
             LimitExceeded(.userReturnQuota)
         }
-        
+
         /// 竞价实例配额不足
         ///
         /// 无
         public static var userSpotQuota: LimitExceeded {
             LimitExceeded(.userSpotQuota)
         }
-        
+
         /// 子网IP不足
         ///
         /// 无
         public static var vpcSubnetNum: LimitExceeded {
             LimitExceeded(.vpcSubnetNum)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .associateUSGLimitExceeded: 
+            case .associateUSGLimitExceeded:
                 code = .limitExceeded_AssociateUSGLimitExceeded
-            case .cvmsVifsPerSecGroupLimitExceeded: 
+            case .cvmsVifsPerSecGroupLimitExceeded:
                 code = .limitExceeded_CvmsVifsPerSecGroupLimitExceeded
-            case .disasterRecoverGroup: 
+            case .disasterRecoverGroup:
                 code = .limitExceeded_DisasterRecoverGroup
-            case .eipNumLimit: 
+            case .eipNumLimit:
                 code = .limitExceeded_EipNumLimit
-            case .eniNumLimit: 
+            case .eniNumLimit:
                 code = .limitExceeded_EniNumLimit
-            case .exportImageTaskLimitExceeded: 
+            case .exportImageTaskLimitExceeded:
                 code = .limitExceeded_ExportImageTaskLimitExceeded
-            case .hpcClusterQuota: 
+            case .hpcClusterQuota:
                 code = .limitExceeded_HpcClusterQuota
-            case .iPv6AddressNum: 
+            case .iPv6AddressNum:
                 code = .limitExceeded_IPv6AddressNum
-            case .instanceEniNumLimit: 
+            case .instanceEniNumLimit:
                 code = .limitExceeded_InstanceEniNumLimit
-            case .instanceQuota: 
+            case .instanceQuota:
                 code = .limitExceeded_InstanceQuota
-            case .instanceTypeBandwidth: 
+            case .instanceTypeBandwidth:
                 code = .limitExceeded_InstanceTypeBandwidth
-            case .launchTemplateQuota: 
+            case .launchTemplateQuota:
                 code = .limitExceeded_LaunchTemplateQuota
-            case .launchTemplateVersionQuota: 
+            case .launchTemplateVersionQuota:
                 code = .limitExceeded_LaunchTemplateVersionQuota
-            case .prepayQuota: 
+            case .prepayQuota:
                 code = .limitExceeded_PrepayQuota
-            case .singleUSGQuota: 
+            case .singleUSGQuota:
                 code = .limitExceeded_SingleUSGQuota
-            case .spotQuota: 
+            case .spotQuota:
                 code = .limitExceeded_SpotQuota
-            case .tagResourceQuota: 
+            case .tagResourceQuota:
                 code = .limitExceeded_TagResourceQuota
-            case .userReturnQuota: 
+            case .userReturnQuota:
                 code = .limitExceeded_UserReturnQuota
-            case .userSpotQuota: 
+            case .userSpotQuota:
                 code = .limitExceeded_UserSpotQuota
-            case .vpcSubnetNum: 
+            case .vpcSubnetNum:
                 code = .limitExceeded_VpcSubnetNum
             }
             return TCCvmError(code, context: self.context)

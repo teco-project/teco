@@ -19,34 +19,34 @@ extension Cfw {
     public struct DeleteResourceGroupRequest: TCRequestModel {
         /// 组id
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DeleteResourceGroup返回参数结构体
     public struct DeleteResourceGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable
-    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceGroupResponse > {
+    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
         self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
@@ -54,15 +54,15 @@ extension Cfw {
     public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
         try await self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable
-    public func deleteResourceGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceGroupResponse > {
+    public func deleteResourceGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
         self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除

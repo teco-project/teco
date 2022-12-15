@@ -19,26 +19,26 @@ extension Iotexplorer {
     public struct GetProjectListRequest: TCRequestModel {
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 个数限制
         public let limit: Int64?
-        
+
         /// 实例ID
         public let instanceId: String?
-        
+
         /// 按项目ID搜索
         public let projectId: String?
-        
+
         /// 按产品ID搜索
         public let productId: String?
-        
+
         /// 加载 ProductCount、DeviceCount、ApplicationCount，可选值：ProductCount、DeviceCount、ApplicationCount，可多选
         public let includes: [String]?
-        
+
         /// 按项目名称搜索
         public let projectName: String?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, instanceId: String? = nil, projectId: String? = nil, productId: String? = nil, includes: [String]? = nil, projectName: String? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, instanceId: String? = nil, projectId: String? = nil, productId: String? = nil, includes: [String]? = nil, projectName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.instanceId = instanceId
@@ -47,7 +47,7 @@ extension Iotexplorer {
             self.includes = includes
             self.projectName = projectName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -58,35 +58,35 @@ extension Iotexplorer {
             case projectName = "ProjectName"
         }
     }
-    
+
     /// GetProjectList返回参数结构体
     public struct GetProjectListResponse: TCResponseModel {
         /// 项目列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projects: [ProjectEntryEx]?
-        
+
         /// 列表项个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projects = "Projects"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取项目列表
     ///
     /// 提供查询用户所创建的项目列表查询功能。
     @inlinable
-    public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProjectListResponse > {
+    public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProjectListResponse> {
         self.client.execute(action: "GetProjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目列表
     ///
     /// 提供查询用户所创建的项目列表查询功能。
@@ -94,15 +94,15 @@ extension Iotexplorer {
     public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProjectListResponse {
         try await self.client.execute(action: "GetProjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取项目列表
     ///
     /// 提供查询用户所创建的项目列表查询功能。
     @inlinable
-    public func getProjectList(offset: Int64? = nil, limit: Int64? = nil, instanceId: String? = nil, projectId: String? = nil, productId: String? = nil, includes: [String]? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProjectListResponse > {
+    public func getProjectList(offset: Int64? = nil, limit: Int64? = nil, instanceId: String? = nil, projectId: String? = nil, productId: String? = nil, includes: [String]? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProjectListResponse> {
         self.getProjectList(GetProjectListRequest(offset: offset, limit: limit, instanceId: instanceId, projectId: projectId, productId: productId, includes: includes, projectName: projectName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目列表
     ///
     /// 提供查询用户所创建的项目列表查询功能。

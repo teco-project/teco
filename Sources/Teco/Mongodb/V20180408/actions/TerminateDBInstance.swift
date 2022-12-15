@@ -19,38 +19,38 @@ extension Mongodb {
     public struct TerminateDBInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// TerminateDBInstance返回参数结构体
     public struct TerminateDBInstanceResponse: TCResponseModel {
         /// 订单ID，表示注销实例成功
         public let asyncRequestId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁云数据库实例（按量计费）
     ///
     /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
     @inlinable
-    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstanceResponse > {
+    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
         self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁云数据库实例（按量计费）
     ///
     /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
@@ -58,15 +58,15 @@ extension Mongodb {
     public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
         try await self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁云数据库实例（按量计费）
     ///
     /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
     @inlinable
-    public func terminateDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstanceResponse > {
+    public func terminateDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
         self.terminateDBInstance(TerminateDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁云数据库实例（按量计费）
     ///
     /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例

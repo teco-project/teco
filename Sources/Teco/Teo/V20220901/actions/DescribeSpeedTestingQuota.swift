@@ -19,48 +19,48 @@ extension Teo {
     public struct DescribeSpeedTestingQuotaRequest: TCRequestModel {
         /// 站点ID。
         public let zoneId: String
-        
-        public init (zoneId: String) {
+
+        public init(zoneId: String) {
             self.zoneId = zoneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
         }
     }
-    
+
     /// DescribeSpeedTestingQuota返回参数结构体
     public struct DescribeSpeedTestingQuotaResponse: TCResponseModel {
         /// 配额数据。
         public let speedTestingQuota: SpeedTestingQuota
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case speedTestingQuota = "SpeedTestingQuota"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询站点拨测配额
     @inlinable
-    public func describeSpeedTestingQuota(_ input: DescribeSpeedTestingQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingQuotaResponse > {
+    public func describeSpeedTestingQuota(_ input: DescribeSpeedTestingQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingQuotaResponse> {
         self.client.execute(action: "DescribeSpeedTestingQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询站点拨测配额
     @inlinable
     public func describeSpeedTestingQuota(_ input: DescribeSpeedTestingQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingQuotaResponse {
         try await self.client.execute(action: "DescribeSpeedTestingQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询站点拨测配额
     @inlinable
-    public func describeSpeedTestingQuota(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingQuotaResponse > {
+    public func describeSpeedTestingQuota(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingQuotaResponse> {
         self.describeSpeedTestingQuota(DescribeSpeedTestingQuotaRequest(zoneId: zoneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询站点拨测配额
     @inlinable
     public func describeSpeedTestingQuota(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingQuotaResponse {

@@ -19,26 +19,26 @@ extension Vpc {
     public struct DescribeNatGatewaySourceIpTranslationNatRulesRequest: TCRequestModel {
         /// NAT网关统一 ID，形如：`nat-123xx454`。
         public let natGatewayId: String
-        
+
         /// 过滤条件:
         /// <li> resource-id，Subnet的ID或者Cvm ID，如`subnet-0yi4hekt`</li>
         /// <li> public-ip-address，弹性IP，如`139.199.232.238`</li>
         /// <li>description，规则描述。</li>
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
-        
-        public init (natGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(natGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.natGatewayId = natGatewayId
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natGatewayId = "NatGatewayId"
             case filters = "Filters"
@@ -46,34 +46,34 @@ extension Vpc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeNatGatewaySourceIpTranslationNatRules返回参数结构体
     public struct DescribeNatGatewaySourceIpTranslationNatRulesResponse: TCResponseModel {
         /// NAT网关SNAT规则对象数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceIpTranslationNatRuleSet: [SourceIpTranslationNatRule]?
-        
+
         /// 符合条件的NAT网关端口转发规则对象数目。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceIpTranslationNatRuleSet = "SourceIpTranslationNatRuleSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询NAT网关SNAT转发规则
     ///
     /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
     @inlinable
-    public func describeNatGatewaySourceIpTranslationNatRules(_ input: DescribeNatGatewaySourceIpTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaySourceIpTranslationNatRulesResponse > {
+    public func describeNatGatewaySourceIpTranslationNatRules(_ input: DescribeNatGatewaySourceIpTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaySourceIpTranslationNatRulesResponse> {
         self.client.execute(action: "DescribeNatGatewaySourceIpTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询NAT网关SNAT转发规则
     ///
     /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
@@ -81,15 +81,15 @@ extension Vpc {
     public func describeNatGatewaySourceIpTranslationNatRules(_ input: DescribeNatGatewaySourceIpTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaySourceIpTranslationNatRulesResponse {
         try await self.client.execute(action: "DescribeNatGatewaySourceIpTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询NAT网关SNAT转发规则
     ///
     /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
     @inlinable
-    public func describeNatGatewaySourceIpTranslationNatRules(natGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaySourceIpTranslationNatRulesResponse > {
+    public func describeNatGatewaySourceIpTranslationNatRules(natGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaySourceIpTranslationNatRulesResponse> {
         self.describeNatGatewaySourceIpTranslationNatRules(DescribeNatGatewaySourceIpTranslationNatRulesRequest(natGatewayId: natGatewayId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询NAT网关SNAT转发规则
     ///
     /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。

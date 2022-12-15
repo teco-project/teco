@@ -19,38 +19,38 @@ extension Iotvideoindustry {
     public struct DescribeDevicePassWordRequest: TCRequestModel {
         /// 设备唯一标识
         public let deviceId: String
-        
-        public init (deviceId: String) {
+
+        public init(deviceId: String) {
             self.deviceId = deviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
         }
     }
-    
+
     /// DescribeDevicePassWord返回参数结构体
     public struct DescribeDevicePassWordResponse: TCResponseModel {
         /// 设备密码
         public let passWord: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case passWord = "PassWord"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备密码
     ///
     /// 本接口(DescribeDevicePassWord)用于查询设备密码。
     @inlinable
-    public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePassWordResponse > {
+    public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePassWordResponse> {
         self.client.execute(action: "DescribeDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备密码
     ///
     /// 本接口(DescribeDevicePassWord)用于查询设备密码。
@@ -58,15 +58,15 @@ extension Iotvideoindustry {
     public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePassWordResponse {
         try await self.client.execute(action: "DescribeDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备密码
     ///
     /// 本接口(DescribeDevicePassWord)用于查询设备密码。
     @inlinable
-    public func describeDevicePassWord(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePassWordResponse > {
+    public func describeDevicePassWord(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePassWordResponse> {
         self.describeDevicePassWord(DescribeDevicePassWordRequest(deviceId: deviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备密码
     ///
     /// 本接口(DescribeDevicePassWord)用于查询设备密码。

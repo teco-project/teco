@@ -19,24 +19,24 @@ extension Tcss {
     public struct DescribeImageComponentListRequest: TCRequestModel {
         /// 镜像ID
         public let imageID: String
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>ComponentName- String - 是否必填：否 - 镜像组件名称</li><li>ComponentVersion- String - 是否必填：否 - 镜像组件版本</li><li>ComponentType- String - 是否必填：否 - 镜像组件类型</li><li>VulLevel- String - 是否必填：否 - 漏洞威胁等级</li><li>HasVul- String - 是否必填：否 -是否有漏洞；true：是，false，否；不传或ALL ：全部</li>
         public let filters: [AssetFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式desc ，asc
         public let order: String?
-        
-        public init (imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.imageID = imageID
             self.limit = limit
             self.offset = offset
@@ -44,7 +44,7 @@ extension Tcss {
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageID = "ImageID"
             case limit = "Limit"
@@ -54,43 +54,43 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeImageComponentList返回参数结构体
     public struct DescribeImageComponentListResponse: TCResponseModel {
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 镜像组件列表
         public let list: [ImageComponent]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询本地镜像组件列表
     @inlinable
-    public func describeImageComponentList(_ input: DescribeImageComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageComponentListResponse > {
+    public func describeImageComponentList(_ input: DescribeImageComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageComponentListResponse> {
         self.client.execute(action: "DescribeImageComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询本地镜像组件列表
     @inlinable
     public func describeImageComponentList(_ input: DescribeImageComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageComponentListResponse {
         try await self.client.execute(action: "DescribeImageComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询本地镜像组件列表
     @inlinable
-    public func describeImageComponentList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageComponentListResponse > {
+    public func describeImageComponentList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageComponentListResponse> {
         self.describeImageComponentList(DescribeImageComponentListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询本地镜像组件列表
     @inlinable
     public func describeImageComponentList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageComponentListResponse {

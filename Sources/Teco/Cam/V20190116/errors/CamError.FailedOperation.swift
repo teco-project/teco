@@ -29,108 +29,108 @@ extension TCCamError {
             case userUnbindNoPermission = "FailedOperation.UserUnbindNoPermission"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 操作访问密钥错误。
         public static var accesskey: FailedOperation {
             FailedOperation(.accesskey)
         }
-        
+
         /// 用户策略数超过上限。
         public static var policyFull: FailedOperation {
             FailedOperation(.policyFull)
         }
-        
+
         /// PolicyName字段指定的策略名已存在。
         public static var policyNameInUse: FailedOperation {
             FailedOperation(.policyNameInUse)
         }
-        
+
         /// 该策略版本已经是默认策略版本。
         public static var policyVersionAlreadyDefault: FailedOperation {
             FailedOperation(.policyVersionAlreadyDefault)
         }
-        
+
         /// 策略版本数已经达到上限。
         public static var policyVersionFull: FailedOperation {
             FailedOperation(.policyVersionFull)
         }
-        
+
         /// 绑定标签失败。
         public static var tagResourceFailed: FailedOperation {
             FailedOperation(.tagResourceFailed)
         }
-        
+
         /// 解绑标签失败。
         public static var unTagResourceFailed: FailedOperation {
             FailedOperation(.unTagResourceFailed)
         }
-        
+
         /// 用户未绑定手机。
         public static var userNotBindPhone: FailedOperation {
             FailedOperation(.userNotBindPhone)
         }
-        
+
         /// 用户未绑定微信。
         public static var userNotBindWechat: FailedOperation {
             FailedOperation(.userNotBindWechat)
         }
-        
+
         /// 设置的用户没有权限。
         public static var userUnbindNoPermission: FailedOperation {
             FailedOperation(.userUnbindNoPermission)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asCamError() -> TCCamError {
             let code: TCCamError.Code
             switch self.error {
-            case .accesskey: 
+            case .accesskey:
                 code = .failedOperation_Accesskey
-            case .policyFull: 
+            case .policyFull:
                 code = .failedOperation_PolicyFull
-            case .policyNameInUse: 
+            case .policyNameInUse:
                 code = .failedOperation_PolicyNameInUse
-            case .policyVersionAlreadyDefault: 
+            case .policyVersionAlreadyDefault:
                 code = .failedOperation_PolicyVersionAlreadyDefault
-            case .policyVersionFull: 
+            case .policyVersionFull:
                 code = .failedOperation_PolicyVersionFull
-            case .tagResourceFailed: 
+            case .tagResourceFailed:
                 code = .failedOperation_TagResourceFailed
-            case .unTagResourceFailed: 
+            case .unTagResourceFailed:
                 code = .failedOperation_UnTagResourceFailed
-            case .userNotBindPhone: 
+            case .userNotBindPhone:
                 code = .failedOperation_UserNotBindPhone
-            case .userNotBindWechat: 
+            case .userNotBindWechat:
                 code = .failedOperation_UserNotBindWechat
-            case .userUnbindNoPermission: 
+            case .userUnbindNoPermission:
                 code = .failedOperation_UserUnbindNoPermission
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCCamError(code, context: self.context)

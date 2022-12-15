@@ -19,25 +19,25 @@ extension Tcss {
     public struct DescribeCompliancePolicyItemAffectedAssetListRequest: TCRequestModel {
         /// DescribeComplianceTaskPolicyItemSummaryList返回的CustomerPolicyItemId，表示检测项的ID。
         public let customerPolicyItemId: UInt64
-        
+
         /// 起始偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 需要返回的数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 过滤条件。
         /// Name - String
         /// Name 可取值：NodeName, CheckResult
         public let filters: [ComplianceFilters]?
-        
-        public init (customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
+
+        public init(customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
             self.customerPolicyItemId = customerPolicyItemId
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customerPolicyItemId = "CustomerPolicyItemId"
             case offset = "Offset"
@@ -45,33 +45,33 @@ extension Tcss {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeCompliancePolicyItemAffectedAssetList返回参数结构体
     public struct DescribeCompliancePolicyItemAffectedAssetListResponse: TCResponseModel {
         /// 返回各检测项所影响的资产的列表。
         public let affectedAssetList: [ComplianceAffectedAsset]
-        
+
         /// 检测项影响的资产的总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case affectedAssetList = "AffectedAssetList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePolicyItemAffectedAssetListResponse > {
+    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedAssetListResponse> {
         self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
@@ -79,15 +79,15 @@ extension Tcss {
     public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedAssetListResponse {
         try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePolicyItemAffectedAssetListResponse > {
+    public func describeCompliancePolicyItemAffectedAssetList(customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedAssetListResponse> {
         self.describeCompliancePolicyItemAffectedAssetList(DescribeCompliancePolicyItemAffectedAssetListRequest(customerPolicyItemId: customerPolicyItemId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。

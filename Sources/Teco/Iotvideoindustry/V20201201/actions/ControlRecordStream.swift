@@ -19,10 +19,10 @@ extension Iotvideoindustry {
     public struct ControlRecordStreamRequest: TCRequestModel {
         /// 设备Id，设备的唯一标识
         public let deviceId: String
-        
+
         /// 流Id，流的唯一标识
         public let streamId: String
-        
+
         /// |控制参数，CmdJson结构转义的json字符串。| Action  | string  |是|控制动作，play(用于暂停后恢复播放)、pause（暂停）、teardown(停止)、jump(拖动播放)
         /// | Offset  | uint  |否|拖动播放时的时间偏移量（相对于起始时间）,单位：秒
         /// 目前支持的command：
@@ -30,17 +30,17 @@ extension Iotvideoindustry {
         /// "Command": "{"Action":"PLAY"}" 暂停恢复
         /// "Command": "{"Action":"PLAY","Offset":"15"}" 位置偏移，可以替代jump操作
         public let command: String
-        
+
         /// 通道唯一标识
         public let channelId: String?
-        
-        public init (deviceId: String, streamId: String, command: String, channelId: String? = nil) {
+
+        public init(deviceId: String, streamId: String, command: String, channelId: String? = nil) {
             self.deviceId = deviceId
             self.streamId = streamId
             self.command = command
             self.channelId = channelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case streamId = "StreamId"
@@ -48,26 +48,26 @@ extension Iotvideoindustry {
             case channelId = "ChannelId"
         }
     }
-    
+
     /// ControlRecordStream返回参数结构体
     public struct ControlRecordStreamResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 控制通道本地回放流（旧）
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
     @inlinable
-    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlRecordStreamResponse > {
+    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
         self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 控制通道本地回放流（旧）
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
@@ -76,16 +76,16 @@ extension Iotvideoindustry {
     public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
         try await self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 控制通道本地回放流（旧）
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
     @inlinable
-    public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlRecordStreamResponse > {
+    public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
         self.controlRecordStream(ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 控制通道本地回放流（旧）
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等

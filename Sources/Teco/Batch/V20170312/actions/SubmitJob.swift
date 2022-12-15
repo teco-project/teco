@@ -19,48 +19,48 @@ extension Batch {
     public struct SubmitJobRequest: TCRequestModel {
         /// 作业所提交的位置信息。通过该参数可以指定作业关联CVM所属可用区等信息。
         public let placement: Placement
-        
+
         /// 作业信息
         public let job: Job
-        
+
         /// 用于保证请求幂等性的字符串。该字符串由用户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         public let clientToken: String?
-        
-        public init (placement: Placement, job: Job, clientToken: String? = nil) {
+
+        public init(placement: Placement, job: Job, clientToken: String? = nil) {
             self.placement = placement
             self.job = job
             self.clientToken = clientToken
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"
             case job = "Job"
             case clientToken = "ClientToken"
         }
     }
-    
+
     /// SubmitJob返回参数结构体
     public struct SubmitJobResponse: TCResponseModel {
         /// 当通过本接口来提交作业时会返回该参数，表示一个作业ID。返回作业ID列表并不代表作业解析/运行成功，可根据 DescribeJob 接口查询其状态。
         public let jobId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 提交作业
     ///
     /// 用于提交一个作业
     @inlinable
-    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitJobResponse > {
+    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitJobResponse> {
         self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 提交作业
     ///
     /// 用于提交一个作业
@@ -68,15 +68,15 @@ extension Batch {
     public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
         try await self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 提交作业
     ///
     /// 用于提交一个作业
     @inlinable
-    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitJobResponse > {
+    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitJobResponse> {
         self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), logger: logger, on: eventLoop)
     }
-    
+
     /// 提交作业
     ///
     /// 用于提交一个作业

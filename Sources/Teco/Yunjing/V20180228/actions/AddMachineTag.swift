@@ -19,23 +19,23 @@ extension Yunjing {
     public struct AddMachineTagRequest: TCRequestModel {
         /// 云服务器ID
         public let quuid: String
-        
+
         /// 标签ID
         public let tagId: UInt64
-        
+
         /// 云服务器地区
         public let mRegion: String
-        
+
         /// 云服务器类型(CVM|BM)
         public let mArea: String
-        
-        public init (quuid: String, tagId: UInt64, mRegion: String, mArea: String) {
+
+        public init(quuid: String, tagId: UInt64, mRegion: String, mArea: String) {
             self.quuid = quuid
             self.tagId = tagId
             self.mRegion = mRegion
             self.mArea = mArea
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case quuid = "Quuid"
             case tagId = "TagId"
@@ -43,35 +43,35 @@ extension Yunjing {
             case mArea = "MArea"
         }
     }
-    
+
     /// AddMachineTag返回参数结构体
     public struct AddMachineTagResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 增加机器关联标签
     @inlinable
-    public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineTagResponse > {
+    public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddMachineTagResponse> {
         self.client.execute(action: "AddMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 增加机器关联标签
     @inlinable
     public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineTagResponse {
         try await self.client.execute(action: "AddMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 增加机器关联标签
     @inlinable
-    public func addMachineTag(quuid: String, tagId: UInt64, mRegion: String, mArea: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineTagResponse > {
+    public func addMachineTag(quuid: String, tagId: UInt64, mRegion: String, mArea: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddMachineTagResponse> {
         self.addMachineTag(AddMachineTagRequest(quuid: quuid, tagId: tagId, mRegion: mRegion, mArea: mArea), logger: logger, on: eventLoop)
     }
-    
+
     /// 增加机器关联标签
     @inlinable
     public func addMachineTag(quuid: String, tagId: UInt64, mRegion: String, mArea: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineTagResponse {

@@ -22,54 +22,54 @@ extension Tcss {
         /// 容器启动: container_launch
         /// k8sApi: k8s_api
         public let logType: String
-        
+
         /// 绑定主机quuid列表
         public let bindList: [String]?
-        
+
         /// 待解绑主机quuid列表
         public let unBindList: [String]?
-        
-        public init (logType: String, bindList: [String]? = nil, unBindList: [String]? = nil) {
+
+        public init(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil) {
             self.logType = logType
             self.bindList = bindList
             self.unBindList = unBindList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case logType = "LogType"
             case bindList = "BindList"
             case unBindList = "UnBindList"
         }
     }
-    
+
     /// ModifySecLogJoinObjects返回参数结构体
     public struct ModifySecLogJoinObjectsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改安全日志接入对象
     @inlinable
-    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinObjectsResponse > {
+    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
         self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志接入对象
     @inlinable
     public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
         try await self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改安全日志接入对象
     @inlinable
-    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinObjectsResponse > {
+    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
         self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志接入对象
     @inlinable
     public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {

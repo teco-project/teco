@@ -19,40 +19,40 @@ extension Iotvideo {
     public struct CreateIotModelRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 物模型json串
         public let iotModel: String
-        
-        public init (productId: String, iotModel: String) {
+
+        public init(productId: String, iotModel: String) {
             self.productId = productId
             self.iotModel = iotModel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case iotModel = "IotModel"
         }
     }
-    
+
     /// CreateIotModel返回参数结构体
     public struct CreateIotModelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 定义的物模型提交
     ///
     /// 本接口（CreateIotModel）用于定义的物模型提交。
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable
-    public func createIotModel(_ input: CreateIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotModelResponse > {
+    public func createIotModel(_ input: CreateIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotModelResponse> {
         self.client.execute(action: "CreateIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 定义的物模型提交
     ///
     /// 本接口（CreateIotModel）用于定义的物模型提交。
@@ -61,16 +61,16 @@ extension Iotvideo {
     public func createIotModel(_ input: CreateIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotModelResponse {
         try await self.client.execute(action: "CreateIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 定义的物模型提交
     ///
     /// 本接口（CreateIotModel）用于定义的物模型提交。
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable
-    public func createIotModel(productId: String, iotModel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotModelResponse > {
+    public func createIotModel(productId: String, iotModel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotModelResponse> {
         self.createIotModel(CreateIotModelRequest(productId: productId, iotModel: iotModel), logger: logger, on: eventLoop)
     }
-    
+
     /// 定义的物模型提交
     ///
     /// 本接口（CreateIotModel）用于定义的物模型提交。

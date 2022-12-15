@@ -19,43 +19,43 @@ extension Tcr {
     public struct DeleteMultipleSecurityPolicyRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 安全组策略
         public let securityGroupPolicySet: [SecurityPolicy]
-        
-        public init (registryId: String, securityGroupPolicySet: [SecurityPolicy]) {
+
+        public init(registryId: String, securityGroupPolicySet: [SecurityPolicy]) {
             self.registryId = registryId
             self.securityGroupPolicySet = securityGroupPolicySet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case securityGroupPolicySet = "SecurityGroupPolicySet"
         }
     }
-    
+
     /// DeleteMultipleSecurityPolicy返回参数结构体
     public struct DeleteMultipleSecurityPolicyResponse: TCResponseModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除实例公网访问多白名单策略
     ///
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
-    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMultipleSecurityPolicyResponse > {
+    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultipleSecurityPolicyResponse> {
         self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除实例公网访问多白名单策略
     ///
     /// 用于删除实例多个公网访问白名单策略
@@ -63,15 +63,15 @@ extension Tcr {
     public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
         try await self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除实例公网访问多白名单策略
     ///
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
-    public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMultipleSecurityPolicyResponse > {
+    public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultipleSecurityPolicyResponse> {
         self.deleteMultipleSecurityPolicy(DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除实例公网访问多白名单策略
     ///
     /// 用于删除实例多个公网访问白名单策略

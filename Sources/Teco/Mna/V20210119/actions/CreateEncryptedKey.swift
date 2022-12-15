@@ -17,32 +17,32 @@
 extension Mna {
     /// CreateEncryptedKey请求参数结构体
     public struct CreateEncryptedKeyRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// CreateEncryptedKey返回参数结构体
     public struct CreateEncryptedKeyResponse: TCResponseModel {
         /// 预置密钥
         public let encryptedKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case encryptedKey = "EncryptedKey"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置或更新密钥
     ///
     /// 通过此接口设置和更新预置密钥
     @inlinable
-    public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEncryptedKeyResponse > {
+    public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptedKeyResponse> {
         self.client.execute(action: "CreateEncryptedKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置或更新密钥
     ///
     /// 通过此接口设置和更新预置密钥
@@ -50,15 +50,15 @@ extension Mna {
     public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
         try await self.client.execute(action: "CreateEncryptedKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置或更新密钥
     ///
     /// 通过此接口设置和更新预置密钥
     @inlinable
-    public func createEncryptedKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEncryptedKeyResponse > {
+    public func createEncryptedKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptedKeyResponse> {
         self.createEncryptedKey(CreateEncryptedKeyRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置或更新密钥
     ///
     /// 通过此接口设置和更新预置密钥

@@ -19,54 +19,54 @@ extension Gaap {
     public struct CreateGlobalDomainDnsRequest: TCRequestModel {
         /// 域名ID
         public let domainId: String
-        
+
         /// 通道ID列表
         public let proxyIdList: [String]
-        
+
         /// 国家ID列表
         public let nationCountryInnerCodes: [String]
-        
-        public init (domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String]) {
+
+        public init(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String]) {
             self.domainId = domainId
             self.proxyIdList = proxyIdList
             self.nationCountryInnerCodes = nationCountryInnerCodes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case proxyIdList = "ProxyIdList"
             case nationCountryInnerCodes = "NationCountryInnerCodes"
         }
     }
-    
+
     /// CreateGlobalDomainDns返回参数结构体
     public struct CreateGlobalDomainDnsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建域名解析记录
     @inlinable
-    public func createGlobalDomainDns(_ input: CreateGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGlobalDomainDnsResponse > {
+    public func createGlobalDomainDns(_ input: CreateGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainDnsResponse> {
         self.client.execute(action: "CreateGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建域名解析记录
     @inlinable
     public func createGlobalDomainDns(_ input: CreateGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainDnsResponse {
         try await self.client.execute(action: "CreateGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建域名解析记录
     @inlinable
-    public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGlobalDomainDnsResponse > {
+    public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainDnsResponse> {
         self.createGlobalDomainDns(CreateGlobalDomainDnsRequest(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建域名解析记录
     @inlinable
     public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainDnsResponse {

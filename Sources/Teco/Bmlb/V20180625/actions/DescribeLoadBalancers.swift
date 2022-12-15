@@ -19,53 +19,53 @@ extension Bmlb {
     public struct DescribeLoadBalancersRequest: TCRequestModel {
         /// 负载均衡器ID数组
         public let loadBalancerIds: [String]?
-        
+
         /// 负载均衡的类型 : open表示公网LB类型，internal表示内网LB类型
         public let loadBalancerType: String?
-        
+
         /// 负载均衡器名称
         public let loadBalancerName: String?
-        
+
         /// 负载均衡域名。规则：1-60个小写英文字母、数字、点号“.”或连接线“-”。内网类型的负载均衡不能配置该字段
         public let domain: String?
-        
+
         /// 负载均衡获得的公网IP地址,支持多个
         public let loadBalancerVips: [String]?
-        
+
         /// 数据偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 返回数据长度，默认为20
         public let limit: UInt64?
-        
+
         /// 模糊查找名称、域名、VIP
         public let searchKey: String?
-        
+
         /// 排序字段，支持：loadBalancerName,createTime,domain,loadBalancerType
         public let orderBy: String?
-        
+
         /// 1倒序，0顺序，默认顺序
         public let orderType: Int64?
-        
+
         /// 项目ID
         public let projectId: UInt64?
-        
+
         /// 是否筛选独占集群，0表示非独占集群，1表示四层独占集群，2表示七层独占集群，3表示四层和七层独占集群，4表示共享容灾
         public let exclusive: UInt64?
-        
+
         /// 该负载均衡对应的tgw集群（fullnat,tunnel,dnat）
         public let tgwSetType: String?
-        
+
         /// 该负载均衡对应的所在的私有网络ID
         public let vpcId: String?
-        
+
         /// 'CONFLIST' 查询带confId的LB列表，'CONFID' 查询某个confId绑定的LB列表
         public let queryType: String?
-        
+
         /// 个性化配置ID
         public let confId: String?
-        
-        public init (loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil) {
+
+        public init(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil) {
             self.loadBalancerIds = loadBalancerIds
             self.loadBalancerType = loadBalancerType
             self.loadBalancerName = loadBalancerName
@@ -83,7 +83,7 @@ extension Bmlb {
             self.queryType = queryType
             self.confId = confId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerIds = "LoadBalancerIds"
             case loadBalancerType = "LoadBalancerType"
@@ -103,43 +103,43 @@ extension Bmlb {
             case confId = "ConfId"
         }
     }
-    
+
     /// DescribeLoadBalancers返回参数结构体
     public struct DescribeLoadBalancersResponse: TCResponseModel {
         /// 返回负载均衡信息列表。
         public let loadBalancerSet: [LoadBalancer]
-        
+
         /// 符合条件的负载均衡总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerSet = "LoadBalancerSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取黑石负载均衡实例列表
     @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
         self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑石负载均衡实例列表
     @inlinable
     public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
         try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取黑石负载均衡实例列表
     @inlinable
-    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
         self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑石负载均衡实例列表
     @inlinable
     public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {

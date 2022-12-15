@@ -19,34 +19,34 @@ extension Chdfs {
     public struct ModifyLifeCycleRulesRequest: TCRequestModel {
         /// 多个生命周期规则，上限为10
         public let lifeCycleRules: [LifeCycleRule]
-        
-        public init (lifeCycleRules: [LifeCycleRule]) {
+
+        public init(lifeCycleRules: [LifeCycleRule]) {
             self.lifeCycleRules = lifeCycleRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case lifeCycleRules = "LifeCycleRules"
         }
     }
-    
+
     /// ModifyLifeCycleRules返回参数结构体
     public struct ModifyLifeCycleRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
     @inlinable
-    public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLifeCycleRulesResponse > {
+    public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
         self.client.execute(action: "ModifyLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
@@ -54,15 +54,15 @@ extension Chdfs {
     public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
         try await self.client.execute(action: "ModifyLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
     @inlinable
-    public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLifeCycleRulesResponse > {
+    public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
         self.modifyLifeCycleRules(ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。

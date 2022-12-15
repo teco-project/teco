@@ -19,23 +19,23 @@ extension Dayu {
     public struct DescribeBasicCCThresholdRequest: TCRequestModel {
         /// 查询的IP地址，取值如：1.1.1.1
         public let basicIp: String
-        
+
         /// 查询IP所属地域，取值如：gz、bj、sh、hk等地域缩写
         public let basicRegion: String
-        
+
         /// 专区类型，取值如：公有云专区：public，黑石专区：bm, NAT服务器专区：nat，互联网通道：channel。
         public let basicBizType: String
-        
+
         /// 设备类型，取值如：服务器：cvm，公有云负载均衡：clb，黑石负载均衡：lb，NAT服务器：nat，互联网通道：channel.
         public let basicDeviceType: String
-        
+
         /// 可选，IPInstance Nat 网关（如果查询的设备类型是NAT服务器，需要传此参数，通过nat资源查询接口获取）
         public let basicIpInstance: String?
-        
+
         /// 可选，运营商线路（如果查询的设备类型是NAT服务器，需要传此参数为5）
         public let basicIspCode: UInt64?
-        
-        public init (basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil) {
+
+        public init(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil) {
             self.basicIp = basicIp
             self.basicRegion = basicRegion
             self.basicBizType = basicBizType
@@ -43,7 +43,7 @@ extension Dayu {
             self.basicIpInstance = basicIpInstance
             self.basicIspCode = basicIspCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case basicIp = "BasicIp"
             case basicRegion = "BasicRegion"
@@ -53,43 +53,43 @@ extension Dayu {
             case basicIspCode = "BasicIspCode"
         }
     }
-    
+
     /// DescribeBasicCCThreshold返回参数结构体
     public struct DescribeBasicCCThresholdResponse: TCResponseModel {
         /// CC启动开关（0:关闭；1:开启）
         public let ccEnable: UInt64
-        
+
         /// CC防护阈值
         public let ccThreshold: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ccEnable = "CCEnable"
             case ccThreshold = "CCThreshold"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取基础防护CC防护阈值
     @inlinable
-    public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicCCThresholdResponse > {
+    public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicCCThresholdResponse> {
         self.client.execute(action: "DescribeBasicCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取基础防护CC防护阈值
     @inlinable
     public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicCCThresholdResponse {
         try await self.client.execute(action: "DescribeBasicCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取基础防护CC防护阈值
     @inlinable
-    public func describeBasicCCThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicCCThresholdResponse > {
+    public func describeBasicCCThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicCCThresholdResponse> {
         self.describeBasicCCThreshold(DescribeBasicCCThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取基础防护CC防护阈值
     @inlinable
     public func describeBasicCCThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicCCThresholdResponse {

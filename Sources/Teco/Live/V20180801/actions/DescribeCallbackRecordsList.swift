@@ -19,31 +19,31 @@ extension Live {
     public struct DescribeCallbackRecordsListRequest: TCRequestModel {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
         public let startTime: String
-        
+
         /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过1天。
         public let endTime: String
-        
+
         /// 流名称，精确匹配。
         public let streamName: String
-        
+
         /// 页码。
         public let pageNum: UInt64
-        
+
         /// 每页条数。
         public let pageSize: UInt64
-        
+
         /// 事件类型。
         /// 0: "断流",
         /// 1: "推流",
         /// 100: "录制"
         /// 200: "截图回调"。
         public let eventType: UInt64?
-        
+
         /// 回调结果。
         /// 0为成功，其他为失败。
         public let resultCode: UInt64?
-        
-        public init (startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil) {
+
+        public init(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.streamName = streamName
@@ -52,7 +52,7 @@ extension Live {
             self.eventType = eventType
             self.resultCode = resultCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -63,27 +63,27 @@ extension Live {
             case resultCode = "ResultCode"
         }
     }
-    
+
     /// DescribeCallbackRecordsList返回参数结构体
     public struct DescribeCallbackRecordsListResponse: TCResponseModel {
         /// 回调事件列表。
         public let dataInfoList: [CallbackEventInfo]
-        
+
         /// 页码。
         public let pageNum: UInt64
-        
+
         /// 每页条数。
         public let pageSize: UInt64
-        
+
         /// 总条数。
         public let totalNum: UInt64
-        
+
         /// 总页数。
         public let totalPage: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataInfoList = "DataInfoList"
             case pageNum = "PageNum"
@@ -93,15 +93,15 @@ extension Live {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 回调事件查询
     ///
     /// 用于查询回调事件。
     @inlinable
-    public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallbackRecordsListResponse > {
+    public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallbackRecordsListResponse> {
         self.client.execute(action: "DescribeCallbackRecordsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 回调事件查询
     ///
     /// 用于查询回调事件。
@@ -109,15 +109,15 @@ extension Live {
     public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
         try await self.client.execute(action: "DescribeCallbackRecordsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 回调事件查询
     ///
     /// 用于查询回调事件。
     @inlinable
-    public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallbackRecordsListResponse > {
+    public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallbackRecordsListResponse> {
         self.describeCallbackRecordsList(DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 回调事件查询
     ///
     /// 用于查询回调事件。

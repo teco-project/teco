@@ -23,65 +23,65 @@ extension TCTeoError {
             case invalidZoneStatus = "FailedOperation.InvalidZoneStatus"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 证书不存在。
         public static var certificateNotFound: FailedOperation {
             FailedOperation(.certificateNotFound)
         }
-        
+
         /// 创建日志集失败，请检查日志集名是否已存在。
         public static var createClsLogSetFailed: FailedOperation {
             FailedOperation(.createClsLogSetFailed)
         }
-        
+
         /// 创建日志主题任务失败，请检查日志主题名或任务名是否已存在。
         public static var createClsLogTopicTaskFailed: FailedOperation {
             FailedOperation(.createClsLogTopicTaskFailed)
         }
-        
+
         public static var invalidZoneStatus: FailedOperation {
             FailedOperation(.invalidZoneStatus)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .certificateNotFound: 
+            case .certificateNotFound:
                 code = .failedOperation_CertificateNotFound
-            case .createClsLogSetFailed: 
+            case .createClsLogSetFailed:
                 code = .failedOperation_CreateClsLogSetFailed
-            case .createClsLogTopicTaskFailed: 
+            case .createClsLogTopicTaskFailed:
                 code = .failedOperation_CreateClsLogTopicTaskFailed
-            case .invalidZoneStatus: 
+            case .invalidZoneStatus:
                 code = .failedOperation_InvalidZoneStatus
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCTeoError(code, context: self.context)

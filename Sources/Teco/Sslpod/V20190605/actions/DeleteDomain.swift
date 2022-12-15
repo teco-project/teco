@@ -19,34 +19,34 @@ extension Sslpod {
     public struct DeleteDomainRequest: TCRequestModel {
         /// 域名ID，可通过<a href="https://cloud.tencent.com/document/api/1084/49339">搜索域名</a>接口获得
         public let domainId: Int64
-        
-        public init (domainId: Int64) {
+
+        public init(domainId: Int64) {
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
         }
     }
-    
+
     /// DeleteDomain返回参数结构体
     public struct DeleteDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除域名
     ///
     /// 通过域名ID删除监控的域名
     @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainResponse > {
+    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
         self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除域名
     ///
     /// 通过域名ID删除监控的域名
@@ -54,15 +54,15 @@ extension Sslpod {
     public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
         try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除域名
     ///
     /// 通过域名ID删除监控的域名
     @inlinable
-    public func deleteDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainResponse > {
+    public func deleteDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
         self.deleteDomain(DeleteDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除域名
     ///
     /// 通过域名ID删除监控的域名

@@ -19,36 +19,36 @@ extension Vpc {
     public struct ModifySecurityGroupPoliciesRequest: TCRequestModel {
         /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
         public let securityGroupId: String
-        
+
         /// 安全组规则集合。 SecurityGroupPolicySet对象必须同时指定新的出（Egress）入（Ingress）站规则。 SecurityGroupPolicy对象不支持自定义索引（PolicyIndex）。
         public let securityGroupPolicySet: SecurityGroupPolicySet
-        
+
         /// 排序安全组标识，默认值为False。当SortPolicys为False时，不改变安全组规则排序；当SortPolicys为True时，系统将严格按照SecurityGroupPolicySet参数传入的安全组规则及顺序进行重置，考虑到人为输入参数可能存在遗漏风险，建议通过控制台对安全组规则进行排序。
         public let sortPolicys: Bool?
-        
-        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil) {
+
+        public init(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil) {
             self.securityGroupId = securityGroupId
             self.securityGroupPolicySet = securityGroupPolicySet
             self.sortPolicys = sortPolicys
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupId = "SecurityGroupId"
             case securityGroupPolicySet = "SecurityGroupPolicySet"
             case sortPolicys = "SortPolicys"
         }
     }
-    
+
     /// ModifySecurityGroupPolicies返回参数结构体
     public struct ModifySecurityGroupPoliciesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改安全组出站和入站规则
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。
@@ -67,10 +67,10 @@ extension Vpc {
     /// </ul></li></ul></li>
     /// </ul>
     @inlinable
-    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupPoliciesResponse > {
+    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
         self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全组出站和入站规则
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。
@@ -92,7 +92,7 @@ extension Vpc {
     public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
         try await self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改安全组出站和入站规则
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。
@@ -111,10 +111,10 @@ extension Vpc {
     /// </ul></li></ul></li>
     /// </ul>
     @inlinable
-    public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupPoliciesResponse > {
+    public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
         self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全组出站和入站规则
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。

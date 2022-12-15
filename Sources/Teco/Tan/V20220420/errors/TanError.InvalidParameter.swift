@@ -23,66 +23,66 @@ extension TCTanError {
             case recordParameterParseFail = "InvalidParameter.RecordParameterParseFail"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 分组名称已存在。
         public static var groupNameExisted: InvalidParameter {
             InvalidParameter(.groupNameExisted)
         }
-        
+
         /// 记录超出限制。
         public static var recordExceedsLimit: InvalidParameter {
             InvalidParameter(.recordExceedsLimit)
         }
-        
+
         /// 记录参数验证不通过。
         public static var recordParameterCheckFail: InvalidParameter {
             InvalidParameter(.recordParameterCheckFail)
         }
-        
+
         /// 记录参数解析不通过。
         public static var recordParameterParseFail: InvalidParameter {
             InvalidParameter(.recordParameterParseFail)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTanError() -> TCTanError {
             let code: TCTanError.Code
             switch self.error {
-            case .groupNameExisted: 
+            case .groupNameExisted:
                 code = .invalidParameter_GroupNameExisted
-            case .recordExceedsLimit: 
+            case .recordExceedsLimit:
                 code = .invalidParameter_RecordExceedsLimit
-            case .recordParameterCheckFail: 
+            case .recordParameterCheckFail:
                 code = .invalidParameter_RecordParameterCheckFail
-            case .recordParameterParseFail: 
+            case .recordParameterParseFail:
                 code = .invalidParameter_RecordParameterParseFail
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCTanError(code, context: self.context)

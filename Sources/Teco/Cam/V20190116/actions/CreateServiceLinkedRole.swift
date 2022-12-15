@@ -19,23 +19,23 @@ extension Cam {
     public struct CreateServiceLinkedRoleRequest: TCRequestModel {
         /// 授权服务，附加了此角色的腾讯云服务主体。
         public let qcsServiceName: [String]
-        
+
         /// 自定义后缀，根据您提供的字符串，与服务提供的前缀组合在一起以形成完整的角色名称。
         public let customSuffix: String?
-        
+
         /// 角色说明。
         public let description: String?
-        
+
         /// 角色绑定标签。
         public let tags: [RoleTags]?
-        
-        public init (qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil) {
+
+        public init(qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil) {
             self.qcsServiceName = qcsServiceName
             self.customSuffix = customSuffix
             self.description = description
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case qcsServiceName = "QCSServiceName"
             case customSuffix = "CustomSuffix"
@@ -43,39 +43,39 @@ extension Cam {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateServiceLinkedRole返回参数结构体
     public struct CreateServiceLinkedRoleResponse: TCResponseModel {
         /// 角色ID
         public let roleId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case roleId = "RoleId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建服务相关角色
     @inlinable
-    public func createServiceLinkedRole(_ input: CreateServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceLinkedRoleResponse > {
+    public func createServiceLinkedRole(_ input: CreateServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceLinkedRoleResponse> {
         self.client.execute(action: "CreateServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建服务相关角色
     @inlinable
     public func createServiceLinkedRole(_ input: CreateServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceLinkedRoleResponse {
         try await self.client.execute(action: "CreateServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建服务相关角色
     @inlinable
-    public func createServiceLinkedRole(qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceLinkedRoleResponse > {
+    public func createServiceLinkedRole(qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceLinkedRoleResponse> {
         self.createServiceLinkedRole(CreateServiceLinkedRoleRequest(qcsServiceName: qcsServiceName, customSuffix: customSuffix, description: description, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建服务相关角色
     @inlinable
     public func createServiceLinkedRole(qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceLinkedRoleResponse {

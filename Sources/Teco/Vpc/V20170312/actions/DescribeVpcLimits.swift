@@ -19,30 +19,30 @@ extension Vpc {
     public struct DescribeVpcLimitsRequest: TCRequestModel {
         /// 配额名称。每次最大查询100个配额类型。
         public let limitTypes: [String]
-        
-        public init (limitTypes: [String]) {
+
+        public init(limitTypes: [String]) {
             self.limitTypes = limitTypes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limitTypes = "LimitTypes"
         }
     }
-    
+
     /// DescribeVpcLimits返回参数结构体
     public struct DescribeVpcLimitsResponse: TCResponseModel {
         /// 私有网络配额
         public let vpcLimitSet: [VpcLimit]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcLimitSet = "VpcLimitSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取私有网络配额
     ///
     /// 获取私有网络配额，部分私有网络的配额有地域属性。
@@ -76,10 +76,10 @@ extension Vpc {
     /// * eni-max-ipv6s（每个ENI可分配的IPv6地址数）
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
-    public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcLimitsResponse > {
+    public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcLimitsResponse> {
         self.client.execute(action: "DescribeVpcLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有网络配额
     ///
     /// 获取私有网络配额，部分私有网络的配额有地域属性。
@@ -116,7 +116,7 @@ extension Vpc {
     public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcLimitsResponse {
         try await self.client.execute(action: "DescribeVpcLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取私有网络配额
     ///
     /// 获取私有网络配额，部分私有网络的配额有地域属性。
@@ -150,10 +150,10 @@ extension Vpc {
     /// * eni-max-ipv6s（每个ENI可分配的IPv6地址数）
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
-    public func describeVpcLimits(limitTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcLimitsResponse > {
+    public func describeVpcLimits(limitTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcLimitsResponse> {
         self.describeVpcLimits(DescribeVpcLimitsRequest(limitTypes: limitTypes), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有网络配额
     ///
     /// 获取私有网络配额，部分私有网络的配额有地域属性。

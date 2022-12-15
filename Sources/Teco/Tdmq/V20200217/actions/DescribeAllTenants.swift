@@ -19,29 +19,29 @@ extension Tdmq {
     public struct DescribeAllTenantsRequest: TCRequestModel {
         /// 查询偏移量
         public let offset: Int64
-        
+
         /// 查询限制条数
         public let limit: Int64
-        
+
         /// 物理集群名称
         public let clusterName: String?
-        
+
         /// 虚拟集群ID
         public let tenantId: String?
-        
+
         /// 虚拟集群名称
         public let tenantName: String?
-        
+
         /// 协议类型数组
         public let types: [String]?
-        
+
         /// 排序字段名，支持createTime，updateTime
         public let sortBy: String?
-        
+
         /// 升序排列ASC，降序排列DESC
         public let sortOrder: String?
-        
-        public init (offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil) {
+
+        public init(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterName = clusterName
@@ -51,7 +51,7 @@ extension Tdmq {
             self.sortBy = sortBy
             self.sortOrder = sortOrder
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -63,43 +63,43 @@ extension Tdmq {
             case sortOrder = "SortOrder"
         }
     }
-    
+
     /// DescribeAllTenants返回参数结构体
     public struct DescribeAllTenantsResponse: TCResponseModel {
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 虚拟集群列表
         public let tenants: [InternalTenant]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tenants = "Tenants"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取某个租户的虚拟集群列表
     @inlinable
-    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllTenantsResponse > {
+    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllTenantsResponse> {
         self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取某个租户的虚拟集群列表
     @inlinable
     public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
         try await self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取某个租户的虚拟集群列表
     @inlinable
-    public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllTenantsResponse > {
+    public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllTenantsResponse> {
         self.describeAllTenants(DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取某个租户的虚拟集群列表
     @inlinable
     public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {

@@ -19,39 +19,39 @@ extension Clb {
     public struct ModifyLoadBalancerMixIpTargetRequest: TCRequestModel {
         /// 负载均衡实例ID数组。
         public let loadBalancerIds: [String]
-        
+
         /// 开启/关闭IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
         public let mixIpTarget: Bool
-        
-        public init (loadBalancerIds: [String], mixIpTarget: Bool) {
+
+        public init(loadBalancerIds: [String], mixIpTarget: Bool) {
             self.loadBalancerIds = loadBalancerIds
             self.mixIpTarget = mixIpTarget
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerIds = "LoadBalancerIds"
             case mixIpTarget = "MixIpTarget"
         }
     }
-    
+
     /// ModifyLoadBalancerMixIpTarget返回参数结构体
     public struct ModifyLoadBalancerMixIpTargetResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑目标特性。
     ///
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
     @inlinable
-    public func modifyLoadBalancerMixIpTarget(_ input: ModifyLoadBalancerMixIpTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerMixIpTargetResponse > {
+    public func modifyLoadBalancerMixIpTarget(_ input: ModifyLoadBalancerMixIpTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerMixIpTargetResponse> {
         self.client.execute(action: "ModifyLoadBalancerMixIpTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑目标特性。
     ///
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
@@ -59,15 +59,15 @@ extension Clb {
     public func modifyLoadBalancerMixIpTarget(_ input: ModifyLoadBalancerMixIpTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerMixIpTargetResponse {
         try await self.client.execute(action: "ModifyLoadBalancerMixIpTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑目标特性。
     ///
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
     @inlinable
-    public func modifyLoadBalancerMixIpTarget(loadBalancerIds: [String], mixIpTarget: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerMixIpTargetResponse > {
+    public func modifyLoadBalancerMixIpTarget(loadBalancerIds: [String], mixIpTarget: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerMixIpTargetResponse> {
         self.modifyLoadBalancerMixIpTarget(ModifyLoadBalancerMixIpTargetRequest(loadBalancerIds: loadBalancerIds, mixIpTarget: mixIpTarget), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑目标特性。
     ///
     /// 修改IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。

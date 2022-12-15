@@ -29,108 +29,108 @@ extension TCEcmError {
             case missingPrivateIpAddress = "MissingParameter.MissingPrivateIpAddress"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 缺少需关联的实体参数。
         public static var missingAssociateEntity: MissingParameter {
             MissingParameter(.missingAssociateEntity)
         }
-        
+
         /// 获取基础配置请求参数不全。
         public static var missingBaseConfigParameter: MissingParameter {
             MissingParameter(.missingBaseConfigParameter)
         }
-        
+
         /// 镜像操作参数不全。
         public static var missingImageParameter: MissingParameter {
             MissingParameter(.missingImageParameter)
         }
-        
+
         /// 机型操作参数不全。
         public static var missingInstanceTypeConfigParameter: MissingParameter {
             MissingParameter(.missingInstanceTypeConfigParameter)
         }
-        
+
         /// 实例操作参数不全。
         public static var missingInstancesParameter: MissingParameter {
             MissingParameter(.missingInstancesParameter)
         }
-        
+
         /// 模块操作参数不全。
         public static var missingModuleParameter: MissingParameter {
             MissingParameter(.missingModuleParameter)
         }
-        
+
         /// 缺少网卡操作配置的请求参数。
         public static var missingNetworkInterfaceParameter: MissingParameter {
             MissingParameter(.missingNetworkInterfaceParameter)
         }
-        
+
         /// 节点操作参数不全。
         public static var missingNodeParameter: MissingParameter {
             MissingParameter(.missingNodeParameter)
         }
-        
+
         /// 获取概览页配置请求参数不全。
         public static var missingOverViewParameter: MissingParameter {
             MissingParameter(.missingOverViewParameter)
         }
-        
+
         /// 缺少私有IP地址。
         public static var missingPrivateIpAddress: MissingParameter {
             MissingParameter(.missingPrivateIpAddress)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
-            case .missingAssociateEntity: 
+            case .missingAssociateEntity:
                 code = .missingParameter_MissingAssociateEntity
-            case .missingBaseConfigParameter: 
+            case .missingBaseConfigParameter:
                 code = .missingParameter_MissingBaseConfigParameter
-            case .missingImageParameter: 
+            case .missingImageParameter:
                 code = .missingParameter_MissingImageParameter
-            case .missingInstanceTypeConfigParameter: 
+            case .missingInstanceTypeConfigParameter:
                 code = .missingParameter_MissingInstanceTypeConfigParameter
-            case .missingInstancesParameter: 
+            case .missingInstancesParameter:
                 code = .missingParameter_MissingInstancesParameter
-            case .missingModuleParameter: 
+            case .missingModuleParameter:
                 code = .missingParameter_MissingModuleParameter
-            case .missingNetworkInterfaceParameter: 
+            case .missingNetworkInterfaceParameter:
                 code = .missingParameter_MissingNetworkInterfaceParameter
-            case .missingNodeParameter: 
+            case .missingNodeParameter:
                 code = .missingParameter_MissingNodeParameter
-            case .missingOverViewParameter: 
+            case .missingOverViewParameter:
                 code = .missingParameter_MissingOverViewParameter
-            case .missingPrivateIpAddress: 
+            case .missingPrivateIpAddress:
                 code = .missingParameter_MissingPrivateIpAddress
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCEcmError(code, context: self.context)

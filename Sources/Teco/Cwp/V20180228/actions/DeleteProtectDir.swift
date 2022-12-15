@@ -19,44 +19,44 @@ extension Cwp {
     public struct DeleteProtectDirRequest: TCRequestModel {
         /// 删除的目录ID 最大100条
         public let ids: [String]
-        
-        public init (ids: [String]) {
+
+        public init(ids: [String]) {
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
         }
     }
-    
+
     /// DeleteProtectDir返回参数结构体
     public struct DeleteProtectDirResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除防护网站
     @inlinable
-    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProtectDirResponse > {
+    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
         self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除防护网站
     @inlinable
     public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
         try await self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除防护网站
     @inlinable
-    public func deleteProtectDir(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProtectDirResponse > {
+    public func deleteProtectDir(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
         self.deleteProtectDir(DeleteProtectDirRequest(ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除防护网站
     @inlinable
     public func deleteProtectDir(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {

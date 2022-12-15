@@ -19,27 +19,27 @@ extension Pts {
     public struct DescribeLabelValuesRequest: TCRequestModel {
         /// 任务ID
         public let jobId: String
-        
+
         /// 场景ID
         public let scenarioId: String
-        
+
         /// 指标名称
         public let metric: String
-        
+
         /// 查询标签名称
         public let labelName: String
-        
+
         /// 项目ID
         public let projectId: String
-        
-        public init (jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String) {
+
+        public init(jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String) {
             self.jobId = jobId
             self.scenarioId = scenarioId
             self.metric = metric
             self.labelName = labelName
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case scenarioId = "ScenarioId"
@@ -48,30 +48,30 @@ extension Pts {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeLabelValues返回参数结构体
     public struct DescribeLabelValuesResponse: TCResponseModel {
         /// 标签值数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelValueSet: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case labelValueSet = "LabelValueSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询标签值
     ///
     /// 查询标签内容
     @inlinable
-    public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLabelValuesResponse > {
+    public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLabelValuesResponse> {
         self.client.execute(action: "DescribeLabelValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询标签值
     ///
     /// 查询标签内容
@@ -79,15 +79,15 @@ extension Pts {
     public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLabelValuesResponse {
         try await self.client.execute(action: "DescribeLabelValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询标签值
     ///
     /// 查询标签内容
     @inlinable
-    public func describeLabelValues(jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLabelValuesResponse > {
+    public func describeLabelValues(jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLabelValuesResponse> {
         self.describeLabelValues(DescribeLabelValuesRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, labelName: labelName, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询标签值
     ///
     /// 查询标签内容

@@ -19,35 +19,35 @@ extension Wedata {
     public struct BatchForceSuccessIntegrationTaskInstancesRequest: TCRequestModel {
         /// 实例信息
         public let instances: [SchedulerTaskInstanceInfo]
-        
+
         /// 项目id
         public let projectId: String
-        
-        public init (instances: [SchedulerTaskInstanceInfo], projectId: String) {
+
+        public init(instances: [SchedulerTaskInstanceInfo], projectId: String) {
             self.instances = instances
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instances = "Instances"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// BatchForceSuccessIntegrationTaskInstances返回参数结构体
     public struct BatchForceSuccessIntegrationTaskInstancesResponse: TCResponseModel {
         /// 操作成功的任务数
         public let successCount: Int64
-        
+
         /// 操作失败的任务数
         public let failedCount: Int64
-        
+
         /// 任务总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case successCount = "SuccessCount"
             case failedCount = "FailedCount"
@@ -55,25 +55,25 @@ extension Wedata {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量置成功集成任务实例
     @inlinable
-    public func batchForceSuccessIntegrationTaskInstances(_ input: BatchForceSuccessIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchForceSuccessIntegrationTaskInstancesResponse > {
+    public func batchForceSuccessIntegrationTaskInstances(_ input: BatchForceSuccessIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchForceSuccessIntegrationTaskInstancesResponse> {
         self.client.execute(action: "BatchForceSuccessIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量置成功集成任务实例
     @inlinable
     public func batchForceSuccessIntegrationTaskInstances(_ input: BatchForceSuccessIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchForceSuccessIntegrationTaskInstancesResponse {
         try await self.client.execute(action: "BatchForceSuccessIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量置成功集成任务实例
     @inlinable
-    public func batchForceSuccessIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchForceSuccessIntegrationTaskInstancesResponse > {
+    public func batchForceSuccessIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchForceSuccessIntegrationTaskInstancesResponse> {
         self.batchForceSuccessIntegrationTaskInstances(BatchForceSuccessIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量置成功集成任务实例
     @inlinable
     public func batchForceSuccessIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchForceSuccessIntegrationTaskInstancesResponse {

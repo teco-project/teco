@@ -19,29 +19,29 @@ extension Monitor {
     public struct ModifyPolicyGroupRequest: TCRequestModel {
         /// 固定值，为"monitor"
         public let module: String
-        
+
         /// 策略组id
         public let groupId: Int64
-        
+
         /// 告警类型
         public let viewName: String
-        
+
         /// 策略组名称
         public let groupName: String
-        
+
         /// 指标告警条件的且或关系，1表示且告警，所有指标告警条件都达到才告警，0表示或告警，任意指标告警条件达到都告警
         public let isUnionRule: Int64
-        
+
         /// 指标告警条件规则，不填表示删除已有的所有指标告警条件规则
         public let conditions: [ModifyPolicyGroupCondition]?
-        
+
         /// 事件告警条件，不填表示删除已有的事件告警条件
         public let eventConditions: [ModifyPolicyGroupEventCondition]?
-        
+
         /// 模板策略组id
         public let conditionTempGroupId: Int64?
-        
-        public init (module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil) {
+
+        public init(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil) {
             self.module = module
             self.groupId = groupId
             self.viewName = viewName
@@ -51,7 +51,7 @@ extension Monitor {
             self.eventConditions = eventConditions
             self.conditionTempGroupId = conditionTempGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case groupId = "GroupId"
@@ -63,39 +63,39 @@ extension Monitor {
             case conditionTempGroupId = "ConditionTempGroupId"
         }
     }
-    
+
     /// ModifyPolicyGroup返回参数结构体
     public struct ModifyPolicyGroupResponse: TCResponseModel {
         /// 策略组id
         public let groupId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新策略组
     @inlinable
-    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPolicyGroupResponse > {
+    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPolicyGroupResponse> {
         self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新策略组
     @inlinable
     public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
         try await self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新策略组
     @inlinable
-    public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPolicyGroupResponse > {
+    public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPolicyGroupResponse> {
         self.modifyPolicyGroup(ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新策略组
     @inlinable
     public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {

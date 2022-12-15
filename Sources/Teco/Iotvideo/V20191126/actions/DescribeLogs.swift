@@ -19,26 +19,26 @@ extension Iotvideo {
     public struct DescribeLogsRequest: TCRequestModel {
         /// 设备TID
         public let tid: String
-        
+
         /// 当前分页的最大条数,0<取值范围<=100
         public let limit: UInt64
-        
+
         /// 分页偏移量,取值范围>0
         public let offset: UInt64
-        
+
         /// 日志类型 1.在线状态变更 2.ProConst变更 3.ProWritable变更 4.Action控制 5.ProReadonly变更 6.Event事件
         public let logType: UInt64?
-        
+
         /// 查询的起始时间 UNIX时间戳，单位秒
         public let startTime: UInt64?
-        
+
         /// 物模型对象索引，用于模糊查询，字符长度<=255，每层节点的字符长度<=16
         public let dataObject: String?
-        
+
         /// 查询的结束时间 UNIX时间戳，单位秒
         public let endTime: UInt64?
-        
-        public init (tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil) {
+
+        public init(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil) {
             self.tid = tid
             self.limit = limit
             self.offset = offset
@@ -47,7 +47,7 @@ extension Iotvideo {
             self.dataObject = dataObject
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tid = "Tid"
             case limit = "Limit"
@@ -58,35 +58,35 @@ extension Iotvideo {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeLogs返回参数结构体
     public struct DescribeLogsResponse: TCResponseModel {
         /// 设备日志信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [LogData]?
-        
+
         /// Data数组所包含的信息条数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备日志列表
     ///
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsResponse > {
+    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
         self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备日志列表
     ///
     /// 本接口（DescribeLogs）用于查询设备日志列表。
@@ -95,16 +95,16 @@ extension Iotvideo {
     public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
         try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备日志列表
     ///
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
-    public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsResponse > {
+    public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
         self.describeLogs(DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备日志列表
     ///
     /// 本接口（DescribeLogs）用于查询设备日志列表。

@@ -19,38 +19,38 @@ extension Tsf {
     public struct DeleteServerlessGroupRequest: TCRequestModel {
         /// groupId，分组唯一标识
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DeleteServerlessGroup返回参数结构体
     public struct DeleteServerlessGroupResponse: TCResponseModel {
         /// 结果true：成功；false：失败。
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除部署组
     ///
     /// 删除Serverless部署组
     @inlinable
-    public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServerlessGroupResponse > {
+    public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessGroupResponse> {
         self.client.execute(action: "DeleteServerlessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除部署组
     ///
     /// 删除Serverless部署组
@@ -58,15 +58,15 @@ extension Tsf {
     public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessGroupResponse {
         try await self.client.execute(action: "DeleteServerlessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除部署组
     ///
     /// 删除Serverless部署组
     @inlinable
-    public func deleteServerlessGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServerlessGroupResponse > {
+    public func deleteServerlessGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessGroupResponse> {
         self.deleteServerlessGroup(DeleteServerlessGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除部署组
     ///
     /// 删除Serverless部署组

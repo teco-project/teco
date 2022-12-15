@@ -19,27 +19,27 @@ extension Cwp {
     public struct DescribeClientExceptionRequest: TCRequestModel {
         /// 客户端异常类型 1:客户端离线，2:客户端卸载
         public let exceptionType: Int64
-        
+
         /// 分页的偏移量
         public let offset: UInt64
-        
+
         /// 分页单页限制数目，不为0，最大值100
         public let limit: UInt64
-        
+
         /// 起始时间 `2006-01-02 15:04:05` 格式
         public let startTime: String?
-        
+
         /// 结束时间 `2006-01-02 15:04:05` 格式
         public let endTime: String?
-        
-        public init (exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil) {
+
+        public init(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil) {
             self.exceptionType = exceptionType
             self.offset = offset
             self.limit = limit
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case exceptionType = "ExceptionType"
             case offset = "Offset"
@@ -48,43 +48,43 @@ extension Cwp {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeClientException返回参数结构体
     public struct DescribeClientExceptionResponse: TCResponseModel {
         /// 事件总数量
         public let totalCount: UInt64
-        
+
         /// 事件详情
         public let records: [RecordInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case records = "Records"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取客户端异常事件
     @inlinable
-    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientExceptionResponse > {
+    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientExceptionResponse> {
         self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取客户端异常事件
     @inlinable
     public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
         try await self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取客户端异常事件
     @inlinable
-    public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientExceptionResponse > {
+    public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientExceptionResponse> {
         self.describeClientException(DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取客户端异常事件
     @inlinable
     public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {

@@ -21,27 +21,27 @@ extension Tcss {
         /// <li>Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御</li>
         /// <li>KeyWords- string - 是否必填：否 - 主机名称/IP。</li>
         public let filters: [RunTimeFilters]?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 排序方式：asc/desc
         public let order: String?
-        
+
         /// 排序字段：更新时间：ModifyTime/首次开启时间：CreateTime
         public let by: String?
-        
-        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
@@ -50,43 +50,43 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeVulDefenceHost返回参数结构体
     public struct DescribeVulDefenceHostResponse: TCResponseModel {
         /// 总数量
         public let totalCount: Int64
-        
+
         /// 漏洞防御的主机列表
         public let list: [VulDefenceHost]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询漏洞防御的主机列表
     @inlinable
-    public func describeVulDefenceHost(_ input: DescribeVulDefenceHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceHostResponse > {
+    public func describeVulDefenceHost(_ input: DescribeVulDefenceHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceHostResponse> {
         self.client.execute(action: "DescribeVulDefenceHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞防御的主机列表
     @inlinable
     public func describeVulDefenceHost(_ input: DescribeVulDefenceHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceHostResponse {
         try await self.client.execute(action: "DescribeVulDefenceHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询漏洞防御的主机列表
     @inlinable
-    public func describeVulDefenceHost(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceHostResponse > {
+    public func describeVulDefenceHost(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceHostResponse> {
         self.describeVulDefenceHost(DescribeVulDefenceHostRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞防御的主机列表
     @inlinable
     public func describeVulDefenceHost(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceHostResponse {

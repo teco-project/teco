@@ -22,59 +22,59 @@ extension TCTkeError {
             case eksContainerStatus = "ResourceUnavailable.EksContainerStatus"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 集群状态异常。
         public static var clusterInAbnormalStat: ResourceUnavailable {
             ResourceUnavailable(.clusterInAbnormalStat)
         }
-        
+
         /// 集群状态不支持该操作。
         public static var clusterState: ResourceUnavailable {
             ResourceUnavailable(.clusterState)
         }
-        
+
         /// Eks Container Instance状态不支持改操作。
         public static var eksContainerStatus: ResourceUnavailable {
             ResourceUnavailable(.eksContainerStatus)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asTkeError() -> TCTkeError {
             let code: TCTkeError.Code
             switch self.error {
-            case .clusterInAbnormalStat: 
+            case .clusterInAbnormalStat:
                 code = .resourceUnavailable_ClusterInAbnormalStat
-            case .clusterState: 
+            case .clusterState:
                 code = .resourceUnavailable_ClusterState
-            case .eksContainerStatus: 
+            case .eksContainerStatus:
                 code = .resourceUnavailable_EksContainerStatus
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCTkeError(code, context: self.context)

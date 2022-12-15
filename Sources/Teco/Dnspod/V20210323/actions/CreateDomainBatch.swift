@@ -19,57 +19,57 @@ extension Dnspod {
     public struct CreateDomainBatchRequest: TCRequestModel {
         /// 域名数组
         public let domainList: [String]
-        
+
         /// 每个域名添加 @ 和 www 的 A 记录值，记录值为IP，如果不传此参数或者传空，将只添加域名，不添加记录。
         public let recordValue: String?
-        
-        public init (domainList: [String], recordValue: String? = nil) {
+
+        public init(domainList: [String], recordValue: String? = nil) {
             self.domainList = domainList
             self.recordValue = recordValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainList = "DomainList"
             case recordValue = "RecordValue"
         }
     }
-    
+
     /// CreateDomainBatch返回参数结构体
     public struct CreateDomainBatchResponse: TCResponseModel {
         /// 批量添加域名信息
         public let detailList: [CreateDomainBatchDetail]
-        
+
         /// 批量任务的ID
         public let jobId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case detailList = "DetailList"
             case jobId = "JobId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量添加域名
     @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
         self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量添加域名
     @inlinable
     public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
         try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量添加域名
     @inlinable
-    public func createDomainBatch(domainList: [String], recordValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
+    public func createDomainBatch(domainList: [String], recordValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
         self.createDomainBatch(CreateDomainBatchRequest(domainList: domainList, recordValue: recordValue), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量添加域名
     @inlinable
     public func createDomainBatch(domainList: [String], recordValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {

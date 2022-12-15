@@ -19,44 +19,44 @@ extension Tcss {
     public struct ModifySecLogDeliveryClsSettingRequest: TCRequestModel {
         /// 日志信息
         public let list: [SecLogDeliveryClsSettingInfo]
-        
-        public init (list: [SecLogDeliveryClsSettingInfo]) {
+
+        public init(list: [SecLogDeliveryClsSettingInfo]) {
             self.list = list
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
         }
     }
-    
+
     /// ModifySecLogDeliveryClsSetting返回参数结构体
     public struct ModifySecLogDeliveryClsSettingResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新安全日志-日志投递cls配置
     @inlinable
-    public func modifySecLogDeliveryClsSetting(_ input: ModifySecLogDeliveryClsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogDeliveryClsSettingResponse > {
+    public func modifySecLogDeliveryClsSetting(_ input: ModifySecLogDeliveryClsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogDeliveryClsSettingResponse> {
         self.client.execute(action: "ModifySecLogDeliveryClsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新安全日志-日志投递cls配置
     @inlinable
     public func modifySecLogDeliveryClsSetting(_ input: ModifySecLogDeliveryClsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryClsSettingResponse {
         try await self.client.execute(action: "ModifySecLogDeliveryClsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新安全日志-日志投递cls配置
     @inlinable
-    public func modifySecLogDeliveryClsSetting(list: [SecLogDeliveryClsSettingInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogDeliveryClsSettingResponse > {
+    public func modifySecLogDeliveryClsSetting(list: [SecLogDeliveryClsSettingInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogDeliveryClsSettingResponse> {
         self.modifySecLogDeliveryClsSetting(ModifySecLogDeliveryClsSettingRequest(list: list), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新安全日志-日志投递cls配置
     @inlinable
     public func modifySecLogDeliveryClsSetting(list: [SecLogDeliveryClsSettingInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryClsSettingResponse {

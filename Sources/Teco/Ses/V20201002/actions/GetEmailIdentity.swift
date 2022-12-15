@@ -19,30 +19,30 @@ extension Ses {
     public struct GetEmailIdentityRequest: TCRequestModel {
         /// 发信域名
         public let emailIdentity: String
-        
-        public init (emailIdentity: String) {
+
+        public init(emailIdentity: String) {
             self.emailIdentity = emailIdentity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case emailIdentity = "EmailIdentity"
         }
     }
-    
+
     /// GetEmailIdentity返回参数结构体
     public struct GetEmailIdentityResponse: TCResponseModel {
         /// 验证类型。固定值：DOMAIN
         public let identityType: String
-        
+
         /// 是否已通过验证
         public let verifiedForSendingStatus: Bool
-        
+
         /// DNS配置详情
         public let attributes: [DNSAttributes]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case identityType = "IdentityType"
             case verifiedForSendingStatus = "VerifiedForSendingStatus"
@@ -50,15 +50,15 @@ extension Ses {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名配置详情
     ///
     /// 获取某个发信域名的配置详情
     @inlinable
-    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEmailIdentityResponse > {
+    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailIdentityResponse> {
         self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名配置详情
     ///
     /// 获取某个发信域名的配置详情
@@ -66,15 +66,15 @@ extension Ses {
     public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
         try await self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名配置详情
     ///
     /// 获取某个发信域名的配置详情
     @inlinable
-    public func getEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEmailIdentityResponse > {
+    public func getEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailIdentityResponse> {
         self.getEmailIdentity(GetEmailIdentityRequest(emailIdentity: emailIdentity), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名配置详情
     ///
     /// 获取某个发信域名的配置详情

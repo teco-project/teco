@@ -21,52 +21,52 @@ extension TCPostgresError {
             case resourceNoPermission = "ResourceUnavailable.ResourceNoPermission"
             case vpcResourceNotFound = "ResourceUnavailable.VpcResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例状态错误。
         public static var invalidInstanceStatus: ResourceUnavailable {
             ResourceUnavailable(.invalidInstanceStatus)
         }
-        
+
         /// 没有该VPC网络权限。
         public static var resourceNoPermission: ResourceUnavailable {
             ResourceUnavailable(.resourceNoPermission)
         }
-        
+
         /// 没有找到实例所属VPC信息。
         public static var vpcResourceNotFound: ResourceUnavailable {
             ResourceUnavailable(.vpcResourceNotFound)
         }
-        
+
         public func asPostgresError() -> TCPostgresError {
             let code: TCPostgresError.Code
             switch self.error {
-            case .invalidInstanceStatus: 
+            case .invalidInstanceStatus:
                 code = .resourceUnavailable_InvalidInstanceStatus
-            case .resourceNoPermission: 
+            case .resourceNoPermission:
                 code = .resourceUnavailable_ResourceNoPermission
-            case .vpcResourceNotFound: 
+            case .vpcResourceNotFound:
                 code = .resourceUnavailable_VpcResourceNotFound
             }
             return TCPostgresError(code, context: self.context)

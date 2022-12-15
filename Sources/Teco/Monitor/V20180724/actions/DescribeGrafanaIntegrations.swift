@@ -19,58 +19,58 @@ extension Monitor {
     public struct DescribeGrafanaIntegrationsRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// 集成 ID
         public let integrationId: String?
-        
+
         /// 类型
         public let kind: String?
-        
-        public init (instanceId: String, integrationId: String? = nil, kind: String? = nil) {
+
+        public init(instanceId: String, integrationId: String? = nil, kind: String? = nil) {
             self.instanceId = instanceId
             self.integrationId = integrationId
             self.kind = kind
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case integrationId = "IntegrationId"
             case kind = "Kind"
         }
     }
-    
+
     /// DescribeGrafanaIntegrations返回参数结构体
     public struct DescribeGrafanaIntegrationsResponse: TCResponseModel {
         /// 集成数组
         public let integrationSet: [GrafanaIntegrationConfig]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case integrationSet = "IntegrationSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出 Grafana 已安装的集成
     @inlinable
-    public func describeGrafanaIntegrations(_ input: DescribeGrafanaIntegrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaIntegrationsResponse > {
+    public func describeGrafanaIntegrations(_ input: DescribeGrafanaIntegrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaIntegrationsResponse> {
         self.client.execute(action: "DescribeGrafanaIntegrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Grafana 已安装的集成
     @inlinable
     public func describeGrafanaIntegrations(_ input: DescribeGrafanaIntegrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaIntegrationsResponse {
         try await self.client.execute(action: "DescribeGrafanaIntegrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出 Grafana 已安装的集成
     @inlinable
-    public func describeGrafanaIntegrations(instanceId: String, integrationId: String? = nil, kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaIntegrationsResponse > {
+    public func describeGrafanaIntegrations(instanceId: String, integrationId: String? = nil, kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaIntegrationsResponse> {
         self.describeGrafanaIntegrations(DescribeGrafanaIntegrationsRequest(instanceId: instanceId, integrationId: integrationId, kind: kind), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Grafana 已安装的集成
     @inlinable
     public func describeGrafanaIntegrations(instanceId: String, integrationId: String? = nil, kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaIntegrationsResponse {

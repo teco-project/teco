@@ -27,94 +27,94 @@ extension TCEiamError {
             case userIDIsNull = "InvalidParameter.UserIDIsNull"
             case userNameIsNull = "InvalidParameter.UserNameIsNull"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 属性校验失败。
         public static var attributeValueValidError: InvalidParameter {
             InvalidParameter(.attributeValueValidError)
         }
-        
+
         /// 组织机构代码不合法。
         public static var orgCodeIllegal: InvalidParameter {
             InvalidParameter(.orgCodeIllegal)
         }
-        
+
         /// 参数不合法。
         public static var parameterIllegal: InvalidParameter {
             InvalidParameter(.parameterIllegal)
         }
-        
+
         /// 参数不合法。
         public static var parameterlllegal: InvalidParameter {
             InvalidParameter(.parameterlllegal)
         }
-        
+
         /// 列表搜索条件不合法。
         public static var searchCriteriaIllegal: InvalidParameter {
             InvalidParameter(.searchCriteriaIllegal)
         }
-        
+
         /// 时间格式不合法。
         public static var timeFormatIllegal: InvalidParameter {
             InvalidParameter(.timeFormatIllegal)
         }
-        
+
         /// 设定的用户过期时间不合法。
         public static var userExpirationTimeIllegal: InvalidParameter {
             InvalidParameter(.userExpirationTimeIllegal)
         }
-        
+
         /// 用户ID参数为空。
         public static var userIDIsNull: InvalidParameter {
             InvalidParameter(.userIDIsNull)
         }
-        
+
         /// 用户名参数为空。
         public static var userNameIsNull: InvalidParameter {
             InvalidParameter(.userNameIsNull)
         }
-        
+
         public func asEiamError() -> TCEiamError {
             let code: TCEiamError.Code
             switch self.error {
-            case .attributeValueValidError: 
+            case .attributeValueValidError:
                 code = .invalidParameter_AttributeValueValidError
-            case .orgCodeIllegal: 
+            case .orgCodeIllegal:
                 code = .invalidParameter_OrgCodeIllegal
-            case .parameterIllegal: 
+            case .parameterIllegal:
                 code = .invalidParameter_ParameterIllegal
-            case .parameterlllegal: 
+            case .parameterlllegal:
                 code = .invalidParameter_Parameterlllegal
-            case .searchCriteriaIllegal: 
+            case .searchCriteriaIllegal:
                 code = .invalidParameter_SearchCriteriaIllegal
-            case .timeFormatIllegal: 
+            case .timeFormatIllegal:
                 code = .invalidParameter_TimeFormatIllegal
-            case .userExpirationTimeIllegal: 
+            case .userExpirationTimeIllegal:
                 code = .invalidParameter_UserExpirationTimeIllegal
-            case .userIDIsNull: 
+            case .userIDIsNull:
                 code = .invalidParameter_UserIDIsNull
-            case .userNameIsNull: 
+            case .userNameIsNull:
                 code = .invalidParameter_UserNameIsNull
             }
             return TCEiamError(code, context: self.context)

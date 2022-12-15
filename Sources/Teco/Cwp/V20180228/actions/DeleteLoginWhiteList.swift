@@ -19,34 +19,34 @@ extension Cwp {
     public struct DeleteLoginWhiteListRequest: TCRequestModel {
         /// 白名单ID (最大 100 条)
         public let ids: [UInt64]
-        
-        public init (ids: [UInt64]) {
+
+        public init(ids: [UInt64]) {
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
         }
     }
-    
+
     /// DeleteLoginWhiteList返回参数结构体
     public struct DeleteLoginWhiteListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除异地登录白名单规则
     ///
     /// 本接口用于删除异地登录白名单规则。
     @inlinable
-    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginWhiteListResponse > {
+    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginWhiteListResponse> {
         self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除异地登录白名单规则
     ///
     /// 本接口用于删除异地登录白名单规则。
@@ -54,15 +54,15 @@ extension Cwp {
     public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
         try await self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除异地登录白名单规则
     ///
     /// 本接口用于删除异地登录白名单规则。
     @inlinable
-    public func deleteLoginWhiteList(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginWhiteListResponse > {
+    public func deleteLoginWhiteList(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginWhiteListResponse> {
         self.deleteLoginWhiteList(DeleteLoginWhiteListRequest(ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除异地登录白名单规则
     ///
     /// 本接口用于删除异地登录白名单规则。

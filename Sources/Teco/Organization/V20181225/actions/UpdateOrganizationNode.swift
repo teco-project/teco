@@ -19,54 +19,54 @@ extension Organization {
     public struct UpdateOrganizationNodeRequest: TCRequestModel {
         /// 企业组织单元ID
         public let nodeId: UInt64
-        
+
         /// 名称
         public let name: String?
-        
+
         /// 父单元ID
         public let parentNodeId: UInt64?
-        
-        public init (nodeId: UInt64, name: String? = nil, parentNodeId: UInt64? = nil) {
+
+        public init(nodeId: UInt64, name: String? = nil, parentNodeId: UInt64? = nil) {
             self.nodeId = nodeId
             self.name = name
             self.parentNodeId = parentNodeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case name = "Name"
             case parentNodeId = "ParentNodeId"
         }
     }
-    
+
     /// UpdateOrganizationNode返回参数结构体
     public struct UpdateOrganizationNodeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新企业组织单元
     @inlinable
-    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationNodeResponse > {
+    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
         self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新企业组织单元
     @inlinable
     public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
         try await self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新企业组织单元
     @inlinable
-    public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, parentNodeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationNodeResponse > {
+    public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, parentNodeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
         self.updateOrganizationNode(UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, parentNodeId: parentNodeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新企业组织单元
     @inlinable
     public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, parentNodeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {

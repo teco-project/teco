@@ -19,42 +19,42 @@ extension Cwp {
     public struct ExportBruteAttacksRequest: TCRequestModel {
         /// 过滤参数
         public let filters: [Filters]?
-        
-        public init (filters: [Filters]? = nil) {
+
+        public init(filters: [Filters]? = nil) {
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
         }
     }
-    
+
     /// ExportBruteAttacks返回参数结构体
     public struct ExportBruteAttacksResponse: TCResponseModel {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
-        
+
         /// 导出任务ID
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBruteAttacksResponse > {
+    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
         self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
@@ -62,15 +62,15 @@ extension Cwp {
     public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
         try await self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBruteAttacksResponse > {
+    public func exportBruteAttacks(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
         self.exportBruteAttacks(ExportBruteAttacksRequest(filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。

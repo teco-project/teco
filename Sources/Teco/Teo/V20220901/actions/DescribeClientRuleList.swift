@@ -19,33 +19,33 @@ extension Teo {
     public struct DescribeClientRuleListRequest: TCRequestModel {
         /// 查询的站点ID.
         public let zoneId: String
-        
+
         /// 查询的子域名。
         public let domain: String
-        
+
         /// 规则类型，取值有：
         /// <li>acl：自定义规则；</li>
         /// <li>rate：限速规则。</li>不填表示查询所有规则。
         public let ruleType: String?
-        
+
         /// 规则ID。
         public let ruleId: Int64?
-        
+
         /// 客户端IP。
         public let sourceClientIp: String?
-        
+
         /// 分页查询的限制数目，默认值为20，最大查询条目为1000。
         public let limit: Int64?
-        
+
         /// 分页的偏移量，默认值为0。
         public let offset: Int64?
-        
+
         /// 数据归属地区，取值有：
         /// <li>overseas：全球（除中国大陆地区）数据；</li>
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
-        
-        public init (zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
+
+        public init(zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
             self.zoneId = zoneId
             self.domain = domain
             self.ruleType = ruleType
@@ -55,7 +55,7 @@ extension Teo {
             self.offset = offset
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case domain = "Domain"
@@ -67,34 +67,34 @@ extension Teo {
             case area = "Area"
         }
     }
-    
+
     /// DescribeClientRuleList返回参数结构体
     public struct DescribeClientRuleListResponse: TCResponseModel {
         /// 封禁客户端数据列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [ClientRule]?
-        
+
         /// 查询结果的总条数。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询封禁客户端信息列表
     ///
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
     @inlinable
-    public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientRuleListResponse > {
+    public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientRuleListResponse> {
         self.client.execute(action: "DescribeClientRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询封禁客户端信息列表
     ///
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
@@ -102,15 +102,15 @@ extension Teo {
     public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientRuleListResponse {
         try await self.client.execute(action: "DescribeClientRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询封禁客户端信息列表
     ///
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
     @inlinable
-    public func describeClientRuleList(zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientRuleListResponse > {
+    public func describeClientRuleList(zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientRuleListResponse> {
         self.describeClientRuleList(DescribeClientRuleListRequest(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询封禁客户端信息列表
     ///
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。

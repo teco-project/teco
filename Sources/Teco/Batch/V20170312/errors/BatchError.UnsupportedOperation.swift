@@ -27,94 +27,94 @@ extension TCBatchError {
             case terminateOperationWithEnvId = "UnsupportedOperation.TerminateOperationWithEnvId"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 处理其他请求，禁止删除操作。
         public static var acceptOtherRequest: UnsupportedOperation {
             UnsupportedOperation(.acceptOtherRequest)
         }
-        
+
         /// 计算环境正在接受请求。
         public static var computeEnvAcceptOtherRequest: UnsupportedOperation {
             UnsupportedOperation(.computeEnvAcceptOtherRequest)
         }
-        
+
         /// 禁止删除操作。
         public static var computeEnvOperation: UnsupportedOperation {
             UnsupportedOperation(.computeEnvOperation)
         }
-        
+
         /// 禁止终止计算节点。
         public static var computeNodeForbidTerminate: UnsupportedOperation {
             UnsupportedOperation(.computeNodeForbidTerminate)
         }
-        
+
         /// 计算节点停止中。
         public static var computeNodeIsTerminating: UnsupportedOperation {
             UnsupportedOperation(.computeNodeIsTerminating)
         }
-        
+
         /// 不允许将该实例添加到计算环境中。
         public static var instancesNotAllowToAttach: UnsupportedOperation {
             UnsupportedOperation(.instancesNotAllowToAttach)
         }
-        
+
         /// 缩容时，缩容数大于现有计算节点数。
         public static var notEnoughComputeNodesToTerminate: UnsupportedOperation {
             UnsupportedOperation(.notEnoughComputeNodesToTerminate)
         }
-        
+
         /// 指定计算环境的任务实例禁止该操作。
         public static var terminateOperationWithEnvId: UnsupportedOperation {
             UnsupportedOperation(.terminateOperationWithEnvId)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asBatchError() -> TCBatchError {
             let code: TCBatchError.Code
             switch self.error {
-            case .acceptOtherRequest: 
+            case .acceptOtherRequest:
                 code = .unsupportedOperation_AcceptOtherRequest
-            case .computeEnvAcceptOtherRequest: 
+            case .computeEnvAcceptOtherRequest:
                 code = .unsupportedOperation_ComputeEnvAcceptOtherRequest
-            case .computeEnvOperation: 
+            case .computeEnvOperation:
                 code = .unsupportedOperation_ComputeEnvOperation
-            case .computeNodeForbidTerminate: 
+            case .computeNodeForbidTerminate:
                 code = .unsupportedOperation_ComputeNodeForbidTerminate
-            case .computeNodeIsTerminating: 
+            case .computeNodeIsTerminating:
                 code = .unsupportedOperation_ComputeNodeIsTerminating
-            case .instancesNotAllowToAttach: 
+            case .instancesNotAllowToAttach:
                 code = .unsupportedOperation_InstancesNotAllowToAttach
-            case .notEnoughComputeNodesToTerminate: 
+            case .notEnoughComputeNodesToTerminate:
                 code = .unsupportedOperation_NotEnoughComputeNodesToTerminate
-            case .terminateOperationWithEnvId: 
+            case .terminateOperationWithEnvId:
                 code = .unsupportedOperation_TerminateOperationWithEnvId
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCBatchError(code, context: self.context)

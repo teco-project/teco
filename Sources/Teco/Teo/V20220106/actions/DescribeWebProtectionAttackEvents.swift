@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,20 +35,20 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 条数
         public let pageSize: Int64
-        
+
         /// 当前页
         public let pageNo: Int64
-        
+
         /// 域名
         public let domains: [String]?
-        
+
         /// 站点集合
         public let zoneIds: [String]?
-        
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil) {
+
+        public init(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -56,7 +56,7 @@ extension Teo {
             self.domains = domains
             self.zoneIds = zoneIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -66,21 +66,21 @@ extension Teo {
             case zoneIds = "ZoneIds"
         }
     }
-    
+
     /// DescribeWebProtectionAttackEvents返回参数结构体
     public struct DescribeWebProtectionAttackEventsResponse: TCResponseModel {
         /// DDos攻击事件数据
         public let data: CCInterceptEventData
-        
+
         /// 状态，1:失败，0:成功
         public let status: Int64
-        
+
         /// 返回消息
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case status = "Status"
@@ -88,25 +88,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询web防护攻击事件
     @inlinable
-    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionAttackEventsResponse > {
+    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionAttackEventsResponse> {
         self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询web防护攻击事件
     @inlinable
     public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {
         try await self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询web防护攻击事件
     @inlinable
-    public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionAttackEventsResponse > {
+    public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionAttackEventsResponse> {
         self.describeWebProtectionAttackEvents(DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, domains: domains, zoneIds: zoneIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询web防护攻击事件
     @inlinable
     public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {

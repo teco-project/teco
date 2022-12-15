@@ -19,26 +19,26 @@ extension Vod {
     public struct CreateProcedureTemplateRequest: TCRequestModel {
         /// 任务流名字（支持中文，不超过20个字）。
         public let name: String
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 模板描述信息，长度限制：256 个字符。
         public let comment: String?
-        
+
         /// 视频处理类型任务参数。
         public let mediaProcessTask: MediaProcessTaskInput?
-        
+
         /// AI 内容审核类型任务参数。
         public let aiContentReviewTask: AiContentReviewTaskInput?
-        
+
         /// AI 内容分析类型任务参数。
         public let aiAnalysisTask: AiAnalysisTaskInput?
-        
+
         /// AI 内容识别类型任务参数。
         public let aiRecognitionTask: AiRecognitionTaskInput?
-        
-        public init (name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil) {
+
+        public init(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil) {
             self.name = name
             self.subAppId = subAppId
             self.comment = comment
@@ -47,7 +47,7 @@ extension Vod {
             self.aiAnalysisTask = aiAnalysisTask
             self.aiRecognitionTask = aiRecognitionTask
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case subAppId = "SubAppId"
@@ -58,25 +58,25 @@ extension Vod {
             case aiRecognitionTask = "AiRecognitionTask"
         }
     }
-    
+
     /// CreateProcedureTemplate返回参数结构体
     public struct CreateProcedureTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建任务流模板
     ///
     /// 创建用户自定义的任务流模板，模板上限：50。
     @inlinable
-    public func createProcedureTemplate(_ input: CreateProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProcedureTemplateResponse > {
+    public func createProcedureTemplate(_ input: CreateProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProcedureTemplateResponse> {
         self.client.execute(action: "CreateProcedureTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建任务流模板
     ///
     /// 创建用户自定义的任务流模板，模板上限：50。
@@ -84,15 +84,15 @@ extension Vod {
     public func createProcedureTemplate(_ input: CreateProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcedureTemplateResponse {
         try await self.client.execute(action: "CreateProcedureTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建任务流模板
     ///
     /// 创建用户自定义的任务流模板，模板上限：50。
     @inlinable
-    public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProcedureTemplateResponse > {
+    public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProcedureTemplateResponse> {
         self.createProcedureTemplate(CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建任务流模板
     ///
     /// 创建用户自定义的任务流模板，模板上限：50。

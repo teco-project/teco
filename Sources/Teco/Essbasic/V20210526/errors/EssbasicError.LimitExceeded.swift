@@ -25,74 +25,74 @@ extension TCEssbasicError {
             case proxyOrganizationOperator = "LimitExceeded.ProxyOrganizationOperator"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var callTimes: LimitExceeded {
             LimitExceeded(.callTimes)
         }
-        
+
         public static var createFlowNum: LimitExceeded {
             LimitExceeded(.createFlowNum)
         }
-        
+
         public static var fileSize: LimitExceeded {
             LimitExceeded(.fileSize)
         }
-        
+
         public static var flowIds: LimitExceeded {
             LimitExceeded(.flowIds)
         }
-        
+
         public static var flowInfos: LimitExceeded {
             LimitExceeded(.flowInfos)
         }
-        
+
         public static var proxyOrganizationOperator: LimitExceeded {
             LimitExceeded(.proxyOrganizationOperator)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asEssbasicError() -> TCEssbasicError {
             let code: TCEssbasicError.Code
             switch self.error {
-            case .callTimes: 
+            case .callTimes:
                 code = .limitExceeded_CallTimes
-            case .createFlowNum: 
+            case .createFlowNum:
                 code = .limitExceeded_CreateFlowNum
-            case .fileSize: 
+            case .fileSize:
                 code = .limitExceeded_FileSize
-            case .flowIds: 
+            case .flowIds:
                 code = .limitExceeded_FlowIds
-            case .flowInfos: 
+            case .flowInfos:
                 code = .limitExceeded_FlowInfos
-            case .proxyOrganizationOperator: 
+            case .proxyOrganizationOperator:
                 code = .limitExceeded_ProxyOrganizationOperator
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCEssbasicError(code, context: self.context)

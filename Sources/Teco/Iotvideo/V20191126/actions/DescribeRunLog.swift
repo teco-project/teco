@@ -19,39 +19,39 @@ extension Iotvideo {
     public struct DescribeRunLogRequest: TCRequestModel {
         /// 设备TID
         public let tid: String
-        
-        public init (tid: String) {
+
+        public init(tid: String) {
             self.tid = tid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tid = "Tid"
         }
     }
-    
+
     /// DescribeRunLog返回参数结构体
     public struct DescribeRunLogResponse: TCResponseModel {
         /// 设备运行日志文本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备运行日志
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
-    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRunLogResponse > {
+    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRunLogResponse> {
         self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备运行日志
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
@@ -59,15 +59,15 @@ extension Iotvideo {
     public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
         try await self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备运行日志
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
-    public func describeRunLog(tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRunLogResponse > {
+    public func describeRunLog(tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRunLogResponse> {
         self.describeRunLog(DescribeRunLogRequest(tid: tid), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备运行日志
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。

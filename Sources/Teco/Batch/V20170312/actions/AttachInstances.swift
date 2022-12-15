@@ -19,31 +19,31 @@ extension Batch {
     public struct AttachInstancesRequest: TCRequestModel {
         /// 计算环境ID
         public let envId: String
-        
+
         /// 加入计算环境实例列表
         public let instances: [Instance]
-        
-        public init (envId: String, instances: [Instance]) {
+
+        public init(envId: String, instances: [Instance]) {
             self.envId = envId
             self.instances = instances
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case instances = "Instances"
         }
     }
-    
+
     /// AttachInstances返回参数结构体
     public struct AttachInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加实例到计算环境
     ///
     /// 此接口可将已存在实例添加到计算环境中。
@@ -53,10 +53,10 @@ extension Batch {
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable
-    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachInstancesResponse > {
+    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
         self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加实例到计算环境
     ///
     /// 此接口可将已存在实例添加到计算环境中。
@@ -69,7 +69,7 @@ extension Batch {
     public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
         try await self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加实例到计算环境
     ///
     /// 此接口可将已存在实例添加到计算环境中。
@@ -79,10 +79,10 @@ extension Batch {
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable
-    public func attachInstances(envId: String, instances: [Instance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachInstancesResponse > {
+    public func attachInstances(envId: String, instances: [Instance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
         self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加实例到计算环境
     ///
     /// 此接口可将已存在实例添加到计算环境中。

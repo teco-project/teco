@@ -19,42 +19,42 @@ extension Tcaplusdb {
     public struct EnableRestProxyRequest: TCRequestModel {
         /// 对应于appid
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// EnableRestProxy返回参数结构体
     public struct EnableRestProxyResponse: TCResponseModel {
         /// RestProxy的状态，0为关闭，1为开启中，2为开启，3为关闭中
         public let restProxyStatus: UInt64
-        
+
         /// TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case restProxyStatus = "RestProxyStatus"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口开启restful apu
     @inlinable
-    public func enableRestProxy(_ input: EnableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableRestProxyResponse > {
+    public func enableRestProxy(_ input: EnableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRestProxyResponse> {
         self.client.execute(action: "EnableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口开启restful apu
@@ -62,15 +62,15 @@ extension Tcaplusdb {
     public func enableRestProxy(_ input: EnableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRestProxyResponse {
         try await self.client.execute(action: "EnableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口开启restful apu
     @inlinable
-    public func enableRestProxy(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableRestProxyResponse > {
+    public func enableRestProxy(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRestProxyResponse> {
         self.enableRestProxy(EnableRestProxyRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口开启restful apu

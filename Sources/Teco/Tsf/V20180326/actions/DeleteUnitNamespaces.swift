@@ -19,54 +19,54 @@ extension Tsf {
     public struct DeleteUnitNamespacesRequest: TCRequestModel {
         /// 网关实体ID
         public let gatewayInstanceId: String
-        
+
         /// 单元化命名空间ID数组
         public let unitNamespaceList: [String]
-        
-        public init (gatewayInstanceId: String, unitNamespaceList: [String]) {
+
+        public init(gatewayInstanceId: String, unitNamespaceList: [String]) {
             self.gatewayInstanceId = gatewayInstanceId
             self.unitNamespaceList = unitNamespaceList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayInstanceId = "GatewayInstanceId"
             case unitNamespaceList = "UnitNamespaceList"
         }
     }
-    
+
     /// DeleteUnitNamespaces返回参数结构体
     public struct DeleteUnitNamespacesResponse: TCResponseModel {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除单元化命名空间
     @inlinable
-    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUnitNamespacesResponse > {
+    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitNamespacesResponse> {
         self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除单元化命名空间
     @inlinable
     public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
         try await self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除单元化命名空间
     @inlinable
-    public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUnitNamespacesResponse > {
+    public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitNamespacesResponse> {
         self.deleteUnitNamespaces(DeleteUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除单元化命名空间
     @inlinable
     public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {

@@ -19,43 +19,43 @@ extension Tcr {
     public struct DuplicateImagePersonalRequest: TCRequestModel {
         /// 源镜像名称，不包含domain。例如： tencentyun/foo:v1
         public let srcImage: String
-        
+
         /// 目的镜像名称，不包含domain。例如： tencentyun/foo:latest
         public let destImage: String
-        
-        public init (srcImage: String, destImage: String) {
+
+        public init(srcImage: String, destImage: String) {
             self.srcImage = srcImage
             self.destImage = destImage
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case srcImage = "SrcImage"
             case destImage = "DestImage"
         }
     }
-    
+
     /// DuplicateImagePersonal返回参数结构体
     public struct DuplicateImagePersonalResponse: TCResponseModel {
         /// 复制镜像返回值
         public let data: DupImageTagResp
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 复制个人版仓库镜像版本
     ///
     /// 用于在个人版镜像仓库中复制镜像版本
     @inlinable
-    public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DuplicateImagePersonalResponse > {
+    public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DuplicateImagePersonalResponse> {
         self.client.execute(action: "DuplicateImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 复制个人版仓库镜像版本
     ///
     /// 用于在个人版镜像仓库中复制镜像版本
@@ -63,15 +63,15 @@ extension Tcr {
     public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateImagePersonalResponse {
         try await self.client.execute(action: "DuplicateImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 复制个人版仓库镜像版本
     ///
     /// 用于在个人版镜像仓库中复制镜像版本
     @inlinable
-    public func duplicateImagePersonal(srcImage: String, destImage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DuplicateImagePersonalResponse > {
+    public func duplicateImagePersonal(srcImage: String, destImage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DuplicateImagePersonalResponse> {
         self.duplicateImagePersonal(DuplicateImagePersonalRequest(srcImage: srcImage, destImage: destImage), logger: logger, on: eventLoop)
     }
-    
+
     /// 复制个人版仓库镜像版本
     ///
     /// 用于在个人版镜像仓库中复制镜像版本

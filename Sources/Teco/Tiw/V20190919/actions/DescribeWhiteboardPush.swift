@@ -19,21 +19,21 @@ extension Tiw {
     public struct DescribeWhiteboardPushRequest: TCRequestModel {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
-        
+
         /// 白板推流任务Id
         public let taskId: String
-        
-        public init (sdkAppId: Int64, taskId: String) {
+
+        public init(sdkAppId: Int64, taskId: String) {
             self.sdkAppId = sdkAppId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeWhiteboardPush返回参数结构体
     public struct DescribeWhiteboardPushResponse: TCResponseModel {
         /// 推流结束原因，
@@ -41,44 +41,44 @@ extension Tiw {
         /// - USER_CALL: 主动调用了停止推流接口
         /// - EXCEPTION: 推流异常结束
         public let finishReason: String
-        
+
         /// 需要查询结果的白板推流任务Id
         public let taskId: String
-        
+
         /// 推流任务状态
         /// - PREPARED: 表示推流正在准备中（进房/启动推流服务等操作）
         /// - PUSHING: 表示推流已开始
         /// - STOPPED: 表示推流已停止
         public let status: String
-        
+
         /// 房间号
         public let roomId: Int64
-        
+
         /// 白板的群组 Id
         public let groupId: String
-        
+
         /// 推流用户Id
         public let pushUserId: String
-        
+
         /// 实际开始推流时间，Unix 时间戳，单位秒
         public let pushStartTime: Int64
-        
+
         /// 实际停止推流时间，Unix 时间戳，单位秒
         public let pushStopTime: Int64
-        
+
         /// 推流过程中出现异常的次数
         public let exceptionCnt: Int64
-        
+
         /// 白板推流首帧对应的IM时间戳，可用于录制回放时IM聊天消息与白板推流视频进行同步对时。
         public let imSyncTime: Int64
-        
+
         /// 备份推流任务结果信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backup: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case finishReason = "FinishReason"
             case taskId = "TaskId"
@@ -94,15 +94,15 @@ extension Tiw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询白板推流任务
     ///
     /// 查询推流任务状态与结果
     @inlinable
-    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteboardPushResponse > {
+    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteboardPushResponse> {
         self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询白板推流任务
     ///
     /// 查询推流任务状态与结果
@@ -110,15 +110,15 @@ extension Tiw {
     public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
         try await self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询白板推流任务
     ///
     /// 查询推流任务状态与结果
     @inlinable
-    public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteboardPushResponse > {
+    public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteboardPushResponse> {
         self.describeWhiteboardPush(DescribeWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询白板推流任务
     ///
     /// 查询推流任务状态与结果

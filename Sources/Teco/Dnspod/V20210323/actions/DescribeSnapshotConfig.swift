@@ -19,53 +19,53 @@ extension Dnspod {
     public struct DescribeSnapshotConfigRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
-        
-        public init (domain: String, domainId: UInt64? = nil) {
+
+        public init(domain: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
         }
     }
-    
+
     /// DescribeSnapshotConfig返回参数结构体
     public struct DescribeSnapshotConfigResponse: TCResponseModel {
         /// 解析快照配置
         public let snapshotConfig: SnapshotConfig
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotConfig = "SnapshotConfig"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询解析快照配置
     @inlinable
-    public func describeSnapshotConfig(_ input: DescribeSnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotConfigResponse > {
+    public func describeSnapshotConfig(_ input: DescribeSnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotConfigResponse> {
         self.client.execute(action: "DescribeSnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询解析快照配置
     @inlinable
     public func describeSnapshotConfig(_ input: DescribeSnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotConfigResponse {
         try await self.client.execute(action: "DescribeSnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询解析快照配置
     @inlinable
-    public func describeSnapshotConfig(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotConfigResponse > {
+    public func describeSnapshotConfig(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotConfigResponse> {
         self.describeSnapshotConfig(DescribeSnapshotConfigRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询解析快照配置
     @inlinable
     public func describeSnapshotConfig(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotConfigResponse {

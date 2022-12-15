@@ -19,34 +19,34 @@ extension Cdb {
     public struct DeleteParamTemplateRequest: TCRequestModel {
         /// 参数模板ID。
         public let templateId: Int64
-        
-        public init (templateId: Int64) {
+
+        public init(templateId: Int64) {
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DeleteParamTemplate返回参数结构体
     public struct DeleteParamTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable
-    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
+    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteParamTemplateResponse> {
         self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
@@ -54,15 +54,15 @@ extension Cdb {
     public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
         try await self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable
-    public func deleteParamTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
+    public func deleteParamTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteParamTemplateResponse> {
         self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。

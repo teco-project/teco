@@ -19,40 +19,40 @@ extension TCSmhError {
         enum Code: String {
             case multiSpace = "ResourceInUse.MultiSpace"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 多租户空间媒体库中存在正在使用的租户空间。
         ///
         /// 在删除多租户空间媒体库时，需首先删除该媒体库下的全部租户空间。
         public static var multiSpace: ResourceInUse {
             ResourceInUse(.multiSpace)
         }
-        
+
         public func asSmhError() -> TCSmhError {
             let code: TCSmhError.Code
             switch self.error {
-            case .multiSpace: 
+            case .multiSpace:
                 code = .resourceInUse_MultiSpace
             }
             return TCSmhError(code, context: self.context)

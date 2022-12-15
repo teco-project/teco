@@ -19,48 +19,48 @@ extension Ecm {
     public struct ReleaseIpv6AddressesRequest: TCRequestModel {
         /// ECM 地域
         public let ecmRegion: String
-        
+
         /// 弹性网卡实例ID，形如：eni-m6dyj72l。
         public let networkInterfaceId: String
-        
+
         /// 指定的IPv6地址列表，单次最多指定10个。
         public let ipv6Addresses: [Ipv6Address]
-        
-        public init (ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]) {
+
+        public init(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]) {
             self.ecmRegion = ecmRegion
             self.networkInterfaceId = networkInterfaceId
             self.ipv6Addresses = ipv6Addresses
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ecmRegion = "EcmRegion"
             case networkInterfaceId = "NetworkInterfaceId"
             case ipv6Addresses = "Ipv6Addresses"
         }
     }
-    
+
     /// ReleaseIpv6Addresses返回参数结构体
     public struct ReleaseIpv6AddressesResponse: TCResponseModel {
         /// 任务ID，可以通过DescribeTaskResult查询任务状态
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 释放IPv6地址
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
-    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseIpv6AddressesResponse > {
+    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIpv6AddressesResponse> {
         self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 释放IPv6地址
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
@@ -68,15 +68,15 @@ extension Ecm {
     public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
         try await self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 释放IPv6地址
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
-    public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseIpv6AddressesResponse > {
+    public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIpv6AddressesResponse> {
         self.releaseIpv6Addresses(ReleaseIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), logger: logger, on: eventLoop)
     }
-    
+
     /// 释放IPv6地址
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。

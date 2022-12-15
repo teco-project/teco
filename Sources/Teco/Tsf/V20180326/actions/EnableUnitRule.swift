@@ -19,49 +19,49 @@ extension Tsf {
     public struct EnableUnitRuleRequest: TCRequestModel {
         /// 规则ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// EnableUnitRule返回参数结构体
     public struct EnableUnitRuleResponse: TCResponseModel {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用单元化规则
     @inlinable
-    public func enableUnitRule(_ input: EnableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableUnitRuleResponse > {
+    public func enableUnitRule(_ input: EnableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRuleResponse> {
         self.client.execute(action: "EnableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用单元化规则
     @inlinable
     public func enableUnitRule(_ input: EnableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRuleResponse {
         try await self.client.execute(action: "EnableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用单元化规则
     @inlinable
-    public func enableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableUnitRuleResponse > {
+    public func enableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRuleResponse> {
         self.enableUnitRule(EnableUnitRuleRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用单元化规则
     @inlinable
     public func enableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRuleResponse {

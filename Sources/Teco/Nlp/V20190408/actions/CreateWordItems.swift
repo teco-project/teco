@@ -19,39 +19,39 @@ extension Nlp {
     public struct CreateWordItemsRequest: TCRequestModel {
         /// 自定义词库ID。
         public let dictId: String
-        
+
         /// 待添加的词条集合。
         public let wordItems: [WordItem]
-        
-        public init (dictId: String, wordItems: [WordItem]) {
+
+        public init(dictId: String, wordItems: [WordItem]) {
             self.dictId = dictId
             self.wordItems = wordItems
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dictId = "DictId"
             case wordItems = "WordItems"
         }
     }
-    
+
     /// CreateWordItems返回参数结构体
     public struct CreateWordItemsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增自定义词库词条
     ///
     /// 向指定的词库中添加词条。
     @inlinable
-    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordItemsResponse > {
+    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordItemsResponse> {
         self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增自定义词库词条
     ///
     /// 向指定的词库中添加词条。
@@ -59,15 +59,15 @@ extension Nlp {
     public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
         try await self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增自定义词库词条
     ///
     /// 向指定的词库中添加词条。
     @inlinable
-    public func createWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordItemsResponse > {
+    public func createWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordItemsResponse> {
         self.createWordItems(CreateWordItemsRequest(dictId: dictId, wordItems: wordItems), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增自定义词库词条
     ///
     /// 向指定的词库中添加词条。

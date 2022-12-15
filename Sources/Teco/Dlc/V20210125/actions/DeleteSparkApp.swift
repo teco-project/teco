@@ -19,44 +19,44 @@ extension Dlc {
     public struct DeleteSparkAppRequest: TCRequestModel {
         /// spark应用名
         public let appName: String
-        
-        public init (appName: String) {
+
+        public init(appName: String) {
             self.appName = appName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
         }
     }
-    
+
     /// DeleteSparkApp返回参数结构体
     public struct DeleteSparkAppResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除spark应用
     @inlinable
-    public func deleteSparkApp(_ input: DeleteSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSparkAppResponse > {
+    public func deleteSparkApp(_ input: DeleteSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSparkAppResponse> {
         self.client.execute(action: "DeleteSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除spark应用
     @inlinable
     public func deleteSparkApp(_ input: DeleteSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSparkAppResponse {
         try await self.client.execute(action: "DeleteSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除spark应用
     @inlinable
-    public func deleteSparkApp(appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSparkAppResponse > {
+    public func deleteSparkApp(appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSparkAppResponse> {
         self.deleteSparkApp(DeleteSparkAppRequest(appName: appName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除spark应用
     @inlinable
     public func deleteSparkApp(appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSparkAppResponse {

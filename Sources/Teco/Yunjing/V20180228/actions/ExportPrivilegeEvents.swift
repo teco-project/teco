@@ -17,42 +17,42 @@
 extension Yunjing {
     /// ExportPrivilegeEvents请求参数结构体
     public struct ExportPrivilegeEventsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ExportPrivilegeEvents返回参数结构体
     public struct ExportPrivilegeEventsResponse: TCResponseModel {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出本地提权事件
     @inlinable
-    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportPrivilegeEventsResponse > {
+    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportPrivilegeEventsResponse> {
         self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出本地提权事件
     @inlinable
     public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
         try await self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出本地提权事件
     @inlinable
-    public func exportPrivilegeEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportPrivilegeEventsResponse > {
+    public func exportPrivilegeEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportPrivilegeEventsResponse> {
         self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出本地提权事件
     @inlinable
     public func exportPrivilegeEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {

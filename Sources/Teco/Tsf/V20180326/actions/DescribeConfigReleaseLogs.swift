@@ -19,23 +19,23 @@ extension Tsf {
     public struct DescribeConfigReleaseLogsRequest: TCRequestModel {
         /// 部署组ID，不传入时查询全量
         public let groupId: String?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 每页条数，默认为20
         public let limit: Int64?
-        
+
         /// 命名空间ID，不传入时查询全量
         public let namespaceId: String?
-        
+
         /// 集群ID，不传入时查询全量
         public let clusterId: String?
-        
+
         /// 应用ID，不传入时查询全量
         public let applicationId: String?
-        
-        public init (groupId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil) {
+
+        public init(groupId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil) {
             self.groupId = groupId
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Tsf {
             self.clusterId = clusterId
             self.applicationId = applicationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case offset = "Offset"
@@ -53,40 +53,40 @@ extension Tsf {
             case applicationId = "ApplicationId"
         }
     }
-    
+
     /// DescribeConfigReleaseLogs返回参数结构体
     public struct DescribeConfigReleaseLogsResponse: TCResponseModel {
         /// 分页的配置项发布历史列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageConfigReleaseLog?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询配置发布历史
     @inlinable
-    public func describeConfigReleaseLogs(_ input: DescribeConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigReleaseLogsResponse > {
+    public func describeConfigReleaseLogs(_ input: DescribeConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigReleaseLogsResponse> {
         self.client.execute(action: "DescribeConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询配置发布历史
     @inlinable
     public func describeConfigReleaseLogs(_ input: DescribeConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleaseLogsResponse {
         try await self.client.execute(action: "DescribeConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询配置发布历史
     @inlinable
-    public func describeConfigReleaseLogs(groupId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigReleaseLogsResponse > {
+    public func describeConfigReleaseLogs(groupId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigReleaseLogsResponse> {
         self.describeConfigReleaseLogs(DescribeConfigReleaseLogsRequest(groupId: groupId, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询配置发布历史
     @inlinable
     public func describeConfigReleaseLogs(groupId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleaseLogsResponse {

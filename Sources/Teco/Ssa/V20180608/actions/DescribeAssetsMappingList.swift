@@ -19,31 +19,31 @@ extension Ssa {
     public struct DescribeAssetsMappingListRequest: TCRequestModel {
         /// 请求参数
         public let params: String
-        
-        public init (params: String) {
+
+        public init(params: String) {
             self.params = params
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case params = "Params"
         }
     }
-    
+
     /// DescribeAssetsMappingList返回参数结构体
     public struct DescribeAssetsMappingListResponse: TCResponseModel {
         /// 资产测绘列表
         public let data: [DataAssetMapping]
-        
+
         /// 资产测绘总数
         public let totalCount: UInt64
-        
+
         /// 类型分类统计数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let countByType: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
@@ -51,25 +51,25 @@ extension Ssa {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资产测绘-测绘列表
     @inlinable
-    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetsMappingListResponse > {
+    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsMappingListResponse> {
         self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资产测绘-测绘列表
     @inlinable
     public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {
         try await self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资产测绘-测绘列表
     @inlinable
-    public func describeAssetsMappingList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetsMappingListResponse > {
+    public func describeAssetsMappingList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsMappingListResponse> {
         self.describeAssetsMappingList(DescribeAssetsMappingListRequest(params: params), logger: logger, on: eventLoop)
     }
-    
+
     /// 资产测绘-测绘列表
     @inlinable
     public func describeAssetsMappingList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {

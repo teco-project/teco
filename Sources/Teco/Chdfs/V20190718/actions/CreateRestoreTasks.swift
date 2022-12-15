@@ -19,40 +19,40 @@ extension Chdfs {
     public struct CreateRestoreTasksRequest: TCRequestModel {
         /// 文件系统ID
         public let fileSystemId: String
-        
+
         /// 多个回热任务，上限为10
         public let restoreTasks: [RestoreTask]
-        
-        public init (fileSystemId: String, restoreTasks: [RestoreTask]) {
+
+        public init(fileSystemId: String, restoreTasks: [RestoreTask]) {
             self.fileSystemId = fileSystemId
             self.restoreTasks = restoreTasks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
             case restoreTasks = "RestoreTasks"
         }
     }
-    
+
     /// CreateRestoreTasks返回参数结构体
     public struct CreateRestoreTasksResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量创建回热任务
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable
-    public func createRestoreTasks(_ input: CreateRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRestoreTasksResponse > {
+    public func createRestoreTasks(_ input: CreateRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRestoreTasksResponse> {
         self.client.execute(action: "CreateRestoreTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建回热任务
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
@@ -61,16 +61,16 @@ extension Chdfs {
     public func createRestoreTasks(_ input: CreateRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
         try await self.client.execute(action: "CreateRestoreTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量创建回热任务
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable
-    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRestoreTasksResponse > {
+    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRestoreTasksResponse> {
         self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建回热任务
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。

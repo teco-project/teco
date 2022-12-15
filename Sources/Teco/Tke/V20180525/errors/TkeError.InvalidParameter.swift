@@ -37,168 +37,168 @@ extension TCTkeError {
             case routeTableNotEmpty = "InvalidParameter.RouteTableNotEmpty"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 弹性伸缩组创建参数错误。
         public static var asCommonError: InvalidParameter {
             InvalidParameter(.asCommonError)
         }
-        
+
         /// CIDR和其他集群CIDR冲突。
         public static var cidrConflictWithOtherCluster: InvalidParameter {
             InvalidParameter(.cidrConflictWithOtherCluster)
         }
-        
+
         /// 创建的路由与已存在的其他路由产生冲突。
         public static var cidrConflictWithOtherRoute: InvalidParameter {
             InvalidParameter(.cidrConflictWithOtherRoute)
         }
-        
+
         /// CIDR和vpc的CIDR冲突。
         public static var cidrConflictWithVpcCidr: InvalidParameter {
             InvalidParameter(.cidrConflictWithVpcCidr)
         }
-        
+
         /// 创建的路由与VPC下已存在的全局路由产生冲突。
         public static var cidrConflictWithVpcGlobalRoute: InvalidParameter {
             InvalidParameter(.cidrConflictWithVpcGlobalRoute)
         }
-        
+
         /// CIDR无效。
         ///
         /// 请提交工单联系我们协助处理
         public static var cidrInvali: InvalidParameter {
             InvalidParameter(.cidrInvali)
         }
-        
+
         /// 参数错误，CIDR不符合规范。
         ///
         /// 请检查提交的CIDR相关参数是否合法。
         public static var cidrInvalid: InvalidParameter {
             InvalidParameter(.cidrInvalid)
         }
-        
+
         /// CIDR掩码超出范围(集群CIDR范围 最小值: 10 最大值: 24)。
         public static var cidrMaskSizeOutOfRange: InvalidParameter {
             InvalidParameter(.cidrMaskSizeOutOfRange)
         }
-        
+
         /// CIDR不在路由表之内。
         public static var cidrOutOfRouteTable: InvalidParameter {
             InvalidParameter(.cidrOutOfRouteTable)
         }
-        
+
         /// 集群ID不存在。
         public static var clusterNotFound: InvalidParameter {
             InvalidParameter(.clusterNotFound)
         }
-        
+
         /// 下一跳地址已关联CIDR。
         public static var gatewayAlreadyAssociatedCidr: InvalidParameter {
             InvalidParameter(.gatewayAlreadyAssociatedCidr)
         }
-        
+
         /// 无效的私有CIDR网段。
         public static var invalidPrivateNetworkCIDR: InvalidParameter {
             InvalidParameter(.invalidPrivateNetworkCIDR)
         }
-        
+
         /// 请向腾讯云提工单寻求支持。
         public static var osNotSupport: InvalidParameter {
             InvalidParameter(.osNotSupport)
         }
-        
+
         /// 参数错误。
         public static var param: InvalidParameter {
             InvalidParameter(.param)
         }
-        
+
         /// Prometheus未关联本集群。
         public static var promClusterNotFound: InvalidParameter {
             InvalidParameter(.promClusterNotFound)
         }
-        
+
         /// Prometheus实例不存在。
         public static var promInstanceNotFound: InvalidParameter {
             InvalidParameter(.promInstanceNotFound)
         }
-        
+
         /// 资源未找到。
         public static var resourceNotFound: InvalidParameter {
             InvalidParameter(.resourceNotFound)
         }
-        
+
         /// 路由表非空。
         public static var routeTableNotEmpty: InvalidParameter {
             InvalidParameter(.routeTableNotEmpty)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTkeError() -> TCTkeError {
             let code: TCTkeError.Code
             switch self.error {
-            case .asCommonError: 
+            case .asCommonError:
                 code = .invalidParameter_AsCommonError
-            case .cidrConflictWithOtherCluster: 
+            case .cidrConflictWithOtherCluster:
                 code = .invalidParameter_CidrConflictWithOtherCluster
-            case .cidrConflictWithOtherRoute: 
+            case .cidrConflictWithOtherRoute:
                 code = .invalidParameter_CidrConflictWithOtherRoute
-            case .cidrConflictWithVpcCidr: 
+            case .cidrConflictWithVpcCidr:
                 code = .invalidParameter_CidrConflictWithVpcCidr
-            case .cidrConflictWithVpcGlobalRoute: 
+            case .cidrConflictWithVpcGlobalRoute:
                 code = .invalidParameter_CidrConflictWithVpcGlobalRoute
-            case .cidrInvali: 
+            case .cidrInvali:
                 code = .invalidParameter_CidrInvali
-            case .cidrInvalid: 
+            case .cidrInvalid:
                 code = .invalidParameter_CidrInvalid
-            case .cidrMaskSizeOutOfRange: 
+            case .cidrMaskSizeOutOfRange:
                 code = .invalidParameter_CIDRMaskSizeOutOfRange
-            case .cidrOutOfRouteTable: 
+            case .cidrOutOfRouteTable:
                 code = .invalidParameter_CidrOutOfRouteTable
-            case .clusterNotFound: 
+            case .clusterNotFound:
                 code = .invalidParameter_ClusterNotFound
-            case .gatewayAlreadyAssociatedCidr: 
+            case .gatewayAlreadyAssociatedCidr:
                 code = .invalidParameter_GatewayAlreadyAssociatedCidr
-            case .invalidPrivateNetworkCIDR: 
+            case .invalidPrivateNetworkCIDR:
                 code = .invalidParameter_InvalidPrivateNetworkCIDR
-            case .osNotSupport: 
+            case .osNotSupport:
                 code = .invalidParameter_OsNotSupport
-            case .param: 
+            case .param:
                 code = .invalidParameter_Param
-            case .promClusterNotFound: 
+            case .promClusterNotFound:
                 code = .invalidParameter_PromClusterNotFound
-            case .promInstanceNotFound: 
+            case .promInstanceNotFound:
                 code = .invalidParameter_PromInstanceNotFound
-            case .resourceNotFound: 
+            case .resourceNotFound:
                 code = .invalidParameter_ResourceNotFound
-            case .routeTableNotEmpty: 
+            case .routeTableNotEmpty:
                 code = .invalidParameter_RouteTableNotEmpty
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCTkeError(code, context: self.context)

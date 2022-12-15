@@ -22,25 +22,25 @@ extension Pts {
     public struct DescribeJobsRequest: TCRequestModel {
         /// 场景ID数组
         public let scenarioIds: [String]
-        
+
         /// 项目ID数组
         public let projectIds: [String]
-        
+
         /// 分页起始位置
         public let offset: Int64?
-        
+
         /// 每页最大数目
         public let limit: Int64?
-        
+
         /// 任务ID数组
         public let jobIds: [String]?
-        
+
         /// 按字段排序
         public let orderBy: String?
-        
+
         /// 升序/降序
         public let ascend: Bool?
-        
+
         /// 任务开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -48,7 +48,7 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date?
-        
+
         /// 任务结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -56,14 +56,14 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date?
-        
+
         /// 调试任务标记
         public let debug: Bool?
-        
+
         /// 任务的状态
         public let status: [Int64]?
-        
-        public init (scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil) {
+
+        public init(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil) {
             self.scenarioIds = scenarioIds
             self.projectIds = projectIds
             self.offset = offset
@@ -76,7 +76,7 @@ extension Pts {
             self.debug = debug
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioIds = "ScenarioIds"
             case projectIds = "ProjectIds"
@@ -91,45 +91,45 @@ extension Pts {
             case status = "Status"
         }
     }
-    
+
     /// DescribeJobs返回参数结构体
     public struct DescribeJobsResponse: TCResponseModel {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobSet: [Job]?
-        
+
         /// 任务数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobSet = "JobSet"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询任务列表
     @inlinable
-    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
+    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobsResponse> {
         self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务列表
     @inlinable
     public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
         try await self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询任务列表
     @inlinable
-    public func describeJobs(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
+    public func describeJobs(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobsResponse> {
         self.describeJobs(DescribeJobsRequest(scenarioIds: scenarioIds, projectIds: projectIds, offset: offset, limit: limit, jobIds: jobIds, orderBy: orderBy, ascend: ascend, startTime: startTime, endTime: endTime, debug: debug, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务列表
     @inlinable
     public func describeJobs(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {

@@ -19,48 +19,48 @@ extension Tsf {
     public struct DraftApiGroupRequest: TCRequestModel {
         /// Api 分组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DraftApiGroup返回参数结构体
     public struct DraftApiGroupResponse: TCResponseModel {
         /// true: 成功, false: 失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 下线Api分组
     @inlinable
-    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DraftApiGroupResponse > {
+    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DraftApiGroupResponse> {
         self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 下线Api分组
     @inlinable
     public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {
         try await self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 下线Api分组
     @inlinable
-    public func draftApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DraftApiGroupResponse > {
+    public func draftApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DraftApiGroupResponse> {
         self.draftApiGroup(DraftApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 下线Api分组
     @inlinable
     public func draftApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {

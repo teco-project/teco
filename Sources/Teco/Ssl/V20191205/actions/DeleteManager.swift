@@ -19,48 +19,48 @@ extension Ssl {
     public struct DeleteManagerRequest: TCRequestModel {
         /// 管理人ID
         public let managerId: Int64
-        
-        public init (managerId: Int64) {
+
+        public init(managerId: Int64) {
             self.managerId = managerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case managerId = "ManagerId"
         }
     }
-    
+
     /// DeleteManager返回参数结构体
     public struct DeleteManagerResponse: TCResponseModel {
         /// 管理人ID
         public let managerId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case managerId = "ManagerId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除管理人
     @inlinable
-    public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteManagerResponse > {
+    public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteManagerResponse> {
         self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除管理人
     @inlinable
     public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteManagerResponse {
         try await self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除管理人
     @inlinable
-    public func deleteManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteManagerResponse > {
+    public func deleteManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteManagerResponse> {
         self.deleteManager(DeleteManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除管理人
     @inlinable
     public func deleteManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteManagerResponse {

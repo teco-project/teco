@@ -19,30 +19,30 @@ extension Tcss {
     public struct DescribeAssetImageBindRuleInfoRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤参数,"Filters":[{"Name":"EventType","Values":[""]}]
         /// EventType取值：
         /// "FILE_ABNORMAL_READ" 访问控制
         /// "MALICE_PROCESS_START" 恶意进程启动
         public let filters: [RunTimeFilters]?
-        
+
         /// 升序降序,asc desc
         public let order: String?
-        
+
         /// 排序字段
         public let by: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -51,33 +51,33 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeAssetImageBindRuleInfo返回参数结构体
     public struct DescribeAssetImageBindRuleInfoResponse: TCResponseModel {
         /// 事件总数量
         public let totalCount: UInt64
-        
+
         /// 镜像绑定规则列表
         public let imageBindRuleSet: [ImagesBindRuleInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case imageBindRuleSet = "ImageBindRuleSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 镜像绑定规则列表
     ///
     /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
     @inlinable
-    public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageBindRuleInfoResponse > {
+    public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageBindRuleInfoResponse> {
         self.client.execute(action: "DescribeAssetImageBindRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像绑定规则列表
     ///
     /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
@@ -85,15 +85,15 @@ extension Tcss {
     public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageBindRuleInfoResponse {
         try await self.client.execute(action: "DescribeAssetImageBindRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 镜像绑定规则列表
     ///
     /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
     @inlinable
-    public func describeAssetImageBindRuleInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageBindRuleInfoResponse > {
+    public func describeAssetImageBindRuleInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageBindRuleInfoResponse> {
         self.describeAssetImageBindRuleInfo(DescribeAssetImageBindRuleInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像绑定规则列表
     ///
     /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用

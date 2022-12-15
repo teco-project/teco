@@ -23,76 +23,76 @@ extension TCIvldError {
             case recordNotFound = "ResourceNotFound.RecordNotFound"
             case taskNotFound = "ResourceNotFound.TaskNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 自定义人物类型不存在。
         ///
         /// 自定义人物类型不存在，检查是否调用CreateCustomCategory
         public static var customCategoryNotFound: ResourceNotFound {
             ResourceNotFound(.customCategoryNotFound)
         }
-        
+
         /// 自定义人物库不存在。
         ///
         /// 人脸库不存在，检查是否调用CreateCustomGroup
         public static var customGroupNotFound: ResourceNotFound {
             ResourceNotFound(.customGroupNotFound)
         }
-        
+
         /// 媒资文件不存在。
         ///
         /// 检查媒资文件是否存在
         public static var mediaNotFound: ResourceNotFound {
             ResourceNotFound(.mediaNotFound)
         }
-        
+
         /// 记录不存在。
         ///
         /// 检查记录Id是否正确
         public static var recordNotFound: ResourceNotFound {
             ResourceNotFound(.recordNotFound)
         }
-        
+
         /// 任务不存在。
         ///
         /// 检查TaskId的内容是否正确
         public static var taskNotFound: ResourceNotFound {
             ResourceNotFound(.taskNotFound)
         }
-        
+
         public func asIvldError() -> TCIvldError {
             let code: TCIvldError.Code
             switch self.error {
-            case .customCategoryNotFound: 
+            case .customCategoryNotFound:
                 code = .resourceNotFound_CustomCategoryNotFound
-            case .customGroupNotFound: 
+            case .customGroupNotFound:
                 code = .resourceNotFound_CustomGroupNotFound
-            case .mediaNotFound: 
+            case .mediaNotFound:
                 code = .resourceNotFound_MediaNotFound
-            case .recordNotFound: 
+            case .recordNotFound:
                 code = .resourceNotFound_RecordNotFound
-            case .taskNotFound: 
+            case .taskNotFound:
                 code = .resourceNotFound_TaskNotFound
             }
             return TCIvldError(code, context: self.context)

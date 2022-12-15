@@ -19,49 +19,49 @@ extension Iot {
     public struct UnassociateSubDeviceFromGatewayProductRequest: TCRequestModel {
         /// 子设备产品Id
         public let subDeviceProductId: String
-        
+
         /// 网关设备产品Id
         public let gatewayProductId: String
-        
-        public init (subDeviceProductId: String, gatewayProductId: String) {
+
+        public init(subDeviceProductId: String, gatewayProductId: String) {
             self.subDeviceProductId = subDeviceProductId
             self.gatewayProductId = gatewayProductId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subDeviceProductId = "SubDeviceProductId"
             case gatewayProductId = "GatewayProductId"
         }
     }
-    
+
     /// UnassociateSubDeviceFromGatewayProduct返回参数结构体
     public struct UnassociateSubDeviceFromGatewayProductResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassociateSubDeviceFromGatewayProductResponse > {
+    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
         self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
     public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
         try await self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassociateSubDeviceFromGatewayProductResponse > {
+    public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
         self.unassociateSubDeviceFromGatewayProduct(UnassociateSubDeviceFromGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
     public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {

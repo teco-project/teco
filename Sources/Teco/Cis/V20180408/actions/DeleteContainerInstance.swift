@@ -19,38 +19,38 @@ extension Cis {
     public struct DeleteContainerInstanceRequest: TCRequestModel {
         /// 容器实例名称
         public let instanceName: String
-        
-        public init (instanceName: String) {
+
+        public init(instanceName: String) {
             self.instanceName = instanceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceName = "InstanceName"
         }
     }
-    
+
     /// DeleteContainerInstance返回参数结构体
     public struct DeleteContainerInstanceResponse: TCResponseModel {
         /// 操作信息
         public let msg: String
-        
+
         /// 唯一请求ID，每次请求都会返回。定位问题时需要提供该次请求的RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除容器实例
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
-    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContainerInstanceResponse > {
+    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerInstanceResponse> {
         self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除容器实例
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例
@@ -58,15 +58,15 @@ extension Cis {
     public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
         try await self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除容器实例
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
-    public func deleteContainerInstance(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContainerInstanceResponse > {
+    public func deleteContainerInstance(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerInstanceResponse> {
         self.deleteContainerInstance(DeleteContainerInstanceRequest(instanceName: instanceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除容器实例
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例

@@ -19,44 +19,44 @@ extension Gaap {
     public struct DisableGlobalDomainRequest: TCRequestModel {
         /// 域名ID
         public let domainId: String
-        
-        public init (domainId: String) {
+
+        public init(domainId: String) {
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
         }
     }
-    
+
     /// DisableGlobalDomain返回参数结构体
     public struct DisableGlobalDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 暂停域名解析
     @inlinable
-    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGlobalDomainResponse > {
+    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGlobalDomainResponse> {
         self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 暂停域名解析
     @inlinable
     public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
         try await self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 暂停域名解析
     @inlinable
-    public func disableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGlobalDomainResponse > {
+    public func disableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGlobalDomainResponse> {
         self.disableGlobalDomain(DisableGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 暂停域名解析
     @inlinable
     public func disableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {

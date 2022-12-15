@@ -19,58 +19,58 @@ extension Redis {
     public struct ManualBackupInstanceRequest: TCRequestModel {
         /// 待操作的实例ID，可通过 DescribeInstance接口返回值中的 InstanceId 获取。
         public let instanceId: String
-        
+
         /// 备份的备注信息
         public let remark: String?
-        
+
         /// 保存天数。0代表指定默认保留时间
         public let storageDays: Int64?
-        
-        public init (instanceId: String, remark: String? = nil, storageDays: Int64? = nil) {
+
+        public init(instanceId: String, remark: String? = nil, storageDays: Int64? = nil) {
             self.instanceId = instanceId
             self.remark = remark
             self.storageDays = storageDays
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case remark = "Remark"
             case storageDays = "StorageDays"
         }
     }
-    
+
     /// ManualBackupInstance返回参数结构体
     public struct ManualBackupInstanceResponse: TCResponseModel {
         /// 任务ID
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 手动备份Redis实例
     @inlinable
-    public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualBackupInstanceResponse > {
+    public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualBackupInstanceResponse> {
         self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 手动备份Redis实例
     @inlinable
     public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {
         try await self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 手动备份Redis实例
     @inlinable
-    public func manualBackupInstance(instanceId: String, remark: String? = nil, storageDays: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualBackupInstanceResponse > {
+    public func manualBackupInstance(instanceId: String, remark: String? = nil, storageDays: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualBackupInstanceResponse> {
         self.manualBackupInstance(ManualBackupInstanceRequest(instanceId: instanceId, remark: remark, storageDays: storageDays), logger: logger, on: eventLoop)
     }
-    
+
     /// 手动备份Redis实例
     @inlinable
     public func manualBackupInstance(instanceId: String, remark: String? = nil, storageDays: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {

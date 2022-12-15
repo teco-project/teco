@@ -19,44 +19,44 @@ extension Dlc {
     public struct AddUsersToWorkGroupRequest: TCRequestModel {
         /// 要操作的工作组和用户信息
         public let addInfo: UserIdSetOfWorkGroupId
-        
-        public init (addInfo: UserIdSetOfWorkGroupId) {
+
+        public init(addInfo: UserIdSetOfWorkGroupId) {
             self.addInfo = addInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addInfo = "AddInfo"
         }
     }
-    
+
     /// AddUsersToWorkGroup返回参数结构体
     public struct AddUsersToWorkGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加用户到工作组
     @inlinable
-    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUsersToWorkGroupResponse > {
+    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersToWorkGroupResponse> {
         self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加用户到工作组
     @inlinable
     public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
         try await self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加用户到工作组
     @inlinable
-    public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUsersToWorkGroupResponse > {
+    public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersToWorkGroupResponse> {
         self.addUsersToWorkGroup(AddUsersToWorkGroupRequest(addInfo: addInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加用户到工作组
     @inlinable
     public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {

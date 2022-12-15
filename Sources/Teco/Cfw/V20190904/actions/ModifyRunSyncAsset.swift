@@ -19,48 +19,48 @@ extension Cfw {
     public struct ModifyRunSyncAssetRequest: TCRequestModel {
         /// 0: 互联网防火墙开关，1：vpc 防火墙开关
         public let type: UInt64?
-        
-        public init (type: UInt64? = nil) {
+
+        public init(type: UInt64? = nil) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// ModifyRunSyncAsset返回参数结构体
     public struct ModifyRunSyncAssetResponse: TCResponseModel {
         /// 0：同步成功，1：资产更新中，2：后台同步调用失败
         public let status: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 同步资产-互联网&VPC（新）
     @inlinable
-    public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRunSyncAssetResponse > {
+    public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRunSyncAssetResponse> {
         self.client.execute(action: "ModifyRunSyncAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 同步资产-互联网&VPC（新）
     @inlinable
     public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRunSyncAssetResponse {
         try await self.client.execute(action: "ModifyRunSyncAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 同步资产-互联网&VPC（新）
     @inlinable
-    public func modifyRunSyncAsset(type: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRunSyncAssetResponse > {
+    public func modifyRunSyncAsset(type: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRunSyncAssetResponse> {
         self.modifyRunSyncAsset(ModifyRunSyncAssetRequest(type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 同步资产-互联网&VPC（新）
     @inlinable
     public func modifyRunSyncAsset(type: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRunSyncAssetResponse {

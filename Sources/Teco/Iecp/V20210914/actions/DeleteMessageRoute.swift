@@ -19,44 +19,44 @@ extension Iecp {
     public struct DeleteMessageRouteRequest: TCRequestModel {
         /// 无
         public let routeID: Int64
-        
-        public init (routeID: Int64) {
+
+        public init(routeID: Int64) {
             self.routeID = routeID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case routeID = "RouteID"
         }
     }
-    
+
     /// DeleteMessageRoute返回参数结构体
     public struct DeleteMessageRouteResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除消息路由
     @inlinable
-    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageRouteResponse > {
+    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageRouteResponse> {
         self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除消息路由
     @inlinable
     public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
         try await self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除消息路由
     @inlinable
-    public func deleteMessageRoute(routeID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageRouteResponse > {
+    public func deleteMessageRoute(routeID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageRouteResponse> {
         self.deleteMessageRoute(DeleteMessageRouteRequest(routeID: routeID), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除消息路由
     @inlinable
     public func deleteMessageRoute(routeID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {

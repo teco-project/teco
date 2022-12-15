@@ -19,39 +19,39 @@ extension Vpc {
     public struct RenewAddressesRequest: TCRequestModel {
         /// EIP唯一标识ID列表，形如'eip-xxxx'
         public let addressIds: [String]
-        
+
         /// 续费参数
         public let addressChargePrepaid: AddressChargePrepaid
-        
-        public init (addressIds: [String], addressChargePrepaid: AddressChargePrepaid) {
+
+        public init(addressIds: [String], addressChargePrepaid: AddressChargePrepaid) {
             self.addressIds = addressIds
             self.addressChargePrepaid = addressChargePrepaid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addressIds = "AddressIds"
             case addressChargePrepaid = "AddressChargePrepaid"
         }
     }
-    
+
     /// RenewAddresses返回参数结构体
     public struct RenewAddressesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 续费包月带宽弹性公网IP
     ///
     /// 该接口用于续费包月带宽计费模式的弹性公网IP
     @inlinable
-    public func renewAddresses(_ input: RenewAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewAddressesResponse > {
+    public func renewAddresses(_ input: RenewAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewAddressesResponse> {
         self.client.execute(action: "RenewAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 续费包月带宽弹性公网IP
     ///
     /// 该接口用于续费包月带宽计费模式的弹性公网IP
@@ -59,15 +59,15 @@ extension Vpc {
     public func renewAddresses(_ input: RenewAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewAddressesResponse {
         try await self.client.execute(action: "RenewAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 续费包月带宽弹性公网IP
     ///
     /// 该接口用于续费包月带宽计费模式的弹性公网IP
     @inlinable
-    public func renewAddresses(addressIds: [String], addressChargePrepaid: AddressChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewAddressesResponse > {
+    public func renewAddresses(addressIds: [String], addressChargePrepaid: AddressChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewAddressesResponse> {
         self.renewAddresses(RenewAddressesRequest(addressIds: addressIds, addressChargePrepaid: addressChargePrepaid), logger: logger, on: eventLoop)
     }
-    
+
     /// 续费包月带宽弹性公网IP
     ///
     /// 该接口用于续费包月带宽计费模式的弹性公网IP

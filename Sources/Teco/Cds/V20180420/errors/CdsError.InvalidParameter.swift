@@ -20,45 +20,45 @@ extension TCCdsError {
             case resourceId = "InvalidParameter.ResourceId"
             case resourceIdError = "InvalidParameter.ResourceIdError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的资源ID，用于资源不存在或已过期。
         public static var resourceId: InvalidParameter {
             InvalidParameter(.resourceId)
         }
-        
+
         /// 审计资源ID 错误。
         public static var resourceIdError: InvalidParameter {
             InvalidParameter(.resourceIdError)
         }
-        
+
         public func asCdsError() -> TCCdsError {
             let code: TCCdsError.Code
             switch self.error {
-            case .resourceId: 
+            case .resourceId:
                 code = .invalidParameter_ResourceId
-            case .resourceIdError: 
+            case .resourceIdError:
                 code = .invalidParameter_ResourceIdError
             }
             return TCCdsError(code, context: self.context)

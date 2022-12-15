@@ -19,48 +19,48 @@ extension Tcss {
     public struct DescribeSearchExportListRequest: TCRequestModel {
         /// ES查询条件JSON
         public let query: String
-        
-        public init (query: String) {
+
+        public init(query: String) {
             self.query = query
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case query = "Query"
         }
     }
-    
+
     /// DescribeSearchExportList返回参数结构体
     public struct DescribeSearchExportListResponse: TCResponseModel {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出ES查询文档列表
     @inlinable
-    public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchExportListResponse > {
+    public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchExportListResponse> {
         self.client.execute(action: "DescribeSearchExportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchExportListResponse {
         try await self.client.execute(action: "DescribeSearchExportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出ES查询文档列表
     @inlinable
-    public func describeSearchExportList(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchExportListResponse > {
+    public func describeSearchExportList(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchExportListResponse> {
         self.describeSearchExportList(DescribeSearchExportListRequest(query: query), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchExportListResponse {

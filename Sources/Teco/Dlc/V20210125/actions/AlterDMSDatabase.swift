@@ -19,23 +19,23 @@ extension Dlc {
     public struct AlterDMSDatabaseRequest: TCRequestModel {
         /// 当前名称
         public let currentName: String?
-        
+
         /// schema名称
         public let schemaName: String?
-        
+
         /// 路径
         public let location: String?
-        
+
         /// 基础对象
         public let asset: Asset?
-        
-        public init (currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil) {
+
+        public init(currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil) {
             self.currentName = currentName
             self.schemaName = schemaName
             self.location = location
             self.asset = asset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case currentName = "CurrentName"
             case schemaName = "SchemaName"
@@ -43,35 +43,35 @@ extension Dlc {
             case asset = "Asset"
         }
     }
-    
+
     /// AlterDMSDatabase返回参数结构体
     public struct AlterDMSDatabaseResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// DMS元数据更新库
     @inlinable
-    public func alterDMSDatabase(_ input: AlterDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSDatabaseResponse > {
+    public func alterDMSDatabase(_ input: AlterDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSDatabaseResponse> {
         self.client.execute(action: "AlterDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据更新库
     @inlinable
     public func alterDMSDatabase(_ input: AlterDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSDatabaseResponse {
         try await self.client.execute(action: "AlterDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DMS元数据更新库
     @inlinable
-    public func alterDMSDatabase(currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSDatabaseResponse > {
+    public func alterDMSDatabase(currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSDatabaseResponse> {
         self.alterDMSDatabase(AlterDMSDatabaseRequest(currentName: currentName, schemaName: schemaName, location: location, asset: asset), logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据更新库
     @inlinable
     public func alterDMSDatabase(currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSDatabaseResponse {

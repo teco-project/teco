@@ -45,214 +45,214 @@ extension TCTemError {
             case tagInterfaceError = "InternalError.TagInterfaceError"
             case updateIngressError = "InternalError.UpdateIngressError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请求响应超时。
         public static var actionReadTimeout: InternalError {
             InternalError(.actionReadTimeout)
         }
-        
+
         /// 添加子网/虚拟节点异常。
         public static var addNewNodeError: InternalError {
             InternalError(.addNewNodeError)
         }
-        
+
         /// 创建apm资源失败。
         public static var createApmResourceError: InternalError {
             InternalError(.createApmResourceError)
         }
-        
+
         /// 创建配置失败。
         public static var createConfigDataError: InternalError {
             InternalError(.createConfigDataError)
         }
-        
+
         /// 底层集群创建失败。
         public static var createEksClusterError: InternalError {
             InternalError(.createEksClusterError)
         }
-        
+
         public static var createLogConfigError: InternalError {
             InternalError(.createLogConfigError)
         }
-        
+
         /// 创建服务失败。
         public static var createServiceError: InternalError {
             InternalError(.createServiceError)
         }
-        
+
         /// 服务器繁忙,请稍后再试。
         public static var defaultInternalError: InternalError {
             InternalError(.defaultInternalError)
         }
-        
+
         /// 删除 ingress 失败。
         public static var deleteIngressError: InternalError {
             InternalError(.deleteIngressError)
         }
-        
+
         public static var deleteLogConfigError: InternalError {
             InternalError(.deleteLogConfigError)
         }
-        
+
         /// 删除应用失败。
         public static var deleteServiceError: InternalError {
             InternalError(.deleteServiceError)
         }
-        
+
         /// 版本部署调用失败。
         public static var deployVersionError: InternalError {
             InternalError(.deployVersionError)
         }
-        
+
         /// 查询配置详情失败。
         public static var describeConfigDataError: InternalError {
             InternalError(.describeConfigDataError)
         }
-        
+
         /// 查询配置列表失败。
         public static var describeConfigDataListError: InternalError {
             InternalError(.describeConfigDataListError)
         }
-        
+
         /// 查询 ingress 失败。
         public static var describeIngressError: InternalError {
             InternalError(.describeIngressError)
         }
-        
+
         public static var describeLogConfigError: InternalError {
             InternalError(.describeLogConfigError)
         }
-        
+
         public static var describeLogConfigListError: InternalError {
             InternalError(.describeLogConfigListError)
         }
-        
+
         /// 查询实例信息失败。
         public static var describeRunPodListError: InternalError {
             InternalError(.describeRunPodListError)
         }
-        
+
         /// 查询service失败。
         public static var describeServiceError: InternalError {
             InternalError(.describeServiceError)
         }
-        
+
         /// 查询服务关联的 ingress 失败。
         public static var describeServiceIngressError: InternalError {
             InternalError(.describeServiceIngressError)
         }
-        
+
         /// 查询service列表失败。
         public static var describeServiceListError: InternalError {
             InternalError(.describeServiceListError)
         }
-        
+
         /// 修改配置失败。
         public static var modifyConfigDataError: InternalError {
             InternalError(.modifyConfigDataError)
         }
-        
+
         public static var modifyLogConfigError: InternalError {
             InternalError(.modifyLogConfigError)
         }
-        
+
         /// 重启失败。
         public static var restartApplicationError: InternalError {
             InternalError(.restartApplicationError)
         }
-        
+
         /// 停止应用失败。
         public static var stopApplicationError: InternalError {
             InternalError(.stopApplicationError)
         }
-        
+
         public static var tagInterfaceError: InternalError {
             InternalError(.tagInterfaceError)
         }
-        
+
         /// 更新 ingress 失败。
         public static var updateIngressError: InternalError {
             InternalError(.updateIngressError)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {
-            case .actionReadTimeout: 
+            case .actionReadTimeout:
                 code = .internalError_ActionReadTimeout
-            case .addNewNodeError: 
+            case .addNewNodeError:
                 code = .internalError_AddNewNodeError
-            case .createApmResourceError: 
+            case .createApmResourceError:
                 code = .internalError_CreateApmResourceError
-            case .createConfigDataError: 
+            case .createConfigDataError:
                 code = .internalError_CreateConfigDataError
-            case .createEksClusterError: 
+            case .createEksClusterError:
                 code = .internalError_CreateEksClusterError
-            case .createLogConfigError: 
+            case .createLogConfigError:
                 code = .internalError_CreateLogConfigError
-            case .createServiceError: 
+            case .createServiceError:
                 code = .internalError_CreateServiceError
-            case .defaultInternalError: 
+            case .defaultInternalError:
                 code = .internalError_DefaultInternalError
-            case .deleteIngressError: 
+            case .deleteIngressError:
                 code = .internalError_DeleteIngressError
-            case .deleteLogConfigError: 
+            case .deleteLogConfigError:
                 code = .internalError_DeleteLogConfigError
-            case .deleteServiceError: 
+            case .deleteServiceError:
                 code = .internalError_DeleteServiceError
-            case .deployVersionError: 
+            case .deployVersionError:
                 code = .internalError_DeployVersionError
-            case .describeConfigDataError: 
+            case .describeConfigDataError:
                 code = .internalError_DescribeConfigDataError
-            case .describeConfigDataListError: 
+            case .describeConfigDataListError:
                 code = .internalError_DescribeConfigDataListError
-            case .describeIngressError: 
+            case .describeIngressError:
                 code = .internalError_DescribeIngressError
-            case .describeLogConfigError: 
+            case .describeLogConfigError:
                 code = .internalError_DescribeLogConfigError
-            case .describeLogConfigListError: 
+            case .describeLogConfigListError:
                 code = .internalError_DescribeLogConfigListError
-            case .describeRunPodListError: 
+            case .describeRunPodListError:
                 code = .internalError_DescribeRunPodListError
-            case .describeServiceError: 
+            case .describeServiceError:
                 code = .internalError_DescribeServiceError
-            case .describeServiceIngressError: 
+            case .describeServiceIngressError:
                 code = .internalError_DescribeServiceIngressError
-            case .describeServiceListError: 
+            case .describeServiceListError:
                 code = .internalError_DescribeServiceListError
-            case .modifyConfigDataError: 
+            case .modifyConfigDataError:
                 code = .internalError_ModifyConfigDataError
-            case .modifyLogConfigError: 
+            case .modifyLogConfigError:
                 code = .internalError_ModifyLogConfigError
-            case .restartApplicationError: 
+            case .restartApplicationError:
                 code = .internalError_RestartApplicationError
-            case .stopApplicationError: 
+            case .stopApplicationError:
                 code = .internalError_StopApplicationError
-            case .tagInterfaceError: 
+            case .tagInterfaceError:
                 code = .internalError_TagInterfaceError
-            case .updateIngressError: 
+            case .updateIngressError:
                 code = .internalError_UpdateIngressError
             }
             return TCTemError(code, context: self.context)

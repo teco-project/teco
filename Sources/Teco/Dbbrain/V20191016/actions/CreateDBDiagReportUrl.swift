@@ -19,52 +19,52 @@ extension Dbbrain {
     public struct CreateDBDiagReportUrlRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 健康报告相应的任务ID，可通过DescribeDBDiagReportTasks查询。
         public let asyncRequestId: Int64
-        
+
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, asyncRequestId: Int64, product: String? = nil) {
+
+        public init(instanceId: String, asyncRequestId: Int64, product: String? = nil) {
             self.instanceId = instanceId
             self.asyncRequestId = asyncRequestId
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case asyncRequestId = "AsyncRequestId"
             case product = "Product"
         }
     }
-    
+
     /// CreateDBDiagReportUrl返回参数结构体
     public struct CreateDBDiagReportUrlResponse: TCResponseModel {
         /// 健康报告浏览地址。
         public let reportUrl: String
-        
+
         /// 健康报告浏览地址到期时间戳（秒）。
         public let expireTime: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case reportUrl = "ReportUrl"
             case expireTime = "ExpireTime"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建健康报告浏览地址
     ///
     /// 创建健康报告的浏览地址。
     @inlinable
-    public func createDBDiagReportUrl(_ input: CreateDBDiagReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBDiagReportUrlResponse > {
+    public func createDBDiagReportUrl(_ input: CreateDBDiagReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBDiagReportUrlResponse> {
         self.client.execute(action: "CreateDBDiagReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建健康报告浏览地址
     ///
     /// 创建健康报告的浏览地址。
@@ -72,15 +72,15 @@ extension Dbbrain {
     public func createDBDiagReportUrl(_ input: CreateDBDiagReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportUrlResponse {
         try await self.client.execute(action: "CreateDBDiagReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建健康报告浏览地址
     ///
     /// 创建健康报告的浏览地址。
     @inlinable
-    public func createDBDiagReportUrl(instanceId: String, asyncRequestId: Int64, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBDiagReportUrlResponse > {
+    public func createDBDiagReportUrl(instanceId: String, asyncRequestId: Int64, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBDiagReportUrlResponse> {
         self.createDBDiagReportUrl(CreateDBDiagReportUrlRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建健康报告浏览地址
     ///
     /// 创建健康报告的浏览地址。

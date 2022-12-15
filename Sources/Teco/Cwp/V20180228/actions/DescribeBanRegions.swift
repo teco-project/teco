@@ -19,48 +19,48 @@ extension Cwp {
     public struct DescribeBanRegionsRequest: TCRequestModel {
         /// 阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断
         public let mode: String
-        
-        public init (mode: String) {
+
+        public init(mode: String) {
             self.mode = mode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
         }
     }
-    
+
     /// DescribeBanRegions返回参数结构体
     public struct DescribeBanRegionsResponse: TCResponseModel {
         /// 地域信息列表
         public let regionSet: [RegionSet]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case regionSet = "RegionSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取阻断地域
     @inlinable
-    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanRegionsResponse > {
+    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanRegionsResponse> {
         self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取阻断地域
     @inlinable
     public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
         try await self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取阻断地域
     @inlinable
-    public func describeBanRegions(mode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanRegionsResponse > {
+    public func describeBanRegions(mode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanRegionsResponse> {
         self.describeBanRegions(DescribeBanRegionsRequest(mode: mode), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取阻断地域
     @inlinable
     public func describeBanRegions(mode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {

@@ -19,23 +19,23 @@ extension Cbs {
     public struct DescribeDiskStoragePoolRequest: TCRequestModel {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         public let limit: UInt64?
-        
+
         /// 指定需要查询的独享集群ID列表，该入参不能与Filters一起使用。
         public let cdcIds: [String]?
-        
+
         /// 过滤条件。参数不支持同时指定`CdcIds`和`Filters`。<br><li>cdc-id - Array of String - 是否必填：否 -（过滤条件）按独享集群ID过滤。<br><li>zone - Array of String - 是否必填：否 -（过滤条件）按独享集群所在[可用区](/document/product/213/15753#ZoneInfo)过滤。<br><li>cage-id - Array of String - 是否必填：否 -（过滤条件）按独享集群所在围笼的ID过滤。<br><li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：SSD表示SSD云硬盘。)
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
         public let offset: UInt64?
-        
-        public init (limit: UInt64? = nil, cdcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil) {
+
+        public init(limit: UInt64? = nil, cdcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil) {
             self.limit = limit
             self.cdcIds = cdcIds
             self.filters = filters
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case cdcIds = "CdcIds"
@@ -43,35 +43,35 @@ extension Cbs {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeDiskStoragePool返回参数结构体
     public struct DescribeDiskStoragePoolResponse: TCResponseModel {
         /// 符合条件的独享集群的数量
         public let totalCount: UInt64
-        
+
         /// 独享集群的详细信息列表
         public let diskStoragePoolSet: [Cdc]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case diskStoragePoolSet = "DiskStoragePoolSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云硬盘独享集群列表
     ///
     /// 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。
     /// * 可以根据独享集群ID(CdcId)、可用区(zone)等信息来查询和过滤云硬盘独享集群详细信息，不同的过滤条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘独享集群列表。
     @inlinable
-    public func describeDiskStoragePool(_ input: DescribeDiskStoragePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskStoragePoolResponse > {
+    public func describeDiskStoragePool(_ input: DescribeDiskStoragePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskStoragePoolResponse> {
         self.client.execute(action: "DescribeDiskStoragePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘独享集群列表
     ///
     /// 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。
@@ -81,17 +81,17 @@ extension Cbs {
     public func describeDiskStoragePool(_ input: DescribeDiskStoragePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskStoragePoolResponse {
         try await self.client.execute(action: "DescribeDiskStoragePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云硬盘独享集群列表
     ///
     /// 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。
     /// * 可以根据独享集群ID(CdcId)、可用区(zone)等信息来查询和过滤云硬盘独享集群详细信息，不同的过滤条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘独享集群列表。
     @inlinable
-    public func describeDiskStoragePool(limit: UInt64? = nil, cdcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskStoragePoolResponse > {
+    public func describeDiskStoragePool(limit: UInt64? = nil, cdcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskStoragePoolResponse> {
         self.describeDiskStoragePool(DescribeDiskStoragePoolRequest(limit: limit, cdcIds: cdcIds, filters: filters, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘独享集群列表
     ///
     /// 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。

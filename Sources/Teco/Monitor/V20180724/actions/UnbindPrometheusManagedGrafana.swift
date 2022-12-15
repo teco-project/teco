@@ -19,49 +19,49 @@ extension Monitor {
     public struct UnbindPrometheusManagedGrafanaRequest: TCRequestModel {
         /// Prometheus 实例 ID
         public let instanceId: String
-        
+
         /// Grafana 实例 ID
         public let grafanaId: String
-        
-        public init (instanceId: String, grafanaId: String) {
+
+        public init(instanceId: String, grafanaId: String) {
             self.instanceId = instanceId
             self.grafanaId = grafanaId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case grafanaId = "GrafanaId"
         }
     }
-    
+
     /// UnbindPrometheusManagedGrafana返回参数结构体
     public struct UnbindPrometheusManagedGrafanaResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解除实例绑定的 Grafana 可视化实例
     @inlinable
-    public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPrometheusManagedGrafanaResponse > {
+    public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPrometheusManagedGrafanaResponse> {
         self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解除实例绑定的 Grafana 可视化实例
     @inlinable
     public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPrometheusManagedGrafanaResponse {
         try await self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解除实例绑定的 Grafana 可视化实例
     @inlinable
-    public func unbindPrometheusManagedGrafana(instanceId: String, grafanaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPrometheusManagedGrafanaResponse > {
+    public func unbindPrometheusManagedGrafana(instanceId: String, grafanaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPrometheusManagedGrafanaResponse> {
         self.unbindPrometheusManagedGrafana(UnbindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId), logger: logger, on: eventLoop)
     }
-    
+
     /// 解除实例绑定的 Grafana 可视化实例
     @inlinable
     public func unbindPrometheusManagedGrafana(instanceId: String, grafanaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPrometheusManagedGrafanaResponse {

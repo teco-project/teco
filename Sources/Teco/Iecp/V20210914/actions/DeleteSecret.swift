@@ -19,54 +19,54 @@ extension Iecp {
     public struct DeleteSecretRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitID: UInt64
-        
+
         /// secret名称
         public let secretName: String
-        
+
         /// secret命名空间（默认:default）
         public let secretNamespace: String?
-        
-        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil) {
+
+        public init(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.secretName = secretName
             self.secretNamespace = secretNamespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitID = "EdgeUnitID"
             case secretName = "SecretName"
             case secretNamespace = "SecretNamespace"
         }
     }
-    
+
     /// DeleteSecret返回参数结构体
     public struct DeleteSecretResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Secret
     @inlinable
-    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretResponse > {
+    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretResponse> {
         self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Secret
     @inlinable
     public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
         try await self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Secret
     @inlinable
-    public func deleteSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretResponse > {
+    public func deleteSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretResponse> {
         self.deleteSecret(DeleteSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Secret
     @inlinable
     public func deleteSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {

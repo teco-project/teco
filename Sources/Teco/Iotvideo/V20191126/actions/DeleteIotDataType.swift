@@ -19,34 +19,34 @@ extension Iotvideo {
     public struct DeleteIotDataTypeRequest: TCRequestModel {
         /// 自定义数据类型的标识符
         public let typeId: String
-        
-        public init (typeId: String) {
+
+        public init(typeId: String) {
             self.typeId = typeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case typeId = "TypeId"
         }
     }
-    
+
     /// DeleteIotDataType返回参数结构体
     public struct DeleteIotDataTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable
-    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDataTypeResponse > {
+    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
         self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
@@ -54,15 +54,15 @@ extension Iotvideo {
     public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
         try await self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable
-    public func deleteIotDataType(typeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDataTypeResponse > {
+    public func deleteIotDataType(typeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
         self.deleteIotDataType(DeleteIotDataTypeRequest(typeId: typeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。

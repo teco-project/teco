@@ -19,43 +19,43 @@ extension Zj {
     public struct GetSmsCampaignStatusRequest: TCRequestModel {
         /// 商户证书
         public let license: String
-        
+
         /// 活动ID
         public let campaignId: Int64
-        
-        public init (license: String, campaignId: Int64) {
+
+        public init(license: String, campaignId: Int64) {
             self.license = license
             self.campaignId = campaignId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case license = "License"
             case campaignId = "CampaignId"
         }
     }
-    
+
     /// GetSmsCampaignStatus返回参数结构体
     public struct GetSmsCampaignStatusResponse: TCResponseModel {
         /// 活动状态
         public let data: PaasSmsCampaignStatusResp
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取短信活动状态
     ///
     /// 获取短信活动状态信息
     @inlinable
-    public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsCampaignStatusResponse > {
+    public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSmsCampaignStatusResponse> {
         self.client.execute(action: "GetSmsCampaignStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取短信活动状态
     ///
     /// 获取短信活动状态信息
@@ -63,15 +63,15 @@ extension Zj {
     public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsCampaignStatusResponse {
         try await self.client.execute(action: "GetSmsCampaignStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取短信活动状态
     ///
     /// 获取短信活动状态信息
     @inlinable
-    public func getSmsCampaignStatus(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsCampaignStatusResponse > {
+    public func getSmsCampaignStatus(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSmsCampaignStatusResponse> {
         self.getSmsCampaignStatus(GetSmsCampaignStatusRequest(license: license, campaignId: campaignId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取短信活动状态
     ///
     /// 获取短信活动状态信息

@@ -19,48 +19,48 @@ extension Waf {
     public struct ModifyWafThreatenIntelligenceRequest: TCRequestModel {
         /// 配置WAF威胁情报封禁模块详情
         public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails
-        
-        public init (wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails) {
+
+        public init(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails) {
             self.wafThreatenIntelligenceDetails = wafThreatenIntelligenceDetails
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case wafThreatenIntelligenceDetails = "WafThreatenIntelligenceDetails"
         }
     }
-    
+
     /// ModifyWafThreatenIntelligence返回参数结构体
     public struct ModifyWafThreatenIntelligenceResponse: TCResponseModel {
         /// 当前WAF威胁情报封禁模块详情
         public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case wafThreatenIntelligenceDetails = "WafThreatenIntelligenceDetails"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafThreatenIntelligenceResponse > {
+    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
         self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
     public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
         try await self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafThreatenIntelligenceResponse > {
+    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
         self.modifyWafThreatenIntelligence(ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), logger: logger, on: eventLoop)
     }
-    
+
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
     public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {

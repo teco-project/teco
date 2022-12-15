@@ -19,34 +19,34 @@ extension Tic {
     public struct DeleteStackVersionRequest: TCRequestModel {
         /// 待删除的版本ID
         public let versionId: String
-        
-        public init (versionId: String) {
+
+        public init(versionId: String) {
             self.versionId = versionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case versionId = "VersionId"
         }
     }
-    
+
     /// DeleteStackVersion返回参数结构体
     public struct DeleteStackVersionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
     @inlinable
-    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStackVersionResponse > {
+    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
         self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
@@ -54,15 +54,15 @@ extension Tic {
     public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
         try await self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
     @inlinable
-    public func deleteStackVersion(versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStackVersionResponse > {
+    public func deleteStackVersion(versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
         self.deleteStackVersion(DeleteStackVersionRequest(versionId: versionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。

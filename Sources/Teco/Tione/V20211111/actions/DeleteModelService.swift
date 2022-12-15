@@ -19,34 +19,34 @@ extension Tione {
     public struct DeleteModelServiceRequest: TCRequestModel {
         /// 服务id
         public let serviceId: String
-        
-        public init (serviceId: String) {
+
+        public init(serviceId: String) {
             self.serviceId = serviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
         }
     }
-    
+
     /// DeleteModelService返回参数结构体
     public struct DeleteModelServiceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
     @inlinable
-    public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceResponse > {
+    public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceResponse> {
         self.client.execute(action: "DeleteModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
@@ -54,15 +54,15 @@ extension Tione {
     public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
         try await self.client.execute(action: "DeleteModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
     @inlinable
-    public func deleteModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceResponse > {
+    public func deleteModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceResponse> {
         self.deleteModelService(DeleteModelServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务

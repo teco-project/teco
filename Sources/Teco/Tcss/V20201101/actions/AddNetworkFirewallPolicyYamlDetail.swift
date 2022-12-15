@@ -19,23 +19,23 @@ extension Tcss {
     public struct AddNetworkFirewallPolicyYamlDetailRequest: TCRequestModel {
         /// 集群Id
         public let clusterId: String
-        
+
         /// 策略名
         public let policyName: String
-        
+
         /// base64编码的networkpolicy yaml字符串
         public let yaml: String?
-        
+
         /// 策略描述
         public let description: String?
-        
-        public init (clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil) {
+
+        public init(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil) {
             self.clusterId = clusterId
             self.policyName = policyName
             self.yaml = yaml
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case policyName = "PolicyName"
@@ -43,43 +43,43 @@ extension Tcss {
             case description = "Description"
         }
     }
-    
+
     /// AddNetworkFirewallPolicyYamlDetail返回参数结构体
     public struct AddNetworkFirewallPolicyYamlDetailResponse: TCResponseModel {
         /// 返回创建的任务的ID，为0表示创建失败。
         public let taskId: UInt64
-        
+
         /// 创建任务的结果，"Succ"为成功，"Failed"为失败
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 容器网络创建Yaml网络策略添加任务
     @inlinable
-    public func addNetworkFirewallPolicyYamlDetail(_ input: AddNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNetworkFirewallPolicyYamlDetailResponse > {
+    public func addNetworkFirewallPolicyYamlDetail(_ input: AddNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNetworkFirewallPolicyYamlDetailResponse> {
         self.client.execute(action: "AddNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络创建Yaml网络策略添加任务
     @inlinable
     public func addNetworkFirewallPolicyYamlDetail(_ input: AddNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNetworkFirewallPolicyYamlDetailResponse {
         try await self.client.execute(action: "AddNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 容器网络创建Yaml网络策略添加任务
     @inlinable
-    public func addNetworkFirewallPolicyYamlDetail(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNetworkFirewallPolicyYamlDetailResponse > {
+    public func addNetworkFirewallPolicyYamlDetail(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNetworkFirewallPolicyYamlDetailResponse> {
         self.addNetworkFirewallPolicyYamlDetail(AddNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, policyName: policyName, yaml: yaml, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络创建Yaml网络策略添加任务
     @inlinable
     public func addNetworkFirewallPolicyYamlDetail(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNetworkFirewallPolicyYamlDetailResponse {

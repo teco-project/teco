@@ -19,59 +19,59 @@ extension Iotvideoindustry {
     public struct DescribeMessageForwardsRequest: TCRequestModel {
         /// 数量限制
         public let limit: Int64
-        
+
         /// 偏移
         public let offset: Int64?
-        
-        public init (limit: Int64, offset: Int64? = nil) {
+
+        public init(limit: Int64, offset: Int64? = nil) {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeMessageForwards返回参数结构体
     public struct DescribeMessageForwardsResponse: TCResponseModel {
         /// 配置总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [MessageForward]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看消息转发配置列表
     @inlinable
-    public func describeMessageForwards(_ input: DescribeMessageForwardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageForwardsResponse > {
+    public func describeMessageForwards(_ input: DescribeMessageForwardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageForwardsResponse> {
         self.client.execute(action: "DescribeMessageForwards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看消息转发配置列表
     @inlinable
     public func describeMessageForwards(_ input: DescribeMessageForwardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardsResponse {
         try await self.client.execute(action: "DescribeMessageForwards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看消息转发配置列表
     @inlinable
-    public func describeMessageForwards(limit: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageForwardsResponse > {
+    public func describeMessageForwards(limit: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageForwardsResponse> {
         self.describeMessageForwards(DescribeMessageForwardsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看消息转发配置列表
     @inlinable
     public func describeMessageForwards(limit: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardsResponse {

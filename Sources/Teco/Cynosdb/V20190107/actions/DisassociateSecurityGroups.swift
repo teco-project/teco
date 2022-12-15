@@ -19,54 +19,54 @@ extension Cynosdb {
     public struct DisassociateSecurityGroupsRequest: TCRequestModel {
         /// 实例组ID数组
         public let instanceIds: [String]
-        
+
         /// 要修改的安全组ID列表，一个或者多个安全组ID组成的数组。
         public let securityGroupIds: [String]
-        
+
         /// 可用区
         public let zone: String
-        
-        public init (instanceIds: [String], securityGroupIds: [String], zone: String) {
+
+        public init(instanceIds: [String], securityGroupIds: [String], zone: String) {
             self.instanceIds = instanceIds
             self.securityGroupIds = securityGroupIds
             self.zone = zone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case securityGroupIds = "SecurityGroupIds"
             case zone = "Zone"
         }
     }
-    
+
     /// DisassociateSecurityGroups返回参数结构体
     public struct DisassociateSecurityGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全组批量解绑云资源
     @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
         self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组批量解绑云资源
     @inlinable
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全组批量解绑云资源
     @inlinable
-    public func disassociateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+    public func disassociateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
         self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组批量解绑云资源
     @inlinable
     public func disassociateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {

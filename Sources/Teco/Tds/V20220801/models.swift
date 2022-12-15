@@ -19,10 +19,10 @@ extension Tds {
     public struct RiskInfo: TCOutputModel {
         /// 风险类型
         public let type: UInt64
-        
+
         /// 风险等级
         public let level: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case level = "Level"

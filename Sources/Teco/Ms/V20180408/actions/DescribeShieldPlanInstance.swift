@@ -19,35 +19,35 @@ extension Ms {
     public struct DescribeShieldPlanInstanceRequest: TCRequestModel {
         /// 资源id
         public let resourceId: String
-        
+
         /// 服务类别id
         public let pid: UInt64
-        
-        public init (resourceId: String, pid: UInt64) {
+
+        public init(resourceId: String, pid: UInt64) {
             self.resourceId = resourceId
             self.pid = pid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case pid = "Pid"
         }
     }
-    
+
     /// DescribeShieldPlanInstance返回参数结构体
     public struct DescribeShieldPlanInstanceResponse: TCResponseModel {
         /// 绑定资源信息
         public let bindInfo: BindInfo
-        
+
         /// 加固策略信息
         public let shieldPlanInfo: ShieldPlanInfo
-        
+
         /// 加固资源信息
         public let resourceServiceInfo: ResourceServiceInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bindInfo = "BindInfo"
             case shieldPlanInfo = "ShieldPlanInfo"
@@ -55,15 +55,15 @@ extension Ms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询加固策略
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldPlanInstanceResponse > {
+    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldPlanInstanceResponse> {
         self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询加固策略
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
@@ -71,15 +71,15 @@ extension Ms {
     public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldPlanInstanceResponse {
         try await self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询加固策略
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldPlanInstance(resourceId: String, pid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldPlanInstanceResponse > {
+    public func describeShieldPlanInstance(resourceId: String, pid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldPlanInstanceResponse> {
         self.describeShieldPlanInstance(DescribeShieldPlanInstanceRequest(resourceId: resourceId, pid: pid), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询加固策略
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）

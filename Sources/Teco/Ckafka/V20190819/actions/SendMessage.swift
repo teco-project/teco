@@ -19,43 +19,43 @@ extension Ckafka {
     public struct SendMessageRequest: TCRequestModel {
         /// DataHub接入ID
         public let dataHubId: String
-        
+
         /// 发送消息内容(单次请求最多500条)
         public let message: [BatchContent]
-        
-        public init (dataHubId: String, message: [BatchContent]) {
+
+        public init(dataHubId: String, message: [BatchContent]) {
             self.dataHubId = dataHubId
             self.message = message
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dataHubId = "DataHubId"
             case message = "Message"
         }
     }
-    
+
     /// SendMessage返回参数结构体
     public struct SendMessageResponse: TCResponseModel {
         /// 消息ID列表
         public let messageId: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case messageId = "MessageId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// HTTP发送消息
     ///
     /// 通过HTTP接入层发送消息
     @inlinable
-    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
+    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessageResponse> {
         self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// HTTP发送消息
     ///
     /// 通过HTTP接入层发送消息
@@ -63,15 +63,15 @@ extension Ckafka {
     public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
         try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// HTTP发送消息
     ///
     /// 通过HTTP接入层发送消息
     @inlinable
-    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
+    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessageResponse> {
         self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), logger: logger, on: eventLoop)
     }
-    
+
     /// HTTP发送消息
     ///
     /// 通过HTTP接入层发送消息

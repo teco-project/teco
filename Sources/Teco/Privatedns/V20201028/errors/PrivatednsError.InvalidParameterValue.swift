@@ -21,52 +21,52 @@ extension TCPrivatednsError {
             case reservedDomain = "InvalidParameterValue.ReservedDomain"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// ttl的值必须是1-86400之间。
         public static var illegalTTLValue: InvalidParameterValue {
             InvalidParameterValue(.illegalTTLValue)
         }
-        
+
         /// 内部保留域名，不支持创建。
         public static var reservedDomain: InvalidParameterValue {
             InvalidParameterValue(.reservedDomain)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asPrivatednsError() -> TCPrivatednsError {
             let code: TCPrivatednsError.Code
             switch self.error {
-            case .illegalTTLValue: 
+            case .illegalTTLValue:
                 code = .invalidParameterValue_IllegalTTLValue
-            case .reservedDomain: 
+            case .reservedDomain:
                 code = .invalidParameterValue_ReservedDomain
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCPrivatednsError(code, context: self.context)

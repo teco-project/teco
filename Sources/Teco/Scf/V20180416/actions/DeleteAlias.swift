@@ -19,44 +19,44 @@ extension Scf {
     public struct DeleteAliasRequest: TCRequestModel {
         /// 函数名称
         public let functionName: String
-        
+
         /// 别名的名称
         public let name: String
-        
+
         /// 函数所在的命名空间
         public let namespace: String?
-        
-        public init (functionName: String, name: String, namespace: String? = nil) {
+
+        public init(functionName: String, name: String, namespace: String? = nil) {
             self.functionName = functionName
             self.name = name
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case name = "Name"
             case namespace = "Namespace"
         }
     }
-    
+
     /// DeleteAlias返回参数结构体
     public struct DeleteAliasResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
     @inlinable
-    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasResponse > {
+    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
         self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
@@ -64,15 +64,15 @@ extension Scf {
     public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
         try await self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
     @inlinable
-    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasResponse > {
+    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
         self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除别名
     ///
     /// 删除一个函数版本的别名

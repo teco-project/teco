@@ -19,42 +19,42 @@ extension Dcdb {
     public struct DestroyDCDBInstanceRequest: TCRequestModel {
         /// 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DestroyDCDBInstance返回参数结构体
     public struct DestroyDCDBInstanceResponse: TCResponseModel {
         /// 实例 ID，与入参InstanceId一致。
         public let instanceId: String
-        
+
         /// 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/557/56485)。
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁已隔离的包年包月实例
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
-    public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyDCDBInstanceResponse > {
+    public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
         self.client.execute(action: "DestroyDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁已隔离的包年包月实例
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
@@ -62,15 +62,15 @@ extension Dcdb {
     public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
         try await self.client.execute(action: "DestroyDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁已隔离的包年包月实例
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
-    public func destroyDCDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyDCDBInstanceResponse > {
+    public func destroyDCDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
         self.destroyDCDBInstance(DestroyDCDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁已隔离的包年包月实例
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。

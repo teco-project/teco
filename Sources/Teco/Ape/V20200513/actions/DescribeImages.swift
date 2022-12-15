@@ -19,23 +19,23 @@ extension Ape {
     public struct DescribeImagesRequest: TCRequestModel {
         /// 页偏移量
         public let offset: Int64
-        
+
         /// 页大小
         public let limit: Int64
-        
+
         /// 搜索关键字
         public let keyword: String
-        
+
         /// 构图方式，可选以下值：horizontal、vertical、square，分别代表以下含义：横图、竖图、方图
         public let orientation: String?
-        
+
         /// 图片类型，可选以下值：照片、插画
         public let imageSenseType: String?
-        
+
         /// 分层图库id数组，可选以下数值：1(基础)，2(精选)，3(高级)
         public let layeredGalleryIds: [Int64]?
-        
-        public init (offset: Int64, limit: Int64, keyword: String, orientation: String? = nil, imageSenseType: String? = nil, layeredGalleryIds: [Int64]? = nil) {
+
+        public init(offset: Int64, limit: Int64, keyword: String, orientation: String? = nil, imageSenseType: String? = nil, layeredGalleryIds: [Int64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.keyword = keyword
@@ -43,7 +43,7 @@ extension Ape {
             self.imageSenseType = imageSenseType
             self.layeredGalleryIds = layeredGalleryIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -53,27 +53,27 @@ extension Ape {
             case layeredGalleryIds = "LayeredGalleryIds"
         }
     }
-    
+
     /// DescribeImages返回参数结构体
     public struct DescribeImagesResponse: TCResponseModel {
         /// 页偏移量
         public let offset: Int64
-        
+
         /// 页大小
         public let limit: Int64
-        
+
         /// 总条数
         public let total: Int64
-        
+
         /// 是否有下一页
         public let haveMore: Bool
-        
+
         /// 图片信息数组
         public let items: [ImageItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -83,15 +83,15 @@ extension Ape {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询图片列表
     ///
     /// 根据关键字搜索图片列表
     @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询图片列表
     ///
     /// 根据关键字搜索图片列表
@@ -99,15 +99,15 @@ extension Ape {
     public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询图片列表
     ///
     /// 根据关键字搜索图片列表
     @inlinable
-    public func describeImages(offset: Int64, limit: Int64, keyword: String, orientation: String? = nil, imageSenseType: String? = nil, layeredGalleryIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+    public func describeImages(offset: Int64, limit: Int64, keyword: String, orientation: String? = nil, imageSenseType: String? = nil, layeredGalleryIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.describeImages(DescribeImagesRequest(offset: offset, limit: limit, keyword: keyword, orientation: orientation, imageSenseType: imageSenseType, layeredGalleryIds: layeredGalleryIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询图片列表
     ///
     /// 根据关键字搜索图片列表

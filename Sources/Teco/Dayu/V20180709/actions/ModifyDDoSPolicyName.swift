@@ -19,58 +19,58 @@ extension Dayu {
     public struct ModifyDDoSPolicyNameRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 策略ID
         public let policyId: String
-        
+
         /// 策略名称
         public let name: String
-        
-        public init (business: String, policyId: String, name: String) {
+
+        public init(business: String, policyId: String, name: String) {
             self.business = business
             self.policyId = policyId
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case policyId = "PolicyId"
             case name = "Name"
         }
     }
-    
+
     /// ModifyDDoSPolicyName返回参数结构体
     public struct ModifyDDoSPolicyNameResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改DDoS高级策略名称
     @inlinable
-    public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyNameResponse > {
+    public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyNameResponse> {
         self.client.execute(action: "ModifyDDoSPolicyName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS高级策略名称
     @inlinable
     public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyNameResponse {
         try await self.client.execute(action: "ModifyDDoSPolicyName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改DDoS高级策略名称
     @inlinable
-    public func modifyDDoSPolicyName(business: String, policyId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyNameResponse > {
+    public func modifyDDoSPolicyName(business: String, policyId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyNameResponse> {
         self.modifyDDoSPolicyName(ModifyDDoSPolicyNameRequest(business: business, policyId: policyId, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS高级策略名称
     @inlinable
     public func modifyDDoSPolicyName(business: String, policyId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyNameResponse {

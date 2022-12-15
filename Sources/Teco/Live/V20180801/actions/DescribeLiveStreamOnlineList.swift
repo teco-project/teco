@@ -19,29 +19,29 @@ extension Live {
     public struct DescribeLiveStreamOnlineListRequest: TCRequestModel {
         /// 推流域名。多域名用户需要填写 DomainName。
         public let domainName: String?
-        
+
         /// 推流路径，与推流和播放地址中的 AppName 保持一致，默认为 live。多路径用户需要填写 AppName。
         public let appName: String?
-        
+
         /// 取得第几页，默认1。
         public let pageNum: UInt64?
-        
-        /// 每页大小，最大100。 
+
+        /// 每页大小，最大100。
         /// 取值：10~100之间的任意整数。
         /// 默认值：10。
         public let pageSize: UInt64?
-        
+
         /// 流名称，用于精确查询。
         public let streamName: String?
-        
-        public init (domainName: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil) {
+
+        public init(domainName: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.appName = appName
             self.pageNum = pageNum
             self.pageSize = pageSize
             self.streamName = streamName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case appName = "AppName"
@@ -50,27 +50,27 @@ extension Live {
             case streamName = "StreamName"
         }
     }
-    
+
     /// DescribeLiveStreamOnlineList返回参数结构体
     public struct DescribeLiveStreamOnlineListResponse: TCResponseModel {
         /// 符合条件的总个数。
         public let totalNum: UInt64
-        
+
         /// 总页数。
         public let totalPage: UInt64
-        
+
         /// 分页的页码。
         public let pageNum: UInt64
-        
+
         /// 每页显示的条数。
         public let pageSize: UInt64
-        
+
         /// 正在推送流的信息列表。
         public let onlineInfo: [StreamOnlineInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalNum = "TotalNum"
             case totalPage = "TotalPage"
@@ -80,7 +80,7 @@ extension Live {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询直播中的流
     ///
     /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
@@ -88,10 +88,10 @@ extension Live {
     /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
     /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
     @inlinable
-    public func describeLiveStreamOnlineList(_ input: DescribeLiveStreamOnlineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamOnlineListResponse > {
+    public func describeLiveStreamOnlineList(_ input: DescribeLiveStreamOnlineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamOnlineListResponse> {
         self.client.execute(action: "DescribeLiveStreamOnlineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询直播中的流
     ///
     /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
@@ -102,7 +102,7 @@ extension Live {
     public func describeLiveStreamOnlineList(_ input: DescribeLiveStreamOnlineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamOnlineListResponse {
         try await self.client.execute(action: "DescribeLiveStreamOnlineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询直播中的流
     ///
     /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
@@ -110,10 +110,10 @@ extension Live {
     /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
     /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
     @inlinable
-    public func describeLiveStreamOnlineList(domainName: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamOnlineListResponse > {
+    public func describeLiveStreamOnlineList(domainName: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamOnlineListResponse> {
         self.describeLiveStreamOnlineList(DescribeLiveStreamOnlineListRequest(domainName: domainName, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询直播中的流
     ///
     /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。

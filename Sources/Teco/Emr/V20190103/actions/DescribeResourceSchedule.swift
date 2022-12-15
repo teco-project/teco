@@ -19,33 +19,33 @@ extension Emr {
     public struct DescribeResourceScheduleRequest: TCRequestModel {
         /// emr集群的英文id
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeResourceSchedule返回参数结构体
     public struct DescribeResourceScheduleResponse: TCResponseModel {
         /// 资源调度功能是否开启
         public let openSwitch: Bool
-        
+
         /// 正在使用的资源调度器
         public let scheduler: String
-        
+
         /// 公平调度器的信息
         public let fsInfo: String
-        
+
         /// 容量调度器的信息
         public let csInfo: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case openSwitch = "OpenSwitch"
             case scheduler = "Scheduler"
@@ -54,25 +54,25 @@ extension Emr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询YARN资源调度数据信息
     @inlinable
-    public func describeResourceSchedule(_ input: DescribeResourceScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceScheduleResponse > {
+    public func describeResourceSchedule(_ input: DescribeResourceScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceScheduleResponse> {
         self.client.execute(action: "DescribeResourceSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询YARN资源调度数据信息
     @inlinable
     public func describeResourceSchedule(_ input: DescribeResourceScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceScheduleResponse {
         try await self.client.execute(action: "DescribeResourceSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询YARN资源调度数据信息
     @inlinable
-    public func describeResourceSchedule(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceScheduleResponse > {
+    public func describeResourceSchedule(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceScheduleResponse> {
         self.describeResourceSchedule(DescribeResourceScheduleRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询YARN资源调度数据信息
     @inlinable
     public func describeResourceSchedule(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceScheduleResponse {

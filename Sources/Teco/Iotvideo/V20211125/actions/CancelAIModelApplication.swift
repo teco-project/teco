@@ -19,49 +19,49 @@ extension Iotvideo {
     public struct CancelAIModelApplicationRequest: TCRequestModel {
         /// AI模型ID
         public let modelId: String
-        
+
         /// 产品ID
         public let productId: String
-        
-        public init (modelId: String, productId: String) {
+
+        public init(modelId: String, productId: String) {
             self.modelId = modelId
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case productId = "ProductId"
         }
     }
-    
+
     /// CancelAIModelApplication返回参数结构体
     public struct CancelAIModelApplicationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消AI模型申请
     @inlinable
-    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAIModelApplicationResponse > {
+    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAIModelApplicationResponse> {
         self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消AI模型申请
     @inlinable
     public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {
         try await self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消AI模型申请
     @inlinable
-    public func cancelAIModelApplication(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAIModelApplicationResponse > {
+    public func cancelAIModelApplication(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAIModelApplicationResponse> {
         self.cancelAIModelApplication(CancelAIModelApplicationRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消AI模型申请
     @inlinable
     public func cancelAIModelApplication(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {

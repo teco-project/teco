@@ -20,45 +20,45 @@ extension TCCynosdbError {
             case instanceLockFail = "ResourceUnavailable.InstanceLockFail"
             case instanceStatusAbnormal = "ResourceUnavailable.InstanceStatusAbnormal"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 锁定实例失败，暂时不可操作。
         public static var instanceLockFail: ResourceUnavailable {
             ResourceUnavailable(.instanceLockFail)
         }
-        
+
         /// 实例状态异常，暂时不可操作。
         public static var instanceStatusAbnormal: ResourceUnavailable {
             ResourceUnavailable(.instanceStatusAbnormal)
         }
-        
+
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
-            case .instanceLockFail: 
+            case .instanceLockFail:
                 code = .resourceUnavailable_InstanceLockFail
-            case .instanceStatusAbnormal: 
+            case .instanceStatusAbnormal:
                 code = .resourceUnavailable_InstanceStatusAbnormal
             }
             return TCCynosdbError(code, context: self.context)

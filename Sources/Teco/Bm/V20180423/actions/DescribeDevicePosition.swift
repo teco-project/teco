@@ -19,23 +19,23 @@ extension Bm {
     public struct DescribeDevicePositionRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 数量限制
         public let limit: UInt64?
-        
+
         /// 私有网络ID
         public let vpcId: String?
-        
+
         /// 子网ID
         public let subnetId: String?
-        
+
         /// 实例ID列表
         public let instanceIds: [String]?
-        
+
         /// 实例别名
         public let alias: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceIds: [String]? = nil, alias: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceIds: [String]? = nil, alias: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.vpcId = vpcId
@@ -43,7 +43,7 @@ extension Bm {
             self.instanceIds = instanceIds
             self.alias = alias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -53,33 +53,33 @@ extension Bm {
             case alias = "Alias"
         }
     }
-    
+
     /// DescribeDevicePosition返回参数结构体
     public struct DescribeDevicePositionResponse: TCResponseModel {
         /// 返回数量
         public let totalCount: UInt64
-        
+
         /// 设备所在机架信息
         public let devicePositionInfoSet: [DevicePositionInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case devicePositionInfoSet = "DevicePositionInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备位置信息
     ///
     /// 查询服务器所在的位置，如机架，上联交换机等信息
     @inlinable
-    public func describeDevicePosition(_ input: DescribeDevicePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionResponse > {
+    public func describeDevicePosition(_ input: DescribeDevicePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionResponse> {
         self.client.execute(action: "DescribeDevicePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备位置信息
     ///
     /// 查询服务器所在的位置，如机架，上联交换机等信息
@@ -87,15 +87,15 @@ extension Bm {
     public func describeDevicePosition(_ input: DescribeDevicePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionResponse {
         try await self.client.execute(action: "DescribeDevicePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备位置信息
     ///
     /// 查询服务器所在的位置，如机架，上联交换机等信息
     @inlinable
-    public func describeDevicePosition(offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceIds: [String]? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionResponse > {
+    public func describeDevicePosition(offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceIds: [String]? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionResponse> {
         self.describeDevicePosition(DescribeDevicePositionRequest(offset: offset, limit: limit, vpcId: vpcId, subnetId: subnetId, instanceIds: instanceIds, alias: alias), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备位置信息
     ///
     /// 查询服务器所在的位置，如机架，上联交换机等信息

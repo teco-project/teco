@@ -22,30 +22,30 @@ extension Gse {
     public struct Alias: TCOutputModel {
         /// 别名的唯一标识符
         public let aliasId: String
-        
+
         /// 别名的全局唯一资源标识符
         public let aliasArn: String
-        
+
         /// 名字，长度不小于1字符不超过1024字符
         public let name: String
-        
+
         /// 别名的可读说明，长度不小于1字符不超过1024字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 别名的路由配置
         public let routingStrategy: RoutingStrategy
-        
+
         /// 创建时间
         public let creationTime: String
-        
+
         /// 上次修改此数据对象的时间
         public let lastUpdatedTime: String
-        
+
         /// 标签列表，最大长度50组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case aliasId = "AliasId"
             case aliasArn = "AliasArn"
@@ -57,27 +57,27 @@ extension Gse {
             case tags = "Tags"
         }
     }
-    
+
     /// 生成包信息
     public struct Asset: TCOutputModel {
         /// 生成包ID
         public let assetId: String
-        
+
         /// 生成包名字，最小长度为1，最大长度为64
         public let assetName: String
-        
+
         /// 生成包版本，最小长度为1，最大长度为64
         public let assetVersion: String
-        
+
         /// 生成包可运行的操作系统，暂时只支持CentOS7.16
         public let operateSystem: String
-        
+
         /// 生成包状态，0代表上传中，1代表上传失败，2代表上传成功
         public let stauts: Int64
-        
+
         /// 生成包大小
         public let size: String
-        
+
         /// 生成包创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -85,29 +85,29 @@ extension Gse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createTime: Date
-        
+
         /// 生成包绑定的Fleet个数，最小值为0
         public let bindFleetNum: Int64
-        
+
         /// 生成包的全局唯一资源标识符
         public let assetArn: String
-        
+
         /// 生成包支持的操作系统镜像id
         public let imageId: String
-        
+
         /// 生成包支持的操作系统类型
         public let osType: String
-        
+
         /// 生成包资源类型，ASSET 或者 IMAGE；ASSET 代表是原有生成包类型，IMAGE 为扩充使用镜像类型
         public let resourceType: String
-        
+
         /// 镜像资源共享类型，当 ResourceType 为 IMAGE 时该字段有意义，SHARED 表示共享、SHARED_IMAGE 表示未共享；ResourceType 为 ASSET 时这里返回 UNKNOWN_SHARED 用于占位
         public let sharingStatus: String
-        
+
         /// 标签列表，最大长度50组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case assetId = "AssetId"
             case assetName = "AssetName"
@@ -125,39 +125,39 @@ extension Gse {
             case tags = "Tags"
         }
     }
-    
+
     /// 上传Asset的临时证书
     public struct AssetCredentials: TCOutputModel {
         /// 临时证书密钥ID
         public let tmpSecretId: String
-        
+
         /// 临时证书密钥Key
         public let tmpSecretKey: String
-        
+
         /// 临时证书Token
         public let token: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tmpSecretId = "TmpSecretId"
             case tmpSecretKey = "TmpSecretKey"
             case token = "Token"
         }
     }
-    
+
     /// 生成包支持操作系统详细信息
     public struct AssetSupportSys: TCOutputModel {
         /// 生成包操作系统的镜像Id
         public let imageId: String
-        
+
         /// 生成包操作系统的类型
         public let osType: String
-        
+
         /// 生成包操作系统的位数
         public let osBit: Int64
-        
+
         /// 生成包操作系统的版本
         public let osVersion: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageId = "ImageId"
             case osType = "OsType"
@@ -165,48 +165,48 @@ extension Gse {
             case osVersion = "OsVersion"
         }
     }
-    
+
     /// 云联网相关信息
     public struct CcnInfo: TCInputModel {
         /// 云联网所属账号
         public let accountId: String
-        
+
         /// 云联网id
         public let ccnId: String
-        
-        public init (accountId: String, ccnId: String) {
+
+        public init(accountId: String, ccnId: String) {
             self.accountId = accountId
             self.ccnId = ccnId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case ccnId = "CcnId"
         }
     }
-    
+
     /// 云联网实例信息
     public struct CcnInstanceSets: TCOutputModel {
         /// 云联网账号 Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountId: String?
-        
+
         /// 云联网 Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ccnId: String?
-        
+
         /// 云联网关联时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 云联网实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 云联网状态：申请中、已连接、已过期、已拒绝、已删除、失败的、关联中、解关联中、解关联失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let state: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case ccnId = "CcnId"
@@ -215,69 +215,69 @@ extension Gse {
             case state = "State"
         }
     }
-    
+
     /// 访问实例所需要的凭据
     public struct Credentials: TCOutputModel {
         /// ssh私钥
         public let secret: String
-        
+
         /// 用户名
         public let userName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secret = "Secret"
             case userName = "UserName"
         }
     }
-    
+
     /// 玩家游戏会话信息
     public struct DesiredPlayerSession: TCInputModel {
         /// 与玩家会话关联的唯一玩家标识
         public let playerId: String
-        
+
         /// 开发人员定义的玩家数据
         public let playerData: String
-        
-        public init (playerId: String, playerData: String) {
+
+        public init(playerId: String, playerData: String) {
             self.playerId = playerId
             self.playerData = playerData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case playerId = "PlayerId"
             case playerData = "PlayerData"
         }
     }
-    
+
     /// 磁盘存储信息
     public struct DiskInfo: TCInputModel, TCOutputModel {
         /// 磁盘类型，支持：高性能云硬盘（CLOUD_PREMIUM）、SSD云硬盘（CLOUD_SSD）
         public let diskType: String
-        
+
         /// 系统盘：可选硬盘容量，50-500GB，数字以1为单位，数据盘：可选硬盘容量：10-32000GB，数字以10为单位；当磁盘类型为SSD云硬盘（CLOUD_SSD）最小大小为 100GB
         public let diskSize: UInt64
-        
-        public init (diskType: String, diskSize: UInt64) {
+
+        public init(diskType: String, diskSize: UInt64) {
             self.diskType = diskType
             self.diskSize = diskSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
             case diskSize = "DiskSize"
         }
     }
-    
+
     /// 事件对象
     public struct Event: TCOutputModel {
         /// 事件代码，支持以下的事件代码
-        /// - FLEET_CREATED 
-        /// - FLEET_STATE_DOWNLOADING 
-        /// - FLEET_BINARY_DOWNLOAD_FAILED 
+        /// - FLEET_CREATED
+        /// - FLEET_STATE_DOWNLOADING
+        /// - FLEET_BINARY_DOWNLOAD_FAILED
         /// - FLEET_CREATION_EXTRACTING_BUILD
         /// - FLEET_CREATION_VALIDATING_RUNTIME_CONFIG
         /// - FLEET_STATE_VALIDATING
-        /// - FLEET_STATE_BUILDING 
+        /// - FLEET_STATE_BUILDING
         /// - FLEET_STATE_ACTIVATING
         /// - FLEET_STATE_ACTIVE
         /// - FLEET_SCALING_EVENT
@@ -293,24 +293,24 @@ extension Gse {
         /// - FLEET_ACTIVATION_FAILED
         /// - GAME_SESSION_ACTIVATION_TIMEOUT
         public let eventCode: String
-        
+
         /// 事件的唯一标识 ID
         public let eventId: String
-        
+
         /// 事件的发生时间，UTC 时间格式
         public let eventTime: String
-        
+
         /// 事件的消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         /// 事件相关的日志存储路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preSignedLogUrl: String?
-        
+
         /// 事件对应的资源对象唯一标识 ID，例如服务器舰队 ID
         public let resourceId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eventCode = "EventCode"
             case eventId = "EventId"
@@ -320,125 +320,125 @@ extension Gse {
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// 实例类型限额配置额外信息
     public struct ExtraInfos: TCOutputModel {
         /// 实例类型，例如S5.LARGE8
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
-        
+
         /// 实例限额数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalInstances: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceType = "InstanceType"
             case totalInstances = "TotalInstances"
         }
     }
-    
+
     /// 过滤字段内容
     public struct Filter: TCInputModel {
         /// 过滤属性的 key
         public let key: String?
-        
+
         /// 过滤属性的 values 值
         public let values: [String]?
-        
-        public init (key: String? = nil, values: [String]? = nil) {
+
+        public init(key: String? = nil, values: [String]? = nil) {
             self.key = key
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case values = "Values"
         }
     }
-    
+
     /// 服务部署属性
     public struct FleetAttributes: TCOutputModel {
         /// 生成包 Id
         public let assetId: String
-        
+
         /// 创建服务器舰队时间
         public let creationTime: String
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 服务器舰队资源描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetArn: String?
-        
+
         /// 服务器舰队 Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 服务器舰队类型，目前只支持ON_DEMAND
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetType: String?
-        
+
         /// 服务器类型，例如S5.LARGE8
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
-        
+
         /// 服务器舰队名称
         public let name: String
-        
+
         /// 游戏会话保护策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newGameServerSessionProtectionPolicy: String?
-        
+
         /// 操作系统类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatingSystem: String?
-        
+
         /// 资源创建限制策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy?
-        
+
         /// 状态：新建、下载中、验证中、生成中、激活中、活跃、异常、删除中、结束
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 服务器舰队停止状态，为空时表示自动扩缩容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stoppedActions: [String]?
-        
+
         /// 服务器舰队终止时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terminationTime: String?
-        
+
         /// 时限保护超时时间，默认60分钟，最小值5，最大值1440
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSessionProtectionTimeLimit: UInt64?
-        
+
         /// 计费状态：未开通、已开通、异常、欠费隔离、销毁、解冻
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let billingStatus: String?
-        
+
         /// 标签列表，最大长度50组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 数据盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-32000GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，10-32000GB；容量以10为单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataDiskInfo: [DiskInfo]?
-        
+
         /// 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let systemDiskInfo: DiskInfo?
-        
+
         /// 云联网相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let relatedCcnInfos: [RelatedCcnInfo]?
-        
+
         /// fleet公网出带宽最大值，默认100Mbps，范围1-200Mbps
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetMaxBandwidthOut: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case assetId = "AssetId"
             case creationTime = "CreationTime"
@@ -463,25 +463,25 @@ extension Gse {
             case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
         }
     }
-    
+
     /// 服务部署组容量配置
     public struct FleetCapacity: TCOutputModel {
         /// 服务部署 Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 服务器类型，如S3.LARGE8,S2.LARGE8,S5.LARGE8等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
-        
+
         /// 服务器实例统计数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceCounts: InstanceCounts?
-        
+
         /// 服务器伸缩容间隔，单位分钟，最小值3，最大值30，默认值10
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scalingInterval: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case instanceType = "InstanceType"
@@ -489,7 +489,7 @@ extension Gse {
             case scalingInterval = "ScalingInterval"
         }
     }
-    
+
     /// 与服务器舰队关联的资源，如别名和队列
     public struct FleetRelatedResource: TCOutputModel {
         /// 资源类型。
@@ -497,52 +497,52 @@ extension Gse {
         /// - QUEUE：队列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 资源ID，目前仅支持别名ID和队列名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceId: String?
-        
+
         /// 资源所在区域，如ap-shanghai、na-siliconvalley等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceRegion: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case resourceId = "ResourceId"
             case resourceRegion = "ResourceRegion"
         }
     }
-    
+
     /// 舰队统计详情
     public struct FleetStatisticDetail: TCOutputModel {
         /// 舰队ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 实例IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceIP: String?
-        
+
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beginTime: String?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 总时长，单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalUsedTimeSeconds: String?
-        
+
         /// 总流量，单位MB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalUsedFlowMegaBytes: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case instanceId = "InstanceId"
@@ -553,61 +553,61 @@ extension Gse {
             case totalUsedFlowMegaBytes = "TotalUsedFlowMegaBytes"
         }
     }
-    
+
     /// 舰队统计流量
     public struct FleetStatisticFlows: TCOutputModel {
         /// 总流量，单位MB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalUsedFlowMegaBytes: Float?
-        
+
         /// 统计开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beginTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalUsedFlowMegaBytes = "TotalUsedFlowMegaBytes"
             case beginTime = "BeginTime"
         }
     }
-    
+
     /// 舰队统计总时长
     public struct FleetStatisticTimes: TCOutputModel {
         /// 统计开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beginTime: String?
-        
+
         /// 统计总时长，单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalUsedTimeSeconds: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case beginTime = "BeginTime"
             case totalUsedTimeSeconds = "TotalUsedTimeSeconds"
         }
     }
-    
+
     /// 服务部署利用率
     public struct FleetUtilization: TCOutputModel {
         /// 游戏会话数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activeGameServerSessionCount: UInt64?
-        
+
         /// 活跃进程数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activeServerProcessCount: UInt64?
-        
+
         /// 当前游戏玩家数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentPlayerSessionCount: UInt64?
-        
+
         /// 服务部署 Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 最大玩家会话数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maximumPlayerSessionCount: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case activeGameServerSessionCount = "ActiveGameServerSessionCount"
             case activeServerProcessCount = "ActiveServerProcessCount"
@@ -616,103 +616,103 @@ extension Gse {
             case maximumPlayerSessionCount = "MaximumPlayerSessionCount"
         }
     }
-    
+
     /// 游戏属性详情
     public struct GameProperty: TCOutputModel {
         /// 属性名称，最大长度不超过32个ASCII字符
         public let key: String
-        
+
         /// 属性值，最大长度不超过96个ASCII字符
         public let value: String
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 游戏会话详情
     public struct GameServerSession: TCOutputModel {
         /// 游戏服务器会话创建时间
         public let creationTime: String
-        
+
         /// 创建者ID，最大长度不超过1024个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creatorId: String?
-        
+
         /// 当前玩家数量，最小值不小于0
         public let currentPlayerSessionCount: UInt64
-        
+
         /// CVM的DNS标识符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dnsName: String?
-        
+
         /// 舰队ID
         public let fleetId: String
-        
+
         /// 游戏属性，最大长度不超过16组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameProperties: [GameProperty]?
-        
+
         /// 游戏服务器会话属性详情，最大长度不超过4096个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSessionData: String?
-        
+
         /// 游戏服务器会话ID，最小长度不小于1个ASCII字符，最大长度不超过48个ASCII字符
         public let gameServerSessionId: String
-        
+
         /// CVM IP地址
         public let ipAddress: String
-        
+
         /// 对战进程详情，最大长度不超过400000个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchmakerData: String?
-        
+
         /// 最大玩家数量，最小值不小于0
         public let maximumPlayerSessionCount: UInt64
-        
+
         /// 游戏服务器会话名称，最大长度不超过1024个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 玩家会话创建策略（ACCEPT_ALL,DENY_ALL）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerSessionCreationPolicy: String?
-        
+
         /// 端口号，最小值不小于1，最大值不超过60000
         public let port: UInt64
-        
+
         /// 游戏服务器会话状态（ACTIVE,ACTIVATING,TERMINATED,TERMINATING,ERROR）
         public let status: String
-        
+
         /// 游戏服务器会话状态附加信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusReason: String?
-        
+
         /// 终止的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terminationTime: String?
-        
+
         /// 实例类型，最大长度不超过128个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
-        
+
         /// 当前自定义数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentCustomCount: Int64?
-        
+
         /// 最大自定义数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxCustomCount: Int64?
-        
+
         /// 权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
-        
+
         /// 会话可用性状态，是否被屏蔽（Enable,Disable）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availabilityStatus: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case creationTime = "CreationTime"
             case creatorId = "CreatorId"
@@ -738,87 +738,87 @@ extension Gse {
             case availabilityStatus = "AvailabilityStatus"
         }
     }
-    
+
     /// 游戏服务器会话详情（GameServerSessionDetail）
     public struct GameServerSessionDetail: TCOutputModel {
         /// 游戏服务器会话
         public let gameServerSession: GameServerSession
-        
+
         /// 保护策略，可选（NoProtection,FullProtection）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protectionPolicy: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSession = "GameServerSession"
             case protectionPolicy = "ProtectionPolicy"
         }
     }
-    
+
     /// 游戏会话部署对象
     public struct GameServerSessionPlacement: TCOutputModel {
         /// 部署Id
         public let placementId: String
-        
+
         /// 服务部署组名称
         public let gameServerSessionQueueName: String
-        
+
         /// 玩家延迟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerLatencies: [PlayerLatency]?
-        
+
         /// 服务部署状态
         public let status: String
-        
+
         /// 分配给正在运行游戏会话的实例的DNS标识符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dnsName: String?
-        
+
         /// 游戏会话Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSessionId: String?
-        
+
         /// 游戏会话名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSessionName: String?
-        
+
         /// 服务部署区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSessionRegion: String?
-        
+
         /// 游戏属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameProperties: [GameProperty]?
-        
+
         /// 游戏服务器允许同时连接到游戏会话的最大玩家数量，最小值1，最大值为玩家会话最大限额
         public let maximumPlayerSessionCount: UInt64
-        
+
         /// 游戏会话数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSessionData: String?
-        
+
         /// 运行游戏会话的实例的IP地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipAddress: String?
-        
+
         /// 运行游戏会话的实例的端口号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: UInt64?
-        
+
         /// 游戏匹配数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchmakerData: String?
-        
+
         /// 部署的玩家游戏数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let placedPlayerSessions: [PlacedPlayerSession]?
-        
+
         /// 开始时间
         public let startTime: String
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case placementId = "PlacementId"
             case gameServerSessionQueueName = "GameServerSessionQueueName"
@@ -839,30 +839,30 @@ extension Gse {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 服务部署组对象
     public struct GameServerSessionQueue: TCOutputModel {
         /// 服务部署组名字
         public let name: String
-        
+
         /// 服务部署组资源
         public let gameServerSessionQueueArn: String
-        
+
         /// 目的fleet（可为别名）列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destinations: [GameServerSessionQueueDestination]?
-        
+
         /// 延迟策略集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerLatencyPolicies: [PlayerLatencyPolicy]?
-        
+
         /// 超时时间
         public let timeoutInSeconds: UInt64
-        
+
         /// 标签列表，最大长度50组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case gameServerSessionQueueArn = "GameServerSessionQueueArn"
@@ -872,49 +872,49 @@ extension Gse {
             case tags = "Tags"
         }
     }
-    
+
     /// 服务部署组目的集合
     public struct GameServerSessionQueueDestination: TCInputModel, TCOutputModel {
         /// 服务部署组目的的资源描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destinationArn: String?
-        
+
         /// 服务部署组目的的状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetStatus: String?
-        
-        public init (destinationArn: String? = nil, fleetStatus: String? = nil) {
+
+        public init(destinationArn: String? = nil, fleetStatus: String? = nil) {
             self.destinationArn = destinationArn
             self.fleetStatus = fleetStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case destinationArn = "DestinationArn"
             case fleetStatus = "FleetStatus"
         }
     }
-    
+
     /// 允许网络访问范围
     public struct InboundPermission: TCInputModel {
         /// 起始端口号，最小值1025
         public let fromPort: UInt64?
-        
+
         /// IP 段范围，合法的 CIDR 地址类型，如所有IPv4来源：0.0.0.0/0
         public let ipRange: String?
-        
+
         /// 协议类型：TCP或者UDP
         public let `protocol`: String?
-        
+
         /// 终止端口号，最大值60000
         public let toPort: UInt64?
-        
-        public init (fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
+
+        public init(fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
             self.`protocol` = `protocol`
             self.toPort = toPort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fromPort = "FromPort"
             case ipRange = "IpRange"
@@ -922,28 +922,28 @@ extension Gse {
             case toPort = "ToPort"
         }
     }
-    
+
     /// 用于新增安全组
     public struct InboundPermissionAuthorization: TCInputModel {
         /// 起始端口号
         public let fromPort: UInt64?
-        
+
         /// IP 端范围，CIDR方式划分
         public let ipRange: String?
-        
+
         /// 协议类型
         public let `protocol`: String?
-        
+
         /// 终止端口号
         public let toPort: UInt64?
-        
-        public init (fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
+
+        public init(fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
             self.`protocol` = `protocol`
             self.toPort = toPort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fromPort = "FromPort"
             case ipRange = "IpRange"
@@ -951,28 +951,28 @@ extension Gse {
             case toPort = "ToPort"
         }
     }
-    
+
     /// 需要移除的安全组
     public struct InboundPermissionRevocations: TCInputModel {
         /// 起始端口号
         public let fromPort: UInt64?
-        
+
         /// IP 端范围，CIDR 方式换分
         public let ipRange: String?
-        
+
         /// 协议类型：UDP或者TCP
         public let `protocol`: String?
-        
+
         /// 终止端口号
         public let toPort: UInt64?
-        
-        public init (fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
+
+        public init(fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
             self.`protocol` = `protocol`
             self.toPort = toPort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fromPort = "FromPort"
             case ipRange = "IpRange"
@@ -980,53 +980,53 @@ extension Gse {
             case toPort = "ToPort"
         }
     }
-    
+
     /// 实例信息
     public struct Instance: TCOutputModel {
         /// 服务部署ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// IP地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipAddress: String?
-        
+
         /// dns
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dnsName: String?
-        
+
         /// 操作系统
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatingSystem: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 实例权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
-        
+
         /// 实例是否保留, 1-保留，0-不保留,默认
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reserveValue: Int64?
-        
+
         /// 实例的私有IP地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privateIpAddress: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case instanceId = "InstanceId"
@@ -1041,24 +1041,24 @@ extension Gse {
             case privateIpAddress = "PrivateIpAddress"
         }
     }
-    
+
     /// 实例访问凭证信息
     public struct InstanceAccess: TCOutputModel {
         /// 访问实例所需要的凭据
         public let credentials: Credentials
-        
+
         /// 服务部署Id
         public let fleetId: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例公网IP
         public let ipAddress: String
-        
+
         /// 操作系统
         public let operatingSystem: String
-        
+
         enum CodingKeys: String, CodingKey {
             case credentials = "Credentials"
             case fleetId = "FleetId"
@@ -1067,37 +1067,37 @@ extension Gse {
             case operatingSystem = "OperatingSystem"
         }
     }
-    
+
     /// 服务器实例统计数据
     public struct InstanceCounts: TCOutputModel {
         /// 活跃的服务器实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let active: UInt64?
-        
+
         /// 期望的服务器实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desired: UInt64?
-        
+
         /// 空闲的服务器实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idle: UInt64?
-        
+
         /// 服务器实例数最大限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxiNum: UInt64?
-        
+
         /// 服务器实例数最小限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let miniNum: UInt64?
-        
+
         /// 已开始创建，但未激活的服务器实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pending: UInt64?
-        
+
         /// 结束中的服务器实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terminating: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case active = "Active"
             case desired = "Desired"
@@ -1108,41 +1108,41 @@ extension Gse {
             case terminating = "Terminating"
         }
     }
-    
+
     /// 实例扩展信息
     public struct InstanceExtend: TCOutputModel {
         /// 实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instance: Instance?
-        
+
         /// 实例状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let state: String?
-        
+
         /// 健康进程数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthyProcessCnt: Int64?
-        
+
         /// 活跃进程数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activeProcessCnt: Int64?
-        
+
         /// 当前游戏会话总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameSessionCnt: Int64?
-        
+
         /// 最大游戏会话数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxGameSessionCnt: Int64?
-        
+
         /// 当前玩家会话数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerSessionCnt: Int64?
-        
+
         /// 最大玩家会话数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxPlayerSessionCnt: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case instance = "Instance"
             case state = "State"
@@ -1154,24 +1154,24 @@ extension Gse {
             case maxPlayerSessionCnt = "MaxPlayerSessionCnt"
         }
     }
-    
+
     /// 服务器实例类型信息
     public struct InstanceTypeInfo: TCOutputModel {
         /// 类型名，例如“标准型SA1”
         public let typeName: String
-        
+
         /// 类型，例如"SA1.SMALL1"
         public let instanceType: String
-        
+
         /// CPU，例如1核就是1
         public let cpu: UInt64
-        
+
         /// 内存，例如2G就是2
         public let memory: UInt64
-        
+
         /// 网络收到包,例如25万PPS就是25
         public let networkCard: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case typeName = "TypeName"
             case instanceType = "InstanceType"
@@ -1180,126 +1180,126 @@ extension Gse {
             case networkCard = "NetworkCard"
         }
     }
-    
+
     /// 部署的玩家游戏会话
     public struct PlacedPlayerSession: TCOutputModel {
         /// 玩家Id
         public let playerId: String
-        
+
         /// 玩家会话Id
         public let playerSessionId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case playerId = "PlayerId"
             case playerSessionId = "PlayerSessionId"
         }
     }
-    
+
     /// 玩家自定义数据
     public struct PlayerDataMap: TCInputModel {
         /// 玩家自定义数据键，最小长度不小于1个ASCII字符，最大长度不超过1024个ASCII字符
         public let key: String
-        
+
         /// 玩家自定义数据值，最小长度不小于1个ASCII字符，最大长度不超过2048个ASCII字符
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 玩家延迟信息
     public struct PlayerLatency: TCInputModel, TCOutputModel {
         /// 玩家Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerId: String?
-        
+
         /// 延迟对应的区域名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionIdentifier: String?
-        
+
         /// 毫秒级延迟
         public let latencyInMilliseconds: UInt64?
-        
-        public init (playerId: String? = nil, regionIdentifier: String? = nil, latencyInMilliseconds: UInt64? = nil) {
+
+        public init(playerId: String? = nil, regionIdentifier: String? = nil, latencyInMilliseconds: UInt64? = nil) {
             self.playerId = playerId
             self.regionIdentifier = regionIdentifier
             self.latencyInMilliseconds = latencyInMilliseconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case playerId = "PlayerId"
             case regionIdentifier = "RegionIdentifier"
             case latencyInMilliseconds = "LatencyInMilliseconds"
         }
     }
-    
+
     /// 延迟策略
     public struct PlayerLatencyPolicy: TCInputModel, TCOutputModel {
         /// 任意player允许的最大延迟，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maximumIndividualPlayerLatencyMilliseconds: UInt64?
-        
+
         /// 放置新GameServerSession时强制实施策略的时间长度，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyDurationSeconds: UInt64?
-        
-        public init (maximumIndividualPlayerLatencyMilliseconds: UInt64, policyDurationSeconds: UInt64? = nil) {
+
+        public init(maximumIndividualPlayerLatencyMilliseconds: UInt64, policyDurationSeconds: UInt64? = nil) {
             self.maximumIndividualPlayerLatencyMilliseconds = maximumIndividualPlayerLatencyMilliseconds
             self.policyDurationSeconds = policyDurationSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maximumIndividualPlayerLatencyMilliseconds = "MaximumIndividualPlayerLatencyMilliseconds"
             case policyDurationSeconds = "PolicyDurationSeconds"
         }
     }
-    
+
     /// 玩家会话详情
     public struct PlayerSession: TCOutputModel {
         /// 玩家会话创建时间
         public let creationTime: String
-        
+
         /// 游戏服务器会话运行的DNS标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dnsName: String?
-        
+
         /// 舰队ID
         public let fleetId: String
-        
+
         /// 游戏服务器会话ID，最小长度1个ASCII字符，最大长度不超过256个ASCII字符
         public let gameServerSessionId: String
-        
+
         /// 游戏服务器会话运行的CVM地址
         public let ipAddress: String
-        
+
         /// 玩家自定义数据，最大长度2048个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerData: String?
-        
+
         /// 玩家ID，最大长度1024个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerId: String?
-        
+
         /// 玩家会话ID
         public let playerSessionId: String
-        
+
         /// 端口号，最小值不小于1，最大值不超过60000
         public let port: UInt64
-        
+
         /// 玩家会话的状态（RESERVED = 1,ACTIVE = 2,COMPLETED = 3,TIMEDOUT = 4）
         public let status: String
-        
+
         /// 玩家会话终止时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terminationTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case creationTime = "CreationTime"
             case dnsName = "DnsName"
@@ -1314,25 +1314,25 @@ extension Gse {
             case terminationTime = "TerminationTime"
         }
     }
-    
+
     /// 配额资源
     public struct QuotaResource: TCOutputModel {
         /// 资源类型，1生成包、2服务部署、3别名、4游戏服务器队列、5实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceType: UInt64?
-        
+
         /// 总额度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hardLimit: UInt64?
-        
+
         /// 剩余额度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remaining: UInt64?
-        
+
         /// 额外信息，可能为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraInfo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceType = "ResourceType"
             case hardLimit = "HardLimit"
@@ -1340,140 +1340,140 @@ extension Gse {
             case extraInfo = "ExtraInfo"
         }
     }
-    
+
     /// 云联网相关信息描述
     public struct RelatedCcnInfo: TCOutputModel {
         /// 云联网所属账号
         public let accountId: String
-        
+
         /// 云联网 ID
         public let ccnId: String
-        
+
         /// 关联云联网状态
         public let attachType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case ccnId = "CcnId"
             case attachType = "AttachType"
         }
     }
-    
+
     /// 资源创建规则
     public struct ResourceCreationLimitPolicy: TCInputModel {
         /// 创建数量，最小值1，默认2
         public let newGameServerSessionsPerCreator: UInt64?
-        
+
         /// 单位时间，最小值1，默认3，单位分钟
         public let policyPeriodInMinutes: UInt64?
-        
-        public init (newGameServerSessionsPerCreator: UInt64? = nil, policyPeriodInMinutes: UInt64? = nil) {
+
+        public init(newGameServerSessionsPerCreator: UInt64? = nil, policyPeriodInMinutes: UInt64? = nil) {
             self.newGameServerSessionsPerCreator = newGameServerSessionsPerCreator
             self.policyPeriodInMinutes = policyPeriodInMinutes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case newGameServerSessionsPerCreator = "NewGameServerSessionsPerCreator"
             case policyPeriodInMinutes = "PolicyPeriodInMinutes"
         }
     }
-    
+
     /// 路由策略
     public struct RoutingStrategy: TCInputModel, TCOutputModel {
         /// 别名的路由策略的类型，有效值常规别名(SIMPLE)、终止别名(TERMINAL)
         public let type: String
-        
+
         /// 别名指向的队列的唯一标识符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 与终端路由策略一起使用的消息文本，长度不小于1字符不超过1024字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
-        public init (type: String, fleetId: String? = nil, message: String? = nil) {
+
+        public init(type: String, fleetId: String? = nil, message: String? = nil) {
             self.type = type
             self.fleetId = fleetId
             self.message = message
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case fleetId = "FleetId"
             case message = "Message"
         }
     }
-    
+
     /// 运行配置
     public struct RuntimeConfiguration: TCInputModel {
         /// 游戏会话进程超时，最小值1，最大值600，单位秒
         public let gameServerSessionActivationTimeoutSeconds: UInt64?
-        
+
         /// 最大游戏会话数，最小值1，最大值2147483647
         public let maxConcurrentGameServerSessionActivations: UInt64?
-        
+
         /// 服务进程配置，至少有一个进程配置
         public let serverProcesses: [ServerProcesse]?
-        
-        public init (gameServerSessionActivationTimeoutSeconds: UInt64? = nil, maxConcurrentGameServerSessionActivations: UInt64? = nil, serverProcesses: [ServerProcesse]? = nil) {
+
+        public init(gameServerSessionActivationTimeoutSeconds: UInt64? = nil, maxConcurrentGameServerSessionActivations: UInt64? = nil, serverProcesses: [ServerProcesse]? = nil) {
             self.gameServerSessionActivationTimeoutSeconds = gameServerSessionActivationTimeoutSeconds
             self.maxConcurrentGameServerSessionActivations = maxConcurrentGameServerSessionActivations
             self.serverProcesses = serverProcesses
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSessionActivationTimeoutSeconds = "GameServerSessionActivationTimeoutSeconds"
             case maxConcurrentGameServerSessionActivations = "MaxConcurrentGameServerSessionActivations"
             case serverProcesses = "ServerProcesses"
         }
     }
-    
+
     /// 动态扩缩容配置
     public struct ScalingPolicy: TCOutputModel {
         /// 服务部署ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 保留参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scalingAdjustment: String?
-        
+
         /// 保留参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scalingAdjustmentType: String?
-        
+
         /// 保留参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let comparisonOperator: String?
-        
+
         /// 保留参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let threshold: String?
-        
+
         /// 保留参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let evaluationPeriods: String?
-        
+
         /// 保留参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricName: String?
-        
+
         /// 策略类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyType: String?
-        
+
         /// 基于规则的配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetConfiguration: TargetConfiguration?
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case name = "Name"
@@ -1488,90 +1488,90 @@ extension Gse {
             case targetConfiguration = "TargetConfiguration"
         }
     }
-    
+
     /// 游戏服务进程
     public struct ServerProcesse: TCInputModel {
         /// 并发执行数量，所有进程并发执行总数最小值1，最大值50
         public let concurrentExecutions: UInt64?
-        
+
         /// 启动路径：Linux路径/local/game/ 或WIndows路径C:\game\，最小长度1，最大长度1024
         public let launchPath: String?
-        
+
         /// 启动参数，最小长度0，最大长度1024
         public let parameters: String?
-        
-        public init (concurrentExecutions: UInt64? = nil, launchPath: String? = nil, parameters: String? = nil) {
+
+        public init(concurrentExecutions: UInt64? = nil, launchPath: String? = nil, parameters: String? = nil) {
             self.concurrentExecutions = concurrentExecutions
             self.launchPath = launchPath
             self.parameters = parameters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case concurrentExecutions = "ConcurrentExecutions"
             case launchPath = "LaunchPath"
             case parameters = "Parameters"
         }
     }
-    
+
     /// 标签结构体
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键，最大长度127字节
         public let key: String
-        
+
         /// 标签值，最大长度255字节
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 基于规则的动态扩缩容配置项
     public struct TargetConfiguration: TCInputModel, TCOutputModel {
         /// 预留存率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetValue: UInt64?
-        
-        public init (targetValue: UInt64? = nil) {
+
+        public init(targetValue: UInt64? = nil) {
             self.targetValue = targetValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetValue = "TargetValue"
         }
     }
-    
+
     /// 重复周期配置
     public struct TimerConfiguration: TCInputModel, TCOutputModel {
         /// 定时器重复周期类型（未定义0，单次1、按天2、按月3、按周4）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerType: Int64?
-        
+
         /// 定时器取值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerValue: TimerValue?
-        
+
         /// 定时器开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beginTime: String?
-        
+
         /// 定时器结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
-        public init (timerType: Int64? = nil, timerValue: TimerValue? = nil, beginTime: String? = nil, endTime: String? = nil) {
+
+        public init(timerType: Int64? = nil, timerValue: TimerValue? = nil, beginTime: String? = nil, endTime: String? = nil) {
             self.timerType = timerType
             self.timerValue = timerValue
             self.beginTime = beginTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case timerType = "TimerType"
             case timerValue = "TimerValue"
@@ -1579,38 +1579,38 @@ extension Gse {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 定时器弹性伸缩策略
     public struct TimerFleetCapacity: TCInputModel, TCOutputModel {
         /// 扩缩容配置服务器舰队ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 期望实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desiredInstances: Int64?
-        
+
         /// 最小实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minSize: Int64?
-        
+
         /// 最大实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxSize: Int64?
-        
+
         /// 伸缩容间隔，单位：分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scalingInterval: Int64?
-        
+
         /// 扩缩容类型（手动1，自动2、未定义0）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scalingType: Int64?
-        
+
         /// 基于目标的扩展策略的设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetConfiguration: TargetConfiguration?
-        
-        public init (fleetId: String? = nil, desiredInstances: Int64? = nil, minSize: Int64? = nil, maxSize: Int64? = nil, scalingInterval: Int64? = nil, scalingType: Int64? = nil, targetConfiguration: TargetConfiguration? = nil) {
+
+        public init(fleetId: String? = nil, desiredInstances: Int64? = nil, minSize: Int64? = nil, maxSize: Int64? = nil, scalingInterval: Int64? = nil, scalingType: Int64? = nil, targetConfiguration: TargetConfiguration? = nil) {
             self.fleetId = fleetId
             self.desiredInstances = desiredInstances
             self.minSize = minSize
@@ -1619,7 +1619,7 @@ extension Gse {
             self.scalingType = scalingType
             self.targetConfiguration = targetConfiguration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case desiredInstances = "DesiredInstances"
@@ -1630,37 +1630,37 @@ extension Gse {
             case targetConfiguration = "TargetConfiguration"
         }
     }
-    
+
     /// 定时器策略消息
     public struct TimerScalingPolicy: TCInputModel, TCOutputModel {
         /// 定时器ID，进行encode，填写时更新
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerId: String?
-        
+
         /// 定时器名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerName: String?
-        
+
         /// 定时器状态(未定义0、未生效1、生效中2、已停止3、已过期4)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerStatus: Int64?
-        
+
         /// 定时器弹性伸缩策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerFleetCapacity: TimerFleetCapacity?
-        
+
         /// 重复周期配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timerConfiguration: TimerConfiguration?
-        
-        public init (timerId: String? = nil, timerName: String? = nil, timerStatus: Int64? = nil, timerFleetCapacity: TimerFleetCapacity? = nil, timerConfiguration: TimerConfiguration? = nil) {
+
+        public init(timerId: String? = nil, timerName: String? = nil, timerStatus: Int64? = nil, timerFleetCapacity: TimerFleetCapacity? = nil, timerConfiguration: TimerConfiguration? = nil) {
             self.timerId = timerId
             self.timerName = timerName
             self.timerStatus = timerStatus
             self.timerFleetCapacity = timerFleetCapacity
             self.timerConfiguration = timerConfiguration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case timerId = "TimerId"
             case timerName = "TimerName"
@@ -1669,32 +1669,32 @@ extension Gse {
             case timerConfiguration = "TimerConfiguration"
         }
     }
-    
+
     /// 定时器取值配置
     public struct TimerValue: TCInputModel, TCOutputModel {
         /// 每X天，执行一次(重复周期-按天/单次)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let day: Int64?
-        
+
         /// 每月从第x天，执行一次(重复周期-按月)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fromDay: Int64?
-        
+
         /// 每月到第x天，执行一次(重复周期-按月)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let toDay: Int64?
-        
+
         /// 重复周期-按周，周几（多个值,取值周一(1,2,3,4,5,6,7)周日）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekDays: [Int64]?
-        
-        public init (day: Int64? = nil, fromDay: Int64? = nil, toDay: Int64? = nil, weekDays: [Int64]? = nil) {
+
+        public init(day: Int64? = nil, fromDay: Int64? = nil, toDay: Int64? = nil, weekDays: [Int64]? = nil) {
             self.day = day
             self.fromDay = fromDay
             self.toDay = toDay
             self.weekDays = weekDays
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case day = "Day"
             case fromDay = "FromDay"

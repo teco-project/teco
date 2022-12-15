@@ -19,7 +19,7 @@ extension Tic {
     public struct DescribeStackEventsRequest: TCRequestModel {
         /// 按照⼀个或者多个事件ID查询
         public let eventIds: [String]?
-        
+
         /// <li>**VersionId**</li>
         /// 按照【**版本ID**】过滤，VersionId形如 `ver-kg8hn58h`
         /// 类型：string
@@ -33,20 +33,20 @@ extension Tic {
         /// 按照【**事件状态**】过滤，Status形如 queueing, running, success, failed
         /// 类型：string
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节
         public let limit: Int64?
-        
-        public init (eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.eventIds = eventIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventIds = "EventIds"
             case filters = "Filters"
@@ -54,25 +54,25 @@ extension Tic {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeStackEvents返回参数结构体
     public struct DescribeStackEventsResponse: TCResponseModel {
         /// 符合条件的事件数量
         public let totalCount: Int64
-        
+
         /// 事件详细信息列表
         public let events: [EventInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case events = "Events"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
@@ -80,10 +80,10 @@ extension Tic {
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
-    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventsResponse > {
+    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventsResponse> {
         self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
@@ -94,7 +94,7 @@ extension Tic {
     public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
         try await self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
@@ -102,10 +102,10 @@ extension Tic {
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
-    public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventsResponse > {
+    public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventsResponse> {
         self.describeStackEvents(DescribeStackEventsRequest(eventIds: eventIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。

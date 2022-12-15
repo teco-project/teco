@@ -21,46 +21,46 @@ extension Tag {
         /// 例如：ResourceList.1 = qcs::${ServiceType}:${Region}:uin/${Account}:${ResourcePrefix}/${ResourceId}。
         /// N取值范围：0~9
         public let resourceList: [String]
-        
+
         /// 标签键。
         /// 取值范围：0~9
         public let tagKeys: [String]
-        
-        public init (resourceList: [String], tagKeys: [String]) {
+
+        public init(resourceList: [String], tagKeys: [String]) {
             self.resourceList = resourceList
             self.tagKeys = tagKeys
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceList = "ResourceList"
             case tagKeys = "TagKeys"
         }
     }
-    
+
     /// UnTagResources返回参数结构体
     public struct UnTagResourcesResponse: TCResponseModel {
         /// 失败资源信息。
         /// 解绑标签成功时，返回的FailedResources为空。
         /// 解绑标签失败或部分失败时，返回的FailedResources会显示失败资源的详细信息。
         public let failedResources: [FailedResource]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case failedResources = "FailedResources"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 为资源解绑标签
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
-    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnTagResourcesResponse > {
+    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnTagResourcesResponse> {
         self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 为资源解绑标签
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。
@@ -68,15 +68,15 @@ extension Tag {
     public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
         try await self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 为资源解绑标签
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
-    public func unTagResources(resourceList: [String], tagKeys: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnTagResourcesResponse > {
+    public func unTagResources(resourceList: [String], tagKeys: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnTagResourcesResponse> {
         self.unTagResources(UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys), logger: logger, on: eventLoop)
     }
-    
+
     /// 为资源解绑标签
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。

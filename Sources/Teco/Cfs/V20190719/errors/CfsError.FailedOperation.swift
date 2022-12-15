@@ -26,87 +26,87 @@ extension TCCfsError {
             case untagResourceFailed = "FailedOperation.UntagResourceFailed"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 文件系统绑定资源包失败。
         public static var bindResourcePkgFailed: FailedOperation {
             FailedOperation(.bindResourcePkgFailed)
         }
-        
+
         /// 资源正在创建中。
         public static var clientTokenInUse: FailedOperation {
             FailedOperation(.clientTokenInUse)
         }
-        
+
         /// 文件系统存在挂载点。
         public static var mountTargetExists: FailedOperation {
             FailedOperation(.mountTargetExists)
         }
-        
+
         /// 权限组已绑定文件系统。
         public static var pgroupInUse: FailedOperation {
             FailedOperation(.pgroupInUse)
         }
-        
+
         /// 权限组正在更新中。
         public static var pgroupIsUpdating: FailedOperation {
             FailedOperation(.pgroupIsUpdating)
         }
-        
+
         /// 该权限组关联了旧版本实例，请解除关联后重试。
         public static var pgroupLinkCfsv10: FailedOperation {
             FailedOperation(.pgroupLinkCfsv10)
         }
-        
+
         /// 解绑资源标签失败。
         public static var untagResourceFailed: FailedOperation {
             FailedOperation(.untagResourceFailed)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asCfsError() -> TCCfsError {
             let code: TCCfsError.Code
             switch self.error {
-            case .bindResourcePkgFailed: 
+            case .bindResourcePkgFailed:
                 code = .failedOperation_BindResourcePkgFailed
-            case .clientTokenInUse: 
+            case .clientTokenInUse:
                 code = .failedOperation_ClientTokenInUse
-            case .mountTargetExists: 
+            case .mountTargetExists:
                 code = .failedOperation_MountTargetExists
-            case .pgroupInUse: 
+            case .pgroupInUse:
                 code = .failedOperation_PgroupInUse
-            case .pgroupIsUpdating: 
+            case .pgroupIsUpdating:
                 code = .failedOperation_PgroupIsUpdating
-            case .pgroupLinkCfsv10: 
+            case .pgroupLinkCfsv10:
                 code = .failedOperation_PgroupLinkCfsv10
-            case .untagResourceFailed: 
+            case .untagResourceFailed:
                 code = .failedOperation_UntagResourceFailed
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCCfsError(code, context: self.context)

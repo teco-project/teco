@@ -20,45 +20,45 @@ extension TCTiaError {
             case alreadyExists = "FailedOperation.AlreadyExists"
             case timeOut = "FailedOperation.TimeOut"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源已存在。
         public static var alreadyExists: FailedOperation {
             FailedOperation(.alreadyExists)
         }
-        
+
         /// 操作超时。
         public static var timeOut: FailedOperation {
             FailedOperation(.timeOut)
         }
-        
+
         public func asTiaError() -> TCTiaError {
             let code: TCTiaError.Code
             switch self.error {
-            case .alreadyExists: 
+            case .alreadyExists:
                 code = .failedOperation_AlreadyExists
-            case .timeOut: 
+            case .timeOut:
                 code = .failedOperation_TimeOut
             }
             return TCTiaError(code, context: self.context)

@@ -19,27 +19,27 @@ extension Bma {
     public struct CreateBPProtectURLsRequest: TCRequestModel {
         /// 企业名称
         public let companyName: String?
-        
+
         /// 电话号码
         public let phone: String?
-        
+
         /// 营业执照
         public let licenseName: String?
-        
+
         /// 保护网站
         public let protectURLs: [String]?
-        
+
         /// 网站名称
         public let protectWebs: [String]?
-        
-        public init (companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil) {
+
+        public init(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil) {
             self.companyName = companyName
             self.phone = phone
             self.licenseName = licenseName
             self.protectURLs = protectURLs
             self.protectWebs = protectWebs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyName = "CompanyName"
             case phone = "Phone"
@@ -48,35 +48,35 @@ extension Bma {
             case protectWebs = "ProtectWebs"
         }
     }
-    
+
     /// CreateBPProtectURLs返回参数结构体
     public struct CreateBPProtectURLsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加保护网站
     @inlinable
-    public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPProtectURLsResponse > {
+    public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPProtectURLsResponse> {
         self.client.execute(action: "CreateBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加保护网站
     @inlinable
     public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPProtectURLsResponse {
         try await self.client.execute(action: "CreateBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加保护网站
     @inlinable
-    public func createBPProtectURLs(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPProtectURLsResponse > {
+    public func createBPProtectURLs(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPProtectURLsResponse> {
         self.createBPProtectURLs(CreateBPProtectURLsRequest(companyName: companyName, phone: phone, licenseName: licenseName, protectURLs: protectURLs, protectWebs: protectWebs), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加保护网站
     @inlinable
     public func createBPProtectURLs(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPProtectURLsResponse {

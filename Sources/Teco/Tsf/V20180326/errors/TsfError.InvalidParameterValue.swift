@@ -137,864 +137,864 @@ extension TCTsfError {
             case wrongDontStartValue = "InvalidParameterValue.WrongDontStartValue"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的微服务类型。
         public static var applicationMicroTypeInvalid: InvalidParameterValue {
             InvalidParameterValue(.applicationMicroTypeInvalid)
         }
-        
+
         /// 应用名称已存在，请更换其他名称。
         public static var applicationNameExist: InvalidParameterValue {
             InvalidParameterValue(.applicationNameExist)
         }
-        
+
         /// 应用名称不能大于60字符。
         public static var applicationNameLength: InvalidParameterValue {
             InvalidParameterValue(.applicationNameLength)
         }
-        
+
         /// 应用名称不能为空。
         public static var applicationNameNull: InvalidParameterValue {
             InvalidParameterValue(.applicationNameNull)
         }
-        
+
         /// 应用名称格式不正确,只能包含小写字母、数字及分隔符("_"、"-")，且不能以分隔符开头或结尾。
         public static var applicationNameRegxInvalid: InvalidParameterValue {
             InvalidParameterValue(.applicationNameRegxInvalid)
         }
-        
+
         /// 无法获取应用。
         public static var applicationNotExists: InvalidParameterValue {
             InvalidParameterValue(.applicationNotExists)
         }
-        
+
         /// 无效的应用分页参数。
         public static var applicationPageLimitInvalid: InvalidParameterValue {
             InvalidParameterValue(.applicationPageLimitInvalid)
         }
-        
+
         /// 无效的应用类型。
         public static var applicationTypeInvalid: InvalidParameterValue {
             InvalidParameterValue(.applicationTypeInvalid)
         }
-        
+
         /// 与同VPC其它集群CIDR冲突。
         public static var clusterCidrConflict: InvalidParameterValue {
             InvalidParameterValue(.clusterCidrConflict)
         }
-        
+
         /// 集群命名已存在，请更换其他名称。
         public static var clusterNameExist: InvalidParameterValue {
             InvalidParameterValue(.clusterNameExist)
         }
-        
+
         /// 集群命名不能为空。
         public static var clusterNameRequired: InvalidParameterValue {
             InvalidParameterValue(.clusterNameRequired)
         }
-        
+
         /// 创建集群，无效的地域字段。
         public static var clusterRegionInvalid: InvalidParameterValue {
             InvalidParameterValue(.clusterRegionInvalid)
         }
-        
+
         /// 非法集群类型。
         public static var clusterTypeInvalid: InvalidParameterValue {
             InvalidParameterValue(.clusterTypeInvalid)
         }
-        
+
         /// 创建集群，无效的可用区字段。
         public static var clusterZoneInvalid: InvalidParameterValue {
             InvalidParameterValue(.clusterZoneInvalid)
         }
-        
+
         /// 配置项已经发布过。
         public static var configAlreadyReleased: InvalidParameterValue {
             InvalidParameterValue(.configAlreadyReleased)
         }
-        
+
         /// 配置项已存在。
         public static var configExists: InvalidParameterValue {
             InvalidParameterValue(.configExists)
         }
-        
+
         /// 配置项和部署组所属应用不一致。
         public static var configGroupApplicationIdNotMatch: InvalidParameterValue {
             InvalidParameterValue(.configGroupApplicationIdNotMatch)
         }
-        
+
         /// 配置项名称不合规。
         public static var configNameInvalid: InvalidParameterValue {
             InvalidParameterValue(.configNameInvalid)
         }
-        
+
         /// 无法获取配置项或无权限访问。
         public static var configNotExistsOrPermissionDenied: InvalidParameterValue {
             InvalidParameterValue(.configNotExistsOrPermissionDenied)
         }
-        
+
         /// 无法获取配置项发布信息。
         public static var configReleaseNotExists: InvalidParameterValue {
             InvalidParameterValue(.configReleaseNotExists)
         }
-        
+
         /// 配置格式不符合YAML要求。
         public static var configValueFormatInvalid: InvalidParameterValue {
             InvalidParameterValue(.configValueFormatInvalid)
         }
-        
+
         /// 配置项值内容大小（%s）超过限制。
         public static var configValueTooLong: InvalidParameterValue {
             InvalidParameterValue(.configValueTooLong)
         }
-        
+
         /// 配置项版本描述不合规。
         public static var configVersionDescInvalid: InvalidParameterValue {
             InvalidParameterValue(.configVersionDescInvalid)
         }
-        
+
         /// 配置项版本不合规。
         public static var configVersionInvalid: InvalidParameterValue {
             InvalidParameterValue(.configVersionInvalid)
         }
-        
+
         /// 该镜像被占用中。
         public static var containerGroupImageTagIsInUse: InvalidParameterValue {
             InvalidParameterValue(.containerGroupImageTagIsInUse)
         }
-        
+
         /// 服务访问方式不能为空。
         public static var containergroupAccesstypeNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupAccesstypeNull)
         }
-        
+
         /// 所属应用ID不能为空。
         public static var containergroupApplicationIdNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupApplicationIdNull)
         }
-        
+
         /// 集群 CPU 资源不足。
         public static var containergroupCpulimitOver: InvalidParameterValue {
             InvalidParameterValue(.containergroupCpulimitOver)
         }
-        
+
         /// 部署组ID不能为空。
         public static var containergroupGroupidNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupGroupidNull)
         }
-        
+
         /// 部署组名不能大于60个字符。
         public static var containergroupGroupnameLegnth: InvalidParameterValue {
             InvalidParameterValue(.containergroupGroupnameLegnth)
         }
-        
+
         /// 部署组名不能为空。
         public static var containergroupGroupnameNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupGroupnameNull)
         }
-        
+
         /// 部署组名称格式不正确,只能包含小写字母、数字及分隔符("-"),且必须以小写字母开头，数字或小写字母结尾。
         public static var containergroupGroupnameRegexMatchFalse: InvalidParameterValue {
             InvalidParameterValue(.containergroupGroupnameRegexMatchFalse)
         }
-        
+
         /// 实例数量不能为空或不合法。
         public static var containergroupInstanceNumInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupInstanceNumInvalid)
         }
-        
+
         /// CPU limit 和 request 不能同时为空。
         public static var containergroupInvalidCpuInfo: InvalidParameterValue {
             InvalidParameterValue(.containergroupInvalidCpuInfo)
         }
-        
+
         /// 内存 limit 和 request 不能同时为空。
         public static var containergroupInvalidMemInfo: InvalidParameterValue {
             InvalidParameterValue(.containergroupInvalidMemInfo)
         }
-        
+
         /// limit最大数量，默认 20, 最大值 50。
         public static var containergroupLimitValueInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupLimitValueInvalid)
         }
-        
+
         /// 集群内存资源不足。
         public static var containergroupMemlimitOver: InvalidParameterValue {
             InvalidParameterValue(.containergroupMemlimitOver)
         }
-        
+
         /// 主机端口值非法。
         public static var containergroupNodePortInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupNodePortInvalid)
         }
-        
+
         /// 服务端口值非法。
         public static var containergroupPortInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupPortInvalid)
         }
-        
+
         /// 服务端口不允许重复映射。
         public static var containergroupPortsRepeat: InvalidParameterValue {
             InvalidParameterValue(.containergroupPortsRepeat)
         }
-        
+
         /// 协议值非法,限定:TCP/UDP。
         public static var containergroupProtocolInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupProtocolInvalid)
         }
-        
+
         /// 公网访问方式下，协议需要一致。
         public static var containergroupProtocolMixError: InvalidParameterValue {
             InvalidParameterValue(.containergroupProtocolMixError)
         }
-        
+
         /// 协议不能为空。
         public static var containergroupProtocolNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupProtocolNull)
         }
-        
+
         /// 协议端口不能为空。
         public static var containergroupProtocolPortsNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupProtocolPortsNull)
         }
-        
+
         /// 镜像仓库名与应用名不匹配。
         public static var containergroupReponameInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupReponameInvalid)
         }
-        
+
         /// agent 容器资源值非法 , %s。
         public static var containergroupResourceAgentValueInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupResourceAgentValueInvalid)
         }
-        
+
         /// 容器端口不允许重复映射。
         public static var containergroupTargetPortsRepeat: InvalidParameterValue {
             InvalidParameterValue(.containergroupTargetPortsRepeat)
         }
-        
+
         /// 容器端口不能为空。
         public static var containergroupTargetportNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupTargetportNull)
         }
-        
+
         /// 更新间隔不能为空或者数值非法。
         public static var containergroupUpdateivlInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupUpdateivlInvalid)
         }
-        
+
         /// updateType参数不合法，值必须为0、1。
         public static var containergroupUpdatetypeInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupUpdatetypeInvalid)
         }
-        
+
         /// 找不到业务容器。
         public static var containergroupYamlUserContainerNotFound: InvalidParameterValue {
             InvalidParameterValue(.containergroupYamlUserContainerNotFound)
         }
-        
+
         /// TSF MASTER 正在执行任务，请等待任务执行完成再下发新任务。
         public static var cvmCaeMasterAgentBusy: InvalidParameterValue {
             InvalidParameterValue(.cvmCaeMasterAgentBusy)
         }
-        
+
         /// 无可用实例。
         public static var cvmCaeMasterAgentNotFound: InvalidParameterValue {
             InvalidParameterValue(.cvmCaeMasterAgentNotFound)
         }
-        
+
         /// TSF MASTER 部署组中无云主机。
         public static var cvmCaeMasterGroupNoAgent: InvalidParameterValue {
             InvalidParameterValue(.cvmCaeMasterGroupNoAgent)
         }
-        
+
         /// 部署组不存在。
         public static var deployGroupNotExists: InvalidParameterValue {
             InvalidParameterValue(.deployGroupNotExists)
         }
-        
+
         /// 文件配置项已经发布。
         public static var fileConfigAlreadyReleased: InvalidParameterValue {
             InvalidParameterValue(.fileConfigAlreadyReleased)
         }
-        
+
         /// 文件配置项已存在。
         public static var fileConfigExists: InvalidParameterValue {
             InvalidParameterValue(.fileConfigExists)
         }
-        
+
         /// 配置文件路径重复。
         public static var fileConfigExistsPath: InvalidParameterValue {
             InvalidParameterValue(.fileConfigExistsPath)
         }
-        
+
         /// 其他用户已发布此配置文件路径。
         public static var fileConfigExistsPathOther: InvalidParameterValue {
             InvalidParameterValue(.fileConfigExistsPathOther)
         }
-        
+
         /// 文件配置项文件路径不合规。
         public static var fileConfigFilePathInvalid: InvalidParameterValue {
             InvalidParameterValue(.fileConfigFilePathInvalid)
         }
-        
+
         /// 文件配置项名称不合规。
         public static var fileConfigNameInvalid: InvalidParameterValue {
             InvalidParameterValue(.fileConfigNameInvalid)
         }
-        
+
         /// 无法获取文件配置项或无权限访问。
         public static var fileConfigNotExistsOrPermissionDenied: InvalidParameterValue {
             InvalidParameterValue(.fileConfigNotExistsOrPermissionDenied)
         }
-        
+
         /// 同一部署组禁止配置文件重复(文件路径+文件名)。
         public static var fileConfigPathExists: InvalidParameterValue {
             InvalidParameterValue(.fileConfigPathExists)
         }
-        
+
         /// 文件配置项版本描述不合规。
         public static var fileConfigVersionDescInvalid: InvalidParameterValue {
             InvalidParameterValue(.fileConfigVersionDescInvalid)
         }
-        
+
         /// 请求参数异常:%s。
         public static var gatewayParameterError: InvalidParameterValue {
             InvalidParameterValue(.gatewayParameterError)
         }
-        
+
         /// 无效请求参数:%s。
         public static var gatewayParameterInvalid: InvalidParameterValue {
             InvalidParameterValue(.gatewayParameterInvalid)
         }
-        
+
         /// 全局命名空间已经存在，只能创建一个全局命名空间。
         public static var globalNamespaceNameExist: InvalidParameterValue {
             InvalidParameterValue(.globalNamespaceNameExist)
         }
-        
+
         /// 部署相关请求参数校验失败。
         public static var groupBatchParameterInvalid: InvalidParameterValue {
             InvalidParameterValue(.groupBatchParameterInvalid)
         }
-        
+
         /// 部署组的集群未绑定该命名空间。
         public static var groupClusterNamespaceNotBound: InvalidParameterValue {
             InvalidParameterValue(.groupClusterNamespaceNotBound)
         }
-        
+
         /// 创建分组， 集群类型不匹配。
         public static var groupClusterTypeMismatch: InvalidParameterValue {
             InvalidParameterValue(.groupClusterTypeMismatch)
         }
-        
+
         /// 删除分组，集群类型不匹配。
         public static var groupDeleteClusterTypeMismatch: InvalidParameterValue {
             InvalidParameterValue(.groupDeleteClusterTypeMismatch)
         }
-        
+
         /// 部署组ID不能为空。
         public static var groupIdNull: InvalidParameterValue {
             InvalidParameterValue(.groupIdNull)
         }
-        
+
         /// 部署组名称已存在，请更换其他名称。
         public static var groupNameExist: InvalidParameterValue {
             InvalidParameterValue(.groupNameExist)
         }
-        
+
         /// 部署组名不能大于50个字符。
         public static var groupNameLength: InvalidParameterValue {
             InvalidParameterValue(.groupNameLength)
         }
-        
+
         /// 部署组名称格式不正确,只能包含小写字母、数字及分隔符("-"),且必须以小写字母开头，数字或小写字母结尾。
         public static var groupNameRegxMismatch: InvalidParameterValue {
             InvalidParameterValue(.groupNameRegxMismatch)
         }
-        
+
         /// 无法获取部署组。
         public static var groupNotExists: InvalidParameterValue {
             InvalidParameterValue(.groupNotExists)
         }
-        
+
         /// 分组无效的分业参数。
         public static var groupPageLimitInvalid: InvalidParameterValue {
             InvalidParameterValue(.groupPageLimitInvalid)
         }
-        
+
         /// 无效的部署组状态过滤字段。
         public static var groupStatusInvalid: InvalidParameterValue {
             InvalidParameterValue(.groupStatusInvalid)
         }
-        
+
         /// 分组操作，无有效机器。
         public static var groupValidInstanceNull: InvalidParameterValue {
             InvalidParameterValue(.groupValidInstanceNull)
         }
-        
+
         /// 镜像仓库名不能为空。
         public static var imagerepoRepoNameNull: InvalidParameterValue {
             InvalidParameterValue(.imagerepoRepoNameNull)
         }
-        
+
         /// 镜像仓库名不合法,示例:tsf-repo/nginx。
         public static var imagerepoReponameInvalid: InvalidParameterValue {
             InvalidParameterValue(.imagerepoReponameInvalid)
         }
-        
+
         /// imageTags不能为空。
         public static var imagerepoTagnameNull: InvalidParameterValue {
             InvalidParameterValue(.imagerepoTagnameNull)
         }
-        
+
         /// 重装系统，无效的镜像id。
         public static var instanceInvalidImage: InvalidParameterValue {
             InvalidParameterValue(.instanceInvalidImage)
         }
-        
+
         /// 参数 %s 取值错误。
         public static var invalidParameter: InvalidParameterValue {
             InvalidParameterValue(.invalidParameter)
         }
-        
+
         /// 参数格式异常。
         public static var invalidParameterFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterFormat)
         }
-        
+
         /// 已经绑定灰度规则，无法删除。
         public static var laneInfoAlreadyUsed: InvalidParameterValue {
             InvalidParameterValue(.laneInfoAlreadyUsed)
         }
-        
+
         /// 存在同名的泳道。
         public static var laneInfoNameAlreadyUsed: InvalidParameterValue {
             InvalidParameterValue(.laneInfoNameAlreadyUsed)
         }
-        
+
         /// 泳道名称格式有误。
         public static var laneInfoNameInvalid: InvalidParameterValue {
             InvalidParameterValue(.laneInfoNameInvalid)
         }
-        
+
         /// 泳道名称不能为空。
         public static var laneInfoNameNotEmpty: InvalidParameterValue {
             InvalidParameterValue(.laneInfoNameNotEmpty)
         }
-        
+
         /// 泳道名称不能超过60个字符。
         public static var laneInfoNameTooLong: InvalidParameterValue {
             InvalidParameterValue(.laneInfoNameTooLong)
         }
-        
+
         /// 泳道不存在。
         public static var laneInfoNotExist: InvalidParameterValue {
             InvalidParameterValue(.laneInfoNotExist)
         }
-        
+
         /// 泳道没有设置任何入口应用。
         public static var laneInfoNotExistEntrance: InvalidParameterValue {
             InvalidParameterValue(.laneInfoNotExistEntrance)
         }
-        
+
         /// 泳道备注不能超过200个字符。
         public static var laneInfoRemarkTooLong: InvalidParameterValue {
             InvalidParameterValue(.laneInfoRemarkTooLong)
         }
-        
+
         /// 全链路灰度规则中的泳道不存在。
         public static var laneRuleInfoNotExist: InvalidParameterValue {
             InvalidParameterValue(.laneRuleInfoNotExist)
         }
-        
+
         /// 存在同名的全链路灰度规则。
         public static var laneRuleNameAlreadyUsed: InvalidParameterValue {
             InvalidParameterValue(.laneRuleNameAlreadyUsed)
         }
-        
+
         /// 全链路灰度规则名称格式有误。
         public static var laneRuleNameInvalid: InvalidParameterValue {
             InvalidParameterValue(.laneRuleNameInvalid)
         }
-        
+
         /// 全链路灰度规则名称不能为空。
         public static var laneRuleNameNotEmpty: InvalidParameterValue {
             InvalidParameterValue(.laneRuleNameNotEmpty)
         }
-        
+
         /// 全链路灰度规则名称不能超过60个字符。
         public static var laneRuleNameTooLong: InvalidParameterValue {
             InvalidParameterValue(.laneRuleNameTooLong)
         }
-        
+
         /// 全链路灰度规则不存在。
         public static var laneRuleNotExist: InvalidParameterValue {
             InvalidParameterValue(.laneRuleNotExist)
         }
-        
+
         /// 全链路灰度规则备注不能超过200个字符。
         public static var laneRuleRemarkTooLong: InvalidParameterValue {
             InvalidParameterValue(.laneRuleRemarkTooLong)
         }
-        
+
         /// 全链路灰度规则标签名不能为空。
         public static var laneRuleTagNameNotEmpty: InvalidParameterValue {
             InvalidParameterValue(.laneRuleTagNameNotEmpty)
         }
-        
+
         /// 全链路灰度规则标签名不能超过32个字符。
         public static var laneRuleTagNameTooLong: InvalidParameterValue {
             InvalidParameterValue(.laneRuleTagNameTooLong)
         }
-        
+
         /// 全链路灰度规则必须设置至少一个标签。
         public static var laneRuleTagNotEmpty: InvalidParameterValue {
             InvalidParameterValue(.laneRuleTagNotEmpty)
         }
-        
+
         /// 全链路灰度规则标签值不能超过128个字符。
         public static var laneRuleTagValueTooLong: InvalidParameterValue {
             InvalidParameterValue(.laneRuleTagValueTooLong)
         }
-        
+
         /// 全链路灰度规则总标签值不能超过200个字符。
         public static var laneRuleTagValueTotalTooLong: InvalidParameterValue {
             InvalidParameterValue(.laneRuleTagValueTotalTooLong)
         }
-        
+
         /// 集群已关联该命名空间。
         public static var namespaceAlreadyBindCluster: InvalidParameterValue {
             InvalidParameterValue(.namespaceAlreadyBindCluster)
         }
-        
+
         /// 命名空间描格式不正确。
         public static var namespaceDescInvalid: InvalidParameterValue {
             InvalidParameterValue(.namespaceDescInvalid)
         }
-        
+
         /// 命名空间名称已存在，请更换其他名称。
         public static var namespaceNameExist: InvalidParameterValue {
             InvalidParameterValue(.namespaceNameExist)
         }
-        
+
         /// 命名空间名称格式不正确。
         public static var namespaceNameInvalid: InvalidParameterValue {
             InvalidParameterValue(.namespaceNameInvalid)
         }
-        
+
         /// 无法获取命名空间。
         public static var namespaceNotExists: InvalidParameterValue {
             InvalidParameterValue(.namespaceNotExists)
         }
-        
+
         /// 配置项已经发布，不允许删除。
         public static var releasedConfigCanNotBeDeleted: InvalidParameterValue {
             InvalidParameterValue(.releasedConfigCanNotBeDeleted)
         }
-        
+
         /// 无权限操作资源%s。
         public static var resourcePermissionDenied: InvalidParameterValue {
             InvalidParameterValue(.resourcePermissionDenied)
         }
-        
+
         /// ResourceType 不支持。
         public static var resourceTypeError: InvalidParameterValue {
             InvalidParameterValue(.resourceTypeError)
         }
-        
+
         /// 服务描述不能大于200字符。
         public static var serviceDescLength: InvalidParameterValue {
             InvalidParameterValue(.serviceDescLength)
         }
-        
+
         /// 服务名称重复。
         public static var serviceNameRepeated: InvalidParameterValue {
             InvalidParameterValue(.serviceNameRepeated)
         }
-        
+
         /// 服务不存在或权限不足。
         public static var serviceNotExistsOrPermissionDenied: InvalidParameterValue {
             InvalidParameterValue(.serviceNotExistsOrPermissionDenied)
         }
-        
+
         /// 无效请求参数。
         public static var taskParameterInvalid: InvalidParameterValue {
             InvalidParameterValue(.taskParameterInvalid)
         }
-        
+
         /// 仅有停止状态下的部署组才可以不启动。
         public static var wrongDontStartValue: InvalidParameterValue {
             InvalidParameterValue(.wrongDontStartValue)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
-            case .applicationMicroTypeInvalid: 
+            case .applicationMicroTypeInvalid:
                 code = .invalidParameterValue_ApplicationMicroTypeInvalid
-            case .applicationNameExist: 
+            case .applicationNameExist:
                 code = .invalidParameterValue_ApplicationNameExist
-            case .applicationNameLength: 
+            case .applicationNameLength:
                 code = .invalidParameterValue_ApplicationNameLength
-            case .applicationNameNull: 
+            case .applicationNameNull:
                 code = .invalidParameterValue_ApplicationNameNull
-            case .applicationNameRegxInvalid: 
+            case .applicationNameRegxInvalid:
                 code = .invalidParameterValue_ApplicationNameRegxInvalid
-            case .applicationNotExists: 
+            case .applicationNotExists:
                 code = .invalidParameterValue_ApplicationNotExists
-            case .applicationPageLimitInvalid: 
+            case .applicationPageLimitInvalid:
                 code = .invalidParameterValue_ApplicationPageLimitInvalid
-            case .applicationTypeInvalid: 
+            case .applicationTypeInvalid:
                 code = .invalidParameterValue_ApplicationTypeInvalid
-            case .clusterCidrConflict: 
+            case .clusterCidrConflict:
                 code = .invalidParameterValue_ClusterCidrConflict
-            case .clusterNameExist: 
+            case .clusterNameExist:
                 code = .invalidParameterValue_ClusterNameExist
-            case .clusterNameRequired: 
+            case .clusterNameRequired:
                 code = .invalidParameterValue_ClusterNameRequired
-            case .clusterRegionInvalid: 
+            case .clusterRegionInvalid:
                 code = .invalidParameterValue_ClusterRegionInvalid
-            case .clusterTypeInvalid: 
+            case .clusterTypeInvalid:
                 code = .invalidParameterValue_ClusterTypeInvalid
-            case .clusterZoneInvalid: 
+            case .clusterZoneInvalid:
                 code = .invalidParameterValue_ClusterZoneInvalid
-            case .configAlreadyReleased: 
+            case .configAlreadyReleased:
                 code = .invalidParameterValue_ConfigAlreadyReleased
-            case .configExists: 
+            case .configExists:
                 code = .invalidParameterValue_ConfigExists
-            case .configGroupApplicationIdNotMatch: 
+            case .configGroupApplicationIdNotMatch:
                 code = .invalidParameterValue_ConfigGroupApplicationIdNotMatch
-            case .configNameInvalid: 
+            case .configNameInvalid:
                 code = .invalidParameterValue_ConfigNameInvalid
-            case .configNotExistsOrPermissionDenied: 
+            case .configNotExistsOrPermissionDenied:
                 code = .invalidParameterValue_ConfigNotExistsOrPermissionDenied
-            case .configReleaseNotExists: 
+            case .configReleaseNotExists:
                 code = .invalidParameterValue_ConfigReleaseNotExists
-            case .configValueFormatInvalid: 
+            case .configValueFormatInvalid:
                 code = .invalidParameterValue_ConfigValueFormatInvalid
-            case .configValueTooLong: 
+            case .configValueTooLong:
                 code = .invalidParameterValue_ConfigValueTooLong
-            case .configVersionDescInvalid: 
+            case .configVersionDescInvalid:
                 code = .invalidParameterValue_ConfigVersionDescInvalid
-            case .configVersionInvalid: 
+            case .configVersionInvalid:
                 code = .invalidParameterValue_ConfigVersionInvalid
-            case .containerGroupImageTagIsInUse: 
+            case .containerGroupImageTagIsInUse:
                 code = .invalidParameterValue_ContainerGroupImageTagIsInUse
-            case .containergroupAccesstypeNull: 
+            case .containergroupAccesstypeNull:
                 code = .invalidParameterValue_ContainergroupAccesstypeNull
-            case .containergroupApplicationIdNull: 
+            case .containergroupApplicationIdNull:
                 code = .invalidParameterValue_ContainergroupApplicationIdNull
-            case .containergroupCpulimitOver: 
+            case .containergroupCpulimitOver:
                 code = .invalidParameterValue_ContainergroupCpulimitOver
-            case .containergroupGroupidNull: 
+            case .containergroupGroupidNull:
                 code = .invalidParameterValue_ContainergroupGroupidNull
-            case .containergroupGroupnameLegnth: 
+            case .containergroupGroupnameLegnth:
                 code = .invalidParameterValue_ContainergroupGroupnameLegnth
-            case .containergroupGroupnameNull: 
+            case .containergroupGroupnameNull:
                 code = .invalidParameterValue_ContainergroupGroupnameNull
-            case .containergroupGroupnameRegexMatchFalse: 
+            case .containergroupGroupnameRegexMatchFalse:
                 code = .invalidParameterValue_ContainergroupGroupnameRegexMatchFalse
-            case .containergroupInstanceNumInvalid: 
+            case .containergroupInstanceNumInvalid:
                 code = .invalidParameterValue_ContainergroupInstanceNumInvalid
-            case .containergroupInvalidCpuInfo: 
+            case .containergroupInvalidCpuInfo:
                 code = .invalidParameterValue_ContainergroupInvalidCpuInfo
-            case .containergroupInvalidMemInfo: 
+            case .containergroupInvalidMemInfo:
                 code = .invalidParameterValue_ContainergroupInvalidMemInfo
-            case .containergroupLimitValueInvalid: 
+            case .containergroupLimitValueInvalid:
                 code = .invalidParameterValue_ContainergroupLimitValueInvalid
-            case .containergroupMemlimitOver: 
+            case .containergroupMemlimitOver:
                 code = .invalidParameterValue_ContainergroupMemlimitOver
-            case .containergroupNodePortInvalid: 
+            case .containergroupNodePortInvalid:
                 code = .invalidParameterValue_ContainergroupNodePortInvalid
-            case .containergroupPortInvalid: 
+            case .containergroupPortInvalid:
                 code = .invalidParameterValue_ContainergroupPortInvalid
-            case .containergroupPortsRepeat: 
+            case .containergroupPortsRepeat:
                 code = .invalidParameterValue_ContainergroupPortsRepeat
-            case .containergroupProtocolInvalid: 
+            case .containergroupProtocolInvalid:
                 code = .invalidParameterValue_ContainergroupProtocolInvalid
-            case .containergroupProtocolMixError: 
+            case .containergroupProtocolMixError:
                 code = .invalidParameterValue_ContainergroupProtocolMixError
-            case .containergroupProtocolNull: 
+            case .containergroupProtocolNull:
                 code = .invalidParameterValue_ContainergroupProtocolNull
-            case .containergroupProtocolPortsNull: 
+            case .containergroupProtocolPortsNull:
                 code = .invalidParameterValue_ContainergroupProtocolPortsNull
-            case .containergroupReponameInvalid: 
+            case .containergroupReponameInvalid:
                 code = .invalidParameterValue_ContainergroupReponameInvalid
-            case .containergroupResourceAgentValueInvalid: 
+            case .containergroupResourceAgentValueInvalid:
                 code = .invalidParameterValue_ContainergroupResourceAgentValueInvalid
-            case .containergroupTargetPortsRepeat: 
+            case .containergroupTargetPortsRepeat:
                 code = .invalidParameterValue_ContainergroupTargetPortsRepeat
-            case .containergroupTargetportNull: 
+            case .containergroupTargetportNull:
                 code = .invalidParameterValue_ContainergroupTargetportNull
-            case .containergroupUpdateivlInvalid: 
+            case .containergroupUpdateivlInvalid:
                 code = .invalidParameterValue_ContainergroupUpdateivlInvalid
-            case .containergroupUpdatetypeInvalid: 
+            case .containergroupUpdatetypeInvalid:
                 code = .invalidParameterValue_ContainergroupUpdatetypeInvalid
-            case .containergroupYamlUserContainerNotFound: 
+            case .containergroupYamlUserContainerNotFound:
                 code = .invalidParameterValue_ContainergroupYamlUserContainerNotFound
-            case .cvmCaeMasterAgentBusy: 
+            case .cvmCaeMasterAgentBusy:
                 code = .invalidParameterValue_CvmCaeMasterAgentBusy
-            case .cvmCaeMasterAgentNotFound: 
+            case .cvmCaeMasterAgentNotFound:
                 code = .invalidParameterValue_CvmCaeMasterAgentNotFound
-            case .cvmCaeMasterGroupNoAgent: 
+            case .cvmCaeMasterGroupNoAgent:
                 code = .invalidParameterValue_CvmCaeMasterGroupNoAgent
-            case .deployGroupNotExists: 
+            case .deployGroupNotExists:
                 code = .invalidParameterValue_DeployGroupNotExists
-            case .fileConfigAlreadyReleased: 
+            case .fileConfigAlreadyReleased:
                 code = .invalidParameterValue_FileConfigAlreadyReleased
-            case .fileConfigExists: 
+            case .fileConfigExists:
                 code = .invalidParameterValue_FileConfigExists
-            case .fileConfigExistsPath: 
+            case .fileConfigExistsPath:
                 code = .invalidParameterValue_FileConfigExistsPath
-            case .fileConfigExistsPathOther: 
+            case .fileConfigExistsPathOther:
                 code = .invalidParameterValue_FileConfigExistsPathOther
-            case .fileConfigFilePathInvalid: 
+            case .fileConfigFilePathInvalid:
                 code = .invalidParameterValue_FileConfigFilePathInvalid
-            case .fileConfigNameInvalid: 
+            case .fileConfigNameInvalid:
                 code = .invalidParameterValue_FileConfigNameInvalid
-            case .fileConfigNotExistsOrPermissionDenied: 
+            case .fileConfigNotExistsOrPermissionDenied:
                 code = .invalidParameterValue_FileConfigNotExistsOrPermissionDenied
-            case .fileConfigPathExists: 
+            case .fileConfigPathExists:
                 code = .invalidParameterValue_FileConfigPathExists
-            case .fileConfigVersionDescInvalid: 
+            case .fileConfigVersionDescInvalid:
                 code = .invalidParameterValue_FileConfigVersionDescInvalid
-            case .gatewayParameterError: 
+            case .gatewayParameterError:
                 code = .invalidParameterValue_GatewayParameterError
-            case .gatewayParameterInvalid: 
+            case .gatewayParameterInvalid:
                 code = .invalidParameterValue_GatewayParameterInvalid
-            case .globalNamespaceNameExist: 
+            case .globalNamespaceNameExist:
                 code = .invalidParameterValue_GlobalNamespaceNameExist
-            case .groupBatchParameterInvalid: 
+            case .groupBatchParameterInvalid:
                 code = .invalidParameterValue_GroupBatchParameterInvalid
-            case .groupClusterNamespaceNotBound: 
+            case .groupClusterNamespaceNotBound:
                 code = .invalidParameterValue_GroupClusterNamespaceNotBound
-            case .groupClusterTypeMismatch: 
+            case .groupClusterTypeMismatch:
                 code = .invalidParameterValue_GroupClusterTypeMismatch
-            case .groupDeleteClusterTypeMismatch: 
+            case .groupDeleteClusterTypeMismatch:
                 code = .invalidParameterValue_GroupDeleteClusterTypeMismatch
-            case .groupIdNull: 
+            case .groupIdNull:
                 code = .invalidParameterValue_GroupIdNull
-            case .groupNameExist: 
+            case .groupNameExist:
                 code = .invalidParameterValue_GroupNameExist
-            case .groupNameLength: 
+            case .groupNameLength:
                 code = .invalidParameterValue_GroupNameLength
-            case .groupNameRegxMismatch: 
+            case .groupNameRegxMismatch:
                 code = .invalidParameterValue_GroupNameRegxMismatch
-            case .groupNotExists: 
+            case .groupNotExists:
                 code = .invalidParameterValue_GroupNotExists
-            case .groupPageLimitInvalid: 
+            case .groupPageLimitInvalid:
                 code = .invalidParameterValue_GroupPageLimitInvalid
-            case .groupStatusInvalid: 
+            case .groupStatusInvalid:
                 code = .invalidParameterValue_GroupStatusInvalid
-            case .groupValidInstanceNull: 
+            case .groupValidInstanceNull:
                 code = .invalidParameterValue_GroupValidInstanceNull
-            case .imagerepoRepoNameNull: 
+            case .imagerepoRepoNameNull:
                 code = .invalidParameterValue_ImagerepoRepoNameNull
-            case .imagerepoReponameInvalid: 
+            case .imagerepoReponameInvalid:
                 code = .invalidParameterValue_ImagerepoReponameInvalid
-            case .imagerepoTagnameNull: 
+            case .imagerepoTagnameNull:
                 code = .invalidParameterValue_ImagerepoTagnameNull
-            case .instanceInvalidImage: 
+            case .instanceInvalidImage:
                 code = .invalidParameterValue_InstanceInvalidImage
-            case .invalidParameter: 
+            case .invalidParameter:
                 code = .invalidParameterValue_InvalidParameter
-            case .invalidParameterFormat: 
+            case .invalidParameterFormat:
                 code = .invalidParameterValue_InvalidParameterFormat
-            case .laneInfoAlreadyUsed: 
+            case .laneInfoAlreadyUsed:
                 code = .invalidParameterValue_LaneInfoAlreadyUsed
-            case .laneInfoNameAlreadyUsed: 
+            case .laneInfoNameAlreadyUsed:
                 code = .invalidParameterValue_LaneInfoNameAlreadyUsed
-            case .laneInfoNameInvalid: 
+            case .laneInfoNameInvalid:
                 code = .invalidParameterValue_LaneInfoNameInvalid
-            case .laneInfoNameNotEmpty: 
+            case .laneInfoNameNotEmpty:
                 code = .invalidParameterValue_LaneInfoNameNotEmpty
-            case .laneInfoNameTooLong: 
+            case .laneInfoNameTooLong:
                 code = .invalidParameterValue_LaneInfoNameTooLong
-            case .laneInfoNotExist: 
+            case .laneInfoNotExist:
                 code = .invalidParameterValue_LaneInfoNotExist
-            case .laneInfoNotExistEntrance: 
+            case .laneInfoNotExistEntrance:
                 code = .invalidParameterValue_LaneInfoNotExistEntrance
-            case .laneInfoRemarkTooLong: 
+            case .laneInfoRemarkTooLong:
                 code = .invalidParameterValue_LaneInfoRemarkTooLong
-            case .laneRuleInfoNotExist: 
+            case .laneRuleInfoNotExist:
                 code = .invalidParameterValue_LaneRuleInfoNotExist
-            case .laneRuleNameAlreadyUsed: 
+            case .laneRuleNameAlreadyUsed:
                 code = .invalidParameterValue_LaneRuleNameAlreadyUsed
-            case .laneRuleNameInvalid: 
+            case .laneRuleNameInvalid:
                 code = .invalidParameterValue_LaneRuleNameInvalid
-            case .laneRuleNameNotEmpty: 
+            case .laneRuleNameNotEmpty:
                 code = .invalidParameterValue_LaneRuleNameNotEmpty
-            case .laneRuleNameTooLong: 
+            case .laneRuleNameTooLong:
                 code = .invalidParameterValue_LaneRuleNameTooLong
-            case .laneRuleNotExist: 
+            case .laneRuleNotExist:
                 code = .invalidParameterValue_LaneRuleNotExist
-            case .laneRuleRemarkTooLong: 
+            case .laneRuleRemarkTooLong:
                 code = .invalidParameterValue_LaneRuleRemarkTooLong
-            case .laneRuleTagNameNotEmpty: 
+            case .laneRuleTagNameNotEmpty:
                 code = .invalidParameterValue_LaneRuleTagNameNotEmpty
-            case .laneRuleTagNameTooLong: 
+            case .laneRuleTagNameTooLong:
                 code = .invalidParameterValue_LaneRuleTagNameTooLong
-            case .laneRuleTagNotEmpty: 
+            case .laneRuleTagNotEmpty:
                 code = .invalidParameterValue_LaneRuleTagNotEmpty
-            case .laneRuleTagValueTooLong: 
+            case .laneRuleTagValueTooLong:
                 code = .invalidParameterValue_LaneRuleTagValueTooLong
-            case .laneRuleTagValueTotalTooLong: 
+            case .laneRuleTagValueTotalTooLong:
                 code = .invalidParameterValue_LaneRuleTagValueTotalTooLong
-            case .namespaceAlreadyBindCluster: 
+            case .namespaceAlreadyBindCluster:
                 code = .invalidParameterValue_NamespaceAlreadyBindCluster
-            case .namespaceDescInvalid: 
+            case .namespaceDescInvalid:
                 code = .invalidParameterValue_NamespaceDescInvalid
-            case .namespaceNameExist: 
+            case .namespaceNameExist:
                 code = .invalidParameterValue_NamespaceNameExist
-            case .namespaceNameInvalid: 
+            case .namespaceNameInvalid:
                 code = .invalidParameterValue_NamespaceNameInvalid
-            case .namespaceNotExists: 
+            case .namespaceNotExists:
                 code = .invalidParameterValue_NamespaceNotExists
-            case .releasedConfigCanNotBeDeleted: 
+            case .releasedConfigCanNotBeDeleted:
                 code = .invalidParameterValue_ReleasedConfigCanNotBeDeleted
-            case .resourcePermissionDenied: 
+            case .resourcePermissionDenied:
                 code = .invalidParameterValue_ResourcePermissionDenied
-            case .resourceTypeError: 
+            case .resourceTypeError:
                 code = .invalidParameterValue_ResourceTypeError
-            case .serviceDescLength: 
+            case .serviceDescLength:
                 code = .invalidParameterValue_ServiceDescLength
-            case .serviceNameRepeated: 
+            case .serviceNameRepeated:
                 code = .invalidParameterValue_ServiceNameRepeated
-            case .serviceNotExistsOrPermissionDenied: 
+            case .serviceNotExistsOrPermissionDenied:
                 code = .invalidParameterValue_ServiceNotExistsOrPermissionDenied
-            case .taskParameterInvalid: 
+            case .taskParameterInvalid:
                 code = .invalidParameterValue_TaskParameterInvalid
-            case .wrongDontStartValue: 
+            case .wrongDontStartValue:
                 code = .invalidParameterValue_WrongDontStartValue
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCTsfError(code, context: self.context)

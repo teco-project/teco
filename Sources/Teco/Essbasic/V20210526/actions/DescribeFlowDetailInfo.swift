@@ -19,24 +19,24 @@ extension Essbasic {
     public struct DescribeFlowDetailInfoRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
-        
+
         /// 合同(流程)编号数组，最多支持100个。
         /// （备注：该参数和合同组编号必须二选一）
         public let flowIds: [String]?
-        
+
         /// 操作者的信息
         public let `operator`: UserInfo?
-        
+
         /// 合同组编号（备注：该参数和合同(流程)编号数组必须二选一）
         public let flowGroupId: String?
-        
-        public init (agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil) {
+
+        public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.`operator` = `operator`
             self.flowGroupId = flowGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case flowIds = "FlowIds"
@@ -44,30 +44,30 @@ extension Essbasic {
             case flowGroupId = "FlowGroupId"
         }
     }
-    
+
     /// DescribeFlowDetailInfo返回参数结构体
     public struct DescribeFlowDetailInfoResponse: TCResponseModel {
         /// 渠道侧应用号Id
         public let applicationId: String
-        
+
         /// 渠道侧企业第三方Id
         public let proxyOrganizationOpenId: String
-        
+
         /// 合同(签署流程)的具体详细描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowInfo: [FlowDetailInfo]?
-        
+
         /// 合同组编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowGroupId: String?
-        
+
         /// 合同组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowGroupName: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case proxyOrganizationOpenId = "ProxyOrganizationOpenId"
@@ -77,15 +77,15 @@ extension Essbasic {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询合同(签署流程)的详细信息
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
     @inlinable
-    public func describeFlowDetailInfo(_ input: DescribeFlowDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowDetailInfoResponse > {
+    public func describeFlowDetailInfo(_ input: DescribeFlowDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowDetailInfoResponse> {
         self.client.execute(action: "DescribeFlowDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询合同(签署流程)的详细信息
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
@@ -93,15 +93,15 @@ extension Essbasic {
     public func describeFlowDetailInfo(_ input: DescribeFlowDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
         try await self.client.execute(action: "DescribeFlowDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询合同(签署流程)的详细信息
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
     @inlinable
-    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowDetailInfoResponse > {
+    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowDetailInfoResponse> {
         self.describeFlowDetailInfo(DescribeFlowDetailInfoRequest(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询合同(签署流程)的详细信息
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。

@@ -19,26 +19,26 @@ extension Wedata {
     public struct TaskLogRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 起始时间戳，单位毫秒
         public let startTime: UInt64
-        
+
         /// 结束时间戳，单位毫秒
         public let endTime: UInt64
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 拉取日志数量，默认100
         public let limit: UInt64?
-        
+
         /// 日志排序 desc 倒序 asc 顺序
         public let orderType: String?
-        
+
         /// 实时任务 201   离线任务 202  默认实时任务
         public let taskType: UInt64?
-        
-        public init (taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64? = nil, orderType: String? = nil, taskType: UInt64? = nil) {
+
+        public init(taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64? = nil, orderType: String? = nil, taskType: UInt64? = nil) {
             self.taskId = taskId
             self.startTime = startTime
             self.endTime = endTime
@@ -47,7 +47,7 @@ extension Wedata {
             self.orderType = orderType
             self.taskType = taskType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case startTime = "StartTime"
@@ -58,29 +58,29 @@ extension Wedata {
             case taskType = "TaskType"
         }
     }
-    
+
     /// TaskLog返回参数结构体
     public struct TaskLogResponse: TCResponseModel {
         /// 详细日志
         public let logContentList: [LogContent]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case logContentList = "LogContentList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 管控日志接口
     ///
     /// 查询Inlong manager日志
     @inlinable
-    public func taskLog(_ input: TaskLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TaskLogResponse > {
+    public func taskLog(_ input: TaskLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TaskLogResponse> {
         self.client.execute(action: "TaskLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 管控日志接口
     ///
     /// 查询Inlong manager日志
@@ -88,15 +88,15 @@ extension Wedata {
     public func taskLog(_ input: TaskLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TaskLogResponse {
         try await self.client.execute(action: "TaskLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 管控日志接口
     ///
     /// 查询Inlong manager日志
     @inlinable
-    public func taskLog(taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64? = nil, orderType: String? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TaskLogResponse > {
+    public func taskLog(taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64? = nil, orderType: String? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TaskLogResponse> {
         self.taskLog(TaskLogRequest(taskId: taskId, startTime: startTime, endTime: endTime, projectId: projectId, limit: limit, orderType: orderType, taskType: taskType), logger: logger, on: eventLoop)
     }
-    
+
     /// 管控日志接口
     ///
     /// 查询Inlong manager日志

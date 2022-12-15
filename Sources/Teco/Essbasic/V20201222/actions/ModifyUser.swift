@@ -19,23 +19,23 @@ extension Essbasic {
     public struct ModifyUserRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 第三方平台用户唯一标识; OpenId 和 UserId 二选一填写, 两个都不为空则优先使用UserId
         public let openId: String?
-        
+
         /// 腾讯电子签平台用户唯一标识; OpenId 和 UserId 二选一填写, 两个都不为空则优先使用UserId
         public let userId: String?
-        
+
         /// 用户手机号码，不要求唯一
         public let mobile: String?
-        
+
         /// 用户邮箱，不要求唯一
         public let email: String?
-        
+
         /// 用户姓名
         public let name: String?
-        
-        public init (caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil) {
+
+        public init(caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil) {
             self.caller = caller
             self.openId = openId
             self.userId = userId
@@ -43,7 +43,7 @@ extension Essbasic {
             self.email = email
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case openId = "OpenId"
@@ -53,30 +53,30 @@ extension Essbasic {
             case name = "Name"
         }
     }
-    
+
     /// ModifyUser返回参数结构体
     public struct ModifyUserResponse: TCResponseModel {
         /// 腾讯电子签平台用户唯一标识
         public let userId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新个人用户信息
     ///
     /// 此接口（ModifyUser）用于更新个人用户信息。
     /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
     @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
         self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新个人用户信息
     ///
     /// 此接口（ModifyUser）用于更新个人用户信息。
@@ -85,16 +85,16 @@ extension Essbasic {
     public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
         try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新个人用户信息
     ///
     /// 此接口（ModifyUser）用于更新个人用户信息。
     /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
     @inlinable
-    public func modifyUser(caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+    public func modifyUser(caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
         self.modifyUser(ModifyUserRequest(caller: caller, openId: openId, userId: userId, mobile: mobile, email: email, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新个人用户信息
     ///
     /// 此接口（ModifyUser）用于更新个人用户信息。

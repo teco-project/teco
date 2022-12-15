@@ -19,49 +19,49 @@ extension Dasb {
     public struct DeleteDeviceGroupMembersRequest: TCRequestModel {
         /// 资产组ID
         public let id: UInt64
-        
+
         /// 需要删除的资产ID集合
         public let memberIdSet: [UInt64]
-        
-        public init (id: UInt64, memberIdSet: [UInt64]) {
+
+        public init(id: UInt64, memberIdSet: [UInt64]) {
             self.id = id
             self.memberIdSet = memberIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case memberIdSet = "MemberIdSet"
         }
     }
-    
+
     /// DeleteDeviceGroupMembers返回参数结构体
     public struct DeleteDeviceGroupMembersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除资产组成员
     @inlinable
-    public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupMembersResponse > {
+    public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
         self.client.execute(action: "DeleteDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资产组成员
     @inlinable
     public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {
         try await self.client.execute(action: "DeleteDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除资产组成员
     @inlinable
-    public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupMembersResponse > {
+    public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
         self.deleteDeviceGroupMembers(DeleteDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资产组成员
     @inlinable
     public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {

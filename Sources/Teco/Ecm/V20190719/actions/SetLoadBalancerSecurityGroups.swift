@@ -19,39 +19,39 @@ extension Ecm {
     public struct SetLoadBalancerSecurityGroupsRequest: TCRequestModel {
         /// 负载均衡实例 ID
         public let loadBalancerId: String
-        
+
         /// 安全组ID构成的数组，一个负载均衡实例最多可绑定5个安全组，如果要解绑所有安全组，可不传此参数，或传入空数组
         public let securityGroups: [String]?
-        
-        public init (loadBalancerId: String, securityGroups: [String]? = nil) {
+
+        public init(loadBalancerId: String, securityGroups: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.securityGroups = securityGroups
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case securityGroups = "SecurityGroups"
         }
     }
-    
+
     /// SetLoadBalancerSecurityGroups返回参数结构体
     public struct SetLoadBalancerSecurityGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。
     @inlinable
-    public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetLoadBalancerSecurityGroupsResponse > {
+    public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
         self.client.execute(action: "SetLoadBalancerSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。
@@ -59,15 +59,15 @@ extension Ecm {
     public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
         try await self.client.execute(action: "SetLoadBalancerSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。
     @inlinable
-    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetLoadBalancerSecurityGroupsResponse > {
+    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
         self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。

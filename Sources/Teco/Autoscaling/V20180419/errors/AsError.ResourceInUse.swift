@@ -22,59 +22,59 @@ extension TCAsError {
             case instanceInGroup = "ResourceInUse.InstanceInGroup"
             case launchConfigurationIdInUse = "ResourceInUse.LaunchConfigurationIdInUse"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 伸缩组正在执行伸缩活动。
         public static var activityInProgress: ResourceInUse {
             ResourceInUse(.activityInProgress)
         }
-        
+
         /// 伸缩组处于禁用状态。
         public static var autoScalingGroupNotActive: ResourceInUse {
             ResourceInUse(.autoScalingGroupNotActive)
         }
-        
+
         /// 伸缩组内尚有正常实例。
         public static var instanceInGroup: ResourceInUse {
             ResourceInUse(.instanceInGroup)
         }
-        
+
         /// 指定的启动配置仍在伸缩组中使用。
         public static var launchConfigurationIdInUse: ResourceInUse {
             ResourceInUse(.launchConfigurationIdInUse)
         }
-        
+
         public func asAsError() -> TCAsError {
             let code: TCAsError.Code
             switch self.error {
-            case .activityInProgress: 
+            case .activityInProgress:
                 code = .resourceInUse_ActivityInProgress
-            case .autoScalingGroupNotActive: 
+            case .autoScalingGroupNotActive:
                 code = .resourceInUse_AutoScalingGroupNotActive
-            case .instanceInGroup: 
+            case .instanceInGroup:
                 code = .resourceInUse_InstanceInGroup
-            case .launchConfigurationIdInUse: 
+            case .launchConfigurationIdInUse:
                 code = .resourceInUse_LaunchConfigurationIdInUse
             }
             return TCAsError(code, context: self.context)

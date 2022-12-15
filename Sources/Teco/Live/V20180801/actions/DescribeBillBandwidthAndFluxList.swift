@@ -19,30 +19,30 @@ extension Live {
     public struct DescribeBillBandwidthAndFluxListRequest: TCRequestModel {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
         public let startTime: String
-        
+
         /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过31天。支持最近3年的数据查询
         public let endTime: String
-        
+
         /// 直播播放域名，若不填，表示总体数据。
         public let playDomains: [String]?
-        
+
         /// 可选值：
         /// Mainland：查询国内数据，
         /// Oversea：则查询国外数据，
         /// 默认：查询国内+国外的数据。
         /// 注：LEB（快直播）只支持国内+国外数据查询。
         public let mainlandOrOversea: String?
-        
+
         /// 数据粒度，支持如下粒度：
         /// 5：5分钟粒度，（跨度不支持超过1天），
         /// 60：1小时粒度（跨度不支持超过一个月），
         /// 1440：天粒度（跨度不支持超过一个月）。
         /// 默认值：5。
         public let granularity: UInt64?
-        
+
         /// 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
         public let serviceName: String?
-        
+
         /// 大区，映射表如下：
         /// China Mainland 中国大陆
         /// Asia Pacific I 亚太一区
@@ -54,8 +54,8 @@ extension Live {
         /// Middle East 中东
         /// Africa 非洲。
         public let regionNames: [String]?
-        
-        public init (startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil) {
+
+        public init(startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.playDomains = playDomains
@@ -64,7 +64,7 @@ extension Live {
             self.serviceName = serviceName
             self.regionNames = regionNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -75,30 +75,30 @@ extension Live {
             case regionNames = "RegionNames"
         }
     }
-    
+
     /// DescribeBillBandwidthAndFluxList返回参数结构体
     public struct DescribeBillBandwidthAndFluxListResponse: TCResponseModel {
         /// 峰值带宽所在时间点，格式为yyyy-mm-dd HH:MM:SS。
         public let peakBandwidthTime: String
-        
+
         /// 峰值带宽，单位是Mbps。
         public let peakBandwidth: Float
-        
+
         /// 95峰值带宽所在时间点，格式为yyyy-mm-dd HH:MM:SS。
         public let p95PeakBandwidthTime: String
-        
+
         /// 95峰值带宽，单位是Mbps。
         public let p95PeakBandwidth: Float
-        
+
         /// 总流量，单位是MB。
         public let sumFlux: Float
-        
+
         /// 明细数据信息。
         public let dataInfoList: [BillDataInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case peakBandwidthTime = "PeakBandwidthTime"
             case peakBandwidth = "PeakBandwidth"
@@ -109,15 +109,15 @@ extension Live {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播播放带宽和流量数据查询
     ///
     /// 直播播放带宽和流量数据查询。
     @inlinable
-    public func describeBillBandwidthAndFluxList(_ input: DescribeBillBandwidthAndFluxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillBandwidthAndFluxListResponse > {
+    public func describeBillBandwidthAndFluxList(_ input: DescribeBillBandwidthAndFluxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillBandwidthAndFluxListResponse> {
         self.client.execute(action: "DescribeBillBandwidthAndFluxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播播放带宽和流量数据查询
     ///
     /// 直播播放带宽和流量数据查询。
@@ -125,15 +125,15 @@ extension Live {
     public func describeBillBandwidthAndFluxList(_ input: DescribeBillBandwidthAndFluxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillBandwidthAndFluxListResponse {
         try await self.client.execute(action: "DescribeBillBandwidthAndFluxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播播放带宽和流量数据查询
     ///
     /// 直播播放带宽和流量数据查询。
     @inlinable
-    public func describeBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillBandwidthAndFluxListResponse > {
+    public func describeBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillBandwidthAndFluxListResponse> {
         self.describeBillBandwidthAndFluxList(DescribeBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, serviceName: serviceName, regionNames: regionNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播播放带宽和流量数据查询
     ///
     /// 直播播放带宽和流量数据查询。

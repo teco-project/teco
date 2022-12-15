@@ -19,54 +19,54 @@ extension Iotvideo {
     public struct ModifyDataForwardRequest: TCRequestModel {
         /// 产品ID。
         public let productId: String
-        
+
         /// 转发地址。如果有鉴权Token，则需要自行传入，例如 [{\"forward\":{\"api\":\"http://123.207.117.108:1080/sub.php\",\"token\":\"testtoken\"}}]
         public let forwardAddr: String
-        
+
         /// 1-数据信息转发 2-设备上下线状态转发 3-数据信息转发&设备上下线状态转发
         public let dataChose: Int64?
-        
-        public init (productId: String, forwardAddr: String, dataChose: Int64? = nil) {
+
+        public init(productId: String, forwardAddr: String, dataChose: Int64? = nil) {
             self.productId = productId
             self.forwardAddr = forwardAddr
             self.dataChose = dataChose
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case forwardAddr = "ForwardAddr"
             case dataChose = "DataChose"
         }
     }
-    
+
     /// ModifyDataForward返回参数结构体
     public struct ModifyDataForwardResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改数据转发
     @inlinable
-    public func modifyDataForward(_ input: ModifyDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDataForwardResponse > {
+    public func modifyDataForward(_ input: ModifyDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataForwardResponse> {
         self.client.execute(action: "ModifyDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据转发
     @inlinable
     public func modifyDataForward(_ input: ModifyDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardResponse {
         try await self.client.execute(action: "ModifyDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改数据转发
     @inlinable
-    public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDataForwardResponse > {
+    public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataForwardResponse> {
         self.modifyDataForward(ModifyDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据转发
     @inlinable
     public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardResponse {

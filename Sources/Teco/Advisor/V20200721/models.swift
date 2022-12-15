@@ -20,39 +20,39 @@ extension Advisor {
         /// 评估项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let strategyId: UInt64?
-        
+
         /// 评估项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 评估项描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desc: String?
-        
+
         /// 评估项对应产品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let product: String?
-        
+
         /// 评估项对应产品名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productDesc: String?
-        
+
         /// 评估项优化建议
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repair: String?
-        
+
         /// 评估项类别ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: UInt64?
-        
+
         /// 评估项类别名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 评估项风险列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditions: [DescribeStrategiesCondition]?
-        
+
         enum CodingKeys: String, CodingKey {
             case strategyId = "StrategyId"
             case name = "Name"
@@ -65,24 +65,24 @@ extension Advisor {
             case conditions = "Conditions"
         }
     }
-    
+
     /// 评估项警告条件
     public struct DescribeStrategiesCondition: TCOutputModel {
         /// 警告条件ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionId: UInt64?
-        
+
         /// 警告级别，2:中风险，3:高风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: UInt64?
-        
+
         /// 警告级别描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let levelDesc: String?
-        
+
         /// 警告条件描述
         public let desc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case conditionId = "ConditionId"
             case level = "Level"
@@ -90,45 +90,45 @@ extension Advisor {
             case desc = "Desc"
         }
     }
-    
+
     /// 键值对
     public struct KeyValue: TCInputModel, TCOutputModel {
         /// 键名
         public let key: String?
-        
+
         /// 键名对应值
         public let value: String?
-        
-        public init (key: String? = nil, value: String? = nil) {
+
+        public init(key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 风险实例字段描述
     public struct RiskFieldsDesc: TCOutputModel {
         /// 字段ID
         public let field: String
-        
+
         /// 字段名称
         public let fieldName: String
-        
-        /// 字段类型, 
+
+        /// 字段类型,
         /// string: 字符串类型，例如"aa"
         /// int: 整形，例如 111
         /// stringSlice : 字符串数组类型，例如["a", "b"]
         /// tags: 标签类型, 例如: [{"Key":"kkk","Value":"vvv"},{"Key":"kkk2","Value":"vvv2"}]
         public let fieldType: String
-        
+
         /// 字段值对应字典
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldDict: [KeyValue]?
-        
+
         enum CodingKeys: String, CodingKey {
             case field = "Field"
             case fieldName = "FieldName"

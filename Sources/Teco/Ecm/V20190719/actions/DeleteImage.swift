@@ -19,44 +19,44 @@ extension Ecm {
     public struct DeleteImageRequest: TCRequestModel {
         /// 镜像ID列表。
         public let imageIDSet: [String]
-        
-        public init (imageIDSet: [String]) {
+
+        public init(imageIDSet: [String]) {
             self.imageIDSet = imageIDSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageIDSet = "ImageIDSet"
         }
     }
-    
+
     /// DeleteImage返回参数结构体
     public struct DeleteImageResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除镜像
     @inlinable
-    public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageResponse > {
+    public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageResponse> {
         self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像
     @inlinable
     public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
         try await self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除镜像
     @inlinable
-    public func deleteImage(imageIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageResponse > {
+    public func deleteImage(imageIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageResponse> {
         self.deleteImage(DeleteImageRequest(imageIDSet: imageIDSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像
     @inlinable
     public func deleteImage(imageIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {

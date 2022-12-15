@@ -19,34 +19,34 @@ extension Iotvideo {
     public struct DeleteAppUsrRequest: TCRequestModel {
         /// 客户的终端用户在IoT Video上的唯一标识ID
         public let accessId: String
-        
-        public init (accessId: String) {
+
+        public init(accessId: String) {
             self.accessId = accessId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessId = "AccessId"
         }
     }
-    
+
     /// DeleteAppUsr返回参数结构体
     public struct DeleteAppUsrResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable
-    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppUsrResponse > {
+    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
         self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
@@ -54,15 +54,15 @@ extension Iotvideo {
     public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
         try await self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable
-    public func deleteAppUsr(accessId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppUsrResponse > {
+    public func deleteAppUsr(accessId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
         self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。

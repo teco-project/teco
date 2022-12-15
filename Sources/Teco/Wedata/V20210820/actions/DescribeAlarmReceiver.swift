@@ -19,32 +19,32 @@ extension Wedata {
     public struct DescribeAlarmReceiverRequest: TCRequestModel {
         /// 告警ID
         public let alarmId: String
-        
+
         /// 当前页
         public let pageNumber: UInt64
-        
+
         /// 每页记录数
         public let pageSize: UInt64
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// 消息ID
         public let messageId: String
-        
+
         /// 类型
         public let taskType: UInt64?
-        
+
         /// 告警接收人ID(逗号分隔)
         public let alarmRecipient: String?
-        
+
         /// 告警接收人姓名(逗号分隔)
         public let alarmRecipientName: String?
-        
+
         /// 告警时间
         public let alarmTime: String?
-        
-        public init (alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil) {
+
+        public init(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil) {
             self.alarmId = alarmId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -55,7 +55,7 @@ extension Wedata {
             self.alarmRecipientName = alarmRecipientName
             self.alarmTime = alarmTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmId = "AlarmId"
             case pageNumber = "PageNumber"
@@ -68,44 +68,44 @@ extension Wedata {
             case alarmTime = "AlarmTime"
         }
     }
-    
+
     /// DescribeAlarmReceiver返回参数结构体
     public struct DescribeAlarmReceiverResponse: TCResponseModel {
         /// 告警接收人列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmReceiverInfoList: [AlarmReceiverInfo]?
-        
+
         /// 总记录数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmReceiverInfoList = "AlarmReceiverInfoList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 告警接收人详情
     @inlinable
-    public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmReceiverResponse > {
+    public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmReceiverResponse> {
         self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 告警接收人详情
     @inlinable
     public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {
         try await self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 告警接收人详情
     @inlinable
-    public func describeAlarmReceiver(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmReceiverResponse > {
+    public func describeAlarmReceiver(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmReceiverResponse> {
         self.describeAlarmReceiver(DescribeAlarmReceiverRequest(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 告警接收人详情
     @inlinable
     public func describeAlarmReceiver(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {

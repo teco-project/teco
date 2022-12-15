@@ -19,26 +19,26 @@ extension Iotvideo {
     public struct ModifyPushChannelRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 推送类型。ckafka：消息队列；forward：http/https推送
         public let type: String
-        
+
         /// 第三方推送地址
         public let forwardAddress: String?
-        
+
         /// 第三方推送密钥，不填写则不生成签名。
         public let forwardKey: String?
-        
+
         /// ckafka地域
         public let cKafkaRegion: String?
-        
+
         /// ckafka实例
         public let cKafkaInstance: String?
-        
+
         /// ckafka订阅主题
         public let cKafkaTopic: String?
-        
-        public init (productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil) {
+
+        public init(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil) {
             self.productId = productId
             self.type = type
             self.forwardAddress = forwardAddress
@@ -47,7 +47,7 @@ extension Iotvideo {
             self.cKafkaInstance = cKafkaInstance
             self.cKafkaTopic = cKafkaTopic
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case type = "Type"
@@ -58,35 +58,35 @@ extension Iotvideo {
             case cKafkaTopic = "CKafkaTopic"
         }
     }
-    
+
     /// ModifyPushChannel返回参数结构体
     public struct ModifyPushChannelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新推送通道
     @inlinable
-    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPushChannelResponse > {
+    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPushChannelResponse> {
         self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新推送通道
     @inlinable
     public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
         try await self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新推送通道
     @inlinable
-    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPushChannelResponse > {
+    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPushChannelResponse> {
         self.modifyPushChannel(ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新推送通道
     @inlinable
     public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {

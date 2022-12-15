@@ -19,32 +19,32 @@ extension Asw {
     public struct CreateFlowServiceRequest: TCRequestModel {
         /// 定义文本（JSON格式）
         public let definition: String
-        
+
         /// 状态机所属服务名
         public let flowServiceName: String
-        
+
         /// 是不是新的角色
         public let isNewRole: Bool
-        
+
         /// 状态机类型（EXPRESS，STANDARD）
         public let type: String
-        
+
         /// 状态机所属服务中文名
         public let flowServiceChineseName: String?
-        
+
         /// 角色资源名, 比如: qcs::cam::uin/20103392:roleName/SomeRoleForYourStateMachine
         public let roleResource: String?
-        
+
         /// 备注
         public let description: String?
-        
+
         /// 是否开启CLS日志投递功能
         public let enableCLS: Bool?
-        
+
         /// 该状态机的默认输入
         public let input: String?
-        
-        public init (definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil) {
+
+        public init(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil) {
             self.definition = definition
             self.flowServiceName = flowServiceName
             self.isNewRole = isNewRole
@@ -55,7 +55,7 @@ extension Asw {
             self.enableCLS = enableCLS
             self.input = input
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case flowServiceName = "FlowServiceName"
@@ -68,33 +68,33 @@ extension Asw {
             case input = "Input"
         }
     }
-    
+
     /// CreateFlowService返回参数结构体
     public struct CreateFlowServiceResponse: TCResponseModel {
         /// 状态机所属服务资源
         public let flowServiceResource: String
-        
+
         /// 生成日期
         public let createDate: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowServiceResource = "FlowServiceResource"
             case createDate = "CreateDate"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建状态机
     ///
     /// 该接口用于生成状态机服务
     @inlinable
-    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowServiceResponse > {
+    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowServiceResponse> {
         self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建状态机
     ///
     /// 该接口用于生成状态机服务
@@ -102,15 +102,15 @@ extension Asw {
     public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
         try await self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建状态机
     ///
     /// 该接口用于生成状态机服务
     @inlinable
-    public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowServiceResponse > {
+    public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowServiceResponse> {
         self.createFlowService(CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建状态机
     ///
     /// 该接口用于生成状态机服务

@@ -19,48 +19,48 @@ extension Cme {
     public struct DescribeClassRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
         public let platform: String
-        
+
         /// 归属者。
         public let owner: Entity
-        
+
         /// 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         public let `operator`: String?
-        
-        public init (platform: String, owner: Entity, operator: String? = nil) {
+
+        public init(platform: String, owner: Entity, operator: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case owner = "Owner"
             case `operator` = "Operator"
         }
     }
-    
+
     /// DescribeClass返回参数结构体
     public struct DescribeClassResponse: TCResponseModel {
         /// 分类信息列表。
         public let classInfoSet: [ClassInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case classInfoSet = "ClassInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取分类列表
     ///
     /// 获取指定归属者下所有的分类信息。
     @inlinable
-    public func describeClass(_ input: DescribeClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassResponse > {
+    public func describeClass(_ input: DescribeClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassResponse> {
         self.client.execute(action: "DescribeClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取分类列表
     ///
     /// 获取指定归属者下所有的分类信息。
@@ -68,15 +68,15 @@ extension Cme {
     public func describeClass(_ input: DescribeClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassResponse {
         try await self.client.execute(action: "DescribeClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取分类列表
     ///
     /// 获取指定归属者下所有的分类信息。
     @inlinable
-    public func describeClass(platform: String, owner: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassResponse > {
+    public func describeClass(platform: String, owner: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassResponse> {
         self.describeClass(DescribeClassRequest(platform: platform, owner: owner, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取分类列表
     ///
     /// 获取指定归属者下所有的分类信息。

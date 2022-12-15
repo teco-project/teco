@@ -19,48 +19,48 @@ extension Tcr {
     public struct DescribeRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名字
         public let repoName: String
-        
-        public init (repoName: String) {
+
+        public init(repoName: String) {
             self.repoName = repoName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
         }
     }
-    
+
     /// DescribeRepositoryPersonal返回参数结构体
     public struct DescribeRepositoryPersonalResponse: TCResponseModel {
         /// 仓库信息
         public let data: RepositoryInfoResp
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询个人版仓库信息
     @inlinable
-    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryPersonalResponse > {
+    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryPersonalResponse> {
         self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询个人版仓库信息
     @inlinable
     public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
         try await self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询个人版仓库信息
     @inlinable
-    public func describeRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryPersonalResponse > {
+    public func describeRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryPersonalResponse> {
         self.describeRepositoryPersonal(DescribeRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询个人版仓库信息
     @inlinable
     public func describeRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {

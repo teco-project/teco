@@ -22,56 +22,56 @@ extension Lighthouse {
     public struct AttachDetail: TCOutputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例已挂载弹性云盘数量
         public let attachedDiskCount: Int64
-        
+
         /// 可挂载弹性云盘数量
         public let maxAttachCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case attachedDiskCount = "AttachedDiskCount"
             case maxAttachCount = "MaxAttachCount"
         }
     }
-    
+
     /// 描述了镜像信息。
     public struct Blueprint: TCOutputModel {
         /// 镜像 ID  ，是 Blueprint 的唯一标识。
         public let blueprintId: String
-        
+
         /// 镜像对外展示标题。
         public let displayTitle: String
-        
+
         /// 镜像对外展示版本。
         public let displayVersion: String
-        
+
         /// 镜像描述信息。
         public let description: String
-        
+
         /// 操作系统名称。
         public let osName: String
-        
+
         /// 操作系统平台。
         public let platform: String
-        
+
         /// 操作系统平台类型，如 LINUX_UNIX、WINDOWS。
         public let platformType: String
-        
+
         /// 镜像类型，如 APP_OS、PURE_OS、PRIVATE。
         public let blueprintType: String
-        
+
         /// 镜像图片 URL。
         public let imageUrl: String
-        
+
         /// 镜像所需系统盘大小，单位 GB。
         public let requiredSystemDiskSize: Int64
-        
+
         /// 镜像状态。
         public let blueprintState: String
-        
-        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -80,30 +80,30 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date?
-        
+
         /// 镜像名称。
         public let blueprintName: String
-        
+
         /// 镜像是否支持自动化助手。
         public let supportAutomationTools: Bool
-        
+
         /// 镜像所需内存大小, 单位: GB
         public let requiredMemorySize: Int64
-        
+
         /// CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageId: String?
-        
+
         /// 官方网站Url。
         public let communityUrl: String
-        
+
         /// 指导文章Url。
         public let guideUrl: String
-        
+
         /// 镜像关联使用场景Id列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sceneIdSet: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case blueprintId = "BlueprintId"
             case displayTitle = "DisplayTitle"
@@ -126,39 +126,39 @@ extension Lighthouse {
             case sceneIdSet = "SceneIdSet"
         }
     }
-    
+
     /// 描述镜像实例信息。
     public struct BlueprintInstance: TCOutputModel {
         /// 镜像信息。
         public let blueprint: Blueprint
-        
+
         /// 软件列表。
         public let softwareSet: [Software]
-        
+
         /// 实例 ID。
         public let instanceId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case blueprint = "Blueprint"
             case softwareSet = "SoftwareSet"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// BlueprintPrice	自定义镜像的价格参数。
     public struct BlueprintPrice: TCOutputModel {
         /// 镜像单价，原价。单位元。
         public let originalBlueprintPrice: Float
-        
+
         /// 镜像总价，原价。单位元。
         public let originalPrice: Float
-        
+
         /// 折扣。
         public let discount: Int64
-        
+
         /// 镜像折扣后总价。单位元。
         public let discountPrice: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case originalBlueprintPrice = "OriginalBlueprintPrice"
             case originalPrice = "OriginalPrice"
@@ -166,59 +166,59 @@ extension Lighthouse {
             case discountPrice = "DiscountPrice"
         }
     }
-    
+
     /// 套餐信息。
     public struct Bundle: TCOutputModel {
         /// 套餐 ID。
         public let bundleId: String
-        
+
         /// 内存大小，单位 GB。
         public let memory: Int64
-        
+
         /// 系统盘类型。
-        /// 取值范围： 
+        /// 取值范围：
         /// <li> LOCAL_BASIC：本地硬盘</li><li> LOCAL_SSD：本地 SSD 硬盘</li><li> CLOUD_BASIC：普通云硬盘</li><li> CLOUD_SSD：SSD 云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li>
         public let systemDiskType: String
-        
+
         /// 系统盘大小。
         public let systemDiskSize: Int64
-        
+
         /// 每月网络流量，单位 Gb。
         public let monthlyTraffic: Int64
-        
+
         /// 是否支持 Linux/Unix 平台。
         public let supportLinuxUnixPlatform: Bool
-        
+
         /// 是否支持 Windows 平台。
         public let supportWindowsPlatform: Bool
-        
+
         /// 套餐当前单位价格信息。
         public let price: Price
-        
+
         /// CPU 核数。
         public let cpu: Int64
-        
+
         /// 峰值带宽，单位 Mbps。
         public let internetMaxBandwidthOut: UInt64
-        
+
         /// 网络计费类型。
         public let internetChargeType: String
-        
+
         /// 套餐售卖状态,取值:‘AVAILABLE’(可用) , ‘SOLD_OUT’(售罄)
         public let bundleSalesState: String
-        
+
         /// 套餐类型。
         /// 取值范围：
         /// <li> GENERAL_BUNDLE：通用型</li><li> STORAGE_BUNDLE：存储型 </li>
         public let bundleType: String
-        
+
         /// 套餐展示标签.
         /// 取值范围:
         /// "ACTIVITY": 活动套餐,
         /// "NORMAL": 普通套餐
         /// "CAREFREE": 无忧套餐
         public let bundleDisplayLabel: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bundleId = "BundleId"
             case memory = "Memory"
@@ -236,15 +236,15 @@ extension Lighthouse {
             case bundleDisplayLabel = "BundleDisplayLabel"
         }
     }
-    
+
     /// 云联网关联的实例列表。
     public struct CcnAttachedInstance: TCOutputModel {
         /// 云联网ID。
         public let ccnId: String
-        
+
         /// 关联实例CIDR。
         public let cidrBlock: [String]
-        
+
         /// 关联实例状态：
         /// •  PENDING：申请中
         /// •  ACTIVE：已连接
@@ -256,7 +256,7 @@ extension Lighthouse {
         /// •  DETACHING：解关联中
         /// •  DETACHFAILED：解关联失败（2小时后将异步强制解关联）
         public let state: String
-        
+
         /// 关联时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -265,10 +265,10 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var attachedTime: Date?
-        
+
         /// 备注
         public let description: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ccnId = "CcnId"
             case cidrBlock = "CidrBlock"
@@ -277,47 +277,47 @@ extension Lighthouse {
             case description = "Description"
         }
     }
-    
+
     /// 容器环境变量
     public struct ContainerEnv: TCInputModel {
         /// 环境变量Key
         public let key: String
-        
+
         /// 环境变量值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 数据盘价格
     public struct DataDiskPrice: TCOutputModel {
         /// 云硬盘ID。
         public let diskId: String
-        
+
         /// 云硬盘单价。
         public let originalDiskPrice: Float
-        
+
         /// 云硬盘总价。
         public let originalPrice: Float
-        
+
         /// 折扣。
         public let discount: Float
-        
+
         /// 折后总价。
         public let discountPrice: Float
-        
+
         /// 数据盘挂载的实例ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case diskId = "DiskId"
             case originalDiskPrice = "OriginalDiskPrice"
@@ -327,44 +327,44 @@ extension Lighthouse {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 限制操作。
     public struct DeniedAction: TCOutputModel {
         /// 限制操作名。
         public let action: String
-        
+
         /// 限制操作消息码。
         public let code: String
-        
+
         /// 限制操作消息。
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case action = "Action"
             case code = "Code"
             case message = "Message"
         }
     }
-    
+
     /// 计费项目明细。
     public struct DetailPrice: TCOutputModel {
         /// 描述计费项目名称，目前取值
         /// <li>"DiskSpace"代表云硬盘空间收费项。</li>
         /// <li>"DiskBackupQuota"代表云硬盘备份点配额收费项。</li>
         public let priceName: String
-        
+
         /// 云硬盘计费项维度单价。
         public let originUnitPrice: Float
-        
+
         /// 云硬盘计费项维度总价。
         public let originalPrice: Float
-        
+
         /// 云硬盘在计费项维度折扣。
         public let discount: Float
-        
+
         /// 云硬盘在计费项维度折后总价。
         public let discountPrice: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case priceName = "PriceName"
             case originUnitPrice = "OriginUnitPrice"
@@ -373,27 +373,27 @@ extension Lighthouse {
             case discountPrice = "DiscountPrice"
         }
     }
-    
+
     /// 套餐折扣详情（仅用于控制台调用询价相关接口返回）。
     public struct DiscountDetail: TCOutputModel {
         /// 计费时长。
         public let timeSpan: Int64
-        
+
         /// 计费单元。
         public let timeUnit: String
-        
+
         /// 总价。
         public let totalCost: Float
-        
+
         /// 折后总价。
         public let realTotalCost: Float
-        
+
         /// 折扣。
         public let discount: Int64
-        
+
         /// 具体折扣详情。
         public let policyDetail: PolicyDetail
-        
+
         enum CodingKeys: String, CodingKey {
             case timeSpan = "TimeSpan"
             case timeUnit = "TimeUnit"
@@ -403,36 +403,36 @@ extension Lighthouse {
             case policyDetail = "PolicyDetail"
         }
     }
-    
+
     /// 磁盘信息
     public struct Disk: TCOutputModel {
         /// 磁盘ID
         public let diskId: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 可用区
         public let zone: String
-        
+
         /// 磁盘名称
         public let diskName: String
-        
+
         /// 磁盘类型
         public let diskUsage: String
-        
+
         /// 磁盘介质类型
         public let diskType: String
-        
+
         /// 磁盘付费类型
         public let diskChargeType: String
-        
+
         /// 磁盘大小
         public let diskSize: Int64
-        
+
         /// 续费标识
         public let renewFlag: String
-        
+
         /// 磁盘状态，取值范围：
         /// <li>PENDING：创建中。 </li>
         /// <li>UNATTACHED：未挂载。</li>
@@ -445,23 +445,23 @@ extension Lighthouse {
         /// <li> DELETING：删除中。</li>
         /// <li> FREEZING：冻结中。</li>
         public let diskState: String
-        
+
         /// 磁盘挂载状态
         public let attached: Bool
-        
+
         /// 是否随实例释放
         public let deleteWithInstance: Bool
-        
+
         /// 上一次操作
         public let latestOperation: String
-        
+
         /// 上一次操作状态
         public let latestOperationState: String
-        
+
         /// 上一次请求ID
         public let latestOperationRequestId: String
-        
-        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -469,8 +469,8 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date
-        
-        /// 到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -479,8 +479,8 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var expiredTime: Date?
-        
-        /// 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -489,13 +489,13 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var isolatedTime: Date?
-        
+
         /// 云硬盘的已有备份点数量。
         public let diskBackupCount: Int64
-        
+
         /// 云硬盘的备份点配额数量。
         public let diskBackupQuota: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case diskId = "DiskId"
             case instanceId = "InstanceId"
@@ -519,51 +519,51 @@ extension Lighthouse {
             case diskBackupQuota = "DiskBackupQuota"
         }
     }
-    
+
     /// 云硬盘包年包月相关参数设置
     public struct DiskChargePrepaid: TCInputModel {
         /// 新购周期。
         public let period: Int64
-        
+
         /// 续费标识。
         public let renewFlag: String?
-        
+
         /// 新购单位. 默认值: "m"。
         public let timeUnit: String?
-        
-        public init (period: Int64, renewFlag: String? = nil, timeUnit: String? = nil) {
+
+        public init(period: Int64, renewFlag: String? = nil, timeUnit: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
             self.timeUnit = timeUnit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case renewFlag = "RenewFlag"
             case timeUnit = "TimeUnit"
         }
     }
-    
+
     /// 云硬盘配置
     public struct DiskConfig: TCOutputModel {
         /// 可用区。
         public let zone: String
-        
+
         /// 云硬盘类型。
         public let diskType: String
-        
+
         /// 云硬盘可售卖状态。
         public let diskSalesState: String
-        
+
         /// 最大云硬盘大小。
         public let maxDiskSize: Int64
-        
+
         /// 最小云硬盘大小。
         public let minDiskSize: Int64
-        
+
         /// 云硬盘步长。
         public let diskStepSize: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case diskType = "DiskType"
@@ -573,38 +573,38 @@ extension Lighthouse {
             case diskStepSize = "DiskStepSize"
         }
     }
-    
+
     /// 磁盘操作限制列表详细信息
     public struct DiskDeniedActions: TCOutputModel {
         /// 云硬盘ID。
         public let diskId: String
-        
+
         /// 操作限制列表。
         public let deniedActions: [DeniedAction]
-        
+
         enum CodingKeys: String, CodingKey {
             case diskId = "DiskId"
             case deniedActions = "DeniedActions"
         }
     }
-    
+
     /// 云硬盘价格
     public struct DiskPrice: TCOutputModel {
         /// 云硬盘单价。
         public let originalDiskPrice: Float
-        
+
         /// 云硬盘总价。
         public let originalPrice: Float
-        
+
         /// 折扣。
         public let discount: Float
-        
+
         /// 折后总价。
         public let discountPrice: Float
-        
+
         /// 计费项目明细列表。
         public let detailPrices: [DetailPrice]
-        
+
         enum CodingKeys: String, CodingKey {
             case originalDiskPrice = "OriginalDiskPrice"
             case originalPrice = "OriginalPrice"
@@ -613,21 +613,21 @@ extension Lighthouse {
             case detailPrices = "DetailPrices"
         }
     }
-    
+
     /// 可退还云硬盘详细信息
     public struct DiskReturnable: TCOutputModel {
         /// 云硬盘ID。
         public let diskId: String
-        
+
         /// 云硬盘是否可退还。
         public let isReturnable: Bool
-        
+
         /// 云硬盘退还失败错误码。
         public let returnFailCode: Int64
-        
+
         /// 云硬盘退还失败错误信息。
         public let returnFailMessage: String
-        
+
         enum CodingKeys: String, CodingKey {
             case diskId = "DiskId"
             case isReturnable = "IsReturnable"
@@ -635,28 +635,28 @@ extension Lighthouse {
             case returnFailMessage = "ReturnFailMessage"
         }
     }
-    
+
     /// Docker容器创建时的配置
     public struct DockerContainerConfiguration: TCInputModel, TCOutputModel {
         /// 容器镜像地址
         public let containerImage: String
-        
+
         /// 容器名称
         public let containerName: String?
-        
+
         /// 环境变量列表
         public let envs: [ContainerEnv]?
-        
+
         /// 容器端口主机端口映射列表
         public let publishPorts: [DockerContainerPublishPort]?
-        
+
         /// 容器加载本地卷列表
         public let volumes: [DockerContainerVolume]?
-        
+
         /// 运行的命令
         public let command: String?
-        
-        public init (containerImage: String, containerName: String? = nil, envs: [ContainerEnv]? = nil, publishPorts: [DockerContainerPublishPort]? = nil, volumes: [DockerContainerVolume]? = nil, command: String? = nil) {
+
+        public init(containerImage: String, containerName: String? = nil, envs: [ContainerEnv]? = nil, publishPorts: [DockerContainerPublishPort]? = nil, volumes: [DockerContainerVolume]? = nil, command: String? = nil) {
             self.containerImage = containerImage
             self.containerName = containerName
             self.envs = envs
@@ -664,7 +664,7 @@ extension Lighthouse {
             self.volumes = volumes
             self.command = command
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case containerImage = "ContainerImage"
             case containerName = "ContainerName"
@@ -674,30 +674,30 @@ extension Lighthouse {
             case command = "Command"
         }
     }
-    
+
     /// Docker容器映射的端口
     public struct DockerContainerPublishPort: TCInputModel, TCOutputModel {
         /// 主机端口
         public let hostPort: Int64
-        
+
         /// 容器端口
         public let containerPort: Int64
-        
+
         /// 对外绑定IP，默认0.0.0.0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         /// 协议，默认tcp，支持tcp/udp/sctp
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `protocol`: String?
-        
-        public init (hostPort: Int64, containerPort: Int64, ip: String? = nil, protocol: String? = nil) {
+
+        public init(hostPort: Int64, containerPort: Int64, ip: String? = nil, protocol: String? = nil) {
             self.hostPort = hostPort
             self.containerPort = containerPort
             self.ip = ip
             self.`protocol` = `protocol`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hostPort = "HostPort"
             case containerPort = "ContainerPort"
@@ -705,26 +705,26 @@ extension Lighthouse {
             case `protocol` = "Protocol"
         }
     }
-    
+
     /// Docker容器挂载卷
     public struct DockerContainerVolume: TCInputModel, TCOutputModel {
         /// 容器路径
         public let containerPath: String
-        
+
         /// 主机路径
         public let hostPath: String?
-        
-        public init (containerPath: String, hostPath: String? = nil) {
+
+        public init(containerPath: String, hostPath: String? = nil) {
             self.containerPath = containerPath
             self.hostPath = hostPath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case containerPath = "ContainerPath"
             case hostPath = "HostPath"
         }
     }
-    
+
     /// >描述键值对过滤器，用于条件过滤查询。例如过滤名称等
     /// > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
     /// > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
@@ -739,46 +739,46 @@ extension Lighthouse {
     public struct Filter: TCInputModel {
         /// 需要过滤的字段。
         public let name: String
-        
+
         /// 字段的过滤值。
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 描述防火墙规则信息。
     public struct FirewallRule: TCInputModel {
         /// 协议，取值：TCP，UDP，ICMP，ALL。
         public let `protocol`: String
-        
+
         /// 端口，取值：ALL，单独的端口，逗号分隔的离散端口，减号分隔的端口范围。
         public let port: String?
-        
+
         /// 网段或 IP (互斥)。默认为 0.0.0.0/0，表示所有来源。
         public let cidrBlock: String?
-        
+
         /// 取值：ACCEPT，DROP。默认为 ACCEPT。
         public let action: String?
-        
+
         /// 防火墙规则描述。
         public let firewallRuleDescription: String?
-        
-        public init (protocol: String, port: String? = nil, cidrBlock: String? = nil, action: String? = nil, firewallRuleDescription: String? = nil) {
+
+        public init(protocol: String, port: String? = nil, cidrBlock: String? = nil, action: String? = nil, firewallRuleDescription: String? = nil) {
             self.`protocol` = `protocol`
             self.port = port
             self.cidrBlock = cidrBlock
             self.action = action
             self.firewallRuleDescription = firewallRuleDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case port = "Port"
@@ -787,27 +787,27 @@ extension Lighthouse {
             case firewallRuleDescription = "FirewallRuleDescription"
         }
     }
-    
+
     /// 描述防火墙规则详细信息。
     public struct FirewallRuleInfo: TCOutputModel {
         /// 应用类型，取值：自定义，HTTP(80)，HTTPS(443)，Linux登录(22)，Windows登录(3389)，MySQL(3306)，SQL Server(1433)，全部TCP，全部UDP，Ping-ICMP，ALL。
         public let appType: String
-        
+
         /// 协议，取值：TCP，UDP，ICMP，ALL。
         public let `protocol`: String
-        
+
         /// 端口，取值：ALL，单独的端口，逗号分隔的离散端口，减号分隔的端口范围。
         public let port: String
-        
+
         /// 网段或 IP (互斥)。默认为 0.0.0.0/0，表示所有来源。
         public let cidrBlock: String
-        
+
         /// 取值：ACCEPT，DROP。默认为 ACCEPT。
         public let action: String
-        
+
         /// 防火墙规则描述。
         public let firewallRuleDescription: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appType = "AppType"
             case `protocol` = "Protocol"
@@ -817,93 +817,93 @@ extension Lighthouse {
             case firewallRuleDescription = "FirewallRuleDescription"
         }
     }
-    
+
     /// 描述通用资源配额信息。
     public struct GeneralResourceQuota: TCOutputModel {
         /// 资源名称。
         public let resourceName: String
-        
+
         /// 资源当前可用数量。
         public let resourceQuotaAvailable: Int64
-        
+
         /// 资源总数量。
         public let resourceQuotaTotal: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceName = "ResourceName"
             case resourceQuotaAvailable = "ResourceQuotaAvailable"
             case resourceQuotaTotal = "ResourceQuotaTotal"
         }
     }
-    
+
     /// 描述了实例信息。
     public struct Instance: TCOutputModel {
         /// 实例 ID。
         public let instanceId: String
-        
+
         /// 套餐 ID。
         public let bundleId: String
-        
+
         /// 镜像 ID。
         public let blueprintId: String
-        
+
         /// 实例的 CPU 核数，单位：核。
         public let cpu: Int64
-        
+
         /// 实例内存容量，单位：GB 。
         public let memory: Int64
-        
+
         /// 实例名称。
         public let instanceName: String
-        
-        /// 实例计费模式。取值范围： 
+
+        /// 实例计费模式。取值范围：
         /// PREPAID：表示预付费，即包年包月。
         public let instanceChargeType: String
-        
+
         /// 实例系统盘信息。
         public let systemDisk: SystemDisk
-        
-        /// 实例主网卡的内网 IP。 
+
+        /// 实例主网卡的内网 IP。
         /// 注意：此字段可能返回 空，表示取不到有效值。
         public let privateAddresses: [String]
-        
-        /// 实例主网卡的公网 IP。 
+
+        /// 实例主网卡的公网 IP。
         /// 注意：此字段可能返回 空，表示取不到有效值。
         public let publicAddresses: [String]
-        
+
         /// 实例带宽信息。
         public let internetAccessible: InternetAccessible
-        
-        /// 自动续费标识。取值范围： 
-        /// NOTIFY_AND_MANUAL_RENEW：表示通知即将过期，但不自动续费  
+
+        /// 自动续费标识。取值范围：
+        /// NOTIFY_AND_MANUAL_RENEW：表示通知即将过期，但不自动续费
         /// NOTIFY_AND_AUTO_RENEW：表示通知即将过期，而且自动续费 。
         public let renewFlag: String
-        
+
         /// 实例登录设置。
         public let loginSettings: LoginSettings
-        
-        /// 实例状态。取值范围： 
+
+        /// 实例状态。取值范围：
         /// <li>PENDING：表示创建中</li><li>LAUNCH_FAILED：表示创建失败</li><li>RUNNING：表示运行中</li><li>STOPPED：表示关机</li><li>STARTING：表示开机中</li><li>STOPPING：表示关机中</li><li>REBOOTING：表示重启中</li><li>SHUTDOWN：表示停止待销毁</li><li>TERMINATING：表示销毁中</li><li>DELETING：表示删除中</li><li>FREEZING：表示冻结中</li><li>ENTER_RESCUE_MODE：表示进入救援模式中</li><li>RESCUE_MODE：表示救援模式</li><li>EXIT_RESCUE_MODE：表示退出救援模式中</li>
         public let instanceState: String
-        
+
         /// 实例全局唯一 ID。
         public let uuid: String
-        
+
         /// 实例的最新操作。例：StopInstances、ResetInstance。注意：此字段可能返回 空值，表示取不到有效值。
         public let latestOperation: String
-        
-        /// 实例的最新操作状态。取值范围： 
-        /// SUCCESS：表示操作成功 
-        /// OPERATING：表示操作执行中 
-        /// FAILED：表示操作失败 
+
+        /// 实例的最新操作状态。取值范围：
+        /// SUCCESS：表示操作成功
+        /// OPERATING：表示操作执行中
+        /// FAILED：表示操作失败
         /// 注意：此字段可能返回 空值，表示取不到有效值。
         public let latestOperationState: String
-        
-        /// 实例最新操作的唯一请求 ID。 
+
+        /// 实例最新操作的唯一请求 ID。
         /// 注意：此字段可能返回 空值，表示取不到有效值。
         public let latestOperationRequestId: String
-        
-        /// 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -912,8 +912,8 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var isolatedTime: Date?
-        
-        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -922,8 +922,8 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date?
-        
-        /// 到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -932,26 +932,26 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var expiredTime: Date?
-        
+
         /// 操作系统平台类型，如 LINUX_UNIX、WINDOWS。
         public let platformType: String
-        
+
         /// 操作系统平台。
         public let platform: String
-        
+
         /// 操作系统名称。
         public let osName: String
-        
+
         /// 可用区。
         public let zone: String
-        
+
         /// 实例绑定的标签列表。
         public let tags: [Tag]
-        
+
         /// 实例封禁状态。取值范围：
         /// <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
         public let instanceRestrictState: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case bundleId = "BundleId"
@@ -982,55 +982,55 @@ extension Lighthouse {
             case instanceRestrictState = "InstanceRestrictState"
         }
     }
-    
+
     /// 描述了实例的计费模式
     public struct InstanceChargePrepaid: TCInputModel {
         /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
         public let period: Int64
-        
+
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费<br><li>DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
-        
-        public init (period: Int64, renewFlag: String? = nil) {
+
+        public init(period: Int64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case renewFlag = "RenewFlag"
         }
     }
-    
+
     /// 实例操作限制列表。
     public struct InstanceDeniedActions: TCOutputModel {
         /// 实例 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 操作限制列表。
         public let deniedActions: [DeniedAction]
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case deniedActions = "DeniedActions"
         }
     }
-    
+
     /// 关于Lighthouse Instance实例的价格信息
     public struct InstancePrice: TCOutputModel {
         /// 套餐单价原价。
         public let originalBundlePrice: Float
-        
+
         /// 原价。
         public let originalPrice: Float
-        
+
         /// 折扣。
         public let discount: Int64
-        
+
         /// 折后价。
         public let discountPrice: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case originalBundlePrice = "OriginalBundlePrice"
             case originalPrice = "OriginalPrice"
@@ -1038,37 +1038,37 @@ extension Lighthouse {
             case discountPrice = "DiscountPrice"
         }
     }
-    
+
     /// 实例价格详细信息
     public struct InstancePriceDetail: TCOutputModel {
         /// 实例ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 询价信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instancePrice: InstancePrice?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instancePrice = "InstancePrice"
         }
     }
-    
+
     /// 实例可退还信息。
     public struct InstanceReturnable: TCOutputModel {
         /// 实例 ID。
         public let instanceId: String
-        
+
         /// 实例是否可退还。
         public let isReturnable: Bool
-        
+
         /// 实例退还失败错误码。
         public let returnFailCode: Int64
-        
+
         /// 实例退还失败错误信息。
         public let returnFailMessage: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case isReturnable = "IsReturnable"
@@ -1076,56 +1076,56 @@ extension Lighthouse {
             case returnFailMessage = "ReturnFailMessage"
         }
     }
-    
+
     /// 实例流量包详情
     public struct InstanceTrafficPackage: TCOutputModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 流量包详情列表。
         public let trafficPackageSet: [TrafficPackage]
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case trafficPackageSet = "TrafficPackageSet"
         }
     }
-    
+
     /// 描述了启动配置创建实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等。
     public struct InternetAccessible: TCOutputModel {
         /// 网络计费类型，取值范围：
         /// <li>按流量包付费：TRAFFIC_POSTPAID_BY_HOUR</li>
         /// <li>按带宽付费： BANDWIDTH_POSTPAID_BY_HOUR</li>
         public let internetChargeType: String
-        
+
         /// 公网出带宽上限，单位：Mbps。
         public let internetMaxBandwidthOut: Int64
-        
+
         /// 是否分配公网 IP。
         public let publicIpAssigned: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case internetChargeType = "InternetChargeType"
             case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
             case publicIpAssigned = "PublicIpAssigned"
         }
     }
-    
+
     /// 描述密钥对信息。
     public struct KeyPair: TCOutputModel {
         /// 密钥对 ID ，是密钥对的唯一标识。
         public let keyId: String
-        
+
         /// 密钥对名称。
         public let keyName: String
-        
+
         /// 密钥对的纯文本公钥。
         public let publicKey: String
-        
+
         /// 密钥对关联的实例 ID 列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let associatedInstanceIds: [String]?
-        
+
         /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1134,11 +1134,11 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date?
-        
+
         /// 密钥对私钥。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privateKey: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
             case keyName = "KeyName"
@@ -1148,13 +1148,13 @@ extension Lighthouse {
             case privateKey = "PrivateKey"
         }
     }
-    
+
     /// 实例密码登录配置信息。
     public struct LoginConfiguration: TCInputModel {
         /// <li>"YES"代表选择自动生成密码，这时不指定Password字段。</li>
         /// <li>"NO"代表选择自定义密码，这时要指定Password字段。</li>
         public let autoGeneratePassword: String
-        
+
         /// 实例登录密码。具体按照操作系统的复杂度要求。
         /// WINDOWS 实例密码必须 12-30 位，不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符
         /// <li>小写字母：[a-z]</li>
@@ -1162,46 +1162,46 @@ extension Lighthouse {
         /// <li>数字： 0-9</li>
         /// <li>特殊字符：()`~!@#$%^&*-+=_|{}[]:;' <>,.?/</li>
         public let password: String?
-        
-        public init (autoGeneratePassword: String, password: String? = nil) {
+
+        public init(autoGeneratePassword: String, password: String? = nil) {
             self.autoGeneratePassword = autoGeneratePassword
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoGeneratePassword = "AutoGeneratePassword"
             case password = "Password"
         }
     }
-    
+
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCOutputModel {
         /// 密钥 ID 列表。关联密钥后，就可以通过对应的私钥来访问实例。注意：此字段可能返回 []，表示取不到有效值。
         public let keyIds: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
         }
     }
-    
+
     /// 描述了实例可变更的套餐。
     public struct ModifyBundle: TCOutputModel {
         /// 更改实例套餐后需要补的差价。
         public let modifyPrice: Price
-        
+
         /// 变更套餐状态。取值：
         /// <li>SOLD_OUT：套餐售罄</li>
         /// <li>AVAILABLE：支持套餐变更</li>
         /// <li>UNAVAILABLE：暂不支持套餐变更</li>
         public let modifyBundleState: String
-        
+
         /// 套餐信息。
         public let bundle: Bundle
-        
+
         /// 不支持套餐变更原因信息。变更套餐状态为"AVAILABLE"时, 该信息为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notSupportModifyMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case modifyPrice = "ModifyPrice"
             case modifyBundleState = "ModifyBundleState"
@@ -1209,49 +1209,49 @@ extension Lighthouse {
             case notSupportModifyMessage = "NotSupportModifyMessage"
         }
     }
-    
+
     /// 折扣详情信息。
     public struct PolicyDetail: TCOutputModel {
         /// 用户折扣。
         public let userDiscount: Int64
-        
+
         /// 公共折扣。
         public let commonDiscount: Int64
-        
+
         /// 最终折扣。
         public let finalDiscount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case userDiscount = "UserDiscount"
             case commonDiscount = "CommonDiscount"
             case finalDiscount = "FinalDiscount"
         }
     }
-    
+
     /// 价格信息
     public struct Price: TCOutputModel {
         /// 实例价格。
         public let instancePrice: InstancePrice
-        
+
         enum CodingKeys: String, CodingKey {
             case instancePrice = "InstancePrice"
         }
     }
-    
+
     /// 描述地域信息。
     public struct RegionInfo: TCOutputModel {
         /// 地域名称，例如，ap-guangzhou。
         public let region: String
-        
+
         /// 地域描述，例如，华南地区(广州)。
         public let regionName: String
-        
+
         /// 地域是否可用状态，取值仅为AVAILABLE。
         public let regionState: String
-        
+
         /// 是否中国大陆地域
         public let isChinaMainland: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionName = "RegionName"
@@ -1259,28 +1259,28 @@ extension Lighthouse {
             case isChinaMainland = "IsChinaMainland"
         }
     }
-    
+
     /// 续费云硬盘包年包月相关参数设置
     public struct RenewDiskChargePrepaid: TCInputModel {
         /// 新购周期。
         public let period: Int64?
-        
+
         /// 续费标识。
         public let renewFlag: String?
-        
+
         /// 周期单位. 默认值: "m"。
         public let timeUnit: String?
-        
+
         /// 当前实例到期时间。
         public let curInstanceDeadline: String?
-        
-        public init (period: Int64? = nil, renewFlag: String? = nil, timeUnit: String? = nil, curInstanceDeadline: String? = nil) {
+
+        public init(period: Int64? = nil, renewFlag: String? = nil, timeUnit: String? = nil, curInstanceDeadline: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
             self.timeUnit = timeUnit
             self.curInstanceDeadline = curInstanceDeadline
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case renewFlag = "RenewFlag"
@@ -1288,92 +1288,92 @@ extension Lighthouse {
             case curInstanceDeadline = "CurInstanceDeadline"
         }
     }
-    
+
     /// 描述了镜像重置信息
     public struct ResetInstanceBlueprint: TCOutputModel {
         /// 镜像详细信息
         public let blueprintInfo: Blueprint
-        
+
         /// 实例镜像是否可重置为目标镜像
         public let isResettable: Bool
-        
+
         /// 不可重置信息.当镜像可重置时为""
         public let nonResettableMessage: String
-        
+
         enum CodingKeys: String, CodingKey {
             case blueprintInfo = "BlueprintInfo"
             case isResettable = "IsResettable"
             case nonResettableMessage = "NonResettableMessage"
         }
     }
-    
+
     /// 使用场景信息
     public struct Scene: TCOutputModel {
         /// 使用场景Id
         public let sceneId: String
-        
+
         /// 使用场景展示名称
         public let displayName: String
-        
+
         /// 使用场景描述
         public let description: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sceneId = "SceneId"
             case displayName = "DisplayName"
             case description = "Description"
         }
     }
-    
+
     /// 使用场景详细信息
     public struct SceneInfo: TCOutputModel {
         /// 使用场景Id。
         public let sceneId: String
-        
+
         /// 使用场景展示名称。
         public let displayName: String
-        
+
         /// 使用场景描述信息。
         public let description: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sceneId = "SceneId"
             case displayName = "DisplayName"
             case description = "Description"
         }
     }
-    
+
     /// 描述了快照相关信息。
     public struct Snapshot: TCOutputModel {
         /// 快照 ID。
         public let snapshotId: String
-        
+
         /// 创建此快照的磁盘类型。取值：<li>SYSTEM_DISK：系统盘</li>
         public let diskUsage: String
-        
+
         /// 创建此快照的磁盘 ID。
         public let diskId: String
-        
+
         /// 创建此快照的磁盘大小，单位 GB。
         public let diskSize: Int64
-        
+
         /// 快照名称，用户自定义的快照别名。
         public let snapshotName: String
-        
+
         /// 快照的状态。取值范围：
         /// <li>NORMAL：正常 </li>
         /// <li>CREATING：创建中</li>
         /// <li>ROLLBACKING：回滚中。</li>
         public let snapshotState: String
-        
+
         /// 创建或回滚快照进度百分比，成功后此字段取值为 100。
         public let percent: Int64
-        
+
         /// 快照的最新操作，只有创建、回滚快照时记录。
         /// 取值如 CreateInstanceSnapshot，RollbackInstanceSnapshot。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperation: String?
-        
+
         /// 快照的最新操作状态，只有创建、回滚快照时记录。
         /// 取值范围：
         /// <li>SUCCESS：表示操作成功</li>
@@ -1381,11 +1381,11 @@ extension Lighthouse {
         /// <li>FAILED：表示操作失败</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperationState: String?
-        
+
         /// 快照最新操作的唯一请求 ID，只有创建、回滚快照时记录。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperationRequestId: String?
-        
+
         /// 快照的创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1393,7 +1393,7 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotId = "SnapshotId"
             case diskUsage = "DiskUsage"
@@ -1408,38 +1408,38 @@ extension Lighthouse {
             case createdTime = "CreatedTime"
         }
     }
-    
+
     /// 快照操作限制列表。
     public struct SnapshotDeniedActions: TCOutputModel {
         /// 快照 ID。
         public let snapshotId: String
-        
+
         /// 操作限制列表。
         public let deniedActions: [DeniedAction]
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotId = "SnapshotId"
             case deniedActions = "DeniedActions"
         }
     }
-    
+
     /// 描述镜像软件信息。
     public struct Software: TCOutputModel {
         /// 软件名称。
         public let name: String
-        
+
         /// 软件版本。
         public let version: String
-        
+
         /// 软件图片 URL。
         public let imageUrl: String
-        
+
         /// 软件安装目录。
         public let installDir: String
-        
+
         /// 软件详情列表。
         public let detailSet: [SoftwareDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case version = "Version"
@@ -1448,94 +1448,94 @@ extension Lighthouse {
             case detailSet = "DetailSet"
         }
     }
-    
+
     /// 描述镜像软件详细信息。
     public struct SoftwareDetail: TCOutputModel {
         /// 详情唯一键。
         public let key: String
-        
+
         /// 详情标题。
         public let title: String
-        
+
         /// 详情值。
         public let value: String
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case title = "Title"
             case value = "Value"
         }
     }
-    
+
     /// 描述了操作系统所在块设备即系统盘的信息。
     public struct SystemDisk: TCOutputModel {
         /// 系统盘类型。
-        /// 取值范围： 
+        /// 取值范围：
         /// <li> LOCAL_BASIC：本地硬盘</li><li> LOCAL_SSD：本地 SSD 硬盘</li><li> CLOUD_BASIC：普通云硬盘</li><li> CLOUD_SSD：SSD 云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li>
         public let diskType: String
-        
+
         /// 系统盘大小，单位：GB。
         public let diskSize: Int64
-        
+
         /// 系统盘ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
             case diskSize = "DiskSize"
             case diskId = "DiskId"
         }
     }
-    
+
     /// 标签
     public struct Tag: TCOutputModel {
         /// 标签键
         public let key: String
-        
+
         /// 标签值
         public let value: String
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 总计价格信息
     public struct TotalPrice: TCOutputModel {
         /// 原始总计价格。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPrice: Float?
-        
+
         /// 折扣总计价格。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPrice: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case originalPrice = "OriginalPrice"
             case discountPrice = "DiscountPrice"
         }
     }
-    
+
     /// 流量包详情
     public struct TrafficPackage: TCOutputModel {
         /// 流量包ID。
         public let trafficPackageId: String
-        
+
         /// 流量包生效周期内已使用流量，单位字节。
         public let trafficUsed: Int64
-        
+
         /// 流量包生效周期内的总流量，单位字节。
         public let trafficPackageTotal: Int64
-        
+
         /// 流量包生效周期内的剩余流量，单位字节。
         public let trafficPackageRemaining: Int64
-        
+
         /// 流量包生效周期内超出流量包额度的流量，单位字节。
         public let trafficOverflow: Int64
-        
-        /// 流量包生效周期开始时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 流量包生效周期开始时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1544,8 +1544,8 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date?
-        
-        /// 流量包生效周期结束时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 流量包生效周期结束时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1554,8 +1554,8 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date?
-        
-        /// 流量包到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+
+        /// 流量包到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         /// 格式为： YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1564,12 +1564,12 @@ extension Lighthouse {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var deadline: Date?
-        
+
         /// 流量包状态：
         /// <li>NETWORK_NORMAL：正常</li>
         /// <li>OVERDUE_NETWORK_DISABLED：欠费断网</li>
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficPackageId = "TrafficPackageId"
             case trafficUsed = "TrafficUsed"
@@ -1582,18 +1582,18 @@ extension Lighthouse {
             case status = "Status"
         }
     }
-    
+
     /// 可用区详细信息
     public struct ZoneInfo: TCOutputModel {
         /// 可用区
         public let zone: String
-        
+
         /// 可用区中文名称
         public let zoneName: String
-        
+
         /// 实例购买页可用区展示标签
         public let instanceDisplayLabel: String
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case zoneName = "ZoneName"

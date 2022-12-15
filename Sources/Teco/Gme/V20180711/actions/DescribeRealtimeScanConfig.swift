@@ -19,42 +19,42 @@ extension Gme {
     public struct DescribeRealtimeScanConfigRequest: TCRequestModel {
         /// 应用ID
         public let bizId: UInt64
-        
-        public init (bizId: UInt64) {
+
+        public init(bizId: UInt64) {
             self.bizId = bizId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
         }
     }
-    
+
     /// DescribeRealtimeScanConfig返回参数结构体
     public struct DescribeRealtimeScanConfigResponse: TCResponseModel {
         /// 返回结果码，0正常，非0失败
         public let errorCode: Int64
-        
+
         /// 应用ID
         public let bizId: UInt64
-        
+
         /// 送检类型，0: 全量送审，1: 自定义送审
         public let auditType: Int64
-        
+
         /// 用户号正则表达式
         public let userIdRegex: [String]
-        
+
         /// 房间号正则表达式
         public let roomIdRegex: [String]
-        
+
         /// 用户号字符串，逗号分隔，示例："0001,0002,0003"
         public let userIdString: String
-        
+
         /// 房间号字符串，逗号分隔，示例："0001,0002,0003"
         public let roomIdString: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errorCode = "ErrorCode"
             case bizId = "BizId"
@@ -66,25 +66,25 @@ extension Gme {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户自定义送检信息
     @inlinable
-    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealtimeScanConfigResponse > {
+    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealtimeScanConfigResponse> {
         self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户自定义送检信息
     @inlinable
     public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
         try await self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户自定义送检信息
     @inlinable
-    public func describeRealtimeScanConfig(bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealtimeScanConfigResponse > {
+    public func describeRealtimeScanConfig(bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealtimeScanConfigResponse> {
         self.describeRealtimeScanConfig(DescribeRealtimeScanConfigRequest(bizId: bizId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户自定义送检信息
     @inlinable
     public func describeRealtimeScanConfig(bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {

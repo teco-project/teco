@@ -19,38 +19,38 @@ extension TCAaError {
         enum Code: String {
             case secretIdNotExists = "UnknownParameter.SecretIdNotExists"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 密钥不存在。
         public static var secretIdNotExists: UnknownParameter {
             UnknownParameter(.secretIdNotExists)
         }
-        
+
         public func asAaError() -> TCAaError {
             let code: TCAaError.Code
             switch self.error {
-            case .secretIdNotExists: 
+            case .secretIdNotExists:
                 code = .unknownParameter_SecretIdNotExists
             }
             return TCAaError(code, context: self.context)

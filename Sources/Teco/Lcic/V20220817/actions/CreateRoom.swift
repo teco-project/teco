@@ -19,56 +19,56 @@ extension Lcic {
     public struct CreateRoomRequest: TCRequestModel {
         /// 房间名称。
         public let name: String
-        
+
         /// 预定的房间开始时间，unix时间戳。
         public let startTime: UInt64
-        
+
         /// 预定的房间结束时间，unix时间戳。
         public let endTime: UInt64
-        
+
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
-        
+
         /// 分辨率。可以有如下取值：
         /// 1 标清
         /// 2 高清
         /// 3 全高清
         public let resolution: UInt64
-        
+
         /// 最大连麦人数（不包括老师）。取值范围[0, 17)
         public let maxMicNumber: UInt64
-        
+
         /// 房间子类型，可以有以下取值：
         /// videodoc 文档+视频
         /// video 纯视频
         /// coteaching 双师
         public let subType: String
-        
+
         /// 老师ID。
         public let teacherId: String?
-        
+
         /// 进入房间时是否自动连麦。可以有以下取值：
         /// 0 不自动连麦（默认值）
         /// 1 自动连麦
         public let autoMic: UInt64?
-        
+
         /// 高音质模式。可以有以下取值：
         /// 0 不开启高音质（默认值）
         /// 1 开启高音质
         public let audioQuality: UInt64?
-        
+
         /// 禁止录制。可以有以下取值：
         /// 0 不禁止录制（默认值）
         /// 1 禁止录制
         public let disableRecord: UInt64?
-        
+
         /// 助教Id列表。
         public let assistants: [String]?
-        
+
         /// 录制布局。
         public let recordLayout: UInt64?
-        
-        public init (name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil) {
+
+        public init(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil) {
             self.name = name
             self.startTime = startTime
             self.endTime = endTime
@@ -83,7 +83,7 @@ extension Lcic {
             self.assistants = assistants
             self.recordLayout = recordLayout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case startTime = "StartTime"
@@ -100,39 +100,39 @@ extension Lcic {
             case recordLayout = "RecordLayout"
         }
     }
-    
+
     /// CreateRoom返回参数结构体
     public struct CreateRoomResponse: TCResponseModel {
         /// 房间ID。
         public let roomId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case roomId = "RoomId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建房间
     @inlinable
-    public func createRoom(_ input: CreateRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoomResponse > {
+    public func createRoom(_ input: CreateRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoomResponse> {
         self.client.execute(action: "CreateRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建房间
     @inlinable
     public func createRoom(_ input: CreateRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
         try await self.client.execute(action: "CreateRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建房间
     @inlinable
-    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoomResponse > {
+    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoomResponse> {
         self.createRoom(CreateRoomRequest(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建房间
     @inlinable
     public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {

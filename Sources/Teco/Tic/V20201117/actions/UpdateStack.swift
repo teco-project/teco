@@ -19,44 +19,44 @@ extension Tic {
     public struct UpdateStackRequest: TCRequestModel {
         /// 待更新的资源栈ID
         public let stackId: String
-        
+
         /// 资源栈名称，不得超过60个字符
         public let stackName: String?
-        
+
         /// 资源栈描述，不得超过200个字符
         public let description: String?
-        
-        public init (stackId: String, stackName: String? = nil, description: String? = nil) {
+
+        public init(stackId: String, stackName: String? = nil, description: String? = nil) {
             self.stackId = stackId
             self.stackName = stackName
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case stackId = "StackId"
             case stackName = "StackName"
             case description = "Description"
         }
     }
-    
+
     /// UpdateStack返回参数结构体
     public struct UpdateStackResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
     @inlinable
-    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateStackResponse > {
+    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
         self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
@@ -64,15 +64,15 @@ extension Tic {
     public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
         try await self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
     @inlinable
-    public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateStackResponse > {
+    public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
         self.updateStack(UpdateStackRequest(stackId: stackId, stackName: stackName, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。

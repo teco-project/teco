@@ -22,36 +22,36 @@ extension TCDtsError {
             case unsupportedOperationError = "UnsupportedOperation.UnsupportedOperationError"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
         ///
         /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713【官方】云上PAAS服务标签自动补齐规则说明及指引 https://km.woa.com/group/35679/docs/show/222609
         public static var intraNetUserNotTaggedError: UnsupportedOperation {
             UnsupportedOperation(.intraNetUserNotTaggedError)
         }
-        
+
         /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
         ///
         /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713
@@ -59,26 +59,26 @@ extension TCDtsError {
         public static var intraNetUserNotTaggedForSyncJobError: UnsupportedOperation {
             UnsupportedOperation(.intraNetUserNotTaggedForSyncJobError)
         }
-        
+
         public static var unsupportedOperationError: UnsupportedOperation {
             UnsupportedOperation(.unsupportedOperationError)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asDtsError() -> TCDtsError {
             let code: TCDtsError.Code
             switch self.error {
-            case .intraNetUserNotTaggedError: 
+            case .intraNetUserNotTaggedError:
                 code = .unsupportedOperation_IntraNetUserNotTaggedError
-            case .intraNetUserNotTaggedForSyncJobError: 
+            case .intraNetUserNotTaggedForSyncJobError:
                 code = .unsupportedOperation_IntraNetUserNotTaggedForSyncJobError
-            case .unsupportedOperationError: 
+            case .unsupportedOperationError:
                 code = .unsupportedOperation_UnsupportedOperationError
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCDtsError(code, context: self.context)

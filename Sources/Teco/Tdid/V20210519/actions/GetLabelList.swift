@@ -19,23 +19,23 @@ extension Tdid {
     public struct GetLabelListRequest: TCRequestModel {
         /// 每页大小
         public let pageSize: Int64
-        
+
         /// 页码，从1开始
         public let pageNumber: Int64
-        
+
         /// 网络ID
         public let clusterId: String?
-        
+
         /// 群组ID
         public let groupId: Int64?
-        
-        public init (pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil) {
+
+        public init(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.clusterId = clusterId
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageSize = "PageSize"
             case pageNumber = "PageNumber"
@@ -43,43 +43,43 @@ extension Tdid {
             case groupId = "GroupId"
         }
     }
-    
+
     /// GetLabelList返回参数结构体
     public struct GetLabelListResponse: TCResponseModel {
         /// 数据集合
         public let result: [Label]
-        
+
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 标签列表
     @inlinable
-    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLabelListResponse > {
+    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
         self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 标签列表
     @inlinable
     public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
         try await self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 标签列表
     @inlinable
-    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLabelListResponse > {
+    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
         self.getLabelList(GetLabelListRequest(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 标签列表
     @inlinable
     public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {

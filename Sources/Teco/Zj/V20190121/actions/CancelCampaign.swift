@@ -19,43 +19,43 @@ extension Zj {
     public struct CancelCampaignRequest: TCRequestModel {
         /// 商户证书
         public let license: String
-        
+
         /// 短信活动id
         public let campaignId: Int64
-        
-        public init (license: String, campaignId: Int64) {
+
+        public init(license: String, campaignId: Int64) {
             self.license = license
             self.campaignId = campaignId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case license = "License"
             case campaignId = "CampaignId"
         }
     }
-    
+
     /// CancelCampaign返回参数结构体
     public struct CancelCampaignResponse: TCResponseModel {
         /// 处理结果
         public let data: CancelActivityData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消短信活动
     ///
     /// 取消短信推送活动
     @inlinable
-    public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCampaignResponse > {
+    public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCampaignResponse> {
         self.client.execute(action: "CancelCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消短信活动
     ///
     /// 取消短信推送活动
@@ -63,15 +63,15 @@ extension Zj {
     public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCampaignResponse {
         try await self.client.execute(action: "CancelCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消短信活动
     ///
     /// 取消短信推送活动
     @inlinable
-    public func cancelCampaign(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCampaignResponse > {
+    public func cancelCampaign(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCampaignResponse> {
         self.cancelCampaign(CancelCampaignRequest(license: license, campaignId: campaignId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消短信活动
     ///
     /// 取消短信推送活动

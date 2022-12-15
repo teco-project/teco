@@ -19,40 +19,40 @@ extension Zj {
     public struct ModifySmsTemplateRequest: TCRequestModel {
         /// 商户证书
         public let license: String
-        
+
         /// 短信模板id
         public let templateId: Int64
-        
+
         /// 短信签名，创建签名时返回
         public let signID: UInt64
-        
+
         /// 模板名称
         public let templateName: String
-        
+
         /// 短信内容，动态内容使用占位符{1}，{2}等表示
         public let templateContent: String
-        
+
         /// 短信类型：{0:普通短信，1:营销短信}
         public let smsType: UInt64
-        
+
         /// 是否国际/港澳台短信：
         /// 0：表示国内短信。
         /// 1：表示国际/港澳台短信。
         public let international: UInt64
-        
+
         /// 短信模板标签
         public let remark: String
-        
+
         /// 发送短信活动时配置的落地链接地址,仅用作短信活动
         public let urls: [String]?
-        
+
         /// 发送短信活动时用于展示人群包动态参数模板占位符序号,仅用作短信活动
         public let commonParams: [Int64]?
-        
+
         /// 发送短信活动时用于展示短连接模板占位符序号,仅用作短信活动
         public let urlParams: [Int64]?
-        
-        public init (license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil) {
+
+        public init(license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil) {
             self.license = license
             self.templateId = templateId
             self.signID = signID
@@ -65,7 +65,7 @@ extension Zj {
             self.commonParams = commonParams
             self.urlParams = urlParams
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case license = "License"
             case templateId = "TemplateId"
@@ -80,29 +80,29 @@ extension Zj {
             case urlParams = "UrlParams"
         }
     }
-    
+
     /// ModifySmsTemplate返回参数结构体
     public struct ModifySmsTemplateResponse: TCResponseModel {
         /// 返回
         public let data: ModifySmsTemplateDataStruct
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 短信模板编辑接口
     ///
     /// 对未审核或者审核未通过的短信模板内容进行编辑修改
     @inlinable
-    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySmsTemplateResponse > {
+    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsTemplateResponse> {
         self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 短信模板编辑接口
     ///
     /// 对未审核或者审核未通过的短信模板内容进行编辑修改
@@ -110,15 +110,15 @@ extension Zj {
     public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
         try await self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 短信模板编辑接口
     ///
     /// 对未审核或者审核未通过的短信模板内容进行编辑修改
     @inlinable
-    public func modifySmsTemplate(license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySmsTemplateResponse > {
+    public func modifySmsTemplate(license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsTemplateResponse> {
         self.modifySmsTemplate(ModifySmsTemplateRequest(license: license, templateId: templateId, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams), logger: logger, on: eventLoop)
     }
-    
+
     /// 短信模板编辑接口
     ///
     /// 对未审核或者审核未通过的短信模板内容进行编辑修改

@@ -19,7 +19,7 @@ extension As {
     public struct ModifyNotificationConfigurationRequest: TCRequestModel {
         /// 待修改的通知ID。
         public let autoScalingNotificationId: String
-        
+
         /// 通知类型，即为需要订阅的通知类型集合，取值范围如下：
         /// <li>SCALE_OUT_SUCCESSFUL：扩容成功</li>
         /// <li>SCALE_OUT_FAILED：扩容失败</li>
@@ -28,24 +28,24 @@ extension As {
         /// <li>REPLACE_UNHEALTHY_INSTANCE_SUCCESSFUL：替换不健康子机成功</li>
         /// <li>REPLACE_UNHEALTHY_INSTANCE_FAILED：替换不健康子机失败</li>
         public let notificationTypes: [String]?
-        
+
         /// 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
         public let notificationUserGroupIds: [String]?
-        
+
         /// CMQ 队列或 TDMQ CMQ 队列名。
         public let queueName: String?
-        
+
         /// CMQ 主题或 TDMQ CMQ 主题名。
         public let topicName: String?
-        
-        public init (autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil) {
+
+        public init(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil) {
             self.autoScalingNotificationId = autoScalingNotificationId
             self.notificationTypes = notificationTypes
             self.notificationUserGroupIds = notificationUserGroupIds
             self.queueName = queueName
             self.topicName = topicName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingNotificationId = "AutoScalingNotificationId"
             case notificationTypes = "NotificationTypes"
@@ -54,26 +54,26 @@ extension As {
             case topicName = "TopicName"
         }
     }
-    
+
     /// ModifyNotificationConfiguration返回参数结构体
     public struct ModifyNotificationConfigurationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改通知
     ///
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。
     /// * 通知的接收端类型不支持修改。
     @inlinable
-    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNotificationConfigurationResponse > {
+    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotificationConfigurationResponse> {
         self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改通知
     ///
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。
@@ -82,16 +82,16 @@ extension As {
     public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
         try await self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改通知
     ///
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。
     /// * 通知的接收端类型不支持修改。
     @inlinable
-    public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNotificationConfigurationResponse > {
+    public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotificationConfigurationResponse> {
         self.modifyNotificationConfiguration(ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改通知
     ///
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。

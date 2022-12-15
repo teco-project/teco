@@ -19,41 +19,41 @@ extension Cfw {
     public struct DescribeRuleOverviewRequest: TCRequestModel {
         /// 方向，0：出站，1：入站
         public let direction: UInt64?
-        
-        public init (direction: UInt64? = nil) {
+
+        public init(direction: UInt64? = nil) {
             self.direction = direction
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case direction = "Direction"
         }
     }
-    
+
     /// DescribeRuleOverview返回参数结构体
     public struct DescribeRuleOverviewResponse: TCResponseModel {
         /// 规则总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allTotal: UInt64?
-        
+
         /// 阻断策略规则数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let strategyNum: UInt64?
-        
+
         /// 启用规则数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startRuleNum: UInt64?
-        
+
         /// 停用规则数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stopRuleNum: UInt64?
-        
+
         /// 剩余配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remainingNum: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case allTotal = "AllTotal"
             case strategyNum = "StrategyNum"
@@ -63,25 +63,25 @@ extension Cfw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询规则列表概况
     @inlinable
-    public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleOverviewResponse > {
+    public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleOverviewResponse> {
         self.client.execute(action: "DescribeRuleOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则列表概况
     @inlinable
     public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleOverviewResponse {
         try await self.client.execute(action: "DescribeRuleOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询规则列表概况
     @inlinable
-    public func describeRuleOverview(direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleOverviewResponse > {
+    public func describeRuleOverview(direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleOverviewResponse> {
         self.describeRuleOverview(DescribeRuleOverviewRequest(direction: direction), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则列表概况
     @inlinable
     public func describeRuleOverview(direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleOverviewResponse {

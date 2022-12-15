@@ -19,48 +19,48 @@ extension Mariadb {
     public struct CancelDcnJobRequest: TCRequestModel {
         /// 灾备实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// CancelDcnJob返回参数结构体
     public struct CancelDcnJobResponse: TCResponseModel {
         /// 流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消DCN同步
     @inlinable
-    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelDcnJobResponse > {
+    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDcnJobResponse> {
         self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消DCN同步
     @inlinable
     public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
         try await self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消DCN同步
     @inlinable
-    public func cancelDcnJob(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelDcnJobResponse > {
+    public func cancelDcnJob(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDcnJobResponse> {
         self.cancelDcnJob(CancelDcnJobRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消DCN同步
     @inlinable
     public func cancelDcnJob(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {

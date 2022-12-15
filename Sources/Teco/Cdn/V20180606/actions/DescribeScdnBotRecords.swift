@@ -22,10 +22,10 @@ extension Cdn {
     public struct DescribeScdnBotRecordsRequest: TCRequestModel {
         /// BOT类型，取值为"UB","UCB","TCB"，分别表示：未知类型，自定义类型，公开类型
         public let botType: String
-        
+
         /// 域名
         public let domain: String
-        
+
         /// 开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,19 +41,19 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 分页参数
         public let offset: UInt64
-        
+
         /// 分页参数
         public let limit: UInt64
-        
+
         /// mainland 大陆地区 overseas境外地区
         public let area: String
-        
+
         /// 排序参数
         public let sortBy: [BotSortBy]?
-        
+
         /// BotType=UB时，表示需要过滤的预测标签，取值如下：
         ///                 "crawler_unregular",
         ///                 "crawler_regular",
@@ -111,7 +111,7 @@ extension Cdn {
         /// IDC-IP Google
         /// 以上所有类型，FilterName为空时，表示不过滤，获取所有内容
         public let filterName: String?
-        
+
         /// 目前支持的Action
         /// "intercept" 拦截
         /// "monitor"，监控
@@ -120,14 +120,14 @@ extension Cdn {
         /// 尚未支持的Action
         /// "captcha" 验证码
         public let filterAction: String?
-        
+
         /// 过滤的IP
         public let filterIp: String?
-        
+
         /// 域名列表，为空表示查询AppID维度数据
         public let domains: [String]?
-        
-        public init (botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil) {
+
+        public init(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil) {
             self.botType = botType
             self.domain = domain
             self.startTime = startTime
@@ -141,7 +141,7 @@ extension Cdn {
             self.filterIp = filterIp
             self.domains = domains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case botType = "BotType"
             case domain = "Domain"
@@ -157,43 +157,43 @@ extension Cdn {
             case domains = "Domains"
         }
     }
-    
+
     /// DescribeScdnBotRecords返回参数结构体
     public struct DescribeScdnBotRecordsResponse: TCResponseModel {
         /// BOT拦截结果数组
         public let data: [BotRecord]
-        
+
         /// 记录数量
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询BOT会话记录列表
     @inlinable
-    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotRecordsResponse > {
+    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotRecordsResponse> {
         self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询BOT会话记录列表
     @inlinable
     public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
         try await self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询BOT会话记录列表
     @inlinable
-    public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotRecordsResponse > {
+    public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotRecordsResponse> {
         self.describeScdnBotRecords(DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询BOT会话记录列表
     @inlinable
     public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {

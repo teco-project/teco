@@ -19,35 +19,35 @@ extension Wedata {
     public struct GenHiveTableDDLSqlRequest: TCRequestModel {
         /// 项目id
         public let projectId: String
-        
+
         /// 目标数据库
         public let sinkDatabase: String
-        
+
         /// 节点id
         public let id: String?
-        
+
         /// 元数据类型(MYSQL、ORACLE)
         public let msType: String?
-        
+
         /// 数据源id
         public let datasourceId: String?
-        
+
         /// 来源库
         public let sourceDatabase: String?
-        
+
         /// 来源表
         public let tableName: String?
-        
+
         /// 目标表元数据类型(HIVE、GBASE)
         public let sinkType: String?
-        
+
         /// schema名称
         public let schemaName: String?
-        
+
         /// 上游节点的字段信息
         public let sourceFieldInfoList: [SourceFieldInfo]?
-        
-        public init (projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil) {
+
+        public init(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil) {
             self.projectId = projectId
             self.sinkDatabase = sinkDatabase
             self.id = id
@@ -59,7 +59,7 @@ extension Wedata {
             self.schemaName = schemaName
             self.sourceFieldInfoList = sourceFieldInfoList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case sinkDatabase = "SinkDatabase"
@@ -73,39 +73,39 @@ extension Wedata {
             case sourceFieldInfoList = "SourceFieldInfoList"
         }
     }
-    
+
     /// GenHiveTableDDLSql返回参数结构体
     public struct GenHiveTableDDLSqlResponse: TCResponseModel {
         /// 生成的ddl语句
         public let ddlSql: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ddlSql = "DDLSql"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 生成建hive表的sql
     @inlinable
-    public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenHiveTableDDLSqlResponse > {
+    public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenHiveTableDDLSqlResponse> {
         self.client.execute(action: "GenHiveTableDDLSql", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 生成建hive表的sql
     @inlinable
     public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
         try await self.client.execute(action: "GenHiveTableDDLSql", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 生成建hive表的sql
     @inlinable
-    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenHiveTableDDLSqlResponse > {
+    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenHiveTableDDLSqlResponse> {
         self.genHiveTableDDLSql(GenHiveTableDDLSqlRequest(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList), logger: logger, on: eventLoop)
     }
-    
+
     /// 生成建hive表的sql
     @inlinable
     public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {

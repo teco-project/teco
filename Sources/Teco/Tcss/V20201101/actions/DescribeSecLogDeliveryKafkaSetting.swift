@@ -17,39 +17,39 @@
 extension Tcss {
     /// DescribeSecLogDeliveryKafkaSetting请求参数结构体
     public struct DescribeSecLogDeliveryKafkaSettingRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeSecLogDeliveryKafkaSetting返回参数结构体
     public struct DescribeSecLogDeliveryKafkaSettingResponse: TCResponseModel {
         /// 消息队列实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceID: String?
-        
+
         /// 消息队列实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         /// 日志类型队列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logTypeList: [SecLogDeliveryKafkaSettingInfo]?
-        
+
         /// 用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let user: String?
-        
+
         /// 地域ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionID: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceID = "InstanceID"
             case instanceName = "InstanceName"
@@ -60,25 +60,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全日志投递kafka配置
     @inlinable
-    public func describeSecLogDeliveryKafkaSetting(_ input: DescribeSecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogDeliveryKafkaSettingResponse > {
+    public func describeSecLogDeliveryKafkaSetting(_ input: DescribeSecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryKafkaSettingResponse> {
         self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全日志投递kafka配置
     @inlinable
     public func describeSecLogDeliveryKafkaSetting(_ input: DescribeSecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaSettingResponse {
         try await self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全日志投递kafka配置
     @inlinable
-    public func describeSecLogDeliveryKafkaSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogDeliveryKafkaSettingResponse > {
+    public func describeSecLogDeliveryKafkaSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryKafkaSettingResponse> {
         self.describeSecLogDeliveryKafkaSetting(DescribeSecLogDeliveryKafkaSettingRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全日志投递kafka配置
     @inlinable
     public func describeSecLogDeliveryKafkaSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaSettingResponse {

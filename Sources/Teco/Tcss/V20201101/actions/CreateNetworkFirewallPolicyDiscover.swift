@@ -19,52 +19,52 @@ extension Tcss {
     public struct CreateNetworkFirewallPolicyDiscoverRequest: TCRequestModel {
         /// 集群Id
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// CreateNetworkFirewallPolicyDiscover返回参数结构体
     public struct CreateNetworkFirewallPolicyDiscoverResponse: TCResponseModel {
         /// 返回创建的集群检查任务的ID，为0表示创建失败。
         public let taskId: UInt64
-        
+
         /// 创建检查任务的结果，"Succ"为成功，"Failed"为失败
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
-    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPolicyDiscoverResponse > {
+    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPolicyDiscoverResponse> {
         self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
     public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
         try await self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
-    public func createNetworkFirewallPolicyDiscover(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPolicyDiscoverResponse > {
+    public func createNetworkFirewallPolicyDiscover(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPolicyDiscoverResponse> {
         self.createNetworkFirewallPolicyDiscover(CreateNetworkFirewallPolicyDiscoverRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
     public func createNetworkFirewallPolicyDiscover(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {

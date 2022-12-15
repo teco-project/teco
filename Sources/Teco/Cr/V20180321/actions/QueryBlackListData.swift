@@ -22,16 +22,16 @@ extension Cr {
     public struct QueryBlackListDataRequest: TCRequestModel {
         /// 模块:AiApi
         public let module: String
-        
+
         /// 操作:QueryBlackListData
         public let operation: String
-        
+
         /// 页码
         public let offset: Int64?
-        
+
         /// 每页数量
         public let limit: Int64?
-        
+
         /// 开始日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -39,7 +39,7 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startBizDate: Date?
-        
+
         /// 结束日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,11 +47,11 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endBizDate: Date?
-        
+
         /// 电话号码、手机
         public let blackValue: String?
-        
-        public init (module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil) {
+
+        public init(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil) {
             self.module = module
             self.operation = operation
             self.offset = offset
@@ -60,7 +60,7 @@ extension Cr {
             self.endBizDate = endBizDate
             self.blackValue = blackValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -71,44 +71,44 @@ extension Cr {
             case blackValue = "BlackValue"
         }
     }
-    
+
     /// QueryBlackListData返回参数结构体
     public struct QueryBlackListDataResponse: TCResponseModel {
         /// 总数。
         public let totalCount: Int64
-        
+
         /// 黑名单列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [BlackListData]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看黑名单数据列表
     @inlinable
-    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBlackListDataResponse > {
+    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBlackListDataResponse> {
         self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看黑名单数据列表
     @inlinable
     public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
         try await self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看黑名单数据列表
     @inlinable
-    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBlackListDataResponse > {
+    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBlackListDataResponse> {
         self.queryBlackListData(QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看黑名单数据列表
     @inlinable
     public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {

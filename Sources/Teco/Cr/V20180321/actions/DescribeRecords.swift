@@ -22,19 +22,19 @@ extension Cr {
     public struct DescribeRecordsRequest: TCRequestModel {
         /// 模块名，本接口取值：Record
         public let module: String
-        
+
         /// 操作名，本接口取值：List
         public let operation: String
-        
+
         /// 产品ID
         public let productId: String?
-        
+
         /// 案件编号
         public let accountNum: String?
-        
+
         /// 被叫号码
         public let calledPhone: String?
-        
+
         /// 查询起始日期，格式为YYYY-MM-DD
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -42,7 +42,7 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startBizDate: Date?
-        
+
         /// 查询结束日期，格式为YYYY-MM-DD
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -50,17 +50,17 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endBizDate: Date?
-        
+
         /// 分页参数，索引，默认为0
         public let offset: String?
-        
+
         /// 分页参数，页长，默认为20
         public let limit: String?
-        
+
         /// 实例ID，不传默认为系统分配的初始实例
         public let instId: String?
-        
-        public init (module: String, operation: String, productId: String? = nil, accountNum: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, offset: String? = nil, limit: String? = nil, instId: String? = nil) {
+
+        public init(module: String, operation: String, productId: String? = nil, accountNum: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, offset: String? = nil, limit: String? = nil, instId: String? = nil) {
             self.module = module
             self.operation = operation
             self.productId = productId
@@ -72,7 +72,7 @@ extension Cr {
             self.limit = limit
             self.instId = instId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -86,34 +86,34 @@ extension Cr {
             case instId = "InstId"
         }
     }
-    
+
     /// DescribeRecords返回参数结构体
     public struct DescribeRecordsResponse: TCResponseModel {
         /// 录音列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordList: [SingleRecord]?
-        
+
         /// 录音总量。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case recordList = "RecordList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 录音查询（接口）
     ///
     /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
     @inlinable
-    public func describeRecords(_ input: DescribeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordsResponse > {
+    public func describeRecords(_ input: DescribeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordsResponse> {
         self.client.execute(action: "DescribeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 录音查询（接口）
     ///
     /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
@@ -121,15 +121,15 @@ extension Cr {
     public func describeRecords(_ input: DescribeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordsResponse {
         try await self.client.execute(action: "DescribeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 录音查询（接口）
     ///
     /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
     @inlinable
-    public func describeRecords(module: String, operation: String, productId: String? = nil, accountNum: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, offset: String? = nil, limit: String? = nil, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordsResponse > {
+    public func describeRecords(module: String, operation: String, productId: String? = nil, accountNum: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, offset: String? = nil, limit: String? = nil, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordsResponse> {
         self.describeRecords(DescribeRecordsRequest(module: module, operation: operation, productId: productId, accountNum: accountNum, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate, offset: offset, limit: limit, instId: instId), logger: logger, on: eventLoop)
     }
-    
+
     /// 录音查询（接口）
     ///
     /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。

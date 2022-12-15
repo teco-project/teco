@@ -20,45 +20,45 @@ extension TCSmhError {
             case library = "ResourceNotFound.Library"
             case officialInstance = "ResourceNotFound.OfficialInstance"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 媒体库不存在或不属于当前账号。
         public static var library: ResourceNotFound {
             ResourceNotFound(.library)
         }
-        
+
         /// 官方云盘实例不存在或不属于当前账号。
         public static var officialInstance: ResourceNotFound {
             ResourceNotFound(.officialInstance)
         }
-        
+
         public func asSmhError() -> TCSmhError {
             let code: TCSmhError.Code
             switch self.error {
-            case .library: 
+            case .library:
                 code = .resourceNotFound_Library
-            case .officialInstance: 
+            case .officialInstance:
                 code = .resourceNotFound_OfficialInstance
             }
             return TCSmhError(code, context: self.context)

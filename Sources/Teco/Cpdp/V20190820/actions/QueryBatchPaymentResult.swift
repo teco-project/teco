@@ -19,30 +19,30 @@ extension Cpdp {
     public struct QueryBatchPaymentResultRequest: TCRequestModel {
         /// 批次号
         public let batchId: String
-        
-        public init (batchId: String) {
+
+        public init(batchId: String) {
             self.batchId = batchId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
         }
     }
-    
+
     /// QueryBatchPaymentResult返回参数结构体
     public struct QueryBatchPaymentResultResponse: TCResponseModel {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
-        
+
         /// 响应消息。
         public let errMessage: String
-        
+
         /// 返回响应
         public let result: QueryBatchPaymentResultData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -50,25 +50,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 灵云-批量转账结果查询
     @inlinable
-    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBatchPaymentResultResponse > {
+    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBatchPaymentResultResponse> {
         self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云-批量转账结果查询
     @inlinable
     public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
         try await self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 灵云-批量转账结果查询
     @inlinable
-    public func queryBatchPaymentResult(batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBatchPaymentResultResponse > {
+    public func queryBatchPaymentResult(batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBatchPaymentResultResponse> {
         self.queryBatchPaymentResult(QueryBatchPaymentResultRequest(batchId: batchId), logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云-批量转账结果查询
     @inlinable
     public func queryBatchPaymentResult(batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {

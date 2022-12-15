@@ -19,49 +19,49 @@ extension Cls {
     public struct ApplyConfigToMachineGroupRequest: TCRequestModel {
         /// 采集配置ID
         public let configId: String
-        
+
         /// 机器组ID
         public let groupId: String
-        
-        public init (configId: String, groupId: String) {
+
+        public init(configId: String, groupId: String) {
             self.configId = configId
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case groupId = "GroupId"
         }
     }
-    
+
     /// ApplyConfigToMachineGroup返回参数结构体
     public struct ApplyConfigToMachineGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 应用采集配置到指定机器组
     @inlinable
-    public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConfigToMachineGroupResponse > {
+    public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConfigToMachineGroupResponse> {
         self.client.execute(action: "ApplyConfigToMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 应用采集配置到指定机器组
     @inlinable
     public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConfigToMachineGroupResponse {
         try await self.client.execute(action: "ApplyConfigToMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 应用采集配置到指定机器组
     @inlinable
-    public func applyConfigToMachineGroup(configId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConfigToMachineGroupResponse > {
+    public func applyConfigToMachineGroup(configId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConfigToMachineGroupResponse> {
         self.applyConfigToMachineGroup(ApplyConfigToMachineGroupRequest(configId: configId, groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 应用采集配置到指定机器组
     @inlinable
     public func applyConfigToMachineGroup(configId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConfigToMachineGroupResponse {

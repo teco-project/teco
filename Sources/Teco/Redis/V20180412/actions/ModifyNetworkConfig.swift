@@ -19,23 +19,23 @@ extension Redis {
     public struct ModifyNetworkConfigRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 操作类型：changeVip——修改实例VIP；changeVpc——修改实例子网；changeBaseToVpc——基础网络转VPC网络
         public let operation: String
-        
+
         /// VIP地址，changeVip的时候填写，不填则默认分配
         public let vip: String?
-        
+
         /// 私有网络ID，changeVpc、changeBaseToVpc的时候需要提供
         public let vpcId: String?
-        
+
         /// 子网ID，changeVpc、changeBaseToVpc的时候需要提供
         public let subnetId: String?
-        
+
         /// 原VIP保留时间，单位：天，注：需要最新版SDK，否则原VIP立即释放，查看SDK版本，详见 [SDK中心](https://cloud.tencent.com/document/sdk)
         public let recycle: Int64?
-        
-        public init (instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil) {
+
+        public init(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil) {
             self.instanceId = instanceId
             self.operation = operation
             self.vip = vip
@@ -43,7 +43,7 @@ extension Redis {
             self.subnetId = subnetId
             self.recycle = recycle
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case operation = "Operation"
@@ -53,24 +53,24 @@ extension Redis {
             case recycle = "Recycle"
         }
     }
-    
+
     /// ModifyNetworkConfig返回参数结构体
     public struct ModifyNetworkConfigResponse: TCResponseModel {
         /// 执行状态：true|false
         public let status: Bool
-        
+
         /// 子网ID
         public let subnetId: String
-        
+
         /// 私有网络ID
         public let vpcId: String
-        
+
         /// VIP地址
         public let vip: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case subnetId = "SubnetId"
@@ -79,25 +79,25 @@ extension Redis {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例网络配置
     @inlinable
-    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkConfigResponse > {
+    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkConfigResponse> {
         self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例网络配置
     @inlinable
     public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
         try await self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例网络配置
     @inlinable
-    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkConfigResponse > {
+    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkConfigResponse> {
         self.modifyNetworkConfig(ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例网络配置
     @inlinable
     public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {

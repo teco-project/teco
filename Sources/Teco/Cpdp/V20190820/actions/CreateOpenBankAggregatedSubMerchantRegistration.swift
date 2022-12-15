@@ -19,75 +19,75 @@ extension Cpdp {
     public struct CreateOpenBankAggregatedSubMerchantRegistrationRequest: TCRequestModel {
         /// 外部进件序列号。
         public let outRegistrationNo: String
-        
+
         /// 渠道商户ID。
         public let channelMerchantId: String
-        
+
         /// 外部子商户ID。
         public let outSubMerchantId: String
-        
+
         /// 渠道名称。详见附录-云企付枚举类说明-ChannelName。
         /// TENPAY: 商企付
         /// WECHAT: 微信支付
         /// ALIPAY: 支付宝
         /// HELIPAY:合利宝
         public let channelName: String
-        
+
         /// 外部子商户类型。
-        /// ENTERPRISE：企业商户 
-        /// INSTITUTION：事业单位商户 
-        /// INDIVIDUALBISS：个体工商户 
-        /// PERSON：个人商户(小微商户) 
+        /// ENTERPRISE：企业商户
+        /// INSTITUTION：事业单位商户
+        /// INDIVIDUALBISS：个体工商户
+        /// PERSON：个人商户(小微商户)
         /// SUBJECT_TYPE_OTHERS：其他组织
         public let outSubMerchantType: String
-        
+
         /// 外部子商户名称。
         /// HELIPAY渠道(长度不能小于5大于150)。
         public let outSubMerchantName: String
-        
+
         /// 商户法人代表信息。
         public let legalPersonInfo: LegalPersonInfo
-        
+
         /// 营业证件信息。
         public let businessLicenseInfo: BusinessLicenseInfo
-        
+
         /// 支付渠道子商户进件信息。
         /// json字符串，详情见附录-复杂类型-InterConnectionSubMerchantData。
         public let interConnectionSubMerchantData: String
-        
+
         /// 支付方式。详见附录-云企付枚举类说明-PaymentMethod。
         /// 合利宝渠道不需要传。
         public let paymentMethod: String?
-        
+
         /// 外部子商户简称。
         /// HELIPAY渠道必传(长度不能小于2大于20)。
         public let outSubMerchantShortName: String?
-        
+
         /// 外部子商户描述。
         public let outSubMerchantDescription: String?
-        
+
         /// 通知地址。
         public let notifyUrl: String?
-        
+
         /// 相关自然人信息列表。
         /// HELIPAY渠道必传业务联系人。
         public let naturalPersonList: [NaturalPersonInfo]?
-        
+
         /// 商户结算信息。
         /// HELIPAY渠道必传。
         public let settleInfo: SettleInfo?
-        
+
         /// 外部子商户其他公用扩展信息。
         /// HELIPAY渠道必传。
         public let outSubMerchantExtensionInfo: OutSubMerchantExtensionInfo?
-        
+
         /// 环境类型。
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// _不填默认为生产环境_
         public let environment: String?
-        
-        public init (outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, outSubMerchantType: String, outSubMerchantName: String, legalPersonInfo: LegalPersonInfo, businessLicenseInfo: BusinessLicenseInfo, interConnectionSubMerchantData: String, paymentMethod: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, notifyUrl: String? = nil, naturalPersonList: [NaturalPersonInfo]? = nil, settleInfo: SettleInfo? = nil, outSubMerchantExtensionInfo: OutSubMerchantExtensionInfo? = nil, environment: String? = nil) {
+
+        public init(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, outSubMerchantType: String, outSubMerchantName: String, legalPersonInfo: LegalPersonInfo, businessLicenseInfo: BusinessLicenseInfo, interConnectionSubMerchantData: String, paymentMethod: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, notifyUrl: String? = nil, naturalPersonList: [NaturalPersonInfo]? = nil, settleInfo: SettleInfo? = nil, outSubMerchantExtensionInfo: OutSubMerchantExtensionInfo? = nil, environment: String? = nil) {
             self.outRegistrationNo = outRegistrationNo
             self.channelMerchantId = channelMerchantId
             self.outSubMerchantId = outSubMerchantId
@@ -106,7 +106,7 @@ extension Cpdp {
             self.outSubMerchantExtensionInfo = outSubMerchantExtensionInfo
             self.environment = environment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case outRegistrationNo = "OutRegistrationNo"
             case channelMerchantId = "ChannelMerchantId"
@@ -127,25 +127,25 @@ extension Cpdp {
             case environment = "Environment"
         }
     }
-    
+
     /// CreateOpenBankAggregatedSubMerchantRegistration返回参数结构体
     public struct CreateOpenBankAggregatedSubMerchantRegistrationResponse: TCResponseModel {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表
         public let errCode: String
-        
+
         /// 错误消息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: CreateOpenBankExternalAggregatedSubMerchantRegistrationResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -153,25 +153,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云企付-子商户进件V2
     @inlinable
-    public func createOpenBankAggregatedSubMerchantRegistration(_ input: CreateOpenBankAggregatedSubMerchantRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankAggregatedSubMerchantRegistrationResponse > {
+    public func createOpenBankAggregatedSubMerchantRegistration(_ input: CreateOpenBankAggregatedSubMerchantRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankAggregatedSubMerchantRegistrationResponse> {
         self.client.execute(action: "CreateOpenBankAggregatedSubMerchantRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-子商户进件V2
     @inlinable
     public func createOpenBankAggregatedSubMerchantRegistration(_ input: CreateOpenBankAggregatedSubMerchantRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankAggregatedSubMerchantRegistrationResponse {
         try await self.client.execute(action: "CreateOpenBankAggregatedSubMerchantRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云企付-子商户进件V2
     @inlinable
-    public func createOpenBankAggregatedSubMerchantRegistration(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, outSubMerchantType: String, outSubMerchantName: String, legalPersonInfo: LegalPersonInfo, businessLicenseInfo: BusinessLicenseInfo, interConnectionSubMerchantData: String, paymentMethod: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, notifyUrl: String? = nil, naturalPersonList: [NaturalPersonInfo]? = nil, settleInfo: SettleInfo? = nil, outSubMerchantExtensionInfo: OutSubMerchantExtensionInfo? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankAggregatedSubMerchantRegistrationResponse > {
+    public func createOpenBankAggregatedSubMerchantRegistration(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, outSubMerchantType: String, outSubMerchantName: String, legalPersonInfo: LegalPersonInfo, businessLicenseInfo: BusinessLicenseInfo, interConnectionSubMerchantData: String, paymentMethod: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, notifyUrl: String? = nil, naturalPersonList: [NaturalPersonInfo]? = nil, settleInfo: SettleInfo? = nil, outSubMerchantExtensionInfo: OutSubMerchantExtensionInfo? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankAggregatedSubMerchantRegistrationResponse> {
         self.createOpenBankAggregatedSubMerchantRegistration(CreateOpenBankAggregatedSubMerchantRegistrationRequest(outRegistrationNo: outRegistrationNo, channelMerchantId: channelMerchantId, outSubMerchantId: outSubMerchantId, channelName: channelName, outSubMerchantType: outSubMerchantType, outSubMerchantName: outSubMerchantName, legalPersonInfo: legalPersonInfo, businessLicenseInfo: businessLicenseInfo, interConnectionSubMerchantData: interConnectionSubMerchantData, paymentMethod: paymentMethod, outSubMerchantShortName: outSubMerchantShortName, outSubMerchantDescription: outSubMerchantDescription, notifyUrl: notifyUrl, naturalPersonList: naturalPersonList, settleInfo: settleInfo, outSubMerchantExtensionInfo: outSubMerchantExtensionInfo, environment: environment), logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-子商户进件V2
     @inlinable
     public func createOpenBankAggregatedSubMerchantRegistration(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, outSubMerchantType: String, outSubMerchantName: String, legalPersonInfo: LegalPersonInfo, businessLicenseInfo: BusinessLicenseInfo, interConnectionSubMerchantData: String, paymentMethod: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, notifyUrl: String? = nil, naturalPersonList: [NaturalPersonInfo]? = nil, settleInfo: SettleInfo? = nil, outSubMerchantExtensionInfo: OutSubMerchantExtensionInfo? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankAggregatedSubMerchantRegistrationResponse {

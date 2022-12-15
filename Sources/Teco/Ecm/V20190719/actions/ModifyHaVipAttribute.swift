@@ -19,39 +19,39 @@ extension Ecm {
     public struct ModifyHaVipAttributeRequest: TCRequestModel {
         /// HAVIP唯一ID，形如：havip-9o233uri。
         public let haVipId: String
-        
+
         /// HAVIP名称，可任意命名，但不得超过60个字符。
         public let haVipName: String
-        
-        public init (haVipId: String, haVipName: String) {
+
+        public init(haVipId: String, haVipName: String) {
             self.haVipId = haVipId
             self.haVipName = haVipName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case haVipId = "HaVipId"
             case haVipName = "HaVipName"
         }
     }
-    
+
     /// ModifyHaVipAttribute返回参数结构体
     public struct ModifyHaVipAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改HAVIP属性
     ///
     /// 用于修改高可用虚拟IP（HAVIP）属性
     @inlinable
-    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHaVipAttributeResponse > {
+    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHaVipAttributeResponse> {
         self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改HAVIP属性
     ///
     /// 用于修改高可用虚拟IP（HAVIP）属性
@@ -59,15 +59,15 @@ extension Ecm {
     public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
         try await self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改HAVIP属性
     ///
     /// 用于修改高可用虚拟IP（HAVIP）属性
     @inlinable
-    public func modifyHaVipAttribute(haVipId: String, haVipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHaVipAttributeResponse > {
+    public func modifyHaVipAttribute(haVipId: String, haVipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHaVipAttributeResponse> {
         self.modifyHaVipAttribute(ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改HAVIP属性
     ///
     /// 用于修改高可用虚拟IP（HAVIP）属性

@@ -19,44 +19,44 @@ extension Tcr {
     public struct DeleteImmutableTagRulesRequest: TCRequestModel {
         /// 实例 Id
         public let registryId: String
-        
+
         /// 命名空间
         public let namespaceName: String
-        
+
         /// 规则 Id
         public let ruleId: Int64
-        
-        public init (registryId: String, namespaceName: String, ruleId: Int64) {
+
+        public init(registryId: String, namespaceName: String, ruleId: Int64) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
             case ruleId = "RuleId"
         }
     }
-    
+
     /// DeleteImmutableTagRules返回参数结构体
     public struct DeleteImmutableTagRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则
     @inlinable
-    public func deleteImmutableTagRules(_ input: DeleteImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImmutableTagRulesResponse > {
+    public func deleteImmutableTagRules(_ input: DeleteImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImmutableTagRulesResponse> {
         self.client.execute(action: "DeleteImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则
@@ -64,15 +64,15 @@ extension Tcr {
     public func deleteImmutableTagRules(_ input: DeleteImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImmutableTagRulesResponse {
         try await self.client.execute(action: "DeleteImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则
     @inlinable
-    public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImmutableTagRulesResponse > {
+    public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImmutableTagRulesResponse> {
         self.deleteImmutableTagRules(DeleteImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则

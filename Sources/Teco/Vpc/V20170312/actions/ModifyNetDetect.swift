@@ -19,13 +19,13 @@ extension Vpc {
     public struct ModifyNetDetectRequest: TCRequestModel {
         /// 网络探测实例`ID`。形如：`netd-12345678`
         public let netDetectId: String
-        
+
         /// 网络探测名称，最大长度不能超过60个字节。
         public let netDetectName: String?
-        
+
         /// 探测目的IPv4地址数组，最多两个。
         public let detectDestinationIp: [String]?
-        
+
         /// 下一跳类型，目前我们支持的类型有：
         /// VPN：VPN网关；
         /// DIRECTCONNECT：专线网关；
@@ -34,7 +34,7 @@ extension Vpc {
         /// NORMAL_CVM：普通云服务器；
         /// CCN：云联网网关；
         public let nextHopType: String?
-        
+
         /// 下一跳目的网关，取值与“下一跳类型”相关：
         /// 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
         /// 下一跳类型为DIRECTCONNECT，取值专线网关ID，形如：dcg-12345678；
@@ -43,11 +43,11 @@ extension Vpc {
         /// 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
         /// 下一跳类型为CCN，取值云联网ID，形如：ccn-44csczop；
         public let nextHopDestination: String?
-        
+
         /// 网络探测描述。
         public let netDetectDescription: String?
-        
-        public init (netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil) {
+
+        public init(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil) {
             self.netDetectId = netDetectId
             self.netDetectName = netDetectName
             self.detectDestinationIp = detectDestinationIp
@@ -55,7 +55,7 @@ extension Vpc {
             self.nextHopDestination = nextHopDestination
             self.netDetectDescription = netDetectDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case netDetectId = "NetDetectId"
             case netDetectName = "NetDetectName"
@@ -65,25 +65,25 @@ extension Vpc {
             case netDetectDescription = "NetDetectDescription"
         }
     }
-    
+
     /// ModifyNetDetect返回参数结构体
     public struct ModifyNetDetectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
     @inlinable
-    public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetDetectResponse > {
+    public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetDetectResponse> {
         self.client.execute(action: "ModifyNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
@@ -91,15 +91,15 @@ extension Vpc {
     public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
         try await self.client.execute(action: "ModifyNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
     @inlinable
-    public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetDetectResponse > {
+    public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetDetectResponse> {
         self.modifyNetDetect(ModifyNetDetectRequest(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。

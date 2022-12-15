@@ -19,44 +19,44 @@ extension Cfg {
     public struct ExecuteTaskRequest: TCRequestModel {
         /// 需要执行的任务ID
         public let taskId: Int64
-        
-        public init (taskId: Int64) {
+
+        public init(taskId: Int64) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// ExecuteTask返回参数结构体
     public struct ExecuteTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 执行任务
     @inlinable
-    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskResponse > {
+    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteTaskResponse> {
         self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 执行任务
     @inlinable
     public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
         try await self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 执行任务
     @inlinable
-    public func executeTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskResponse > {
+    public func executeTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteTaskResponse> {
         self.executeTask(ExecuteTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 执行任务
     @inlinable
     public func executeTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {

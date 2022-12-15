@@ -19,44 +19,44 @@ extension Vpc {
     public struct RemoveBandwidthPackageResourcesRequest: TCRequestModel {
         /// 带宽包唯一标识ID，形如'bwp-xxxx'
         public let bandwidthPackageId: String?
-        
+
         /// 资源类型，包括‘Address’, ‘LoadBalance’
         public let resourceType: String?
-        
+
         /// 资源ID，可支持资源形如'eip-xxxx', 'lb-xxxx'
         public let resourceIds: [String]?
-        
-        public init (bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil) {
+
+        public init(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil) {
             self.bandwidthPackageId = bandwidthPackageId
             self.resourceType = resourceType
             self.resourceIds = resourceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bandwidthPackageId = "BandwidthPackageId"
             case resourceType = "ResourceType"
             case resourceIds = "ResourceIds"
         }
     }
-    
+
     /// RemoveBandwidthPackageResources返回参数结构体
     public struct RemoveBandwidthPackageResourcesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除带宽包资源
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable
-    public func removeBandwidthPackageResources(_ input: RemoveBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveBandwidthPackageResourcesResponse > {
+    public func removeBandwidthPackageResources(_ input: RemoveBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBandwidthPackageResourcesResponse> {
         self.client.execute(action: "RemoveBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除带宽包资源
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
@@ -64,15 +64,15 @@ extension Vpc {
     public func removeBandwidthPackageResources(_ input: RemoveBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBandwidthPackageResourcesResponse {
         try await self.client.execute(action: "RemoveBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除带宽包资源
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable
-    public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveBandwidthPackageResourcesResponse > {
+    public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBandwidthPackageResourcesResponse> {
         self.removeBandwidthPackageResources(RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除带宽包资源
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等

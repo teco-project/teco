@@ -19,23 +19,23 @@ extension Apigateway {
     public struct BindIPStrategyRequest: TCRequestModel {
         /// 待绑定的IP策略所属的服务唯一ID。
         public let serviceId: String
-        
+
         /// 待绑定的IP策略唯一ID。
         public let strategyId: String
-        
+
         /// IP策略待绑定的环境。
         public let environmentName: String
-        
+
         /// IP策略待绑定的API列表。
         public let bindApiIds: [String]
-        
-        public init (serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String]) {
+
+        public init(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String]) {
             self.serviceId = serviceId
             self.strategyId = strategyId
             self.environmentName = environmentName
             self.bindApiIds = bindApiIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case strategyId = "StrategyId"
@@ -43,30 +43,30 @@ extension Apigateway {
             case bindApiIds = "BindApiIds"
         }
     }
-    
+
     /// BindIPStrategy返回参数结构体
     public struct BindIPStrategyResponse: TCResponseModel {
         /// 绑定操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// API绑定IP策略
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
-    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindIPStrategyResponse > {
+    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIPStrategyResponse> {
         self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// API绑定IP策略
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
@@ -74,15 +74,15 @@ extension Apigateway {
     public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
         try await self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// API绑定IP策略
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
-    public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindIPStrategyResponse > {
+    public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIPStrategyResponse> {
         self.bindIPStrategy(BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds), logger: logger, on: eventLoop)
     }
-    
+
     /// API绑定IP策略
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。

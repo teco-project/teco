@@ -17,46 +17,46 @@
 extension Tcss {
     /// DescribeVulScanAuthorizedImageSummary请求参数结构体
     public struct DescribeVulScanAuthorizedImageSummaryRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVulScanAuthorizedImageSummary返回参数结构体
     public struct DescribeVulScanAuthorizedImageSummaryResponse: TCResponseModel {
         /// 全部已授权的本地镜像数
         public let allAuthorizedImageCount: Int64
-        
+
         /// 已授权未扫描的本地镜像数
         public let unScanAuthorizedImageCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case allAuthorizedImageCount = "AllAuthorizedImageCount"
             case unScanAuthorizedImageCount = "UnScanAuthorizedImageCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
-    public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanAuthorizedImageSummaryResponse > {
+    public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanAuthorizedImageSummaryResponse> {
         self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
     public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanAuthorizedImageSummaryResponse {
         try await self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
-    public func describeVulScanAuthorizedImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanAuthorizedImageSummaryResponse > {
+    public func describeVulScanAuthorizedImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanAuthorizedImageSummaryResponse> {
         self.describeVulScanAuthorizedImageSummary(DescribeVulScanAuthorizedImageSummaryRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
     public func describeVulScanAuthorizedImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanAuthorizedImageSummaryResponse {

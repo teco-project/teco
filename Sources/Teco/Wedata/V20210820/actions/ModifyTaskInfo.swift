@@ -19,92 +19,92 @@ extension Wedata {
     public struct ModifyTaskInfoRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String
-        
+
         /// 任务ID
         public let taskId: String
-        
+
         /// 执行时间，单位分钟，天/周/月/年调度才有。比如天调度，每天的02:00点执行一次，delayTime就是120分钟
         public let delayTime: Int64?
-        
+
         /// 启动时间
         public let startupTime: Int64?
-        
+
         /// 自依赖类型  1:有序串行 一次一个 排队, 2: 无序串行 一次一个 不排队， 3:并行 一次多个
         public let selfDepend: Int64?
-        
+
         /// 生效开始时间，格式 yyyy-MM-dd HH:mm:ss
         public let startTime: String?
-        
+
         /// 生效结束时间，格式 yyyy-MM-dd HH:mm:ss
         public let endTime: String?
-        
+
         /// 调度配置-弹性周期配置，小时/周/月/年调度才有，小时任务指定每天的0点3点4点跑，则为'0,3,4'。
         public let taskAction: String?
-        
+
         /// "周期类型  0:crontab类型, 1:分钟，2:小时，3:天，4:周，5:月，6:一次性，7:用户驱动，10:弹性周期 周,11:弹性周期 月,12:年,13:即时触发Instant类型，与正常周期调度任务逻辑隔离
         public let cycleType: Int64?
-        
+
         /// 步长，间隔时间，最小1
         public let cycleStep: Int64?
-        
+
         /// cron表达式  周期类型为crontab调度才需要
         public let crontabExpression: String?
-        
+
         /// 执行时间左闭区间，格式：HH:mm  小时调度才有，例如小时任务, 每日固定区间生效
         public let executionStartTime: String?
-        
+
         /// 执行时间右闭区间，格式：HH:mm  小时调度才有，例如小时任务, 每日固定区间生效
         public let executionEndTime: String?
-        
+
         /// 新的任务名
         public let taskName: String?
-        
+
         /// 失败重试间隔,单位分钟，创建任务的时候已经给了默认值
         public let retryWait: Int64?
-        
+
         /// 失败重试次数，创建任务的时候已经给了默认值
         public let tryLimit: Int64?
-        
+
         /// 是否可重试，1代表可以重试
         public let retriable: Int64?
-        
+
         /// 运行优先级，4高 5中 6低
         public let runPriority: Int64?
-        
+
         /// 任务的扩展配置
         public let taskExt: [TaskExtInfo]?
-        
+
         /// 执行资源组id，需要去资源管理服务上创建调度资源组，并且绑定cvm机器
         public let resourceGroup: String?
-        
+
         /// 资源池队列名称
         public let yarnQueue: String?
-        
+
         /// 资源组下具体执行机，any 表示可以跑在任意一台。
         public let brokerIp: String?
-        
+
         /// 责任人
         public let inCharge: String?
-        
+
         /// 任务备注
         public let notes: String?
-        
+
         /// 任务参数
         public let taskParamInfos: [ParamInfo]?
-        
+
         /// 源数据源
         public let sourceServer: String?
-        
+
         /// 目标数据源
         public let targetServer: String?
-        
+
         /// 是否支持工作流依赖 yes / no 默认 no
         public let dependencyWorkflow: String?
-        
+
         /// 依赖配置
         public let dependencyConfigDTOs: [DependencyConfig]?
-        
-        public init (projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil) {
+
+        public init(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil) {
             self.projectId = projectId
             self.taskId = taskId
             self.delayTime = delayTime
@@ -135,7 +135,7 @@ extension Wedata {
             self.dependencyWorkflow = dependencyWorkflow
             self.dependencyConfigDTOs = dependencyConfigDTOs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case taskId = "TaskId"
@@ -168,30 +168,30 @@ extension Wedata {
             case dependencyConfigDTOs = "DependencyConfigDTOs"
         }
     }
-    
+
     /// ModifyTaskInfo返回参数结构体
     public struct ModifyTaskInfoResponse: TCResponseModel {
         /// 执行结果
         public let data: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新任务
     @inlinable
-    public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskInfoResponse > {
+    public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
         self.client.execute(action: "ModifyTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
@@ -200,16 +200,16 @@ extension Wedata {
     public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskInfoResponse {
         try await self.client.execute(action: "ModifyTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新任务
     @inlinable
-    public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskInfoResponse > {
+    public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
         self.modifyTaskInfo(ModifyTaskInfoRequest(projectId: projectId, taskId: taskId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, startTime: startTime, endTime: endTime, taskAction: taskAction, cycleType: cycleType, cycleStep: cycleStep, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, taskName: taskName, retryWait: retryWait, tryLimit: tryLimit, retriable: retriable, runPriority: runPriority, taskExt: taskExt, resourceGroup: resourceGroup, yarnQueue: yarnQueue, brokerIp: brokerIp, inCharge: inCharge, notes: notes, taskParamInfos: taskParamInfos, sourceServer: sourceServer, targetServer: targetServer, dependencyWorkflow: dependencyWorkflow, dependencyConfigDTOs: dependencyConfigDTOs), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>

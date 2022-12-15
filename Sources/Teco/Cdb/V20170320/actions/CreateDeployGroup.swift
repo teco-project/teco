@@ -19,27 +19,27 @@ extension Cdb {
     public struct CreateDeployGroupRequest: TCRequestModel {
         /// 置放群组名称，最长不能超过60个字符。
         public let deployGroupName: String
-        
+
         /// 置放群组描述，最长不能超过200个字符。
         public let description: String?
-        
+
         /// 置放群组的亲和性策略，目前仅支持取值为1，策略1表示同台物理机上限制实例的个数。
         public let affinity: [Int64]?
-        
+
         /// 置放群组亲和性策略1中同台物理机上实例的限制个数。
         public let limitNum: Int64?
-        
+
         /// 置放群组机型属性，可选参数：SH12+SH02、TS85。
         public let devClass: [String]?
-        
-        public init (deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil) {
+
+        public init(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil) {
             self.deployGroupName = deployGroupName
             self.description = description
             self.affinity = affinity
             self.limitNum = limitNum
             self.devClass = devClass
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deployGroupName = "DeployGroupName"
             case description = "Description"
@@ -48,29 +48,29 @@ extension Cdb {
             case devClass = "DevClass"
         }
     }
-    
+
     /// CreateDeployGroup返回参数结构体
     public struct CreateDeployGroupResponse: TCResponseModel {
         /// 置放群组ID。
         public let deployGroupId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deployGroupId = "DeployGroupId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建置放群组
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
-    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeployGroupResponse > {
+    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeployGroupResponse> {
         self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建置放群组
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
@@ -78,15 +78,15 @@ extension Cdb {
     public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
         try await self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建置放群组
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
-    public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeployGroupResponse > {
+    public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeployGroupResponse> {
         self.createDeployGroup(CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建置放群组
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组

@@ -19,54 +19,54 @@ extension Cynosdb {
     public struct AssociateSecurityGroupsRequest: TCRequestModel {
         /// 实例组ID数组
         public let instanceIds: [String]
-        
+
         /// 要修改的安全组ID列表，一个或者多个安全组Id组成的数组。
         public let securityGroupIds: [String]
-        
+
         /// 可用区
         public let zone: String
-        
-        public init (instanceIds: [String], securityGroupIds: [String], zone: String) {
+
+        public init(instanceIds: [String], securityGroupIds: [String], zone: String) {
             self.instanceIds = instanceIds
             self.securityGroupIds = securityGroupIds
             self.zone = zone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case securityGroupIds = "SecurityGroupIds"
             case zone = "Zone"
         }
     }
-    
+
     /// AssociateSecurityGroups返回参数结构体
     public struct AssociateSecurityGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全组批量绑定云资源
     @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
         self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组批量绑定云资源
     @inlinable
     public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
         try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全组批量绑定云资源
     @inlinable
-    public func associateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+    public func associateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
         self.associateSecurityGroups(AssociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组批量绑定云资源
     @inlinable
     public func associateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {

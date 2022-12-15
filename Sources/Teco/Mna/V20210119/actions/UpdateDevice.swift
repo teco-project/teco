@@ -19,23 +19,23 @@ extension Mna {
     public struct UpdateDeviceRequest: TCRequestModel {
         /// 设备id
         public let deviceId: String
-        
+
         /// 设备名称
         public let deviceName: String?
-        
+
         /// 设备备注
         public let remark: String?
-        
+
         /// 更新设备网络信息
         public let updateNetInfo: [UpdateNetInfo]?
-        
-        public init (deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil) {
+
+        public init(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil) {
             self.deviceId = deviceId
             self.deviceName = deviceName
             self.remark = remark
             self.updateNetInfo = updateNetInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case deviceName = "DeviceName"
@@ -43,25 +43,25 @@ extension Mna {
             case updateNetInfo = "UpdateNetInfo"
         }
     }
-    
+
     /// UpdateDevice返回参数结构体
     public struct UpdateDeviceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新设备
     ///
     /// 更新设备信息
     @inlinable
-    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceResponse > {
+    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceResponse> {
         self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新设备
     ///
     /// 更新设备信息
@@ -69,15 +69,15 @@ extension Mna {
     public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
         try await self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新设备
     ///
     /// 更新设备信息
     @inlinable
-    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceResponse > {
+    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceResponse> {
         self.updateDevice(UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新设备
     ///
     /// 更新设备信息

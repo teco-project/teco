@@ -19,43 +19,43 @@ extension Cfs {
     public struct BindAutoSnapshotPolicyRequest: TCRequestModel {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
-        
+
         /// 文件系统列表
         public let fileSystemIds: String
-        
-        public init (autoSnapshotPolicyId: String, fileSystemIds: String) {
+
+        public init(autoSnapshotPolicyId: String, fileSystemIds: String) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
             self.fileSystemIds = fileSystemIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case fileSystemIds = "FileSystemIds"
         }
     }
-    
+
     /// BindAutoSnapshotPolicy返回参数结构体
     public struct BindAutoSnapshotPolicyResponse: TCResponseModel {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 文件系统绑定快照策略
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
-    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoSnapshotPolicyResponse > {
+    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
         self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 文件系统绑定快照策略
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
@@ -63,15 +63,15 @@ extension Cfs {
     public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 文件系统绑定快照策略
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
-    public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoSnapshotPolicyResponse > {
+    public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
         self.bindAutoSnapshotPolicy(BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 文件系统绑定快照策略
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定

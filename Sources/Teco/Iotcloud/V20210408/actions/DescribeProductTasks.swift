@@ -19,52 +19,52 @@ extension Iotcloud {
     public struct DescribeProductTasksRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 产品级别任务列表偏移量
         public let offset: UInt64
-        
+
         /// 产品级别任务列表拉取个数
         public let limit: UInt64
-        
-        public init (productId: String, offset: UInt64, limit: UInt64) {
+
+        public init(productId: String, offset: UInt64, limit: UInt64) {
             self.productId = productId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeProductTasks返回参数结构体
     public struct DescribeProductTasksResponse: TCResponseModel {
         /// 符合条件的任务总个数
         public let totalCount: UInt64
-        
+
         /// 任务详细信息列表
         public let taskInfos: [ProductTaskInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case taskInfos = "TaskInfos"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取产品级任务列表
     ///
     /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
     @inlinable
-    public func describeProductTasks(_ input: DescribeProductTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductTasksResponse > {
+    public func describeProductTasks(_ input: DescribeProductTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductTasksResponse> {
         self.client.execute(action: "DescribeProductTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品级任务列表
     ///
     /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
@@ -72,15 +72,15 @@ extension Iotcloud {
     public func describeProductTasks(_ input: DescribeProductTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTasksResponse {
         try await self.client.execute(action: "DescribeProductTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取产品级任务列表
     ///
     /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
     @inlinable
-    public func describeProductTasks(productId: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductTasksResponse > {
+    public func describeProductTasks(productId: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductTasksResponse> {
         self.describeProductTasks(DescribeProductTasksRequest(productId: productId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品级任务列表
     ///
     /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表

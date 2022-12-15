@@ -19,27 +19,27 @@ extension Tcss {
     public struct DescribeVulIgnoreLocalImageListRequest: TCRequestModel {
         /// 漏洞PocID
         public let pocID: String
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 排序方式:DESC,ACS
         public let order: String?
-        
+
         /// 排序字段 ImageSize
         public let by: String?
-        
-        public init (pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.pocID = pocID
             self.limit = limit
             self.offset = offset
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pocID = "PocID"
             case limit = "Limit"
@@ -48,43 +48,43 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeVulIgnoreLocalImageList返回参数结构体
     public struct DescribeVulIgnoreLocalImageListResponse: TCResponseModel {
         /// 总数量
         public let totalCount: Int64
-        
+
         /// 镜像列表
         public let list: [VulIgnoreLocalImage]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
-    public func describeVulIgnoreLocalImageList(_ input: DescribeVulIgnoreLocalImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulIgnoreLocalImageListResponse > {
+    public func describeVulIgnoreLocalImageList(_ input: DescribeVulIgnoreLocalImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulIgnoreLocalImageListResponse> {
         self.client.execute(action: "DescribeVulIgnoreLocalImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
     public func describeVulIgnoreLocalImageList(_ input: DescribeVulIgnoreLocalImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulIgnoreLocalImageListResponse {
         try await self.client.execute(action: "DescribeVulIgnoreLocalImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
-    public func describeVulIgnoreLocalImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulIgnoreLocalImageListResponse > {
+    public func describeVulIgnoreLocalImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulIgnoreLocalImageListResponse> {
         self.describeVulIgnoreLocalImageList(DescribeVulIgnoreLocalImageListRequest(pocID: pocID, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
     public func describeVulIgnoreLocalImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulIgnoreLocalImageListResponse {

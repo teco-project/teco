@@ -41,192 +41,192 @@ extension TCFtError {
             case taskNotExist = "FailedOperation.TaskNotExist"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 撤销任务无法被成功执行, 请重试。
         public static var cancelJobFailure: FailedOperation {
             FailedOperation(.cancelJobFailure)
         }
-        
+
         /// 未检测到人脸。
         public static var detectNoFace: FailedOperation {
             FailedOperation(.detectNoFace)
         }
-        
+
         /// 人脸检测失败。
         public static var faceDetectFailed: FailedOperation {
             FailedOperation(.faceDetectFailed)
         }
-        
+
         /// 人脸出框，无法使用。
         public static var faceExceedBorder: FailedOperation {
             FailedOperation(.faceExceedBorder)
         }
-        
+
         /// 人脸配准失败。
         public static var faceShapeFailed: FailedOperation {
             FailedOperation(.faceShapeFailed)
         }
-        
+
         /// 人脸因太小被过滤，建议人脸分辨率不小于34*34。
         public static var faceSizeTooSmall: FailedOperation {
             FailedOperation(.faceSizeTooSmall)
         }
-        
+
         /// 操作太频繁，触发频控，请稍后重试。
         public static var freqCtrl: FailedOperation {
             FailedOperation(.freqCtrl)
         }
-        
+
         /// 图片解码失败。
         public static var imageDecodeFailed: FailedOperation {
             FailedOperation(.imageDecodeFailed)
         }
-        
+
         /// 图片下载错误。
         public static var imageDownloadError: FailedOperation {
             FailedOperation(.imageDownloadError)
         }
-        
+
         /// 不支持的图片文件。
         public static var imageNotSupported: FailedOperation {
             FailedOperation(.imageNotSupported)
         }
-        
+
         /// 素材尺寸超过2000*2000像素。
         public static var imagePixelExceed: FailedOperation {
             FailedOperation(.imagePixelExceed)
         }
-        
+
         /// 图片分辨率过大，超过2000*2000。
         public static var imageResolutionExceed: FailedOperation {
             FailedOperation(.imageResolutionExceed)
         }
-        
+
         /// 图片短边分辨率太小，小于64。
         public static var imageResolutionTooSmall: FailedOperation {
             FailedOperation(.imageResolutionTooSmall)
         }
-        
+
         /// 服务内部错误，请重试。
         public static var innerError: FailedOperation {
             FailedOperation(.innerError)
         }
-        
+
         /// 任务冲突。
         public static var jobConflict: FailedOperation {
             FailedOperation(.jobConflict)
         }
-        
+
         /// 任务已撤销，请重新提交任务。
         public static var jobHasBeenCanceled: FailedOperation {
             FailedOperation(.jobHasBeenCanceled)
         }
-        
+
         /// 任务不存在。
         public static var jobNotExist: FailedOperation {
             FailedOperation(.jobNotExist)
         }
-        
+
         /// 任务已停止处理，请重新提交任务。
         public static var jobStopProcessing: FailedOperation {
             FailedOperation(.jobStopProcessing)
         }
-        
+
         /// 整个请求体太大（通常主要是图片）。
         public static var requestEntityTooLarge: FailedOperation {
             FailedOperation(.requestEntityTooLarge)
         }
-        
+
         /// 后端服务超时。
         public static var requestTimeout: FailedOperation {
             FailedOperation(.requestTimeout)
         }
-        
+
         /// RPC请求失败，一般为算法微服务故障。
         public static var rpcFail: FailedOperation {
             FailedOperation(.rpcFail)
         }
-        
+
         /// 任务不存在。
         public static var taskNotExist: FailedOperation {
             FailedOperation(.taskNotExist)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asFtError() -> TCFtError {
             let code: TCFtError.Code
             switch self.error {
-            case .cancelJobFailure: 
+            case .cancelJobFailure:
                 code = .failedOperation_CancelJobFailure
-            case .detectNoFace: 
+            case .detectNoFace:
                 code = .failedOperation_DetectNoFace
-            case .faceDetectFailed: 
+            case .faceDetectFailed:
                 code = .failedOperation_FaceDetectFailed
-            case .faceExceedBorder: 
+            case .faceExceedBorder:
                 code = .failedOperation_FaceExceedBorder
-            case .faceShapeFailed: 
+            case .faceShapeFailed:
                 code = .failedOperation_FaceShapeFailed
-            case .faceSizeTooSmall: 
+            case .faceSizeTooSmall:
                 code = .failedOperation_FaceSizeTooSmall
-            case .freqCtrl: 
+            case .freqCtrl:
                 code = .failedOperation_FreqCtrl
-            case .imageDecodeFailed: 
+            case .imageDecodeFailed:
                 code = .failedOperation_ImageDecodeFailed
-            case .imageDownloadError: 
+            case .imageDownloadError:
                 code = .failedOperation_ImageDownloadError
-            case .imageNotSupported: 
+            case .imageNotSupported:
                 code = .failedOperation_ImageNotSupported
-            case .imagePixelExceed: 
+            case .imagePixelExceed:
                 code = .failedOperation_ImagePixelExceed
-            case .imageResolutionExceed: 
+            case .imageResolutionExceed:
                 code = .failedOperation_ImageResolutionExceed
-            case .imageResolutionTooSmall: 
+            case .imageResolutionTooSmall:
                 code = .failedOperation_ImageResolutionTooSmall
-            case .innerError: 
+            case .innerError:
                 code = .failedOperation_InnerError
-            case .jobConflict: 
+            case .jobConflict:
                 code = .failedOperation_JobConflict
-            case .jobHasBeenCanceled: 
+            case .jobHasBeenCanceled:
                 code = .failedOperation_JobHasBeenCanceled
-            case .jobNotExist: 
+            case .jobNotExist:
                 code = .failedOperation_JobNotExist
-            case .jobStopProcessing: 
+            case .jobStopProcessing:
                 code = .failedOperation_JobStopProcessing
-            case .requestEntityTooLarge: 
+            case .requestEntityTooLarge:
                 code = .failedOperation_RequestEntityTooLarge
-            case .requestTimeout: 
+            case .requestTimeout:
                 code = .failedOperation_RequestTimeout
-            case .rpcFail: 
+            case .rpcFail:
                 code = .failedOperation_RpcFail
-            case .taskNotExist: 
+            case .taskNotExist:
                 code = .failedOperation_TaskNotExist
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCFtError(code, context: self.context)

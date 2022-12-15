@@ -19,44 +19,44 @@ extension Vod {
     public struct ModifyClassRequest: TCRequestModel {
         /// 分类 ID
         public let classId: UInt64
-        
+
         /// 分类名称。长度限制：1-64 个字符。
         public let className: String
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
-        public init (classId: UInt64, className: String, subAppId: UInt64? = nil) {
+
+        public init(classId: UInt64, className: String, subAppId: UInt64? = nil) {
             self.classId = classId
             self.className = className
             self.subAppId = subAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case classId = "ClassId"
             case className = "ClassName"
             case subAppId = "SubAppId"
         }
     }
-    
+
     /// ModifyClass返回参数结构体
     public struct ModifyClassResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改分类
     ///
     /// 修改媒体分类属性。
     @inlinable
-    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClassResponse > {
+    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
         self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改分类
     ///
     /// 修改媒体分类属性。
@@ -64,15 +64,15 @@ extension Vod {
     public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
         try await self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改分类
     ///
     /// 修改媒体分类属性。
     @inlinable
-    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClassResponse > {
+    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
         self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改分类
     ///
     /// 修改媒体分类属性。

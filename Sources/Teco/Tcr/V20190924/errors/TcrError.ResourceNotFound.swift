@@ -25,80 +25,80 @@ extension TCTcrError {
             case tcrResourceNotFound = "ResourceNotFound.TcrResourceNotFound"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 用户没有创建命名空间。
         public static var errNoNamespace: ResourceNotFound {
             ResourceNotFound(.errNoNamespace)
         }
-        
+
         /// 仓库不存在。
         public static var errNoRepo: ResourceNotFound {
             ResourceNotFound(.errNoRepo)
         }
-        
+
         /// tag不存在。
         public static var errNoTag: ResourceNotFound {
             ResourceNotFound(.errNoTag)
         }
-        
+
         /// 触发器不存在。
         public static var errNoTrigger: ResourceNotFound {
             ResourceNotFound(.errNoTrigger)
         }
-        
+
         /// 用户不存在（未注册）。
         public static var errNoUser: ResourceNotFound {
             ResourceNotFound(.errNoUser)
         }
-        
+
         /// Tcr实例中的资源未找到。
         public static var tcrResourceNotFound: ResourceNotFound {
             ResourceNotFound(.tcrResourceNotFound)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asTcrError() -> TCTcrError {
             let code: TCTcrError.Code
             switch self.error {
-            case .errNoNamespace: 
+            case .errNoNamespace:
                 code = .resourceNotFound_ErrNoNamespace
-            case .errNoRepo: 
+            case .errNoRepo:
                 code = .resourceNotFound_ErrNoRepo
-            case .errNoTag: 
+            case .errNoTag:
                 code = .resourceNotFound_ErrNoTag
-            case .errNoTrigger: 
+            case .errNoTrigger:
                 code = .resourceNotFound_ErrNoTrigger
-            case .errNoUser: 
+            case .errNoUser:
                 code = .resourceNotFound_ErrNoUser
-            case .tcrResourceNotFound: 
+            case .tcrResourceNotFound:
                 code = .resourceNotFound_TcrResourceNotFound
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCTcrError(code, context: self.context)

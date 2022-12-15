@@ -29,108 +29,108 @@ extension TCSqlserverError {
             case securityGroupOperationError = "FailedOperation.SecurityGroupOperationError"
             case vpcError = "FailedOperation.VPCError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 查询对象存储失败。
         public static var cosError: FailedOperation {
             FailedOperation(.cosError)
         }
-        
+
         /// 获取上传配置信息错误。
         public static var cosPropertiesError: FailedOperation {
             FailedOperation(.cosPropertiesError)
         }
-        
+
         /// 创建订单失败。
         public static var createOrderFailed: FailedOperation {
             FailedOperation(.createOrderFailed)
         }
-        
+
         /// 数据库错误。
         public static var dbError: FailedOperation {
             FailedOperation(.dbError)
         }
-        
+
         /// 操作失败或者网络超时。
         public static var gcsError: FailedOperation {
             FailedOperation(.gcsError)
         }
-        
+
         /// 获取VPC网络信息失败。
         public static var getVpcFailed: FailedOperation {
             FailedOperation(.getVpcFailed)
         }
-        
+
         /// 备份导入任务锁定失败。
         public static var migrationLockError: FailedOperation {
             FailedOperation(.migrationLockError)
         }
-        
+
         /// 查询订单失败。
         public static var queryOrderFailed: FailedOperation {
             FailedOperation(.queryOrderFailed)
         }
-        
+
         /// 计费相关错误，查询价格失败。
         public static var queryPriceFailed: FailedOperation {
             FailedOperation(.queryPriceFailed)
         }
-        
+
         /// 安全组操作失败。
         public static var securityGroupOperationError: FailedOperation {
             FailedOperation(.securityGroupOperationError)
         }
-        
+
         /// 操作网络失败或者超时。
         public static var vpcError: FailedOperation {
             FailedOperation(.vpcError)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {
-            case .cosError: 
+            case .cosError:
                 code = .failedOperation_CosError
-            case .cosPropertiesError: 
+            case .cosPropertiesError:
                 code = .failedOperation_CosPropertiesError
-            case .createOrderFailed: 
+            case .createOrderFailed:
                 code = .failedOperation_CreateOrderFailed
-            case .dbError: 
+            case .dbError:
                 code = .failedOperation_DBError
-            case .gcsError: 
+            case .gcsError:
                 code = .failedOperation_GcsError
-            case .getVpcFailed: 
+            case .getVpcFailed:
                 code = .failedOperation_GetVpcFailed
-            case .migrationLockError: 
+            case .migrationLockError:
                 code = .failedOperation_MigrationLockError
-            case .queryOrderFailed: 
+            case .queryOrderFailed:
                 code = .failedOperation_QueryOrderFailed
-            case .queryPriceFailed: 
+            case .queryPriceFailed:
                 code = .failedOperation_QueryPriceFailed
-            case .securityGroupOperationError: 
+            case .securityGroupOperationError:
                 code = .failedOperation_SecurityGroupOperationError
-            case .vpcError: 
+            case .vpcError:
                 code = .failedOperation_VPCError
             }
             return TCSqlserverError(code, context: self.context)

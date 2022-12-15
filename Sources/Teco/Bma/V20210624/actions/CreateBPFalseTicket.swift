@@ -19,44 +19,44 @@ extension Bma {
     public struct CreateBPFalseTicketRequest: TCRequestModel {
         /// 仿冒网址
         public let fakeURL: String?
-        
-        public init (fakeURL: String? = nil) {
+
+        public init(fakeURL: String? = nil) {
             self.fakeURL = fakeURL
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fakeURL = "FakeURL"
         }
     }
-    
+
     /// CreateBPFalseTicket返回参数结构体
     public struct CreateBPFalseTicketResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加误报工单
     @inlinable
-    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPFalseTicketResponse > {
+    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
         self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加误报工单
     @inlinable
     public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
         try await self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加误报工单
     @inlinable
-    public func createBPFalseTicket(fakeURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPFalseTicketResponse > {
+    public func createBPFalseTicket(fakeURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
         self.createBPFalseTicket(CreateBPFalseTicketRequest(fakeURL: fakeURL), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加误报工单
     @inlinable
     public func createBPFalseTicket(fakeURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {

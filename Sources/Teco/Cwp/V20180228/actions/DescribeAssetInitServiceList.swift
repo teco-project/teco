@@ -19,10 +19,10 @@ extension Cwp {
     public struct DescribeAssetInitServiceListRequest: TCRequestModel {
         /// 服务器Uuid
         public let uuid: String?
-        
+
         /// 服务器Quuid
         public let quuid: String?
-        
+
         /// 过滤条件。
         /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         /// <li>Name- string - 是否必填：否 - 包名</li>
@@ -44,20 +44,20 @@ extension Cwp {
         /// 13:驱动服务
         /// 14:登录</li>
         public let filters: [AssetFilters]?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 排序方式，asc升序 或 desc降序
         public let order: String?
-        
+
         /// 排序方式：[FirstTime]
         public let by: String?
-        
-        public init (uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.uuid = uuid
             self.quuid = quuid
             self.filters = filters
@@ -66,7 +66,7 @@ extension Cwp {
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
             case quuid = "Quuid"
@@ -77,44 +77,44 @@ extension Cwp {
             case by = "By"
         }
     }
-    
+
     /// DescribeAssetInitServiceList返回参数结构体
     public struct DescribeAssetInitServiceListResponse: TCResponseModel {
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let services: [AssetInitServiceBaseInfo]?
-        
+
         /// 总数量
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case services = "Services"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询资产管理启动服务列表
     @inlinable
-    public func describeAssetInitServiceList(_ input: DescribeAssetInitServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetInitServiceListResponse > {
+    public func describeAssetInitServiceList(_ input: DescribeAssetInitServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetInitServiceListResponse> {
         self.client.execute(action: "DescribeAssetInitServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询资产管理启动服务列表
     @inlinable
     public func describeAssetInitServiceList(_ input: DescribeAssetInitServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInitServiceListResponse {
         try await self.client.execute(action: "DescribeAssetInitServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询资产管理启动服务列表
     @inlinable
-    public func describeAssetInitServiceList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetInitServiceListResponse > {
+    public func describeAssetInitServiceList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetInitServiceListResponse> {
         self.describeAssetInitServiceList(DescribeAssetInitServiceListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询资产管理启动服务列表
     @inlinable
     public func describeAssetInitServiceList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInitServiceListResponse {

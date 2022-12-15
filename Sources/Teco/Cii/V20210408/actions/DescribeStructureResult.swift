@@ -19,16 +19,16 @@ extension Cii {
     public struct DescribeStructureResultRequest: TCRequestModel {
         /// 创建任务时返回的主任务ID
         public let mainTaskId: String
-        
-        public init (mainTaskId: String) {
+
+        public init(mainTaskId: String) {
             self.mainTaskId = mainTaskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mainTaskId = "MainTaskId"
         }
     }
-    
+
     /// DescribeStructureResult返回参数结构体
     public struct DescribeStructureResultResponse: TCResponseModel {
         /// 结果状态：
@@ -36,16 +36,16 @@ extension Cii {
         /// 1：结果未生成
         /// 2：结果生成失败
         public let status: UInt64
-        
+
         /// 结构化结果
         public let results: [StructureResultObject]
-        
+
         /// 主任务ID
         public let mainTaskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case results = "Results"
@@ -53,15 +53,15 @@ extension Cii {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询结构化结果接口
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口
     @inlinable
-    public func describeStructureResult(_ input: DescribeStructureResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStructureResultResponse > {
+    public func describeStructureResult(_ input: DescribeStructureResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureResultResponse> {
         self.client.execute(action: "DescribeStructureResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询结构化结果接口
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口
@@ -69,15 +69,15 @@ extension Cii {
     public func describeStructureResult(_ input: DescribeStructureResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureResultResponse {
         try await self.client.execute(action: "DescribeStructureResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询结构化结果接口
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口
     @inlinable
-    public func describeStructureResult(mainTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStructureResultResponse > {
+    public func describeStructureResult(mainTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureResultResponse> {
         self.describeStructureResult(DescribeStructureResultRequest(mainTaskId: mainTaskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询结构化结果接口
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口

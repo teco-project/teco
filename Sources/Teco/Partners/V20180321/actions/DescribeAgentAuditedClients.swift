@@ -19,44 +19,44 @@ extension Partners {
     public struct DescribeAgentAuditedClientsRequest: TCRequestModel {
         /// 客户账号ID
         public let clientUin: String?
-        
+
         /// 客户名称。由于涉及隐私，名称打码显示，故名称仅支持打码后的模糊搜索
         public let clientName: String?
-        
+
         /// 客户类型，a/b，类型定义参考代理商相关政策文档
         public let clientFlag: String?
-        
+
         /// ASC/DESC， 不区分大小写，按审核通过时间排序
         public let orderDirection: String?
-        
+
         /// 客户账号ID列表
         public let clientUins: [String]?
-        
+
         /// 是否欠费。0：不欠费；1：欠费
         public let hasOverdueBill: UInt64?
-        
+
         /// 客户备注
         public let clientRemark: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 限制数目
         public let limit: UInt64?
-        
+
         /// 可以为new(自拓)/assign(指派)/old(官网)/direct(直销)/direct_newopp(直销(新商机))/空
         public let clientType: String?
-        
+
         /// 项目类型：可以为self(自拓项目)/platform(合作项目)/repeat(复算项目  )/空
         public let projectType: String?
-        
+
         /// 业务员ID
         public let salesUin: String?
-        
+
         /// 业务员姓名（模糊查询）
         public let salesName: String?
-        
-        public init (clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil) {
+
+        public init(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil) {
             self.clientUin = clientUin
             self.clientName = clientName
             self.clientFlag = clientFlag
@@ -71,7 +71,7 @@ extension Partners {
             self.salesUin = salesUin
             self.salesName = salesName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clientUin = "ClientUin"
             case clientName = "ClientName"
@@ -88,43 +88,43 @@ extension Partners {
             case salesName = "SalesName"
         }
     }
-    
+
     /// DescribeAgentAuditedClients返回参数结构体
     public struct DescribeAgentAuditedClientsResponse: TCResponseModel {
         /// 已审核代客列表
         public let agentClientSet: [AgentAuditedClient]
-        
+
         /// 符合条件的代客总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentClientSet = "AgentClientSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询已审核客户列表
     @inlinable
-    public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentAuditedClientsResponse > {
+    public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentAuditedClientsResponse> {
         self.client.execute(action: "DescribeAgentAuditedClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询已审核客户列表
     @inlinable
     public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentAuditedClientsResponse {
         try await self.client.execute(action: "DescribeAgentAuditedClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询已审核客户列表
     @inlinable
-    public func describeAgentAuditedClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentAuditedClientsResponse > {
+    public func describeAgentAuditedClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentAuditedClientsResponse> {
         self.describeAgentAuditedClients(DescribeAgentAuditedClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, clientUins: clientUins, hasOverdueBill: hasOverdueBill, clientRemark: clientRemark, offset: offset, limit: limit, clientType: clientType, projectType: projectType, salesUin: salesUin, salesName: salesName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询已审核客户列表
     @inlinable
     public func describeAgentAuditedClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentAuditedClientsResponse {

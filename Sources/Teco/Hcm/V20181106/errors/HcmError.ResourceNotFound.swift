@@ -19,38 +19,38 @@ extension TCHcmError {
         enum Code: String {
             case cannotFindUser = "ResourceNotFound.CannotFindUser"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无法找到用户，请确认已在控制台开通服务并使用了正确的HCMAPPID。
         public static var cannotFindUser: ResourceNotFound {
             ResourceNotFound(.cannotFindUser)
         }
-        
+
         public func asHcmError() -> TCHcmError {
             let code: TCHcmError.Code
             switch self.error {
-            case .cannotFindUser: 
+            case .cannotFindUser:
                 code = .resourceNotFound_CannotFindUser
             }
             return TCHcmError(code, context: self.context)

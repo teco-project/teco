@@ -21,52 +21,52 @@ extension TCLighthouseError {
             case bundleUnavailable = "ResourceUnavailable.BundleUnavailable"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 镜像资源不可用。
         public static var blueprintUnavailable: ResourceUnavailable {
             ResourceUnavailable(.blueprintUnavailable)
         }
-        
+
         /// 套餐不可用。
         public static var bundleUnavailable: ResourceUnavailable {
             ResourceUnavailable(.bundleUnavailable)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
-            case .blueprintUnavailable: 
+            case .blueprintUnavailable:
                 code = .resourceUnavailable_BlueprintUnavailable
-            case .bundleUnavailable: 
+            case .bundleUnavailable:
                 code = .resourceUnavailable_BundleUnavailable
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCLighthouseError(code, context: self.context)

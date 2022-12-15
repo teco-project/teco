@@ -20,45 +20,45 @@ extension TCBiError {
             case missingParam = "MissingParameter.MissingParam"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 必填参数缺失。
         public static var missingParam: MissingParameter {
             MissingParameter(.missingParam)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asBiError() -> TCBiError {
             let code: TCBiError.Code
             switch self.error {
-            case .missingParam: 
+            case .missingParam:
                 code = .missingParameter_MissingParam
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCBiError(code, context: self.context)

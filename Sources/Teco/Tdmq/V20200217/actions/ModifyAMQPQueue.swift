@@ -19,26 +19,26 @@ extension Tdmq {
     public struct ModifyAMQPQueueRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// Vhost名称
         public let vHostId: String
-        
+
         /// 队列名称
         public let queue: String
-        
+
         /// 是否自动清除
         public let autoDelete: Bool
-        
+
         /// 说明信息，最大128个字符
         public let remark: String?
-        
+
         /// 死信exchange
         public let deadLetterExchange: String?
-        
+
         /// 路由键
         public let deadLetterRoutingKey: String?
-        
-        public init (clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil) {
+
+        public init(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil) {
             self.clusterId = clusterId
             self.vHostId = vHostId
             self.queue = queue
@@ -47,7 +47,7 @@ extension Tdmq {
             self.deadLetterExchange = deadLetterExchange
             self.deadLetterRoutingKey = deadLetterRoutingKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case vHostId = "VHostId"
@@ -58,35 +58,35 @@ extension Tdmq {
             case deadLetterRoutingKey = "DeadLetterRoutingKey"
         }
     }
-    
+
     /// ModifyAMQPQueue返回参数结构体
     public struct ModifyAMQPQueueResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新Amqp队列
     @inlinable
-    public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPQueueResponse > {
+    public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPQueueResponse> {
         self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Amqp队列
     @inlinable
     public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
         try await self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新Amqp队列
     @inlinable
-    public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPQueueResponse > {
+    public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPQueueResponse> {
         self.modifyAMQPQueue(ModifyAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Amqp队列
     @inlinable
     public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {

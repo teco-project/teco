@@ -19,62 +19,62 @@ extension Iotexplorer {
     public struct DescribeFenceBindListRequest: TCRequestModel {
         /// 围栏Id
         public let fenceId: Int64
-        
+
         /// 翻页偏移量，0起始
         public let offset: Int64?
-        
+
         /// 最大返回结果数
         public let limit: Int64?
-        
-        public init (fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil) {
             self.fenceId = fenceId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fenceId = "FenceId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeFenceBindList返回参数结构体
     public struct DescribeFenceBindListResponse: TCResponseModel {
         /// 围栏绑定的产品设备列表
         public let list: [FenceBindProductItem]
-        
+
         /// 围栏绑定的设备总数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取围栏绑定信息列表
     @inlinable
-    public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceBindListResponse > {
+    public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceBindListResponse> {
         self.client.execute(action: "DescribeFenceBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取围栏绑定信息列表
     @inlinable
     public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceBindListResponse {
         try await self.client.execute(action: "DescribeFenceBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取围栏绑定信息列表
     @inlinable
-    public func describeFenceBindList(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceBindListResponse > {
+    public func describeFenceBindList(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceBindListResponse> {
         self.describeFenceBindList(DescribeFenceBindListRequest(fenceId: fenceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取围栏绑定信息列表
     @inlinable
     public func describeFenceBindList(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceBindListResponse {

@@ -19,54 +19,54 @@ extension Tke {
     public struct AddNodeToNodePoolRequest: TCRequestModel {
         /// 集群id
         public let clusterId: String
-        
+
         /// 节点池id
         public let nodePoolId: String
-        
+
         /// 节点id
         public let instanceIds: [String]
-        
-        public init (clusterId: String, nodePoolId: String, instanceIds: [String]) {
+
+        public init(clusterId: String, nodePoolId: String, instanceIds: [String]) {
             self.clusterId = clusterId
             self.nodePoolId = nodePoolId
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case nodePoolId = "NodePoolId"
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// AddNodeToNodePool返回参数结构体
     public struct AddNodeToNodePoolResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 将集群内节点移入节点池
     @inlinable
-    public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodeToNodePoolResponse > {
+    public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNodeToNodePoolResponse> {
         self.client.execute(action: "AddNodeToNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 将集群内节点移入节点池
     @inlinable
     public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodeToNodePoolResponse {
         try await self.client.execute(action: "AddNodeToNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 将集群内节点移入节点池
     @inlinable
-    public func addNodeToNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodeToNodePoolResponse > {
+    public func addNodeToNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNodeToNodePoolResponse> {
         self.addNodeToNodePool(AddNodeToNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 将集群内节点移入节点池
     @inlinable
     public func addNodeToNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodeToNodePoolResponse {

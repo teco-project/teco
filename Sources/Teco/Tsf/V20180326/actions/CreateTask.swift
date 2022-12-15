@@ -19,53 +19,53 @@ extension Tsf {
     public struct CreateTaskRequest: TCRequestModel {
         /// 任务名称，任务长度64字符
         public let taskName: String
-        
+
         /// 任务内容，长度限制65536个字节
         public let taskContent: String
-        
+
         /// 执行类型，unicast/broadcast
         public let executeType: String
-        
+
         /// 任务类型,java
         public let taskType: String
-        
+
         /// 任务超时时间， 时间单位 ms
         public let timeOut: UInt64
-        
+
         /// 部署组ID
         public let groupId: String
-        
+
         /// 触发规则
         public let taskRule: TaskRule?
-        
+
         /// 重试次数，0 <= RetryCount<= 10
         public let retryCount: UInt64?
-        
+
         /// 重试间隔， 0 <= RetryInterval <= 600000， 时间单位 ms
         public let retryInterval: UInt64?
-        
+
         /// 分片数量
         public let shardCount: Int64?
-        
+
         /// 分片参数
         public let shardArguments: [ShardArgument]?
-        
+
         /// 判断任务成功的操作符
         public let successOperator: String?
-        
+
         /// 判断任务成功率的阈值，如100
         public let successRatio: String?
-        
+
         /// 高级设置
         public let advanceSettings: AdvanceSettings?
-        
+
         /// 任务参数，长度限制10000个字符
         public let taskArgument: String?
-        
+
         /// 无
         public let programIdList: [String]?
-        
-        public init (taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil) {
+
+        public init(taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil) {
             self.taskName = taskName
             self.taskContent = taskContent
             self.executeType = executeType
@@ -83,7 +83,7 @@ extension Tsf {
             self.taskArgument = taskArgument
             self.programIdList = programIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case taskContent = "TaskContent"
@@ -103,40 +103,40 @@ extension Tsf {
             case programIdList = "ProgramIdList"
         }
     }
-    
+
     /// CreateTask返回参数结构体
     public struct CreateTaskResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建任务
     @inlinable
-    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskResponse> {
         self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建任务
     @inlinable
     public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
         try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建任务
     @inlinable
-    public func createTask(taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+    public func createTask(taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskResponse> {
         self.createTask(CreateTaskRequest(taskName: taskName, taskContent: taskContent, executeType: executeType, taskType: taskType, timeOut: timeOut, groupId: groupId, taskRule: taskRule, retryCount: retryCount, retryInterval: retryInterval, shardCount: shardCount, shardArguments: shardArguments, successOperator: successOperator, successRatio: successRatio, advanceSettings: advanceSettings, taskArgument: taskArgument, programIdList: programIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建任务
     @inlinable
     public func createTask(taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {

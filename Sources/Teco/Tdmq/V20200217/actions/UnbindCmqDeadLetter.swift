@@ -19,44 +19,44 @@ extension Tdmq {
     public struct UnbindCmqDeadLetterRequest: TCRequestModel {
         /// 死信策略源队列名称，调用本接口会清空该队列的死信队列策略。
         public let sourceQueueName: String
-        
-        public init (sourceQueueName: String) {
+
+        public init(sourceQueueName: String) {
             self.sourceQueueName = sourceQueueName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceQueueName = "SourceQueueName"
         }
     }
-    
+
     /// UnbindCmqDeadLetter返回参数结构体
     public struct UnbindCmqDeadLetterResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑cmq死信队列
     @inlinable
-    public func unbindCmqDeadLetter(_ input: UnbindCmqDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindCmqDeadLetterResponse > {
+    public func unbindCmqDeadLetter(_ input: UnbindCmqDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindCmqDeadLetterResponse> {
         self.client.execute(action: "UnbindCmqDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑cmq死信队列
     @inlinable
     public func unbindCmqDeadLetter(_ input: UnbindCmqDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCmqDeadLetterResponse {
         try await self.client.execute(action: "UnbindCmqDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑cmq死信队列
     @inlinable
-    public func unbindCmqDeadLetter(sourceQueueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindCmqDeadLetterResponse > {
+    public func unbindCmqDeadLetter(sourceQueueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindCmqDeadLetterResponse> {
         self.unbindCmqDeadLetter(UnbindCmqDeadLetterRequest(sourceQueueName: sourceQueueName), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑cmq死信队列
     @inlinable
     public func unbindCmqDeadLetter(sourceQueueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCmqDeadLetterResponse {

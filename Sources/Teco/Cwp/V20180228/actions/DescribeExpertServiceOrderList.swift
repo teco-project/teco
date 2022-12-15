@@ -19,52 +19,52 @@ extension Cwp {
     public struct DescribeExpertServiceOrderListRequest: TCRequestModel {
         /// <li>InquireType- String - 是否必填：否 - 订单类型过滤，</li>
         public let filters: [Filters]?
-        
+
         /// 分页条数 最大100条
         public let limit: UInt64?
-        
+
         /// 分页步长
         public let offset: UInt64?
-        
-        public init (filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeExpertServiceOrderList返回参数结构体
     public struct DescribeExpertServiceOrderListResponse: TCResponseModel {
         /// 总条数
         public let totalCount: UInt64
-        
+
         /// 订单列表
         public let list: [ExpertServiceOrderInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表
     @inlinable
-    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceOrderListResponse > {
+    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceOrderListResponse> {
         self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表
@@ -72,15 +72,15 @@ extension Cwp {
     public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
         try await self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表
     @inlinable
-    public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceOrderListResponse > {
+    public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceOrderListResponse> {
         self.describeExpertServiceOrderList(DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表

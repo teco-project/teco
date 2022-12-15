@@ -19,24 +19,24 @@ extension Vpc {
     public struct DescribeNetDetectStatesRequest: TCRequestModel {
         /// 网络探测实例`ID`数组。形如：[`netd-12345678`]
         public let netDetectIds: [String]?
-        
+
         /// 过滤条件，参数不支持同时指定NetDetectIds和Filters。
         /// <li>net-detect-id - String - （过滤条件）网络探测实例ID，形如：netd-12345678</li>
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
-        
-        public init (netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.netDetectIds = netDetectIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case netDetectIds = "NetDetectIds"
             case filters = "Filters"
@@ -44,35 +44,35 @@ extension Vpc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeNetDetectStates返回参数结构体
     public struct DescribeNetDetectStatesResponse: TCResponseModel {
         /// 符合条件的网络探测验证结果对象数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let netDetectStateSet: [NetDetectState]?
-        
+
         /// 符合条件的网络探测验证结果对象数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case netDetectStateSet = "NetDetectStateSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询网络探测验证结果列表
     ///
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
     @inlinable
-    public func describeNetDetectStates(_ input: DescribeNetDetectStatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetDetectStatesResponse > {
+    public func describeNetDetectStates(_ input: DescribeNetDetectStatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetDetectStatesResponse> {
         self.client.execute(action: "DescribeNetDetectStates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询网络探测验证结果列表
     ///
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
@@ -80,15 +80,15 @@ extension Vpc {
     public func describeNetDetectStates(_ input: DescribeNetDetectStatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetDetectStatesResponse {
         try await self.client.execute(action: "DescribeNetDetectStates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询网络探测验证结果列表
     ///
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
     @inlinable
-    public func describeNetDetectStates(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetDetectStatesResponse > {
+    public func describeNetDetectStates(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetDetectStatesResponse> {
         self.describeNetDetectStates(DescribeNetDetectStatesRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询网络探测验证结果列表
     ///
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。

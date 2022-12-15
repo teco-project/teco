@@ -19,34 +19,34 @@ extension Batch {
     public struct DeleteTaskTemplatesRequest: TCRequestModel {
         /// 用于删除任务模板信息
         public let taskTemplateIds: [String]
-        
-        public init (taskTemplateIds: [String]) {
+
+        public init(taskTemplateIds: [String]) {
             self.taskTemplateIds = taskTemplateIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskTemplateIds = "TaskTemplateIds"
         }
     }
-    
+
     /// DeleteTaskTemplates返回参数结构体
     public struct DeleteTaskTemplatesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息
     @inlinable
-    public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskTemplatesResponse > {
+    public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskTemplatesResponse> {
         self.client.execute(action: "DeleteTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息
@@ -54,15 +54,15 @@ extension Batch {
     public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskTemplatesResponse {
         try await self.client.execute(action: "DeleteTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息
     @inlinable
-    public func deleteTaskTemplates(taskTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskTemplatesResponse > {
+    public func deleteTaskTemplates(taskTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskTemplatesResponse> {
         self.deleteTaskTemplates(DeleteTaskTemplatesRequest(taskTemplateIds: taskTemplateIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息

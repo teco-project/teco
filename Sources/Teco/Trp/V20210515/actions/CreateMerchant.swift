@@ -19,27 +19,27 @@ extension Trp {
     public struct CreateMerchantRequest: TCRequestModel {
         /// 商户名称
         public let name: String
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 码包来源 0:自建, 1:第三发
         public let codeType: Int64?
-        
+
         /// 码包前缀地址 第三方码包时必填
         public let codeUrl: String?
-        
-        public init (name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil) {
+
+        public init(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil) {
             self.name = name
             self.remark = remark
             self.corpId = corpId
             self.codeType = codeType
             self.codeUrl = codeUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case remark = "Remark"
@@ -48,40 +48,40 @@ extension Trp {
             case codeUrl = "CodeUrl"
         }
     }
-    
+
     /// CreateMerchant返回参数结构体
     public struct CreateMerchantResponse: TCResponseModel {
         /// 商户标识码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建商户
     @inlinable
-    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
+    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMerchantResponse> {
         self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建商户
     @inlinable
     public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
         try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建商户
     @inlinable
-    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
+    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMerchantResponse> {
         self.createMerchant(CreateMerchantRequest(name: name, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建商户
     @inlinable
     public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {

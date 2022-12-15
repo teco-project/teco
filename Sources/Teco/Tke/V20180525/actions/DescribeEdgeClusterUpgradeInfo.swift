@@ -19,46 +19,46 @@ extension Tke {
     public struct DescribeEdgeClusterUpgradeInfoRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 要升级到的TKEEdge版本
         public let edgeVersion: String
-        
-        public init (clusterId: String, edgeVersion: String) {
+
+        public init(clusterId: String, edgeVersion: String) {
             self.clusterId = clusterId
             self.edgeVersion = edgeVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case edgeVersion = "EdgeVersion"
         }
     }
-    
+
     /// DescribeEdgeClusterUpgradeInfo返回参数结构体
     public struct DescribeEdgeClusterUpgradeInfoResponse: TCResponseModel {
         /// 可升级的集群组件和
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let componentVersion: String?
-        
+
         /// 边缘集群当前版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let edgeVersionCurrent: String?
-        
+
         /// 边缘组件镜像仓库地址前缀，包含域名和命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryPrefix: String?
-        
+
         /// 集群升级状态，可能值：running、updating、failed
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterUpgradeStatus: String?
-        
+
         /// 集群升级中状态或者失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterUpgradeStatusReason: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case componentVersion = "ComponentVersion"
             case edgeVersionCurrent = "EdgeVersionCurrent"
@@ -68,15 +68,15 @@ extension Tke {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询边缘集群升级信息
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
-    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterUpgradeInfoResponse > {
+    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterUpgradeInfoResponse> {
         self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘集群升级信息
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
@@ -84,15 +84,15 @@ extension Tke {
     public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
         try await self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询边缘集群升级信息
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
-    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterUpgradeInfoResponse > {
+    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterUpgradeInfoResponse> {
         self.describeEdgeClusterUpgradeInfo(DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘集群升级信息
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息

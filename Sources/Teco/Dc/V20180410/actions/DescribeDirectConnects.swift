@@ -19,23 +19,23 @@ extension Dc {
     public struct DescribeDirectConnectsRequest: TCRequestModel {
         /// 过滤条件:
         public let filters: [Filter]?
-        
+
         /// 物理专线 ID数组
         public let directConnectIds: [String]?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
-        
-        public init (filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.directConnectIds = directConnectIds
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case directConnectIds = "DirectConnectIds"
@@ -43,22 +43,22 @@ extension Dc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeDirectConnects返回参数结构体
     public struct DescribeDirectConnectsResponse: TCResponseModel {
         /// 物理专线列表。
         public let directConnectSet: [DirectConnect]
-        
+
         /// 符合物理专线列表数量。
         public let totalCount: Int64
-        
+
         /// 用户名下物理专线是否都签署了用户协议
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allSignLaw: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectSet = "DirectConnectSet"
             case totalCount = "TotalCount"
@@ -66,15 +66,15 @@ extension Dc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询物理专线列表
     ///
     /// 查询物理专线列表。
     @inlinable
-    public func describeDirectConnects(_ input: DescribeDirectConnectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectsResponse > {
+    public func describeDirectConnects(_ input: DescribeDirectConnectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectsResponse> {
         self.client.execute(action: "DescribeDirectConnects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询物理专线列表
     ///
     /// 查询物理专线列表。
@@ -82,15 +82,15 @@ extension Dc {
     public func describeDirectConnects(_ input: DescribeDirectConnectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectsResponse {
         try await self.client.execute(action: "DescribeDirectConnects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询物理专线列表
     ///
     /// 查询物理专线列表。
     @inlinable
-    public func describeDirectConnects(filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectsResponse > {
+    public func describeDirectConnects(filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectsResponse> {
         self.describeDirectConnects(DescribeDirectConnectsRequest(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询物理专线列表
     ///
     /// 查询物理专线列表。

@@ -19,44 +19,44 @@ extension Tcr {
     public struct ModifyNamespaceRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 命名空间名称
         public let namespaceName: String
-        
+
         /// 访问级别，True为公开，False为私有
         public let isPublic: Bool
-        
-        public init (registryId: String, namespaceName: String, isPublic: Bool) {
+
+        public init(registryId: String, namespaceName: String, isPublic: Bool) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.isPublic = isPublic
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
             case isPublic = "IsPublic"
         }
     }
-    
+
     /// ModifyNamespace返回参数结构体
     public struct ModifyNamespaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新命名空间信息
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNamespaceResponse > {
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
         self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新命名空间信息
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别
@@ -64,15 +64,15 @@ extension Tcr {
     public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
         try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新命名空间信息
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable
-    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNamespaceResponse > {
+    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
         self.modifyNamespace(ModifyNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新命名空间信息
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别

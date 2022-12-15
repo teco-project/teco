@@ -19,49 +19,49 @@ extension Tdid {
     public struct AddLabelRequest: TCRequestModel {
         /// 标签ID
         public let labelId: UInt64
-        
+
         /// tdid
         public let did: String
-        
-        public init (labelId: UInt64, did: String) {
+
+        public init(labelId: UInt64, did: String) {
             self.labelId = labelId
             self.did = did
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case labelId = "LabelId"
             case did = "Did"
         }
     }
-    
+
     /// AddLabel返回参数结构体
     public struct AddLabelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// DID添加标签
     @inlinable
-    public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLabelResponse > {
+    public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLabelResponse> {
         self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DID添加标签
     @inlinable
     public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {
         try await self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DID添加标签
     @inlinable
-    public func addLabel(labelId: UInt64, did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLabelResponse > {
+    public func addLabel(labelId: UInt64, did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLabelResponse> {
         self.addLabel(AddLabelRequest(labelId: labelId, did: did), logger: logger, on: eventLoop)
     }
-    
+
     /// DID添加标签
     @inlinable
     public func addLabel(labelId: UInt64, did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {

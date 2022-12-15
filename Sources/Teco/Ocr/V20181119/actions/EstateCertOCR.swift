@@ -22,66 +22,66 @@ extension Ocr {
         /// 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
-        
+
         /// 图片的 Url 地址。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
         /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
-        
-        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
         }
     }
-    
+
     /// EstateCertOCR返回参数结构体
     public struct EstateCertOCRResponse: TCResponseModel {
         /// 权利人
         public let obligee: String
-        
+
         /// 共有情况
         public let ownership: String
-        
+
         /// 坐落
         public let location: String
-        
+
         /// 不动产单元号
         public let unit: String
-        
+
         /// 权利类型
         public let type: String
-        
+
         /// 权利性质
         public let property: String
-        
+
         /// 用途
         public let usage: String
-        
+
         /// 面积
         public let area: String
-        
+
         /// 使用期限
         public let term: String
-        
+
         /// 权利其他状况，多行会用换行符\n连接。
         public let other: String
-        
+
         /// 图片旋转角度
         public let angle: Float
-        
+
         /// 不动产权号
         public let number: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case obligee = "Obligee"
             case ownership = "Ownership"
@@ -98,15 +98,15 @@ extension Ocr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
     @inlinable
-    public func estateCertOCR(_ input: EstateCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstateCertOCRResponse > {
+    public func estateCertOCR(_ input: EstateCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstateCertOCRResponse> {
         self.client.execute(action: "EstateCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
@@ -114,15 +114,15 @@ extension Ocr {
     public func estateCertOCR(_ input: EstateCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstateCertOCRResponse {
         try await self.client.execute(action: "EstateCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
     @inlinable
-    public func estateCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstateCertOCRResponse > {
+    public func estateCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstateCertOCRResponse> {
         self.estateCertOCR(EstateCertOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。

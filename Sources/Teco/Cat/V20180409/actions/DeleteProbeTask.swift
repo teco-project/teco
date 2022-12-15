@@ -19,32 +19,32 @@ extension Cat {
     public struct DeleteProbeTaskRequest: TCRequestModel {
         /// 任务 ID
         public let taskIds: [String]
-        
-        public init (taskIds: [String]) {
+
+        public init(taskIds: [String]) {
             self.taskIds = taskIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
         }
     }
-    
+
     /// DeleteProbeTask返回参数结构体
     public struct DeleteProbeTaskResponse: TCResponseModel {
         /// 任务总量
         public let total: Int64
-        
+
         /// 任务成功量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successCount: Int64?
-        
+
         /// 任务执行结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [TaskResult]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case successCount = "SuccessCount"
@@ -52,25 +52,25 @@ extension Cat {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除拨测任务
     @inlinable
-    public func deleteProbeTask(_ input: DeleteProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProbeTaskResponse > {
+    public func deleteProbeTask(_ input: DeleteProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProbeTaskResponse> {
         self.client.execute(action: "DeleteProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除拨测任务
     @inlinable
     public func deleteProbeTask(_ input: DeleteProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProbeTaskResponse {
         try await self.client.execute(action: "DeleteProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除拨测任务
     @inlinable
-    public func deleteProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProbeTaskResponse > {
+    public func deleteProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProbeTaskResponse> {
         self.deleteProbeTask(DeleteProbeTaskRequest(taskIds: taskIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除拨测任务
     @inlinable
     public func deleteProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProbeTaskResponse {

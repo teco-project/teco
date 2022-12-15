@@ -19,23 +19,23 @@ extension Essbasic {
     public struct CheckBankCardVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
         public let caller: Caller
-        
+
         /// 银行卡号
         public let bankCard: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 身份证件号码
         public let idCardNumber: String?
-        
+
         /// 手机号
         public let mobile: String?
-        
+
         /// 身份证件类型; ID_CARD
         public let idCardType: String?
-        
-        public init (caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil) {
+
+        public init(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil) {
             self.caller = caller
             self.bankCard = bankCard
             self.name = name
@@ -43,7 +43,7 @@ extension Essbasic {
             self.mobile = mobile
             self.idCardType = idCardType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case bankCard = "BankCard"
@@ -53,7 +53,7 @@ extension Essbasic {
             case idCardType = "IdCardType"
         }
     }
-    
+
     /// CheckBankCardVerification返回参数结构体
     public struct CheckBankCardVerificationResponse: TCResponseModel {
         /// 检测结果
@@ -79,20 +79,20 @@ extension Essbasic {
         ///   104: 身份证号码有误
         ///   105: 手机号码不合法
         public let result: Int64
-        
+
         /// 结果描述; 未通过时必选
         public let description: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case description = "Description"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 银行卡二三四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
@@ -100,10 +100,10 @@ extension Essbasic {
     /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
-    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardVerificationResponse > {
+    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCardVerificationResponse> {
         self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 银行卡二三四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
@@ -114,7 +114,7 @@ extension Essbasic {
     public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
         try await self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 银行卡二三四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
@@ -122,10 +122,10 @@ extension Essbasic {
     /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
-    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardVerificationResponse > {
+    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCardVerificationResponse> {
         self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), logger: logger, on: eventLoop)
     }
-    
+
     /// 银行卡二三四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素

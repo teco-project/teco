@@ -19,23 +19,23 @@ extension Iotvideo {
     public struct DescribeAIModelUsageRequest: TCRequestModel {
         /// 模型ID
         public let modelId: String
-        
+
         /// 产品ID
         public let productId: String
-        
+
         /// 偏移量，从0开始
         public let offset: UInt64
-        
+
         /// 分页的大小，最大100
         public let limit: UInt64
-        
-        public init (modelId: String, productId: String, offset: UInt64, limit: UInt64) {
+
+        public init(modelId: String, productId: String, offset: UInt64, limit: UInt64) {
             self.modelId = modelId
             self.productId = productId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case productId = "ProductId"
@@ -43,43 +43,43 @@ extension Iotvideo {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAIModelUsage返回参数结构体
     public struct DescribeAIModelUsageResponse: TCResponseModel {
         /// AI模型资源包总量
         public let totalCount: UInt64
-        
+
         /// AI模型资源包信息数组
         public let usageInfo: [AIModelUsageInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case usageInfo = "UsageInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看AI模型资源包
     @inlinable
-    public func describeAIModelUsage(_ input: DescribeAIModelUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelUsageResponse > {
+    public func describeAIModelUsage(_ input: DescribeAIModelUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelUsageResponse> {
         self.client.execute(action: "DescribeAIModelUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看AI模型资源包
     @inlinable
     public func describeAIModelUsage(_ input: DescribeAIModelUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelUsageResponse {
         try await self.client.execute(action: "DescribeAIModelUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看AI模型资源包
     @inlinable
-    public func describeAIModelUsage(modelId: String, productId: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelUsageResponse > {
+    public func describeAIModelUsage(modelId: String, productId: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelUsageResponse> {
         self.describeAIModelUsage(DescribeAIModelUsageRequest(modelId: modelId, productId: productId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看AI模型资源包
     @inlinable
     public func describeAIModelUsage(modelId: String, productId: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelUsageResponse {

@@ -19,29 +19,29 @@ extension Vod {
     public struct DescribeProcedureTemplatesRequest: TCRequestModel {
         /// 任务流模板名字过滤条件，数组长度限制：100。
         public let names: [String]?
-        
+
         /// 任务流模板类型过滤条件，可选值：
         /// <li>Preset：系统预置任务流模板；</li>
         /// <li>Custom：用户自定义任务流模板。</li>
         public let type: String?
-        
+
         /// 分页偏移量，默认值：0。
         public let offset: UInt64?
-        
+
         /// 返回记录条数，默认值：10，最大值：100。
         public let limit: UInt64?
-        
+
         /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         public let subAppId: UInt64?
-        
-        public init (names: [String]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subAppId: UInt64? = nil) {
+
+        public init(names: [String]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subAppId: UInt64? = nil) {
             self.names = names
             self.type = type
             self.offset = offset
             self.limit = limit
             self.subAppId = subAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case names = "Names"
             case type = "Type"
@@ -50,33 +50,33 @@ extension Vod {
             case subAppId = "SubAppId"
         }
     }
-    
+
     /// DescribeProcedureTemplates返回参数结构体
     public struct DescribeProcedureTemplatesResponse: TCResponseModel {
         /// 符合过滤条件的记录总数。
         public let totalCount: UInt64
-        
+
         /// 任务流模板详情列表。
         public let procedureTemplateSet: [ProcedureTemplate]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case procedureTemplateSet = "ProcedureTemplateSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取任务流模板列表
     ///
     /// 根据任务流模板名字，获取任务流模板详情列表。
     @inlinable
-    public func describeProcedureTemplates(_ input: DescribeProcedureTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcedureTemplatesResponse > {
+    public func describeProcedureTemplates(_ input: DescribeProcedureTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProcedureTemplatesResponse> {
         self.client.execute(action: "DescribeProcedureTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务流模板列表
     ///
     /// 根据任务流模板名字，获取任务流模板详情列表。
@@ -84,15 +84,15 @@ extension Vod {
     public func describeProcedureTemplates(_ input: DescribeProcedureTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcedureTemplatesResponse {
         try await self.client.execute(action: "DescribeProcedureTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取任务流模板列表
     ///
     /// 根据任务流模板名字，获取任务流模板详情列表。
     @inlinable
-    public func describeProcedureTemplates(names: [String]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcedureTemplatesResponse > {
+    public func describeProcedureTemplates(names: [String]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProcedureTemplatesResponse> {
         self.describeProcedureTemplates(DescribeProcedureTemplatesRequest(names: names, type: type, offset: offset, limit: limit, subAppId: subAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务流模板列表
     ///
     /// 根据任务流模板名字，获取任务流模板详情列表。

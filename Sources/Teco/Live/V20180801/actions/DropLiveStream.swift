@@ -19,45 +19,45 @@ extension Live {
     public struct DropLiveStreamRequest: TCRequestModel {
         /// 流名称。
         public let streamName: String
-        
+
         /// 您的推流域名。
         public let domainName: String
-        
+
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
         public let appName: String
-        
-        public init (streamName: String, domainName: String, appName: String) {
+
+        public init(streamName: String, domainName: String, appName: String) {
             self.streamName = streamName
             self.domainName = domainName
             self.appName = appName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case streamName = "StreamName"
             case domainName = "DomainName"
             case appName = "AppName"
         }
     }
-    
+
     /// DropLiveStream返回参数结构体
     public struct DropLiveStreamResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 断开直播推流
     ///
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable
-    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropLiveStreamResponse > {
+    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
         self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 断开直播推流
     ///
     /// 断开推流连接，但可以重新推流。
@@ -66,16 +66,16 @@ extension Live {
     public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
         try await self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 断开直播推流
     ///
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable
-    public func dropLiveStream(streamName: String, domainName: String, appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropLiveStreamResponse > {
+    public func dropLiveStream(streamName: String, domainName: String, appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
         self.dropLiveStream(DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName), logger: logger, on: eventLoop)
     }
-    
+
     /// 断开直播推流
     ///
     /// 断开推流连接，但可以重新推流。

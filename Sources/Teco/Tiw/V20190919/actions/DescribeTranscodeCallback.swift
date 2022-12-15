@@ -19,52 +19,52 @@ extension Tiw {
     public struct DescribeTranscodeCallbackRequest: TCRequestModel {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
-        
-        public init (sdkAppId: Int64) {
+
+        public init(sdkAppId: Int64) {
             self.sdkAppId = sdkAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
         }
     }
-    
+
     /// DescribeTranscodeCallback返回参数结构体
     public struct DescribeTranscodeCallbackResponse: TCResponseModel {
         /// 文档转码回调地址
         public let callback: String
-        
+
         /// 文档转码回调鉴权密钥
         public let callbackKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case callback = "Callback"
             case callbackKey = "CallbackKey"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询文档转码回调地址
     @inlinable
-    public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeCallbackResponse > {
+    public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeCallbackResponse> {
         self.client.execute(action: "DescribeTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文档转码回调地址
     @inlinable
     public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeCallbackResponse {
         try await self.client.execute(action: "DescribeTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询文档转码回调地址
     @inlinable
-    public func describeTranscodeCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeCallbackResponse > {
+    public func describeTranscodeCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeCallbackResponse> {
         self.describeTranscodeCallback(DescribeTranscodeCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文档转码回调地址
     @inlinable
     public func describeTranscodeCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeCallbackResponse {

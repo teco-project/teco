@@ -19,38 +19,38 @@ extension Sslpod {
     public struct ResolveDomainRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// ResolveDomain返回参数结构体
     public struct ResolveDomainResponse: TCResponseModel {
         /// 响应数据
         public let data: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 域名解析
     ///
     /// 解析域名获得多个IP地址
     @inlinable
-    public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResolveDomainResponse > {
+    public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveDomainResponse> {
         self.client.execute(action: "ResolveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 域名解析
     ///
     /// 解析域名获得多个IP地址
@@ -58,15 +58,15 @@ extension Sslpod {
     public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveDomainResponse {
         try await self.client.execute(action: "ResolveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 域名解析
     ///
     /// 解析域名获得多个IP地址
     @inlinable
-    public func resolveDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResolveDomainResponse > {
+    public func resolveDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveDomainResponse> {
         self.resolveDomain(ResolveDomainRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 域名解析
     ///
     /// 解析域名获得多个IP地址

@@ -27,94 +27,94 @@ extension TCEcdnError {
             case proxyServer = "InternalError.ProxyServer"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 获取用户信息失败，请联系腾讯云工程师进一步排查。
         public static var accountSystemError: InternalError {
             InternalError(.accountSystemError)
         }
-        
+
         /// CAM鉴权错误，请稍后重试。
         public static var camSystemError: InternalError {
             InternalError(.camSystemError)
         }
-        
+
         /// 数据查询错误，请联系腾讯云工程师进一步排查。
         public static var dataSystemError: InternalError {
             InternalError(.dataSystemError)
         }
-        
+
         /// 内部配置服务错误，请重试或联系客服人员解决。
         public static var ecdnConfigError: InternalError {
             InternalError(.ecdnConfigError)
         }
-        
+
         /// 内部数据错误，请联系腾讯云工程师进一步排查。
         public static var ecdnDbError: InternalError {
             InternalError(.ecdnDbError)
         }
-        
+
         /// 系统错误，请联系腾讯云工程师进一步排查。
         public static var ecdnSystemError: InternalError {
             InternalError(.ecdnSystemError)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         public static var error: InternalError {
             InternalError(.error)
         }
-        
+
         /// 后端服务错误,请稍后重试 。
         public static var proxyServer: InternalError {
             InternalError(.proxyServer)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asEcdnError() -> TCEcdnError {
             let code: TCEcdnError.Code
             switch self.error {
-            case .accountSystemError: 
+            case .accountSystemError:
                 code = .internalError_AccountSystemError
-            case .camSystemError: 
+            case .camSystemError:
                 code = .internalError_CamSystemError
-            case .dataSystemError: 
+            case .dataSystemError:
                 code = .internalError_DataSystemError
-            case .ecdnConfigError: 
+            case .ecdnConfigError:
                 code = .internalError_EcdnConfigError
-            case .ecdnDbError: 
+            case .ecdnDbError:
                 code = .internalError_EcdnDbError
-            case .ecdnSystemError: 
+            case .ecdnSystemError:
                 code = .internalError_EcdnSystemError
-            case .error: 
+            case .error:
                 code = .internalError_Error
-            case .proxyServer: 
+            case .proxyServer:
                 code = .internalError_ProxyServer
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCEcdnError(code, context: self.context)

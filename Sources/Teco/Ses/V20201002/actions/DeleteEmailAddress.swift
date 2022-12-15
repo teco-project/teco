@@ -19,34 +19,34 @@ extension Ses {
     public struct DeleteEmailAddressRequest: TCRequestModel {
         /// 发信地址
         public let emailAddress: String
-        
-        public init (emailAddress: String) {
+
+        public init(emailAddress: String) {
             self.emailAddress = emailAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case emailAddress = "EmailAddress"
         }
     }
-    
+
     /// DeleteEmailAddress返回参数结构体
     public struct DeleteEmailAddressResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除发信地址
     ///
     /// 删除发信人地址
     @inlinable
-    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailAddressResponse > {
+    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
         self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除发信地址
     ///
     /// 删除发信人地址
@@ -54,15 +54,15 @@ extension Ses {
     public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
         try await self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除发信地址
     ///
     /// 删除发信人地址
     @inlinable
-    public func deleteEmailAddress(emailAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailAddressResponse > {
+    public func deleteEmailAddress(emailAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
         self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除发信地址
     ///
     /// 删除发信人地址

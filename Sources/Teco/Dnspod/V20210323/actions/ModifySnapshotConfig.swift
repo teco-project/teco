@@ -19,54 +19,54 @@ extension Dnspod {
     public struct ModifySnapshotConfigRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 备件间隔：空字符串-不备份，half_hour-每半小时，hourly-每小时，daily-每天，monthly-每月
         public let period: String
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
-        
-        public init (domain: String, period: String, domainId: UInt64? = nil) {
+
+        public init(domain: String, period: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.period = period
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case period = "Period"
             case domainId = "DomainId"
         }
     }
-    
+
     /// ModifySnapshotConfig返回参数结构体
     public struct ModifySnapshotConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改快照配置
     @inlinable
-    public func modifySnapshotConfig(_ input: ModifySnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotConfigResponse > {
+    public func modifySnapshotConfig(_ input: ModifySnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotConfigResponse> {
         self.client.execute(action: "ModifySnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改快照配置
     @inlinable
     public func modifySnapshotConfig(_ input: ModifySnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotConfigResponse {
         try await self.client.execute(action: "ModifySnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改快照配置
     @inlinable
-    public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotConfigResponse > {
+    public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotConfigResponse> {
         self.modifySnapshotConfig(ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改快照配置
     @inlinable
     public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotConfigResponse {

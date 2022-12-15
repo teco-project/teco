@@ -19,47 +19,47 @@ extension Dcdb {
     public struct ModifyDBParametersRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow728lmc。
         public let instanceId: String
-        
+
         /// 参数列表，每一个元素是Param和Value的组合
         public let params: [DBParamValue]
-        
-        public init (instanceId: String, params: [DBParamValue]) {
+
+        public init(instanceId: String, params: [DBParamValue]) {
             self.instanceId = instanceId
             self.params = params
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case params = "Params"
         }
     }
-    
+
     /// ModifyDBParameters返回参数结构体
     public struct ModifyDBParametersResponse: TCResponseModel {
         /// 实例 ID，形如：dcdbt-ow728lmc。
         public let instanceId: String
-        
+
         /// 各参数修改结果
         public let result: [ParamModifyResult]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改数据库参数
     ///
     /// 本接口(ModifyDBParameters)用于修改数据库参数。
     @inlinable
-    public func modifyDBParameters(_ input: ModifyDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBParametersResponse > {
+    public func modifyDBParameters(_ input: ModifyDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBParametersResponse> {
         self.client.execute(action: "ModifyDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据库参数
     ///
     /// 本接口(ModifyDBParameters)用于修改数据库参数。
@@ -67,15 +67,15 @@ extension Dcdb {
     public func modifyDBParameters(_ input: ModifyDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBParametersResponse {
         try await self.client.execute(action: "ModifyDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改数据库参数
     ///
     /// 本接口(ModifyDBParameters)用于修改数据库参数。
     @inlinable
-    public func modifyDBParameters(instanceId: String, params: [DBParamValue], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBParametersResponse > {
+    public func modifyDBParameters(instanceId: String, params: [DBParamValue], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBParametersResponse> {
         self.modifyDBParameters(ModifyDBParametersRequest(instanceId: instanceId, params: params), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据库参数
     ///
     /// 本接口(ModifyDBParameters)用于修改数据库参数。

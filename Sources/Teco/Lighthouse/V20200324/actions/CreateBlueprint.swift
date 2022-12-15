@@ -19,48 +19,48 @@ extension Lighthouse {
     public struct CreateBlueprintRequest: TCRequestModel {
         /// 镜像名称。最大长度60。
         public let blueprintName: String
-        
+
         /// 镜像描述。最大长度60。
         public let description: String?
-        
+
         /// 需要制作镜像的实例ID。
         public let instanceId: String?
-        
-        public init (blueprintName: String, description: String? = nil, instanceId: String? = nil) {
+
+        public init(blueprintName: String, description: String? = nil, instanceId: String? = nil) {
             self.blueprintName = blueprintName
             self.description = description
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case blueprintName = "BlueprintName"
             case description = "Description"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// CreateBlueprint返回参数结构体
     public struct CreateBlueprintResponse: TCResponseModel {
         /// 自定义镜像ID。
         public let blueprintId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case blueprintId = "BlueprintId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlueprintResponse > {
+    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
         self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
@@ -68,15 +68,15 @@ extension Lighthouse {
     public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
         try await self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlueprintResponse > {
+    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
         self.createBlueprint(CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。

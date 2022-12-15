@@ -19,23 +19,23 @@ extension Scf {
     public struct UpdateAliasRequest: TCRequestModel {
         /// 函数名称
         public let functionName: String
-        
+
         /// 别名的名称
         public let name: String
-        
+
         /// 别名指向的主版本
         public let functionVersion: String
-        
+
         /// 函数所在的命名空间
         public let namespace: String?
-        
+
         /// 别名的路由信息，需要为别名指定附加版本时，必须提供此参数
         public let routingConfig: RoutingConfig?
-        
+
         /// 别名的描述
         public let description: String?
-        
-        public init (functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil) {
+
+        public init(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil) {
             self.functionName = functionName
             self.name = name
             self.functionVersion = functionVersion
@@ -43,7 +43,7 @@ extension Scf {
             self.routingConfig = routingConfig
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case name = "Name"
@@ -53,35 +53,35 @@ extension Scf {
             case description = "Description"
         }
     }
-    
+
     /// UpdateAlias返回参数结构体
     public struct UpdateAliasResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新别名的配置
     @inlinable
-    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
+    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
         self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新别名的配置
     @inlinable
     public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
         try await self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新别名的配置
     @inlinable
-    public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
+    public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
         self.updateAlias(UpdateAliasRequest(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新别名的配置
     @inlinable
     public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {

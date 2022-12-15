@@ -19,36 +19,36 @@ extension Cii {
     public struct ClassifiedReports: TCOutputModel {
         /// 报告类型
         public let reportType: String
-        
+
         /// 文件列表
         public let fileList: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case reportType = "ReportType"
             case fileList = "FileList"
         }
     }
-    
+
     /// 报告分类信息
     public struct ClassifyInfo: TCOutputModel {
         /// 一级分类
         public let firstClass: String
-        
+
         /// 二级分类
         public let secondClass: String
-        
+
         /// 三级分类
         public let thirdClass: String
-        
+
         /// 一级分类序号
         public let firstClassId: UInt64
-        
+
         /// 二级分类序号
         public let secondClassId: UInt64
-        
+
         /// 三级分类序号
         public let thirdClassId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case firstClass = "FirstClass"
             case secondClass = "SecondClass"
@@ -58,33 +58,33 @@ extension Cii {
             case thirdClassId = "ThirdClassId"
         }
     }
-    
+
     /// 结构化对比指标（准确率/召回率）数据
     public struct CompareMetricsData: TCOutputModel {
         /// 短文准确率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shortStructAccuracy: String?
-        
+
         /// 短文召回率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shortStructRecall: String?
-        
+
         /// 长文结构化准确率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let longStructAccuracy: String?
-        
+
         /// 长文结构化召回率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let longStructRecall: String?
-        
+
         /// 长文提取准确率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let longContentAccuracy: String?
-        
+
         /// 长文提取召回率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let longContentRecall: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case shortStructAccuracy = "ShortStructAccuracy"
             case shortStructRecall = "ShortStructRecall"
@@ -94,28 +94,28 @@ extension Cii {
             case longContentRecall = "LongContentRecall"
         }
     }
-    
+
     /// 创建自动分类的结构化任务子任务信息
     public struct CreateAutoClassifyStructureTaskInfo: TCInputModel {
         /// 报告文件上传的地址列表，需按顺序排列。如果使用ImageList参数，置为空数组即可
         public let fileList: [String]
-        
+
         /// 客户号
         public let customerId: String?
-        
+
         /// 客户姓名
         public let customerName: String?
-        
+
         /// 报告上传的图片内容数组，图片内容采用base64编码，需按顺序排列
         public let imageList: [String]?
-        
-        public init (fileList: [String], customerId: String? = nil, customerName: String? = nil, imageList: [String]? = nil) {
+
+        public init(fileList: [String], customerId: String? = nil, customerName: String? = nil, imageList: [String]? = nil) {
             self.fileList = fileList
             self.customerId = customerId
             self.customerName = customerName
             self.imageList = imageList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileList = "FileList"
             case customerId = "CustomerId"
@@ -123,28 +123,28 @@ extension Cii {
             case imageList = "ImageList"
         }
     }
-    
+
     /// 创建结构化任务子任务信息
     public struct CreateStructureTaskInfo: TCInputModel {
         /// 任务类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         public let taskType: String
-        
+
         /// 报告文件上传的地址列表，需按顺序排列。如果使用ImageList参数，置为空数组即可
         public let fileList: [String]
-        
+
         /// 客户号
         public let customerId: String?
-        
+
         /// 客户姓名
         public let customerName: String?
-        
+
         /// 报告上传的图片内容数组，图片内容采用base64编码，需按顺序排列
         public let imageList: [String]?
-        
+
         /// 报告年份
         public let year: String?
-        
-        public init (taskType: String, fileList: [String], customerId: String? = nil, customerName: String? = nil, imageList: [String]? = nil, year: String? = nil) {
+
+        public init(taskType: String, fileList: [String], customerId: String? = nil, customerName: String? = nil, imageList: [String]? = nil, year: String? = nil) {
             self.taskType = taskType
             self.fileList = fileList
             self.customerId = customerId
@@ -152,7 +152,7 @@ extension Cii {
             self.imageList = imageList
             self.year = year
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case fileList = "FileList"
@@ -162,48 +162,48 @@ extension Cii {
             case year = "Year"
         }
     }
-    
+
     /// 包含险种的各个核保结论
     public struct InsuranceResult: TCOutputModel {
         /// 险种:CriticalDiseaseInsurance(重疾险);LifeInsurance(寿险);AccidentInsurance(意外险);MedicalInsurance(医疗险)
         public let insuranceType: String
-        
+
         /// 对应险种的机器核保结果
         public let result: [MachinePredict]
-        
+
         enum CodingKeys: String, CodingKey {
             case insuranceType = "InsuranceType"
             case result = "Result"
         }
     }
-    
+
     /// 位置信息
     public struct Location: TCOutputModel {
         /// 位置信息
         public let points: [Point]
-        
+
         enum CodingKeys: String, CodingKey {
             case points = "Points"
         }
     }
-    
+
     /// 机器核保预测结果
     public struct MachinePredict: TCOutputModel {
         /// 核保引擎名称
         public let title: String
-        
+
         /// 核保结论：加费、承保、拒保、延期、除外、加费+除外
         public let conclusion: String
-        
+
         /// AI决策树解释
         public let explanation: [UnderwriteItem]
-        
+
         /// 疾病指标
         public let disease: [UnderwriteItem]
-        
+
         /// 检查异常
         public let laboratory: [UnderwriteItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case title = "Title"
             case conclusion = "Conclusion"
@@ -212,42 +212,42 @@ extension Cii {
             case laboratory = "Laboratory"
         }
     }
-    
+
     /// 机器核保输出
     public struct MachineUnderwriteOutput: TCOutputModel {
         /// 客户号
         public let customerId: String
-        
+
         /// 客户姓名
         public let customerName: String
-        
+
         /// 各个险种的结果
         public let results: [InsuranceResult]
-        
+
         enum CodingKeys: String, CodingKey {
             case customerId = "CustomerId"
             case customerName = "CustomerName"
             case results = "Results"
         }
     }
-    
+
     /// Ocr识别结果
     public struct OcrRecognise: TCOutputModel {
         /// 原文字段
         public let originalField: String
-        
+
         /// 识别结果
         public let value: String
-        
+
         /// 置信度
         public let confidence: Float
-        
+
         /// 位置信息
         public let location: Location
-        
+
         /// 字段名
         public let field: String
-        
+
         enum CodingKeys: String, CodingKey {
             case originalField = "OriginalField"
             case value = "Value"
@@ -256,24 +256,24 @@ extension Cii {
             case field = "Field"
         }
     }
-    
+
     /// 复核差异接口的每一份报告的差异结果
     public struct PerStructDifference: TCOutputModel {
         /// 子任务ID
         public let subTaskId: String
-        
+
         /// 任务类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         public let taskType: String
-        
+
         /// 修改的项
         public let modifyItems: [StructureModifyItem]
-        
+
         /// 新增的项
         public let newItems: [StructureOneItem]
-        
+
         /// 删除的项
         public let removeItems: [StructureOneItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case subTaskId = "SubTaskId"
             case taskType = "TaskType"
@@ -282,58 +282,58 @@ extension Cii {
             case removeItems = "RemoveItems"
         }
     }
-    
+
     /// 点信息
     public struct Point: TCOutputModel {
         /// x坐标
         public let xCoordinate: Int64
-        
+
         /// y坐标
         public let yCoordinate: Int64
-        
+
         /// 页码
         public let page: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case xCoordinate = "XCoordinate"
             case yCoordinate = "YCoordinate"
             case page = "Page"
         }
     }
-    
+
     /// 用于返回结构化任务结果
     public struct ResultObject: TCOutputModel {
         /// 图片质量分
         public let quality: Float
-        
+
         /// 由结构化算法结构化json转换的字符串，具体协议参见算法结构化结果协议
         public let structureResult: String
-        
+
         /// 报告分类信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportType: [ClassifyInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case quality = "Quality"
             case structureResult = "StructureResult"
             case reportType = "ReportType"
         }
     }
-    
+
     /// 人工复核数据的子任务信息
     public struct ReviewDataTaskInfo: TCOutputModel {
         /// 主任务号
         public let mainTaskId: String
-        
+
         /// 子任务号
         public let subTaskId: String
-        
+
         /// 任务名
         public let taskName: String
-        
+
         /// 任务类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         public let taskType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mainTaskId = "MainTaskId"
             case subTaskId = "SubTaskId"
@@ -341,65 +341,65 @@ extension Cii {
             case taskType = "TaskType"
         }
     }
-    
+
     /// 结构化复核差异接口的修改的项
     public struct StructureModifyItem: TCOutputModel {
         /// 修改的字段的路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 机器结果的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machine: String?
-        
+
         /// 人工结果的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manual: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case machine = "Machine"
             case manual = "Manual"
         }
     }
-    
+
     /// 复核差异接口的新增或者删除的项
     public struct StructureOneItem: TCOutputModel {
         /// 新字段的路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 字段的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case value = "Value"
         }
     }
-    
+
     /// 结构化结果
     public struct StructureResultObject: TCOutputModel {
         /// 0表示正常返回；1代表结果未生成；2代表任务执行失败
         public let code: UInt64
-        
+
         /// 报告类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         public let taskType: String
-        
+
         /// 结构化结果
         public let structureResult: String
-        
+
         /// 子任务ID
         public let subTaskId: String
-        
+
         /// 任务文件列表
         public let taskFiles: [String]
-        
+
         /// 结构化字段结果数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultFields: [OcrRecognise]?
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case taskType = "TaskType"
@@ -409,64 +409,64 @@ extension Cii {
             case resultFields = "ResultFields"
         }
     }
-    
+
     /// 核保结论 机器结论和人工结论统一数据结构
     public struct UnderwriteConclusion: TCOutputModel {
         /// 类型
         public let type: String
-        
+
         /// 结论
         public let conclusion: String
-        
+
         /// 解释
         public let explanation: String
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case conclusion = "Conclusion"
             case explanation = "Explanation"
         }
     }
-    
+
     /// 机器核保结论子项
     public struct UnderwriteItem: TCOutputModel {
         /// 字段名
         public let name: String
-        
+
         /// 结果
         public let result: String
-        
+
         /// 风险值或者说明
         public let value: String
-        
+
         /// 参考范围
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let range: String?
-        
+
         /// 报告时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportDate: [String]?
-        
+
         /// 文件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileType: String?
-        
+
         /// 检查项目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inspectProject: String?
-        
+
         /// 单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?
-        
+
         /// 原名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originName: String?
-        
+
         /// 阴阳性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yinYang: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case result = "Result"
@@ -480,24 +480,24 @@ extension Cii {
             case yinYang = "YinYang"
         }
     }
-    
+
     /// 核保结果输出
     public struct UnderwriteOutput: TCOutputModel {
         /// 客户ID
         public let customerId: String
-        
+
         /// 客户姓名
         public let customerName: String
-        
+
         /// 结果
         public let results: [InsuranceResult]
-        
+
         /// 复核时间
         public let reviewTime: String
-        
+
         /// 人工复核结果
         public let manualDetail: [UnderwriteConclusion]
-        
+
         enum CodingKeys: String, CodingKey {
             case customerId = "CustomerId"
             case customerName = "CustomerName"

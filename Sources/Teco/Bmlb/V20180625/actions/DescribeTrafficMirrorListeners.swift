@@ -19,35 +19,35 @@ extension Bmlb {
     public struct DescribeTrafficMirrorListenersRequest: TCRequestModel {
         /// 流量镜像实例ID。
         public let trafficMirrorId: String
-        
+
         /// 分页的偏移量，也即从第几条记录开始查询
         public let offset: Int64?
-        
+
         /// 单次查询返回的条目数，默认值：500。
         public let limit: Int64?
-        
+
         /// 待搜索的负载均衡Id。
         public let searchLoadBalancerIds: [String]?
-        
+
         /// 待搜索的负载均衡名称。
         public let searchLoadBalancerNames: [String]?
-        
+
         /// 待搜索的Vip。
         public let searchVips: [String]?
-        
+
         /// 待搜索的监听器ID。
         public let searchListenerIds: [String]?
-        
+
         /// 待搜索的监听器名称。
         public let searchListenerNames: [String]?
-        
+
         /// 待搜索的协议名称。
         public let searchProtocols: [String]?
-        
+
         /// 待搜索的端口。
         public let searchLoadBalancerPorts: [UInt64]?
-        
-        public init (trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil) {
+
+        public init(trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.offset = offset
             self.limit = limit
@@ -59,7 +59,7 @@ extension Bmlb {
             self.searchProtocols = searchProtocols
             self.searchLoadBalancerPorts = searchLoadBalancerPorts
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorId = "TrafficMirrorId"
             case offset = "Offset"
@@ -73,33 +73,33 @@ extension Bmlb {
             case searchLoadBalancerPorts = "SearchLoadBalancerPorts"
         }
     }
-    
+
     /// DescribeTrafficMirrorListeners返回参数结构体
     public struct DescribeTrafficMirrorListenersResponse: TCResponseModel {
         /// 监听器列表。
         public let listenerSet: [TrafficMirrorListener]
-        
+
         /// 监听器总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerSet = "ListenerSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取流量镜像的监听器列表信息
     ///
     /// 获取流量镜像的监听器列表信息。
     @inlinable
-    public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorListenersResponse > {
+    public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorListenersResponse> {
         self.client.execute(action: "DescribeTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取流量镜像的监听器列表信息
     ///
     /// 获取流量镜像的监听器列表信息。
@@ -107,15 +107,15 @@ extension Bmlb {
     public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorListenersResponse {
         try await self.client.execute(action: "DescribeTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取流量镜像的监听器列表信息
     ///
     /// 获取流量镜像的监听器列表信息。
     @inlinable
-    public func describeTrafficMirrorListeners(trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorListenersResponse > {
+    public func describeTrafficMirrorListeners(trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorListenersResponse> {
         self.describeTrafficMirrorListeners(DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取流量镜像的监听器列表信息
     ///
     /// 获取流量镜像的监听器列表信息。

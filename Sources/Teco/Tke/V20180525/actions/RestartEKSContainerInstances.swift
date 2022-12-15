@@ -19,34 +19,34 @@ extension Tke {
     public struct RestartEKSContainerInstancesRequest: TCRequestModel {
         /// EKS instance ids
         public let eksCiIds: [String]
-        
-        public init (eksCiIds: [String]) {
+
+        public init(eksCiIds: [String]) {
             self.eksCiIds = eksCiIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eksCiIds = "EksCiIds"
         }
     }
-    
+
     /// RestartEKSContainerInstances返回参数结构体
     public struct RestartEKSContainerInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
     @inlinable
-    public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartEKSContainerInstancesResponse > {
+    public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
         self.client.execute(action: "RestartEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
@@ -54,15 +54,15 @@ extension Tke {
     public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
         try await self.client.execute(action: "RestartEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
     @inlinable
-    public func restartEKSContainerInstances(eksCiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartEKSContainerInstancesResponse > {
+    public func restartEKSContainerInstances(eksCiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
         self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作

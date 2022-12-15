@@ -17,10 +17,10 @@
 extension Tcss {
     /// DescribeSecLogVasInfo请求参数结构体
     public struct DescribeSecLogVasInfoRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeSecLogVasInfo返回参数结构体
     public struct DescribeSecLogVasInfoResponse: TCResponseModel {
         /// 购买状态
@@ -28,31 +28,31 @@ extension Tcss {
         /// 已购: Normal
         /// 隔离: Isolate
         public let buyStatus: String
-        
+
         /// 存储时长(月)
         public let logSaveMonth: Int64
-        
+
         /// 起始时间
         public let startTime: String
-        
+
         /// 截止时间
         public let endTime: String
-        
+
         /// 存储容量(GB)
         public let logCapacity: UInt64
-        
+
         /// 资源ID
         public let resourceID: String
-        
+
         /// 是否曾经购买过(false:未曾 true:曾经购买过)
         public let isPurchased: Bool
-        
+
         /// 试用存储容量(GB)
         public let trialCapacity: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case buyStatus = "BuyStatus"
             case logSaveMonth = "LogSaveMonth"
@@ -65,25 +65,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全日志商品信息
     @inlinable
-    public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogVasInfoResponse > {
+    public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogVasInfoResponse> {
         self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全日志商品信息
     @inlinable
     public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {
         try await self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全日志商品信息
     @inlinable
-    public func describeSecLogVasInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogVasInfoResponse > {
+    public func describeSecLogVasInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogVasInfoResponse> {
         self.describeSecLogVasInfo(DescribeSecLogVasInfoRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全日志商品信息
     @inlinable
     public func describeSecLogVasInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {

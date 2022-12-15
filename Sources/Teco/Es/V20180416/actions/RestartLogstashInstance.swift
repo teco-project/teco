@@ -19,39 +19,39 @@ extension Es {
     public struct RestartLogstashInstanceRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 重启类型，0全量重启，1滚动重启
         public let type: Int64?
-        
-        public init (instanceId: String, type: Int64? = nil) {
+
+        public init(instanceId: String, type: Int64? = nil) {
             self.instanceId = instanceId
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case type = "Type"
         }
     }
-    
+
     /// RestartLogstashInstance返回参数结构体
     public struct RestartLogstashInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
     @inlinable
-    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartLogstashInstanceResponse > {
+    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
         self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
@@ -59,15 +59,15 @@ extension Es {
     public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
         try await self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
     @inlinable
-    public func restartLogstashInstance(instanceId: String, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartLogstashInstanceResponse > {
+    public func restartLogstashInstance(instanceId: String, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
         self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例

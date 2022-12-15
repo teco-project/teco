@@ -21,52 +21,52 @@ extension TCTicError {
             case notExist = "FailedOperation.NotExist"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// HTTP请求错误。
         public static var httpRequestError: FailedOperation {
             FailedOperation(.httpRequestError)
         }
-        
+
         /// 资源不存在。
         public static var notExist: FailedOperation {
             FailedOperation(.notExist)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTicError() -> TCTicError {
             let code: TCTicError.Code
             switch self.error {
-            case .httpRequestError: 
+            case .httpRequestError:
                 code = .failedOperation_HttpRequestError
-            case .notExist: 
+            case .notExist:
                 code = .failedOperation_NotExist
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCTicError(code, context: self.context)

@@ -19,53 +19,53 @@ extension Tdcpg {
     public struct DescribeClusterRecoveryTimeRangeRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 期望的回档时间点，传入从集群创建时间到当前时间之间的时间点。按照RFC3339标准表示，并且使用东八区时区时间，格式为：YYYY-MM-DDThh:mm:ss+08:00。
         public let dataPoint: String
-        
-        public init (clusterId: String, dataPoint: String) {
+
+        public init(clusterId: String, dataPoint: String) {
             self.clusterId = clusterId
             self.dataPoint = dataPoint
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case dataPoint = "DataPoint"
         }
     }
-    
+
     /// DescribeClusterRecoveryTimeRange返回参数结构体
     public struct DescribeClusterRecoveryTimeRangeResponse: TCResponseModel {
         /// 可回档时间范围列表
         public let availableRecoveryTimeRangeSet: [AvailableRecoveryTimeRange]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case availableRecoveryTimeRangeSet = "AvailableRecoveryTimeRangeSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群可回档时间范围
     @inlinable
-    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRecoveryTimeRangeResponse > {
+    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRecoveryTimeRangeResponse> {
         self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群可回档时间范围
     @inlinable
     public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {
         try await self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群可回档时间范围
     @inlinable
-    public func describeClusterRecoveryTimeRange(clusterId: String, dataPoint: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRecoveryTimeRangeResponse > {
+    public func describeClusterRecoveryTimeRange(clusterId: String, dataPoint: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRecoveryTimeRangeResponse> {
         self.describeClusterRecoveryTimeRange(DescribeClusterRecoveryTimeRangeRequest(clusterId: clusterId, dataPoint: dataPoint), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群可回档时间范围
     @inlinable
     public func describeClusterRecoveryTimeRange(clusterId: String, dataPoint: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {

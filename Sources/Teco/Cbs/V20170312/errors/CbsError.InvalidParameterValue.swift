@@ -21,52 +21,52 @@ extension TCCbsError {
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 标签绑定云盘超过限制。
         public static var bindDiskLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.bindDiskLimitExceeded)
         }
-        
+
         /// 参数值数量超过限制。
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asCbsError() -> TCCbsError {
             let code: TCCbsError.Code
             switch self.error {
-            case .bindDiskLimitExceeded: 
+            case .bindDiskLimitExceeded:
                 code = .invalidParameterValue_BindDiskLimitExceeded
-            case .limitExceeded: 
+            case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCCbsError(code, context: self.context)

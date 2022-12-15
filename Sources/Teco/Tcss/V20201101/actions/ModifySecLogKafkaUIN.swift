@@ -19,44 +19,44 @@ extension Tcss {
     public struct ModifySecLogKafkaUINRequest: TCRequestModel {
         /// 目标UIN
         public let dstUIN: String?
-        
-        public init (dstUIN: String? = nil) {
+
+        public init(dstUIN: String? = nil) {
             self.dstUIN = dstUIN
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dstUIN = "DstUIN"
         }
     }
-    
+
     /// ModifySecLogKafkaUIN返回参数结构体
     public struct ModifySecLogKafkaUINResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改安全日志kafkaUIN
     @inlinable
-    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogKafkaUINResponse > {
+    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
         self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志kafkaUIN
     @inlinable
     public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
         try await self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改安全日志kafkaUIN
     @inlinable
-    public func modifySecLogKafkaUIN(dstUIN: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogKafkaUINResponse > {
+    public func modifySecLogKafkaUIN(dstUIN: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
         self.modifySecLogKafkaUIN(ModifySecLogKafkaUINRequest(dstUIN: dstUIN), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志kafkaUIN
     @inlinable
     public func modifySecLogKafkaUIN(dstUIN: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {

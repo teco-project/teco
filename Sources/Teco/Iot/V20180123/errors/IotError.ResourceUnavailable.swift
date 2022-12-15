@@ -22,59 +22,59 @@ extension TCIotError {
             case iotRuleNoQuery = "ResourceUnavailable.IotRuleNoQuery"
             case mqiotResourceNotExists = "ResourceUnavailable.MqiotResourceNotExists"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 规则已启用。
         public static var iotRuleIsActive: ResourceUnavailable {
             ResourceUnavailable(.iotRuleIsActive)
         }
-        
+
         /// 规则缺少动作。
         public static var iotRuleNoAction: ResourceUnavailable {
             ResourceUnavailable(.iotRuleNoAction)
         }
-        
+
         /// 规则缺少查询。
         public static var iotRuleNoQuery: ResourceUnavailable {
             ResourceUnavailable(.iotRuleNoQuery)
         }
-        
+
         /// 资源不存在。
         public static var mqiotResourceNotExists: ResourceUnavailable {
             ResourceUnavailable(.mqiotResourceNotExists)
         }
-        
+
         public func asIotError() -> TCIotError {
             let code: TCIotError.Code
             switch self.error {
-            case .iotRuleIsActive: 
+            case .iotRuleIsActive:
                 code = .resourceUnavailable_IotRuleIsActive
-            case .iotRuleNoAction: 
+            case .iotRuleNoAction:
                 code = .resourceUnavailable_IotRuleNoAction
-            case .iotRuleNoQuery: 
+            case .iotRuleNoQuery:
                 code = .resourceUnavailable_IotRuleNoQuery
-            case .mqiotResourceNotExists: 
+            case .mqiotResourceNotExists:
                 code = .resourceUnavailable_MqiotResourceNotExists
             }
             return TCIotError(code, context: self.context)

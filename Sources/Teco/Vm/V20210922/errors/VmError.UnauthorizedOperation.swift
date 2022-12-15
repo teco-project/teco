@@ -20,44 +20,44 @@ extension TCVmError {
             case unauthorized = "UnauthorizedOperation.Unauthorized"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var unauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorized)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asVmError() -> TCVmError {
             let code: TCVmError.Code
             switch self.error {
-            case .unauthorized: 
+            case .unauthorized:
                 code = .unauthorizedOperation_Unauthorized
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCVmError(code, context: self.context)

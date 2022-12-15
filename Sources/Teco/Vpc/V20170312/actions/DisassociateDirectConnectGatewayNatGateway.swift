@@ -19,44 +19,44 @@ extension Vpc {
     public struct DisassociateDirectConnectGatewayNatGatewayRequest: TCRequestModel {
         /// 专线网关ID。
         public let vpcId: String
-        
+
         /// NAT网关ID。
         public let natGatewayId: String
-        
+
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let directConnectGatewayId: String
-        
-        public init (vpcId: String, natGatewayId: String, directConnectGatewayId: String) {
+
+        public init(vpcId: String, natGatewayId: String, directConnectGatewayId: String) {
             self.vpcId = vpcId
             self.natGatewayId = natGatewayId
             self.directConnectGatewayId = directConnectGatewayId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case natGatewayId = "NatGatewayId"
             case directConnectGatewayId = "DirectConnectGatewayId"
         }
     }
-    
+
     /// DisassociateDirectConnectGatewayNatGateway返回参数结构体
     public struct DisassociateDirectConnectGatewayNatGatewayResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 专线网关解绑NAT网关
     ///
     /// 将专线网关与NAT网关解绑，解绑之后，专线网关将不能通过NAT网关访问公网
     @inlinable
-    public func disassociateDirectConnectGatewayNatGateway(_ input: DisassociateDirectConnectGatewayNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateDirectConnectGatewayNatGatewayResponse > {
+    public func disassociateDirectConnectGatewayNatGateway(_ input: DisassociateDirectConnectGatewayNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDirectConnectGatewayNatGatewayResponse> {
         self.client.execute(action: "DisassociateDirectConnectGatewayNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 专线网关解绑NAT网关
     ///
     /// 将专线网关与NAT网关解绑，解绑之后，专线网关将不能通过NAT网关访问公网
@@ -64,15 +64,15 @@ extension Vpc {
     public func disassociateDirectConnectGatewayNatGateway(_ input: DisassociateDirectConnectGatewayNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDirectConnectGatewayNatGatewayResponse {
         try await self.client.execute(action: "DisassociateDirectConnectGatewayNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 专线网关解绑NAT网关
     ///
     /// 将专线网关与NAT网关解绑，解绑之后，专线网关将不能通过NAT网关访问公网
     @inlinable
-    public func disassociateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateDirectConnectGatewayNatGatewayResponse > {
+    public func disassociateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDirectConnectGatewayNatGatewayResponse> {
         self.disassociateDirectConnectGatewayNatGateway(DisassociateDirectConnectGatewayNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId), logger: logger, on: eventLoop)
     }
-    
+
     /// 专线网关解绑NAT网关
     ///
     /// 将专线网关与NAT网关解绑，解绑之后，专线网关将不能通过NAT网关访问公网

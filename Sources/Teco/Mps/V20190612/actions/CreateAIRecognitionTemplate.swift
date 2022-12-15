@@ -19,26 +19,26 @@ extension Mps {
     public struct CreateAIRecognitionTemplateRequest: TCRequestModel {
         /// 视频内容识别模板名称，长度限制：64 个字符。
         public let name: String?
-        
+
         /// 视频内容识别模板描述信息，长度限制：256 个字符。
         public let comment: String?
-        
+
         /// 人脸识别控制参数。
         public let faceConfigure: FaceConfigureInfo?
-        
+
         /// 文本全文识别控制参数。
         public let ocrFullTextConfigure: OcrFullTextConfigureInfo?
-        
+
         /// 文本关键词识别控制参数。
         public let ocrWordsConfigure: OcrWordsConfigureInfo?
-        
+
         /// 语音全文识别控制参数。
         public let asrFullTextConfigure: AsrFullTextConfigureInfo?
-        
+
         /// 语音关键词识别控制参数。
         public let asrWordsConfigure: AsrWordsConfigureInfo?
-        
-        public init (name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil) {
+
+        public init(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil) {
             self.name = name
             self.comment = comment
             self.faceConfigure = faceConfigure
@@ -47,7 +47,7 @@ extension Mps {
             self.asrFullTextConfigure = asrFullTextConfigure
             self.asrWordsConfigure = asrWordsConfigure
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case comment = "Comment"
@@ -58,29 +58,29 @@ extension Mps {
             case asrWordsConfigure = "AsrWordsConfigure"
         }
     }
-    
+
     /// CreateAIRecognitionTemplate返回参数结构体
     public struct CreateAIRecognitionTemplateResponse: TCResponseModel {
         /// 视频内容识别模板唯一标识。
         public let definition: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建内容识别模板
     ///
     /// 创建用户自定义内容识别模板，数量上限：50。
     @inlinable
-    public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIRecognitionTemplateResponse > {
+    public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIRecognitionTemplateResponse> {
         self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建内容识别模板
     ///
     /// 创建用户自定义内容识别模板，数量上限：50。
@@ -88,15 +88,15 @@ extension Mps {
     public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
         try await self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建内容识别模板
     ///
     /// 创建用户自定义内容识别模板，数量上限：50。
     @inlinable
-    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIRecognitionTemplateResponse > {
+    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIRecognitionTemplateResponse> {
         self.createAIRecognitionTemplate(CreateAIRecognitionTemplateRequest(name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建内容识别模板
     ///
     /// 创建用户自定义内容识别模板，数量上限：50。

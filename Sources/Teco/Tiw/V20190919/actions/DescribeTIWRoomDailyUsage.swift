@@ -22,12 +22,12 @@ extension Tiw {
     public struct DescribeTIWRoomDailyUsageRequest: TCRequestModel {
         /// 互动白板应用SdkAppId
         public let sdkAppId: Int64
-        
+
         /// 需要查询的子产品用量，支持传入以下值
         /// - sp_tiw_board: 互动白板时长，单位为分钟
         /// - sp_tiw_ric: 实时录制时长，单位分钟
         public let subProduct: String
-        
+
         /// 开始时间，格式YYYY-MM-DD，查询结果里包括该天数据
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,7 +35,7 @@ extension Tiw {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startTime: Date
-        
+
         /// 结束时间，格式YYYY-MM-DD，查询结果里包括该天数据，单次查询统计区间最多不能超过31天。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -43,17 +43,17 @@ extension Tiw {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endTime: Date
-        
+
         /// 需要查询的房间ID列表，不填默认查询全部房间
         public let roomIDs: [UInt64]?
-        
+
         /// 查询偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 每次查询返回条目限制，默认为20
         public let limit: UInt64?
-        
-        public init (sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, roomIDs: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, roomIDs: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.sdkAppId = sdkAppId
             self.subProduct = subProduct
             self.startTime = startTime
@@ -62,7 +62,7 @@ extension Tiw {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case subProduct = "SubProduct"
@@ -73,35 +73,35 @@ extension Tiw {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeTIWRoomDailyUsage返回参数结构体
     public struct DescribeTIWRoomDailyUsageResponse: TCResponseModel {
         /// 指定区间指定产品的房间用量列表
         public let usages: [RoomUsageDataItem]
-        
+
         /// 用量列表总数
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case usages = "Usages"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询房间维度每天计费用量
     ///
     /// 查询互动白板房间维度每天计费用量。
     /// 1. 单次查询统计区间最多不能超过31天。
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
-    public func describeTIWRoomDailyUsage(_ input: DescribeTIWRoomDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTIWRoomDailyUsageResponse > {
+    public func describeTIWRoomDailyUsage(_ input: DescribeTIWRoomDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTIWRoomDailyUsageResponse> {
         self.client.execute(action: "DescribeTIWRoomDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询房间维度每天计费用量
     ///
     /// 查询互动白板房间维度每天计费用量。
@@ -111,17 +111,17 @@ extension Tiw {
     public func describeTIWRoomDailyUsage(_ input: DescribeTIWRoomDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWRoomDailyUsageResponse {
         try await self.client.execute(action: "DescribeTIWRoomDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询房间维度每天计费用量
     ///
     /// 查询互动白板房间维度每天计费用量。
     /// 1. 单次查询统计区间最多不能超过31天。
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
-    public func describeTIWRoomDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, roomIDs: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTIWRoomDailyUsageResponse > {
+    public func describeTIWRoomDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, roomIDs: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTIWRoomDailyUsageResponse> {
         self.describeTIWRoomDailyUsage(DescribeTIWRoomDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime, roomIDs: roomIDs, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询房间维度每天计费用量
     ///
     /// 查询互动白板房间维度每天计费用量。

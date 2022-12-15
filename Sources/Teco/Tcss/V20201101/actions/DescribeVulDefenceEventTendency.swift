@@ -27,7 +27,7 @@ extension Tcss {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,54 +35,54 @@ extension Tcss {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endTime: Date
-        
-        public init (startTime: Date, endTime: Date) {
+
+        public init(startTime: Date, endTime: Date) {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeVulDefenceEventTendency返回参数结构体
     public struct DescribeVulDefenceEventTendencyResponse: TCResponseModel {
         /// 漏洞防御事件趋势
         public let defendedList: [VulDefenceEventTendency]
-        
+
         /// 漏洞攻击事件趋势
         public let attackList: [VulDefenceEventTendency]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case defendedList = "DefendedList"
             case attackList = "AttackList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询漏洞防御攻击事件趋势
     @inlinable
-    public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventTendencyResponse > {
+    public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceEventTendencyResponse> {
         self.client.execute(action: "DescribeVulDefenceEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞防御攻击事件趋势
     @inlinable
     public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventTendencyResponse {
         try await self.client.execute(action: "DescribeVulDefenceEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询漏洞防御攻击事件趋势
     @inlinable
-    public func describeVulDefenceEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventTendencyResponse > {
+    public func describeVulDefenceEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceEventTendencyResponse> {
         self.describeVulDefenceEventTendency(DescribeVulDefenceEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞防御攻击事件趋势
     @inlinable
     public func describeVulDefenceEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventTendencyResponse {

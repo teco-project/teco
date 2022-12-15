@@ -19,47 +19,47 @@ extension Cmq {
     public struct ModifyQueueAttributeRequest: TCRequestModel {
         /// 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         public let queueName: String
-        
+
         /// 最大堆积消息数。取值范围在公测期间为 1,000,000 - 10,000,000，正式上线后范围可达到 1000,000-1000,000,000。默认取值在公测期间为 10,000,000，正式上线后为 100,000,000。
         public let maxMsgHeapNum: UInt64?
-        
+
         /// 消息接收长轮询等待时间。取值范围 0-30 秒，默认值 0。
         public let pollingWaitSeconds: UInt64?
-        
+
         /// 消息可见性超时。取值范围 1-43200 秒（即12小时内），默认值 30。
         public let visibilityTimeout: UInt64?
-        
+
         /// 消息最大长度。取值范围 1024-65536 Byte（即1-64K），默认值 65536。
         public let maxMsgSize: UInt64?
-        
+
         /// 消息保留周期。取值范围 60-1296000 秒（1min-15天），默认值 345600 (4 天)。
         public let msgRetentionSeconds: UInt64?
-        
+
         /// 消息最长回溯时间，取值范围0-msgRetentionSeconds，消息的最大回溯之间为消息在队列中的保存周期，0表示不开启消息回溯。
         public let rewindSeconds: UInt64?
-        
+
         /// 第一次查询时间
         public let firstQueryInterval: UInt64?
-        
+
         /// 最大查询次数
         public let maxQueryCount: UInt64?
-        
+
         /// 死信队列名称
         public let deadLetterQueueName: String?
-        
+
         /// MaxTimeToLivepolicy为1时必选。最大未消费过期时间。范围300-43200，单位秒，需要小于消息最大保留时间MsgRetentionSeconds
         public let maxTimeToLive: UInt64?
-        
+
         /// 最大接收次数
         public let maxReceiveCount: UInt64?
-        
+
         /// 死信队列策略
         public let policy: UInt64?
-        
+
         /// 是否开启消息轨迹标识，true表示开启，false表示不开启，不填表示不开启。
         public let trace: Bool?
-        
-        public init (queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil) {
+
+        public init(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil) {
             self.queueName = queueName
             self.maxMsgHeapNum = maxMsgHeapNum
             self.pollingWaitSeconds = pollingWaitSeconds
@@ -75,7 +75,7 @@ extension Cmq {
             self.policy = policy
             self.trace = trace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case queueName = "QueueName"
             case maxMsgHeapNum = "MaxMsgHeapNum"
@@ -93,35 +93,35 @@ extension Cmq {
             case trace = "Trace"
         }
     }
-    
+
     /// ModifyQueueAttribute返回参数结构体
     public struct ModifyQueueAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改队列属性
     @inlinable
-    public func modifyQueueAttribute(_ input: ModifyQueueAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyQueueAttributeResponse > {
+    public func modifyQueueAttribute(_ input: ModifyQueueAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyQueueAttributeResponse> {
         self.client.execute(action: "ModifyQueueAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改队列属性
     @inlinable
     public func modifyQueueAttribute(_ input: ModifyQueueAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyQueueAttributeResponse {
         try await self.client.execute(action: "ModifyQueueAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改队列属性
     @inlinable
-    public func modifyQueueAttribute(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyQueueAttributeResponse > {
+    public func modifyQueueAttribute(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyQueueAttributeResponse> {
         self.modifyQueueAttribute(ModifyQueueAttributeRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, maxTimeToLive: maxTimeToLive, maxReceiveCount: maxReceiveCount, policy: policy, trace: trace), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改队列属性
     @inlinable
     public func modifyQueueAttribute(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyQueueAttributeResponse {

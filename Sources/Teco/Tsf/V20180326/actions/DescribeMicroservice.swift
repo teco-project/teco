@@ -19,27 +19,27 @@ extension Tsf {
     public struct DescribeMicroserviceRequest: TCRequestModel {
         /// 微服务ID
         public let microserviceId: String
-        
+
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 分页个数
         public let limit: Int64?
-        
+
         /// 可选，根据部署组ID进行过滤
         public let groupIds: [String]?
-        
+
         /// 过滤条件。多个 filter 之间是与关系，单个 filter 多个 value 之间是或关系。filter name 取值有：id（实例id）、name（实例名）、lan-ip（内网ip）、node-ip（所在节点ip）
         public let filters: [Filter]?
-        
-        public init (microserviceId: String, offset: Int64? = nil, limit: Int64? = nil, groupIds: [String]? = nil, filters: [Filter]? = nil) {
+
+        public init(microserviceId: String, offset: Int64? = nil, limit: Int64? = nil, groupIds: [String]? = nil, filters: [Filter]? = nil) {
             self.microserviceId = microserviceId
             self.offset = offset
             self.limit = limit
             self.groupIds = groupIds
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case microserviceId = "MicroserviceId"
             case offset = "Offset"
@@ -48,40 +48,40 @@ extension Tsf {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeMicroservice返回参数结构体
     public struct DescribeMicroserviceResponse: TCResponseModel {
         /// 微服务详情实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageMsInstance?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询微服务详情
     @inlinable
-    public func describeMicroservice(_ input: DescribeMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMicroserviceResponse > {
+    public func describeMicroservice(_ input: DescribeMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMicroserviceResponse> {
         self.client.execute(action: "DescribeMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询微服务详情
     @inlinable
     public func describeMicroservice(_ input: DescribeMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMicroserviceResponse {
         try await self.client.execute(action: "DescribeMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询微服务详情
     @inlinable
-    public func describeMicroservice(microserviceId: String, offset: Int64? = nil, limit: Int64? = nil, groupIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMicroserviceResponse > {
+    public func describeMicroservice(microserviceId: String, offset: Int64? = nil, limit: Int64? = nil, groupIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMicroserviceResponse> {
         self.describeMicroservice(DescribeMicroserviceRequest(microserviceId: microserviceId, offset: offset, limit: limit, groupIds: groupIds, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询微服务详情
     @inlinable
     public func describeMicroservice(microserviceId: String, offset: Int64? = nil, limit: Int64? = nil, groupIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMicroserviceResponse {

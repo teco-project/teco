@@ -22,26 +22,26 @@ extension Privatedns {
     public struct AccountVpcInfo: TCInputModel, TCOutputModel {
         /// VpcId： vpc-xadsafsdasd
         public let uniqVpcId: String
-        
+
         /// Vpc所属地区: ap-guangzhou, ap-shanghai
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// Vpc所属账号: 123456789
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// vpc资源名称：testname
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcName: String?
-        
-        public init (uniqVpcId: String, region: String, uin: String, vpcName: String? = nil) {
+
+        public init(uniqVpcId: String, region: String, uin: String, vpcName: String? = nil) {
             self.uniqVpcId = uniqVpcId
             self.region = region
             self.uin = uin
             self.vpcName = vpcName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uniqVpcId = "UniqVpcId"
             case region = "Region"
@@ -49,21 +49,21 @@ extension Privatedns {
             case vpcName = "VpcName"
         }
     }
-    
+
     /// 查询关联账号VPC列表出参
     public struct AccountVpcInfoOut: TCOutputModel {
         /// VpcId： vpc-xadsafsdasd
         public let vpcId: String
-        
+
         /// Vpc所属地区: ap-guangzhou, ap-shanghai
         public let region: String
-        
+
         /// Vpc所属账号: 123456789
         public let uin: String
-        
+
         /// vpc资源名称：testname
         public let vpcName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case region = "Region"
@@ -71,39 +71,39 @@ extension Privatedns {
             case vpcName = "VpcName"
         }
     }
-    
+
     /// 关联的VPC出参
     public struct AccountVpcInfoOutput: TCOutputModel {
         /// 关联账户的uin
         public let uin: String
-        
+
         /// vpcid
         public let uniqVpcId: String
-        
+
         /// 地域
         public let region: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
             case uniqVpcId = "UniqVpcId"
             case region = "Region"
         }
     }
-    
+
     /// 操作日志
     public struct AuditLog: TCOutputModel {
         /// 日志类型
         public let resource: String
-        
+
         /// 日志表名
         public let metric: String
-        
+
         /// 日志总数
         public let totalCount: Int64
-        
+
         /// 日志列表
         public let dataSet: [AuditLogInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case metric = "Metric"
@@ -111,7 +111,7 @@ extension Privatedns {
             case dataSet = "DataSet"
         }
     }
-    
+
     /// 日志详情
     public struct AuditLogInfo: TCOutputModel {
         /// 时间
@@ -121,20 +121,20 @@ extension Privatedns {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var date: Date
-        
+
         /// 操作人uin
         public let operatorUin: String
-        
+
         /// 日志内容
         public let content: String
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case operatorUin = "OperatorUin"
             case content = "Content"
         }
     }
-    
+
     /// 时间统计值
     public struct DatePoint: TCOutputModel {
         /// 时间
@@ -144,68 +144,68 @@ extension Privatedns {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var date: Date
-        
+
         /// 值
         public let value: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case value = "Value"
         }
     }
-    
+
     /// 筛选参数
     public struct Filter: TCInputModel {
         /// 参数名
         public let name: String
-        
+
         /// 参数值数组
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 流量包用量
     public struct FlowUsage: TCOutputModel {
         /// 流量包类型：ZONE 私有域；TRAFFIC 解析流量包
         public let flowType: String
-        
+
         /// 流量包总额度
         public let totalQuantity: Int64
-        
+
         /// 流量包可用额度
         public let availableQuantity: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case flowType = "FlowType"
             case totalQuantity = "TotalQuantity"
             case availableQuantity = "AvailableQuantity"
         }
     }
-    
+
     /// 统计数据表
     public struct MetricData: TCOutputModel {
         /// 资源描述
         public let resource: String
-        
+
         /// 表名
         public let metric: String
-        
+
         /// 表数据
         public let dataSet: [DatePoint]
-        
+
         /// 查询范围内的请求总量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case metric = "Metric"
@@ -213,42 +213,42 @@ extension Privatedns {
             case metricCount = "MetricCount"
         }
     }
-    
+
     /// 私有域解析账号
     public struct PrivateDNSAccount: TCInputModel, TCOutputModel {
         /// 主账号Uin
         public let uin: String
-        
+
         /// 主账号名称
         public let account: String?
-        
+
         /// 用户昵称
         public let nickname: String?
-        
-        public init (uin: String, account: String? = nil, nickname: String? = nil) {
+
+        public init(uin: String, account: String? = nil, nickname: String? = nil) {
             self.uin = uin
             self.account = account
             self.nickname = nickname
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
             case account = "Account"
             case nickname = "Nickname"
         }
     }
-    
+
     /// 私有域信息
     public struct PrivateZone: TCOutputModel {
         /// 私有域id: zone-xxxxxxxx
         public let zoneId: String
-        
+
         /// 域名所有者uin
         public let ownerUin: Int64
-        
+
         /// 私有域名
         public let domain: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -256,7 +256,7 @@ extension Privatedns {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdOn: Date
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -264,53 +264,53 @@ extension Privatedns {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updatedOn: Date
-        
+
         /// 记录数
         public let recordCount: Int64
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 绑定的Vpc列表
         public let vpcSet: [VpcInfo]
-        
+
         /// 私有域状态：正常解析：ENABLED, 暂停解析：SUSPEND, 锁定：FROZEN
         public let status: String
-        
+
         /// 域名递归解析状态：开通：ENABLED, 关闭，DISABLED
         public let dnsForwardStatus: String
-        
+
         /// 标签键值对集合
         public let tags: [TagInfo]
-        
+
         /// 绑定的关联账号的vpc列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountVpcSet: [AccountVpcInfoOutput]?
-        
+
         /// 是否自定义TLD
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isCustomTld: Bool?
-        
+
         /// CNAME加速状态：开通：ENABLED, 关闭，DISABLED
         public let cnameSpeedupStatus: String
-        
+
         /// 转发规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forwardRuleName: String?
-        
+
         /// 转发规则类型：云上到云下，DOWN；云下到云上，UP，目前只支持DOWN
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forwardRuleType: String?
-        
+
         /// 转发的地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forwardAddress: String?
-        
+
         /// 终端节点名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endPointName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case ownerUin = "OwnerUin"
@@ -332,38 +332,38 @@ extension Privatedns {
             case endPointName = "EndPointName"
         }
     }
-    
+
     /// 私有域信息
     public struct PrivateZoneRecord: TCOutputModel {
         /// 记录id
         public let recordId: String
-        
+
         /// 私有域id: zone-xxxxxxxx
         public let zoneId: String
-        
+
         /// 子域名
         public let subDomain: String
-        
+
         /// 记录类型，可选的记录类型为："A", "AAAA", "CNAME", "MX", "TXT", "PTR"
         public let recordType: String
-        
+
         /// 记录值
         public let recordValue: String
-        
+
         /// 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
         public let ttl: Int64
-        
+
         /// MX优先级：记录类型为MX时必填。取值范围：5,10,15,20,30,40,50
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: Int64?
-        
+
         /// 记录状态：ENABLED
         public let status: String
-        
+
         /// 记录权重，值为1-100
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
-        
+
         /// 记录创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -371,7 +371,7 @@ extension Privatedns {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdOn: Date
-        
+
         /// 记录更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -379,15 +379,15 @@ extension Privatedns {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updatedOn: Date
-        
+
         /// 附加信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extra: String?
-        
+
         /// 0暂停，1启用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case recordId = "RecordId"
             case zoneId = "ZoneId"
@@ -404,40 +404,40 @@ extension Privatedns {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 标签
     public struct TagInfo: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: String
-        
-        public init (tagKey: String, tagValue: String) {
+
+        public init(tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// Tld额度
     public struct TldQuota: TCOutputModel {
         /// 总共额度
         public let total: Int64
-        
+
         /// 已使用额度
         public let used: Int64
-        
+
         /// 库存
         public let stock: Int64
-        
+
         /// 用户限额
         public let quota: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case used = "Used"
@@ -445,20 +445,20 @@ extension Privatedns {
             case quota = "Quota"
         }
     }
-    
+
     /// Vpc信息
     public struct VpcInfo: TCInputModel, TCOutputModel {
         /// VpcId： vpc-xadsafsdasd
         public let uniqVpcId: String
-        
+
         /// Vpc所属地区: ap-guangzhou, ap-shanghai
         public let region: String
-        
-        public init (uniqVpcId: String, region: String) {
+
+        public init(uniqVpcId: String, region: String) {
             self.uniqVpcId = uniqVpcId
             self.region = region
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uniqVpcId = "UniqVpcId"
             case region = "Region"

@@ -21,52 +21,52 @@ extension TCKmsError {
             case fingerprintsLimitExceeded = "LimitExceeded.FingerprintsLimitExceeded"
             case keyLimitExceeded = "LimitExceeded.KeyLimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CMK数量已达上限。
         public static var cmkLimitExceeded: LimitExceeded {
             LimitExceeded(.cmkLimitExceeded)
         }
-        
+
         /// 设备指纹个数超过限制。
         public static var fingerprintsLimitExceeded: LimitExceeded {
             LimitExceeded(.fingerprintsLimitExceeded)
         }
-        
+
         /// 创建的密钥个数超过限制。
         public static var keyLimitExceeded: LimitExceeded {
             LimitExceeded(.keyLimitExceeded)
         }
-        
+
         public func asKmsError() -> TCKmsError {
             let code: TCKmsError.Code
             switch self.error {
-            case .cmkLimitExceeded: 
+            case .cmkLimitExceeded:
                 code = .limitExceeded_CmkLimitExceeded
-            case .fingerprintsLimitExceeded: 
+            case .fingerprintsLimitExceeded:
                 code = .limitExceeded_FingerprintsLimitExceeded
-            case .keyLimitExceeded: 
+            case .keyLimitExceeded:
                 code = .limitExceeded_KeyLimitExceeded
             }
             return TCKmsError(code, context: self.context)

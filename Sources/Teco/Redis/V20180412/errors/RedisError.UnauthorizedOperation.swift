@@ -21,52 +21,52 @@ extension TCRedisError {
             case userNotInWhiteList = "UnauthorizedOperation.UserNotInWhiteList"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无cam 权限。
         public static var noCAMAuthed: UnauthorizedOperation {
             UnauthorizedOperation(.noCAMAuthed)
         }
-        
+
         /// 用户不在白名单中。
         public static var userNotInWhiteList: UnauthorizedOperation {
             UnauthorizedOperation(.userNotInWhiteList)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {
-            case .noCAMAuthed: 
+            case .noCAMAuthed:
                 code = .unauthorizedOperation_NoCAMAuthed
-            case .userNotInWhiteList: 
+            case .userNotInWhiteList:
                 code = .unauthorizedOperation_UserNotInWhiteList
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCRedisError(code, context: self.context)

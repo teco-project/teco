@@ -19,43 +19,43 @@ extension Dayu {
     public struct DeleteNewL4RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
         public let business: String
-        
+
         /// 删除接口结构体
         public let rule: [L4DelRule]
-        
-        public init (business: String, rule: [L4DelRule]) {
+
+        public init(business: String, rule: [L4DelRule]) {
             self.business = business
             self.rule = rule
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case rule = "Rule"
         }
     }
-    
+
     /// DeleteNewL4Rules返回参数结构体
     public struct DeleteNewL4RulesResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除四层转发规则
     ///
     /// 删除L4转发规则
     @inlinable
-    public func deleteNewL4Rules(_ input: DeleteNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNewL4RulesResponse > {
+    public func deleteNewL4Rules(_ input: DeleteNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNewL4RulesResponse> {
         self.client.execute(action: "DeleteNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除四层转发规则
     ///
     /// 删除L4转发规则
@@ -63,15 +63,15 @@ extension Dayu {
     public func deleteNewL4Rules(_ input: DeleteNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNewL4RulesResponse {
         try await self.client.execute(action: "DeleteNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除四层转发规则
     ///
     /// 删除L4转发规则
     @inlinable
-    public func deleteNewL4Rules(business: String, rule: [L4DelRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNewL4RulesResponse > {
+    public func deleteNewL4Rules(business: String, rule: [L4DelRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNewL4RulesResponse> {
         self.deleteNewL4Rules(DeleteNewL4RulesRequest(business: business, rule: rule), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除四层转发规则
     ///
     /// 删除L4转发规则

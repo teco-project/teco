@@ -19,7 +19,7 @@ extension Vpc {
     public struct DescribeSecurityGroupPoliciesRequest: TCRequestModel {
         /// 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。
         public let securityGroupId: String
-        
+
         /// 过滤条件。
         /// <li>security-group-id - String - 规则中的安全组ID。</li>
         /// <li>ip - String - IP，支持IPV4和IPV6模糊匹配。</li>
@@ -31,40 +31,40 @@ extension Vpc {
         /// <li>direction - String - 协议规则，可选值：`ALL`，所有策略；`INBOUND`，入站规则；`OUTBOUND`，出站规则。</li>
         /// <li>description - String - 协议描述，该过滤条件支持模糊匹配。</li>
         public let filters: [Filter]?
-        
-        public init (securityGroupId: String, filters: [Filter]? = nil) {
+
+        public init(securityGroupId: String, filters: [Filter]? = nil) {
             self.securityGroupId = securityGroupId
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupId = "SecurityGroupId"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeSecurityGroupPolicies返回参数结构体
     public struct DescribeSecurityGroupPoliciesResponse: TCResponseModel {
         /// 安全组规则集合。
         public let securityGroupPolicySet: SecurityGroupPolicySet
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupPolicySet = "SecurityGroupPolicySet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全组规则
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
         self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全组规则
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
@@ -72,15 +72,15 @@ extension Vpc {
     public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全组规则
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
-    public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
+    public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
         self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全组规则
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。

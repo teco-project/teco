@@ -19,38 +19,38 @@ extension Postgres {
     public struct RestartDBInstanceRequest: TCRequestModel {
         /// 实例ID，形如postgres-6r233v55
         public let dbInstanceId: String
-        
-        public init (dbInstanceId: String) {
+
+        public init(dbInstanceId: String) {
             self.dbInstanceId = dbInstanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
         }
     }
-    
+
     /// RestartDBInstance返回参数结构体
     public struct RestartDBInstanceResponse: TCResponseModel {
         /// 异步流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启实例
     ///
     /// 本接口（RestartDBInstance）用于重启实例。
     @inlinable
-    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstanceResponse > {
+    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstanceResponse> {
         self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启实例
     ///
     /// 本接口（RestartDBInstance）用于重启实例。
@@ -58,15 +58,15 @@ extension Postgres {
     public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
         try await self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启实例
     ///
     /// 本接口（RestartDBInstance）用于重启实例。
     @inlinable
-    public func restartDBInstance(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstanceResponse > {
+    public func restartDBInstance(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstanceResponse> {
         self.restartDBInstance(RestartDBInstanceRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启实例
     ///
     /// 本接口（RestartDBInstance）用于重启实例。

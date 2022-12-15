@@ -19,23 +19,23 @@ extension Apigateway {
     public struct CreateAPIDocRequest: TCRequestModel {
         /// API文档名称
         public let apiDocName: String
-        
+
         /// 服务名称
         public let serviceId: String
-        
+
         /// 环境名称
         public let environment: String
-        
+
         /// 生成文档的API列表
         public let apiIds: [String]
-        
-        public init (apiDocName: String, serviceId: String, environment: String, apiIds: [String]) {
+
+        public init(apiDocName: String, serviceId: String, environment: String, apiIds: [String]) {
             self.apiDocName = apiDocName
             self.serviceId = serviceId
             self.environment = environment
             self.apiIds = apiIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case apiDocName = "ApiDocName"
             case serviceId = "ServiceId"
@@ -43,39 +43,39 @@ extension Apigateway {
             case apiIds = "ApiIds"
         }
     }
-    
+
     /// CreateAPIDoc返回参数结构体
     public struct CreateAPIDocResponse: TCResponseModel {
         /// API文档基本信息
         public let result: APIDoc
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建 API 文档
     @inlinable
-    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAPIDocResponse > {
+    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAPIDocResponse> {
         self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 API 文档
     @inlinable
     public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
         try await self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建 API 文档
     @inlinable
-    public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAPIDocResponse > {
+    public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAPIDocResponse> {
         self.createAPIDoc(CreateAPIDocRequest(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 API 文档
     @inlinable
     public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {

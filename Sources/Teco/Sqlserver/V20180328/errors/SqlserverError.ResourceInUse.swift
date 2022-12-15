@@ -19,38 +19,38 @@ extension TCSqlserverError {
         enum Code: String {
             case incrementalMigrationExist = "ResourceInUse.IncrementalMigrationExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 已经存在一个准备启动的增量导入任务。
         public static var incrementalMigrationExist: ResourceInUse {
             ResourceInUse(.incrementalMigrationExist)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {
-            case .incrementalMigrationExist: 
+            case .incrementalMigrationExist:
                 code = .resourceInUse_IncrementalMigrationExist
             }
             return TCSqlserverError(code, context: self.context)

@@ -19,10 +19,10 @@ extension Cwp {
     public struct DescribeEmergencyVulListRequest: TCRequestModel {
         /// 返回数量，最大值为100。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Status - String - 是否必填：是 - 漏洞状态筛选，0//未检测 1有风险 ，2无风险 ，3 检查中展示progress</li>
         /// <li>Level - String - 是否必填：否 - 漏洞等级筛选 1:低 2:中 3:高 4:提示</li>
@@ -30,21 +30,21 @@ extension Cwp {
         /// <li>Uuids- String - 是否必填：否 - 主机uuid</li>
         /// <li>IsSupportDefense - int- 是否必填：否 - 是否支持防御 0:不支持 1:支持</li>
         public let filters: [Filters]?
-        
+
         /// 排序方式 desc , asc
         public let order: String?
-        
+
         /// 排序字段 PublishDate  LastScanTime HostCount
         public let by: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -53,24 +53,24 @@ extension Cwp {
             case by = "By"
         }
     }
-    
+
     /// DescribeEmergencyVulList返回参数结构体
     public struct DescribeEmergencyVulListResponse: TCResponseModel {
         /// 漏洞列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [EmergencyVul]?
-        
+
         /// 漏洞总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 是否存在风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let existsRisk: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
@@ -78,15 +78,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 应急漏洞列表
     ///
     /// 获取应急漏洞列表
     @inlinable
-    public func describeEmergencyVulList(_ input: DescribeEmergencyVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmergencyVulListResponse > {
+    public func describeEmergencyVulList(_ input: DescribeEmergencyVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyVulListResponse> {
         self.client.execute(action: "DescribeEmergencyVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 应急漏洞列表
     ///
     /// 获取应急漏洞列表
@@ -94,15 +94,15 @@ extension Cwp {
     public func describeEmergencyVulList(_ input: DescribeEmergencyVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyVulListResponse {
         try await self.client.execute(action: "DescribeEmergencyVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 应急漏洞列表
     ///
     /// 获取应急漏洞列表
     @inlinable
-    public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmergencyVulListResponse > {
+    public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyVulListResponse> {
         self.describeEmergencyVulList(DescribeEmergencyVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 应急漏洞列表
     ///
     /// 获取应急漏洞列表

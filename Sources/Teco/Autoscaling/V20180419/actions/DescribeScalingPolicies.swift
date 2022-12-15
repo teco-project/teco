@@ -19,27 +19,27 @@ extension As {
     public struct DescribeScalingPoliciesRequest: TCRequestModel {
         /// 按照一个或者多个告警策略ID查询。告警策略ID形如：asp-i9vkg894。每次请求的实例的上限为100。参数不支持同时指定`AutoScalingPolicyIds`和`Filters`。
         public let autoScalingPolicyIds: [String]?
-        
+
         /// 过滤条件。
         /// <li> auto-scaling-policy-id - String - 是否必填：否 -（过滤条件）按照告警策略ID过滤。</li>
         /// <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。</li>
         /// <li> scaling-policy-name - String - 是否必填：否 -（过滤条件）按照告警策略名称过滤。</li>
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AutoScalingPolicyIds`和`Filters`。
         public let filters: [Filter]?
-        
+
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
-        
-        public init (autoScalingPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(autoScalingPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.autoScalingPolicyIds = autoScalingPolicyIds
             self.filters = filters
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingPolicyIds = "AutoScalingPolicyIds"
             case filters = "Filters"
@@ -47,33 +47,33 @@ extension As {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeScalingPolicies返回参数结构体
     public struct DescribeScalingPoliciesResponse: TCResponseModel {
         /// 弹性伸缩告警触发策略详细信息列表。
         public let scalingPolicySet: [ScalingPolicy]
-        
+
         /// 符合条件的通知数量。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scalingPolicySet = "ScalingPolicySet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询告警触发策略
     ///
     /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
     @inlinable
-    public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScalingPoliciesResponse > {
+    public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScalingPoliciesResponse> {
         self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询告警触发策略
     ///
     /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
@@ -81,15 +81,15 @@ extension As {
     public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
         try await self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询告警触发策略
     ///
     /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
     @inlinable
-    public func describeScalingPolicies(autoScalingPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScalingPoliciesResponse > {
+    public func describeScalingPolicies(autoScalingPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScalingPoliciesResponse> {
         self.describeScalingPolicies(DescribeScalingPoliciesRequest(autoScalingPolicyIds: autoScalingPolicyIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询告警触发策略
     ///
     /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。

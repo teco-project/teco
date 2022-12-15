@@ -19,35 +19,35 @@ extension Billing {
     public struct DescribeBillDetailRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 数量，最大值为100
         public let limit: UInt64
-        
+
         /// 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
         public let periodType: String?
-        
+
         /// 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。
         public let month: String?
-        
+
         /// 周期开始时间，格式为Y-m-d H:i:s，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。(不支持跨月查询)
         public let beginTime: String?
-        
+
         /// 周期结束时间，格式为Y-m-d H:i:s，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。（不支持跨月查询）
         public let endTime: String?
-        
+
         /// 是否需要访问列表的总记录数，用于前端分页
         /// 1-表示需要， 0-表示不需要
         public let needRecordNum: Int64?
-        
+
         /// 已废弃参数，未开放
         public let productCode: String?
-        
+
         /// 付费模式 prePay/postPay
         public let payMode: String?
-        
+
         /// 查询指定资源信息
         public let resourceId: String?
-        
+
         /// 查询交易类型，如下：
         /// 包年包月新购
         /// 包年包月续费
@@ -76,15 +76,15 @@ extension Billing {
         /// 按量计费冲正
         /// 包年包月转按量
         public let actionType: String?
-        
+
         /// 项目ID:资源所属项目ID
         public let projectId: Int64?
-        
+
         /// 产品名称代码
         /// 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         public let businessCode: String?
-        
-        public init (offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.periodType = periodType
@@ -99,7 +99,7 @@ extension Billing {
             self.projectId = projectId
             self.businessCode = businessCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -116,44 +116,44 @@ extension Billing {
             case businessCode = "BusinessCode"
         }
     }
-    
+
     /// DescribeBillDetail返回参数结构体
     public struct DescribeBillDetailResponse: TCResponseModel {
         /// 详情列表
         public let detailSet: [BillDetail]
-        
+
         /// 总记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case detailSet = "DetailSet"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询账单明细数据
     @inlinable
-    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillDetailResponse > {
+    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillDetailResponse> {
         self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账单明细数据
     @inlinable
     public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
         try await self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询账单明细数据
     @inlinable
-    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillDetailResponse > {
+    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillDetailResponse> {
         self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账单明细数据
     @inlinable
     public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {

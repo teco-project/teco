@@ -19,35 +19,35 @@ extension Sms {
     public struct PullSmsReplyStatusRequest: TCRequestModel {
         /// 拉取最大条数，最多100条。
         public let limit: UInt64
-        
+
         /// 短信 SdkAppid 在 [短信控制台](https://console.cloud.tencent.com/smsv2) 添加应用后生成的实际 SdkAppid，例如1400006666。
         public let smsSdkAppid: String
-        
-        public init (limit: UInt64, smsSdkAppid: String) {
+
+        public init(limit: UInt64, smsSdkAppid: String) {
             self.limit = limit
             self.smsSdkAppid = smsSdkAppid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case smsSdkAppid = "SmsSdkAppid"
         }
     }
-    
+
     /// PullSmsReplyStatus返回参数结构体
     public struct PullSmsReplyStatusResponse: TCResponseModel {
         /// 回复状态响应集合。
         public let pullSmsReplyStatusSet: [PullSmsReplyStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pullSmsReplyStatusSet = "PullSmsReplyStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取短信回复状态
     ///
     /// 拉取短信回复状态。
@@ -56,10 +56,10 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsReplyStatus(_ input: PullSmsReplyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsReplyStatusResponse > {
+    public func pullSmsReplyStatus(_ input: PullSmsReplyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsReplyStatusResponse> {
         self.client.execute(action: "PullSmsReplyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取短信回复状态
     ///
     /// 拉取短信回复状态。
@@ -71,7 +71,7 @@ extension Sms {
     public func pullSmsReplyStatus(_ input: PullSmsReplyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsReplyStatusResponse {
         try await self.client.execute(action: "PullSmsReplyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取短信回复状态
     ///
     /// 拉取短信回复状态。
@@ -80,10 +80,10 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsReplyStatus(limit: UInt64, smsSdkAppid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsReplyStatusResponse > {
+    public func pullSmsReplyStatus(limit: UInt64, smsSdkAppid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsReplyStatusResponse> {
         self.pullSmsReplyStatus(PullSmsReplyStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取短信回复状态
     ///
     /// 拉取短信回复状态。

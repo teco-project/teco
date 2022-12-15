@@ -19,60 +19,60 @@ extension Teo {
     public struct ModifyLoadBalancingStatusRequest: TCRequestModel {
         /// 站点ID
         public let zoneId: String
-        
+
         /// 负载均衡ID
         public let loadBalancingId: String
-        
+
         /// 状态
         /// online: 启用
         /// offline: 停用
         public let status: String
-        
-        public init (zoneId: String, loadBalancingId: String, status: String) {
+
+        public init(zoneId: String, loadBalancingId: String, status: String) {
             self.zoneId = zoneId
             self.loadBalancingId = loadBalancingId
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case loadBalancingId = "LoadBalancingId"
             case status = "Status"
         }
     }
-    
+
     /// ModifyLoadBalancingStatus返回参数结构体
     public struct ModifyLoadBalancingStatusResponse: TCResponseModel {
         /// 负载均衡ID
         public let loadBalancingId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancingId = "LoadBalancingId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改负载均衡状态
     @inlinable
-    public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancingStatusResponse > {
+    public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingStatusResponse> {
         self.client.execute(action: "ModifyLoadBalancingStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改负载均衡状态
     @inlinable
     public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingStatusResponse {
         try await self.client.execute(action: "ModifyLoadBalancingStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改负载均衡状态
     @inlinable
-    public func modifyLoadBalancingStatus(zoneId: String, loadBalancingId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancingStatusResponse > {
+    public func modifyLoadBalancingStatus(zoneId: String, loadBalancingId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingStatusResponse> {
         self.modifyLoadBalancingStatus(ModifyLoadBalancingStatusRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改负载均衡状态
     @inlinable
     public func modifyLoadBalancingStatus(zoneId: String, loadBalancingId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingStatusResponse {

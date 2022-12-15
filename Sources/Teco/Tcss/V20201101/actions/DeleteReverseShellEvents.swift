@@ -19,44 +19,44 @@ extension Tcss {
     public struct DeleteReverseShellEventsRequest: TCRequestModel {
         /// 事件ids
         public let eventIdSet: [String]
-        
-        public init (eventIdSet: [String]) {
+
+        public init(eventIdSet: [String]) {
             self.eventIdSet = eventIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventIdSet = "EventIdSet"
         }
     }
-    
+
     /// DeleteReverseShellEvents返回参数结构体
     public struct DeleteReverseShellEventsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除运行时反弹shell事件
     @inlinable
-    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellEventsResponse > {
+    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
         self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除运行时反弹shell事件
     @inlinable
     public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
         try await self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除运行时反弹shell事件
     @inlinable
-    public func deleteReverseShellEvents(eventIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellEventsResponse > {
+    public func deleteReverseShellEvents(eventIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
         self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(eventIdSet: eventIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除运行时反弹shell事件
     @inlinable
     public func deleteReverseShellEvents(eventIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {

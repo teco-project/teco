@@ -19,48 +19,48 @@ extension Dlc {
     public struct DescribeTableRequest: TCRequestModel {
         /// 查询对象表名称
         public let tableName: String
-        
+
         /// 查询表所在的数据库名称。
         public let databaseName: String
-        
+
         /// 查询表所在的数据源名称
         public let datasourceConnectionName: String?
-        
-        public init (tableName: String, databaseName: String, datasourceConnectionName: String? = nil) {
+
+        public init(tableName: String, databaseName: String, datasourceConnectionName: String? = nil) {
             self.tableName = tableName
             self.databaseName = databaseName
             self.datasourceConnectionName = datasourceConnectionName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableName = "TableName"
             case databaseName = "DatabaseName"
             case datasourceConnectionName = "DatasourceConnectionName"
         }
     }
-    
+
     /// DescribeTable返回参数结构体
     public struct DescribeTableResponse: TCResponseModel {
         /// 数据表对象
         public let table: TableResponseInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case table = "Table"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询表详情
     ///
     /// 本接口（DescribeTable），用于查询单个表的详细信息。
     @inlinable
-    public func describeTable(_ input: DescribeTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableResponse > {
+    public func describeTable(_ input: DescribeTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableResponse> {
         self.client.execute(action: "DescribeTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询表详情
     ///
     /// 本接口（DescribeTable），用于查询单个表的详细信息。
@@ -68,15 +68,15 @@ extension Dlc {
     public func describeTable(_ input: DescribeTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableResponse {
         try await self.client.execute(action: "DescribeTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询表详情
     ///
     /// 本接口（DescribeTable），用于查询单个表的详细信息。
     @inlinable
-    public func describeTable(tableName: String, databaseName: String, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableResponse > {
+    public func describeTable(tableName: String, databaseName: String, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableResponse> {
         self.describeTable(DescribeTableRequest(tableName: tableName, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询表详情
     ///
     /// 本接口（DescribeTable），用于查询单个表的详细信息。

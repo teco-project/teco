@@ -19,39 +19,39 @@ extension Afc {
     public struct TransportGeneralInterfaceRequest: TCRequestModel {
         /// 业务入参
         public let businessSecurityData: TransportGeneralInterfaceInput?
-        
-        public init (businessSecurityData: TransportGeneralInterfaceInput? = nil) {
+
+        public init(businessSecurityData: TransportGeneralInterfaceInput? = nil) {
             self.businessSecurityData = businessSecurityData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessSecurityData = "BusinessSecurityData"
         }
     }
-    
+
     /// TransportGeneralInterface返回参数结构体
     public struct TransportGeneralInterfaceResponse: TCResponseModel {
         /// 业务出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: TransportGeneralInterfaceOutput?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 信鸽取数平台接口
     ///
     /// 天御信鸽取数平台接口
     @inlinable
-    public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransportGeneralInterfaceResponse > {
+    public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransportGeneralInterfaceResponse> {
         self.client.execute(action: "TransportGeneralInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 信鸽取数平台接口
     ///
     /// 天御信鸽取数平台接口
@@ -59,15 +59,15 @@ extension Afc {
     public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
         try await self.client.execute(action: "TransportGeneralInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 信鸽取数平台接口
     ///
     /// 天御信鸽取数平台接口
     @inlinable
-    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransportGeneralInterfaceResponse > {
+    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransportGeneralInterfaceResponse> {
         self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
     }
-    
+
     /// 信鸽取数平台接口
     ///
     /// 天御信鸽取数平台接口

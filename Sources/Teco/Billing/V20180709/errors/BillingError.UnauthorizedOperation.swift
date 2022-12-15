@@ -21,52 +21,52 @@ extension TCBillingError {
             case certificationNeedUpgrade = "UnauthorizedOperation.CertificationNeedUpgrade"
             case notCertification = "UnauthorizedOperation.NotCertification"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号没有cam授权。
         public static var camNoAuth: UnauthorizedOperation {
             UnauthorizedOperation(.camNoAuth)
         }
-        
+
         /// 因账号安全升级，购买云资源需完善您的实名信息。
         public static var certificationNeedUpgrade: UnauthorizedOperation {
             UnauthorizedOperation(.certificationNeedUpgrade)
         }
-        
+
         /// 账号没有实名认证，支付失败。
         public static var notCertification: UnauthorizedOperation {
             UnauthorizedOperation(.notCertification)
         }
-        
+
         public func asBillingError() -> TCBillingError {
             let code: TCBillingError.Code
             switch self.error {
-            case .camNoAuth: 
+            case .camNoAuth:
                 code = .unauthorizedOperation_CamNoAuth
-            case .certificationNeedUpgrade: 
+            case .certificationNeedUpgrade:
                 code = .unauthorizedOperation_CertificationNeedUpgrade
-            case .notCertification: 
+            case .notCertification:
                 code = .unauthorizedOperation_NotCertification
             }
             return TCBillingError(code, context: self.context)

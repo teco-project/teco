@@ -26,87 +26,87 @@ extension TCCbsError {
             case snapshotCreating = "InvalidDisk.SnapshotCreating"
             case typeError = "InvalidDisk.TypeError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 云盘已绑定定期快照策略。
         public static var alreadyBound: InvalidDisk {
             InvalidDisk(.alreadyBound)
         }
-        
+
         /// 云硬盘忙，请稍后重试。
         public static var busy: InvalidDisk {
             InvalidDisk(.busy)
         }
-        
+
         /// 云盘已过期。
         public static var expire: InvalidDisk {
             InvalidDisk(.expire)
         }
-        
+
         /// 不支持非弹性云盘。
         public static var notPortable: InvalidDisk {
             InvalidDisk(.notPortable)
         }
-        
+
         /// 云硬盘没有快照能力。
         public static var notSupportSnapshot: InvalidDisk {
             InvalidDisk(.notSupportSnapshot)
         }
-        
+
         /// 云硬盘不支持该操作。
         public static var notSupported: InvalidDisk {
             InvalidDisk(.notSupported)
         }
-        
+
         /// 云硬盘正在创建快照，请稍后重试。
         public static var snapshotCreating: InvalidDisk {
             InvalidDisk(.snapshotCreating)
         }
-        
+
         /// 云硬盘类型错误。
         public static var typeError: InvalidDisk {
             InvalidDisk(.typeError)
         }
-        
+
         public func asCbsError() -> TCCbsError {
             let code: TCCbsError.Code
             switch self.error {
-            case .alreadyBound: 
+            case .alreadyBound:
                 code = .invalidDisk_AlreadyBound
-            case .busy: 
+            case .busy:
                 code = .invalidDisk_Busy
-            case .expire: 
+            case .expire:
                 code = .invalidDisk_Expire
-            case .notPortable: 
+            case .notPortable:
                 code = .invalidDisk_NotPortable
-            case .notSupportSnapshot: 
+            case .notSupportSnapshot:
                 code = .invalidDisk_NotSupportSnapshot
-            case .notSupported: 
+            case .notSupported:
                 code = .invalidDisk_NotSupported
-            case .snapshotCreating: 
+            case .snapshotCreating:
                 code = .invalidDisk_SnapshotCreating
-            case .typeError: 
+            case .typeError:
                 code = .invalidDisk_TypeError
             }
             return TCCbsError(code, context: self.context)

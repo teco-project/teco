@@ -17,27 +17,27 @@
 extension Tcss {
     /// DescribeAffectedClusterCount请求参数结构体
     public struct DescribeAffectedClusterCountRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeAffectedClusterCount返回参数结构体
     public struct DescribeAffectedClusterCountResponse: TCResponseModel {
         /// 严重风险的集群数量
         public let seriousRiskClusterCount: UInt64
-        
+
         /// 高危风险的集群数量
         public let highRiskClusterCount: UInt64
-        
+
         /// 中危风险的集群数量
         public let middleRiskClusterCount: UInt64
-        
+
         /// 低危风险的集群数量
         public let hintRiskClusterCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case seriousRiskClusterCount = "SeriousRiskClusterCount"
             case highRiskClusterCount = "HighRiskClusterCount"
@@ -46,15 +46,15 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取受影响的集群数量
     ///
     /// 获取受影响的集群数量，返回数量
     @inlinable
-    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedClusterCountResponse > {
+    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedClusterCountResponse> {
         self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取受影响的集群数量
     ///
     /// 获取受影响的集群数量，返回数量
@@ -62,15 +62,15 @@ extension Tcss {
     public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
         try await self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取受影响的集群数量
     ///
     /// 获取受影响的集群数量，返回数量
     @inlinable
-    public func describeAffectedClusterCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedClusterCountResponse > {
+    public func describeAffectedClusterCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedClusterCountResponse> {
         self.describeAffectedClusterCount(DescribeAffectedClusterCountRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取受影响的集群数量
     ///
     /// 获取受影响的集群数量，返回数量

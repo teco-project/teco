@@ -19,38 +19,38 @@ extension TCMemcachedError {
         enum Code: String {
             case noCAMAuthed = "UnauthorizedOperation.NoCAMAuthed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Cam鉴权失败
         public static var noCAMAuthed: UnauthorizedOperation {
             UnauthorizedOperation(.noCAMAuthed)
         }
-        
+
         public func asMemcachedError() -> TCMemcachedError {
             let code: TCMemcachedError.Code
             switch self.error {
-            case .noCAMAuthed: 
+            case .noCAMAuthed:
                 code = .unauthorizedOperation_NoCAMAuthed
             }
             return TCMemcachedError(code, context: self.context)

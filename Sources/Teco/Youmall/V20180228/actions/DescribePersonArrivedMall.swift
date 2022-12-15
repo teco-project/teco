@@ -19,23 +19,23 @@ extension Youmall {
     public struct DescribePersonArrivedMallRequest: TCRequestModel {
         /// 卖场编码
         public let mallId: String
-        
+
         /// 客户编码
         public let personId: String
-        
+
         /// 查询开始时间
         public let startTime: String
-        
+
         /// 查询结束时间
         public let endTime: String
-        
-        public init (mallId: String, personId: String, startTime: String, endTime: String) {
+
+        public init(mallId: String, personId: String, startTime: String, endTime: String) {
             self.mallId = mallId
             self.personId = personId
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mallId = "MallId"
             case personId = "PersonId"
@@ -43,24 +43,24 @@ extension Youmall {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribePersonArrivedMall返回参数结构体
     public struct DescribePersonArrivedMallResponse: TCResponseModel {
         /// 卖场系统编码
         public let mallId: String
-        
+
         /// 卖场用户编码
         public let mallCode: String
-        
+
         /// 客户编码
         public let personId: String
-        
+
         /// 到场轨迹
         public let arrivedMallSet: [ArrivedMallInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mallId = "MallId"
             case mallCode = "MallCode"
@@ -69,15 +69,15 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询客户到场信息
     ///
     /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
     @inlinable
-    public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonArrivedMallResponse > {
+    public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonArrivedMallResponse> {
         self.client.execute(action: "DescribePersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户到场信息
     ///
     /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
@@ -85,15 +85,15 @@ extension Youmall {
     public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonArrivedMallResponse {
         try await self.client.execute(action: "DescribePersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询客户到场信息
     ///
     /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
     @inlinable
-    public func describePersonArrivedMall(mallId: String, personId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonArrivedMallResponse > {
+    public func describePersonArrivedMall(mallId: String, personId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonArrivedMallResponse> {
         self.describePersonArrivedMall(DescribePersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户到场信息
     ///
     /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。

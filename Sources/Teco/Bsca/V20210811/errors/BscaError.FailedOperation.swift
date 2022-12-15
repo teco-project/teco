@@ -19,40 +19,40 @@ extension TCBscaError {
         enum Code: String {
             case accountNotEnough = "FailedOperation.AccountNotEnough"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账户流量余额不足。
         ///
         /// 请购买流量包。
         public static var accountNotEnough: FailedOperation {
             FailedOperation(.accountNotEnough)
         }
-        
+
         public func asBscaError() -> TCBscaError {
             let code: TCBscaError.Code
             switch self.error {
-            case .accountNotEnough: 
+            case .accountNotEnough:
                 code = .failedOperation_AccountNotEnough
             }
             return TCBscaError(code, context: self.context)

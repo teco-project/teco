@@ -19,23 +19,23 @@ extension Eiam {
     public struct CreateAppAccountRequest: TCRequestModel {
         /// 应用ID
         public let applicationId: String
-        
+
         /// 账号名称
         public let accountName: String
-        
+
         /// 账号密码
         public let password: String?
-        
+
         /// 描述
         public let description: String?
-        
-        public init (applicationId: String, accountName: String, password: String? = nil, description: String? = nil) {
+
+        public init(applicationId: String, accountName: String, password: String? = nil, description: String? = nil) {
             self.applicationId = applicationId
             self.accountName = accountName
             self.password = password
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case accountName = "AccountName"
@@ -43,40 +43,40 @@ extension Eiam {
             case description = "Description"
         }
     }
-    
+
     /// CreateAppAccount返回参数结构体
     public struct CreateAppAccountResponse: TCResponseModel {
         /// 账号ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建应用账号
     @inlinable
-    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppAccountResponse > {
+    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppAccountResponse> {
         self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用账号
     @inlinable
     public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
         try await self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建应用账号
     @inlinable
-    public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppAccountResponse > {
+    public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppAccountResponse> {
         self.createAppAccount(CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用账号
     @inlinable
     public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {

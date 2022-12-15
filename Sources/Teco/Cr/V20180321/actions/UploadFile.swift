@@ -22,16 +22,16 @@ extension Cr {
     public struct UploadFileRequest: TCRequestModel {
         /// 模块名
         public let module: String
-        
+
         /// 操作名
         public let operation: String
-        
+
         /// 文件上传地址，要求地址协议为HTTPS，且URL端口必须为443
         public let fileUrl: String
-        
+
         /// 文件名
         public let fileName: String
-        
+
         /// 文件日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -39,15 +39,15 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var fileDate: Date
-        
-        public init (module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date) {
+
+        public init(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date) {
             self.module = module
             self.operation = operation
             self.fileUrl = fileUrl
             self.fileName = fileName
             self.fileDate = fileDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -56,29 +56,29 @@ extension Cr {
             case fileDate = "FileDate"
         }
     }
-    
+
     /// UploadFile返回参数结构体
     public struct UploadFileResponse: TCResponseModel {
         /// 任务ID
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传数据文件
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
+    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
         self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传数据文件
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
@@ -86,15 +86,15 @@ extension Cr {
     public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
         try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传数据文件
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
+    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
         self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传数据文件
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。

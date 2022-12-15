@@ -19,48 +19,48 @@ extension Tione {
     public struct DescribeTrainingTaskRequest: TCRequestModel {
         /// 训练任务ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DescribeTrainingTask返回参数结构体
     public struct DescribeTrainingTaskResponse: TCResponseModel {
         /// 训练任务详情
         public let trainingTaskDetail: TrainingTaskDetail
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trainingTaskDetail = "TrainingTaskDetail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 训练任务详情
     @inlinable
-    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskResponse > {
+    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskResponse> {
         self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 训练任务详情
     @inlinable
     public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
         try await self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 训练任务详情
     @inlinable
-    public func describeTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskResponse > {
+    public func describeTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskResponse> {
         self.describeTrainingTask(DescribeTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 训练任务详情
     @inlinable
     public func describeTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {

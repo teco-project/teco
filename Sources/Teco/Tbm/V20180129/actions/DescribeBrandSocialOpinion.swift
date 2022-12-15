@@ -22,7 +22,7 @@ extension Tbm {
     public struct DescribeBrandSocialOpinionRequest: TCRequestModel {
         /// 品牌ID
         public let brandId: String
-        
+
         /// 检索开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date
-        
+
         /// 检索结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,17 +38,17 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
+
         /// 查询偏移，默认从0开始
         public let offset: Int64?
-        
+
         /// 查询条数上限，默认20
         public let limit: Int64?
-        
+
         /// 列表显示标记，若为true，则返回文章列表详情
         public let showList: Bool?
-        
-        public init (brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil) {
+
+        public init(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil) {
             self.brandId = brandId
             self.startDate = startDate
             self.endDate = endDate
@@ -56,7 +56,7 @@ extension Tbm {
             self.limit = limit
             self.showList = showList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case brandId = "BrandId"
             case startDate = "StartDate"
@@ -66,24 +66,24 @@ extension Tbm {
             case showList = "ShowList"
         }
     }
-    
+
     /// DescribeBrandSocialOpinion返回参数结构体
     public struct DescribeBrandSocialOpinionResponse: TCResponseModel {
         /// 文章总数
         public let articleCount: UInt64
-        
+
         /// 来源统计总数
         public let fromCount: UInt64
-        
+
         /// 疑似负面报道总数
         public let adverseCount: UInt64
-        
+
         /// 文章列表详情
         public let articleSet: [BrandReportArticle]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case articleCount = "ArticleCount"
             case fromCount = "FromCount"
@@ -92,15 +92,15 @@ extension Tbm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
-    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandSocialOpinionResponse > {
+    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialOpinionResponse> {
         self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
@@ -108,15 +108,15 @@ extension Tbm {
     public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
         try await self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
-    public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandSocialOpinionResponse > {
+    public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialOpinionResponse> {
         self.describeBrandSocialOpinion(DescribeBrandSocialOpinionRequest(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。

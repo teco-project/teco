@@ -19,47 +19,47 @@ extension Tcb {
     public struct DescribeStandaloneGatewayPackageRequest: TCRequestModel {
         /// 环境ID
         public let envId: String?
-        
+
         /// 套餐版本，包含starter、basic、advanced、enterprise
         public let packageVersion: String?
-        
-        public init (envId: String? = nil, packageVersion: String? = nil) {
+
+        public init(envId: String? = nil, packageVersion: String? = nil) {
             self.envId = envId
             self.packageVersion = packageVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case packageVersion = "PackageVersion"
         }
     }
-    
+
     /// DescribeStandaloneGatewayPackage返回参数结构体
     public struct DescribeStandaloneGatewayPackageResponse: TCResponseModel {
         /// 总数
         public let total: Int64
-        
+
         /// 套餐详情
         public let standaloneGatewayPackageList: [StandaloneGatewayPackageInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case standaloneGatewayPackageList = "StandaloneGatewayPackageList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询小租户网关套餐信息
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
     @inlinable
-    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStandaloneGatewayPackageResponse > {
+    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandaloneGatewayPackageResponse> {
         self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询小租户网关套餐信息
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
@@ -67,15 +67,15 @@ extension Tcb {
     public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
         try await self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询小租户网关套餐信息
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
     @inlinable
-    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStandaloneGatewayPackageResponse > {
+    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandaloneGatewayPackageResponse> {
         self.describeStandaloneGatewayPackage(DescribeStandaloneGatewayPackageRequest(envId: envId, packageVersion: packageVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询小租户网关套餐信息
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。

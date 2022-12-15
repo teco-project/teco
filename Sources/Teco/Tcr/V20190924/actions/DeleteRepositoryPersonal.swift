@@ -19,34 +19,34 @@ extension Tcr {
     public struct DeleteRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名称
         public let repoName: String
-        
-        public init (repoName: String) {
+
+        public init(repoName: String) {
             self.repoName = repoName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
         }
     }
-    
+
     /// DeleteRepositoryPersonal返回参数结构体
     public struct DeleteRepositoryPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除
     @inlinable
-    public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryPersonalResponse > {
+    public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryPersonalResponse> {
         self.client.execute(action: "DeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除
@@ -54,15 +54,15 @@ extension Tcr {
     public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
         try await self.client.execute(action: "DeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除
     @inlinable
-    public func deleteRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryPersonalResponse > {
+    public func deleteRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryPersonalResponse> {
         self.deleteRepositoryPersonal(DeleteRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除

@@ -21,56 +21,56 @@ extension TCPrivatednsError {
             case tldOutOfRange = "LimitExceeded.TldOutOfRange"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 超过自定义TLD额度。
         ///
         /// 超过自定义TLD额度
         public static var tldOutOfLimit: LimitExceeded {
             LimitExceeded(.tldOutOfLimit)
         }
-        
+
         /// 使用自定义TLD的私有域超过总额度。
         ///
         /// 删除不需要的使用了自定义TLD的私有域
         public static var tldOutOfRange: LimitExceeded {
             LimitExceeded(.tldOutOfRange)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asPrivatednsError() -> TCPrivatednsError {
             let code: TCPrivatednsError.Code
             switch self.error {
-            case .tldOutOfLimit: 
+            case .tldOutOfLimit:
                 code = .limitExceeded_TldOutOfLimit
-            case .tldOutOfRange: 
+            case .tldOutOfRange:
                 code = .limitExceeded_TldOutOfRange
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCPrivatednsError(code, context: self.context)

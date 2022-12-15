@@ -19,45 +19,45 @@ extension Gse {
     public struct SetServerWeightRequest: TCRequestModel {
         /// 服务器舰队ID
         public let fleetId: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 权重，最小值0，最大值10，默认值5
         public let weight: Int64
-        
-        public init (fleetId: String, instanceId: String, weight: Int64) {
+
+        public init(fleetId: String, instanceId: String, weight: Int64) {
             self.fleetId = fleetId
             self.instanceId = instanceId
             self.weight = weight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case instanceId = "InstanceId"
             case weight = "Weight"
         }
     }
-    
+
     /// SetServerWeight返回参数结构体
     public struct SetServerWeightResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（SetServerWeight）用于设置服务器权重。
     @inlinable
-    public func setServerWeight(_ input: SetServerWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetServerWeightResponse > {
+    public func setServerWeight(_ input: SetServerWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerWeightResponse> {
         self.client.execute(action: "SetServerWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -66,16 +66,16 @@ extension Gse {
     public func setServerWeight(_ input: SetServerWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerWeightResponse {
         try await self.client.execute(action: "SetServerWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（SetServerWeight）用于设置服务器权重。
     @inlinable
-    public func setServerWeight(fleetId: String, instanceId: String, weight: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetServerWeightResponse > {
+    public func setServerWeight(fleetId: String, instanceId: String, weight: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerWeightResponse> {
         self.setServerWeight(SetServerWeightRequest(fleetId: fleetId, instanceId: instanceId, weight: weight), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

@@ -29,108 +29,108 @@ extension TCEssbasicError {
             case staffAlreadyVerify = "FailedOperation.StaffAlreadyVerify"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请检查签署人证件号是合法年龄，以证件号为准。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var ageNotAchieveNormalLegal: FailedOperation {
             FailedOperation(.ageNotAchieveNormalLegal)
         }
-        
+
         /// 鉴权失败。
         ///
         /// 请检查参数，确保账号信息正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var authFail: FailedOperation {
             FailedOperation(.authFail)
         }
-        
+
         public static var existSameSealName: FailedOperation {
             FailedOperation(.existSameSealName)
         }
-        
+
         public static var flowNumExceed: FailedOperation {
             FailedOperation(.flowNumExceed)
         }
-        
+
         public static var hasAuthorized: FailedOperation {
             FailedOperation(.hasAuthorized)
         }
-        
+
         public static var notAvailableSignReview: FailedOperation {
             FailedOperation(.notAvailableSignReview)
         }
-        
+
         /// 请确认是否模板配置存在发起方的填写控件。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeCreatorSignComponents: FailedOperation {
             FailedOperation(.qrCodeCreatorSignComponents)
         }
-        
+
         /// 请确认模板是否缺少签署人。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeSignUsers: FailedOperation {
             FailedOperation(.qrCodeSignUsers)
         }
-        
+
         /// 适用的模版仅限于B2C（无序签署，顺序签署时B静默签署，顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeTemplateId: FailedOperation {
             FailedOperation(.qrCodeTemplateId)
         }
-        
+
         /// 员工已实名。
         ///
         /// 员工已实名，如有其他疑问，请联系客服。
         public static var staffAlreadyVerify: FailedOperation {
             FailedOperation(.staffAlreadyVerify)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asEssbasicError() -> TCEssbasicError {
             let code: TCEssbasicError.Code
             switch self.error {
-            case .ageNotAchieveNormalLegal: 
+            case .ageNotAchieveNormalLegal:
                 code = .failedOperation_AgeNotAchieveNormalLegal
-            case .authFail: 
+            case .authFail:
                 code = .failedOperation_AuthFail
-            case .existSameSealName: 
+            case .existSameSealName:
                 code = .failedOperation_ExistSameSealName
-            case .flowNumExceed: 
+            case .flowNumExceed:
                 code = .failedOperation_FlowNumExceed
-            case .hasAuthorized: 
+            case .hasAuthorized:
                 code = .failedOperation_HasAuthorized
-            case .notAvailableSignReview: 
+            case .notAvailableSignReview:
                 code = .failedOperation_NotAvailableSignReview
-            case .qrCodeCreatorSignComponents: 
+            case .qrCodeCreatorSignComponents:
                 code = .failedOperation_QrCodeCreatorSignComponents
-            case .qrCodeSignUsers: 
+            case .qrCodeSignUsers:
                 code = .failedOperation_QrCodeSignUsers
-            case .qrCodeTemplateId: 
+            case .qrCodeTemplateId:
                 code = .failedOperation_QrCodeTemplateId
-            case .staffAlreadyVerify: 
+            case .staffAlreadyVerify:
                 code = .failedOperation_StaffAlreadyVerify
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCEssbasicError(code, context: self.context)

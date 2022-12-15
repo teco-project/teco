@@ -19,44 +19,44 @@ extension Antiddos {
     public struct CreateWaterPrintKeyRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// CreateWaterPrintKey返回参数结构体
     public struct CreateWaterPrintKeyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加DDoS防护的水印防护密钥
     @inlinable
-    public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintKeyResponse > {
+    public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWaterPrintKeyResponse> {
         self.client.execute(action: "CreateWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加DDoS防护的水印防护密钥
     @inlinable
     public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {
         try await self.client.execute(action: "CreateWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加DDoS防护的水印防护密钥
     @inlinable
-    public func createWaterPrintKey(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintKeyResponse > {
+    public func createWaterPrintKey(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWaterPrintKeyResponse> {
         self.createWaterPrintKey(CreateWaterPrintKeyRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加DDoS防护的水印防护密钥
     @inlinable
     public func createWaterPrintKey(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {

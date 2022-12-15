@@ -19,23 +19,23 @@ extension Tsf {
     public struct DescribePodInstancesRequest: TCRequestModel {
         /// 实例所属groupId
         public let groupId: String
-        
+
         /// 偏移量，取值从0开始
         public let offset: Int64?
-        
+
         /// 分页个数，默认为20， 取值应为1~50
         public let limit: Int64?
-        
+
         /// 过滤字段
         public let podNameList: [String]?
-        
-        public init (groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil) {
+
+        public init(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil) {
             self.groupId = groupId
             self.offset = offset
             self.limit = limit
             self.podNameList = podNameList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case offset = "Offset"
@@ -43,39 +43,39 @@ extension Tsf {
             case podNameList = "PodNameList"
         }
     }
-    
+
     /// DescribePodInstances返回参数结构体
     public struct DescribePodInstancesResponse: TCResponseModel {
         /// 查询的权限数据对象
         public let result: GroupPodResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取部署组实例列表
     @inlinable
-    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePodInstancesResponse > {
+    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePodInstancesResponse> {
         self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取部署组实例列表
     @inlinable
     public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
         try await self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取部署组实例列表
     @inlinable
-    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePodInstancesResponse > {
+    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePodInstancesResponse> {
         self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取部署组实例列表
     @inlinable
     public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {

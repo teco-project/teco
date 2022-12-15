@@ -19,46 +19,46 @@ extension Ame {
     public struct DescribeLyricRequest: TCRequestModel {
         /// 歌曲ID
         public let itemId: String
-        
+
         /// 格式，可选项，可不填写，默认值为：LRC-LRC。
         /// <li>LRC-LRC：歌词；</li>
         /// <li>JSON-ST：波形图。</li>
         public let subItemType: String?
-        
-        public init (itemId: String, subItemType: String? = nil) {
+
+        public init(itemId: String, subItemType: String? = nil) {
             self.itemId = itemId
             self.subItemType = subItemType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case itemId = "ItemId"
             case subItemType = "SubItemType"
         }
     }
-    
+
     /// DescribeLyric返回参数结构体
     public struct DescribeLyricResponse: TCResponseModel {
         /// 歌词或者波形图详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lyric: Lyric?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case lyric = "Lyric"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取歌词信息
     ///
     /// 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
     @inlinable
-    public func describeLyric(_ input: DescribeLyricRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLyricResponse > {
+    public func describeLyric(_ input: DescribeLyricRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLyricResponse> {
         self.client.execute(action: "DescribeLyric", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取歌词信息
     ///
     /// 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
@@ -66,15 +66,15 @@ extension Ame {
     public func describeLyric(_ input: DescribeLyricRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLyricResponse {
         try await self.client.execute(action: "DescribeLyric", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取歌词信息
     ///
     /// 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
     @inlinable
-    public func describeLyric(itemId: String, subItemType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLyricResponse > {
+    public func describeLyric(itemId: String, subItemType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLyricResponse> {
         self.describeLyric(DescribeLyricRequest(itemId: itemId, subItemType: subItemType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取歌词信息
     ///
     /// 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。

@@ -19,49 +19,49 @@ extension Cwp {
     public struct DescribeVulTopRequest: TCRequestModel {
         /// 漏洞风险服务器top，1-100
         public let top: UInt64
-        
+
         /// 1:web-cms 漏洞，2.应用漏洞 4: Linux软件漏洞 5: windows系统漏洞 6:应急漏洞，不填或者填0时返回 1，2，4，5 的总统计数据
         public let vulCategory: UInt64?
-        
+
         /// 是否仅统计重点关注漏洞 1=仅统计重点关注漏洞, 0=统计全部漏洞
         public let isFollowVul: UInt64?
-        
-        public init (top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil) {
+
+        public init(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil) {
             self.top = top
             self.vulCategory = vulCategory
             self.isFollowVul = isFollowVul
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case top = "Top"
             case vulCategory = "VulCategory"
             case isFollowVul = "IsFollowVul"
         }
     }
-    
+
     /// DescribeVulTop返回参数结构体
     public struct DescribeVulTopResponse: TCResponseModel {
         /// 漏洞top列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulTopList: [VulTopInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vulTopList = "VulTopList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取漏洞top统计
     ///
     /// 漏洞top统计
     @inlinable
-    public func describeVulTop(_ input: DescribeVulTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTopResponse > {
+    public func describeVulTop(_ input: DescribeVulTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopResponse> {
         self.client.execute(action: "DescribeVulTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取漏洞top统计
     ///
     /// 漏洞top统计
@@ -69,15 +69,15 @@ extension Cwp {
     public func describeVulTop(_ input: DescribeVulTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopResponse {
         try await self.client.execute(action: "DescribeVulTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取漏洞top统计
     ///
     /// 漏洞top统计
     @inlinable
-    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTopResponse > {
+    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopResponse> {
         self.describeVulTop(DescribeVulTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取漏洞top统计
     ///
     /// 漏洞top统计

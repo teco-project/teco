@@ -19,52 +19,52 @@ extension Scf {
     public struct GetFunctionAddressRequest: TCRequestModel {
         /// 函数的名称
         public let functionName: String
-        
+
         /// 函数的版本
         public let qualifier: String?
-        
+
         /// 函数的命名空间
         public let namespace: String?
-        
-        public init (functionName: String, qualifier: String? = nil, namespace: String? = nil) {
+
+        public init(functionName: String, qualifier: String? = nil, namespace: String? = nil) {
             self.functionName = functionName
             self.qualifier = qualifier
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case qualifier = "Qualifier"
             case namespace = "Namespace"
         }
     }
-    
+
     /// GetFunctionAddress返回参数结构体
     public struct GetFunctionAddressResponse: TCResponseModel {
         /// 函数的Cos地址
         public let url: String
-        
+
         /// 函数的SHA256编码
         public let codeSha256: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case codeSha256 = "CodeSha256"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取函数代码下载地址
     ///
     /// 该接口用于获取函数代码包的下载地址。
     @inlinable
-    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionAddressResponse > {
+    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionAddressResponse> {
         self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数代码下载地址
     ///
     /// 该接口用于获取函数代码包的下载地址。
@@ -72,15 +72,15 @@ extension Scf {
     public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
         try await self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取函数代码下载地址
     ///
     /// 该接口用于获取函数代码包的下载地址。
     @inlinable
-    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionAddressResponse > {
+    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionAddressResponse> {
         self.getFunctionAddress(GetFunctionAddressRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数代码下载地址
     ///
     /// 该接口用于获取函数代码包的下载地址。

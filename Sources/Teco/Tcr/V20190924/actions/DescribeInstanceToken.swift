@@ -19,62 +19,62 @@ extension Tcr {
     public struct DescribeInstanceTokenRequest: TCRequestModel {
         /// 实例 ID
         public let registryId: String
-        
+
         /// 分页单页数量
         public let limit: Int64?
-        
+
         /// 分页偏移量
         public let offset: Int64?
-        
-        public init (registryId: String, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(registryId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.registryId = registryId
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeInstanceToken返回参数结构体
     public struct DescribeInstanceTokenResponse: TCResponseModel {
         /// 长期访问凭证总数
         public let totalCount: Int64
-        
+
         /// 长期访问凭证列表
         public let tokens: [TcrInstanceToken]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tokens = "Tokens"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询长期访问凭证信息
     @inlinable
-    public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTokenResponse > {
+    public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTokenResponse> {
         self.client.execute(action: "DescribeInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询长期访问凭证信息
     @inlinable
     public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTokenResponse {
         try await self.client.execute(action: "DescribeInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询长期访问凭证信息
     @inlinable
-    public func describeInstanceToken(registryId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTokenResponse > {
+    public func describeInstanceToken(registryId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTokenResponse> {
         self.describeInstanceToken(DescribeInstanceTokenRequest(registryId: registryId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询长期访问凭证信息
     @inlinable
     public func describeInstanceToken(registryId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTokenResponse {

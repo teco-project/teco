@@ -19,77 +19,77 @@ extension Rkp {
     public struct QueryDevAndRiskRequest: TCRequestModel {
         /// 设备类型 0表示Android， 1表示IOS
         public let devType: Int64
-        
+
         /// Android Imei号
         public let imei: String?
-        
+
         /// Mac地址
         public let mac: String?
-        
+
         /// android  Aid
         public let aid: String?
-        
+
         /// Android Cid
         public let cid: String?
-        
+
         /// 手机Imsi
         public let imsi: String?
-        
+
         /// Df 磁盘分区信息
         public let df: String?
-        
+
         /// 内核版本
         public let kernelVer: String?
-        
+
         /// 存储大小
         public let storage: String?
-        
+
         /// 设备驱动指纹
         public let dfp: String?
-        
+
         /// 启动时间
         public let bootTime: String?
-        
+
         /// 分辨率 水平*垂直 格式
         public let resolution: String?
-        
+
         /// 铃声列表
         public let ringList: String?
-        
+
         /// 字体列表
         public let fontList: String?
-        
+
         /// 传感器列表
         public let sensorList: String?
-        
+
         /// CPU型号
         public let cpuType: String?
-        
+
         /// 电池容量
         public let battery: String?
-        
+
         /// 信通院广告ID
         public let oaid: String?
-        
+
         /// IOS 广告ID
         public let idfa: String?
-        
+
         /// IOS 应用ID
         public let idfv: String?
-        
+
         /// 设备名称
         public let deviceName: String?
-        
+
         /// IOS手机型号
         public let iphoneModel: String?
-        
+
         /// Android 指纹
         public let fingerprint: String?
-        
+
         /// Android序列号
         public let serialId: String?
-        
-        public init (devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil) {
+
+        public init(devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil) {
             self.devType = devType
             self.imei = imei
             self.mac = mac
@@ -115,7 +115,7 @@ extension Rkp {
             self.fingerprint = fingerprint
             self.serialId = serialId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case devType = "DevType"
             case imei = "Imei"
@@ -143,23 +143,23 @@ extension Rkp {
             case serialId = "SerialId"
         }
     }
-    
+
     /// QueryDevAndRisk返回参数结构体
     public struct QueryDevAndRiskResponse: TCResponseModel {
         /// 是否查得
         public let found: Int64
-        
+
         /// 匹配数量级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allCnt: Int64?
-        
+
         /// 匹配到的设备信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matches: [DevInfoQ]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case found = "Found"
             case allCnt = "AllCnt"
@@ -167,15 +167,15 @@ extension Rkp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// Devid及风险查询
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
     @inlinable
-    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDevAndRiskResponse > {
+    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDevAndRiskResponse> {
         self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// Devid及风险查询
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
@@ -183,15 +183,15 @@ extension Rkp {
     public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDevAndRiskResponse {
         try await self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// Devid及风险查询
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
     @inlinable
-    public func queryDevAndRisk(devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDevAndRiskResponse > {
+    public func queryDevAndRisk(devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDevAndRiskResponse> {
         self.queryDevAndRisk(QueryDevAndRiskRequest(devType: devType, imei: imei, mac: mac, aid: aid, cid: cid, imsi: imsi, df: df, kernelVer: kernelVer, storage: storage, dfp: dfp, bootTime: bootTime, resolution: resolution, ringList: ringList, fontList: fontList, sensorList: sensorList, cpuType: cpuType, battery: battery, oaid: oaid, idfa: idfa, idfv: idfv, deviceName: deviceName, iphoneModel: iphoneModel, fingerprint: fingerprint, serialId: serialId), logger: logger, on: eventLoop)
     }
-    
+
     /// Devid及风险查询
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。

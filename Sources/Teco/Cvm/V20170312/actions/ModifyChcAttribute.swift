@@ -19,23 +19,23 @@ extension Cvm {
     public struct ModifyChcAttributeRequest: TCRequestModel {
         /// CHC物理服务器ID。
         public let chcIds: [String]
-        
+
         /// CHC物理服务器名称
         public let instanceName: String?
-        
+
         /// 服务器类型
         public let deviceType: String?
-        
+
         /// 合法字符为字母,数字, 横线和下划线
         public let bmcUser: String?
-        
+
         /// 密码8-16位字符, 允许数字，字母， 和特殊字符()`~!@#$%^&*-+=_|{}[]:;'<>,.?/
         public let password: String?
-        
+
         /// bmc网络的安全组列表
         public let bmcSecurityGroupIds: [String]?
-        
-        public init (chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil) {
+
+        public init(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil) {
             self.chcIds = chcIds
             self.instanceName = instanceName
             self.deviceType = deviceType
@@ -43,7 +43,7 @@ extension Cvm {
             self.password = password
             self.bmcSecurityGroupIds = bmcSecurityGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case chcIds = "ChcIds"
             case instanceName = "InstanceName"
@@ -53,35 +53,35 @@ extension Cvm {
             case bmcSecurityGroupIds = "BmcSecurityGroupIds"
         }
     }
-    
+
     /// ModifyChcAttribute返回参数结构体
     public struct ModifyChcAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改CHC物理服务器的属性
     @inlinable
-    public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyChcAttributeResponse > {
+    public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyChcAttributeResponse> {
         self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改CHC物理服务器的属性
     @inlinable
     public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {
         try await self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改CHC物理服务器的属性
     @inlinable
-    public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyChcAttributeResponse > {
+    public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyChcAttributeResponse> {
         self.modifyChcAttribute(ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改CHC物理服务器的属性
     @inlinable
     public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {

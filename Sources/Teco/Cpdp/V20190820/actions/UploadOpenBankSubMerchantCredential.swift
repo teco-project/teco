@@ -19,42 +19,42 @@ extension Cpdp {
     public struct UploadOpenBankSubMerchantCredentialRequest: TCRequestModel {
         /// 渠道商户ID。
         public let channelMerchantId: String
-        
+
         /// 渠道子商户ID。
         public let channelSubMerchantId: String
-        
+
         /// 渠道名称。详见附录-枚举类型-ChannelName。
         public let channelName: String
-        
+
         /// 外部序列进件号。
         public let outApplyId: String
-        
+
         /// 资质类型，详见附录-枚举类型-CredentialType。
         public let credentialType: String
-        
+
         /// 文件类型。
         /// 合利宝渠道，文件类型为PNG/JPG格式。
         public let fileType: String
-        
+
         /// 支付方式。
         /// 合利宝渠道不需要传。
         public let paymentMethod: String?
-        
+
         /// 资质文件内容。Base64编码，资质文件内容和链接二选一。
         /// 合利宝渠道，文件限制大小5M以内。
         public let credentialContent: String?
-        
+
         /// 资质文件链接。资质文件内容和链接二选一。
         /// 合利宝渠道，文件限制大小5M以内。
         public let credentialUrl: String?
-        
+
         /// 环境类型。
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// _不填默认为生产环境_
         public let environment: String?
-        
-        public init (channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil) {
+
+        public init(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
             self.channelName = channelName
@@ -66,7 +66,7 @@ extension Cpdp {
             self.credentialUrl = credentialUrl
             self.environment = environment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelMerchantId = "ChannelMerchantId"
             case channelSubMerchantId = "ChannelSubMerchantId"
@@ -80,22 +80,22 @@ extension Cpdp {
             case environment = "Environment"
         }
     }
-    
+
     /// UploadOpenBankSubMerchantCredential返回参数结构体
     public struct UploadOpenBankSubMerchantCredentialResponse: TCResponseModel {
         /// 错误码。
         public let errCode: String
-        
+
         /// 错误消息。
         public let errMessage: String
-        
+
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: UploadOpenBankSubMerchantCredentialResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -103,25 +103,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云企付-子商户资质文件上传
     @inlinable
-    public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOpenBankSubMerchantCredentialResponse > {
+    public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOpenBankSubMerchantCredentialResponse> {
         self.client.execute(action: "UploadOpenBankSubMerchantCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-子商户资质文件上传
     @inlinable
     public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
         try await self.client.execute(action: "UploadOpenBankSubMerchantCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云企付-子商户资质文件上传
     @inlinable
-    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOpenBankSubMerchantCredentialResponse > {
+    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOpenBankSubMerchantCredentialResponse> {
         self.uploadOpenBankSubMerchantCredential(UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-子商户资质文件上传
     @inlinable
     public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {

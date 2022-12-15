@@ -19,23 +19,23 @@ extension Tdmq {
     public struct ModifyAMQPExchangeRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// Vhost间名称
         public let vHostId: String
-        
+
         /// 交换机名称
         public let exchange: String
-        
+
         /// 说明信息，最大128个字符
         public let remark: String?
-        
-        public init (clusterId: String, vHostId: String, exchange: String, remark: String? = nil) {
+
+        public init(clusterId: String, vHostId: String, exchange: String, remark: String? = nil) {
             self.clusterId = clusterId
             self.vHostId = vHostId
             self.exchange = exchange
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case vHostId = "VHostId"
@@ -43,35 +43,35 @@ extension Tdmq {
             case remark = "Remark"
         }
     }
-    
+
     /// ModifyAMQPExchange返回参数结构体
     public struct ModifyAMQPExchangeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新Amqp交换机
     @inlinable
-    public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPExchangeResponse > {
+    public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPExchangeResponse> {
         self.client.execute(action: "ModifyAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Amqp交换机
     @inlinable
     public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
         try await self.client.execute(action: "ModifyAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新Amqp交换机
     @inlinable
-    public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPExchangeResponse > {
+    public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPExchangeResponse> {
         self.modifyAMQPExchange(ModifyAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Amqp交换机
     @inlinable
     public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {

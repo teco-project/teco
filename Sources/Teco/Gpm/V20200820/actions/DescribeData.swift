@@ -19,23 +19,23 @@ extension Gpm {
     public struct DescribeDataRequest: TCRequestModel {
         /// 起始时间，单位：秒
         public let startTime: Int64
-        
+
         /// 截止时间，单位：秒
         public let endTime: Int64
-        
+
         /// 时间粒度，1表示1天；2表示1小时；3表示1分钟；4表示10分钟；5表示30分钟
         public let timeType: Int64
-        
+
         /// 匹配code
         public let matchCode: String?
-        
-        public init (startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil) {
+
+        public init(startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.timeType = timeType
             self.matchCode = matchCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -43,36 +43,36 @@ extension Gpm {
             case matchCode = "MatchCode"
         }
     }
-    
+
     /// DescribeData返回参数结构体
     public struct DescribeDataResponse: TCResponseModel {
         /// 匹配概况
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let overviewData: ReportOverviewData?
-        
+
         /// 匹配请求次数趋势数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trendData: ReportTrendData?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case overviewData = "OverviewData"
             case trendData = "TrendData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 统计数据
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 统计数据
     @inlinable
-    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataResponse > {
+    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
         self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 统计数据
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
@@ -81,16 +81,16 @@ extension Gpm {
     public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
         try await self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 统计数据
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 统计数据
     @inlinable
-    public func describeData(startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataResponse > {
+    public func describeData(startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
         self.describeData(DescribeDataRequest(startTime: startTime, endTime: endTime, timeType: timeType, matchCode: matchCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 统计数据
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持

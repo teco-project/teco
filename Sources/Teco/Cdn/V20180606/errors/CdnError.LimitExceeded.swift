@@ -41,191 +41,191 @@ extension TCCdnError {
             case scdnLogTaskExceedDayLimit = "LimitExceeded.ScdnLogTaskExceedDayLimit"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源数组超过最大值。
         public static var camResourceArrayTooLong: LimitExceeded {
             LimitExceeded(.camResourceArrayTooLong)
         }
-        
+
         /// 单个资源标签键数不能超过50。
         public static var camResourceTooManyTagKey: LimitExceeded {
             LimitExceeded(.camResourceTooManyTagKey)
         }
-        
+
         /// 标签键长度超过最大值。
         public static var camTagKeyTooLong: LimitExceeded {
             LimitExceeded(.camTagKeyTooLong)
         }
-        
+
         /// 单个标签键对应标签值不能超过1000。
         public static var camTagKeyTooManyTagValue: LimitExceeded {
             LimitExceeded(.camTagKeyTooManyTagValue)
         }
-        
+
         public static var camTagQuotaExceedLimit: LimitExceeded {
             LimitExceeded(.camTagQuotaExceedLimit)
         }
-        
+
         /// 单个用户最多1000个不同的key。
         public static var camUserTooManyTagKey: LimitExceeded {
             LimitExceeded(.camUserTooManyTagKey)
         }
-        
+
         /// 查询IP归属操作过于频繁。
         public static var cdnCallingQueryIpTooOften: LimitExceeded {
             LimitExceeded(.cdnCallingQueryIpTooOften)
         }
-        
+
         /// 该账号已经创建了太多主题。
         public static var cdnClsTooManyTopics: LimitExceeded {
             LimitExceeded(.cdnClsTooManyTopics)
         }
-        
+
         /// 缓存配置规则数超出限制。
         public static var cdnConfigTooManyCacheRules: LimitExceeded {
             LimitExceeded(.cdnConfigTooManyCacheRules)
         }
-        
+
         /// 域名操作过于频繁。
         public static var cdnHostOpTooOften: LimitExceeded {
             LimitExceeded(.cdnHostOpTooOften)
         }
-        
+
         /// 刷新的目录数量超过限制。
         public static var cdnPurgePathExceedBatchLimit: LimitExceeded {
             LimitExceeded(.cdnPurgePathExceedBatchLimit)
         }
-        
+
         /// 刷新的目录数量超过每日限制。
         public static var cdnPurgePathExceedDayLimit: LimitExceeded {
             LimitExceeded(.cdnPurgePathExceedDayLimit)
         }
-        
+
         /// 刷新的Url数量超过限制。
         public static var cdnPurgeUrlExceedBatchLimit: LimitExceeded {
             LimitExceeded(.cdnPurgeUrlExceedBatchLimit)
         }
-        
+
         /// 刷新的Url数量超过每日限额。
         public static var cdnPurgeUrlExceedDayLimit: LimitExceeded {
             LimitExceeded(.cdnPurgeUrlExceedDayLimit)
         }
-        
+
         /// 预热的Url数量超过单次限制。
         public static var cdnPushExceedBatchLimit: LimitExceeded {
             LimitExceeded(.cdnPushExceedBatchLimit)
         }
-        
+
         /// 预热的Url数量超过每日限制。
         public static var cdnPushExceedDayLimit: LimitExceeded {
             LimitExceeded(.cdnPushExceedDayLimit)
         }
-        
+
         /// 批量查询IP归属个数超过限制。
         public static var cdnQueryIpBatchTooMany: LimitExceeded {
             LimitExceeded(.cdnQueryIpBatchTooMany)
         }
-        
+
         /// 用户域名数量已达上限，请联系腾讯云工程师处理。
         public static var cdnUserTooManyHosts: LimitExceeded {
             LimitExceeded(.cdnUserTooManyHosts)
         }
-        
+
         /// 日志大小超限。
         public static var clsLogSizeExceed: LimitExceeded {
             LimitExceeded(.clsLogSizeExceed)
         }
-        
+
         /// 日志集数目超出。
         public static var clsLogsetExceed: LimitExceeded {
             LimitExceeded(.clsLogsetExceed)
         }
-        
+
         /// 主题超限。
         public static var clsTopicExceed: LimitExceeded {
             LimitExceeded(.clsTopicExceed)
         }
-        
+
         /// 每日任务数量超出最大值。
         public static var scdnLogTaskExceedDayLimit: LimitExceeded {
             LimitExceeded(.scdnLogTaskExceedDayLimit)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asCdnError() -> TCCdnError {
             let code: TCCdnError.Code
             switch self.error {
-            case .camResourceArrayTooLong: 
+            case .camResourceArrayTooLong:
                 code = .limitExceeded_CamResourceArrayTooLong
-            case .camResourceTooManyTagKey: 
+            case .camResourceTooManyTagKey:
                 code = .limitExceeded_CamResourceTooManyTagKey
-            case .camTagKeyTooLong: 
+            case .camTagKeyTooLong:
                 code = .limitExceeded_CamTagKeyTooLong
-            case .camTagKeyTooManyTagValue: 
+            case .camTagKeyTooManyTagValue:
                 code = .limitExceeded_CamTagKeyTooManyTagValue
-            case .camTagQuotaExceedLimit: 
+            case .camTagQuotaExceedLimit:
                 code = .limitExceeded_CamTagQuotaExceedLimit
-            case .camUserTooManyTagKey: 
+            case .camUserTooManyTagKey:
                 code = .limitExceeded_CamUserTooManyTagKey
-            case .cdnCallingQueryIpTooOften: 
+            case .cdnCallingQueryIpTooOften:
                 code = .limitExceeded_CdnCallingQueryIpTooOften
-            case .cdnClsTooManyTopics: 
+            case .cdnClsTooManyTopics:
                 code = .limitExceeded_CdnClsTooManyTopics
-            case .cdnConfigTooManyCacheRules: 
+            case .cdnConfigTooManyCacheRules:
                 code = .limitExceeded_CdnConfigTooManyCacheRules
-            case .cdnHostOpTooOften: 
+            case .cdnHostOpTooOften:
                 code = .limitExceeded_CdnHostOpTooOften
-            case .cdnPurgePathExceedBatchLimit: 
+            case .cdnPurgePathExceedBatchLimit:
                 code = .limitExceeded_CdnPurgePathExceedBatchLimit
-            case .cdnPurgePathExceedDayLimit: 
+            case .cdnPurgePathExceedDayLimit:
                 code = .limitExceeded_CdnPurgePathExceedDayLimit
-            case .cdnPurgeUrlExceedBatchLimit: 
+            case .cdnPurgeUrlExceedBatchLimit:
                 code = .limitExceeded_CdnPurgeUrlExceedBatchLimit
-            case .cdnPurgeUrlExceedDayLimit: 
+            case .cdnPurgeUrlExceedDayLimit:
                 code = .limitExceeded_CdnPurgeUrlExceedDayLimit
-            case .cdnPushExceedBatchLimit: 
+            case .cdnPushExceedBatchLimit:
                 code = .limitExceeded_CdnPushExceedBatchLimit
-            case .cdnPushExceedDayLimit: 
+            case .cdnPushExceedDayLimit:
                 code = .limitExceeded_CdnPushExceedDayLimit
-            case .cdnQueryIpBatchTooMany: 
+            case .cdnQueryIpBatchTooMany:
                 code = .limitExceeded_CdnQueryIpBatchTooMany
-            case .cdnUserTooManyHosts: 
+            case .cdnUserTooManyHosts:
                 code = .limitExceeded_CdnUserTooManyHosts
-            case .clsLogSizeExceed: 
+            case .clsLogSizeExceed:
                 code = .limitExceeded_ClsLogSizeExceed
-            case .clsLogsetExceed: 
+            case .clsLogsetExceed:
                 code = .limitExceeded_ClsLogsetExceed
-            case .clsTopicExceed: 
+            case .clsTopicExceed:
                 code = .limitExceeded_ClsTopicExceed
-            case .scdnLogTaskExceedDayLimit: 
+            case .scdnLogTaskExceedDayLimit:
                 code = .limitExceeded_ScdnLogTaskExceedDayLimit
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCCdnError(code, context: self.context)

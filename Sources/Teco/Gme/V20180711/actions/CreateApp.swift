@@ -19,29 +19,29 @@ extension Gme {
     public struct CreateAppRequest: TCRequestModel {
         /// 应用名称
         public let appName: String
-        
+
         /// 腾讯云项目ID，默认为0，表示默认项目
         public let projectId: UInt64?
-        
+
         /// 需要支持的引擎列表，默认全选。
         public let engineList: [String]?
-        
+
         /// 服务区域列表，默认全选。
         public let regionList: [String]?
-        
+
         /// 实时语音服务配置数据
         public let realtimeSpeechConf: RealtimeSpeechConf?
-        
+
         /// 语音消息及转文本服务配置数据
         public let voiceMessageConf: VoiceMessageConf?
-        
+
         /// 语音分析服务配置数据
         public let voiceFilterConf: VoiceFilterConf?
-        
+
         /// 需要添加的标签列表
         public let tags: [Tag]?
-        
-        public init (appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil) {
+
+        public init(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil) {
             self.appName = appName
             self.projectId = projectId
             self.engineList = engineList
@@ -51,7 +51,7 @@ extension Gme {
             self.voiceFilterConf = voiceFilterConf
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
             case projectId = "ProjectId"
@@ -63,29 +63,29 @@ extension Gme {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateApp返回参数结构体
     public struct CreateAppResponse: TCResponseModel {
         /// 创建应用返回数据
         public let data: CreateAppResp
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppResponse > {
+    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
         self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
@@ -93,15 +93,15 @@ extension Gme {
     public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
         try await self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppResponse > {
+    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
         self.createApp(CreateAppRequest(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。

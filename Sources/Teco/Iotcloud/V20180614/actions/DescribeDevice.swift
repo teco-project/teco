@@ -19,107 +19,107 @@ extension Iotcloud {
     public struct DescribeDeviceRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
+
         /// 设备名
         public let deviceName: String
-        
-        public init (productID: String, deviceName: String) {
+
+        public init(productID: String, deviceName: String) {
             self.productID = productID
             self.deviceName = deviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
             case deviceName = "DeviceName"
         }
     }
-    
+
     /// DescribeDevice返回参数结构体
     public struct DescribeDeviceResponse: TCResponseModel {
         /// 设备名
         public let deviceName: String
-        
+
         /// 设备是否在线，0不在线，1在线
         public let online: UInt64
-        
+
         /// 设备登录时间
         public let loginTime: UInt64
-        
+
         /// 设备固件版本
         public let version: String
-        
+
         /// 设备最后更新时间
         public let lastUpdateTime: UInt64
-        
+
         /// 设备证书
         public let deviceCert: String
-        
+
         /// 设备密钥
         public let devicePsk: String
-        
+
         /// 设备属性
         public let tags: [DeviceTag]
-        
+
         /// 设备类型
         public let deviceType: UInt64
-        
+
         /// 国际移动设备识别码 IMEI
         public let imei: String
-        
+
         /// 运营商类型
         public let isp: UInt64
-        
+
         /// IP地址
         public let connIP: UInt64
-        
+
         /// NB IoT运营商处的DeviceID
         public let nbiotDeviceID: String
-        
+
         /// Lora设备的dev eui
         public let loraDevEui: String
-        
+
         /// Lora设备的mote type
         public let loraMoteType: UInt64
-        
+
         /// 设备的sdk日志等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logLevel: UInt64?
-        
+
         /// 首次上线时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstOnlineTime: UInt64?
-        
+
         /// 最近下线时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastOfflineTime: UInt64?
-        
+
         /// 设备创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: UInt64?
-        
+
         /// 设备证书获取状态，0 未获取过设备密钥, 1 已获取过设备密钥
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certState: UInt64?
-        
+
         /// 设备启用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableState: UInt64?
-        
+
         /// 设备标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [DeviceLabel]?
-        
+
         /// MQTT客户端IP地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clientIP: String?
-        
+
         /// 设备固件更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firmwareUpdateTime: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceName = "DeviceName"
             case online = "Online"
@@ -148,15 +148,15 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看设备详情
     ///
     /// 本接口（DescribeDevice）用于查看设备信息
     @inlinable
-    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResponse > {
+    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
         self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看设备详情
     ///
     /// 本接口（DescribeDevice）用于查看设备信息
@@ -164,15 +164,15 @@ extension Iotcloud {
     public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
         try await self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看设备详情
     ///
     /// 本接口（DescribeDevice）用于查看设备信息
     @inlinable
-    public func describeDevice(productID: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResponse > {
+    public func describeDevice(productID: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
         self.describeDevice(DescribeDeviceRequest(productID: productID, deviceName: deviceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看设备详情
     ///
     /// 本接口（DescribeDevice）用于查看设备信息

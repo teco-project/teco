@@ -19,7 +19,7 @@ extension Emr {
     public struct DescribeClusterNodesRequest: TCRequestModel {
         /// 集群实例ID,实例ID形如: emr-xxxxxxxx
         public let instanceId: String
-        
+
         /// 节点标识，取值为：
         /// <li>all：表示获取全部类型节点，cdb信息除外。</li>
         /// <li>master：表示获取master节点信息。</li>
@@ -32,26 +32,26 @@ extension Emr {
         /// <li>renew：表示获取所有待续费的节点信息，包括cdb信息，自动续费节点不会返回。</li>
         /// 注意：现在只支持以上取值，输入其他值会导致错误。
         public let nodeFlag: String
-        
+
         /// 页编号，默认值为0，表示第一页。
         public let offset: Int64?
-        
+
         /// 每页返回数量，默认值为100，最大值为100。
         public let limit: Int64?
-        
+
         /// 资源类型:支持all/host/pod，默认为all
         public let hardwareResourceType: String?
-        
+
         /// 支持搜索的字段
         public let searchFields: [SearchItem]?
-        
+
         /// 无
         public let orderField: String?
-        
+
         /// 无
         public let asc: Int64?
-        
-        public init (instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil) {
+
+        public init(instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil) {
             self.instanceId = instanceId
             self.nodeFlag = nodeFlag
             self.offset = offset
@@ -61,7 +61,7 @@ extension Emr {
             self.orderField = orderField
             self.asc = asc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case nodeFlag = "NodeFlag"
@@ -73,27 +73,27 @@ extension Emr {
             case asc = "Asc"
         }
     }
-    
+
     /// DescribeClusterNodes返回参数结构体
     public struct DescribeClusterNodesResponse: TCResponseModel {
         /// 查询到的节点总数
         public let totalCnt: Int64
-        
+
         /// 节点详细信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeList: [NodeHardwareInfo]?
-        
+
         /// 用户所有的标签键列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagKeys: [String]?
-        
+
         /// 资源类型列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hardwareResourceTypeList: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCnt = "TotalCnt"
             case nodeList = "NodeList"
@@ -102,25 +102,25 @@ extension Emr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群节点信息
     @inlinable
-    public func describeClusterNodes(_ input: DescribeClusterNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNodesResponse > {
+    public func describeClusterNodes(_ input: DescribeClusterNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodesResponse> {
         self.client.execute(action: "DescribeClusterNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群节点信息
     @inlinable
     public func describeClusterNodes(_ input: DescribeClusterNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodesResponse {
         try await self.client.execute(action: "DescribeClusterNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群节点信息
     @inlinable
-    public func describeClusterNodes(instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNodesResponse > {
+    public func describeClusterNodes(instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodesResponse> {
         self.describeClusterNodes(DescribeClusterNodesRequest(instanceId: instanceId, nodeFlag: nodeFlag, offset: offset, limit: limit, hardwareResourceType: hardwareResourceType, searchFields: searchFields, orderField: orderField, asc: asc), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群节点信息
     @inlinable
     public func describeClusterNodes(instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodesResponse {

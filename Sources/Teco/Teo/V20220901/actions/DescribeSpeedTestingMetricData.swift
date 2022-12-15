@@ -19,48 +19,48 @@ extension Teo {
     public struct DescribeSpeedTestingMetricDataRequest: TCRequestModel {
         /// 站点ID。
         public let zoneId: String
-        
-        public init (zoneId: String) {
+
+        public init(zoneId: String) {
             self.zoneId = zoneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
         }
     }
-    
+
     /// DescribeSpeedTestingMetricData返回参数结构体
     public struct DescribeSpeedTestingMetricDataResponse: TCResponseModel {
         /// 站点拨测维度数据。
         public let speedTestingMetricData: SpeedTestingMetricData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case speedTestingMetricData = "SpeedTestingMetricData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询站点拨测结果
     @inlinable
-    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingMetricDataResponse > {
+    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingMetricDataResponse> {
         self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询站点拨测结果
     @inlinable
     public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {
         try await self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询站点拨测结果
     @inlinable
-    public func describeSpeedTestingMetricData(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingMetricDataResponse > {
+    public func describeSpeedTestingMetricData(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingMetricDataResponse> {
         self.describeSpeedTestingMetricData(DescribeSpeedTestingMetricDataRequest(zoneId: zoneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询站点拨测结果
     @inlinable
     public func describeSpeedTestingMetricData(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {

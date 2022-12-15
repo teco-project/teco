@@ -17,42 +17,42 @@
 extension Yunjing {
     /// ExportReverseShellEvents请求参数结构体
     public struct ExportReverseShellEventsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ExportReverseShellEvents返回参数结构体
     public struct ExportReverseShellEventsResponse: TCResponseModel {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出反弹Shell事件
     @inlinable
-    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportReverseShellEventsResponse > {
+    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
         self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出反弹Shell事件
     @inlinable
     public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
         try await self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出反弹Shell事件
     @inlinable
-    public func exportReverseShellEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportReverseShellEventsResponse > {
+    public func exportReverseShellEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
         self.exportReverseShellEvents(ExportReverseShellEventsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出反弹Shell事件
     @inlinable
     public func exportReverseShellEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {

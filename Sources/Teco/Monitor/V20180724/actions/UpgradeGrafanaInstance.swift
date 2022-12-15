@@ -19,49 +19,49 @@ extension Monitor {
     public struct UpgradeGrafanaInstanceRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
-        
+
         /// 版本别名，例如：v7.4.2
         public let alias: String
-        
-        public init (instanceId: String, alias: String) {
+
+        public init(instanceId: String, alias: String) {
             self.instanceId = instanceId
             self.alias = alias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case alias = "Alias"
         }
     }
-    
+
     /// UpgradeGrafanaInstance返回参数结构体
     public struct UpgradeGrafanaInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 升级 Grafana 实例
     @inlinable
-    public func upgradeGrafanaInstance(_ input: UpgradeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGrafanaInstanceResponse > {
+    public func upgradeGrafanaInstance(_ input: UpgradeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaInstanceResponse> {
         self.client.execute(action: "UpgradeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 升级 Grafana 实例
     @inlinable
     public func upgradeGrafanaInstance(_ input: UpgradeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaInstanceResponse {
         try await self.client.execute(action: "UpgradeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 升级 Grafana 实例
     @inlinable
-    public func upgradeGrafanaInstance(instanceId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGrafanaInstanceResponse > {
+    public func upgradeGrafanaInstance(instanceId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaInstanceResponse> {
         self.upgradeGrafanaInstance(UpgradeGrafanaInstanceRequest(instanceId: instanceId, alias: alias), logger: logger, on: eventLoop)
     }
-    
+
     /// 升级 Grafana 实例
     @inlinable
     public func upgradeGrafanaInstance(instanceId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaInstanceResponse {

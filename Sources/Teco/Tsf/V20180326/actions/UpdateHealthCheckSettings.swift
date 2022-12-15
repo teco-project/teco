@@ -19,26 +19,26 @@ extension Tsf {
     public struct UpdateHealthCheckSettingsRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String
-        
+
         /// 是否能使健康检查
         public let enableHealthCheck: Bool?
-        
+
         /// 健康检查配置
         public let healthCheckSettings: HealthCheckSettings?
-        
-        public init (groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil) {
+
+        public init(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil) {
             self.groupId = groupId
             self.enableHealthCheck = enableHealthCheck
             self.healthCheckSettings = healthCheckSettings
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case enableHealthCheck = "EnableHealthCheck"
             case healthCheckSettings = "HealthCheckSettings"
         }
     }
-    
+
     /// UpdateHealthCheckSettings返回参数结构体
     public struct UpdateHealthCheckSettingsResponse: TCResponseModel {
         /// 更新健康检查配置操作是否成功。
@@ -46,34 +46,34 @@ extension Tsf {
         /// false：操作失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新健康检查配置
     @inlinable
-    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateHealthCheckSettingsResponse > {
+    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateHealthCheckSettingsResponse> {
         self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新健康检查配置
     @inlinable
     public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
         try await self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新健康检查配置
     @inlinable
-    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateHealthCheckSettingsResponse > {
+    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateHealthCheckSettingsResponse> {
         self.updateHealthCheckSettings(UpdateHealthCheckSettingsRequest(groupId: groupId, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新健康检查配置
     @inlinable
     public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {

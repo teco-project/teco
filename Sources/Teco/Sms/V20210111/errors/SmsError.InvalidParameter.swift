@@ -22,59 +22,59 @@ extension TCSmsError {
             case invalidParameters = "InvalidParameter.InvalidParameters"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号与应用id不匹配。
         public static var appidAndBizId: InvalidParameter {
             InvalidParameter(.appidAndBizId)
         }
-        
+
         /// 存在敏感词。
         public static var dirtyWordFound: InvalidParameter {
             InvalidParameter(.dirtyWordFound)
         }
-        
+
         /// International 或者 SmsType 参数有误，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var invalidParameters: InvalidParameter {
             InvalidParameter(.invalidParameters)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asSmsError() -> TCSmsError {
             let code: TCSmsError.Code
             switch self.error {
-            case .appidAndBizId: 
+            case .appidAndBizId:
                 code = .invalidParameter_AppidAndBizId
-            case .dirtyWordFound: 
+            case .dirtyWordFound:
                 code = .invalidParameter_DirtyWordFound
-            case .invalidParameters: 
+            case .invalidParameters:
                 code = .invalidParameter_InvalidParameters
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCSmsError(code, context: self.context)

@@ -19,58 +19,58 @@ extension Monitor {
     public struct DescribeAlarmMetricsRequest: TCRequestModel {
         /// 固定值，为"monitor"
         public let module: String
-        
+
         /// 监控类型过滤 "MT_QCE"=云产品监控
         public let monitorType: String
-        
+
         /// 告警策略类型，由 DescribeAllNamespaces 获得，例如 cvm_device
         public let namespace: String
-        
-        public init (module: String, monitorType: String, namespace: String) {
+
+        public init(module: String, monitorType: String, namespace: String) {
             self.module = module
             self.monitorType = monitorType
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case monitorType = "MonitorType"
             case namespace = "Namespace"
         }
     }
-    
+
     /// DescribeAlarmMetrics返回参数结构体
     public struct DescribeAlarmMetricsResponse: TCResponseModel {
         /// 告警指标列表
         public let metrics: [Metric]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metrics = "Metrics"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询告警指标列表
     @inlinable
-    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmMetricsResponse > {
+    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmMetricsResponse> {
         self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询告警指标列表
     @inlinable
     public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
         try await self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询告警指标列表
     @inlinable
-    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmMetricsResponse > {
+    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmMetricsResponse> {
         self.describeAlarmMetrics(DescribeAlarmMetricsRequest(module: module, monitorType: monitorType, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询告警指标列表
     @inlinable
     public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {

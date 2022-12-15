@@ -20,45 +20,45 @@ extension TCWedataError {
             case userNotInWhitelistError = "OperationDenied.UserNotInWhitelistError"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 用户不在白名单。
         public static var userNotInWhitelistError: OperationDenied {
             OperationDenied(.userNotInWhitelistError)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asWedataError() -> TCWedataError {
             let code: TCWedataError.Code
             switch self.error {
-            case .userNotInWhitelistError: 
+            case .userNotInWhitelistError:
                 code = .operationDenied_UserNotInWhitelistError
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCWedataError(code, context: self.context)

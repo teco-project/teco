@@ -19,58 +19,58 @@ extension Ckafka {
     public struct CreateUserRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 用户名称
         public let name: String
-        
+
         /// 用户密码
         public let password: String
-        
-        public init (instanceId: String, name: String, password: String) {
+
+        public init(instanceId: String, name: String, password: String) {
             self.instanceId = instanceId
             self.name = name
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
             case password = "Password"
         }
     }
-    
+
     /// CreateUser返回参数结构体
     public struct CreateUserResponse: TCResponseModel {
         /// 返回的结果
         public let result: JgwOperateResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加用户
     @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
         self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加用户
     @inlinable
     public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
         try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加用户
     @inlinable
-    public func createUser(instanceId: String, name: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+    public func createUser(instanceId: String, name: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
         self.createUser(CreateUserRequest(instanceId: instanceId, name: name, password: password), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加用户
     @inlinable
     public func createUser(instanceId: String, name: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {

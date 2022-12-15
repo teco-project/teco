@@ -19,29 +19,29 @@ extension Tci {
     public struct SubmitDoubleVideoHighlightsRequest: TCRequestModel {
         /// 学生视频url
         public let fileContent: String
-        
+
         /// 需要检索的人脸合集库，不在库中的人脸将不参与精彩集锦；目前仅支持输入一个人脸库。
         public let libIds: [String]
-        
+
         /// 详细功能开关配置项
         public let functions: DoubleVideoFunction?
-        
+
         /// 需要匹配的人员信息列表。
         public let personInfoList: [PersonInfo]?
-        
+
         /// 视频处理的抽帧间隔，单位毫秒。建议留空。
         public let frameInterval: Int64?
-        
+
         /// 旧版本需要匹配的人员信息列表。
         public let personIds: [String]?
-        
+
         /// 人脸检索的相似度阈值，默认值0.89。建议留空。
         public let simThreshold: Float?
-        
+
         /// 老师视频url
         public let teacherFileContent: String?
-        
-        public init (fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil) {
+
+        public init(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil) {
             self.fileContent = fileContent
             self.libIds = libIds
             self.functions = functions
@@ -51,7 +51,7 @@ extension Tci {
             self.simThreshold = simThreshold
             self.teacherFileContent = teacherFileContent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileContent = "FileContent"
             case libIds = "LibIds"
@@ -63,34 +63,34 @@ extension Tci {
             case teacherFileContent = "TeacherFileContent"
         }
     }
-    
+
     /// SubmitDoubleVideoHighlights返回参数结构体
     public struct SubmitDoubleVideoHighlightsResponse: TCResponseModel {
         /// 视频拆条任务ID，用来唯一标识视频拆条任务。
         public let jobId: Int64
-        
+
         /// 未注册的人员ID列表。若出现此项，代表评估出现了问题，输入的PersonId中有不在库中的人员ID。
         public let notRegistered: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case notRegistered = "NotRegistered"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发起双路视频生成精彩集锦接口
     ///
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult
     /// 接口获取生成结果。
     @inlinable
-    public func submitDoubleVideoHighlights(_ input: SubmitDoubleVideoHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitDoubleVideoHighlightsResponse > {
+    public func submitDoubleVideoHighlights(_ input: SubmitDoubleVideoHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitDoubleVideoHighlightsResponse> {
         self.client.execute(action: "SubmitDoubleVideoHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发起双路视频生成精彩集锦接口
     ///
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult
@@ -99,16 +99,16 @@ extension Tci {
     public func submitDoubleVideoHighlights(_ input: SubmitDoubleVideoHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitDoubleVideoHighlightsResponse {
         try await self.client.execute(action: "SubmitDoubleVideoHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发起双路视频生成精彩集锦接口
     ///
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult
     /// 接口获取生成结果。
     @inlinable
-    public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitDoubleVideoHighlightsResponse > {
+    public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitDoubleVideoHighlightsResponse> {
         self.submitDoubleVideoHighlights(SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent), logger: logger, on: eventLoop)
     }
-    
+
     /// 发起双路视频生成精彩集锦接口
     ///
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult

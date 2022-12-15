@@ -19,38 +19,38 @@ extension Gse {
     public struct PutScalingPolicyRequest: TCRequestModel {
         /// 扩缩容配置服务器舰队ID
         public let fleetId: String
-        
+
         /// 扩缩容策略名称，最小长度为1，最大长度为1024
         public let name: String?
-        
+
         /// 扩缩容调整值，ScalingAdjustmentType取值PercentChangeInCapacity时，取值范围-99~99
         /// ScalingAdjustmentType取值ChangeInCapacity或ExactCapacity时，最小值要缩容的最多CVM个数，最大值为实际最大的CVM个数限额
         public let scalingAdjustment: Int64?
-        
+
         /// 扩缩容调整类型，取值（ChangeInCapacity，ExactCapacity，PercentChangeInCapacity）
         public let scalingAdjustmentType: String?
-        
+
         /// 扩缩容指标阈值
         public let threshold: Float?
-        
+
         /// 扩缩容策略比较符，取值：>,>=,<,<=
         public let comparisonOperator: String?
-        
+
         /// 单个策略持续时间长度（分钟）
         public let evaluationPeriods: Int64?
-        
+
         /// 扩缩容参与计算的指标名称，PolicyType取值RuleBased，
         /// MetricName取值（AvailableGameServerSessions，AvailableCustomCount，PercentAvailableCustomCount，ActiveInstances，IdleInstances，CurrentPlayerSessions和PercentIdleInstances）；
         /// PolicyType取值TargetBased时，MetricName取值PercentAvailableGameSessions
         public let metricName: String?
-        
+
         /// 策略类型，取值：TargetBased表示基于目标的策略；RuleBased表示基于规则的策略
         public let policyType: String?
-        
+
         /// 扩缩容目标值配置，只有TargetBased类型的策略生效
         public let targetConfiguration: TargetConfiguration?
-        
-        public init (fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil) {
+
+        public init(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil) {
             self.fleetId = fleetId
             self.name = name
             self.scalingAdjustment = scalingAdjustment
@@ -62,7 +62,7 @@ extension Gse {
             self.policyType = policyType
             self.targetConfiguration = targetConfiguration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case name = "Name"
@@ -76,22 +76,22 @@ extension Gse {
             case targetConfiguration = "TargetConfiguration"
         }
     }
-    
+
     /// PutScalingPolicy返回参数结构体
     public struct PutScalingPolicyResponse: TCResponseModel {
         /// 规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置扩缩容策略
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -171,10 +171,10 @@ extension Gse {
     /// **PercentChangeInCapacity**
     ///     按比例增加或减少的百分比。正值按比例扩容，负值按比例缩容；例如，值“-10”将按10%的比例缩容CVM实例。
     @inlinable
-    public func putScalingPolicy(_ input: PutScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutScalingPolicyResponse > {
+    public func putScalingPolicy(_ input: PutScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutScalingPolicyResponse> {
         self.client.execute(action: "PutScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置扩缩容策略
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -257,7 +257,7 @@ extension Gse {
     public func putScalingPolicy(_ input: PutScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutScalingPolicyResponse {
         try await self.client.execute(action: "PutScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置扩缩容策略
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -337,10 +337,10 @@ extension Gse {
     /// **PercentChangeInCapacity**
     ///     按比例增加或减少的百分比。正值按比例扩容，负值按比例缩容；例如，值“-10”将按10%的比例缩容CVM实例。
     @inlinable
-    public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutScalingPolicyResponse > {
+    public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutScalingPolicyResponse> {
         self.putScalingPolicy(PutScalingPolicyRequest(fleetId: fleetId, name: name, scalingAdjustment: scalingAdjustment, scalingAdjustmentType: scalingAdjustmentType, threshold: threshold, comparisonOperator: comparisonOperator, evaluationPeriods: evaluationPeriods, metricName: metricName, policyType: policyType, targetConfiguration: targetConfiguration), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置扩缩容策略
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

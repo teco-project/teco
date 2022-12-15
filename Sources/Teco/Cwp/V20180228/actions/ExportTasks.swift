@@ -19,42 +19,42 @@ extension Cwp {
     public struct ExportTasksRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// ExportTasks返回参数结构体
     public struct ExportTasksResponse: TCResponseModel {
         /// PENDING：正在生成下载链接，FINISHED：下载链接已生成，ERROR：网络异常等异常情况
         public let status: String
-        
+
         /// 下载链接
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 异步导出任务
     ///
     /// 用于异步导出数据量大的日志文件
     @inlinable
-    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportTasksResponse > {
+    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportTasksResponse> {
         self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 异步导出任务
     ///
     /// 用于异步导出数据量大的日志文件
@@ -62,15 +62,15 @@ extension Cwp {
     public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
         try await self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 异步导出任务
     ///
     /// 用于异步导出数据量大的日志文件
     @inlinable
-    public func exportTasks(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportTasksResponse > {
+    public func exportTasks(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportTasksResponse> {
         self.exportTasks(ExportTasksRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 异步导出任务
     ///
     /// 用于异步导出数据量大的日志文件

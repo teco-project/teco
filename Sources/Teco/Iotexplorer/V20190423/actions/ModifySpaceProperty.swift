@@ -19,54 +19,54 @@ extension Iotexplorer {
     public struct ModifySpacePropertyRequest: TCRequestModel {
         /// 位置空间Id
         public let spaceId: String
-        
+
         /// 产品Id
         public let productId: String
-        
+
         /// 产品属性
         public let data: String
-        
-        public init (spaceId: String, productId: String, data: String) {
+
+        public init(spaceId: String, productId: String, data: String) {
             self.spaceId = spaceId
             self.productId = productId
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case spaceId = "SpaceId"
             case productId = "ProductId"
             case data = "Data"
         }
     }
-    
+
     /// ModifySpaceProperty返回参数结构体
     public struct ModifySpacePropertyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新位置空间产品属性
     @inlinable
-    public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySpacePropertyResponse > {
+    public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySpacePropertyResponse> {
         self.client.execute(action: "ModifySpaceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新位置空间产品属性
     @inlinable
     public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {
         try await self.client.execute(action: "ModifySpaceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新位置空间产品属性
     @inlinable
-    public func modifySpaceProperty(spaceId: String, productId: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySpacePropertyResponse > {
+    public func modifySpaceProperty(spaceId: String, productId: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySpacePropertyResponse> {
         self.modifySpaceProperty(ModifySpacePropertyRequest(spaceId: spaceId, productId: productId, data: data), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新位置空间产品属性
     @inlinable
     public func modifySpaceProperty(spaceId: String, productId: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {

@@ -19,23 +19,23 @@ extension Cdn {
     public struct CreateEdgePackTaskRequest: TCRequestModel {
         /// apk 所在的 cos 存储桶, 如 edgepack-xxxxxxxx
         public let cosBucket: String
-        
+
         /// apk 源文件的存储路径, 如 /apk/xxxx.apk
         public let cosUriFrom: String
-        
+
         /// BlockID 的值, WALLE为1903654775(0x71777777)，VasDolly为2282837503(0x881155ff),传0或不传时默认为 WALLE 方案
         public let blockID: UInt64?
-        
+
         /// 拓展之后的 apk 目标存储路径,如 /out/xxxx.apk
         public let cosUriTo: String?
-        
-        public init (cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil) {
+
+        public init(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil) {
             self.cosBucket = cosBucket
             self.cosUriFrom = cosUriFrom
             self.blockID = blockID
             self.cosUriTo = cosUriTo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cosBucket = "CosBucket"
             case cosUriFrom = "CosUriFrom"
@@ -43,25 +43,25 @@ extension Cdn {
             case cosUriTo = "CosUriTo"
         }
     }
-    
+
     /// CreateEdgePackTask返回参数结构体
     public struct CreateEdgePackTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 动态打包任务提交
     ///
     /// 动态打包任务提交接口
     @inlinable
-    public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgePackTaskResponse > {
+    public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgePackTaskResponse> {
         self.client.execute(action: "CreateEdgePackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 动态打包任务提交
     ///
     /// 动态打包任务提交接口
@@ -69,15 +69,15 @@ extension Cdn {
     public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
         try await self.client.execute(action: "CreateEdgePackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 动态打包任务提交
     ///
     /// 动态打包任务提交接口
     @inlinable
-    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgePackTaskResponse > {
+    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgePackTaskResponse> {
         self.createEdgePackTask(CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), logger: logger, on: eventLoop)
     }
-    
+
     /// 动态打包任务提交
     ///
     /// 动态打包任务提交接口

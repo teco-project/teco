@@ -19,39 +19,39 @@ extension Iotcloud {
     public struct DeleteLoraDeviceRequest: TCRequestModel {
         /// 设备所属产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
-        public init (productId: String, deviceName: String) {
+
+        public init(productId: String, deviceName: String) {
             self.productId = productId
             self.deviceName = deviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
         }
     }
-    
+
     /// DeleteLoraDevice返回参数结构体
     public struct DeleteLoraDeviceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除lora设备
     ///
     /// 删除lora类型的设备
     @inlinable
-    public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoraDeviceResponse > {
+    public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoraDeviceResponse> {
         self.client.execute(action: "DeleteLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除lora设备
     ///
     /// 删除lora类型的设备
@@ -59,15 +59,15 @@ extension Iotcloud {
     public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoraDeviceResponse {
         try await self.client.execute(action: "DeleteLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除lora设备
     ///
     /// 删除lora类型的设备
     @inlinable
-    public func deleteLoraDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoraDeviceResponse > {
+    public func deleteLoraDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoraDeviceResponse> {
         self.deleteLoraDevice(DeleteLoraDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除lora设备
     ///
     /// 删除lora类型的设备

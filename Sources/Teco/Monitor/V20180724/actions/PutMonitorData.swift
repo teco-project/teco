@@ -19,23 +19,23 @@ extension Monitor {
     public struct PutMonitorDataRequest: TCRequestModel {
         /// 一组指标和数据
         public let metrics: [MetricDatum]
-        
+
         /// 上报时自行指定的 IP
         public let announceIp: String?
-        
+
         /// 上报时自行指定的时间戳
         public let announceTimestamp: UInt64?
-        
+
         /// 上报时自行指定的 IP 或 产品实例ID
         public let announceInstance: String?
-        
-        public init (metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil) {
+
+        public init(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil) {
             self.metrics = metrics
             self.announceIp = announceIp
             self.announceTimestamp = announceTimestamp
             self.announceInstance = announceInstance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metrics = "Metrics"
             case announceIp = "AnnounceIp"
@@ -43,17 +43,17 @@ extension Monitor {
             case announceInstance = "AnnounceInstance"
         }
     }
-    
+
     /// PutMonitorData返回参数结构体
     public struct PutMonitorDataResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 自定义监控上报数据
     ///
     /// 默认接口请求频率限制：50次/秒。
@@ -63,10 +63,10 @@ extension Monitor {
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable
-    public func putMonitorData(_ input: PutMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutMonitorDataResponse > {
+    public func putMonitorData(_ input: PutMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
         self.client.execute(action: "PutMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 自定义监控上报数据
     ///
     /// 默认接口请求频率限制：50次/秒。
@@ -79,7 +79,7 @@ extension Monitor {
     public func putMonitorData(_ input: PutMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
         try await self.client.execute(action: "PutMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 自定义监控上报数据
     ///
     /// 默认接口请求频率限制：50次/秒。
@@ -89,10 +89,10 @@ extension Monitor {
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable
-    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutMonitorDataResponse > {
+    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
         self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), logger: logger, on: eventLoop)
     }
-    
+
     /// 自定义监控上报数据
     ///
     /// 默认接口请求频率限制：50次/秒。

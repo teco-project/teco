@@ -19,26 +19,26 @@ extension Yunjing {
     public struct EditBashRuleRequest: TCRequestModel {
         /// 规则名称
         public let name: String
-        
+
         /// 危险等级(1: 高危 2:中危 3: 低危)
         public let level: UInt64
-        
+
         /// 正则表达式
         public let rule: String
-        
+
         /// 规则ID(新增时不填)
         public let id: UInt64?
-        
+
         /// 客户端ID(IsGlobal为1时，Uuid或Hostip必填一个)
         public let uuid: String?
-        
+
         /// 主机IP(IsGlobal为1时，Uuid或Hostip必填一个)
         public let hostip: String?
-        
+
         /// 是否全局规则(默认否)
         public let isGlobal: UInt64?
-        
-        public init (name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil) {
+
+        public init(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil) {
             self.name = name
             self.level = level
             self.rule = rule
@@ -47,7 +47,7 @@ extension Yunjing {
             self.hostip = hostip
             self.isGlobal = isGlobal
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case level = "Level"
@@ -58,35 +58,35 @@ extension Yunjing {
             case isGlobal = "IsGlobal"
         }
     }
-    
+
     /// EditBashRule返回参数结构体
     public struct EditBashRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRuleResponse > {
+    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRuleResponse> {
         self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增或修改高危命令规则
     @inlinable
     public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
         try await self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRuleResponse > {
+    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRuleResponse> {
         self.editBashRule(EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增或修改高危命令规则
     @inlinable
     public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {

@@ -19,23 +19,23 @@ extension Cdn {
     public struct AddCLSTopicDomainsRequest: TCRequestModel {
         /// 日志集ID
         public let logsetId: String
-        
+
         /// 日志主题ID
         public let topicId: String
-        
+
         /// 域名区域配置
         public let domainAreaConfigs: [DomainAreaConfig]
-        
+
         /// 接入渠道，cdn或者ecdn，默认值为cdn
         public let channel: String?
-        
-        public init (logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil) {
+
+        public init(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil) {
             self.logsetId = logsetId
             self.topicId = topicId
             self.domainAreaConfigs = domainAreaConfigs
             self.channel = channel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case logsetId = "LogsetId"
             case topicId = "TopicId"
@@ -43,25 +43,25 @@ extension Cdn {
             case channel = "Channel"
         }
     }
-    
+
     /// AddCLSTopicDomains返回参数结构体
     public struct AddCLSTopicDomainsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable
-    public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCLSTopicDomainsResponse > {
+    public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
         self.client.execute(action: "AddCLSTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
@@ -69,15 +69,15 @@ extension Cdn {
     public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
         try await self.client.execute(action: "AddCLSTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable
-    public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCLSTopicDomainsResponse > {
+    public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
         self.addCLSTopicDomains(AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下

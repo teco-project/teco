@@ -19,27 +19,27 @@ extension Cynosdb {
     public struct DescribeClustersRequest: TCRequestModel {
         /// 引擎类型：目前支持“MYSQL”， “POSTGRESQL”
         public let dbType: String?
-        
+
         /// 返回数量，默认为 20，最大值为 100
         public let limit: Int64?
-        
+
         /// 记录偏移量，默认值为0
         public let offset: Int64?
-        
+
         /// 排序字段，取值范围：
         /// <li> CREATETIME：创建时间</li>
         /// <li> PERIODENDTIME：过期时间</li>
         public let orderBy: String?
-        
+
         /// 排序类型，取值范围：
         /// <li> ASC：升序排序 </li>
         /// <li> DESC：降序排序 </li>
         public let orderByType: String?
-        
+
         /// 搜索条件，若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
         public let filters: [QueryFilter]?
-        
-        public init (dbType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil) {
+
+        public init(dbType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil) {
             self.dbType = dbType
             self.limit = limit
             self.offset = offset
@@ -47,7 +47,7 @@ extension Cynosdb {
             self.orderByType = orderByType
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbType = "DbType"
             case limit = "Limit"
@@ -57,43 +57,43 @@ extension Cynosdb {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeClusters返回参数结构体
     public struct DescribeClustersResponse: TCResponseModel {
         /// 集群数
         public let totalCount: Int64
-        
+
         /// 集群列表
         public let clusterSet: [CynosdbCluster]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case clusterSet = "ClusterSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群列表
     @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
         self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群列表
     @inlinable
     public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
         try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群列表
     @inlinable
-    public func describeClusters(dbType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+    public func describeClusters(dbType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
         self.describeClusters(DescribeClustersRequest(dbType: dbType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群列表
     @inlinable
     public func describeClusters(dbType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {

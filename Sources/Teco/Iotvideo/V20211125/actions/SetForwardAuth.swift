@@ -19,44 +19,44 @@ extension Iotvideo {
     public struct SetForwardAuthRequest: TCRequestModel {
         /// 控制台Skey
         public let skey: String
-        
+
         /// 消息队列类型  0.CMQ 1.CKafka
         public let queueType: UInt64
-        
-        public init (skey: String, queueType: UInt64) {
+
+        public init(skey: String, queueType: UInt64) {
             self.skey = skey
             self.queueType = queueType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case skey = "Skey"
             case queueType = "QueueType"
         }
     }
-    
+
     /// SetForwardAuth返回参数结构体
     public struct SetForwardAuthResponse: TCResponseModel {
         /// 腾讯云账号
         public let endpoint: String
-        
+
         /// 结果
         public let result: UInt64
-        
+
         /// 角色名
         public let roleName: String
-        
+
         /// 角色ID
         public let roleID: UInt64
-        
+
         /// 消息队列类型  0.CMQ 1.CKafka
         public let queueType: UInt64
-        
+
         /// 错误消息
         public let errMsg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case endpoint = "Endpoint"
             case result = "Result"
@@ -67,25 +67,25 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置转发权限
     @inlinable
-    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetForwardAuthResponse > {
+    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetForwardAuthResponse> {
         self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置转发权限
     @inlinable
     public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
         try await self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置转发权限
     @inlinable
-    public func setForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetForwardAuthResponse > {
+    public func setForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetForwardAuthResponse> {
         self.setForwardAuth(SetForwardAuthRequest(skey: skey, queueType: queueType), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置转发权限
     @inlinable
     public func setForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {

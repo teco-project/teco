@@ -19,24 +19,24 @@ extension Asr {
     public struct CreateAsrVocabRequest: TCRequestModel {
         /// 热词表名称，长度在1-255之间
         public let name: String
-        
+
         /// 热词表描述，长度在0-1000之间
         public let description: String?
-        
+
         /// 词权重数组，包含全部的热词和对应的权重。每个热词的长度不大于10，权重为[1,10]之间整数，数组长度不大于128
         public let wordWeights: [HotWord]?
-        
+
         /// 词权重文件（纯文本文件）的二进制base64编码，以行分隔，每行的格式为word|weight，即以英文符号|为分割，左边为词，右边为权重，如：你好|5。
         /// 当用户传此参数（参数长度大于0），即以此参数解析词权重，WordWeights会被忽略
         public let wordWeightStr: String?
-        
-        public init (name: String, description: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil) {
+
+        public init(name: String, description: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil) {
             self.name = name
             self.description = description
             self.wordWeights = wordWeights
             self.wordWeightStr = wordWeightStr
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"
@@ -44,21 +44,21 @@ extension Asr {
             case wordWeightStr = "WordWeightStr"
         }
     }
-    
+
     /// CreateAsrVocab返回参数结构体
     public struct CreateAsrVocabResponse: TCResponseModel {
         /// 词表ID，可用于获取词表信息
         public let vocabId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vocabId = "VocabId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建热词表
     ///
     /// 用户通过本接口进行热词表的创建。
@@ -68,10 +68,10 @@ extension Asr {
     /// <br>•   本地文件必须为UTF-8编码格式，每行仅添加一个热词且不能包含标点和特殊字符。
     /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
     @inlinable
-    public func createAsrVocab(_ input: CreateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAsrVocabResponse > {
+    public func createAsrVocab(_ input: CreateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsrVocabResponse> {
         self.client.execute(action: "CreateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建热词表
     ///
     /// 用户通过本接口进行热词表的创建。
@@ -84,7 +84,7 @@ extension Asr {
     public func createAsrVocab(_ input: CreateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsrVocabResponse {
         try await self.client.execute(action: "CreateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建热词表
     ///
     /// 用户通过本接口进行热词表的创建。
@@ -94,10 +94,10 @@ extension Asr {
     /// <br>•   本地文件必须为UTF-8编码格式，每行仅添加一个热词且不能包含标点和特殊字符。
     /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
     @inlinable
-    public func createAsrVocab(name: String, description: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAsrVocabResponse > {
+    public func createAsrVocab(name: String, description: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsrVocabResponse> {
         self.createAsrVocab(CreateAsrVocabRequest(name: name, description: description, wordWeights: wordWeights, wordWeightStr: wordWeightStr), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建热词表
     ///
     /// 用户通过本接口进行热词表的创建。

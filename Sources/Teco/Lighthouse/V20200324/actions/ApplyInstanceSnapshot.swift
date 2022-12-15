@@ -19,31 +19,31 @@ extension Lighthouse {
     public struct ApplyInstanceSnapshotRequest: TCRequestModel {
         /// 实例 ID。
         public let instanceId: String
-        
+
         /// 快照 ID。
         public let snapshotId: String
-        
-        public init (instanceId: String, snapshotId: String) {
+
+        public init(instanceId: String, snapshotId: String) {
             self.instanceId = instanceId
             self.snapshotId = snapshotId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case snapshotId = "SnapshotId"
         }
     }
-    
+
     /// ApplyInstanceSnapshot返回参数结构体
     public struct ApplyInstanceSnapshotResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 回滚实例快照
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
@@ -51,10 +51,10 @@ extension Lighthouse {
     /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable
-    public func applyInstanceSnapshot(_ input: ApplyInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyInstanceSnapshotResponse > {
+    public func applyInstanceSnapshot(_ input: ApplyInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyInstanceSnapshotResponse> {
         self.client.execute(action: "ApplyInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 回滚实例快照
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
@@ -65,7 +65,7 @@ extension Lighthouse {
     public func applyInstanceSnapshot(_ input: ApplyInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyInstanceSnapshotResponse {
         try await self.client.execute(action: "ApplyInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 回滚实例快照
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
@@ -73,10 +73,10 @@ extension Lighthouse {
     /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable
-    public func applyInstanceSnapshot(instanceId: String, snapshotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyInstanceSnapshotResponse > {
+    public func applyInstanceSnapshot(instanceId: String, snapshotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyInstanceSnapshotResponse> {
         self.applyInstanceSnapshot(ApplyInstanceSnapshotRequest(instanceId: instanceId, snapshotId: snapshotId), logger: logger, on: eventLoop)
     }
-    
+
     /// 回滚实例快照
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。

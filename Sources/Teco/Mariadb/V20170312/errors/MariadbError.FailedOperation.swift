@@ -49,243 +49,243 @@ extension TCMariadbError {
             case wanStatusAbnormal = "FailedOperation.WanStatusAbnormal"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例安全组信息添加失败。
         public static var addInstanceInfoFailed: FailedOperation {
             FailedOperation(.addInstanceInfoFailed)
         }
-        
+
         /// 申请VIP失败。
         public static var applyVipFailed: FailedOperation {
             FailedOperation(.applyVipFailed)
         }
-        
+
         /// 绑定安全组失败。
         public static var associateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.associateSecurityGroupsFailed)
         }
-        
+
         /// 鉴权失败。
         public static var authNoStrategy: FailedOperation {
             FailedOperation(.authNoStrategy)
         }
-        
+
         /// 实例安全组信息清除失败。
         public static var clearInstanceInfoFailed: FailedOperation {
             FailedOperation(.clearInstanceInfoFailed)
         }
-        
+
         /// 复制账号权限出错。
         public static var copyRightError: FailedOperation {
             FailedOperation(.copyRightError)
         }
-        
+
         /// 创建流程失败。
         public static var createFlowFailed: FailedOperation {
             FailedOperation(.createFlowFailed)
         }
-        
+
         /// 创建订单失败。
         public static var createOrderFailed: FailedOperation {
             FailedOperation(.createOrderFailed)
         }
-        
+
         /// 创建账号失败。
         public static var createUserFailed: FailedOperation {
             FailedOperation(.createUserFailed)
         }
-        
+
         /// 删除账号失败。
         public static var deleteUserFailed: FailedOperation {
             FailedOperation(.deleteUserFailed)
         }
-        
+
         /// 解绑安全组失败。
         public static var disassociateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.disassociateSecurityGroupsFailed)
         }
-        
+
         public static var getSecurityGroupDetailFailed: FailedOperation {
             FailedOperation(.getSecurityGroupDetailFailed)
         }
-        
+
         /// 实例不可退费。
         public static var instanceCanNotReturn: FailedOperation {
             FailedOperation(.instanceCanNotReturn)
         }
-        
+
         /// 实例退费失败。
         public static var instanceReturnFailed: FailedOperation {
             FailedOperation(.instanceReturnFailed)
         }
-        
+
         /// 修改账号权限失败。
         public static var modifyRightFailed: FailedOperation {
             FailedOperation(.modifyRightFailed)
         }
-        
+
         public static var ossIsolateInstanceFailed: FailedOperation {
             FailedOperation(.ossIsolateInstanceFailed)
         }
-        
+
         /// 请求后端接口失败。
         public static var ossOperationFailed: FailedOperation {
             FailedOperation(.ossOperationFailed)
         }
-        
+
         /// 支付订单失败。
         public static var payFailed: FailedOperation {
             FailedOperation(.payFailed)
         }
-        
+
         /// 重置账号密码失败。
         public static var resetPasswordFailed: FailedOperation {
             FailedOperation(.resetPasswordFailed)
         }
-        
+
         /// 设置规则失败。
         public static var setRuleLocationFailed: FailedOperation {
             FailedOperation(.setRuleLocationFailed)
         }
-        
+
         public static var setSvcLocationFailed: FailedOperation {
             FailedOperation(.setSvcLocationFailed)
         }
-        
+
         /// 更新安全组失败。
         public static var sgChangeVip: FailedOperation {
             FailedOperation(.sgChangeVip)
         }
-        
+
         /// 标签键值校验或鉴权失败。
         public static var tagDryRunError: FailedOperation {
             FailedOperation(.tagDryRunError)
         }
-        
+
         public static var tagQuotaExceedLimit: FailedOperation {
             FailedOperation(.tagQuotaExceedLimit)
         }
-        
+
         /// 实例安全组信息更新失败。
         public static var updateInstanceInfoFailed: FailedOperation {
             FailedOperation(.updateInstanceInfoFailed)
         }
-        
+
         public static var userNotAuthed: FailedOperation {
             FailedOperation(.userNotAuthed)
         }
-        
+
         /// VIP不能与之前一样。
         public static var vipNotChange: FailedOperation {
             FailedOperation(.vipNotChange)
         }
-        
+
         /// VPC添加服务失败。
         public static var vpcAddServiceFailed: FailedOperation {
             FailedOperation(.vpcAddServiceFailed)
         }
-        
+
         /// VPC更新路由失败。
         public static var vpcUpdateRouteFailed: FailedOperation {
             FailedOperation(.vpcUpdateRouteFailed)
         }
-        
+
         /// 外网状态异常。
         public static var wanStatusAbnormal: FailedOperation {
             FailedOperation(.wanStatusAbnormal)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asMariadbError() -> TCMariadbError {
             let code: TCMariadbError.Code
             switch self.error {
-            case .addInstanceInfoFailed: 
+            case .addInstanceInfoFailed:
                 code = .failedOperation_AddInstanceInfoFailed
-            case .applyVipFailed: 
+            case .applyVipFailed:
                 code = .failedOperation_ApplyVipFailed
-            case .associateSecurityGroupsFailed: 
+            case .associateSecurityGroupsFailed:
                 code = .failedOperation_AssociateSecurityGroupsFailed
-            case .authNoStrategy: 
+            case .authNoStrategy:
                 code = .failedOperation_AuthNoStrategy
-            case .clearInstanceInfoFailed: 
+            case .clearInstanceInfoFailed:
                 code = .failedOperation_ClearInstanceInfoFailed
-            case .copyRightError: 
+            case .copyRightError:
                 code = .failedOperation_CopyRightError
-            case .createFlowFailed: 
+            case .createFlowFailed:
                 code = .failedOperation_CreateFlowFailed
-            case .createOrderFailed: 
+            case .createOrderFailed:
                 code = .failedOperation_CreateOrderFailed
-            case .createUserFailed: 
+            case .createUserFailed:
                 code = .failedOperation_CreateUserFailed
-            case .deleteUserFailed: 
+            case .deleteUserFailed:
                 code = .failedOperation_DeleteUserFailed
-            case .disassociateSecurityGroupsFailed: 
+            case .disassociateSecurityGroupsFailed:
                 code = .failedOperation_DisassociateSecurityGroupsFailed
-            case .getSecurityGroupDetailFailed: 
+            case .getSecurityGroupDetailFailed:
                 code = .failedOperation_GetSecurityGroupDetailFailed
-            case .instanceCanNotReturn: 
+            case .instanceCanNotReturn:
                 code = .failedOperation_InstanceCanNotReturn
-            case .instanceReturnFailed: 
+            case .instanceReturnFailed:
                 code = .failedOperation_InstanceReturnFailed
-            case .modifyRightFailed: 
+            case .modifyRightFailed:
                 code = .failedOperation_ModifyRightFailed
-            case .ossIsolateInstanceFailed: 
+            case .ossIsolateInstanceFailed:
                 code = .failedOperation_OssIsolateInstanceFailed
-            case .ossOperationFailed: 
+            case .ossOperationFailed:
                 code = .failedOperation_OssOperationFailed
-            case .payFailed: 
+            case .payFailed:
                 code = .failedOperation_PayFailed
-            case .resetPasswordFailed: 
+            case .resetPasswordFailed:
                 code = .failedOperation_ResetPasswordFailed
-            case .setRuleLocationFailed: 
+            case .setRuleLocationFailed:
                 code = .failedOperation_SetRuleLocationFailed
-            case .setSvcLocationFailed: 
+            case .setSvcLocationFailed:
                 code = .failedOperation_SetSvcLocationFailed
-            case .sgChangeVip: 
+            case .sgChangeVip:
                 code = .failedOperation_SGChangeVip
-            case .tagDryRunError: 
+            case .tagDryRunError:
                 code = .failedOperation_TagDryRunError
-            case .tagQuotaExceedLimit: 
+            case .tagQuotaExceedLimit:
                 code = .failedOperation_TagQuotaExceedLimit
-            case .updateInstanceInfoFailed: 
+            case .updateInstanceInfoFailed:
                 code = .failedOperation_UpdateInstanceInfoFailed
-            case .userNotAuthed: 
+            case .userNotAuthed:
                 code = .failedOperation_UserNotAuthed
-            case .vipNotChange: 
+            case .vipNotChange:
                 code = .failedOperation_VipNotChange
-            case .vpcAddServiceFailed: 
+            case .vpcAddServiceFailed:
                 code = .failedOperation_VpcAddServiceFailed
-            case .vpcUpdateRouteFailed: 
+            case .vpcUpdateRouteFailed:
                 code = .failedOperation_VpcUpdateRouteFailed
-            case .wanStatusAbnormal: 
+            case .wanStatusAbnormal:
                 code = .failedOperation_WanStatusAbnormal
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCMariadbError(code, context: self.context)

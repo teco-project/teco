@@ -19,42 +19,42 @@ extension Tcss {
     public struct CreateClusterCheckTaskRequest: TCRequestModel {
         /// 指定要扫描的集群信息
         public let clusterCheckTaskList: [ClusterCheckTaskItem]
-        
-        public init (clusterCheckTaskList: [ClusterCheckTaskItem]) {
+
+        public init(clusterCheckTaskList: [ClusterCheckTaskItem]) {
             self.clusterCheckTaskList = clusterCheckTaskList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterCheckTaskList = "ClusterCheckTaskList"
         }
     }
-    
+
     /// CreateClusterCheckTask返回参数结构体
     public struct CreateClusterCheckTaskResponse: TCResponseModel {
         /// 返回创建的集群检查任务的ID，为0表示创建失败。
         public let taskId: UInt64
-        
+
         /// 创建检查任务的结果，"Succ"为成功，其他的为失败原因
         public let createResult: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case createResult = "CreateResult"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建集群检查任务
     ///
     /// 创建集群检查任务，用户检查用户的集群相关风险项
     @inlinable
-    public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterCheckTaskResponse > {
+    public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterCheckTaskResponse> {
         self.client.execute(action: "CreateClusterCheckTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建集群检查任务
     ///
     /// 创建集群检查任务，用户检查用户的集群相关风险项
@@ -62,15 +62,15 @@ extension Tcss {
     public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterCheckTaskResponse {
         try await self.client.execute(action: "CreateClusterCheckTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建集群检查任务
     ///
     /// 创建集群检查任务，用户检查用户的集群相关风险项
     @inlinable
-    public func createClusterCheckTask(clusterCheckTaskList: [ClusterCheckTaskItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterCheckTaskResponse > {
+    public func createClusterCheckTask(clusterCheckTaskList: [ClusterCheckTaskItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterCheckTaskResponse> {
         self.createClusterCheckTask(CreateClusterCheckTaskRequest(clusterCheckTaskList: clusterCheckTaskList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建集群检查任务
     ///
     /// 创建集群检查任务，用户检查用户的集群相关风险项

@@ -19,7 +19,7 @@ extension Essbasic {
     public struct CreateSealRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 印章类型：
         /// 1. PERSONAL - 个人私章
         /// 2. OFFICIAL - 公章
@@ -29,26 +29,26 @@ extension Essbasic {
         /// 6. SPECIAL_NATIONWIDE_INVOICE - 发票专用章
         /// 7. OTHER-其他
         public let sealType: String
-        
+
         /// 印章名称
         public let sealName: String
-        
+
         /// 请求创建印章的客户端IP
         public let sourceIp: String
-        
+
         /// 印章图片，base64编码（与FileId参数二选一，同时传入参数时优先使用Image参数）
         public let image: String?
-        
+
         /// 印章文件图片ID（与Image参数二选一，同时传入参数时优先使用Image参数）
         public let fileId: String?
-        
+
         /// 需要创建印章的用户ID
         public let userId: String?
-        
+
         /// 是否是默认印章 true：是，false：否
         public let isDefault: Bool?
-        
-        public init (caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil) {
+
+        public init(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil) {
             self.caller = caller
             self.sealType = sealType
             self.sealName = sealName
@@ -58,7 +58,7 @@ extension Essbasic {
             self.userId = userId
             self.isDefault = isDefault
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case sealType = "SealType"
@@ -70,30 +70,30 @@ extension Essbasic {
             case isDefault = "IsDefault"
         }
     }
-    
+
     /// CreateSeal返回参数结构体
     public struct CreateSealResponse: TCResponseModel {
         /// 电子印章Id
         public let sealId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sealId = "SealId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建印章
     ///
     /// 此接口（CreateSeal）用于创建个人/企业印章。
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
-    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSealResponse > {
+    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
         self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建印章
     ///
     /// 此接口（CreateSeal）用于创建个人/企业印章。
@@ -102,16 +102,16 @@ extension Essbasic {
     public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
         try await self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建印章
     ///
     /// 此接口（CreateSeal）用于创建个人/企业印章。
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
-    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSealResponse > {
+    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
         self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建印章
     ///
     /// 此接口（CreateSeal）用于创建个人/企业印章。

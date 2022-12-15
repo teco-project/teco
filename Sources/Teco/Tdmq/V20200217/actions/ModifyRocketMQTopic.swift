@@ -19,27 +19,27 @@ extension Tdmq {
     public struct ModifyRocketMQTopicRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 命名空间名称
         public let namespaceId: String
-        
+
         /// 主题名称
         public let topic: String
-        
+
         /// 说明信息，最大128个字符
         public let remark: String
-        
+
         /// 分区数，全局类型无效，不可小于当前分区数
         public let partitionNum: Int64?
-        
-        public init (clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil) {
+
+        public init(clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.topic = topic
             self.remark = remark
             self.partitionNum = partitionNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case namespaceId = "NamespaceId"
@@ -48,35 +48,35 @@ extension Tdmq {
             case partitionNum = "PartitionNum"
         }
     }
-    
+
     /// ModifyRocketMQTopic返回参数结构体
     public struct ModifyRocketMQTopicResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新RocketMQ主题信息
     @inlinable
-    public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQTopicResponse > {
+    public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQTopicResponse> {
         self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新RocketMQ主题信息
     @inlinable
     public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQTopicResponse {
         try await self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新RocketMQ主题信息
     @inlinable
-    public func modifyRocketMQTopic(clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQTopicResponse > {
+    public func modifyRocketMQTopic(clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQTopicResponse> {
         self.modifyRocketMQTopic(ModifyRocketMQTopicRequest(clusterId: clusterId, namespaceId: namespaceId, topic: topic, remark: remark, partitionNum: partitionNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新RocketMQ主题信息
     @inlinable
     public func modifyRocketMQTopic(clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQTopicResponse {

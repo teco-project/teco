@@ -17,37 +17,37 @@
 extension Gse {
     /// DescribeInstanceLimit请求参数结构体
     public struct DescribeInstanceLimitRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeInstanceLimit返回参数结构体
     public struct DescribeInstanceLimitResponse: TCResponseModel {
         /// 限额
         public let limit: Int64
-        
+
         /// 详细信息
         public let extraInfos: [ExtraInfos]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case extraInfos = "ExtraInfos"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户实例数限额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeInstanceLimit）用于查询用户实例数限额。
     @inlinable
-    public func describeInstanceLimit(_ input: DescribeInstanceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLimitResponse > {
+    public func describeInstanceLimit(_ input: DescribeInstanceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLimitResponse> {
         self.client.execute(action: "DescribeInstanceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户实例数限额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -56,16 +56,16 @@ extension Gse {
     public func describeInstanceLimit(_ input: DescribeInstanceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLimitResponse {
         try await self.client.execute(action: "DescribeInstanceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户实例数限额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeInstanceLimit）用于查询用户实例数限额。
     @inlinable
-    public func describeInstanceLimit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLimitResponse > {
+    public func describeInstanceLimit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLimitResponse> {
         self.describeInstanceLimit(DescribeInstanceLimitRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户实例数限额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

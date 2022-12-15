@@ -19,43 +19,43 @@ extension Ivld {
     public struct DescribeCustomPersonDetailRequest: TCRequestModel {
         /// 自定义人物Id
         public let personId: String
-        
-        public init (personId: String) {
+
+        public init(personId: String) {
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
         }
     }
-    
+
     /// DescribeCustomPersonDetail返回参数结构体
     public struct DescribeCustomPersonDetailResponse: TCResponseModel {
         /// 自定义人物信息
         public let personInfo: CustomPersonInfo
-        
+
         /// 出现该自定义人物的所有分析人物Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskIdSet: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case personInfo = "PersonInfo"
             case taskIdSet = "TaskIdSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 描述自定义人物详细信息
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
-    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomPersonDetailResponse > {
+    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonDetailResponse> {
         self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 描述自定义人物详细信息
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息
@@ -63,15 +63,15 @@ extension Ivld {
     public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
         try await self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 描述自定义人物详细信息
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
-    public func describeCustomPersonDetail(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomPersonDetailResponse > {
+    public func describeCustomPersonDetail(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonDetailResponse> {
         self.describeCustomPersonDetail(DescribeCustomPersonDetailRequest(personId: personId), logger: logger, on: eventLoop)
     }
-    
+
     /// 描述自定义人物详细信息
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息

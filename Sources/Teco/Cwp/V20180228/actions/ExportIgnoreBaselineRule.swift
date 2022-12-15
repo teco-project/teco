@@ -19,42 +19,42 @@ extension Cwp {
     public struct ExportIgnoreBaselineRuleRequest: TCRequestModel {
         /// 检测项名称
         public let ruleName: String?
-        
-        public init (ruleName: String? = nil) {
+
+        public init(ruleName: String? = nil) {
             self.ruleName = ruleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
         }
     }
-    
+
     /// ExportIgnoreBaselineRule返回参数结构体
     public struct ExportIgnoreBaselineRuleResponse: TCResponseModel {
         /// 文件下载地址
         public let downloadUrl: String
-        
+
         /// 导出任务Id , 可通过ExportTasks 接口下载
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 已忽略基线检测项导出
     ///
     /// 导出已忽略基线检测项信息
     @inlinable
-    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportIgnoreBaselineRuleResponse > {
+    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreBaselineRuleResponse> {
         self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 已忽略基线检测项导出
     ///
     /// 导出已忽略基线检测项信息
@@ -62,15 +62,15 @@ extension Cwp {
     public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
         try await self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 已忽略基线检测项导出
     ///
     /// 导出已忽略基线检测项信息
     @inlinable
-    public func exportIgnoreBaselineRule(ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportIgnoreBaselineRuleResponse > {
+    public func exportIgnoreBaselineRule(ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreBaselineRuleResponse> {
         self.exportIgnoreBaselineRule(ExportIgnoreBaselineRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 已忽略基线检测项导出
     ///
     /// 导出已忽略基线检测项信息

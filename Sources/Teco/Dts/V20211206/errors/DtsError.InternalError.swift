@@ -33,143 +33,143 @@ extension TCDtsError {
             case unknownError = "InternalError.UnknownError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 添加异步任务失败。
         public static var addTaskError: InternalError {
             InternalError(.addTaskError)
         }
-        
+
         /// 内部调度系统错误。
         ///
         /// 内部调度系统错误
         public static var celeryError: InternalError {
             InternalError(.celeryError)
         }
-        
+
         /// cgw系统错误。
         public static var cgwSystemError: InternalError {
             InternalError(.cgwSystemError)
         }
-        
+
         /// 迁移平台数据库访问失败。
         public static var databaseError: InternalError {
             InternalError(.databaseError)
         }
-        
+
         /// 迁移任务冲突。
         public static var duplicateJob: InternalError {
             InternalError(.duplicateJob)
         }
-        
+
         public static var internalErrorError: InternalError {
             InternalError(.internalErrorError)
         }
-        
+
         /// http请求访问出错。
         public static var internalHttpServerError: InternalError {
             InternalError(.internalHttpServerError)
         }
-        
+
         /// 内部组件访问错误。
         public static var internalInnerCommonError: InternalError {
             InternalError(.internalInnerCommonError)
         }
-        
+
         /// 调用计费服务失败。
         public static var internalTradeError: InternalError {
             InternalError(.internalTradeError)
         }
-        
+
         /// 锁冲突。
         public static var lockError: InternalError {
             InternalError(.lockError)
         }
-        
+
         /// 用户余额不足。
         ///
         /// 充值后可继续购买。
         public static var notEnoughMoneyError: InternalError {
             InternalError(.notEnoughMoneyError)
         }
-        
+
         /// 通信协议错误。
         public static var protocolError: InternalError {
             InternalError(.protocolError)
         }
-        
+
         /// 内部错误。
         ///
         /// 联系客服
         public static var undefinedError: InternalError {
             InternalError(.undefinedError)
         }
-        
+
         /// 未知的内部错误。
         ///
         /// 请联系客服。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asDtsError() -> TCDtsError {
             let code: TCDtsError.Code
             switch self.error {
-            case .addTaskError: 
+            case .addTaskError:
                 code = .internalError_AddTaskError
-            case .celeryError: 
+            case .celeryError:
                 code = .internalError_CeleryError
-            case .cgwSystemError: 
+            case .cgwSystemError:
                 code = .internalError_CgwSystemError
-            case .databaseError: 
+            case .databaseError:
                 code = .internalError_DatabaseError
-            case .duplicateJob: 
+            case .duplicateJob:
                 code = .internalError_DuplicateJob
-            case .internalErrorError: 
+            case .internalErrorError:
                 code = .internalError_InternalErrorError
-            case .internalHttpServerError: 
+            case .internalHttpServerError:
                 code = .internalError_InternalHttpServerError
-            case .internalInnerCommonError: 
+            case .internalInnerCommonError:
                 code = .internalError_InternalInnerCommonError
-            case .internalTradeError: 
+            case .internalTradeError:
                 code = .internalError_InternalTradeError
-            case .lockError: 
+            case .lockError:
                 code = .internalError_LockError
-            case .notEnoughMoneyError: 
+            case .notEnoughMoneyError:
                 code = .internalError_NotEnoughMoneyError
-            case .protocolError: 
+            case .protocolError:
                 code = .internalError_ProtocolError
-            case .undefinedError: 
+            case .undefinedError:
                 code = .internalError_UndefinedError
-            case .unknownError: 
+            case .unknownError:
                 code = .internalError_UnknownError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCDtsError(code, context: self.context)

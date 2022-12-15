@@ -19,44 +19,44 @@ extension Tdid {
     public struct CancelAuthorityIssuerRequest: TCRequestModel {
         /// did具体信息
         public let did: String
-        
-        public init (did: String) {
+
+        public init(did: String) {
             self.did = did
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
         }
     }
-    
+
     /// CancelAuthorityIssuer返回参数结构体
     public struct CancelAuthorityIssuerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 撤消权威机构认证
     @inlinable
-    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorityIssuerResponse > {
+    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
         self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 撤消权威机构认证
     @inlinable
     public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
         try await self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 撤消权威机构认证
     @inlinable
-    public func cancelAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorityIssuerResponse > {
+    public func cancelAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
         self.cancelAuthorityIssuer(CancelAuthorityIssuerRequest(did: did), logger: logger, on: eventLoop)
     }
-    
+
     /// 撤消权威机构认证
     @inlinable
     public func cancelAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {

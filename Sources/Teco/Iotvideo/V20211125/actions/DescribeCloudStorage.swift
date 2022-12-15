@@ -19,47 +19,47 @@ extension Iotvideo {
     public struct DescribeCloudStorageRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// 云存用户ID
         public let userId: String?
-        
-        public init (productId: String, deviceName: String, userId: String? = nil) {
+
+        public init(productId: String, deviceName: String, userId: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.userId = userId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
             case userId = "UserId"
         }
     }
-    
+
     /// DescribeCloudStorage返回参数结构体
     public struct DescribeCloudStorageResponse: TCResponseModel {
         /// 云存开启状态，1为开启，0为未开启或已过期
         public let status: UInt64
-        
+
         /// 云存类型，1为全时云存，2为事件云存
         public let type: UInt64
-        
+
         /// 云存套餐过期时间
         public let expireTime: UInt64
-        
+
         /// 云存回看时长
         public let shiftDuration: UInt64
-        
+
         /// 云存用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case type = "Type"
@@ -69,25 +69,25 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备云存服务详情
     @inlinable
-    public func describeCloudStorage(_ input: DescribeCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageResponse > {
+    public func describeCloudStorage(_ input: DescribeCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageResponse> {
         self.client.execute(action: "DescribeCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备云存服务详情
     @inlinable
     public func describeCloudStorage(_ input: DescribeCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageResponse {
         try await self.client.execute(action: "DescribeCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备云存服务详情
     @inlinable
-    public func describeCloudStorage(productId: String, deviceName: String, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageResponse > {
+    public func describeCloudStorage(productId: String, deviceName: String, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageResponse> {
         self.describeCloudStorage(DescribeCloudStorageRequest(productId: productId, deviceName: deviceName, userId: userId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备云存服务详情
     @inlinable
     public func describeCloudStorage(productId: String, deviceName: String, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageResponse {

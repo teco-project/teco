@@ -19,53 +19,53 @@ extension Gaap {
     public struct OpenSecurityPolicyRequest: TCRequestModel {
         /// 需开启安全策略的通道ID
         public let proxyId: String?
-        
+
         /// 安全策略ID
         public let policyId: String?
-        
-        public init (proxyId: String? = nil, policyId: String? = nil) {
+
+        public init(proxyId: String? = nil, policyId: String? = nil) {
             self.proxyId = proxyId
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyId = "ProxyId"
             case policyId = "PolicyId"
         }
     }
-    
+
     /// OpenSecurityPolicy返回参数结构体
     public struct OpenSecurityPolicyResponse: TCResponseModel {
         /// 异步流程ID，可以通过DescribeAsyncTaskStatus接口查询流程运行状态
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启安全策略
     @inlinable
-    public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSecurityPolicyResponse > {
+    public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenSecurityPolicyResponse> {
         self.client.execute(action: "OpenSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启安全策略
     @inlinable
     public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSecurityPolicyResponse {
         try await self.client.execute(action: "OpenSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启安全策略
     @inlinable
-    public func openSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSecurityPolicyResponse > {
+    public func openSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenSecurityPolicyResponse> {
         self.openSecurityPolicy(OpenSecurityPolicyRequest(proxyId: proxyId, policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启安全策略
     @inlinable
     public func openSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSecurityPolicyResponse {

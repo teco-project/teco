@@ -21,51 +21,51 @@ extension TCEbError {
             case esUnhealth = "ResourceUnavailable.ESUnhealth"
             case target = "ResourceUnavailable.Target"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 连接器创建失败，当前资源不可用。
         public static var connection: ResourceUnavailable {
             ResourceUnavailable(.connection)
         }
-        
+
         public static var esUnhealth: ResourceUnavailable {
             ResourceUnavailable(.esUnhealth)
         }
-        
+
         /// 投递目标创建失败，当前资源不可用。
         public static var target: ResourceUnavailable {
             ResourceUnavailable(.target)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
-            case .connection: 
+            case .connection:
                 code = .resourceUnavailable_Connection
-            case .esUnhealth: 
+            case .esUnhealth:
                 code = .resourceUnavailable_ESUnhealth
-            case .target: 
+            case .target:
                 code = .resourceUnavailable_Target
             }
             return TCEbError(code, context: self.context)

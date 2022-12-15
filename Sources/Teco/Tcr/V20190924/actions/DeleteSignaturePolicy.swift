@@ -19,49 +19,49 @@ extension Tcr {
     public struct DeleteSignaturePolicyRequest: TCRequestModel {
         /// 实例ID
         public let registryId: String
-        
+
         /// 命名空间的名称
         public let namespaceName: String
-        
-        public init (registryId: String, namespaceName: String) {
+
+        public init(registryId: String, namespaceName: String) {
             self.registryId = registryId
             self.namespaceName = namespaceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
         }
     }
-    
+
     /// DeleteSignaturePolicy返回参数结构体
     public struct DeleteSignaturePolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除命名空间加签策略
     @inlinable
-    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSignaturePolicyResponse > {
+    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSignaturePolicyResponse> {
         self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除命名空间加签策略
     @inlinable
     public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
         try await self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除命名空间加签策略
     @inlinable
-    public func deleteSignaturePolicy(registryId: String, namespaceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSignaturePolicyResponse > {
+    public func deleteSignaturePolicy(registryId: String, namespaceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSignaturePolicyResponse> {
         self.deleteSignaturePolicy(DeleteSignaturePolicyRequest(registryId: registryId, namespaceName: namespaceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除命名空间加签策略
     @inlinable
     public func deleteSignaturePolicy(registryId: String, namespaceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {

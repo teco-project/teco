@@ -19,58 +19,58 @@ extension Tdid {
     public struct GetDidRegisterTrendRequest: TCRequestModel {
         /// 开始时间（支持到天 2021-4-23）
         public let startTime: String
-        
+
         /// 结束时间（支持到天 2021-4-23）
         public let endTime: String
-        
+
         /// 网络ID
         public let clusterId: String?
-        
-        public init (startTime: String, endTime: String, clusterId: String? = nil) {
+
+        public init(startTime: String, endTime: String, clusterId: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// GetDidRegisterTrend返回参数结构体
     public struct GetDidRegisterTrendResponse: TCResponseModel {
         /// Trend集合
         public let trend: [Trend]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trend = "Trend"
             case requestId = "RequestId"
         }
     }
-    
+
     /// DID注册趋势
     @inlinable
-    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidRegisterTrendResponse > {
+    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
         self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DID注册趋势
     @inlinable
     public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
         try await self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DID注册趋势
     @inlinable
-    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidRegisterTrendResponse > {
+    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
         self.getDidRegisterTrend(GetDidRegisterTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// DID注册趋势
     @inlinable
     public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {

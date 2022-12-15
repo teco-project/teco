@@ -19,52 +19,52 @@ extension Live {
     public struct UnBindLiveDomainCertRequest: TCRequestModel {
         /// 播放域名。
         public let domainName: String
-        
+
         /// 枚举值：
         /// gray: 解绑灰度规则
         /// formal(默认): 解绑正式规则
         /// 不传则为formal
         public let type: String?
-        
-        public init (domainName: String, type: String? = nil) {
+
+        public init(domainName: String, type: String? = nil) {
             self.domainName = domainName
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case type = "Type"
         }
     }
-    
+
     /// UnBindLiveDomainCert返回参数结构体
     public struct UnBindLiveDomainCertResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑域名证书
     @inlinable
-    public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindLiveDomainCertResponse > {
+    public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindLiveDomainCertResponse> {
         self.client.execute(action: "UnBindLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑域名证书
     @inlinable
     public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {
         try await self.client.execute(action: "UnBindLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑域名证书
     @inlinable
-    public func unBindLiveDomainCert(domainName: String, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindLiveDomainCertResponse > {
+    public func unBindLiveDomainCert(domainName: String, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindLiveDomainCertResponse> {
         self.unBindLiveDomainCert(UnBindLiveDomainCertRequest(domainName: domainName, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑域名证书
     @inlinable
     public func unBindLiveDomainCert(domainName: String, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {

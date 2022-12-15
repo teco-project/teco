@@ -19,38 +19,38 @@ extension Cwp {
     public struct DescribeBaselineStrategyDetailRequest: TCRequestModel {
         /// 用户基线策略id
         public let strategyId: UInt64
-        
-        public init (strategyId: UInt64) {
+
+        public init(strategyId: UInt64) {
             self.strategyId = strategyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case strategyId = "StrategyId"
         }
     }
-    
+
     /// DescribeBaselineStrategyDetail返回参数结构体
     public struct DescribeBaselineStrategyDetailResponse: TCResponseModel {
         /// 策略扫描通过率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let passRate: UInt64?
-        
+
         /// 策略名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let strategyName: String?
-        
+
         /// 策略扫描周期(天)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scanCycle: String?
-        
+
         /// 定期检测时间, 该时间下发扫描
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scanAt: String?
-        
+
         /// 扫描范围是否全部服务器, 1:是  0:否, 为1则为全部专业版主机
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isGlobal: UInt64?
-        
+
         /// 云服务器类型：
         /// cvm：腾讯云服务器
         /// bm：裸金属
@@ -59,26 +59,26 @@ extension Cwp {
         /// ohter: 混合云机器
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineType: String?
-        
+
         /// 主机地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 用户该策略下的所有主机id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quuids: [String]?
-        
+
         /// 用户该策略下所有的基线id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let categoryIds: [String]?
-        
+
         /// 1 表示扫描过, 0没扫描过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ifScanned: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case passRate = "PassRate"
             case strategyName = "StrategyName"
@@ -93,15 +93,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询基线策略详情
     ///
     /// 根据基线策略id查询策略详情
     @inlinable
-    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineStrategyDetailResponse > {
+    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineStrategyDetailResponse> {
         self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询基线策略详情
     ///
     /// 根据基线策略id查询策略详情
@@ -109,15 +109,15 @@ extension Cwp {
     public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
         try await self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询基线策略详情
     ///
     /// 根据基线策略id查询策略详情
     @inlinable
-    public func describeBaselineStrategyDetail(strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineStrategyDetailResponse > {
+    public func describeBaselineStrategyDetail(strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineStrategyDetailResponse> {
         self.describeBaselineStrategyDetail(DescribeBaselineStrategyDetailRequest(strategyId: strategyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询基线策略详情
     ///
     /// 根据基线策略id查询策略详情

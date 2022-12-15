@@ -22,38 +22,38 @@ extension Lighthouse {
         /// 类型：String
         /// 必选：否
         public let filters: [Filter]?
-        
-        public init (filters: [Filter]? = nil) {
+
+        public init(filters: [Filter]? = nil) {
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeDiskConfigs返回参数结构体
     public struct DescribeDiskConfigsResponse: TCResponseModel {
         /// 云硬盘配置列表。
         public let diskConfigSet: [DiskConfig]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case diskConfigSet = "DiskConfigSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看云硬盘配置
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
-    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskConfigsResponse > {
+    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigsResponse> {
         self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看云硬盘配置
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
@@ -61,15 +61,15 @@ extension Lighthouse {
     public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
         try await self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看云硬盘配置
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
-    public func describeDiskConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskConfigsResponse > {
+    public func describeDiskConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigsResponse> {
         self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看云硬盘配置
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。

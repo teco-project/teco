@@ -19,32 +19,32 @@ extension Gse {
     public struct CreateGameServerSessionRequest: TCRequestModel {
         /// 最大玩家数量，最小值不小于0
         public let maximumPlayerSessionCount: UInt64
-        
+
         /// 别名ID。每个请求需要指定别名ID 或者舰队 ID，如果两个同时指定时，优先选择舰队 ID
         public let aliasId: String?
-        
+
         /// 创建者ID，最大长度不超过1024个ASCII字符
         public let creatorId: String?
-        
+
         /// 舰队ID。每个请求需要指定别名ID 或者舰队 ID，如果两个同时指定时，优先选择舰队 ID
         public let fleetId: String?
-        
+
         /// 游戏属性，最大长度不超过16组
         public let gameProperties: [GameProperty]?
-        
+
         /// 游戏服务器会话属性详情，最大长度不超过4096个ASCII字符
         public let gameServerSessionData: String?
-        
+
         /// 游戏服务器会话自定义ID，最大长度不超过4096个ASCII字符
         public let gameServerSessionId: String?
-        
+
         /// 幂等token，最大长度不超过48个ASCII字符
         public let idempotencyToken: String?
-        
+
         /// 游戏服务器会话名称，最大长度不超过1024个ASCII字符
         public let name: String?
-        
-        public init (maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil) {
+
+        public init(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil) {
             self.maximumPlayerSessionCount = maximumPlayerSessionCount
             self.aliasId = aliasId
             self.creatorId = creatorId
@@ -55,7 +55,7 @@ extension Gse {
             self.idempotencyToken = idempotencyToken
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maximumPlayerSessionCount = "MaximumPlayerSessionCount"
             case aliasId = "AliasId"
@@ -68,31 +68,31 @@ extension Gse {
             case name = "Name"
         }
     }
-    
+
     /// CreateGameServerSession返回参数结构体
     public struct CreateGameServerSessionResponse: TCResponseModel {
         /// 游戏服务器会话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSession: GameServerSession?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSession = "GameServerSession"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSession）用于创建游戏服务会话。
     @inlinable
-    public func createGameServerSession(_ input: CreateGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGameServerSessionResponse > {
+    public func createGameServerSession(_ input: CreateGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
         self.client.execute(action: "CreateGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -101,16 +101,16 @@ extension Gse {
     public func createGameServerSession(_ input: CreateGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionResponse {
         try await self.client.execute(action: "CreateGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSession）用于创建游戏服务会话。
     @inlinable
-    public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGameServerSessionResponse > {
+    public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
         self.createGameServerSession(CreateGameServerSessionRequest(maximumPlayerSessionCount: maximumPlayerSessionCount, aliasId: aliasId, creatorId: creatorId, fleetId: fleetId, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionId: gameServerSessionId, idempotencyToken: idempotencyToken, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

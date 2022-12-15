@@ -17,28 +17,28 @@
 extension Tcb {
     /// DescribeCloudBaseRunVersionRsByCondition请求参数结构体
     public struct DescribeCloudBaseRunVersionRsByConditionRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeCloudBaseRunVersionRsByCondition返回参数结构体
     public struct DescribeCloudBaseRunVersionRsByConditionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取云托管详情
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable
-    public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunVersionRsByConditionResponse > {
+    public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionRsByConditionResponse> {
         self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取云托管详情
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
@@ -46,15 +46,15 @@ extension Tcb {
     public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取云托管详情
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable
-    public func describeCloudBaseRunVersionRsByCondition(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunVersionRsByConditionResponse > {
+    public func describeCloudBaseRunVersionRsByCondition(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionRsByConditionResponse> {
         self.describeCloudBaseRunVersionRsByCondition(DescribeCloudBaseRunVersionRsByConditionRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取云托管详情
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情

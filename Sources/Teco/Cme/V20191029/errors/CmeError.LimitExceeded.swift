@@ -23,74 +23,74 @@ extension TCCmeError {
             case billItemVideoEditExportDuration = "LimitExceeded.BillItemVideoEditExportDuration"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 您已超过推流时长限制，若还需使用，请升级会员版本或购买资源包。
         ///
         /// 升级会员版本，或联系商务。
         public static var billItemLiveDispatchDuration: LimitExceeded {
             LimitExceeded(.billItemLiveDispatchDuration)
         }
-        
+
         /// 您已达到转推并发数上限，若还需使用，请升级会员版本或购买资源包。
         ///
         /// 升级会员版本，或联系商务。
         public static var billItemLiveDispatchMaxCount: LimitExceeded {
             LimitExceeded(.billItemLiveDispatchMaxCount)
         }
-        
+
         /// 存储空间不足，请查看会员权益，购买资源包或会员版本后继续使用。
         ///
         /// 升级会员版本，或联系商务。
         public static var billItemStorage: LimitExceeded {
             LimitExceeded(.billItemStorage)
         }
-        
+
         /// 您已达到导出视频时长上限，若还需使用，请升级会员版本或购买资源包。
         ///
         /// 升级会员版本，或联系商务。
         public static var billItemVideoEditExportDuration: LimitExceeded {
             LimitExceeded(.billItemVideoEditExportDuration)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asCmeError() -> TCCmeError {
             let code: TCCmeError.Code
             switch self.error {
-            case .billItemLiveDispatchDuration: 
+            case .billItemLiveDispatchDuration:
                 code = .limitExceeded_BillItemLiveDispatchDuration
-            case .billItemLiveDispatchMaxCount: 
+            case .billItemLiveDispatchMaxCount:
                 code = .limitExceeded_BillItemLiveDispatchMaxCount
-            case .billItemStorage: 
+            case .billItemStorage:
                 code = .limitExceeded_BillItemStorage
-            case .billItemVideoEditExportDuration: 
+            case .billItemVideoEditExportDuration:
                 code = .limitExceeded_BillItemVideoEditExportDuration
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCCmeError(code, context: self.context)

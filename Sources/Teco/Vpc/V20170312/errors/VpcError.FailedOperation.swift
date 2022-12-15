@@ -24,72 +24,72 @@ extension TCVpcError {
             case netDetectTimeOut = "FailedOperation.NetDetectTimeOut"
             case taskFailed = "FailedOperation.TaskFailed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 地址没有弹性网卡信息。
         public static var addressEniInfoNotFound: FailedOperation {
             FailedOperation(.addressEniInfoNotFound)
         }
-        
+
         public static var balanceInsufficient: FailedOperation {
             FailedOperation(.balanceInsufficient)
         }
-        
+
         /// 不支持的地域。
         public static var invalidRegion: FailedOperation {
             FailedOperation(.invalidRegion)
         }
-        
+
         /// 未找到实例的主网卡。
         public static var masterEniNotFound: FailedOperation {
             FailedOperation(.masterEniNotFound)
         }
-        
+
         /// 网络探测超时，请稍后重试。
         public static var netDetectTimeOut: FailedOperation {
             FailedOperation(.netDetectTimeOut)
         }
-        
+
         /// DES任务失败。
         public static var taskFailed: FailedOperation {
             FailedOperation(.taskFailed)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
-            case .addressEniInfoNotFound: 
+            case .addressEniInfoNotFound:
                 code = .failedOperation_AddressEniInfoNotFound
-            case .balanceInsufficient: 
+            case .balanceInsufficient:
                 code = .failedOperation_BalanceInsufficient
-            case .invalidRegion: 
+            case .invalidRegion:
                 code = .failedOperation_InvalidRegion
-            case .masterEniNotFound: 
+            case .masterEniNotFound:
                 code = .failedOperation_MasterEniNotFound
-            case .netDetectTimeOut: 
+            case .netDetectTimeOut:
                 code = .failedOperation_NetDetectTimeOut
-            case .taskFailed: 
+            case .taskFailed:
                 code = .failedOperation_TaskFailed
             }
             return TCVpcError(code, context: self.context)

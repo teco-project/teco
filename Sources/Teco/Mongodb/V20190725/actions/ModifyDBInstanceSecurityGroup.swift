@@ -19,39 +19,39 @@ extension Mongodb {
     public struct ModifyDBInstanceSecurityGroupRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 目标安全组id
         public let securityGroupIds: [String]
-        
-        public init (instanceId: String, securityGroupIds: [String]) {
+
+        public init(instanceId: String, securityGroupIds: [String]) {
             self.instanceId = instanceId
             self.securityGroupIds = securityGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case securityGroupIds = "SecurityGroupIds"
         }
     }
-    
+
     /// ModifyDBInstanceSecurityGroup返回参数结构体
     public struct ModifyDBInstanceSecurityGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
     @inlinable
-    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupResponse > {
+    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
         self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
@@ -59,15 +59,15 @@ extension Mongodb {
     public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
         try await self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
     @inlinable
-    public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupResponse > {
+    public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
         self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组

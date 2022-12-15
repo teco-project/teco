@@ -19,48 +19,48 @@ extension Live {
     public struct DescribeLiveCertRequest: TCRequestModel {
         /// DescribeLiveCerts接口获取到的证书Id。
         public let certId: Int64
-        
-        public init (certId: Int64) {
+
+        public init(certId: Int64) {
             self.certId = certId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certId = "CertId"
         }
     }
-    
+
     /// DescribeLiveCert返回参数结构体
     public struct DescribeLiveCertResponse: TCResponseModel {
         /// 证书信息。
         public let certInfo: CertInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certInfo = "CertInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取证书信息
     @inlinable
-    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCertResponse > {
+    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCertResponse> {
         self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取证书信息
     @inlinable
     public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
         try await self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取证书信息
     @inlinable
-    public func describeLiveCert(certId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCertResponse > {
+    public func describeLiveCert(certId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCertResponse> {
         self.describeLiveCert(DescribeLiveCertRequest(certId: certId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取证书信息
     @inlinable
     public func describeLiveCert(certId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {

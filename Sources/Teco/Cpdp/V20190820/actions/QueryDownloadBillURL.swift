@@ -19,52 +19,52 @@ extension Cpdp {
     public struct QueryDownloadBillURLRequest: TCRequestModel {
         /// 分配给商户的AppId。进件成功后返给商户方的AppId。
         public let merchantAppId: String
-        
+
         /// 渠道编号。固定值：ZSB2B
         public let channelCode: String
-        
+
         /// 对账单日期，格式yyyyMMdd
         public let billDate: String
-        
-        public init (merchantAppId: String, channelCode: String, billDate: String) {
+
+        public init(merchantAppId: String, channelCode: String, billDate: String) {
             self.merchantAppId = merchantAppId
             self.channelCode = channelCode
             self.billDate = billDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantAppId = "MerchantAppId"
             case channelCode = "ChannelCode"
             case billDate = "BillDate"
         }
     }
-    
+
     /// QueryDownloadBillURL返回参数结构体
     public struct QueryDownloadBillURLResponse: TCResponseModel {
         /// 分配给商户的AppId。进件成功后返给商户方的AppId。
         public let merchantAppId: String
-        
+
         /// 对账单下载地址。
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantAppId = "MerchantAppId"
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云鉴-查询对账单下载地址接口
     ///
     /// 云鉴-查询对账单下载地址的接口
     @inlinable
-    public func queryDownloadBillURL(_ input: QueryDownloadBillURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDownloadBillURLResponse > {
+    public func queryDownloadBillURL(_ input: QueryDownloadBillURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDownloadBillURLResponse> {
         self.client.execute(action: "QueryDownloadBillURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-查询对账单下载地址接口
     ///
     /// 云鉴-查询对账单下载地址的接口
@@ -72,15 +72,15 @@ extension Cpdp {
     public func queryDownloadBillURL(_ input: QueryDownloadBillURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDownloadBillURLResponse {
         try await self.client.execute(action: "QueryDownloadBillURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云鉴-查询对账单下载地址接口
     ///
     /// 云鉴-查询对账单下载地址的接口
     @inlinable
-    public func queryDownloadBillURL(merchantAppId: String, channelCode: String, billDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDownloadBillURLResponse > {
+    public func queryDownloadBillURL(merchantAppId: String, channelCode: String, billDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDownloadBillURLResponse> {
         self.queryDownloadBillURL(QueryDownloadBillURLRequest(merchantAppId: merchantAppId, channelCode: channelCode, billDate: billDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-查询对账单下载地址接口
     ///
     /// 云鉴-查询对账单下载地址的接口

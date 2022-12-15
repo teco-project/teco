@@ -19,38 +19,38 @@ extension Ssl {
     public struct CancelCertificateOrderRequest: TCRequestModel {
         /// 证书 ID。
         public let certificateId: String
-        
-        public init (certificateId: String) {
+
+        public init(certificateId: String) {
             self.certificateId = certificateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
         }
     }
-    
+
     /// CancelCertificateOrder返回参数结构体
     public struct CancelCertificateOrderResponse: TCResponseModel {
         /// 取消订单成功的证书 ID。
         public let certificateId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消证书订单
     ///
     /// 取消证书订单。
     @inlinable
-    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCertificateOrderResponse > {
+    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCertificateOrderResponse> {
         self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消证书订单
     ///
     /// 取消证书订单。
@@ -58,15 +58,15 @@ extension Ssl {
     public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
         try await self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消证书订单
     ///
     /// 取消证书订单。
     @inlinable
-    public func cancelCertificateOrder(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCertificateOrderResponse > {
+    public func cancelCertificateOrder(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCertificateOrderResponse> {
         self.cancelCertificateOrder(CancelCertificateOrderRequest(certificateId: certificateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消证书订单
     ///
     /// 取消证书订单。

@@ -19,25 +19,25 @@ extension Ciam {
     public struct LinkAccountRequest: TCRequestModel {
         /// 用户目录ID
         public let userStoreId: String
-        
+
         /// 主用户ID
         public let primaryUserId: String
-        
+
         /// 从用户ID
         public let secondaryUserId: String
-        
+
         /// 融合属性
         /// <li> **PHONENUMBER** </li>	  手机号码
         /// <li> **EMAIL** </li>  邮箱
         public let userLinkedOnAttribute: String
-        
-        public init (userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String) {
+
+        public init(userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String) {
             self.userStoreId = userStoreId
             self.primaryUserId = primaryUserId
             self.secondaryUserId = secondaryUserId
             self.userLinkedOnAttribute = userLinkedOnAttribute
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userStoreId = "UserStoreId"
             case primaryUserId = "PrimaryUserId"
@@ -45,35 +45,35 @@ extension Ciam {
             case userLinkedOnAttribute = "UserLinkedOnAttribute"
         }
     }
-    
+
     /// LinkAccount返回参数结构体
     public struct LinkAccountResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 账号融合
     @inlinable
-    public func linkAccount(_ input: LinkAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkAccountResponse > {
+    public func linkAccount(_ input: LinkAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkAccountResponse> {
         self.client.execute(action: "LinkAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 账号融合
     @inlinable
     public func linkAccount(_ input: LinkAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkAccountResponse {
         try await self.client.execute(action: "LinkAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 账号融合
     @inlinable
-    public func linkAccount(userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkAccountResponse > {
+    public func linkAccount(userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkAccountResponse> {
         self.linkAccount(LinkAccountRequest(userStoreId: userStoreId, primaryUserId: primaryUserId, secondaryUserId: secondaryUserId, userLinkedOnAttribute: userLinkedOnAttribute), logger: logger, on: eventLoop)
     }
-    
+
     /// 账号融合
     @inlinable
     public func linkAccount(userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkAccountResponse {

@@ -19,47 +19,47 @@ extension Yunjing {
     public struct InquiryPriceOpenProVersionPrepaidRequest: TCRequestModel {
         /// 预付费模式(包年包月)参数设置。
         public let chargePrepaid: ChargePrepaid
-        
+
         /// 需要开通专业版机器列表数组。
         public let machines: [ProVersionMachine]
-        
-        public init (chargePrepaid: ChargePrepaid, machines: [ProVersionMachine]) {
+
+        public init(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine]) {
             self.chargePrepaid = chargePrepaid
             self.machines = machines
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case chargePrepaid = "ChargePrepaid"
             case machines = "Machines"
         }
     }
-    
+
     /// InquiryPriceOpenProVersionPrepaid返回参数结构体
     public struct InquiryPriceOpenProVersionPrepaidResponse: TCResponseModel {
         /// 预支费用的原价，单位：元。
         public let originalPrice: Float
-        
+
         /// 预支费用的折扣价，单位：元。
         public let discountPrice: Float
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case originalPrice = "OriginalPrice"
             case discountPrice = "DiscountPrice"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通专业版询价(预付费)
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceOpenProVersionPrepaidResponse > {
+    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceOpenProVersionPrepaidResponse> {
         self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通专业版询价(预付费)
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
@@ -67,15 +67,15 @@ extension Yunjing {
     public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
         try await self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通专业版询价(预付费)
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceOpenProVersionPrepaidResponse > {
+    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceOpenProVersionPrepaidResponse> {
         self.inquiryPriceOpenProVersionPrepaid(InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通专业版询价(预付费)
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。

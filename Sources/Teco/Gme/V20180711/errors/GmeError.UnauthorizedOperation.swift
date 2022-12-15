@@ -21,52 +21,52 @@ extension TCGmeError {
             case unRealNameAuth = "UnauthorizedOperation.UnRealNameAuth"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建应用不被授权。
         public static var createAppDenied: UnauthorizedOperation {
             UnauthorizedOperation(.createAppDenied)
         }
-        
+
         /// 该用户未进行实名认证。
         public static var unRealNameAuth: UnauthorizedOperation {
             UnauthorizedOperation(.unRealNameAuth)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asGmeError() -> TCGmeError {
             let code: TCGmeError.Code
             switch self.error {
-            case .createAppDenied: 
+            case .createAppDenied:
                 code = .unauthorizedOperation_CreateAppDenied
-            case .unRealNameAuth: 
+            case .unRealNameAuth:
                 code = .unauthorizedOperation_UnRealNameAuth
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCGmeError(code, context: self.context)

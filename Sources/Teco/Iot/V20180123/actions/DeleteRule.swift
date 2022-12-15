@@ -19,44 +19,44 @@ extension Iot {
     public struct DeleteRuleRequest: TCRequestModel {
         /// 规则Id
         public let ruleId: String
-        
-        public init (ruleId: String) {
+
+        public init(ruleId: String) {
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// DeleteRule返回参数结构体
     public struct DeleteRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除规则
     @inlinable
-    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除规则
     @inlinable
     public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除规则
     @inlinable
-    public func deleteRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+    public func deleteRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.deleteRule(DeleteRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除规则
     @inlinable
     public func deleteRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {

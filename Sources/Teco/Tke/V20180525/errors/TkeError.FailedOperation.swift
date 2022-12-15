@@ -75,485 +75,485 @@ extension TCTkeError {
             case whitelistUnexpectedError = "FailedOperation.WhitelistUnexpectedError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 获取用户认证信息失败。
         ///
         /// 请提交工单联系我们协助处理
         public static var accountCommon: FailedOperation {
             FailedOperation(.accountCommon)
         }
-        
+
         /// 账户未通过认证。
         ///
         /// 请提交工单联系我们协助处理
         public static var accountUserNotAuthenticated: FailedOperation {
             FailedOperation(.accountUserNotAuthenticated)
         }
-        
+
         /// 伸缩组资源创建报错。
         ///
         /// 请提交工单联系我们协助处理
         public static var asCommon: FailedOperation {
             FailedOperation(.asCommon)
         }
-        
+
         /// 无该接口CAM权限。
         ///
         /// 请提交工单联系我们协助处理
         public static var camNoAuth: FailedOperation {
             FailedOperation(.camNoAuth)
         }
-        
+
         /// 请先删除包年包月计费资源。
         public static var clusterForbiddenToDelete: FailedOperation {
             FailedOperation(.clusterForbiddenToDelete)
         }
-        
+
         /// 集群未找到。
         ///
         /// 请提交工单联系我们协助处理
         public static var clusterNotFound: FailedOperation {
             FailedOperation(.clusterNotFound)
         }
-        
+
         /// 集群状态错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var clusterState: FailedOperation {
             FailedOperation(.clusterState)
         }
-        
+
         /// 集群节点版本过低。
         ///
         /// 请提交工单联系我们协助处理
         public static var clusterUpgradeNodeVersion: FailedOperation {
             FailedOperation(.clusterUpgradeNodeVersion)
         }
-        
+
         /// 请向腾讯云提工单寻求支持。
         public static var componentClientCommon: FailedOperation {
             FailedOperation(.componentClientCommon)
         }
-        
+
         /// 内部HTTP客户端错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var componentClientHttp: FailedOperation {
             FailedOperation(.componentClientHttp)
         }
-        
+
         /// 内部HTTP解包失败。
         ///
         /// 请提交工单联系我们协助处理
         public static var componentClientUnpack: FailedOperation {
             FailedOperation(.componentClientUnpack)
         }
-        
+
         /// 请求(http请求)其他云服务失败。
         ///
         /// 请提交工单联系我们协助处理
         public static var componentClinetHttp: FailedOperation {
             FailedOperation(.componentClinetHttp)
         }
-        
+
         public static var createClsClient: FailedOperation {
             FailedOperation(.createClsClient)
         }
-        
+
         public static var createClsConfig: FailedOperation {
             FailedOperation(.createClsConfig)
         }
-        
+
         public static var createClsIndex: FailedOperation {
             FailedOperation(.createClsIndex)
         }
-        
+
         public static var createClsLogSet: FailedOperation {
             FailedOperation(.createClsLogSet)
         }
-        
+
         public static var createClsMachineGroup: FailedOperation {
             FailedOperation(.createClsMachineGroup)
         }
-        
+
         /// 请向腾讯云提工单寻求支持。
         public static var createClsTopic: FailedOperation {
             FailedOperation(.createClsTopic)
         }
-        
+
         /// cvm创建节点报错。
         ///
         /// 请提交工单联系我们协助处理
         public static var cvmCommon: FailedOperation {
             FailedOperation(.cvmCommon)
         }
-        
+
         /// 存在云服务器在CVM侧查询不到。
         ///
         /// 请提交工单联系我们协助处理
         public static var cvmNumberNotMatch: FailedOperation {
             FailedOperation(.cvmNumberNotMatch)
         }
-        
+
         /// CVM未知错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var cvmUnexpectedError: FailedOperation {
             FailedOperation(.cvmUnexpectedError)
         }
-        
+
         /// CVM 和 VPC ID 不匹配。
         ///
         /// 请提交工单联系我们协助处理
         public static var cvmVpcidNotMatch: FailedOperation {
             FailedOperation(.cvmVpcidNotMatch)
         }
-        
+
         /// db错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var db: FailedOperation {
             FailedOperation(.db)
         }
-        
+
         /// 记录未找到。
         ///
         /// 请提交工单联系我们协助处理
         public static var dbRecordNotFound: FailedOperation {
             FailedOperation(.dbRecordNotFound)
         }
-        
+
         /// 获得安全组配额失败。
         ///
         /// 请提交工单联系我们协助处理
         public static var dfwGetUSGQuota: FailedOperation {
             FailedOperation(.dfwGetUSGQuota)
         }
-        
+
         public static var disableVPCCNIFailed: FailedOperation {
             FailedOperation(.disableVPCCNIFailed)
         }
-        
+
         public static var enableVPCCNIFailed: FailedOperation {
             FailedOperation(.enableVPCCNIFailed)
         }
-        
+
         public static var getClsConfig: FailedOperation {
             FailedOperation(.getClsConfig)
         }
-        
+
         /// 请向腾讯云提工单寻求支持。
         public static var getClsLogSet: FailedOperation {
             FailedOperation(.getClsLogSet)
         }
-        
+
         public static var getClsMachineGroup: FailedOperation {
             FailedOperation(.getClsMachineGroup)
         }
-        
+
         public static var kubeClientConf: FailedOperation {
             FailedOperation(.kubeClientConf)
         }
-        
+
         /// 连接用户Kubernetes集群失败。
         ///
         /// 请提交工单联系我们协助处理
         public static var kubeClientConnection: FailedOperation {
             FailedOperation(.kubeClientConnection)
         }
-        
+
         /// KubernetesAPI错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var kubeCommon: FailedOperation {
             FailedOperation(.kubeCommon)
         }
-        
+
         /// Kubernetes client建立失败。
         ///
         /// 请提交工单联系我们协助处理
         public static var kubernetesClientBuildError: FailedOperation {
             FailedOperation(.kubernetesClientBuildError)
         }
-        
+
         /// 创建集群Client出错。
         ///
         /// 请提交工单联系我们协助处理
         public static var kubernetesCreateOperationError: FailedOperation {
             FailedOperation(.kubernetesCreateOperationError)
         }
-        
+
         /// 请重试。
         public static var kubernetesDeleteOperationError: FailedOperation {
             FailedOperation(.kubernetesDeleteOperationError)
         }
-        
+
         /// 获取Kubernetes资源失败。
         public static var kubernetesGetOperationError: FailedOperation {
             FailedOperation(.kubernetesGetOperationError)
         }
-        
+
         /// Kubernetes未知错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var kubernetesInternal: FailedOperation {
             FailedOperation(.kubernetesInternal)
         }
-        
+
         /// 请重试。
         public static var kubernetesPatchOperationError: FailedOperation {
             FailedOperation(.kubernetesPatchOperationError)
         }
-        
+
         /// 底层调用CLB未知错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var lbCommon: FailedOperation {
             FailedOperation(.lbCommon)
         }
-        
+
         public static var modifyClsIndex: FailedOperation {
             FailedOperation(.modifyClsIndex)
         }
-        
+
         /// 网络扩展错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var networkScaleError: FailedOperation {
             FailedOperation(.networkScaleError)
         }
-        
+
         /// 镜像OS不支持。
         ///
         /// 请提交工单联系我们协助处理
         public static var osNotSupport: FailedOperation {
             FailedOperation(.osNotSupport)
         }
-        
+
         /// 参数错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var param: FailedOperation {
             FailedOperation(.param)
         }
-        
+
         /// 超过配额限制。
         ///
         /// 请提交工单联系我们协助处理
         public static var quotaMaxClsLimit: FailedOperation {
             FailedOperation(.quotaMaxClsLimit)
         }
-        
+
         /// 超过配额限制。
         ///
         /// 请提交工单联系我们协助处理
         public static var quotaMaxNodLimit: FailedOperation {
             FailedOperation(.quotaMaxNodLimit)
         }
-        
+
         /// 安全组配额不足。
         ///
         /// 请提交工单联系我们协助处理
         public static var quotaUSGLimit: FailedOperation {
             FailedOperation(.quotaUSGLimit)
         }
-        
+
         /// 子账户RBAC权限不足。
         public static var rbacForbidden: FailedOperation {
             FailedOperation(.rbacForbidden)
         }
-        
+
         public static var recordNotFound: FailedOperation {
             FailedOperation(.recordNotFound)
         }
-        
+
         /// 已有相同任务执行中。
         ///
         /// 请提交工单联系我们协助处理
         public static var taskAlreadyRunning: FailedOperation {
             FailedOperation(.taskAlreadyRunning)
         }
-        
+
         /// 询价错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var tradeCommon: FailedOperation {
             FailedOperation(.tradeCommon)
         }
-        
+
         public static var unexpectedError: FailedOperation {
             FailedOperation(.unexpectedError)
         }
-        
+
         /// VPC报错。
         ///
         /// 请提交工单联系我们协助处理
         public static var vpcCommon: FailedOperation {
             FailedOperation(.vpcCommon)
         }
-        
+
         /// 未发现vpc记录。
         ///
         /// 请提交工单联系我们协助处理
         public static var vpcRecodrNotFound: FailedOperation {
             FailedOperation(.vpcRecodrNotFound)
         }
-        
+
         /// VPC未知错误。
         ///
         /// 请提交工单联系我们协助处理
         public static var vpcUnexpectedError: FailedOperation {
             FailedOperation(.vpcUnexpectedError)
         }
-        
+
         /// 请提单申请。
         public static var whitelistUnexpectedError: FailedOperation {
             FailedOperation(.whitelistUnexpectedError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTkeError() -> TCTkeError {
             let code: TCTkeError.Code
             switch self.error {
-            case .accountCommon: 
+            case .accountCommon:
                 code = .failedOperation_AccountCommon
-            case .accountUserNotAuthenticated: 
+            case .accountUserNotAuthenticated:
                 code = .failedOperation_AccountUserNotAuthenticated
-            case .asCommon: 
+            case .asCommon:
                 code = .failedOperation_AsCommon
-            case .camNoAuth: 
+            case .camNoAuth:
                 code = .failedOperation_CamNoAuth
-            case .clusterForbiddenToDelete: 
+            case .clusterForbiddenToDelete:
                 code = .failedOperation_ClusterForbiddenToDelete
-            case .clusterNotFound: 
+            case .clusterNotFound:
                 code = .failedOperation_ClusterNotFound
-            case .clusterState: 
+            case .clusterState:
                 code = .failedOperation_ClusterState
-            case .clusterUpgradeNodeVersion: 
+            case .clusterUpgradeNodeVersion:
                 code = .failedOperation_ClusterUpgradeNodeVersion
-            case .componentClientCommon: 
+            case .componentClientCommon:
                 code = .failedOperation_ComponentClientCommon
-            case .componentClientHttp: 
+            case .componentClientHttp:
                 code = .failedOperation_ComponentClientHttp
-            case .componentClientUnpack: 
+            case .componentClientUnpack:
                 code = .failedOperation_ComponentClientUnpack
-            case .componentClinetHttp: 
+            case .componentClinetHttp:
                 code = .failedOperation_ComponentClinetHttp
-            case .createClsClient: 
+            case .createClsClient:
                 code = .failedOperation_CreateClsClient
-            case .createClsConfig: 
+            case .createClsConfig:
                 code = .failedOperation_CreateClsConfig
-            case .createClsIndex: 
+            case .createClsIndex:
                 code = .failedOperation_CreateClsIndex
-            case .createClsLogSet: 
+            case .createClsLogSet:
                 code = .failedOperation_CreateClsLogSet
-            case .createClsMachineGroup: 
+            case .createClsMachineGroup:
                 code = .failedOperation_CreateClsMachineGroup
-            case .createClsTopic: 
+            case .createClsTopic:
                 code = .failedOperation_CreateClsTopic
-            case .cvmCommon: 
+            case .cvmCommon:
                 code = .failedOperation_CvmCommon
-            case .cvmNumberNotMatch: 
+            case .cvmNumberNotMatch:
                 code = .failedOperation_CvmNumberNotMatch
-            case .cvmUnexpectedError: 
+            case .cvmUnexpectedError:
                 code = .failedOperation_CVMUnexpectedError
-            case .cvmVpcidNotMatch: 
+            case .cvmVpcidNotMatch:
                 code = .failedOperation_CvmVpcidNotMatch
-            case .db: 
+            case .db:
                 code = .failedOperation_Db
-            case .dbRecordNotFound: 
+            case .dbRecordNotFound:
                 code = .failedOperation_DbRecordNotFound
-            case .dfwGetUSGQuota: 
+            case .dfwGetUSGQuota:
                 code = .failedOperation_DfwGetUSGQuota
-            case .disableVPCCNIFailed: 
+            case .disableVPCCNIFailed:
                 code = .failedOperation_DisableVPCCNIFailed
-            case .enableVPCCNIFailed: 
+            case .enableVPCCNIFailed:
                 code = .failedOperation_EnableVPCCNIFailed
-            case .getClsConfig: 
+            case .getClsConfig:
                 code = .failedOperation_GetClsConfig
-            case .getClsLogSet: 
+            case .getClsLogSet:
                 code = .failedOperation_GetClsLogSet
-            case .getClsMachineGroup: 
+            case .getClsMachineGroup:
                 code = .failedOperation_GetClsMachineGroup
-            case .kubeClientConf: 
+            case .kubeClientConf:
                 code = .failedOperation_KubeClientConf
-            case .kubeClientConnection: 
+            case .kubeClientConnection:
                 code = .failedOperation_KubeClientConnection
-            case .kubeCommon: 
+            case .kubeCommon:
                 code = .failedOperation_KubeCommon
-            case .kubernetesClientBuildError: 
+            case .kubernetesClientBuildError:
                 code = .failedOperation_KubernetesClientBuildError
-            case .kubernetesCreateOperationError: 
+            case .kubernetesCreateOperationError:
                 code = .failedOperation_KubernetesCreateOperationError
-            case .kubernetesDeleteOperationError: 
+            case .kubernetesDeleteOperationError:
                 code = .failedOperation_KubernetesDeleteOperationError
-            case .kubernetesGetOperationError: 
+            case .kubernetesGetOperationError:
                 code = .failedOperation_KubernetesGetOperationError
-            case .kubernetesInternal: 
+            case .kubernetesInternal:
                 code = .failedOperation_KubernetesInternal
-            case .kubernetesPatchOperationError: 
+            case .kubernetesPatchOperationError:
                 code = .failedOperation_KubernetesPatchOperationError
-            case .lbCommon: 
+            case .lbCommon:
                 code = .failedOperation_LbCommon
-            case .modifyClsIndex: 
+            case .modifyClsIndex:
                 code = .failedOperation_ModifyClsIndex
-            case .networkScaleError: 
+            case .networkScaleError:
                 code = .failedOperation_NetworkScaleError
-            case .osNotSupport: 
+            case .osNotSupport:
                 code = .failedOperation_OsNotSupport
-            case .param: 
+            case .param:
                 code = .failedOperation_Param
-            case .quotaMaxClsLimit: 
+            case .quotaMaxClsLimit:
                 code = .failedOperation_QuotaMaxClsLimit
-            case .quotaMaxNodLimit: 
+            case .quotaMaxNodLimit:
                 code = .failedOperation_QuotaMaxNodLimit
-            case .quotaUSGLimit: 
+            case .quotaUSGLimit:
                 code = .failedOperation_QuotaUSGLimit
-            case .rbacForbidden: 
+            case .rbacForbidden:
                 code = .failedOperation_RBACForbidden
-            case .recordNotFound: 
+            case .recordNotFound:
                 code = .failedOperation_RecordNotFound
-            case .taskAlreadyRunning: 
+            case .taskAlreadyRunning:
                 code = .failedOperation_TaskAlreadyRunning
-            case .tradeCommon: 
+            case .tradeCommon:
                 code = .failedOperation_TradeCommon
-            case .unexpectedError: 
+            case .unexpectedError:
                 code = .failedOperation_UnexpectedError
-            case .vpcCommon: 
+            case .vpcCommon:
                 code = .failedOperation_VpcCommon
-            case .vpcRecodrNotFound: 
+            case .vpcRecodrNotFound:
                 code = .failedOperation_VpcRecodrNotFound
-            case .vpcUnexpectedError: 
+            case .vpcUnexpectedError:
                 code = .failedOperation_VPCUnexpectedError
-            case .whitelistUnexpectedError: 
+            case .whitelistUnexpectedError:
                 code = .failedOperation_WhitelistUnexpectedError
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCTkeError(code, context: self.context)

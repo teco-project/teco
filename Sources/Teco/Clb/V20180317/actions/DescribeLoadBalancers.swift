@@ -19,60 +19,60 @@ extension Clb {
     public struct DescribeLoadBalancersRequest: TCRequestModel {
         /// 负载均衡实例ID。实例ID数量上限为20个。
         public let loadBalancerIds: [String]?
-        
+
         /// 负载均衡实例的网络类型：
         /// OPEN：公网属性， INTERNAL：内网属性。
         public let loadBalancerType: String?
-        
+
         /// 负载均衡实例的类型。1：通用的负载均衡实例，0：传统型负载均衡实例。如果不传此参数，则查询所有类型的负载均衡实例。
         public let forward: Int64?
-        
+
         /// 负载均衡实例的名称。
         public let loadBalancerName: String?
-        
+
         /// 腾讯云为负载均衡实例分配的域名，本参数仅对传统型公网负载均衡才有意义。
         public let domain: String?
-        
+
         /// 负载均衡实例的 VIP 地址，支持多个。
         public let loadBalancerVips: [String]?
-        
+
         /// 负载均衡绑定的后端服务的外网 IP，只支持查询云服务器的公网 IP。
         public let backendPublicIps: [String]?
-        
+
         /// 负载均衡绑定的后端服务的内网 IP，只支持查询云服务器的内网 IP。
         public let backendPrivateIps: [String]?
-        
+
         /// 数据偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 返回负载均衡实例的数量，默认为20，最大值为100。
         public let limit: Int64?
-        
+
         /// 排序参数，支持以下字段：LoadBalancerName，CreateTime，Domain，LoadBalancerType。
         public let orderBy: String?
-        
+
         /// 1：倒序，0：顺序，默认按照创建时间倒序。
         public let orderType: Int64?
-        
+
         /// 搜索字段，模糊匹配名称、域名、VIP。
         public let searchKey: String?
-        
+
         /// 负载均衡实例所属的项目 ID，可以通过 DescribeProject 接口获取。
         public let projectId: Int64?
-        
+
         /// 负载均衡是否绑定后端服务，0：没有绑定后端服务，1：绑定后端服务，-1：查询全部。
         public let withRs: Int64?
-        
+
         /// 负载均衡实例所属私有网络唯一ID，如 vpc-bhqkbhdx，
         /// 基础网络可传入'0'。
         public let vpcId: String?
-        
+
         /// 安全组ID，如 sg-m1cc****。
         public let securityGroup: String?
-        
+
         /// 主可用区ID，如 ："100001" （对应的是广州一区）。
         public let masterZone: String?
-        
+
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。<br/>`Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
         /// <li> charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的实例计费模式过滤，包括"PREPAID","POSTPAID_BY_HOUR"。</li>
         /// <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
@@ -84,8 +84,8 @@ extension Clb {
         /// <li> vip-isp - String - 是否必填：否 - （过滤条件）按照 CLB VIP的运营商类型过滤，如："BGP","INTERNAL","CMCC","CTCC","CUCC"等。</li>
         /// <li> sla-type - String - 是否必填：否 - （过滤条件）按照 CLB 的性能容量型规格过滤，包括"clb.c2.medium","clb.c3.small","clb.c3.medium","clb.c4.small","clb.c4.medium","clb.c4.large","clb.c4.xlarge"。</li>
         public let filters: [Filter]?
-        
-        public init (loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, forward: Int64? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, backendPublicIps: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, searchKey: String? = nil, projectId: Int64? = nil, withRs: Int64? = nil, vpcId: String? = nil, securityGroup: String? = nil, masterZone: String? = nil, filters: [Filter]? = nil) {
+
+        public init(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, forward: Int64? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, backendPublicIps: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, searchKey: String? = nil, projectId: Int64? = nil, withRs: Int64? = nil, vpcId: String? = nil, securityGroup: String? = nil, masterZone: String? = nil, filters: [Filter]? = nil) {
             self.loadBalancerIds = loadBalancerIds
             self.loadBalancerType = loadBalancerType
             self.forward = forward
@@ -106,7 +106,7 @@ extension Clb {
             self.masterZone = masterZone
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerIds = "LoadBalancerIds"
             case loadBalancerType = "LoadBalancerType"
@@ -129,33 +129,33 @@ extension Clb {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeLoadBalancers返回参数结构体
     public struct DescribeLoadBalancersResponse: TCResponseModel {
         /// 满足过滤条件的负载均衡实例总数。此数值与入参中的Limit无关。
         public let totalCount: UInt64
-        
+
         /// 返回的负载均衡实例数组。
         public let loadBalancerSet: [LoadBalancer]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case loadBalancerSet = "LoadBalancerSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询负载均衡实例列表
     ///
     /// 查询一个地域的负载均衡实例列表。
     @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
         self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询负载均衡实例列表
     ///
     /// 查询一个地域的负载均衡实例列表。
@@ -163,15 +163,15 @@ extension Clb {
     public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
         try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询负载均衡实例列表
     ///
     /// 查询一个地域的负载均衡实例列表。
     @inlinable
-    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, forward: Int64? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, backendPublicIps: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, searchKey: String? = nil, projectId: Int64? = nil, withRs: Int64? = nil, vpcId: String? = nil, securityGroup: String? = nil, masterZone: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, forward: Int64? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, backendPublicIps: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, searchKey: String? = nil, projectId: Int64? = nil, withRs: Int64? = nil, vpcId: String? = nil, securityGroup: String? = nil, masterZone: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
         self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, backendPublicIps: backendPublicIps, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchKey: searchKey, projectId: projectId, withRs: withRs, vpcId: vpcId, securityGroup: securityGroup, masterZone: masterZone, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询负载均衡实例列表
     ///
     /// 查询一个地域的负载均衡实例列表。

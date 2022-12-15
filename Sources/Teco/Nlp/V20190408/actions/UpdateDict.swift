@@ -19,44 +19,44 @@ extension Nlp {
     public struct UpdateDictRequest: TCRequestModel {
         /// 自定义词库ID。
         public let dictId: String
-        
+
         /// 词库描述，不超过100字。
         public let description: String?
-        
+
         /// 词库名称，不超过20字。
         public let name: String?
-        
-        public init (dictId: String, description: String? = nil, name: String? = nil) {
+
+        public init(dictId: String, description: String? = nil, name: String? = nil) {
             self.dictId = dictId
             self.description = description
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dictId = "DictId"
             case description = "Description"
             case name = "Name"
         }
     }
-    
+
     /// UpdateDict返回参数结构体
     public struct UpdateDictResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。
     @inlinable
-    public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictResponse > {
+    public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictResponse> {
         self.client.execute(action: "UpdateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。
@@ -64,15 +64,15 @@ extension Nlp {
     public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
         try await self.client.execute(action: "UpdateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。
     @inlinable
-    public func updateDict(dictId: String, description: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictResponse > {
+    public func updateDict(dictId: String, description: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictResponse> {
         self.updateDict(UpdateDictRequest(dictId: dictId, description: description, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。

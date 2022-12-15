@@ -19,23 +19,23 @@ extension Cfw {
     public struct ModifyAllRuleStatusRequest: TCRequestModel {
         /// 状态，0：全部停用，1：全部启用
         public let status: UInt64
-        
+
         /// 方向，0：出站，1：入站
         public let direction: UInt64?
-        
+
         /// Edge ID值
         public let edgeId: String?
-        
+
         /// NAT地域
         public let area: String?
-        
-        public init (status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil) {
+
+        public init(status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil) {
             self.status = status
             self.direction = direction
             self.edgeId = edgeId
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case direction = "Direction"
@@ -43,40 +43,40 @@ extension Cfw {
             case area = "Area"
         }
     }
-    
+
     /// ModifyAllRuleStatus返回参数结构体
     public struct ModifyAllRuleStatusResponse: TCResponseModel {
         /// 0: 修改成功, 其他: 修改失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用停用全部规则
     @inlinable
-    public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAllRuleStatusResponse > {
+    public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAllRuleStatusResponse> {
         self.client.execute(action: "ModifyAllRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用停用全部规则
     @inlinable
     public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllRuleStatusResponse {
         try await self.client.execute(action: "ModifyAllRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用停用全部规则
     @inlinable
-    public func modifyAllRuleStatus(status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAllRuleStatusResponse > {
+    public func modifyAllRuleStatus(status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAllRuleStatusResponse> {
         self.modifyAllRuleStatus(ModifyAllRuleStatusRequest(status: status, direction: direction, edgeId: edgeId, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用停用全部规则
     @inlinable
     public func modifyAllRuleStatus(status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllRuleStatusResponse {

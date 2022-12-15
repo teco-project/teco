@@ -19,29 +19,29 @@ extension Tsf {
     public struct DescribePublicConfigSummaryRequest: TCRequestModel {
         /// 查询关键字，模糊查询：配置项名称，不传入时查询全量
         public let searchWord: String?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 每页条数，默认为20
         public let limit: Int64?
-        
+
         /// 按时间排序：creation_time；按名称排序：config_name
         public let orderBy: String?
-        
+
         /// 升序传 0，降序传 1
         public let orderType: Int64?
-        
+
         /// 无
         public let configTagList: [String]?
-        
+
         /// 无
         public let disableProgramAuthCheck: Bool?
-        
+
         /// 无
         public let configIdList: [String]?
-        
-        public init (searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil) {
+
+        public init(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil) {
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
@@ -51,7 +51,7 @@ extension Tsf {
             self.disableProgramAuthCheck = disableProgramAuthCheck
             self.configIdList = configIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case searchWord = "SearchWord"
             case offset = "Offset"
@@ -63,40 +63,40 @@ extension Tsf {
             case configIdList = "ConfigIdList"
         }
     }
-    
+
     /// DescribePublicConfigSummary返回参数结构体
     public struct DescribePublicConfigSummaryResponse: TCResponseModel {
         /// 分页的全局配置统计信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageConfig?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询公共配置汇总列表
     @inlinable
-    public func describePublicConfigSummary(_ input: DescribePublicConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigSummaryResponse > {
+    public func describePublicConfigSummary(_ input: DescribePublicConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigSummaryResponse> {
         self.client.execute(action: "DescribePublicConfigSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询公共配置汇总列表
     @inlinable
     public func describePublicConfigSummary(_ input: DescribePublicConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigSummaryResponse {
         try await self.client.execute(action: "DescribePublicConfigSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询公共配置汇总列表
     @inlinable
-    public func describePublicConfigSummary(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigSummaryResponse > {
+    public func describePublicConfigSummary(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigSummaryResponse> {
         self.describePublicConfigSummary(DescribePublicConfigSummaryRequest(searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询公共配置汇总列表
     @inlinable
     public func describePublicConfigSummary(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigSummaryResponse {

@@ -19,52 +19,52 @@ extension Teo {
     public struct DescribeZonesRequest: TCRequestModel {
         /// 分页查询偏移量。默认值：0，最小值：0。
         public let offset: Int64?
-        
+
         /// 分页查询限制数目。默认值：1000，最大值：1000。
         public let limit: Int64?
-        
+
         /// 查询条件过滤器，复杂类型。
         public let filters: [ZoneFilter]?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [ZoneFilter]? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, filters: [ZoneFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeZones返回参数结构体
     public struct DescribeZonesResponse: TCResponseModel {
         /// 符合条件的站点个数。
         public let totalCount: Int64
-        
+
         /// 站点详细信息列表。
         public let zones: [Zone]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case zones = "Zones"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页
     @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页
@@ -72,15 +72,15 @@ extension Teo {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页
     @inlinable
-    public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [ZoneFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+    public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [ZoneFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.describeZones(DescribeZonesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页

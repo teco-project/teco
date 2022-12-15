@@ -19,42 +19,42 @@ extension Vod {
     public struct DescribeStorageDataRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
-        public init (subAppId: UInt64? = nil) {
+
+        public init(subAppId: UInt64? = nil) {
             self.subAppId = subAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subAppId = "SubAppId"
         }
     }
-    
+
     /// DescribeStorageData返回参数结构体
     public struct DescribeStorageDataResponse: TCResponseModel {
         /// 当前媒体总量。
         public let mediaCount: UInt64
-        
+
         /// 当前总存储量，单位是字节。
         public let totalStorage: UInt64
-        
+
         /// 当前标准存储量，单位是字节。
         public let standardStorage: UInt64
-        
+
         /// 当前低频存储量，单位是字节。
         public let infrequentStorage: UInt64
-        
+
         /// 当前归档存储量，单位是字节。
         public let archiveStorage: UInt64
-        
+
         /// 当前深度归档存储量，单位是字节。
         public let deepArchiveStorage: UInt64
-        
+
         /// 各计费区域的存储用量。
         public let storageStat: [StorageStatData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaCount = "MediaCount"
             case totalStorage = "TotalStorage"
@@ -66,15 +66,15 @@ extension Vod {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询当前存储情况
     ///
     /// 查询存储空间使用情况和文件数量。
     @inlinable
-    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDataResponse > {
+    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDataResponse> {
         self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询当前存储情况
     ///
     /// 查询存储空间使用情况和文件数量。
@@ -82,15 +82,15 @@ extension Vod {
     public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
         try await self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询当前存储情况
     ///
     /// 查询存储空间使用情况和文件数量。
     @inlinable
-    public func describeStorageData(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDataResponse > {
+    public func describeStorageData(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDataResponse> {
         self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询当前存储情况
     ///
     /// 查询存储空间使用情况和文件数量。

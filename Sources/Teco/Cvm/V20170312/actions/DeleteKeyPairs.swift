@@ -19,36 +19,36 @@ extension Cvm {
     public struct DeleteKeyPairsRequest: TCRequestModel {
         /// 一个或多个待操作的密钥对ID。每次请求批量密钥对的上限为100。<br>可以通过以下方式获取可用的密钥ID：<br><li>通过登录[控制台](https://console.cloud.tencent.com/cvm/sshkey)查询密钥ID。<br><li>通过调用接口 [DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699) ，取返回信息中的 `KeyId` 获取密钥对ID。
         public let keyIds: [String]
-        
-        public init (keyIds: [String]) {
+
+        public init(keyIds: [String]) {
             self.keyIds = keyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
         }
     }
-    
+
     /// DeleteKeyPairs返回参数结构体
     public struct DeleteKeyPairsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable
-    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteKeyPairsResponse > {
+    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
@@ -58,17 +58,17 @@ extension Cvm {
     public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
         try await self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable
-    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteKeyPairsResponse > {
+    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。

@@ -19,23 +19,23 @@ extension Essbasic {
     public struct CheckBankCard4EVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
         public let caller: Caller
-        
+
         /// 银行卡号
         public let bankCard: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 身份证件号码
         public let idCardNumber: String?
-        
+
         /// 手机号
         public let mobile: String?
-        
+
         /// 身份证件类型; ID_CARD
         public let idCardType: String?
-        
-        public init (caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil) {
+
+        public init(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil) {
             self.caller = caller
             self.bankCard = bankCard
             self.name = name
@@ -43,7 +43,7 @@ extension Essbasic {
             self.mobile = mobile
             self.idCardType = idCardType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case bankCard = "BankCard"
@@ -53,7 +53,7 @@ extension Essbasic {
             case idCardType = "IdCardType"
         }
     }
-    
+
     /// CheckBankCard4EVerification返回参数结构体
     public struct CheckBankCard4EVerificationResponse: TCResponseModel {
         /// 检测结果
@@ -79,28 +79,28 @@ extension Essbasic {
         ///   104: 身份证号码有误
         ///   105: 手机号码不合法
         public let result: Int64
-        
+
         /// 结果描述; 未通过时必选
         public let description: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case description = "Description"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 银行卡四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡四要素
     @inlinable
-    public func checkBankCard4EVerification(_ input: CheckBankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCard4EVerificationResponse > {
+    public func checkBankCard4EVerification(_ input: CheckBankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard4EVerificationResponse> {
         self.client.execute(action: "CheckBankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 银行卡四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡四要素
@@ -108,15 +108,15 @@ extension Essbasic {
     public func checkBankCard4EVerification(_ input: CheckBankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard4EVerificationResponse {
         try await self.client.execute(action: "CheckBankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 银行卡四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡四要素
     @inlinable
-    public func checkBankCard4EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCard4EVerificationResponse > {
+    public func checkBankCard4EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard4EVerificationResponse> {
         self.checkBankCard4EVerification(CheckBankCard4EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), logger: logger, on: eventLoop)
     }
-    
+
     /// 银行卡四要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡四要素

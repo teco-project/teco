@@ -19,27 +19,27 @@ extension Faceid {
     public struct CheckIdNameDateRequest: TCRequestModel {
         /// 姓名
         public let name: String
-        
+
         /// 身份证号
         public let idCard: String
-        
+
         /// 身份证有效期开始时间，格式：YYYYMMDD。如：20210701
         public let validityBegin: String
-        
+
         /// 身份证有效期到期时间，格式：YYYYMMDD，长期用“00000000”代替；如：20210701
         public let validityEnd: String
-        
+
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         public let encryption: Encryption?
-        
-        public init (name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil) {
+
+        public init(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil) {
             self.name = name
             self.idCard = idCard
             self.validityBegin = validityBegin
             self.validityEnd = validityEnd
             self.encryption = encryption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case idCard = "IdCard"
@@ -48,7 +48,7 @@ extension Faceid {
             case encryption = "Encryption"
         }
     }
-    
+
     /// CheckIdNameDate返回参数结构体
     public struct CheckIdNameDateResponse: TCResponseModel {
         /// 认证结果码，收费情况如下。
@@ -63,28 +63,28 @@ extension Faceid {
         /// -6: 证件库服务异常
         /// -7: 证件库中无此身份证记录
         public let result: String
-        
+
         /// 业务结果描述。
         public let description: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case description = "Description"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 身份信息及有效期核验
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
-    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdNameDateResponse > {
+    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdNameDateResponse> {
         self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 身份信息及有效期核验
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
@@ -92,15 +92,15 @@ extension Faceid {
     public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
         try await self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 身份信息及有效期核验
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
-    public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdNameDateResponse > {
+    public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdNameDateResponse> {
         self.checkIdNameDate(CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption), logger: logger, on: eventLoop)
     }
-    
+
     /// 身份信息及有效期核验
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。

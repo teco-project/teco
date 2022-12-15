@@ -19,23 +19,23 @@ extension Rum {
     public struct DescribeProjectsRequest: TCRequestModel {
         /// 分页每页数目，整型
         public let limit: UInt64
-        
+
         /// 分页页码，整型
         public let offset: UInt64
-        
+
         /// 过滤参数；demo模式传{"Name": "IsDemo", "Values":["1"]}
         public let filters: [Filter]?
-        
+
         /// 该参数已废弃，demo模式请在Filters内注明
         public let isDemo: Int64?
-        
-        public init (limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil) {
+
+        public init(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.isDemo = isDemo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -43,33 +43,33 @@ extension Rum {
             case isDemo = "IsDemo"
         }
     }
-    
+
     /// DescribeProjects返回参数结构体
     public struct DescribeProjectsResponse: TCResponseModel {
         /// 列表总数
         public let totalCount: UInt64
-        
+
         /// 项目列表
         public let projectSet: [RumProject]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case projectSet = "ProjectSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取项目列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
         self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
@@ -77,15 +77,15 @@ extension Rum {
     public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
         try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取项目列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
-    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
         self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）

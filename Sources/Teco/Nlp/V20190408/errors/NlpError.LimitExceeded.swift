@@ -19,38 +19,38 @@ extension TCNlpError {
         enum Code: String {
             case resourceReachedLimit = "LimitExceeded.ResourceReachedLimit"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源用量达到上限
         public static var resourceReachedLimit: LimitExceeded {
             LimitExceeded(.resourceReachedLimit)
         }
-        
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .resourceReachedLimit: 
+            case .resourceReachedLimit:
                 code = .limitExceeded_ResourceReachedLimit
             }
             return TCNlpError(code, context: self.context)

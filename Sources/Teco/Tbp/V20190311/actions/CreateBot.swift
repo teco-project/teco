@@ -19,57 +19,57 @@ extension Tbp {
     public struct CreateBotRequest: TCRequestModel {
         /// 机器人名称
         public let botName: String
-        
+
         /// 机器人中文名称
         public let botCnName: String?
-        
-        public init (botName: String, botCnName: String? = nil) {
+
+        public init(botName: String, botCnName: String? = nil) {
             self.botName = botName
             self.botCnName = botCnName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case botName = "BotName"
             case botCnName = "BotCnName"
         }
     }
-    
+
     /// CreateBot返回参数结构体
     public struct CreateBotResponse: TCResponseModel {
         /// 任务ID
         public let taskRequestId: String
-        
+
         /// 任务信息
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskRequestId = "TaskRequestId"
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建机器人
     @inlinable
-    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotResponse > {
+    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBotResponse> {
         self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建机器人
     @inlinable
     public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
         try await self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建机器人
     @inlinable
-    public func createBot(botName: String, botCnName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotResponse > {
+    public func createBot(botName: String, botCnName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBotResponse> {
         self.createBot(CreateBotRequest(botName: botName, botCnName: botCnName), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建机器人
     @inlinable
     public func createBot(botName: String, botCnName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {

@@ -21,43 +21,43 @@ extension Cii {
         /// Structured 仅结构化
         /// Underwrite 结构化+核保
         public let serviceType: String
-        
+
         /// 文件地址数组
         public let fileList: [String]
-        
-        public init (serviceType: String, fileList: [String]) {
+
+        public init(serviceType: String, fileList: [String]) {
             self.serviceType = serviceType
             self.fileList = fileList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceType = "ServiceType"
             case fileList = "FileList"
         }
     }
-    
+
     /// DescribeReportClassify返回参数结构体
     public struct DescribeReportClassifyResponse: TCResponseModel {
         /// 报告分类结果
         public let reports: [ClassifiedReports]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case reports = "Reports"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 报告自动分类
     ///
     /// 辅助用户对批量报告自动分类
     @inlinable
-    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReportClassifyResponse > {
+    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportClassifyResponse> {
         self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 报告自动分类
     ///
     /// 辅助用户对批量报告自动分类
@@ -65,15 +65,15 @@ extension Cii {
     public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
         try await self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 报告自动分类
     ///
     /// 辅助用户对批量报告自动分类
     @inlinable
-    public func describeReportClassify(serviceType: String, fileList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReportClassifyResponse > {
+    public func describeReportClassify(serviceType: String, fileList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportClassifyResponse> {
         self.describeReportClassify(DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList), logger: logger, on: eventLoop)
     }
-    
+
     /// 报告自动分类
     ///
     /// 辅助用户对批量报告自动分类

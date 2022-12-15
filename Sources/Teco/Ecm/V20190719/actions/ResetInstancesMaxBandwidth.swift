@@ -19,44 +19,44 @@ extension Ecm {
     public struct ResetInstancesMaxBandwidthRequest: TCRequestModel {
         /// 待重置带宽上限的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
         public let instanceIdSet: [String]
-        
+
         /// 修改后的最大出带宽上限。
         public let maxBandwidthOut: Int64
-        
+
         /// 修改后的最大入带宽上限。
         public let maxBandwidthIn: Int64?
-        
-        public init (instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil) {
+
+        public init(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil) {
             self.instanceIdSet = instanceIdSet
             self.maxBandwidthOut = maxBandwidthOut
             self.maxBandwidthIn = maxBandwidthIn
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIdSet = "InstanceIdSet"
             case maxBandwidthOut = "MaxBandwidthOut"
             case maxBandwidthIn = "MaxBandwidthIn"
         }
     }
-    
+
     /// ResetInstancesMaxBandwidth返回参数结构体
     public struct ResetInstancesMaxBandwidthResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
     @inlinable
-    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesMaxBandwidthResponse > {
+    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
         self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
@@ -64,15 +64,15 @@ extension Ecm {
     public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
         try await self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
     @inlinable
-    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesMaxBandwidthResponse > {
+    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
         self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。

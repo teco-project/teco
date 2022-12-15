@@ -19,44 +19,44 @@ extension Dayu {
     public struct DescribeResourceListRequest: TCRequestModel {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包；bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
-        
+
         /// 地域码搜索，可选，当不指定地域时空数组，当指定地域时，填地域码。例如：["gz", "sh"]
         public let regionList: [String]?
-        
+
         /// 线路搜索，可选，只有当获取高防IP资源列表是可以选填，取值为[1（BGP线路），2（南京电信），3（南京联通），99（第三方合作线路）]，当获取其他产品时请填空数组；
         public let line: [UInt64]?
-        
+
         /// 资源ID搜索，可选，当不为空数组时表示获取指定资源的资源列表；
         public let idList: [String]?
-        
+
         /// 资源名称搜索，可选，当不为空字符串时表示按名称搜索资源；
         public let name: String?
-        
+
         /// IP搜索列表，可选，当不为空时表示按照IP搜索资源；
         public let ipList: [String]?
-        
+
         /// 资源状态搜索列表，可选，取值为[0（运行中）, 1（清洗中）, 2（封堵中）]，当填空数组时不进行状态搜索；
         public let status: [UInt64]?
-        
+
         /// 即将到期搜索；可选，取值为[0（不搜索），1（搜索即将到期的资源）]
         public let expire: UInt64?
-        
+
         /// 排序字段，可选
         public let oderBy: [OrderBy]?
-        
+
         /// 一页条数，填0表示不分页
         public let limit: UInt64?
-        
+
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
-        
+
         /// 高防IP专业版资源的CNAME，可选，只对高防IP专业版资源列表有效；
         public let cName: String?
-        
+
         /// 高防IP专业版资源的域名，可选，只对高防IP专业版资源列表有效；
         public let domain: String?
-        
-        public init (business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil) {
+
+        public init(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil) {
             self.business = business
             self.regionList = regionList
             self.line = line
@@ -71,7 +71,7 @@ extension Dayu {
             self.cName = cName
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case regionList = "RegionList"
@@ -88,19 +88,19 @@ extension Dayu {
             case domain = "Domain"
         }
     }
-    
+
     /// DescribeResourceList返回参数结构体
     public struct DescribeResourceListResponse: TCResponseModel {
         /// 总记录数
         public let total: UInt64
-        
+
         /// 资源记录列表，返回Key值说明：
         /// "Key": "CreateTime" 表示资源实例购买时间
         /// "Key": "Region" 表示资源实例的地域
         /// "Key": "BoundIP" 表示独享包实例绑定的IP
         /// "Key": "Id" 表示资源实例的ID
         /// "Key": "CCEnabled" 表示资源实例的CC防护开关状态
-        /// "Key": "DDoSThreshold" 表示资源实例的DDoS的清洗阈值	
+        /// "Key": "DDoSThreshold" 表示资源实例的DDoS的清洗阈值
         /// "Key": "BoundStatus" 表示独享包或共享包实例的绑定IP操作状态(绑定中或绑定完成)
         /// "Key": "Type" 此字段弃用
         /// "Key": "ElasticLimit" 表示资源实例的弹性防护值
@@ -126,13 +126,13 @@ extension Dayu {
         /// "Key": "GFBandwidth" 表示资源实例的保底业务带宽，只针对高防IP
         /// "Key": "ServiceBandwidth" 表示资源实例的保底业务带宽，只针对高防IP专业版
         public let servicePacks: [KeyValueRecord]
-        
+
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包；bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case servicePacks = "ServicePacks"
@@ -140,25 +140,25 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取资源列表
     @inlinable
-    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceListResponse > {
+    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceListResponse> {
         self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资源列表
     @inlinable
     public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
         try await self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取资源列表
     @inlinable
-    public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceListResponse > {
+    public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceListResponse> {
         self.describeResourceList(DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资源列表
     @inlinable
     public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {

@@ -22,7 +22,7 @@ extension Iot {
     public struct GetDeviceStatisticsRequest: TCRequestModel {
         /// 产品Id列表
         public let products: [String]?
-        
+
         /// 开始日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Iot {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date?
-        
+
         /// 结束日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,42 +38,42 @@ extension Iot {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date?
-        
-        public init (products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil) {
+
+        public init(products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil) {
             self.products = products
             self.startDate = startDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case products = "Products"
             case startDate = "StartDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// GetDeviceStatistics返回参数结构体
     public struct GetDeviceStatisticsResponse: TCResponseModel {
         /// 统计数据
         public let deviceStatistics: [DeviceStatData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceStatistics = "DeviceStatistics"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备统计指标
     ///
     /// 查询某段时间范围内产品的在线、激活设备数
     @inlinable
-    public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceStatisticsResponse > {
+    public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceStatisticsResponse> {
         self.client.execute(action: "GetDeviceStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备统计指标
     ///
     /// 查询某段时间范围内产品的在线、激活设备数
@@ -81,15 +81,15 @@ extension Iot {
     public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceStatisticsResponse {
         try await self.client.execute(action: "GetDeviceStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备统计指标
     ///
     /// 查询某段时间范围内产品的在线、激活设备数
     @inlinable
-    public func getDeviceStatistics(products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceStatisticsResponse > {
+    public func getDeviceStatistics(products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceStatisticsResponse> {
         self.getDeviceStatistics(GetDeviceStatisticsRequest(products: products, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备统计指标
     ///
     /// 查询某段时间范围内产品的在线、激活设备数

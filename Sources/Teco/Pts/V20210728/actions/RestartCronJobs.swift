@@ -19,39 +19,39 @@ extension Pts {
     public struct RestartCronJobsRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String
-        
+
         /// 定时任务ID数组
         public let cronJobIds: [String]
-        
-        public init (projectId: String, cronJobIds: [String]) {
+
+        public init(projectId: String, cronJobIds: [String]) {
             self.projectId = projectId
             self.cronJobIds = cronJobIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case cronJobIds = "CronJobIds"
         }
     }
-    
+
     /// RestartCronJobs返回参数结构体
     public struct RestartCronJobsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启定时任务
     ///
     /// 重启状态为已中止的定时任务
     @inlinable
-    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartCronJobsResponse > {
+    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartCronJobsResponse> {
         self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启定时任务
     ///
     /// 重启状态为已中止的定时任务
@@ -59,15 +59,15 @@ extension Pts {
     public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
         try await self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启定时任务
     ///
     /// 重启状态为已中止的定时任务
     @inlinable
-    public func restartCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartCronJobsResponse > {
+    public func restartCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartCronJobsResponse> {
         self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启定时任务
     ///
     /// 重启状态为已中止的定时任务

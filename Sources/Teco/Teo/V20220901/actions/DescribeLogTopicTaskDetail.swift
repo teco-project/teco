@@ -19,44 +19,44 @@ extension Teo {
     public struct DescribeLogTopicTaskDetailRequest: TCRequestModel {
         /// 推送任务ID。
         public let topicId: String
-        
+
         /// 站点ID。
         public let zoneId: String
-        
-        public init (topicId: String, zoneId: String) {
+
+        public init(topicId: String, zoneId: String) {
             self.topicId = topicId
             self.zoneId = zoneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case zoneId = "ZoneId"
         }
     }
-    
+
     /// DescribeLogTopicTaskDetail返回参数结构体
     public struct DescribeLogTopicTaskDetailResponse: TCResponseModel {
         /// 推送任务详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logTopicDetailInfo: LogTopicDetailInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case logTopicDetailInfo = "LogTopicDetailInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取推送任务详细信息
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。
     @inlinable
-    public func describeLogTopicTaskDetail(_ input: DescribeLogTopicTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogTopicTaskDetailResponse > {
+    public func describeLogTopicTaskDetail(_ input: DescribeLogTopicTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogTopicTaskDetailResponse> {
         self.client.execute(action: "DescribeLogTopicTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取推送任务详细信息
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。
@@ -64,15 +64,15 @@ extension Teo {
     public func describeLogTopicTaskDetail(_ input: DescribeLogTopicTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTaskDetailResponse {
         try await self.client.execute(action: "DescribeLogTopicTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取推送任务详细信息
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。
     @inlinable
-    public func describeLogTopicTaskDetail(topicId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogTopicTaskDetailResponse > {
+    public func describeLogTopicTaskDetail(topicId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogTopicTaskDetailResponse> {
         self.describeLogTopicTaskDetail(DescribeLogTopicTaskDetailRequest(topicId: topicId, zoneId: zoneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取推送任务详细信息
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。

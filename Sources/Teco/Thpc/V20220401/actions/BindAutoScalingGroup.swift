@@ -19,36 +19,36 @@ extension Thpc {
     public struct BindAutoScalingGroupRequest: TCRequestModel {
         /// 集群ID。
         public let clusterId: String
-        
+
         /// 弹性伸缩启动配置ID。
         public let launchConfigurationId: String
-        
+
         /// 弹性伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 队列名称。
         public let queueName: String?
-        
+
         /// 任务连续等待时间，队列的任务处于连续等待的时间。单位秒。默认值120。
         public let expansionBusyTime: Int64?
-        
+
         /// 节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。单位秒。默认值300。
         public let shrinkIdleTime: Int64?
-        
+
         /// 是否开启自动扩容，默认值true。
         public let enableAutoExpansion: Bool?
-        
+
         /// 是否开启自动缩容，默认值true。
         public let enableAutoShrink: Bool?
-        
+
         /// 是否只预检此次请求。
         /// true：发送检查请求，不会绑定弹性伸缩组。检查项包括是否填写了必需参数，请求格式，业务限制。
         /// 如果检查不通过，则返回对应错误码；
         /// 如果检查通过，则返回RequestId。
         /// false（默认）：发送正常请求，通过检查后直接绑定弹性伸缩组。
         public let dryRun: Bool?
-        
-        public init (clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil) {
+
+        public init(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil) {
             self.clusterId = clusterId
             self.launchConfigurationId = launchConfigurationId
             self.autoScalingGroupId = autoScalingGroupId
@@ -59,7 +59,7 @@ extension Thpc {
             self.enableAutoShrink = enableAutoShrink
             self.dryRun = dryRun
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case launchConfigurationId = "LaunchConfigurationId"
@@ -72,25 +72,25 @@ extension Thpc {
             case dryRun = "DryRun"
         }
     }
-    
+
     /// BindAutoScalingGroup返回参数结构体
     public struct BindAutoScalingGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定弹性伸缩组
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable
-    public func bindAutoScalingGroup(_ input: BindAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoScalingGroupResponse > {
+    public func bindAutoScalingGroup(_ input: BindAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoScalingGroupResponse> {
         self.client.execute(action: "BindAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定弹性伸缩组
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
@@ -98,15 +98,15 @@ extension Thpc {
     public func bindAutoScalingGroup(_ input: BindAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoScalingGroupResponse {
         try await self.client.execute(action: "BindAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定弹性伸缩组
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable
-    public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoScalingGroupResponse > {
+    public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoScalingGroupResponse> {
         self.bindAutoScalingGroup(BindAutoScalingGroupRequest(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定弹性伸缩组
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组

@@ -19,54 +19,54 @@ extension Monitor {
     public struct DeletePrometheusScrapeJobsRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// Agent ID
         public let agentId: String
-        
+
         /// 任务 ID 列表
         public let jobIds: [String]
-        
-        public init (instanceId: String, agentId: String, jobIds: [String]) {
+
+        public init(instanceId: String, agentId: String, jobIds: [String]) {
             self.instanceId = instanceId
             self.agentId = agentId
             self.jobIds = jobIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case agentId = "AgentId"
             case jobIds = "JobIds"
         }
     }
-    
+
     /// DeletePrometheusScrapeJobs返回参数结构体
     public struct DeletePrometheusScrapeJobsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除 Prometheus 抓取任务
     @inlinable
-    public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusScrapeJobsResponse > {
+    public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
         self.client.execute(action: "DeletePrometheusScrapeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 Prometheus 抓取任务
     @inlinable
     public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
         try await self.client.execute(action: "DeletePrometheusScrapeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除 Prometheus 抓取任务
     @inlinable
-    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusScrapeJobsResponse > {
+    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
         self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 Prometheus 抓取任务
     @inlinable
     public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {

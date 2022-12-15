@@ -19,68 +19,68 @@ extension Cpdp {
     public struct AddShopRequest: TCRequestModel {
         /// 收单系统分配的开放ID
         public let openId: String
-        
+
         /// 收单系统分配的密钥
         public let openKey: String
-        
+
         /// 机构门店主键（系统有唯一性校验），建议使用门店表的主键ID，防止重复添加门店
         public let outShopId: String
-        
+
         /// 门店简称（例如：南山店）
         public let shopName: String
-        
+
         /// 门店全称（例如：江山小厨（南山店））
         public let shopFullName: String
-        
+
         /// 商户编号
         public let merchantNo: String
-        
+
         /// 门店电话
         public let telephone: String
-        
+
         /// 营业时间，多个以小写逗号分开(9:00-12:00,13:00-18:00)
         public let openHours: String
-        
+
         /// 门店所在的城市编码
         public let cityId: String
-        
+
         /// 门店详细地址，不含省市区县名称
         public let address: String
-        
+
         /// 整体门面（含招牌）图片【公共区】
         public let pictureOne: String
-        
+
         /// 整体门面（含招牌）图片【公共区】
         public let pictureTwo: String
-        
+
         /// 店内环境图片【公共区】
         public let pictureThree: String
-        
+
         /// 负责人手机号码
         public let financialTelephone: String?
-        
+
         /// 门店负责人
         public let contact: String?
-        
+
         /// 百度地图纬度
         public let latitude: String?
-        
+
         /// 高德地图纬度
         public let latitudeTwo: String?
-        
+
         /// 百度地图经度
         public let longitude: String?
-        
+
         /// 高德地图经度
         public let longitudeTwo: String?
-        
+
         /// 其他照片【公共区】
         public let otherPicture: String?
-        
+
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
-        
-        public init (openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil) {
+
+        public init(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.outShopId = outShopId
@@ -103,7 +103,7 @@ extension Cpdp {
             self.otherPicture = otherPicture
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case openId = "OpenId"
             case openKey = "OpenKey"
@@ -128,23 +128,23 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// AddShop返回参数结构体
     public struct AddShopResponse: TCResponseModel {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 业务系统返回码
         public let errCode: String
-        
+
         /// 添加申请响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: AddShopResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errMessage = "ErrMessage"
             case errCode = "ErrCode"
@@ -152,25 +152,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云支付-添加门店接口
     @inlinable
-    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddShopResponse > {
+    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddShopResponse> {
         self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-添加门店接口
     @inlinable
     public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {
         try await self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云支付-添加门店接口
     @inlinable
-    public func addShop(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddShopResponse > {
+    public func addShop(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddShopResponse> {
         self.addShop(AddShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopName: shopName, shopFullName: shopFullName, merchantNo: merchantNo, telephone: telephone, openHours: openHours, cityId: cityId, address: address, pictureOne: pictureOne, pictureTwo: pictureTwo, pictureThree: pictureThree, financialTelephone: financialTelephone, contact: contact, latitude: latitude, latitudeTwo: latitudeTwo, longitude: longitude, longitudeTwo: longitudeTwo, otherPicture: otherPicture, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-添加门店接口
     @inlinable
     public func addShop(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {

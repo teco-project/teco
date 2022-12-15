@@ -17,42 +17,42 @@
 extension Dayu {
     /// DescribeIpBlockList请求参数结构体
     public struct DescribeIpBlockListRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeIpBlockList返回参数结构体
     public struct DescribeIpBlockListResponse: TCResponseModel {
         /// IP封堵列表
         public let list: [IpBlockData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取IP封堵列表
     @inlinable
-    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpBlockListResponse > {
+    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpBlockListResponse> {
         self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取IP封堵列表
     @inlinable
     public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
         try await self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取IP封堵列表
     @inlinable
-    public func describeIpBlockList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpBlockListResponse > {
+    public func describeIpBlockList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpBlockListResponse> {
         self.describeIpBlockList(DescribeIpBlockListRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取IP封堵列表
     @inlinable
     public func describeIpBlockList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {

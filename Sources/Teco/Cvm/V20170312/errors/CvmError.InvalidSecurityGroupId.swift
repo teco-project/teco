@@ -19,38 +19,38 @@ extension TCCvmError {
         enum Code: String {
             case notFound = "InvalidSecurityGroupId.NotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 指定的<code>安全组ID</code>不存在。
         public static var notFound: InvalidSecurityGroupId {
             InvalidSecurityGroupId(.notFound)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .notFound: 
+            case .notFound:
                 code = .invalidSecurityGroupId_NotFound
             }
             return TCCvmError(code, context: self.context)

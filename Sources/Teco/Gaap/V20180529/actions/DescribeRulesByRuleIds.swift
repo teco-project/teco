@@ -19,42 +19,42 @@ extension Gaap {
     public struct DescribeRulesByRuleIdsRequest: TCRequestModel {
         /// 规则ID列表。最多支持10个规则。
         public let ruleIds: [String]
-        
-        public init (ruleIds: [String]) {
+
+        public init(ruleIds: [String]) {
             self.ruleIds = ruleIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleIds = "RuleIds"
         }
     }
-    
+
     /// DescribeRulesByRuleIds返回参数结构体
     public struct DescribeRulesByRuleIdsResponse: TCResponseModel {
         /// 返回的规则总个数。
         public let totalCount: UInt64
-        
+
         /// 返回的规则列表。
         public let ruleSet: [RuleInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case ruleSet = "RuleSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据规则ID拉取规则信息列表
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
-    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByRuleIdsResponse > {
+    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByRuleIdsResponse> {
         self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据规则ID拉取规则信息列表
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
@@ -62,15 +62,15 @@ extension Gaap {
     public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
         try await self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据规则ID拉取规则信息列表
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
-    public func describeRulesByRuleIds(ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByRuleIdsResponse > {
+    public func describeRulesByRuleIds(ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByRuleIdsResponse> {
         self.describeRulesByRuleIds(DescribeRulesByRuleIdsRequest(ruleIds: ruleIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据规则ID拉取规则信息列表
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。

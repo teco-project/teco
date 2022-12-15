@@ -19,34 +19,34 @@ extension Vpc {
     public struct DeleteAddressTemplateGroupRequest: TCRequestModel {
         /// IP地址模板集合实例ID，例如：ipmg-90cex8mq。
         public let addressTemplateGroupId: String
-        
-        public init (addressTemplateGroupId: String) {
+
+        public init(addressTemplateGroupId: String) {
             self.addressTemplateGroupId = addressTemplateGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addressTemplateGroupId = "AddressTemplateGroupId"
         }
     }
-    
+
     /// DeleteAddressTemplateGroup返回参数结构体
     public struct DeleteAddressTemplateGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除IP地址模板集合
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
     @inlinable
-    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAddressTemplateGroupResponse > {
+    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateGroupResponse> {
         self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除IP地址模板集合
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
@@ -54,15 +54,15 @@ extension Vpc {
     public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
         try await self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除IP地址模板集合
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
     @inlinable
-    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAddressTemplateGroupResponse > {
+    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateGroupResponse> {
         self.deleteAddressTemplateGroup(DeleteAddressTemplateGroupRequest(addressTemplateGroupId: addressTemplateGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除IP地址模板集合
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合

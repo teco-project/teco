@@ -19,23 +19,23 @@ extension Tiems {
     public struct ExposeServiceRequest: TCRequestModel {
         /// 服务Id
         public let serviceId: String
-        
+
         /// 暴露方式，支持 EXTERNAL（外网暴露），VPC （VPC内网打通）
         public let exposeType: String
-        
+
         /// 暴露方式为 VPC 时，填写需要打通的私有网络Id
         public let vpcId: String?
-        
+
         /// 暴露方式为 VPC 时，填写需要打通的子网Id
         public let subnetId: String?
-        
-        public init (serviceId: String, exposeType: String, vpcId: String? = nil, subnetId: String? = nil) {
+
+        public init(serviceId: String, exposeType: String, vpcId: String? = nil, subnetId: String? = nil) {
             self.serviceId = serviceId
             self.exposeType = exposeType
             self.vpcId = vpcId
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case exposeType = "ExposeType"
@@ -43,30 +43,30 @@ extension Tiems {
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// ExposeService返回参数结构体
     public struct ExposeServiceResponse: TCResponseModel {
         /// 暴露方式
         public let expose: ExposeInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case expose = "Expose"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 暴露服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 暴露服务
     @inlinable
-    public func exposeService(_ input: ExposeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExposeServiceResponse > {
+    public func exposeService(_ input: ExposeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExposeServiceResponse> {
         self.client.execute(action: "ExposeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 暴露服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
@@ -75,16 +75,16 @@ extension Tiems {
     public func exposeService(_ input: ExposeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExposeServiceResponse {
         try await self.client.execute(action: "ExposeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 暴露服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 暴露服务
     @inlinable
-    public func exposeService(serviceId: String, exposeType: String, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExposeServiceResponse > {
+    public func exposeService(serviceId: String, exposeType: String, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExposeServiceResponse> {
         self.exposeService(ExposeServiceRequest(serviceId: serviceId, exposeType: exposeType, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
     }
-    
+
     /// 暴露服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。

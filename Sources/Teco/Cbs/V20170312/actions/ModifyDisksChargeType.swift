@@ -19,36 +19,36 @@ extension Cbs {
     public struct ModifyDisksChargeTypeRequest: TCRequestModel {
         /// 一个或多个待操作的云硬盘ID。每次请求批量云盘上限为100。
         public let diskIds: [String]
-        
+
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
         public let diskChargePrepaid: DiskChargePrepaid?
-        
+
         /// 后付费模式
         public let diskChargePostpaid: Bool?
-        
-        public init (diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil) {
+
+        public init(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil) {
             self.diskIds = diskIds
             self.diskChargePrepaid = diskChargePrepaid
             self.diskChargePostpaid = diskChargePostpaid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
             case diskChargePrepaid = "DiskChargePrepaid"
             case diskChargePostpaid = "DiskChargePostpaid"
         }
     }
-    
+
     /// ModifyDisksChargeType返回参数结构体
     public struct ModifyDisksChargeTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改弹性云盘计费模式
     ///
     /// 接口请求域名： cbs.tencentcloudapi.com 。
@@ -57,10 +57,10 @@ extension Cbs {
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksChargeTypeResponse > {
+    public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
         self.client.execute(action: "ModifyDisksChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改弹性云盘计费模式
     ///
     /// 接口请求域名： cbs.tencentcloudapi.com 。
@@ -72,7 +72,7 @@ extension Cbs {
     public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
         try await self.client.execute(action: "ModifyDisksChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改弹性云盘计费模式
     ///
     /// 接口请求域名： cbs.tencentcloudapi.com 。
@@ -81,10 +81,10 @@ extension Cbs {
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksChargeTypeResponse > {
+    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
         self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改弹性云盘计费模式
     ///
     /// 接口请求域名： cbs.tencentcloudapi.com 。

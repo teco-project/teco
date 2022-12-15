@@ -19,23 +19,23 @@ extension Ms {
     public struct DescribeResourceInstancesRequest: TCRequestModel {
         /// 支持CreateTime、ExpireTime、AppName、AppPkgName、BindValue、IsBind过滤
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 数量限制，默认为20，最大值为100。
         public let limit: UInt64?
-        
+
         /// 资源类别id数组，13624：加固专业版，12750：企业版。空数组表示返回全部资源。
         public let pids: [UInt64]?
-        
+
         /// 按某个字段排序，目前支持CreateTime、ExpireTime其中的一个排序。
         public let orderField: String?
-        
+
         /// 升序（asc）还是降序（desc），默认：desc。
         public let orderDirection: String?
-        
-        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, pids: [UInt64]? = nil, orderField: String? = nil, orderDirection: String? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, pids: [UInt64]? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Ms {
             self.orderField = orderField
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
@@ -53,33 +53,33 @@ extension Ms {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeResourceInstances返回参数结构体
     public struct DescribeResourceInstancesResponse: TCResponseModel {
         /// 符合要求的资源数量
         public let totalCount: UInt64
-        
+
         /// 符合要求的资源数组
         public let resourceSet: [ResourceInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case resourceSet = "ResourceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户的所有资源信息
     ///
     /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceInstancesResponse > {
+    public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceInstancesResponse> {
         self.client.execute(action: "DescribeResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户的所有资源信息
     ///
     /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
@@ -87,15 +87,15 @@ extension Ms {
     public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceInstancesResponse {
         try await self.client.execute(action: "DescribeResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户的所有资源信息
     ///
     /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeResourceInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, pids: [UInt64]? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceInstancesResponse > {
+    public func describeResourceInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, pids: [UInt64]? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceInstancesResponse> {
         self.describeResourceInstances(DescribeResourceInstancesRequest(filters: filters, offset: offset, limit: limit, pids: pids, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户的所有资源信息
     ///
     /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）

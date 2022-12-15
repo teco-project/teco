@@ -22,30 +22,30 @@ extension Cam {
     public struct GetPolicyRequest: TCRequestModel {
         /// 策略Id
         public let policyId: UInt64
-        
-        public init (policyId: UInt64) {
+
+        public init(policyId: UInt64) {
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
         }
     }
-    
+
     /// GetPolicy返回参数结构体
     public struct GetPolicyResponse: TCResponseModel {
         /// 策略名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyName: String?
-        
+
         /// 策略描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 1 表示自定义策略，2 表示预设策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: UInt64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -54,7 +54,7 @@ extension Cam {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTime: Date?
-        
+
         /// 最近更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -63,22 +63,22 @@ extension Cam {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date?
-        
+
         /// 策略文档
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyDocument: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let presetAlias: String?
-        
+
         /// 是否服务相关策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isServiceLinkedRolePolicy: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policyName = "PolicyName"
             case description = "Description"
@@ -91,15 +91,15 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看策略详情
     ///
     /// 本接口（GetPolicy）可用于查询查看策略详情。
     @inlinable
-    public func getPolicy(_ input: GetPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyResponse > {
+    public func getPolicy(_ input: GetPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyResponse> {
         self.client.execute(action: "GetPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看策略详情
     ///
     /// 本接口（GetPolicy）可用于查询查看策略详情。
@@ -107,15 +107,15 @@ extension Cam {
     public func getPolicy(_ input: GetPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyResponse {
         try await self.client.execute(action: "GetPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看策略详情
     ///
     /// 本接口（GetPolicy）可用于查询查看策略详情。
     @inlinable
-    public func getPolicy(policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyResponse > {
+    public func getPolicy(policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyResponse> {
         self.getPolicy(GetPolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看策略详情
     ///
     /// 本接口（GetPolicy）可用于查询查看策略详情。

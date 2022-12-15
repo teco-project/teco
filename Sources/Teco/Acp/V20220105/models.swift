@@ -19,50 +19,50 @@ extension Acp {
     public struct AppInfoItem: TCOutputModel {
         /// App包名
         public let appPackage: String
-        
+
         /// App名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appName: String?
-        
+
         /// App版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appVersion: String?
-        
+
         /// 应用平台, 0:android, 1:ios, 2:小程序
         public let platform: Int64
-        
+
         /// App隐私诊断报告下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportUrl: String?
-        
+
         /// App隐私诊断报告名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportTitle: String?
-        
+
         /// App诊断堆栈报告下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let behaviorUrl: String?
-        
+
         /// App诊断堆栈报告名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let behaviorTitle: String?
-        
+
         /// 诊断高风险项数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let highRiskCount: Int64?
-        
+
         /// 隐私申明文件名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privacyTextName: String?
-        
+
         /// 软件MD5
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let softwareMD5: String?
-        
+
         /// 隐私文本MD5
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privacyTextMD5: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case appPackage = "AppPackage"
             case appName = "AppName"
@@ -78,38 +78,38 @@ extension Acp {
             case privacyTextMD5 = "PrivacyTextMD5"
         }
     }
-    
+
     /// 应用合规隐私诊断任务数据
     public struct AppTaskData: TCOutputModel {
         /// 任务ID
         public let taskID: String
-        
+
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
         public let taskType: Int64
-        
+
         /// 0:默认值(待检测/待咨询), 1.检测中, 2:待评估, 3:评估中, 4:任务完成/咨询完成, 5:任务失败, 6:咨询中;
         public let taskStatus: Int64
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskErrMsg: String?
-        
+
         /// 任务来源,0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android)
         public let source: Int64
-        
+
         /// 应用信息
         public let appInfo: AppInfoItem
-        
+
         /// 任务启动时间
         public let startTime: String
-        
+
         /// 任务完成时间(更新时间)
         public let endTime: String
-        
+
         /// 联系人信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contactName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case taskType = "TaskType"
@@ -122,49 +122,49 @@ extension Acp {
             case contactName = "ContactName"
         }
     }
-    
+
     /// 资源使用情况信息
     public struct ResourceUsageInfoData: TCOutputModel {
         /// 资源计费项名称
         public let resourceName: String
-        
+
         /// 资源总数
         public let total: Int64
-        
+
         /// 未使用资源数
         public let unusedCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceName = "ResourceName"
             case total = "Total"
             case unusedCount = "UnusedCount"
         }
     }
-    
+
     /// 任务流步骤详情
     public struct TaskFlowStepsInfo: TCOutputModel {
         /// 流程编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowNo: String?
-        
+
         /// 流程名称
         public let flowName: String
-        
+
         /// 流程状态, 其他值:进行中, 2:成功, 3:失败
         public let flowStatus: Int64
-        
+
         /// 流程状态描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowStateDesc: String?
-        
+
         /// 流程启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 流程完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case flowNo = "FlowNo"
             case flowName = "FlowName"

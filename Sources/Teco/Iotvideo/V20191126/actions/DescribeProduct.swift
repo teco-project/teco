@@ -19,39 +19,39 @@ extension Iotvideo {
     public struct DescribeProductRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
-        public init (productId: String) {
+
+        public init(productId: String) {
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
         }
     }
-    
+
     /// DescribeProduct返回参数结构体
     public struct DescribeProductResponse: TCResponseModel {
         /// 产品详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: ProductData?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单个产品详细信息
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
-    public func describeProduct(_ input: DescribeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductResponse > {
+    public func describeProduct(_ input: DescribeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
         self.client.execute(action: "DescribeProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个产品详细信息
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
@@ -59,15 +59,15 @@ extension Iotvideo {
     public func describeProduct(_ input: DescribeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
         try await self.client.execute(action: "DescribeProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单个产品详细信息
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
-    public func describeProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductResponse > {
+    public func describeProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
         self.describeProduct(DescribeProductRequest(productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个产品详细信息
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。

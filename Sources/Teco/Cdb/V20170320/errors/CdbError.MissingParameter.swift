@@ -21,52 +21,52 @@ extension TCCdbError {
             case missingParamError = "MissingParameter.MissingParamError"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 缺失账号相关参数。
         public static var accountMissingParameterError: MissingParameter {
             MissingParameter(.accountMissingParameterError)
         }
-        
+
         /// 缺少必要参数。
         public static var missingParamError: MissingParameter {
             MissingParameter(.missingParamError)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {
-            case .accountMissingParameterError: 
+            case .accountMissingParameterError:
                 code = .missingParameter_AccountMissingParameterError
-            case .missingParamError: 
+            case .missingParamError:
                 code = .missingParameter_MissingParamError
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCCdbError(code, context: self.context)

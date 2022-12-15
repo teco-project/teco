@@ -19,43 +19,43 @@ extension Mps {
     public struct ModifyStreamLinkOutputInfoRequest: TCRequestModel {
         /// 流Id。
         public let flowId: String
-        
+
         /// 需要修改的Output配置。
         public let output: ModifyOutputInfo
-        
-        public init (flowId: String, output: ModifyOutputInfo) {
+
+        public init(flowId: String, output: ModifyOutputInfo) {
             self.flowId = flowId
             self.output = output
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case output = "Output"
         }
     }
-    
+
     /// ModifyStreamLinkOutputInfo返回参数结构体
     public struct ModifyStreamLinkOutputInfoResponse: TCResponseModel {
         /// 修改后的Output配置。
         public let info: DescribeOutput
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case info = "Info"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改媒体传输的输出信息
     ///
     /// 修改媒体传输流的输出配置。
     @inlinable
-    public func modifyStreamLinkOutputInfo(_ input: ModifyStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStreamLinkOutputInfoResponse > {
+    public func modifyStreamLinkOutputInfo(_ input: ModifyStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkOutputInfoResponse> {
         self.client.execute(action: "ModifyStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改媒体传输的输出信息
     ///
     /// 修改媒体传输流的输出配置。
@@ -63,15 +63,15 @@ extension Mps {
     public func modifyStreamLinkOutputInfo(_ input: ModifyStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkOutputInfoResponse {
         try await self.client.execute(action: "ModifyStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改媒体传输的输出信息
     ///
     /// 修改媒体传输流的输出配置。
     @inlinable
-    public func modifyStreamLinkOutputInfo(flowId: String, output: ModifyOutputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStreamLinkOutputInfoResponse > {
+    public func modifyStreamLinkOutputInfo(flowId: String, output: ModifyOutputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkOutputInfoResponse> {
         self.modifyStreamLinkOutputInfo(ModifyStreamLinkOutputInfoRequest(flowId: flowId, output: output), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改媒体传输的输出信息
     ///
     /// 修改媒体传输流的输出配置。

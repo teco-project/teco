@@ -22,10 +22,10 @@ extension Tsf {
     public struct DescribeUnitApiUseDetailRequest: TCRequestModel {
         /// 网关部署组ID
         public let gatewayDeployGroupId: String
-        
+
         /// 网关分组Api ID
         public let apiId: String
-        
+
         /// 查询的日期,格式：yyyy-MM-dd HH:mm:ss
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询的日期,格式：yyyy-MM-dd HH:mm:ss
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,23 +41,23 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 网关实例ID
         public let gatewayInstanceId: String
-        
+
         /// 网关分组ID
         public let groupId: String
-        
+
         /// 翻页查询偏移量
         public let offset: Int64
-        
+
         /// 翻页查询每页记录数
         public let limit: Int64
-        
+
         /// 监控统计数据粒度
         public let period: Int64?
-        
-        public init (gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64? = nil) {
+
+        public init(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64? = nil) {
             self.gatewayDeployGroupId = gatewayDeployGroupId
             self.apiId = apiId
             self.startTime = startTime
@@ -68,7 +68,7 @@ extension Tsf {
             self.limit = limit
             self.period = period
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayDeployGroupId = "GatewayDeployGroupId"
             case apiId = "ApiId"
@@ -81,29 +81,29 @@ extension Tsf {
             case period = "Period"
         }
     }
-    
+
     /// DescribeUnitApiUseDetail返回参数结构体
     public struct DescribeUnitApiUseDetailResponse: TCResponseModel {
         /// 单元化使用统计对象
         public let result: GroupUnitApiUseStatistics
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询单元化网关API监控明细数据
     ///
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
     @inlinable
-    public func describeUnitApiUseDetail(_ input: DescribeUnitApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnitApiUseDetailResponse > {
+    public func describeUnitApiUseDetail(_ input: DescribeUnitApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnitApiUseDetailResponse> {
         self.client.execute(action: "DescribeUnitApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单元化网关API监控明细数据
     ///
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
@@ -111,15 +111,15 @@ extension Tsf {
     public func describeUnitApiUseDetail(_ input: DescribeUnitApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitApiUseDetailResponse {
         try await self.client.execute(action: "DescribeUnitApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询单元化网关API监控明细数据
     ///
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
     @inlinable
-    public func describeUnitApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnitApiUseDetailResponse > {
+    public func describeUnitApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnitApiUseDetailResponse> {
         self.describeUnitApiUseDetail(DescribeUnitApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime, gatewayInstanceId: gatewayInstanceId, groupId: groupId, offset: offset, limit: limit, period: period), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单元化网关API监控明细数据
     ///
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail

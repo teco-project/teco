@@ -19,23 +19,23 @@ extension Iotexplorer {
     public struct ModifyPositionSpaceRequest: TCRequestModel {
         /// 位置空间Id
         public let spaceId: String
-        
+
         /// 位置空间名称
         public let spaceName: String
-        
+
         /// 授权类型
         public let authorizeType: Int64
-        
+
         /// 产品列表
         public let productIdList: [String]
-        
+
         /// 位置空间描述
         public let description: String?
-        
+
         /// 缩略图
         public let icon: String?
-        
-        public init (spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil) {
+
+        public init(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil) {
             self.spaceId = spaceId
             self.spaceName = spaceName
             self.authorizeType = authorizeType
@@ -43,7 +43,7 @@ extension Iotexplorer {
             self.description = description
             self.icon = icon
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case spaceId = "SpaceId"
             case spaceName = "SpaceName"
@@ -53,35 +53,35 @@ extension Iotexplorer {
             case icon = "Icon"
         }
     }
-    
+
     /// ModifyPositionSpace返回参数结构体
     public struct ModifyPositionSpaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新位置空间
     @inlinable
-    public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPositionSpaceResponse > {
+    public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionSpaceResponse> {
         self.client.execute(action: "ModifyPositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新位置空间
     @inlinable
     public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionSpaceResponse {
         try await self.client.execute(action: "ModifyPositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新位置空间
     @inlinable
-    public func modifyPositionSpace(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPositionSpaceResponse > {
+    public func modifyPositionSpace(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionSpaceResponse> {
         self.modifyPositionSpace(ModifyPositionSpaceRequest(spaceId: spaceId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新位置空间
     @inlinable
     public func modifyPositionSpace(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionSpaceResponse {

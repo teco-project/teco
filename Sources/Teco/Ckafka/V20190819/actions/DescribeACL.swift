@@ -19,23 +19,23 @@ extension Ckafka {
     public struct DescribeACLRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// Acl资源类型，(2:TOPIC，3:GROUP，4:CLUSTER)
         public let resourceType: Int64
-        
+
         /// 资源名称，和resourceType相关，如当resourceType为TOPIC时，则该字段表示topic名称，当resourceType为GROUP时，该字段表示group名称，当resourceType为CLUSTER时，该字段可为空。
         public let resourceName: String
-        
+
         /// 偏移位置
         public let offset: Int64?
-        
+
         /// 个数限制
         public let limit: Int64?
-        
+
         /// 关键字匹配
         public let searchWord: String?
-        
-        public init (instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil) {
+
+        public init(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil) {
             self.instanceId = instanceId
             self.resourceType = resourceType
             self.resourceName = resourceName
@@ -43,7 +43,7 @@ extension Ckafka {
             self.limit = limit
             self.searchWord = searchWord
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case resourceType = "ResourceType"
@@ -53,39 +53,39 @@ extension Ckafka {
             case searchWord = "SearchWord"
         }
     }
-    
+
     /// DescribeACL返回参数结构体
     public struct DescribeACLResponse: TCResponseModel {
         /// 返回的ACL结果集对象
         public let result: AclResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 枚举ACL
     @inlinable
-    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeACLResponse > {
+    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeACLResponse> {
         self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举ACL
     @inlinable
     public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
         try await self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 枚举ACL
     @inlinable
-    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeACLResponse > {
+    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeACLResponse> {
         self.describeACL(DescribeACLRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举ACL
     @inlinable
     public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {

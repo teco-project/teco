@@ -19,62 +19,62 @@ extension Cam {
     public struct ListGroupsRequest: TCRequestModel {
         /// 页码。默认为1。
         public let page: UInt64?
-        
+
         /// 每页数量。默认为20。
         public let rp: UInt64?
-        
+
         /// 按用户组名称匹配。
         public let keyword: String?
-        
-        public init (page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil) {
+
+        public init(page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil) {
             self.page = page
             self.rp = rp
             self.keyword = keyword
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case page = "Page"
             case rp = "Rp"
             case keyword = "Keyword"
         }
     }
-    
+
     /// ListGroups返回参数结构体
     public struct ListGroupsResponse: TCResponseModel {
         /// 用户组总数。
         public let totalNum: UInt64
-        
+
         /// 用户组数组信息。
         public let groupInfo: [GroupInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalNum = "TotalNum"
             case groupInfo = "GroupInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户组列表
     @inlinable
-    public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListGroupsResponse > {
+    public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListGroupsResponse> {
         self.client.execute(action: "ListGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户组列表
     @inlinable
     public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsResponse {
         try await self.client.execute(action: "ListGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户组列表
     @inlinable
-    public func listGroups(page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListGroupsResponse > {
+    public func listGroups(page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListGroupsResponse> {
         self.listGroups(ListGroupsRequest(page: page, rp: rp, keyword: keyword), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户组列表
     @inlinable
     public func listGroups(page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsResponse {

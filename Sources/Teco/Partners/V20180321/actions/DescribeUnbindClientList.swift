@@ -22,16 +22,16 @@ extension Partners {
     public struct DescribeUnbindClientListRequest: TCRequestModel {
         /// 解绑状态：0:所有,1:审核中,2已解绑
         public let status: UInt64
-        
+
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 限制数目
         public let limit: UInt64
-        
+
         /// 解绑账号ID
         public let unbindUin: String?
-        
+
         /// 解绑申请时间范围起始点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -39,7 +39,7 @@ extension Partners {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var applyTimeStart: Date?
-        
+
         /// 解绑申请时间范围终止点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,11 +47,11 @@ extension Partners {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var applyTimeEnd: Date?
-        
+
         /// 对申请时间的升序降序，值：asc，desc
         public let orderDirection: String?
-        
-        public init (status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil) {
+
+        public init(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil) {
             self.status = status
             self.offset = offset
             self.limit = limit
@@ -60,7 +60,7 @@ extension Partners {
             self.applyTimeEnd = applyTimeEnd
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case offset = "Offset"
@@ -71,43 +71,43 @@ extension Partners {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeUnbindClientList返回参数结构体
     public struct DescribeUnbindClientListResponse: TCResponseModel {
         /// 符合条件的解绑客户数量
         public let totalCount: UInt64
-        
+
         /// 符合条件的解绑客户列表
         public let unbindClientList: [UnbindClientElem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case unbindClientList = "UnbindClientList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 代理商名下客户解绑记录查询接口
     @inlinable
-    public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnbindClientListResponse > {
+    public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnbindClientListResponse> {
         self.client.execute(action: "DescribeUnbindClientList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 代理商名下客户解绑记录查询接口
     @inlinable
     public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnbindClientListResponse {
         try await self.client.execute(action: "DescribeUnbindClientList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 代理商名下客户解绑记录查询接口
     @inlinable
-    public func describeUnbindClientList(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnbindClientListResponse > {
+    public func describeUnbindClientList(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnbindClientListResponse> {
         self.describeUnbindClientList(DescribeUnbindClientListRequest(status: status, offset: offset, limit: limit, unbindUin: unbindUin, applyTimeStart: applyTimeStart, applyTimeEnd: applyTimeEnd, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 代理商名下客户解绑记录查询接口
     @inlinable
     public func describeUnbindClientList(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnbindClientListResponse {

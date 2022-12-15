@@ -19,34 +19,34 @@ extension Dcdb {
     public struct FlushBinlogRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// FlushBinlog返回参数结构体
     public struct FlushBinlogResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 切分Binlog
     ///
     /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
     @inlinable
-    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlushBinlogResponse > {
+    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
         self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 切分Binlog
     ///
     /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
@@ -54,15 +54,15 @@ extension Dcdb {
     public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
         try await self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 切分Binlog
     ///
     /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
     @inlinable
-    public func flushBinlog(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlushBinlogResponse > {
+    public func flushBinlog(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
         self.flushBinlog(FlushBinlogRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 切分Binlog
     ///
     /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。

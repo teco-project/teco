@@ -20,45 +20,45 @@ extension TCDcError {
             case insufficientBalance = "ResourceUnavailable.InsufficientBalance"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 对不起您的帐号已欠费，欠费状态下无法开通产品，请您先行充值。
         public static var insufficientBalance: ResourceUnavailable {
             ResourceUnavailable(.insufficientBalance)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asDcError() -> TCDcError {
             let code: TCDcError.Code
             switch self.error {
-            case .insufficientBalance: 
+            case .insufficientBalance:
                 code = .resourceUnavailable_InsufficientBalance
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCDcError(code, context: self.context)

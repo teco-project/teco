@@ -19,39 +19,39 @@ extension Oceanus {
     public struct RunJobsRequest: TCRequestModel {
         /// 批量启动作业的描述信息
         public let runJobDescriptions: [RunJobDescription]
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil) {
+
+        public init(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil) {
             self.runJobDescriptions = runJobDescriptions
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case runJobDescriptions = "RunJobDescriptions"
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// RunJobs返回参数结构体
     public struct RunJobsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20
     @inlinable
-    public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobsResponse > {
+    public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobsResponse> {
         self.client.execute(action: "RunJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20
@@ -59,15 +59,15 @@ extension Oceanus {
     public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
         try await self.client.execute(action: "RunJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20
     @inlinable
-    public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobsResponse > {
+    public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobsResponse> {
         self.runJobs(RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20

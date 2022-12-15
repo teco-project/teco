@@ -19,56 +19,56 @@ extension Iai {
     public struct CreatePersonRequest: TCRequestModel {
         /// 待加入的人员库ID。
         public let groupId: String
-        
+
         /// 人员名称。[1，60]个字符，可修改，可重复。
         public let personName: String
-        
+
         /// 人员ID，单个腾讯云账号下不可修改，不可重复。支持英文、数字、-%@#&_，长度限制64B。
         public let personId: String
-        
+
         /// 0代表未填写，1代表男性，2代表女性。
         public let gender: Int64?
-        
+
         /// 人员描述字段内容，key-value。[0，60]个字符，可修改，可重复。
         public let personExDescriptionInfos: [PersonExDescriptionInfo]?
-        
+
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
-        
+
         /// 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
-        /// Url、Image必须提供一个，如果都提供，只使用 Url。  
-        /// 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。 
+        /// Url、Image必须提供一个，如果都提供，只使用 Url。
+        /// 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         /// 非腾讯云存储的Url速度和稳定性可能受一定影响。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let url: String?
-        
-        /// 此参数用于控制判断 Image 或 Url 中图片包含的人脸，是否在人员库中已有疑似的同一人。 
-        /// 如果判断为已有相同人在人员库中，则不会创建新的人员，返回疑似同一人的人员信息。 
-        /// 如果判断没有，则完成创建人员。 
-        /// 0: 不进行判断，无论是否有疑似同一人在库中均完成入库； 
-        /// 1:较低的同一人判断要求（百一误识别率）； 
-        /// 2: 一般的同一人判断要求（千一误识别率）； 
-        /// 3: 较高的同一人判断要求（万一误识别率）； 
-        /// 4: 很高的同一人判断要求（十万一误识别率）。 
-        /// 默认 0。  
+
+        /// 此参数用于控制判断 Image 或 Url 中图片包含的人脸，是否在人员库中已有疑似的同一人。
+        /// 如果判断为已有相同人在人员库中，则不会创建新的人员，返回疑似同一人的人员信息。
+        /// 如果判断没有，则完成创建人员。
+        /// 0: 不进行判断，无论是否有疑似同一人在库中均完成入库；
+        /// 1:较低的同一人判断要求（百一误识别率）；
+        /// 2: 一般的同一人判断要求（千一误识别率）；
+        /// 3: 较高的同一人判断要求（万一误识别率）；
+        /// 4: 很高的同一人判断要求（十万一误识别率）。
+        /// 默认 0。
         /// 注： 要求越高，则疑似同一人的概率越小。不同要求对应的误识别率仅为参考值，您可以根据实际情况调整。
         public let uniquePersonControl: UInt64?
-        
-        /// 图片质量控制。 
-        /// 0: 不进行控制； 
-        /// 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况； 
-        /// 2: 一般的质量要求，图像存在偏亮，偏暗，模糊或一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，至少其中三种的情况； 
-        /// 3: 较高的质量要求，图像存在偏亮，偏暗，一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，其中一到两种的情况； 
-        /// 4: 很高的质量要求，各个维度均为最好或最多在某一维度上存在轻微问题； 
-        /// 默认 0。 
+
+        /// 图片质量控制。
+        /// 0: 不进行控制；
+        /// 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况；
+        /// 2: 一般的质量要求，图像存在偏亮，偏暗，模糊或一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，至少其中三种的情况；
+        /// 3: 较高的质量要求，图像存在偏亮，偏暗，一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，其中一到两种的情况；
+        /// 4: 很高的质量要求，各个维度均为最好或最多在某一维度上存在轻微问题；
+        /// 默认 0。
         /// 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
         public let qualityControl: UInt64?
-        
+
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
-        
-        public init (groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
+
+        public init(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
             self.groupId = groupId
             self.personName = personName
             self.personId = personId
@@ -80,7 +80,7 @@ extension Iai {
             self.qualityControl = qualityControl
             self.needRotateDetection = needRotateDetection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case personName = "PersonName"
@@ -94,26 +94,26 @@ extension Iai {
             case needRotateDetection = "NeedRotateDetection"
         }
     }
-    
+
     /// CreatePerson返回参数结构体
     public struct CreatePersonResponse: TCResponseModel {
         /// 人脸图片唯一标识。
         public let faceId: String
-        
+
         /// 检测出的人脸框的位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let faceRect: FaceRect?
-        
-        /// 疑似同一人的PersonId。 
+
+        /// 疑似同一人的PersonId。
         /// 当 UniquePersonControl 参数不为0且人员库中有疑似的同一人，此参数才有意义。
         public let similarPersonId: String
-        
+
         /// 人脸识别所用的算法模型版本。
         public let faceModelVersion: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case faceId = "FaceId"
             case faceRect = "FaceRect"
@@ -122,41 +122,41 @@ extension Iai {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    /// >     
+    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonResponse > {
+    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
         self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    /// >     
+    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
         try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    /// >     
+    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func createPerson(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonResponse > {
+    public func createPerson(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
         self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, gender: gender, personExDescriptionInfos: personExDescriptionInfos, image: image, url: url, uniquePersonControl: uniquePersonControl, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    /// >     
+    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createPerson(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {

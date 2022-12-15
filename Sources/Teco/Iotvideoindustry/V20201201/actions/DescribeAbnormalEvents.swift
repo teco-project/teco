@@ -19,54 +19,54 @@ extension Iotvideoindustry {
     public struct DescribeAbnormalEventsRequest: TCRequestModel {
         /// 开始时间
         public let startTime: Int64
-        
+
         /// 结束时间
         public let endTime: Int64
-        
-        public init (startTime: Int64, endTime: Int64) {
+
+        public init(startTime: Int64, endTime: Int64) {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeAbnormalEvents返回参数结构体
     public struct DescribeAbnormalEventsResponse: TCResponseModel {
         /// 异动事件走势列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [AbnormalEvents]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取异常事件统计
     @inlinable
-    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalEventsResponse > {
+    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalEventsResponse> {
         self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取异常事件统计
     @inlinable
     public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
         try await self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取异常事件统计
     @inlinable
-    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalEventsResponse > {
+    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalEventsResponse> {
         self.describeAbnormalEvents(DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取异常事件统计
     @inlinable
     public func describeAbnormalEvents(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {

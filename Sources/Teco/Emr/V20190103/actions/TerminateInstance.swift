@@ -19,39 +19,39 @@ extension Emr {
     public struct TerminateInstanceRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 销毁节点ID。该参数为预留参数，用户无需配置。
         public let resourceIds: [String]?
-        
-        public init (instanceId: String, resourceIds: [String]? = nil) {
+
+        public init(instanceId: String, resourceIds: [String]? = nil) {
             self.instanceId = instanceId
             self.resourceIds = resourceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case resourceIds = "ResourceIds"
         }
     }
-    
+
     /// TerminateInstance返回参数结构体
     public struct TerminateInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
     @inlinable
-    public func terminateInstance(_ input: TerminateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstanceResponse > {
+    public func terminateInstance(_ input: TerminateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstanceResponse> {
         self.client.execute(action: "TerminateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
@@ -59,15 +59,15 @@ extension Emr {
     public func terminateInstance(_ input: TerminateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstanceResponse {
         try await self.client.execute(action: "TerminateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
     @inlinable
-    public func terminateInstance(instanceId: String, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstanceResponse > {
+    public func terminateInstance(instanceId: String, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstanceResponse> {
         self.terminateInstance(TerminateInstanceRequest(instanceId: instanceId, resourceIds: resourceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。

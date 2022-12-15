@@ -19,23 +19,23 @@ extension Iecp {
     public struct DescribeEdgeUnitApplicationsRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 翻页偏移
         public let offset: UInt64
-        
+
         /// 翻页大小
         public let limit: UInt64
-        
+
         /// 名称模糊匹配
         public let namePattern: String?
-        
+
         /// 字段排序 (Sort.Filed为:StartTime）
         public let sort: [FieldSort]?
-        
+
         /// 命名空间过滤
         public let namespace: String?
-        
-        public init (edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil) {
+
+        public init(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Iecp {
             self.sort = sort
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case offset = "Offset"
@@ -53,44 +53,44 @@ extension Iecp {
             case namespace = "Namespace"
         }
     }
-    
+
     /// DescribeEdgeUnitApplications返回参数结构体
     public struct DescribeEdgeUnitApplicationsResponse: TCResponseModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 应用列表
         public let applicationSet: [ApplicationStatusInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case applicationSet = "ApplicationSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单元下应用列表
     @inlinable
-    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationsResponse > {
+    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationsResponse> {
         self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单元下应用列表
     @inlinable
     public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
         try await self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单元下应用列表
     @inlinable
-    public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationsResponse > {
+    public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationsResponse> {
         self.describeEdgeUnitApplications(DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单元下应用列表
     @inlinable
     public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {

@@ -19,44 +19,44 @@ extension Redis {
     public struct DisassociateSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：redis。
         public let product: String
-        
+
         /// 安全组 ID。
         public let securityGroupId: String
-        
+
         /// 实例ID列表，一个或者多个实例 ID 组成的数组。
         public let instanceIds: [String]
-        
-        public init (product: String, securityGroupId: String, instanceIds: [String]) {
+
+        public init(product: String, securityGroupId: String, instanceIds: [String]) {
             self.product = product
             self.securityGroupId = securityGroupId
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case product = "Product"
             case securityGroupId = "SecurityGroupId"
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// DisassociateSecurityGroups返回参数结构体
     public struct DisassociateSecurityGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全组批量解绑云资源
     ///
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
     @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
         self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组批量解绑云资源
     ///
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
@@ -64,15 +64,15 @@ extension Redis {
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全组批量解绑云资源
     ///
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
     @inlinable
-    public func disassociateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+    public func disassociateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
         self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组批量解绑云资源
     ///
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。

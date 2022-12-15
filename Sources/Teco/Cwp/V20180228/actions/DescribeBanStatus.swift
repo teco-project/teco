@@ -17,46 +17,46 @@
 extension Cwp {
     /// DescribeBanStatus请求参数结构体
     public struct DescribeBanStatusRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeBanStatus返回参数结构体
     public struct DescribeBanStatusResponse: TCResponseModel {
         /// 阻断开关状态 0:关闭 1:开启
         public let status: UInt64
-        
+
         /// 是否弹窗提示信息 false: 关闭，true: 开启
         public let showTips: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case showTips = "ShowTips"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取阻断按钮状态
     @inlinable
-    public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanStatusResponse > {
+    public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanStatusResponse> {
         self.client.execute(action: "DescribeBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取阻断按钮状态
     @inlinable
     public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanStatusResponse {
         try await self.client.execute(action: "DescribeBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取阻断按钮状态
     @inlinable
-    public func describeBanStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanStatusResponse > {
+    public func describeBanStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanStatusResponse> {
         self.describeBanStatus(DescribeBanStatusRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取阻断按钮状态
     @inlinable
     public func describeBanStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanStatusResponse {

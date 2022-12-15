@@ -19,26 +19,26 @@ extension Cdb {
     public struct DescribeErrorLogDataRequest: TCRequestModel {
         /// 实例 ID 。
         public let instanceId: String
-        
+
         /// 开始时间戳。
         public let startTime: UInt64
-        
+
         /// 结束时间戳。
         public let endTime: UInt64
-        
+
         /// 要匹配的关键字列表，最多支持15个关键字。
         public let keyWords: [String]?
-        
+
         /// 分页的返回数量，默认为100，最大为400。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 仅在实例为主实例或者灾备实例时生效，可选值：slave，代表拉取从机的日志。
         public let instType: String?
-        
-        public init (instanceId: String, startTime: UInt64, endTime: UInt64, keyWords: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instType: String? = nil) {
+
+        public init(instanceId: String, startTime: UInt64, endTime: UInt64, keyWords: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instType: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -47,7 +47,7 @@ extension Cdb {
             self.offset = offset
             self.instType = instType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
@@ -58,35 +58,35 @@ extension Cdb {
             case instType = "InstType"
         }
     }
-    
+
     /// DescribeErrorLogData返回参数结构体
     public struct DescribeErrorLogDataResponse: TCResponseModel {
         /// 符合条件的记录总数。
         public let totalCount: Int64
-        
+
         /// 返回的记录。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [ErrlogItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例错误日志详情
     ///
     /// 根据检索条件查询实例错误日志详情。只能查询一个月之内的错误日志。
     /// 使用时需要注意：可能存在单条错误日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
     @inlinable
-    public func describeErrorLogData(_ input: DescribeErrorLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorLogDataResponse > {
+    public func describeErrorLogData(_ input: DescribeErrorLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorLogDataResponse> {
         self.client.execute(action: "DescribeErrorLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例错误日志详情
     ///
     /// 根据检索条件查询实例错误日志详情。只能查询一个月之内的错误日志。
@@ -95,16 +95,16 @@ extension Cdb {
     public func describeErrorLogData(_ input: DescribeErrorLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorLogDataResponse {
         try await self.client.execute(action: "DescribeErrorLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例错误日志详情
     ///
     /// 根据检索条件查询实例错误日志详情。只能查询一个月之内的错误日志。
     /// 使用时需要注意：可能存在单条错误日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
     @inlinable
-    public func describeErrorLogData(instanceId: String, startTime: UInt64, endTime: UInt64, keyWords: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorLogDataResponse > {
+    public func describeErrorLogData(instanceId: String, startTime: UInt64, endTime: UInt64, keyWords: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorLogDataResponse> {
         self.describeErrorLogData(DescribeErrorLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, keyWords: keyWords, limit: limit, offset: offset, instType: instType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例错误日志详情
     ///
     /// 根据检索条件查询实例错误日志详情。只能查询一个月之内的错误日志。

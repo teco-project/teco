@@ -19,27 +19,27 @@ extension Cfs {
     public struct SetUserQuotaRequest: TCRequestModel {
         /// 文件系统 ID
         public let fileSystemId: String
-        
+
         /// 指定配额类型，包括Uid、Gid
         public let userType: String
-        
+
         /// UID/GID信息
         public let userId: String
-        
+
         /// 容量硬限制，单位GiB
         public let capacityHardLimit: UInt64?
-        
+
         /// 文件硬限制，单位个
         public let fileHardLimit: UInt64?
-        
-        public init (fileSystemId: String, userType: String, userId: String, capacityHardLimit: UInt64? = nil, fileHardLimit: UInt64? = nil) {
+
+        public init(fileSystemId: String, userType: String, userId: String, capacityHardLimit: UInt64? = nil, fileHardLimit: UInt64? = nil) {
             self.fileSystemId = fileSystemId
             self.userType = userType
             self.userId = userId
             self.capacityHardLimit = capacityHardLimit
             self.fileHardLimit = fileHardLimit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
             case userType = "UserType"
@@ -48,25 +48,25 @@ extension Cfs {
             case fileHardLimit = "FileHardLimit"
         }
     }
-    
+
     /// SetUserQuota返回参数结构体
     public struct SetUserQuotaResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置文件系统配额
     ///
     /// 设置文件系统配额，提供UID/GID的配额设置的接口
     @inlinable
-    public func setUserQuota(_ input: SetUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetUserQuotaResponse > {
+    public func setUserQuota(_ input: SetUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetUserQuotaResponse> {
         self.client.execute(action: "SetUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置文件系统配额
     ///
     /// 设置文件系统配额，提供UID/GID的配额设置的接口
@@ -74,15 +74,15 @@ extension Cfs {
     public func setUserQuota(_ input: SetUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetUserQuotaResponse {
         try await self.client.execute(action: "SetUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置文件系统配额
     ///
     /// 设置文件系统配额，提供UID/GID的配额设置的接口
     @inlinable
-    public func setUserQuota(fileSystemId: String, userType: String, userId: String, capacityHardLimit: UInt64? = nil, fileHardLimit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetUserQuotaResponse > {
+    public func setUserQuota(fileSystemId: String, userType: String, userId: String, capacityHardLimit: UInt64? = nil, fileHardLimit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetUserQuotaResponse> {
         self.setUserQuota(SetUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId, capacityHardLimit: capacityHardLimit, fileHardLimit: fileHardLimit), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置文件系统配额
     ///
     /// 设置文件系统配额，提供UID/GID的配额设置的接口

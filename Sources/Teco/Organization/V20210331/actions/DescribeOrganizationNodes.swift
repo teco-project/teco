@@ -19,59 +19,59 @@ extension Organization {
     public struct DescribeOrganizationNodesRequest: TCRequestModel {
         /// 限制数目。最大50
         public let limit: Int64
-        
+
         /// 偏移量。
         public let offset: Int64
-        
-        public init (limit: Int64, offset: Int64) {
+
+        public init(limit: Int64, offset: Int64) {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeOrganizationNodes返回参数结构体
     public struct DescribeOrganizationNodesResponse: TCResponseModel {
         /// 总数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 列表详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [OrgNode]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取组织节点列表
     @inlinable
-    public func describeOrganizationNodes(_ input: DescribeOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationNodesResponse > {
+    public func describeOrganizationNodes(_ input: DescribeOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationNodesResponse> {
         self.client.execute(action: "DescribeOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取组织节点列表
     @inlinable
     public func describeOrganizationNodes(_ input: DescribeOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationNodesResponse {
         try await self.client.execute(action: "DescribeOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取组织节点列表
     @inlinable
-    public func describeOrganizationNodes(limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationNodesResponse > {
+    public func describeOrganizationNodes(limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationNodesResponse> {
         self.describeOrganizationNodes(DescribeOrganizationNodesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取组织节点列表
     @inlinable
     public func describeOrganizationNodes(limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationNodesResponse {

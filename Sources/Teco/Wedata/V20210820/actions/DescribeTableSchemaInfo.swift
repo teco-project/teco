@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeTableSchemaInfoRequest: TCRequestModel {
         /// 表名称
         public let name: String
-        
+
         /// 数据库名称
         public let databaseName: String
-        
+
         /// 表类型
         public let msType: String
-        
+
         /// 数据源id
         public let datasourceId: String
-        
+
         /// HIVE传rpc
         public let connectionType: String?
-        
+
         /// 元数据Database下的Schema名称
         public let schemaName: String?
-        
-        public init (name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil) {
+
+        public init(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil) {
             self.name = name
             self.databaseName = databaseName
             self.msType = msType
@@ -43,7 +43,7 @@ extension Wedata {
             self.connectionType = connectionType
             self.schemaName = schemaName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case databaseName = "DatabaseName"
@@ -53,40 +53,40 @@ extension Wedata {
             case schemaName = "SchemaName"
         }
     }
-    
+
     /// DescribeTableSchemaInfo返回参数结构体
     public struct DescribeTableSchemaInfoResponse: TCResponseModel {
         /// 123
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaInfoList: [SchemaDetail]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case schemaInfoList = "SchemaInfoList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取表schema信息
     @inlinable
-    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableSchemaInfoResponse > {
+    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableSchemaInfoResponse> {
         self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取表schema信息
     @inlinable
     public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
         try await self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取表schema信息
     @inlinable
-    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableSchemaInfoResponse > {
+    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableSchemaInfoResponse> {
         self.describeTableSchemaInfo(DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取表schema信息
     @inlinable
     public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {

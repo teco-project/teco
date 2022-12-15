@@ -19,48 +19,48 @@ extension Cwp {
     public struct StartBaselineDetectRequest: TCRequestModel {
         /// 基线检测参数
         public let param: BaselineDetectParam
-        
-        public init (param: BaselineDetectParam) {
+
+        public init(param: BaselineDetectParam) {
             self.param = param
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case param = "Param"
         }
     }
-    
+
     /// StartBaselineDetect返回参数结构体
     public struct StartBaselineDetectResponse: TCResponseModel {
         /// 扫描任务ID
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 检测基线
     @inlinable
-    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBaselineDetectResponse > {
+    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBaselineDetectResponse> {
         self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 检测基线
     @inlinable
     public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
         try await self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 检测基线
     @inlinable
-    public func startBaselineDetect(param: BaselineDetectParam, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBaselineDetectResponse > {
+    public func startBaselineDetect(param: BaselineDetectParam, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBaselineDetectResponse> {
         self.startBaselineDetect(StartBaselineDetectRequest(param: param), logger: logger, on: eventLoop)
     }
-    
+
     /// 检测基线
     @inlinable
     public func startBaselineDetect(param: BaselineDetectParam, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {

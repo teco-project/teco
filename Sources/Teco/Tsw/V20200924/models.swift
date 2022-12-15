@@ -20,35 +20,35 @@ extension Tsw {
         /// 鉴权token
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let token: String?
-        
+
         /// 数据接收Ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let etlIp: String?
-        
+
         /// 数据接收port
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let etlPort: String?
-        
+
         /// 手动接入脚本串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let byHandAccess: String?
-        
+
         /// 自动接入脚本串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let byShellAccess: String?
-        
+
         /// SkyWalking数据接收port
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skyWalkingPort: String?
-        
+
         /// Zipkin数据接收port
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zipkinPort: String?
-        
+
         /// Jaeger数据接收port
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jaegerPort: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case token = "Token"
             case etlIp = "EtlIp"

@@ -27,94 +27,94 @@ extension TCOceanusError {
             case resourceNotExist = "ResourceNotFound.ResourceNotExist"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 集群不存在。
         public static var clusterId: ResourceNotFound {
             ResourceNotFound(.clusterId)
         }
-        
+
         /// COS Bucket 未找到或无权限访问。
         public static var cosBucket: ResourceNotFound {
             ResourceNotFound(.cosBucket)
         }
-        
+
         /// 作业不存在。
         public static var job: ResourceNotFound {
             ResourceNotFound(.job)
         }
-        
+
         /// 作业配置版本不存在。
         public static var jobConfig: ResourceNotFound {
             ResourceNotFound(.jobConfig)
         }
-        
+
         /// 找不到作业。
         public static var jobId: ResourceNotFound {
             ResourceNotFound(.jobId)
         }
-        
+
         /// 程序包不存在。
         public static var resource: ResourceNotFound {
             ResourceNotFound(.resource)
         }
-        
+
         /// 程序包版本不存在。
         public static var resourceConfig: ResourceNotFound {
             ResourceNotFound(.resourceConfig)
         }
-        
+
         /// 资源不存在。
         public static var resourceNotExist: ResourceNotFound {
             ResourceNotFound(.resourceNotExist)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asOceanusError() -> TCOceanusError {
             let code: TCOceanusError.Code
             switch self.error {
-            case .clusterId: 
+            case .clusterId:
                 code = .resourceNotFound_ClusterId
-            case .cosBucket: 
+            case .cosBucket:
                 code = .resourceNotFound_COSBucket
-            case .job: 
+            case .job:
                 code = .resourceNotFound_Job
-            case .jobConfig: 
+            case .jobConfig:
                 code = .resourceNotFound_JobConfig
-            case .jobId: 
+            case .jobId:
                 code = .resourceNotFound_JobId
-            case .resource: 
+            case .resource:
                 code = .resourceNotFound_Resource
-            case .resourceConfig: 
+            case .resourceConfig:
                 code = .resourceNotFound_ResourceConfig
-            case .resourceNotExist: 
+            case .resourceNotExist:
                 code = .resourceNotFound_ResourceNotExist
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCOceanusError(code, context: self.context)

@@ -19,27 +19,27 @@ extension Tcb {
     public struct DescribeCloudBaseBuildServiceRequest: TCRequestModel {
         /// 环境id
         public let envId: String
-        
+
         /// 服务名
         public let serviceName: String
-        
+
         /// build类型,枚举值有: cloudbaserun, framework-ci
         public let ciBusiness: String?
-        
+
         /// 服务版本
         public let serviceVersion: String?
-        
+
         /// 文件后缀
         public let suffix: String?
-        
-        public init (envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil) {
+
+        public init(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil) {
             self.envId = envId
             self.serviceName = serviceName
             self.ciBusiness = ciBusiness
             self.serviceVersion = serviceVersion
             self.suffix = suffix
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case serviceName = "ServiceName"
@@ -48,36 +48,36 @@ extension Tcb {
             case suffix = "Suffix"
         }
     }
-    
+
     /// DescribeCloudBaseBuildService返回参数结构体
     public struct DescribeCloudBaseBuildServiceResponse: TCResponseModel {
         /// 上传url
         public let uploadUrl: String
-        
+
         /// 上传heder
         public let uploadHeaders: [KVPair]
-        
+
         /// 包名
         public let packageName: String
-        
+
         /// 包版本
         public let packageVersion: String
-        
+
         /// 下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 下载Httpheader
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadHeaders: [KVPair]?
-        
+
         /// 下载链接是否过期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outDate: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uploadUrl = "UploadUrl"
             case uploadHeaders = "UploadHeaders"
@@ -89,15 +89,15 @@ extension Tcb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取云托管代码上传和下载url
     ///
     /// 获取云托管代码上传url
     @inlinable
-    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseBuildServiceResponse > {
+    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseBuildServiceResponse> {
         self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取云托管代码上传和下载url
     ///
     /// 获取云托管代码上传url
@@ -105,15 +105,15 @@ extension Tcb {
     public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
         try await self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取云托管代码上传和下载url
     ///
     /// 获取云托管代码上传url
     @inlinable
-    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseBuildServiceResponse > {
+    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseBuildServiceResponse> {
         self.describeCloudBaseBuildService(DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取云托管代码上传和下载url
     ///
     /// 获取云托管代码上传url

@@ -19,62 +19,62 @@ extension Fmu {
     public struct BeautifyVideoRequest: TCRequestModel {
         /// 视频url地址
         public let url: String
-        
+
         /// 美颜参数 - 美白、平滑、大眼和瘦脸。参数值范围[0, 100]。参数值为0，则不做美颜。参数默认值为0。目前默认取数组第一个元素是对所有人脸美颜。
         public let beautyParam: [BeautyParam]?
-        
+
         /// 目前只支持mp4
         public let outputVideoType: String?
-        
-        public init (url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil) {
+
+        public init(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil) {
             self.url = url
             self.beautyParam = beautyParam
             self.outputVideoType = outputVideoType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case beautyParam = "BeautyParam"
             case outputVideoType = "OutputVideoType"
         }
     }
-    
+
     /// BeautifyVideo返回参数结构体
     public struct BeautifyVideoResponse: TCResponseModel {
         /// 视频美颜任务的Job id
         public let jobId: String
-        
+
         /// 预估处理时间，粒度为秒
         public let estimatedProcessTime: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case estimatedProcessTime = "EstimatedProcessTime"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 视频美颜
     @inlinable
-    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BeautifyVideoResponse > {
+    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
         self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 视频美颜
     @inlinable
     public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
         try await self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 视频美颜
     @inlinable
-    public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BeautifyVideoResponse > {
+    public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
         self.beautifyVideo(BeautifyVideoRequest(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), logger: logger, on: eventLoop)
     }
-    
+
     /// 视频美颜
     @inlinable
     public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {

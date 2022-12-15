@@ -29,108 +29,108 @@ extension TCChdfsError {
             case invalidVpcId = "InvalidParameterValue.InvalidVpcId"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// AccessGroupId参数取值错误。
         public static var invalidAccessGroupId: InvalidParameterValue {
             InvalidParameterValue(.invalidAccessGroupId)
         }
-        
+
         /// AccessGroupName参数取值错误。
         public static var invalidAccessGroupName: InvalidParameterValue {
             InvalidParameterValue(.invalidAccessGroupName)
         }
-        
+
         /// 权限规则的Address参数取值错误。
         public static var invalidAccessRuleAddress: InvalidParameterValue {
             InvalidParameterValue(.invalidAccessRuleAddress)
         }
-        
+
         /// CapacityQuota参数取值错误。
         public static var invalidCapacityQuota: InvalidParameterValue {
             InvalidParameterValue(.invalidCapacityQuota)
         }
-        
+
         /// Description参数取值错误。
         public static var invalidDescription: InvalidParameterValue {
             InvalidParameterValue(.invalidDescription)
         }
-        
+
         /// FileSystemId参数取值错误。
         public static var invalidFileSystemId: InvalidParameterValue {
             InvalidParameterValue(.invalidFileSystemId)
         }
-        
+
         /// FileSystemName参数取值错误。
         public static var invalidFileSystemName: InvalidParameterValue {
             InvalidParameterValue(.invalidFileSystemName)
         }
-        
+
         /// MountPointId参数取值错误。
         public static var invalidMountPointId: InvalidParameterValue {
             InvalidParameterValue(.invalidMountPointId)
         }
-        
+
         /// MountPointName参数取值错误。
         public static var invalidMountPointName: InvalidParameterValue {
             InvalidParameterValue(.invalidMountPointName)
         }
-        
+
         /// VpcId参数取值错误。
         public static var invalidVpcId: InvalidParameterValue {
             InvalidParameterValue(.invalidVpcId)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asChdfsError() -> TCChdfsError {
             let code: TCChdfsError.Code
             switch self.error {
-            case .invalidAccessGroupId: 
+            case .invalidAccessGroupId:
                 code = .invalidParameterValue_InvalidAccessGroupId
-            case .invalidAccessGroupName: 
+            case .invalidAccessGroupName:
                 code = .invalidParameterValue_InvalidAccessGroupName
-            case .invalidAccessRuleAddress: 
+            case .invalidAccessRuleAddress:
                 code = .invalidParameterValue_InvalidAccessRuleAddress
-            case .invalidCapacityQuota: 
+            case .invalidCapacityQuota:
                 code = .invalidParameterValue_InvalidCapacityQuota
-            case .invalidDescription: 
+            case .invalidDescription:
                 code = .invalidParameterValue_InvalidDescription
-            case .invalidFileSystemId: 
+            case .invalidFileSystemId:
                 code = .invalidParameterValue_InvalidFileSystemId
-            case .invalidFileSystemName: 
+            case .invalidFileSystemName:
                 code = .invalidParameterValue_InvalidFileSystemName
-            case .invalidMountPointId: 
+            case .invalidMountPointId:
                 code = .invalidParameterValue_InvalidMountPointId
-            case .invalidMountPointName: 
+            case .invalidMountPointName:
                 code = .invalidParameterValue_InvalidMountPointName
-            case .invalidVpcId: 
+            case .invalidVpcId:
                 code = .invalidParameterValue_InvalidVpcId
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCChdfsError(code, context: self.context)

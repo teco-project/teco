@@ -17,32 +17,32 @@
 extension Live {
     /// DescribeLiveWatermarkRules请求参数结构体
     public struct DescribeLiveWatermarkRulesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeLiveWatermarkRules返回参数结构体
     public struct DescribeLiveWatermarkRulesResponse: TCResponseModel {
         /// 水印规则列表。
         public let rules: [RuleInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取水印规则列表
     ///
     /// 获取水印规则列表。
     @inlinable
-    public func describeLiveWatermarkRules(_ input: DescribeLiveWatermarkRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkRulesResponse > {
+    public func describeLiveWatermarkRules(_ input: DescribeLiveWatermarkRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkRulesResponse> {
         self.client.execute(action: "DescribeLiveWatermarkRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取水印规则列表
     ///
     /// 获取水印规则列表。
@@ -50,15 +50,15 @@ extension Live {
     public func describeLiveWatermarkRules(_ input: DescribeLiveWatermarkRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkRulesResponse {
         try await self.client.execute(action: "DescribeLiveWatermarkRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取水印规则列表
     ///
     /// 获取水印规则列表。
     @inlinable
-    public func describeLiveWatermarkRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkRulesResponse > {
+    public func describeLiveWatermarkRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkRulesResponse> {
         self.describeLiveWatermarkRules(DescribeLiveWatermarkRulesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取水印规则列表
     ///
     /// 获取水印规则列表。

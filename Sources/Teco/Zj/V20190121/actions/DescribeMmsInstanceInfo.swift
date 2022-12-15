@@ -19,53 +19,53 @@ extension Zj {
     public struct DescribeMmsInstanceInfoRequest: TCRequestModel {
         /// 商户证书
         public let license: String
-        
+
         /// 彩信实例id
         public let instanceId: Int64
-        
-        public init (license: String, instanceId: Int64) {
+
+        public init(license: String, instanceId: Int64) {
             self.license = license
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case license = "License"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeMmsInstanceInfo返回参数结构体
     public struct DescribeMmsInstanceInfoResponse: TCResponseModel {
         /// 彩信实例信息
         public let data: MmsInstanceInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取彩信实例信息
     @inlinable
-    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceInfoResponse > {
+    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceInfoResponse> {
         self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取彩信实例信息
     @inlinable
     public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
         try await self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取彩信实例信息
     @inlinable
-    public func describeMmsInstanceInfo(license: String, instanceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceInfoResponse > {
+    public func describeMmsInstanceInfo(license: String, instanceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceInfoResponse> {
         self.describeMmsInstanceInfo(DescribeMmsInstanceInfoRequest(license: license, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取彩信实例信息
     @inlinable
     public func describeMmsInstanceInfo(license: String, instanceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {

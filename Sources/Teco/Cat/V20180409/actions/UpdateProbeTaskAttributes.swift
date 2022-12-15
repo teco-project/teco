@@ -19,49 +19,49 @@ extension Cat {
     public struct UpdateProbeTaskAttributesRequest: TCRequestModel {
         /// 任务 ID
         public let taskId: String
-        
+
         /// 任务名
         public let name: String?
-        
-        public init (taskId: String, name: String? = nil) {
+
+        public init(taskId: String, name: String? = nil) {
             self.taskId = taskId
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case name = "Name"
         }
     }
-    
+
     /// UpdateProbeTaskAttributes返回参数结构体
     public struct UpdateProbeTaskAttributesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新探测任务属性
     @inlinable
-    public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProbeTaskAttributesResponse > {
+    public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskAttributesResponse> {
         self.client.execute(action: "UpdateProbeTaskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新探测任务属性
     @inlinable
     public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {
         try await self.client.execute(action: "UpdateProbeTaskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新探测任务属性
     @inlinable
-    public func updateProbeTaskAttributes(taskId: String, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProbeTaskAttributesResponse > {
+    public func updateProbeTaskAttributes(taskId: String, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskAttributesResponse> {
         self.updateProbeTaskAttributes(UpdateProbeTaskAttributesRequest(taskId: taskId, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新探测任务属性
     @inlinable
     public func updateProbeTaskAttributes(taskId: String, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {

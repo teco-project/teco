@@ -19,47 +19,47 @@ extension Kms {
     public struct AsymmetricSm2DecryptRequest: TCRequestModel {
         /// CMK的唯一标识
         public let keyId: String
-        
+
         /// 使用PublicKey加密的密文，Base64编码。密文长度不能超过256字节。
         public let ciphertext: String
-        
-        public init (keyId: String, ciphertext: String) {
+
+        public init(keyId: String, ciphertext: String) {
             self.keyId = keyId
             self.ciphertext = ciphertext
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
             case ciphertext = "Ciphertext"
         }
     }
-    
+
     /// AsymmetricSm2Decrypt返回参数结构体
     public struct AsymmetricSm2DecryptResponse: TCResponseModel {
         /// CMK的唯一标识
         public let keyId: String
-        
+
         /// 解密后的明文，base64编码
         public let plaintext: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
             case plaintext = "Plaintext"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 非对称密钥Sm2解密
     ///
     /// 使用指定的SM2非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。传入的密文的长度不能超过256字节。
     @inlinable
-    public func asymmetricSm2Decrypt(_ input: AsymmetricSm2DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AsymmetricSm2DecryptResponse > {
+    public func asymmetricSm2Decrypt(_ input: AsymmetricSm2DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsymmetricSm2DecryptResponse> {
         self.client.execute(action: "AsymmetricSm2Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 非对称密钥Sm2解密
     ///
     /// 使用指定的SM2非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。传入的密文的长度不能超过256字节。
@@ -67,15 +67,15 @@ extension Kms {
     public func asymmetricSm2Decrypt(_ input: AsymmetricSm2DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsymmetricSm2DecryptResponse {
         try await self.client.execute(action: "AsymmetricSm2Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 非对称密钥Sm2解密
     ///
     /// 使用指定的SM2非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。传入的密文的长度不能超过256字节。
     @inlinable
-    public func asymmetricSm2Decrypt(keyId: String, ciphertext: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AsymmetricSm2DecryptResponse > {
+    public func asymmetricSm2Decrypt(keyId: String, ciphertext: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsymmetricSm2DecryptResponse> {
         self.asymmetricSm2Decrypt(AsymmetricSm2DecryptRequest(keyId: keyId, ciphertext: ciphertext), logger: logger, on: eventLoop)
     }
-    
+
     /// 非对称密钥Sm2解密
     ///
     /// 使用指定的SM2非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。传入的密文的长度不能超过256字节。

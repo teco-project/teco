@@ -19,34 +19,34 @@ extension Kms {
     public struct EnableKeysRequest: TCRequestModel {
         /// 需要批量启用的CMK Id 列表， CMK数量最大支持100
         public let keyIds: [String]
-        
-        public init (keyIds: [String]) {
+
+        public init(keyIds: [String]) {
             self.keyIds = keyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
         }
     }
-    
+
     /// EnableKeys返回参数结构体
     public struct EnableKeysResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
     @inlinable
-    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeysResponse > {
+    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
         self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
@@ -54,15 +54,15 @@ extension Kms {
     public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
         try await self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
     @inlinable
-    public func enableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeysResponse > {
+    public func enableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
         self.enableKeys(EnableKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。

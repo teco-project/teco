@@ -20,45 +20,45 @@ extension TCEcmError {
             case loadBalancerSoldOut = "ResourcesSoldOut.LoadBalancerSoldOut"
             case specifiedInstanceType = "ResourcesSoldOut.SpecifiedInstanceType"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 负载均衡资源已经售罄。
         public static var loadBalancerSoldOut: ResourcesSoldOut {
             ResourcesSoldOut(.loadBalancerSoldOut)
         }
-        
+
         /// 更换机型或者可用区。
         public static var specifiedInstanceType: ResourcesSoldOut {
             ResourcesSoldOut(.specifiedInstanceType)
         }
-        
+
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
-            case .loadBalancerSoldOut: 
+            case .loadBalancerSoldOut:
                 code = .resourcesSoldOut_LoadBalancerSoldOut
-            case .specifiedInstanceType: 
+            case .specifiedInstanceType:
                 code = .resourcesSoldOut_SpecifiedInstanceType
             }
             return TCEcmError(code, context: self.context)

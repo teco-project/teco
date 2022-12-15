@@ -19,43 +19,43 @@ extension Bmlb {
     public struct CreateTrafficMirrorRequest: TCRequestModel {
         /// 流量镜像实例别名。
         public let alias: String
-        
+
         /// 流量镜像实例所属的私有网络ID，形如：vpc-xxx。
         public let vpcId: String
-        
-        public init (alias: String, vpcId: String) {
+
+        public init(alias: String, vpcId: String) {
             self.alias = alias
             self.vpcId = vpcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alias = "Alias"
             case vpcId = "VpcId"
         }
     }
-    
+
     /// CreateTrafficMirror返回参数结构体
     public struct CreateTrafficMirrorResponse: TCResponseModel {
         /// 流量镜像实例ID
         public let trafficMirrorId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorId = "TrafficMirrorId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建流量镜像实例
     ///
     /// 创建流量镜像实例。
     @inlinable
-    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrafficMirrorResponse > {
+    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficMirrorResponse> {
         self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建流量镜像实例
     ///
     /// 创建流量镜像实例。
@@ -63,15 +63,15 @@ extension Bmlb {
     public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
         try await self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建流量镜像实例
     ///
     /// 创建流量镜像实例。
     @inlinable
-    public func createTrafficMirror(alias: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrafficMirrorResponse > {
+    public func createTrafficMirror(alias: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficMirrorResponse> {
         self.createTrafficMirror(CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建流量镜像实例
     ///
     /// 创建流量镜像实例。

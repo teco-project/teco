@@ -23,23 +23,23 @@ extension Dc {
         /// <li> direct-connect-tunnel-id, 专用通道实例ID，如dcx-abcdefgh。</li>
         /// <li>direct-connect-id, 物理专线实例ID，如，dc-abcdefgh。</li>
         public let filters: [Filter]?
-        
+
         /// 专用通道 ID数组
         public let directConnectTunnelIds: [String]?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
-        
-        public init (filters: [Filter]? = nil, directConnectTunnelIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(filters: [Filter]? = nil, directConnectTunnelIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.directConnectTunnelIds = directConnectTunnelIds
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case directConnectTunnelIds = "DirectConnectTunnelIds"
@@ -47,33 +47,33 @@ extension Dc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeDirectConnectTunnels返回参数结构体
     public struct DescribeDirectConnectTunnelsResponse: TCResponseModel {
         /// 专用通道列表
         public let directConnectTunnelSet: [DirectConnectTunnel]
-        
+
         /// 符合专用通道数量。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectTunnelSet = "DirectConnectTunnelSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询专用通道列表
     ///
     /// 用于查询专用通道列表。
     @inlinable
-    public func describeDirectConnectTunnels(_ input: DescribeDirectConnectTunnelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectTunnelsResponse > {
+    public func describeDirectConnectTunnels(_ input: DescribeDirectConnectTunnelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelsResponse> {
         self.client.execute(action: "DescribeDirectConnectTunnels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专用通道列表
     ///
     /// 用于查询专用通道列表。
@@ -81,15 +81,15 @@ extension Dc {
     public func describeDirectConnectTunnels(_ input: DescribeDirectConnectTunnelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelsResponse {
         try await self.client.execute(action: "DescribeDirectConnectTunnels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询专用通道列表
     ///
     /// 用于查询专用通道列表。
     @inlinable
-    public func describeDirectConnectTunnels(filters: [Filter]? = nil, directConnectTunnelIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectTunnelsResponse > {
+    public func describeDirectConnectTunnels(filters: [Filter]? = nil, directConnectTunnelIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelsResponse> {
         self.describeDirectConnectTunnels(DescribeDirectConnectTunnelsRequest(filters: filters, directConnectTunnelIds: directConnectTunnelIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专用通道列表
     ///
     /// 用于查询专用通道列表。

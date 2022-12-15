@@ -19,34 +19,34 @@ extension Cpdp {
     public struct FreezeFlexBalanceRequest: TCRequestModel {
         /// 收款用户ID
         public let payeeId: String
-        
+
         /// 税前金额
         public let amountBeforeTax: String
-        
+
         /// 收入类型
         /// LABOR:劳务所得
         /// OCCASION:偶然所得
         public let incomeType: String
-        
+
         /// 外部订单ID
         public let outOrderId: String
-        
+
         /// 操作类型
         /// FREEZE:冻结
         /// UNFREEZE:解冻
         public let operationType: String
-        
+
         /// 冻结备注
         public let remark: String?
-        
+
         /// 环境类型
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// __test__:测试环境
         /// 缺省默认为生产环境
         public let environment: String?
-        
-        public init (payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil) {
+
+        public init(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil) {
             self.payeeId = payeeId
             self.amountBeforeTax = amountBeforeTax
             self.incomeType = incomeType
@@ -55,7 +55,7 @@ extension Cpdp {
             self.remark = remark
             self.environment = environment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payeeId = "PayeeId"
             case amountBeforeTax = "AmountBeforeTax"
@@ -66,22 +66,22 @@ extension Cpdp {
             case environment = "Environment"
         }
     }
-    
+
     /// FreezeFlexBalance返回参数结构体
     public struct FreezeFlexBalanceResponse: TCResponseModel {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
-        
+
         /// 错误消息
         public let errMessage: String
-        
+
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: FreezeFlexBalanceResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -89,25 +89,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 灵云V2-冻结余额
     @inlinable
-    public func freezeFlexBalance(_ input: FreezeFlexBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FreezeFlexBalanceResponse > {
+    public func freezeFlexBalance(_ input: FreezeFlexBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeFlexBalanceResponse> {
         self.client.execute(action: "FreezeFlexBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云V2-冻结余额
     @inlinable
     public func freezeFlexBalance(_ input: FreezeFlexBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeFlexBalanceResponse {
         try await self.client.execute(action: "FreezeFlexBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 灵云V2-冻结余额
     @inlinable
-    public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FreezeFlexBalanceResponse > {
+    public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeFlexBalanceResponse> {
         self.freezeFlexBalance(FreezeFlexBalanceRequest(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment), logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云V2-冻结余额
     @inlinable
     public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeFlexBalanceResponse {

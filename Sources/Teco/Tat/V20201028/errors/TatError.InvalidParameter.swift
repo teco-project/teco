@@ -22,58 +22,58 @@ extension TCTatError {
             case parameterNameDuplicated = "InvalidParameter.ParameterNameDuplicated"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数冲突。
         public static var conflictParameter: InvalidParameter {
             InvalidParameter(.conflictParameter)
         }
-        
+
         /// 无效用户名。
         public static var invalidUsername: InvalidParameter {
             InvalidParameter(.invalidUsername)
         }
-        
+
         public static var parameterNameDuplicated: InvalidParameter {
             InvalidParameter(.parameterNameDuplicated)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTatError() -> TCTatError {
             let code: TCTatError.Code
             switch self.error {
-            case .conflictParameter: 
+            case .conflictParameter:
                 code = .invalidParameter_ConflictParameter
-            case .invalidUsername: 
+            case .invalidUsername:
                 code = .invalidParameter_InvalidUsername
-            case .parameterNameDuplicated: 
+            case .parameterNameDuplicated:
                 code = .invalidParameter_ParameterNameDuplicated
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCTatError(code, context: self.context)

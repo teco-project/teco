@@ -19,61 +19,61 @@ extension Asw {
     public struct DescribeFlowServiceDetailRequest: TCRequestModel {
         /// 状态机所属服务资源名
         public let flowServiceResource: String
-        
-        public init (flowServiceResource: String) {
+
+        public init(flowServiceResource: String) {
             self.flowServiceResource = flowServiceResource
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case flowServiceResource = "FlowServiceResource"
         }
     }
-    
+
     /// DescribeFlowServiceDetail返回参数结构体
     public struct DescribeFlowServiceDetailResponse: TCResponseModel {
         /// 状态机所属服务名
         public let flowServiceName: String
-        
+
         /// 状态机状态
         public let status: String
-        
+
         /// 定义文本（JSON格式）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let definition: String?
-        
+
         /// 角色资源名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleResource: String?
-        
+
         /// 状态机的类型，可以为 （EXPRESS/STANDARD）
         public let type: String
-        
+
         /// 生成时间
         public let createDate: String
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 状态机所属服务中文名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowServiceChineseName: String?
-        
+
         /// 是否开启日志CLS服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableCLS: Bool?
-        
+
         /// CLS日志查看地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clsUrl: String?
-        
+
         /// 工作流提示输入
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowInput: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowServiceName = "FlowServiceName"
             case status = "Status"
@@ -89,15 +89,15 @@ extension Asw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询状态机详情
     ///
     /// 查询该用户指定状态机下的详情数据。
     @inlinable
-    public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowServiceDetailResponse > {
+    public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowServiceDetailResponse> {
         self.client.execute(action: "DescribeFlowServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询状态机详情
     ///
     /// 查询该用户指定状态机下的详情数据。
@@ -105,15 +105,15 @@ extension Asw {
     public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServiceDetailResponse {
         try await self.client.execute(action: "DescribeFlowServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询状态机详情
     ///
     /// 查询该用户指定状态机下的详情数据。
     @inlinable
-    public func describeFlowServiceDetail(flowServiceResource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowServiceDetailResponse > {
+    public func describeFlowServiceDetail(flowServiceResource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowServiceDetailResponse> {
         self.describeFlowServiceDetail(DescribeFlowServiceDetailRequest(flowServiceResource: flowServiceResource), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询状态机详情
     ///
     /// 查询该用户指定状态机下的详情数据。

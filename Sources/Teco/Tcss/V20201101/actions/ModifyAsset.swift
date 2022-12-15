@@ -19,43 +19,43 @@ extension Tcss {
     public struct ModifyAssetRequest: TCRequestModel {
         /// 全部同步
         public let all: Bool?
-        
+
         /// 要同步的主机列表 两个参数必选一个 All优先
         public let hosts: [String]?
-        
-        public init (all: Bool? = nil, hosts: [String]? = nil) {
+
+        public init(all: Bool? = nil, hosts: [String]? = nil) {
             self.all = all
             self.hosts = hosts
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case all = "All"
             case hosts = "Hosts"
         }
     }
-    
+
     /// ModifyAsset返回参数结构体
     public struct ModifyAssetResponse: TCResponseModel {
         /// 同步任务发送结果
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 主机资产刷新
     ///
     /// 容器安全主机资产刷新
     @inlinable
-    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetResponse > {
+    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetResponse> {
         self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 主机资产刷新
     ///
     /// 容器安全主机资产刷新
@@ -63,15 +63,15 @@ extension Tcss {
     public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
         try await self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 主机资产刷新
     ///
     /// 容器安全主机资产刷新
     @inlinable
-    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetResponse > {
+    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetResponse> {
         self.modifyAsset(ModifyAssetRequest(all: all, hosts: hosts), logger: logger, on: eventLoop)
     }
-    
+
     /// 主机资产刷新
     ///
     /// 容器安全主机资产刷新

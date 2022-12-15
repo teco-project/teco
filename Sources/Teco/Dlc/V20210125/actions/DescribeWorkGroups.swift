@@ -19,23 +19,23 @@ extension Dlc {
     public struct DescribeWorkGroupsRequest: TCRequestModel {
         /// 查询的工作组Id，不填或填0表示不过滤。
         public let workGroupId: Int64?
-        
+
         /// 过滤条件，当前仅支持按照工作组名称进行模糊搜索。Key为workgroup-name
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认20，最大值100
         public let limit: Int64?
-        
+
         /// 排序字段，支持如下字段类型，create-time
         public let sortBy: String?
-        
+
         /// 排序方式，desc表示正序，asc表示反序， 默认为asc
         public let sorting: String?
-        
-        public init (workGroupId: Int64? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil) {
+
+        public init(workGroupId: Int64? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil) {
             self.workGroupId = workGroupId
             self.filters = filters
             self.offset = offset
@@ -43,7 +43,7 @@ extension Dlc {
             self.sortBy = sortBy
             self.sorting = sorting
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupId = "WorkGroupId"
             case filters = "Filters"
@@ -53,43 +53,43 @@ extension Dlc {
             case sorting = "Sorting"
         }
     }
-    
+
     /// DescribeWorkGroups返回参数结构体
     public struct DescribeWorkGroupsResponse: TCResponseModel {
         /// 工作组总数
         public let totalCount: Int64
-        
+
         /// 工作组信息集合
         public let workGroupSet: [WorkGroupInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case workGroupSet = "WorkGroupSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取工作组列表
     @inlinable
-    public func describeWorkGroups(_ input: DescribeWorkGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkGroupsResponse > {
+    public func describeWorkGroups(_ input: DescribeWorkGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkGroupsResponse> {
         self.client.execute(action: "DescribeWorkGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取工作组列表
     @inlinable
     public func describeWorkGroups(_ input: DescribeWorkGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkGroupsResponse {
         try await self.client.execute(action: "DescribeWorkGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取工作组列表
     @inlinable
-    public func describeWorkGroups(workGroupId: Int64? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkGroupsResponse > {
+    public func describeWorkGroups(workGroupId: Int64? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkGroupsResponse> {
         self.describeWorkGroups(DescribeWorkGroupsRequest(workGroupId: workGroupId, filters: filters, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取工作组列表
     @inlinable
     public func describeWorkGroups(workGroupId: Int64? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkGroupsResponse {

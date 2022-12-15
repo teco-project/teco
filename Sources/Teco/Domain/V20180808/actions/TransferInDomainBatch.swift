@@ -19,33 +19,33 @@ extension Domain {
     public struct TransferInDomainBatchRequest: TCRequestModel {
         /// 转入的域名名称数组。
         public let domains: [String]
-        
+
         /// 域名转移码数组。
         public let passWords: [String]
-        
+
         /// 模板ID。
         public let templateId: String
-        
+
         /// 付费模式 0手动在线付费，1使用余额付费。
         public let payMode: Int64
-        
+
         /// 自动续费开关。有两个可选值：
         /// 0 表示关闭，不自动续费（默认值）
         /// 1 表示开启，将自动续费
         public let autoRenewFlag: Int64?
-        
+
         /// true： 开启60天内禁止转移注册商锁定
         /// false：关闭60天内禁止转移注册商锁定
         /// 默认 true
         public let lockTransfer: Bool?
-        
+
         /// 是否开启更新锁：0=默认不开启，1=开启
         public let updateProhibition: Int64?
-        
+
         /// 是否开启转移锁：0=默认不开启，1=开启
         public let transferProhibition: Int64?
-        
-        public init (domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
+
+        public init(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
             self.domains = domains
             self.passWords = passWords
             self.templateId = templateId
@@ -55,7 +55,7 @@ extension Domain {
             self.updateProhibition = updateProhibition
             self.transferProhibition = transferProhibition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domains = "Domains"
             case passWords = "PassWords"
@@ -67,29 +67,29 @@ extension Domain {
             case transferProhibition = "TransferProhibition"
         }
     }
-    
+
     /// TransferInDomainBatch返回参数结构体
     public struct TransferInDomainBatchResponse: TCResponseModel {
         /// 日志ID
         public let logId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case logId = "LogId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量域名转入
     ///
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
     @inlinable
-    public func transferInDomainBatch(_ input: TransferInDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferInDomainBatchResponse > {
+    public func transferInDomainBatch(_ input: TransferInDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferInDomainBatchResponse> {
         self.client.execute(action: "TransferInDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量域名转入
     ///
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
@@ -97,15 +97,15 @@ extension Domain {
     public func transferInDomainBatch(_ input: TransferInDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferInDomainBatchResponse {
         try await self.client.execute(action: "TransferInDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量域名转入
     ///
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
     @inlinable
-    public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferInDomainBatchResponse > {
+    public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferInDomainBatchResponse> {
         self.transferInDomainBatch(TransferInDomainBatchRequest(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量域名转入
     ///
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。

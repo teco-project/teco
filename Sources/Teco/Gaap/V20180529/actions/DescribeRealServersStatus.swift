@@ -19,42 +19,42 @@ extension Gaap {
     public struct DescribeRealServersStatusRequest: TCRequestModel {
         /// 源站ID列表
         public let realServerIds: [String]
-        
-        public init (realServerIds: [String]) {
+
+        public init(realServerIds: [String]) {
             self.realServerIds = realServerIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case realServerIds = "RealServerIds"
         }
     }
-    
+
     /// DescribeRealServersStatus返回参数结构体
     public struct DescribeRealServersStatusResponse: TCResponseModel {
         /// 返回源站查询结果的个数
         public let totalCount: Int64
-        
+
         /// 源站被绑定状态列表
         public let realServerStatusSet: [RealServerStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case realServerStatusSet = "RealServerStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询源站绑定状态
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
     @inlinable
-    public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealServersStatusResponse > {
+    public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServersStatusResponse> {
         self.client.execute(action: "DescribeRealServersStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询源站绑定状态
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
@@ -62,15 +62,15 @@ extension Gaap {
     public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersStatusResponse {
         try await self.client.execute(action: "DescribeRealServersStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询源站绑定状态
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
     @inlinable
-    public func describeRealServersStatus(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealServersStatusResponse > {
+    public func describeRealServersStatus(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServersStatusResponse> {
         self.describeRealServersStatus(DescribeRealServersStatusRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询源站绑定状态
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定

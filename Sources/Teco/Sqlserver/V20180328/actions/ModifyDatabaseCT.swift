@@ -19,23 +19,23 @@ extension Sqlserver {
     public struct ModifyDatabaseCTRequest: TCRequestModel {
         /// 数据库名数组
         public let dbNames: [String]
-        
+
         /// 启用、禁用数据库CT功能 enable；启用，disable：禁用
         public let modifyType: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 启用CT时额外保留天数，默认保留3天，最小3天，最大30天
         public let changeRetentionDay: Int64?
-        
-        public init (dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil) {
+
+        public init(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil) {
             self.dbNames = dbNames
             self.modifyType = modifyType
             self.instanceId = instanceId
             self.changeRetentionDay = changeRetentionDay
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbNames = "DBNames"
             case modifyType = "ModifyType"
@@ -43,29 +43,29 @@ extension Sqlserver {
             case changeRetentionDay = "ChangeRetentionDay"
         }
     }
-    
+
     /// ModifyDatabaseCT返回参数结构体
     public struct ModifyDatabaseCTResponse: TCResponseModel {
         /// 流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用&禁用数据库CT
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
     @inlinable
-    public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseCTResponse > {
+    public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCTResponse> {
         self.client.execute(action: "ModifyDatabaseCT", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用&禁用数据库CT
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
@@ -73,15 +73,15 @@ extension Sqlserver {
     public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCTResponse {
         try await self.client.execute(action: "ModifyDatabaseCT", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用&禁用数据库CT
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
     @inlinable
-    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseCTResponse > {
+    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCTResponse> {
         self.modifyDatabaseCT(ModifyDatabaseCTRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId, changeRetentionDay: changeRetentionDay), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用&禁用数据库CT
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)

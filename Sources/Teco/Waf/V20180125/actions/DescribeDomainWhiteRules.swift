@@ -19,23 +19,23 @@ extension Waf {
     public struct DescribeDomainWhiteRulesRequest: TCRequestModel {
         /// 需要查询的域名
         public let domain: String
-        
+
         /// 请求的白名单匹配路径
         public let url: String?
-        
+
         /// 翻到多少页
         public let page: UInt64?
-        
+
         /// 每页展示的条数
         public let count: UInt64?
-        
+
         /// 排序方式
         public let sort: String?
-        
+
         /// 规则ID
         public let ruleId: String?
-        
-        public init (domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil) {
+
+        public init(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil) {
             self.domain = domain
             self.url = url
             self.page = page
@@ -43,7 +43,7 @@ extension Waf {
             self.sort = sort
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case url = "Url"
@@ -53,43 +53,43 @@ extension Waf {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// DescribeDomainWhiteRules返回参数结构体
     public struct DescribeDomainWhiteRulesResponse: TCResponseModel {
         /// 规则列表
         public let ruleList: [RuleList]
-        
+
         /// 规则的数量
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleList = "RuleList"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名的规则白名单
     @inlinable
-    public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainWhiteRulesResponse > {
+    public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainWhiteRulesResponse> {
         self.client.execute(action: "DescribeDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名的规则白名单
     @inlinable
     public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {
         try await self.client.execute(action: "DescribeDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名的规则白名单
     @inlinable
-    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainWhiteRulesResponse > {
+    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainWhiteRulesResponse> {
         self.describeDomainWhiteRules(DescribeDomainWhiteRulesRequest(domain: domain, url: url, page: page, count: count, sort: sort, ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名的规则白名单
     @inlinable
     public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {

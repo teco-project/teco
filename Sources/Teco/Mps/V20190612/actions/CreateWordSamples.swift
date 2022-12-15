@@ -27,39 +27,39 @@ extension Mps {
         /// 6. Review：通过光学字符识别技术、音频识别技术，进行不适宜内容识别，等价于 3+4；
         /// 7. All：通过光学字符识别技术、音频识别技术，进行内容识别、不适宜内容识别，等价于 1+2+3+4。
         public let usages: [String]
-        
+
         /// 关键词，数组长度限制：100。
         public let words: [AiSampleWordInfo]
-        
-        public init (usages: [String], words: [AiSampleWordInfo]) {
+
+        public init(usages: [String], words: [AiSampleWordInfo]) {
             self.usages = usages
             self.words = words
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case usages = "Usages"
             case words = "Words"
         }
     }
-    
+
     /// CreateWordSamples返回参数结构体
     public struct CreateWordSamplesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable
-    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordSamplesResponse > {
+    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
         self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
@@ -67,15 +67,15 @@ extension Mps {
     public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
         try await self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable
-    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordSamplesResponse > {
+    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
         self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。

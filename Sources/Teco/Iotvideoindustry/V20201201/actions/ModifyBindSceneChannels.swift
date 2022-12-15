@@ -19,54 +19,54 @@ extension Iotvideoindustry {
     public struct ModifyBindSceneChannelsRequest: TCRequestModel {
         /// 场景ID
         public let sceneId: Int64
-        
+
         /// 1: 绑定 2: 解绑
         public let type: Int64
-        
+
         /// 通道列表
         public let channels: [ChannelItem]
-        
-        public init (sceneId: Int64, type: Int64, channels: [ChannelItem]) {
+
+        public init(sceneId: Int64, type: Int64, channels: [ChannelItem]) {
             self.sceneId = sceneId
             self.type = type
             self.channels = channels
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sceneId = "SceneId"
             case type = "Type"
             case channels = "Channels"
         }
     }
-    
+
     /// ModifyBindSceneChannels返回参数结构体
     public struct ModifyBindSceneChannelsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 场景绑定解绑通道接口
     @inlinable
-    public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindSceneChannelsResponse > {
+    public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneChannelsResponse> {
         self.client.execute(action: "ModifyBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 场景绑定解绑通道接口
     @inlinable
     public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {
         try await self.client.execute(action: "ModifyBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 场景绑定解绑通道接口
     @inlinable
-    public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindSceneChannelsResponse > {
+    public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneChannelsResponse> {
         self.modifyBindSceneChannels(ModifyBindSceneChannelsRequest(sceneId: sceneId, type: type, channels: channels), logger: logger, on: eventLoop)
     }
-    
+
     /// 场景绑定解绑通道接口
     @inlinable
     public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {

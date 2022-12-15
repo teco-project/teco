@@ -19,34 +19,34 @@ extension Vpc {
     public struct DeleteAddressTemplateRequest: TCRequestModel {
         /// IP地址模板实例ID，例如：ipm-09o5m8kc。
         public let addressTemplateId: String
-        
-        public init (addressTemplateId: String) {
+
+        public init(addressTemplateId: String) {
             self.addressTemplateId = addressTemplateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addressTemplateId = "AddressTemplateId"
         }
     }
-    
+
     /// DeleteAddressTemplate返回参数结构体
     public struct DeleteAddressTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板
     @inlinable
-    public func deleteAddressTemplate(_ input: DeleteAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAddressTemplateResponse > {
+    public func deleteAddressTemplate(_ input: DeleteAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateResponse> {
         self.client.execute(action: "DeleteAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板
@@ -54,15 +54,15 @@ extension Vpc {
     public func deleteAddressTemplate(_ input: DeleteAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateResponse {
         try await self.client.execute(action: "DeleteAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板
     @inlinable
-    public func deleteAddressTemplate(addressTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAddressTemplateResponse > {
+    public func deleteAddressTemplate(addressTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateResponse> {
         self.deleteAddressTemplate(DeleteAddressTemplateRequest(addressTemplateId: addressTemplateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板

@@ -19,13 +19,13 @@ extension Vod {
     public struct ModifyAnimatedGraphicsTemplateRequest: TCRequestModel {
         /// 转动图模板唯一标识。
         public let definition: UInt64
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 转动图模板名称，长度限制：64 个字符。
         public let name: String?
-        
+
         /// 动图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -33,7 +33,7 @@ extension Vod {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let width: UInt64?
-        
+
         /// 动图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -41,26 +41,26 @@ extension Vod {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let height: UInt64?
-        
+
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 默认值：open。
         public let resolutionAdaptive: String?
-        
+
         /// 动图格式，取值为 gif 和 webp。
         public let format: String?
-        
+
         /// 帧率，取值范围：[1, 30]，单位：Hz。
         public let fps: UInt64?
-        
+
         /// 图片质量，取值范围：[1, 100]，默认值为 75。
         public let quality: Float?
-        
+
         /// 模板描述信息，长度限制：256 个字符。
         public let comment: String?
-        
-        public init (definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil) {
+
+        public init(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil) {
             self.definition = definition
             self.subAppId = subAppId
             self.name = name
@@ -72,7 +72,7 @@ extension Vod {
             self.quality = quality
             self.comment = comment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case subAppId = "SubAppId"
@@ -86,25 +86,25 @@ extension Vod {
             case comment = "Comment"
         }
     }
-    
+
     /// ModifyAnimatedGraphicsTemplate返回参数结构体
     public struct ModifyAnimatedGraphicsTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。
     @inlinable
-    public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAnimatedGraphicsTemplateResponse > {
+    public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAnimatedGraphicsTemplateResponse> {
         self.client.execute(action: "ModifyAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。
@@ -112,15 +112,15 @@ extension Vod {
     public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAnimatedGraphicsTemplateResponse {
         try await self.client.execute(action: "ModifyAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。
     @inlinable
-    public func modifyAnimatedGraphicsTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAnimatedGraphicsTemplateResponse > {
+    public func modifyAnimatedGraphicsTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAnimatedGraphicsTemplateResponse> {
         self.modifyAnimatedGraphicsTemplate(ModifyAnimatedGraphicsTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, fps: fps, quality: quality, comment: comment), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。

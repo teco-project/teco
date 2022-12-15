@@ -19,7 +19,7 @@ extension Tcss {
     public struct ModifyEscapeEventStatusRequest: TCRequestModel {
         /// 处理事件ids
         public let eventIdSet: [String]
-        
+
         /// 标记事件的状态：
         /// EVENT_UNDEAL:未处理（取消忽略），
         /// EVENT_DEALED:已处理，
@@ -27,13 +27,13 @@ extension Tcss {
         /// EVENT_DELETE：已删除
         /// EVENT_ADD_WHITE：加白
         public let status: String
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 加白镜像ID数组
         public let imageIDs: [String]?
-        
+
         /// 加白事件类型
         ///    ESCAPE_CGROUPS：利用cgroup机制逃逸
         ///    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
@@ -43,15 +43,15 @@ extension Tcss {
         ///    PRIVILEGE_CONTAINER_START：特权容器
         ///    PRIVILEGE：程序提权逃逸
         public let eventType: [String]?
-        
-        public init (eventIdSet: [String], status: String, remark: String? = nil, imageIDs: [String]? = nil, eventType: [String]? = nil) {
+
+        public init(eventIdSet: [String], status: String, remark: String? = nil, imageIDs: [String]? = nil, eventType: [String]? = nil) {
             self.eventIdSet = eventIdSet
             self.status = status
             self.remark = remark
             self.imageIDs = imageIDs
             self.eventType = eventType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventIdSet = "EventIdSet"
             case status = "Status"
@@ -60,25 +60,25 @@ extension Tcss {
             case eventType = "EventType"
         }
     }
-    
+
     /// ModifyEscapeEventStatus返回参数结构体
     public struct ModifyEscapeEventStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改容器逃逸扫描事件状态
     ///
     /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
     @inlinable
-    public func modifyEscapeEventStatus(_ input: ModifyEscapeEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeEventStatusResponse > {
+    public func modifyEscapeEventStatus(_ input: ModifyEscapeEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeEventStatusResponse> {
         self.client.execute(action: "ModifyEscapeEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器逃逸扫描事件状态
     ///
     /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
@@ -86,15 +86,15 @@ extension Tcss {
     public func modifyEscapeEventStatus(_ input: ModifyEscapeEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeEventStatusResponse {
         try await self.client.execute(action: "ModifyEscapeEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改容器逃逸扫描事件状态
     ///
     /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
     @inlinable
-    public func modifyEscapeEventStatus(eventIdSet: [String], status: String, remark: String? = nil, imageIDs: [String]? = nil, eventType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeEventStatusResponse > {
+    public func modifyEscapeEventStatus(eventIdSet: [String], status: String, remark: String? = nil, imageIDs: [String]? = nil, eventType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeEventStatusResponse> {
         self.modifyEscapeEventStatus(ModifyEscapeEventStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, imageIDs: imageIDs, eventType: eventType), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器逃逸扫描事件状态
     ///
     /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态

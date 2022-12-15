@@ -19,23 +19,23 @@ extension Trp {
     public struct ModifyTraceDataRanksRequest: TCRequestModel {
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 批次ID
         public let batchId: String?
-        
+
         /// 生产任务ID
         public let taskId: String?
-        
+
         /// 溯源ID
         public let traceIds: [String]?
-        
-        public init (corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil) {
+
+        public init(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil) {
             self.corpId = corpId
             self.batchId = batchId
             self.taskId = taskId
             self.traceIds = traceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
             case batchId = "BatchId"
@@ -43,40 +43,40 @@ extension Trp {
             case traceIds = "TraceIds"
         }
     }
-    
+
     /// ModifyTraceDataRanks返回参数结构体
     public struct ModifyTraceDataRanksResponse: TCResponseModel {
         /// 批次ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改溯源信息的排序
     @inlinable
-    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataRanksResponse > {
+    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataRanksResponse> {
         self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改溯源信息的排序
     @inlinable
     public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
         try await self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改溯源信息的排序
     @inlinable
-    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataRanksResponse > {
+    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataRanksResponse> {
         self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改溯源信息的排序
     @inlinable
     public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {

@@ -19,31 +19,31 @@ extension Cpdp {
     public struct QueryCloudOrderRequest: TCRequestModel {
         /// 米大师分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 用户Id，长度不小于5位，仅支持字母和数字的组合
         public let userId: String
-        
+
         /// 查询类型
         /// by_order:根据订单号查订单
         public let type: String
-        
+
         /// 环境类型
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// _不填默认为生产环境_
         public let midasEnvironment: String?
-        
+
         /// 开发者的主订单号
         public let outTradeNo: String?
-        
-        public init (midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil) {
+
+        public init(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.type = type
             self.midasEnvironment = midasEnvironment
             self.outTradeNo = outTradeNo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case midasAppId = "MidasAppId"
             case userId = "UserId"
@@ -52,34 +52,34 @@ extension Cpdp {
             case outTradeNo = "OutTradeNo"
         }
     }
-    
+
     /// QueryCloudOrder返回参数结构体
     public struct QueryCloudOrderResponse: TCResponseModel {
         /// 订单数量
         public let totalNum: Int64
-        
+
         /// 订单列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderList: [CloudOrderReturn]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalNum = "TotalNum"
             case orderList = "OrderList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫V2-查询订单
     ///
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
-    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCloudOrderResponse > {
+    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudOrderResponse> {
         self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫V2-查询订单
     ///
     /// 根据订单号或用户ID，查询支付订单状态。
@@ -87,15 +87,15 @@ extension Cpdp {
     public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
         try await self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫V2-查询订单
     ///
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
-    public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCloudOrderResponse > {
+    public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudOrderResponse> {
         self.queryCloudOrder(QueryCloudOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫V2-查询订单
     ///
     /// 根据订单号或用户ID，查询支付订单状态。

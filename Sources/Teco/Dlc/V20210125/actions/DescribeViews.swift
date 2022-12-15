@@ -19,34 +19,34 @@ extension Dlc {
     public struct DescribeViewsRequest: TCRequestModel {
         /// 列出该数据库下所属数据表。
         public let databaseName: String
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: Int64?
-        
+
         /// 数据偏移量，从0开始，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件，如下支持的过滤类型，传参Name应为其一
         /// view-name - String - （过滤条件）数据表名称,形如：view-001。
         /// view-id - String - （过滤条件）view id形如：12342。
         public let filters: [Filter]?
-        
+
         /// 数据库所属的数据源名称
         public let datasourceConnectionName: String?
-        
+
         /// 排序字段
         public let sort: String?
-        
+
         /// 排序规则，true:升序；false:降序
         public let asc: Bool?
-        
+
         /// 按视图更新时间筛选，开始时间，如2021-11-11 00:00:00
         public let startTime: String?
-        
+
         /// 按视图更新时间筛选，结束时间，如2021-11-12 00:00:00
         public let endTime: String?
-        
-        public init (databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil) {
+
+        public init(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.databaseName = databaseName
             self.limit = limit
             self.offset = offset
@@ -57,7 +57,7 @@ extension Dlc {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case limit = "Limit"
@@ -70,33 +70,33 @@ extension Dlc {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeViews返回参数结构体
     public struct DescribeViewsResponse: TCResponseModel {
         /// 视图对象列表。
         public let viewList: [ViewResponseInfo]
-        
+
         /// 实例总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case viewList = "ViewList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询视图列表
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
-    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeViewsResponse > {
+    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
         self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询视图列表
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
@@ -104,15 +104,15 @@ extension Dlc {
     public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
         try await self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询视图列表
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
-    public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeViewsResponse > {
+    public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
         self.describeViews(DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询视图列表
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。

@@ -19,50 +19,50 @@ extension Wedata {
     public struct DescribeInstanceLogsRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String
-        
+
         /// 任务ID
         public let taskId: String
-        
+
         /// 数据时间
         public let curRunDate: String
-        
-        public init (projectId: String, taskId: String, curRunDate: String) {
+
+        public init(projectId: String, taskId: String, curRunDate: String) {
             self.projectId = projectId
             self.taskId = taskId
             self.curRunDate = curRunDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case taskId = "TaskId"
             case curRunDate = "CurRunDate"
         }
     }
-    
+
     /// DescribeInstanceLogs返回参数结构体
     public struct DescribeInstanceLogsResponse: TCResponseModel {
         /// 返回日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [InstanceLog]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例日志列表【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 获取实例日志列表
     @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogsResponse > {
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
         self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例日志列表【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
@@ -71,16 +71,16 @@ extension Wedata {
     public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
         try await self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例日志列表【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 获取实例日志列表
     @inlinable
-    public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogsResponse > {
+    public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
         self.describeInstanceLogs(DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例日志列表【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>

@@ -19,39 +19,39 @@ extension Vpc {
     public struct NotifyRoutesRequest: TCRequestModel {
         /// 路由表唯一ID。
         public let routeTableId: String
-        
+
         /// 路由策略唯一ID。
         public let routeItemIds: [String]
-        
-        public init (routeTableId: String, routeItemIds: [String]) {
+
+        public init(routeTableId: String, routeItemIds: [String]) {
             self.routeTableId = routeTableId
             self.routeItemIds = routeItemIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableId = "RouteTableId"
             case routeItemIds = "RouteItemIds"
         }
     }
-    
+
     /// NotifyRoutes返回参数结构体
     public struct NotifyRoutesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发布路由至云联网
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable
-    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < NotifyRoutesResponse > {
+    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<NotifyRoutesResponse> {
         self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发布路由至云联网
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
@@ -59,15 +59,15 @@ extension Vpc {
     public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
         try await self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发布路由至云联网
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable
-    public func notifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < NotifyRoutesResponse > {
+    public func notifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<NotifyRoutesResponse> {
         self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 发布路由至云联网
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。

@@ -33,161 +33,161 @@ extension TCEssbasicError {
             case thirdParty = "InternalError.ThirdParty"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 其他API错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var api: InternalError {
             InternalError(.api)
         }
-        
+
         /// 数据库错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var db: InternalError {
             InternalError(.db)
         }
-        
+
         /// 数据库连接出错。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var dbConnection: InternalError {
             InternalError(.dbConnection)
         }
-        
+
         /// 数据库新增记录出错。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var dbInsert: InternalError {
             InternalError(.dbInsert)
         }
-        
+
         /// 数据库读取失败。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var dbRead: InternalError {
             InternalError(.dbRead)
         }
-        
+
         /// 数据库更新记录出错。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var dbUpdate: InternalError {
             InternalError(.dbUpdate)
         }
-        
+
         /// 解密错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var decryption: InternalError {
             InternalError(.decryption)
         }
-        
+
         /// 依赖的其他api出错。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var dependsApi: InternalError {
             InternalError(.dependsApi)
         }
-        
+
         /// 加密错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var encryption: InternalError {
             InternalError(.encryption)
         }
-        
+
         /// 生成唯一ID错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var generateId: InternalError {
             InternalError(.generateId)
         }
-        
+
         public static var sealUpload: InternalError {
             InternalError(.sealUpload)
         }
-        
+
         /// 序列化错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var serialize: InternalError {
             InternalError(.serialize)
         }
-        
+
         /// 系统错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var system: InternalError {
             InternalError(.system)
         }
-        
+
         /// 第三方错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var thirdParty: InternalError {
             InternalError(.thirdParty)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asEssbasicError() -> TCEssbasicError {
             let code: TCEssbasicError.Code
             switch self.error {
-            case .api: 
+            case .api:
                 code = .internalError_Api
-            case .db: 
+            case .db:
                 code = .internalError_Db
-            case .dbConnection: 
+            case .dbConnection:
                 code = .internalError_DbConnection
-            case .dbInsert: 
+            case .dbInsert:
                 code = .internalError_DbInsert
-            case .dbRead: 
+            case .dbRead:
                 code = .internalError_DbRead
-            case .dbUpdate: 
+            case .dbUpdate:
                 code = .internalError_DbUpdate
-            case .decryption: 
+            case .decryption:
                 code = .internalError_Decryption
-            case .dependsApi: 
+            case .dependsApi:
                 code = .internalError_DependsApi
-            case .encryption: 
+            case .encryption:
                 code = .internalError_Encryption
-            case .generateId: 
+            case .generateId:
                 code = .internalError_GenerateId
-            case .sealUpload: 
+            case .sealUpload:
                 code = .internalError_SealUpload
-            case .serialize: 
+            case .serialize:
                 code = .internalError_Serialize
-            case .system: 
+            case .system:
                 code = .internalError_System
-            case .thirdParty: 
+            case .thirdParty:
                 code = .internalError_ThirdParty
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCEssbasicError(code, context: self.context)

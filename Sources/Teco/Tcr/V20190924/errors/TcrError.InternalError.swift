@@ -38,171 +38,171 @@ extension TCTcrError {
             case unknown = "InternalError.Unknown"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建私有域失败。
         public static var createPrivateZone: InternalError {
             InternalError(.createPrivateZone)
         }
-        
+
         /// 创建私有域记录失败。
         public static var createPrivateZoneRecord: InternalError {
             InternalError(.createPrivateZoneRecord)
         }
-        
+
         /// 数据库错误。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// 删除私有域记录失败。
         public static var deletePrivateZoneRecord: InternalError {
             InternalError(.deletePrivateZoneRecord)
         }
-        
+
         /// 查询vpc私有解析状态失败。
         public static var describeInternalEndpointDnsStatus: InternalError {
             InternalError(.describeInternalEndpointDnsStatus)
         }
-        
+
         /// 查询私有域列表失败。
         public static var describePrivateZoneList: InternalError {
             InternalError(.describePrivateZoneList)
         }
-        
+
         /// 查询私有域记录列表失败。
         public static var describePrivateZoneRecordList: InternalError {
             InternalError(.describePrivateZoneRecordList)
         }
-        
+
         /// 查询开白vpc列表失败。
         public static var describePrivateZoneServiceList: InternalError {
             InternalError(.describePrivateZoneServiceList)
         }
-        
+
         /// 目标冲突。
         public static var errConflict: InternalError {
             InternalError(.errConflict)
         }
-        
+
         /// 目标不存在。
         public static var errNotExist: InternalError {
             InternalError(.errNotExist)
         }
-        
+
         /// 鉴权失败。
         public static var errUnauthorized: InternalError {
             InternalError(.errUnauthorized)
         }
-        
+
         /// 资源已存在。
         public static var errorConflict: InternalError {
             InternalError(.errorConflict)
         }
-        
+
         /// 资源超过配额。
         public static var errorOverLimit: InternalError {
             InternalError(.errorOverLimit)
         }
-        
+
         /// Tcr实例内部错误。
         public static var errorTcrInternal: InternalError {
             InternalError(.errorTcrInternal)
         }
-        
+
         /// Tcr实例请求无效的Hearder类型。
         public static var errorTcrInvalidMediaType: InternalError {
             InternalError(.errorTcrInvalidMediaType)
         }
-        
+
         /// Tcr实例资源冲突。
         public static var errorTcrResourceConflict: InternalError {
             InternalError(.errorTcrResourceConflict)
         }
-        
+
         /// 没有Tcr操作权限。
         public static var errorTcrUnauthorized: InternalError {
             InternalError(.errorTcrUnauthorized)
         }
-        
+
         /// 修改vpc与私有域关联关系失败。
         public static var modifyPrivateZoneVpc: InternalError {
             InternalError(.modifyPrivateZoneVpc)
         }
-        
+
         /// 未知错误。
         public static var unknown: InternalError {
             InternalError(.unknown)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTcrError() -> TCTcrError {
             let code: TCTcrError.Code
             switch self.error {
-            case .createPrivateZone: 
+            case .createPrivateZone:
                 code = .internalError_CreatePrivateZone
-            case .createPrivateZoneRecord: 
+            case .createPrivateZoneRecord:
                 code = .internalError_CreatePrivateZoneRecord
-            case .dbError: 
+            case .dbError:
                 code = .internalError_DbError
-            case .deletePrivateZoneRecord: 
+            case .deletePrivateZoneRecord:
                 code = .internalError_DeletePrivateZoneRecord
-            case .describeInternalEndpointDnsStatus: 
+            case .describeInternalEndpointDnsStatus:
                 code = .internalError_DescribeInternalEndpointDnsStatus
-            case .describePrivateZoneList: 
+            case .describePrivateZoneList:
                 code = .internalError_DescribePrivateZoneList
-            case .describePrivateZoneRecordList: 
+            case .describePrivateZoneRecordList:
                 code = .internalError_DescribePrivateZoneRecordList
-            case .describePrivateZoneServiceList: 
+            case .describePrivateZoneServiceList:
                 code = .internalError_DescribePrivateZoneServiceList
-            case .errConflict: 
+            case .errConflict:
                 code = .internalError_ErrConflict
-            case .errNotExist: 
+            case .errNotExist:
                 code = .internalError_ErrNotExist
-            case .errUnauthorized: 
+            case .errUnauthorized:
                 code = .internalError_ErrUnauthorized
-            case .errorConflict: 
+            case .errorConflict:
                 code = .internalError_ErrorConflict
-            case .errorOverLimit: 
+            case .errorOverLimit:
                 code = .internalError_ErrorOverLimit
-            case .errorTcrInternal: 
+            case .errorTcrInternal:
                 code = .internalError_ErrorTcrInternal
-            case .errorTcrInvalidMediaType: 
+            case .errorTcrInvalidMediaType:
                 code = .internalError_ErrorTcrInvalidMediaType
-            case .errorTcrResourceConflict: 
+            case .errorTcrResourceConflict:
                 code = .internalError_ErrorTcrResourceConflict
-            case .errorTcrUnauthorized: 
+            case .errorTcrUnauthorized:
                 code = .internalError_ErrorTcrUnauthorized
-            case .modifyPrivateZoneVpc: 
+            case .modifyPrivateZoneVpc:
                 code = .internalError_ModifyPrivateZoneVpc
-            case .unknown: 
+            case .unknown:
                 code = .internalError_Unknown
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCTcrError(code, context: self.context)

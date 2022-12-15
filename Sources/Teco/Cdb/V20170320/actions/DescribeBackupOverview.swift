@@ -19,41 +19,41 @@ extension Cdb {
     public struct DescribeBackupOverviewRequest: TCRequestModel {
         /// 需要查询的云数据库产品类型，目前仅支持 "mysql"。
         public let product: String
-        
-        public init (product: String) {
+
+        public init(product: String) {
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case product = "Product"
         }
     }
-    
+
     /// DescribeBackupOverview返回参数结构体
     public struct DescribeBackupOverviewResponse: TCResponseModel {
         /// 用户在当前地域备份的总个数（包含数据备份和日志备份）。
         public let backupCount: Int64
-        
+
         /// 用户在当前地域备份的总容量
         public let backupVolume: Int64
-        
+
         /// 用户在当前地域备份的计费容量，即超出赠送容量的部分。
         public let billingVolume: Int64
-        
+
         /// 用户在当前地域获得的赠送备份容量。
         public let freeVolume: Int64
-        
+
         /// 用户在当前地域的异地备份总容量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remoteBackupVolume: Int64?
-        
+
         /// 归档备份容量，包含数据备份以及日志备份。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupArchiveVolume: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case backupCount = "BackupCount"
             case backupVolume = "BackupVolume"
@@ -64,15 +64,15 @@ extension Cdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询备份概览
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
-    public func describeBackupOverview(_ input: DescribeBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupOverviewResponse > {
+    public func describeBackupOverview(_ input: DescribeBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupOverviewResponse> {
         self.client.execute(action: "DescribeBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份概览
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
@@ -80,15 +80,15 @@ extension Cdb {
     public func describeBackupOverview(_ input: DescribeBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupOverviewResponse {
         try await self.client.execute(action: "DescribeBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询备份概览
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
-    public func describeBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupOverviewResponse > {
+    public func describeBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupOverviewResponse> {
         self.describeBackupOverview(DescribeBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份概览
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。

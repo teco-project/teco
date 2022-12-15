@@ -19,34 +19,34 @@ extension Mariadb {
     public struct IsolateDedicatedDBInstanceRequest: TCRequestModel {
         /// 实例 Id，形如：tdsql-ow728lmc。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// IsolateDedicatedDBInstance返回参数结构体
     public struct IsolateDedicatedDBInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 隔离独享云数据库实例
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable
-    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDedicatedDBInstanceResponse > {
+    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
         self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 隔离独享云数据库实例
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
@@ -54,15 +54,15 @@ extension Mariadb {
     public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
         try await self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 隔离独享云数据库实例
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable
-    public func isolateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDedicatedDBInstanceResponse > {
+    public func isolateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
         self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 隔离独享云数据库实例
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。

@@ -28,103 +28,103 @@ extension TCTeoError {
             case systemError = "InternalError.SystemError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 后台处理出错。
         public static var backendError: InternalError {
             InternalError(.backendError)
         }
-        
+
         /// 数据库错误。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// 获取配置失败。
         public static var domainConfig: InternalError {
             InternalError(.domainConfig)
         }
-        
+
         /// 上传链接生成失败。
         public static var failedToGenerateUrl: InternalError {
             InternalError(.failedToGenerateUrl)
         }
-        
+
         /// 获取角色失败。
         public static var getRoleError: InternalError {
             InternalError(.getRoleError)
         }
-        
+
         /// 后端服务器发生未知错误。
         public static var proxyServer: InternalError {
             InternalError(.proxyServer)
         }
-        
+
         /// 配额系统处理失败。
         public static var quotaSystem: InternalError {
             InternalError(.quotaSystem)
         }
-        
+
         /// 后端服务路由地址错误。
         public static var routeError: InternalError {
             InternalError(.routeError)
         }
-        
+
         /// 内部错误。
         ///
         /// 内部错误-系统错误。
         public static var systemError: InternalError {
             InternalError(.systemError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .backendError: 
+            case .backendError:
                 code = .internalError_BackendError
-            case .dbError: 
+            case .dbError:
                 code = .internalError_DBError
-            case .domainConfig: 
+            case .domainConfig:
                 code = .internalError_DomainConfig
-            case .failedToGenerateUrl: 
+            case .failedToGenerateUrl:
                 code = .internalError_FailedToGenerateUrl
-            case .getRoleError: 
+            case .getRoleError:
                 code = .internalError_GetRoleError
-            case .proxyServer: 
+            case .proxyServer:
                 code = .internalError_ProxyServer
-            case .quotaSystem: 
+            case .quotaSystem:
                 code = .internalError_QuotaSystem
-            case .routeError: 
+            case .routeError:
                 code = .internalError_RouteError
-            case .systemError: 
+            case .systemError:
                 code = .internalError_SystemError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCTeoError(code, context: self.context)

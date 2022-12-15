@@ -19,23 +19,23 @@ extension Vpc {
     public struct CreateSubnetsRequest: TCRequestModel {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
         public let vpcId: String
-        
+
         /// 子网对象列表。
         public let subnets: [SubnetInput]
-        
+
         /// 指定绑定的标签列表，注意这里的标签集合为列表中所有子网对象所共享，不能为每个子网对象单独指定标签，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
-        
+
         /// 需要增加到的CDC实例ID。
         public let cdcId: String?
-        
-        public init (vpcId: String, subnets: [SubnetInput], tags: [Tag]? = nil, cdcId: String? = nil) {
+
+        public init(vpcId: String, subnets: [SubnetInput], tags: [Tag]? = nil, cdcId: String? = nil) {
             self.vpcId = vpcId
             self.subnets = subnets
             self.tags = tags
             self.cdcId = cdcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnets = "Subnets"
@@ -43,21 +43,21 @@ extension Vpc {
             case cdcId = "CdcId"
         }
     }
-    
+
     /// CreateSubnets返回参数结构体
     public struct CreateSubnetsResponse: TCResponseModel {
         /// 新创建的子网列表。
         public let subnetSet: [Subnet]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subnetSet = "SubnetSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量创建子网
     ///
     /// 本接口(CreateSubnets)用于批量创建子网。
@@ -68,10 +68,10 @@ extension Vpc {
     /// * 子网创建后会自动关联到默认路由表。
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createSubnets(_ input: CreateSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetsResponse > {
+    public func createSubnets(_ input: CreateSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetsResponse> {
         self.client.execute(action: "CreateSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建子网
     ///
     /// 本接口(CreateSubnets)用于批量创建子网。
@@ -85,7 +85,7 @@ extension Vpc {
     public func createSubnets(_ input: CreateSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetsResponse {
         try await self.client.execute(action: "CreateSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量创建子网
     ///
     /// 本接口(CreateSubnets)用于批量创建子网。
@@ -96,10 +96,10 @@ extension Vpc {
     /// * 子网创建后会自动关联到默认路由表。
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createSubnets(vpcId: String, subnets: [SubnetInput], tags: [Tag]? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetsResponse > {
+    public func createSubnets(vpcId: String, subnets: [SubnetInput], tags: [Tag]? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetsResponse> {
         self.createSubnets(CreateSubnetsRequest(vpcId: vpcId, subnets: subnets, tags: tags, cdcId: cdcId), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建子网
     ///
     /// 本接口(CreateSubnets)用于批量创建子网。

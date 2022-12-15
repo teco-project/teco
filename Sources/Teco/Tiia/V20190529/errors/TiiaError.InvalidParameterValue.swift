@@ -40,185 +40,185 @@ extension TCTiiaError {
             case tagsValueSizeExceed = "InvalidParameterValue.TagsValueSizeExceed"
             case urlIllegal = "InvalidParameterValue.UrlIllegal"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 图库简介过长。
         public static var briefTooLong: InvalidParameterValue {
             InvalidParameterValue(.briefTooLong)
         }
-        
+
         /// 自定义内容过长。
         public static var customContentTooLong: InvalidParameterValue {
             InvalidParameterValue(.customContentTooLong)
         }
-        
+
         /// 物品ID为空。
         public static var entityIdEmpty: InvalidParameterValue {
             InvalidParameterValue(.entityIdEmpty)
         }
-        
+
         /// 物品ID超出长度限制。
         public static var entityIdTooLong: InvalidParameterValue {
             InvalidParameterValue(.entityIdTooLong)
         }
-        
+
         /// Filter参数不合法。
         public static var filterInvalid: InvalidParameterValue {
             InvalidParameterValue(.filterInvalid)
         }
-        
+
         /// Filter参数过长。
         public static var filterSizeExceed: InvalidParameterValue {
             InvalidParameterValue(.filterSizeExceed)
         }
-        
+
         /// 图片为空。
         public static var imageEmpty: InvalidParameterValue {
             InvalidParameterValue(.imageEmpty)
         }
-        
+
         /// 图库ID已存在。
         public static var imageGroupIdAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.imageGroupIdAlreadyExist)
         }
-        
+
         /// 图库ID不合法。
         public static var imageGroupIdIllegal: InvalidParameterValue {
             InvalidParameterValue(.imageGroupIdIllegal)
         }
-        
+
         /// 图库ID不存在。
         public static var imageGroupIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.imageGroupIdNotExist)
         }
-        
+
         /// 图库ID超出长度限制。
         public static var imageGroupIdTooLong: InvalidParameterValue {
             InvalidParameterValue(.imageGroupIdTooLong)
         }
-        
+
         /// 图库名称为空。
         public static var imageGroupNameEmpty: InvalidParameterValue {
             InvalidParameterValue(.imageGroupNameEmpty)
         }
-        
+
         /// 图库名称超出长度限制。
         public static var imageGroupNameTooLong: InvalidParameterValue {
             InvalidParameterValue(.imageGroupNameTooLong)
         }
-        
+
         /// 参数值错误。
         public static var invalidParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueLimit)
         }
-        
+
         /// 返回数量不在合法范围内。
         public static var limitExceed: InvalidParameterValue {
             InvalidParameterValue(.limitExceed)
         }
-        
+
         /// 图片已经存在。
         public static var picNameAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.picNameAlreadyExist)
         }
-        
+
         /// 图片名称为空。
         public static var picNameEmpty: InvalidParameterValue {
             InvalidParameterValue(.picNameEmpty)
         }
-        
+
         /// 图片名称超出长度限制。
         public static var picNameTooLong: InvalidParameterValue {
             InvalidParameterValue(.picNameTooLong)
         }
-        
+
         /// 标签数量过多。
         public static var tagsKeysExceed: InvalidParameterValue {
             InvalidParameterValue(.tagsKeysExceed)
         }
-        
+
         /// 标签值类型不合法。
         public static var tagsValueIllegal: InvalidParameterValue {
             InvalidParameterValue(.tagsValueIllegal)
         }
-        
+
         /// 标签值长度过长。
         public static var tagsValueSizeExceed: InvalidParameterValue {
             InvalidParameterValue(.tagsValueSizeExceed)
         }
-        
+
         /// URL格式不合法。
         public static var urlIllegal: InvalidParameterValue {
             InvalidParameterValue(.urlIllegal)
         }
-        
+
         public func asTiiaError() -> TCTiiaError {
             let code: TCTiiaError.Code
             switch self.error {
-            case .briefTooLong: 
+            case .briefTooLong:
                 code = .invalidParameterValue_BriefTooLong
-            case .customContentTooLong: 
+            case .customContentTooLong:
                 code = .invalidParameterValue_CustomContentTooLong
-            case .entityIdEmpty: 
+            case .entityIdEmpty:
                 code = .invalidParameterValue_EntityIdEmpty
-            case .entityIdTooLong: 
+            case .entityIdTooLong:
                 code = .invalidParameterValue_EntityIdTooLong
-            case .filterInvalid: 
+            case .filterInvalid:
                 code = .invalidParameterValue_FilterInvalid
-            case .filterSizeExceed: 
+            case .filterSizeExceed:
                 code = .invalidParameterValue_FilterSizeExceed
-            case .imageEmpty: 
+            case .imageEmpty:
                 code = .invalidParameterValue_ImageEmpty
-            case .imageGroupIdAlreadyExist: 
+            case .imageGroupIdAlreadyExist:
                 code = .invalidParameterValue_ImageGroupIdAlreadyExist
-            case .imageGroupIdIllegal: 
+            case .imageGroupIdIllegal:
                 code = .invalidParameterValue_ImageGroupIdIllegal
-            case .imageGroupIdNotExist: 
+            case .imageGroupIdNotExist:
                 code = .invalidParameterValue_ImageGroupIdNotExist
-            case .imageGroupIdTooLong: 
+            case .imageGroupIdTooLong:
                 code = .invalidParameterValue_ImageGroupIdTooLong
-            case .imageGroupNameEmpty: 
+            case .imageGroupNameEmpty:
                 code = .invalidParameterValue_ImageGroupNameEmpty
-            case .imageGroupNameTooLong: 
+            case .imageGroupNameTooLong:
                 code = .invalidParameterValue_ImageGroupNameTooLong
-            case .invalidParameterValueLimit: 
+            case .invalidParameterValueLimit:
                 code = .invalidParameterValue_InvalidParameterValueLimit
-            case .limitExceed: 
+            case .limitExceed:
                 code = .invalidParameterValue_LimitExceed
-            case .picNameAlreadyExist: 
+            case .picNameAlreadyExist:
                 code = .invalidParameterValue_PicNameAlreadyExist
-            case .picNameEmpty: 
+            case .picNameEmpty:
                 code = .invalidParameterValue_PicNameEmpty
-            case .picNameTooLong: 
+            case .picNameTooLong:
                 code = .invalidParameterValue_PicNameTooLong
-            case .tagsKeysExceed: 
+            case .tagsKeysExceed:
                 code = .invalidParameterValue_TagsKeysExceed
-            case .tagsValueIllegal: 
+            case .tagsValueIllegal:
                 code = .invalidParameterValue_TagsValueIllegal
-            case .tagsValueSizeExceed: 
+            case .tagsValueSizeExceed:
                 code = .invalidParameterValue_TagsValueSizeExceed
-            case .urlIllegal: 
+            case .urlIllegal:
                 code = .invalidParameterValue_UrlIllegal
             }
             return TCTiiaError(code, context: self.context)

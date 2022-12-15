@@ -21,52 +21,52 @@ extension TCThpcError {
             case bindAutoScalingGroup = "UnsupportedOperation.BindAutoScalingGroup"
             case clusterStatusNotSupport = "UnsupportedOperation.ClusterStatusNotSupport"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该伸缩组已绑定集群，请更换伸缩组。
         public static var autoScalingGroupAlreadyBinded: UnsupportedOperation {
             UnsupportedOperation(.autoScalingGroupAlreadyBinded)
         }
-        
+
         /// 指定的集群或集群队列当前不支持绑定弹性伸缩组。
         public static var bindAutoScalingGroup: UnsupportedOperation {
             UnsupportedOperation(.bindAutoScalingGroup)
         }
-        
+
         /// 该集群当前状态不支持该操作。
         public static var clusterStatusNotSupport: UnsupportedOperation {
             UnsupportedOperation(.clusterStatusNotSupport)
         }
-        
+
         public func asThpcError() -> TCThpcError {
             let code: TCThpcError.Code
             switch self.error {
-            case .autoScalingGroupAlreadyBinded: 
+            case .autoScalingGroupAlreadyBinded:
                 code = .unsupportedOperation_AutoScalingGroupAlreadyBinded
-            case .bindAutoScalingGroup: 
+            case .bindAutoScalingGroup:
                 code = .unsupportedOperation_BindAutoScalingGroup
-            case .clusterStatusNotSupport: 
+            case .clusterStatusNotSupport:
                 code = .unsupportedOperation_ClusterStatusNotSupport
             }
             return TCThpcError(code, context: self.context)

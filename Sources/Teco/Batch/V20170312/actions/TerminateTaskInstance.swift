@@ -19,36 +19,36 @@ extension Batch {
     public struct TerminateTaskInstanceRequest: TCRequestModel {
         /// 作业ID
         public let jobId: String
-        
+
         /// 任务名称
         public let taskName: String
-        
+
         /// 任务实例索引
         public let taskInstanceIndex: Int64
-        
-        public init (jobId: String, taskName: String, taskInstanceIndex: Int64) {
+
+        public init(jobId: String, taskName: String, taskInstanceIndex: Int64) {
             self.jobId = jobId
             self.taskName = taskName
             self.taskInstanceIndex = taskInstanceIndex
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case taskName = "TaskName"
             case taskInstanceIndex = "TaskInstanceIndex"
         }
     }
-    
+
     /// TerminateTaskInstance返回参数结构体
     public struct TerminateTaskInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 终止任务实例
     ///
     /// 用于终止任务实例。
@@ -57,10 +57,10 @@ extension Batch {
     /// 对于状态为“STARTING”、“RUNNING”、“FAILED_INTERRUPTED”的任务实例，分区两种情况：如果未显示指定计算环境，会先销毁CVM服务器，然后将状态置为“FAILED”，具有一定耗时；如果指定了计算环境EnvId，任务实例状态置为“FAILED”，并重启执行该任务的CVM服务器，具有一定的耗时。
     /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
     @inlinable
-    public func terminateTaskInstance(_ input: TerminateTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTaskInstanceResponse > {
+    public func terminateTaskInstance(_ input: TerminateTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTaskInstanceResponse> {
         self.client.execute(action: "TerminateTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 终止任务实例
     ///
     /// 用于终止任务实例。
@@ -72,7 +72,7 @@ extension Batch {
     public func terminateTaskInstance(_ input: TerminateTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskInstanceResponse {
         try await self.client.execute(action: "TerminateTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 终止任务实例
     ///
     /// 用于终止任务实例。
@@ -81,10 +81,10 @@ extension Batch {
     /// 对于状态为“STARTING”、“RUNNING”、“FAILED_INTERRUPTED”的任务实例，分区两种情况：如果未显示指定计算环境，会先销毁CVM服务器，然后将状态置为“FAILED”，具有一定耗时；如果指定了计算环境EnvId，任务实例状态置为“FAILED”，并重启执行该任务的CVM服务器，具有一定的耗时。
     /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
     @inlinable
-    public func terminateTaskInstance(jobId: String, taskName: String, taskInstanceIndex: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTaskInstanceResponse > {
+    public func terminateTaskInstance(jobId: String, taskName: String, taskInstanceIndex: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTaskInstanceResponse> {
         self.terminateTaskInstance(TerminateTaskInstanceRequest(jobId: jobId, taskName: taskName, taskInstanceIndex: taskInstanceIndex), logger: logger, on: eventLoop)
     }
-    
+
     /// 终止任务实例
     ///
     /// 用于终止任务实例。

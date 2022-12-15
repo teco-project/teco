@@ -19,16 +19,16 @@ extension Captcha {
     public struct CaptchaOperDataInterceptUnit: TCOutputModel {
         /// 时间
         public let dateKey: String
-        
+
         /// 停止验证数量
         public let allStopCnt: Float
-        
+
         /// 图片停止加载数量
         public let picStopCnt: Float
-        
+
         /// 策略拦截数量
         public let strategyStopCnt: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case dateKey = "DateKey"
             case allStopCnt = "AllStopCnt"
@@ -36,43 +36,43 @@ extension Captcha {
             case strategyStopCnt = "StrategyStopCnt"
         }
     }
-    
+
     /// 操作数据查询方法DescribeCaptchaOperData 的返回结果，安全验证码加载耗时type = 1
     public struct CaptchaOperDataLoadTimeUnit: TCOutputModel {
         /// 时间
         public let dateKey: String
-        
+
         /// Market加载时间
         public let marketLoadTime: Float
-        
+
         /// AppId加载时间
         public let appIdLoadTime: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case dateKey = "DateKey"
             case marketLoadTime = "MarketLoadTime"
             case appIdLoadTime = "AppIdLoadTime"
         }
     }
-    
+
     /// DescribeCaptchaOperData 接口 返回数据类型集合
     public struct CaptchaOperDataRes: TCOutputModel {
         /// 验证码加载耗时数据返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operDataLoadTimeUnitArray: [CaptchaOperDataLoadTimeUnit]?
-        
+
         /// 验证码拦截情况数据返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operDataInterceptUnitArray: [CaptchaOperDataInterceptUnit]?
-        
+
         /// 验证码尝试次数数据返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operDataTryTimesUnitArray: [CaptchaOperDataTryTimesUnit]?
-        
+
         /// 验证码尝试次数分布数据返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operDataTryTimesDistributeUnitArray: [CaptchaOperDataTryTimesDistributeUnit]?
-        
+
         enum CodingKeys: String, CodingKey {
             case operDataLoadTimeUnitArray = "OperDataLoadTimeUnitArray"
             case operDataInterceptUnitArray = "OperDataInterceptUnitArray"
@@ -80,93 +80,93 @@ extension Captcha {
             case operDataTryTimesDistributeUnitArray = "OperDataTryTimesDistributeUnitArray"
         }
     }
-    
+
     /// DescribeCaptchaOperData方法 尝试次数分布 type = 4
     public struct CaptchaOperDataTryTimesDistributeUnit: TCOutputModel {
         /// 尝试次数
         public let tryCount: Int64
-        
+
         /// 用户请求数量
         public let userCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case tryCount = "TryCount"
             case userCount = "UserCount"
         }
     }
-    
+
     /// DescribeCaptchaOperData操作数据查询尝试次数 type = 3
     public struct CaptchaOperDataTryTimesUnit: TCOutputModel {
         /// 时间
         public let dateKey: String
-        
+
         /// 平均尝试次数
         public let cntPerPass: [Float]
-        
+
         /// market平均尝试次数
         public let marketCntPerPass: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case dateKey = "DateKey"
             case cntPerPass = "CntPerPass"
             case marketCntPerPass = "MarketCntPerPass"
         }
     }
-    
+
     /// 该类型为DescribeCaptchaData 方法返回数据类型
     public struct CaptchaQueryData: TCInputModel, TCOutputModel {
         /// 数量
         public let cnt: Int64
-        
+
         /// 时间
         public let date: String
-        
-        public init (cnt: Int64, date: String) {
+
+        public init(cnt: Int64, date: String) {
             self.cnt = cnt
             self.date = date
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cnt = "Cnt"
             case date = "Date"
         }
     }
-    
+
     /// 验证码统计图Obj
     public struct CaptchaStatisticObj: TCOutputModel {
         /// 请求总量
         public let actionTotal: Int64
-        
+
         /// 验证总量
         public let verifyTotal: Int64
-        
+
         /// 验证通过总量
         public let verifyThroughTotal: Int64
-        
+
         /// 验证拦截总量
         public let verifyInterceptTotal: Int64
-        
+
         /// 票据校验总量
         public let ticketTotal: Int64
-        
+
         /// 票据通过总量
         public let ticketThroughTotal: Int64
-        
+
         /// 票据拦截总量
         public let ticketInterceptTotal: Int64
-        
+
         /// 请求趋势图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestTrend: [RequestTrendObj]?
-        
+
         /// 拦截率趋势图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let interceptPerTrend: [InterceptPerTrendObj]?
-        
+
         /// 票据校验趋势图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ticketCheckTrend: [TicketCheckTrendObj]?
-        
+
         enum CodingKeys: String, CodingKey {
             case actionTotal = "ActionTotal"
             case verifyTotal = "VerifyTotal"
@@ -180,39 +180,39 @@ extension Captcha {
             case ticketCheckTrend = "TicketCheckTrend"
         }
     }
-    
+
     /// DescribeCaptchaTicketData 接口 返回数据类型集合
     public struct CaptchaTicketDataRes: TCOutputModel {
         /// 票据验证总量返回
         public let ticketAmountArray: [TicketAmountUnit]
-        
+
         /// 票据验证通过量返回
         public let ticketThroughArray: [TicketThroughUnit]
-        
+
         /// 票据验证拦截量返回
         public let ticketInterceptArray: [TicketInterceptUnit]
-        
+
         enum CodingKeys: String, CodingKey {
             case ticketAmountArray = "TicketAmountArray"
             case ticketThroughArray = "TicketThroughArray"
             case ticketInterceptArray = "TicketInterceptArray"
         }
     }
-    
+
     /// 用户注册的APPID和应用名称对象
     public struct CaptchaUserAllAppId: TCOutputModel {
         /// 验证码应用ID
         public let captchaAppId: Int64
-        
+
         /// 注册应用名称
         public let appName: String
-        
+
         /// 腾讯云APPID
         public let tcAppId: Int64
-        
+
         /// 渠道信息
         public let channelInfo: String
-        
+
         enum CodingKeys: String, CodingKey {
             case captchaAppId = "CaptchaAppId"
             case appName = "AppName"
@@ -220,21 +220,21 @@ extension Captcha {
             case channelInfo = "ChannelInfo"
         }
     }
-    
+
     /// 拦截率趋势obj
     public struct InterceptPerTrendObj: TCOutputModel {
         /// 时间参数
         public let ftime: String
-        
+
         /// 拦截率
         public let requestInterceptPer: Float
-        
+
         /// 答案拦截率
         public let answerInterceptPer: Float
-        
+
         /// 策略拦截率
         public let policyInterceptPer: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case ftime = "Ftime"
             case requestInterceptPer = "RequestInterceptPer"
@@ -242,7 +242,7 @@ extension Captcha {
             case policyInterceptPer = "PolicyInterceptPer"
         }
     }
-    
+
     /// 拦截策略返回信息
     public struct OutputManageMarketingRiskValue: TCOutputModel {
         /// 账号 ID。对应输入参数： AccountType 是 1 时，对应 QQ 的 OpenID。
@@ -254,30 +254,30 @@ extension Captcha {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: String?
-        
-        /// 操作时间戳，单位秒（对应输入参数）。 
+
+        /// 操作时间戳，单位秒（对应输入参数）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let postTime: Int64?
-        
+
         /// 对应输入参数，AccountType 是 QQ 或微信开放账号时，用于标识 QQ 或微信用户登录 后关联业务自身的账号 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let associateAccount: String?
-        
+
         /// 业务详情。 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userIp: String?
-        
+
         /// 风险值 pass : 无恶意
         /// review：需要人工审核
         /// reject：拒绝，高风险恶意
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskLevel: String?
-        
+
         /// 风险类型，请查看下面详细说明 注意：此字段可能返回 null，表示取不到有效值。
-        /// 账号风险	
+        /// 账号风险
         ///         账号信用低	1	账号近期存在因恶意被处罚历史，网络低活跃，被举报等因素
         /// 	疑似 低活跃账号	11	账号活跃度与正常用户有差异
         /// 	垃圾账号	2	疑似批量注册小号，近期存在严重违规或大量举报
@@ -286,20 +286,20 @@ extension Captcha {
         /// 	无效账号	3	送检账号参数无法成功解析，请检查微信 openid 是否有
         /// 	黑名单	4	该账号在业务侧有过拉黑记录
         /// 	白名单 	5	业务自行有添加过白名单记录
-        /// 行为风险	
+        /// 行为风险
         ///         批量操作	101	存在 ip/设备/环境等因素的聚集性异常
         /// 	疑似 IP 属性聚集 	1011	出现 IP 聚集
         /// 	疑似 设备属性聚集 	1012	出现设备聚集
         /// 	自动机 	103	疑似自动机批量请求
         /// 	微信登录态无效 	104	检查 wxtoken 参数，是否已经失效
-        /// 环境风险	
+        /// 环境风险
         ///         环境异常 	201	操作 ip/设备/环境存在异常。当前 ip 为非常用 ip 或恶意 ip 段
         /// 	疑似 非常用IP请求 	2011	当前请求 IP 非该账号常用 IP
-        /// 	疑似 IP 异常 	2012	使用 idc 机房 ip 或 使用代理 ip 或 使用恶意 ip 
+        /// 	疑似 IP 异常 	2012	使用 idc 机房 ip 或 使用代理 ip 或 使用恶意 ip
         /// 	非公网有效 ip 	205	传进来的 IP 地址为内网 ip 地址或者 ip 保留地
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskType: [Int64]?
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case postTime = "PostTime"
@@ -309,24 +309,24 @@ extension Captcha {
             case riskType = "RiskType"
         }
     }
-    
+
     /// 验证码请求趋势图obj
     public struct RequestTrendObj: TCOutputModel {
         /// 时间参数
         public let ftime: String
-        
+
         /// 请求量
         public let requestAction: Int64
-        
+
         /// 验证量
         public let requestVerify: Int64
-        
+
         /// 通过量
         public let requestThroughput: Int64
-        
+
         /// 拦截量
         public let requestIntercept: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case ftime = "Ftime"
             case requestAction = "RequestAction"
@@ -335,35 +335,35 @@ extension Captcha {
             case requestIntercept = "RequestIntercept"
         }
     }
-    
+
     /// DescribeCaptchaTicketData 返回的数据结构
     public struct TicketAmountUnit: TCOutputModel {
         /// 时间
         public let dateKey: String
-        
+
         /// 票据验证总量
         public let amount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case dateKey = "DateKey"
             case amount = "Amount"
         }
     }
-    
+
     /// 验证码票据校验趋势obj
     public struct TicketCheckTrendObj: TCOutputModel {
         /// 时间参数
         public let ftime: String
-        
+
         /// 票据校验量
         public let ticketCount: Int64
-        
+
         /// 票据通过量
         public let ticketThroughput: Int64
-        
+
         /// 票据拦截量
         public let ticketIntercept: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case ftime = "Ftime"
             case ticketCount = "TicketCount"
@@ -371,29 +371,29 @@ extension Captcha {
             case ticketIntercept = "TicketIntercept"
         }
     }
-    
+
     /// DescribeCaptchaTicketData 返回的数据结构
     public struct TicketInterceptUnit: TCOutputModel {
         /// 时间
         public let dateKey: String
-        
+
         /// 票据验证拦截量
         public let intercept: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case dateKey = "DateKey"
             case intercept = "Intercept"
         }
     }
-    
+
     /// DescribeCaptchaTicketData 返回的数据结构
     public struct TicketThroughUnit: TCOutputModel {
         /// 时间
         public let dateKey: String
-        
+
         /// 票据验证的通过量
         public let through: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case dateKey = "DateKey"
             case through = "Through"

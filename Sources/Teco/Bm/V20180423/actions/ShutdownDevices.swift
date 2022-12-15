@@ -19,48 +19,48 @@ extension Bm {
     public struct ShutdownDevicesRequest: TCRequestModel {
         /// 需要关闭的设备ID列表
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// ShutdownDevices返回参数结构体
     public struct ShutdownDevicesResponse: TCResponseModel {
         /// 异步任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭服务器
     @inlinable
-    public func shutdownDevices(_ input: ShutdownDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShutdownDevicesResponse > {
+    public func shutdownDevices(_ input: ShutdownDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShutdownDevicesResponse> {
         self.client.execute(action: "ShutdownDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭服务器
     @inlinable
     public func shutdownDevices(_ input: ShutdownDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShutdownDevicesResponse {
         try await self.client.execute(action: "ShutdownDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭服务器
     @inlinable
-    public func shutdownDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShutdownDevicesResponse > {
+    public func shutdownDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShutdownDevicesResponse> {
         self.shutdownDevices(ShutdownDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭服务器
     @inlinable
     public func shutdownDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShutdownDevicesResponse {

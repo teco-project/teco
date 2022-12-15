@@ -19,49 +19,49 @@ extension Iotexplorer {
     public struct CreateTopicRuleRequest: TCRequestModel {
         /// 规则名称
         public let ruleName: String
-        
+
         /// 规则内容
         public let topicRulePayload: TopicRulePayload
-        
-        public init (ruleName: String, topicRulePayload: TopicRulePayload) {
+
+        public init(ruleName: String, topicRulePayload: TopicRulePayload) {
             self.ruleName = ruleName
             self.topicRulePayload = topicRulePayload
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case topicRulePayload = "TopicRulePayload"
         }
     }
-    
+
     /// CreateTopicRule返回参数结构体
     public struct CreateTopicRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建规则
     @inlinable
-    public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicRuleResponse > {
+    public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicRuleResponse> {
         self.client.execute(action: "CreateTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建规则
     @inlinable
     public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicRuleResponse {
         try await self.client.execute(action: "CreateTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建规则
     @inlinable
-    public func createTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicRuleResponse > {
+    public func createTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicRuleResponse> {
         self.createTopicRule(CreateTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建规则
     @inlinable
     public func createTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicRuleResponse {

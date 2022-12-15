@@ -17,32 +17,32 @@
 extension Cwp {
     /// DescribeMachineOsList请求参数结构体
     public struct DescribeMachineOsListRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeMachineOsList返回参数结构体
     public struct DescribeMachineOsListResponse: TCResponseModel {
         /// 操作系统列表
         public let list: [OsName]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询机器操作系统列表
     ///
     /// 查询可筛选操作系统列表.
     @inlinable
-    public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineOsListResponse > {
+    public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineOsListResponse> {
         self.client.execute(action: "DescribeMachineOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机器操作系统列表
     ///
     /// 查询可筛选操作系统列表.
@@ -50,15 +50,15 @@ extension Cwp {
     public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineOsListResponse {
         try await self.client.execute(action: "DescribeMachineOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询机器操作系统列表
     ///
     /// 查询可筛选操作系统列表.
     @inlinable
-    public func describeMachineOsList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineOsListResponse > {
+    public func describeMachineOsList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineOsListResponse> {
         self.describeMachineOsList(DescribeMachineOsListRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机器操作系统列表
     ///
     /// 查询可筛选操作系统列表.

@@ -19,38 +19,38 @@ extension Gaap {
     public struct DescribeProxyGroupDetailsRequest: TCRequestModel {
         /// 通道组ID。
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DescribeProxyGroupDetails返回参数结构体
     public struct DescribeProxyGroupDetailsResponse: TCResponseModel {
         /// 通道组详细信息。
         public let proxyGroupDetail: ProxyGroupDetail
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyGroupDetail = "ProxyGroupDetail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询通道组详情
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
-    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupDetailsResponse > {
+    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupDetailsResponse> {
         self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道组详情
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
@@ -58,15 +58,15 @@ extension Gaap {
     public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
         try await self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询通道组详情
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
-    public func describeProxyGroupDetails(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupDetailsResponse > {
+    public func describeProxyGroupDetails(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupDetailsResponse> {
         self.describeProxyGroupDetails(DescribeProxyGroupDetailsRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道组详情
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。

@@ -19,44 +19,44 @@ extension Bm {
     public struct ModifyDeviceAliasesRequest: TCRequestModel {
         /// 需要改名的设备与别名列表
         public let deviceAliases: [DeviceAlias]
-        
-        public init (deviceAliases: [DeviceAlias]) {
+
+        public init(deviceAliases: [DeviceAlias]) {
             self.deviceAliases = deviceAliases
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceAliases = "DeviceAliases"
         }
     }
-    
+
     /// ModifyDeviceAliases返回参数结构体
     public struct ModifyDeviceAliasesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改服务器名称
     @inlinable
-    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAliasesResponse > {
+    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAliasesResponse> {
         self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改服务器名称
     @inlinable
     public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
         try await self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改服务器名称
     @inlinable
-    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAliasesResponse > {
+    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAliasesResponse> {
         self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改服务器名称
     @inlinable
     public func modifyDeviceAliases(deviceAliases: [DeviceAlias], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {

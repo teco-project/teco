@@ -22,25 +22,25 @@ extension Yunjing {
         /// <li>SYSTEM：系统组件漏洞</li>
         /// <li>BASELINE：安全基线</li>
         public let vulType: String
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Status - String - 是否必填：否 - 状态筛选（UN_OPERATED: 待处理 | FIXED：已修复）
         /// Status过滤条件值只能取其一，不能是“或”逻辑。
         public let filters: [Filter]?
-        
-        public init (vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.vulType = vulType
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vulType = "VulType"
             case limit = "Limit"
@@ -48,33 +48,33 @@ extension Yunjing {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeVuls返回参数结构体
     public struct DescribeVulsResponse: TCResponseModel {
         /// 漏洞数量。
         public let totalCount: UInt64
-        
+
         /// 漏洞列表数组。
         public let vuls: [Vul]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case vuls = "Vuls"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
     @inlinable
-    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsResponse > {
+    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
         self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
@@ -82,15 +82,15 @@ extension Yunjing {
     public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
         try await self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
     @inlinable
-    public func describeVuls(vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsResponse > {
+    public func describeVuls(vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
         self.describeVuls(DescribeVulsRequest(vulType: vulType, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。

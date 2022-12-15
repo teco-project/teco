@@ -19,34 +19,34 @@ extension Iotvideo {
     public struct DeleteTraceIdsRequest: TCRequestModel {
         /// 设备TID列表
         public let tids: [String]
-        
-        public init (tids: [String]) {
+
+        public init(tids: [String]) {
             self.tids = tids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tids = "Tids"
         }
     }
-    
+
     /// DeleteTraceIds返回参数结构体
     public struct DeleteTraceIdsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
     @inlinable
-    public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceIdsResponse > {
+    public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTraceIdsResponse> {
         self.client.execute(action: "DeleteTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
@@ -54,15 +54,15 @@ extension Iotvideo {
     public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceIdsResponse {
         try await self.client.execute(action: "DeleteTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
     @inlinable
-    public func deleteTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceIdsResponse > {
+    public func deleteTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTraceIdsResponse> {
         self.deleteTraceIds(DeleteTraceIdsRequest(tids: tids), logger: logger, on: eventLoop)
     }
-    
+
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。

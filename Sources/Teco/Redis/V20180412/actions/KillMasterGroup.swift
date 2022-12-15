@@ -19,7 +19,7 @@ extension Redis {
     public struct KillMasterGroupRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 1.长度8-30位,推荐使用12位以上的密码
         /// 2.不能以"/"开头
         /// 3.至少包含两项
@@ -28,45 +28,45 @@ extension Redis {
         ///     c.数字0-9
         ///     d.()`~!@#$%^&*-+=_|{}[]:;<>,.?/
         public let password: String
-        
+
         /// 单AZ实例节点信息
         public let shardIds: [Int64]?
-        
-        public init (instanceId: String, password: String, shardIds: [Int64]? = nil) {
+
+        public init(instanceId: String, password: String, shardIds: [Int64]? = nil) {
             self.instanceId = instanceId
             self.password = password
             self.shardIds = shardIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case password = "Password"
             case shardIds = "ShardIds"
         }
     }
-    
+
     /// KillMasterGroup返回参数结构体
     public struct KillMasterGroupResponse: TCResponseModel {
         /// 异步任务ID
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 模拟故障接口
     ///
     /// 模拟故障
     @inlinable
-    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillMasterGroupResponse > {
+    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
         self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 模拟故障接口
     ///
     /// 模拟故障
@@ -74,15 +74,15 @@ extension Redis {
     public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
         try await self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 模拟故障接口
     ///
     /// 模拟故障
     @inlinable
-    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillMasterGroupResponse > {
+    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
         self.killMasterGroup(KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 模拟故障接口
     ///
     /// 模拟故障

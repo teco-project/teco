@@ -17,24 +17,24 @@
 extension Kms {
     /// ListAlgorithms请求参数结构体
     public struct ListAlgorithmsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ListAlgorithms返回参数结构体
     public struct ListAlgorithmsResponse: TCResponseModel {
         /// 本地区支持的对称加密算法
         public let symmetricAlgorithms: [AlgorithmInfo]
-        
+
         /// 本地区支持的非对称加密算法
         public let asymmetricAlgorithms: [AlgorithmInfo]
-        
+
         /// 本地区支持的非对称签名验签算法
         public let asymmetricSignVerifyAlgorithms: [AlgorithmInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case symmetricAlgorithms = "SymmetricAlgorithms"
             case asymmetricAlgorithms = "AsymmetricAlgorithms"
@@ -42,25 +42,25 @@ extension Kms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出当前Region支持的加密方式
     @inlinable
-    public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAlgorithmsResponse > {
+    public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAlgorithmsResponse> {
         self.client.execute(action: "ListAlgorithms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出当前Region支持的加密方式
     @inlinable
     public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
         try await self.client.execute(action: "ListAlgorithms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出当前Region支持的加密方式
     @inlinable
-    public func listAlgorithms(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAlgorithmsResponse > {
+    public func listAlgorithms(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAlgorithmsResponse> {
         self.listAlgorithms(ListAlgorithmsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出当前Region支持的加密方式
     @inlinable
     public func listAlgorithms(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {

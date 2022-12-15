@@ -17,36 +17,36 @@
 extension Cws {
     /// DescribeVulsNumberTimeline请求参数结构体
     public struct DescribeVulsNumberTimelineRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVulsNumberTimeline返回参数结构体
     public struct DescribeVulsNumberTimelineResponse: TCResponseModel {
         /// 统计数据记录数量。
         public let totalCount: UInt64
-        
+
         /// 用户漏洞数随时间变化统计数据。
         public let vulsTimeline: [VulsTimeline]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case vulsTimeline = "VulsTimeline"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看漏洞数随时间变化统计信息
     ///
     /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
     @inlinable
-    public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberTimelineResponse > {
+    public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberTimelineResponse> {
         self.client.execute(action: "DescribeVulsNumberTimeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看漏洞数随时间变化统计信息
     ///
     /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
@@ -54,15 +54,15 @@ extension Cws {
     public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberTimelineResponse {
         try await self.client.execute(action: "DescribeVulsNumberTimeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看漏洞数随时间变化统计信息
     ///
     /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
     @inlinable
-    public func describeVulsNumberTimeline(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberTimelineResponse > {
+    public func describeVulsNumberTimeline(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberTimelineResponse> {
         self.describeVulsNumberTimeline(DescribeVulsNumberTimelineRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看漏洞数随时间变化统计信息
     ///
     /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。

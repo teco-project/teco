@@ -19,23 +19,23 @@ extension Wedata {
     public struct MakeUpTasksNewRequest: TCRequestModel {
         /// 补录的当前任务的taskId数组
         public let taskIdList: [String]
-        
+
         /// 补录开始时间
         public let startTime: String
-        
+
         /// 补录结束时间
         public let endTime: String
-        
+
         /// 补录选项标识，1表示当前任务；2表示当前及下游任务；3表示下游任务
         public let makeUpType: UInt64
-        
+
         /// 项目Id
         public let projectId: String
-        
+
         /// true: 检查父任务实例状态；false: 不检查父任务实例状态
         public let checkParent: Bool?
-        
-        public init (taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil) {
+
+        public init(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil) {
             self.taskIdList = taskIdList
             self.startTime = startTime
             self.endTime = endTime
@@ -43,7 +43,7 @@ extension Wedata {
             self.projectId = projectId
             self.checkParent = checkParent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIdList = "TaskIdList"
             case startTime = "StartTime"
@@ -53,30 +53,30 @@ extension Wedata {
             case checkParent = "CheckParent"
         }
     }
-    
+
     /// MakeUpTasksNew返回参数结构体
     public struct MakeUpTasksNewResponse: TCResponseModel {
         /// 返回批量操作成功个数、失败个数、操作总数
         public let data: BatchOperateResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量补录任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
-    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MakeUpTasksNewResponse > {
+    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
         self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量补录任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
@@ -85,16 +85,16 @@ extension Wedata {
     public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
         try await self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量补录任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
-    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MakeUpTasksNewResponse > {
+    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
         self.makeUpTasksNew(MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量补录任务【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>

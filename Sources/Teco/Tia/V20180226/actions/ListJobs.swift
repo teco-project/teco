@@ -19,48 +19,48 @@ extension Tia {
     public struct ListJobsRequest: TCRequestModel {
         /// 运行任务的集群
         public let cluster: String
-        
+
         /// 分页参数，返回数量
         public let limit: UInt64?
-        
+
         /// 分页参数，起始位置
         public let offset: UInt64?
-        
-        public init (cluster: String, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(cluster: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.cluster = cluster
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cluster = "Cluster"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// ListJobs返回参数结构体
     public struct ListJobsResponse: TCResponseModel {
         /// 训练任务列表
         public let jobs: [Job]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobs = "Jobs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列举Job
     ///
     /// 列举训练任务
     @inlinable
-    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
+    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListJobsResponse> {
         self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列举Job
     ///
     /// 列举训练任务
@@ -68,15 +68,15 @@ extension Tia {
     public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
         try await self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列举Job
     ///
     /// 列举训练任务
     @inlinable
-    public func listJobs(cluster: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
+    public func listJobs(cluster: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListJobsResponse> {
         self.listJobs(ListJobsRequest(cluster: cluster, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 列举Job
     ///
     /// 列举训练任务

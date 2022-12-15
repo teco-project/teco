@@ -19,48 +19,48 @@ extension Wedata {
     public struct DescribeInLongAgentVpcListRequest: TCRequestModel {
         /// WeData项目ID
         public let projectId: String
-        
-        public init (projectId: String) {
+
+        public init(projectId: String) {
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeInLongAgentVpcList返回参数结构体
     public struct DescribeInLongAgentVpcListResponse: TCResponseModel {
         /// VPC列表
         public let vpcList: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcList = "VpcList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取采集器所在集群的VPC列表
     @inlinable
-    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentVpcListResponse > {
+    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentVpcListResponse> {
         self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取采集器所在集群的VPC列表
     @inlinable
     public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
         try await self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取采集器所在集群的VPC列表
     @inlinable
-    public func describeInLongAgentVpcList(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentVpcListResponse > {
+    public func describeInLongAgentVpcList(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentVpcListResponse> {
         self.describeInLongAgentVpcList(DescribeInLongAgentVpcListRequest(projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取采集器所在集群的VPC列表
     @inlinable
     public func describeInLongAgentVpcList(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {

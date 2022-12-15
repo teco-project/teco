@@ -21,50 +21,50 @@ extension Live {
         /// 长度上限：255字节。
         /// 仅支持中文、英文、数字、_、-。
         public let templateName: String
-        
+
         /// Cos 应用 ID。
         public let cosAppId: Int64
-        
+
         /// Cos Bucket名称。
         /// 注：CosBucket参数值不能包含-[appid] 部分。
         public let cosBucket: String
-        
+
         /// Cos地区。
         public let cosRegion: String
-        
+
         /// 描述信息。
         /// 长度上限：1024字节。
         /// 仅支持中文、英文、数字、_、-。
         public let description: String?
-        
+
         /// 截图间隔，单位s，默认10s。
         /// 范围： 2s ~ 300s。
         public let snapshotInterval: Int64?
-        
+
         /// 截图宽度。默认：0（原始宽）。
         /// 范围：0-3000 。
         public let width: Int64?
-        
+
         /// 截图高度。默认：0（原始高）。
         /// 范围：0-2000 。
         public let height: Int64?
-        
+
         /// 是否开启鉴黄，0：不开启，1：开启。默认：0。
         public let pornFlag: Int64?
-        
+
         /// Cos Bucket文件夹前缀。
         /// 如不传，实际按默认值
         /// /{Year}-{Month}-{Day}
         /// 生效
         public let cosPrefix: String?
-        
+
         /// Cos 文件名称。
         /// 如不传，实际按默认值
         /// {StreamID}-screenshot-{Hour}-{Minute}-{Second}-{Width}x{Height}{Ext}
         /// 生效
         public let cosFileName: String?
-        
-        public init (templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil) {
+
+        public init(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil) {
             self.templateName = templateName
             self.cosAppId = cosAppId
             self.cosBucket = cosBucket
@@ -77,7 +77,7 @@ extension Live {
             self.cosPrefix = cosPrefix
             self.cosFileName = cosFileName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateName = "TemplateName"
             case cosAppId = "CosAppId"
@@ -92,30 +92,30 @@ extension Live {
             case cosFileName = "CosFileName"
         }
     }
-    
+
     /// CreateLiveSnapshotTemplate返回参数结构体
     public struct CreateLiveSnapshotTemplateResponse: TCResponseModel {
         /// 模板Id。
         public let templateId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建截图模板
     ///
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
-    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveSnapshotTemplateResponse > {
+    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotTemplateResponse> {
         self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建截图模板
     ///
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
@@ -124,16 +124,16 @@ extension Live {
     public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
         try await self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建截图模板
     ///
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
-    public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveSnapshotTemplateResponse > {
+    public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotTemplateResponse> {
         self.createLiveSnapshotTemplate(CreateLiveSnapshotTemplateRequest(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建截图模板
     ///
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。

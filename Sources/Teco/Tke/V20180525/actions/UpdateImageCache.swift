@@ -19,26 +19,26 @@ extension Tke {
     public struct UpdateImageCacheRequest: TCRequestModel {
         /// 镜像缓存Id
         public let imageCacheId: String
-        
+
         /// 镜像缓存名称
         public let imageCacheName: String?
-        
+
         /// 镜像仓库凭证数组
         public let imageRegistryCredentials: [ImageRegistryCredential]?
-        
+
         /// 用于制作镜像缓存的容器镜像列表
         public let images: [String]?
-        
+
         /// 镜像缓存的大小。默认为20 GiB。取值范围参考[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)中的高性能云盘类型的大小限制。
         public let imageCacheSize: UInt64?
-        
+
         /// 镜像缓存保留时间天数，过期将会自动清理，默认为0，永不过期。
         public let retentionDays: UInt64?
-        
+
         /// 安全组Id
         public let securityGroupIds: [String]?
-        
-        public init (imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil) {
+
+        public init(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil) {
             self.imageCacheId = imageCacheId
             self.imageCacheName = imageCacheName
             self.imageRegistryCredentials = imageRegistryCredentials
@@ -47,7 +47,7 @@ extension Tke {
             self.retentionDays = retentionDays
             self.securityGroupIds = securityGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageCacheId = "ImageCacheId"
             case imageCacheName = "ImageCacheName"
@@ -58,25 +58,25 @@ extension Tke {
             case securityGroupIds = "SecurityGroupIds"
         }
     }
-    
+
     /// UpdateImageCache返回参数结构体
     public struct UpdateImageCacheResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新镜像缓存
     ///
     /// 更新镜像缓存接口
     @inlinable
-    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateImageCacheResponse > {
+    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageCacheResponse> {
         self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新镜像缓存
     ///
     /// 更新镜像缓存接口
@@ -84,15 +84,15 @@ extension Tke {
     public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
         try await self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新镜像缓存
     ///
     /// 更新镜像缓存接口
     @inlinable
-    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateImageCacheResponse > {
+    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageCacheResponse> {
         self.updateImageCache(UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新镜像缓存
     ///
     /// 更新镜像缓存接口

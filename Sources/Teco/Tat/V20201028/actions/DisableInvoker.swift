@@ -19,34 +19,34 @@ extension Tat {
     public struct DisableInvokerRequest: TCRequestModel {
         /// 待停止的执行器ID。
         public let invokerId: String
-        
-        public init (invokerId: String) {
+
+        public init(invokerId: String) {
             self.invokerId = invokerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case invokerId = "InvokerId"
         }
     }
-    
+
     /// DisableInvoker返回参数结构体
     public struct DisableInvokerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
     @inlinable
-    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInvokerResponse > {
+    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
         self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
@@ -54,15 +54,15 @@ extension Tat {
     public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
         try await self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
     @inlinable
-    public func disableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInvokerResponse > {
+    public func disableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
         self.disableInvoker(DisableInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。

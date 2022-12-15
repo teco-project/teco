@@ -19,44 +19,44 @@ extension Bizlive {
     public struct StopGameRequest: TCRequestModel {
         /// 游戏用户ID
         public let userId: String
-        
-        public init (userId: String) {
+
+        public init(userId: String) {
             self.userId = userId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
         }
     }
-    
+
     /// StopGame返回参数结构体
     public struct StopGameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 强制退出游戏
     @inlinable
-    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
+    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameResponse> {
         self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 强制退出游戏
     @inlinable
     public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
         try await self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 强制退出游戏
     @inlinable
-    public func stopGame(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
+    public func stopGame(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameResponse> {
         self.stopGame(StopGameRequest(userId: userId), logger: logger, on: eventLoop)
     }
-    
+
     /// 强制退出游戏
     @inlinable
     public func stopGame(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {

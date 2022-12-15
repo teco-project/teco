@@ -19,30 +19,30 @@ extension Tke {
     public struct DescribeImageCachesRequest: TCRequestModel {
         /// 镜像缓存Id数组
         public let imageCacheIds: [String]?
-        
+
         /// 镜像缓存名称数组
         public let imageCacheNames: [String]?
-        
+
         /// 限定此次返回资源的数量。如果不设定，默认返回20，最大不能超过50
         public let limit: UInt64?
-        
+
         /// 偏移量,默认0
         public let offset: UInt64?
-        
+
         /// 过滤条件，可选条件：
         /// (1)实例名称
         /// KeyName: image-cache-name
         /// 类型：String
         public let filters: [Filter]?
-        
-        public init (imageCacheIds: [String]? = nil, imageCacheNames: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(imageCacheIds: [String]? = nil, imageCacheNames: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.imageCacheIds = imageCacheIds
             self.imageCacheNames = imageCacheNames
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageCacheIds = "ImageCacheIds"
             case imageCacheNames = "ImageCacheNames"
@@ -51,33 +51,33 @@ extension Tke {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeImageCaches返回参数结构体
     public struct DescribeImageCachesResponse: TCResponseModel {
         /// 镜像缓存总数
         public let totalCount: UInt64
-        
+
         /// 镜像缓存信息列表
         public let imageCaches: [ImageCache]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case imageCaches = "ImageCaches"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询镜像缓存信息
     ///
     /// 查询镜像缓存信息接口
     @inlinable
-    public func describeImageCaches(_ input: DescribeImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageCachesResponse > {
+    public func describeImageCaches(_ input: DescribeImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageCachesResponse> {
         self.client.execute(action: "DescribeImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像缓存信息
     ///
     /// 查询镜像缓存信息接口
@@ -85,15 +85,15 @@ extension Tke {
     public func describeImageCaches(_ input: DescribeImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageCachesResponse {
         try await self.client.execute(action: "DescribeImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询镜像缓存信息
     ///
     /// 查询镜像缓存信息接口
     @inlinable
-    public func describeImageCaches(imageCacheIds: [String]? = nil, imageCacheNames: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageCachesResponse > {
+    public func describeImageCaches(imageCacheIds: [String]? = nil, imageCacheNames: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageCachesResponse> {
         self.describeImageCaches(DescribeImageCachesRequest(imageCacheIds: imageCacheIds, imageCacheNames: imageCacheNames, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像缓存信息
     ///
     /// 查询镜像缓存信息接口

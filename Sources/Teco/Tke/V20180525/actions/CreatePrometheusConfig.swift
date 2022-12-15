@@ -19,23 +19,23 @@ extension Tke {
     public struct CreatePrometheusConfigRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 集群类型
         public let clusterType: String
-        
+
         /// 集群id
         public let clusterId: String
-        
+
         /// ServiceMonitors配置
         public let serviceMonitors: [PrometheusConfigItem]?
-        
+
         /// PodMonitors配置
         public let podMonitors: [PrometheusConfigItem]?
-        
+
         /// prometheus原生Job配置
         public let rawJobs: [PrometheusConfigItem]?
-        
-        public init (instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil) {
+
+        public init(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil) {
             self.instanceId = instanceId
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -43,7 +43,7 @@ extension Tke {
             self.podMonitors = podMonitors
             self.rawJobs = rawJobs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case clusterType = "ClusterType"
@@ -53,35 +53,35 @@ extension Tke {
             case rawJobs = "RawJobs"
         }
     }
-    
+
     /// CreatePrometheusConfig返回参数结构体
     public struct CreatePrometheusConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建prometheus配置
     @inlinable
-    public func createPrometheusConfig(_ input: CreatePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusConfigResponse > {
+    public func createPrometheusConfig(_ input: CreatePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusConfigResponse> {
         self.client.execute(action: "CreatePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建prometheus配置
     @inlinable
     public func createPrometheusConfig(_ input: CreatePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusConfigResponse {
         try await self.client.execute(action: "CreatePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建prometheus配置
     @inlinable
-    public func createPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusConfigResponse > {
+    public func createPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusConfigResponse> {
         self.createPrometheusConfig(CreatePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建prometheus配置
     @inlinable
     public func createPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusConfigResponse {

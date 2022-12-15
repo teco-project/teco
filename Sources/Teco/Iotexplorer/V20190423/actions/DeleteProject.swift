@@ -19,34 +19,34 @@ extension Iotexplorer {
     public struct DeleteProjectRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String
-        
-        public init (projectId: String) {
+
+        public init(projectId: String) {
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DeleteProject返回参数结构体
     public struct DeleteProjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除项目
     ///
     /// 提供删除某个项目的能力
     @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除项目
     ///
     /// 提供删除某个项目的能力
@@ -54,15 +54,15 @@ extension Iotexplorer {
     public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除项目
     ///
     /// 提供删除某个项目的能力
     @inlinable
-    public func deleteProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+    public func deleteProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.deleteProject(DeleteProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除项目
     ///
     /// 提供删除某个项目的能力

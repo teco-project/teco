@@ -26,87 +26,87 @@ extension TCDlcError {
             case revokePolicyFailed = "FailedOperation.RevokePolicyFailed"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 另一个请求正在处理中，请稍后再试。
         public static var anotherRequestProcessing: FailedOperation {
             FailedOperation(.anotherRequestProcessing)
         }
-        
+
         /// 请重试或联系我们
         public static var getPolicyFailed: FailedOperation {
             FailedOperation(.getPolicyFailed)
         }
-        
+
         /// 请重试，如重试也失败，请联系我们。
         public static var getUserInfoFailed: FailedOperation {
             FailedOperation(.getUserInfoFailed)
         }
-        
+
         /// 请重试或联系我们。
         public static var getWorkGroupInfoFailed: FailedOperation {
             FailedOperation(.getWorkGroupInfoFailed)
         }
-        
+
         /// 请重试或联系我们。
         public static var grantPolicyFailed: FailedOperation {
             FailedOperation(.grantPolicyFailed)
         }
-        
+
         /// HTTP客户端请求失败。
         public static var httpClientDoRequestFailed: FailedOperation {
             FailedOperation(.httpClientDoRequestFailed)
         }
-        
+
         /// 请重试或联系我们。
         public static var revokePolicyFailed: FailedOperation {
             FailedOperation(.revokePolicyFailed)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asDlcError() -> TCDlcError {
             let code: TCDlcError.Code
             switch self.error {
-            case .anotherRequestProcessing: 
+            case .anotherRequestProcessing:
                 code = .failedOperation_AnotherRequestProcessing
-            case .getPolicyFailed: 
+            case .getPolicyFailed:
                 code = .failedOperation_GetPolicyFailed
-            case .getUserInfoFailed: 
+            case .getUserInfoFailed:
                 code = .failedOperation_GetUserInfoFailed
-            case .getWorkGroupInfoFailed: 
+            case .getWorkGroupInfoFailed:
                 code = .failedOperation_GetWorkGroupInfoFailed
-            case .grantPolicyFailed: 
+            case .grantPolicyFailed:
                 code = .failedOperation_GrantPolicyFailed
-            case .httpClientDoRequestFailed: 
+            case .httpClientDoRequestFailed:
                 code = .failedOperation_HttpClientDoRequestFailed
-            case .revokePolicyFailed: 
+            case .revokePolicyFailed:
                 code = .failedOperation_RevokePolicyFailed
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCDlcError(code, context: self.context)

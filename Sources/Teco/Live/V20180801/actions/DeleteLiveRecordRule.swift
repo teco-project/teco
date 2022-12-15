@@ -20,46 +20,46 @@ extension Live {
         /// 推流域名。
         /// 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
         public let domainName: String
-        
+
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
         /// 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
         public let appName: String?
-        
+
         /// 流名称。
         /// 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
         public let streamName: String?
-        
-        public init (domainName: String, appName: String? = nil, streamName: String? = nil) {
+
+        public init(domainName: String, appName: String? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.appName = appName
             self.streamName = streamName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case appName = "AppName"
             case streamName = "StreamName"
         }
     }
-    
+
     /// DeleteLiveRecordRule返回参数结构体
     public struct DeleteLiveRecordRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除录制规则
     ///
     /// 删除录制规则。
     @inlinable
-    public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordRuleResponse > {
+    public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordRuleResponse> {
         self.client.execute(action: "DeleteLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录制规则
     ///
     /// 删除录制规则。
@@ -67,15 +67,15 @@ extension Live {
     public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
         try await self.client.execute(action: "DeleteLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除录制规则
     ///
     /// 删除录制规则。
     @inlinable
-    public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordRuleResponse > {
+    public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordRuleResponse> {
         self.deleteLiveRecordRule(DeleteLiveRecordRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录制规则
     ///
     /// 删除录制规则。

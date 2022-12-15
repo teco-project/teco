@@ -19,55 +19,55 @@ extension Faceid {
     public struct GetFaceIdResultRequest: TCRequestModel {
         /// SDK人脸核身流程的标识，调用GetFaceIdToken接口时生成。
         public let faceIdToken: String
-        
+
         /// 是否需要拉取视频，默认false不需要
         public let isNeedVideo: Bool?
-        
+
         /// 是否需要拉取截帧，默认false不需要
         public let isNeedBestFrame: Bool?
-        
-        public init (faceIdToken: String, isNeedVideo: Bool? = nil, isNeedBestFrame: Bool? = nil) {
+
+        public init(faceIdToken: String, isNeedVideo: Bool? = nil, isNeedBestFrame: Bool? = nil) {
             self.faceIdToken = faceIdToken
             self.isNeedVideo = isNeedVideo
             self.isNeedBestFrame = isNeedBestFrame
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceIdToken = "FaceIdToken"
             case isNeedVideo = "IsNeedVideo"
             case isNeedBestFrame = "IsNeedBestFrame"
         }
     }
-    
+
     /// GetFaceIdResult返回参数结构体
     public struct GetFaceIdResultResponse: TCResponseModel {
         /// 身份证
         public let idCard: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 业务核验结果，参考https://cloud.tencent.com/document/product/1007/47912
         public let result: String
-        
+
         /// 业务核验描述
         public let description: String
-        
+
         /// 相似度，0-100，数值越大相似度越高
         public let similarity: Float
-        
+
         /// 用户核验的视频base64，如果选择了使用cos，返回完整cos地址如https://bucket.cos.ap-guangzhou.myqcloud.com/objectKey
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoBase64: String?
-        
+
         /// 用户核验视频的截帧base64，如果选择了使用cos，返回完整cos地址如https://bucket.cos.ap-guangzhou.myqcloud.com/objectKey
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bestFrameBase64: String?
-        
+
         /// 获取token时透传的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extra: String?
-        
+
         /// 设备风险标签，仅错误码返回1007（设备疑似被劫持）时返回风险标签。标签说明：
         /// 202、5001：设备疑似被Root
         /// 203、5004：设备疑似被注入
@@ -77,15 +77,15 @@ extension Faceid {
         /// 8000：设备疑似存在异常篡改行为
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceInfoTag: String?
-        
+
         /// 行为风险标签，仅错误码返回1007（设备疑似被劫持）时返回风险标签。标签说明：
         /// 02：攻击风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskInfoTag: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case idCard = "IdCard"
             case name = "Name"
@@ -100,15 +100,15 @@ extension Faceid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取SDK核验结果
     ///
     /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
-    public func getFaceIdResult(_ input: GetFaceIdResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdResultResponse > {
+    public func getFaceIdResult(_ input: GetFaceIdResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFaceIdResultResponse> {
         self.client.execute(action: "GetFaceIdResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SDK核验结果
     ///
     /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
@@ -116,15 +116,15 @@ extension Faceid {
     public func getFaceIdResult(_ input: GetFaceIdResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdResultResponse {
         try await self.client.execute(action: "GetFaceIdResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取SDK核验结果
     ///
     /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
-    public func getFaceIdResult(faceIdToken: String, isNeedVideo: Bool? = nil, isNeedBestFrame: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdResultResponse > {
+    public func getFaceIdResult(faceIdToken: String, isNeedVideo: Bool? = nil, isNeedBestFrame: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFaceIdResultResponse> {
         self.getFaceIdResult(GetFaceIdResultRequest(faceIdToken: faceIdToken, isNeedVideo: isNeedVideo, isNeedBestFrame: isNeedBestFrame), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SDK核验结果
     ///
     /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。

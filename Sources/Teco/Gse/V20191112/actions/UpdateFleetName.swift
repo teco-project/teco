@@ -19,40 +19,40 @@ extension Gse {
     public struct UpdateFleetNameRequest: TCRequestModel {
         /// 服务器舰队 Id
         public let fleetId: String
-        
+
         /// 服务器舰队名称，最小长度1，最大长度50
         public let name: String
-        
-        public init (fleetId: String, name: String) {
+
+        public init(fleetId: String, name: String) {
             self.fleetId = fleetId
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case name = "Name"
         }
     }
-    
+
     /// UpdateFleetName返回参数结构体
     public struct UpdateFleetNameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新服务器舰队名称
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateFleetName）用于更新服务器舰队名称。
     @inlinable
-    public func updateFleetName(_ input: UpdateFleetNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFleetNameResponse > {
+    public func updateFleetName(_ input: UpdateFleetNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetNameResponse> {
         self.client.execute(action: "UpdateFleetName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新服务器舰队名称
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -61,16 +61,16 @@ extension Gse {
     public func updateFleetName(_ input: UpdateFleetNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetNameResponse {
         try await self.client.execute(action: "UpdateFleetName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新服务器舰队名称
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateFleetName）用于更新服务器舰队名称。
     @inlinable
-    public func updateFleetName(fleetId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFleetNameResponse > {
+    public func updateFleetName(fleetId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetNameResponse> {
         self.updateFleetName(UpdateFleetNameRequest(fleetId: fleetId, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新服务器舰队名称
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

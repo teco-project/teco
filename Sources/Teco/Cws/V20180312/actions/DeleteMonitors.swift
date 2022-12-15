@@ -19,34 +19,34 @@ extension Cws {
     public struct DeleteMonitorsRequest: TCRequestModel {
         /// 监控任务ID列表
         public let monitorIds: [UInt64]
-        
-        public init (monitorIds: [UInt64]) {
+
+        public init(monitorIds: [UInt64]) {
             self.monitorIds = monitorIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case monitorIds = "MonitorIds"
         }
     }
-    
+
     /// DeleteMonitors返回参数结构体
     public struct DeleteMonitorsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除监控任务
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
     @inlinable
-    public func deleteMonitors(_ input: DeleteMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMonitorsResponse > {
+    public func deleteMonitors(_ input: DeleteMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMonitorsResponse> {
         self.client.execute(action: "DeleteMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除监控任务
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
@@ -54,15 +54,15 @@ extension Cws {
     public func deleteMonitors(_ input: DeleteMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMonitorsResponse {
         try await self.client.execute(action: "DeleteMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除监控任务
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
     @inlinable
-    public func deleteMonitors(monitorIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMonitorsResponse > {
+    public func deleteMonitors(monitorIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMonitorsResponse> {
         self.deleteMonitors(DeleteMonitorsRequest(monitorIds: monitorIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除监控任务
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。

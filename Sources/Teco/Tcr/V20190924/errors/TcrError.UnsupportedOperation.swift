@@ -27,86 +27,86 @@ extension TCTcrError {
             case modifyPrivateZoneVpc = "UnsupportedOperation.ModifyPrivateZoneVpc"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var createPrivateZone: UnsupportedOperation {
             UnsupportedOperation(.createPrivateZone)
         }
-        
+
         public static var createPrivateZoneRecord: UnsupportedOperation {
             UnsupportedOperation(.createPrivateZoneRecord)
         }
-        
+
         public static var deletePrivateZoneRecord: UnsupportedOperation {
             UnsupportedOperation(.deletePrivateZoneRecord)
         }
-        
+
         public static var describePrivateZoneList: UnsupportedOperation {
             UnsupportedOperation(.describePrivateZoneList)
         }
-        
+
         public static var describePrivateZoneRecordList: UnsupportedOperation {
             UnsupportedOperation(.describePrivateZoneRecordList)
         }
-        
+
         public static var errNoUserInitialized: UnsupportedOperation {
             UnsupportedOperation(.errNoUserInitialized)
         }
-        
+
         public static var modifyPrivateZoneRecord: UnsupportedOperation {
             UnsupportedOperation(.modifyPrivateZoneRecord)
         }
-        
+
         public static var modifyPrivateZoneVpc: UnsupportedOperation {
             UnsupportedOperation(.modifyPrivateZoneVpc)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asTcrError() -> TCTcrError {
             let code: TCTcrError.Code
             switch self.error {
-            case .createPrivateZone: 
+            case .createPrivateZone:
                 code = .unsupportedOperation_CreatePrivateZone
-            case .createPrivateZoneRecord: 
+            case .createPrivateZoneRecord:
                 code = .unsupportedOperation_CreatePrivateZoneRecord
-            case .deletePrivateZoneRecord: 
+            case .deletePrivateZoneRecord:
                 code = .unsupportedOperation_DeletePrivateZoneRecord
-            case .describePrivateZoneList: 
+            case .describePrivateZoneList:
                 code = .unsupportedOperation_DescribePrivateZoneList
-            case .describePrivateZoneRecordList: 
+            case .describePrivateZoneRecordList:
                 code = .unsupportedOperation_DescribePrivateZoneRecordList
-            case .errNoUserInitialized: 
+            case .errNoUserInitialized:
                 code = .unsupportedOperation_ErrNoUserInitialized
-            case .modifyPrivateZoneRecord: 
+            case .modifyPrivateZoneRecord:
                 code = .unsupportedOperation_ModifyPrivateZoneRecord
-            case .modifyPrivateZoneVpc: 
+            case .modifyPrivateZoneVpc:
                 code = .unsupportedOperation_ModifyPrivateZoneVpc
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCTcrError(code, context: self.context)

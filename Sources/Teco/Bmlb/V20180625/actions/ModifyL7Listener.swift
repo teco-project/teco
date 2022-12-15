@@ -19,44 +19,44 @@ extension Bmlb {
     public struct ModifyL7ListenerRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
         public let loadBalancerId: String
-        
+
         /// 七层监听器实例ID，可通过接口DescribeL7Listeners查询。
         public let listenerId: String
-        
+
         /// 七层监听器名称。
         public let listenerName: String?
-        
+
         /// 认证方式：0（不认证，用于http），1（单向认证，用于https），2（双向认证，用于https）。
         public let sslMode: Int64?
-        
+
         /// 服务端证书ID。
         public let certId: String?
-        
+
         /// 服务端证书名称。
         public let certName: String?
-        
+
         /// 服务端证书内容。
         public let certContent: String?
-        
+
         /// 服务端证书密钥。
         public let certKey: String?
-        
+
         /// 客户端证书ID。
         public let certCaId: String?
-        
+
         /// 客户端证书名称。
         public let certCaName: String?
-        
+
         /// 客户端证书内容。
         public let certCaContent: String?
-        
+
         /// 计费模式为按固定带宽方式时监听器的限速值，可选值：0-1000，单位：Mbps。
         public let bandwidth: Int64?
-        
+
         /// 转发协议。当监听器Protocol为https时并且SslMode为1或2时，有意义。可选的值为0：https，1：spdy，2：http2，3：spdy+http2。
         public let forwardProtocol: Int64?
-        
-        public init (loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
+
+        public init(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -71,7 +71,7 @@ extension Bmlb {
             self.bandwidth = bandwidth
             self.forwardProtocol = forwardProtocol
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case listenerId = "ListenerId"
@@ -88,29 +88,29 @@ extension Bmlb {
             case forwardProtocol = "ForwardProtocol"
         }
     }
-    
+
     /// ModifyL7Listener返回参数结构体
     public struct ModifyL7ListenerResponse: TCResponseModel {
         /// 任务ID。该接口为异步任务，可根据本参数调用[DescribeLoadBalancerTaskResult](/document/product/386/9308)接口来查询任务操作结果
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改黑石负载均衡七层监听器
     ///
     /// 修改黑石负载均衡七层监听器。
     @inlinable
-    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7ListenerResponse > {
+    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7ListenerResponse> {
         self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改黑石负载均衡七层监听器
     ///
     /// 修改黑石负载均衡七层监听器。
@@ -118,15 +118,15 @@ extension Bmlb {
     public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7ListenerResponse {
         try await self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改黑石负载均衡七层监听器
     ///
     /// 修改黑石负载均衡七层监听器。
     @inlinable
-    public func modifyL7Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7ListenerResponse > {
+    public func modifyL7Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7ListenerResponse> {
         self.modifyL7Listener(ModifyL7ListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sslMode: sslMode, certId: certId, certName: certName, certContent: certContent, certKey: certKey, certCaId: certCaId, certCaName: certCaName, certCaContent: certCaContent, bandwidth: bandwidth, forwardProtocol: forwardProtocol), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改黑石负载均衡七层监听器
     ///
     /// 修改黑石负载均衡七层监听器。

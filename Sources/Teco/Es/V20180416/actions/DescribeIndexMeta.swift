@@ -19,27 +19,27 @@ extension Es {
     public struct DescribeIndexMetaRequest: TCRequestModel {
         /// ES集群ID
         public let instanceId: String
-        
+
         /// 索引类型。auto：自治索引；normal：普通索引
         public let indexType: String
-        
+
         /// 索引名，若填空则获取所有索引
         public let indexName: String
-        
+
         /// 集群访问用户名
         public let username: String?
-        
+
         /// 集群访问密码
         public let password: String?
-        
-        public init (instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil) {
+
+        public init(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil) {
             self.instanceId = instanceId
             self.indexType = indexType
             self.indexName = indexName
             self.username = username
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case indexType = "IndexType"
@@ -48,40 +48,40 @@ extension Es {
             case password = "Password"
         }
     }
-    
+
     /// DescribeIndexMeta返回参数结构体
     public struct DescribeIndexMetaResponse: TCResponseModel {
         /// 索引元数据字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let indexMetaField: IndexMetaField?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case indexMetaField = "IndexMetaField"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取索引元数据
     @inlinable
-    public func describeIndexMeta(_ input: DescribeIndexMetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexMetaResponse > {
+    public func describeIndexMeta(_ input: DescribeIndexMetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexMetaResponse> {
         self.client.execute(action: "DescribeIndexMeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取索引元数据
     @inlinable
     public func describeIndexMeta(_ input: DescribeIndexMetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
         try await self.client.execute(action: "DescribeIndexMeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取索引元数据
     @inlinable
-    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexMetaResponse > {
+    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexMetaResponse> {
         self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取索引元数据
     @inlinable
     public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {

@@ -22,60 +22,60 @@ extension TCDtsError {
             case unauthorizedOperationError = "AuthFailure.UnauthorizedOperationError"
             case other = "AuthFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var authFailureError: AuthFailure {
             AuthFailure(.authFailureError)
         }
-        
+
         /// 认证拒绝错误。
         public static var authorizedOperationDenyError: AuthFailure {
             AuthFailure(.authorizedOperationDenyError)
         }
-        
+
         /// 鉴权失败，当前用户不允许执行该操作。
         ///
         /// 联系当前用户的主账号为操作者赋权。
         public static var unauthorizedOperationError: AuthFailure {
             AuthFailure(.unauthorizedOperationError)
         }
-        
+
         /// CAM签名/鉴权错误。
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-        
+
         public func asDtsError() -> TCDtsError {
             let code: TCDtsError.Code
             switch self.error {
-            case .authFailureError: 
+            case .authFailureError:
                 code = .authFailure_AuthFailureError
-            case .authorizedOperationDenyError: 
+            case .authorizedOperationDenyError:
                 code = .authFailure_AuthorizedOperationDenyError
-            case .unauthorizedOperationError: 
+            case .unauthorizedOperationError:
                 code = .authFailure_UnauthorizedOperationError
-            case .other: 
+            case .other:
                 code = .authFailure
             }
             return TCDtsError(code, context: self.context)

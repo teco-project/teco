@@ -19,7 +19,7 @@ extension As {
     public struct DescribeAutoScalingGroupsRequest: TCRequestModel {
         /// 按照一个或者多个伸缩组ID查询。伸缩组ID形如：`asg-nkdwoui0`。每次请求的上限为100。参数不支持同时指定`AutoScalingGroupIds`和`Filters`。
         public let autoScalingGroupIds: [String]?
-        
+
         /// 过滤条件。
         /// <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。</li>
         /// <li> auto-scaling-group-name - String - 是否必填：否 -（过滤条件）按照伸缩组名称过滤。</li>
@@ -30,20 +30,20 @@ extension As {
         /// <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2</li>
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AutoScalingGroupIds`和`Filters`。
         public let filters: [Filter]?
-        
+
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
-        
-        public init (autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.autoScalingGroupIds = autoScalingGroupIds
             self.filters = filters
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupIds = "AutoScalingGroupIds"
             case filters = "Filters"
@@ -51,35 +51,35 @@ extension As {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeAutoScalingGroups返回参数结构体
     public struct DescribeAutoScalingGroupsResponse: TCResponseModel {
         /// 伸缩组详细信息列表。
         public let autoScalingGroupSet: [AutoScalingGroup]
-        
+
         /// 符合条件的伸缩组数量。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupSet = "AutoScalingGroupSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询伸缩组
     ///
     /// 本接口（DescribeAutoScalingGroups）用于查询伸缩组信息。
     /// * 可以根据伸缩组ID、伸缩组名称或者启动配置ID等信息来查询伸缩组的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
-    public func describeAutoScalingGroups(_ input: DescribeAutoScalingGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingGroupsResponse > {
+    public func describeAutoScalingGroups(_ input: DescribeAutoScalingGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupsResponse> {
         self.client.execute(action: "DescribeAutoScalingGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询伸缩组
     ///
     /// 本接口（DescribeAutoScalingGroups）用于查询伸缩组信息。
@@ -89,17 +89,17 @@ extension As {
     public func describeAutoScalingGroups(_ input: DescribeAutoScalingGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupsResponse {
         try await self.client.execute(action: "DescribeAutoScalingGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询伸缩组
     ///
     /// 本接口（DescribeAutoScalingGroups）用于查询伸缩组信息。
     /// * 可以根据伸缩组ID、伸缩组名称或者启动配置ID等信息来查询伸缩组的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
-    public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingGroupsResponse > {
+    public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupsResponse> {
         self.describeAutoScalingGroups(DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询伸缩组
     ///
     /// 本接口（DescribeAutoScalingGroups）用于查询伸缩组信息。

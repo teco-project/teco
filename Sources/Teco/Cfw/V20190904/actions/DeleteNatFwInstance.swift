@@ -19,44 +19,44 @@ extension Cfw {
     public struct DeleteNatFwInstanceRequest: TCRequestModel {
         /// 防火墙实例id
         public let cfwInstance: String
-        
-        public init (cfwInstance: String) {
+
+        public init(cfwInstance: String) {
             self.cfwInstance = cfwInstance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cfwInstance = "CfwInstance"
         }
     }
-    
+
     /// DeleteNatFwInstance返回参数结构体
     public struct DeleteNatFwInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁防火墙实例
     @inlinable
-    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatFwInstanceResponse > {
+    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
         self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁防火墙实例
     @inlinable
     public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
         try await self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁防火墙实例
     @inlinable
-    public func deleteNatFwInstance(cfwInstance: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatFwInstanceResponse > {
+    public func deleteNatFwInstance(cfwInstance: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
         self.deleteNatFwInstance(DeleteNatFwInstanceRequest(cfwInstance: cfwInstance), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁防火墙实例
     @inlinable
     public func deleteNatFwInstance(cfwInstance: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {

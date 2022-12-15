@@ -32,131 +32,131 @@ extension TCCdbError {
             case resourceNotFound = "InvalidParameter.ResourceNotFound"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未找到该接口。
         public static var controllerNotFoundError: InvalidParameter {
             InvalidParameter(.controllerNotFoundError)
         }
-        
+
         /// 置放群组下存在资源。
         ///
         /// 请从置放群组里移除资源。
         public static var deployGroupNotEmpty: InvalidParameter {
             InvalidParameter(.deployGroupNotEmpty)
         }
-        
+
         /// 异常参数。
         public static var exceptionParam: InvalidParameter {
             InvalidParameter(.exceptionParam)
         }
-        
+
         /// 未找到该实例。
         public static var instanceNameNotFound: InvalidParameter {
             InvalidParameter(.instanceNameNotFound)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: InvalidParameter {
             InvalidParameter(.instanceNotFound)
         }
-        
+
         /// 异步任务不存在。
         public static var invalidAsyncRequestId: InvalidParameter {
             InvalidParameter(.invalidAsyncRequestId)
         }
-        
+
         /// 非法的名称。
         public static var invalidName: InvalidParameter {
             InvalidParameter(.invalidName)
         }
-        
+
         /// 无效的参数值。
         public static var invalidParameterError: InvalidParameter {
             InvalidParameter(.invalidParameterError)
         }
-        
+
         /// Json反序列化错误。
         public static var jsonUnmarshalError: InvalidParameter {
             InvalidParameter(.jsonUnmarshalError)
         }
-        
+
         /// 超出置放群组资源数量配额。
         public static var overDeployGroupQuota: InvalidParameter {
             InvalidParameter(.overDeployGroupQuota)
         }
-        
+
         /// 资源已存在。
         public static var resourceExists: InvalidParameter {
             InvalidParameter(.resourceExists)
         }
-        
+
         /// 资源不存在。
         public static var resourceNotExists: InvalidParameter {
             InvalidParameter(.resourceNotExists)
         }
-        
+
         /// 未找到相关资源。
         public static var resourceNotFound: InvalidParameter {
             InvalidParameter(.resourceNotFound)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {
-            case .controllerNotFoundError: 
+            case .controllerNotFoundError:
                 code = .invalidParameter_ControllerNotFoundError
-            case .deployGroupNotEmpty: 
+            case .deployGroupNotEmpty:
                 code = .invalidParameter_DeployGroupNotEmpty
-            case .exceptionParam: 
+            case .exceptionParam:
                 code = .invalidParameter_ExceptionParam
-            case .instanceNameNotFound: 
+            case .instanceNameNotFound:
                 code = .invalidParameter_InstanceNameNotFound
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .invalidParameter_InstanceNotFound
-            case .invalidAsyncRequestId: 
+            case .invalidAsyncRequestId:
                 code = .invalidParameter_InvalidAsyncRequestId
-            case .invalidName: 
+            case .invalidName:
                 code = .invalidParameter_InvalidName
-            case .invalidParameterError: 
+            case .invalidParameterError:
                 code = .invalidParameter_InvalidParameterError
-            case .jsonUnmarshalError: 
+            case .jsonUnmarshalError:
                 code = .invalidParameter_JsonUnmarshalError
-            case .overDeployGroupQuota: 
+            case .overDeployGroupQuota:
                 code = .invalidParameter_OverDeployGroupQuota
-            case .resourceExists: 
+            case .resourceExists:
                 code = .invalidParameter_ResourceExists
-            case .resourceNotExists: 
+            case .resourceNotExists:
                 code = .invalidParameter_ResourceNotExists
-            case .resourceNotFound: 
+            case .resourceNotFound:
                 code = .invalidParameter_ResourceNotFound
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCCdbError(code, context: self.context)

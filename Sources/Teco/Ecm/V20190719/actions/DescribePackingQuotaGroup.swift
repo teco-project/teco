@@ -19,38 +19,38 @@ extension Ecm {
     public struct DescribePackingQuotaGroupRequest: TCRequestModel {
         /// 过滤条件，name取值为：Zone-可用区， InstanceType-实例类型，DataDiskSize - 数据盘大小
         public let filters: [Filter]?
-        
-        public init (filters: [Filter]? = nil) {
+
+        public init(filters: [Filter]? = nil) {
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribePackingQuotaGroup返回参数结构体
     public struct DescribePackingQuotaGroupResponse: TCResponseModel {
         /// 装箱配额组
         public let packingQuotaSet: [PackingQuotaGroup]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case packingQuotaSet = "PackingQuotaSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取装箱配额组
     ///
     /// 使用本接口获取某种机型在某些区域的装箱配额（当使用虚拟机型时，返回的是一组相互关联的装箱配额）。
     @inlinable
-    public func describePackingQuotaGroup(_ input: DescribePackingQuotaGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackingQuotaGroupResponse > {
+    public func describePackingQuotaGroup(_ input: DescribePackingQuotaGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackingQuotaGroupResponse> {
         self.client.execute(action: "DescribePackingQuotaGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取装箱配额组
     ///
     /// 使用本接口获取某种机型在某些区域的装箱配额（当使用虚拟机型时，返回的是一组相互关联的装箱配额）。
@@ -58,15 +58,15 @@ extension Ecm {
     public func describePackingQuotaGroup(_ input: DescribePackingQuotaGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackingQuotaGroupResponse {
         try await self.client.execute(action: "DescribePackingQuotaGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取装箱配额组
     ///
     /// 使用本接口获取某种机型在某些区域的装箱配额（当使用虚拟机型时，返回的是一组相互关联的装箱配额）。
     @inlinable
-    public func describePackingQuotaGroup(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackingQuotaGroupResponse > {
+    public func describePackingQuotaGroup(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackingQuotaGroupResponse> {
         self.describePackingQuotaGroup(DescribePackingQuotaGroupRequest(filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取装箱配额组
     ///
     /// 使用本接口获取某种机型在某些区域的装箱配额（当使用虚拟机型时，返回的是一组相互关联的装箱配额）。

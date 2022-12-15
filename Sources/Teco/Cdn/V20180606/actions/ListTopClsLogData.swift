@@ -19,35 +19,35 @@ extension Cdn {
     public struct ListTopClsLogDataRequest: TCRequestModel {
         /// 需要查询的日志集ID
         public let logsetId: String
-        
+
         /// 需要查询的日志主题ID组合，多个以逗号分隔
         public let topicIds: String
-        
+
         /// 需要查询的日志的起始时间，格式 YYYY-mm-dd HH:MM:SS
         public let startTime: String
-        
+
         /// 需要查询的日志的结束时间，格式 YYYY-mm-dd HH:MM:SS，时间跨度应小于10分钟
         public let endTime: String
-        
+
         /// 指定域名查询
         public let domain: String
-        
+
         /// 指定访问的URL查询，支持URL开头和结尾使用\*表示通配
         /// 如：
         /// /files/* 表示所有以/files/开头的请求
         /// *.jpg 表示所有以.jpg结尾的请求
         public let url: String
-        
+
         /// 接入渠道，cdn或者ecdn，默认值为cdn
         public let channel: String?
-        
+
         /// 要查询的Top条数，最大值为100，默认为10
         public let limit: UInt64?
-        
+
         /// 按请求量排序， asc（升序）或者 desc（降序），默认为 desc
         public let sort: String?
-        
-        public init (logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil) {
+
+        public init(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil) {
             self.logsetId = logsetId
             self.topicIds = topicIds
             self.startTime = startTime
@@ -58,7 +58,7 @@ extension Cdn {
             self.limit = limit
             self.sort = sort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case logsetId = "LogsetId"
             case topicIds = "TopicIds"
@@ -71,21 +71,21 @@ extension Cdn {
             case sort = "Sort"
         }
     }
-    
+
     /// ListTopClsLogData返回参数结构体
     public struct ListTopClsLogDataResponse: TCResponseModel {
         /// 数据列表
         public let data: [ClsLogIpData]
-        
+
         /// 获取到Top总记录数
         public let totalCount: UInt64
-        
+
         /// 获取到的不重复IP条数
         public let ipCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
@@ -93,15 +93,15 @@ extension Cdn {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通过CLS日志计算Top信息
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。
     @inlinable
-    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopClsLogDataResponse > {
+    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopClsLogDataResponse> {
         self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通过CLS日志计算Top信息
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。
@@ -109,15 +109,15 @@ extension Cdn {
     public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
         try await self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通过CLS日志计算Top信息
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。
     @inlinable
-    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopClsLogDataResponse > {
+    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopClsLogDataResponse> {
         self.listTopClsLogData(ListTopClsLogDataRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, domain: domain, url: url, channel: channel, limit: limit, sort: sort), logger: logger, on: eventLoop)
     }
-    
+
     /// 通过CLS日志计算Top信息
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。

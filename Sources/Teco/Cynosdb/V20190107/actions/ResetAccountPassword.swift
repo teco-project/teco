@@ -19,23 +19,23 @@ extension Cynosdb {
     public struct ResetAccountPasswordRequest: TCRequestModel {
         /// 数据库账号名
         public let accountName: String
-        
+
         /// 数据库账号新密码
         public let accountPassword: String
-        
+
         /// 集群ID
         public let clusterId: String
-        
+
         /// 主机，不填默认为"%"
         public let host: String?
-        
-        public init (accountName: String, accountPassword: String, clusterId: String, host: String? = nil) {
+
+        public init(accountName: String, accountPassword: String, clusterId: String, host: String? = nil) {
             self.accountName = accountName
             self.accountPassword = accountPassword
             self.clusterId = clusterId
             self.host = host
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountName = "AccountName"
             case accountPassword = "AccountPassword"
@@ -43,25 +43,25 @@ extension Cynosdb {
             case host = "Host"
         }
     }
-    
+
     /// ResetAccountPassword返回参数结构体
     public struct ResetAccountPasswordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
     @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
         self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
@@ -69,15 +69,15 @@ extension Cynosdb {
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
     @inlinable
-    public func resetAccountPassword(accountName: String, accountPassword: String, clusterId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+    public func resetAccountPassword(accountName: String, accountPassword: String, clusterId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
         self.resetAccountPassword(ResetAccountPasswordRequest(accountName: accountName, accountPassword: accountPassword, clusterId: clusterId, host: host), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。

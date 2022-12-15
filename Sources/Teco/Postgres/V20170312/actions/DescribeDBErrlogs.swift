@@ -22,7 +22,7 @@ extension Postgres {
     public struct DescribeDBErrlogsRequest: TCRequestModel {
         /// 实例ID，形如postgres-5bq3wfjd
         public let dbInstanceId: String
-        
+
         /// 查询起始时间，形如2018-01-01 00:00:00，起始时间不得小于7天以前
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Postgres {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询结束时间，形如2018-01-01 00:00:00
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,20 +38,20 @@ extension Postgres {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 数据库名字
         public let databaseName: String?
-        
+
         /// 搜索关键字
         public let searchKeys: [String]?
-        
+
         /// 分页返回，每页返回的最大数量。取值为1-100
         public let limit: Int64?
-        
+
         /// 分页返回，返回第几页的数据，从第0页开始计数
         public let offset: Int64?
-        
-        public init (dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -60,7 +60,7 @@ extension Postgres {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case startTime = "StartTime"
@@ -71,33 +71,33 @@ extension Postgres {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeDBErrlogs返回参数结构体
     public struct DescribeDBErrlogsResponse: TCResponseModel {
         /// 本次调用返回了多少条数据
         public let totalCount: Int64
-        
+
         /// 错误日志列表
         public let details: [ErrLogDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case details = "Details"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
     @inlinable
-    public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBErrlogsResponse > {
+    public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
         self.client.execute(action: "DescribeDBErrlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
@@ -105,15 +105,15 @@ extension Postgres {
     public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
         try await self.client.execute(action: "DescribeDBErrlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
     @inlinable
-    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBErrlogsResponse > {
+    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
         self.describeDBErrlogs(DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。

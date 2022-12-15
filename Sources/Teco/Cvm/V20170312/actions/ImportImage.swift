@@ -19,38 +19,38 @@ extension Cvm {
     public struct ImportImageRequest: TCRequestModel {
         /// 导入镜像的操作系统架构，`x86_64` 或 `i386`
         public let architecture: String
-        
+
         /// 导入镜像的操作系统类型，通过`DescribeImportImageOs`获取
         public let osType: String
-        
+
         /// 导入镜像的操作系统版本，通过`DescribeImportImageOs`获取
         public let osVersion: String
-        
+
         /// 导入镜像存放的cos地址
         public let imageUrl: String
-        
+
         /// 镜像名称
         public let imageName: String
-        
+
         /// 镜像描述
         public let imageDescription: String?
-        
+
         /// 只检查参数，不执行任务
         public let dryRun: Bool?
-        
+
         /// 是否强制导入，参考[强制导入镜像](https://cloud.tencent.com/document/product/213/12849)
         public let force: Bool?
-        
+
         /// 标签描述列表。通过指定该参数可以同时绑定标签到自定义镜像。
         public let tagSpecification: [TagSpecification]?
-        
+
         /// 导入镜像后，激活操作系统采用的许可证类型。
         /// 可选项：
         /// TencentCloud: 腾讯云官方许可
         /// BYOL: 自带许可（Bring Your Own License）
         public let licenseType: String?
-        
-        public init (architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil) {
+
+        public init(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil) {
             self.architecture = architecture
             self.osType = osType
             self.osVersion = osVersion
@@ -62,7 +62,7 @@ extension Cvm {
             self.tagSpecification = tagSpecification
             self.licenseType = licenseType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case architecture = "Architecture"
             case osType = "OsType"
@@ -76,25 +76,25 @@ extension Cvm {
             case licenseType = "LicenseType"
         }
     }
-    
+
     /// ImportImage返回参数结构体
     public struct ImportImageResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 外部镜像导入
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable
-    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportImageResponse > {
+    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
         self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 外部镜像导入
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
@@ -102,15 +102,15 @@ extension Cvm {
     public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
         try await self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 外部镜像导入
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable
-    public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportImageResponse > {
+    public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
         self.importImage(ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType), logger: logger, on: eventLoop)
     }
-    
+
     /// 外部镜像导入
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。

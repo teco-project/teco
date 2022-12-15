@@ -19,53 +19,53 @@ extension Ess {
     public struct DeleteIntegrationEmployeesRequest: TCRequestModel {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
-        
+
         /// 待移除员工的信息，userId和openId二选一，必填一个
         public let employees: [Staff]
-        
-        public init (operator: UserInfo, employees: [Staff]) {
+
+        public init(operator: UserInfo, employees: [Staff]) {
             self.`operator` = `operator`
             self.employees = employees
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case employees = "Employees"
         }
     }
-    
+
     /// DeleteIntegrationEmployees返回参数结构体
     public struct DeleteIntegrationEmployeesResponse: TCResponseModel {
         /// 员工删除数据
         public let deleteEmployeeResult: DeleteStaffsResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deleteEmployeeResult = "DeleteEmployeeResult"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 移除员工
     @inlinable
-    public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIntegrationEmployeesResponse > {
+    public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.client.execute(action: "DeleteIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
         try await self.client.execute(action: "DeleteIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 移除员工
     @inlinable
-    public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIntegrationEmployeesResponse > {
+    public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.deleteIntegrationEmployees(DeleteIntegrationEmployeesRequest(operator: `operator`, employees: employees), logger: logger, on: eventLoop)
     }
-    
+
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {

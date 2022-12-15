@@ -19,49 +19,49 @@ extension Eiam {
     public struct AddAccountToAccountGroupRequest: TCRequestModel {
         /// 账号组ID
         public let accountGroupId: String
-        
+
         /// 加入账号组的账号ID列表。
         public let accountIds: [String]?
-        
-        public init (accountGroupId: String, accountIds: [String]? = nil) {
+
+        public init(accountGroupId: String, accountIds: [String]? = nil) {
             self.accountGroupId = accountGroupId
             self.accountIds = accountIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountGroupId = "AccountGroupId"
             case accountIds = "AccountIds"
         }
     }
-    
+
     /// AddAccountToAccountGroup返回参数结构体
     public struct AddAccountToAccountGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 账号组添加账号
     @inlinable
-    public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAccountToAccountGroupResponse > {
+    public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAccountToAccountGroupResponse> {
         self.client.execute(action: "AddAccountToAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 账号组添加账号
     @inlinable
     public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {
         try await self.client.execute(action: "AddAccountToAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 账号组添加账号
     @inlinable
-    public func addAccountToAccountGroup(accountGroupId: String, accountIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAccountToAccountGroupResponse > {
+    public func addAccountToAccountGroup(accountGroupId: String, accountIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAccountToAccountGroupResponse> {
         self.addAccountToAccountGroup(AddAccountToAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 账号组添加账号
     @inlinable
     public func addAccountToAccountGroup(accountGroupId: String, accountIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {

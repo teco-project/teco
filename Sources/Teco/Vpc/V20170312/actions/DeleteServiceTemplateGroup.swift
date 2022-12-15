@@ -19,34 +19,34 @@ extension Vpc {
     public struct DeleteServiceTemplateGroupRequest: TCRequestModel {
         /// 协议端口模板集合实例ID，例如：ppmg-n17uxvve。
         public let serviceTemplateGroupId: String
-        
-        public init (serviceTemplateGroupId: String) {
+
+        public init(serviceTemplateGroupId: String) {
             self.serviceTemplateGroupId = serviceTemplateGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceTemplateGroupId = "ServiceTemplateGroupId"
         }
     }
-    
+
     /// DeleteServiceTemplateGroup返回参数结构体
     public struct DeleteServiceTemplateGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除协议端口模板集合
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable
-    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceTemplateGroupResponse > {
+    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateGroupResponse> {
         self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除协议端口模板集合
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
@@ -54,15 +54,15 @@ extension Vpc {
     public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
         try await self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除协议端口模板集合
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable
-    public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceTemplateGroupResponse > {
+    public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateGroupResponse> {
         self.deleteServiceTemplateGroup(DeleteServiceTemplateGroupRequest(serviceTemplateGroupId: serviceTemplateGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除协议端口模板集合
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合

@@ -28,101 +28,101 @@ extension TCIotError {
             case iotUserNotExists = "ResourceNotFound.IotUserNotExists"
             case mqruleRuleIdNotExists = "ResourceNotFound.MqruleRuleIdNotExists"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 设备未绑定。
         public static var iotApplicationDeviceNotExists: ResourceNotFound {
             ResourceNotFound(.iotApplicationDeviceNotExists)
         }
-        
+
         /// 应用不存在。
         public static var iotApplicationNotExists: ResourceNotFound {
             ResourceNotFound(.iotApplicationNotExists)
         }
-        
+
         /// 应用用户不存在。
         public static var iotApplicationUserNotExists: ResourceNotFound {
             ResourceNotFound(.iotApplicationUserNotExists)
         }
-        
+
         /// 设备不存在。
         public static var iotDeviceNotExists: ResourceNotFound {
             ResourceNotFound(.iotDeviceNotExists)
         }
-        
+
         /// 产品不存在。
         public static var iotProductNotExists: ResourceNotFound {
             ResourceNotFound(.iotProductNotExists)
         }
-        
+
         /// 规则不存在。
         public static var iotRuleNotExists: ResourceNotFound {
             ResourceNotFound(.iotRuleNotExists)
         }
-        
+
         /// 授权子账号不存在。
         public static var iotSubAccountNotExists: ResourceNotFound {
             ResourceNotFound(.iotSubAccountNotExists)
         }
-        
+
         /// Topic不存在。
         public static var iotTopicNotExists: ResourceNotFound {
             ResourceNotFound(.iotTopicNotExists)
         }
-        
+
         /// 用户不存在。
         public static var iotUserNotExists: ResourceNotFound {
             ResourceNotFound(.iotUserNotExists)
         }
-        
+
         /// 规则config id不存在。
         public static var mqruleRuleIdNotExists: ResourceNotFound {
             ResourceNotFound(.mqruleRuleIdNotExists)
         }
-        
+
         public func asIotError() -> TCIotError {
             let code: TCIotError.Code
             switch self.error {
-            case .iotApplicationDeviceNotExists: 
+            case .iotApplicationDeviceNotExists:
                 code = .resourceNotFound_IotApplicationDeviceNotExists
-            case .iotApplicationNotExists: 
+            case .iotApplicationNotExists:
                 code = .resourceNotFound_IotApplicationNotExists
-            case .iotApplicationUserNotExists: 
+            case .iotApplicationUserNotExists:
                 code = .resourceNotFound_IotApplicationUserNotExists
-            case .iotDeviceNotExists: 
+            case .iotDeviceNotExists:
                 code = .resourceNotFound_IotDeviceNotExists
-            case .iotProductNotExists: 
+            case .iotProductNotExists:
                 code = .resourceNotFound_IotProductNotExists
-            case .iotRuleNotExists: 
+            case .iotRuleNotExists:
                 code = .resourceNotFound_IotRuleNotExists
-            case .iotSubAccountNotExists: 
+            case .iotSubAccountNotExists:
                 code = .resourceNotFound_IotSubAccountNotExists
-            case .iotTopicNotExists: 
+            case .iotTopicNotExists:
                 code = .resourceNotFound_IotTopicNotExists
-            case .iotUserNotExists: 
+            case .iotUserNotExists:
                 code = .resourceNotFound_IotUserNotExists
-            case .mqruleRuleIdNotExists: 
+            case .mqruleRuleIdNotExists:
                 code = .resourceNotFound_MqruleRuleIdNotExists
             }
             return TCIotError(code, context: self.context)

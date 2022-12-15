@@ -31,126 +31,126 @@ extension TCCdnError {
             case scdnUserSuspend = "ResourceUnavailable.ScdnUserSuspend"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该域名已在其他处接入中国境内服务地域，如需修改服务地域为全球，需验证取回域名。
         public static var cdnHostBelongsToOthersInMainland: ResourceUnavailable {
             ResourceUnavailable(.cdnHostBelongsToOthersInMainland)
         }
-        
+
         /// 该域名已在其他处接入中国境外服务地域，如需修改服务地域为全球，需验证取回域名。
         public static var cdnHostBelongsToOthersInOverseas: ResourceUnavailable {
             ResourceUnavailable(.cdnHostBelongsToOthersInOverseas)
         }
-        
+
         /// 域名已接入DSA功能。
         public static var cdnHostExistsInDsa: ResourceUnavailable {
             ResourceUnavailable(.cdnHostExistsInDsa)
         }
-        
+
         /// 域名已经在TCB控制台接入。
         public static var cdnHostExistsInTcb: ResourceUnavailable {
             ResourceUnavailable(.cdnHostExistsInTcb)
         }
-        
+
         /// 域名被锁定。
         public static var cdnHostIsLocked: ResourceUnavailable {
             ResourceUnavailable(.cdnHostIsLocked)
         }
-        
+
         /// 该域名有违法违规风险，不可接入。
         public static var cdnHostIsMalicious: ResourceUnavailable {
             ResourceUnavailable(.cdnHostIsMalicious)
         }
-        
+
         /// 域名未下线。
         public static var cdnHostIsNotOffline: ResourceUnavailable {
             ResourceUnavailable(.cdnHostIsNotOffline)
         }
-        
+
         /// 域名已下线，无法提交预热。
         public static var cdnHostIsNotOnline: ResourceUnavailable {
             ResourceUnavailable(.cdnHostIsNotOnline)
         }
-        
+
         /// 域名未备案，请将域名备案。备案同步周期为2小时，若域名已备案，可稍后重新接入。
         public static var cdnHostNoIcp: ResourceUnavailable {
             ResourceUnavailable(.cdnHostNoIcp)
         }
-        
+
         /// 该域名已在云点播内接入，请先在云点播内删除域名后再接入。
         public static var hostExistInVod: ResourceUnavailable {
             ResourceUnavailable(.hostExistInVod)
         }
-        
+
         /// SCDN服务未生效，请购买或续费SCDN套餐后重试。
         ///
         /// 购买安全套餐
         public static var scdnUserNoPackage: ResourceUnavailable {
             ResourceUnavailable(.scdnUserNoPackage)
         }
-        
+
         /// SCDN服务未生效，请购买或续费SCDN套餐后重试。
         ///
         /// 购买 SCDN 套餐。
         public static var scdnUserSuspend: ResourceUnavailable {
             ResourceUnavailable(.scdnUserSuspend)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asCdnError() -> TCCdnError {
             let code: TCCdnError.Code
             switch self.error {
-            case .cdnHostBelongsToOthersInMainland: 
+            case .cdnHostBelongsToOthersInMainland:
                 code = .resourceUnavailable_CdnHostBelongsToOthersInMainland
-            case .cdnHostBelongsToOthersInOverseas: 
+            case .cdnHostBelongsToOthersInOverseas:
                 code = .resourceUnavailable_CdnHostBelongsToOthersInOverseas
-            case .cdnHostExistsInDsa: 
+            case .cdnHostExistsInDsa:
                 code = .resourceUnavailable_CdnHostExistsInDsa
-            case .cdnHostExistsInTcb: 
+            case .cdnHostExistsInTcb:
                 code = .resourceUnavailable_CdnHostExistsInTcb
-            case .cdnHostIsLocked: 
+            case .cdnHostIsLocked:
                 code = .resourceUnavailable_CdnHostIsLocked
-            case .cdnHostIsMalicious: 
+            case .cdnHostIsMalicious:
                 code = .resourceUnavailable_CdnHostIsMalicious
-            case .cdnHostIsNotOffline: 
+            case .cdnHostIsNotOffline:
                 code = .resourceUnavailable_CdnHostIsNotOffline
-            case .cdnHostIsNotOnline: 
+            case .cdnHostIsNotOnline:
                 code = .resourceUnavailable_CdnHostIsNotOnline
-            case .cdnHostNoIcp: 
+            case .cdnHostNoIcp:
                 code = .resourceUnavailable_CdnHostNoIcp
-            case .hostExistInVod: 
+            case .hostExistInVod:
                 code = .resourceUnavailable_HostExistInVod
-            case .scdnUserNoPackage: 
+            case .scdnUserNoPackage:
                 code = .resourceUnavailable_ScdnUserNoPackage
-            case .scdnUserSuspend: 
+            case .scdnUserSuspend:
                 code = .resourceUnavailable_ScdnUserSuspend
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCCdnError(code, context: self.context)

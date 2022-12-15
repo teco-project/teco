@@ -19,27 +19,27 @@ extension Cynosdb {
     public struct DescribeBinlogsRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 开始时间
         public let startTime: String?
-        
+
         /// 结束时间
         public let endTime: String?
-        
+
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 限制条数
         public let limit: Int64?
-        
-        public init (clusterId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(clusterId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterId = clusterId
             self.startTime = startTime
             self.endTime = endTime
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case startTime = "StartTime"
@@ -48,34 +48,34 @@ extension Cynosdb {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeBinlogs返回参数结构体
     public struct DescribeBinlogsResponse: TCResponseModel {
         /// 记录总条数
         public let totalCount: Int64
-        
+
         /// Binlog列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let binlogs: [BinlogItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case binlogs = "Binlogs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Binlog列表
     ///
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
     @inlinable
-    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogsResponse > {
+    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
         self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Binlog列表
     ///
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
@@ -83,15 +83,15 @@ extension Cynosdb {
     public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
         try await self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Binlog列表
     ///
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
     @inlinable
-    public func describeBinlogs(clusterId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogsResponse > {
+    public func describeBinlogs(clusterId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
         self.describeBinlogs(DescribeBinlogsRequest(clusterId: clusterId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Binlog列表
     ///
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。

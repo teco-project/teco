@@ -19,58 +19,58 @@ extension Tke {
     public struct DescribeRouteTableConflictsRequest: TCRequestModel {
         /// 路由表CIDR
         public let routeTableCidrBlock: String
-        
+
         /// 路由表绑定的VPC
         public let vpcId: String
-        
-        public init (routeTableCidrBlock: String, vpcId: String) {
+
+        public init(routeTableCidrBlock: String, vpcId: String) {
             self.routeTableCidrBlock = routeTableCidrBlock
             self.vpcId = vpcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableCidrBlock = "RouteTableCidrBlock"
             case vpcId = "VpcId"
         }
     }
-    
+
     /// DescribeRouteTableConflicts返回参数结构体
     public struct DescribeRouteTableConflictsResponse: TCResponseModel {
         /// 路由表是否冲突。
         public let hasConflict: Bool
-        
+
         /// 路由表冲突列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableConflictSet: [RouteTableConflict]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case hasConflict = "HasConflict"
             case routeTableConflictSet = "RouteTableConflictSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询路由表冲突列表
     @inlinable
-    public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTableConflictsResponse > {
+    public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRouteTableConflictsResponse> {
         self.client.execute(action: "DescribeRouteTableConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询路由表冲突列表
     @inlinable
     public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTableConflictsResponse {
         try await self.client.execute(action: "DescribeRouteTableConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询路由表冲突列表
     @inlinable
-    public func describeRouteTableConflicts(routeTableCidrBlock: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTableConflictsResponse > {
+    public func describeRouteTableConflicts(routeTableCidrBlock: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRouteTableConflictsResponse> {
         self.describeRouteTableConflicts(DescribeRouteTableConflictsRequest(routeTableCidrBlock: routeTableCidrBlock, vpcId: vpcId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询路由表冲突列表
     @inlinable
     public func describeRouteTableConflicts(routeTableCidrBlock: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTableConflictsResponse {

@@ -17,32 +17,32 @@
 extension Sslpod {
     /// DescribeNoticeInfo请求参数结构体
     public struct DescribeNoticeInfoRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeNoticeInfo返回参数结构体
     public struct DescribeNoticeInfoResponse: TCResponseModel {
         /// 通知信息结果
         public let data: NoticeInfoResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通知额度信息
     ///
     /// 获取通知额度信息
     @inlinable
-    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoticeInfoResponse > {
+    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoticeInfoResponse> {
         self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通知额度信息
     ///
     /// 获取通知额度信息
@@ -50,15 +50,15 @@ extension Sslpod {
     public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
         try await self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通知额度信息
     ///
     /// 获取通知额度信息
     @inlinable
-    public func describeNoticeInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoticeInfoResponse > {
+    public func describeNoticeInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoticeInfoResponse> {
         self.describeNoticeInfo(DescribeNoticeInfoRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 通知额度信息
     ///
     /// 获取通知额度信息

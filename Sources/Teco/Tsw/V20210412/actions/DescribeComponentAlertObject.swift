@@ -17,38 +17,38 @@
 extension Tsw {
     /// DescribeComponentAlertObject请求参数结构体
     public struct DescribeComponentAlertObjectRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeComponentAlertObject返回参数结构体
     public struct DescribeComponentAlertObjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取告警对象-组件告警
     @inlinable
-    public func describeComponentAlertObject(_ input: DescribeComponentAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentAlertObjectResponse > {
+    public func describeComponentAlertObject(_ input: DescribeComponentAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentAlertObjectResponse> {
         self.client.execute(action: "DescribeComponentAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取告警对象-组件告警
     @inlinable
     public func describeComponentAlertObject(_ input: DescribeComponentAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentAlertObjectResponse {
         try await self.client.execute(action: "DescribeComponentAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取告警对象-组件告警
     @inlinable
-    public func describeComponentAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentAlertObjectResponse > {
+    public func describeComponentAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentAlertObjectResponse> {
         self.describeComponentAlertObject(DescribeComponentAlertObjectRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取告警对象-组件告警
     @inlinable
     public func describeComponentAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentAlertObjectResponse {

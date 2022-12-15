@@ -37,164 +37,164 @@ extension TCLiveError {
             case watermarkNotExist = "ResourceNotFound.WatermarkNotExist"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 日志下载 URL 不存在。
         public static var cdnLogEmpty: ResourceNotFound {
             ResourceNotFound(.cdnLogEmpty)
         }
-        
+
         /// 日志主题不存在。
         public static var cdnThemeEmpty: ResourceNotFound {
             ResourceNotFound(.cdnThemeEmpty)
         }
-        
+
         /// 频道不存在。
         public static var channelNotExist: ResourceNotFound {
             ResourceNotFound(.channelNotExist)
         }
-        
+
         /// 证书不存在。
         public static var crtDateNotFound: ResourceNotFound {
             ResourceNotFound(.crtDateNotFound)
         }
-        
+
         /// 未找到证书信息。
         public static var crtDomainNotFound: ResourceNotFound {
             ResourceNotFound(.crtDomainNotFound)
         }
-        
+
         /// 域名没有备案。
         public static var domainNoRecord: ResourceNotFound {
             ResourceNotFound(.domainNoRecord)
         }
-        
+
         /// 域名不存在或不匹配。
         public static var domainNotExist: ResourceNotFound {
             ResourceNotFound(.domainNotExist)
         }
-        
+
         /// 请确认您在使用服务过程中是否有违规内容。
         public static var forbidService: ResourceNotFound {
             ResourceNotFound(.forbidService)
         }
-        
+
         /// 用户长时间未使用，服务已被冻结，请提工单恢复。
         public static var freezeService: ResourceNotFound {
             ResourceNotFound(.freezeService)
         }
-        
+
         /// 用户不支持此接口。
         public static var invalidUser: ResourceNotFound {
             ResourceNotFound(.invalidUser)
         }
-        
+
         /// 播放域名不存在。
         public static var playDomainNoRecord: ResourceNotFound {
             ResourceNotFound(.playDomainNoRecord)
         }
-        
+
         /// 推流域名不存在。
         public static var pushDomainNoRecord: ResourceNotFound {
             ResourceNotFound(.pushDomainNoRecord)
         }
-        
+
         /// 账号停服，请先冲正开通服务后再操作。
         public static var stopService: ResourceNotFound {
             ResourceNotFound(.stopService)
         }
-        
+
         /// TaskId 不存在。
         public static var taskId: ResourceNotFound {
             ResourceNotFound(.taskId)
         }
-        
+
         /// 用户主动停服，可重新开通。
         public static var userDisableService: ResourceNotFound {
             ResourceNotFound(.userDisableService)
         }
-        
+
         /// 用户未注册直播。
         public static var userNotExist: ResourceNotFound {
             ResourceNotFound(.userNotExist)
         }
-        
+
         /// 用户不存在。
         public static var userNotFount: ResourceNotFound {
             ResourceNotFound(.userNotFount)
         }
-        
+
         /// 水印不存在。
         public static var watermarkNotExist: ResourceNotFound {
             ResourceNotFound(.watermarkNotExist)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asLiveError() -> TCLiveError {
             let code: TCLiveError.Code
             switch self.error {
-            case .cdnLogEmpty: 
+            case .cdnLogEmpty:
                 code = .resourceNotFound_CdnLogEmpty
-            case .cdnThemeEmpty: 
+            case .cdnThemeEmpty:
                 code = .resourceNotFound_CdnThemeEmpty
-            case .channelNotExist: 
+            case .channelNotExist:
                 code = .resourceNotFound_ChannelNotExist
-            case .crtDateNotFound: 
+            case .crtDateNotFound:
                 code = .resourceNotFound_CrtDateNotFound
-            case .crtDomainNotFound: 
+            case .crtDomainNotFound:
                 code = .resourceNotFound_CrtDomainNotFound
-            case .domainNoRecord: 
+            case .domainNoRecord:
                 code = .resourceNotFound_DomainNoRecord
-            case .domainNotExist: 
+            case .domainNotExist:
                 code = .resourceNotFound_DomainNotExist
-            case .forbidService: 
+            case .forbidService:
                 code = .resourceNotFound_ForbidService
-            case .freezeService: 
+            case .freezeService:
                 code = .resourceNotFound_FreezeService
-            case .invalidUser: 
+            case .invalidUser:
                 code = .resourceNotFound_InvalidUser
-            case .playDomainNoRecord: 
+            case .playDomainNoRecord:
                 code = .resourceNotFound_PlayDomainNoRecord
-            case .pushDomainNoRecord: 
+            case .pushDomainNoRecord:
                 code = .resourceNotFound_PushDomainNoRecord
-            case .stopService: 
+            case .stopService:
                 code = .resourceNotFound_StopService
-            case .taskId: 
+            case .taskId:
                 code = .resourceNotFound_TaskId
-            case .userDisableService: 
+            case .userDisableService:
                 code = .resourceNotFound_UserDisableService
-            case .userNotExist: 
+            case .userNotExist:
                 code = .resourceNotFound_UserNotExist
-            case .userNotFount: 
+            case .userNotFount:
                 code = .resourceNotFound_UserNotFount
-            case .watermarkNotExist: 
+            case .watermarkNotExist:
                 code = .resourceNotFound_WatermarkNotExist
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCLiveError(code, context: self.context)

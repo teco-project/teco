@@ -19,27 +19,27 @@ extension Tiems {
     public struct DescribeResourceGroupsRequest: TCRequestModel {
         /// 筛选选项
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为20，最大值为200
         public let limit: UInt64?
-        
+
         /// 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列
         public let order: String?
-        
+
         /// 排序的依据字段， 取值范围 "CREATE_TIME", "UPDATE_TIME", "NAME"
         public let orderField: String?
-        
-        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
             self.order = order
             self.orderField = orderField
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
@@ -48,35 +48,35 @@ extension Tiems {
             case orderField = "OrderField"
         }
     }
-    
+
     /// DescribeResourceGroups返回参数结构体
     public struct DescribeResourceGroupsResponse: TCResponseModel {
         /// 资源组总数
         public let totalCount: UInt64
-        
+
         /// 资源组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroups: [ResourceGroup]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case resourceGroups = "ResourceGroups"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取资源组列表
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 获取资源组列表
     @inlinable
-    public func describeResourceGroups(_ input: DescribeResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupsResponse > {
+    public func describeResourceGroups(_ input: DescribeResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupsResponse> {
         self.client.execute(action: "DescribeResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资源组列表
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
@@ -85,16 +85,16 @@ extension Tiems {
     public func describeResourceGroups(_ input: DescribeResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupsResponse {
         try await self.client.execute(action: "DescribeResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取资源组列表
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 获取资源组列表
     @inlinable
-    public func describeResourceGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupsResponse > {
+    public func describeResourceGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupsResponse> {
         self.describeResourceGroups(DescribeResourceGroupsRequest(filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资源组列表
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。

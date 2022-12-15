@@ -19,53 +19,53 @@ extension Dasb {
     public struct CreateUserGroupRequest: TCRequestModel {
         /// 用户组名，最大长度32字符
         public let name: String
-        
+
         /// 用户组所属部门的ID，如：1.2.3
         public let departmentId: String?
-        
-        public init (name: String, departmentId: String? = nil) {
+
+        public init(name: String, departmentId: String? = nil) {
             self.name = name
             self.departmentId = departmentId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case departmentId = "DepartmentId"
         }
     }
-    
+
     /// CreateUserGroup返回参数结构体
     public struct CreateUserGroupResponse: TCResponseModel {
         /// 新建成功的用户组ID
         public let id: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建用户组
     @inlinable
-    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserGroupResponse > {
+    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
         self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建用户组
     @inlinable
     public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
         try await self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建用户组
     @inlinable
-    public func createUserGroup(name: String, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserGroupResponse > {
+    public func createUserGroup(name: String, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
         self.createUserGroup(CreateUserGroupRequest(name: name, departmentId: departmentId), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建用户组
     @inlinable
     public func createUserGroup(name: String, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {

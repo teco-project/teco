@@ -19,53 +19,53 @@ extension Rum {
     public struct DeleteWhitelistRequest: TCRequestModel {
         /// 实例ID
         public let instanceID: String
-        
+
         /// 名单ID
         public let id: String
-        
-        public init (instanceID: String, id: String) {
+
+        public init(instanceID: String, id: String) {
             self.instanceID = instanceID
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceID = "InstanceID"
             case id = "ID"
         }
     }
-    
+
     /// DeleteWhitelist返回参数结构体
     public struct DeleteWhitelistResponse: TCResponseModel {
         /// 消息success
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除白名单
     @inlinable
-    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhitelistResponse > {
+    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhitelistResponse> {
         self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除白名单
     @inlinable
     public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
         try await self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除白名单
     @inlinable
-    public func deleteWhitelist(instanceID: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhitelistResponse > {
+    public func deleteWhitelist(instanceID: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhitelistResponse> {
         self.deleteWhitelist(DeleteWhitelistRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除白名单
     @inlinable
     public func deleteWhitelist(instanceID: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {

@@ -24,73 +24,73 @@ extension TCTdmqError {
             case ttl = "InvalidParameterValue.TTL"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 与现有集群名称重复。
         public static var clusterNameDuplication: InvalidParameterValue {
             InvalidParameterValue(.clusterNameDuplication)
         }
-        
+
         /// 参数值不在允许范围内。
         public static var invalidParams: InvalidParameterValue {
             InvalidParameterValue(.invalidParams)
         }
-        
+
         /// 必要参数没有传递。
         public static var needMoreParams: InvalidParameterValue {
             InvalidParameterValue(.needMoreParams)
         }
-        
+
         /// 上传的topic name错误。
         public static var topicNotFound: InvalidParameterValue {
             InvalidParameterValue(.topicNotFound)
         }
-        
+
         /// 无效的消息TTL值。
         public static var ttl: InvalidParameterValue {
             InvalidParameterValue(.ttl)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
-            case .clusterNameDuplication: 
+            case .clusterNameDuplication:
                 code = .invalidParameterValue_ClusterNameDuplication
-            case .invalidParams: 
+            case .invalidParams:
                 code = .invalidParameterValue_InvalidParams
-            case .needMoreParams: 
+            case .needMoreParams:
                 code = .invalidParameterValue_NeedMoreParams
-            case .topicNotFound: 
+            case .topicNotFound:
                 code = .invalidParameterValue_TopicNotFound
-            case .ttl: 
+            case .ttl:
                 code = .invalidParameterValue_TTL
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCTdmqError(code, context: self.context)

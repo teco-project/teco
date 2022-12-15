@@ -19,48 +19,48 @@ extension Essbasic {
     public struct ModifySubOrganizationInfoRequest: TCRequestModel {
         /// 调用方信息，该接口 SubOrganizationId 字段与 OpenId 字段二者至少需要传入一个，全部传入时则使用 SubOrganizationId 信息
         public let caller: Caller
-        
+
         /// 机构在第三方的唯一标识，32位定长字符串，与 Caller 中 SubOrgnizationId 二者至少需要传入一个，全部传入时则使用 SubOrganizationId 信息
         public let openId: String?
-        
+
         /// 机构名称全称，修改后机构状态将变为未实名，需要调用实名接口重新实名。
         public let name: String?
-        
+
         /// 机构类型可选值：
         /// 1. ENTERPRISE - 企业；
         /// 2. INDIVIDUALBIZ - 个体工商户；
         /// 3. PUBLICINSTITUTION - 政府/事业单位
         /// 4. OTHERS - 其他组织
         public let organizationType: String?
-        
+
         /// 机构证件照片文件，base64编码。支持jpg，jpeg，png格式；如果传值，则重新上传文件后，机构状态将变为未实名，需要调用实名接口重新实名。
         public let bizLicenseFile: String?
-        
+
         /// 机构证件照片文件名
         public let bizLicenseFileName: String?
-        
+
         /// 机构法人/经营者姓名
         public let legalName: String?
-        
+
         /// 机构法人/经营者证件类型，可选值：ID_CARD - 居民身份证。OrganizationType 为 ENTERPRISE、INDIVIDUALBIZ 时，此项必填，其他情况选填。
         public let legalIdCardType: String?
-        
+
         /// 机构法人/经营者证件号码。OrganizationType 为 ENTERPRISE、INDIVIDUALBIZ 时，此项必填，其他情况选填
         public let legalIdCardNumber: String?
-        
+
         /// 机构法人/经营者/联系人手机号码
         public let legalMobile: String?
-        
+
         /// 组织联系人姓名
         public let contactName: String?
-        
+
         /// 企业联系地址
         public let contactAddress: Address?
-        
+
         /// 机构电子邮箱
         public let email: String?
-        
-        public init (caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil) {
+
+        public init(caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil) {
             self.caller = caller
             self.openId = openId
             self.name = name
@@ -75,7 +75,7 @@ extension Essbasic {
             self.contactAddress = contactAddress
             self.email = email
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case openId = "OpenId"
@@ -92,30 +92,30 @@ extension Essbasic {
             case email = "Email"
         }
     }
-    
+
     /// ModifySubOrganizationInfo返回参数结构体
     public struct ModifySubOrganizationInfoResponse: TCResponseModel {
         /// 子机构ID
         public let subOrganizationId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subOrganizationId = "SubOrganizationId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新子机构信息
     ///
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。
     /// 注：若修改子机构名称或更新机构证件照片，需要重新通过子机构实名接口（VerifySubOrganization）进行重新实名。
     @inlinable
-    public func modifySubOrganizationInfo(_ input: ModifySubOrganizationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubOrganizationInfoResponse > {
+    public func modifySubOrganizationInfo(_ input: ModifySubOrganizationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubOrganizationInfoResponse> {
         self.client.execute(action: "ModifySubOrganizationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新子机构信息
     ///
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。
@@ -124,16 +124,16 @@ extension Essbasic {
     public func modifySubOrganizationInfo(_ input: ModifySubOrganizationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubOrganizationInfoResponse {
         try await self.client.execute(action: "ModifySubOrganizationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新子机构信息
     ///
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。
     /// 注：若修改子机构名称或更新机构证件照片，需要重新通过子机构实名接口（VerifySubOrganization）进行重新实名。
     @inlinable
-    public func modifySubOrganizationInfo(caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubOrganizationInfoResponse > {
+    public func modifySubOrganizationInfo(caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubOrganizationInfoResponse> {
         self.modifySubOrganizationInfo(ModifySubOrganizationInfoRequest(caller: caller, openId: openId, name: name, organizationType: organizationType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, legalMobile: legalMobile, contactName: contactName, contactAddress: contactAddress, email: email), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新子机构信息
     ///
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。

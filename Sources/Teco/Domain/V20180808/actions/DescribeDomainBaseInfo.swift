@@ -19,43 +19,43 @@ extension Domain {
     public struct DescribeDomainBaseInfoRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// DescribeDomainBaseInfo返回参数结构体
     public struct DescribeDomainBaseInfoResponse: TCResponseModel {
         /// 域名信息
         public let domainInfo: DomainBaseInfo
-        
+
         /// 用户Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainInfo = "DomainInfo"
             case uin = "Uin"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 域名基本信息
     ///
     /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。
     @inlinable
-    public func describeDomainBaseInfo(_ input: DescribeDomainBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainBaseInfoResponse > {
+    public func describeDomainBaseInfo(_ input: DescribeDomainBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainBaseInfoResponse> {
         self.client.execute(action: "DescribeDomainBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 域名基本信息
     ///
     /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。
@@ -63,15 +63,15 @@ extension Domain {
     public func describeDomainBaseInfo(_ input: DescribeDomainBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainBaseInfoResponse {
         try await self.client.execute(action: "DescribeDomainBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 域名基本信息
     ///
     /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。
     @inlinable
-    public func describeDomainBaseInfo(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainBaseInfoResponse > {
+    public func describeDomainBaseInfo(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainBaseInfoResponse> {
         self.describeDomainBaseInfo(DescribeDomainBaseInfoRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 域名基本信息
     ///
     /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。

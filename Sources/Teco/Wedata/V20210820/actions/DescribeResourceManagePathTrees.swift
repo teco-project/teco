@@ -19,27 +19,27 @@ extension Wedata {
     public struct DescribeResourceManagePathTreesRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String?
-        
+
         /// 名字，供搜索
         public let name: String?
-        
+
         /// 文件类型
         public let fileType: String?
-        
+
         /// 文件路径
         public let filePath: String?
-        
+
         /// 文件夹类型
         public let dirType: String?
-        
-        public init (projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil) {
+
+        public init(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil) {
             self.projectId = projectId
             self.name = name
             self.fileType = fileType
             self.filePath = filePath
             self.dirType = dirType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case name = "Name"
@@ -48,40 +48,40 @@ extension Wedata {
             case dirType = "DirType"
         }
     }
-    
+
     /// DescribeResourceManagePathTrees返回参数结构体
     public struct DescribeResourceManagePathTreesResponse: TCResponseModel {
         /// 响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [ResourcePathTree]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取资源管理目录树
     @inlinable
-    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceManagePathTreesResponse > {
+    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceManagePathTreesResponse> {
         self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资源管理目录树
     @inlinable
     public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
         try await self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取资源管理目录树
     @inlinable
-    public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceManagePathTreesResponse > {
+    public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceManagePathTreesResponse> {
         self.describeResourceManagePathTrees(DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资源管理目录树
     @inlinable
     public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {

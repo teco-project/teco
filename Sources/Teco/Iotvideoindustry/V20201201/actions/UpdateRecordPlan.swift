@@ -19,25 +19,25 @@ extension Iotvideoindustry {
     public struct UpdateRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
         public let planId: String
-        
+
         /// 计划名称
         public let name: String?
-        
+
         /// 时间模板ID
         public let timeTemplateId: String?
-        
+
         /// 触发录制的事件 1：全部
         public let eventId: Int64?
-        
+
         /// 录制设备列表
         public let devices: [DeviceItem]?
-        
+
         /// 是否更新绑定此录制计划的设备列表
         /// 0 - 不更新
         /// 1 - 更新，如果Devices参数为空则清空设备列表，Devices不为空则全量更新设备列表
         public let isModifyDevices: Int64?
-        
-        public init (planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil) {
+
+        public init(planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil) {
             self.planId = planId
             self.name = name
             self.timeTemplateId = timeTemplateId
@@ -45,7 +45,7 @@ extension Iotvideoindustry {
             self.devices = devices
             self.isModifyDevices = isModifyDevices
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case planId = "PlanId"
             case name = "Name"
@@ -55,30 +55,30 @@ extension Iotvideoindustry {
             case isModifyDevices = "IsModifyDevices"
         }
     }
-    
+
     /// UpdateRecordPlan返回参数结构体
     public struct UpdateRecordPlanResponse: TCResponseModel {
         /// 操作结果
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新录制计划（旧）
     ///
     /// 本接口(UpdateRecordPlan)用于更新录制计划。
     /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
     @inlinable
-    public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordPlanResponse > {
+    public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordPlanResponse> {
         self.client.execute(action: "UpdateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新录制计划（旧）
     ///
     /// 本接口(UpdateRecordPlan)用于更新录制计划。
@@ -87,16 +87,16 @@ extension Iotvideoindustry {
     public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordPlanResponse {
         try await self.client.execute(action: "UpdateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新录制计划（旧）
     ///
     /// 本接口(UpdateRecordPlan)用于更新录制计划。
     /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
     @inlinable
-    public func updateRecordPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordPlanResponse > {
+    public func updateRecordPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordPlanResponse> {
         self.updateRecordPlan(UpdateRecordPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, isModifyDevices: isModifyDevices), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新录制计划（旧）
     ///
     /// 本接口(UpdateRecordPlan)用于更新录制计划。

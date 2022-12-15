@@ -19,42 +19,42 @@ extension Redis {
     public struct AllocateWanAddressRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// AllocateWanAddress返回参数结构体
     public struct AllocateWanAddressResponse: TCResponseModel {
         /// 异步流程ID
         public let flowId: Int64
-        
+
         /// 开通外网的状态
         public let wanStatus: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case wanStatus = "WanStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通外网接口
     ///
     /// 开通外网
     @inlinable
-    public func allocateWanAddress(_ input: AllocateWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateWanAddressResponse > {
+    public func allocateWanAddress(_ input: AllocateWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateWanAddressResponse> {
         self.client.execute(action: "AllocateWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通外网接口
     ///
     /// 开通外网
@@ -62,15 +62,15 @@ extension Redis {
     public func allocateWanAddress(_ input: AllocateWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
         try await self.client.execute(action: "AllocateWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通外网接口
     ///
     /// 开通外网
     @inlinable
-    public func allocateWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateWanAddressResponse > {
+    public func allocateWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateWanAddressResponse> {
         self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通外网接口
     ///
     /// 开通外网

@@ -23,65 +23,65 @@ extension TCCvmError {
             case noDefaultCbs = "ResourceNotFound.NoDefaultCbs"
             case noDefaultCbsWithReason = "ResourceNotFound.NoDefaultCbsWithReason"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 高性能计算集群不存在。
         public static var hpcCluster: ResourceNotFound {
             ResourceNotFound(.hpcCluster)
         }
-        
+
         /// 指定的置放群组不存在。
         public static var invalidPlacementSet: ResourceNotFound {
             ResourceNotFound(.invalidPlacementSet)
         }
-        
+
         public static var invalidZoneInstanceType: ResourceNotFound {
             ResourceNotFound(.invalidZoneInstanceType)
         }
-        
+
         /// 无可用的缺省类型的CBS资源。
         public static var noDefaultCbs: ResourceNotFound {
             ResourceNotFound(.noDefaultCbs)
         }
-        
+
         /// 无可用的缺省类型的CBS资源。
         public static var noDefaultCbsWithReason: ResourceNotFound {
             ResourceNotFound(.noDefaultCbsWithReason)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .hpcCluster: 
+            case .hpcCluster:
                 code = .resourceNotFound_HpcCluster
-            case .invalidPlacementSet: 
+            case .invalidPlacementSet:
                 code = .resourceNotFound_InvalidPlacementSet
-            case .invalidZoneInstanceType: 
+            case .invalidZoneInstanceType:
                 code = .resourceNotFound_InvalidZoneInstanceType
-            case .noDefaultCbs: 
+            case .noDefaultCbs:
                 code = .resourceNotFound_NoDefaultCbs
-            case .noDefaultCbsWithReason: 
+            case .noDefaultCbsWithReason:
                 code = .resourceNotFound_NoDefaultCbsWithReason
             }
             return TCCvmError(code, context: self.context)

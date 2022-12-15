@@ -19,49 +19,49 @@ extension Pts {
     public struct DeleteFilesRequest: TCRequestModel {
         /// 项目 ID
         public let projectId: String
-        
+
         /// 文件 ID 数组
         public let fileIds: [String]
-        
-        public init (projectId: String, fileIds: [String]) {
+
+        public init(projectId: String, fileIds: [String]) {
             self.projectId = projectId
             self.fileIds = fileIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case fileIds = "FileIds"
         }
     }
-    
+
     /// DeleteFiles返回参数结构体
     public struct DeleteFilesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除文件
     @inlinable
-    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFilesResponse > {
+    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFilesResponse> {
         self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除文件
     @inlinable
     public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
         try await self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除文件
     @inlinable
-    public func deleteFiles(projectId: String, fileIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFilesResponse > {
+    public func deleteFiles(projectId: String, fileIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFilesResponse> {
         self.deleteFiles(DeleteFilesRequest(projectId: projectId, fileIds: fileIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除文件
     @inlinable
     public func deleteFiles(projectId: String, fileIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {

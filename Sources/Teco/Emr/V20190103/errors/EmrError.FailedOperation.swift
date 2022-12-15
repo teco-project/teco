@@ -21,56 +21,56 @@ extension TCEmrError {
             case notSupportPod = "FailedOperation.NotSupportPod"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 重复的订单，请检查emr控制台。
         ///
         /// 占位符
         public static var duplicateOrderNotAllowed: FailedOperation {
             FailedOperation(.duplicateOrderNotAllowed)
         }
-        
+
         /// 操作失败，不支持pod。
         ///
         /// 占位符
         public static var notSupportPod: FailedOperation {
             FailedOperation(.notSupportPod)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
-            case .duplicateOrderNotAllowed: 
+            case .duplicateOrderNotAllowed:
                 code = .failedOperation_DuplicateOrderNotAllowed
-            case .notSupportPod: 
+            case .notSupportPod:
                 code = .failedOperation_NotSupportPod
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCEmrError(code, context: self.context)

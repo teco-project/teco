@@ -20,45 +20,45 @@ extension TCSmpnError {
             case name = "InvalidParameter.Name"
             case phoneNumber = "InvalidParameter.PhoneNumber"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 错误的名称。
         public static var name: InvalidParameter {
             InvalidParameter(.name)
         }
-        
+
         /// 号码格式错误。
         public static var phoneNumber: InvalidParameter {
             InvalidParameter(.phoneNumber)
         }
-        
+
         public func asSmpnError() -> TCSmpnError {
             let code: TCSmpnError.Code
             switch self.error {
-            case .name: 
+            case .name:
                 code = .invalidParameter_Name
-            case .phoneNumber: 
+            case .phoneNumber:
                 code = .invalidParameter_PhoneNumber
             }
             return TCSmpnError(code, context: self.context)

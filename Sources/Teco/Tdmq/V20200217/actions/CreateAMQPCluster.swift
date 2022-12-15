@@ -19,53 +19,53 @@ extension Tdmq {
     public struct CreateAMQPClusterRequest: TCRequestModel {
         /// 3-64个字符，只能包含字母、数字、“-”及“_”
         public let name: String
-        
+
         /// 集群描述，128个字符以内
         public let remark: String?
-        
-        public init (name: String, remark: String? = nil) {
+
+        public init(name: String, remark: String? = nil) {
             self.name = name
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case remark = "Remark"
         }
     }
-    
+
     /// CreateAMQPCluster返回参数结构体
     public struct CreateAMQPClusterResponse: TCResponseModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建AMQP集群
     @inlinable
-    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPClusterResponse > {
+    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
         self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建AMQP集群
     @inlinable
     public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
         try await self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建AMQP集群
     @inlinable
-    public func createAMQPCluster(name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPClusterResponse > {
+    public func createAMQPCluster(name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
         self.createAMQPCluster(CreateAMQPClusterRequest(name: name, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建AMQP集群
     @inlinable
     public func createAMQPCluster(name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {

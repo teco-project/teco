@@ -19,38 +19,38 @@ extension Sqlserver {
     public struct StartMigrationCheckRequest: TCRequestModel {
         /// 迁移任务id
         public let migrateId: Int64
-        
-        public init (migrateId: Int64) {
+
+        public init(migrateId: Int64) {
             self.migrateId = migrateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case migrateId = "MigrateId"
         }
     }
-    
+
     /// StartMigrationCheck返回参数结构体
     public struct StartMigrationCheckResponse: TCResponseModel {
         /// 迁移检查流程发起后，返回的流程id
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动迁移校验
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func startMigrationCheck(_ input: StartMigrationCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMigrationCheckResponse > {
+    public func startMigrationCheck(_ input: StartMigrationCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrationCheckResponse> {
         self.client.execute(action: "StartMigrationCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动迁移校验
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
@@ -58,15 +58,15 @@ extension Sqlserver {
     public func startMigrationCheck(_ input: StartMigrationCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrationCheckResponse {
         try await self.client.execute(action: "StartMigrationCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动迁移校验
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func startMigrationCheck(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMigrationCheckResponse > {
+    public func startMigrationCheck(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrationCheckResponse> {
         self.startMigrationCheck(StartMigrationCheckRequest(migrateId: migrateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动迁移校验
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式

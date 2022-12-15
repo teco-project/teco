@@ -21,52 +21,52 @@ extension TCTiiaError {
             case isOpening = "ResourceUnavailable.IsOpening"
             case notExist = "ResourceUnavailable.NotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号已欠费。
         public static var inArrears: ResourceUnavailable {
             ResourceUnavailable(.inArrears)
         }
-        
+
         /// 服务正在开通中，请稍等。
         public static var isOpening: ResourceUnavailable {
             ResourceUnavailable(.isOpening)
         }
-        
+
         /// 计费状态未知，请确认是否已在控制台开通服务。
         public static var notExist: ResourceUnavailable {
             ResourceUnavailable(.notExist)
         }
-        
+
         public func asTiiaError() -> TCTiiaError {
             let code: TCTiiaError.Code
             switch self.error {
-            case .inArrears: 
+            case .inArrears:
                 code = .resourceUnavailable_InArrears
-            case .isOpening: 
+            case .isOpening:
                 code = .resourceUnavailable_IsOpening
-            case .notExist: 
+            case .notExist:
                 code = .resourceUnavailable_NotExist
             }
             return TCTiiaError(code, context: self.context)

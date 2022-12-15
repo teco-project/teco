@@ -19,49 +19,49 @@ extension Tke {
     public struct ScaleInClusterMasterRequest: TCRequestModel {
         /// 集群实例ID
         public let clusterId: String
-        
+
         /// master缩容选项
         public let scaleInMasters: [ScaleInMaster]
-        
-        public init (clusterId: String, scaleInMasters: [ScaleInMaster]) {
+
+        public init(clusterId: String, scaleInMasters: [ScaleInMaster]) {
             self.clusterId = clusterId
             self.scaleInMasters = scaleInMasters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case scaleInMasters = "ScaleInMasters"
         }
     }
-    
+
     /// ScaleInClusterMaster返回参数结构体
     public struct ScaleInClusterMasterResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 缩容独立集群master节点
     @inlinable
-    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInClusterMasterResponse > {
+    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInClusterMasterResponse> {
         self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 缩容独立集群master节点
     @inlinable
     public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
         try await self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 缩容独立集群master节点
     @inlinable
-    public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInClusterMasterResponse > {
+    public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInClusterMasterResponse> {
         self.scaleInClusterMaster(ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters), logger: logger, on: eventLoop)
     }
-    
+
     /// 缩容独立集群master节点
     @inlinable
     public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {

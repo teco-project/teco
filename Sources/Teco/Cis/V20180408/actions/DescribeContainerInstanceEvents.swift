@@ -19,38 +19,38 @@ extension Cis {
     public struct DescribeContainerInstanceEventsRequest: TCRequestModel {
         /// 容器实例名称
         public let instanceName: String
-        
-        public init (instanceName: String) {
+
+        public init(instanceName: String) {
             self.instanceName = instanceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceName = "InstanceName"
         }
     }
-    
+
     /// DescribeContainerInstanceEvents返回参数结构体
     public struct DescribeContainerInstanceEventsResponse: TCResponseModel {
         /// 容器实例事件列表
         public let eventList: [Event]
-        
+
         /// 唯一请求ID，每次请求都会返回。定位问题时需要提供该次请求的RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eventList = "EventList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器实例事件
     ///
     /// 此接口（DescribeContainerInstanceEvents）用于查询容器实例事件列表
     @inlinable
-    public func describeContainerInstanceEvents(_ input: DescribeContainerInstanceEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerInstanceEventsResponse > {
+    public func describeContainerInstanceEvents(_ input: DescribeContainerInstanceEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstanceEventsResponse> {
         self.client.execute(action: "DescribeContainerInstanceEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器实例事件
     ///
     /// 此接口（DescribeContainerInstanceEvents）用于查询容器实例事件列表
@@ -58,15 +58,15 @@ extension Cis {
     public func describeContainerInstanceEvents(_ input: DescribeContainerInstanceEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstanceEventsResponse {
         try await self.client.execute(action: "DescribeContainerInstanceEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器实例事件
     ///
     /// 此接口（DescribeContainerInstanceEvents）用于查询容器实例事件列表
     @inlinable
-    public func describeContainerInstanceEvents(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerInstanceEventsResponse > {
+    public func describeContainerInstanceEvents(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstanceEventsResponse> {
         self.describeContainerInstanceEvents(DescribeContainerInstanceEventsRequest(instanceName: instanceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器实例事件
     ///
     /// 此接口（DescribeContainerInstanceEvents）用于查询容器实例事件列表

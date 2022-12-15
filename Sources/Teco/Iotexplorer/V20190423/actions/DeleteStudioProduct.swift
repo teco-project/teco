@@ -19,34 +19,34 @@ extension Iotexplorer {
     public struct DeleteStudioProductRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
-        public init (productId: String) {
+
+        public init(productId: String) {
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
         }
     }
-    
+
     /// DeleteStudioProduct返回参数结构体
     public struct DeleteStudioProductResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除产品
     ///
     /// 提供删除某个项目下产品的能力
     @inlinable
-    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStudioProductResponse > {
+    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStudioProductResponse> {
         self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除产品
     ///
     /// 提供删除某个项目下产品的能力
@@ -54,15 +54,15 @@ extension Iotexplorer {
     public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
         try await self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除产品
     ///
     /// 提供删除某个项目下产品的能力
     @inlinable
-    public func deleteStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStudioProductResponse > {
+    public func deleteStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStudioProductResponse> {
         self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除产品
     ///
     /// 提供删除某个项目下产品的能力

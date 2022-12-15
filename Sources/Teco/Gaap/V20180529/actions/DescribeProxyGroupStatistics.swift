@@ -22,7 +22,7 @@ extension Gaap {
     public struct DescribeProxyGroupStatisticsRequest: TCRequestModel {
         /// 通道组ID
         public let groupId: String
-        
+
         /// 起始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Gaap {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,24 +38,24 @@ extension Gaap {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 统计指标名称列表，支持: 入带宽:InBandwidth, 出带宽:OutBandwidth, 并发:Concurrent, 入包量:InPackets, 出包量:OutPackets
         public let metricNames: [String]
-        
+
         /// 监控粒度，目前支持60，300，3600，86400，单位：秒。
         /// 当时间范围不超过1天，支持最小粒度60秒；
         /// 当时间范围不超过7天，支持最小粒度3600秒；
         /// 当时间范围不超过30天，支持最小粒度86400秒。
         public let granularity: UInt64
-        
-        public init (groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64) {
+
+        public init(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64) {
             self.groupId = groupId
             self.startTime = startTime
             self.endTime = endTime
             self.metricNames = metricNames
             self.granularity = granularity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case startTime = "StartTime"
@@ -64,29 +64,29 @@ extension Gaap {
             case granularity = "Granularity"
         }
     }
-    
+
     /// DescribeProxyGroupStatistics返回参数结构体
     public struct DescribeProxyGroupStatisticsResponse: TCResponseModel {
         /// 通道组统计数据
         public let statisticsData: [MetricStatisticsInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case statisticsData = "StatisticsData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询通道组统计数据
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
-    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupStatisticsResponse > {
+    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupStatisticsResponse> {
         self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道组统计数据
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
@@ -94,15 +94,15 @@ extension Gaap {
     public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
         try await self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询通道组统计数据
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
-    public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupStatisticsResponse > {
+    public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupStatisticsResponse> {
         self.describeProxyGroupStatistics(DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道组统计数据
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。

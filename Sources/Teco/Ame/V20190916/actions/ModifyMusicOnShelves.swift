@@ -19,39 +19,39 @@ extension Ame {
     public struct ModifyMusicOnShelvesRequest: TCRequestModel {
         /// 歌曲变更信息
         public let musicDetailInfos: MusicDetailInfo
-        
+
         /// ame对接资源方密钥
         public let ameKey: String?
-        
-        public init (musicDetailInfos: MusicDetailInfo, ameKey: String? = nil) {
+
+        public init(musicDetailInfos: MusicDetailInfo, ameKey: String? = nil) {
             self.musicDetailInfos = musicDetailInfos
             self.ameKey = ameKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case musicDetailInfos = "MusicDetailInfos"
             case ameKey = "AmeKey"
         }
     }
-    
+
     /// ModifyMusicOnShelves返回参数结构体
     public struct ModifyMusicOnShelvesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 变更歌曲参数
     ///
     /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
     @inlinable
-    public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMusicOnShelvesResponse > {
+    public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMusicOnShelvesResponse> {
         self.client.execute(action: "ModifyMusicOnShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 变更歌曲参数
     ///
     /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
@@ -59,15 +59,15 @@ extension Ame {
     public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMusicOnShelvesResponse {
         try await self.client.execute(action: "ModifyMusicOnShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 变更歌曲参数
     ///
     /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
     @inlinable
-    public func modifyMusicOnShelves(musicDetailInfos: MusicDetailInfo, ameKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMusicOnShelvesResponse > {
+    public func modifyMusicOnShelves(musicDetailInfos: MusicDetailInfo, ameKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMusicOnShelvesResponse> {
         self.modifyMusicOnShelves(ModifyMusicOnShelvesRequest(musicDetailInfos: musicDetailInfos, ameKey: ameKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 变更歌曲参数
     ///
     /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更

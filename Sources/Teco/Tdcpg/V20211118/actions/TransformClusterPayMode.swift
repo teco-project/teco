@@ -19,23 +19,23 @@ extension Tdcpg {
     public struct TransformClusterPayModeRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 当前付费模式，目前只支持：POSTPAID_BY_HOUR(按小时后付费)
         public let currentPayMode: String
-        
+
         /// 目标付费模式，目前只支持：PREPAID(预付费)
         public let targetPayMode: String
-        
+
         /// 购买时长，单位：月。取值范围为[1,60]，默认值为1。
         public let period: UInt64?
-        
-        public init (clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil) {
+
+        public init(clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil) {
             self.clusterId = clusterId
             self.currentPayMode = currentPayMode
             self.targetPayMode = targetPayMode
             self.period = period
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case currentPayMode = "CurrentPayMode"
@@ -43,25 +43,25 @@ extension Tdcpg {
             case period = "Period"
         }
     }
-    
+
     /// TransformClusterPayMode返回参数结构体
     public struct TransformClusterPayModeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
     @inlinable
-    public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransformClusterPayModeResponse > {
+    public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransformClusterPayModeResponse> {
         self.client.execute(action: "TransformClusterPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
@@ -69,15 +69,15 @@ extension Tdcpg {
     public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransformClusterPayModeResponse {
         try await self.client.execute(action: "TransformClusterPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
     @inlinable
-    public func transformClusterPayMode(clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransformClusterPayModeResponse > {
+    public func transformClusterPayMode(clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransformClusterPayModeResponse> {
         self.transformClusterPayMode(TransformClusterPayModeRequest(clusterId: clusterId, currentPayMode: currentPayMode, targetPayMode: targetPayMode, period: period), logger: logger, on: eventLoop)
     }
-    
+
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。

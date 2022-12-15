@@ -22,55 +22,55 @@ extension Cdn {
     public struct AccessControl: TCInputModel, TCOutputModel {
         /// on | off 是否启用请求头部及请求url访问控制
         public let `switch`: String
-        
+
         /// 请求头部及请求url访问规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessControlRules: [AccessControlRule]?
-        
+
         /// 返回状态码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
-        
-        public init (switch: String, accessControlRules: [AccessControlRule]? = nil, returnCode: Int64? = nil) {
+
+        public init(switch: String, accessControlRules: [AccessControlRule]? = nil, returnCode: Int64? = nil) {
             self.`switch` = `switch`
             self.accessControlRules = accessControlRules
             self.returnCode = returnCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case accessControlRules = "AccessControlRules"
             case returnCode = "ReturnCode"
         }
     }
-    
+
     /// 访问控制规则
     public struct AccessControlRule: TCInputModel, TCOutputModel {
         /// requestHeader ：对请求头部进行访问控制
         /// url ： 对访问url进行访问控制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// 封禁内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleContent: String?
-        
+
         /// on ：正则匹配
         /// off ：字面匹配
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regex: String?
-        
+
         /// RuleType为requestHeader时必填，否则不需要填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleHeader: String?
-        
-        public init (ruleType: String, ruleContent: String, regex: String, ruleHeader: String? = nil) {
+
+        public init(ruleType: String, ruleContent: String, regex: String, ruleHeader: String? = nil) {
             self.ruleType = ruleType
             self.ruleContent = ruleContent
             self.regex = regex
             self.ruleHeader = ruleHeader
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case ruleContent = "RuleContent"
@@ -78,7 +78,7 @@ extension Cdn {
             case ruleHeader = "RuleHeader"
         }
     }
-    
+
     /// 缓存配置高级版本规则
     public struct AdvanceCacheRule: TCInputModel, TCOutputModel {
         /// 规则类型：
@@ -89,7 +89,7 @@ extension Cdn {
         /// default：源站未返回 max-age 情况下的缓存规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheType: String?
-        
+
         /// 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
@@ -98,73 +98,73 @@ extension Cdn {
         /// default 时填充 "no max-age"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheContents: [String]?
-        
+
         /// 缓存过期时间
         /// 单位为秒，最大可设置为 365 天
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheTime: Int64?
-        
-        public init (cacheType: String, cacheContents: [String], cacheTime: Int64) {
+
+        public init(cacheType: String, cacheContents: [String], cacheTime: Int64) {
             self.cacheType = cacheType
             self.cacheContents = cacheContents
             self.cacheTime = cacheTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cacheType = "CacheType"
             case cacheContents = "CacheContents"
             case cacheTime = "CacheTime"
         }
     }
-    
+
     /// 高级配置集合
     public struct AdvanceConfig: TCOutputModel {
         /// 高级配置名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 是否支持高级配置，
         /// on：支持
         /// off：不支持
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 回源的自定义Https配置
     public struct AdvanceHttps: TCInputModel, TCOutputModel {
         /// 自定义Tls数据开关
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customTlsStatus: String?
-        
+
         /// Tls版本列表，支持设置 TLSv1, TLSV1.1, TLSV1.2, TLSv1.3，修改时必须开启连续的版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tlsVersion: [String]?
-        
+
         /// 自定义加密套件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cipher: String?
-        
+
         /// 回源双向校验开启状态
         /// off - 关闭校验
         /// oneWay - 校验源站
         /// twoWay - 双向校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifyOriginType: String?
-        
+
         /// 回源层证书配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certInfo: ServerCert?
-        
+
         /// 源站证书配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originCertInfo: ClientCert?
-        
-        public init (customTlsStatus: String? = nil, tlsVersion: [String]? = nil, cipher: String? = nil, verifyOriginType: String? = nil, certInfo: ServerCert? = nil, originCertInfo: ClientCert? = nil) {
+
+        public init(customTlsStatus: String? = nil, tlsVersion: [String]? = nil, cipher: String? = nil, verifyOriginType: String? = nil, certInfo: ServerCert? = nil, originCertInfo: ClientCert? = nil) {
             self.customTlsStatus = customTlsStatus
             self.tlsVersion = tlsVersion
             self.cipher = cipher
@@ -172,7 +172,7 @@ extension Cdn {
             self.certInfo = certInfo
             self.originCertInfo = originCertInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customTlsStatus = "CustomTlsStatus"
             case tlsVersion = "TlsVersion"
@@ -182,37 +182,37 @@ extension Cdn {
             case originCertInfo = "OriginCertInfo"
         }
     }
-    
+
     /// 时间戳防盗链高级版配置，白名单功能
     public struct AdvancedAuthentication: TCInputModel, TCOutputModel {
         /// 防盗链配置开关，on或off，开启时必须且只能配置一种模式，其余模式为null。
         public let `switch`: String
-        
+
         /// 时间戳防盗链高级版模式A配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeA: AdvancedAuthenticationTypeA?
-        
+
         /// 时间戳防盗链高级版模式B配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeB: AdvancedAuthenticationTypeB?
-        
+
         /// 时间戳防盗链高级版模式C配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeC: AdvancedAuthenticationTypeC?
-        
+
         /// 时间戳防盗链高级版模式D配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeD: AdvancedAuthenticationTypeD?
-        
+
         /// 时间戳防盗链高级版模式E配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeE: AdvancedAuthenticationTypeE?
-        
+
         /// 时间戳防盗链高级版模式F配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeF: AdvancedAuthenticationTypeF?
-        
-        public init (switch: String, typeA: AdvancedAuthenticationTypeA? = nil, typeB: AdvancedAuthenticationTypeB? = nil, typeC: AdvancedAuthenticationTypeC? = nil, typeD: AdvancedAuthenticationTypeD? = nil, typeE: AdvancedAuthenticationTypeE? = nil, typeF: AdvancedAuthenticationTypeF? = nil) {
+
+        public init(switch: String, typeA: AdvancedAuthenticationTypeA? = nil, typeB: AdvancedAuthenticationTypeB? = nil, typeC: AdvancedAuthenticationTypeC? = nil, typeD: AdvancedAuthenticationTypeD? = nil, typeE: AdvancedAuthenticationTypeE? = nil, typeF: AdvancedAuthenticationTypeF? = nil) {
             self.`switch` = `switch`
             self.typeA = typeA
             self.typeB = typeB
@@ -221,7 +221,7 @@ extension Cdn {
             self.typeE = typeE
             self.typeF = typeF
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case typeA = "TypeA"
@@ -232,43 +232,43 @@ extension Cdn {
             case typeF = "TypeF"
         }
     }
-    
+
     /// 时间戳防盗链高级版模式A配置。
     public struct AdvancedAuthenticationTypeA: TCInputModel, TCOutputModel {
         /// 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
         public let secretKey: String
-        
+
         /// uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         public let signParam: String
-        
+
         /// uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
         public let timeParam: String
-        
+
         /// 过期时间，单位秒。
         public let expireTime: Int64
-        
+
         /// 是否必须提供过期时间参数。
         public let expireTimeRequired: Bool
-        
+
         /// Url组成格式，如：${private_key}${schema}${host}${full_uri。
         public let format: String
-        
+
         /// 时间格式，dec，hex分别表示十进制，十六进制。
         public let timeFormat: String
-        
+
         /// 鉴权失败时返回的状态码。
         public let failCode: Int64
-        
+
         /// 链接过期时返回的状态码。
         public let expireCode: Int64
-        
+
         /// 需要鉴权的url路径列表。
         public let rulePaths: [String]
-        
+
         /// 保留字段。
         public let transformation: Int64?
-        
-        public init (secretKey: String, signParam: String, timeParam: String, expireTime: Int64, expireTimeRequired: Bool, format: String, timeFormat: String, failCode: Int64, expireCode: Int64, rulePaths: [String], transformation: Int64? = nil) {
+
+        public init(secretKey: String, signParam: String, timeParam: String, expireTime: Int64, expireTimeRequired: Bool, format: String, timeFormat: String, failCode: Int64, expireCode: Int64, rulePaths: [String], transformation: Int64? = nil) {
             self.secretKey = secretKey
             self.signParam = signParam
             self.timeParam = timeParam
@@ -281,7 +281,7 @@ extension Cdn {
             self.rulePaths = rulePaths
             self.transformation = transformation
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case signParam = "SignParam"
@@ -296,40 +296,40 @@ extension Cdn {
             case transformation = "Transformation"
         }
     }
-    
+
     /// 时间戳防盗链高级版模式B配置。
     public struct AdvancedAuthenticationTypeB: TCInputModel, TCOutputModel {
         /// alpha键名。
         public let keyAlpha: String
-        
+
         /// beta键名。
         public let keyBeta: String
-        
+
         /// gamma键名。
         public let keyGamma: String
-        
+
         /// uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         public let signParam: String
-        
+
         /// uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
         public let timeParam: String
-        
+
         /// 过期时间，单位秒。
         public let expireTime: Int64
-        
+
         /// 时间格式，dec，hex分别表示十进制，十六进制。
         public let timeFormat: String
-        
+
         /// 鉴权失败时返回的状态码。
         public let failCode: Int64
-        
+
         /// 链接过期时返回的状态码。
         public let expireCode: Int64
-        
+
         /// 需要鉴权的url路径列表。
         public let rulePaths: [String]
-        
-        public init (keyAlpha: String, keyBeta: String, keyGamma: String, signParam: String, timeParam: String, expireTime: Int64, timeFormat: String, failCode: Int64, expireCode: Int64, rulePaths: [String]) {
+
+        public init(keyAlpha: String, keyBeta: String, keyGamma: String, signParam: String, timeParam: String, expireTime: Int64, timeFormat: String, failCode: Int64, expireCode: Int64, rulePaths: [String]) {
             self.keyAlpha = keyAlpha
             self.keyBeta = keyBeta
             self.keyGamma = keyGamma
@@ -341,7 +341,7 @@ extension Cdn {
             self.expireCode = expireCode
             self.rulePaths = rulePaths
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyAlpha = "KeyAlpha"
             case keyBeta = "KeyBeta"
@@ -355,47 +355,47 @@ extension Cdn {
             case rulePaths = "RulePaths"
         }
     }
-    
+
     /// 时间戳防盗链高级版模式C配置。
     public struct AdvancedAuthenticationTypeC: TCInputModel, TCOutputModel {
         /// 访问密钥。
         public let accessKey: String
-        
+
         /// 鉴权密钥。
         public let secretKey: String
-        
-        public init (accessKey: String, secretKey: String) {
+
+        public init(accessKey: String, secretKey: String) {
             self.accessKey = accessKey
             self.secretKey = secretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessKey = "AccessKey"
             case secretKey = "SecretKey"
         }
     }
-    
+
     /// 时间戳防盗链高级版模式D配置。
     public struct AdvancedAuthenticationTypeD: TCInputModel, TCOutputModel {
         /// 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
         public let secretKey: String
-        
+
         /// 备份密钥，当使用SecretKey鉴权失败时会使用该密钥重新鉴权。
         public let backupSecretKey: String
-        
+
         /// uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         public let signParam: String
-        
+
         /// uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
         public let timeParam: String
-        
+
         /// 过期时间，单位秒。
         public let expireTime: Int64
-        
+
         /// 时间格式，dec，hex分别表示十进制，十六进制。
         public let timeFormat: String
-        
-        public init (secretKey: String, backupSecretKey: String, signParam: String, timeParam: String, expireTime: Int64, timeFormat: String) {
+
+        public init(secretKey: String, backupSecretKey: String, signParam: String, timeParam: String, expireTime: Int64, timeFormat: String) {
             self.secretKey = secretKey
             self.backupSecretKey = backupSecretKey
             self.signParam = signParam
@@ -403,7 +403,7 @@ extension Cdn {
             self.expireTime = expireTime
             self.timeFormat = timeFormat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case backupSecretKey = "BackupSecretKey"
@@ -413,34 +413,34 @@ extension Cdn {
             case timeFormat = "TimeFormat"
         }
     }
-    
+
     /// 时间戳防盗链高级版模式E配置。
     public struct AdvancedAuthenticationTypeE: TCInputModel, TCOutputModel {
         /// 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signParam: String?
-        
+
         /// uri串中Acl签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aclSignParam: String?
-        
+
         /// uri串中开始时间字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTimeParam: String?
-        
+
         /// uri串中过期时间字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTimeParam: String?
-        
+
         /// 时间格式，dec
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeFormat: String?
-        
-        public init (secretKey: String, signParam: String, aclSignParam: String, startTimeParam: String, expireTimeParam: String, timeFormat: String) {
+
+        public init(secretKey: String, signParam: String, aclSignParam: String, startTimeParam: String, expireTimeParam: String, timeFormat: String) {
             self.secretKey = secretKey
             self.signParam = signParam
             self.aclSignParam = aclSignParam
@@ -448,7 +448,7 @@ extension Cdn {
             self.expireTimeParam = expireTimeParam
             self.timeFormat = timeFormat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case signParam = "SignParam"
@@ -458,37 +458,37 @@ extension Cdn {
             case timeFormat = "TimeFormat"
         }
     }
-    
+
     /// 时间戳防盗链高级鉴权模式TypeF配置
     public struct AdvancedAuthenticationTypeF: TCInputModel, TCOutputModel {
         /// uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signParam: String?
-        
+
         /// uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeParam: String?
-        
+
         /// uri串中Transaction字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionParam: String?
-        
+
         /// 用于计算签名的主密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 用于计算签名的备选密钥，主密钥校验失败后再次尝试备选密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
-        
-        public init (signParam: String, timeParam: String, transactionParam: String, secretKey: String, backupSecretKey: String? = nil) {
+
+        public init(signParam: String, timeParam: String, transactionParam: String, secretKey: String, backupSecretKey: String? = nil) {
             self.signParam = signParam
             self.timeParam = timeParam
             self.transactionParam = transactionParam
             self.secretKey = secretKey
             self.backupSecretKey = backupSecretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case signParam = "SignParam"
             case timeParam = "TimeParam"
@@ -497,45 +497,45 @@ extension Cdn {
             case backupSecretKey = "BackupSecretKey"
         }
     }
-    
+
     /// scdn 的自定义 cc 规则
     public struct AdvancedCCRules: TCInputModel, TCOutputModel {
         /// 规则名称
         public let ruleName: String?
-        
+
         /// 探测时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let detectionTime: UInt64?
-        
+
         /// 限频阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frequencyLimit: UInt64?
-        
+
         /// IP 惩罚开关，可选on|off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishmentSwitch: String?
-        
+
         /// IP 惩罚时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishmentTime: UInt64?
-        
+
         /// 执行动作，intercept|redirect
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
-        
+
         /// 动作为 redirect 时，重定向的url
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectUrl: String?
-        
+
         /// 七层限频具体配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configure: [ScdnSevenLayerRules]?
-        
+
         /// 是否开启改规则 on 开启，off关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (ruleName: String? = nil, detectionTime: UInt64? = nil, frequencyLimit: UInt64? = nil, punishmentSwitch: String? = nil, punishmentTime: UInt64? = nil, action: String? = nil, redirectUrl: String? = nil, configure: [ScdnSevenLayerRules]? = nil, switch: String? = nil) {
+
+        public init(ruleName: String? = nil, detectionTime: UInt64? = nil, frequencyLimit: UInt64? = nil, punishmentSwitch: String? = nil, punishmentTime: UInt64? = nil, action: String? = nil, redirectUrl: String? = nil, configure: [ScdnSevenLayerRules]? = nil, switch: String? = nil) {
             self.ruleName = ruleName
             self.detectionTime = detectionTime
             self.frequencyLimit = frequencyLimit
@@ -546,7 +546,7 @@ extension Cdn {
             self.configure = configure
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case detectionTime = "DetectionTime"
@@ -559,13 +559,13 @@ extension Cdn {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 缓存过期配置高级版，注意：此字段已经弃用，请使用RuleCache
     public struct AdvancedCache: TCInputModel, TCOutputModel {
         /// 缓存过期规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheRules: [AdvanceCacheRule]?
-        
+
         /// 强制缓存配置
         /// on：开启
         /// off：关闭
@@ -573,52 +573,52 @@ extension Cdn {
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCacheControl: String?
-        
+
         /// 当源站返回Set-Cookie头部时，节点是否缓存该头部及body
         /// on：开启，不缓存该头部及body
         /// off：关闭，遵循用户自定义的节点缓存规则
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreSetCookie: String?
-        
-        public init (cacheRules: [AdvanceCacheRule], ignoreCacheControl: String, ignoreSetCookie: String) {
+
+        public init(cacheRules: [AdvanceCacheRule], ignoreCacheControl: String, ignoreSetCookie: String) {
             self.cacheRules = cacheRules
             self.ignoreCacheControl = ignoreCacheControl
             self.ignoreSetCookie = ignoreSetCookie
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cacheRules = "CacheRules"
             case ignoreCacheControl = "IgnoreCacheControl"
             case ignoreSetCookie = "IgnoreSetCookie"
         }
     }
-    
+
     /// SCDN精准访问控制配置
     public struct AdvancedScdnAclGroup: TCInputModel, TCOutputModel {
         /// 规则名称
         public let ruleName: String
-        
+
         /// 具体配置
         public let configure: [AdvancedScdnAclRule]
-        
+
         /// 执行动作，intercept|redirect
         public let result: String
-        
+
         /// 规则是否生效，active|inactive
         public let status: String?
-        
+
         /// 错误页面配置
         public let errorPage: ScdnErrorPage?
-        
-        public init (ruleName: String, configure: [AdvancedScdnAclRule], result: String, status: String? = nil, errorPage: ScdnErrorPage? = nil) {
+
+        public init(ruleName: String, configure: [AdvancedScdnAclRule], result: String, status: String? = nil, errorPage: ScdnErrorPage? = nil) {
             self.ruleName = ruleName
             self.configure = configure
             self.result = result
             self.status = status
             self.errorPage = errorPage
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case configure = "Configure"
@@ -627,7 +627,7 @@ extension Cdn {
             case errorPage = "ErrorPage"
         }
     }
-    
+
     /// 精准访问控制匹配规则
     public struct AdvancedScdnAclRule: TCInputModel, TCOutputModel {
         /// 匹配关键字：
@@ -649,7 +649,7 @@ extension Cdn {
         /// userAgent：请求头User-Agent
         /// head：自定义请求头
         public let matchKey: String
-        
+
         /// 逻辑操作符，取值如下：
         /// 不包含：exclude
         /// 包含：include
@@ -658,7 +658,7 @@ extension Cdn {
         /// 前缀匹配：matching
         /// 内容为空或不存在：null
         public let logicOperator: String
-        
+
         /// 匹配值。
         /// 当MatchKey为protocol时
         /// 取值：HTTP、HTTPS
@@ -870,21 +870,21 @@ extension Cdn {
         /// 当MatchKey为index时
         /// 取值为：/;/index.html
         public let matchValue: [String]
-        
+
         /// 是否区分大小写 true：区分 false：不区分
         public let caseSensitive: Bool?
-        
+
         /// 当MatchKey为param时必填：表示请求参数Key 当MatchKey为cookie时必填：表示请求头Cookie中参数的
         public let matchKeyParam: String?
-        
-        public init (matchKey: String, logicOperator: String, matchValue: [String], caseSensitive: Bool? = nil, matchKeyParam: String? = nil) {
+
+        public init(matchKey: String, logicOperator: String, matchValue: [String], caseSensitive: Bool? = nil, matchKeyParam: String? = nil) {
             self.matchKey = matchKey
             self.logicOperator = logicOperator
             self.matchValue = matchValue
             self.caseSensitive = caseSensitive
             self.matchKeyParam = matchKeyParam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case matchKey = "MatchKey"
             case logicOperator = "LogicOperator"
@@ -893,7 +893,7 @@ extension Cdn {
             case matchKeyParam = "MatchKeyParam"
         }
     }
-    
+
     /// 时间戳防盗链配置
     public struct Authentication: TCInputModel, TCOutputModel {
         /// 防盗链配置开关
@@ -901,31 +901,31 @@ extension Cdn {
         /// off：关闭
         /// 开启时必须且只配置一种模式，其余模式需要设置为 null
         public let `switch`: String
-        
+
         /// 时间戳防盗链模式 A 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeA: AuthenticationTypeA?
-        
+
         /// 时间戳防盗链模式 B 配置（模式 B 后台升级中，暂时不支持配置）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeB: AuthenticationTypeB?
-        
+
         /// 时间戳防盗链模式 C 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeC: AuthenticationTypeC?
-        
+
         /// 时间戳防盗链模式 D 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeD: AuthenticationTypeD?
-        
-        public init (switch: String, typeA: AuthenticationTypeA? = nil, typeB: AuthenticationTypeB? = nil, typeC: AuthenticationTypeC? = nil, typeD: AuthenticationTypeD? = nil) {
+
+        public init(switch: String, typeA: AuthenticationTypeA? = nil, typeB: AuthenticationTypeB? = nil, typeC: AuthenticationTypeC? = nil, typeD: AuthenticationTypeD? = nil) {
             self.`switch` = `switch`
             self.typeA = typeA
             self.typeB = typeB
             self.typeC = typeC
             self.typeD = typeD
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case typeA = "TypeA"
@@ -934,7 +934,7 @@ extension Cdn {
             case typeD = "TypeD"
         }
     }
-    
+
     /// 时间戳防盗链模式 A 配置
     /// 时间戳防盗链模式 A 的访问 URL 格式为：http://DomainName/Filename?sign=timestamp-rand-uid-md5hash
     /// 其中 timestamp 为十进制 UNIX 时间戳；
@@ -946,29 +946,29 @@ extension Cdn {
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 签名参数名设置
         /// 仅允许大小写字母、数字或下划线，长度 1~100 位，不能以数字开头
         public let signParam: String
-        
+
         /// 签名过期时间设置
         /// 单位为秒，最大可设置为 630720000
         public let expireTime: Int64
-        
+
         /// 鉴权/不做鉴权的文件扩展名列表设置
         /// 如果包含字符 *  则表示所有文件
         public let fileExtensions: [String]
-        
+
         /// whitelist：白名单，表示对除了 FileExtensions 列表之外的所有类型进行鉴权
         /// blacklist：黑名单，表示仅对 FileExtensions 中的类型进行鉴权
         public let filterType: String
-        
+
         /// 计算签名的备用密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
-        
-        public init (secretKey: String, signParam: String, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String? = nil) {
+
+        public init(secretKey: String, signParam: String, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String? = nil) {
             self.secretKey = secretKey
             self.signParam = signParam
             self.expireTime = expireTime
@@ -976,7 +976,7 @@ extension Cdn {
             self.filterType = filterType
             self.backupSecretKey = backupSecretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case signParam = "SignParam"
@@ -986,39 +986,39 @@ extension Cdn {
             case backupSecretKey = "BackupSecretKey"
         }
     }
-    
+
     /// 时间戳防盗链模式 B 配置（B 模式正在进行平台升级，暂不支持配置）
     public struct AuthenticationTypeB: TCInputModel, TCOutputModel {
         /// 计算签名的密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 签名过期时间设置
         /// 单位为秒，最大可设置为 630720000
         public let expireTime: Int64
-        
+
         /// 鉴权/不做鉴权的文件扩展名列表设置
         /// 如果包含字符 *  则表示所有文件
         public let fileExtensions: [String]
-        
+
         /// whitelist：白名单，表示对除了 FileExtensions 列表之外的所有类型进行鉴权
         /// blacklist：黑名单，表示仅对 FileExtensions 中的类型进行鉴权
         public let filterType: String
-        
+
         /// 计算签名的备用密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
-        
-        public init (secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String? = nil) {
+
+        public init(secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String? = nil) {
             self.secretKey = secretKey
             self.expireTime = expireTime
             self.fileExtensions = fileExtensions
             self.filterType = filterType
             self.backupSecretKey = backupSecretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case expireTime = "ExpireTime"
@@ -1027,7 +1027,7 @@ extension Cdn {
             case backupSecretKey = "BackupSecretKey"
         }
     }
-    
+
     /// 时间戳防盗链模式 C 配置
     /// 时间戳防盗链模式 C 的访问 URL 格式为：http://DomainName/md5hash/timestamp/FileName
     /// 其中 timestamp 为十六进制 UNIX 时间戳；
@@ -1037,31 +1037,31 @@ extension Cdn {
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 签名过期时间设置
         /// 单位为秒，最大可设置为 630720000
         public let expireTime: Int64
-        
+
         /// 鉴权/不做鉴权的文件扩展名列表设置
         /// 如果包含字符 *  则表示所有文件
         public let fileExtensions: [String]
-        
+
         /// whitelist：白名单，表示对除了 FileExtensions 列表之外的所有类型进行鉴权
         /// blacklist：黑名单，表示仅对 FileExtensions 中的类型进行鉴权
         public let filterType: String
-        
+
         /// 时间戳进制设置
         /// dec：十进制
         /// hex：十六进制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeFormat: String?
-        
+
         /// 计算签名的备用密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
-        
-        public init (secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, timeFormat: String? = nil, backupSecretKey: String? = nil) {
+
+        public init(secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, timeFormat: String? = nil, backupSecretKey: String? = nil) {
             self.secretKey = secretKey
             self.expireTime = expireTime
             self.fileExtensions = fileExtensions
@@ -1069,7 +1069,7 @@ extension Cdn {
             self.timeFormat = timeFormat
             self.backupSecretKey = backupSecretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case expireTime = "ExpireTime"
@@ -1079,7 +1079,7 @@ extension Cdn {
             case backupSecretKey = "BackupSecretKey"
         }
     }
-    
+
     /// 时间戳防盗链模式 D 配置
     /// 时间戳防盗链模式 D 的访问 URL 格式为：http://DomainName/FileName?sign=md5hash&t=timestamp
     /// 其中 timestamp 为十进制或十六进制 UNIX 时间戳；
@@ -1089,38 +1089,38 @@ extension Cdn {
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 签名过期时间设置
         /// 单位为秒，最大可设置为 630720000
         public let expireTime: Int64
-        
+
         /// 鉴权/不做鉴权的文件扩展名列表设置
         /// 如果包含字符 *  则表示所有文件
         public let fileExtensions: [String]
-        
+
         /// whitelist：白名单，表示对除了 FileExtensions 列表之外的所有类型进行鉴权
         /// blacklist：黑名单，表示仅对 FileExtensions 中的类型进行鉴权
         public let filterType: String
-        
+
         /// 签名参数名设置
         /// 仅允许大小写字母、数字或下划线，长度 1~100 位，不能以数字开头
         public let signParam: String
-        
+
         /// 时间戳参数名设置
         /// 仅允许大小写字母、数字或下划线，长度 1~100 位，不能以数字开头
         public let timeParam: String
-        
+
         /// 时间戳进制设置
         /// dec：十进制
         /// hex：十六进制
         public let timeFormat: String
-        
+
         /// 计算签名的备用密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
-        
-        public init (secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, signParam: String, timeParam: String, timeFormat: String, backupSecretKey: String? = nil) {
+
+        public init(secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, signParam: String, timeParam: String, timeFormat: String, backupSecretKey: String? = nil) {
             self.secretKey = secretKey
             self.expireTime = expireTime
             self.fileExtensions = fileExtensions
@@ -1130,7 +1130,7 @@ extension Cdn {
             self.timeFormat = timeFormat
             self.backupSecretKey = backupSecretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case expireTime = "ExpireTime"
@@ -1142,51 +1142,51 @@ extension Cdn {
             case backupSecretKey = "BackupSecretKey"
         }
     }
-    
+
     /// 图片优化-AvifAdapter配置
     public struct AvifAdapter: TCInputModel, TCOutputModel {
         /// 开关，"on/off"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// s3源站回源鉴权。
     public struct AwsPrivateAccess: TCInputModel, TCOutputModel {
         /// 开关，on/off。
         public let `switch`: String
-        
+
         /// 访问ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessKey: String?
-        
+
         /// 密钥。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// Bucketname
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
-        
-        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
+
+        public init(switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
             self.region = region
             self.bucket = bucket
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case accessKey = "AccessKey"
@@ -1195,23 +1195,23 @@ extension Cdn {
             case bucket = "Bucket"
         }
     }
-    
+
     /// 带宽封顶配置，默认为关闭状态
     public struct BandwidthAlert: TCInputModel, TCOutputModel {
         /// 用量封顶配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 用量封顶阈值，带宽单位为bps，流量单位byte
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bpsThreshold: Int64?
-        
+
         /// 达到阈值后的操作
         /// RETURN_404：全部请求返回 404
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let counterMeasure: String?
-        
+
         /// 境内区域上次触发用量封顶阈值的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1220,17 +1220,17 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastTriggerTime: Date?
-        
+
         /// 用量封顶提醒开关
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertSwitch: String?
-        
+
         /// 用量封顶阈值提醒百分比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertPercentage: Int64?
-        
+
         /// 海外区域上次触发用量封顶阈值的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1239,18 +1239,18 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastTriggerTimeOverseas: Date?
-        
+
         /// 用量阈值触发的维度
         /// 带宽：bandwidth
         /// 流量：flux
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metric: String?
-        
+
         /// 累计用量配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticItems: [StatisticItem]?
-        
-        public init (switch: String, bpsThreshold: Int64? = nil, counterMeasure: String? = nil, lastTriggerTime: Date? = nil, alertSwitch: String? = nil, alertPercentage: Int64? = nil, lastTriggerTimeOverseas: Date? = nil, metric: String? = nil, statisticItems: [StatisticItem]? = nil) {
+
+        public init(switch: String, bpsThreshold: Int64? = nil, counterMeasure: String? = nil, lastTriggerTime: Date? = nil, alertSwitch: String? = nil, alertPercentage: Int64? = nil, lastTriggerTimeOverseas: Date? = nil, metric: String? = nil, statisticItems: [StatisticItem]? = nil) {
             self.`switch` = `switch`
             self.bpsThreshold = bpsThreshold
             self.counterMeasure = counterMeasure
@@ -1261,7 +1261,7 @@ extension Cdn {
             self.metric = metric
             self.statisticItems = statisticItems
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case bpsThreshold = "BpsThreshold"
@@ -1274,25 +1274,25 @@ extension Cdn {
             case statisticItems = "StatisticItems"
         }
     }
-    
+
     /// Bot cookie策略
     public struct BotCookie: TCInputModel, TCOutputModel {
         /// on|off
         public let `switch`: String
-        
+
         /// 规则类型，当前只有all
         public let ruleType: String
-        
+
         /// 规则值，['*']
         public let ruleValue: [String]
-        
+
         /// 执行动作，monitor|intercept|redirect|captcha
         public let action: String
-        
+
         /// 重定向时设置的重定向页面
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectUrl: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1301,8 +1301,8 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date?
-        
-        public init (switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
+
+        public init(switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
             self.`switch` = `switch`
             self.ruleType = ruleType
             self.ruleValue = ruleValue
@@ -1310,7 +1310,7 @@ extension Cdn {
             self.redirectUrl = redirectUrl
             self.updateTime = updateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case ruleType = "RuleType"
@@ -1320,25 +1320,25 @@ extension Cdn {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// Bot js策略
     public struct BotJavaScript: TCInputModel, TCOutputModel {
         /// on|off
         public let `switch`: String
-        
+
         /// 规则类型，当前只有file
         public let ruleType: String
-        
+
         /// 规则值，['html', 'htm']
         public let ruleValue: [String]
-        
+
         /// 执行动作，monitor|intercept|redirect|captcha
         public let action: String
-        
+
         /// 重定向时设置的重定向页面
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectUrl: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1347,8 +1347,8 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date?
-        
-        public init (switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
+
+        public init(switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
             self.`switch` = `switch`
             self.ruleType = ruleType
             self.ruleValue = ruleValue
@@ -1356,7 +1356,7 @@ extension Cdn {
             self.redirectUrl = redirectUrl
             self.updateTime = updateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case ruleType = "RuleType"
@@ -1366,15 +1366,15 @@ extension Cdn {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// BOT记录详细内容
     public struct BotRecord: TCOutputModel {
         /// 动作，取值为以为3个类型中的一个："intercept","permit","monitor"，分别表示： 拦截， 放行，监控
         public let action: String
-        
+
         /// 会话总次数
         public let nums: Int64
-        
+
         /// BotType=UB时，表示预测标签，取值如下：
         ///                 "crawler_unregular",
         ///                 "crawler_regular",
@@ -1403,16 +1403,16 @@ extension Cdn {
         ///                 "Marketing"
         /// BotType=UCB时，为二期接口，暂时未定义内容
         public let ruleName: String
-        
+
         /// 会话持续时间
         public let sessionDuration: Float
-        
+
         /// 访问源IP
         public let srcIp: String
-        
+
         /// 异常特征
         public let botFeature: [String]
-        
+
         /// 最新检测时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1420,24 +1420,24 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date
-        
+
         /// BOT得分
         public let score: Int64
-        
+
         /// 平均速率
         public let avgSpeed: Float
-        
+
         /// BotType=TCB，表示TCB名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcbDetail: String?
-        
+
         /// BOT记录唯一ID，用于查询访问详情
         public let id: String
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case action = "Action"
             case nums = "Nums"
@@ -1453,43 +1453,43 @@ extension Cdn {
             case domain = "Domain"
         }
     }
-    
+
     /// Bot记录的排序选项
     public struct BotSortBy: TCInputModel {
         /// 排序参数名称， 取值为：timestamp， nums， session_duration，score.total，stat.avg_speed分别表示按照：最新检测时间，会话总次数，会话持续时间，BOT得分，平均速率排序
         public let key: String
-        
+
         /// asc/desc
         public let sequence: String
-        
-        public init (key: String, sequence: String) {
+
+        public init(key: String, sequence: String) {
             self.key = key
             self.sequence = sequence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case sequence = "Sequence"
         }
     }
-    
+
     /// session/ip维度的bot统计复杂对象
     public struct BotStatisticsCount: TCOutputModel {
         /// BOT次数
         public let count: Int64
-        
+
         /// Top指标值,如果是ip维度就是ip如果是session维度就是域名
         public let value: String
-        
+
         /// ip所在国家
         public let country: String
-        
+
         /// ip所在省份
         public let province: String
-        
+
         /// ip归属的idc
         public let isp: String
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case value = "Value"
@@ -1498,21 +1498,21 @@ extension Cdn {
             case isp = "Isp"
         }
     }
-    
+
     /// BOT统计结果数据
     public struct BotStats: TCOutputModel {
         /// 指标名称
         public let metric: String
-        
+
         /// 指标详细数据
         public let detailData: [BotStatsDetailData]
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case detailData = "DetailData"
         }
     }
-    
+
     /// BOT统计结果数据详细数据
     public struct BotStatsDetailData: TCOutputModel {
         /// 时间
@@ -1522,46 +1522,46 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date
-        
+
         /// 数据值
         public let value: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case value = "Value"
         }
     }
-    
+
     /// 域名基础配置信息，含 CNAME、状态、业务类型、加速区域、创建时间、更新时间、源站配置等。
     public struct BriefDomain: TCOutputModel {
         /// 域名 ID
         public let resourceId: String?
-        
+
         /// 腾讯云账号 ID
         public let appId: Int64?
-        
+
         /// 加速域名
         public let domain: String?
-        
+
         /// 域名对应的 CNAME 地址
         public let cname: String?
-        
+
         /// 加速服务状态
         /// rejected：域名审核未通过，域名备案过期/被注销导致
         /// processing：部署中
         /// online：已启动
         /// offline：已关闭
         public let status: String?
-        
+
         /// 项目 ID，可前往腾讯云项目管理页面查看
         public let projectId: Int64?
-        
+
         /// 域名业务类型
         /// web：静态加速
         /// download：下载加速
         /// media：流媒体点播加速
         public let serviceType: String?
-        
+
         /// 域名创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1569,7 +1569,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 域名更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1577,10 +1577,10 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date?
-        
+
         /// 源站配置详情
         public let origin: Origin?
-        
+
         /// 域名封禁状态
         /// normal：正常状态
         /// overdue：账号欠费导致域名关闭，充值完成后可自行启动加速服务
@@ -1591,26 +1591,26 @@ extension Cdn {
         /// capping：触发配置的带宽阈值上限
         /// readonly：域名存在特殊配置，被锁定
         public let disable: String
-        
+
         /// 加速区域
         /// mainland：中国境内加速
         /// overseas：中国境外加速
         /// global：全球加速
         public let area: String
-        
+
         /// 域名锁定状态
         /// normal：未锁定
         /// mainland：中国境内锁定
         /// overseas：中国境外锁定
         /// global：全球锁定
         public let readonly: String
-        
+
         /// 域名所属产品，cdn/ecdn
         public let product: String
-        
+
         /// 主域名
         public let parentHost: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case appId = "AppId"
@@ -1629,7 +1629,7 @@ extension Cdn {
             case parentHost = "ParentHost"
         }
     }
-    
+
     /// 节点缓存过期时间配置，分为以下两种：
     /// + 基础版缓存过期规则配置
     /// + 高级版缓存过期规则配置
@@ -1637,48 +1637,48 @@ extension Cdn {
         /// 基础缓存过期时间配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let simpleCache: SimpleCache?
-        
+
         /// 高级缓存过期时间配置（已弃用）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedCache: AdvancedCache?
-        
+
         /// 高级路径缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleCache: [RuleCache]?
-        
-        public init (simpleCache: SimpleCache? = nil, advancedCache: AdvancedCache? = nil, ruleCache: [RuleCache]? = nil) {
+
+        public init(simpleCache: SimpleCache? = nil, advancedCache: AdvancedCache? = nil, ruleCache: [RuleCache]? = nil) {
             self.simpleCache = simpleCache
             self.advancedCache = advancedCache
             self.ruleCache = ruleCache
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case simpleCache = "SimpleCache"
             case advancedCache = "AdvancedCache"
             case ruleCache = "RuleCache"
         }
     }
-    
+
     /// 启发式自定义时间缓存配置
     public struct CacheConfig: TCInputModel {
         /// on 代表开启自定义启发式缓存时间
         /// off 代表关闭自定义启发式缓存时间
         public let heuristicCacheTimeSwitch: String
-        
+
         /// 单位 秒.
         public let heuristicCacheTime: Int64
-        
-        public init (heuristicCacheTimeSwitch: String, heuristicCacheTime: Int64) {
+
+        public init(heuristicCacheTimeSwitch: String, heuristicCacheTime: Int64) {
             self.heuristicCacheTimeSwitch = heuristicCacheTimeSwitch
             self.heuristicCacheTime = heuristicCacheTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case heuristicCacheTimeSwitch = "HeuristicCacheTimeSwitch"
             case heuristicCacheTime = "HeuristicCacheTime"
         }
     }
-    
+
     /// 路径缓存缓存配置
     public struct CacheConfigCache: TCInputModel, TCOutputModel {
         /// 缓存配置开关
@@ -1686,41 +1686,41 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 缓存过期时间设置
         /// 单位为秒，最大可设置为 365 天
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheTime: Int64?
-        
+
         /// 高级缓存过期配置，开启时会对比源站返回的 max-age 值与 CacheRules 中设置的缓存过期时间，取最小值在节点进行缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareMaxAge: String?
-        
+
         /// 强制缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态，开启后，源站返回的 no-store、no-cache 资源，也将按照 CacheRules 规则进行缓存
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCacheControl: String?
-        
+
         /// 当源站返回Set-Cookie头部时，节点是否缓存该头部及body
         /// on：开启，不缓存该头部及body
         /// off：关闭，遵循用户自定义的节点缓存规则
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreSetCookie: String?
-        
-        public init (switch: String, cacheTime: Int64, compareMaxAge: String, ignoreCacheControl: String, ignoreSetCookie: String) {
+
+        public init(switch: String, cacheTime: Int64, compareMaxAge: String, ignoreCacheControl: String, ignoreSetCookie: String) {
             self.`switch` = `switch`
             self.cacheTime = cacheTime
             self.compareMaxAge = compareMaxAge
             self.ignoreCacheControl = ignoreCacheControl
             self.ignoreSetCookie = ignoreSetCookie
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case cacheTime = "CacheTime"
@@ -1729,29 +1729,29 @@ extension Cdn {
             case ignoreSetCookie = "IgnoreSetCookie"
         }
     }
-    
+
     /// 路径缓存遵循源站配置
     public struct CacheConfigFollowOrigin: TCInputModel, TCOutputModel {
         /// 遵循源站配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 启发式缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let heuristicCache: HeuristicCache?
-        
-        public init (switch: String, heuristicCache: HeuristicCache? = nil) {
+
+        public init(switch: String, heuristicCache: HeuristicCache? = nil) {
             self.`switch` = `switch`
             self.heuristicCache = heuristicCache
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case heuristicCache = "HeuristicCache"
         }
     }
-    
+
     /// 路径缓存不缓存配置
     public struct CacheConfigNoCache: TCInputModel, TCOutputModel {
         /// 不缓存配置开关
@@ -1759,61 +1759,61 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 总是回源站校验
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let revalidate: String?
-        
-        public init (switch: String, revalidate: String) {
+
+        public init(switch: String, revalidate: String) {
             self.`switch` = `switch`
             self.revalidate = revalidate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case revalidate = "Revalidate"
         }
     }
-    
+
     /// 缓存键配置（忽略参数配置）
     public struct CacheKey: TCInputModel, TCOutputModel {
         /// 是否开启全路径缓存
         /// on：开启全路径缓存（即关闭参数忽略）
         /// off：关闭全路径缓存（即开启参数忽略）
         public let fullUrlCache: String?
-        
+
         /// 是否忽略大小写缓存
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCase: String?
-        
+
         /// CacheKey中包含请求参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let queryString: QueryStringKey?
-        
+
         /// CacheKey中包含Cookie
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cookie: CookieKey?
-        
+
         /// CacheKey中包含请求头部
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let header: HeaderKey?
-        
+
         /// CacheKey中包含自定义字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheTag: CacheTagKey?
-        
+
         /// CacheKey中包含请求协议
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheme: SchemeKey?
-        
+
         /// 分路径缓存键配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyRules: [KeyRule]?
-        
-        public init (fullUrlCache: String? = nil, ignoreCase: String? = nil, queryString: QueryStringKey? = nil, cookie: CookieKey? = nil, header: HeaderKey? = nil, cacheTag: CacheTagKey? = nil, scheme: SchemeKey? = nil, keyRules: [KeyRule]? = nil) {
+
+        public init(fullUrlCache: String? = nil, ignoreCase: String? = nil, queryString: QueryStringKey? = nil, cookie: CookieKey? = nil, header: HeaderKey? = nil, cacheTag: CacheTagKey? = nil, scheme: SchemeKey? = nil, keyRules: [KeyRule]? = nil) {
             self.fullUrlCache = fullUrlCache
             self.ignoreCase = ignoreCase
             self.queryString = queryString
@@ -1823,7 +1823,7 @@ extension Cdn {
             self.scheme = scheme
             self.keyRules = keyRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fullUrlCache = "FullUrlCache"
             case ignoreCase = "IgnoreCase"
@@ -1835,44 +1835,44 @@ extension Cdn {
             case keyRules = "KeyRules"
         }
     }
-    
+
     /// 违规资源封禁/解封返回类型
     public struct CacheOptResult: TCOutputModel {
         /// 成功的url列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successUrls: [String]?
-        
+
         /// 失败的url列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failUrls: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case successUrls = "SuccessUrls"
             case failUrls = "FailUrls"
         }
     }
-    
+
     /// 组成CacheKey的一部分
     public struct CacheTagKey: TCInputModel, TCOutputModel {
         /// 是否使用CacheTag作为CacheKey的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 自定义CacheTag的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (switch: String, value: String? = nil) {
+
+        public init(switch: String, value: String? = nil) {
             self.`switch` = `switch`
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case value = "Value"
         }
     }
-    
+
     /// 下行限速配置规则，最多可配置 100 条
     public struct CappingRule: TCInputModel, TCOutputModel {
         /// 规则类型：
@@ -1881,52 +1881,52 @@ extension Cdn {
         /// directory：指定路径生效
         /// path：指定绝对路径生效
         public let ruleType: String
-        
-        /// RuleType 对应类型下的匹配内容： 
+
+        /// RuleType 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
         /// directory 时填充路径，如 /xxx/test/
         /// path 时填充绝对路径，如 /xxx/test.html
         public let rulePaths: [String]
-        
+
         /// 下行速度值设置，单位为 KB/s
         public let kBpsThreshold: Int64
-        
-        public init (ruleType: String, rulePaths: [String], kBpsThreshold: Int64) {
+
+        public init(ruleType: String, rulePaths: [String], kBpsThreshold: Int64) {
             self.ruleType = ruleType
             self.rulePaths = rulePaths
             self.kBpsThreshold = kBpsThreshold
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case rulePaths = "RulePaths"
             case kBpsThreshold = "KBpsThreshold"
         }
     }
-    
+
     /// CC攻击Top数据
     public struct CcTopData: TCOutputModel {
         /// 客户端Ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         /// 访问URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 客户端UserAgent
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAgent: String?
-        
+
         /// 请求数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: UInt64?
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case url = "Url"
@@ -1935,7 +1935,7 @@ extension Cdn {
             case domain = "Domain"
         }
     }
-    
+
     /// 访问明细数据类型
     public struct CdnData: TCOutputModel {
         /// 查询指定的指标名称：
@@ -1950,47 +1950,47 @@ extension Cdn {
         /// 5XX：返回 5XX 状态码汇总及各 5 开头状态码数据，单位为 个
         /// 或指定查询的某一具体状态码
         public let metric: String
-        
+
         /// 明细数据组合
         public let detailData: [TimestampData]
-        
+
         /// 汇总数据组合
         public let summarizedData: SummarizedData
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case detailData = "DetailData"
             case summarizedData = "SummarizedData"
         }
     }
-    
+
     /// IP 属性信息
     public struct CdnIp: TCOutputModel {
         /// 指定查询的 IP
         public let ip: String
-        
+
         /// IP 归属：
         /// yes：节点归属于腾讯云 CDN
         /// no：节点不属于腾讯云 CDN
         public let platform: String
-        
+
         /// 节点所处的省份/国家
         /// unknown 表示节点位置未知
         public let location: String
-        
+
         /// 节点上下线历史记录
         public let history: [CdnIpHistory]
-        
+
         /// 节点的所在区域
         /// mainland：中国境内加速节点
         /// overseas：中国境外加速节点
         /// unknown：服务地域无法获取
         public let area: String
-        
+
         /// 节点的所在城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let city: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case platform = "Platform"
@@ -2000,14 +2000,14 @@ extension Cdn {
             case city = "City"
         }
     }
-    
+
     /// CDN 节点上下线历史记录
     public struct CdnIpHistory: TCOutputModel {
         /// 操作类型
         /// online：节点上线
         /// offline：节点下线
         public let status: String
-        
+
         /// 操作类型对应的操作时间
         /// 当该值为 null 时表示无历史状态变更记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2017,24 +2017,24 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var datetime: Date?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case datetime = "Datetime"
         }
     }
-    
+
     /// https 客户端证书配置
     public struct ClientCert: TCInputModel, TCOutputModel {
         /// 客户端证书
         /// PEM 格式，需要进行 Base 64 编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certificate: String?
-        
+
         /// 客户端证书名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certName: String?
-        
+
         /// 证书过期时间
         /// 作为入参时无需填充
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2044,7 +2044,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var expireTime: Date?
-        
+
         /// 证书颁发时间
         /// 作为入参时无需填充
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2054,14 +2054,14 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var deployTime: Date?
-        
-        public init (certificate: String, certName: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil) {
+
+        public init(certificate: String, certName: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil) {
             self.certificate = certificate
             self.certName = certName
             self.expireTime = expireTime
             self.deployTime = deployTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificate = "Certificate"
             case certName = "CertName"
@@ -2069,25 +2069,25 @@ extension Cdn {
             case deployTime = "DeployTime"
         }
     }
-    
+
     /// 客户端信息
     public struct ClientInfo: TCOutputModel {
         /// 省份。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let provName: String?
-        
+
         /// 国家。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let country: String?
-        
+
         /// 运营商。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ispName: String?
-        
+
         /// 客户端IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case provName = "ProvName"
             case country = "Country"
@@ -2095,21 +2095,21 @@ extension Cdn {
             case ip = "Ip"
         }
     }
-    
+
     /// 通过Cls日志，计算出来的IP每秒访问数量
     public struct ClsLogIpData: TCOutputModel {
         /// IP
         public let clientIp: String
-        
+
         /// 在给定的时间段中，1秒内的最大请求量
         public let request: UInt64
-        
+
         /// 在获取的Top信息中，IP出现的次数
         public let count: UInt64
-        
+
         /// 在给定的时间段中，1秒内的最大请求量对应的时间
         public let time: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clientIp = "ClientIp"
             case request = "Request"
@@ -2117,27 +2117,27 @@ extension Cdn {
             case time = "Time"
         }
     }
-    
+
     /// CLS日志搜索对象
     public struct ClsLogObject: TCOutputModel {
         /// 主题ID
         public let topicId: String
-        
+
         /// 主题名字
         public let topicName: String
-        
+
         /// 日志时间
         public let timestamp: String
-        
+
         /// 日志内容
         public let content: String
-        
+
         /// 采集路径
         public let filename: String
-        
+
         /// 日志来源设备
         public let source: String
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case topicName = "TopicName"
@@ -2147,84 +2147,84 @@ extension Cdn {
             case source = "Source"
         }
     }
-    
+
     /// Cls日志搜索结果
     public struct ClsSearchLogs: TCOutputModel {
         /// 获取更多检索结果的游标
         public let context: String
-        
+
         /// 搜索结果是否已经全部返回
         public let listover: Bool
-        
+
         /// 日志内容信息
         public let results: [ClsLogObject]
-        
+
         enum CodingKeys: String, CodingKey {
             case context = "Context"
             case listover = "Listover"
             case results = "Results"
         }
     }
-    
+
     /// 是否兼容旧版配置
     public struct Compatibility: TCOutputModel {
         /// 兼容标志状态码。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
         }
     }
-    
+
     /// 智能压缩配置，默认对 js、html、css、xml、json、shtml、htm 后缀且大小为 256 ~ 2097152 字节的文件进行 GZIP 压缩
     public struct Compression: TCInputModel, TCOutputModel {
         /// 智能压缩配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 压缩规则数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compressionRules: [CompressionRule]?
-        
-        public init (switch: String, compressionRules: [CompressionRule]? = nil) {
+
+        public init(switch: String, compressionRules: [CompressionRule]? = nil) {
             self.`switch` = `switch`
             self.compressionRules = compressionRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case compressionRules = "CompressionRules"
         }
     }
-    
+
     /// 智能压缩规则配置
     public struct CompressionRule: TCInputModel, TCOutputModel {
         /// true：需要设置为 ture，启用压缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compress: Bool?
-        
+
         /// 触发压缩的文件长度最小值，单位为字节数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minLength: Int64?
-        
+
         /// 触发压缩的文件长度最大值，单位为字节数
         /// 最大可设置为 30MB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxLength: Int64?
-        
+
         /// 文件压缩算法
         /// gzip：指定 GZIP 压缩
         /// brotli：指定Brotli压缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithms: [String]?
-        
+
         /// 根据文件后缀类型压缩
         /// 例如 jpg、txt
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileExtensions: [String]?
-        
+
         /// 规则类型：
         /// all：所有文件生效
         /// file：指定文件后缀生效
@@ -2234,7 +2234,7 @@ extension Cdn {
         /// 当指定了此字段时，FileExtensions字段不生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// CacheType 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
@@ -2243,8 +2243,8 @@ extension Cdn {
         /// contentType 时填充 text/html
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
-        
-        public init (compress: Bool, minLength: Int64, maxLength: Int64, algorithms: [String], fileExtensions: [String]? = nil, ruleType: String? = nil, rulePaths: [String]? = nil) {
+
+        public init(compress: Bool, minLength: Int64, maxLength: Int64, algorithms: [String], fileExtensions: [String]? = nil, ruleType: String? = nil, rulePaths: [String]? = nil) {
             self.compress = compress
             self.minLength = minLength
             self.maxLength = maxLength
@@ -2253,7 +2253,7 @@ extension Cdn {
             self.ruleType = ruleType
             self.rulePaths = rulePaths
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case compress = "Compress"
             case minLength = "MinLength"
@@ -2264,63 +2264,63 @@ extension Cdn {
             case rulePaths = "RulePaths"
         }
     }
-    
+
     /// 组成CacheKey的一部分
     public struct CookieKey: TCInputModel, TCOutputModel {
         /// on | off 是否使用Cookie作为Cache的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 使用的cookie，';' 分割
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (switch: String, value: String? = nil) {
+
+        public init(switch: String, value: String? = nil) {
             self.`switch` = `switch`
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case value = "Value"
         }
     }
-    
+
     /// ddos攻击带宽峰值数据
     public struct DDoSAttackBandwidthData: TCOutputModel {
         /// ddos攻击类型，当值为all的时候表示所有的攻击类型的总带宽峰值
         public let attackType: String
-        
+
         /// ddos攻击带宽大小
         public let value: Float
-        
+
         /// 攻击时间点
         public let time: String
-        
+
         enum CodingKeys: String, CodingKey {
             case attackType = "AttackType"
             case value = "Value"
             case time = "Time"
         }
     }
-    
+
     /// 攻击ip数据详细数据
     public struct DDoSAttackIPTopData: TCOutputModel {
         /// 攻击ip
         public let attackIP: String
-        
+
         /// 攻击ip所在省份
         public let province: String
-        
+
         /// 攻击ip所在国家
         public let country: String
-        
+
         /// 红果电信
         public let isp: String
-        
+
         /// 攻击次数
         public let attackCount: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case attackIP = "AttackIP"
             case province = "Province"
@@ -2329,7 +2329,7 @@ extension Cdn {
             case attackCount = "AttackCount"
         }
     }
-    
+
     /// DDoS统计数据
     public struct DDoSStatsData: TCOutputModel {
         /// 时间
@@ -2339,55 +2339,55 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date
-        
+
         /// 带宽数值，单位bps
         public let value: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case value = "Value"
         }
     }
-    
+
     /// DDoS攻击Top数据
     public struct DDoSTopData: TCOutputModel {
         /// 攻击类型
         public let attackType: String
-        
+
         /// 攻击带宽，单位：bps
         public let value: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case attackType = "AttackType"
             case value = "Value"
         }
     }
-    
+
     /// 加速域名全量配置信息
     public struct DetailDomain: TCOutputModel {
         /// 域名 ID
         public let resourceId: String
-        
+
         /// 腾讯云账号ID
         public let appId: Int64
-        
+
         /// 加速域名
         public let domain: String
-        
+
         /// 域名对应的 CNAME 地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cname: String?
-        
+
         /// 加速服务状态
         /// rejected：域名审核未通过，域名备案过期/被注销导致
         /// processing：部署中
         /// online：已启动
         /// offline：已关闭
         public let status: String
-        
+
         /// 项目 ID，可前往腾讯云项目管理页面查看
         public let projectId: Int64
-        
+
         /// 加速域名业务类型
         /// web：网页小文件
         /// download：下载大文件
@@ -2395,7 +2395,7 @@ extension Cdn {
         /// hybrid:  动静加速
         /// dynamic:  动态加速
         public let serviceType: String
-        
+
         /// 域名创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2403,7 +2403,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 域名更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2411,86 +2411,86 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date
-        
+
         /// 源站配置
         public let origin: Origin
-        
+
         /// IP 黑白名单配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipFilter: IpFilter?
-        
+
         /// IP 访问限频配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipFreqLimit: IpFreqLimit?
-        
+
         /// 状态码缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusCodeCache: StatusCodeCache?
-        
+
         /// 智能压缩配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compression: Compression?
-        
+
         /// 带宽封顶配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthAlert: BandwidthAlert?
-        
+
         /// Range 回源配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rangeOriginPull: RangeOriginPull?
-        
+
         /// 301/302 回源自动跟随配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followRedirect: FollowRedirect?
-        
+
         /// 自定义错误页面配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPage: ErrorPage?
-        
+
         /// 自定义请求头部配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestHeader: RequestHeader?
-        
+
         /// 自定义响应头部配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseHeader: ResponseHeader?
-        
+
         /// 单链接下行限速配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downstreamCapping: DownstreamCapping?
-        
+
         /// 带参/不带参缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheKey: CacheKey?
-        
+
         /// 源站头部缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseHeaderCache: ResponseHeaderCache?
-        
+
         /// 视频拖拽配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoSeek: VideoSeek?
-        
+
         /// 节点缓存过期规则配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cache: Cache?
-        
+
         /// 跨国链路优化配置（功能灰度中，敬请期待）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originPullOptimization: OriginPullOptimization?
-        
+
         /// Https 加速相关配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let https: Https?
-        
+
         /// 时间戳防盗链配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authentication: Authentication?
-        
+
         /// SEO 优化配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let seo: Seo?
-        
+
         /// 域名封禁状态
         /// normal：正常状态
         /// overdue：账号欠费导致域名关闭，充值完成后可自行启动加速服务
@@ -2502,38 +2502,38 @@ extension Cdn {
         /// readonly：域名存在特殊配置，被锁定
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disable: String?
-        
+
         /// 访问协议强制跳转配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forceRedirect: ForceRedirect?
-        
+
         /// Referer 防盗链配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let referer: Referer?
-        
+
         /// 浏览器缓存过期规则配置（功能灰度中，敬请期待）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAge: MaxAge?
-        
+
         /// Ipv6 回源配置（功能灰度中，敬请期待）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6: Ipv6?
-        
+
         /// 是否兼容旧版本配置（内部兼容性字段）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compatibility: Compatibility?
-        
+
         /// 区域特殊配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let specificConfig: SpecificConfig?
-        
+
         /// 加速区域
         /// mainland：中国境内加速
         /// overseas：中国境外加速
         /// global：全球加速
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let area: String?
-        
+
         /// 域名锁定状态
         /// normal：未锁定
         /// mainland：中国境内锁定
@@ -2541,113 +2541,113 @@ extension Cdn {
         /// global：全球锁定
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readonly: String?
-        
+
         /// 回源超时配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originPullTimeout: OriginPullTimeout?
-        
+
         /// 回源S3鉴权配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let awsPrivateAccess: AwsPrivateAccess?
-        
+
         /// Scdn配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityConfig: SecurityConfig?
-        
+
         /// ImageOptimization配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageOptimization: ImageOptimization?
-        
+
         /// UA黑白名单配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAgentFilter: UserAgentFilter?
-        
+
         /// 访问控制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessControl: AccessControl?
-        
+
         /// 是否支持高级配置项
         /// on：支持
         /// off：不支持
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advance: String?
-        
+
         /// URL重定向配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlRedirect: UrlRedirect?
-        
+
         /// 访问端口配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessPort: [Int64]?
-        
+
         /// 标签配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: [Tag]?
-        
+
         /// 时间戳防盗链高级配置，白名单功能
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedAuthentication: AdvancedAuthentication?
-        
+
         /// 回源鉴权高级配置，白名单功能
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originAuthentication: OriginAuthentication?
-        
+
         /// Ipv6访问配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6Access: Ipv6Access?
-        
+
         /// 高级配置集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advanceSet: [AdvanceConfig]?
-        
+
         /// 离线缓存（功能灰度中，尚未全量，请等待后续全量发布）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offlineCache: OfflineCache?
-        
+
         /// 合并回源（白名单功能）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originCombine: OriginCombine?
-        
+
         /// POST上传配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let postMaxSize: PostSize?
-        
+
         /// Quic配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quic: Quic?
-        
+
         /// 回源OSS私有鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ossPrivateAccess: OssPrivateAccess?
-        
+
         /// WebSocket配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webSocket: WebSocket?
-        
+
         /// 远程鉴权配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remoteAuthentication: RemoteAuthentication?
-        
+
         /// 共享CNAME配置（白名单功能）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shareCname: ShareCname?
-        
+
         /// 规则引擎
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleEngine: RuleEngine?
-        
+
         /// 主域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parentHost: String?
-        
+
         /// 华为云对象存储回源鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hwPrivateAccess: HwPrivateAccess?
-        
+
         /// 七牛云对象存储回源鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qnPrivateAccess: QnPrivateAccess?
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case appId = "AppId"
@@ -2715,36 +2715,36 @@ extension Cdn {
             case qnPrivateAccess = "QnPrivateAccess"
         }
     }
-    
+
     /// 诊断报告内容数据
     public struct DiagnoseData: TCOutputModel {
         /// 诊断报告内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DiagnoseUnit]?
-        
+
         /// 当前诊断项是否正常。
         /// "ok"：正常
         /// "error"：异常
         /// "warning"："警告"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case status = "Status"
         }
     }
-    
+
     /// 诊断信息
     public struct DiagnoseInfo: TCOutputModel {
         /// 待诊断的URL。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diagnoseUrl: String?
-        
+
         /// 由系统生成的诊断链接。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diagnoseLink: String?
-        
+
         /// 诊断创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -2753,7 +2753,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 诊断链接过期时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -2762,19 +2762,19 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var expireDate: Date?
-        
+
         /// 诊断链接当前访问次数，一个诊断链接最多可访问10次。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let visitCount: Int64?
-        
+
         /// 访问诊断链接的客户端简易信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clientList: [DiagnoseList]?
-        
+
         /// 域名加速区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let area: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case diagnoseUrl = "DiagnoseUrl"
             case diagnoseLink = "DiagnoseLink"
@@ -2785,21 +2785,21 @@ extension Cdn {
             case area = "Area"
         }
     }
-    
+
     /// 客户端访问诊断URL信息列表
     public struct DiagnoseList: TCOutputModel {
         /// 诊断任务标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diagnoseTag: String?
-        
+
         /// 报告ID，用于获取详细诊断报告。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportId: String?
-        
+
         /// 客户端信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clientInfo: [ClientInfo]?
-        
+
         /// 最终诊断结果。
         /// -1：已提交
         /// 0  ：检测中
@@ -2808,7 +2808,7 @@ extension Cdn {
         /// 3  ： 诊断页面异常关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finalDiagnose: Int64?
-        
+
         /// 诊断任务创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -2817,7 +2817,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         enum CodingKeys: String, CodingKey {
             case diagnoseTag = "DiagnoseTag"
             case reportId = "ReportId"
@@ -2826,25 +2826,25 @@ extension Cdn {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 诊断报告单元信息
     public struct DiagnoseUnit: TCOutputModel {
         /// 内容单元英文名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 内容单元中文名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyText: String?
-        
+
         /// 报告内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 报告内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueText: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case keyText = "KeyText"
@@ -2852,18 +2852,18 @@ extension Cdn {
             case valueText = "ValueText"
         }
     }
-    
+
     /// 地区运营商明细数据
     public struct DistrictIspInfo: TCOutputModel {
         /// 域名
         public let domain: String
-        
+
         /// 协议类型
         public let `protocol`: String
-        
+
         /// IP协议类型
         public let ipProtocol: String
-        
+
         /// 起始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2871,7 +2871,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -2879,28 +2879,28 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 时间间隔，单位为分钟
         public let interval: UInt64
-        
+
         /// 指标名称
         public let metric: String
-        
+
         /// 地区ID
         public let district: Int64
-        
+
         /// 运营商ID
         public let isp: Int64
-        
+
         /// 指标数据点
         public let dataPoints: [UInt64]
-        
+
         /// 地区名称
         public let districtName: String
-        
+
         /// 运营商名称
         public let ispName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case `protocol` = "Protocol"
@@ -2916,50 +2916,50 @@ extension Cdn {
             case ispName = "IspName"
         }
     }
-    
+
     /// 域名地区配置
     public struct DomainAreaConfig: TCInputModel, TCOutputModel {
         /// 域名
         public let domain: String
-        
+
         /// 地区列表，其中元素可为mainland/overseas
         public let area: [String]
-        
-        public init (domain: String, area: [String]) {
+
+        public init(domain: String, area: [String]) {
             self.domain = domain
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case area = "Area"
         }
     }
-    
+
     /// 域名及其他指标Bot次数
     public struct DomainBotCount: TCOutputModel {
         /// 域名
         public let domain: String
-        
+
         /// BOT次数
         public let count: Int64
-        
+
         /// Top指标值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 国家/地区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let country: String?
-        
+
         /// 省份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let province: String?
-        
+
         /// 运营商
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isp: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case count = "Count"
@@ -2969,7 +2969,7 @@ extension Cdn {
             case isp = "Isp"
         }
     }
-    
+
     /// 域名查询时过滤条件。
     public struct DomainFilter: TCInputModel {
         /// 过滤字段名，支持的列表如下：
@@ -2985,27 +2985,27 @@ extension Cdn {
         /// - originPullProtocol：回源协议类型，支持http，follow或https。
         /// - tagKey：标签键。
         public let name: String
-        
+
         /// 过滤字段值。
         public let value: [String]
-        
+
         /// 是否启用模糊查询，仅支持过滤字段名为origin，domain。
         /// 模糊查询时，Value长度最大为1，否则Value长度最大为5。
         public let fuzzy: Bool?
-        
-        public init (name: String, value: [String], fuzzy: Bool? = nil) {
+
+        public init(name: String, value: [String], fuzzy: Bool? = nil) {
             self.name = name
             self.value = value
             self.fuzzy = fuzzy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
             case fuzzy = "Fuzzy"
         }
     }
-    
+
     /// 日志包下载链接详情
     public struct DomainLog: TCOutputModel {
         /// 日志包起始时间
@@ -3015,7 +3015,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 日志包结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -3023,18 +3023,18 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 日志包下载链接
         public let logPath: String
-        
+
         /// 日志包对应加速区域
         /// mainland：境内
         /// overseas：境外
         public let area: String
-        
+
         /// 日志包文件名
         public let logName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -3043,29 +3043,29 @@ extension Cdn {
             case logName = "LogName"
         }
     }
-    
+
     /// 单链接下行限速配置，默认为关闭状态
     public struct DownstreamCapping: TCInputModel, TCOutputModel {
         /// 下行速度配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 下行限速规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cappingRules: [CappingRule]?
-        
-        public init (switch: String, cappingRules: [CappingRule]? = nil) {
+
+        public init(switch: String, cappingRules: [CappingRule]? = nil) {
             self.`switch` = `switch`
             self.cappingRules = cappingRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case cappingRules = "CappingRules"
         }
     }
-    
+
     /// 状态码重定向配置，默认为关闭状态
     public struct ErrorPage: TCInputModel, TCOutputModel {
         /// 状态码重定向配置开关
@@ -3073,101 +3073,101 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 状态码重定向规则配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageRules: [ErrorPageRule]?
-        
-        public init (switch: String, pageRules: [ErrorPageRule]? = nil) {
+
+        public init(switch: String, pageRules: [ErrorPageRule]? = nil) {
             self.`switch` = `switch`
             self.pageRules = pageRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case pageRules = "PageRules"
         }
     }
-    
+
     /// 状态码重定向规则配置
     public struct ErrorPageRule: TCInputModel, TCOutputModel {
         /// 状态码
         /// 支持 400、403、404、500
         public let statusCode: Int64
-        
+
         /// 重定向状态码设置
         /// 支持 301 或 302
         public let redirectCode: Int64
-        
+
         /// 重定向 URL
         /// 需要为完整跳转路径，如 https://www.test.com/error.html
         public let redirectUrl: String
-        
-        public init (statusCode: Int64, redirectCode: Int64, redirectUrl: String) {
+
+        public init(statusCode: Int64, redirectCode: Int64, redirectUrl: String) {
             self.statusCode = statusCode
             self.redirectCode = redirectCode
             self.redirectUrl = redirectUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case statusCode = "StatusCode"
             case redirectCode = "RedirectCode"
             case redirectUrl = "RedirectUrl"
         }
     }
-    
+
     /// 事件日志统计数据结果
     public struct EventLogStatsData: TCOutputModel {
         /// 时间
         public let datetime: String
-        
+
         /// 请求数
         public let request: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case datetime = "Datetime"
             case request = "Request"
         }
     }
-    
+
     /// 除上海外其他区域日志集和日志主题信息
     public struct ExtraLogset: TCOutputModel {
         /// 日志集信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logset: LogSetInfo?
-        
+
         /// 日志主题信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topics: [TopicInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case logset = "Logset"
             case topics = "Topics"
         }
     }
-    
+
     /// 回源 301/302 状态码自动跟随配置，默认为关闭状态
     public struct FollowRedirect: TCInputModel, TCOutputModel {
         /// 回源跟随开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 自定义回源302 follow请求host配置，该功能为白名单功能，需要开启请联系腾讯云工程师。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectConfig: RedirectConfig?
-        
-        public init (switch: String, redirectConfig: RedirectConfig? = nil) {
+
+        public init(switch: String, redirectConfig: RedirectConfig? = nil) {
             self.`switch` = `switch`
             self.redirectConfig = redirectConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case redirectConfig = "RedirectConfig"
         }
     }
-    
+
     /// 访问协议强制跳转配置，默认为关闭状态
     public struct ForceRedirect: TCInputModel, TCOutputModel {
         /// 访问强制跳转配置开关
@@ -3175,29 +3175,29 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 访问强制跳转类型
         /// http：强制 http 跳转
         /// https：强制 https 跳转
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectType: String?
-        
-        /// 强制跳转时返回状态码 
+
+        /// 强制跳转时返回状态码
         /// 支持 301、302
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectStatusCode: Int64?
-        
+
         /// 强制跳转时是否返回增加的头部。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let carryHeaders: String?
-        
-        public init (switch: String, redirectType: String? = nil, redirectStatusCode: Int64? = nil, carryHeaders: String? = nil) {
+
+        public init(switch: String, redirectType: String? = nil, redirectStatusCode: Int64? = nil, carryHeaders: String? = nil) {
             self.`switch` = `switch`
             self.redirectType = redirectType
             self.redirectStatusCode = redirectStatusCode
             self.carryHeaders = carryHeaders
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case redirectType = "RedirectType"
@@ -3205,108 +3205,108 @@ extension Cdn {
             case carryHeaders = "CarryHeaders"
         }
     }
-    
+
     /// 图片优化-GuetzliAdapter配置
     public struct GuetzliAdapter: TCInputModel, TCOutputModel {
         /// 开关，"on/off"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// HTTP 请求头
     public struct HTTPHeader: TCInputModel {
         /// 请求头名称
         public let name: String
-        
+
         /// 请求头值
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 组成CacheKey
     public struct HeaderKey: TCInputModel, TCOutputModel {
         /// 是否组成Cachekey
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 组成CacheKey的header数组，';' 分割
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (switch: String? = nil, value: String? = nil) {
+
+        public init(switch: String? = nil, value: String? = nil) {
             self.`switch` = `switch`
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case value = "Value"
         }
     }
-    
+
     /// 启发式缓存配置
     public struct HeuristicCache: TCInputModel {
         /// on 代表开启启发式缓存
         /// off 代表关闭启发式缓存
         public let `switch`: String
-        
+
         /// 自定义启发式缓存时间配置
         public let cacheConfig: CacheConfig?
-        
-        public init (switch: String, cacheConfig: CacheConfig? = nil) {
+
+        public init(switch: String, cacheConfig: CacheConfig? = nil) {
             self.`switch` = `switch`
             self.cacheConfig = cacheConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case cacheConfig = "CacheConfig"
         }
     }
-    
+
     /// HSTS 配置。
     public struct Hsts: TCInputModel, TCOutputModel {
         /// 是否开启，on或off。
         public let `switch`: String
-        
+
         /// MaxAge数值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAge: Int64?
-        
+
         /// 是否包含子域名，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let includeSubDomains: String?
-        
-        public init (switch: String, maxAge: Int64? = nil, includeSubDomains: String? = nil) {
+
+        public init(switch: String, maxAge: Int64? = nil, includeSubDomains: String? = nil) {
             self.`switch` = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case maxAge = "MaxAge"
             case includeSubDomains = "IncludeSubDomains"
         }
     }
-    
+
     /// Http 头部设置规则，最多可设置 100 条
     public struct HttpHeaderPathRule: TCInputModel, TCOutputModel {
         /// http 头部设置方式
@@ -3315,17 +3315,17 @@ extension Cdn {
         /// add：增加。增加指定的头部参数，默认允许重复添加，即重复添加相同的头部（注：重复添加可能会影响浏览器响应，请优先使用set操作）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerMode: String?
-        
+
         /// http 头部名称，最多可设置 100 个字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerName: String?
-        
+
         /// http 头部值，最多可设置 1000 个字符
         /// Mode 为 del 时非必填
         /// Mode 为 add/set 时必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerValue: String?
-        
+
         /// 规则类型：
         /// all：所有文件生效
         /// file：指定文件后缀生效
@@ -3333,7 +3333,7 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// RuleType 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
@@ -3341,15 +3341,15 @@ extension Cdn {
         /// path 时填充绝对路径，如 /xxx/test.html
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
-        
-        public init (headerMode: String, headerName: String, headerValue: String, ruleType: String, rulePaths: [String]) {
+
+        public init(headerMode: String, headerName: String, headerValue: String, ruleType: String, rulePaths: [String]) {
             self.headerMode = headerMode
             self.headerName = headerName
             self.headerValue = headerValue
             self.ruleType = ruleType
             self.rulePaths = rulePaths
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case headerMode = "HeaderMode"
             case headerName = "HeaderName"
@@ -3358,31 +3358,31 @@ extension Cdn {
             case rulePaths = "RulePaths"
         }
     }
-    
+
     /// http头部设置规则。
     public struct HttpHeaderRule: TCInputModel, TCOutputModel {
         /// http头部设置方式，支持add，set或del，分别表示新增，设置或删除头部。
         public let headerMode: String
-        
+
         /// http头部名称。
         public let headerName: String
-        
+
         /// http头部值。
         public let headerValue: String
-        
-        public init (headerMode: String, headerName: String, headerValue: String) {
+
+        public init(headerMode: String, headerName: String, headerValue: String) {
             self.headerMode = headerMode
             self.headerName = headerName
             self.headerValue = headerValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case headerMode = "HeaderMode"
             case headerName = "HeaderName"
             case headerValue = "HeaderValue"
         }
     }
-    
+
     /// 域名 https 加速配置，默认为关闭状态
     public struct Https: TCInputModel, TCOutputModel {
         /// https 配置开关
@@ -3390,42 +3390,42 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// http2 配置开关
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let http2: String?
-        
+
         /// OCSP 配置开关
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ocspStapling: String?
-        
+
         /// 客户端证书校验功能
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态，开启时需要上传客户端证书信息，该配置项目前在灰度中，尚未全量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifyClient: String?
-        
+
         /// 服务端证书配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certInfo: ServerCert?
-        
+
         /// 客户端证书配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clientCertInfo: ClientCert?
-        
+
         /// Spdy 配置开关
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spdy: String?
-        
+
         /// https 证书部署状态
         /// closed：已关闭
         /// deploying：部署中
@@ -3433,16 +3433,16 @@ extension Cdn {
         /// failed：部署失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sslStatus: String?
-        
+
         /// Hsts配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hsts: Hsts?
-        
+
         /// Tls版本设置，仅支持部分Advance域名，支持设置 TLSv1, TLSV1.1, TLSV1.2, TLSv1.3，修改时必须开启连续的版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tlsVersion: [String]?
-        
-        public init (switch: String, http2: String? = nil, ocspStapling: String? = nil, verifyClient: String? = nil, certInfo: ServerCert? = nil, clientCertInfo: ClientCert? = nil, spdy: String? = nil, sslStatus: String? = nil, hsts: Hsts? = nil, tlsVersion: [String]? = nil) {
+
+        public init(switch: String, http2: String? = nil, ocspStapling: String? = nil, verifyClient: String? = nil, certInfo: ServerCert? = nil, clientCertInfo: ClientCert? = nil, spdy: String? = nil, sslStatus: String? = nil, hsts: Hsts? = nil, tlsVersion: [String]? = nil) {
             self.`switch` = `switch`
             self.http2 = http2
             self.ocspStapling = ocspStapling
@@ -3454,7 +3454,7 @@ extension Cdn {
             self.hsts = hsts
             self.tlsVersion = tlsVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case http2 = "Http2"
@@ -3468,31 +3468,31 @@ extension Cdn {
             case tlsVersion = "TlsVersion"
         }
     }
-    
+
     ///  华为云对象存储回源鉴权
     public struct HwPrivateAccess: TCInputModel, TCOutputModel {
         /// 开关 on/off
         public let `switch`: String
-        
+
         /// 访问 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessKey: String?
-        
+
         /// 密钥
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// bucketname
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
-        
-        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil, bucket: String? = nil) {
+
+        public init(switch: String, accessKey: String? = nil, secretKey: String? = nil, bucket: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
             self.bucket = bucket
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case accessKey = "AccessKey"
@@ -3500,25 +3500,25 @@ extension Cdn {
             case bucket = "Bucket"
         }
     }
-    
+
     /// ImageOptimization配置
     public struct ImageOptimization: TCOutputModel {
         /// WebpAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webpAdapter: WebpAdapter?
-        
+
         /// TpgAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tpgAdapter: TpgAdapter?
-        
+
         /// GuetzliAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let guetzliAdapter: GuetzliAdapter?
-        
+
         /// AvifAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let avifAdapter: AvifAdapter?
-        
+
         enum CodingKeys: String, CodingKey {
             case webpAdapter = "WebpAdapter"
             case tpgAdapter = "TpgAdapter"
@@ -3526,43 +3526,43 @@ extension Cdn {
             case avifAdapter = "AvifAdapter"
         }
     }
-    
+
     /// IP 黑白名单配置，默认为关闭状态
     public struct IpFilter: TCInputModel, TCOutputModel {
         /// IP 黑白名单配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// IP 黑白名单类型
         /// whitelist：白名单
         /// blacklist：黑名单
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterType: String?
-        
+
         /// IP 黑白名单列表
         /// 支持 X.X.X.X 形式 IP，或 /8、 /16、/24 形式网段
         /// 最多可填充 50 个白名单或 50 个黑名单
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filters: [String]?
-        
+
         /// IP 黑白名单分路径配置，白名单功能
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRules: [IpFilterPathRule]?
-        
+
         /// IP 黑白名单验证失败时返回的 HTTP Code
         /// 合法值: 400~499
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
-        
-        public init (switch: String, filterType: String? = nil, filters: [String]? = nil, filterRules: [IpFilterPathRule]? = nil, returnCode: Int64? = nil) {
+
+        public init(switch: String, filterType: String? = nil, filters: [String]? = nil, filterRules: [IpFilterPathRule]? = nil, returnCode: Int64? = nil) {
             self.`switch` = `switch`
             self.filterType = filterType
             self.filters = filters
             self.filterRules = filterRules
             self.returnCode = returnCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case filterType = "FilterType"
@@ -3571,7 +3571,7 @@ extension Cdn {
             case returnCode = "ReturnCode"
         }
     }
-    
+
     /// IP黑白名单分路径配置
     public struct IpFilterPathRule: TCInputModel, TCOutputModel {
         /// IP 黑白名单类型
@@ -3579,13 +3579,13 @@ extension Cdn {
         /// blacklist：黑名单
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterType: String?
-        
+
         /// IP 黑白名单列表
         /// 支持 X.X.X.X 形式 IP，或 /8、 /16、/24 形式网段
         /// 最多可填充 50 个白名单或 50 个黑名单
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filters: [String]?
-        
+
         /// 规则类型：
         /// all：所有文件生效
         /// file：指定文件后缀生效
@@ -3593,7 +3593,7 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// RuleType 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
@@ -3601,14 +3601,14 @@ extension Cdn {
         /// path 时填充绝对路径，如 /xxx/test.html
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
-        
-        public init (filterType: String, filters: [String], ruleType: String, rulePaths: [String]) {
+
+        public init(filterType: String, filters: [String], ruleType: String, rulePaths: [String]) {
             self.filterType = filterType
             self.filters = filters
             self.ruleType = ruleType
             self.rulePaths = rulePaths
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filterType = "FilterType"
             case filters = "Filters"
@@ -3616,53 +3616,53 @@ extension Cdn {
             case rulePaths = "RulePaths"
         }
     }
-    
-    /// 单节点单 IP 访问限频配置，默认为关闭状态 
+
+    /// 单节点单 IP 访问限频配置，默认为关闭状态
     public struct IpFreqLimit: TCInputModel, TCOutputModel {
         /// IP 限频配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 设置每秒请求数限制
         /// 超出限制的请求会直接返回 514
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qps: Int64?
-        
-        public init (switch: String, qps: Int64? = nil) {
+
+        public init(switch: String, qps: Int64? = nil) {
             self.`switch` = `switch`
             self.qps = qps
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case qps = "Qps"
         }
     }
-    
+
     /// 节点 IP 信息
     public struct IpStatus: TCOutputModel {
         /// 节点 IP
         public let ip: String
-        
+
         /// 节点所属区域
         public let district: String
-        
+
         /// 节点所属运营商
         public let isp: String
-        
+
         /// 节点所在城市
         public let city: String
-        
+
         /// 节点状态
         /// online：上线状态，正常调度服务中
         /// offline：下线状态
         public let status: String
-        
+
         /// 节点 IPV6
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case district = "District"
@@ -3672,33 +3672,33 @@ extension Cdn {
             case ipv6 = "Ipv6"
         }
     }
-    
+
     /// Ipv6启用配置，不可更改
     public struct Ipv6: TCOutputModel {
         /// 域名是否开启ipv6功能，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// Ipv6访问配置
     public struct Ipv6Access: TCInputModel, TCOutputModel {
         /// 域名是否开启ipv6访问功能，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 缓存键分路径配置
     public struct KeyRule: TCInputModel, TCOutputModel {
         /// CacheType 对应类型下的匹配内容：
@@ -3708,7 +3708,7 @@ extension Cdn {
         /// index 时填充 /
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
-        
+
         /// 规则类型：
         /// file：指定文件后缀生效
         /// directory：指定路径生效
@@ -3716,26 +3716,26 @@ extension Cdn {
         /// index：首页
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// 是否开启全路径缓存
         /// on：开启全路径缓存（即关闭参数忽略）
         /// off：关闭全路径缓存（即开启参数忽略）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullUrlCache: String?
-        
+
         /// 是否忽略大小写缓存
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCase: String?
-        
+
         /// CacheKey中包含请求参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let queryString: RuleQueryString?
-        
+
         /// 路径缓存键标签，传 user
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTag: String?
-        
-        public init (rulePaths: [String], ruleType: String, fullUrlCache: String, ignoreCase: String, queryString: RuleQueryString, ruleTag: String) {
+
+        public init(rulePaths: [String], ruleType: String, fullUrlCache: String, ignoreCase: String, queryString: RuleQueryString, ruleTag: String) {
             self.rulePaths = rulePaths
             self.ruleType = ruleType
             self.fullUrlCache = fullUrlCache
@@ -3743,7 +3743,7 @@ extension Cdn {
             self.queryString = queryString
             self.ruleTag = ruleTag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case rulePaths = "RulePaths"
             case ruleType = "RuleType"
@@ -3753,28 +3753,28 @@ extension Cdn {
             case ruleTag = "RuleTag"
         }
     }
-    
+
     /// 日志集信息
     public struct LogSetInfo: TCOutputModel {
         /// 开发者ID
         public let appId: UInt64
-        
+
         /// 渠道
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channel: String?
-        
+
         /// 日志集ID
         public let logsetId: String
-        
+
         /// 日志集名字
         public let logsetName: String
-        
+
         /// 是否默认日志集
         public let isDefault: UInt64
-        
+
         /// 日志保存时间，单位为天
         public let logsetSavePeriod: UInt64
-        
+
         /// 创建日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -3782,18 +3782,18 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 区域
         public let region: String
-        
+
         /// cls侧是否已经被删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleted: String?
-        
+
         /// 英文区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionEn: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case channel = "Channel"
@@ -3807,7 +3807,7 @@ extension Cdn {
             case regionEn = "RegionEn"
         }
     }
-    
+
     /// 域名国内地区特殊配置。分地区特殊配置。UpdateDomainConfig接口只支持修改部分分地区配置，为了兼容旧版本配置，本类型会列出旧版本所有可能存在差异的配置列表，支持修改的配置列表如下：
     /// + Authentication
     /// + BandwidthAlert
@@ -3819,116 +3819,116 @@ extension Cdn {
         /// 时间戳防盗链配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authentication: Authentication?
-        
+
         /// 带宽封顶配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthAlert: BandwidthAlert?
-        
+
         /// 缓存规则配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cache: Cache?
-        
+
         /// 缓存相关配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheKey: CacheKey?
-        
+
         /// 智能压缩配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compression: Compression?
-        
+
         /// 下载限速配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downstreamCapping: DownstreamCapping?
-        
+
         /// 错误码重定向配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPage: ErrorPage?
-        
+
         /// 301和302自动回源跟随配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followRedirect: FollowRedirect?
-        
+
         /// 访问协议强制跳转配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forceRedirect: ForceRedirect?
-        
+
         /// Https配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let https: Https?
-        
+
         /// IP黑白名单配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipFilter: IpFilter?
-        
+
         /// IP限频配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipFreqLimit: IpFreqLimit?
-        
+
         /// 浏览器缓存规则配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAge: MaxAge?
-        
+
         /// 源站配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let origin: Origin?
-        
+
         /// 跨国优化配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originPullOptimization: OriginPullOptimization?
-        
+
         /// Range回源配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rangeOriginPull: RangeOriginPull?
-        
+
         /// 防盗链配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let referer: Referer?
-        
+
         /// 回源请求头部配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestHeader: RequestHeader?
-        
+
         /// 源站响应头部配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseHeader: ResponseHeader?
-        
+
         /// 遵循源站缓存头部配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseHeaderCache: ResponseHeaderCache?
-        
+
         /// seo优化配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let seo: Seo?
-        
+
         /// 域名业务类型，web，download，media分别表示静态加速，下载加速和流媒体加速。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceType: String?
-        
+
         /// 状态码缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusCodeCache: StatusCodeCache?
-        
+
         /// 视频拖拽配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoSeek: VideoSeek?
-        
+
         /// 回源S3私有鉴权。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let awsPrivateAccess: AwsPrivateAccess?
-        
+
         /// 回源OSS私有鉴权。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ossPrivateAccess: OssPrivateAccess?
-        
+
         /// 华为云对象存储回源鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hwPrivateAccess: HwPrivateAccess?
-        
+
         /// 七牛云对象存储回源鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qnPrivateAccess: QnPrivateAccess?
-        
-        public init (authentication: Authentication? = nil, bandwidthAlert: BandwidthAlert? = nil, cache: Cache? = nil, cacheKey: CacheKey? = nil, compression: Compression? = nil, downstreamCapping: DownstreamCapping? = nil, errorPage: ErrorPage? = nil, followRedirect: FollowRedirect? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, maxAge: MaxAge? = nil, origin: Origin? = nil, originPullOptimization: OriginPullOptimization? = nil, rangeOriginPull: RangeOriginPull? = nil, referer: Referer? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, responseHeaderCache: ResponseHeaderCache? = nil, seo: Seo? = nil, serviceType: String? = nil, statusCodeCache: StatusCodeCache? = nil, videoSeek: VideoSeek? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, ossPrivateAccess: OssPrivateAccess? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil) {
+
+        public init(authentication: Authentication? = nil, bandwidthAlert: BandwidthAlert? = nil, cache: Cache? = nil, cacheKey: CacheKey? = nil, compression: Compression? = nil, downstreamCapping: DownstreamCapping? = nil, errorPage: ErrorPage? = nil, followRedirect: FollowRedirect? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, maxAge: MaxAge? = nil, origin: Origin? = nil, originPullOptimization: OriginPullOptimization? = nil, rangeOriginPull: RangeOriginPull? = nil, referer: Referer? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, responseHeaderCache: ResponseHeaderCache? = nil, seo: Seo? = nil, serviceType: String? = nil, statusCodeCache: StatusCodeCache? = nil, videoSeek: VideoSeek? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, ossPrivateAccess: OssPrivateAccess? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil) {
             self.authentication = authentication
             self.bandwidthAlert = bandwidthAlert
             self.cache = cache
@@ -3958,7 +3958,7 @@ extension Cdn {
             self.hwPrivateAccess = hwPrivateAccess
             self.qnPrivateAccess = qnPrivateAccess
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case authentication = "Authentication"
             case bandwidthAlert = "BandwidthAlert"
@@ -3990,21 +3990,21 @@ extension Cdn {
             case qnPrivateAccess = "QnPrivateAccess"
         }
     }
-    
+
     /// 名称与ID映射关系
     public struct MapInfo: TCOutputModel {
         /// 对象 Id
         public let id: Int64
-        
+
         /// 对象名称
         public let name: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
         }
     }
-    
+
     /// 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
     public struct MaxAge: TCInputModel, TCOutputModel {
         /// 浏览器缓存配置开关
@@ -4012,48 +4012,48 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// MaxAge 规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAgeRules: [MaxAgeRule]?
-        
+
         /// MaxAge 状态码相关规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAgeCodeRule: MaxAgeCodeRule?
-        
-        public init (switch: String, maxAgeRules: [MaxAgeRule]? = nil, maxAgeCodeRule: MaxAgeCodeRule? = nil) {
+
+        public init(switch: String, maxAgeRules: [MaxAgeRule]? = nil, maxAgeCodeRule: MaxAgeCodeRule? = nil) {
             self.`switch` = `switch`
             self.maxAgeRules = maxAgeRules
             self.maxAgeCodeRule = maxAgeCodeRule
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case maxAgeRules = "MaxAgeRules"
             case maxAgeCodeRule = "MaxAgeCodeRule"
         }
     }
-    
+
     /// MaxAge 状态码相关规则配置
     public struct MaxAgeCodeRule: TCInputModel, TCOutputModel {
         /// 处理动作
         /// clear：清除 cache-control 头部
         public let action: String
-        
+
         /// 指定HTTP状态码生效，当前仅支持填写"400-599"
         public let statusCodes: [String]
-        
-        public init (action: String, statusCodes: [String]) {
+
+        public init(action: String, statusCodes: [String]) {
             self.action = action
             self.statusCodes = statusCodes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case action = "Action"
             case statusCodes = "StatusCodes"
         }
     }
-    
+
     /// MagAge 规则配置
     public struct MaxAgeRule: TCInputModel, TCOutputModel {
         /// 规则类型：
@@ -4063,7 +4063,7 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// index: 指定主页生效
         public let maxAgeType: String
-        
+
         /// MaxAgeType 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
@@ -4072,22 +4072,22 @@ extension Cdn {
         /// index 时填充 /
         /// 注意：all规则不可删除，默认遵循源站，可修改。
         public let maxAgeContents: [String]
-        
+
         /// MaxAge 时间设置，单位秒
         /// 注意：时间为0，即不缓存。
         public let maxAgeTime: Int64
-        
+
         /// 是否遵循源站，on或off，开启时忽略时间设置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followOrigin: String?
-        
-        public init (maxAgeType: String, maxAgeContents: [String], maxAgeTime: Int64, followOrigin: String? = nil) {
+
+        public init(maxAgeType: String, maxAgeContents: [String], maxAgeTime: Int64, followOrigin: String? = nil) {
             self.maxAgeType = maxAgeType
             self.maxAgeContents = maxAgeContents
             self.maxAgeTime = maxAgeTime
             self.followOrigin = followOrigin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maxAgeType = "MaxAgeType"
             case maxAgeContents = "MaxAgeContents"
@@ -4095,21 +4095,21 @@ extension Cdn {
             case followOrigin = "FollowOrigin"
         }
     }
-    
+
     /// 离线缓存是否开启
     public struct OfflineCache: TCInputModel, TCOutputModel {
         /// on | off, 离线缓存是否开启
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 源站配置复杂类型，支持以下配置：
     /// + 源站指定为单个域名
     /// + 源站指定为多个 IP，可配置端口（1~65535），可配置权重（1~100），格式为 IP:端口:权重
@@ -4123,7 +4123,7 @@ extension Cdn {
         /// 修改源站时，需要同时填充对应的 OriginType
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let origins: [String]?
-        
+
         /// 主源站类型
         /// 入参支持以下几种类型：
         /// domain：域名类型
@@ -4149,30 +4149,30 @@ extension Cdn {
         /// IPv6 功能目前尚未全量，需要先申请试用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originType: String?
-        
+
         /// 当源站类型为cos或者第三方存储加速时,ServerName字段必填
         /// 回主源站时 Host 头部，不填充则默认为加速域名
         /// 若接入的是泛域名，则回源 Host 默认为访问时的子域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverName: String?
-        
+
         /// OriginType 为对象存储（COS）时，可以指定是否允许访问私有 bucket
         /// 注意：需要先授权 CDN 访问该私有 Bucket 的权限后，才可开启此配置。取值范围: on/off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosPrivateAccess: String?
-        
+
         /// 回源协议配置
         /// http：强制 http 回源
         /// follow：协议跟随回源
         /// https：强制 https 回源，https 回源时仅支持源站 443 端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originPullProtocol: String?
-        
+
         /// 备源站列表
         /// 修改备源站时，需要同时填充对应的 BackupOriginType
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupOrigins: [String]?
-        
+
         /// 备源站类型，支持以下类型：
         /// domain：域名类型
         /// ip：IP 列表作为源站
@@ -4184,32 +4184,32 @@ extension Cdn {
         /// ip_ipv6_domain：源站列表为多个 IPv4 地址IPv6 地址以及域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupOriginType: String?
-        
+
         /// 回备源站时 Host 头部，不填充则默认为主源站的 ServerName
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupServerName: String?
-        
+
         /// 回源路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let basePath: String?
-        
+
         /// 回源路径重写规则配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathRules: [PathRule]?
-        
+
         /// 分路径回源配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathBasedOrigin: [PathBasedOriginRule]?
-        
+
         /// HTTPS回源高级配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advanceHttps: AdvanceHttps?
-        
+
         /// 对象存储回源厂商
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originCompany: String?
-        
-        public init (origins: [String]? = nil, originType: String? = nil, serverName: String? = nil, cosPrivateAccess: String? = nil, originPullProtocol: String? = nil, backupOrigins: [String]? = nil, backupOriginType: String? = nil, backupServerName: String? = nil, basePath: String? = nil, pathRules: [PathRule]? = nil, pathBasedOrigin: [PathBasedOriginRule]? = nil, advanceHttps: AdvanceHttps? = nil, originCompany: String? = nil) {
+
+        public init(origins: [String]? = nil, originType: String? = nil, serverName: String? = nil, cosPrivateAccess: String? = nil, originPullProtocol: String? = nil, backupOrigins: [String]? = nil, backupOriginType: String? = nil, backupServerName: String? = nil, basePath: String? = nil, pathRules: [PathRule]? = nil, pathBasedOrigin: [PathBasedOriginRule]? = nil, advanceHttps: AdvanceHttps? = nil, originCompany: String? = nil) {
             self.origins = origins
             self.originType = originType
             self.serverName = serverName
@@ -4224,7 +4224,7 @@ extension Cdn {
             self.advanceHttps = advanceHttps
             self.originCompany = originCompany
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case origins = "Origins"
             case originType = "OriginType"
@@ -4241,141 +4241,141 @@ extension Cdn {
             case originCompany = "OriginCompany"
         }
     }
-    
+
     /// 回源鉴权高级配置
     public struct OriginAuthentication: TCInputModel, TCOutputModel {
         /// 鉴权开关，on或off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 鉴权类型A配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeA: OriginAuthenticationTypeA?
-        
-        public init (switch: String, typeA: OriginAuthenticationTypeA? = nil) {
+
+        public init(switch: String, typeA: OriginAuthenticationTypeA? = nil) {
             self.`switch` = `switch`
             self.typeA = typeA
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case typeA = "TypeA"
         }
     }
-    
+
     /// 回源鉴权高级配置TypeA
     public struct OriginAuthenticationTypeA: TCInputModel, TCOutputModel {
         /// 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
-        public init (secretKey: String) {
+
+        public init(secretKey: String) {
             self.secretKey = secretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
         }
     }
-    
+
     /// 合并回源配置项
     public struct OriginCombine: TCInputModel, TCOutputModel {
         /// on|off 是否开启合并回源
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// CDN回源节点IP信息
     public struct OriginIp: TCOutputModel {
         /// 回源IP段/回源IP，默认返回IP段信息。
         public let ip: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
         }
     }
-    
+
     /// 跨国回源优化配置，默认为关闭状态 (已下线)
     public struct OriginPullOptimization: TCInputModel, TCOutputModel {
         /// 跨国回源优化配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 跨国类型
         /// OVToCN：境外回源境内
         /// CNToOV：境内回源境外
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let optimizationType: String?
-        
-        public init (switch: String, optimizationType: String? = nil) {
+
+        public init(switch: String, optimizationType: String? = nil) {
             self.`switch` = `switch`
             self.optimizationType = optimizationType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case optimizationType = "OptimizationType"
         }
     }
-    
+
     /// 回源超时配置
     public struct OriginPullTimeout: TCInputModel, TCOutputModel {
         /// 回源建连超时时间，单位为秒，要求5~60之间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let connectTimeout: UInt64?
-        
+
         /// 回源接收超时时间，单位为秒，要求10 ~ 300之间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiveTimeout: UInt64?
-        
-        public init (connectTimeout: UInt64, receiveTimeout: UInt64) {
+
+        public init(connectTimeout: UInt64, receiveTimeout: UInt64) {
             self.connectTimeout = connectTimeout
             self.receiveTimeout = receiveTimeout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case connectTimeout = "ConnectTimeout"
             case receiveTimeout = "ReceiveTimeout"
         }
     }
-    
+
     /// oss回源鉴权
     public struct OssPrivateAccess: TCInputModel, TCOutputModel {
         /// 开关， on/off。
         public let `switch`: String
-        
+
         /// 访问ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessKey: String?
-        
+
         /// 密钥。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// Bucketname
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
-        
-        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
+
+        public init(switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
             self.region = region
             self.bucket = bucket
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case accessKey = "AccessKey"
@@ -4384,7 +4384,7 @@ extension Cdn {
             case bucket = "Bucket"
         }
     }
-    
+
     /// 域名海外地区特殊配置。UpdateDomainConfig接口只支持修改部分分地区配置，为了兼容旧版本配置，本类型会列出旧版本所有可能存在差异的配置列表，支持修改的配置列表如下：
     /// + Authentication
     /// + BandwidthAlert
@@ -4396,116 +4396,116 @@ extension Cdn {
         /// 时间戳防盗链配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authentication: Authentication?
-        
+
         /// 带宽封顶配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthAlert: BandwidthAlert?
-        
+
         /// 缓存规则配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cache: Cache?
-        
+
         /// 缓存相关配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheKey: CacheKey?
-        
+
         /// 智能压缩配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compression: Compression?
-        
+
         /// 下载限速配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downstreamCapping: DownstreamCapping?
-        
+
         /// 错误码重定向配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPage: ErrorPage?
-        
+
         /// 301和302自动回源跟随配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followRedirect: FollowRedirect?
-        
+
         /// 访问协议强制跳转配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forceRedirect: ForceRedirect?
-        
+
         /// Https配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let https: Https?
-        
+
         /// IP黑白名单配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipFilter: IpFilter?
-        
+
         /// IP限频配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipFreqLimit: IpFreqLimit?
-        
+
         /// 浏览器缓存规则配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAge: MaxAge?
-        
+
         /// 源站配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let origin: Origin?
-        
+
         /// 跨国优化配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originPullOptimization: OriginPullOptimization?
-        
+
         /// Range回源配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rangeOriginPull: RangeOriginPull?
-        
+
         /// 防盗链配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let referer: Referer?
-        
+
         /// 回源请求头部配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestHeader: RequestHeader?
-        
+
         /// 源站响应头部配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseHeader: ResponseHeader?
-        
+
         /// 遵循源站缓存头部配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseHeaderCache: ResponseHeaderCache?
-        
+
         /// seo优化配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let seo: Seo?
-        
+
         /// 域名业务类型，web，download，media分别表示静态加速，下载加速和流媒体加速。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceType: String?
-        
+
         /// 状态码缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusCodeCache: StatusCodeCache?
-        
+
         /// 视频拖拽配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoSeek: VideoSeek?
-        
+
         /// 回源S3私有鉴权。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let awsPrivateAccess: AwsPrivateAccess?
-        
+
         /// 回源OSS私有鉴权。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ossPrivateAccess: OssPrivateAccess?
-        
+
         /// 华为云对象存储鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hwPrivateAccess: HwPrivateAccess?
-        
+
         /// 七牛云对象存储鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qnPrivateAccess: QnPrivateAccess?
-        
-        public init (authentication: Authentication? = nil, bandwidthAlert: BandwidthAlert? = nil, cache: Cache? = nil, cacheKey: CacheKey? = nil, compression: Compression? = nil, downstreamCapping: DownstreamCapping? = nil, errorPage: ErrorPage? = nil, followRedirect: FollowRedirect? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, maxAge: MaxAge? = nil, origin: Origin? = nil, originPullOptimization: OriginPullOptimization? = nil, rangeOriginPull: RangeOriginPull? = nil, referer: Referer? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, responseHeaderCache: ResponseHeaderCache? = nil, seo: Seo? = nil, serviceType: String? = nil, statusCodeCache: StatusCodeCache? = nil, videoSeek: VideoSeek? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, ossPrivateAccess: OssPrivateAccess? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil) {
+
+        public init(authentication: Authentication? = nil, bandwidthAlert: BandwidthAlert? = nil, cache: Cache? = nil, cacheKey: CacheKey? = nil, compression: Compression? = nil, downstreamCapping: DownstreamCapping? = nil, errorPage: ErrorPage? = nil, followRedirect: FollowRedirect? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, maxAge: MaxAge? = nil, origin: Origin? = nil, originPullOptimization: OriginPullOptimization? = nil, rangeOriginPull: RangeOriginPull? = nil, referer: Referer? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, responseHeaderCache: ResponseHeaderCache? = nil, seo: Seo? = nil, serviceType: String? = nil, statusCodeCache: StatusCodeCache? = nil, videoSeek: VideoSeek? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, ossPrivateAccess: OssPrivateAccess? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil) {
             self.authentication = authentication
             self.bandwidthAlert = bandwidthAlert
             self.cache = cache
@@ -4535,7 +4535,7 @@ extension Cdn {
             self.hwPrivateAccess = hwPrivateAccess
             self.qnPrivateAccess = qnPrivateAccess
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case authentication = "Authentication"
             case bandwidthAlert = "BandwidthAlert"
@@ -4567,7 +4567,7 @@ extension Cdn {
             case qnPrivateAccess = "QnPrivateAccess"
         }
     }
-    
+
     /// 分路径回源规则
     public struct PathBasedOriginRule: TCInputModel, TCOutputModel {
         /// 规则类型：
@@ -4576,30 +4576,30 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// index: 指定主页生效
         public let ruleType: String
-        
+
         /// RuleType 对应类型下的匹配内容：
         /// file 时填充后缀名，如 jpg、txt
         /// directory 时填充路径，如 /xxx/test/
         /// path 时填充绝对路径，如 /xxx/test.html
         /// index 时填充 /
         public let rulePaths: [String]
-        
+
         /// 源站列表，支持域名或ipv4地址
         public let origin: [String]
-        
-        public init (ruleType: String, rulePaths: [String], origin: [String]) {
+
+        public init(ruleType: String, rulePaths: [String], origin: [String]) {
             self.ruleType = ruleType
             self.rulePaths = rulePaths
             self.origin = origin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case rulePaths = "RulePaths"
             case origin = "Origin"
         }
     }
-    
+
     /// 分路径回源配置规则。
     public struct PathRule: TCInputModel, TCOutputModel {
         /// 是否开启通配符“*”匹配：
@@ -4607,41 +4607,41 @@ extension Cdn {
         /// true：开启
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regex: Bool?
-        
+
         /// 匹配的URL路径，仅支持Url路径，不支持参数。默认完全匹配，开启通配符“*”匹配后，最多支持5个通配符，最大长度为1024个字符。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 路径匹配时的回源源站。暂不支持开了私有读写的COS源。不填写时沿用默认源站。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let origin: String?
-        
+
         /// 路径匹配时回源的Host头部。不填写时沿用默认ServerName。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverName: String?
-        
+
         /// 源站所属区域，支持CN，OV：
         /// CN：中国境内
         /// OV：中国境外
         /// 默认为CN。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originArea: String?
-        
+
         /// 路径匹配时回源的URI路径，必须以“/”开头，不包含参数部分。最大长度为1024个字符。可使用$1, $2, $3, $4, $5分别捕获匹配路径中的通配符号“*”，最多支持10个捕获值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forwardUri: String?
-        
+
         /// 路径匹配时回源的头部设置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestHeaders: [HttpHeaderRule]?
-        
+
         /// 当Regex为false时，Path是否开启完全匹配。
         /// false：关闭
         /// true：开启
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullMatch: Bool?
-        
-        public init (regex: Bool, path: String, origin: String? = nil, serverName: String? = nil, originArea: String? = nil, forwardUri: String? = nil, requestHeaders: [HttpHeaderRule]? = nil, fullMatch: Bool? = nil) {
+
+        public init(regex: Bool, path: String, origin: String? = nil, serverName: String? = nil, originArea: String? = nil, forwardUri: String? = nil, requestHeaders: [HttpHeaderRule]? = nil, fullMatch: Bool? = nil) {
             self.regex = regex
             self.path = path
             self.origin = origin
@@ -4651,7 +4651,7 @@ extension Cdn {
             self.requestHeaders = requestHeaders
             self.fullMatch = fullMatch
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regex = "Regex"
             case path = "Path"
@@ -4663,52 +4663,52 @@ extension Cdn {
             case fullMatch = "FullMatch"
         }
     }
-    
+
     /// POST请求上传文件流式传输最大限制
     public struct PostSize: TCInputModel, TCOutputModel {
         /// 是调整POST请求限制，平台默认为32MB。
         /// 关闭：off，
         /// 开启：on。
         public let `switch`: String
-        
+
         /// 最大限制，取值在1MB和200MB之间。
         public let maxSize: Int64?
-        
-        public init (switch: String, maxSize: Int64? = nil) {
+
+        public init(switch: String, maxSize: Int64? = nil) {
             self.`switch` = `switch`
             self.maxSize = maxSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case maxSize = "MaxSize"
         }
     }
-    
+
     /// 刷新任务详情
     public struct PurgeTask: TCOutputModel {
         /// 刷新任务 ID
         public let taskId: String
-        
+
         /// 刷新 URL
         public let url: String
-        
+
         /// 刷新任务状态
         /// fail：刷新失败
         /// done：刷新成功
         /// process：刷新中
         public let status: String
-        
+
         /// 刷新类型
         /// url：URL 刷新
         /// path：目录刷新
         public let purgeType: String
-        
+
         /// 刷新方式
         /// flush：刷新更新资源（仅目录刷新时有此类型）
         /// delete：刷新全部资源
         public let flushType: String
-        
+
         /// 刷新任务提交时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -4716,7 +4716,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case url = "Url"
@@ -4726,25 +4726,25 @@ extension Cdn {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 预热任务详情
     public struct PushTask: TCOutputModel {
         /// 预热任务 ID
         public let taskId: String
-        
+
         /// 预热 URL
         public let url: String
-        
+
         /// 预热任务状态
         /// fail：预热失败
         /// done：预热成功
         /// process：预热中
         /// invalid：预热无效(源站返回4xx或5xx状态码)
         public let status: String
-        
+
         /// 预热进度百分比
         public let percent: Int64
-        
+
         /// 预热任务提交时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -4752,13 +4752,13 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 预热区域
         /// mainland：境内
         /// overseas：境外
         /// global：全球
         public let area: String
-        
+
         /// 预热任务更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -4767,7 +4767,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case url = "Url"
@@ -4778,57 +4778,57 @@ extension Cdn {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 七牛元对象存储回源鉴权配置
     public struct QnPrivateAccess: TCInputModel, TCOutputModel {
         /// 开关 on/off
         public let `switch`: String
-        
+
         /// 访问 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessKey: String?
-        
+
         /// 密钥
         public let secretKey: String?
-        
-        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil) {
+
+        public init(switch: String, accessKey: String? = nil, secretKey: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case accessKey = "AccessKey"
             case secretKey = "SecretKey"
         }
     }
-    
+
     /// 组成CacheKey的一部分
     public struct QueryStringKey: TCInputModel, TCOutputModel {
         /// on | off CacheKey是否由QueryString组成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 是否重新排序
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reorder: String?
-        
+
         /// includeAll | excludeAll | includeCustom | excludeAll 使用/排除部分url参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
-        
+
         /// 使用/排除的url参数数组，';' 分割
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (switch: String, reorder: String? = nil, action: String? = nil, value: String? = nil) {
+
+        public init(switch: String, reorder: String? = nil, action: String? = nil, value: String? = nil) {
             self.`switch` = `switch`
             self.reorder = reorder
             self.action = action
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case reorder = "Reorder"
@@ -4836,35 +4836,35 @@ extension Cdn {
             case value = "Value"
         }
     }
-    
+
     /// Quic配置项
     public struct Quic: TCInputModel, TCOutputModel {
         /// 是否启动Quic配置
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 刷新/预热 可用量及配额
     public struct Quota: TCOutputModel {
         /// 单次批量提交配额上限。
         public let batch: Int64
-        
+
         /// 每日提交配额上限。
         public let total: Int64
-        
+
         /// 每日剩余的可提交配额。
         public let available: Int64
-        
+
         /// 配额的区域。
         public let area: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batch = "Batch"
             case total = "Total"
@@ -4872,107 +4872,107 @@ extension Cdn {
             case area = "Area"
         }
     }
-    
+
     /// 分片回源配置，默认为开启状态
     public struct RangeOriginPull: TCInputModel, TCOutputModel {
         /// 分片回源配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 分路径分片回源配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rangeRules: [RangeOriginPullRule]?
-        
-        public init (switch: String, rangeRules: [RangeOriginPullRule]? = nil) {
+
+        public init(switch: String, rangeRules: [RangeOriginPullRule]? = nil) {
             self.`switch` = `switch`
             self.rangeRules = rangeRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case rangeRules = "RangeRules"
         }
     }
-    
+
     /// 分路径分片回源配置
     public struct RangeOriginPullRule: TCInputModel, TCOutputModel {
         /// 分片回源配置开关
         public let `switch`: String
-        
+
         /// 规则类型：
         /// file：指定文件后缀生效
         /// directory：指定路径生效
         /// path：指定绝对路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// RuleType 对应类型下的匹配内容：
         /// file 时填充后缀名，如 jpg、txt
         /// directory 时填充路径，如 /xxx/test
         /// path 时填充绝对路径，如 /xxx/test.html
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
-        
-        public init (switch: String, ruleType: String, rulePaths: [String]) {
+
+        public init(switch: String, ruleType: String, rulePaths: [String]) {
             self.`switch` = `switch`
             self.ruleType = ruleType
             self.rulePaths = rulePaths
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case ruleType = "RuleType"
             case rulePaths = "RulePaths"
         }
     }
-    
+
     /// 自定义回源302 follow请求host配置
     public struct RedirectConfig: TCInputModel, TCOutputModel {
         /// 配置开关
         public let `switch`: String
-        
+
         /// 主源站follow302请求时带的自定义的host头部
         public let followRedirectHost: String
-        
+
         /// 备份源站follow302请求时带的自定义的host头部
         public let followRedirectBackupHost: String?
-        
-        public init (switch: String, followRedirectHost: String, followRedirectBackupHost: String? = nil) {
+
+        public init(switch: String, followRedirectHost: String, followRedirectBackupHost: String? = nil) {
             self.`switch` = `switch`
             self.followRedirectHost = followRedirectHost
             self.followRedirectBackupHost = followRedirectBackupHost
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case followRedirectHost = "FollowRedirectHost"
             case followRedirectBackupHost = "FollowRedirectBackupHost"
         }
     }
-    
+
     /// Referer 黑白名单配置，默认为关闭状态
     public struct Referer: TCInputModel, TCOutputModel {
         /// referer 黑白名单配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// referer 黑白名单配置规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refererRules: [RefererRule]?
-        
-        public init (switch: String, refererRules: [RefererRule]? = nil) {
+
+        public init(switch: String, refererRules: [RefererRule]? = nil) {
             self.`switch` = `switch`
             self.refererRules = refererRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case refererRules = "RefererRules"
         }
     }
-    
+
     /// Referer 黑白名单配置规则，针对特定资源生效
     public struct RefererRule: TCInputModel, TCOutputModel {
         /// 规则类型：
@@ -4981,35 +4981,35 @@ extension Cdn {
         /// directory：指定路径生效
         /// path：指定绝对路径生效
         public let ruleType: String
-        
+
         /// RuleType 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
         /// directory 时填充路径，如 /xxx/test/
         /// path 时填充绝对路径，如 /xxx/test.html
         public let rulePaths: [String]
-        
+
         /// referer 配置类型
         /// whitelist：白名单
         /// blacklist：黑名单
         public let refererType: String
-        
+
         /// referer 内容列表列表
         public let referers: [String]
-        
+
         /// 是否允许空 referer
         /// 防盗链类型为白名单时，true表示允许空 referer，false表示不允许空 referer；
         /// 防盗链类型为黑名单时，true表示拒绝空referer，false表示不拒绝空referer；
         public let allowEmpty: Bool
-        
-        public init (ruleType: String, rulePaths: [String], refererType: String, referers: [String], allowEmpty: Bool) {
+
+        public init(ruleType: String, rulePaths: [String], refererType: String, referers: [String], allowEmpty: Bool) {
             self.ruleType = ruleType
             self.rulePaths = rulePaths
             self.refererType = refererType
             self.referers = referers
             self.allowEmpty = allowEmpty
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case rulePaths = "RulePaths"
@@ -5018,21 +5018,21 @@ extension Cdn {
             case allowEmpty = "AllowEmpty"
         }
     }
-    
+
     /// 区域映射id和子区域id的关联信息。
     public struct RegionMapRelation: TCOutputModel {
         /// 区域ID。
         public let regionId: Int64
-        
+
         /// 子区域ID列表
         public let subRegionIdList: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
             case subRegionIdList = "SubRegionIdList"
         }
     }
-    
+
     /// 远程鉴权规则配置，可以包含多种规则配置。
     /// RemoteAuthenticationRules和Server 互斥，只需要配置其中一个。
     /// 若只配置Server ，RemoteAuthenticationRules中详细规则参数将采用默认参数；默认参数值见各个配置项中说明；
@@ -5042,39 +5042,39 @@ extension Cdn {
         /// off: 关闭；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 远程鉴权规则配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remoteAuthenticationRules: [RemoteAuthenticationRule]?
-        
+
         /// 远程鉴权Server
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
-        
-        public init (switch: String, remoteAuthenticationRules: [RemoteAuthenticationRule]? = nil, server: String? = nil) {
+
+        public init(switch: String, remoteAuthenticationRules: [RemoteAuthenticationRule]? = nil, server: String? = nil) {
             self.`switch` = `switch`
             self.remoteAuthenticationRules = remoteAuthenticationRules
             self.server = server
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case remoteAuthenticationRules = "RemoteAuthenticationRules"
             case server = "Server"
         }
     }
-    
+
     /// 远程鉴权规则。
     public struct RemoteAuthenticationRule: TCInputModel, TCOutputModel {
         /// 远程鉴权Server。
         /// 默认值:和上层配置的"Server"一致；
         public let server: String
-        
-        /// 请求远程鉴权服务器的http方法；取值范围[get,post,head,all]; 
+
+        /// 请求远程鉴权服务器的http方法；取值范围[get,post,head,all];
         /// all: 表示"遵循终端用户请求方法"
         /// 默认值: all
         public let authMethod: String
-        
+
         /// 规则类型：
         /// all：所有文件生效
         /// file：指定文件后缀生效
@@ -5082,7 +5082,7 @@ extension Cdn {
         /// path：指定文件绝对路径生效
         /// 默认值:all
         public let ruleType: String
-        
+
         /// 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
@@ -5091,19 +5091,19 @@ extension Cdn {
         /// index 时填充 /
         /// 默认值:*
         public let rulePaths: [String]
-        
+
         /// 请求远程鉴权服务器超时时间，单位毫秒；
         /// 取值范围：[1,30 000]
         /// 默认值:20000
         public let authTimeout: Int64
-        
+
         /// 请求远程鉴权服务器超时后执行拦截或者放行；
         /// RETURN_200: 超时后放行；
         /// RETURN_403:超时拦截；
         /// 默认值:RETURN_200
         public let authTimeoutAction: String
-        
-        public init (server: String, authMethod: String, ruleType: String, rulePaths: [String], authTimeout: Int64, authTimeoutAction: String) {
+
+        public init(server: String, authMethod: String, ruleType: String, rulePaths: [String], authTimeout: Int64, authTimeoutAction: String) {
             self.server = server
             self.authMethod = authMethod
             self.ruleType = ruleType
@@ -5111,7 +5111,7 @@ extension Cdn {
             self.authTimeout = authTimeout
             self.authTimeoutAction = authTimeoutAction
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case server = "Server"
             case authMethod = "AuthMethod"
@@ -5121,27 +5121,27 @@ extension Cdn {
             case authTimeoutAction = "AuthTimeoutAction"
         }
     }
-    
+
     /// CDN报表数据
     public struct ReportData: TCOutputModel {
         /// 项目ID/域名ID。
         public let resourceId: String
-        
+
         /// 项目名称/域名。
         public let resource: String
-        
+
         /// 流量总和/带宽最大值，单位分别为bytes，bps。
         public let value: Int64
-        
+
         /// 单个资源占总体百分比。
         public let percentage: Float
-        
+
         /// 计费流量总和/计费带宽最大值，单位分别为bytes，bps。
         public let billingValue: Int64
-        
+
         /// 计费数值占总体百分比。
         public let billingPercentage: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resource = "Resource"
@@ -5151,29 +5151,29 @@ extension Cdn {
             case billingPercentage = "BillingPercentage"
         }
     }
-    
+
     /// 自定义请求头配置，默认为关闭状态
     public struct RequestHeader: TCInputModel, TCOutputModel {
         /// 自定义请求头配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 自定义请求头配置规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerRules: [HttpHeaderPathRule]?
-        
-        public init (switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
+
+        public init(switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
             self.`switch` = `switch`
             self.headerRules = headerRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case headerRules = "HeaderRules"
         }
     }
-    
+
     /// 计费数据明细
     public struct ResourceBillingData: TCOutputModel {
         /// 资源名称，根据查询条件不同分为以下几类：
@@ -5182,16 +5182,16 @@ extension Cdn {
         /// 某一个项目 ID：指定项目查询时，显示为项目 ID
         /// all：账号维度数据明细
         public let resource: String
-        
+
         /// 计费数据详情
         public let billingData: [CdnData]
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case billingData = "BillingData"
         }
     }
-    
+
     /// 查询对象及其对应的访问明细数据
     public struct ResourceData: TCOutputModel {
         /// 资源名称，根据查询条件不同分为以下几类：
@@ -5200,16 +5200,16 @@ extension Cdn {
         /// 项目 ID：指定项目查询时，表示该项目下的域名汇总明细数据，显示该项目 ID
         /// all：账号维度明细数据，即账号下所有域名的汇总明细数据
         public let resource: String
-        
+
         /// 资源对应的数据明细
         public let cdnData: [CdnData]
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case cdnData = "CdnData"
         }
     }
-    
+
     /// 查询对象及其对应的回源明细数据
     public struct ResourceOriginData: TCOutputModel {
         /// 资源名称，根据查询条件不同分为以下几类：
@@ -5218,77 +5218,77 @@ extension Cdn {
         /// 项目 ID：指定项目查询时，显示为项目 ID
         /// all：账号维度明细数据
         public let resource: String
-        
+
         /// 回源数据详情
         public let originData: [CdnData]
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case originData = "OriginData"
         }
     }
-    
+
     /// 自定义响应头配置，默认为关闭状态
     public struct ResponseHeader: TCInputModel, TCOutputModel {
         /// 自定义响应头开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 自定义响应头规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerRules: [HttpHeaderPathRule]?
-        
-        public init (switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
+
+        public init(switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
             self.`switch` = `switch`
             self.headerRules = headerRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case headerRules = "HeaderRules"
         }
     }
-    
+
     /// 源站头部缓存配置，默认为开启状态，缓存所有头部信息
     public struct ResponseHeaderCache: TCInputModel, TCOutputModel {
         /// 源站头部缓存开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 是否回源站校验
     public struct Revalidate: TCInputModel, TCOutputModel {
         /// on | off 是否总是回源校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 只在特定请求路径回源站校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
-        public init (switch: String, path: String? = nil) {
+
+        public init(switch: String, path: String? = nil) {
             self.`switch` = `switch`
             self.path = path
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case path = "Path"
         }
     }
-    
+
     /// 缓存配置分路径版本。
-    /// 默认情况下所有文件缓存过期时间为 30 天 
+    /// 默认情况下所有文件缓存过期时间为 30 天
     /// 默认情况下静态加速类型的域名 .php;.jsp;.asp;.aspx 不缓存
     public struct RuleCache: TCInputModel, TCOutputModel {
         /// CacheType 对应类型下的匹配内容：
@@ -5299,7 +5299,7 @@ extension Cdn {
         /// index 时填充 /
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
-        
+
         /// 规则类型：
         /// all：所有文件生效
         /// file：指定文件后缀生效
@@ -5308,124 +5308,124 @@ extension Cdn {
         /// index：首页
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// 缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheConfig: RuleCacheConfig?
-        
-        public init (rulePaths: [String], ruleType: String, cacheConfig: RuleCacheConfig) {
+
+        public init(rulePaths: [String], ruleType: String, cacheConfig: RuleCacheConfig) {
             self.rulePaths = rulePaths
             self.ruleType = ruleType
             self.cacheConfig = cacheConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case rulePaths = "RulePaths"
             case ruleType = "RuleType"
             case cacheConfig = "CacheConfig"
         }
     }
-    
+
     /// 路径缓存缓存配置（三种缓存模式中选取一种）
     public struct RuleCacheConfig: TCInputModel, TCOutputModel {
         /// 缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cache: CacheConfigCache?
-        
+
         /// 不缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noCache: CacheConfigNoCache?
-        
+
         /// 遵循源站配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followOrigin: CacheConfigFollowOrigin?
-        
-        public init (cache: CacheConfigCache, noCache: CacheConfigNoCache, followOrigin: CacheConfigFollowOrigin) {
+
+        public init(cache: CacheConfigCache, noCache: CacheConfigNoCache, followOrigin: CacheConfigFollowOrigin) {
             self.cache = cache
             self.noCache = noCache
             self.followOrigin = followOrigin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cache = "Cache"
             case noCache = "NoCache"
             case followOrigin = "FollowOrigin"
         }
     }
-    
+
     /// 规则引擎配置
     public struct RuleEngine: TCInputModel, TCOutputModel {
         /// 规则引擎配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
-        public init (switch: String, content: String? = nil) {
+
+        public init(switch: String, content: String? = nil) {
             self.`switch` = `switch`
             self.content = content
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case content = "Content"
         }
     }
-    
+
     /// 路径保留参数配置
     public struct RuleQueryString: TCInputModel, TCOutputModel {
         /// on | off CacheKey是否由QueryString组成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// includeCustom 包含部分url参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
-        
+
         /// 使用/排除的url参数数组，';' 分割
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (switch: String, action: String, value: String) {
+
+        public init(switch: String, action: String, value: String) {
             self.`switch` = `switch`
             self.action = action
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case action = "Action"
             case value = "Value"
         }
     }
-    
+
     /// SCDN访问控制
     public struct ScdnAclConfig: TCInputModel, TCOutputModel {
         /// 是否开启，on | off
         public let `switch`: String
-        
+
         /// 新版本请使用AdvancedScriptData
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptData: [ScdnAclGroup]?
-        
+
         /// 错误页面配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPage: ScdnErrorPage?
-        
+
         /// Acl规则组，switch为on时必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedScriptData: [AdvancedScdnAclGroup]?
-        
-        public init (switch: String, scriptData: [ScdnAclGroup]? = nil, errorPage: ScdnErrorPage? = nil, advancedScriptData: [AdvancedScdnAclGroup]? = nil) {
+
+        public init(switch: String, scriptData: [ScdnAclGroup]? = nil, errorPage: ScdnErrorPage? = nil, advancedScriptData: [AdvancedScdnAclGroup]? = nil) {
             self.`switch` = `switch`
             self.scriptData = scriptData
             self.errorPage = errorPage
             self.advancedScriptData = advancedScriptData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case scriptData = "ScriptData"
@@ -5433,33 +5433,33 @@ extension Cdn {
             case advancedScriptData = "AdvancedScriptData"
         }
     }
-    
+
     /// SCDN精准访问控制配置
     public struct ScdnAclGroup: TCInputModel, TCOutputModel {
         /// 规则名称
         public let ruleName: String
-        
+
         /// 具体配置
         public let configure: [ScdnAclRule]
-        
+
         /// 执行动作，intercept|redirect
         public let result: String
-        
+
         /// 规则是否生效，active|inactive
         public let status: String?
-        
+
         /// 错误页面配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPage: ScdnErrorPage?
-        
-        public init (ruleName: String, configure: [ScdnAclRule], result: String, status: String? = nil, errorPage: ScdnErrorPage? = nil) {
+
+        public init(ruleName: String, configure: [ScdnAclRule], result: String, status: String? = nil, errorPage: ScdnErrorPage? = nil) {
             self.ruleName = ruleName
             self.configure = configure
             self.result = result
             self.status = status
             self.errorPage = errorPage
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case configure = "Configure"
@@ -5468,57 +5468,57 @@ extension Cdn {
             case errorPage = "ErrorPage"
         }
     }
-    
+
     /// 精准访问控制匹配规则
     public struct ScdnAclRule: TCInputModel, TCOutputModel {
         /// 匹配关键字
         public let matchKey: String
-        
+
         /// 逻辑操作符，取值如下
         public let logiOperator: String
-        
+
         /// 匹配值。
         public let matchValue: String
-        
-        public init (matchKey: String, logiOperator: String, matchValue: String) {
+
+        public init(matchKey: String, logiOperator: String, matchValue: String) {
             self.matchKey = matchKey
             self.logiOperator = logiOperator
             self.matchValue = matchValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case matchKey = "MatchKey"
             case logiOperator = "LogiOperator"
             case matchValue = "MatchValue"
         }
     }
-    
+
     /// bot配置类型
     public struct ScdnBotConfig: TCInputModel, TCOutputModel {
         /// on|off
         public let `switch`: String
-        
+
         /// Bot cookie策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let botCookie: [BotCookie]?
-        
+
         /// Bot Js策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let botJavaScript: [BotJavaScript]?
-        
-        public init (switch: String, botCookie: [BotCookie]? = nil, botJavaScript: [BotJavaScript]? = nil) {
+
+        public init(switch: String, botCookie: [BotCookie]? = nil, botJavaScript: [BotJavaScript]? = nil) {
             self.`switch` = `switch`
             self.botCookie = botCookie
             self.botJavaScript = botJavaScript
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case botCookie = "BotCookie"
             case botJavaScript = "BotJavaScript"
         }
     }
-    
+
     /// scdn 的自定义 cc 规则
     public struct ScdnCCRules: TCInputModel, TCOutputModel {
         /// 规则类型：
@@ -5528,38 +5528,38 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// index：首页
         public let ruleType: String
-        
+
         /// 规则值
         public let ruleValue: [String]
-        
+
         /// 规则限频
         public let qps: UInt64?
-        
+
         /// 探测时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let detectionTime: UInt64?
-        
+
         /// 限频阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frequencyLimit: UInt64?
-        
+
         /// IP 惩罚开关，可选on|off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishmentSwitch: String?
-        
+
         /// IP 惩罚时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishmentTime: UInt64?
-        
+
         /// 执行动作，intercept|redirect
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
-        
+
         /// 动作为 redirect 时，重定向的url
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectUrl: String?
-        
-        public init (ruleType: String, ruleValue: [String], qps: UInt64? = nil, detectionTime: UInt64? = nil, frequencyLimit: UInt64? = nil, punishmentSwitch: String? = nil, punishmentTime: UInt64? = nil, action: String? = nil, redirectUrl: String? = nil) {
+
+        public init(ruleType: String, ruleValue: [String], qps: UInt64? = nil, detectionTime: UInt64? = nil, frequencyLimit: UInt64? = nil, punishmentSwitch: String? = nil, punishmentTime: UInt64? = nil, action: String? = nil, redirectUrl: String? = nil) {
             self.ruleType = ruleType
             self.ruleValue = ruleValue
             self.qps = qps
@@ -5570,7 +5570,7 @@ extension Cdn {
             self.action = action
             self.redirectUrl = redirectUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case ruleValue = "RuleValue"
@@ -5583,31 +5583,31 @@ extension Cdn {
             case redirectUrl = "RedirectUrl"
         }
     }
-    
+
     /// cc的配置类型
     public struct ScdnConfig: TCInputModel, TCOutputModel {
         /// on | off
         public let `switch`: String
-        
+
         /// 自定义 cc 防护规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [ScdnCCRules]?
-        
+
         /// 增强自定义 cc 防护规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedRules: [AdvancedCCRules]?
-        
+
         /// 增强自定义 cc 防护规则， 全局
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let globalAdvancedRules: [AdvancedCCRules]?
-        
-        public init (switch: String, rules: [ScdnCCRules]? = nil, advancedRules: [AdvancedCCRules]? = nil, globalAdvancedRules: [AdvancedCCRules]? = nil) {
+
+        public init(switch: String, rules: [ScdnCCRules]? = nil, advancedRules: [AdvancedCCRules]? = nil, globalAdvancedRules: [AdvancedCCRules]? = nil) {
             self.`switch` = `switch`
             self.rules = rules
             self.advancedRules = advancedRules
             self.globalAdvancedRules = globalAdvancedRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case rules = "Rules"
@@ -5615,58 +5615,58 @@ extension Cdn {
             case globalAdvancedRules = "GlobalAdvancedRules"
         }
     }
-    
+
     /// ddos配置类型
     public struct ScdnDdosConfig: TCInputModel, TCOutputModel {
         /// on|off
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 聚合了SCDN域名的基本信息
     public struct ScdnDomain: TCOutputModel {
         /// 域名
         public let domain: String
-        
+
         /// 当前状态，取值online | offline | process
         public let status: String
-        
+
         /// Waf 状态默认为‘/’，取值 close | intercept | observe
         public let waf: String
-        
+
         /// Acl 状态默认为‘/’，取值 close | open
         public let acl: String
-        
+
         /// CC 状态默认为‘/’，取值 close | open
         public let cc: String
-        
+
         /// Ddos 状态默认为‘/’，取值 close | open
         public let ddos: String
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// Acl 规则数
         public let aclRuleNumbers: UInt64
-        
+
         /// Bot 状态默认为‘/’，取值 close | open
         public let bot: String
-        
+
         /// 域名加速区域，取值global | mainland |  overseas
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let area: String?
-        
+
         /// waf规则等级，可取100|200|300
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wafLevel: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case status = "Status"
@@ -5681,63 +5681,63 @@ extension Cdn {
             case wafLevel = "WafLevel"
         }
     }
-    
+
     /// acl的错误页面
     public struct ScdnErrorPage: TCInputModel, TCOutputModel {
         /// 状态码
         /// 执行动作为：intercept 默认传值 403
         /// 执行动作为：redirect 默认传值 301
         public let redirectCode: Int64
-        
+
         /// 重定向url
         public let redirectUrl: String
-        
-        public init (redirectCode: Int64, redirectUrl: String) {
+
+        public init(redirectCode: Int64, redirectUrl: String) {
             self.redirectCode = redirectCode
             self.redirectUrl = redirectUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case redirectCode = "RedirectCode"
             case redirectUrl = "RedirectUrl"
         }
     }
-    
+
     /// SCDN 事件日志查询条件
     public struct ScdnEventLogConditions: TCInputModel, TCOutputModel {
         /// 匹配关键字，ip, attack_location
         public let key: String
-        
+
         /// 逻辑操作符，取值 exclude, include
         public let `operator`: String
-        
+
         /// 匹配值，允许使用通配符(*)查询，匹配零个、单个、多个字符，例如 1.2.*
         public let value: String
-        
-        public init (key: String, operator: String, value: String) {
+
+        public init(key: String, operator: String, value: String) {
             self.key = key
             self.`operator` = `operator`
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case `operator` = "Operator"
             case value = "Value"
         }
     }
-    
+
     /// scdn的IP白名单策略
     public struct ScdnIpStrategy: TCOutputModel {
         /// 域名|global表示全部域名
         public let domain: String
-        
+
         /// 策略ID
         public let strategyId: String
-        
+
         /// IP白名单列表
         public let ipList: [String]
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -5745,18 +5745,18 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date
-        
+
         /// 备注
         public let remark: String
-        
+
         /// 规则类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// 规则值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleValue: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case strategyId = "StrategyId"
@@ -5767,40 +5767,40 @@ extension Cdn {
             case ruleValue = "RuleValue"
         }
     }
-    
+
     /// IP策略查询过滤参数
     public struct ScdnIpStrategyFilter: TCInputModel {
         /// 过滤字段名，支持domain, ip
         public let name: String
-        
+
         /// 过滤字段值
         public let value: [String]
-        
+
         /// 是否启用模糊查询，仅支持过滤字段名为domain。
         /// 模糊查询时，Value长度最大为1
         public let fuzzy: Bool?
-        
-        public init (name: String, value: [String], fuzzy: Bool? = nil) {
+
+        public init(name: String, value: [String], fuzzy: Bool? = nil) {
             self.name = name
             self.value = value
             self.fuzzy = fuzzy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
             case fuzzy = "Fuzzy"
         }
     }
-    
+
     /// SCDN日志事件详细信息
     public struct ScdnLogTaskDetail: TCOutputModel {
         /// scdn域名
         public let domain: String
-        
+
         /// 防护类型
         public let mode: String
-        
+
         /// 查询任务开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -5808,7 +5808,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询任务结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -5816,7 +5816,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 任务创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -5824,12 +5824,12 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 日志包下载链接
         /// 成功返回下载链接，其他情况返回'-'
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 任务状态
         /// created->任务已经创建
         /// processing->任务正在执行
@@ -5837,10 +5837,10 @@ extension Cdn {
         /// failed->任务执行失败
         /// no-log->没有日志产生
         public let status: String
-        
+
         /// 日志任务唯一id
         public let taskID: String
-        
+
         /// 攻击类型, 可以为"all"
         /// AttackType映射如下:
         ///   other = '未知类型'
@@ -5862,21 +5862,21 @@ extension Cdn {
         ///   ai_engine= 'AI引擎检出'
         ///   malicious_file_upload= '恶意文件上传'
         public let attackType: String
-        
+
         /// 防御模式,可以为"all"
         /// DefenceMode映射如下：
         ///   observe = '观察模式'
         ///   intercept = '防御模式'
         public let defenceMode: String
-        
+
         /// 查询条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditions: [ScdnEventLogConditions]?
-        
+
         /// mainland或overseas
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let area: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case mode = "Mode"
@@ -5892,12 +5892,12 @@ extension Cdn {
             case area = "Area"
         }
     }
-    
+
     /// Scdn的七层限频配置
     public struct ScdnSevenLayerRules: TCInputModel, TCOutputModel {
         /// 区分大小写
         public let caseSensitive: Bool
-        
+
         /// 规则类型：
         /// protocol：协议，填写 HTTP/HTTPS
         /// method：请求方法，支持 HEAD、GET、POST、PUT、OPTIONS、TRACE、DELETE、PATCH、CONNECT
@@ -5913,32 +5913,32 @@ extension Cdn {
         /// user-agent：User-Agent，填写具体 value 值，512字符以内
         /// head：自定义请求头，填写具体value值，512字符以内；内容为空或者不存在时，无匹配内容输入框，填写匹配参数即可
         public let ruleType: String
-        
+
         /// 逻辑操作符，取值 ：
-        /// 不包含：exclude, 
-        /// 包含：include, 
-        /// 不等于：notequal, 
-        /// 等于：equal, 
+        /// 不包含：exclude,
+        /// 包含：include,
+        /// 不等于：notequal,
+        /// 等于：equal,
         /// 前缀匹配：matching
         /// 内容为空或不存在：null
         public let logicOperator: String
-        
+
         /// 规则值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleValue: [String]?
-        
+
         /// 匹配参数，只有请求参数、Cookie、自定义请求头 有值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleParam: String?
-        
-        public init (caseSensitive: Bool, ruleType: String, logicOperator: String, ruleValue: [String]? = nil, ruleParam: String? = nil) {
+
+        public init(caseSensitive: Bool, ruleType: String, logicOperator: String, ruleValue: [String]? = nil, ruleParam: String? = nil) {
             self.caseSensitive = caseSensitive
             self.ruleType = ruleType
             self.logicOperator = logicOperator
             self.ruleValue = ruleValue
             self.ruleParam = ruleParam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caseSensitive = "CaseSensitive"
             case ruleType = "RuleType"
@@ -5947,7 +5947,7 @@ extension Cdn {
             case ruleParam = "RuleParam"
         }
     }
-    
+
     /// SCDN攻击数据Top展示
     public struct ScdnTopData: TCOutputModel {
         /// 时间
@@ -5957,19 +5957,19 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date
-        
+
         /// 数值
         public let value: UInt64
-        
+
         /// 运营商
         public let isp: String
-        
+
         /// IP地址
         public let ip: String
-        
+
         /// 区域
         public let district: String
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case value = "Value"
@@ -5978,33 +5978,33 @@ extension Cdn {
             case district = "District"
         }
     }
-    
+
     /// SCDN攻击数据Top展示
     public struct ScdnTopDomainData: TCOutputModel {
         /// 域名
         public let domain: String
-        
+
         /// 请求量
         public let value: UInt64
-        
+
         /// 百分比
         public let percent: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case value = "Value"
             case percent = "Percent"
         }
     }
-    
+
     /// SCDN攻击数据Top URL展示
     public struct ScdnTopUrlData: TCOutputModel {
         /// Top数据的URL
         public let url: String
-        
+
         /// 数值
         public let value: UInt64
-        
+
         /// 时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -6012,11 +6012,11 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case value = "Value"
@@ -6024,51 +6024,51 @@ extension Cdn {
             case domain = "Domain"
         }
     }
-    
+
     /// Scdn饼图数据，waf仅有
     public struct ScdnTypeData: TCOutputModel {
         /// 攻击类型
         public let attackType: String
-        
+
         /// 攻击值
         public let value: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case attackType = "AttackType"
             case value = "Value"
         }
     }
-    
+
     /// waf配置类型
     public struct ScdnWafConfig: TCInputModel, TCOutputModel {
         /// on|off
         public let `switch`: String
-        
+
         /// intercept|observe，默认intercept
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
-        
+
         /// 重定向的错误页面
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPage: ScdnErrorPage?
-        
+
         /// webshell拦截开关，on|off，默认off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webShellSwitch: String?
-        
+
         /// 类型拦截规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [ScdnWafRule]?
-        
+
         /// waf规则等级，可取100|200|300
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: Int64?
-        
+
         /// waf子规则开关
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subRuleSwitch: [WafSubRuleStatus]?
-        
-        public init (switch: String, mode: String? = nil, errorPage: ScdnErrorPage? = nil, webShellSwitch: String? = nil, rules: [ScdnWafRule]? = nil, level: Int64? = nil, subRuleSwitch: [WafSubRuleStatus]? = nil) {
+
+        public init(switch: String, mode: String? = nil, errorPage: ScdnErrorPage? = nil, webShellSwitch: String? = nil, rules: [ScdnWafRule]? = nil, level: Int64? = nil, subRuleSwitch: [WafSubRuleStatus]? = nil) {
             self.`switch` = `switch`
             self.mode = mode
             self.errorPage = errorPage
@@ -6077,7 +6077,7 @@ extension Cdn {
             self.level = level
             self.subRuleSwitch = subRuleSwitch
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case mode = "Mode"
@@ -6088,51 +6088,51 @@ extension Cdn {
             case subRuleSwitch = "SubRuleSwitch"
         }
     }
-    
+
     /// Waf 规则信息
     public struct ScdnWafRule: TCInputModel, TCOutputModel {
         /// 攻击类型
         public let attackType: String
-        
+
         /// 防护措施，observe
         public let operate: String
-        
-        public init (attackType: String, operate: String) {
+
+        public init(attackType: String, operate: String) {
             self.attackType = attackType
             self.operate = operate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case attackType = "AttackType"
             case operate = "Operate"
         }
     }
-    
+
     /// 作为CacheKey的一部分
     public struct SchemeKey: TCInputModel, TCOutputModel {
         /// on | off 是否使用scheme作为cache key的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// scdn相关的配置
     public struct SecurityConfig: TCOutputModel {
         /// on|off
         public let `switch`: String
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// SEO 搜索引擎优化配置，默认为关闭状态
     public struct Seo: TCInputModel, TCOutputModel {
         /// SEO 配置开关
@@ -6140,16 +6140,16 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// https 加速服务端证书配置：
     /// + 支持使用托管至 SSL 证书管理的证书进行部署
     /// + 支持上传 PEM 格式的证书进行部署
@@ -6157,22 +6157,22 @@ extension Cdn {
         /// 服务器证书 ID 在 SSL 证书管理进行证书托管时自动生成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certId: String?
-        
+
         /// 服务器证书名称
         /// 在 SSL 证书管理进行证书托管时自动生成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certName: String?
-        
+
         /// 服务器证书信息
         /// 上传自有证书时必填，需要包含完整的证书链
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certificate: String?
-        
+
         /// 服务器密钥信息
         /// 上传自有证书时必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privateKey: String?
-        
+
         /// 证书过期时间
         /// 作为入参配置时无需填充
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -6182,7 +6182,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var expireTime: Date?
-        
+
         /// 证书颁发时间
         /// 作为入参配置时无需填充
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -6192,16 +6192,16 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var deployTime: Date?
-        
+
         /// 证书备注信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         /// 证书来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let from: String?
-        
-        public init (certId: String? = nil, certName: String? = nil, certificate: String? = nil, privateKey: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil, message: String? = nil, from: String? = nil) {
+
+        public init(certId: String? = nil, certName: String? = nil, certificate: String? = nil, privateKey: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil, message: String? = nil, from: String? = nil) {
             self.certId = certId
             self.certName = certName
             self.certificate = certificate
@@ -6211,7 +6211,7 @@ extension Cdn {
             self.message = message
             self.from = from
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certId = "CertId"
             case certName = "CertName"
@@ -6223,28 +6223,28 @@ extension Cdn {
             case from = "From"
         }
     }
-    
+
     /// ShareCname配置
     public struct ShareCname: TCInputModel, TCOutputModel {
         /// ShareCname 配置开关, 开关为off时，域名使用默认CNAME，若需要使用共享CNAME，将开关置为on.
         /// * ShareCname 为内测功能,如需使用,请联系腾讯云工程师开白.
         public let `switch`: String
-        
+
         /// 设置共享CNAME.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cname: String?
-        
-        public init (switch: String, cname: String? = nil) {
+
+        public init(switch: String, cname: String? = nil) {
             self.`switch` = `switch`
             self.cname = cname
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case cname = "Cname"
         }
     }
-    
+
     /// 缓存配置基础版本
     /// 默认情况下所有文件缓存过期时间为 30 天
     /// 默认情况下静态加速类型的域名 .php;.jsp;.asp;.aspx 不缓存
@@ -6253,7 +6253,7 @@ extension Cdn {
         /// 缓存过期时间规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheRules: [SimpleCacheRule]?
-        
+
         /// 遵循源站 Cache-Control: max-age 配置
         /// on：开启
         /// off：关闭
@@ -6261,33 +6261,33 @@ extension Cdn {
         /// 与 CompareMaxAge 冲突，不能同时开启
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followOrigin: String?
-        
+
         /// 强制缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态，开启后，源站返回的 no-store、no-cache 资源，也将按照 CacheRules 规则进行缓存
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCacheControl: String?
-        
+
         /// 忽略源站的Set-Cookie头部
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreSetCookie: String?
-        
+
         /// 高级缓存过期配置，开启时会对比源站返回的 max-age 值与 CacheRules 中设置的缓存过期时间，取最小值在节点进行缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareMaxAge: String?
-        
+
         /// 总是回源站校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let revalidate: Revalidate?
-        
-        public init (cacheRules: [SimpleCacheRule], followOrigin: String, ignoreCacheControl: String, ignoreSetCookie: String, compareMaxAge: String, revalidate: Revalidate? = nil) {
+
+        public init(cacheRules: [SimpleCacheRule], followOrigin: String, ignoreCacheControl: String, ignoreSetCookie: String, compareMaxAge: String, revalidate: Revalidate? = nil) {
             self.cacheRules = cacheRules
             self.followOrigin = followOrigin
             self.ignoreCacheControl = ignoreCacheControl
@@ -6295,7 +6295,7 @@ extension Cdn {
             self.compareMaxAge = compareMaxAge
             self.revalidate = revalidate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cacheRules = "CacheRules"
             case followOrigin = "FollowOrigin"
@@ -6305,7 +6305,7 @@ extension Cdn {
             case revalidate = "Revalidate"
         }
     }
-    
+
     /// 缓存过期规则配置
     public struct SimpleCacheRule: TCInputModel, TCOutputModel {
         /// 规则类型：
@@ -6315,7 +6315,7 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// index：首页
         public let cacheType: String
-        
+
         /// CacheType 对应类型下的匹配内容：
         /// all 时填充 *
         /// file 时填充后缀名，如 jpg、txt
@@ -6323,24 +6323,24 @@ extension Cdn {
         /// path 时填充绝对路径，如 /xxx/test.html
         /// index 时填充 /
         public let cacheContents: [String]
-        
+
         /// 缓存过期时间设置
         /// 单位为秒，最大可设置为 365 天
         public let cacheTime: Int64
-        
-        public init (cacheType: String, cacheContents: [String], cacheTime: Int64) {
+
+        public init(cacheType: String, cacheContents: [String], cacheTime: Int64) {
             self.cacheType = cacheType
             self.cacheContents = cacheContents
             self.cacheTime = cacheTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cacheType = "CacheType"
             case cacheContents = "CacheContents"
             case cacheTime = "CacheTime"
         }
     }
-    
+
     /// 查询结果排序条件
     public struct Sort: TCInputModel {
         /// 排序字段，当前支持：
@@ -6348,81 +6348,81 @@ extension Cdn {
         /// certExpireTime，证书过期时间
         /// 默认createTime。
         public let key: String?
-        
+
         /// asc/desc，默认desc。
         public let sequence: String?
-        
-        public init (key: String? = nil, sequence: String? = nil) {
+
+        public init(key: String? = nil, sequence: String? = nil) {
             self.key = key
             self.sequence = sequence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case sequence = "Sequence"
         }
     }
-    
+
     /// 域名国内海外分地区特殊配置。
     public struct SpecificConfig: TCInputModel, TCOutputModel {
         /// 国内特殊配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mainland: MainlandConfig?
-        
+
         /// 海外特殊配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let overseas: OverseaConfig?
-        
-        public init (mainland: MainlandConfig? = nil, overseas: OverseaConfig? = nil) {
+
+        public init(mainland: MainlandConfig? = nil, overseas: OverseaConfig? = nil) {
             self.mainland = mainland
             self.overseas = overseas
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mainland = "Mainland"
             case overseas = "Overseas"
         }
     }
-    
+
     /// 累计用量封顶的配置
     public struct StatisticItem: TCInputModel, TCOutputModel {
         /// 封顶类型，累计用量total，瞬时用量moment
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 自动解封时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unBlockTime: UInt64?
-        
+
         /// 带宽、流量阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bpsThreshold: UInt64?
-        
+
         /// 关闭方式 返回404:RETURN_404, dns回源：RESOLVE_DNS_TO_ORIGIN
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let counterMeasure: String?
-        
+
         /// 触发提醒阈值百分比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertPercentage: UInt64?
-        
+
         /// 提醒开关 on/off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertSwitch: String?
-        
+
         /// 指标类型，流量flux或带宽bandwidth
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metric: String?
-        
+
         /// 检测周期，单位分钟，60或1440
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycle: UInt64?
-        
+
         /// 是否开启该选项，on/off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (type: String? = nil, unBlockTime: UInt64? = nil, bpsThreshold: UInt64? = nil, counterMeasure: String? = nil, alertPercentage: UInt64? = nil, alertSwitch: String? = nil, metric: String? = nil, cycle: UInt64? = nil, switch: String? = nil) {
+
+        public init(type: String? = nil, unBlockTime: UInt64? = nil, bpsThreshold: UInt64? = nil, counterMeasure: String? = nil, alertPercentage: UInt64? = nil, alertSwitch: String? = nil, metric: String? = nil, cycle: UInt64? = nil, switch: String? = nil) {
             self.type = type
             self.unBlockTime = unBlockTime
             self.bpsThreshold = bpsThreshold
@@ -6433,7 +6433,7 @@ extension Cdn {
             self.cycle = cycle
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case unBlockTime = "UnBlockTime"
@@ -6446,7 +6446,7 @@ extension Cdn {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 状态码缓存过期配置，默认情况下会对 404 状态码缓存 10 秒
     public struct StatusCodeCache: TCInputModel, TCOutputModel {
         /// 状态码缓存过期配置开关
@@ -6454,42 +6454,42 @@ extension Cdn {
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// 状态码缓存过期规则明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheRules: [StatusCodeCacheRule]?
-        
-        public init (switch: String, cacheRules: [StatusCodeCacheRule]? = nil) {
+
+        public init(switch: String, cacheRules: [StatusCodeCacheRule]? = nil) {
             self.`switch` = `switch`
             self.cacheRules = cacheRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case cacheRules = "CacheRules"
         }
     }
-    
+
     /// 状态码缓存过期时间规则配置
     public struct StatusCodeCacheRule: TCInputModel, TCOutputModel {
         /// http 状态码
         /// 支持 403、404 状态码
         public let statusCode: String
-        
+
         /// 状态码缓存过期时间，单位秒
         public let cacheTime: Int64
-        
-        public init (statusCode: String, cacheTime: Int64) {
+
+        public init(statusCode: String, cacheTime: Int64) {
             self.statusCode = statusCode
             self.cacheTime = cacheTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case statusCode = "StatusCode"
             case cacheTime = "CacheTime"
         }
     }
-    
+
     /// 明细数据的汇总值，各指标根据其特性不同拥有不同汇总方式
     public struct SummarizedData: TCOutputModel {
         /// 汇总方式，存在以下几种：
@@ -6497,37 +6497,37 @@ extension Cdn {
         /// max：最大值，带宽模式下，采用 5 分钟粒度汇总数据，计算峰值带宽
         /// avg：平均值
         public let name: String
-        
+
         /// 汇总后的数据值
         public let value: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 域名标签配置
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagKey: String?
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
-        
-        public init (tagKey: String, tagValue: String) {
+
+        public init(tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 时间戳与其对应的数值
     public struct TimestampData: TCOutputModel {
         /// 数据统计时间点，采用向前汇总模式
@@ -6538,16 +6538,16 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date
-        
+
         /// 数据值
         public let value: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case value = "Value"
         }
     }
-    
+
     /// 排序类型数据结构
     public struct TopData: TCOutputModel {
         /// 资源名称，根据查询条件不同分为以下几类：
@@ -6556,74 +6556,74 @@ extension Cdn {
         /// 项目 ID：指定项目查询时，显示为项目 ID
         /// all：账号维度明细数据
         public let resource: String
-        
+
         /// 排序结果详情
         public let detailData: [TopDetailData]
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case detailData = "DetailData"
         }
     }
-    
+
     /// 排序类型数据结构
     public struct TopDataMore: TCOutputModel {
         /// 资源名称，根据查询条件不同分为以下几类：
         public let resource: String
-        
+
         /// 排序结果详情
         public let detailData: [TopDetailDataMore]
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
             case detailData = "DetailData"
         }
     }
-    
+
     /// 排序类型的数据结构
     public struct TopDetailData: TCOutputModel {
         /// 数据类型的名称
         public let name: String
-        
+
         /// 数据值
         public let value: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 排序类型的数据结构，同时附带上该项的在总值的占比
     public struct TopDetailDataMore: TCOutputModel {
         /// 数据类型的名称
         public let name: String
-        
+
         /// 数据值
         public let value: Float
-        
+
         /// 数据值在总值中的百分比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let percent: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
             case percent = "Percent"
         }
     }
-    
+
     /// CLS主题信息
     public struct TopicInfo: TCOutputModel {
         /// 主题ID
         public let topicId: String
-        
+
         /// 主题名字
         public let topicName: String
-        
+
         /// 是否启用投递
         public let enabled: Int64
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -6632,15 +6632,15 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 归属于cdn或ecdn
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channel: String?
-        
+
         /// cls侧是否已经被删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleted: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case topicName = "TopicName"
@@ -6650,42 +6650,42 @@ extension Cdn {
             case deleted = "Deleted"
         }
     }
-    
+
     /// 图片优化-TpgAdapter配置
     public struct TpgAdapter: TCInputModel, TCOutputModel {
         /// 开关，"on/off"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// CDN加速流量包。
     public struct TrafficPackage: TCOutputModel {
         /// 流量包 Id
         public let id: Int64
-        
+
         /// 流量包类型
         public let type: String
-        
+
         /// 流量包大小（单位为 Byte）
         public let bytes: Int64
-        
+
         /// 已消耗流量（单位为 Byte）
         public let bytesUsed: Int64
-        
+
         /// 流量包状态
         /// enabled：已启用
         /// expired：已过期
         /// disabled：未启用
         public let status: String
-        
+
         /// 流量包发放时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -6693,7 +6693,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 流量包生效时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -6701,7 +6701,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var enableTime: Date
-        
+
         /// 流量包过期时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -6709,28 +6709,28 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var expireTime: Date
-        
+
         /// 流量包是否续订
         public let contractExtension: Bool
-        
+
         /// 流量包是否自动续订
         public let autoExtension: Bool
-        
+
         /// 流量包来源
         public let channel: String
-        
+
         /// 流量包生效区域，mainland或overseas
         public let area: String
-        
+
         /// 流量包生命周期月数
         public let lifeTimeMonth: Int64
-        
+
         /// 流量包是否支持续订
         public let extensionAvailable: Bool
-        
+
         /// 流量包是否支持退费
         public let refundAvailable: Bool
-        
+
         /// 流量包生效区域
         /// 0：中国大陆
         /// 1：亚太一区
@@ -6743,23 +6743,23 @@ extension Cdn {
         /// 8：非洲
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: Int64?
-        
+
         /// 流量包类型id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: Int64?
-        
+
         /// 流量包当前续订模式，0 未续订、1到期续订、2用完续订、3到期或用完续订
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extensionMode: UInt64?
-        
+
         /// 流量包实际生效时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trueEnableTime: String?
-        
+
         /// 流量包实际过期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trueExpireTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case type = "Type"
@@ -6783,25 +6783,25 @@ extension Cdn {
             case trueExpireTime = "TrueExpireTime"
         }
     }
-    
+
     /// 封禁url的详细信息
     public struct UrlRecord: TCOutputModel {
         /// 状态(disable表示封禁，enable表示解封)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 对应的url
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realUrl: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case realUrl = "RealUrl"
@@ -6809,56 +6809,56 @@ extension Cdn {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 访问URL重写配置
     public struct UrlRedirect: TCInputModel, TCOutputModel {
         /// 访问URL重写配置开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
+
         /// 访问URL重写规则，当Switch为on时必填，规则数量最大为10个。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathRules: [UrlRedirectRule]?
-        
-        public init (switch: String, pathRules: [UrlRedirectRule]? = nil) {
+
+        public init(switch: String, pathRules: [UrlRedirectRule]? = nil) {
             self.`switch` = `switch`
             self.pathRules = pathRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case pathRules = "PathRules"
         }
     }
-    
+
     /// Url重定向规则配置
     public struct UrlRedirectRule: TCInputModel, TCOutputModel {
         /// 重定向状态码，301 | 302
         public let redirectStatusCode: Int64
-        
+
         /// 待匹配的Url，仅支持Url路径，不支持参数。默认完全匹配，支持通配符 *，最多支持5个通配符，最大长度1024字符。
         public let pattern: String
-        
+
         /// 目标URL，必须以“/”开头，不包含参数部分。最大长度1024字符。可使用$1, $2, $3, $4, $5分别捕获匹配路径中的通配符号，最多支持10个捕获值。
         public let redirectUrl: String
-        
+
         /// 目标host，必须以http://或https://开头，并填写标准格式域名，如果不填写，默认为http:// + 当前域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectHost: String?
-        
+
         /// 指定是全路径配置还是任意匹配
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullMatch: Bool?
-        
-        public init (redirectStatusCode: Int64, pattern: String, redirectUrl: String, redirectHost: String? = nil, fullMatch: Bool? = nil) {
+
+        public init(redirectStatusCode: Int64, pattern: String, redirectUrl: String, redirectHost: String? = nil, fullMatch: Bool? = nil) {
             self.redirectStatusCode = redirectStatusCode
             self.pattern = pattern
             self.redirectUrl = redirectUrl
             self.redirectHost = redirectHost
             self.fullMatch = fullMatch
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case redirectStatusCode = "RedirectStatusCode"
             case pattern = "Pattern"
@@ -6867,28 +6867,28 @@ extension Cdn {
             case fullMatch = "FullMatch"
         }
     }
-    
+
     /// UserAgent黑白名单配置
     public struct UserAgentFilter: TCInputModel, TCOutputModel {
         /// 开关，on或off
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
+
         /// UA黑白名单生效规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRules: [UserAgentFilterRule]?
-        
-        public init (switch: String, filterRules: [UserAgentFilterRule]? = nil) {
+
+        public init(switch: String, filterRules: [UserAgentFilterRule]? = nil) {
             self.`switch` = `switch`
             self.filterRules = filterRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case filterRules = "FilterRules"
         }
     }
-    
+
     /// UserAgent黑白名单规则配置
     public struct UserAgentFilterRule: TCInputModel, TCOutputModel {
         /// 访问路径生效类型
@@ -6898,26 +6898,26 @@ extension Cdn {
         /// path: 根据完整访问路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: String?
-        
+
         /// 访问路径生效内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
-        
+
         /// UserAgent列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAgents: [String]?
-        
+
         /// 黑名单或白名单，blacklist或whitelist
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterType: String?
-        
-        public init (ruleType: String, rulePaths: [String], userAgents: [String], filterType: String) {
+
+        public init(ruleType: String, rulePaths: [String], userAgents: [String], filterType: String) {
             self.ruleType = ruleType
             self.rulePaths = rulePaths
             self.userAgents = userAgents
             self.filterType = filterType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case rulePaths = "RulePaths"
@@ -6925,34 +6925,34 @@ extension Cdn {
             case filterType = "FilterType"
         }
     }
-    
+
     /// 视频拖拽配置，默认为关闭状态
     public struct VideoSeek: TCInputModel, TCOutputModel {
         /// 视频拖拽开关
         /// on：开启
         /// off：关闭
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 违规 URL 详情
     public struct ViolationUrl: TCOutputModel {
         /// ID
         public let id: Int64
-        
+
         /// 违规资源原始访问 URL
         public let realUrl: String
-        
+
         /// 快照路径，用于控制台展示违规内容快照
         public let downloadUrl: String
-        
+
         /// 违规资源当前状态
         /// forbid：已封禁
         /// release：已解封
@@ -6960,7 +6960,7 @@ extension Cdn {
         /// reject ：申诉驳回，状态仍为封禁态
         /// complain：申诉进行中
         public let urlStatus: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -6968,7 +6968,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -6976,7 +6976,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case realUrl = "RealUrl"
@@ -6986,57 +6986,57 @@ extension Cdn {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// Waf子规则开关状态
     public struct WafSubRuleStatus: TCInputModel, TCOutputModel {
         /// 子规则状态，on|off
         public let `switch`: String
-        
+
         /// 规则id列表
         public let subIds: [Int64]
-        
-        public init (switch: String, subIds: [Int64]) {
+
+        public init(switch: String, subIds: [Int64]) {
             self.`switch` = `switch`
             self.subIds = subIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case subIds = "SubIds"
         }
     }
-    
+
     /// WebSocket配置
     public struct WebSocket: TCInputModel, TCOutputModel {
         /// WebSocket 超时配置开关, 开关为off时，平台仍支持WebSocket连接，此时超时时间默认为15秒，若需要调整超时时间，将开关置为on.
         /// * WebSocket 为ECDN产品功能，如需使用请通过ECDN域名配置.
         public let `switch`: String
-        
+
         /// 设置超时时间，单位为秒，最大超时时间300秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeout: Int64?
-        
-        public init (switch: String, timeout: Int64? = nil) {
+
+        public init(switch: String, timeout: Int64? = nil) {
             self.`switch` = `switch`
             self.timeout = timeout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case timeout = "Timeout"
         }
     }
-    
+
     /// 图片优化-WebpAdapter配置
     public struct WebpAdapter: TCInputModel, TCOutputModel {
         /// 开关，"on/off"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }

@@ -19,56 +19,56 @@ extension Essbasic {
     public struct ChannelCreateFlowByFilesRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent?
-        
+
         /// 签署流程名称，长度不超过200个字符
         public let flowName: String?
-        
+
         /// 签署流程签约方列表，最多不超过5个参与方
         public let flowApprovers: [FlowApproverInfo]?
-        
+
         /// 签署文件资源Id列表，目前仅支持单个文件
         public let fileIds: [String]?
-        
+
         /// 签署文件中的发起方的填写控件，需要在发起的时候进行填充
         public let components: [Component]?
-        
+
         /// 签署流程截止时间，十位数时间戳，最大值为33162419560，即3020年
         public let deadline: Int64?
-        
+
         /// 签署流程回调地址，长度不超过255个字符
         public let callbackUrl: String?
-        
+
         /// 合同签署顺序类型(无序签,顺序签)，默认为false，即有序签署。有序签署时以传入FlowApprovers数组的顺序作为签署顺序
         public let unordered: Bool?
-        
+
         /// 签署流程的类型，长度不超过255个字符
         public let flowType: String?
-        
+
         /// 签署流程的描述，长度不超过1000个字符
         public let flowDescription: String?
-        
+
         /// 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         public let customShowMap: String?
-        
+
         /// 渠道的业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         public let customerData: String?
-        
+
         /// 发起方企业的签署人进行签署操作是否需要企业内部审批。 若设置为true,审核结果需通过接口 ChannelCreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。  注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         public let needSignReview: Bool?
-        
+
         /// 操作者的信息
         public let `operator`: UserInfo?
-        
+
         /// 签署人校验方式
         /// VerifyCheck: 人脸识别（默认）
         /// MobileCheck：手机号验证
         /// 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         public let approverVerifyType: String?
-        
+
         /// 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
         public let signBeanTag: Int64?
-        
-        public init (agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil) {
+
+        public init(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil) {
             self.agent = agent
             self.flowName = flowName
             self.flowApprovers = flowApprovers
@@ -86,7 +86,7 @@ extension Essbasic {
             self.approverVerifyType = approverVerifyType
             self.signBeanTag = signBeanTag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case flowName = "FlowName"
@@ -106,30 +106,30 @@ extension Essbasic {
             case signBeanTag = "SignBeanTag"
         }
     }
-    
+
     /// ChannelCreateFlowByFiles返回参数结构体
     public struct ChannelCreateFlowByFilesResponse: TCResponseModel {
         /// 合同签署流程ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 渠道版通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
     @inlinable
-    public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowByFilesResponse > {
+    public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
         self.client.execute(action: "ChannelCreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 渠道版通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
@@ -137,15 +137,15 @@ extension Essbasic {
     public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
         try await self.client.execute(action: "ChannelCreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 渠道版通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
     @inlinable
-    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowByFilesResponse > {
+    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
         self.channelCreateFlowByFiles(ChannelCreateFlowByFilesRequest(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, operator: `operator`, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag), logger: logger, on: eventLoop)
     }
-    
+
     /// 渠道版通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请

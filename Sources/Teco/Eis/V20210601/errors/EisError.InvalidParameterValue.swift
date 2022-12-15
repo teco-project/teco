@@ -26,87 +26,87 @@ extension TCEisError {
             case runtimeNamespaceInvalid = "InvalidParameterValue.RuntimeNamespaceInvalid"
             case runtimeZoneNotExisted = "InvalidParameterValue.RuntimeZoneNotExisted"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 指标查询参数错误。
         public static var invalidRuntimeMetricSearchCondition: InvalidParameterValue {
             InvalidParameterValue(.invalidRuntimeMetricSearchCondition)
         }
-        
+
         /// 共享运行时不支持此操作。
         public static var notSupportedActionForPublicRuntime: InvalidParameterValue {
             InvalidParameterValue(.notSupportedActionForPublicRuntime)
         }
-        
+
         /// 不支持的Zone。
         public static var pilotZoneNotSupported: InvalidParameterValue {
             InvalidParameterValue(.pilotZoneNotSupported)
         }
-        
+
         /// 运行时已删除。
         public static var runtimeAlreadyDeleted: InvalidParameterValue {
             InvalidParameterValue(.runtimeAlreadyDeleted)
         }
-        
+
         /// 运行时不存在。
         public static var runtimeIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.runtimeIdNotExist)
         }
-        
+
         /// 当前指标不支持查询百分比。
         public static var runtimeMetricRateNotSupport: InvalidParameterValue {
             InvalidParameterValue(.runtimeMetricRateNotSupport)
         }
-        
+
         /// 运行时命名空间不合法。
         public static var runtimeNamespaceInvalid: InvalidParameterValue {
             InvalidParameterValue(.runtimeNamespaceInvalid)
         }
-        
+
         /// 运行时地域不存在。
         public static var runtimeZoneNotExisted: InvalidParameterValue {
             InvalidParameterValue(.runtimeZoneNotExisted)
         }
-        
+
         public func asEisError() -> TCEisError {
             let code: TCEisError.Code
             switch self.error {
-            case .invalidRuntimeMetricSearchCondition: 
+            case .invalidRuntimeMetricSearchCondition:
                 code = .invalidParameterValue_InvalidRuntimeMetricSearchCondition
-            case .notSupportedActionForPublicRuntime: 
+            case .notSupportedActionForPublicRuntime:
                 code = .invalidParameterValue_NotSupportedActionForPublicRuntime
-            case .pilotZoneNotSupported: 
+            case .pilotZoneNotSupported:
                 code = .invalidParameterValue_PilotZoneNotSupported
-            case .runtimeAlreadyDeleted: 
+            case .runtimeAlreadyDeleted:
                 code = .invalidParameterValue_RuntimeAlreadyDeleted
-            case .runtimeIdNotExist: 
+            case .runtimeIdNotExist:
                 code = .invalidParameterValue_RuntimeIdNotExist
-            case .runtimeMetricRateNotSupport: 
+            case .runtimeMetricRateNotSupport:
                 code = .invalidParameterValue_RuntimeMetricRateNotSupport
-            case .runtimeNamespaceInvalid: 
+            case .runtimeNamespaceInvalid:
                 code = .invalidParameterValue_RuntimeNamespaceInvalid
-            case .runtimeZoneNotExisted: 
+            case .runtimeZoneNotExisted:
                 code = .invalidParameterValue_RuntimeZoneNotExisted
             }
             return TCEisError(code, context: self.context)

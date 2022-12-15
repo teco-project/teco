@@ -19,26 +19,26 @@ extension Iecp {
     public struct DescribeEdgeUnitNodeGroupRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 命名空间，默认为default
         public let namespace: String?
-        
+
         /// 分页offset，默认为0
         public let offset: Int64?
-        
+
         /// 分页limit，默认为20
         public let limit: Int64?
-        
+
         /// 模糊匹配参数，精确匹配时失效
         public let nameFilter: String?
-        
+
         /// 精确匹配参数
         public let nameMatched: String?
-        
+
         /// 按时间排序，ASC/DESC，默认为DESC
         public let order: String?
-        
-        public init (edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil) {
+
+        public init(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.namespace = namespace
             self.offset = offset
@@ -47,7 +47,7 @@ extension Iecp {
             self.nameMatched = nameMatched
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case namespace = "Namespace"
@@ -58,33 +58,33 @@ extension Iecp {
             case order = "Order"
         }
     }
-    
+
     /// DescribeEdgeUnitNodeGroup返回参数结构体
     public struct DescribeEdgeUnitNodeGroupResponse: TCResponseModel {
         /// 记录总数
         public let total: Int64
-        
+
         /// NodeGroup数组
         public let nodeGroupInfo: [NodeGroupInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case nodeGroupInfo = "NodeGroupInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询边缘单元NodeGroup列表
     ///
     /// 查询边缘集群NodeGroup
     @inlinable
-    public func describeEdgeUnitNodeGroup(_ input: DescribeEdgeUnitNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitNodeGroupResponse > {
+    public func describeEdgeUnitNodeGroup(_ input: DescribeEdgeUnitNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeGroupResponse> {
         self.client.execute(action: "DescribeEdgeUnitNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元NodeGroup列表
     ///
     /// 查询边缘集群NodeGroup
@@ -92,15 +92,15 @@ extension Iecp {
     public func describeEdgeUnitNodeGroup(_ input: DescribeEdgeUnitNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeGroupResponse {
         try await self.client.execute(action: "DescribeEdgeUnitNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询边缘单元NodeGroup列表
     ///
     /// 查询边缘集群NodeGroup
     @inlinable
-    public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitNodeGroupResponse > {
+    public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeGroupResponse> {
         self.describeEdgeUnitNodeGroup(DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元NodeGroup列表
     ///
     /// 查询边缘集群NodeGroup

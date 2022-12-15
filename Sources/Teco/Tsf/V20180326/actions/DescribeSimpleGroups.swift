@@ -19,32 +19,32 @@ extension Tsf {
     public struct DescribeSimpleGroupsRequest: TCRequestModel {
         /// 部署组ID列表，不填写时查询全量
         public let groupIdList: [String]?
-        
+
         /// 应用ID，不填写时查询全量
         public let applicationId: String?
-        
+
         /// 集群ID，不填写时查询全量
         public let clusterId: String?
-        
+
         /// 命名空间ID，不填写时查询全量
         public let namespaceId: String?
-        
+
         /// 每页条数
         public let limit: Int64?
-        
+
         /// 起始偏移量
         public let offset: Int64?
-        
+
         /// 部署组ID，不填写时查询全量
         public let groupId: String?
-        
+
         /// 模糊查询，部署组名称，不填写时查询全量
         public let searchWord: String?
-        
+
         /// 部署组类型，精确过滤字段，M：service mesh, P：原生应用， G：网关应用
         public let appMicroServiceType: String?
-        
-        public init (groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil) {
+
+        public init(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil) {
             self.groupIdList = groupIdList
             self.applicationId = applicationId
             self.clusterId = clusterId
@@ -55,7 +55,7 @@ extension Tsf {
             self.searchWord = searchWord
             self.appMicroServiceType = appMicroServiceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupIdList = "GroupIdList"
             case applicationId = "ApplicationId"
@@ -68,40 +68,40 @@ extension Tsf {
             case appMicroServiceType = "AppMicroServiceType"
         }
     }
-    
+
     /// DescribeSimpleGroups返回参数结构体
     public struct DescribeSimpleGroupsResponse: TCResponseModel {
         /// 简单部署组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageSimpleGroup?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询简单部署组列表
     @inlinable
-    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleGroupsResponse > {
+    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleGroupsResponse> {
         self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询简单部署组列表
     @inlinable
     public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {
         try await self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询简单部署组列表
     @inlinable
-    public func describeSimpleGroups(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleGroupsResponse > {
+    public func describeSimpleGroups(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleGroupsResponse> {
         self.describeSimpleGroups(DescribeSimpleGroupsRequest(groupIdList: groupIdList, applicationId: applicationId, clusterId: clusterId, namespaceId: namespaceId, limit: limit, offset: offset, groupId: groupId, searchWord: searchWord, appMicroServiceType: appMicroServiceType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询简单部署组列表
     @inlinable
     public func describeSimpleGroups(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {

@@ -19,23 +19,23 @@ extension Kms {
     public struct CreateWhiteBoxKeyRequest: TCRequestModel {
         /// 作为密钥更容易辨识，更容易被人看懂的别名， 不可为空，1-60个字母数字 - _ 的组合，首字符必须为字母或者数字。Alias不可重复。
         public let alias: String
-        
+
         /// 创建密钥所有的算法类型，支持的取值：AES_256,SM4
         public let algorithm: String
-        
+
         /// 密钥的描述，最大1024字节
         public let description: String?
-        
+
         /// 标签列表
         public let tags: [Tag]?
-        
-        public init (alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil) {
+
+        public init(alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil) {
             self.alias = alias
             self.algorithm = algorithm
             self.description = description
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alias = "Alias"
             case algorithm = "Algorithm"
@@ -43,29 +43,29 @@ extension Kms {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateWhiteBoxKey返回参数结构体
     public struct CreateWhiteBoxKeyResponse: TCResponseModel {
         /// 用于加密的密钥，base64编码
         public let encryptKey: String
-        
+
         /// 用于解密的密钥，base64编码
         public let decryptKey: String
-        
+
         /// 白盒密钥的全局唯一标识符
         public let keyId: String
-        
+
         /// 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagCode: UInt64?
-        
+
         /// 标签操作的返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case encryptKey = "EncryptKey"
             case decryptKey = "DecryptKey"
@@ -75,15 +75,15 @@ extension Kms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建白盒密钥
     ///
     /// 创建白盒密钥。 密钥个数的上限为 50。
     @inlinable
-    public func createWhiteBoxKey(_ input: CreateWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWhiteBoxKeyResponse > {
+    public func createWhiteBoxKey(_ input: CreateWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhiteBoxKeyResponse> {
         self.client.execute(action: "CreateWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建白盒密钥
     ///
     /// 创建白盒密钥。 密钥个数的上限为 50。
@@ -91,15 +91,15 @@ extension Kms {
     public func createWhiteBoxKey(_ input: CreateWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhiteBoxKeyResponse {
         try await self.client.execute(action: "CreateWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建白盒密钥
     ///
     /// 创建白盒密钥。 密钥个数的上限为 50。
     @inlinable
-    public func createWhiteBoxKey(alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWhiteBoxKeyResponse > {
+    public func createWhiteBoxKey(alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhiteBoxKeyResponse> {
         self.createWhiteBoxKey(CreateWhiteBoxKeyRequest(alias: alias, algorithm: algorithm, description: description, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建白盒密钥
     ///
     /// 创建白盒密钥。 密钥个数的上限为 50。

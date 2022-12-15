@@ -19,47 +19,47 @@ extension Tke {
     public struct DescribePrometheusInstanceRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribePrometheusInstance返回参数结构体
     public struct DescribePrometheusInstanceResponse: TCResponseModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 实例名称
         public let name: String
-        
+
         /// 私有网络id
         public let vpcId: String
-        
+
         /// 子网id
         public let subnetId: String
-        
+
         /// cos桶名称
         public let cosBucket: String
-        
+
         /// 数据查询地址
         public let queryAddress: String
-        
+
         /// 实例中grafana相关的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafana: PrometheusGrafanaInfo?
-        
+
         /// 用户自定义alertmanager
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertManagerUrl: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
@@ -72,25 +72,25 @@ extension Tke {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例详细信息
     @inlinable
-    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstanceResponse > {
+    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceResponse> {
         self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例详细信息
     @inlinable
     public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
         try await self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例详细信息
     @inlinable
-    public func describePrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstanceResponse > {
+    public func describePrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceResponse> {
         self.describePrometheusInstance(DescribePrometheusInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例详细信息
     @inlinable
     public func describePrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {

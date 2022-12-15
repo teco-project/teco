@@ -19,25 +19,25 @@ extension Cwp {
     public struct DescribeBaselineEffectHostListRequest: TCRequestModel {
         /// 分页参数 最大100条
         public let limit: UInt64
-        
+
         /// 分页参数
         public let offset: UInt64
-        
+
         /// 基线id
         public let baselineId: UInt64
-        
+
         /// 过滤条件。
         /// <li>AliasName- String- 主机别名</li>
         /// <li>Status- Uint- 1已通过  0未通过 5检测中</li>
         public let filters: [Filters]?
-        
+
         /// 策略id
         public let strategyId: UInt64?
-        
+
         /// 主机uuid数组
         public let uuidList: [String]?
-        
-        public init (limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil) {
+
+        public init(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.baselineId = baselineId
@@ -45,7 +45,7 @@ extension Cwp {
             self.strategyId = strategyId
             self.uuidList = uuidList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -55,35 +55,35 @@ extension Cwp {
             case uuidList = "UuidList"
         }
     }
-    
+
     /// DescribeBaselineEffectHostList返回参数结构体
     public struct DescribeBaselineEffectHostListResponse: TCResponseModel {
         /// 记录总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 影响服务器列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let effectHostList: [BaselineEffectHost]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case effectHostList = "EffectHostList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
     @inlinable
-    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineEffectHostListResponse > {
+    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineEffectHostListResponse> {
         self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
@@ -91,15 +91,15 @@ extension Cwp {
     public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
         try await self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
     @inlinable
-    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineEffectHostListResponse > {
+    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineEffectHostListResponse> {
         self.describeBaselineEffectHostList(DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList), logger: logger, on: eventLoop)
     }
-    
+
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表

@@ -19,44 +19,44 @@ extension Cynosdb {
     public struct ModifyBackupNameRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 备份文件ID
         public let backupId: Int64
-        
+
         /// 备注名，长度不能超过60个字符
         public let backupName: String
-        
-        public init (clusterId: String, backupId: Int64, backupName: String) {
+
+        public init(clusterId: String, backupId: Int64, backupName: String) {
             self.clusterId = clusterId
             self.backupId = backupId
             self.backupName = backupName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case backupId = "BackupId"
             case backupName = "BackupName"
         }
     }
-    
+
     /// ModifyBackupName返回参数结构体
     public struct ModifyBackupNameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。
     @inlinable
-    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupNameResponse > {
+    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。
@@ -64,15 +64,15 @@ extension Cynosdb {
     public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
         try await self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。
     @inlinable
-    public func modifyBackupName(clusterId: String, backupId: Int64, backupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupNameResponse > {
+    public func modifyBackupName(clusterId: String, backupId: Int64, backupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.modifyBackupName(ModifyBackupNameRequest(clusterId: clusterId, backupId: backupId, backupName: backupName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。

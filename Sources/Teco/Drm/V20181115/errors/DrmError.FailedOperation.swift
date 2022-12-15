@@ -20,45 +20,45 @@ extension TCDrmError {
             case pemIdNotExist = "FailedOperation.PemIdNotExist"
             case pemNumTooMuch = "FailedOperation.PemNumTooMuch"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// pem id 不存在。
         public static var pemIdNotExist: FailedOperation {
             FailedOperation(.pemIdNotExist)
         }
-        
+
         /// 系统中存在的私钥数超过两个。
         public static var pemNumTooMuch: FailedOperation {
             FailedOperation(.pemNumTooMuch)
         }
-        
+
         public func asDrmError() -> TCDrmError {
             let code: TCDrmError.Code
             switch self.error {
-            case .pemIdNotExist: 
+            case .pemIdNotExist:
                 code = .failedOperation_PemIdNotExist
-            case .pemNumTooMuch: 
+            case .pemNumTooMuch:
                 code = .failedOperation_PemNumTooMuch
             }
             return TCDrmError(code, context: self.context)

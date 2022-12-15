@@ -19,35 +19,35 @@ extension Teo {
     public struct DescribeSecurityPortraitRulesRequest: TCRequestModel {
         /// 一级域名
         public let zoneId: String
-        
+
         /// 子域名/应用名
         public let entity: String
-        
-        public init (zoneId: String, entity: String) {
+
+        public init(zoneId: String, entity: String) {
             self.zoneId = zoneId
             self.entity = entity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case entity = "Entity"
         }
     }
-    
+
     /// DescribeSecurityPortraitRules返回参数结构体
     public struct DescribeSecurityPortraitRulesResponse: TCResponseModel {
         /// 本次返回的规则数
         public let count: Int64
-        
+
         /// Bot用户画像规则
         public let rules: [PortraitManagedRuleDetail]
-        
+
         /// 总规则数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case rules = "Rules"
@@ -55,25 +55,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Bot用户画像规则
     @inlinable
-    public func describeSecurityPortraitRules(_ input: DescribeSecurityPortraitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPortraitRulesResponse > {
+    public func describeSecurityPortraitRules(_ input: DescribeSecurityPortraitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPortraitRulesResponse> {
         self.client.execute(action: "DescribeSecurityPortraitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Bot用户画像规则
     @inlinable
     public func describeSecurityPortraitRules(_ input: DescribeSecurityPortraitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPortraitRulesResponse {
         try await self.client.execute(action: "DescribeSecurityPortraitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Bot用户画像规则
     @inlinable
-    public func describeSecurityPortraitRules(zoneId: String, entity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPortraitRulesResponse > {
+    public func describeSecurityPortraitRules(zoneId: String, entity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPortraitRulesResponse> {
         self.describeSecurityPortraitRules(DescribeSecurityPortraitRulesRequest(zoneId: zoneId, entity: entity), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Bot用户画像规则
     @inlinable
     public func describeSecurityPortraitRules(zoneId: String, entity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPortraitRulesResponse {

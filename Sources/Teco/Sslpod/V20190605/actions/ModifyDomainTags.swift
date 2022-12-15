@@ -19,49 +19,49 @@ extension Sslpod {
     public struct ModifyDomainTagsRequest: TCRequestModel {
         /// 账号下域名ID
         public let accountDomainId: Int64
-        
+
         /// 更新后的tag，多个以逗号隔开
         public let tags: String
-        
-        public init (accountDomainId: Int64, tags: String) {
+
+        public init(accountDomainId: Int64, tags: String) {
             self.accountDomainId = accountDomainId
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountDomainId = "AccountDomainId"
             case tags = "Tags"
         }
     }
-    
+
     /// ModifyDomainTags返回参数结构体
     public struct ModifyDomainTagsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改域名tag
     @inlinable
-    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainTagsResponse > {
+    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainTagsResponse> {
         self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改域名tag
     @inlinable
     public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
         try await self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改域名tag
     @inlinable
-    public func modifyDomainTags(accountDomainId: Int64, tags: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainTagsResponse > {
+    public func modifyDomainTags(accountDomainId: Int64, tags: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainTagsResponse> {
         self.modifyDomainTags(ModifyDomainTagsRequest(accountDomainId: accountDomainId, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改域名tag
     @inlinable
     public func modifyDomainTags(accountDomainId: Int64, tags: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {

@@ -20,45 +20,45 @@ extension TCTicError {
             case paramError = "InvalidParameter.ParamError"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTicError() -> TCTicError {
             let code: TCTicError.Code
             switch self.error {
-            case .paramError: 
+            case .paramError:
                 code = .invalidParameter_ParamError
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCTicError(code, context: self.context)

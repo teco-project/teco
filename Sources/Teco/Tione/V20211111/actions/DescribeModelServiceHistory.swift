@@ -19,54 +19,54 @@ extension Tione {
     public struct DescribeModelServiceHistoryRequest: TCRequestModel {
         /// 服务Id
         public let serviceId: String
-        
-        public init (serviceId: String) {
+
+        public init(serviceId: String) {
             self.serviceId = serviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
         }
     }
-    
+
     /// DescribeModelServiceHistory返回参数结构体
     public struct DescribeModelServiceHistoryResponse: TCResponseModel {
         /// 历史版本总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 服务版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceHistory: [ServiceHistory]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case serviceHistory = "ServiceHistory"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 展示服务的历史版本
     @inlinable
-    public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceHistoryResponse > {
+    public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceHistoryResponse> {
         self.client.execute(action: "DescribeModelServiceHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 展示服务的历史版本
     @inlinable
     public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {
         try await self.client.execute(action: "DescribeModelServiceHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 展示服务的历史版本
     @inlinable
-    public func describeModelServiceHistory(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceHistoryResponse > {
+    public func describeModelServiceHistory(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceHistoryResponse> {
         self.describeModelServiceHistory(DescribeModelServiceHistoryRequest(serviceId: serviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 展示服务的历史版本
     @inlinable
     public func describeModelServiceHistory(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {

@@ -20,45 +20,45 @@ extension TCEmrError {
             case invalidTkeInstance = "InvalidParameterValue.InvalidTkeInstance"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的Tke集群ID，或Tke集群不符合条件。
         public static var invalidTkeInstance: InvalidParameterValue {
             InvalidParameterValue(.invalidTkeInstance)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
-            case .invalidTkeInstance: 
+            case .invalidTkeInstance:
                 code = .invalidParameterValue_InvalidTkeInstance
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCEmrError(code, context: self.context)

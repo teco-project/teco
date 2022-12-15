@@ -22,62 +22,62 @@ extension Cbs {
     public struct AttachDetail: TCOutputModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 实例已挂载数据盘的数量。
         public let attachedDiskCount: UInt64
-        
+
         /// 实例最大可挂载数据盘的数量。
         public let maxAttachCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case attachedDiskCount = "AttachedDiskCount"
             case maxAttachCount = "MaxAttachCount"
         }
     }
-    
+
     /// 描述了新购云硬盘时自动将云硬盘初始化并挂载至云服务器内部的配置。
     public struct AutoMountConfiguration: TCInputModel {
         /// 要挂载到的实例ID。
         public let instanceId: [String]
-        
+
         /// 子机内的挂载点。
         public let mountPoint: [String]
-        
+
         /// 文件系统类型，支持的有 ext4、xfs。
         public let fileSystemType: String
-        
-        public init (instanceId: [String], mountPoint: [String], fileSystemType: String) {
+
+        public init(instanceId: [String], mountPoint: [String], fileSystemType: String) {
             self.instanceId = instanceId
             self.mountPoint = mountPoint
             self.fileSystemType = fileSystemType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case mountPoint = "MountPoint"
             case fileSystemType = "FileSystemType"
         }
     }
-    
+
     /// 描述了定期快照策略的详细信息
     public struct AutoSnapshotPolicy: TCOutputModel {
         /// 已绑定当前定期快照策略的云盘ID列表。
         public let diskIdSet: [String]?
-        
+
         /// 定期快照策略是否激活。
         public let isActivated: Bool?
-        
+
         /// 定期快照策略的状态。取值范围：<br><li>NORMAL：正常<br><li>ISOLATED：已隔离。
         public let autoSnapshotPolicyState: String?
-        
+
         /// 是否是跨账号复制快照快照, 1：是, 0: 不是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isCopyToRemote: UInt64?
-        
+
         /// 使用该定期快照策略创建出来的快照是否永久保留。
         public let isPermanent: Bool?
-        
+
         /// 定期快照下次触发的时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -85,16 +85,16 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var nextTriggerTime: Date?
-        
+
         /// 定期快照策略名称。
         public let autoSnapshotPolicyName: String?
-        
+
         /// 定期快照策略ID。
         public let autoSnapshotPolicyId: String?
-        
+
         /// 定期快照的执行策略。
         public let policy: [Policy]?
-        
+
         /// 定期快照策略的创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -102,18 +102,18 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 使用该定期快照策略创建出来的快照保留天数。
         public let retentionDays: UInt64?
-        
+
         /// 复制的目标账户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let copyToAccountUin: String?
-        
+
         /// 已绑定当前定期快照策略的实例ID列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceIdSet: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIdSet = "DiskIdSet"
             case isActivated = "IsActivated"
@@ -130,33 +130,33 @@ extension Cbs {
             case instanceIdSet = "InstanceIdSet"
         }
     }
-    
+
     /// 描述独享集群的详细信息。
     public struct Cdc: TCOutputModel {
         /// 独享集群围笼ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cageId: String?
-        
+
         /// 独享集群状态。取值范围：<br><li>NORMAL：正常；<br><li>CLOSED：关闭，此时将不可使用该独享集群创建新的云硬盘；<br><li>FAULT：独享集群状态异常，此时独享集群将不可操作，腾讯云运维团队将会及时修复该集群；<br><li>ISOLATED：因未及时续费导致独享集群被隔离，此时将不可使用该独享集群创建新的云硬盘，对应的云硬盘也将不可操作。
         public let cdcState: String
-        
+
         /// 独享集群所属的[可用区](/document/product/213/15753#ZoneInfo)ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// 独享集群实例名称。
         public let cdcName: String
-        
+
         /// 独享集群的资源容量大小。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcResource: CdcSize?
-        
+
         /// 独享集群实例id。
         public let cdcId: String
-        
+
         /// 独享集群类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘集群<br><li>CLOUD_PREMIUM：表示高性能云硬盘集群<br><li>CLOUD_SSD：SSD表示SSD云硬盘集群。
         public let diskType: String
-        
+
         /// 独享集群到期时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -164,7 +164,7 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var expiredTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case cageId = "CageId"
             case cdcState = "CdcState"
@@ -176,95 +176,95 @@ extension Cbs {
             case expiredTime = "ExpiredTime"
         }
     }
-    
+
     /// 显示独享集群的大小
     public struct CdcSize: TCOutputModel {
         /// 独享集群的可用容量大小，单位GiB
         public let diskAavilable: UInt64
-        
+
         /// 独享集群的总容量大小，单位GiB
         public let diskTotal: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case diskAavilable = "DiskAavilable"
             case diskTotal = "DiskTotal"
         }
     }
-    
+
     /// 描述了云硬盘的详细信息
     public struct Disk: TCOutputModel {
         /// 云盘是否与挂载的实例一起销毁。<br><li>true:销毁实例时会同时销毁云盘，只支持按小时后付费云盘。<br><li>false：销毁实例时不销毁云盘。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
-        
+
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: String?
-        
+
         /// 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_BSSD：表示通用型SSD云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
         public let diskType: String?
-        
+
         /// 云盘状态。取值范围：<br><li>UNATTACHED：未挂载<br><li>ATTACHING：挂载中<br><li>ATTACHED：已挂载<br><li>DETACHING：解挂中<br><li>EXPANDING：扩容中<br><li>ROLLBACKING：回滚中<br><li>TORECYCLE：待回收<br><li>DUMPING：拷贝硬盘中。
         public let diskState: String?
-        
+
         /// 云盘拥有的快照总数。
         public let snapshotCount: Int64
-        
+
         /// 云盘已挂载到子机，且子机与云盘都是包年包月。<br><li>true：子机设置了自动续费标识，但云盘未设置<br><li>false：云盘自动续费标识正常。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlagError: Bool?
-        
+
         /// 云盘是否处于快照回滚状态。取值范围：<br><li>false:表示不处于快照回滚状态<br><li>true:表示处于快照回滚状态。
         public let rollbacking: Bool?
-        
+
         /// 对于非共享型云盘，该参数为空数组。对于共享型云盘，则表示该云盘当前被挂载到的CVM实例InstanceId
         public let instanceIdList: [String]
-        
+
         /// 云盘是否为加密盘。取值范围：<br><li>false:表示非加密盘<br><li>true:表示加密盘。
         public let encrypt: Bool?
-        
+
         /// 云硬盘名称。
         public let diskName: String?
-        
+
         /// 云硬盘因欠费销毁或者到期销毁时， 是否使用快照备份数据的标识。true表示销毁时创建快照进行数据备份。false表示直接销毁，不进行数据备份。
         public let backupDisk: Bool
-        
+
         /// 与云盘绑定的标签，云盘未绑定标签则取值为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 云硬盘挂载的云主机ID。
         public let instanceId: String?
-        
+
         /// 云盘的挂载类型。取值范围：<br><li>PF: PF挂载<br><li>VF: VF挂载
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachMode: String?
-        
+
         /// 云盘关联的定期快照ID。只有在调用DescribeDisks接口时，入参ReturnBindAutoSnapshotPolicy取值为TRUE才会返回该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoSnapshotPolicyIds: [String]?
-        
+
         /// 云硬盘额外性能值，单位MB/s。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let throughputPerformance: UInt64?
-        
+
         /// 云盘是否处于类型变更中。取值范围：<br><li>false:表示云盘不处于类型变更中<br><li>true:表示云盘已发起类型变更，正处于迁移中。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let migrating: Bool?
-        
+
         /// 云硬盘ID。
         public let diskId: String?
-        
+
         /// 云盘拥有的快照总容量，单位为MB。
         public let snapshotSize: UInt64
-        
+
         /// 云硬盘所在的位置。
         public let placement: Placement?
-        
+
         /// 判断预付费的云盘是否支持主动退还。<br><li>true:支持主动退还<br><li>false:不支持主动退还。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isReturnable: Bool?
-        
+
         /// 云硬盘的到期时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -272,47 +272,47 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var deadlineTime: Date?
-        
+
         /// 云盘是否挂载到云主机上。取值范围：<br><li>false:表示未挂载<br><li>true:表示已挂载。
         public let attached: Bool?
-        
+
         /// 云硬盘大小，单位GB。
         public let diskSize: UInt64?
-        
+
         /// 云盘类型变更的迁移进度，取值0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let migratePercent: UInt64?
-        
+
         /// 云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘<br><li>DATA_DISK：数据盘。
         public let diskUsage: String?
-        
+
         /// 付费模式。取值范围：<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：后付费，即按量计费。
         public let diskChargeType: String?
-        
+
         /// 是否为弹性云盘，false表示非弹性云盘，true表示弹性云盘。
         public let portable: Bool?
-        
+
         /// 云盘是否具备创建快照的能力。取值范围：<br><li>false表示不具备<br><li>true表示具备。
         public let snapshotAbility: Bool?
-        
+
         /// 在云盘已挂载到实例，且实例与云盘都是包年包月的条件下，此字段才有意义。<br><li>true:云盘到期时间早于实例。<br><li>false：云盘到期时间晚于实例。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deadlineError: Bool?
-        
+
         /// 云盘快照回滚的进度。
         public let rollbackPercent: UInt64?
-        
+
         /// 当前时间距离盘到期的天数（仅对预付费盘有意义）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let differDaysOfDeadline: Int64?
-        
+
         /// 预付费云盘在不支持主动退还的情况下，该参数表明不支持主动退还的具体原因。取值范围：<br><li>1：云硬盘已经退还<br><li>2：云硬盘已过期<br><li>3：云盘不支持退还<br><li>8：超过可退还数量的限制。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnFailCode: Int64?
-        
+
         /// 云盘是否为共享型云盘。
         public let shareable: Bool
-        
+
         /// 云硬盘的创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -320,16 +320,16 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
         public let deleteSnapshot: Int64
-        
+
         /// 云硬盘备份点已使用的数量。
         public let diskBackupCount: UInt64
-        
+
         /// 云硬盘挂载实例的类型。取值范围：<br><li>CVM<br><li>EKS
         public let instanceType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deleteWithInstance = "DeleteWithInstance"
             case renewFlag = "RenewFlag"
@@ -371,30 +371,30 @@ extension Cbs {
             case instanceType = "InstanceType"
         }
     }
-    
+
     /// 云硬盘备份点。
     public struct DiskBackup: TCOutputModel {
         /// 云硬盘备份点的ID。
         public let diskBackupId: String
-        
+
         /// 云硬盘备份点关联的云硬盘ID。
         public let diskId: String
-        
+
         /// 云硬盘大小，单位GB。
         public let diskSize: UInt64
-        
+
         /// 云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘<br><li>DATA_DISK：数据盘。
         public let diskUsage: String
-        
+
         /// 备份点名称。
         public let diskBackupName: String
-        
+
         /// 云硬盘备份点状态。取值范围：<br><li>NORMAL：正常<br><li>CREATING：创建中<br><li>ROLLBACKING：回滚中
         public let diskBackupState: String
-        
+
         /// 云硬盘创建进度百分比。
         public let percent: UInt64
-        
+
         /// 云硬盘备份点的创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -402,10 +402,10 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createTime: Date
-        
+
         /// 云盘是否为加密盘。取值范围：<br><li>false:表示非加密盘<br><li>true:表示加密盘。
         public let encrypt: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case diskBackupId = "DiskBackupId"
             case diskId = "DiskId"
@@ -418,15 +418,15 @@ extension Cbs {
             case encrypt = "Encrypt"
         }
     }
-    
+
     /// 描述了实例的计费模式
     public struct DiskChargePrepaid: TCInputModel {
         /// 购买云盘的时长，默认单位为月，取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
         public let period: UInt64
-        
+
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费。
         public let renewFlag: String?
-        
+
         /// 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -434,59 +434,59 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var curInstanceDeadline: Date?
-        
-        public init (period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
+
+        public init(period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
             self.period = period
             self.renewFlag = renewFlag
             self.curInstanceDeadline = curInstanceDeadline
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case renewFlag = "RenewFlag"
             case curInstanceDeadline = "CurInstanceDeadline"
         }
     }
-    
+
     /// 云盘配置。
     public struct DiskConfig: TCOutputModel {
         /// 配置是否可用。
         public let available: Bool?
-        
+
         /// 付费模式。取值范围：<br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费。
         public let diskChargeType: String?
-        
+
         /// 云硬盘所属的[可用区](/document/product/213/15753#ZoneInfo)。
         public let zone: String?
-        
+
         /// 实例机型系列。详见[实例类型](https://cloud.tencent.com/document/product/213/11518)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceFamily: String?
-        
+
         /// 云盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：SSD表示SSD云硬盘。
         public let diskType: String?
-        
+
         /// 云盘大小变化的最小步长，单位GB。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stepSize: UInt64?
-        
+
         /// 额外的性能区间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraPerformanceRange: [Int64]?
-        
+
         /// 实例机型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceClass: String?
-        
+
         /// 云盘类型。取值范围：<br><li>SYSTEM_DISK：表示系统盘<br><li>DATA_DISK：表示数据盘。
         public let diskUsage: String?
-        
+
         /// 最小可配置云盘大小，单位GB。
         public let minDiskSize: UInt64?
-        
+
         /// 最大可配置云盘大小，单位GB。
         public let maxDiskSize: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case available = "Available"
             case diskChargeType = "DiskChargeType"
@@ -501,21 +501,21 @@ extension Cbs {
             case maxDiskSize = "MaxDiskSize"
         }
     }
-    
+
     /// 云盘操作日志。
     public struct DiskOperationLog: TCOutputModel {
         /// 操作的状态。取值范围：
-        /// SUCCESS :表示操作成功 
-        /// FAILED :表示操作失败 
+        /// SUCCESS :表示操作成功
+        /// FAILED :表示操作失败
         /// PROCESSING :表示操作中。
         public let operationState: String
-        
+
         /// 开始时间。
         public let startTime: String
-        
+
         /// 操作者的UIN。
         public let `operator`: String
-        
+
         /// 操作类型。取值范围：
         /// CBS_OPERATION_ATTACH：挂载云硬盘
         /// CBS_OPERATION_DETACH：解挂云硬盘
@@ -527,13 +527,13 @@ extension Cbs {
         /// ASP_OPERATION_BIND：关联定期快照策略
         /// ASP_OPERATION_UNBIND：取消关联定期快照策略
         public let operation: String
-        
+
         /// 结束时间。
         public let endTime: String
-        
+
         /// 操作的云盘ID。
         public let diskId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case operationState = "OperationState"
             case startTime = "StartTime"
@@ -543,64 +543,64 @@ extension Cbs {
             case diskId = "DiskId"
         }
     }
-    
+
     /// 描述键值对过滤器，用于条件过滤查询。
     public struct Filter: TCInputModel {
         /// 一个或者多个过滤值。
         public let values: [String]
-        
+
         /// 过滤键的名称。
         public let name: String
-        
-        public init (values: [String], name: String) {
+
+        public init(values: [String], name: String) {
             self.values = values
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case values = "Values"
             case name = "Name"
         }
     }
-    
+
     /// 镜像。
     public struct Image: TCOutputModel {
         /// 镜像名称。
         public let imageName: String
-        
+
         /// 镜像实例ID。
         public let imageId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageName = "ImageName"
             case imageId = "ImageId"
         }
     }
-    
+
     /// 描述了实例的抽象位置，包括其所在的可用区，所属的项目，以及所属的独享集群的ID和名字。
     public struct Placement: TCInputModel, TCOutputModel {
         /// 云硬盘所属的[可用区](/document/product/213/15753#ZoneInfo)。该参数也可以通过调用  [DescribeZones](/document/product/213/15707) 的返回值中的Zone字段来获取。
         public let zone: String
-        
+
         /// 围笼Id。作为入参时，表示对指定的CageId的资源进行操作，可为空。 作为出参时，表示资源所属围笼ID，可为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cageId: String?
-        
+
         /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](/document/api/378/4400) 的返回值中的 projectId 字段来获取。不填为默认项目。
         public let projectId: UInt64?
-        
+
         /// 独享集群名字。作为入参时，忽略。作为出参时，表示云硬盘所属的独享集群名，可为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcName: String?
-        
+
         /// 实例所属的独享集群ID。作为入参时，表示对指定的CdcId独享集群的资源进行操作，可为空。 作为出参时，表示资源所属的独享集群的ID，可为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcId: String?
-        
+
         /// 独享集群id。
         public let dedicatedClusterId: String?
-        
-        public init (zone: String, cageId: String? = nil, projectId: UInt64? = nil, cdcName: String? = nil, cdcId: String? = nil, dedicatedClusterId: String? = nil) {
+
+        public init(zone: String, cageId: String? = nil, projectId: UInt64? = nil, cdcName: String? = nil, cdcId: String? = nil, dedicatedClusterId: String? = nil) {
             self.zone = zone
             self.cageId = cageId
             self.projectId = projectId
@@ -608,7 +608,7 @@ extension Cbs {
             self.cdcId = cdcId
             self.dedicatedClusterId = dedicatedClusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case cageId = "CageId"
@@ -618,64 +618,64 @@ extension Cbs {
             case dedicatedClusterId = "DedicatedClusterId"
         }
     }
-    
+
     /// 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的小时执行该条定期快照策略。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，仅可设置其中一条策略规则。
     public struct Policy: TCInputModel, TCOutputModel {
         /// 指定定期快照策略的触发时间。单位为小时，取值范围：[0, 23]。00:00 ~ 23:00 共 24 个时间点可选，1表示 01:00，依此类推。
         public let hour: [UInt64]
-        
+
         /// 指定每周从周一到周日需要触发定期快照的日期，取值范围：[0, 6]。0表示周日触发，1-6分别表示周一至周六。
         public let dayOfWeek: [UInt64]?
-        
-        public init (hour: [UInt64], dayOfWeek: [UInt64]? = nil) {
+
+        public init(hour: [UInt64], dayOfWeek: [UInt64]? = nil) {
             self.hour = hour
             self.dayOfWeek = dayOfWeek
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hour = "Hour"
             case dayOfWeek = "DayOfWeek"
         }
     }
-    
+
     /// 预付费订单的费用。
     public struct PrepayPrice: TCOutputModel {
         /// 预付费云盘或快照预支费用的折扣价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPrice: Float?
-        
+
         /// 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
-        
+
         /// 高精度后付费云盘原单价, 单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceHigh: String?
-        
+
         /// 高精度预付费云盘或快照预支费用的原价，单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPriceHigh: String?
-        
+
         /// 预付费云盘或快照预支费用的原价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPrice: Float?
-        
+
         /// 后付费云盘折扣单价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscount: Float?
-        
+
         /// 高精度后付费云盘折扣单价, 单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscountHigh: String?
-        
+
         /// 高精度预付费云盘或快照预支费用的折扣价，单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPriceHigh: String?
-        
+
         /// 后付费云盘原单价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case discountPrice = "DiscountPrice"
             case chargeUnit = "ChargeUnit"
@@ -688,45 +688,45 @@ extension Cbs {
             case unitPrice = "UnitPrice"
         }
     }
-    
+
     /// 描述预付费或后付费云盘的价格。
     public struct Price: TCOutputModel {
         /// 后付费云盘折扣单价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscount: Float?
-        
+
         /// 预付费云盘预支费用的折扣价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPrice: Float?
-        
+
         /// 后付费云盘原单价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
-        
+
         /// 高精度后付费云盘原单价, 单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceHigh: String?
-        
+
         /// 高精度预付费云盘预支费用的原价, 单位：元	。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPriceHigh: String?
-        
+
         /// 预付费云盘预支费用的原价，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPrice: Float?
-        
+
         /// 高精度预付费云盘预支费用的折扣价, 单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPriceHigh: String?
-        
+
         /// 高精度后付费云盘折扣单价, 单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscountHigh: String?
-        
+
         /// 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case unitPriceDiscount = "UnitPriceDiscount"
             case discountPrice = "DiscountPrice"
@@ -739,7 +739,7 @@ extension Cbs {
             case chargeUnit = "ChargeUnit"
         }
     }
-    
+
     /// 快照分享信息集合
     public struct SharePermission: TCOutputModel {
         /// 快照分享的时间
@@ -749,33 +749,33 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdTime: Date
-        
+
         /// 分享的账号Id
         public let accountId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case createdTime = "CreatedTime"
             case accountId = "AccountId"
         }
     }
-    
+
     /// 描述了快照的详细信息
     public struct Snapshot: TCOutputModel {
         /// 快照所在的位置。
         public let placement: Placement?
-        
+
         /// 是否为跨地域复制的快照。取值范围：<br><li>true：表示为跨地域复制的快照。<br><li>false:本地域的快照。
         public let copyFromRemote: Bool
-        
+
         /// 快照的状态。取值范围：<br><li>NORMAL：正常<br><li>CREATING：创建中<br><li>ROLLBACKING：回滚中<br><li>COPYING_FROM_REMOTE：跨地域复制中<br><li>CHECKING_COPIED：复制校验中<br><li>TORECYCLE：待回收。
         public let snapshotState: String?
-        
+
         /// 是否为永久快照。取值范围：<br><li>true：永久快照<br><li>false：非永久快照。
         public let isPermanent: Bool?
-        
+
         /// 快照名称，用户自定义的快照别名。调用[ModifySnapshotAttribute](/document/product/362/15650)可修改此字段。
         public let snapshotName: String?
-        
+
         /// 快照到期时间。如果快照为永久保留，此字段为空。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -783,31 +783,31 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var deadlineTime: Date?
-        
+
         /// 快照创建进度百分比，快照创建成功后此字段恒为100。
         public let percent: UInt64?
-        
+
         /// 快照关联的镜像列表。
         public let images: [Image]
-        
+
         /// 快照当前被共享数。
         public let shareReference: UInt64
-        
+
         /// 快照类型，目前该项取值可以为PRIVATE_SNAPSHOT或者SHARED_SNAPSHOT
         public let snapshotType: String
-        
+
         /// 创建此快照的云硬盘大小，单位GB。
         public let diskSize: UInt64?
-        
+
         /// 创建此快照的云硬盘ID。
         public let diskId: String?
-        
+
         /// 快照正在跨地域复制的目的地域，默认取值为[]。
         public let copyingToRegions: [String]
-        
+
         /// 是否为加密盘创建的快照。取值范围：<br><li>true：该快照为加密盘创建的<br><li>false:非加密盘创建的快照。
         public let encrypt: Bool?
-        
+
         /// 快照的创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -815,16 +815,16 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date?
-        
+
         /// 快照关联的镜像个数。
         public let imageCount: UInt64
-        
+
         /// 创建此快照的云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘<br><li>DATA_DISK：数据盘。
         public let diskUsage: String?
-        
+
         /// 快照ID。
         public let snapshotId: String
-        
+
         /// 快照开始共享的时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -832,10 +832,10 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var timeStartShare: Date
-        
+
         /// 快照绑定的标签列表。
         public let tags: [Tag]
-        
+
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"
             case copyFromRemote = "CopyFromRemote"
@@ -859,21 +859,21 @@ extension Cbs {
             case tags = "Tags"
         }
     }
-    
+
     /// 描述快照跨地域复制的结果。
     public struct SnapshotCopyResult: TCOutputModel {
         /// 复制到目标地域的新快照ID。
         public let snapshotId: String
-        
+
         /// 指示具体错误信息，成功时为空字符串。
         public let message: String
-        
+
         /// 错误码，成功时取值为“Success”。
         public let code: String
-        
+
         /// 跨地复制的目标地域。
         public let destinationRegion: String
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotId = "SnapshotId"
             case message = "Message"
@@ -881,13 +881,13 @@ extension Cbs {
             case destinationRegion = "DestinationRegion"
         }
     }
-    
+
     /// 快照操作日志。
     public struct SnapshotOperationLog: TCOutputModel {
         /// 操作者的UIN。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
-        
+
         /// 操作类型。取值范围：
         /// SNAP_OPERATION_DELETE：删除快照
         /// SNAP_OPERATION_ROLLBACK：回滚快照
@@ -897,22 +897,22 @@ extension Cbs {
         /// ASP_OPERATION_CREATE_SNAP：由定期快照策略创建快照
         /// ASP_OPERATION_DELETE_SNAP：由定期快照策略删除快照
         public let operation: String
-        
+
         /// 操作的快照ID。
         public let snapshotId: String
-        
+
         /// 操作的状态。取值范围：
-        /// SUCCESS :表示操作成功 
-        /// FAILED :表示操作失败 
+        /// SUCCESS :表示操作成功
+        /// FAILED :表示操作失败
         /// PROCESSING :表示操作中。
         public let operationState: String
-        
+
         /// 开始时间。
         public let startTime: String
-        
+
         /// 结束时间。
         public let endTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case operation = "Operation"
@@ -922,20 +922,20 @@ extension Cbs {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 标签。
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签健。
         public let key: String
-        
+
         /// 标签值。
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"

@@ -19,39 +19,39 @@ extension Cdb {
     public struct DeleteBackupRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
+
         /// 备份任务 ID。该任务 ID 为 [创建云数据库备份](https://cloud.tencent.com/document/api/236/15844) 接口返回的任务 ID。
         public let backupId: Int64
-        
-        public init (instanceId: String, backupId: Int64) {
+
+        public init(instanceId: String, backupId: Int64) {
             self.instanceId = instanceId
             self.backupId = backupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case backupId = "BackupId"
         }
     }
-    
+
     /// DeleteBackup返回参数结构体
     public struct DeleteBackupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除云数据库备份
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable
-    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBackupResponse > {
+    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
         self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除云数据库备份
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
@@ -59,15 +59,15 @@ extension Cdb {
     public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
         try await self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除云数据库备份
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable
-    public func deleteBackup(instanceId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBackupResponse > {
+    public func deleteBackup(instanceId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
         self.deleteBackup(DeleteBackupRequest(instanceId: instanceId, backupId: backupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除云数据库备份
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。

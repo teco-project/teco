@@ -19,31 +19,31 @@ extension Iotcloud {
     public struct ListSDKLogRequest: TCRequestModel {
         /// 日志开始时间
         public let minTime: UInt64
-        
+
         /// 日志结束时间
         public let maxTime: UInt64
-        
+
         /// 查询关键字，可以同时支持键值查询和文本查询，
         /// 例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。
         /// 键值或文本可以包含多个，以空格隔开。
         /// 其中可以索引的key包括：productid、devicename、loglevel
         /// 一个典型的查询示例：productid:7JK1G72JNE devicename:name publish loglevel:WARN一个典型的查询示例：productid:ABCDE12345 devicename:test scene:SHADOW publish
         public let keywords: String
-        
+
         /// 日志检索上下文
         public let context: String?
-        
+
         /// 查询条数
         public let maxNum: UInt64?
-        
-        public init (minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil) {
+
+        public init(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.keywords = keywords
             self.context = context
             self.maxNum = maxNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case minTime = "MinTime"
             case maxTime = "MaxTime"
@@ -52,21 +52,21 @@ extension Iotcloud {
             case maxNum = "MaxNum"
         }
     }
-    
+
     /// ListSDKLog返回参数结构体
     public struct ListSDKLogResponse: TCResponseModel {
         /// 日志检索上下文
         public let context: String
-        
+
         /// 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
         public let listover: Bool
-        
+
         /// 日志列表
         public let results: [SDKLogItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case context = "Context"
             case listover = "Listover"
@@ -74,15 +74,15 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备sdk日志
     ///
     /// 获取设备上报的日志
     @inlinable
-    public func listSDKLog(_ input: ListSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSDKLogResponse > {
+    public func listSDKLog(_ input: ListSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSDKLogResponse> {
         self.client.execute(action: "ListSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备sdk日志
     ///
     /// 获取设备上报的日志
@@ -90,15 +90,15 @@ extension Iotcloud {
     public func listSDKLog(_ input: ListSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSDKLogResponse {
         try await self.client.execute(action: "ListSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备sdk日志
     ///
     /// 获取设备上报的日志
     @inlinable
-    public func listSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSDKLogResponse > {
+    public func listSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSDKLogResponse> {
         self.listSDKLog(ListSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备sdk日志
     ///
     /// 获取设备上报的日志

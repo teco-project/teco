@@ -19,66 +19,66 @@ extension Iotcloud {
     public struct DescribeTasksRequest: TCRequestModel {
         /// 偏移量，从0开始
         public let offset: UInt64
-        
+
         /// 分页的大小，数值范围 1-250
         public let limit: UInt64
-        
-        public init (offset: UInt64, limit: UInt64) {
+
+        public init(offset: UInt64, limit: UInt64) {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeTasks返回参数结构体
     public struct DescribeTasksResponse: TCResponseModel {
         /// 用户一个月内创建的任务总数
         public let totalCount: UInt64
-        
+
         /// 此页任务对象的数组，按创建时间排序
         public let tasks: [TaskInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取任务列表
     ///
-    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月 
+    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月
     @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
         self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务列表
     ///
-    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月 
+    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月
     @inlinable
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取任务列表
     ///
-    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月 
+    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月
     @inlinable
-    public func describeTasks(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+    public func describeTasks(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
         self.describeTasks(DescribeTasksRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务列表
     ///
-    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月 
+    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月
     @inlinable
     public func describeTasks(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.describeTasks(DescribeTasksRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)

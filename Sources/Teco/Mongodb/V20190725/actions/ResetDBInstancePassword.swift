@@ -19,58 +19,58 @@ extension Mongodb {
     public struct ResetDBInstancePasswordRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 实例账号名
         public let userName: String
-        
+
         /// 新密码，新密码长度不能少于8位
         public let password: String
-        
-        public init (instanceId: String, userName: String, password: String) {
+
+        public init(instanceId: String, userName: String, password: String) {
             self.instanceId = instanceId
             self.userName = userName
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case userName = "UserName"
             case password = "Password"
         }
     }
-    
+
     /// ResetDBInstancePassword返回参数结构体
     public struct ResetDBInstancePasswordResponse: TCResponseModel {
         /// 异步请求Id，用户查询该流程的运行状态
         public let asyncRequestId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例用户的密码
     @inlinable
-    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDBInstancePasswordResponse > {
+    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDBInstancePasswordResponse> {
         self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例用户的密码
     @inlinable
     public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
         try await self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例用户的密码
     @inlinable
-    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDBInstancePasswordResponse > {
+    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDBInstancePasswordResponse> {
         self.resetDBInstancePassword(ResetDBInstancePasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例用户的密码
     @inlinable
     public func resetDBInstancePassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {

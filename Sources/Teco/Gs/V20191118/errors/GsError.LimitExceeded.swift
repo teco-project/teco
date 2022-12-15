@@ -19,38 +19,38 @@ extension TCGsError {
         enum Code: String {
             case role = "LimitExceeded.Role"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 【多人游戏】对应的角色人数超过限制。
         public static var role: LimitExceeded {
             LimitExceeded(.role)
         }
-        
+
         public func asGsError() -> TCGsError {
             let code: TCGsError.Code
             switch self.error {
-            case .role: 
+            case .role:
                 code = .limitExceeded_Role
             }
             return TCGsError(code, context: self.context)

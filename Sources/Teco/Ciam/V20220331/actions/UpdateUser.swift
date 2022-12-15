@@ -19,50 +19,50 @@ extension Ciam {
     public struct UpdateUserRequest: TCRequestModel {
         /// 用户ID
         public let userId: String
-        
+
         /// 用户目录ID
         public let userStoreId: String
-        
+
         /// 用户名称
         public let userName: String?
-        
+
         /// 手机号码
         public let phoneNumber: String?
-        
+
         /// 邮箱
         public let email: String?
-        
+
         /// 昵称
         public let nickname: String?
-        
+
         /// 地址
         public let address: String?
-        
+
         /// 用户组
         public let userGroup: [String]?
-        
+
         /// 生日
         public let birthdate: Int64?
-        
+
         /// 自定义属性
         public let customizationAttributes: [MemberMap]?
-        
+
         /// 索引字段1
         public let indexedAttribute1: String?
-        
+
         /// 索引字段2
         public let indexedAttribute2: String?
-        
+
         /// 索引字段3
         public let indexedAttribute3: String?
-        
+
         /// 索引字段4
         public let indexedAttribute4: String?
-        
+
         /// 索引字段5
         public let indexedAttribute5: String?
-        
-        public init (userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil) {
+
+        public init(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil) {
             self.userId = userId
             self.userStoreId = userStoreId
             self.userName = userName
@@ -79,7 +79,7 @@ extension Ciam {
             self.indexedAttribute4 = indexedAttribute4
             self.indexedAttribute5 = indexedAttribute5
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case userStoreId = "UserStoreId"
@@ -98,40 +98,40 @@ extension Ciam {
             case indexedAttribute5 = "IndexedAttribute5"
         }
     }
-    
+
     /// UpdateUser返回参数结构体
     public struct UpdateUserResponse: TCResponseModel {
         /// 更新之后的用户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let user: User?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case user = "User"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新用户
     @inlinable
-    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserResponse > {
+    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserResponse> {
         self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新用户
     @inlinable
     public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
         try await self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新用户
     @inlinable
-    public func updateUser(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserResponse > {
+    public func updateUser(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserResponse> {
         self.updateUser(UpdateUserRequest(userId: userId, userStoreId: userStoreId, userName: userName, phoneNumber: phoneNumber, email: email, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新用户
     @inlinable
     public func updateUser(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {

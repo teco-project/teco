@@ -19,43 +19,43 @@ extension Cynosdb {
     public struct ActivateInstanceRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 实例 ID 列表，单个实例 ID 格式如：cynosdbmysql-ins-n7ocdslw，与TDSQL-C MySQL数据库控制台页面中显示的实例 ID 相同，可使用 查询实例列表 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceIdList: [String]
-        
-        public init (clusterId: String, instanceIdList: [String]) {
+
+        public init(clusterId: String, instanceIdList: [String]) {
             self.clusterId = clusterId
             self.instanceIdList = instanceIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case instanceIdList = "InstanceIdList"
         }
     }
-    
+
     /// ActivateInstance返回参数结构体
     public struct ActivateInstanceResponse: TCResponseModel {
         /// 任务流id
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 恢复实例访问
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
-    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateInstanceResponse > {
+    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateInstanceResponse> {
         self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复实例访问
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
@@ -63,15 +63,15 @@ extension Cynosdb {
     public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
         try await self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 恢复实例访问
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
-    public func activateInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateInstanceResponse > {
+    public func activateInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateInstanceResponse> {
         self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复实例访问
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。

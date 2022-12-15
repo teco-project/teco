@@ -19,44 +19,44 @@ extension Nlp {
     public struct DescribeDictRequest: TCRequestModel {
         /// 自定义词库ID。
         public let dictId: String?
-        
+
         /// 自定义词库名称，模糊搜索。
         public let name: String?
-        
-        public init (dictId: String? = nil, name: String? = nil) {
+
+        public init(dictId: String? = nil, name: String? = nil) {
             self.dictId = dictId
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dictId = "DictId"
             case name = "Name"
         }
     }
-    
+
     /// DescribeDict返回参数结构体
     public struct DescribeDictResponse: TCResponseModel {
         /// 查询到的词库信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dicts: [DictInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dicts = "Dicts"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询词库信息
     ///
     /// 根据id或名称查询自定义词库信息。
     @inlinable
-    public func describeDict(_ input: DescribeDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDictResponse > {
+    public func describeDict(_ input: DescribeDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDictResponse> {
         self.client.execute(action: "DescribeDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询词库信息
     ///
     /// 根据id或名称查询自定义词库信息。
@@ -64,15 +64,15 @@ extension Nlp {
     public func describeDict(_ input: DescribeDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDictResponse {
         try await self.client.execute(action: "DescribeDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询词库信息
     ///
     /// 根据id或名称查询自定义词库信息。
     @inlinable
-    public func describeDict(dictId: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDictResponse > {
+    public func describeDict(dictId: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDictResponse> {
         self.describeDict(DescribeDictRequest(dictId: dictId, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询词库信息
     ///
     /// 根据id或名称查询自定义词库信息。

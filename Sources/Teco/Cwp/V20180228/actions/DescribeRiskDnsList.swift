@@ -19,10 +19,10 @@ extension Cwp {
     public struct DescribeRiskDnsListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         /// <li>Url - String - 是否必填：否 - Url筛选</li>
@@ -30,21 +30,21 @@ extension Cwp {
         /// <li>MergeBeginTime - String - 是否必填：否 - 最近访问开始时间</li>
         /// <li>MergeEndTime - String - 是否必填：否 - 最近访问结束时间</li>
         public let filters: [Filter]?
-        
+
         /// 排序方式：根据请求次数排序：asc-升序/desc-降序
         public let order: String?
-        
+
         /// 排序字段：AccessCount-请求次数。MergeTime-最近请求时间
         public let by: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -53,34 +53,34 @@ extension Cwp {
             case by = "By"
         }
     }
-    
+
     /// DescribeRiskDnsList返回参数结构体
     public struct DescribeRiskDnsListResponse: TCResponseModel {
         /// 恶意请求列表数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskDnsList: [RiskDnsList]?
-        
+
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case riskDnsList = "RiskDnsList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取恶意请求列表
     ///
     /// 入侵检测，获取恶意请求列表
     @inlinable
-    public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskDnsListResponse > {
+    public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskDnsListResponse> {
         self.client.execute(action: "DescribeRiskDnsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取恶意请求列表
     ///
     /// 入侵检测，获取恶意请求列表
@@ -88,15 +88,15 @@ extension Cwp {
     public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskDnsListResponse {
         try await self.client.execute(action: "DescribeRiskDnsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取恶意请求列表
     ///
     /// 入侵检测，获取恶意请求列表
     @inlinable
-    public func describeRiskDnsList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskDnsListResponse > {
+    public func describeRiskDnsList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskDnsListResponse> {
         self.describeRiskDnsList(DescribeRiskDnsListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取恶意请求列表
     ///
     /// 入侵检测，获取恶意请求列表

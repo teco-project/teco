@@ -20,44 +20,44 @@ extension TCIeError {
             case liveStreamNotSupport = "InvalidParameter.LiveStreamNotSupport"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var liveStreamNotSupport: InvalidParameter {
             InvalidParameter(.liveStreamNotSupport)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asIeError() -> TCIeError {
             let code: TCIeError.Code
             switch self.error {
-            case .liveStreamNotSupport: 
+            case .liveStreamNotSupport:
                 code = .invalidParameter_LiveStreamNotSupport
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCIeError(code, context: self.context)

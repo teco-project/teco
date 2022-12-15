@@ -29,108 +29,108 @@ extension TCScfError {
             case updateFunctionCode = "UnauthorizedOperation.UpdateFunctionCode"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM鉴权失败。
         public static var cam: UnauthorizedOperation {
             UnauthorizedOperation(.cam)
         }
-        
+
         /// 无访问代码权限。
         public static var codeSecret: UnauthorizedOperation {
             UnauthorizedOperation(.codeSecret)
         }
-        
+
         /// 没有权限。
         public static var createTrigger: UnauthorizedOperation {
             UnauthorizedOperation(.createTrigger)
         }
-        
+
         /// 没有权限的操作。
         public static var deleteFunction: UnauthorizedOperation {
             UnauthorizedOperation(.deleteFunction)
         }
-        
+
         /// 没有权限。
         public static var deleteTrigger: UnauthorizedOperation {
             UnauthorizedOperation(.deleteTrigger)
         }
-        
+
         /// 不是从控制台调用的该接口。
         public static var notMC: UnauthorizedOperation {
             UnauthorizedOperation(.notMC)
         }
-        
+
         /// Region错误。
         public static var region: UnauthorizedOperation {
             UnauthorizedOperation(.region)
         }
-        
+
         /// 没有权限访问您的Cos资源。
         public static var role: UnauthorizedOperation {
             UnauthorizedOperation(.role)
         }
-        
+
         /// TempCos的Appid和请求账户的APPID不一致。
         public static var tempCosAppid: UnauthorizedOperation {
             UnauthorizedOperation(.tempCosAppid)
         }
-        
+
         /// 无法进行此操作。
         public static var updateFunctionCode: UnauthorizedOperation {
             UnauthorizedOperation(.updateFunctionCode)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
-            case .cam: 
+            case .cam:
                 code = .unauthorizedOperation_CAM
-            case .codeSecret: 
+            case .codeSecret:
                 code = .unauthorizedOperation_CodeSecret
-            case .createTrigger: 
+            case .createTrigger:
                 code = .unauthorizedOperation_CreateTrigger
-            case .deleteFunction: 
+            case .deleteFunction:
                 code = .unauthorizedOperation_DeleteFunction
-            case .deleteTrigger: 
+            case .deleteTrigger:
                 code = .unauthorizedOperation_DeleteTrigger
-            case .notMC: 
+            case .notMC:
                 code = .unauthorizedOperation_NotMC
-            case .region: 
+            case .region:
                 code = .unauthorizedOperation_Region
-            case .role: 
+            case .role:
                 code = .unauthorizedOperation_Role
-            case .tempCosAppid: 
+            case .tempCosAppid:
                 code = .unauthorizedOperation_TempCosAppid
-            case .updateFunctionCode: 
+            case .updateFunctionCode:
                 code = .unauthorizedOperation_UpdateFunctionCode
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCScfError(code, context: self.context)

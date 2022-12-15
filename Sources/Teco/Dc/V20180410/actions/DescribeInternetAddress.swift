@@ -19,10 +19,10 @@ extension Dc {
     public struct DescribeInternetAddressRequest: TCRequestModel {
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值100
         public let limit: Int64?
-        
+
         /// 过滤条件：
         /// <li>AddrType, 地址类型。0：BGP 1; 1: 电信， 2：移动， 3：联通</li>
         /// <li>AddrProto地址类型。0：IPv4 1:IPv6</li>
@@ -30,57 +30,57 @@ extension Dc {
         /// <li>Subnet 互联网公网地址，数组</li>
         /// <InstanceIds>互联网公网地址ID，数组</li>
         public let filters: [Filter]?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeInternetAddress返回参数结构体
     public struct DescribeInternetAddressResponse: TCResponseModel {
         /// 互联网公网地址数量
         public let totalCount: Int64
-        
+
         /// 互联网公网地址列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnets: [InternetAddressDetail]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case subnets = "Subnets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户互联网公网地址信息
     @inlinable
-    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressResponse > {
+    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressResponse> {
         self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户互联网公网地址信息
     @inlinable
     public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
         try await self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户互联网公网地址信息
     @inlinable
-    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressResponse > {
+    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressResponse> {
         self.describeInternetAddress(DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户互联网公网地址信息
     @inlinable
     public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {

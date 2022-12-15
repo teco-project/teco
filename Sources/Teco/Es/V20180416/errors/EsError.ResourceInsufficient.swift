@@ -22,59 +22,59 @@ extension TCEsError {
             case subnet = "ResourceInsufficient.Subnet"
             case other = "ResourceInsufficient"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账户余额不足。
         public static var balance: ResourceInsufficient {
             ResourceInsufficient(.balance)
         }
-        
+
         /// 隐藏可用区专用主节点资源不足。
         public static var hiddenZone: ResourceInsufficient {
             ResourceInsufficient(.hiddenZone)
         }
-        
+
         /// 子网剩余ip数量不足。
         public static var subnet: ResourceInsufficient {
             ResourceInsufficient(.subnet)
         }
-        
+
         /// 资源不足。
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-        
+
         public func asEsError() -> TCEsError {
             let code: TCEsError.Code
             switch self.error {
-            case .balance: 
+            case .balance:
                 code = .resourceInsufficient_Balance
-            case .hiddenZone: 
+            case .hiddenZone:
                 code = .resourceInsufficient_HiddenZone
-            case .subnet: 
+            case .subnet:
                 code = .resourceInsufficient_Subnet
-            case .other: 
+            case .other:
                 code = .resourceInsufficient
             }
             return TCEsError(code, context: self.context)

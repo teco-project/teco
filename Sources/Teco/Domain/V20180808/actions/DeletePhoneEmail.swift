@@ -19,39 +19,39 @@ extension Domain {
     public struct DeletePhoneEmailRequest: TCRequestModel {
         /// 手机或者邮箱
         public let code: String
-        
+
         /// 1：手机  2：邮箱
         public let type: UInt64
-        
-        public init (code: String, type: UInt64) {
+
+        public init(code: String, type: UInt64) {
             self.code = code
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case type = "Type"
         }
     }
-    
+
     /// DeletePhoneEmail返回参数结构体
     public struct DeletePhoneEmailResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除手机邮箱
     ///
     /// 此接口用于删除已验证的手机邮箱
     @inlinable
-    public func deletePhoneEmail(_ input: DeletePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePhoneEmailResponse > {
+    public func deletePhoneEmail(_ input: DeletePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePhoneEmailResponse> {
         self.client.execute(action: "DeletePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除手机邮箱
     ///
     /// 此接口用于删除已验证的手机邮箱
@@ -59,15 +59,15 @@ extension Domain {
     public func deletePhoneEmail(_ input: DeletePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePhoneEmailResponse {
         try await self.client.execute(action: "DeletePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除手机邮箱
     ///
     /// 此接口用于删除已验证的手机邮箱
     @inlinable
-    public func deletePhoneEmail(code: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePhoneEmailResponse > {
+    public func deletePhoneEmail(code: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePhoneEmailResponse> {
         self.deletePhoneEmail(DeletePhoneEmailRequest(code: code, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除手机邮箱
     ///
     /// 此接口用于删除已验证的手机邮箱

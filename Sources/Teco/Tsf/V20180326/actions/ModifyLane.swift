@@ -19,58 +19,58 @@ extension Tsf {
     public struct ModifyLaneRequest: TCRequestModel {
         /// 泳道ID
         public let laneId: String
-        
+
         /// 泳道名称
         public let laneName: String
-        
+
         /// 备注
         public let remark: String
-        
-        public init (laneId: String, laneName: String, remark: String) {
+
+        public init(laneId: String, laneName: String, remark: String) {
             self.laneId = laneId
             self.laneName = laneName
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case laneId = "LaneId"
             case laneName = "LaneName"
             case remark = "Remark"
         }
     }
-    
+
     /// ModifyLane返回参数结构体
     public struct ModifyLaneResponse: TCResponseModel {
         /// 操作状态
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新泳道信息
     @inlinable
-    public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaneResponse > {
+    public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaneResponse> {
         self.client.execute(action: "ModifyLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新泳道信息
     @inlinable
     public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneResponse {
         try await self.client.execute(action: "ModifyLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新泳道信息
     @inlinable
-    public func modifyLane(laneId: String, laneName: String, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaneResponse > {
+    public func modifyLane(laneId: String, laneName: String, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaneResponse> {
         self.modifyLane(ModifyLaneRequest(laneId: laneId, laneName: laneName, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新泳道信息
     @inlinable
     public func modifyLane(laneId: String, laneName: String, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneResponse {

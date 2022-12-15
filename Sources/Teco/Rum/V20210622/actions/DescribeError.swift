@@ -19,35 +19,35 @@ extension Rum {
     public struct DescribeErrorRequest: TCRequestModel {
         /// 日期
         public let date: String
-        
+
         /// 项目ID
         public let id: Int64
-        
-        public init (date: String, id: Int64) {
+
+        public init(date: String, id: Int64) {
             self.date = date
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case id = "ID"
         }
     }
-    
+
     /// DescribeError返回参数结构体
     public struct DescribeErrorResponse: TCResponseModel {
         /// 内容
         public let content: String
-        
+
         /// 项目ID
         public let id: Int64
-        
+
         /// 时间
         public let createTime: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
             case id = "ID"
@@ -55,25 +55,25 @@ extension Rum {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取首页错误信息
     @inlinable
-    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorResponse > {
+    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorResponse> {
         self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取首页错误信息
     @inlinable
     public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
         try await self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取首页错误信息
     @inlinable
-    public func describeError(date: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorResponse > {
+    public func describeError(date: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorResponse> {
         self.describeError(DescribeErrorRequest(date: date, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取首页错误信息
     @inlinable
     public func describeError(date: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {

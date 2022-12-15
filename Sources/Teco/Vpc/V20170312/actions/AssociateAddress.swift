@@ -19,27 +19,27 @@ extension Vpc {
     public struct AssociateAddressRequest: TCRequestModel {
         /// 标识 EIP 的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
         public let addressId: String
-        
+
         /// 要绑定的实例 ID。实例 ID 形如：`ins-11112222`。可通过登录[控制台](https://console.cloud.tencent.com/cvm)查询，也可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         public let instanceId: String?
-        
+
         /// 要绑定的弹性网卡 ID。 弹性网卡 ID 形如：`eni-11112222`。`NetworkInterfaceId` 与 `InstanceId` 不可同时指定。弹性网卡 ID 可通过登录[控制台](https://console.cloud.tencent.com/vpc/eni)查询，也可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/api/215/15817)接口返回值中的`networkInterfaceId`获取。
         public let networkInterfaceId: String?
-        
+
         /// 要绑定的内网 IP。如果指定了 `NetworkInterfaceId` 则也必须指定 `PrivateIpAddress` ，表示将 EIP 绑定到指定弹性网卡的指定内网 IP 上。同时要确保指定的 `PrivateIpAddress` 是指定的 `NetworkInterfaceId` 上的一个内网 IP。指定弹性网卡的内网 IP 可通过登录[控制台](https://console.cloud.tencent.com/vpc/eni)查询，也可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/api/215/15817)接口返回值中的`privateIpAddress`获取。
         public let privateIpAddress: String?
-        
+
         /// 指定绑定时是否设置直通。弹性公网 IP 直通请参见 [EIP 直通](https://cloud.tencent.com/document/product/1199/41709)。取值：True、False，默认值为 False。当绑定 CVM 实例、EKS 弹性集群时，可设定此参数为 True。此参数目前处于内测中，如需使用，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&level3_id=1071&queue=96&scene_code=34639&step=2)。
         public let eipDirectConnection: Bool?
-        
-        public init (addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil) {
+
+        public init(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil) {
             self.addressId = addressId
             self.instanceId = instanceId
             self.networkInterfaceId = networkInterfaceId
             self.privateIpAddress = privateIpAddress
             self.eipDirectConnection = eipDirectConnection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addressId = "AddressId"
             case instanceId = "InstanceId"
@@ -48,21 +48,21 @@ extension Vpc {
             case eipDirectConnection = "EipDirectConnection"
         }
     }
-    
+
     /// AssociateAddress返回参数结构体
     public struct AssociateAddressResponse: TCResponseModel {
         /// 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定弹性公网IP
     ///
     /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
@@ -73,10 +73,10 @@ extension Vpc {
     /// * EIP 如果欠费或被封堵，则不能被绑定。
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
-    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateAddressResponse > {
+    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAddressResponse> {
         self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定弹性公网IP
     ///
     /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
@@ -90,7 +90,7 @@ extension Vpc {
     public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
         try await self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定弹性公网IP
     ///
     /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
@@ -101,10 +101,10 @@ extension Vpc {
     /// * EIP 如果欠费或被封堵，则不能被绑定。
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
-    public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateAddressResponse > {
+    public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAddressResponse> {
         self.associateAddress(AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定弹性公网IP
     ///
     /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。

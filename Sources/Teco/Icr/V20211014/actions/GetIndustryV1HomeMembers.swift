@@ -19,49 +19,49 @@ extension Icr {
     public struct GetIndustryV1HomeMembersRequest: TCRequestModel {
         /// 无
         public let payload: GetIndustryV1HomeMembersReqPayload
-        
+
         /// 无
         public let metadata: ReqMetadata?
-        
-        public init (payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil) {
+
+        public init(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil) {
             self.payload = payload
             self.metadata = metadata
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payload = "Payload"
             case metadata = "Metadata"
         }
     }
-    
+
     /// GetIndustryV1HomeMembers返回参数结构体
     public struct GetIndustryV1HomeMembersResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metadata: RspMetadata?
-        
+
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payload: GetIndustryV1HomeMembersRespPayload?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metadata = "Metadata"
             case payload = "Payload"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取成员列表
     ///
     /// 获取成员列表接口
     @inlinable
-    public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIndustryV1HomeMembersResponse > {
+    public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIndustryV1HomeMembersResponse> {
         self.client.execute(action: "GetIndustryV1HomeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取成员列表
     ///
     /// 获取成员列表接口
@@ -69,15 +69,15 @@ extension Icr {
     public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIndustryV1HomeMembersResponse {
         try await self.client.execute(action: "GetIndustryV1HomeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取成员列表
     ///
     /// 获取成员列表接口
     @inlinable
-    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIndustryV1HomeMembersResponse > {
+    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIndustryV1HomeMembersResponse> {
         self.getIndustryV1HomeMembers(GetIndustryV1HomeMembersRequest(payload: payload, metadata: metadata), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取成员列表
     ///
     /// 获取成员列表接口

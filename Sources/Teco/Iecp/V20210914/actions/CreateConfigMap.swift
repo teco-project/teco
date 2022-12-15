@@ -19,23 +19,23 @@ extension Iecp {
     public struct CreateConfigMapRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitID: UInt64
-        
+
         /// ConfigMap名称
         public let configMapName: String
-        
+
         /// ConfigMap内容
         public let configMapData: [KeyValueObj]
-        
+
         /// ConfigMap命名空间,默认：default
         public let configMapNamespace: String?
-        
-        public init (edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil) {
+
+        public init(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.configMapName = configMapName
             self.configMapData = configMapData
             self.configMapNamespace = configMapNamespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitID = "EdgeUnitID"
             case configMapName = "ConfigMapName"
@@ -43,35 +43,35 @@ extension Iecp {
             case configMapNamespace = "ConfigMapNamespace"
         }
     }
-    
+
     /// CreateConfigMap返回参数结构体
     public struct CreateConfigMapResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建ConfigMap
     @inlinable
-    public func createConfigMap(_ input: CreateConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigMapResponse > {
+    public func createConfigMap(_ input: CreateConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigMapResponse> {
         self.client.execute(action: "CreateConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建ConfigMap
     @inlinable
     public func createConfigMap(_ input: CreateConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigMapResponse {
         try await self.client.execute(action: "CreateConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建ConfigMap
     @inlinable
-    public func createConfigMap(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigMapResponse > {
+    public func createConfigMap(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigMapResponse> {
         self.createConfigMap(CreateConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapData: configMapData, configMapNamespace: configMapNamespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建ConfigMap
     @inlinable
     public func createConfigMap(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigMapResponse {

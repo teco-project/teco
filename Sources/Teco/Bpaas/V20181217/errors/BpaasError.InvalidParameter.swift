@@ -21,52 +21,52 @@ extension TCBpaasError {
             case idNotExist = "InvalidParameter.IdNotExist"
             case illegalNode = "InvalidParameter.IllegalNode"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 已经审批。
         public static var hasBeenApproved: InvalidParameter {
             InvalidParameter(.hasBeenApproved)
         }
-        
+
         /// id不存在。
         public static var idNotExist: InvalidParameter {
             InvalidParameter(.idNotExist)
         }
-        
+
         /// 非法流程节点。
         public static var illegalNode: InvalidParameter {
             InvalidParameter(.illegalNode)
         }
-        
+
         public func asBpaasError() -> TCBpaasError {
             let code: TCBpaasError.Code
             switch self.error {
-            case .hasBeenApproved: 
+            case .hasBeenApproved:
                 code = .invalidParameter_HasBeenApproved
-            case .idNotExist: 
+            case .idNotExist:
                 code = .invalidParameter_IdNotExist
-            case .illegalNode: 
+            case .illegalNode:
                 code = .invalidParameter_IllegalNode
             }
             return TCBpaasError(code, context: self.context)

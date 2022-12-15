@@ -17,36 +17,36 @@
 extension Live {
     /// DescribeLiveWatermarks请求参数结构体
     public struct DescribeLiveWatermarksRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeLiveWatermarks返回参数结构体
     public struct DescribeLiveWatermarksResponse: TCResponseModel {
         /// 水印总个数。
         public let totalNum: UInt64
-        
+
         /// 水印信息列表。
         public let watermarkList: [WatermarkInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalNum = "TotalNum"
             case watermarkList = "WatermarkList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询水印列表
     ///
     /// 查询水印列表。
     @inlinable
-    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarksResponse > {
+    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarksResponse> {
         self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询水印列表
     ///
     /// 查询水印列表。
@@ -54,15 +54,15 @@ extension Live {
     public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
         try await self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询水印列表
     ///
     /// 查询水印列表。
     @inlinable
-    public func describeLiveWatermarks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarksResponse > {
+    public func describeLiveWatermarks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarksResponse> {
         self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询水印列表
     ///
     /// 查询水印列表。

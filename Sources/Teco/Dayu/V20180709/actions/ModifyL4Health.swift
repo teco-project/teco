@@ -19,48 +19,48 @@ extension Dayu {
     public struct ModifyL4HealthRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 健康检查参数数组
         public let healths: [L4RuleHealth]
-        
-        public init (business: String, id: String, healths: [L4RuleHealth]) {
+
+        public init(business: String, id: String, healths: [L4RuleHealth]) {
             self.business = business
             self.id = id
             self.healths = healths
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
             case healths = "Healths"
         }
     }
-    
+
     /// ModifyL4Health返回参数结构体
     public struct ModifyL4HealthResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改L4转发规则健康检查参数
     ///
     /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
     @inlinable
-    public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4HealthResponse > {
+    public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4HealthResponse> {
         self.client.execute(action: "ModifyL4Health", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改L4转发规则健康检查参数
     ///
     /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
@@ -68,15 +68,15 @@ extension Dayu {
     public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4HealthResponse {
         try await self.client.execute(action: "ModifyL4Health", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改L4转发规则健康检查参数
     ///
     /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
     @inlinable
-    public func modifyL4Health(business: String, id: String, healths: [L4RuleHealth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4HealthResponse > {
+    public func modifyL4Health(business: String, id: String, healths: [L4RuleHealth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4HealthResponse> {
         self.modifyL4Health(ModifyL4HealthRequest(business: business, id: id, healths: healths), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改L4转发规则健康检查参数
     ///
     /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版

@@ -19,34 +19,34 @@ extension Bm {
     public struct DetachCamRoleRequest: TCRequestModel {
         /// 服务器ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DetachCamRole返回参数结构体
     public struct DetachCamRoleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 服务器解绑CAM角色
     ///
     /// 服务器绑定CAM角色
     @inlinable
-    public func detachCamRole(_ input: DetachCamRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCamRoleResponse > {
+    public func detachCamRole(_ input: DetachCamRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCamRoleResponse> {
         self.client.execute(action: "DetachCamRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 服务器解绑CAM角色
     ///
     /// 服务器绑定CAM角色
@@ -54,15 +54,15 @@ extension Bm {
     public func detachCamRole(_ input: DetachCamRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
         try await self.client.execute(action: "DetachCamRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 服务器解绑CAM角色
     ///
     /// 服务器绑定CAM角色
     @inlinable
-    public func detachCamRole(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCamRoleResponse > {
+    public func detachCamRole(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCamRoleResponse> {
         self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 服务器解绑CAM角色
     ///
     /// 服务器绑定CAM角色

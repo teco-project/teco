@@ -19,44 +19,44 @@ extension Tke {
     public struct UpdateTKEEdgeClusterRequest: TCRequestModel {
         /// 边缘计算集群ID
         public let clusterId: String
-        
+
         /// 边缘计算集群名称
         public let clusterName: String?
-        
+
         /// 边缘计算集群描述信息
         public let clusterDesc: String?
-        
+
         /// 边缘计算集群的pod cidr
         public let podCIDR: String?
-        
+
         /// 边缘计算集群的service cidr
         public let serviceCIDR: String?
-        
+
         /// 边缘计算集群公网访问LB信息
         public let publicLB: EdgeClusterPublicLB?
-        
+
         /// 边缘计算集群内网访问LB信息
         public let internalLB: EdgeClusterInternalLB?
-        
+
         /// 边缘计算集群的CoreDns部署信息
         public let coreDns: String?
-        
+
         /// 边缘计算集群的健康检查多地域部署信息
         public let healthRegion: String?
-        
+
         /// 边缘计算集群的健康检查部署信息
         public let health: String?
-        
+
         /// 边缘计算集群的GridDaemon部署信息
         public let gridDaemon: String?
-        
+
         /// 边缘集群开启自动升配
         public let autoUpgradeClusterLevel: Bool?
-        
+
         /// 边缘集群的集群规模
         public let clusterLevel: String?
-        
-        public init (clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil) {
+
+        public init(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.clusterDesc = clusterDesc
@@ -71,7 +71,7 @@ extension Tke {
             self.autoUpgradeClusterLevel = autoUpgradeClusterLevel
             self.clusterLevel = clusterLevel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -88,44 +88,44 @@ extension Tke {
             case clusterLevel = "ClusterLevel"
         }
     }
-    
+
     /// UpdateTKEEdgeCluster返回参数结构体
     public struct UpdateTKEEdgeClusterResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改边缘计算的集群
     ///
-    /// 修改边缘计算集群名称等属性 
+    /// 修改边缘计算集群名称等属性
     @inlinable
-    public func updateTKEEdgeCluster(_ input: UpdateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTKEEdgeClusterResponse > {
+    public func updateTKEEdgeCluster(_ input: UpdateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTKEEdgeClusterResponse> {
         self.client.execute(action: "UpdateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改边缘计算的集群
     ///
-    /// 修改边缘计算集群名称等属性 
+    /// 修改边缘计算集群名称等属性
     @inlinable
     public func updateTKEEdgeCluster(_ input: UpdateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTKEEdgeClusterResponse {
         try await self.client.execute(action: "UpdateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改边缘计算的集群
     ///
-    /// 修改边缘计算集群名称等属性 
+    /// 修改边缘计算集群名称等属性
     @inlinable
-    public func updateTKEEdgeCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTKEEdgeClusterResponse > {
+    public func updateTKEEdgeCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTKEEdgeClusterResponse> {
         self.updateTKEEdgeCluster(UpdateTKEEdgeClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, podCIDR: podCIDR, serviceCIDR: serviceCIDR, publicLB: publicLB, internalLB: internalLB, coreDns: coreDns, healthRegion: healthRegion, health: health, gridDaemon: gridDaemon, autoUpgradeClusterLevel: autoUpgradeClusterLevel, clusterLevel: clusterLevel), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改边缘计算的集群
     ///
-    /// 修改边缘计算集群名称等属性 
+    /// 修改边缘计算集群名称等属性
     @inlinable
     public func updateTKEEdgeCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTKEEdgeClusterResponse {
         try await self.updateTKEEdgeCluster(UpdateTKEEdgeClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, podCIDR: podCIDR, serviceCIDR: serviceCIDR, publicLB: publicLB, internalLB: internalLB, coreDns: coreDns, healthRegion: healthRegion, health: health, gridDaemon: gridDaemon, autoUpgradeClusterLevel: autoUpgradeClusterLevel, clusterLevel: clusterLevel), logger: logger, on: eventLoop)

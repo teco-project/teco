@@ -19,34 +19,34 @@ extension Asw {
     public struct StopExecutionRequest: TCRequestModel {
         /// 执行名称
         public let executionQrn: String
-        
-        public init (executionQrn: String) {
+
+        public init(executionQrn: String) {
             self.executionQrn = executionQrn
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case executionQrn = "ExecutionQrn"
         }
     }
-    
+
     /// StopExecution返回参数结构体
     public struct StopExecutionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止状态机
     ///
     /// 终止某个状态机
     @inlinable
-    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopExecutionResponse > {
+    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
         self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止状态机
     ///
     /// 终止某个状态机
@@ -54,15 +54,15 @@ extension Asw {
     public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
         try await self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止状态机
     ///
     /// 终止某个状态机
     @inlinable
-    public func stopExecution(executionQrn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopExecutionResponse > {
+    public func stopExecution(executionQrn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
         self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止状态机
     ///
     /// 终止某个状态机

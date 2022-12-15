@@ -19,49 +19,49 @@ extension Gme {
     public struct UpdateScanRoomsRequest: TCRequestModel {
         /// 应用ID
         public let bizId: UInt64
-        
+
         /// 需要送检的所有房间号。多个房间号之间用","分隔。示例："0001,0002,0003"
         public let roomIdString: String?
-        
+
         /// 符合此正则表达式规则的房间号将被送检。示例：["^6.*"] 表示所有以6开头的房间号将被送检
         public let roomIdRegex: [String]?
-        
-        public init (bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil) {
+
+        public init(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil) {
             self.bizId = bizId
             self.roomIdString = roomIdString
             self.roomIdRegex = roomIdRegex
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
             case roomIdString = "RoomIdString"
             case roomIdRegex = "RoomIdRegex"
         }
     }
-    
+
     /// UpdateScanRooms返回参数结构体
     public struct UpdateScanRoomsResponse: TCResponseModel {
         /// 返回结果码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorCode: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errorCode = "ErrorCode"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新送检房间号
     ///
     /// 更新自定义送检房间号
     @inlinable
-    public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanRoomsResponse > {
+    public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanRoomsResponse> {
         self.client.execute(action: "UpdateScanRooms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新送检房间号
     ///
     /// 更新自定义送检房间号
@@ -69,15 +69,15 @@ extension Gme {
     public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
         try await self.client.execute(action: "UpdateScanRooms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新送检房间号
     ///
     /// 更新自定义送检房间号
     @inlinable
-    public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanRoomsResponse > {
+    public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanRoomsResponse> {
         self.updateScanRooms(UpdateScanRoomsRequest(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新送检房间号
     ///
     /// 更新自定义送检房间号

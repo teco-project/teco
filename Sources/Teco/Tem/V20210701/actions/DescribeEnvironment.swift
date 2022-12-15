@@ -19,53 +19,53 @@ extension Tem {
     public struct DescribeEnvironmentRequest: TCRequestModel {
         /// 命名空间id
         public let environmentId: String
-        
+
         /// 来源Channel
         public let sourceChannel: Int64?
-        
-        public init (environmentId: String, sourceChannel: Int64? = nil) {
+
+        public init(environmentId: String, sourceChannel: Int64? = nil) {
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case sourceChannel = "SourceChannel"
         }
     }
-    
+
     /// DescribeEnvironment返回参数结构体
     public struct DescribeEnvironmentResponse: TCResponseModel {
         /// 环境信息
         public let result: NamespaceInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取环境基础信息
     @inlinable
-    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentResponse > {
+    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentResponse> {
         self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取环境基础信息
     @inlinable
     public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {
         try await self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取环境基础信息
     @inlinable
-    public func describeEnvironment(environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentResponse > {
+    public func describeEnvironment(environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentResponse> {
         self.describeEnvironment(DescribeEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取环境基础信息
     @inlinable
     public func describeEnvironment(environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {

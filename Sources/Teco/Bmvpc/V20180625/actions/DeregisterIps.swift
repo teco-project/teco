@@ -19,44 +19,44 @@ extension Bmvpc {
     public struct DeregisterIpsRequest: TCRequestModel {
         /// 私有网络ID
         public let vpcId: String
-        
+
         /// 注销指定IP的列表
         public let ipSet: [String]
-        
+
         /// 私有网络子网ID
         public let subnetId: String?
-        
-        public init (vpcId: String, ipSet: [String], subnetId: String? = nil) {
+
+        public init(vpcId: String, ipSet: [String], subnetId: String? = nil) {
             self.vpcId = vpcId
             self.ipSet = ipSet
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case ipSet = "IpSet"
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// DeregisterIps返回参数结构体
     public struct DeregisterIpsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 注销私有网络IP
     ///
     /// 注销私有网络IP为空闲
     @inlinable
-    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterIpsResponse > {
+    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterIpsResponse> {
         self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 注销私有网络IP
     ///
     /// 注销私有网络IP为空闲
@@ -64,15 +64,15 @@ extension Bmvpc {
     public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
         try await self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 注销私有网络IP
     ///
     /// 注销私有网络IP为空闲
     @inlinable
-    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterIpsResponse > {
+    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterIpsResponse> {
         self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), logger: logger, on: eventLoop)
     }
-    
+
     /// 注销私有网络IP
     ///
     /// 注销私有网络IP为空闲

@@ -17,42 +17,42 @@
 extension Tcss {
     /// DescribeAssetImageScanTask请求参数结构体
     public struct DescribeAssetImageScanTaskRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeAssetImageScanTask返回参数结构体
     public struct DescribeAssetImageScanTaskResponse: TCResponseModel {
         /// 任务id
         public let taskID: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询正在一键扫描的镜像扫描taskid
     @inlinable
-    public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanTaskResponse > {
+    public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanTaskResponse> {
         self.client.execute(action: "DescribeAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询正在一键扫描的镜像扫描taskid
     @inlinable
     public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanTaskResponse {
         try await self.client.execute(action: "DescribeAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询正在一键扫描的镜像扫描taskid
     @inlinable
-    public func describeAssetImageScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanTaskResponse > {
+    public func describeAssetImageScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanTaskResponse> {
         self.describeAssetImageScanTask(DescribeAssetImageScanTaskRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询正在一键扫描的镜像扫描taskid
     @inlinable
     public func describeAssetImageScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanTaskResponse {

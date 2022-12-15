@@ -19,38 +19,38 @@ extension Tcss {
     public struct DescribeCompliancePolicyItemAffectedSummaryRequest: TCRequestModel {
         /// DescribeComplianceTaskPolicyItemSummaryList返回的CustomerPolicyItemId，表示检测项的ID。
         public let customerPolicyItemId: UInt64
-        
-        public init (customerPolicyItemId: UInt64) {
+
+        public init(customerPolicyItemId: UInt64) {
             self.customerPolicyItemId = customerPolicyItemId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customerPolicyItemId = "CustomerPolicyItemId"
         }
     }
-    
+
     /// DescribeCompliancePolicyItemAffectedSummary返回参数结构体
     public struct DescribeCompliancePolicyItemAffectedSummaryResponse: TCResponseModel {
         /// 返回各检测项影响的资产的汇总信息。
         public let policyItemSummary: CompliancePolicyItemSummary
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policyItemSummary = "PolicyItemSummary"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规查询某检测项影响的信息
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedSummary(_ input: DescribeCompliancePolicyItemAffectedSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePolicyItemAffectedSummaryResponse > {
+    public func describeCompliancePolicyItemAffectedSummary(_ input: DescribeCompliancePolicyItemAffectedSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedSummaryResponse> {
         self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询某检测项影响的信息
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
@@ -58,15 +58,15 @@ extension Tcss {
     public func describeCompliancePolicyItemAffectedSummary(_ input: DescribeCompliancePolicyItemAffectedSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedSummaryResponse {
         try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规查询某检测项影响的信息
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePolicyItemAffectedSummaryResponse > {
+    public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedSummaryResponse> {
         self.describeCompliancePolicyItemAffectedSummary(DescribeCompliancePolicyItemAffectedSummaryRequest(customerPolicyItemId: customerPolicyItemId), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询某检测项影响的信息
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。

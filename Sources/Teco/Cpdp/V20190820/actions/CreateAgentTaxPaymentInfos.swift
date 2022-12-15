@@ -19,26 +19,26 @@ extension Cpdp {
     public struct CreateAgentTaxPaymentInfosRequest: TCRequestModel {
         /// 代理商ID
         public let agentId: String
-        
+
         /// 平台渠道
         public let channel: Int64
-        
+
         /// 类型。0-视同，1-个体工商户
         public let type: Int64
-        
+
         /// 源电子凭证下载地址
         public let rawElectronicCertUrl: String
-        
+
         /// 文件名
         public let fileName: String
-        
+
         /// 完税信息
         public let agentTaxPaymentInfos: [AgentTaxPayment]
-        
+
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
-        
-        public init (agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil) {
+
+        public init(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil) {
             self.agentId = agentId
             self.channel = channel
             self.type = type
@@ -47,7 +47,7 @@ extension Cpdp {
             self.agentTaxPaymentInfos = agentTaxPaymentInfos
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case channel = "Channel"
@@ -58,39 +58,39 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// CreateAgentTaxPaymentInfos返回参数结构体
     public struct CreateAgentTaxPaymentInfosResponse: TCResponseModel {
         /// 代理商完税证明批次信息
         public let agentTaxPaymentBatch: AgentTaxPaymentBatch
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentTaxPaymentBatch = "AgentTaxPaymentBatch"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播平台-代理商完税信息录入
     @inlinable
-    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAgentTaxPaymentInfosResponse > {
+    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgentTaxPaymentInfosResponse> {
         self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播平台-代理商完税信息录入
     @inlinable
     public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
         try await self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播平台-代理商完税信息录入
     @inlinable
-    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAgentTaxPaymentInfosResponse > {
+    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgentTaxPaymentInfosResponse> {
         self.createAgentTaxPaymentInfos(CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播平台-代理商完税信息录入
     @inlinable
     public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {

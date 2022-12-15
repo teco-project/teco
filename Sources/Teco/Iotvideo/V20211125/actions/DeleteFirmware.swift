@@ -19,58 +19,58 @@ extension Iotvideo {
     public struct DeleteFirmwareRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
+
         /// 固件版本
         public let firmwareVersion: String
-        
-        public init (productID: String, firmwareVersion: String) {
+
+        public init(productID: String, firmwareVersion: String) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
             case firmwareVersion = "FirmwareVersion"
         }
     }
-    
+
     /// DeleteFirmware返回参数结构体
     public struct DeleteFirmwareResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除固件
     ///
-    /// 本接口（DeleteFirmware）用于删除固件 
+    /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
-    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirmwareResponse > {
+    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
         self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除固件
     ///
-    /// 本接口（DeleteFirmware）用于删除固件 
+    /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
     public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
         try await self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除固件
     ///
-    /// 本接口（DeleteFirmware）用于删除固件 
+    /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
-    public func deleteFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirmwareResponse > {
+    public func deleteFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
         self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除固件
     ///
-    /// 本接口（DeleteFirmware）用于删除固件 
+    /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
     public func deleteFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
         try await self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)

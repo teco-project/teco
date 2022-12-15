@@ -19,54 +19,54 @@ extension Iecp {
     public struct ModifyEdgeNodeLabelsRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// IECP边缘节点ID
         public let nodeId: UInt64
-        
+
         /// 标签列表
         public let labels: [KeyValueObj]
-        
-        public init (edgeUnitId: UInt64, nodeId: UInt64, labels: [KeyValueObj]) {
+
+        public init(edgeUnitId: UInt64, nodeId: UInt64, labels: [KeyValueObj]) {
             self.edgeUnitId = edgeUnitId
             self.nodeId = nodeId
             self.labels = labels
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case nodeId = "NodeId"
             case labels = "Labels"
         }
     }
-    
+
     /// ModifyEdgeNodeLabels返回参数结构体
     public struct ModifyEdgeNodeLabelsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 编辑边缘节点标签
     @inlinable
-    public func modifyEdgeNodeLabels(_ input: ModifyEdgeNodeLabelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeNodeLabelsResponse > {
+    public func modifyEdgeNodeLabels(_ input: ModifyEdgeNodeLabelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeNodeLabelsResponse> {
         self.client.execute(action: "ModifyEdgeNodeLabels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑边缘节点标签
     @inlinable
     public func modifyEdgeNodeLabels(_ input: ModifyEdgeNodeLabelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeNodeLabelsResponse {
         try await self.client.execute(action: "ModifyEdgeNodeLabels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 编辑边缘节点标签
     @inlinable
-    public func modifyEdgeNodeLabels(edgeUnitId: UInt64, nodeId: UInt64, labels: [KeyValueObj], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeNodeLabelsResponse > {
+    public func modifyEdgeNodeLabels(edgeUnitId: UInt64, nodeId: UInt64, labels: [KeyValueObj], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeNodeLabelsResponse> {
         self.modifyEdgeNodeLabels(ModifyEdgeNodeLabelsRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, labels: labels), logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑边缘节点标签
     @inlinable
     public func modifyEdgeNodeLabels(edgeUnitId: UInt64, nodeId: UInt64, labels: [KeyValueObj], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeNodeLabelsResponse {

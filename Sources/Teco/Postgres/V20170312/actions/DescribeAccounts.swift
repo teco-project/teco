@@ -19,27 +19,27 @@ extension Postgres {
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 实例ID，形如postgres-6fego161
         public let dbInstanceId: String
-        
+
         /// 分页返回，每页最大返回数目，默认10，取值范围为1-100
         public let limit: Int64?
-        
+
         /// 数据偏移量，从0开始。
         public let offset: Int64?
-        
+
         /// 返回数据按照创建时间或者用户名排序。取值只能为createTime或者name。createTime-按照创建时间排序；name-按照用户名排序
         public let orderBy: String?
-        
+
         /// 返回结果是升序还是降序。取值只能为desc或者asc。desc-降序；asc-升序
         public let orderByType: String?
-        
-        public init (dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
+
+        public init(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.limit = limit
             self.offset = offset
             self.orderBy = orderBy
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case limit = "Limit"
@@ -48,33 +48,33 @@ extension Postgres {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeAccounts返回参数结构体
     public struct DescribeAccountsResponse: TCResponseModel {
         /// 本次调用接口共返回了多少条数据。
         public let totalCount: Int64
-        
+
         /// 帐号列表详细信息。
         public let details: [AccountInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case details = "Details"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例用户列表
     ///
     /// 本接口（DescribeAccounts）用于获取实例用户列表。
     @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例用户列表
     ///
     /// 本接口（DescribeAccounts）用于获取实例用户列表。
@@ -82,15 +82,15 @@ extension Postgres {
     public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例用户列表
     ///
     /// 本接口（DescribeAccounts）用于获取实例用户列表。
     @inlinable
-    public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+    public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.describeAccounts(DescribeAccountsRequest(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例用户列表
     ///
     /// 本接口（DescribeAccounts）用于获取实例用户列表。

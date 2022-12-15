@@ -19,48 +19,48 @@ extension Mongodb {
     public struct DescribeSecurityGroupRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeSecurityGroup返回参数结构体
     public struct DescribeSecurityGroupResponse: TCResponseModel {
         /// 实例绑定的安全组
         public let groups: [SecurityGroup]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groups = "Groups"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例绑定的安全组
     @inlinable
-    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupResponse > {
+    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
         self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例绑定的安全组
     @inlinable
     public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
         try await self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例绑定的安全组
     @inlinable
-    public func describeSecurityGroup(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupResponse > {
+    public func describeSecurityGroup(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
         self.describeSecurityGroup(DescribeSecurityGroupRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例绑定的安全组
     @inlinable
     public func describeSecurityGroup(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {

@@ -22,59 +22,59 @@ extension TCAaError {
             case capMisMatch = "InvalidParameterValue.CapMisMatch"
             case httpMethodError = "InvalidParameterValue.HttpMethodError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// BadBody。
         public static var badBody: InvalidParameterValue {
             InvalidParameterValue(.badBody)
         }
-        
+
         /// 请求包过大。
         public static var bodyTooLarge: InvalidParameterValue {
             InvalidParameterValue(.bodyTooLarge)
         }
-        
+
         /// 验证码不匹配。
         public static var capMisMatch: InvalidParameterValue {
             InvalidParameterValue(.capMisMatch)
         }
-        
+
         /// HTTP方法错误。
         public static var httpMethodError: InvalidParameterValue {
             InvalidParameterValue(.httpMethodError)
         }
-        
+
         public func asAaError() -> TCAaError {
             let code: TCAaError.Code
             switch self.error {
-            case .badBody: 
+            case .badBody:
                 code = .invalidParameterValue_BadBody
-            case .bodyTooLarge: 
+            case .bodyTooLarge:
                 code = .invalidParameterValue_BodyTooLarge
-            case .capMisMatch: 
+            case .capMisMatch:
                 code = .invalidParameterValue_CapMisMatch
-            case .httpMethodError: 
+            case .httpMethodError:
                 code = .invalidParameterValue_HttpMethodError
             }
             return TCAaError(code, context: self.context)

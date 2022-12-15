@@ -19,27 +19,27 @@ extension Cls {
     public struct ModifyIndexRequest: TCRequestModel {
         /// 日志主题ID
         public let topicId: String
-        
+
         /// 默认不生效
         public let status: Bool?
-        
+
         /// 索引规则
         public let rule: RuleInfo?
-        
+
         /// 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
         public let includeInternalFields: Bool?
-        
+
         /// 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
         public let metadataFlag: UInt64?
-        
-        public init (topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil) {
+
+        public init(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil) {
             self.topicId = topicId
             self.status = status
             self.rule = rule
             self.includeInternalFields = includeInternalFields
             self.metadataFlag = metadataFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case status = "Status"
@@ -48,25 +48,25 @@ extension Cls {
             case metadataFlag = "MetadataFlag"
         }
     }
-    
+
     /// ModifyIndex返回参数结构体
     public struct ModifyIndexResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改索引
     ///
     /// 本接口用于修改索引配置
     @inlinable
-    public func modifyIndex(_ input: ModifyIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIndexResponse > {
+    public func modifyIndex(_ input: ModifyIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIndexResponse> {
         self.client.execute(action: "ModifyIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改索引
     ///
     /// 本接口用于修改索引配置
@@ -74,15 +74,15 @@ extension Cls {
     public func modifyIndex(_ input: ModifyIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIndexResponse {
         try await self.client.execute(action: "ModifyIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改索引
     ///
     /// 本接口用于修改索引配置
     @inlinable
-    public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIndexResponse > {
+    public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIndexResponse> {
         self.modifyIndex(ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改索引
     ///
     /// 本接口用于修改索引配置

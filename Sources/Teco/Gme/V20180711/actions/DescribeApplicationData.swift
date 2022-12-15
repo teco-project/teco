@@ -22,7 +22,7 @@ extension Gme {
     public struct DescribeApplicationDataRequest: TCRequestModel {
         /// 应用ID
         public let bizId: UInt64
-        
+
         /// 数据开始时间，格式为 年-月-日，如: 2018-07-13
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Gme {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date
-        
+
         /// 数据结束时间，格式为 年-月-日，如: 2018-07-13
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,42 +38,42 @@ extension Gme {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
-        public init (bizId: UInt64, startDate: Date, endDate: Date) {
+
+        public init(bizId: UInt64, startDate: Date, endDate: Date) {
             self.bizId = bizId
             self.startDate = startDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
             case startDate = "StartDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// DescribeApplicationData返回参数结构体
     public struct DescribeApplicationDataResponse: TCResponseModel {
         /// 应用统计数据
         public let data: ApplicationDataStatistics
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取数据详情
     ///
     /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
     @inlinable
-    public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationDataResponse > {
+    public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationDataResponse> {
         self.client.execute(action: "DescribeApplicationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据详情
     ///
     /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
@@ -81,15 +81,15 @@ extension Gme {
     public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationDataResponse {
         try await self.client.execute(action: "DescribeApplicationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取数据详情
     ///
     /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
     @inlinable
-    public func describeApplicationData(bizId: UInt64, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationDataResponse > {
+    public func describeApplicationData(bizId: UInt64, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationDataResponse> {
         self.describeApplicationData(DescribeApplicationDataRequest(bizId: bizId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据详情
     ///
     /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。

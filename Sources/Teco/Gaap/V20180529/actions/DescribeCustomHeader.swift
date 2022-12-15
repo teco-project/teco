@@ -17,38 +17,38 @@
 extension Gaap {
     /// DescribeCustomHeader请求参数结构体
     public struct DescribeCustomHeaderRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeCustomHeader返回参数结构体
     public struct DescribeCustomHeaderResponse: TCResponseModel {
         /// 规则id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?
-        
+
         /// 自定义header列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [HttpHeaderParam]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case headers = "Headers"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomHeaderResponse > {
+    public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
         self.client.execute(action: "DescribeCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
@@ -56,15 +56,15 @@ extension Gaap {
     public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
         try await self.client.execute(action: "DescribeCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomHeaderResponse > {
+    public func describeCustomHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
         self.describeCustomHeader(DescribeCustomHeaderRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表

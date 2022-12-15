@@ -19,23 +19,23 @@ extension Tcss {
     public struct CreateVirusScanAgainRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 需要扫描的容器id集合
         public let containerIds: [String]?
-        
+
         /// 是否是扫描全部超时的
         public let timeoutAll: Bool?
-        
+
         /// 重新设置的超时时长
         public let timeout: UInt64?
-        
-        public init (taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil) {
+
+        public init(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil) {
             self.taskId = taskId
             self.containerIds = containerIds
             self.timeoutAll = timeoutAll
             self.timeout = timeout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case containerIds = "ContainerIds"
@@ -43,35 +43,35 @@ extension Tcss {
             case timeout = "Timeout"
         }
     }
-    
+
     /// CreateVirusScanAgain返回参数结构体
     public struct CreateVirusScanAgainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时文件查杀重新检测
     @inlinable
-    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanAgainResponse > {
+    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanAgainResponse> {
         self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时文件查杀重新检测
     @inlinable
     public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
         try await self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时文件查杀重新检测
     @inlinable
-    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanAgainResponse > {
+    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanAgainResponse> {
         self.createVirusScanAgain(CreateVirusScanAgainRequest(taskId: taskId, containerIds: containerIds, timeoutAll: timeoutAll, timeout: timeout), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时文件查杀重新检测
     @inlinable
     public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {

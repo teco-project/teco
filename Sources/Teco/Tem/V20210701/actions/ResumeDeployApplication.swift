@@ -19,53 +19,53 @@ extension Tem {
     public struct ResumeDeployApplicationRequest: TCRequestModel {
         /// 需要开始下一批次的服务id
         public let applicationId: String?
-        
+
         /// 环境id
         public let environmentId: String?
-        
-        public init (applicationId: String? = nil, environmentId: String? = nil) {
+
+        public init(applicationId: String? = nil, environmentId: String? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case environmentId = "EnvironmentId"
         }
     }
-    
+
     /// ResumeDeployApplication返回参数结构体
     public struct ResumeDeployApplicationResponse: TCResponseModel {
         /// 是否成功
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开始下一批次发布
     @inlinable
-    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDeployApplicationResponse > {
+    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDeployApplicationResponse> {
         self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开始下一批次发布
     @inlinable
     public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
         try await self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开始下一批次发布
     @inlinable
-    public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDeployApplicationResponse > {
+    public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDeployApplicationResponse> {
         self.resumeDeployApplication(ResumeDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId), logger: logger, on: eventLoop)
     }
-    
+
     /// 开始下一批次发布
     @inlinable
     public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {

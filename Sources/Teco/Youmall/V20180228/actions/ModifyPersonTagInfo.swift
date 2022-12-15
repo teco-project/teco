@@ -19,44 +19,44 @@ extension Youmall {
     public struct ModifyPersonTagInfoRequest: TCRequestModel {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
         public let companyId: String
-        
+
         /// 优mall店铺id，通过"指定身份标识获取客户门店列表"接口获取，为0则拉取集团全部店铺当前
         public let shopId: Int64
-        
+
         /// 需要设置的顾客信息，批量设置最大为10个
         public let tags: [PersonTagInfo]
-        
-        public init (companyId: String, shopId: Int64, tags: [PersonTagInfo]) {
+
+        public init(companyId: String, shopId: Int64, tags: [PersonTagInfo]) {
             self.companyId = companyId
             self.shopId = shopId
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
             case tags = "Tags"
         }
     }
-    
+
     /// ModifyPersonTagInfo返回参数结构体
     public struct ModifyPersonTagInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 标记顾客身份类型
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等
     @inlinable
-    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTagInfoResponse > {
+    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTagInfoResponse> {
         self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 标记顾客身份类型
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等
@@ -64,15 +64,15 @@ extension Youmall {
     public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
         try await self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 标记顾客身份类型
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等
     @inlinable
-    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTagInfoResponse > {
+    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTagInfoResponse> {
         self.modifyPersonTagInfo(ModifyPersonTagInfoRequest(companyId: companyId, shopId: shopId, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 标记顾客身份类型
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等

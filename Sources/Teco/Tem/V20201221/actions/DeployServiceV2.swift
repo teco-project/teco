@@ -19,113 +19,113 @@ extension Tem {
     public struct DeployServiceV2Request: TCRequestModel {
         /// 服务ID
         public let serviceId: String
-        
+
         /// 容器端口
         public let containerPort: UInt64
-        
+
         /// 初始化 pod 数
         public let initPodNum: UInt64
-        
+
         /// cpu规格
         public let cpuSpec: Float
-        
+
         /// 内存规格
         public let memorySpec: Float
-        
+
         /// 环境ID
         public let namespaceId: String
-        
+
         /// 镜像仓库
         public let imgRepo: String?
-        
+
         /// 版本描述信息
         public let versionDesc: String?
-        
+
         /// 启动参数
         public let jvmOpts: String?
-        
+
         /// 弹性伸缩配置，不传默认不启用弹性伸缩配置
         public let esInfo: EsInfo?
-        
+
         /// 环境变量配置
         public let envConf: [Pair]?
-        
+
         /// 日志配置
         public let logConfs: [String]?
-        
+
         /// 数据卷配置
         public let storageConfs: [StorageConf]?
-        
+
         /// 数据卷挂载配置
         public let storageMountConfs: [StorageMountConf]?
-        
+
         /// 部署类型。
         /// - JAR：通过 jar 包部署
         /// - WAR：通过 war 包部署
         /// - IMAGE：通过镜像部署
         public let deployMode: String?
-        
+
         /// 部署类型为 IMAGE 时，该参数表示镜像 tag。
         /// 部署类型为 JAR/WAR 时，该参数表示包版本号。
         public let deployVersion: String?
-        
+
         /// 包名。使用 JAR 包或者 WAR 包部署的时候必填。
         public let pkgName: String?
-        
+
         /// JDK 版本。
         /// - KONA：使用 kona jdk。
         /// - OPEN：使用 open jdk。
         public let jdkVersion: String?
-        
+
         /// 安全组ID s
         public let securityGroupIds: [String]?
-        
+
         /// 日志输出配置
         public let logOutputConf: LogOutputConf?
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 版本描述
         public let description: String?
-        
+
         /// 镜像命令
         public let imageCommand: String?
-        
+
         /// 镜像命令参数
         public let imageArgs: [String]?
-        
+
         /// 服务端口映射
         public let portMappings: [PortMapping]?
-        
+
         /// 是否添加默认注册中心配置
         public let useRegistryDefaultConfig: Bool?
-        
+
         /// 挂载配置信息
         public let settingConfs: [MountedSettingConf]?
-        
+
         /// eks 访问设置
         public let eksService: EksService?
-        
+
         /// 要回滚到的历史版本id
         public let versionId: String?
-        
+
         /// 启动后执行的脚本
         public let postStart: String?
-        
+
         /// 停止前执行的脚本
         public let preStop: String?
-        
+
         /// 分批发布策略配置
         public let deployStrategyConf: DeployStrategyConf?
-        
+
         /// 存活探针配置
         public let liveness: HealthCheckConfig?
-        
+
         /// 就绪探针配置
         public let readiness: HealthCheckConfig?
-        
-        public init (serviceId: String, containerPort: UInt64, initPodNum: UInt64, cpuSpec: Float, memorySpec: Float, namespaceId: String, imgRepo: String? = nil, versionDesc: String? = nil, jvmOpts: String? = nil, esInfo: EsInfo? = nil, envConf: [Pair]? = nil, logConfs: [String]? = nil, storageConfs: [StorageConf]? = nil, storageMountConfs: [StorageMountConf]? = nil, deployMode: String? = nil, deployVersion: String? = nil, pkgName: String? = nil, jdkVersion: String? = nil, securityGroupIds: [String]? = nil, logOutputConf: LogOutputConf? = nil, sourceChannel: Int64? = nil, description: String? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, portMappings: [PortMapping]? = nil, useRegistryDefaultConfig: Bool? = nil, settingConfs: [MountedSettingConf]? = nil, eksService: EksService? = nil, versionId: String? = nil, postStart: String? = nil, preStop: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil) {
+
+        public init(serviceId: String, containerPort: UInt64, initPodNum: UInt64, cpuSpec: Float, memorySpec: Float, namespaceId: String, imgRepo: String? = nil, versionDesc: String? = nil, jvmOpts: String? = nil, esInfo: EsInfo? = nil, envConf: [Pair]? = nil, logConfs: [String]? = nil, storageConfs: [StorageConf]? = nil, storageMountConfs: [StorageMountConf]? = nil, deployMode: String? = nil, deployVersion: String? = nil, pkgName: String? = nil, jdkVersion: String? = nil, securityGroupIds: [String]? = nil, logOutputConf: LogOutputConf? = nil, sourceChannel: Int64? = nil, description: String? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, portMappings: [PortMapping]? = nil, useRegistryDefaultConfig: Bool? = nil, settingConfs: [MountedSettingConf]? = nil, eksService: EksService? = nil, versionId: String? = nil, postStart: String? = nil, preStop: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil) {
             self.serviceId = serviceId
             self.containerPort = containerPort
             self.initPodNum = initPodNum
@@ -161,7 +161,7 @@ extension Tem {
             self.liveness = liveness
             self.readiness = readiness
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case containerPort = "ContainerPort"
@@ -199,39 +199,39 @@ extension Tem {
             case readiness = "Readiness"
         }
     }
-    
+
     /// DeployServiceV2返回参数结构体
     public struct DeployServiceV2Response: TCResponseModel {
         /// 版本ID（前端可忽略）
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 服务部署
     @inlinable
-    public func deployServiceV2(_ input: DeployServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployServiceV2Response > {
+    public func deployServiceV2(_ input: DeployServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployServiceV2Response> {
         self.client.execute(action: "DeployServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 服务部署
     @inlinable
     public func deployServiceV2(_ input: DeployServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployServiceV2Response {
         try await self.client.execute(action: "DeployServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 服务部署
     @inlinable
-    public func deployServiceV2(serviceId: String, containerPort: UInt64, initPodNum: UInt64, cpuSpec: Float, memorySpec: Float, namespaceId: String, imgRepo: String? = nil, versionDesc: String? = nil, jvmOpts: String? = nil, esInfo: EsInfo? = nil, envConf: [Pair]? = nil, logConfs: [String]? = nil, storageConfs: [StorageConf]? = nil, storageMountConfs: [StorageMountConf]? = nil, deployMode: String? = nil, deployVersion: String? = nil, pkgName: String? = nil, jdkVersion: String? = nil, securityGroupIds: [String]? = nil, logOutputConf: LogOutputConf? = nil, sourceChannel: Int64? = nil, description: String? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, portMappings: [PortMapping]? = nil, useRegistryDefaultConfig: Bool? = nil, settingConfs: [MountedSettingConf]? = nil, eksService: EksService? = nil, versionId: String? = nil, postStart: String? = nil, preStop: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployServiceV2Response > {
+    public func deployServiceV2(serviceId: String, containerPort: UInt64, initPodNum: UInt64, cpuSpec: Float, memorySpec: Float, namespaceId: String, imgRepo: String? = nil, versionDesc: String? = nil, jvmOpts: String? = nil, esInfo: EsInfo? = nil, envConf: [Pair]? = nil, logConfs: [String]? = nil, storageConfs: [StorageConf]? = nil, storageMountConfs: [StorageMountConf]? = nil, deployMode: String? = nil, deployVersion: String? = nil, pkgName: String? = nil, jdkVersion: String? = nil, securityGroupIds: [String]? = nil, logOutputConf: LogOutputConf? = nil, sourceChannel: Int64? = nil, description: String? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, portMappings: [PortMapping]? = nil, useRegistryDefaultConfig: Bool? = nil, settingConfs: [MountedSettingConf]? = nil, eksService: EksService? = nil, versionId: String? = nil, postStart: String? = nil, preStop: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployServiceV2Response> {
         self.deployServiceV2(DeployServiceV2Request(serviceId: serviceId, containerPort: containerPort, initPodNum: initPodNum, cpuSpec: cpuSpec, memorySpec: memorySpec, namespaceId: namespaceId, imgRepo: imgRepo, versionDesc: versionDesc, jvmOpts: jvmOpts, esInfo: esInfo, envConf: envConf, logConfs: logConfs, storageConfs: storageConfs, storageMountConfs: storageMountConfs, deployMode: deployMode, deployVersion: deployVersion, pkgName: pkgName, jdkVersion: jdkVersion, securityGroupIds: securityGroupIds, logOutputConf: logOutputConf, sourceChannel: sourceChannel, description: description, imageCommand: imageCommand, imageArgs: imageArgs, portMappings: portMappings, useRegistryDefaultConfig: useRegistryDefaultConfig, settingConfs: settingConfs, eksService: eksService, versionId: versionId, postStart: postStart, preStop: preStop, deployStrategyConf: deployStrategyConf, liveness: liveness, readiness: readiness), logger: logger, on: eventLoop)
     }
-    
+
     /// 服务部署
     @inlinable
     public func deployServiceV2(serviceId: String, containerPort: UInt64, initPodNum: UInt64, cpuSpec: Float, memorySpec: Float, namespaceId: String, imgRepo: String? = nil, versionDesc: String? = nil, jvmOpts: String? = nil, esInfo: EsInfo? = nil, envConf: [Pair]? = nil, logConfs: [String]? = nil, storageConfs: [StorageConf]? = nil, storageMountConfs: [StorageMountConf]? = nil, deployMode: String? = nil, deployVersion: String? = nil, pkgName: String? = nil, jdkVersion: String? = nil, securityGroupIds: [String]? = nil, logOutputConf: LogOutputConf? = nil, sourceChannel: Int64? = nil, description: String? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, portMappings: [PortMapping]? = nil, useRegistryDefaultConfig: Bool? = nil, settingConfs: [MountedSettingConf]? = nil, eksService: EksService? = nil, versionId: String? = nil, postStart: String? = nil, preStop: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployServiceV2Response {

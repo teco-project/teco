@@ -19,34 +19,34 @@ extension Yunjing {
     public struct DeleteMaliciousRequestsRequest: TCRequestModel {
         /// 恶意请求记录ID数组，最大100条。
         public let ids: [UInt64]
-        
-        public init (ids: [UInt64]) {
+
+        public init(ids: [UInt64]) {
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
         }
     }
-    
+
     /// DeleteMaliciousRequests返回参数结构体
     public struct DeleteMaliciousRequestsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
     @inlinable
-    public func deleteMaliciousRequests(_ input: DeleteMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMaliciousRequestsResponse > {
+    public func deleteMaliciousRequests(_ input: DeleteMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaliciousRequestsResponse> {
         self.client.execute(action: "DeleteMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
@@ -54,15 +54,15 @@ extension Yunjing {
     public func deleteMaliciousRequests(_ input: DeleteMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaliciousRequestsResponse {
         try await self.client.execute(action: "DeleteMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
     @inlinable
-    public func deleteMaliciousRequests(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMaliciousRequestsResponse > {
+    public func deleteMaliciousRequests(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaliciousRequestsResponse> {
         self.deleteMaliciousRequests(DeleteMaliciousRequestsRequest(ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。

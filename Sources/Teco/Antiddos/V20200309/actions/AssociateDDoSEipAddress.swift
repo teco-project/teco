@@ -19,23 +19,23 @@ extension Antiddos {
     public struct AssociateDDoSEipAddressRequest: TCRequestModel {
         /// 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
         public let instanceId: String
-        
+
         /// 资源实例ID对应的高防弹性公网IP。
         public let eip: String
-        
+
         /// 要绑定的实例 ID。实例 ID 形如：ins-11112222。可通过登录控制台查询，也可通过 DescribeInstances 接口返回值中的InstanceId获取。
         public let cvmInstanceID: String
-        
+
         /// cvm实例所在地域，例如：ap-hongkong。
         public let cvmRegion: String
-        
-        public init (instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String) {
+
+        public init(instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String) {
             self.instanceId = instanceId
             self.eip = eip
             self.cvmInstanceID = cvmInstanceID
             self.cvmRegion = cvmRegion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case eip = "Eip"
@@ -43,25 +43,25 @@ extension Antiddos {
             case cvmRegion = "CvmRegion"
         }
     }
-    
+
     /// AssociateDDoSEipAddress返回参数结构体
     public struct AssociateDDoSEipAddressResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定高防弹性公网IP
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
     @inlinable
-    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDDoSEipAddressResponse > {
+    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDDoSEipAddressResponse> {
         self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定高防弹性公网IP
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
@@ -69,15 +69,15 @@ extension Antiddos {
     public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipAddressResponse {
         try await self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定高防弹性公网IP
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
     @inlinable
-    public func associateDDoSEipAddress(instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDDoSEipAddressResponse > {
+    public func associateDDoSEipAddress(instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDDoSEipAddressResponse> {
         self.associateDDoSEipAddress(AssociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip, cvmInstanceID: cvmInstanceID, cvmRegion: cvmRegion), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定高防弹性公网IP
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。

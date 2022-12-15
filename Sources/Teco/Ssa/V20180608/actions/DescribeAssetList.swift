@@ -19,30 +19,30 @@ extension Ssa {
     public struct DescribeAssetListRequest: TCRequestModel {
         /// 查询过滤参数
         public let params: String
-        
-        public init (params: String) {
+
+        public init(params: String) {
             self.params = params
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case params = "Params"
         }
     }
-    
+
     /// DescribeAssetList返回参数结构体
     public struct DescribeAssetListResponse: TCResponseModel {
         /// 资产列表
         public let assetList: AssetList
-        
+
         /// 聚合数据
         public let aggregationData: [AggregationObj]
-        
+
         /// 命名空间数据
         public let namespaceData: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case assetList = "AssetList"
             case aggregationData = "AggregationData"
@@ -50,25 +50,25 @@ extension Ssa {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资产安全资产列表
     @inlinable
-    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetListResponse > {
+    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetListResponse> {
         self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资产安全资产列表
     @inlinable
     public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {
         try await self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资产安全资产列表
     @inlinable
-    public func describeAssetList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetListResponse > {
+    public func describeAssetList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetListResponse> {
         self.describeAssetList(DescribeAssetListRequest(params: params), logger: logger, on: eventLoop)
     }
-    
+
     /// 资产安全资产列表
     @inlinable
     public func describeAssetList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {

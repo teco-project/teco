@@ -19,25 +19,25 @@ extension Ciam {
     public struct ListUserByPropertyRequest: TCRequestModel {
         /// 用户目录ID
         public let userStoreId: String
-        
+
         /// 查询的属性
         /// <li> **phoneNumber** </li>	  手机号码
         /// <li> **email** </li>  邮箱
         public let propertyCode: String
-        
+
         /// 属性值
         public let propertyValue: String
-        
+
         /// 返回信息是否为原文
         public let original: Bool?
-        
-        public init (userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil) {
+
+        public init(userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil) {
             self.userStoreId = userStoreId
             self.propertyCode = propertyCode
             self.propertyValue = propertyValue
             self.original = original
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userStoreId = "UserStoreId"
             case propertyCode = "PropertyCode"
@@ -45,40 +45,40 @@ extension Ciam {
             case original = "Original"
         }
     }
-    
+
     /// ListUserByProperty返回参数结构体
     public struct ListUserByPropertyResponse: TCResponseModel {
         /// 用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let users: [User]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case users = "Users"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据属性查询用户列表
     @inlinable
-    public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserByPropertyResponse > {
+    public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUserByPropertyResponse> {
         self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据属性查询用户列表
     @inlinable
     public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserByPropertyResponse {
         try await self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据属性查询用户列表
     @inlinable
-    public func listUserByProperty(userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserByPropertyResponse > {
+    public func listUserByProperty(userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUserByPropertyResponse> {
         self.listUserByProperty(ListUserByPropertyRequest(userStoreId: userStoreId, propertyCode: propertyCode, propertyValue: propertyValue, original: original), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据属性查询用户列表
     @inlinable
     public func listUserByProperty(userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserByPropertyResponse {

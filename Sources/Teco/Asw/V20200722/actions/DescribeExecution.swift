@@ -19,50 +19,50 @@ extension Asw {
     public struct DescribeExecutionRequest: TCRequestModel {
         /// 执行资源名
         public let executionResourceName: String
-        
-        public init (executionResourceName: String) {
+
+        public init(executionResourceName: String) {
             self.executionResourceName = executionResourceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case executionResourceName = "ExecutionResourceName"
         }
     }
-    
+
     /// DescribeExecution返回参数结构体
     public struct DescribeExecutionResponse: TCResponseModel {
         /// 执行资源名
         public let executionResourceName: String
-        
+
         /// 资源名称
         public let name: String
-        
+
         /// 执行开始时间，毫秒
         public let startDate: String
-        
+
         /// 执行结束时间，毫秒
         public let stopDate: String
-        
+
         /// 状态机资源名
         public let stateMachineResourceName: String
-        
+
         /// 执行状态。INIT，RUNNING，SUCCEED，FAILED，TERMINATED
         public let status: String
-        
+
         /// 执行的输入
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let input: String?
-        
+
         /// 执行的输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: String?
-        
+
         /// 启动执行时，状态机的定义
         public let executionDefinition: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case executionResourceName = "ExecutionResourceName"
             case name = "Name"
@@ -76,25 +76,25 @@ extension Asw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询执行详细信息
     @inlinable
-    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionResponse > {
+    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionResponse> {
         self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询执行详细信息
     @inlinable
     public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
         try await self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询执行详细信息
     @inlinable
-    public func describeExecution(executionResourceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionResponse > {
+    public func describeExecution(executionResourceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionResponse> {
         self.describeExecution(DescribeExecutionRequest(executionResourceName: executionResourceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询执行详细信息
     @inlinable
     public func describeExecution(executionResourceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {

@@ -27,40 +27,40 @@ extension Faceid {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 游标。用于分页，取第一页时传0，取后续页面时，传入本接口响应中返回的NextCursor字段的值。
         public let cursor: UInt64
-        
+
         /// 需要拉取账单详情业务对应的RuleId。不传会返回所有RuleId数据。默认为空字符串。
         public let ruleId: String?
-        
-        public init (date: Date, cursor: UInt64, ruleId: String? = nil) {
+
+        public init(date: Date, cursor: UInt64, ruleId: String? = nil) {
             self.date = date
             self.cursor = cursor
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case cursor = "Cursor"
             case ruleId = "RuleId"
         }
     }
-    
+
     /// GetWeChatBillDetails返回参数结构体
     public struct GetWeChatBillDetailsResponse: TCResponseModel {
         /// 是否还有下一页。该字段为true时，需要将NextCursor的值作为入参Cursor继续调用本接口。
         public let hasNextPage: Bool
-        
+
         /// 下一页的游标。用于分页。
         public let nextCursor: UInt64
-        
+
         /// 数据
         public let weChatBillDetails: [WeChatBillDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case hasNextPage = "HasNextPage"
             case nextCursor = "NextCursor"
@@ -68,15 +68,15 @@ extension Faceid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
-    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetWeChatBillDetailsResponse > {
+    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetWeChatBillDetailsResponse> {
         self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
@@ -84,15 +84,15 @@ extension Faceid {
     public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
         try await self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
-    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetWeChatBillDetailsResponse > {
+    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetWeChatBillDetailsResponse> {
         self.getWeChatBillDetails(GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。

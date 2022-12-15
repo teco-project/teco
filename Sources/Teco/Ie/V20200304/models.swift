@@ -19,76 +19,76 @@ extension Ie {
     public struct ArtifactReduction: TCInputModel {
         /// 去毛刺方式：weak,,strong
         public let type: String?
-        
+
         /// 去毛刺算法，可选项：
         /// edaf,
         /// wdaf，
         /// 默认edaf。
         /// 注意：此参数已经弃用
         public let algorithm: String?
-        
-        public init (type: String? = nil, algorithm: String? = nil) {
+
+        public init(type: String? = nil, algorithm: String? = nil) {
             self.type = type
             self.algorithm = algorithm
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case algorithm = "Algorithm"
         }
     }
-    
+
     /// 音频音效增强，只支持无背景音的音频
     public struct AudioEnhance: TCInputModel {
         /// 音效增强种类，可选项：normal
         public let type: String?
-        
-        public init (type: String? = nil) {
+
+        public init(type: String? = nil) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// 音频参数信息
     public struct AudioInfo: TCInputModel {
         /// 音频码率，取值范围：0 和 [26, 256]，单位：kbps。
         /// 注意：当取值为 0，表示音频码率和原始音频保持一致。
         public let bitrate: Int64
-        
+
         /// 音频编码器，可选项：aac,mp3,ac3,flac,mp2。
         public let codec: String
-        
+
         /// 声道数，可选项：
         /// 1：单声道，
         /// 2：双声道，
         /// 6：立体声。
         public let channel: Int64
-        
+
         /// 采样率，单位：Hz。可选项：32000，44100,48000
         public let sampleRate: Int64
-        
+
         /// 音频降噪信息
         public let denoise: Denoise?
-        
+
         /// 开启添加静音，可选项：
         /// 0：不开启，
         /// 1：开启，
         /// 默认不开启
         public let enableMuteAudio: Int64?
-        
+
         /// 音频响度信息
         public let loudnessInfo: LoudnessInfo?
-        
+
         /// 音频音效增强
         public let audioEnhance: AudioEnhance?
-        
+
         /// 去除混音
         public let removeReverb: RemoveReverb?
-        
-        public init (bitrate: Int64, codec: String, channel: Int64, sampleRate: Int64, denoise: Denoise? = nil, enableMuteAudio: Int64? = nil, loudnessInfo: LoudnessInfo? = nil, audioEnhance: AudioEnhance? = nil, removeReverb: RemoveReverb? = nil) {
+
+        public init(bitrate: Int64, codec: String, channel: Int64, sampleRate: Int64, denoise: Denoise? = nil, enableMuteAudio: Int64? = nil, loudnessInfo: LoudnessInfo? = nil, audioEnhance: AudioEnhance? = nil, removeReverb: RemoveReverb? = nil) {
             self.bitrate = bitrate
             self.codec = codec
             self.channel = channel
@@ -99,7 +99,7 @@ extension Ie {
             self.audioEnhance = audioEnhance
             self.removeReverb = removeReverb
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case codec = "Codec"
@@ -112,32 +112,32 @@ extension Ie {
             case removeReverb = "RemoveReverb"
         }
     }
-    
+
     /// 任务结束后生成的文件音频信息
     public struct AudioInfoResultItem: TCOutputModel {
         /// 音频流的流id。
         public let stream: Int64
-        
+
         /// 音频采样率 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sample: Int64?
-        
+
         /// 音频声道数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channel: Int64?
-        
+
         /// 编码格式，如aac, mp3等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String?
-        
+
         /// 码率，单位：bps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: Int64?
-        
+
         /// 音频时长，单位：ms。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case stream = "Stream"
             case sample = "Sample"
@@ -147,57 +147,57 @@ extension Ie {
             case duration = "Duration"
         }
     }
-    
+
     /// 任务结果回调地址信息
     public struct CallbackInfo: TCInputModel {
         /// 回调URL。
         public let url: String
-        
-        public init (url: String) {
+
+        public init(url: String) {
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 视频分类识别任务参数信息
     public struct ClassificationEditingInfo: TCInputModel {
         /// 是否开启视频分类识别。0为关闭，1为开启。其他非0非1值默认为0。
         public let `switch`: Int64
-        
+
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
-        
-        public init (switch: Int64, customInfo: String? = nil) {
+
+        public init(switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case customInfo = "CustomInfo"
         }
     }
-    
+
     /// 视频分类识别结果信息
     public struct ClassificationTaskResult: TCOutputModel {
-        /// 编辑任务状态。 
+        /// 编辑任务状态。
         /// 1：执行中；2：成功；3：失败。
         public let status: Int64
-        
-        /// 编辑任务失败错误码。 
+
+        /// 编辑任务失败错误码。
         /// 0：成功；其他值：失败。
         public let errCode: Int64
-        
+
         /// 编辑任务失败错误描述。
         public let errMsg: String
-        
+
         /// 视频分类识别结果集。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemSet: [ClassificationTaskResultItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCode = "ErrCode"
@@ -205,21 +205,21 @@ extension Ie {
             case itemSet = "ItemSet"
         }
     }
-    
+
     /// 视频分类识别结果项
     public struct ClassificationTaskResultItem: TCOutputModel {
         /// 分类名称。
         public let classification: String
-        
+
         /// 置信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case classification = "Classification"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 颜色增强参数
     public struct ColorEnhance: TCInputModel {
         /// 颜色增强类型，可选项：
@@ -229,45 +229,45 @@ extension Ie {
         /// 4.  strong;
         /// 注意：tra不支持自适应调整，处理速度更快；weak,normal,strong支持基于画面颜色自适应，处理速度更慢。
         public let type: String
-        
-        public init (type: String) {
+
+        public init(type: String) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// 任务视频cos授权信息
     public struct CosAuthMode: TCInputModel {
-        /// 授权类型，可选值： 
-        /// 0：bucket授权，需要将对应bucket授权给本服务帐号（3020447271和100012301793），否则会读写cos失败； 
-        /// 1：key托管，把cos的账号id和key托管于本服务，本服务会提供一个托管id； 
+        /// 授权类型，可选值：
+        /// 0：bucket授权，需要将对应bucket授权给本服务帐号（3020447271和100012301793），否则会读写cos失败；
+        /// 1：key托管，把cos的账号id和key托管于本服务，本服务会提供一个托管id；
         /// 3：临时key授权。
         /// 注意：目前智能编辑还不支持临时key授权；画质重生目前只支持bucket授权
         public let type: Int64
-        
+
         /// cos账号托管id，Type等于1时必选。
         public let hostedId: String?
-        
+
         /// cos身份识别id，Type等于3时必选。
         public let secretId: String?
-        
+
         /// cos身份秘钥，Type等于3时必选。
         public let secretKey: String?
-        
+
         /// 临时授权 token，Type等于3时必选。
         public let token: String?
-        
-        public init (type: Int64, hostedId: String? = nil, secretId: String? = nil, secretKey: String? = nil, token: String? = nil) {
+
+        public init(type: Int64, hostedId: String? = nil, secretId: String? = nil, secretKey: String? = nil, token: String? = nil) {
             self.type = type
             self.hostedId = hostedId
             self.secretId = secretId
             self.secretKey = secretKey
             self.token = token
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case hostedId = "HostedId"
@@ -276,30 +276,30 @@ extension Ie {
             case token = "Token"
         }
     }
-    
+
     /// 任务视频cos信息
     public struct CosInfo: TCInputModel {
         /// cos 区域值。例如：ap-beijing。
         public let region: String
-        
+
         /// cos 存储桶，格式为BuketName-AppId。例如：test-123456。
         public let bucket: String
-        
-        /// cos 路径。 
-        /// 对于写表示目录，例如：/test； 
+
+        /// cos 路径。
+        /// 对于写表示目录，例如：/test；
         /// 对于读表示文件路径，例如：/test/test.mp4。
         public let path: String
-        
+
         /// cos 授权信息，不填默认为公有权限。
         public let cosAuthMode: CosAuthMode?
-        
-        public init (region: String, bucket: String, path: String, cosAuthMode: CosAuthMode? = nil) {
+
+        public init(region: String, bucket: String, path: String, cosAuthMode: CosAuthMode? = nil) {
             self.region = region
             self.bucket = bucket
             self.path = path
             self.cosAuthMode = cosAuthMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case bucket = "Bucket"
@@ -307,43 +307,43 @@ extension Ie {
             case cosAuthMode = "CosAuthMode"
         }
     }
-    
+
     /// 智能封面任务参数信息
     public struct CoverEditingInfo: TCInputModel {
         /// 是否开启智能封面。0为关闭，1为开启。其他非0非1值默认为0。
         public let `switch`: Int64
-        
+
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
-        
-        public init (switch: Int64, customInfo: String? = nil) {
+
+        public init(switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case customInfo = "CustomInfo"
         }
     }
-    
+
     /// 智能封面结果信息
     public struct CoverTaskResult: TCOutputModel {
-        /// 编辑任务状态。 
+        /// 编辑任务状态。
         /// 1：执行中；2：成功；3：失败。
         public let status: Int64
-        
-        /// 编辑任务失败错误码。 
+
+        /// 编辑任务失败错误码。
         /// 0：成功；其他值：失败。
         public let errCode: Int64
-        
+
         /// 编辑任务失败错误描述。
         public let errMsg: String
-        
+
         /// 智能封面结果集。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemSet: [CoverTaskResultItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCode = "ErrCode"
@@ -351,21 +351,21 @@ extension Ie {
             case itemSet = "ItemSet"
         }
     }
-    
+
     /// 智能封面结果项
     public struct CoverTaskResultItem: TCOutputModel {
         /// 智能封面地址。
         public let coverUrl: String
-        
+
         /// 置信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case coverUrl = "CoverUrl"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 视频Dar信息
     public struct DarInfo: TCInputModel {
         /// 填充模式，可选值：
@@ -373,16 +373,16 @@ extension Ie {
         /// 2：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“。
         /// 默认为2。
         public let fillMode: UInt64?
-        
-        public init (fillMode: UInt64? = nil) {
+
+        public init(fillMode: UInt64? = nil) {
             self.fillMode = fillMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fillMode = "FillMode"
         }
     }
-    
+
     /// 音频降噪
     public struct Denoise: TCInputModel {
         /// 音频降噪强度，可选项：
@@ -391,16 +391,16 @@ extension Ie {
         /// 3.strong
         /// 默认为weak
         public let type: String?
-        
-        public init (type: String? = nil) {
+
+        public init(type: String? = nil) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// 去噪参数
     public struct Denoising: TCInputModel {
         /// 去噪方式，可选项：
@@ -411,108 +411,108 @@ extension Ie {
         /// 1.type:"templ,spatial" ;
         /// 2.type:"templ,fast-spatial"。
         public let type: String
-        
+
         /// 时域去噪强度，可选值：0.0-1.0 。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let templStrength: Float?
-        
+
         /// 空域去噪强度，可选值：0.0-1.0 。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let spatialStrength: Float?
-        
-        public init (type: String, templStrength: Float? = nil, spatialStrength: Float? = nil) {
+
+        public init(type: String, templStrength: Float? = nil, spatialStrength: Float? = nil) {
             self.type = type
             self.templStrength = templStrength
             self.spatialStrength = spatialStrength
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case templStrength = "TemplStrength"
             case spatialStrength = "SpatialStrength"
         }
     }
-    
+
     /// 视频源信息
     public struct DownInfo: TCInputModel {
-        /// 下载类型，可选值： 
-        /// 0：UrlInfo； 
+        /// 下载类型，可选值：
+        /// 0：UrlInfo；
         /// 1：CosInfo。
         public let type: Int64
-        
+
         /// Url形式下载信息，当Type等于0时必选。
         public let urlInfo: UrlInfo?
-        
+
         /// Cos形式下载信息，当Type等于1时必选。
         public let cosInfo: CosInfo?
-        
-        public init (type: Int64, urlInfo: UrlInfo? = nil, cosInfo: CosInfo? = nil) {
+
+        public init(type: Int64, urlInfo: UrlInfo? = nil, cosInfo: CosInfo? = nil) {
             self.type = type
             self.urlInfo = urlInfo
             self.cosInfo = cosInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case urlInfo = "UrlInfo"
             case cosInfo = "CosInfo"
         }
     }
-    
+
     /// 动图参数
     public struct DynamicImageInfo: TCInputModel {
         /// 画面质量，范围：1~100。
         /// <li>对于webp格式，默认：75</li>
         /// <li>对于gif格式，小于10为低质量，大于50为高质量，其它为普通。默认：低质量。</li>
         public let quality: UInt64?
-        
-        public init (quality: UInt64? = nil) {
+
+        public init(quality: UInt64? = nil) {
             self.quality = quality
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case quality = "Quality"
         }
     }
-    
+
     /// 画质重生子任务视频剪辑参数
     public struct EditInfo: TCInputModel {
         /// 剪辑开始时间，单位：ms。
         public let startTime: Int64
-        
+
         /// 剪辑结束时间，单位：ms
         public let endTime: Int64
-        
-        public init (startTime: Int64, endTime: Int64) {
+
+        public init(startTime: Int64, endTime: Int64) {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// 智能编辑任务参数信息
     public struct EditingInfo: TCInputModel {
         /// 视频标签识别任务参数，不填则不开启。
         public let tagEditingInfo: TagEditingInfo?
-        
+
         /// 视频分类识别任务参数，不填则不开启。
         public let classificationEditingInfo: ClassificationEditingInfo?
-        
+
         /// 智能拆条任务参数，不填则不开启。
         public let stripEditingInfo: StripEditingInfo?
-        
+
         /// 智能集锦任务参数，不填则不开启。
         public let highlightsEditingInfo: HighlightsEditingInfo?
-        
+
         /// 智能封面任务参数，不填则不开启。
         public let coverEditingInfo: CoverEditingInfo?
-        
+
         /// 片头片尾识别任务参数，不填则不开启。
         public let openingEndingEditingInfo: OpeningEndingEditingInfo?
-        
-        public init (tagEditingInfo: TagEditingInfo? = nil, classificationEditingInfo: ClassificationEditingInfo? = nil, stripEditingInfo: StripEditingInfo? = nil, highlightsEditingInfo: HighlightsEditingInfo? = nil, coverEditingInfo: CoverEditingInfo? = nil, openingEndingEditingInfo: OpeningEndingEditingInfo? = nil) {
+
+        public init(tagEditingInfo: TagEditingInfo? = nil, classificationEditingInfo: ClassificationEditingInfo? = nil, stripEditingInfo: StripEditingInfo? = nil, highlightsEditingInfo: HighlightsEditingInfo? = nil, coverEditingInfo: CoverEditingInfo? = nil, openingEndingEditingInfo: OpeningEndingEditingInfo? = nil) {
             self.tagEditingInfo = tagEditingInfo
             self.classificationEditingInfo = classificationEditingInfo
             self.stripEditingInfo = stripEditingInfo
@@ -520,7 +520,7 @@ extension Ie {
             self.coverEditingInfo = coverEditingInfo
             self.openingEndingEditingInfo = openingEndingEditingInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagEditingInfo = "TagEditingInfo"
             case classificationEditingInfo = "ClassificationEditingInfo"
@@ -530,40 +530,40 @@ extension Ie {
             case openingEndingEditingInfo = "OpeningEndingEditingInfo"
         }
     }
-    
+
     /// 智能识别任务结果信息
     public struct EditingTaskResult: TCOutputModel {
         /// 编辑任务 ID。
         public let taskId: String
-        
-        /// 编辑任务状态。 
+
+        /// 编辑任务状态。
         /// 1：执行中；2：已完成。
         public let status: Int64
-        
+
         /// 视频标签识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagTaskResult: TagTaskResult?
-        
+
         /// 视频分类识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classificationTaskResult: ClassificationTaskResult?
-        
+
         /// 智能拆条结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stripTaskResult: StripTaskResult?
-        
+
         /// 智能集锦结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let highlightsTaskResult: HighlightsTaskResult?
-        
+
         /// 智能封面结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coverTaskResult: CoverTaskResult?
-        
+
         /// 片头片尾识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openingEndingTaskResult: OpeningEndingTaskResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -575,47 +575,47 @@ extension Ie {
             case openingEndingTaskResult = "OpeningEndingTaskResult"
         }
     }
-    
+
     /// 人脸保护参数
     public struct FaceProtect: TCInputModel {
         /// 人脸区域增强强度，可选项：0.0-1.0。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let faceUsmRatio: Float?
-        
-        public init (faceUsmRatio: Float? = nil) {
+
+        public init(faceUsmRatio: Float? = nil) {
             self.faceUsmRatio = faceUsmRatio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceUsmRatio = "FaceUsmRatio"
         }
     }
-    
+
     /// 画质重生处理后文件的详细信息
     public struct FileInfo: TCOutputModel {
         /// 任务结束后生成的文件大小。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileSize: Int64?
-        
+
         /// 任务结束后生成的文件格式，例如：mp4,flv等等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileType: String?
-        
+
         /// 任务结束后生成的文件整体码率，单位：bps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: Int64?
-        
+
         /// 任务结束后生成的文件时长，单位：ms。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Int64?
-        
+
         /// 任务结束后生成的文件视频信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoInfoResult: [VideoInfoResultItem]?
-        
+
         /// 任务结束后生成的文件音频信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioInfoResult: [AudioInfoResultItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSize = "FileSize"
             case fileType = "FileType"
@@ -625,21 +625,21 @@ extension Ie {
             case audioInfoResult = "AudioInfoResult"
         }
     }
-    
+
     /// 帧标签
     public struct FrameTagItem: TCOutputModel {
         /// 标签起始时间戳PTS(ms)
         public let startPts: UInt64
-        
+
         /// 语句结束时间戳PTS(ms)
         public let endPts: UInt64
-        
+
         /// 字符串形式的起始结束时间
         public let period: String
-        
+
         /// 标签数组
         public let tagItems: [TagItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case startPts = "StartPts"
             case endPts = "EndPts"
@@ -647,14 +647,14 @@ extension Ie {
             case tagItems = "TagItems"
         }
     }
-    
+
     /// 帧标签任务参数
     public struct FrameTagRec: TCInputModel {
         /// 标签类型：
         /// "Common": 通用类型
         /// "Game":游戏类型
         public let tagType: String
-        
+
         /// 游戏具体类型:
         /// "HonorOfKings_AnchorViews":王者荣耀主播视角
         /// "HonorOfKings_GameViews":王者荣耀比赛视角
@@ -663,49 +663,49 @@ extension Ie {
         /// "PUBG_AnchorViews":和平精英主播视角
         /// "PUBG_GameViews":和平精英比赛视角
         public let gameExtendType: String?
-        
-        public init (tagType: String, gameExtendType: String? = nil) {
+
+        public init(tagType: String, gameExtendType: String? = nil) {
             self.tagType = tagType
             self.gameExtendType = gameExtendType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagType = "TagType"
             case gameExtendType = "GameExtendType"
         }
     }
-    
+
     /// 帧标签结果
     public struct FrameTagResult: TCOutputModel {
         /// 帧标签结果数组
         public let frameTagItems: [FrameTagItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case frameTagItems = "FrameTagItems"
         }
     }
-    
+
     /// 数字水印
     public struct HiddenMarkInfo: TCInputModel {
         /// 数字水印路径,，如果不从Cos拉取水印，则必填
         public let path: String
-        
+
         /// 数字水印频率，可选值：[1,256]，默认值为30
         public let frequency: Int64?
-        
+
         /// 数字水印强度，可选值：[32,128]，默认值为64
         public let strength: Int64?
-        
+
         /// 数字水印的Cos 信息，从Cos上拉取图片水印时必填。
         public let cosInfo: CosInfo?
-        
-        public init (path: String, frequency: Int64? = nil, strength: Int64? = nil, cosInfo: CosInfo? = nil) {
+
+        public init(path: String, frequency: Int64? = nil, strength: Int64? = nil, cosInfo: CosInfo? = nil) {
             self.path = path
             self.frequency = frequency
             self.strength = strength
             self.cosInfo = cosInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case frequency = "Frequency"
@@ -713,43 +713,43 @@ extension Ie {
             case cosInfo = "CosInfo"
         }
     }
-    
+
     /// 智能集锦任务参数信息
     public struct HighlightsEditingInfo: TCInputModel {
         /// 是否开启智能集锦。0为关闭，1为开启。其他非0非1值默认为0。
         public let `switch`: Int64
-        
+
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
-        
-        public init (switch: Int64, customInfo: String? = nil) {
+
+        public init(switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case customInfo = "CustomInfo"
         }
     }
-    
+
     /// 智能集锦结果信息
     public struct HighlightsTaskResult: TCOutputModel {
-        /// 编辑任务状态。 
+        /// 编辑任务状态。
         /// 1：执行中；2：成功；3：失败。
         public let status: Int64
-        
-        /// 编辑任务失败错误码。 
+
+        /// 编辑任务失败错误码。
         /// 0：成功；其他值：失败。
         public let errCode: Int64
-        
+
         /// 编辑任务失败错误描述。
         public let errMsg: String
-        
+
         /// 智能集锦结果集。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemSet: [HighlightsTaskResultItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCode = "ErrCode"
@@ -757,24 +757,24 @@ extension Ie {
             case itemSet = "ItemSet"
         }
     }
-    
+
     /// 智能集锦结果项
     public struct HighlightsTaskResultItem: TCOutputModel {
         /// 智能集锦地址。
         public let highlightUrl: String
-        
+
         /// 智能集锦封面地址。
         public let covImgUrl: String
-        
+
         /// 置信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         /// 智能集锦持续时间，单位：秒。
         public let duration: Float
-        
+
         /// 智能集锦子片段结果集，集锦片段由这些子片段拼接生成。
         public let segmentSet: [HighlightsTaskResultItemSegment]
-        
+
         enum CodingKeys: String, CodingKey {
             case highlightUrl = "HighlightUrl"
             case covImgUrl = "CovImgUrl"
@@ -783,102 +783,102 @@ extension Ie {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 智能集锦结果片段
     public struct HighlightsTaskResultItemSegment: TCOutputModel {
         /// 置信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         /// 集锦片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 集锦片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
         }
     }
-    
+
     /// 周期时间点信息。
     public struct IntervalTime: TCInputModel {
         /// 间隔周期，单位ms
         public let interval: Int64
-        
+
         /// 开始时间点，单位ms
         public let startTime: Int64?
-        
-        public init (interval: Int64, startTime: Int64? = nil) {
+
+        public init(interval: Int64, startTime: Int64? = nil) {
             self.interval = interval
             self.startTime = startTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case interval = "Interval"
             case startTime = "StartTime"
         }
     }
-    
+
     /// 音频响度信息
     public struct LoudnessInfo: TCInputModel {
         /// 音频整体响度
         public let loudness: Float?
-        
+
         /// 音频响度范围
         public let loudnessRange: Float?
-        
-        public init (loudness: Float? = nil, loudnessRange: Float? = nil) {
+
+        public init(loudness: Float? = nil, loudnessRange: Float? = nil) {
             self.loudness = loudness
             self.loudnessRange = loudnessRange
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loudness = "Loudness"
             case loudnessRange = "LoudnessRange"
         }
     }
-    
+
     /// 低光照增强参数
     public struct LowLightEnhance: TCInputModel {
         /// 低光照增强类型，可选项：normal。
         public let type: String
-        
-        public init (type: String) {
+
+        public init(type: String) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// 编辑处理/剪切任务信息。
     /// 截图结果默认存在 SaveInfoSet 的第一个存储位置。
     public struct MediaCuttingInfo: TCInputModel {
         /// 截取时间信息。
         public let timeInfo: MediaCuttingTimeInfo
-        
+
         /// 输出结果信息。
         public let targetInfo: MediaTargetInfo
-        
+
         /// 截取结果形式信息。
         public let outForm: MediaCuttingOutForm
-        
+
         /// 列表文件形式，存储到用户存储服务中，可选值：
         /// <li>NoListFile：不存储结果列表; </li>
         /// <li>UseSaveInfo：默认，结果列表和结果存储同一位置（即SaveInfoSet 的第一个存储位置）；</li>
         /// <li>SaveInfoSet 存储的Id：存储在指定的存储位置。</li>
         public let resultListSaveType: String?
-        
+
         /// 水印信息，最多支持 10 个水印。
         public let watermarkInfoSet: [MediaCuttingWatermark]?
-        
+
         /// 是否去除纯色截图，如果值为 True ，对应时间点的截图如果是纯色，将略过。
         public let dropPureColor: String?
-        
-        public init (timeInfo: MediaCuttingTimeInfo, targetInfo: MediaTargetInfo, outForm: MediaCuttingOutForm, resultListSaveType: String? = nil, watermarkInfoSet: [MediaCuttingWatermark]? = nil, dropPureColor: String? = nil) {
+
+        public init(timeInfo: MediaCuttingTimeInfo, targetInfo: MediaTargetInfo, outForm: MediaCuttingOutForm, resultListSaveType: String? = nil, watermarkInfoSet: [MediaCuttingWatermark]? = nil, dropPureColor: String? = nil) {
             self.timeInfo = timeInfo
             self.targetInfo = targetInfo
             self.outForm = outForm
@@ -886,7 +886,7 @@ extension Ie {
             self.watermarkInfoSet = watermarkInfoSet
             self.dropPureColor = dropPureColor
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case timeInfo = "TimeInfo"
             case targetInfo = "TargetInfo"
@@ -896,7 +896,7 @@ extension Ie {
             case dropPureColor = "DropPureColor"
         }
     }
-    
+
     /// 编辑处理/剪切任务/输出形式信息
     public struct MediaCuttingOutForm: TCInputModel {
         /// 输出类型，可选值：
@@ -911,7 +911,7 @@ extension Ie {
         /// Video：mp4。
         /// 注2：当 Type=Sprite时，TargetInfo指定的尺寸表示小图的大小，最终结果尺寸以输出为准。
         public let type: String
-        
+
         /// 背景填充方式，可选值：
         /// White：白色填充；
         /// Black：黑色填充；
@@ -919,20 +919,20 @@ extension Ie {
         /// Gaussian：高斯模糊；
         /// 默认White。
         public let fillType: String?
-        
+
         /// 【废弃】参考SpriteInfo
         public let spriteRowCount: Int64?
-        
+
         /// 【废弃】参考SpriteInfo
         public let spriteColumnCount: Int64?
-        
+
         /// Type=Sprite时有效，表示雪碧图参数信息。
         public let spriteInfo: SpriteImageInfo?
-        
+
         /// Type=Dynamic时有效，表示动图参数信息。
         public let dynamicInfo: DynamicImageInfo?
-        
-        public init (type: String, fillType: String? = nil, spriteRowCount: Int64? = nil, spriteColumnCount: Int64? = nil, spriteInfo: SpriteImageInfo? = nil, dynamicInfo: DynamicImageInfo? = nil) {
+
+        public init(type: String, fillType: String? = nil, spriteRowCount: Int64? = nil, spriteColumnCount: Int64? = nil, spriteInfo: SpriteImageInfo? = nil, dynamicInfo: DynamicImageInfo? = nil) {
             self.type = type
             self.fillType = fillType
             self.spriteRowCount = spriteRowCount
@@ -940,7 +940,7 @@ extension Ie {
             self.spriteInfo = spriteInfo
             self.dynamicInfo = dynamicInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case fillType = "FillType"
@@ -950,32 +950,32 @@ extension Ie {
             case dynamicInfo = "DynamicInfo"
         }
     }
-    
+
     /// 编辑处理/剪切任务/处理结果
     public struct MediaCuttingTaskResult: TCOutputModel {
         /// 如果ResultListType不为NoListFile时，结果（TaskResultFile）列表文件的存储位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listFile: TaskResultFile?
-        
+
         /// 结果个数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultCount: Int64?
-        
+
         /// 第一个结果文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstFile: TaskResultFile?
-        
+
         /// 最后一个结果文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastFile: TaskResultFile?
-        
+
         /// 任务结果包含的图片总数。
         /// 静态图：总数即为文件数；
         /// 雪碧图：所有小图总数；
         /// 动图、视频：不计算图片数，为 0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case listFile = "ListFile"
             case resultCount = "ResultCount"
@@ -984,7 +984,7 @@ extension Ie {
             case imageCount = "ImageCount"
         }
     }
-    
+
     /// 编辑处理/剪切任务/时间信息
     public struct MediaCuttingTimeInfo: TCInputModel {
         /// 时间类型，可选值：
@@ -992,23 +992,23 @@ extension Ie {
         /// IntervalPoint：周期采样点；
         /// SectionSet：时间片段集合。
         public let type: String
-        
+
         /// 截取时间点集合，单位毫秒，Type=PointSet时必选。
         public let pointSet: [Int64]?
-        
+
         /// 周期采样点信息，Type=IntervalPoint时必选。
         public let intervalPoint: IntervalTime?
-        
+
         /// 时间区间集合信息，Type=SectionSet时必选。
         public let sectionSet: [SectionTime]?
-        
-        public init (type: String, pointSet: [Int64]? = nil, intervalPoint: IntervalTime? = nil, sectionSet: [SectionTime]? = nil) {
+
+        public init(type: String, pointSet: [Int64]? = nil, intervalPoint: IntervalTime? = nil, sectionSet: [SectionTime]? = nil) {
             self.type = type
             self.pointSet = pointSet
             self.intervalPoint = intervalPoint
             self.sectionSet = sectionSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case pointSet = "PointSet"
@@ -1016,49 +1016,49 @@ extension Ie {
             case sectionSet = "SectionSet"
         }
     }
-    
+
     /// 媒体剪切水印信息。
     public struct MediaCuttingWatermark: TCInputModel {
         /// 水印类型，可选值：
         /// <li>Image：图像水印；</li>
         /// <li>Text：文字水印。</li>
         public let type: String
-        
+
         /// 图像水印信息，当 Type=Image 时必选。
         public let image: MediaCuttingWatermarkImage?
-        
+
         /// 文字水印信息，当 Type=Text 时必选。
         public let text: MediaCuttingWatermarkText?
-        
-        public init (type: String, image: MediaCuttingWatermarkImage? = nil, text: MediaCuttingWatermarkText? = nil) {
+
+        public init(type: String, image: MediaCuttingWatermarkImage? = nil, text: MediaCuttingWatermarkText? = nil) {
             self.type = type
             self.image = image
             self.text = text
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case image = "Image"
             case text = "Text"
         }
     }
-    
+
     /// 媒体剪切图像水印参数。
     public struct MediaCuttingWatermarkImage: TCInputModel {
         /// 水印源的ID，对应SourceInfoSet内的源。
         /// 注意1：对应的 MediaSourceInfo.Type需要为Image。
         /// 注意2：对于动图，只取第一帧图像作为水印源。
         public let sourceId: String
-        
+
         /// 水印水平坐标，单位像素，默认：0。
         public let posX: UInt64?
-        
+
         /// 水印垂直坐标，单位像素，默认：0。
         public let posY: UInt64?
-        
+
         /// 水印宽度，单位像素，默认：0。
         public let width: UInt64?
-        
+
         /// 水印高度，单位像素，默认：0。
         /// 注意：对于宽高符合以下规则：
         /// 1、Width>0 且 Height>0，按指定宽高拉伸；
@@ -1066,7 +1066,7 @@ extension Ie {
         /// 3、Width>0 且 Height=0，以Width为基准等比缩放；
         /// 4、Width=0 且 Height=0，采用源的宽高。
         public let height: UInt64?
-        
+
         /// 指定坐标原点，可选值：
         /// <li>LeftTop：PosXY 表示水印左上点到图片左上点的相对位置</li>
         /// <li>RightTop：PosXY 表示水印右上点到图片右上点的相对位置</li>
@@ -1075,8 +1075,8 @@ extension Ie {
         /// <li>Center：PosXY 表示水印中心点到图片中心点的相对位置</li>
         /// 默认：LeftTop。
         public let posOriginType: String?
-        
-        public init (sourceId: String, posX: UInt64? = nil, posY: UInt64? = nil, width: UInt64? = nil, height: UInt64? = nil, posOriginType: String? = nil) {
+
+        public init(sourceId: String, posX: UInt64? = nil, posY: UInt64? = nil, width: UInt64? = nil, height: UInt64? = nil, posOriginType: String? = nil) {
             self.sourceId = sourceId
             self.posX = posX
             self.posY = posY
@@ -1084,7 +1084,7 @@ extension Ie {
             self.height = height
             self.posOriginType = posOriginType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceId = "SourceId"
             case posX = "PosX"
@@ -1094,27 +1094,27 @@ extension Ie {
             case posOriginType = "PosOriginType"
         }
     }
-    
+
     /// 媒体剪切文字水印参数。
     public struct MediaCuttingWatermarkText: TCInputModel {
         /// 水印文字。
         public let text: String
-        
+
         /// 文字大小
         public let fontSize: UInt64
-        
+
         /// 水印水平坐标，单位像素，默认：0。
         public let posX: UInt64?
-        
+
         /// 水印垂直坐标，单位像素，默认：0。
         public let posY: UInt64?
-        
+
         /// 文字颜色，格式为：#RRGGBBAA，默认值：#000000。
         public let fontColor: String?
-        
+
         /// 文字透明度，范围：0~100，默认值：100。
         public let fontAlpha: UInt64?
-        
+
         /// 指定坐标原点，可选值：
         /// <li>LeftTop：PosXY 表示水印左上点到图片左上点的相对位置</li>
         /// <li>RightTop：PosXY 表示水印右上点到图片右上点的相对位置</li>
@@ -1123,15 +1123,15 @@ extension Ie {
         /// <li>Center：PosXY 表示水印中心点到图片中心点的相对位置</li>
         /// 默认：LeftTop。
         public let posOriginType: String?
-        
+
         /// 字体，可选值：
         /// <li>SimHei</li>
         /// <li>SimKai</li>
         /// <li>Arial</li>
         /// 默认 SimHei。
         public let font: String?
-        
-        public init (text: String, fontSize: UInt64, posX: UInt64? = nil, posY: UInt64? = nil, fontColor: String? = nil, fontAlpha: UInt64? = nil, posOriginType: String? = nil, font: String? = nil) {
+
+        public init(text: String, fontSize: UInt64, posX: UInt64? = nil, posY: UInt64? = nil, fontColor: String? = nil, fontAlpha: UInt64? = nil, posOriginType: String? = nil, font: String? = nil) {
             self.text = text
             self.fontSize = fontSize
             self.posX = posX
@@ -1141,7 +1141,7 @@ extension Ie {
             self.posOriginType = posOriginType
             self.font = font
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case fontSize = "FontSize"
@@ -1153,40 +1153,40 @@ extension Ie {
             case font = "Font"
         }
     }
-    
+
     /// 编辑处理/拼接任务信息
     public struct MediaJoiningInfo: TCInputModel {
         /// 输出目标信息，拼接只采用FileName和Format，用于指定目标文件名和格式。
         /// 其中Format只支持mp4.
         public let targetInfo: MediaTargetInfo
-        
+
         /// 拼接模式：
         /// Fast：快速；
         /// Normal：正常；
         public let mode: String?
-        
-        public init (targetInfo: MediaTargetInfo, mode: String? = nil) {
+
+        public init(targetInfo: MediaTargetInfo, mode: String? = nil) {
             self.targetInfo = targetInfo
             self.mode = mode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetInfo = "TargetInfo"
             case mode = "Mode"
         }
     }
-    
+
     /// 编辑处理/拼接任务/处理结果
     public struct MediaJoiningTaskResult: TCOutputModel {
         /// 拼接结果文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let file: TaskResultFile?
-        
+
         enum CodingKeys: String, CodingKey {
             case file = "File"
         }
     }
-    
+
     /// 编辑处理/任务信息
     public struct MediaProcessInfo: TCInputModel {
         /// 编辑处理任务类型，可选值：
@@ -1195,23 +1195,23 @@ extension Ie {
         /// MediaJoining：媒体拼接。
         /// MediaRecognition: 媒体识别。
         public let type: String
-        
+
         /// 视频剪切任务参数，Type=MediaCutting时必选。
         public let mediaCuttingInfo: MediaCuttingInfo?
-        
+
         /// 视频拼接任务参数，Type=MediaJoining时必选。
         public let mediaJoiningInfo: MediaJoiningInfo?
-        
+
         /// 媒体识别任务参数，Type=MediaRecognition时必选
         public let mediaRecognitionInfo: MediaRecognitionInfo?
-        
-        public init (type: String, mediaCuttingInfo: MediaCuttingInfo? = nil, mediaJoiningInfo: MediaJoiningInfo? = nil, mediaRecognitionInfo: MediaRecognitionInfo? = nil) {
+
+        public init(type: String, mediaCuttingInfo: MediaCuttingInfo? = nil, mediaJoiningInfo: MediaJoiningInfo? = nil, mediaRecognitionInfo: MediaRecognitionInfo? = nil) {
             self.type = type
             self.mediaCuttingInfo = mediaCuttingInfo
             self.mediaJoiningInfo = mediaJoiningInfo
             self.mediaRecognitionInfo = mediaRecognitionInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case mediaCuttingInfo = "MediaCuttingInfo"
@@ -1219,13 +1219,13 @@ extension Ie {
             case mediaRecognitionInfo = "MediaRecognitionInfo"
         }
     }
-    
+
     /// 编辑处理/任务处理结果
     public struct MediaProcessTaskResult: TCOutputModel {
         /// 编辑处理任务ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 编辑处理任务类型，取值：
         /// MediaEditing：视频编辑（待上线）；
         /// MediaCutting：视频剪切；
@@ -1233,11 +1233,11 @@ extension Ie {
         /// MediaRecognition：媒体识别；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 处理进度，范围：[0,100]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: Int64?
-        
+
         /// 任务状态：
         /// 1100：等待中；
         /// 1200：执行中；
@@ -1245,27 +1245,27 @@ extension Ie {
         /// 5000：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 任务错误码。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errCode: Int64?
-        
+
         /// 任务错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 剪切任务处理结果，当Type=MediaCutting时才有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaCuttingTaskResult: MediaCuttingTaskResult?
-        
+
         /// 拼接任务处理结果，当Type=MediaJoining时才有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaJoiningTaskResult: MediaJoiningTaskResult?
-        
+
         /// 媒体识别任务处理结果，当Type=MediaRecognition时才有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaRecognitionTaskResult: MediaRecognitionTaskResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case type = "Type"
@@ -1278,105 +1278,105 @@ extension Ie {
             case mediaRecognitionTaskResult = "MediaRecognitionTaskResult"
         }
     }
-    
+
     /// 画质重生任务结果
     public struct MediaQualityRestorationTaskResult: TCOutputModel {
         /// 画质重生任务ID
         public let taskId: String
-        
+
         /// 画质重生处理后文件的详细信息。
         public let subTaskResult: [SubTaskResultItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case subTaskResult = "SubTaskResult"
         }
     }
-    
+
     /// 媒体识别任务参数
     public struct MediaRecognitionInfo: TCInputModel {
         /// 帧标签识别
         public let frameTagRec: FrameTagRec?
-        
+
         /// 语音字幕识别
         public let subtitleRec: SubtitleRec?
-        
-        public init (frameTagRec: FrameTagRec? = nil, subtitleRec: SubtitleRec? = nil) {
+
+        public init(frameTagRec: FrameTagRec? = nil, subtitleRec: SubtitleRec? = nil) {
             self.frameTagRec = frameTagRec
             self.subtitleRec = subtitleRec
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case frameTagRec = "FrameTagRec"
             case subtitleRec = "SubtitleRec"
         }
     }
-    
+
     /// 媒体识别任务处理结果
     public struct MediaRecognitionTaskResult: TCOutputModel {
         /// 帧标签识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frameTagResults: FrameTagResult?
-        
+
         /// 语音字幕识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subtitleResults: SubtitleResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case frameTagResults = "FrameTagResults"
             case subtitleResults = "SubtitleResults"
         }
     }
-    
+
     /// 结果文件媒体信息
     public struct MediaResultInfo: TCOutputModel {
         /// 媒体时长，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: UInt64?
-        
+
         /// 视频流信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultVideoInfoSet: [ResultVideoInfo]?
-        
+
         /// 音频流信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultAudioInfoSet: [ResultAudioInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case duration = "Duration"
             case resultVideoInfoSet = "ResultVideoInfoSet"
             case resultAudioInfoSet = "ResultAudioInfoSet"
         }
     }
-    
+
     /// 编辑处理的媒体源
     public struct MediaSourceInfo: TCInputModel {
         /// 媒体源资源下载信息。
         public let downInfo: DownInfo
-        
+
         /// 媒体源ID标记，用于多个输入源时，请内媒体源的定位，对于多输入的任务，一般要求必选。
         /// ID只能包含字母、数字、下划线、中划线，长读不能超过128。
         public let id: String?
-        
+
         /// 媒体源类型，具体类型如下：
         /// Video：视频
         /// Image：图片
         /// Audio：音频
         public let type: String?
-        
-        public init (downInfo: DownInfo, id: String? = nil, type: String? = nil) {
+
+        public init(downInfo: DownInfo, id: String? = nil, type: String? = nil) {
             self.downInfo = downInfo
             self.id = id
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case downInfo = "DownInfo"
             case id = "Id"
             case type = "Type"
         }
     }
-    
+
     /// 目标媒体信息。
     public struct MediaTargetInfo: TCInputModel {
         /// 目标文件名，不能带特殊字符（如/等），无需后缀名，最长200字符。
@@ -1384,23 +1384,23 @@ extension Ie {
         /// 预设parameter有：
         /// index：序号；
         public let fileName: String
-        
+
         /// 媒体封装格式，最长5字符，具体格式支持根据子任务确定。
         public let format: String
-        
+
         /// 视频流信息。
         public let targetVideoInfo: TargetVideoInfo?
-        
+
         /// 【不再使用】
         public let resultListSaveType: String?
-        
-        public init (fileName: String, format: String, targetVideoInfo: TargetVideoInfo? = nil, resultListSaveType: String? = nil) {
+
+        public init(fileName: String, format: String, targetVideoInfo: TargetVideoInfo? = nil, resultListSaveType: String? = nil) {
             self.fileName = fileName
             self.format = format
             self.targetVideoInfo = targetVideoInfo
             self.resultListSaveType = resultListSaveType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case format = "Format"
@@ -1408,62 +1408,62 @@ extension Ie {
             case resultListSaveType = "ResultListSaveType"
         }
     }
-    
+
     /// 流封装信息
     public struct MuxInfo: TCInputModel {
         /// 删除流，可选项：video,audio。
         public let deleteStream: String?
-        
+
         /// Flv 参数，目前支持add_keyframe_index
         public let flvFlags: String?
-        
-        public init (deleteStream: String? = nil, flvFlags: String? = nil) {
+
+        public init(deleteStream: String? = nil, flvFlags: String? = nil) {
             self.deleteStream = deleteStream
             self.flvFlags = flvFlags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deleteStream = "DeleteStream"
             case flvFlags = "FlvFlags"
         }
     }
-    
+
     /// 片头片尾识别任务参数信息
     public struct OpeningEndingEditingInfo: TCInputModel {
         /// 是否开启片头片尾识别。0为关闭，1为开启。其他非0非1值默认为0。
         public let `switch`: Int64
-        
+
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
-        
-        public init (switch: Int64, customInfo: String? = nil) {
+
+        public init(switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case customInfo = "CustomInfo"
         }
     }
-    
+
     /// 片头片尾识别结果信息
     public struct OpeningEndingTaskResult: TCOutputModel {
-        /// 编辑任务状态。 
+        /// 编辑任务状态。
         /// 1：执行中；2：成功；3：失败。
         public let status: Int64
-        
-        /// 编辑任务失败错误码。 
+
+        /// 编辑任务失败错误码。
         /// 0：成功；其他值：失败。
         public let errCode: Int64
-        
+
         /// 编辑任务失败错误描述。
         public let errMsg: String
-        
+
         /// 片头片尾识别结果项。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let item: OpeningEndingTaskResultItem?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCode = "ErrCode"
@@ -1471,21 +1471,21 @@ extension Ie {
             case item = "Item"
         }
     }
-    
+
     /// 片头片尾识别结果项
     public struct OpeningEndingTaskResultItem: TCOutputModel {
         /// 视频片头的结束时间点，单位：秒。
         public let openingTimeOffset: Float
-        
+
         /// 片头识别置信度，取值范围是 0 到 100。
         public let openingConfidence: Float
-        
+
         /// 视频片尾的开始时间点，单位：秒。
         public let endingTimeOffset: Float
-        
+
         /// 片尾识别置信度，取值范围是 0 到 100。
         public let endingConfidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case openingTimeOffset = "OpeningTimeOffset"
             case openingConfidence = "OpeningConfidence"
@@ -1493,34 +1493,34 @@ extension Ie {
             case endingConfidence = "EndingConfidence"
         }
     }
-    
+
     /// 图片水印信息
     public struct PicMarkInfoItem: TCInputModel {
         /// 图片水印的X坐标。
         public let posX: Int64
-        
+
         /// 图片水印的Y坐标 。
         public let posY: Int64
-        
+
         /// 图片水印路径,，如果不从Cos拉取水印，则必填
         public let path: String?
-        
+
         /// 图片水印的Cos 信息，从Cos上拉取图片水印时必填。
         public let cosInfo: CosInfo?
-        
+
         /// 图片水印宽度，不填为图片原始宽度。
         public let width: Int64?
-        
+
         /// 图片水印高度，不填为图片原始高度。
         public let height: Int64?
-        
+
         /// 添加图片水印的开始时间,单位：ms。
         public let startTime: Int64?
-        
+
         /// 添加图片水印的结束时间,单位：ms。
         public let endTime: Int64?
-        
-        public init (posX: Int64, posY: Int64, path: String? = nil, cosInfo: CosInfo? = nil, width: Int64? = nil, height: Int64? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
+
+        public init(posX: Int64, posY: Int64, path: String? = nil, cosInfo: CosInfo? = nil, width: Int64? = nil, height: Int64? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
             self.posX = posX
             self.posY = posY
             self.path = path
@@ -1530,7 +1530,7 @@ extension Ie {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case posX = "PosX"
             case posY = "PosY"
@@ -1542,49 +1542,49 @@ extension Ie {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 媒体质检任务参数信息
     public struct QualityControlInfo: TCInputModel {
         /// 对流进行截图的间隔ms，默认1000ms
         public let interval: UInt64?
-        
+
         /// 是否保存截图
         public let videoShot: Bool?
-        
+
         /// 是否检测抖动重影
         public let jitter: Bool?
-        
+
         /// 是否检测模糊
         public let blur: Bool?
-        
+
         /// 是否检测低光照、过曝
         public let abnormalLighting: Bool?
-        
+
         /// 是否检测花屏
         public let crashScreen: Bool?
-        
+
         /// 是否检测黑边、白边、黑屏、白屏、绿屏
         public let blackWhiteEdge: Bool?
-        
+
         /// 是否检测噪点
         public let noise: Bool?
-        
+
         /// 是否检测马赛克
         public let mosaic: Bool?
-        
+
         /// 是否检测二维码，包括小程序码、条形码
         public let qrCode: Bool?
-        
+
         /// 是否开启画面质量评价
         public let qualityEvaluation: Bool?
-        
+
         /// 画面质量评价过滤阈值，结果只返回低于阈值的时间段，默认60
         public let qualityEvalScore: UInt64?
-        
+
         /// 是否检测视频音频，包含静音、低音、爆音
         public let voice: Bool?
-        
-        public init (interval: UInt64? = nil, videoShot: Bool? = nil, jitter: Bool? = nil, blur: Bool? = nil, abnormalLighting: Bool? = nil, crashScreen: Bool? = nil, blackWhiteEdge: Bool? = nil, noise: Bool? = nil, mosaic: Bool? = nil, qrCode: Bool? = nil, qualityEvaluation: Bool? = nil, qualityEvalScore: UInt64? = nil, voice: Bool? = nil) {
+
+        public init(interval: UInt64? = nil, videoShot: Bool? = nil, jitter: Bool? = nil, blur: Bool? = nil, abnormalLighting: Bool? = nil, crashScreen: Bool? = nil, blackWhiteEdge: Bool? = nil, noise: Bool? = nil, mosaic: Bool? = nil, qrCode: Bool? = nil, qualityEvaluation: Bool? = nil, qualityEvalScore: UInt64? = nil, voice: Bool? = nil) {
             self.interval = interval
             self.videoShot = videoShot
             self.jitter = jitter
@@ -1599,7 +1599,7 @@ extension Ie {
             self.qualityEvalScore = qualityEvalScore
             self.voice = voice
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case interval = "Interval"
             case videoShot = "VideoShot"
@@ -1616,85 +1616,85 @@ extension Ie {
             case voice = "Voice"
         }
     }
-    
+
     /// 媒体质检结果信息
     public struct QualityControlInfoTaskResult: TCOutputModel {
         /// 质检任务 ID
         public let taskId: String
-        
+
         /// 质检任务状态。
         /// 1：执行中；2：成功；3：失败
         public let status: UInt64
-        
+
         /// 表示处理进度百分比
         public let progress: UInt64
-        
+
         /// 处理时长(s)
         public let usedTime: UInt64
-        
+
         /// 计费时长(s)
         public let duration: UInt64
-        
+
         /// 为true时表示视频无音频轨
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noAudio: Bool?
-        
+
         /// 为true时表示视频无视频轨
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noVideo: Bool?
-        
+
         /// 视频无参考质量打分，百分制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualityEvaluationScore: UInt64?
-        
+
         /// 视频画面无参考评分低于阈值的时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualityEvaluationResults: [QualityControlResultItems]?
-        
+
         /// 视频画面抖动时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jitterResults: [QualityControlResultItems]?
-        
+
         /// 视频画面模糊时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blurResults: [QualityControlResultItems]?
-        
+
         /// 视频画面低光、过曝时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abnormalLightingResults: [QualityControlResultItems]?
-        
+
         /// 视频画面花屏时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let crashScreenResults: [QualityControlResultItems]?
-        
+
         /// 视频画面黑边、白边、黑屏、白屏、纯色屏时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blackWhiteEdgeResults: [QualityControlResultItems]?
-        
+
         /// 视频画面有噪点时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noiseResults: [QualityControlResultItems]?
-        
+
         /// 视频画面有马赛克时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mosaicResults: [QualityControlResultItems]?
-        
+
         /// 视频画面有二维码的时间段，包括小程序码、条形码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qrCodeResults: [QualityControlResultItems]?
-        
+
         /// 视频音频异常时间段，包括静音、低音、爆音
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let voiceResults: [QualityControlResultItems]?
-        
+
         /// 任务错误码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errCode: Int64?
-        
+
         /// 任务错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -1718,23 +1718,23 @@ extension Ie {
             case errMsg = "ErrMsg"
         }
     }
-    
+
     /// 质检结果项
     public struct QualityControlItem: TCOutputModel {
         /// 置信度，取值范围是 0 到 100
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: UInt64?
-        
+
         /// 出现的起始时间戳，秒
         public let startTimeOffset: Float
-        
+
         /// 出现的结束时间戳，秒
         public let endTimeOffset: Float
-        
+
         /// 区域坐标(px)，即左上角坐标、右下角坐标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let areaCoordsSet: [UInt64]?
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case startTimeOffset = "StartTimeOffset"
@@ -1742,74 +1742,74 @@ extension Ie {
             case areaCoordsSet = "AreaCoordsSet"
         }
     }
-    
+
     /// 质检结果项数组
     public struct QualityControlResultItems: TCOutputModel {
         /// 异常类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 质检结果项
         public let qualityControlItems: [QualityControlItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case qualityControlItems = "QualityControlItems"
         }
     }
-    
+
     /// 音频去除混响
     public struct RemoveReverb: TCInputModel {
         /// 去混响类型，可选项：normal
         public let type: String?
-        
-        public init (type: String? = nil) {
+
+        public init(type: String? = nil) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// 结果媒体文件的视频流信息
     public struct ResultAudioInfo: TCOutputModel {
         /// 流在媒体文件中的流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamId: Int64?
-        
+
         /// 流的时长，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case streamId = "StreamId"
             case duration = "Duration"
         }
     }
-    
+
     /// 结果媒体文件的视频流信息
     public struct ResultVideoInfo: TCOutputModel {
         /// 流在媒体文件中的流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamId: Int64?
-        
+
         /// 流的时长，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: UInt64?
-        
+
         /// 画面宽度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: Int64?
-        
+
         /// 画面高度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let height: Int64?
-        
+
         /// 视频帧率，如果高于原始帧率，部分服务将无效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fps: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case streamId = "StreamId"
             case duration = "Duration"
@@ -1818,153 +1818,153 @@ extension Ie {
             case fps = "Fps"
         }
     }
-    
+
     /// 任务存储信息
     public struct SaveInfo: TCInputModel {
-        /// 存储类型，可选值： 
+        /// 存储类型，可选值：
         /// 1：CosInfo。
         public let type: Int64
-        
+
         /// Cos形式存储信息，当Type等于1时必选。
         public let cosInfo: CosInfo?
-        
+
         /// 存储信息ID标记，用于多个输出场景。部分任务支持多输出时，一般要求必选。
         /// ID只能包含字母、数字、下划线、中划线，长读不能超过128。
         public let id: String?
-        
-        public init (type: Int64, cosInfo: CosInfo? = nil, id: String? = nil) {
+
+        public init(type: Int64, cosInfo: CosInfo? = nil, id: String? = nil) {
             self.type = type
             self.cosInfo = cosInfo
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case cosInfo = "CosInfo"
             case id = "Id"
         }
     }
-    
+
     /// 去划痕参数
     public struct ScratchRepair: TCInputModel {
         /// 去划痕方式，取值：normal。
         public let type: String?
-        
+
         /// 去划痕强度， 可选项：0.0-1.0。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let ratio: Float?
-        
-        public init (type: String? = nil, ratio: Float? = nil) {
+
+        public init(type: String? = nil, ratio: Float? = nil) {
             self.type = type
             self.ratio = ratio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case ratio = "Ratio"
         }
     }
-    
+
     /// 时间区间。
     public struct SectionTime: TCInputModel {
         /// 开始时间点，单位ms
         public let startTime: Int64
-        
+
         /// 时间区间时长，单位ms
         public let duration: Int64
-        
-        public init (startTime: Int64, duration: Int64) {
+
+        public init(startTime: Int64, duration: Int64) {
             self.startTime = startTime
             self.duration = duration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case duration = "Duration"
         }
     }
-    
+
     /// 输出文件切片信息
     public struct SegmentInfo: TCInputModel {
         /// 每个切片平均时长，默认10s。
         public let fragmentTime: Int64?
-        
+
         /// 切片类型，可选项：hls，不填时默认hls。
         public let segmentType: String?
-        
+
         /// 切片文件名字。注意：
         /// 1.不填切片文件名时，默认按照按照如下格式命名：m3u8文件名{order}。
         /// 2.若填了切片文件名字，则会按照如下格式命名：用户指定文件名{order}。
         public let fragmentName: String?
-        
-        public init (fragmentTime: Int64? = nil, segmentType: String? = nil, fragmentName: String? = nil) {
+
+        public init(fragmentTime: Int64? = nil, segmentType: String? = nil, fragmentName: String? = nil) {
             self.fragmentTime = fragmentTime
             self.segmentType = segmentType
             self.fragmentName = fragmentName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fragmentTime = "FragmentTime"
             case segmentType = "SegmentType"
             case fragmentName = "FragmentName"
         }
     }
-    
+
     /// 细节增强参数
     public struct Sharp: TCInputModel {
         /// 细节增强方式,取值：normal。
         public let type: String?
-        
+
         /// 细节增强强度，可选项：0.0-1.0。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let ratio: Float?
-        
-        public init (type: String? = nil, ratio: Float? = nil) {
+
+        public init(type: String? = nil, ratio: Float? = nil) {
             self.type = type
             self.ratio = ratio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case ratio = "Ratio"
         }
     }
-    
+
     /// 雪碧图参数信息
     /// 注意：雪碧图大图整体的宽和高都不能大于 65000 像素。
     public struct SpriteImageInfo: TCInputModel {
         /// 表示雪碧图行数，默认：10。
         public let rowCount: UInt64?
-        
+
         /// 表示雪碧图列数，默认：10。
         public let columnCount: UInt64?
-        
+
         /// 第一行元素与顶部像素距离，默认：0。
         public let marginTop: Int64?
-        
+
         /// 最后一行元素与底部像素距离，默认：0。
         public let marginBottom: Int64?
-        
+
         /// 最左一行元素与左边像素距离，默认：0。
         public let marginLeft: Int64?
-        
+
         /// 最右一行元素与右边像素距离，默认：0。
         public let marginRight: Int64?
-        
+
         /// 小图与元素顶部像素距离，默认：0。
         public let paddingTop: Int64?
-        
+
         /// 小图与元素底部像素距离，默认：0。
         public let paddingBottom: Int64?
-        
+
         /// 小图与元素左边像素距离，默认：0。
         public let paddingLeft: Int64?
-        
+
         /// 小图与元素右边像素距离，默认：0。
         public let paddingRight: Int64?
-        
+
         /// 背景颜色，格式：#RRGGBB，默认：#FFFFFF。
         public let backgroundColor: String?
-        
-        public init (rowCount: UInt64? = nil, columnCount: UInt64? = nil, marginTop: Int64? = nil, marginBottom: Int64? = nil, marginLeft: Int64? = nil, marginRight: Int64? = nil, paddingTop: Int64? = nil, paddingBottom: Int64? = nil, paddingLeft: Int64? = nil, paddingRight: Int64? = nil, backgroundColor: String? = nil) {
+
+        public init(rowCount: UInt64? = nil, columnCount: UInt64? = nil, marginTop: Int64? = nil, marginBottom: Int64? = nil, marginLeft: Int64? = nil, marginRight: Int64? = nil, paddingTop: Int64? = nil, paddingBottom: Int64? = nil, paddingLeft: Int64? = nil, paddingRight: Int64? = nil, backgroundColor: String? = nil) {
             self.rowCount = rowCount
             self.columnCount = columnCount
             self.marginTop = marginTop
@@ -1977,7 +1977,7 @@ extension Ie {
             self.paddingRight = paddingRight
             self.backgroundColor = backgroundColor
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case rowCount = "RowCount"
             case columnCount = "ColumnCount"
@@ -1992,43 +1992,43 @@ extension Ie {
             case backgroundColor = "BackgroundColor"
         }
     }
-    
+
     /// 智能拆条任务参数信息
     public struct StripEditingInfo: TCInputModel {
         /// 是否开启智能拆条。0为关闭，1为开启。其他非0非1值默认为0。
         public let `switch`: Int64
-        
+
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
-        
-        public init (switch: Int64, customInfo: String? = nil) {
+
+        public init(switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case customInfo = "CustomInfo"
         }
     }
-    
+
     /// 智能拆条结果信息
     public struct StripTaskResult: TCOutputModel {
-        /// 编辑任务状态。 
+        /// 编辑任务状态。
         /// 1：执行中；2：成功；3：失败。
         public let status: Int64
-        
-        /// 编辑任务失败错误码。 
+
+        /// 编辑任务失败错误码。
         /// 0：成功；其他值：失败。
         public let errCode: Int64
-        
+
         /// 编辑任务失败错误描述。
         public let errMsg: String
-        
+
         /// 智能拆条结果集。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemSet: [StripTaskResultItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCode = "ErrCode"
@@ -2036,24 +2036,24 @@ extension Ie {
             case itemSet = "ItemSet"
         }
     }
-    
+
     /// 智能拆条结果项
     public struct StripTaskResultItem: TCOutputModel {
         /// 视频拆条片段地址。
         public let segmentUrl: String
-        
+
         /// 拆条封面图片地址。
         public let covImgUrl: String
-        
+
         /// 置信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         /// 拆条片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 拆条片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case segmentUrl = "SegmentUrl"
             case covImgUrl = "CovImgUrl"
@@ -2062,38 +2062,38 @@ extension Ie {
             case endTimeOffset = "EndTimeOffset"
         }
     }
-    
+
     /// 画质重生子任务结果
     public struct SubTaskResultItem: TCOutputModel {
         /// 子任务名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
-        
+
         /// 子任务状态。
         /// 0：成功；
         /// 1：执行中；
         /// 其他值：失败。
         public let statusCode: Int64
-        
+
         /// 子任务状态描述。
         public let statusMsg: String
-        
+
         /// 子任务进度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progressRate: Int64?
-        
+
         /// 画质重生处理后文件的下载地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 画质重生处理后文件的MD5。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5: String?
-        
+
         /// 画质重生处理后文件的详细信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileInfo: FileInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case statusCode = "StatusCode"
@@ -2104,28 +2104,28 @@ extension Ie {
             case fileInfo = "FileInfo"
         }
     }
-    
+
     /// 画质重生子任务参数信息
     public struct SubTaskTranscodeInfo: TCInputModel {
         /// 子任务名称。
         public let taskName: String
-        
+
         /// 目标文件信息。
         public let targetInfo: TargetInfo
-        
+
         /// 视频剪辑信息。注意：如果填写了EditInfo，则VideoInfo和AudioInfo必填
         public let editInfo: EditInfo?
-        
+
         /// 视频转码信息，不填保持和源文件一致。
         public let videoInfo: VideoInfo?
-        
+
         /// 音频转码信息，不填保持和源文件一致。
         public let audioInfo: AudioInfo?
-        
+
         /// 指定封装信息。
         public let muxInfo: MuxInfo?
-        
-        public init (taskName: String, targetInfo: TargetInfo, editInfo: EditInfo? = nil, videoInfo: VideoInfo? = nil, audioInfo: AudioInfo? = nil, muxInfo: MuxInfo? = nil) {
+
+        public init(taskName: String, targetInfo: TargetInfo, editInfo: EditInfo? = nil, videoInfo: VideoInfo? = nil, audioInfo: AudioInfo? = nil, muxInfo: MuxInfo? = nil) {
             self.taskName = taskName
             self.targetInfo = targetInfo
             self.editInfo = editInfo
@@ -2133,7 +2133,7 @@ extension Ie {
             self.audioInfo = audioInfo
             self.muxInfo = muxInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case targetInfo = "TargetInfo"
@@ -2143,39 +2143,39 @@ extension Ie {
             case muxInfo = "MuxInfo"
         }
     }
-    
+
     /// 语音字幕识别项
     public struct SubtitleItem: TCOutputModel {
         /// 语音识别结果
         public let id: String
-        
+
         /// 中文翻译结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zh: String?
-        
+
         /// 英文翻译结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let en: String?
-        
+
         /// 语句起始时间戳PTS(ms)
         public let startPts: UInt64
-        
+
         /// 语句结束时间戳PTS(ms)
         public let endPts: UInt64
-        
+
         /// 字符串形式的起始结束时间
         public let period: String
-        
+
         /// 结果的置信度（百分制）
         public let confidence: Int64
-        
+
         /// 当前语句是否结束
         public let endFlag: Bool
-        
+
         /// 语句分割时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let puncEndTs: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case zh = "Zh"
@@ -2188,75 +2188,75 @@ extension Ie {
             case puncEndTs = "PuncEndTs"
         }
     }
-    
+
     /// 语音字幕任务参数
     public struct SubtitleRec: TCInputModel {
         /// 语音识别：
         /// zh：中文
         /// en：英文
         public let asrDst: String?
-        
+
         /// 翻译识别：
         /// zh：中文
         /// en：英文
         public let transDst: String?
-        
-        public init (asrDst: String? = nil, transDst: String? = nil) {
+
+        public init(asrDst: String? = nil, transDst: String? = nil) {
             self.asrDst = asrDst
             self.transDst = transDst
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case asrDst = "AsrDst"
             case transDst = "TransDst"
         }
     }
-    
+
     /// 语音字幕识别结果
     public struct SubtitleResult: TCOutputModel {
         /// 语音字幕数组
         public let subtitleItems: [SubtitleItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case subtitleItems = "SubtitleItems"
         }
     }
-    
+
     /// 视频标签识别任务参数信息
     public struct TagEditingInfo: TCInputModel {
         /// 是否开启视频标签识别。0为关闭，1为开启。其他非0非1值默认为0。
         public let `switch`: Int64
-        
+
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
-        
-        public init (switch: Int64, customInfo: String? = nil) {
+
+        public init(switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case customInfo = "CustomInfo"
         }
     }
-    
+
     /// 标签项
     public struct TagItem: TCOutputModel {
         /// 标签内容
         public let id: String
-        
+
         /// 结果的置信度（百分制）
         public let confidence: Int64
-        
+
         /// 分级数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let categorys: [String]?
-        
+
         /// 标签备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ext: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case confidence = "Confidence"
@@ -2264,24 +2264,24 @@ extension Ie {
             case ext = "Ext"
         }
     }
-    
+
     /// 视频标签识别结果信息
     public struct TagTaskResult: TCOutputModel {
-        /// 编辑任务状态。 
+        /// 编辑任务状态。
         /// 1：执行中；2：成功；3：失败。
         public let status: Int64
-        
-        /// 编辑任务失败错误码。 
+
+        /// 编辑任务失败错误码。
         /// 0：成功；其他值：失败。
         public let errCode: Int64
-        
+
         /// 编辑任务失败错误描述。
         public let errMsg: String
-        
+
         /// 视频标签识别结果集。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemSet: [TagTaskResultItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCode = "ErrCode"
@@ -2289,82 +2289,82 @@ extension Ie {
             case itemSet = "ItemSet"
         }
     }
-    
+
     /// 视频标签识别结果项
     public struct TagTaskResultItem: TCOutputModel {
         /// 标签名称。
         public let tag: String
-        
+
         /// 置信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case tag = "Tag"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 输出文件信息
     public struct TargetInfo: TCInputModel {
         /// 目标文件名
         public let fileName: String
-        
+
         /// 目标文件切片信息
         public let segmentInfo: SegmentInfo?
-        
-        public init (fileName: String, segmentInfo: SegmentInfo? = nil) {
+
+        public init(fileName: String, segmentInfo: SegmentInfo? = nil) {
             self.fileName = fileName
             self.segmentInfo = segmentInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case segmentInfo = "SegmentInfo"
         }
     }
-    
+
     /// 目标视频信息。
     public struct TargetVideoInfo: TCInputModel {
         /// 视频宽度，单位像素，一般要求是偶数，否则会向下对齐。
         public let width: Int64?
-        
+
         /// 视频高度，单位像素，一般要求是偶数，否则会向下对齐。
         public let height: Int64?
-        
+
         /// 视频帧率，范围在1到120之间
         public let frameRate: Int64?
-        
-        public init (width: Int64? = nil, height: Int64? = nil, frameRate: Int64? = nil) {
+
+        public init(width: Int64? = nil, height: Int64? = nil, frameRate: Int64? = nil) {
             self.width = width
             self.height = height
             self.frameRate = frameRate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case width = "Width"
             case height = "Height"
             case frameRate = "FrameRate"
         }
     }
-    
+
     /// 任务结果文件信息
     public struct TaskResultFile: TCOutputModel {
         /// 文件链接。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 文件大小，部分任务支持，单位：字节
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileSize: UInt64?
-        
+
         /// 媒体信息，对于媒体文件，部分任务支持返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaInfo: MediaResultInfo?
-        
+
         /// 文件对应的md5。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case fileSize = "FileSize"
@@ -2372,31 +2372,31 @@ extension Ie {
             case md5 = "Md5"
         }
     }
-    
+
     /// 画质重生子任务文字水印信息
     public struct TextMarkInfoItem: TCInputModel {
         /// 文字内容。
         public let text: String
-        
+
         /// 文字水印X坐标。
         public let posX: Int64
-        
+
         /// 文字水印Y坐标。
         public let posY: Int64
-        
+
         /// 文字大小
         public let fontSize: Int64
-        
+
         /// 字体，可选项：hei,song，simkai,arial；默认hei(黑体）。
         public let fontFile: String?
-        
+
         /// 字体颜色，颜色见附录，不填默认black。
         public let fontColor: String?
-        
+
         /// 文字透明度，可选值0-1。0：不透明，1：全透明。默认为0
         public let fontAlpha: Float?
-        
-        public init (text: String, posX: Int64, posY: Int64, fontSize: Int64, fontFile: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
+
+        public init(text: String, posX: Int64, posY: Int64, fontSize: Int64, fontFile: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
             self.text = text
             self.posX = posX
             self.posY = posY
@@ -2405,7 +2405,7 @@ extension Ie {
             self.fontColor = fontColor
             self.fontAlpha = fontAlpha
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case posX = "PosX"
@@ -2416,73 +2416,73 @@ extension Ie {
             case fontAlpha = "FontAlpha"
         }
     }
-    
+
     /// 任务视频Url形式下载信息。
     public struct UrlInfo: TCInputModel {
         /// 视频 URL。
         /// 注意：编辑理解仅支持mp4、flv等格式的点播文件，不支持hls；
         public let url: String
-        
-        /// 视频地址格式，可选值： 
+
+        /// 视频地址格式，可选值：
         /// 0：音视频 ;
-        /// 1：直播流。 
+        /// 1：直播流。
         /// 默认为0。其他非0非1值默认为0。画质重生任务只支持0。
         public let format: Int64?
-        
+
         /// 【不再支持】指定请求资源时，HTTP头部host的值。
         public let host: String?
-        
-        public init (url: String, format: Int64? = nil, host: String? = nil) {
+
+        public init(url: String, format: Int64? = nil, host: String? = nil) {
             self.url = url
             self.format = format
             self.host = host
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case format = "Format"
             case host = "Host"
         }
     }
-    
+
     /// 画质增强参数信息
     public struct VideoEnhance: TCInputModel {
         /// 去编码毛刺、伪影参数。
         public let artifactReduction: ArtifactReduction?
-        
+
         /// 去噪声参数。
         public let denoising: Denoising?
-        
+
         /// 颜色增强参数。
         public let colorEnhance: ColorEnhance?
-        
+
         /// 细节增强参数。
         public let sharp: Sharp?
-        
+
         /// 超分参数，可选项：2，目前仅支持2倍超分。
         /// 注意：此参数已经弃用，超分可以使用VideoSuperResolution参数
         public let wdSuperResolution: Int64?
-        
+
         /// 人脸保护信息。
         public let faceProtect: FaceProtect?
-        
+
         /// 插帧，取值范围：[0, 60]，单位：Hz。
         /// 注意：当取值为 0，表示帧率和原始视频保持一致。
         public let wdFps: Int64?
-        
+
         /// 去划痕参数
         public let scratchRepair: ScratchRepair?
-        
+
         /// 低光照增强参数
         public let lowLightEnhance: LowLightEnhance?
-        
+
         /// 视频超分参数
         public let videoSuperResolution: VideoSuperResolution?
-        
+
         /// 视频画质修复参数
         public let videoRepair: VideoRepair?
-        
-        public init (artifactReduction: ArtifactReduction? = nil, denoising: Denoising? = nil, colorEnhance: ColorEnhance? = nil, sharp: Sharp? = nil, wdSuperResolution: Int64? = nil, faceProtect: FaceProtect? = nil, wdFps: Int64? = nil, scratchRepair: ScratchRepair? = nil, lowLightEnhance: LowLightEnhance? = nil, videoSuperResolution: VideoSuperResolution? = nil, videoRepair: VideoRepair? = nil) {
+
+        public init(artifactReduction: ArtifactReduction? = nil, denoising: Denoising? = nil, colorEnhance: ColorEnhance? = nil, sharp: Sharp? = nil, wdSuperResolution: Int64? = nil, faceProtect: FaceProtect? = nil, wdFps: Int64? = nil, scratchRepair: ScratchRepair? = nil, lowLightEnhance: LowLightEnhance? = nil, videoSuperResolution: VideoSuperResolution? = nil, videoRepair: VideoRepair? = nil) {
             self.artifactReduction = artifactReduction
             self.denoising = denoising
             self.colorEnhance = colorEnhance
@@ -2495,7 +2495,7 @@ extension Ie {
             self.videoSuperResolution = videoSuperResolution
             self.videoRepair = videoRepair
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case artifactReduction = "ArtifactReduction"
             case denoising = "Denoising"
@@ -2510,13 +2510,13 @@ extension Ie {
             case videoRepair = "VideoRepair"
         }
     }
-    
+
     /// 视频转码信息
     public struct VideoInfo: TCInputModel {
         /// 视频帧率，取值范围：[0, 60]，单位：Hz。
         /// 注意：当取值为 0，表示帧率和原始视频保持一致。
         public let fps: Int64?
-        
+
         /// 宽度，取值范围：0 和 [128, 4096]
         /// 注意：
         /// 当 Width、Height 均为 0，则分辨率同源；
@@ -2524,7 +2524,7 @@ extension Ie {
         /// 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// 当 Width、Height 均非 0，则分辨率按用户指定。
         public let width: Int64?
-        
+
         /// 高度，取值范围：0 和 [128, 4096]
         /// 注意：
         /// 当 Width、Height 均为 0，则分辨率同源；
@@ -2532,7 +2532,7 @@ extension Ie {
         /// 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// 当 Width、Height 均非 0，则分辨率按用户指定。
         public let height: Int64?
-        
+
         /// 长边分辨率，取值范围：0 和 [128, 4096]
         /// 注意：
         /// 当 LongSide、ShortSide 均为 0，则分辨率按照Width，Height；
@@ -2541,7 +2541,7 @@ extension Ie {
         /// 当 LongSide、ShortSide 均非 0，则分辨率按用户指定。
         /// 长短边优先级高于Weight,Height,设置长短边则忽略宽高。
         public let longSide: Int64?
-        
+
         /// 短边分辨率，取值范围：0 和 [128, 4096]
         /// 注意：
         /// 当 LongSide、ShortSide 均为 0，则分辨率按照Width，Height；
@@ -2550,42 +2550,42 @@ extension Ie {
         /// 当 LongSide、ShortSide 均非 0，则分辨率按用户指定。
         /// 长短边优先级高于Weight,Height,设置长短边则忽略宽高。
         public let shortSide: Int64?
-        
+
         /// 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。当取值为 0，表示视频码率和原始视频保持一致。
         public let bitrate: Int64?
-        
+
         /// 固定I帧之间，视频帧数量，取值范围： [25, 2500]，如果不填，使用编码默认最优序列。
         public let gop: Int64?
-        
+
         /// 编码器支持选项，可选值：
         /// h264,
         /// h265,
         /// av1。
         /// 不填默认h264。
         public let videoCodec: String?
-        
+
         /// 图片水印。
         public let picMarkInfo: [PicMarkInfoItem]?
-        
+
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。
         public let darInfo: DarInfo?
-        
+
         /// 支持hdr,可选项：
         /// hdr10,
         /// hlg。
         /// 此时，VideoCodec会强制设置为h265, 编码位深为10
         public let hdr: String?
-        
+
         /// 画质增强参数信息。
         public let videoEnhance: VideoEnhance?
-        
+
         /// 数字水印参数信息。
         public let hiddenMarkInfo: HiddenMarkInfo?
-        
+
         /// 文本水印参数信息。
         public let textMarkInfo: [TextMarkInfoItem]?
-        
-        public init (fps: Int64? = nil, width: Int64? = nil, height: Int64? = nil, longSide: Int64? = nil, shortSide: Int64? = nil, bitrate: Int64? = nil, gop: Int64? = nil, videoCodec: String? = nil, picMarkInfo: [PicMarkInfoItem]? = nil, darInfo: DarInfo? = nil, hdr: String? = nil, videoEnhance: VideoEnhance? = nil, hiddenMarkInfo: HiddenMarkInfo? = nil, textMarkInfo: [TextMarkInfoItem]? = nil) {
+
+        public init(fps: Int64? = nil, width: Int64? = nil, height: Int64? = nil, longSide: Int64? = nil, shortSide: Int64? = nil, bitrate: Int64? = nil, gop: Int64? = nil, videoCodec: String? = nil, picMarkInfo: [PicMarkInfoItem]? = nil, darInfo: DarInfo? = nil, hdr: String? = nil, videoEnhance: VideoEnhance? = nil, hiddenMarkInfo: HiddenMarkInfo? = nil, textMarkInfo: [TextMarkInfoItem]? = nil) {
             self.fps = fps
             self.width = width
             self.height = height
@@ -2601,7 +2601,7 @@ extension Ie {
             self.hiddenMarkInfo = hiddenMarkInfo
             self.textMarkInfo = textMarkInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fps = "Fps"
             case width = "Width"
@@ -2619,44 +2619,44 @@ extension Ie {
             case textMarkInfo = "TextMarkInfo"
         }
     }
-    
+
     /// 任务结束后生成的文件视频信息
     public struct VideoInfoResultItem: TCOutputModel {
         /// 视频流的流id。
         public let stream: Int64
-        
+
         /// 视频宽度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: Int64?
-        
+
         /// 视频高度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let height: Int64?
-        
+
         /// 视频码率，单位：bps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: Int64?
-        
+
         /// 视频帧率，用分数格式表示，如：25/1, 99/32等等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fps: String?
-        
+
         /// 编码格式，如h264,h265等等 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String?
-        
+
         /// 播放旋转角度，可选值0-360。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rotate: Int64?
-        
+
         /// 视频时长，单位：ms 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Int64?
-        
+
         /// 颜色空间，如yuv420p，yuv444p等等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pixFormat: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case stream = "Stream"
             case width = "Width"
@@ -2669,22 +2669,22 @@ extension Ie {
             case pixFormat = "PixFormat"
         }
     }
-    
+
     /// 综合画质修复，包括：去噪，去毛刺，细节增强，主观画质提升。
     public struct VideoRepair: TCInputModel {
         /// 画质修复类型，可选值：weak，normal，strong;
         /// 默认值: weak
         public let type: String?
-        
-        public init (type: String? = nil) {
+
+        public init(type: String? = nil) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// 视频超分
     public struct VideoSuperResolution: TCInputModel {
         /// 超分视频类型：可选值：lq,hq
@@ -2692,16 +2692,16 @@ extension Ie {
         /// hq: 针对高清晰度视频超分;
         /// 默认取值：lq。
         public let type: String?
-        
+
         /// 超分倍数，可选值：2。
         /// 注意：当前只支持两倍超分。
         public let size: Int64?
-        
-        public init (type: String? = nil, size: Int64? = nil) {
+
+        public init(type: String? = nil, size: Int64? = nil) {
             self.type = type
             self.size = size
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case size = "Size"

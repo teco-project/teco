@@ -35,7 +35,7 @@ extension Tmt {
         /// km：高棉语
         /// lo：老挝语
         public let source: String
-        
+
         /// 目标语言，各源语言的目标语言支持列表如下
         /// zh（简体中文）： en （英语）、 ar (阿拉伯语）、 de （德语）、  es（西班牙语） 、fr（法语）、  it（意大利语） 、 ja （日语）、 pt （葡萄牙语）、 ru（俄语）、  ko（韩语）、 km（高棉语）、   lo（老挝语）
         /// zh-HK（繁体中文） ：en （英语）、 ar (阿拉伯语）、 de （德语）、  es（西班牙语） 、fr（法语）、  it（意大利语） 、 ja （日语）、 pt （葡萄牙语）、 ru（俄语）、  ko（韩语）、 km（高棉语）、   lo（老挝语）
@@ -54,26 +54,26 @@ extension Tmt {
         /// km（高棉语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
         /// lo（老挝语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
         public let target: String
-        
+
         /// 文档类型：可支持以下几种(pdf,docx,pptx,xlsx,txt,xml,html,markdown,properties)
         public let documentType: String
-        
+
         /// 数据来源，0：url，1：直接传文件编码后数据
         public let sourceType: Int64?
-        
+
         /// 需要翻译文件url
         public let url: String?
-        
+
         /// 原始文档类型
         public let basicDocumentType: String?
-        
+
         /// 回调url
         public let callbackUrl: String?
-        
+
         /// 文件数据，当SourceType 值为1时必须填写，为0可不写。要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。数据要小于5MB。
         public let data: String?
-        
-        public init (source: String, target: String, documentType: String, sourceType: Int64? = nil, url: String? = nil, basicDocumentType: String? = nil, callbackUrl: String? = nil, data: String? = nil) {
+
+        public init(source: String, target: String, documentType: String, sourceType: Int64? = nil, url: String? = nil, basicDocumentType: String? = nil, callbackUrl: String? = nil, data: String? = nil) {
             self.source = source
             self.target = target
             self.documentType = documentType
@@ -83,7 +83,7 @@ extension Tmt {
             self.callbackUrl = callbackUrl
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case source = "Source"
             case target = "Target"
@@ -95,29 +95,29 @@ extension Tmt {
             case data = "Data"
         }
     }
-    
+
     /// FileTranslate返回参数结构体
     public struct FileTranslateResponse: TCResponseModel {
         /// 文件翻译的请求返回结果，包含结果查询需要的TaskId
         public let data: Task
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 文件翻译请求
     ///
     /// 提交文档原文内容，输出任务ID， 支持原文为单一语种文档（如出现多语言文档，仅支持以选定的源语言相关内容翻译）,文件格式有pdf、docx、pptx、xlsx，支持的文本格式有txt、xml、html、markdown、properties。任务翻译数据可保存7天，7天后不再返回任务数据。请注意保存。
     @inlinable
-    public func fileTranslate(_ input: FileTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FileTranslateResponse > {
+    public func fileTranslate(_ input: FileTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FileTranslateResponse> {
         self.client.execute(action: "FileTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 文件翻译请求
     ///
     /// 提交文档原文内容，输出任务ID， 支持原文为单一语种文档（如出现多语言文档，仅支持以选定的源语言相关内容翻译）,文件格式有pdf、docx、pptx、xlsx，支持的文本格式有txt、xml、html、markdown、properties。任务翻译数据可保存7天，7天后不再返回任务数据。请注意保存。
@@ -125,15 +125,15 @@ extension Tmt {
     public func fileTranslate(_ input: FileTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FileTranslateResponse {
         try await self.client.execute(action: "FileTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 文件翻译请求
     ///
     /// 提交文档原文内容，输出任务ID， 支持原文为单一语种文档（如出现多语言文档，仅支持以选定的源语言相关内容翻译）,文件格式有pdf、docx、pptx、xlsx，支持的文本格式有txt、xml、html、markdown、properties。任务翻译数据可保存7天，7天后不再返回任务数据。请注意保存。
     @inlinable
-    public func fileTranslate(source: String, target: String, documentType: String, sourceType: Int64? = nil, url: String? = nil, basicDocumentType: String? = nil, callbackUrl: String? = nil, data: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FileTranslateResponse > {
+    public func fileTranslate(source: String, target: String, documentType: String, sourceType: Int64? = nil, url: String? = nil, basicDocumentType: String? = nil, callbackUrl: String? = nil, data: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FileTranslateResponse> {
         self.fileTranslate(FileTranslateRequest(source: source, target: target, documentType: documentType, sourceType: sourceType, url: url, basicDocumentType: basicDocumentType, callbackUrl: callbackUrl, data: data), logger: logger, on: eventLoop)
     }
-    
+
     /// 文件翻译请求
     ///
     /// 提交文档原文内容，输出任务ID， 支持原文为单一语种文档（如出现多语言文档，仅支持以选定的源语言相关内容翻译）,文件格式有pdf、docx、pptx、xlsx，支持的文本格式有txt、xml、html、markdown、properties。任务翻译数据可保存7天，7天后不再返回任务数据。请注意保存。

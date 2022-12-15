@@ -19,35 +19,35 @@ extension Cbs {
     public struct DeleteAutoSnapshotPoliciesRequest: TCRequestModel {
         /// 要删除的定期快照策略ID列表。
         public let autoSnapshotPolicyIds: [String]
-        
-        public init (autoSnapshotPolicyIds: [String]) {
+
+        public init(autoSnapshotPolicyIds: [String]) {
             self.autoSnapshotPolicyIds = autoSnapshotPolicyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyIds = "AutoSnapshotPolicyIds"
         }
     }
-    
+
     /// DeleteAutoSnapshotPolicies返回参数结构体
     public struct DeleteAutoSnapshotPoliciesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable
-    public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPoliciesResponse > {
+    public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPoliciesResponse> {
         self.client.execute(action: "DeleteAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
@@ -56,16 +56,16 @@ extension Cbs {
     public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {
         try await self.client.execute(action: "DeleteAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable
-    public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPoliciesResponse > {
+    public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPoliciesResponse> {
         self.deleteAutoSnapshotPolicies(DeleteAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。

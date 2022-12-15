@@ -19,48 +19,48 @@ extension Msp {
     public struct DescribeMigrationTaskRequest: TCRequestModel {
         /// 任务ID，例如msp-jitoh33n
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeMigrationTask返回参数结构体
     public struct DescribeMigrationTaskResponse: TCResponseModel {
         /// 迁移详情列表
         public let taskStatus: [TaskStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取指定迁移任务详情
     @inlinable
-    public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationTaskResponse > {
+    public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationTaskResponse> {
         self.client.execute(action: "DescribeMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定迁移任务详情
     @inlinable
     public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationTaskResponse {
         try await self.client.execute(action: "DescribeMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取指定迁移任务详情
     @inlinable
-    public func describeMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationTaskResponse > {
+    public func describeMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationTaskResponse> {
         self.describeMigrationTask(DescribeMigrationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定迁移任务详情
     @inlinable
     public func describeMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationTaskResponse {

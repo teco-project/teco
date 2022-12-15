@@ -21,52 +21,52 @@ extension TCEbError {
             case eventBus = "ResourceInUse.EventBus"
             case rule = "ResourceInUse.Rule"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 同一个地域下，云服务默认事件集不允许重复创建。
         public static var defaultEventBus: ResourceInUse {
             ResourceInUse(.defaultEventBus)
         }
-        
+
         /// 事件集下有规则或者连接器，无法删除，请删除所有规则和连接器后重试。
         public static var eventBus: ResourceInUse {
             ResourceInUse(.eventBus)
         }
-        
+
         /// 规则下有目标，无法删除，请删除所有目标后重试。
         public static var rule: ResourceInUse {
             ResourceInUse(.rule)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
-            case .defaultEventBus: 
+            case .defaultEventBus:
                 code = .resourceInUse_DefaultEventBus
-            case .eventBus: 
+            case .eventBus:
                 code = .resourceInUse_EventBus
-            case .rule: 
+            case .rule:
                 code = .resourceInUse_Rule
             }
             return TCEbError(code, context: self.context)

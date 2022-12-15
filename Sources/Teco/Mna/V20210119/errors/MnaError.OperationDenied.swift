@@ -27,110 +27,110 @@ extension TCMnaError {
             case vendorServerError = "OperationDenied.VendorServerError"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不建议加速。
         ///
         /// 网络状况较良好，不建议发起加速。
         public static var accelerationNotSuggest: OperationDenied {
             OperationDenied(.accelerationNotSuggest)
         }
-        
+
         /// 相同加速间隔时间过短。
         ///
         /// 加速成功并且未取消，加速结束前5秒不能再发起相同源IP和目标IP的加速
         public static var createQosExceedLimit: OperationDenied {
             OperationDenied(.createQosExceedLimit)
         }
-        
+
         /// 中国电信加速token过期。
         ///
         /// 重新申请中国电信加速token。
         public static var ctccTokenExpired: OperationDenied {
             OperationDenied(.ctccTokenExpired)
         }
-        
+
         /// 请求运营商加速超时。
         ///
         /// 运营商返回超时，请稍后重试。
         public static var requestQosTimeout: OperationDenied {
             OperationDenied(.requestQosTimeout)
         }
-        
+
         /// 该用户加速已取消，不处于加速状态。
         ///
         /// 该用户已不在加速状态，不用再重复取消加速
         public static var userNonAccelerated: OperationDenied {
             OperationDenied(.userNonAccelerated)
         }
-        
+
         /// 该用户不在运营商网络可加速范围内
         ///
         /// 请检查用户IP地址信息是否填写正确，填写的是蜂窝网络下的IP，若正确可能是运营商目前不支持该用户手机卡类型的加速
         public static var userOutOfCoverage: OperationDenied {
             OperationDenied(.userOutOfCoverage)
         }
-        
+
         /// 运营商返回结果错误。
         ///
         /// 该错误可能由于当前用户网络下运营商无法保证该用户加速导致。
         public static var vendorReturnError: OperationDenied {
             OperationDenied(.vendorReturnError)
         }
-        
+
         /// 运营商服务器临时错误。
         ///
         /// 运营商服务器临时错误，请稍后重试。
         public static var vendorServerError: OperationDenied {
             OperationDenied(.vendorServerError)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asMnaError() -> TCMnaError {
             let code: TCMnaError.Code
             switch self.error {
-            case .accelerationNotSuggest: 
+            case .accelerationNotSuggest:
                 code = .operationDenied_AccelerationNotSuggest
-            case .createQosExceedLimit: 
+            case .createQosExceedLimit:
                 code = .operationDenied_CreateQosExceedLimit
-            case .ctccTokenExpired: 
+            case .ctccTokenExpired:
                 code = .operationDenied_CTCCTokenExpired
-            case .requestQosTimeout: 
+            case .requestQosTimeout:
                 code = .operationDenied_RequestQosTimeout
-            case .userNonAccelerated: 
+            case .userNonAccelerated:
                 code = .operationDenied_UserNonAccelerated
-            case .userOutOfCoverage: 
+            case .userOutOfCoverage:
                 code = .operationDenied_UserOutOfCoverage
-            case .vendorReturnError: 
+            case .vendorReturnError:
                 code = .operationDenied_VendorReturnError
-            case .vendorServerError: 
+            case .vendorServerError:
                 code = .operationDenied_VendorServerError
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCMnaError(code, context: self.context)

@@ -44,212 +44,212 @@ extension TCScfError {
             case trigger = "LimitExceeded.Trigger"
             case userTotalConcurrencyMemory = "LimitExceeded.UserTotalConcurrencyMemory"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 别名个数超过最大限制。
         public static var alias: LimitExceeded {
             LimitExceeded(.alias)
         }
-        
+
         /// Cdn使用超过最大限制。
         public static var cdn: LimitExceeded {
             LimitExceeded(.cdn)
         }
-        
+
         public static var containerImageAccelerateQuota: LimitExceeded {
             LimitExceeded(.containerImageAccelerateQuota)
         }
-        
+
         /// eip资源超限。
         public static var eip: LimitExceeded {
             LimitExceeded(.eip)
         }
-        
+
         /// 函数数量超出最大限制 ，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
         public static var function: LimitExceeded {
             LimitExceeded(.function)
         }
-        
+
         /// 同一个主题下的函数超过最大限制。
         public static var functionOnTopic: LimitExceeded {
             LimitExceeded(.functionOnTopic)
         }
-        
+
         /// FunctionProvisionedConcurrencyMemory数量达到限制，可提交工单申请提升限制：https://tencentcs.com/7Fixwt63。
         public static var functionProvisionedConcurrencyMemory: LimitExceeded {
             LimitExceeded(.functionProvisionedConcurrencyMemory)
         }
-        
+
         /// 函数保留并发内存超限。
         public static var functionReservedConcurrencyMemory: LimitExceeded {
             LimitExceeded(.functionReservedConcurrencyMemory)
         }
-        
+
         /// FunctionTotalProvisionedConcurrencyMemory达到限制，可提交工单申请提升限制：https://tencentcs.com/7Fixwt63。
         public static var functionTotalProvisionedConcurrencyMemory: LimitExceeded {
             LimitExceeded(.functionTotalProvisionedConcurrencyMemory)
         }
-        
+
         /// 函数预置并发总数达到限制。
         public static var functionTotalProvisionedConcurrencyNum: LimitExceeded {
             LimitExceeded(.functionTotalProvisionedConcurrencyNum)
         }
-        
+
         /// InitTimeout达到限制，可提交工单申请提升限制：https://tencentcs.com/7Fixwt63。
         public static var initTimeout: LimitExceeded {
             LimitExceeded(.initTimeout)
         }
-        
+
         /// layer版本数量超出最大限制。
         public static var layerVersions: LimitExceeded {
             LimitExceeded(.layerVersions)
         }
-        
+
         /// layer数量超出最大限制。
         public static var layers: LimitExceeded {
             LimitExceeded(.layers)
         }
-        
+
         /// 动态扩容最大值超限。
         public static var maxCapacity: LimitExceeded {
             LimitExceeded(.maxCapacity)
         }
-        
+
         /// 内存超出最大限制。
         public static var memory: LimitExceeded {
             LimitExceeded(.memory)
         }
-        
+
         /// 函数异步重试配置消息保留时间超过限制。
         public static var msgTTL: LimitExceeded {
             LimitExceeded(.msgTTL)
         }
-        
+
         /// 命名空间数量超过最大限制，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
         public static var namespace: LimitExceeded {
             LimitExceeded(.namespace)
         }
-        
+
         /// Offset超出限制。
         public static var offset: LimitExceeded {
             LimitExceeded(.offset)
         }
-        
+
         /// 定时预置数量超过最大限制。
         public static var provisionTriggerAction: LimitExceeded {
             LimitExceeded(.provisionTriggerAction)
         }
-        
+
         /// 定时触发间隔小于最大限制。
         public static var provisionTriggerInterval: LimitExceeded {
             LimitExceeded(.provisionTriggerInterval)
         }
-        
+
         /// 配额超限。
         public static var quota: LimitExceeded {
             LimitExceeded(.quota)
         }
-        
+
         /// 函数异步重试配置异步重试次数超过限制。
         public static var retryNum: LimitExceeded {
             LimitExceeded(.retryNum)
         }
-        
+
         /// Timeout超出最大限制。
         public static var timeout: LimitExceeded {
             LimitExceeded(.timeout)
         }
-        
+
         /// 用户并发内存配额超限。
         public static var totalConcurrencyMemory: LimitExceeded {
             LimitExceeded(.totalConcurrencyMemory)
         }
-        
+
         /// 触发器数量超出最大限制，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
         public static var trigger: LimitExceeded {
             LimitExceeded(.trigger)
         }
-        
+
         /// UserTotalConcurrencyMemory达到限制，可提交工单申请提升限制：https://tencentcs.com/7Fixwt63。
         public static var userTotalConcurrencyMemory: LimitExceeded {
             LimitExceeded(.userTotalConcurrencyMemory)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
-            case .alias: 
+            case .alias:
                 code = .limitExceeded_Alias
-            case .cdn: 
+            case .cdn:
                 code = .limitExceeded_Cdn
-            case .containerImageAccelerateQuota: 
+            case .containerImageAccelerateQuota:
                 code = .limitExceeded_ContainerImageAccelerateQuota
-            case .eip: 
+            case .eip:
                 code = .limitExceeded_Eip
-            case .function: 
+            case .function:
                 code = .limitExceeded_Function
-            case .functionOnTopic: 
+            case .functionOnTopic:
                 code = .limitExceeded_FunctionOnTopic
-            case .functionProvisionedConcurrencyMemory: 
+            case .functionProvisionedConcurrencyMemory:
                 code = .limitExceeded_FunctionProvisionedConcurrencyMemory
-            case .functionReservedConcurrencyMemory: 
+            case .functionReservedConcurrencyMemory:
                 code = .limitExceeded_FunctionReservedConcurrencyMemory
-            case .functionTotalProvisionedConcurrencyMemory: 
+            case .functionTotalProvisionedConcurrencyMemory:
                 code = .limitExceeded_FunctionTotalProvisionedConcurrencyMemory
-            case .functionTotalProvisionedConcurrencyNum: 
+            case .functionTotalProvisionedConcurrencyNum:
                 code = .limitExceeded_FunctionTotalProvisionedConcurrencyNum
-            case .initTimeout: 
+            case .initTimeout:
                 code = .limitExceeded_InitTimeout
-            case .layerVersions: 
+            case .layerVersions:
                 code = .limitExceeded_LayerVersions
-            case .layers: 
+            case .layers:
                 code = .limitExceeded_Layers
-            case .maxCapacity: 
+            case .maxCapacity:
                 code = .limitExceeded_MaxCapacity
-            case .memory: 
+            case .memory:
                 code = .limitExceeded_Memory
-            case .msgTTL: 
+            case .msgTTL:
                 code = .limitExceeded_MsgTTL
-            case .namespace: 
+            case .namespace:
                 code = .limitExceeded_Namespace
-            case .offset: 
+            case .offset:
                 code = .limitExceeded_Offset
-            case .provisionTriggerAction: 
+            case .provisionTriggerAction:
                 code = .limitExceeded_ProvisionTriggerAction
-            case .provisionTriggerInterval: 
+            case .provisionTriggerInterval:
                 code = .limitExceeded_ProvisionTriggerInterval
-            case .quota: 
+            case .quota:
                 code = .limitExceeded_Quota
-            case .retryNum: 
+            case .retryNum:
                 code = .limitExceeded_RetryNum
-            case .timeout: 
+            case .timeout:
                 code = .limitExceeded_Timeout
-            case .totalConcurrencyMemory: 
+            case .totalConcurrencyMemory:
                 code = .limitExceeded_TotalConcurrencyMemory
-            case .trigger: 
+            case .trigger:
                 code = .limitExceeded_Trigger
-            case .userTotalConcurrencyMemory: 
+            case .userTotalConcurrencyMemory:
                 code = .limitExceeded_UserTotalConcurrencyMemory
             }
             return TCScfError(code, context: self.context)

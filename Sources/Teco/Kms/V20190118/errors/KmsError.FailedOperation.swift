@@ -23,65 +23,65 @@ extension TCKmsError {
             case taggingError = "FailedOperation.TaggingError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CMK正在被云产品使用。
         public static var cmkUsedByCloudProduct: FailedOperation {
             FailedOperation(.cmkUsedByCloudProduct)
         }
-        
+
         /// 解密失败。
         public static var decryptError: FailedOperation {
             FailedOperation(.decryptError)
         }
-        
+
         /// 加密操作失败。
         public static var encryptionError: FailedOperation {
             FailedOperation(.encryptionError)
         }
-        
+
         public static var taggingError: FailedOperation {
             FailedOperation(.taggingError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asKmsError() -> TCKmsError {
             let code: TCKmsError.Code
             switch self.error {
-            case .cmkUsedByCloudProduct: 
+            case .cmkUsedByCloudProduct:
                 code = .failedOperation_CmkUsedByCloudProduct
-            case .decryptError: 
+            case .decryptError:
                 code = .failedOperation_DecryptError
-            case .encryptionError: 
+            case .encryptionError:
                 code = .failedOperation_EncryptionError
-            case .taggingError: 
+            case .taggingError:
                 code = .failedOperation_TaggingError
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCKmsError(code, context: self.context)

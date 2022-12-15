@@ -19,45 +19,45 @@ extension Trtc {
     public struct DescribeTrtcUsageRequest: TCRequestModel {
         /// 查询开始时间，格式为YYYY-MM-DD。
         public let startTime: String
-        
+
         /// 查询结束时间，格式为YYYY-MM-DD。
         /// 单次查询统计区间最多不能超过31天。
         public let endTime: String
-        
+
         /// TRTC的SdkAppId，和房间所对应的SdkAppId相同。如果没有这个参数，返回用户下全部实时音视频应用的汇总。
         public let sdkAppId: UInt64?
-        
-        public init (startTime: String, endTime: String, sdkAppId: UInt64? = nil) {
+
+        public init(startTime: String, endTime: String, sdkAppId: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.sdkAppId = sdkAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case sdkAppId = "SdkAppId"
         }
     }
-    
+
     /// DescribeTrtcUsage返回参数结构体
     public struct DescribeTrtcUsageResponse: TCResponseModel {
         /// 用量类型，与UsageValue中各个位置的值对应。
         public let usageKey: [String]
-        
+
         /// 各个时间点用量明细。
         public let usageList: [TrtcUsage]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case usageKey = "UsageKey"
             case usageList = "UsageList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询TRTC音视频用量
     ///
     /// 获取TRTC音视频互动的用量明细。
@@ -67,10 +67,10 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeTrtcUsage(_ input: DescribeTrtcUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrtcUsageResponse > {
+    public func describeTrtcUsage(_ input: DescribeTrtcUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcUsageResponse> {
         self.client.execute(action: "DescribeTrtcUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询TRTC音视频用量
     ///
     /// 获取TRTC音视频互动的用量明细。
@@ -83,7 +83,7 @@ extension Trtc {
     public func describeTrtcUsage(_ input: DescribeTrtcUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcUsageResponse {
         try await self.client.execute(action: "DescribeTrtcUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询TRTC音视频用量
     ///
     /// 获取TRTC音视频互动的用量明细。
@@ -93,10 +93,10 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeTrtcUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrtcUsageResponse > {
+    public func describeTrtcUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcUsageResponse> {
         self.describeTrtcUsage(DescribeTrtcUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询TRTC音视频用量
     ///
     /// 获取TRTC音视频互动的用量明细。

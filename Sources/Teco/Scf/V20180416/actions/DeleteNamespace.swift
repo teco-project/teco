@@ -19,34 +19,34 @@ extension Scf {
     public struct DeleteNamespaceRequest: TCRequestModel {
         /// 命名空间名称
         public let namespace: String
-        
-        public init (namespace: String) {
+
+        public init(namespace: String) {
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
         }
     }
-    
+
     /// DeleteNamespace返回参数结构体
     public struct DeleteNamespaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除命名空间
     ///
     /// 该接口根据传入的参数删除命名空间。
     @inlinable
-    public func deleteNamespace(_ input: DeleteNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNamespaceResponse > {
+    public func deleteNamespace(_ input: DeleteNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
         self.client.execute(action: "DeleteNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除命名空间
     ///
     /// 该接口根据传入的参数删除命名空间。
@@ -54,15 +54,15 @@ extension Scf {
     public func deleteNamespace(_ input: DeleteNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
         try await self.client.execute(action: "DeleteNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除命名空间
     ///
     /// 该接口根据传入的参数删除命名空间。
     @inlinable
-    public func deleteNamespace(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNamespaceResponse > {
+    public func deleteNamespace(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
         self.deleteNamespace(DeleteNamespaceRequest(namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除命名空间
     ///
     /// 该接口根据传入的参数删除命名空间。

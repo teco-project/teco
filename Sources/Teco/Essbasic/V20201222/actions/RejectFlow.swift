@@ -19,10 +19,10 @@ extension Essbasic {
     public struct RejectFlowRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 流程编号
         public let flowId: String
-        
+
         /// 意愿确认票据。
         /// 1. VerifyChannel 为 WEIXINAPP，使用响应的VerifyResult；
         /// 2. VerifyChannel 为 FACEID时，使用OrderNo；
@@ -30,26 +30,26 @@ extension Essbasic {
         /// 4. VerifyChannel 为 NONE，传空值
         /// （注：普通情况下，VerifyResult不能为None，如您不希望腾讯电子签对用户签署意愿做校验，请提前与客户经理或邮件至e-contract@tencent.com与我们联系）
         public let verifyResult: String
-        
+
         /// 意愿确认渠道：
         /// 1. WEIXINAPP - 微信小程序
-        /// 2. FACEID - 慧眼 (默认) 
+        /// 2. FACEID - 慧眼 (默认)
         /// 3. VERIFYCODE - 验证码
         /// 4. THIRD - 第三方 (暂不支持)
         /// 5. NONE - 无需电子签系统验证
         /// （注：普通情况下，VerifyChannel不能为None，如您不希望腾讯电子签对用户签署意愿做校验，请提前与客户经理或邮件至e-contract@tencent.com与我们联系）
         public let verifyChannel: String
-        
+
         /// 客户端来源IP
         public let sourceIp: String
-        
+
         /// 拒签原因
         public let rejectMessage: String?
-        
+
         /// 签署参与者编号
         public let signId: String?
-        
-        public init (caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil) {
+
+        public init(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil) {
             self.caller = caller
             self.flowId = flowId
             self.verifyResult = verifyResult
@@ -58,7 +58,7 @@ extension Essbasic {
             self.rejectMessage = rejectMessage
             self.signId = signId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case flowId = "FlowId"
@@ -69,25 +69,25 @@ extension Essbasic {
             case signId = "SignId"
         }
     }
-    
+
     /// RejectFlow返回参数结构体
     public struct RejectFlowResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拒签流程
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable
-    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectFlowResponse > {
+    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectFlowResponse> {
         self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拒签流程
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
@@ -95,15 +95,15 @@ extension Essbasic {
     public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
         try await self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拒签流程
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable
-    public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectFlowResponse > {
+    public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectFlowResponse> {
         self.rejectFlow(RejectFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId), logger: logger, on: eventLoop)
     }
-    
+
     /// 拒签流程
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。

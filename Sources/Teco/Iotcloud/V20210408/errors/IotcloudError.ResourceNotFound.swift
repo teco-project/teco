@@ -35,150 +35,150 @@ extension TCIotcloudError {
             case topicPolicyNotExist = "ResourceNotFound.TopicPolicyNotExist"
             case topicRuleNotExist = "ResourceNotFound.TopicRuleNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CA证书不存在。
         public static var caCertNotExist: ResourceNotFound {
             ResourceNotFound(.caCertNotExist)
         }
-        
+
         /// 批量创建设备任务不存在。
         public static var createMultiDeviceTaskNotExist: ResourceNotFound {
             ResourceNotFound(.createMultiDeviceTaskNotExist)
         }
-        
+
         /// 设备固件升级任务不存在。
         public static var deviceFirmwareTaskNotExist: ResourceNotFound {
             ResourceNotFound(.deviceFirmwareTaskNotExist)
         }
-        
+
         /// 设备无固件版本。
         public static var deviceHasNoFirmware: ResourceNotFound {
             ResourceNotFound(.deviceHasNoFirmware)
         }
-        
+
         /// 设备不存在。
         public static var deviceNotExist: ResourceNotFound {
             ResourceNotFound(.deviceNotExist)
         }
-        
+
         /// 设备资源不存在。
         public static var deviceResourceNotExist: ResourceNotFound {
             ResourceNotFound(.deviceResourceNotExist)
         }
-        
+
         /// 设备影子不存在。
         public static var deviceShadowNotExist: ResourceNotFound {
             ResourceNotFound(.deviceShadowNotExist)
         }
-        
+
         /// 固件不存在。
         public static var firmwareNotExist: ResourceNotFound {
             ResourceNotFound(.firmwareNotExist)
         }
-        
+
         /// 固件升级任务不存在。
         public static var firmwareTaskNotExist: ResourceNotFound {
             ResourceNotFound(.firmwareTaskNotExist)
         }
-        
+
         /// 产品不存在。
         public static var productNotExist: ResourceNotFound {
             ResourceNotFound(.productNotExist)
         }
-        
+
         /// 用户不存在此产品或设备。
         public static var productOrDeviceNotExist: ResourceNotFound {
             ResourceNotFound(.productOrDeviceNotExist)
         }
-        
+
         /// 产品资源不存在。
         public static var productResourceNotExist: ResourceNotFound {
             ResourceNotFound(.productResourceNotExist)
         }
-        
+
         /// 资源文件不存在。
         public static var resourceFileNotExist: ResourceNotFound {
             ResourceNotFound(.resourceFileNotExist)
         }
-        
+
         /// 任务不存在。
         public static var taskNotExist: ResourceNotFound {
             ResourceNotFound(.taskNotExist)
         }
-        
+
         /// 物模型不存在。
         public static var thingModelNotExist: ResourceNotFound {
             ResourceNotFound(.thingModelNotExist)
         }
-        
+
         /// Topic不存在。
         public static var topicPolicyNotExist: ResourceNotFound {
             ResourceNotFound(.topicPolicyNotExist)
         }
-        
+
         /// 规则不存在。
         public static var topicRuleNotExist: ResourceNotFound {
             ResourceNotFound(.topicRuleNotExist)
         }
-        
+
         public func asIotcloudError() -> TCIotcloudError {
             let code: TCIotcloudError.Code
             switch self.error {
-            case .caCertNotExist: 
+            case .caCertNotExist:
                 code = .resourceNotFound_CACertNotExist
-            case .createMultiDeviceTaskNotExist: 
+            case .createMultiDeviceTaskNotExist:
                 code = .resourceNotFound_CreateMultiDeviceTaskNotExist
-            case .deviceFirmwareTaskNotExist: 
+            case .deviceFirmwareTaskNotExist:
                 code = .resourceNotFound_DeviceFirmwareTaskNotExist
-            case .deviceHasNoFirmware: 
+            case .deviceHasNoFirmware:
                 code = .resourceNotFound_DeviceHasNoFirmware
-            case .deviceNotExist: 
+            case .deviceNotExist:
                 code = .resourceNotFound_DeviceNotExist
-            case .deviceResourceNotExist: 
+            case .deviceResourceNotExist:
                 code = .resourceNotFound_DeviceResourceNotExist
-            case .deviceShadowNotExist: 
+            case .deviceShadowNotExist:
                 code = .resourceNotFound_DeviceShadowNotExist
-            case .firmwareNotExist: 
+            case .firmwareNotExist:
                 code = .resourceNotFound_FirmwareNotExist
-            case .firmwareTaskNotExist: 
+            case .firmwareTaskNotExist:
                 code = .resourceNotFound_FirmwareTaskNotExist
-            case .productNotExist: 
+            case .productNotExist:
                 code = .resourceNotFound_ProductNotExist
-            case .productOrDeviceNotExist: 
+            case .productOrDeviceNotExist:
                 code = .resourceNotFound_ProductOrDeviceNotExist
-            case .productResourceNotExist: 
+            case .productResourceNotExist:
                 code = .resourceNotFound_ProductResourceNotExist
-            case .resourceFileNotExist: 
+            case .resourceFileNotExist:
                 code = .resourceNotFound_ResourceFileNotExist
-            case .taskNotExist: 
+            case .taskNotExist:
                 code = .resourceNotFound_TaskNotExist
-            case .thingModelNotExist: 
+            case .thingModelNotExist:
                 code = .resourceNotFound_ThingModelNotExist
-            case .topicPolicyNotExist: 
+            case .topicPolicyNotExist:
                 code = .resourceNotFound_TopicPolicyNotExist
-            case .topicRuleNotExist: 
+            case .topicRuleNotExist:
                 code = .resourceNotFound_TopicRuleNotExist
             }
             return TCIotcloudError(code, context: self.context)

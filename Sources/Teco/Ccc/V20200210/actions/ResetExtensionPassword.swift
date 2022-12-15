@@ -19,53 +19,53 @@ extension Ccc {
     public struct ResetExtensionPasswordRequest: TCRequestModel {
         /// TCCC 实例应用 ID
         public let sdkAppId: UInt64
-        
+
         /// 分机号
         public let extensionId: String
-        
-        public init (sdkAppId: UInt64, extensionId: String) {
+
+        public init(sdkAppId: UInt64, extensionId: String) {
             self.sdkAppId = sdkAppId
             self.extensionId = extensionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case extensionId = "ExtensionId"
         }
     }
-    
+
     /// ResetExtensionPassword返回参数结构体
     public struct ResetExtensionPasswordResponse: TCResponseModel {
         /// 重置后密码
         public let password: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case password = "Password"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置话机注册密码
     @inlinable
-    public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetExtensionPasswordResponse > {
+    public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetExtensionPasswordResponse> {
         self.client.execute(action: "ResetExtensionPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置话机注册密码
     @inlinable
     public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetExtensionPasswordResponse {
         try await self.client.execute(action: "ResetExtensionPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置话机注册密码
     @inlinable
-    public func resetExtensionPassword(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetExtensionPasswordResponse > {
+    public func resetExtensionPassword(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetExtensionPasswordResponse> {
         self.resetExtensionPassword(ResetExtensionPasswordRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置话机注册密码
     @inlinable
     public func resetExtensionPassword(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetExtensionPasswordResponse {

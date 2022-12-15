@@ -19,23 +19,23 @@ extension Trtc {
     public struct StartMCUMixTranscodeByStrRoomIdRequest: TCRequestModel {
         /// TRTC的SDKAppId。
         public let sdkAppId: UInt64
-        
+
         /// 字符串房间号。
         public let strRoomId: String
-        
+
         /// 混流输出控制参数。
         public let outputParams: OutputParams
-        
+
         /// 混流输出编码参数。
         public let encodeParams: EncodeParams
-        
+
         /// 混流输出布局参数。
         public let layoutParams: LayoutParams
-        
+
         /// 第三方CDN转推参数。
         public let publishCdnParams: PublishCdnParams?
-        
-        public init (sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil) {
+
+        public init(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil) {
             self.sdkAppId = sdkAppId
             self.strRoomId = strRoomId
             self.outputParams = outputParams
@@ -43,7 +43,7 @@ extension Trtc {
             self.layoutParams = layoutParams
             self.publishCdnParams = publishCdnParams
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case strRoomId = "StrRoomId"
@@ -53,17 +53,17 @@ extension Trtc {
             case publishCdnParams = "PublishCdnParams"
         }
     }
-    
+
     /// StartMCUMixTranscodeByStrRoomId返回参数结构体
     public struct StartMCUMixTranscodeByStrRoomIdResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动云端混流（字符串房间号）
     ///
     /// 接口说明：启动云端混流，并指定混流画面中各路画面的布局位置。
@@ -84,10 +84,10 @@ extension Trtc {
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable
-    public func startMCUMixTranscodeByStrRoomId(_ input: StartMCUMixTranscodeByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMCUMixTranscodeByStrRoomIdResponse > {
+    public func startMCUMixTranscodeByStrRoomId(_ input: StartMCUMixTranscodeByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeByStrRoomIdResponse> {
         self.client.execute(action: "StartMCUMixTranscodeByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动云端混流（字符串房间号）
     ///
     /// 接口说明：启动云端混流，并指定混流画面中各路画面的布局位置。
@@ -111,7 +111,7 @@ extension Trtc {
     public func startMCUMixTranscodeByStrRoomId(_ input: StartMCUMixTranscodeByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeByStrRoomIdResponse {
         try await self.client.execute(action: "StartMCUMixTranscodeByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动云端混流（字符串房间号）
     ///
     /// 接口说明：启动云端混流，并指定混流画面中各路画面的布局位置。
@@ -132,10 +132,10 @@ extension Trtc {
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable
-    public func startMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMCUMixTranscodeByStrRoomIdResponse > {
+    public func startMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeByStrRoomIdResponse> {
         self.startMCUMixTranscodeByStrRoomId(StartMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动云端混流（字符串房间号）
     ///
     /// 接口说明：启动云端混流，并指定混流画面中各路画面的布局位置。

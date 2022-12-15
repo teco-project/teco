@@ -19,23 +19,23 @@ extension Tcaplusdb {
     public struct ModifyTableTagsRequest: TCRequestModel {
         /// 待修改标签表格所属集群ID
         public let clusterId: String
-        
+
         /// 待修改标签表格列表
         public let selectedTables: [SelectedTableInfoNew]
-        
+
         /// 待增加或修改的标签列表
         public let replaceTags: [TagInfoUnit]?
-        
+
         /// 待删除的标签列表
         public let deleteTags: [TagInfoUnit]?
-        
-        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil) {
+
+        public init(clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
             self.replaceTags = replaceTags
             self.deleteTags = deleteTags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case selectedTables = "SelectedTables"
@@ -43,43 +43,43 @@ extension Tcaplusdb {
             case deleteTags = "DeleteTags"
         }
     }
-    
+
     /// ModifyTableTags返回参数结构体
     public struct ModifyTableTagsResponse: TCResponseModel {
         /// 返回结果总数
         public let totalCount: Int64
-        
+
         /// 返回结果
         public let tableResults: [TableResultNew]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改表格标签
     @inlinable
-    public func modifyTableTags(_ input: ModifyTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableTagsResponse > {
+    public func modifyTableTags(_ input: ModifyTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableTagsResponse> {
         self.client.execute(action: "ModifyTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改表格标签
     @inlinable
     public func modifyTableTags(_ input: ModifyTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableTagsResponse {
         try await self.client.execute(action: "ModifyTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改表格标签
     @inlinable
-    public func modifyTableTags(clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableTagsResponse > {
+    public func modifyTableTags(clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableTagsResponse> {
         self.modifyTableTags(ModifyTableTagsRequest(clusterId: clusterId, selectedTables: selectedTables, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改表格标签
     @inlinable
     public func modifyTableTags(clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableTagsResponse {

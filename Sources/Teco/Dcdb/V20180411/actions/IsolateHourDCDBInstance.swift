@@ -19,52 +19,52 @@ extension Dcdb {
     public struct IsolateHourDCDBInstanceRequest: TCRequestModel {
         /// 实例uuid列表
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// IsolateHourDCDBInstance返回参数结构体
     public struct IsolateHourDCDBInstanceResponse: TCResponseModel {
         /// 隔离成功的实例id列表
         public let successInstanceIds: [String]
-        
+
         /// 隔离失败的实例id列表
         public let failedInstanceIds: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case successInstanceIds = "SuccessInstanceIds"
             case failedInstanceIds = "FailedInstanceIds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 隔离DCDB后付费实例
     @inlinable
-    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateHourDCDBInstanceResponse > {
+    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
         self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 隔离DCDB后付费实例
     @inlinable
     public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
         try await self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 隔离DCDB后付费实例
     @inlinable
-    public func isolateHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateHourDCDBInstanceResponse > {
+    public func isolateHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
         self.isolateHourDCDBInstance(IsolateHourDCDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 隔离DCDB后付费实例
     @inlinable
     public func isolateHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {

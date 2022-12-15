@@ -19,39 +19,39 @@ extension Tdcpg {
     public struct RestartClusterInstancesRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 实例ID列表，目前只支持单个实例重启
         public let instanceIdSet: [String]
-        
-        public init (clusterId: String, instanceIdSet: [String]) {
+
+        public init(clusterId: String, instanceIdSet: [String]) {
             self.clusterId = clusterId
             self.instanceIdSet = instanceIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case instanceIdSet = "InstanceIdSet"
         }
     }
-    
+
     /// RestartClusterInstances返回参数结构体
     public struct RestartClusterInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启实例
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable
-    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartClusterInstancesResponse > {
+    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartClusterInstancesResponse> {
         self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启实例
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
@@ -59,15 +59,15 @@ extension Tdcpg {
     public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
         try await self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启实例
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable
-    public func restartClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartClusterInstancesResponse > {
+    public func restartClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartClusterInstancesResponse> {
         self.restartClusterInstances(RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启实例
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。

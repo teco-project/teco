@@ -19,26 +19,26 @@ extension Iotvideo {
     public struct DescribeDeviceCommLogRequest: TCRequestModel {
         /// 开始时间 13位时间戳 单位毫秒
         public let minTime: UInt64
-        
+
         /// 结束时间 13位时间戳 单位毫秒
         public let maxTime: UInt64
-        
+
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// 返回条数 默认为50
         public let limit: UInt64?
-        
+
         /// 检索上下文
         public let context: String?
-        
+
         /// 类型：shadow 下行，device 上行 默认为空则全部查询
         public let type: String?
-        
-        public init (minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil) {
+
+        public init(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.productId = productId
@@ -47,7 +47,7 @@ extension Iotvideo {
             self.context = context
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case minTime = "MinTime"
             case maxTime = "MaxTime"
@@ -58,21 +58,21 @@ extension Iotvideo {
             case type = "Type"
         }
     }
-    
+
     /// DescribeDeviceCommLog返回参数结构体
     public struct DescribeDeviceCommLogResponse: TCResponseModel {
         /// 数据是否已全部返回，true 表示数据全部返回，false 表示还有数据待返回，可将 Context 作为入参，继续查询返回结果。
         public let listover: Bool
-        
+
         /// 检索上下文，当 ListOver 为false时，可以用此上下文，继续读取后续数据
         public let context: String
-        
+
         /// 日志数据结果数组，返回对应时间点及取值。
         public let results: [DeviceCommLogItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case listover = "Listover"
             case context = "Context"
@@ -80,15 +80,15 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备通讯日志
     ///
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
-    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceCommLogResponse > {
+    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceCommLogResponse> {
         self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备通讯日志
     ///
     /// 获取设备在指定时间范围内的通讯日志
@@ -96,15 +96,15 @@ extension Iotvideo {
     public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
         try await self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备通讯日志
     ///
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
-    public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceCommLogResponse > {
+    public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceCommLogResponse> {
         self.describeDeviceCommLog(DescribeDeviceCommLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备通讯日志
     ///
     /// 获取设备在指定时间范围内的通讯日志

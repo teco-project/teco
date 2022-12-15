@@ -19,38 +19,38 @@ extension Dc {
     public struct DescribeDirectConnectTunnelExtraRequest: TCRequestModel {
         /// 专用通道ID
         public let directConnectTunnelId: String
-        
-        public init (directConnectTunnelId: String) {
+
+        public init(directConnectTunnelId: String) {
             self.directConnectTunnelId = directConnectTunnelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectTunnelId = "DirectConnectTunnelId"
         }
     }
-    
+
     /// DescribeDirectConnectTunnelExtra返回参数结构体
     public struct DescribeDirectConnectTunnelExtraResponse: TCResponseModel {
         /// 专用通道扩展信息
         public let directConnectTunnelExtra: DirectConnectTunnelExtra
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectTunnelExtra = "DirectConnectTunnelExtra"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询专用通道扩展信息
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
     @inlinable
-    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectTunnelExtraResponse > {
+    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelExtraResponse> {
         self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专用通道扩展信息
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
@@ -58,15 +58,15 @@ extension Dc {
     public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
         try await self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询专用通道扩展信息
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
     @inlinable
-    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectTunnelExtraResponse > {
+    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelExtraResponse> {
         self.describeDirectConnectTunnelExtra(DescribeDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专用通道扩展信息
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息

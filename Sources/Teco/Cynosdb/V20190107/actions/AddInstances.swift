@@ -19,45 +19,45 @@ extension Cynosdb {
     public struct AddInstancesRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// Cpu核数
         public let cpu: Int64
-        
+
         /// 内存，单位为GB
         public let memory: Int64
-        
+
         /// 新增只读实例数，取值范围为[0,4]
         public let readOnlyCount: Int64
-        
+
         /// 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
         public let instanceGrpId: String?
-        
+
         /// 所属VPC网络ID，该参数已废弃
         public let vpcId: String?
-        
+
         /// 所属子网ID，如果设置了VpcId，则SubnetId必填。该参数已废弃。
         public let subnetId: String?
-        
+
         /// 新增RO组时使用的Port，取值范围为[0,65535)
         public let port: Int64?
-        
+
         /// 实例名称，字符串长度范围为[0,64)，取值范围为大小写字母，0-9数字，'_','-','.'
         public let instanceName: String?
-        
+
         /// 是否自动选择代金券 1是 0否 默认为0
         public let autoVoucher: Int64?
-        
-        /// 数据库类型，取值范围: 
+
+        /// 数据库类型，取值范围:
         /// <li> MYSQL </li>
         public let dbType: String?
-        
+
         /// 订单来源，字符串长度范围为[0,64)
         public let orderSource: String?
-        
+
         /// 交易模式 0-下单并支付 1-下单
         public let dealMode: Int64?
-        
-        public init (clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil) {
+
+        public init(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil) {
             self.clusterId = clusterId
             self.cpu = cpu
             self.memory = memory
@@ -72,7 +72,7 @@ extension Cynosdb {
             self.orderSource = orderSource
             self.dealMode = dealMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case cpu = "Cpu"
@@ -89,28 +89,28 @@ extension Cynosdb {
             case dealMode = "DealMode"
         }
     }
-    
+
     /// AddInstances返回参数结构体
     public struct AddInstancesResponse: TCResponseModel {
         /// 冻结流水，一次开通一个冻结流水。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranId: String?
-        
+
         /// 后付费订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealNames: [String]?
-        
+
         /// 发货资源id列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceIds: [String]?
-        
+
         /// 大订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bigDealIds: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tranId = "TranId"
             case dealNames = "DealNames"
@@ -119,15 +119,15 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddInstancesResponse > {
+    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
         self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
@@ -135,15 +135,15 @@ extension Cynosdb {
     public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
         try await self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddInstancesResponse > {
+    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
         self.addInstances(AddInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例

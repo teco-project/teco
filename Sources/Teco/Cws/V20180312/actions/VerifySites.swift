@@ -19,42 +19,42 @@ extension Cws {
     public struct VerifySitesRequest: TCRequestModel {
         /// 站点的url列表
         public let urls: [String]
-        
-        public init (urls: [String]) {
+
+        public init(urls: [String]) {
             self.urls = urls
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case urls = "Urls"
         }
     }
-    
+
     /// VerifySites返回参数结构体
     public struct VerifySitesResponse: TCResponseModel {
         /// 验证成功的根域名数量。
         public let successNumber: UInt64
-        
+
         /// 验证失败的根域名数量。
         public let failNumber: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case successNumber = "SuccessNumber"
             case failNumber = "FailNumber"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 验证站点
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
-    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySitesResponse > {
+    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySitesResponse> {
         self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 验证站点
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
@@ -62,15 +62,15 @@ extension Cws {
     public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
         try await self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 验证站点
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
-    public func verifySites(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySitesResponse > {
+    public func verifySites(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySitesResponse> {
         self.verifySites(VerifySitesRequest(urls: urls), logger: logger, on: eventLoop)
     }
-    
+
     /// 验证站点
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。

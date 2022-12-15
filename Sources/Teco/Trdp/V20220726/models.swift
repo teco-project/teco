@@ -23,180 +23,180 @@ extension Trdp {
         /// 3-IDFA；
         /// 100-SSID类型
         public let accountType: Int64
-        
+
         /// 通用账号信息，当AccountType为1、2、3、100时必填
         public let universalAccount: UniversalAccountInfo?
-        
-        public init (accountType: Int64, universalAccount: UniversalAccountInfo? = nil) {
+
+        public init(accountType: Int64, universalAccount: UniversalAccountInfo? = nil) {
             self.accountType = accountType
             self.universalAccount = universalAccount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountType = "AccountType"
             case universalAccount = "UniversalAccount"
         }
     }
-    
-    /// 设备详情	
+
+    /// 设备详情
     public struct DeviceDetailInfo: TCInputModel {
         /// mac地址或唯一设备标识
         public let macAddress: String?
-        
+
         /// 手机型号
         public let model: String?
-        
+
         /// 操作系统(unknown，android，ios，windows)
         public let osSystem: String?
-        
+
         /// 操作系统版本
         public let osSystemVersion: String?
-        
+
         /// 竞价底价
         public let bidFloor: Int64?
-        
+
         /// 设备版本
         public let deviceVersion: String?
-        
+
         /// 设备制造商
         public let maker: String?
-        
+
         /// 设备类型（PHONE,TABLET）
         public let deviceType: String?
-        
+
         /// 运营商；-1: 获取失败，0: 其他，1: 移动，2: 联通，3: 电信，4: 铁通
         public let carrier: String?
-        
+
         /// 入网方式(wifi,5g,4g,3g,2g)
         public let accessMode: String?
-        
+
         /// 手机芯片信息
         public let phoneChipInfo: String?
-        
+
         /// CPU 型号
         public let cpuModel: String?
-        
+
         /// CPU 核数
         public let cpuCore: String?
-        
+
         /// 内存容量，单位转换为 GB
         public let memory: String?
-        
+
         /// 系统语言
         public let language: String?
-        
+
         /// 手机音量
         public let volume: String?
-        
+
         /// 电池电量
         public let batteryPower: String?
-        
+
         /// 屏幕分辨率宽，保留整数
         public let resolutionWidth: Int64?
-        
+
         /// 屏幕分辨率高，保留整数
         public let resolutionHeight: Int64?
-        
+
         /// 浏览器类型
         public let ua: String?
-        
+
         /// 客户端应用
         public let app: String?
-        
+
         /// 应用包名
         public let appPackageName: String?
-        
+
         /// 设备序列号
         /// Android设备
         public let serialNumber: String?
-        
+
         /// netOperator MCC+MNC
         /// Android设备
         public let mobileCountryAndNetworkCode: String?
-        
+
         /// 设备品牌 “华为”“oppo”“小米”
         /// Android设备
         public let vendorId: String?
-        
+
         /// Android API等级
         /// Android设备
         public let androidApiLevel: String?
-        
+
         /// 屏幕亮度
         /// Android设备
         public let brightness: String?
-        
+
         /// 蓝牙地址
         /// Android设备
         public let bluetoothAddress: String?
-        
+
         /// 基带版本
         /// Android设备
         public let baseBandVersion: String?
-        
+
         /// kernel 版本
         /// Android设备
         public let kernelVersion: String?
-        
+
         /// 存储容量，单位转换为 GB
         /// Android设备
         public let storage: String?
-        
+
         /// 软件包名
         /// Android设备
         public let packageName: String?
-        
+
         /// app 版本号
         /// Android设备
         public let appVersion: String?
-        
+
         /// app 显示名称
         /// Android设备
         public let appName: String?
-        
+
         /// 是否 debug；0 为正常模式，1 为 debug 模式；其他值无效
         /// Android设备
         public let isDebug: String?
-        
+
         /// 是否越狱；0 为正常，1 为越狱；其他值无效
         /// Android设备
         public let isRoot: String?
-        
+
         /// 是否启动代理；0 为未开启，1 为开启；其他值无效
         /// Android设备
         public let isProxy: String?
-        
+
         /// 是否模拟器；0 为未开启，1 为开启；其他值无效
         /// Android设备
         public let isEmulator: String?
-        
+
         /// 充电状态；1-不在充电，2-USB充电，3-电源充电
         /// Android设备
         public let chargeStatus: String?
-        
+
         /// 网络类型：2G/3G/4G/5G/Wi-Fi/WWAN/other
         /// Android设备
         public let networkType: String?
-        
+
         /// Wi-Fi MAC地址
         /// Android设备
         public let wifiMac: String?
-        
+
         /// 设备名称 "xxx 的 iPhone"，"xxx's IPhone" 等等
         /// IOS设备
         public let deviceName: String?
-        
+
         /// 开机时间
         /// IOS设备
         public let startupTime: String?
-        
+
         /// 所在经度
         public let lon: String?
-        
+
         /// 所在纬度
         public let lat: String?
-        
-        public init (macAddress: String? = nil, model: String? = nil, osSystem: String? = nil, osSystemVersion: String? = nil, bidFloor: Int64? = nil, deviceVersion: String? = nil, maker: String? = nil, deviceType: String? = nil, carrier: String? = nil, accessMode: String? = nil, phoneChipInfo: String? = nil, cpuModel: String? = nil, cpuCore: String? = nil, memory: String? = nil, language: String? = nil, volume: String? = nil, batteryPower: String? = nil, resolutionWidth: Int64? = nil, resolutionHeight: Int64? = nil, ua: String? = nil, app: String? = nil, appPackageName: String? = nil, serialNumber: String? = nil, mobileCountryAndNetworkCode: String? = nil, vendorId: String? = nil, androidApiLevel: String? = nil, brightness: String? = nil, bluetoothAddress: String? = nil, baseBandVersion: String? = nil, kernelVersion: String? = nil, storage: String? = nil, packageName: String? = nil, appVersion: String? = nil, appName: String? = nil, isDebug: String? = nil, isRoot: String? = nil, isProxy: String? = nil, isEmulator: String? = nil, chargeStatus: String? = nil, networkType: String? = nil, wifiMac: String? = nil, deviceName: String? = nil, startupTime: String? = nil, lon: String? = nil, lat: String? = nil) {
+
+        public init(macAddress: String? = nil, model: String? = nil, osSystem: String? = nil, osSystemVersion: String? = nil, bidFloor: Int64? = nil, deviceVersion: String? = nil, maker: String? = nil, deviceType: String? = nil, carrier: String? = nil, accessMode: String? = nil, phoneChipInfo: String? = nil, cpuModel: String? = nil, cpuCore: String? = nil, memory: String? = nil, language: String? = nil, volume: String? = nil, batteryPower: String? = nil, resolutionWidth: Int64? = nil, resolutionHeight: Int64? = nil, ua: String? = nil, app: String? = nil, appPackageName: String? = nil, serialNumber: String? = nil, mobileCountryAndNetworkCode: String? = nil, vendorId: String? = nil, androidApiLevel: String? = nil, brightness: String? = nil, bluetoothAddress: String? = nil, baseBandVersion: String? = nil, kernelVersion: String? = nil, storage: String? = nil, packageName: String? = nil, appVersion: String? = nil, appName: String? = nil, isDebug: String? = nil, isRoot: String? = nil, isProxy: String? = nil, isEmulator: String? = nil, chargeStatus: String? = nil, networkType: String? = nil, wifiMac: String? = nil, deviceName: String? = nil, startupTime: String? = nil, lon: String? = nil, lat: String? = nil) {
             self.macAddress = macAddress
             self.model = model
             self.osSystem = osSystem
@@ -243,7 +243,7 @@ extension Trdp {
             self.lon = lon
             self.lat = lat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case macAddress = "MacAddress"
             case model = "Model"
@@ -292,35 +292,35 @@ extension Trdp {
             case lat = "Lat"
         }
     }
-    
-    /// 设备指纹信息	
+
+    /// 设备指纹信息
     public struct DeviceFingerprintInfo: TCInputModel {
         /// 设备指纹Token
         public let deviceToken: String
-        
+
         /// 设备指纹的客户端SDK对应渠道
         public let sdkChannel: String
-        
-        public init (deviceToken: String, sdkChannel: String) {
+
+        public init(deviceToken: String, sdkChannel: String) {
             self.deviceToken = deviceToken
             self.sdkChannel = sdkChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceToken = "DeviceToken"
             case sdkChannel = "SdkChannel"
         }
     }
-    
-    /// 评估结果	
+
+    /// 评估结果
     public struct EvaluationResult: TCOutputModel {
         /// SSID值
         public let ssid: String
-        
+
         /// 风险价值分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Float?
-        
+
         /// 风险标签，请参考官网风险类型
         /// 账号风险
         /// 1 账号信用低 账号近期存在因恶意被处罚历史，网络低活跃，被举报等因素
@@ -402,35 +402,35 @@ extension Trdp {
         /// 40003 疑似模拟器 来源于小程序
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskLabels: [Int64]?
-        
+
         enum CodingKeys: String, CodingKey {
             case ssid = "SSID"
             case score = "Score"
             case riskLabels = "RiskLabels"
         }
     }
-    
+
     /// 营销信息
     public struct MarketingInfo: TCInputModel {
         /// 投放模式（0=PDB，1=PD，2=RTB，10=其他）
         public let deliveryMode: Int64?
-        
+
         /// 广告位类型 （0=前贴片，1=开屏广告，2=网页头部广告、3=网页中部广告、4=网页底部广告、5=悬浮广告、10=其它）
         public let advertisingType: Int64?
-        
+
         /// 是否全屏插广告（0-否，1-是）
         public let fullScreen: Int64?
-        
+
         /// 广告位宽度
         public let advertisingSpaceWidth: Int64?
-        
+
         /// 广告位高度
         public let advertisingSpaceHeight: Int64?
-        
+
         /// 网址
         public let url: String?
-        
-        public init (deliveryMode: Int64? = nil, advertisingType: Int64? = nil, fullScreen: Int64? = nil, advertisingSpaceWidth: Int64? = nil, advertisingSpaceHeight: Int64? = nil, url: String? = nil) {
+
+        public init(deliveryMode: Int64? = nil, advertisingType: Int64? = nil, fullScreen: Int64? = nil, advertisingSpaceWidth: Int64? = nil, advertisingSpaceHeight: Int64? = nil, url: String? = nil) {
             self.deliveryMode = deliveryMode
             self.advertisingType = advertisingType
             self.fullScreen = fullScreen
@@ -438,7 +438,7 @@ extension Trdp {
             self.advertisingSpaceHeight = advertisingSpaceHeight
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deliveryMode = "DeliveryMode"
             case advertisingType = "AdvertisingType"
@@ -448,58 +448,58 @@ extension Trdp {
             case url = "Url"
         }
     }
-    
+
     /// 通用账号信息
     public struct UniversalAccountInfo: TCInputModel {
         /// 账号值：
         /// 当账户类型为1时，填入手机号，如135****3695；
         /// 当账户类型为2、3或100时，填入对应的值。
         public let accountId: String
-        
-        public init (accountId: String) {
+
+        public init(accountId: String) {
             self.accountId = accountId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
         }
     }
-    
-    /// 用户信息	
+
+    /// 用户信息
     public struct UserInfo: TCInputModel {
         /// 用户外网IP地址
         public let ip: String
-        
+
         /// 来源渠道编码
         public let channelSource: String?
-        
+
         /// 用户登录平台。1：Android 2：iOS 3：H5 4：小程序
         public let platform: Int64?
-        
+
         /// 姓名
         public let name: String?
-        
+
         /// 年龄
         public let age: Int64?
-        
+
         /// 性别：
         /// male（男）
         /// female（女）
         public let gender: String?
-        
+
         /// 身份证号
         public let residentIdentityCard: String?
-        
+
         /// 邮箱地址
         public let email: String?
-        
+
         /// 用户地址
         public let address: String?
-        
+
         /// 用户昵称
         public let nickname: String?
-        
-        public init (ip: String, channelSource: String? = nil, platform: Int64? = nil, name: String? = nil, age: Int64? = nil, gender: String? = nil, residentIdentityCard: String? = nil, email: String? = nil, address: String? = nil, nickname: String? = nil) {
+
+        public init(ip: String, channelSource: String? = nil, platform: Int64? = nil, name: String? = nil, age: Int64? = nil, gender: String? = nil, residentIdentityCard: String? = nil, email: String? = nil, address: String? = nil, nickname: String? = nil) {
             self.ip = ip
             self.channelSource = channelSource
             self.platform = platform
@@ -511,7 +511,7 @@ extension Trdp {
             self.address = address
             self.nickname = nickname
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case channelSource = "ChannelSource"

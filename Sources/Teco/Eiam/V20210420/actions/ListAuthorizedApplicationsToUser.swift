@@ -19,44 +19,44 @@ extension Eiam {
     public struct ListAuthorizedApplicationsToUserRequest: TCRequestModel {
         /// 用户 ID。
         public let userId: String
-        
+
         /// 查询范围是否包括用户关联的用户组、组织机构的应用访问权限。默认为不查询 。传false表示不查询该范围，传true表示应用查询该范围。
         public let includeInheritedAuthorizations: Bool?
-        
-        public init (userId: String, includeInheritedAuthorizations: Bool? = nil) {
+
+        public init(userId: String, includeInheritedAuthorizations: Bool? = nil) {
             self.userId = userId
             self.includeInheritedAuthorizations = includeInheritedAuthorizations
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case includeInheritedAuthorizations = "IncludeInheritedAuthorizations"
         }
     }
-    
+
     /// ListAuthorizedApplicationsToUser返回参数结构体
     public struct ListAuthorizedApplicationsToUserResponse: TCResponseModel {
         /// 用户拥有访问权限的应用信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationAuthorizationInfo: [ApplicationAuthorizationInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationAuthorizationInfo = "ApplicationAuthorizationInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户被授权访问的应用列表
     ///
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
-    public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToUserResponse > {
+    public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserResponse> {
         self.client.execute(action: "ListAuthorizedApplicationsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户被授权访问的应用列表
     ///
     /// 通过用户ID获得被授权访问的应用列表。
@@ -64,15 +64,15 @@ extension Eiam {
     public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
         try await self.client.execute(action: "ListAuthorizedApplicationsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户被授权访问的应用列表
     ///
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
-    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToUserResponse > {
+    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserResponse> {
         self.listAuthorizedApplicationsToUser(ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户被授权访问的应用列表
     ///
     /// 通过用户ID获得被授权访问的应用列表。

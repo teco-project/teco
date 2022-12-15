@@ -19,54 +19,54 @@ extension Tke {
     public struct EnableEventPersistenceRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// cls服务的logsetID
         public let logsetId: String?
-        
+
         /// cls服务的topicID
         public let topicId: String?
-        
-        public init (clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
+
+        public init(clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
             self.clusterId = clusterId
             self.logsetId = logsetId
             self.topicId = topicId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case logsetId = "LogsetId"
             case topicId = "TopicId"
         }
     }
-    
+
     /// EnableEventPersistence返回参数结构体
     public struct EnableEventPersistenceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启事件持久化功能
     @inlinable
-    public func enableEventPersistence(_ input: EnableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableEventPersistenceResponse > {
+    public func enableEventPersistence(_ input: EnableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableEventPersistenceResponse> {
         self.client.execute(action: "EnableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启事件持久化功能
     @inlinable
     public func enableEventPersistence(_ input: EnableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableEventPersistenceResponse {
         try await self.client.execute(action: "EnableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启事件持久化功能
     @inlinable
-    public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableEventPersistenceResponse > {
+    public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableEventPersistenceResponse> {
         self.enableEventPersistence(EnableEventPersistenceRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启事件持久化功能
     @inlinable
     public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableEventPersistenceResponse {

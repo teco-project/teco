@@ -22,10 +22,10 @@ extension Youmall {
     public struct DescribeShopTrafficInfoRequest: TCRequestModel {
         /// 公司ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 开始日期，格式yyyy-MM-dd
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date
-        
+
         /// 介绍日期，格式yyyy-MM-dd
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,14 +41,14 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
+
         /// 偏移量：分页控制参数，第一页传0，第n页Offset=(n-1)*Limit
         public let offset: UInt64
-        
+
         /// Limit:每页的数据项，最大100，超过100会被强制指定为100
         public let limit: UInt64
-        
-        public init (companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64) {
+
+        public init(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64) {
             self.companyId = companyId
             self.shopId = shopId
             self.startDate = startDate
@@ -56,7 +56,7 @@ extension Youmall {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -66,24 +66,24 @@ extension Youmall {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeShopTrafficInfo返回参数结构体
     public struct DescribeShopTrafficInfoResponse: TCResponseModel {
         /// 公司ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 查询结果总数
         public let totalCount: UInt64
-        
+
         /// 客流信息列表
         public let shopDayTrafficInfoSet: [ShopDayTrafficInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -92,15 +92,15 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取每日客流人数
     ///
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeShopTrafficInfo(_ input: DescribeShopTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopTrafficInfoResponse > {
+    public func describeShopTrafficInfo(_ input: DescribeShopTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopTrafficInfoResponse> {
         self.client.execute(action: "DescribeShopTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取每日客流人数
     ///
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
@@ -108,15 +108,15 @@ extension Youmall {
     public func describeShopTrafficInfo(_ input: DescribeShopTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopTrafficInfoResponse {
         try await self.client.execute(action: "DescribeShopTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取每日客流人数
     ///
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeShopTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopTrafficInfoResponse > {
+    public func describeShopTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopTrafficInfoResponse> {
         self.describeShopTrafficInfo(DescribeShopTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取每日客流人数
     ///
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。

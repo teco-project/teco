@@ -19,31 +19,31 @@ extension Cpdp {
     public struct DownloadBillRequest: TCRequestModel {
         /// 请求下载对账单日期
         public let stateDate: String
-        
+
         /// 聚鑫分配的MidasAppId
         public let midasAppId: String
-        
+
         /// 聚鑫分配的SecretId
         public let midasSecretId: String
-        
+
         /// 使用聚鑫安全密钥计算的签名
         public let midasSignature: String
-        
+
         /// 环境名:
         /// release: 现网环境
         /// sandbox: 沙箱环境
         /// development: 开发环境
         /// 缺省: release
         public let midasEnvironment: String?
-        
-        public init (stateDate: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil) {
+
+        public init(stateDate: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil) {
             self.stateDate = stateDate
             self.midasAppId = midasAppId
             self.midasSecretId = midasSecretId
             self.midasSignature = midasSignature
             self.midasEnvironment = midasEnvironment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case stateDate = "StateDate"
             case midasAppId = "MidasAppId"
@@ -52,27 +52,27 @@ extension Cpdp {
             case midasEnvironment = "MidasEnvironment"
         }
     }
-    
+
     /// DownloadBill返回参数结构体
     public struct DownloadBillResponse: TCResponseModel {
         /// 账单文件名
         public let fileName: String
-        
+
         /// 账单文件的MD5值
         public let fileMD5: String
-        
+
         /// 账单文件的真实下载地址
         public let downloadUrl: String
-        
+
         /// 账单类型
         /// TRADE，对账单
         /// FUND，资金账单
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stateType: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case fileMD5 = "FileMD5"
@@ -81,15 +81,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫-账单下载
     ///
     /// 账单下载接口，根据本接口返回的URL地址，在D+1日下载对账单。注意，本接口返回的URL地址有时效，请尽快下载。URL超时时效后，请重新调用本接口再次获取。
     @inlinable
-    public func downloadBill(_ input: DownloadBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadBillResponse > {
+    public func downloadBill(_ input: DownloadBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBillResponse> {
         self.client.execute(action: "DownloadBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-账单下载
     ///
     /// 账单下载接口，根据本接口返回的URL地址，在D+1日下载对账单。注意，本接口返回的URL地址有时效，请尽快下载。URL超时时效后，请重新调用本接口再次获取。
@@ -97,15 +97,15 @@ extension Cpdp {
     public func downloadBill(_ input: DownloadBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBillResponse {
         try await self.client.execute(action: "DownloadBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫-账单下载
     ///
     /// 账单下载接口，根据本接口返回的URL地址，在D+1日下载对账单。注意，本接口返回的URL地址有时效，请尽快下载。URL超时时效后，请重新调用本接口再次获取。
     @inlinable
-    public func downloadBill(stateDate: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadBillResponse > {
+    public func downloadBill(stateDate: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBillResponse> {
         self.downloadBill(DownloadBillRequest(stateDate: stateDate, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-账单下载
     ///
     /// 账单下载接口，根据本接口返回的URL地址，在D+1日下载对账单。注意，本接口返回的URL地址有时效，请尽快下载。URL超时时效后，请重新调用本接口再次获取。

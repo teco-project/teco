@@ -19,53 +19,53 @@ extension Wedata {
     public struct ResumeIntegrationTaskRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 项目id
         public let projectId: String
-        
-        public init (taskId: String, projectId: String) {
+
+        public init(taskId: String, projectId: String) {
             self.taskId = taskId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// ResumeIntegrationTask返回参数结构体
     public struct ResumeIntegrationTaskResponse: TCResponseModel {
         /// 操作成功与否标识
         public let data: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 继续集成任务
     @inlinable
-    public func resumeIntegrationTask(_ input: ResumeIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeIntegrationTaskResponse > {
+    public func resumeIntegrationTask(_ input: ResumeIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeIntegrationTaskResponse> {
         self.client.execute(action: "ResumeIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 继续集成任务
     @inlinable
     public func resumeIntegrationTask(_ input: ResumeIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeIntegrationTaskResponse {
         try await self.client.execute(action: "ResumeIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 继续集成任务
     @inlinable
-    public func resumeIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeIntegrationTaskResponse > {
+    public func resumeIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeIntegrationTaskResponse> {
         self.resumeIntegrationTask(ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 继续集成任务
     @inlinable
     public func resumeIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeIntegrationTaskResponse {

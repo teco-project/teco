@@ -20,51 +20,51 @@ extension Live {
         /// 起始时间，北京时间，
         /// 格式：yyyy-mm-dd HH:MM:SS。
         public let startTime: String
-        
+
         /// 结束时间，北京时间，
         /// 格式：yyyy-mm-dd HH:MM:SS。
         /// 注：最大时间跨度支持1天，支持最近3个月的数据查询。
         public let endTime: String
-        
+
         /// 播放域名列表。
         public let playDomains: [String]?
-        
-        public init (startTime: String, endTime: String, playDomains: [String]? = nil) {
+
+        public init(startTime: String, endTime: String, playDomains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.playDomains = playDomains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case playDomains = "PlayDomains"
         }
     }
-    
+
     /// DescribeHttpStatusInfoList返回参数结构体
     public struct DescribeHttpStatusInfoListResponse: TCResponseModel {
         /// 播放状态码列表。
         public let dataInfoList: [HttpStatusData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询播放http状态码明细数据
     ///
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
-    public func describeHttpStatusInfoList(_ input: DescribeHttpStatusInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHttpStatusInfoListResponse > {
+    public func describeHttpStatusInfoList(_ input: DescribeHttpStatusInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHttpStatusInfoListResponse> {
         self.client.execute(action: "DescribeHttpStatusInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询播放http状态码明细数据
     ///
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。
@@ -73,16 +73,16 @@ extension Live {
     public func describeHttpStatusInfoList(_ input: DescribeHttpStatusInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHttpStatusInfoListResponse {
         try await self.client.execute(action: "DescribeHttpStatusInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询播放http状态码明细数据
     ///
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
-    public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHttpStatusInfoListResponse > {
+    public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHttpStatusInfoListResponse> {
         self.describeHttpStatusInfoList(DescribeHttpStatusInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询播放http状态码明细数据
     ///
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。

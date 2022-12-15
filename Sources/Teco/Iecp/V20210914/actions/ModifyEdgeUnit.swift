@@ -19,54 +19,54 @@ extension Iecp {
     public struct ModifyEdgeUnitRequest: TCRequestModel {
         /// 边缘集群ID
         public let edgeUnitId: UInt64
-        
+
         /// 边缘集群名称，64字符以内
         public let name: String
-        
+
         /// 集群描述，200字符以内
         public let description: String?
-        
-        public init (edgeUnitId: UInt64, name: String, description: String? = nil) {
+
+        public init(edgeUnitId: UInt64, name: String, description: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.name = name
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case name = "Name"
             case description = "Description"
         }
     }
-    
+
     /// ModifyEdgeUnit返回参数结构体
     public struct ModifyEdgeUnitResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改边缘集群
     @inlinable
-    public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitResponse > {
+    public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitResponse> {
         self.client.execute(action: "ModifyEdgeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改边缘集群
     @inlinable
     public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitResponse {
         try await self.client.execute(action: "ModifyEdgeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改边缘集群
     @inlinable
-    public func modifyEdgeUnit(edgeUnitId: UInt64, name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitResponse > {
+    public func modifyEdgeUnit(edgeUnitId: UInt64, name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitResponse> {
         self.modifyEdgeUnit(ModifyEdgeUnitRequest(edgeUnitId: edgeUnitId, name: name, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改边缘集群
     @inlinable
     public func modifyEdgeUnit(edgeUnitId: UInt64, name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitResponse {

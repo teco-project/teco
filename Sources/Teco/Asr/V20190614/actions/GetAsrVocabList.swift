@@ -19,52 +19,52 @@ extension Asr {
     public struct GetAsrVocabListRequest: TCRequestModel {
         /// 标签信息，格式为“$TagKey : $TagValue ”，中间分隔符为“空格”+“:”+“空格”
         public let tagInfos: [String]?
-        
+
         /// 分页Offset
         public let offset: UInt64?
-        
+
         /// 分页Limit
         public let limit: UInt64?
-        
-        public init (tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.tagInfos = tagInfos
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagInfos = "TagInfos"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// GetAsrVocabList返回参数结构体
     public struct GetAsrVocabListResponse: TCResponseModel {
         /// 热词表列表
         public let vocabList: [Vocab]
-        
+
         /// 热词列表总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vocabList = "VocabList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列举热词表
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
-    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsrVocabListResponse > {
+    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabListResponse> {
         self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列举热词表
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
@@ -72,15 +72,15 @@ extension Asr {
     public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
         try await self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列举热词表
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
-    public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsrVocabListResponse > {
+    public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabListResponse> {
         self.getAsrVocabList(GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 列举热词表
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。

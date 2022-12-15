@@ -17,33 +17,33 @@
 extension Cfw {
     /// DescribeNatFwInstanceWithRegion请求参数结构体
     public struct DescribeNatFwInstanceWithRegionRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeNatFwInstanceWithRegion返回参数结构体
     public struct DescribeNatFwInstanceWithRegionResponse: TCResponseModel {
         /// 实例数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let natinsLst: [NatFwInstance]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case natinsLst = "NatinsLst"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取租户可运维NAT实例
     ///
     /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
     @inlinable
-    public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceWithRegionResponse > {
+    public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstanceWithRegionResponse> {
         self.client.execute(action: "DescribeNatFwInstanceWithRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取租户可运维NAT实例
     ///
     /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
@@ -51,15 +51,15 @@ extension Cfw {
     public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceWithRegionResponse {
         try await self.client.execute(action: "DescribeNatFwInstanceWithRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取租户可运维NAT实例
     ///
     /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
     @inlinable
-    public func describeNatFwInstanceWithRegion(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceWithRegionResponse > {
+    public func describeNatFwInstanceWithRegion(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstanceWithRegionResponse> {
         self.describeNatFwInstanceWithRegion(DescribeNatFwInstanceWithRegionRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取租户可运维NAT实例
     ///
     /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域

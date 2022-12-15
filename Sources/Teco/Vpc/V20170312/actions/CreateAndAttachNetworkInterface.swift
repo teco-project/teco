@@ -19,35 +19,35 @@ extension Vpc {
     public struct CreateAndAttachNetworkInterfaceRequest: TCRequestModel {
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let vpcId: String
-        
+
         /// 弹性网卡名称，最大长度不能超过60个字节。
         public let networkInterfaceName: String
-        
+
         /// 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。
         public let subnetId: String
-        
+
         /// 云服务器实例ID。
         public let instanceId: String
-        
+
         /// 指定的内网IP信息，单次最多指定10个。
         public let privateIpAddresses: [PrivateIpAddressSpecification]?
-        
+
         /// 新申请的内网IP地址个数，内网IP地址个数总和不能超过配数。
         public let secondaryPrivateIpAddressCount: UInt64?
-        
+
         /// 指定绑定的安全组，例如：['sg-1dd51d']。
         public let securityGroupIds: [String]?
-        
+
         /// 弹性网卡描述，可任意命名，但不得超过60个字符。
         public let networkInterfaceDescription: String?
-        
+
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
-        
+
         /// 绑定类型：0 标准型 1 扩展型。
         public let attachType: UInt64?
-        
-        public init (vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil) {
+
+        public init(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil) {
             self.vpcId = vpcId
             self.networkInterfaceName = networkInterfaceName
             self.subnetId = subnetId
@@ -59,7 +59,7 @@ extension Vpc {
             self.tags = tags
             self.attachType = attachType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case networkInterfaceName = "NetworkInterfaceName"
@@ -73,21 +73,21 @@ extension Vpc {
             case attachType = "AttachType"
         }
     }
-    
+
     /// CreateAndAttachNetworkInterface返回参数结构体
     public struct CreateAndAttachNetworkInterfaceResponse: TCResponseModel {
         /// 弹性网卡实例。
         public let networkInterface: NetworkInterface
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case networkInterface = "NetworkInterface"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建弹性网卡并绑定云服务器
     ///
     /// 本接口（CreateAndAttachNetworkInterface）用于创建弹性网卡并绑定云服务器。
@@ -99,10 +99,10 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createAndAttachNetworkInterface(_ input: CreateAndAttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAndAttachNetworkInterfaceResponse > {
+    public func createAndAttachNetworkInterface(_ input: CreateAndAttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
         self.client.execute(action: "CreateAndAttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建弹性网卡并绑定云服务器
     ///
     /// 本接口（CreateAndAttachNetworkInterface）用于创建弹性网卡并绑定云服务器。
@@ -117,7 +117,7 @@ extension Vpc {
     public func createAndAttachNetworkInterface(_ input: CreateAndAttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
         try await self.client.execute(action: "CreateAndAttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建弹性网卡并绑定云服务器
     ///
     /// 本接口（CreateAndAttachNetworkInterface）用于创建弹性网卡并绑定云服务器。
@@ -129,10 +129,10 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAndAttachNetworkInterfaceResponse > {
+    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
         self.createAndAttachNetworkInterface(CreateAndAttachNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建弹性网卡并绑定云服务器
     ///
     /// 本接口（CreateAndAttachNetworkInterface）用于创建弹性网卡并绑定云服务器。

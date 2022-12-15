@@ -19,49 +19,49 @@ extension Bmeip {
     public struct ModifyEipNameRequest: TCRequestModel {
         /// Eip实例ID，可通过/v2/DescribeEip 接口返回字段中的 eipId获取
         public let eipId: String
-        
+
         /// EIP 实例别名
         public let eipName: String
-        
-        public init (eipId: String, eipName: String) {
+
+        public init(eipId: String, eipName: String) {
             self.eipId = eipId
             self.eipName = eipName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eipId = "EipId"
             case eipName = "EipName"
         }
     }
-    
+
     /// ModifyEipName返回参数结构体
     public struct ModifyEipNameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新黑石EIP名称
     @inlinable
-    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipNameResponse > {
+    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipNameResponse> {
         self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新黑石EIP名称
     @inlinable
     public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
         try await self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新黑石EIP名称
     @inlinable
-    public func modifyEipName(eipId: String, eipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipNameResponse > {
+    public func modifyEipName(eipId: String, eipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipNameResponse> {
         self.modifyEipName(ModifyEipNameRequest(eipId: eipId, eipName: eipName), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新黑石EIP名称
     @inlinable
     public func modifyEipName(eipId: String, eipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {

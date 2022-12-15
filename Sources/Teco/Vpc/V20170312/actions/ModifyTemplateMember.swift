@@ -19,44 +19,44 @@ extension Vpc {
     public struct ModifyTemplateMemberRequest: TCRequestModel {
         /// 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
         public let templateId: String
-        
+
         /// 需要修改的参数模板成员信息，支持IP地址、协议端口、IP地址组、协议端口组四种类型，类型需要与TemplateId参数类型一致，修改顺序与TemplateMember参数顺序一一对应，入参长度需要与TemplateMember参数保持一致。
         public let originalTemplateMember: [MemberInfo]
-        
+
         /// 新的参数模板成员信息，支持IP地址、协议端口、IP地址组、协议端口组四种类型，类型需要与TemplateId参数类型一致，修改顺序与OriginalTemplateMember参数顺序一一对应，入参长度需要与OriginalTemplateMember参数保持一致。
         public let templateMember: [MemberInfo]
-        
-        public init (templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo]) {
+
+        public init(templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo]) {
             self.templateId = templateId
             self.originalTemplateMember = originalTemplateMember
             self.templateMember = templateMember
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case originalTemplateMember = "OriginalTemplateMember"
             case templateMember = "TemplateMember"
         }
     }
-    
+
     /// ModifyTemplateMember返回参数结构体
     public struct ModifyTemplateMemberResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改模板对象成员
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTemplateMemberResponse > {
+    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTemplateMemberResponse> {
         self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模板对象成员
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
@@ -64,15 +64,15 @@ extension Vpc {
     public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTemplateMemberResponse {
         try await self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改模板对象成员
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func modifyTemplateMember(templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTemplateMemberResponse > {
+    public func modifyTemplateMember(templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTemplateMemberResponse> {
         self.modifyTemplateMember(ModifyTemplateMemberRequest(templateId: templateId, originalTemplateMember: originalTemplateMember, templateMember: templateMember), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模板对象成员
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。

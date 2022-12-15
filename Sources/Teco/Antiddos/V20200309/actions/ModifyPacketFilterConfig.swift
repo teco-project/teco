@@ -19,49 +19,49 @@ extension Antiddos {
     public struct ModifyPacketFilterConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
+
         /// 特征过滤配置
         public let packetFilterConfig: PacketFilterConfig
-        
-        public init (instanceId: String, packetFilterConfig: PacketFilterConfig) {
+
+        public init(instanceId: String, packetFilterConfig: PacketFilterConfig) {
             self.instanceId = instanceId
             self.packetFilterConfig = packetFilterConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case packetFilterConfig = "PacketFilterConfig"
         }
     }
-    
+
     /// ModifyPacketFilterConfig返回参数结构体
     public struct ModifyPacketFilterConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改DDoS防护的特征过滤规则
     @inlinable
-    public func modifyPacketFilterConfig(_ input: ModifyPacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPacketFilterConfigResponse > {
+    public func modifyPacketFilterConfig(_ input: ModifyPacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPacketFilterConfigResponse> {
         self.client.execute(action: "ModifyPacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护的特征过滤规则
     @inlinable
     public func modifyPacketFilterConfig(_ input: ModifyPacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPacketFilterConfigResponse {
         try await self.client.execute(action: "ModifyPacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改DDoS防护的特征过滤规则
     @inlinable
-    public func modifyPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPacketFilterConfigResponse > {
+    public func modifyPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPacketFilterConfigResponse> {
         self.modifyPacketFilterConfig(ModifyPacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护的特征过滤规则
     @inlinable
     public func modifyPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPacketFilterConfigResponse {

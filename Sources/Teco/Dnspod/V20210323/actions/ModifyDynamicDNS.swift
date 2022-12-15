@@ -19,29 +19,29 @@ extension Dnspod {
     public struct ModifyDynamicDNSRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 记录ID。 可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         public let recordId: UInt64
-        
+
         /// 记录线路，通过 API 记录线路获得，中文，比如：默认。
         public let recordLine: String
-        
+
         /// 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
         public let value: String
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
-        
+
         /// 主机记录，如 www，如果不传，默认为 @。
         public let subDomain: String?
-        
+
         /// 线路的 ID，通过 API 记录线路获得，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
         public let recordLineId: String?
-        
+
         /// TTL值，如果不传，默认为域名的TTL值。
         public let ttl: UInt64?
-        
-        public init (domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil) {
+
+        public init(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil) {
             self.domain = domain
             self.recordId = recordId
             self.recordLine = recordLine
@@ -51,7 +51,7 @@ extension Dnspod {
             self.recordLineId = recordLineId
             self.ttl = ttl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case recordId = "RecordId"
@@ -63,39 +63,39 @@ extension Dnspod {
             case ttl = "Ttl"
         }
     }
-    
+
     /// ModifyDynamicDNS返回参数结构体
     public struct ModifyDynamicDNSResponse: TCResponseModel {
         /// 记录ID
         public let recordId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case recordId = "RecordId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新动态 DNS 记录
     @inlinable
-    public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDynamicDNSResponse > {
+    public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDynamicDNSResponse> {
         self.client.execute(action: "ModifyDynamicDNS", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新动态 DNS 记录
     @inlinable
     public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {
         try await self.client.execute(action: "ModifyDynamicDNS", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新动态 DNS 记录
     @inlinable
-    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDynamicDNSResponse > {
+    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDynamicDNSResponse> {
         self.modifyDynamicDNS(ModifyDynamicDNSRequest(domain: domain, recordId: recordId, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, ttl: ttl), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新动态 DNS 记录
     @inlinable
     public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {

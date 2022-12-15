@@ -19,39 +19,39 @@ extension Dts {
     public struct ModifyMigrateNameRequest: TCRequestModel {
         /// 迁移任务id
         public let jobId: String
-        
+
         /// 修改后的迁移任务名
         public let jobName: String
-        
-        public init (jobId: String, jobName: String) {
+
+        public init(jobId: String, jobName: String) {
             self.jobId = jobId
             self.jobName = jobName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
         }
     }
-    
+
     /// ModifyMigrateName返回参数结构体
     public struct ModifyMigrateNameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改迁移名称
     ///
     /// 修改迁移任务名
     @inlinable
-    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateNameResponse > {
+    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateNameResponse> {
         self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改迁移名称
     ///
     /// 修改迁移任务名
@@ -59,15 +59,15 @@ extension Dts {
     public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
         try await self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改迁移名称
     ///
     /// 修改迁移任务名
     @inlinable
-    public func modifyMigrateName(jobId: String, jobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateNameResponse > {
+    public func modifyMigrateName(jobId: String, jobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateNameResponse> {
         self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改迁移名称
     ///
     /// 修改迁移任务名

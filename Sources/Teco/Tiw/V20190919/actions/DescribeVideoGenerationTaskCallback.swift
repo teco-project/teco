@@ -19,52 +19,52 @@ extension Tiw {
     public struct DescribeVideoGenerationTaskCallbackRequest: TCRequestModel {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
-        
-        public init (sdkAppId: Int64) {
+
+        public init(sdkAppId: Int64) {
             self.sdkAppId = sdkAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
         }
     }
-    
+
     /// DescribeVideoGenerationTaskCallback返回参数结构体
     public struct DescribeVideoGenerationTaskCallbackResponse: TCResponseModel {
         /// 录制视频生成回调地址
         public let callback: String
-        
+
         /// 录制视频生成回调鉴权密钥
         public let callbackKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case callback = "Callback"
             case callbackKey = "CallbackKey"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询录制视频生成回调地址
     @inlinable
-    public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoGenerationTaskCallbackResponse > {
+    public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoGenerationTaskCallbackResponse> {
         self.client.execute(action: "DescribeVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询录制视频生成回调地址
     @inlinable
     public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskCallbackResponse {
         try await self.client.execute(action: "DescribeVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询录制视频生成回调地址
     @inlinable
-    public func describeVideoGenerationTaskCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoGenerationTaskCallbackResponse > {
+    public func describeVideoGenerationTaskCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoGenerationTaskCallbackResponse> {
         self.describeVideoGenerationTaskCallback(DescribeVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询录制视频生成回调地址
     @inlinable
     public func describeVideoGenerationTaskCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskCallbackResponse {

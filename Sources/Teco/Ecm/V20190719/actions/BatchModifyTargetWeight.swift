@@ -19,39 +19,39 @@ extension Ecm {
     public struct BatchModifyTargetWeightRequest: TCRequestModel {
         /// 负载均衡实例 ID
         public let loadBalancerId: String
-        
+
         /// 要批量修改权重的列表
         public let modifyList: [TargetsWeightRule]
-        
-        public init (loadBalancerId: String, modifyList: [TargetsWeightRule]) {
+
+        public init(loadBalancerId: String, modifyList: [TargetsWeightRule]) {
             self.loadBalancerId = loadBalancerId
             self.modifyList = modifyList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case modifyList = "ModifyList"
         }
     }
-    
+
     /// BatchModifyTargetWeight返回参数结构体
     public struct BatchModifyTargetWeightResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量修改监听器绑定的后端机器的转发权重
     ///
     /// 批量修改监听器绑定的后端机器的转发权重。
     @inlinable
-    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTargetWeightResponse > {
+    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTargetWeightResponse> {
         self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改监听器绑定的后端机器的转发权重
     ///
     /// 批量修改监听器绑定的后端机器的转发权重。
@@ -59,15 +59,15 @@ extension Ecm {
     public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
         try await self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量修改监听器绑定的后端机器的转发权重
     ///
     /// 批量修改监听器绑定的后端机器的转发权重。
     @inlinable
-    public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [TargetsWeightRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTargetWeightResponse > {
+    public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [TargetsWeightRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTargetWeightResponse> {
         self.batchModifyTargetWeight(BatchModifyTargetWeightRequest(loadBalancerId: loadBalancerId, modifyList: modifyList), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改监听器绑定的后端机器的转发权重
     ///
     /// 批量修改监听器绑定的后端机器的转发权重。

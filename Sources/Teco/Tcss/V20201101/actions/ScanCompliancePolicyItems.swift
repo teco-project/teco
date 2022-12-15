@@ -19,38 +19,38 @@ extension Tcss {
     public struct ScanCompliancePolicyItemsRequest: TCRequestModel {
         /// 要重新扫描的客户检测项的列表。
         public let customerPolicyItemIdSet: [UInt64]
-        
-        public init (customerPolicyItemIdSet: [UInt64]) {
+
+        public init(customerPolicyItemIdSet: [UInt64]) {
             self.customerPolicyItemIdSet = customerPolicyItemIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customerPolicyItemIdSet = "CustomerPolicyItemIdSet"
         }
     }
-    
+
     /// ScanCompliancePolicyItems返回参数结构体
     public struct ScanCompliancePolicyItemsResponse: TCResponseModel {
         /// 返回重新检测任务的ID。
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规重新检测选定的检测项
     ///
     /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanCompliancePolicyItemsResponse > {
+    public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanCompliancePolicyItemsResponse> {
         self.client.execute(action: "ScanCompliancePolicyItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规重新检测选定的检测项
     ///
     /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
@@ -58,15 +58,15 @@ extension Tcss {
     public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanCompliancePolicyItemsResponse {
         try await self.client.execute(action: "ScanCompliancePolicyItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规重新检测选定的检测项
     ///
     /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanCompliancePolicyItems(customerPolicyItemIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanCompliancePolicyItemsResponse > {
+    public func scanCompliancePolicyItems(customerPolicyItemIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanCompliancePolicyItemsResponse> {
         self.scanCompliancePolicyItems(ScanCompliancePolicyItemsRequest(customerPolicyItemIdSet: customerPolicyItemIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规重新检测选定的检测项
     ///
     /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。

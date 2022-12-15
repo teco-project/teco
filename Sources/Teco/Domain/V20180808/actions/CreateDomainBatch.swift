@@ -19,31 +19,31 @@ extension Domain {
     public struct CreateDomainBatchRequest: TCRequestModel {
         /// 模板ID。详情请查看：[获取模板列表](https://cloud.tencent.com/document/product/242/48940)
         public let templateId: String
-        
+
         /// 购买域名的年限，可选值：[1-10]
         public let period: Int64
-        
+
         /// 批量购买的域名,最多为4000个
         public let domains: [String]
-        
+
         /// 付费模式 0手动在线付费，1使用余额付费，2使用特惠包
         public let payMode: Int64
-        
+
         /// 自动续费开关。有两个可选值：
         /// 0 表示关闭，不自动续费（默认值）
         /// 1 表示开启，将自动续费
         public let autoRenewFlag: Int64?
-        
+
         /// 使用的特惠包ID，PayMode为2时必填
         public let packageResourceId: String?
-        
+
         /// 是否开启更新锁：0=默认不开启，1=开启
         public let updateProhibition: Int64?
-        
+
         /// 是否开启转移锁：0=默认不开启，1=开启
         public let transferProhibition: Int64?
-        
-        public init (templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
+
+        public init(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
             self.templateId = templateId
             self.period = period
             self.domains = domains
@@ -53,7 +53,7 @@ extension Domain {
             self.updateProhibition = updateProhibition
             self.transferProhibition = transferProhibition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case period = "Period"
@@ -65,30 +65,30 @@ extension Domain {
             case transferProhibition = "TransferProhibition"
         }
     }
-    
+
     /// CreateDomainBatch返回参数结构体
     public struct CreateDomainBatchResponse: TCResponseModel {
         /// 批量日志ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logId: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case logId = "LogId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量域名注册
     ///
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
     @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
         self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量域名注册
     ///
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
@@ -96,15 +96,15 @@ extension Domain {
     public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
         try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量域名注册
     ///
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
     @inlinable
-    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
+    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
         self.createDomainBatch(CreateDomainBatchRequest(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量域名注册
     ///
     /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。

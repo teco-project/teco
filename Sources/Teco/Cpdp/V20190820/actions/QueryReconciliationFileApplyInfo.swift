@@ -19,42 +19,42 @@ extension Cpdp {
     public struct QueryReconciliationFileApplyInfoRequest: TCRequestModel {
         /// 申请对账文件的任务ID。
         public let applyFileId: String
-        
+
         /// 环境名。
         /// __release__: 现网环境
         /// __sandbox__: 沙箱环境
         /// __development__: 开发环境
         /// _缺省: release_
         public let midasEnvironment: String?
-        
-        public init (applyFileId: String, midasEnvironment: String? = nil) {
+
+        public init(applyFileId: String, midasEnvironment: String? = nil) {
             self.applyFileId = applyFileId
             self.midasEnvironment = midasEnvironment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applyFileId = "ApplyFileId"
             case midasEnvironment = "MidasEnvironment"
         }
     }
-    
+
     /// QueryReconciliationFileApplyInfo返回参数结构体
     public struct QueryReconciliationFileApplyInfoResponse: TCResponseModel {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表
         public let errCode: String
-        
+
         /// 错误消息。
         public let errMessage: String
-        
+
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: QueryReconciliationFileApplyInfoResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -62,25 +62,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫-查询对账文件申请结果
     @inlinable
-    public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryReconciliationFileApplyInfoResponse > {
+    public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryReconciliationFileApplyInfoResponse> {
         self.client.execute(action: "QueryReconciliationFileApplyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-查询对账文件申请结果
     @inlinable
     public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
         try await self.client.execute(action: "QueryReconciliationFileApplyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫-查询对账文件申请结果
     @inlinable
-    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryReconciliationFileApplyInfoResponse > {
+    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryReconciliationFileApplyInfoResponse> {
         self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-查询对账文件申请结果
     @inlinable
     public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {

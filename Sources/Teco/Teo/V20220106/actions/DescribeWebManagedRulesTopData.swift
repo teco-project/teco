@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,51 +35,51 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 统计指标列表，取值有：
         /// <li>waf_requestNum_url ：url请求数排行 ；</li>
         /// <li>waf_requestNum_cip：客户端ip请求数排行 ；</li>
         /// <li>waf_cipRequestNum_region ：客户端区域请求数排行 。</li>
         public let metricName: String
-        
+
         /// 查询前多少个，传值为0返回全量。
         public let limit: Int64
-        
+
         /// 站点id列表，不填默认选择全部站点。
         public let zoneIds: [String]?
-        
+
         /// 该字段已废弃，请勿传。
         public let policyIds: [Int64]?
-        
+
         /// 该字段已废弃，请勿传。
         public let port: Int64?
-        
+
         /// 该字段已废弃，请勿传。
         public let protocolType: String?
-        
+
         /// 该字段已废弃，请勿传。
         public let attackType: String?
-        
+
         /// 域名列表，不填默认选择全部子域名。
         public let domains: [String]?
-        
+
         /// 查询时间粒度，取值有：
         /// <li>min ：1分钟 ；</li>
         /// <li>5min ：5分钟 ；</li>
         /// <li>hour ：1小时 ；</li>
         /// <li>day ：1天 。</li>
         public let interval: String?
-        
+
         /// 筛选条件，取值有：
         /// <li>action ：执行动作 。</li>
         public let queryCondition: [QueryCondition]?
-        
+
         /// 数据归属地区，取值有：
         /// <li>overseas ：全球（除中国大陆地区）数据 ；</li>
         /// <li>mainland ：中国大陆地区数据 。</li>不填默认查询overseas。
         public let area: String?
-        
-        public init (startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricName = metricName
@@ -94,7 +94,7 @@ extension Teo {
             self.queryCondition = queryCondition
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -111,23 +111,23 @@ extension Teo {
             case area = "Area"
         }
     }
-    
+
     /// DescribeWebManagedRulesTopData返回参数结构体
     public struct DescribeWebManagedRulesTopDataResponse: TCResponseModel {
         /// top数据内容。
         public let data: [TopNEntry]
-        
+
         /// 请求响应状态，取值有：
         /// <li>1 ：失败 ；</li>
         /// <li>0 ：成功 。</li>
         public let status: Int64
-        
+
         /// 请求响应消息。
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case status = "Status"
@@ -135,25 +135,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询waf攻击top数据
     @inlinable
-    public func describeWebManagedRulesTopData(_ input: DescribeWebManagedRulesTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesTopDataResponse > {
+    public func describeWebManagedRulesTopData(_ input: DescribeWebManagedRulesTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesTopDataResponse> {
         self.client.execute(action: "DescribeWebManagedRulesTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询waf攻击top数据
     @inlinable
     public func describeWebManagedRulesTopData(_ input: DescribeWebManagedRulesTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesTopDataResponse {
         try await self.client.execute(action: "DescribeWebManagedRulesTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询waf攻击top数据
     @inlinable
-    public func describeWebManagedRulesTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesTopDataResponse > {
+    public func describeWebManagedRulesTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesTopDataResponse> {
         self.describeWebManagedRulesTopData(DescribeWebManagedRulesTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, domains: domains, interval: interval, queryCondition: queryCondition, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询waf攻击top数据
     @inlinable
     public func describeWebManagedRulesTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesTopDataResponse {

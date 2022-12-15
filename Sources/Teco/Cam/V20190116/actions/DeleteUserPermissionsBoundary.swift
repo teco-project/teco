@@ -19,44 +19,44 @@ extension Cam {
     public struct DeleteUserPermissionsBoundaryRequest: TCRequestModel {
         /// 子账号Uin
         public let targetUin: Int64
-        
-        public init (targetUin: Int64) {
+
+        public init(targetUin: Int64) {
             self.targetUin = targetUin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetUin = "TargetUin"
         }
     }
-    
+
     /// DeleteUserPermissionsBoundary返回参数结构体
     public struct DeleteUserPermissionsBoundaryResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除用户权限边界
     @inlinable
-    public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserPermissionsBoundaryResponse > {
+    public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserPermissionsBoundaryResponse> {
         self.client.execute(action: "DeleteUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除用户权限边界
     @inlinable
     public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {
         try await self.client.execute(action: "DeleteUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除用户权限边界
     @inlinable
-    public func deleteUserPermissionsBoundary(targetUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserPermissionsBoundaryResponse > {
+    public func deleteUserPermissionsBoundary(targetUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserPermissionsBoundaryResponse> {
         self.deleteUserPermissionsBoundary(DeleteUserPermissionsBoundaryRequest(targetUin: targetUin), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除用户权限边界
     @inlinable
     public func deleteUserPermissionsBoundary(targetUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {

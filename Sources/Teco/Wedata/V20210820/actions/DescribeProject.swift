@@ -19,26 +19,26 @@ extension Wedata {
     public struct DescribeProjectRequest: TCRequestModel {
         /// 项目id。一般使用项目Id来查询，与projectName必须存在一个。
         public let projectId: String?
-        
+
         /// 是否展示关联集群信息
         public let describeClusters: Bool?
-        
+
         /// 是否展示关联执行组的信息，仅部分信息。
         public let describeExecutors: Bool?
-        
+
         /// 默认不展示项目管理员信息
         public let describeAdminUsers: Bool?
-        
+
         /// 默认不统计项目人员数量
         public let describeMemberCount: Bool?
-        
+
         /// 默认不查询创建者的信息
         public let describeCreator: Bool?
-        
+
         /// 项目名只在租户内唯一，一般用来转化为项目ID。
         public let projectName: String?
-        
-        public init (projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil) {
+
+        public init(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil) {
             self.projectId = projectId
             self.describeClusters = describeClusters
             self.describeExecutors = describeExecutors
@@ -47,7 +47,7 @@ extension Wedata {
             self.describeCreator = describeCreator
             self.projectName = projectName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case describeClusters = "DescribeClusters"
@@ -58,35 +58,35 @@ extension Wedata {
             case projectName = "ProjectName"
         }
     }
-    
+
     /// DescribeProject返回参数结构体
     public struct DescribeProjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取项目信息
     @inlinable
-    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectResponse > {
+    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectResponse> {
         self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目信息
     @inlinable
     public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
         try await self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取项目信息
     @inlinable
-    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectResponse > {
+    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectResponse> {
         self.describeProject(DescribeProjectRequest(projectId: projectId, describeClusters: describeClusters, describeExecutors: describeExecutors, describeAdminUsers: describeAdminUsers, describeMemberCount: describeMemberCount, describeCreator: describeCreator, projectName: projectName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目信息
     @inlinable
     public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {

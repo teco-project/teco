@@ -19,34 +19,34 @@ extension As {
     public struct DeleteLifecycleHookRequest: TCRequestModel {
         /// 生命周期挂钩ID
         public let lifecycleHookId: String
-        
-        public init (lifecycleHookId: String) {
+
+        public init(lifecycleHookId: String) {
             self.lifecycleHookId = lifecycleHookId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case lifecycleHookId = "LifecycleHookId"
         }
     }
-    
+
     /// DeleteLifecycleHook返回参数结构体
     public struct DeleteLifecycleHookResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除生命周期挂钩
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable
-    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifecycleHookResponse > {
+    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifecycleHookResponse> {
         self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除生命周期挂钩
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
@@ -54,15 +54,15 @@ extension As {
     public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
         try await self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除生命周期挂钩
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable
-    public func deleteLifecycleHook(lifecycleHookId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifecycleHookResponse > {
+    public func deleteLifecycleHook(lifecycleHookId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifecycleHookResponse> {
         self.deleteLifecycleHook(DeleteLifecycleHookRequest(lifecycleHookId: lifecycleHookId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除生命周期挂钩
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。

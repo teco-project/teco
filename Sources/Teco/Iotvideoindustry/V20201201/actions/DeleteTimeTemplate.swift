@@ -19,39 +19,39 @@ extension Iotvideoindustry {
     public struct DeleteTimeTemplateRequest: TCRequestModel {
         /// 时间模板ID
         public let templateId: String
-        
-        public init (templateId: String) {
+
+        public init(templateId: String) {
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DeleteTimeTemplate返回参数结构体
     public struct DeleteTimeTemplateResponse: TCResponseModel {
         /// 操作结果，OK：成功，其他：失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除时间模板
     ///
     /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
     @inlinable
-    public func deleteTimeTemplate(_ input: DeleteTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTimeTemplateResponse > {
+    public func deleteTimeTemplate(_ input: DeleteTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimeTemplateResponse> {
         self.client.execute(action: "DeleteTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除时间模板
     ///
     /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
@@ -59,15 +59,15 @@ extension Iotvideoindustry {
     public func deleteTimeTemplate(_ input: DeleteTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeTemplateResponse {
         try await self.client.execute(action: "DeleteTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除时间模板
     ///
     /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
     @inlinable
-    public func deleteTimeTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTimeTemplateResponse > {
+    public func deleteTimeTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimeTemplateResponse> {
         self.deleteTimeTemplate(DeleteTimeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除时间模板
     ///
     /// 本接口(DeleteTimeTemplate) 用于删除时间模板。

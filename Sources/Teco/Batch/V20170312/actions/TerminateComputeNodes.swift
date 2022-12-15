@@ -19,39 +19,39 @@ extension Batch {
     public struct TerminateComputeNodesRequest: TCRequestModel {
         /// 计算环境ID
         public let envId: String
-        
+
         /// 计算节点ID列表
         public let computeNodeIds: [String]
-        
-        public init (envId: String, computeNodeIds: [String]) {
+
+        public init(envId: String, computeNodeIds: [String]) {
             self.envId = envId
             self.computeNodeIds = computeNodeIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case computeNodeIds = "ComputeNodeIds"
         }
     }
-    
+
     /// TerminateComputeNodes返回参数结构体
     public struct TerminateComputeNodesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量销毁计算节点
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable
-    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodesResponse > {
+    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodesResponse> {
         self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量销毁计算节点
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
@@ -59,15 +59,15 @@ extension Batch {
     public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
         try await self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量销毁计算节点
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable
-    public func terminateComputeNodes(envId: String, computeNodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodesResponse > {
+    public func terminateComputeNodes(envId: String, computeNodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodesResponse> {
         self.terminateComputeNodes(TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量销毁计算节点
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。

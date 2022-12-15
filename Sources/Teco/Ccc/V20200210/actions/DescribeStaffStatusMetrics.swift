@@ -19,53 +19,53 @@ extension Ccc {
     public struct DescribeStaffStatusMetricsRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 筛选坐席列表，默认不传返回全部坐席信息
         public let staffList: [String]?
-        
-        public init (sdkAppId: Int64, staffList: [String]? = nil) {
+
+        public init(sdkAppId: Int64, staffList: [String]? = nil) {
             self.sdkAppId = sdkAppId
             self.staffList = staffList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case staffList = "StaffList"
         }
     }
-    
+
     /// DescribeStaffStatusMetrics返回参数结构体
     public struct DescribeStaffStatusMetricsResponse: TCResponseModel {
         /// 坐席状态实时信息
         public let metrics: [StaffStatusMetrics]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metrics = "Metrics"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(_ input: DescribeStaffStatusMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStaffStatusMetricsResponse > {
+    public func describeStaffStatusMetrics(_ input: DescribeStaffStatusMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
         self.client.execute(action: "DescribeStaffStatusMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取坐席实时状态统计指标
     @inlinable
     public func describeStaffStatusMetrics(_ input: DescribeStaffStatusMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
         try await self.client.execute(action: "DescribeStaffStatusMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStaffStatusMetricsResponse > {
+    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
         self.describeStaffStatusMetrics(DescribeStaffStatusMetricsRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取坐席实时状态统计指标
     @inlinable
     public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {

@@ -19,32 +19,32 @@ extension Apm {
     public struct DescribeServiceOverviewRequest: TCRequestModel {
         /// 过滤条件
         public let filters: [Filter]
-        
+
         /// 指标列表
         public let metrics: [QueryMetricItem]
-        
+
         /// 聚合维度
         public let groupBy: [String]
-        
+
         /// 排序
         public let orderBy: OrderBy?
-        
+
         /// 实例ID
         public let instanceId: String?
-        
+
         /// 每页大小
         public let limit: Int64?
-        
+
         /// 开始时间
         public let startTime: UInt64?
-        
+
         /// 分页起始点
         public let offset: Int64?
-        
+
         /// 结束时间
         public let endTime: UInt64?
-        
-        public init (filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil) {
+
+        public init(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil) {
             self.filters = filters
             self.metrics = metrics
             self.groupBy = groupBy
@@ -55,7 +55,7 @@ extension Apm {
             self.offset = offset
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case metrics = "Metrics"
@@ -68,30 +68,30 @@ extension Apm {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeServiceOverview返回参数结构体
     public struct DescribeServiceOverviewResponse: TCResponseModel {
         /// 指标结果集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let records: [ApmMetricRecord]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case records = "Records"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取服务概览数据
     ///
     /// 服务概览数据拉取
     @inlinable
-    public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceOverviewResponse > {
+    public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceOverviewResponse> {
         self.client.execute(action: "DescribeServiceOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取服务概览数据
     ///
     /// 服务概览数据拉取
@@ -99,15 +99,15 @@ extension Apm {
     public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceOverviewResponse {
         try await self.client.execute(action: "DescribeServiceOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取服务概览数据
     ///
     /// 服务概览数据拉取
     @inlinable
-    public func describeServiceOverview(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceOverviewResponse > {
+    public func describeServiceOverview(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceOverviewResponse> {
         self.describeServiceOverview(DescribeServiceOverviewRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取服务概览数据
     ///
     /// 服务概览数据拉取

@@ -19,44 +19,44 @@ extension Dts {
     public struct StartSyncJobRequest: TCRequestModel {
         /// 同步任务id
         public let jobId: String?
-        
-        public init (jobId: String? = nil) {
+
+        public init(jobId: String? = nil) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// StartSyncJob返回参数结构体
     public struct StartSyncJobResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动同步任务
     @inlinable
-    public func startSyncJob(_ input: StartSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartSyncJobResponse > {
+    public func startSyncJob(_ input: StartSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartSyncJobResponse> {
         self.client.execute(action: "StartSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动同步任务
     @inlinable
     public func startSyncJob(_ input: StartSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartSyncJobResponse {
         try await self.client.execute(action: "StartSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动同步任务
     @inlinable
-    public func startSyncJob(jobId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartSyncJobResponse > {
+    public func startSyncJob(jobId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartSyncJobResponse> {
         self.startSyncJob(StartSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动同步任务
     @inlinable
     public func startSyncJob(jobId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartSyncJobResponse {

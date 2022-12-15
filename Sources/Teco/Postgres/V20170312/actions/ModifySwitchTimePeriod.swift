@@ -19,39 +19,39 @@ extension Postgres {
     public struct ModifySwitchTimePeriodRequest: TCRequestModel {
         /// 处于等待切换状态中的实例ID
         public let dbInstanceId: String
-        
+
         /// 入参取值为 0 ，代表立即切换。
         public let switchTag: UInt64
-        
-        public init (dbInstanceId: String, switchTag: UInt64) {
+
+        public init(dbInstanceId: String, switchTag: UInt64) {
             self.dbInstanceId = dbInstanceId
             self.switchTag = switchTag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case switchTag = "SwitchTag"
         }
     }
-    
+
     /// ModifySwitchTimePeriod返回参数结构体
     public struct ModifySwitchTimePeriodResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改变更配置切换时间
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable
-    public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySwitchTimePeriodResponse > {
+    public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySwitchTimePeriodResponse> {
         self.client.execute(action: "ModifySwitchTimePeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改变更配置切换时间
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
@@ -59,15 +59,15 @@ extension Postgres {
     public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
         try await self.client.execute(action: "ModifySwitchTimePeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改变更配置切换时间
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable
-    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySwitchTimePeriodResponse > {
+    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySwitchTimePeriodResponse> {
         self.modifySwitchTimePeriod(ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改变更配置切换时间
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。

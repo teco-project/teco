@@ -20,45 +20,45 @@ extension TCDbdcError {
             case fetchResourceError = "ResourceNotFound.FetchResourceError"
             case fetchResourceListError = "ResourceNotFound.FetchResourceListError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 获取资源失败，AppId：{{1}}，ResourceId：{{2}}。
         public static var fetchResourceError: ResourceNotFound {
             ResourceNotFound(.fetchResourceError)
         }
-        
+
         /// 获取资源列表失败，ErrMsg：{{1}}。
         public static var fetchResourceListError: ResourceNotFound {
             ResourceNotFound(.fetchResourceListError)
         }
-        
+
         public func asDbdcError() -> TCDbdcError {
             let code: TCDbdcError.Code
             switch self.error {
-            case .fetchResourceError: 
+            case .fetchResourceError:
                 code = .resourceNotFound_FetchResourceError
-            case .fetchResourceListError: 
+            case .fetchResourceListError:
                 code = .resourceNotFound_FetchResourceListError
             }
             return TCDbdcError(code, context: self.context)

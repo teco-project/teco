@@ -19,23 +19,23 @@ extension Tdmq {
     public struct ModifyEnvironmentRoleRequest: TCRequestModel {
         /// 环境（命名空间）名称。
         public let environmentId: String
-        
+
         /// 角色名称。
         public let roleName: String
-        
+
         /// 授权项，最多只能包含produce、consume两项的非空字符串数组。
         public let permissions: [String]
-        
+
         /// 必填字段，集群的ID
         public let clusterId: String?
-        
-        public init (environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil) {
+
+        public init(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil) {
             self.environmentId = environmentId
             self.roleName = roleName
             self.permissions = permissions
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case roleName = "RoleName"
@@ -43,25 +43,25 @@ extension Tdmq {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// ModifyEnvironmentRole返回参数结构体
     public struct ModifyEnvironmentRoleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。
     @inlinable
-    public func modifyEnvironmentRole(_ input: ModifyEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentRoleResponse > {
+    public func modifyEnvironmentRole(_ input: ModifyEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentRoleResponse> {
         self.client.execute(action: "ModifyEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。
@@ -69,15 +69,15 @@ extension Tdmq {
     public func modifyEnvironmentRole(_ input: ModifyEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
         try await self.client.execute(action: "ModifyEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。
     @inlinable
-    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentRoleResponse > {
+    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentRoleResponse> {
         self.modifyEnvironmentRole(ModifyEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。

@@ -19,36 +19,36 @@ extension Cls {
     public struct UploadLogRequest: TCRequestModel {
         /// 主题id
         public let topicId: String
-        
+
         /// 根据 hashkey 写入相应范围的主题分区
         public let hashKey: String?
-        
+
         /// 压缩方法
         public let compressType: String?
-        
-        public init (topicId: String, hashKey: String? = nil, compressType: String? = nil) {
+
+        public init(topicId: String, hashKey: String? = nil, compressType: String? = nil) {
             self.topicId = topicId
             self.hashKey = hashKey
             self.compressType = compressType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case hashKey = "HashKey"
             case compressType = "CompressType"
         }
     }
-    
+
     /// UploadLog返回参数结构体
     public struct UploadLogResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传日志
     ///
     /// ## 提示
@@ -62,7 +62,7 @@ extension Cls {
     /// 系统根据当前日志主题下所有可读写的分区，遵循负载均衡原则自动分配写入的目标分区。该模式适合消费不保序的场景。
     /// #### 哈希路由模式
     /// 系统根据携带的哈希值（X-CLS-HashKey）将数据写入到符合范围要求的目标分区。例如，可以将某个日志源端通过 hashkey 与某个主题分区强绑定，这样可以保证数据在该分区上写入和消费是严格保序的。
-    ///                  
+    ///
     /// #### 输入参数(pb二进制流，位于body中)
     /// | 字段名       | 类型    | 位置 | 必须 | 含义                                                         |
     /// | ------------ | ------- | ---- | ---- | ------------------------------------------------------------ |
@@ -100,7 +100,7 @@ extension Cls {
     /// ```
     /// 开始编译和安装，配置环境变量，执行命令如下：
     /// ```
-    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure 
+    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure
     /// [root@VM_0_8_centos protobuf-2.6.1]# make && make install
     /// [root@VM_0_8_centos protobuf-2.6.1]# export PATH=$PATH:/usr/local/protobuf-2.6.1/bin
     /// ```
@@ -147,7 +147,7 @@ extension Cls {
     /// #### 3. 编译生成
     /// 此例中，使用 proto 编译器生成 C++ 语言的文件，在 cls.proto 文件的同一目录下，执行如下编译命令：
     /// ```
-    /// protoc --cpp_out=./ ./cls.proto 
+    /// protoc --cpp_out=./ ./cls.proto
     /// ```
     /// > ?`--cpp_out=./`表示编译成 cpp 格式并输出当前目录下，`./cls.proto`表示位于当前目录下的 cls.proto 描述文件。
     /// 编译成功后，会输出对应语言的代码文件。此例会生成 cls.pb.h 头文件和 [cls.pb.cc](http://cls.pb.cc) 代码实现文件，如下所示：
@@ -159,10 +159,10 @@ extension Cls {
     /// #### 4. 调用
     /// 将生成的 cls.pb.h 头文件引入代码中，调用接口进行数据格式封装。
     @inlinable
-    public func uploadLog(_ input: UploadLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadLogResponse > {
+    public func uploadLog(_ input: UploadLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadLogResponse> {
         self.client.execute(action: "UploadLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传日志
     ///
     /// ## 提示
@@ -176,7 +176,7 @@ extension Cls {
     /// 系统根据当前日志主题下所有可读写的分区，遵循负载均衡原则自动分配写入的目标分区。该模式适合消费不保序的场景。
     /// #### 哈希路由模式
     /// 系统根据携带的哈希值（X-CLS-HashKey）将数据写入到符合范围要求的目标分区。例如，可以将某个日志源端通过 hashkey 与某个主题分区强绑定，这样可以保证数据在该分区上写入和消费是严格保序的。
-    ///                  
+    ///
     /// #### 输入参数(pb二进制流，位于body中)
     /// | 字段名       | 类型    | 位置 | 必须 | 含义                                                         |
     /// | ------------ | ------- | ---- | ---- | ------------------------------------------------------------ |
@@ -214,7 +214,7 @@ extension Cls {
     /// ```
     /// 开始编译和安装，配置环境变量，执行命令如下：
     /// ```
-    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure 
+    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure
     /// [root@VM_0_8_centos protobuf-2.6.1]# make && make install
     /// [root@VM_0_8_centos protobuf-2.6.1]# export PATH=$PATH:/usr/local/protobuf-2.6.1/bin
     /// ```
@@ -261,7 +261,7 @@ extension Cls {
     /// #### 3. 编译生成
     /// 此例中，使用 proto 编译器生成 C++ 语言的文件，在 cls.proto 文件的同一目录下，执行如下编译命令：
     /// ```
-    /// protoc --cpp_out=./ ./cls.proto 
+    /// protoc --cpp_out=./ ./cls.proto
     /// ```
     /// > ?`--cpp_out=./`表示编译成 cpp 格式并输出当前目录下，`./cls.proto`表示位于当前目录下的 cls.proto 描述文件。
     /// 编译成功后，会输出对应语言的代码文件。此例会生成 cls.pb.h 头文件和 [cls.pb.cc](http://cls.pb.cc) 代码实现文件，如下所示：
@@ -276,7 +276,7 @@ extension Cls {
     public func uploadLog(_ input: UploadLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadLogResponse {
         try await self.client.execute(action: "UploadLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传日志
     ///
     /// ## 提示
@@ -290,7 +290,7 @@ extension Cls {
     /// 系统根据当前日志主题下所有可读写的分区，遵循负载均衡原则自动分配写入的目标分区。该模式适合消费不保序的场景。
     /// #### 哈希路由模式
     /// 系统根据携带的哈希值（X-CLS-HashKey）将数据写入到符合范围要求的目标分区。例如，可以将某个日志源端通过 hashkey 与某个主题分区强绑定，这样可以保证数据在该分区上写入和消费是严格保序的。
-    ///                  
+    ///
     /// #### 输入参数(pb二进制流，位于body中)
     /// | 字段名       | 类型    | 位置 | 必须 | 含义                                                         |
     /// | ------------ | ------- | ---- | ---- | ------------------------------------------------------------ |
@@ -328,7 +328,7 @@ extension Cls {
     /// ```
     /// 开始编译和安装，配置环境变量，执行命令如下：
     /// ```
-    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure 
+    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure
     /// [root@VM_0_8_centos protobuf-2.6.1]# make && make install
     /// [root@VM_0_8_centos protobuf-2.6.1]# export PATH=$PATH:/usr/local/protobuf-2.6.1/bin
     /// ```
@@ -375,7 +375,7 @@ extension Cls {
     /// #### 3. 编译生成
     /// 此例中，使用 proto 编译器生成 C++ 语言的文件，在 cls.proto 文件的同一目录下，执行如下编译命令：
     /// ```
-    /// protoc --cpp_out=./ ./cls.proto 
+    /// protoc --cpp_out=./ ./cls.proto
     /// ```
     /// > ?`--cpp_out=./`表示编译成 cpp 格式并输出当前目录下，`./cls.proto`表示位于当前目录下的 cls.proto 描述文件。
     /// 编译成功后，会输出对应语言的代码文件。此例会生成 cls.pb.h 头文件和 [cls.pb.cc](http://cls.pb.cc) 代码实现文件，如下所示：
@@ -387,10 +387,10 @@ extension Cls {
     /// #### 4. 调用
     /// 将生成的 cls.pb.h 头文件引入代码中，调用接口进行数据格式封装。
     @inlinable
-    public func uploadLog(topicId: String, hashKey: String? = nil, compressType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadLogResponse > {
+    public func uploadLog(topicId: String, hashKey: String? = nil, compressType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadLogResponse> {
         self.uploadLog(UploadLogRequest(topicId: topicId, hashKey: hashKey, compressType: compressType), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传日志
     ///
     /// ## 提示
@@ -404,7 +404,7 @@ extension Cls {
     /// 系统根据当前日志主题下所有可读写的分区，遵循负载均衡原则自动分配写入的目标分区。该模式适合消费不保序的场景。
     /// #### 哈希路由模式
     /// 系统根据携带的哈希值（X-CLS-HashKey）将数据写入到符合范围要求的目标分区。例如，可以将某个日志源端通过 hashkey 与某个主题分区强绑定，这样可以保证数据在该分区上写入和消费是严格保序的。
-    ///                  
+    ///
     /// #### 输入参数(pb二进制流，位于body中)
     /// | 字段名       | 类型    | 位置 | 必须 | 含义                                                         |
     /// | ------------ | ------- | ---- | ---- | ------------------------------------------------------------ |
@@ -442,7 +442,7 @@ extension Cls {
     /// ```
     /// 开始编译和安装，配置环境变量，执行命令如下：
     /// ```
-    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure 
+    /// [root@VM_0_8_centos protobuf-2.6.1]# ./configure
     /// [root@VM_0_8_centos protobuf-2.6.1]# make && make install
     /// [root@VM_0_8_centos protobuf-2.6.1]# export PATH=$PATH:/usr/local/protobuf-2.6.1/bin
     /// ```
@@ -489,7 +489,7 @@ extension Cls {
     /// #### 3. 编译生成
     /// 此例中，使用 proto 编译器生成 C++ 语言的文件，在 cls.proto 文件的同一目录下，执行如下编译命令：
     /// ```
-    /// protoc --cpp_out=./ ./cls.proto 
+    /// protoc --cpp_out=./ ./cls.proto
     /// ```
     /// > ?`--cpp_out=./`表示编译成 cpp 格式并输出当前目录下，`./cls.proto`表示位于当前目录下的 cls.proto 描述文件。
     /// 编译成功后，会输出对应语言的代码文件。此例会生成 cls.pb.h 头文件和 [cls.pb.cc](http://cls.pb.cc) 代码实现文件，如下所示：

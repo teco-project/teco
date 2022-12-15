@@ -19,27 +19,27 @@ extension Iotvideoindustry {
     public struct GetVideoListByConRequest: TCRequestModel {
         /// 设备唯一标识
         public let deviceId: String
-        
+
         /// 偏移量
         public let offset: Int64
-        
+
         /// 限制量
         public let limit: Int64
-        
+
         /// 通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
         public let channelId: String?
-        
+
         /// 0：查询指定日期的录像；1：查询最近一天的录像；默认0
         public let latestDay: Int64?
-        
+
         /// 指定某天。取值【YYYY-MM-DD】
         /// 为空时默认查询最近一天的记录
         public let date: String?
-        
+
         /// 1: 云端录制 2: 本地录制
         public let type: Int64?
-        
-        public init (deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil) {
+
+        public init(deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil) {
             self.deviceId = deviceId
             self.offset = offset
             self.limit = limit
@@ -48,7 +48,7 @@ extension Iotvideoindustry {
             self.date = date
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case offset = "Offset"
@@ -59,36 +59,36 @@ extension Iotvideoindustry {
             case type = "Type"
         }
     }
-    
+
     /// GetVideoListByCon返回参数结构体
     public struct GetVideoListByConResponse: TCResponseModel {
         /// 录像详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoList: [RecordTaskItem]?
-        
+
         /// 录像总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case videoList = "VideoList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取通道录制文件列表（旧）
     ///
     /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
     /// 请使用DescribeVideoListByChannel接口
     @inlinable
-    public func getVideoListByCon(_ input: GetVideoListByConRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetVideoListByConResponse > {
+    public func getVideoListByCon(_ input: GetVideoListByConRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVideoListByConResponse> {
         self.client.execute(action: "GetVideoListByCon", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取通道录制文件列表（旧）
     ///
     /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
@@ -97,16 +97,16 @@ extension Iotvideoindustry {
     public func getVideoListByCon(_ input: GetVideoListByConRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVideoListByConResponse {
         try await self.client.execute(action: "GetVideoListByCon", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取通道录制文件列表（旧）
     ///
     /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
     /// 请使用DescribeVideoListByChannel接口
     @inlinable
-    public func getVideoListByCon(deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetVideoListByConResponse > {
+    public func getVideoListByCon(deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVideoListByConResponse> {
         self.getVideoListByCon(GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取通道录制文件列表（旧）
     ///
     /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表

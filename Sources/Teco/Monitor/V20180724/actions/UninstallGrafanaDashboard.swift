@@ -19,7 +19,7 @@ extension Monitor {
     public struct UninstallGrafanaDashboardRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// Prometheus 集成项 Code，删除对应的 Dashboard，Code 如下：
         /// <li>spring_mvc</li>
         /// <li>mysql</li>
@@ -39,46 +39,46 @@ extension Monitor {
         /// <li>istio</li>
         /// <li>etcd</li>
         public let integrationCodes: [String]?
-        
-        public init (instanceId: String, integrationCodes: [String]? = nil) {
+
+        public init(instanceId: String, integrationCodes: [String]? = nil) {
             self.instanceId = instanceId
             self.integrationCodes = integrationCodes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case integrationCodes = "IntegrationCodes"
         }
     }
-    
+
     /// UninstallGrafanaDashboard返回参数结构体
     public struct UninstallGrafanaDashboardResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除 Grafana Dashboard
     @inlinable
-    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallGrafanaDashboardResponse > {
+    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaDashboardResponse> {
         self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 Grafana Dashboard
     @inlinable
     public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
         try await self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除 Grafana Dashboard
     @inlinable
-    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallGrafanaDashboardResponse > {
+    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaDashboardResponse> {
         self.uninstallGrafanaDashboard(UninstallGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 Grafana Dashboard
     @inlinable
     public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {

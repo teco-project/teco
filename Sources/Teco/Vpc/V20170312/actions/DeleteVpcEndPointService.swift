@@ -19,34 +19,34 @@ extension Vpc {
     public struct DeleteVpcEndPointServiceRequest: TCRequestModel {
         /// 终端节点ID。
         public let endPointServiceId: String
-        
-        public init (endPointServiceId: String) {
+
+        public init(endPointServiceId: String) {
             self.endPointServiceId = endPointServiceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case endPointServiceId = "EndPointServiceId"
         }
     }
-    
+
     /// DeleteVpcEndPointService返回参数结构体
     public struct DeleteVpcEndPointServiceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
     @inlinable
-    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcEndPointServiceResponse > {
+    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
         self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
@@ -54,15 +54,15 @@ extension Vpc {
     public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
         try await self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
     @inlinable
-    public func deleteVpcEndPointService(endPointServiceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcEndPointServiceResponse > {
+    public func deleteVpcEndPointService(endPointServiceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
         self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。

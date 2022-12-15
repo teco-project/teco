@@ -19,42 +19,42 @@ extension Domain {
     public struct DescribeDomainSimpleInfoRequest: TCRequestModel {
         /// 域名
         public let domainName: String
-        
-        public init (domainName: String) {
+
+        public init(domainName: String) {
             self.domainName = domainName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
         }
     }
-    
+
     /// DescribeDomainSimpleInfo返回参数结构体
     public struct DescribeDomainSimpleInfoResponse: TCResponseModel {
         /// 域名信息
         public let domainInfo: DomainSimpleInfo
-        
+
         /// 账号ID
         public let uin: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainInfo = "DomainInfo"
             case uin = "Uin"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名实名信息
     ///
     /// 获取域名实名信息详情
     @inlinable
-    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainSimpleInfoResponse > {
+    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainSimpleInfoResponse> {
         self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名实名信息
     ///
     /// 获取域名实名信息详情
@@ -62,15 +62,15 @@ extension Domain {
     public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
         try await self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名实名信息
     ///
     /// 获取域名实名信息详情
     @inlinable
-    public func describeDomainSimpleInfo(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainSimpleInfoResponse > {
+    public func describeDomainSimpleInfo(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainSimpleInfoResponse> {
         self.describeDomainSimpleInfo(DescribeDomainSimpleInfoRequest(domainName: domainName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名实名信息
     ///
     /// 获取域名实名信息详情

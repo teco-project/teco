@@ -19,54 +19,54 @@ extension Gpm {
     public struct ModifyTokenRequest: TCRequestModel {
         /// 匹配Code。
         public let matchCode: String
-        
+
         /// 单位秒，取值0-1800。此参数表示当前Token被替换后，GPM将持续推送原Token的时间。在CompatibleSpan时间范围内，用户将在事件消息中收到当前和原始Token。
         public let compatibleSpan: UInt64
-        
+
         /// Token，[a-zA-Z0-9-_.], 长度0-64。如果为空，将由GPM随机生成。
         public let matchToken: String?
-        
-        public init (matchCode: String, compatibleSpan: UInt64, matchToken: String? = nil) {
+
+        public init(matchCode: String, compatibleSpan: UInt64, matchToken: String? = nil) {
             self.matchCode = matchCode
             self.compatibleSpan = compatibleSpan
             self.matchToken = matchToken
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case matchCode = "MatchCode"
             case compatibleSpan = "CompatibleSpan"
             case matchToken = "MatchToken"
         }
     }
-    
+
     /// ModifyToken返回参数结构体
     public struct ModifyTokenResponse: TCResponseModel {
         /// 成功设置的Token。
         public let matchToken: String
-        
+
         /// 当前Token被替换后，GPM将持续推送原Token的时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compatibleSpan: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case matchToken = "MatchToken"
             case compatibleSpan = "CompatibleSpan"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改匹配Token
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改匹配Token。
     @inlinable
-    public func modifyToken(_ input: ModifyTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTokenResponse > {
+    public func modifyToken(_ input: ModifyTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTokenResponse> {
         self.client.execute(action: "ModifyToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改匹配Token
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
@@ -75,16 +75,16 @@ extension Gpm {
     public func modifyToken(_ input: ModifyTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTokenResponse {
         try await self.client.execute(action: "ModifyToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改匹配Token
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改匹配Token。
     @inlinable
-    public func modifyToken(matchCode: String, compatibleSpan: UInt64, matchToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTokenResponse > {
+    public func modifyToken(matchCode: String, compatibleSpan: UInt64, matchToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTokenResponse> {
         self.modifyToken(ModifyTokenRequest(matchCode: matchCode, compatibleSpan: compatibleSpan, matchToken: matchToken), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改匹配Token
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持

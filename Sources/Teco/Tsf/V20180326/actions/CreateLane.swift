@@ -19,23 +19,23 @@ extension Tsf {
     public struct CreateLaneRequest: TCRequestModel {
         /// 泳道名称
         public let laneName: String
-        
+
         /// 泳道备注
         public let remark: String
-        
+
         /// 泳道部署组信息
         public let laneGroupList: [LaneGroup]
-        
+
         /// 无
         public let programIdList: [String]?
-        
-        public init (laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil) {
+
+        public init(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil) {
             self.laneName = laneName
             self.remark = remark
             self.laneGroupList = laneGroupList
             self.programIdList = programIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case laneName = "LaneName"
             case remark = "Remark"
@@ -43,40 +43,40 @@ extension Tsf {
             case programIdList = "ProgramIdList"
         }
     }
-    
+
     /// CreateLane返回参数结构体
     public struct CreateLaneResponse: TCResponseModel {
         /// 泳道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建泳道
     @inlinable
-    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneResponse > {
+    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneResponse> {
         self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建泳道
     @inlinable
     public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
         try await self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建泳道
     @inlinable
-    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneResponse > {
+    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneResponse> {
         self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建泳道
     @inlinable
     public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {

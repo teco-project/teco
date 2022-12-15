@@ -27,94 +27,94 @@ extension TCVodError {
             case uploadWatermarkError = "InternalError.UploadWatermarkError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 内部错误，访问DB失败。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// 内部错误：生成模板 ID 失败。
         public static var genDefinition: InternalError {
             InternalError(.genDefinition)
         }
-        
+
         /// 内部错误：获取媒体文件信息错误。
         public static var getFileInfoError: InternalError {
             InternalError(.getFileInfoError)
         }
-        
+
         /// 内部错误：获取媒体列表错误。
         public static var getMediaListError: InternalError {
             InternalError(.getMediaListError)
         }
-        
+
         /// 时间解析错误。
         public static var timeParseError: InternalError {
             InternalError(.timeParseError)
         }
-        
+
         /// 内部错误：更新媒体文件信息错误。
         public static var updateMediaError: InternalError {
             InternalError(.updateMediaError)
         }
-        
+
         /// 内部错误：上传封面图片错误。
         public static var uploadCoverImageError: InternalError {
             InternalError(.uploadCoverImageError)
         }
-        
+
         /// 内部错误：上传水印图片失败。
         public static var uploadWatermarkError: InternalError {
             InternalError(.uploadWatermarkError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asVodError() -> TCVodError {
             let code: TCVodError.Code
             switch self.error {
-            case .dbError: 
+            case .dbError:
                 code = .internalError_DBError
-            case .genDefinition: 
+            case .genDefinition:
                 code = .internalError_GenDefinition
-            case .getFileInfoError: 
+            case .getFileInfoError:
                 code = .internalError_GetFileInfoError
-            case .getMediaListError: 
+            case .getMediaListError:
                 code = .internalError_GetMediaListError
-            case .timeParseError: 
+            case .timeParseError:
                 code = .internalError_TimeParseError
-            case .updateMediaError: 
+            case .updateMediaError:
                 code = .internalError_UpdateMediaError
-            case .uploadCoverImageError: 
+            case .uploadCoverImageError:
                 code = .internalError_UploadCoverImageError
-            case .uploadWatermarkError: 
+            case .uploadWatermarkError:
                 code = .internalError_UploadWatermarkError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCVodError(code, context: self.context)

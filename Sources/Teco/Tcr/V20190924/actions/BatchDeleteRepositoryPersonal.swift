@@ -19,34 +19,34 @@ extension Tcr {
     public struct BatchDeleteRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名称数组
         public let repoNames: [String]
-        
-        public init (repoNames: [String]) {
+
+        public init(repoNames: [String]) {
             self.repoNames = repoNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoNames = "RepoNames"
         }
     }
-    
+
     /// BatchDeleteRepositoryPersonal返回参数结构体
     public struct BatchDeleteRepositoryPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除个人版仓库
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库
     @inlinable
-    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteRepositoryPersonalResponse > {
+    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteRepositoryPersonalResponse> {
         self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除个人版仓库
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库
@@ -54,15 +54,15 @@ extension Tcr {
     public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteRepositoryPersonalResponse {
         try await self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除个人版仓库
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库
     @inlinable
-    public func batchDeleteRepositoryPersonal(repoNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteRepositoryPersonalResponse > {
+    public func batchDeleteRepositoryPersonal(repoNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteRepositoryPersonalResponse> {
         self.batchDeleteRepositoryPersonal(BatchDeleteRepositoryPersonalRequest(repoNames: repoNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除个人版仓库
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库

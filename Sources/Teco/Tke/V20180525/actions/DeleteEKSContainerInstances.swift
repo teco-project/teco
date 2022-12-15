@@ -19,39 +19,39 @@ extension Tke {
     public struct DeleteEKSContainerInstancesRequest: TCRequestModel {
         /// 需要删除的EksCi的Id。 最大数量不超过20
         public let eksCiIds: [String]
-        
+
         /// 是否释放为EksCi自动创建的Eip
         public let releaseAutoCreatedEip: Bool?
-        
-        public init (eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil) {
+
+        public init(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil) {
             self.eksCiIds = eksCiIds
             self.releaseAutoCreatedEip = releaseAutoCreatedEip
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eksCiIds = "EksCiIds"
             case releaseAutoCreatedEip = "ReleaseAutoCreatedEip"
         }
     }
-    
+
     /// DeleteEKSContainerInstances返回参数结构体
     public struct DeleteEKSContainerInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除
     @inlinable
-    public func deleteEKSContainerInstances(_ input: DeleteEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEKSContainerInstancesResponse > {
+    public func deleteEKSContainerInstances(_ input: DeleteEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEKSContainerInstancesResponse> {
         self.client.execute(action: "DeleteEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除
@@ -59,15 +59,15 @@ extension Tke {
     public func deleteEKSContainerInstances(_ input: DeleteEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSContainerInstancesResponse {
         try await self.client.execute(action: "DeleteEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除
     @inlinable
-    public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEKSContainerInstancesResponse > {
+    public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEKSContainerInstancesResponse> {
         self.deleteEKSContainerInstances(DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除

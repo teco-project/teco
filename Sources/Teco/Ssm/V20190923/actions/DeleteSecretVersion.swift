@@ -19,48 +19,48 @@ extension Ssm {
     public struct DeleteSecretVersionRequest: TCRequestModel {
         /// 指定凭据名称。
         public let secretName: String
-        
+
         /// 指定该名称下需要删除的凭据的版本号。
         public let versionId: String
-        
-        public init (secretName: String, versionId: String) {
+
+        public init(secretName: String, versionId: String) {
             self.secretName = secretName
             self.versionId = versionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case versionId = "VersionId"
         }
     }
-    
+
     /// DeleteSecretVersion返回参数结构体
     public struct DeleteSecretVersionResponse: TCResponseModel {
         /// 凭据名称。
         public let secretName: String
-        
+
         /// 凭据版本号。
         public let versionId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case versionId = "VersionId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除指定版本的凭据
     ///
     /// 该接口用于直接删除指定凭据下的单个版本凭据，删除操作立即生效，对所有状态下的凭据版本都可以删除。
     /// 本接口仅适用于用户自定义凭据，本接口不能对云产品凭据进行操作。
     @inlinable
-    public func deleteSecretVersion(_ input: DeleteSecretVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretVersionResponse > {
+    public func deleteSecretVersion(_ input: DeleteSecretVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretVersionResponse> {
         self.client.execute(action: "DeleteSecretVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除指定版本的凭据
     ///
     /// 该接口用于直接删除指定凭据下的单个版本凭据，删除操作立即生效，对所有状态下的凭据版本都可以删除。
@@ -69,16 +69,16 @@ extension Ssm {
     public func deleteSecretVersion(_ input: DeleteSecretVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretVersionResponse {
         try await self.client.execute(action: "DeleteSecretVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除指定版本的凭据
     ///
     /// 该接口用于直接删除指定凭据下的单个版本凭据，删除操作立即生效，对所有状态下的凭据版本都可以删除。
     /// 本接口仅适用于用户自定义凭据，本接口不能对云产品凭据进行操作。
     @inlinable
-    public func deleteSecretVersion(secretName: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretVersionResponse > {
+    public func deleteSecretVersion(secretName: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretVersionResponse> {
         self.deleteSecretVersion(DeleteSecretVersionRequest(secretName: secretName, versionId: versionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除指定版本的凭据
     ///
     /// 该接口用于直接删除指定凭据下的单个版本凭据，删除操作立即生效，对所有状态下的凭据版本都可以删除。

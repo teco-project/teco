@@ -19,23 +19,23 @@ extension Dayu {
     public struct ModifyDDoSAIStatusRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// =get表示读取AI防护状态；=set表示修改AI防护状态；
         public let method: String
-        
+
         /// AI防护状态，取值[on，off]；当Method=set时必填；
         public let dDoSAI: String?
-        
-        public init (business: String, id: String, method: String, dDoSAI: String? = nil) {
+
+        public init(business: String, id: String, method: String, dDoSAI: String? = nil) {
             self.business = business
             self.id = id
             self.method = method
             self.dDoSAI = dDoSAI
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -43,33 +43,33 @@ extension Dayu {
             case dDoSAI = "DDoSAI"
         }
     }
-    
+
     /// ModifyDDoSAIStatus返回参数结构体
     public struct ModifyDDoSAIStatusResponse: TCResponseModel {
         /// AI防护状态，取值[on，off]
         public let dDoSAI: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dDoSAI = "DDoSAI"
             case id = "Id"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改DDoS的AI防护状态
     ///
     /// 读取或修改DDoS的AI防护状态
     @inlinable
-    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAIStatusResponse > {
+    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAIStatusResponse> {
         self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS的AI防护状态
     ///
     /// 读取或修改DDoS的AI防护状态
@@ -77,15 +77,15 @@ extension Dayu {
     public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
         try await self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改DDoS的AI防护状态
     ///
     /// 读取或修改DDoS的AI防护状态
     @inlinable
-    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAIStatusResponse > {
+    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAIStatusResponse> {
         self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS的AI防护状态
     ///
     /// 读取或修改DDoS的AI防护状态

@@ -20,24 +20,24 @@ extension Sms {
         /// 拉取起始时间，UNIX 时间戳（时间：秒）。
         /// 注：最大可拉取当前时期前7天的数据。
         public let beginTime: UInt64
-        
+
         /// 偏移量。
         /// 注：目前固定设置为0。
         public let offset: UInt64
-        
+
         /// 拉取最大条数，最多 100。
         public let limit: UInt64
-        
+
         /// 下发目的手机号码，依据 E.164 标准为：+[国家（或地区）码][手机号] ，示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
         public let phoneNumber: String
-        
+
         /// 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         public let smsSdkAppId: String
-        
+
         /// 拉取截止时间，UNIX 时间戳（时间：秒）。
         public let endTime: UInt64?
-        
-        public init (beginTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppId: String, endTime: UInt64? = nil) {
+
+        public init(beginTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppId: String, endTime: UInt64? = nil) {
             self.beginTime = beginTime
             self.offset = offset
             self.limit = limit
@@ -45,7 +45,7 @@ extension Sms {
             self.smsSdkAppId = smsSdkAppId
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginTime = "BeginTime"
             case offset = "Offset"
@@ -55,21 +55,21 @@ extension Sms {
             case endTime = "EndTime"
         }
     }
-    
+
     /// PullSmsSendStatusByPhoneNumber返回参数结构体
     public struct PullSmsSendStatusByPhoneNumberResponse: TCResponseModel {
         /// 下发状态响应集合。
         public let pullSmsSendStatusSet: [PullSmsSendStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pullSmsSendStatusSet = "PullSmsSendStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取单个号码短信下发状态
     ///
     /// 拉取单个号码短信下发状态。
@@ -77,10 +77,10 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsSendStatusByPhoneNumber(_ input: PullSmsSendStatusByPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsSendStatusByPhoneNumberResponse > {
+    public func pullSmsSendStatusByPhoneNumber(_ input: PullSmsSendStatusByPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsSendStatusByPhoneNumberResponse> {
         self.client.execute(action: "PullSmsSendStatusByPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取单个号码短信下发状态
     ///
     /// 拉取单个号码短信下发状态。
@@ -91,7 +91,7 @@ extension Sms {
     public func pullSmsSendStatusByPhoneNumber(_ input: PullSmsSendStatusByPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusByPhoneNumberResponse {
         try await self.client.execute(action: "PullSmsSendStatusByPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取单个号码短信下发状态
     ///
     /// 拉取单个号码短信下发状态。
@@ -99,10 +99,10 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsSendStatusByPhoneNumber(beginTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppId: String, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsSendStatusByPhoneNumberResponse > {
+    public func pullSmsSendStatusByPhoneNumber(beginTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppId: String, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsSendStatusByPhoneNumberResponse> {
         self.pullSmsSendStatusByPhoneNumber(PullSmsSendStatusByPhoneNumberRequest(beginTime: beginTime, offset: offset, limit: limit, phoneNumber: phoneNumber, smsSdkAppId: smsSdkAppId, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取单个号码短信下发状态
     ///
     /// 拉取单个号码短信下发状态。

@@ -19,59 +19,59 @@ extension Wedata {
     public struct ModifyMonitorStatusRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String?
-        
+
         /// 规则组ID
         public let ruleGroupId: UInt64?
-        
+
         /// 监控开关状态
         public let monitorStatus: Bool?
-        
-        public init (projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil) {
+
+        public init(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil) {
             self.projectId = projectId
             self.ruleGroupId = ruleGroupId
             self.monitorStatus = monitorStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case ruleGroupId = "RuleGroupId"
             case monitorStatus = "MonitorStatus"
         }
     }
-    
+
     /// ModifyMonitorStatus返回参数结构体
     public struct ModifyMonitorStatusResponse: TCResponseModel {
         /// 监控状态修改成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新监控状态
     @inlinable
-    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMonitorStatusResponse > {
+    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorStatusResponse> {
         self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新监控状态
     @inlinable
     public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
         try await self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新监控状态
     @inlinable
-    public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMonitorStatusResponse > {
+    public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorStatusResponse> {
         self.modifyMonitorStatus(ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新监控状态
     @inlinable
     public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {

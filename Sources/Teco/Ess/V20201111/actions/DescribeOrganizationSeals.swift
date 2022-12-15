@@ -19,27 +19,27 @@ extension Ess {
     public struct DescribeOrganizationSealsRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
-        
+
         /// 返回最大数量，最大为100
         public let limit: Int64
-        
+
         /// 偏移量，默认为0，最大为20000
         public let offset: Int64?
-        
+
         /// 查询信息类型，为0时不返回授权用户，为1时返回
         public let infoType: Int64?
-        
+
         /// 印章id（没有输入返回所有）
         public let sealId: String?
-        
-        public init (operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil) {
+
+        public init(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil) {
             self.`operator` = `operator`
             self.limit = limit
             self.offset = offset
             self.infoType = infoType
             self.sealId = sealId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case limit = "Limit"
@@ -48,34 +48,34 @@ extension Ess {
             case sealId = "SealId"
         }
     }
-    
+
     /// DescribeOrganizationSeals返回参数结构体
     public struct DescribeOrganizationSealsResponse: TCResponseModel {
         /// 在设置了SealId时返回0或1，没有设置时返回公司的总印章数量，可能比返回的印章数组数量多
         public let totalCount: Int64
-        
+
         /// 查询到的印章结果数组
         public let seals: [OccupiedSeal]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case seals = "Seals"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询企业电子印章
     ///
     /// 查询企业印章的列表，需要操作者具有查询印章权限
     /// 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
     @inlinable
-    public func describeOrganizationSeals(_ input: DescribeOrganizationSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationSealsResponse > {
+    public func describeOrganizationSeals(_ input: DescribeOrganizationSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationSealsResponse> {
         self.client.execute(action: "DescribeOrganizationSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询企业电子印章
     ///
     /// 查询企业印章的列表，需要操作者具有查询印章权限
@@ -84,16 +84,16 @@ extension Ess {
     public func describeOrganizationSeals(_ input: DescribeOrganizationSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationSealsResponse {
         try await self.client.execute(action: "DescribeOrganizationSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询企业电子印章
     ///
     /// 查询企业印章的列表，需要操作者具有查询印章权限
     /// 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
     @inlinable
-    public func describeOrganizationSeals(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationSealsResponse > {
+    public func describeOrganizationSeals(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationSealsResponse> {
         self.describeOrganizationSeals(DescribeOrganizationSealsRequest(operator: `operator`, limit: limit, offset: offset, infoType: infoType, sealId: sealId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询企业电子印章
     ///
     /// 查询企业印章的列表，需要操作者具有查询印章权限

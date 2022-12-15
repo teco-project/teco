@@ -19,23 +19,23 @@ extension Nlp {
     public struct DescribeWordItemsRequest: TCRequestModel {
         /// 自定义词库ID。
         public let dictId: String
-        
+
         /// 分页偏移量，从0开始，默认为0。
         public let offset: UInt64?
-        
+
         /// 每页数据量，范围为1~100，默认为10。
         public let limit: UInt64?
-        
+
         /// 待检索的词条文本，支持模糊匹配。
         public let text: String?
-        
-        public init (dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil) {
+
+        public init(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil) {
             self.dictId = dictId
             self.offset = offset
             self.limit = limit
             self.text = text
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dictId = "DictId"
             case offset = "Offset"
@@ -43,34 +43,34 @@ extension Nlp {
             case text = "Text"
         }
     }
-    
+
     /// DescribeWordItems返回参数结构体
     public struct DescribeWordItemsResponse: TCResponseModel {
         /// 词条记录总条数。
         public let totalCount: UInt64
-        
+
         /// 词条信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wordItems: [WordItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case wordItems = "WordItems"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
-    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWordItemsResponse > {
+    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordItemsResponse> {
         self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
@@ -78,15 +78,15 @@ extension Nlp {
     public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
         try await self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
-    public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWordItemsResponse > {
+    public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordItemsResponse> {
         self.describeWordItems(DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。

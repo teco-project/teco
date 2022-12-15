@@ -25,80 +25,80 @@ extension TCDsError {
             case subplatIdNotFound = "ResourceNotFound.SubplatIdNotFound"
             case taskNotFound = "ResourceNotFound.TaskNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账户不存在或已删除。
         public static var accountNotFound: ResourceNotFound {
             ResourceNotFound(.accountNotFound)
         }
-        
+
         /// 合同ID不存在。
         public static var contractNotFound: ResourceNotFound {
             ResourceNotFound(.contractNotFound)
         }
-        
+
         /// 合同project_code不存在。
         public static var contractProjectCodeNotFound: ResourceNotFound {
             ResourceNotFound(.contractProjectCodeNotFound)
         }
-        
+
         /// 合同发起方账号不存在。
         public static var initiatorNotFoundError: ResourceNotFound {
             ResourceNotFound(.initiatorNotFoundError)
         }
-        
+
         /// 印章不存在。
         public static var sealNotFound: ResourceNotFound {
             ResourceNotFound(.sealNotFound)
         }
-        
+
         /// 子平台ID不存在。
         public static var subplatIdNotFound: ResourceNotFound {
             ResourceNotFound(.subplatIdNotFound)
         }
-        
+
         /// 任务不存在。
         public static var taskNotFound: ResourceNotFound {
             ResourceNotFound(.taskNotFound)
         }
-        
+
         public func asDsError() -> TCDsError {
             let code: TCDsError.Code
             switch self.error {
-            case .accountNotFound: 
+            case .accountNotFound:
                 code = .resourceNotFound_AccountNotFound
-            case .contractNotFound: 
+            case .contractNotFound:
                 code = .resourceNotFound_ContractNotFound
-            case .contractProjectCodeNotFound: 
+            case .contractProjectCodeNotFound:
                 code = .resourceNotFound_ContractProjectCodeNotFound
-            case .initiatorNotFoundError: 
+            case .initiatorNotFoundError:
                 code = .resourceNotFound_InitiatorNotFoundError
-            case .sealNotFound: 
+            case .sealNotFound:
                 code = .resourceNotFound_SealNotFound
-            case .subplatIdNotFound: 
+            case .subplatIdNotFound:
                 code = .resourceNotFound_SubplatIdNotFound
-            case .taskNotFound: 
+            case .taskNotFound:
                 code = .resourceNotFound_TaskNotFound
             }
             return TCDsError(code, context: self.context)

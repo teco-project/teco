@@ -20,45 +20,45 @@ extension TCTiwError {
             case taskConcurrency = "LimitExceeded.TaskConcurrency"
             case transcodePagesLimitation = "LimitExceeded.TranscodePagesLimitation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 转码或录制任务并发数量超过限制，请参考错误描述或稍后重试。
         public static var taskConcurrency: LimitExceeded {
             LimitExceeded(.taskConcurrency)
         }
-        
+
         /// 超过文档最大页数限制，目前不支持超过500页的文件转码，如有特殊需求，请联系客服人员。
         public static var transcodePagesLimitation: LimitExceeded {
             LimitExceeded(.transcodePagesLimitation)
         }
-        
+
         public func asTiwError() -> TCTiwError {
             let code: TCTiwError.Code
             switch self.error {
-            case .taskConcurrency: 
+            case .taskConcurrency:
                 code = .limitExceeded_TaskConcurrency
-            case .transcodePagesLimitation: 
+            case .transcodePagesLimitation:
                 code = .limitExceeded_TranscodePagesLimitation
             }
             return TCTiwError(code, context: self.context)

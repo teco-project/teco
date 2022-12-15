@@ -19,34 +19,34 @@ extension Solar {
     public struct ExpireFlowRequest: TCRequestModel {
         /// 工单ID
         public let flowId: String
-        
-        public init (flowId: String) {
+
+        public init(flowId: String) {
             self.flowId = flowId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
         }
     }
-    
+
     /// ExpireFlow返回参数结构体
     public struct ExpireFlowResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
     @inlinable
-    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpireFlowResponse > {
+    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
         self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
@@ -54,15 +54,15 @@ extension Solar {
     public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
         try await self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
     @inlinable
-    public func expireFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpireFlowResponse > {
+    public func expireFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
         self.expireFlow(ExpireFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
     }
-    
+
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效

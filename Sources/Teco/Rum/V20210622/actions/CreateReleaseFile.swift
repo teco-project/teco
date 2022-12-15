@@ -19,43 +19,43 @@ extension Rum {
     public struct CreateReleaseFileRequest: TCRequestModel {
         /// 项目 id
         public let projectID: Int64
-        
+
         /// 文件信息列表
         public let files: [ReleaseFile]
-        
-        public init (projectID: Int64, files: [ReleaseFile]) {
+
+        public init(projectID: Int64, files: [ReleaseFile]) {
             self.projectID = projectID
             self.files = files
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectID = "ProjectID"
             case files = "Files"
         }
     }
-    
+
     /// CreateReleaseFile返回参数结构体
     public struct CreateReleaseFileResponse: TCResponseModel {
         /// 调用结果
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建发布文件记录
     ///
     /// 创建对应项目的文件记录
     @inlinable
-    public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReleaseFileResponse > {
+    public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFileResponse> {
         self.client.execute(action: "CreateReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建发布文件记录
     ///
     /// 创建对应项目的文件记录
@@ -63,15 +63,15 @@ extension Rum {
     public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFileResponse {
         try await self.client.execute(action: "CreateReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建发布文件记录
     ///
     /// 创建对应项目的文件记录
     @inlinable
-    public func createReleaseFile(projectID: Int64, files: [ReleaseFile], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReleaseFileResponse > {
+    public func createReleaseFile(projectID: Int64, files: [ReleaseFile], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFileResponse> {
         self.createReleaseFile(CreateReleaseFileRequest(projectID: projectID, files: files), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建发布文件记录
     ///
     /// 创建对应项目的文件记录

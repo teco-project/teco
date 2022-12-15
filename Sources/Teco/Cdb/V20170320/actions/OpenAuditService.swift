@@ -19,7 +19,7 @@ extension Cdb {
     public struct OpenAuditServiceRequest: TCRequestModel {
         /// CDB实例ID
         public let instanceId: String
-        
+
         /// 审计日志保存时长。支持值包括：
         /// 7 - 一周
         /// 30 - 一个月；
@@ -28,7 +28,7 @@ extension Cdb {
         /// 1095 - 三年；
         /// 1825 - 五年；
         public let logExpireDay: UInt64
-        
+
         /// 高频审计日志保存时长。支持值包括：
         /// 7 - 一周
         /// 30 - 一个月；
@@ -37,38 +37,38 @@ extension Cdb {
         /// 1095 - 三年；
         /// 1825 - 五年；
         public let highLogExpireDay: UInt64?
-        
-        public init (instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil) {
+
+        public init(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil) {
             self.instanceId = instanceId
             self.logExpireDay = logExpireDay
             self.highLogExpireDay = highLogExpireDay
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case logExpireDay = "LogExpireDay"
             case highLogExpireDay = "HighLogExpireDay"
         }
     }
-    
+
     /// OpenAuditService返回参数结构体
     public struct OpenAuditServiceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通审计服务
     ///
     /// CDB实例开通审计服务
     @inlinable
-    public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenAuditServiceResponse > {
+    public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
         self.client.execute(action: "OpenAuditService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通审计服务
     ///
     /// CDB实例开通审计服务
@@ -76,15 +76,15 @@ extension Cdb {
     public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
         try await self.client.execute(action: "OpenAuditService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通审计服务
     ///
     /// CDB实例开通审计服务
     @inlinable
-    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenAuditServiceResponse > {
+    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
         self.openAuditService(OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通审计服务
     ///
     /// CDB实例开通审计服务

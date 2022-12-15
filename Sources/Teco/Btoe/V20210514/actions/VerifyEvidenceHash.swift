@@ -19,38 +19,38 @@ extension Btoe {
     public struct VerifyEvidenceHashRequest: TCRequestModel {
         /// 存证内容hash，hash类型即为用户在存证时所用或所选的hash类型
         public let evidenceHash: String
-        
-        public init (evidenceHash: String) {
+
+        public init(evidenceHash: String) {
             self.evidenceHash = evidenceHash
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case evidenceHash = "EvidenceHash"
         }
     }
-    
+
     /// VerifyEvidenceHash返回参数结构体
     public struct VerifyEvidenceHashResponse: TCResponseModel {
         /// 核验结果，true为核验成功，false为核验失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 核验存证内容hash
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
-    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyEvidenceHashResponse > {
+    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceHashResponse> {
         self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 核验存证内容hash
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
@@ -58,15 +58,15 @@ extension Btoe {
     public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
         try await self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 核验存证内容hash
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
-    public func verifyEvidenceHash(evidenceHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyEvidenceHashResponse > {
+    public func verifyEvidenceHash(evidenceHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceHashResponse> {
         self.verifyEvidenceHash(VerifyEvidenceHashRequest(evidenceHash: evidenceHash), logger: logger, on: eventLoop)
     }
-    
+
     /// 核验存证内容hash
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。

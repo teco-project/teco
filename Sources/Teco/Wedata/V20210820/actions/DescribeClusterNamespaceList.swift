@@ -19,53 +19,53 @@ extension Wedata {
     public struct DescribeClusterNamespaceListRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// WeData项目ID
         public let projectId: String
-        
-        public init (clusterId: String, projectId: String) {
+
+        public init(clusterId: String, projectId: String) {
             self.clusterId = clusterId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeClusterNamespaceList返回参数结构体
     public struct DescribeClusterNamespaceListResponse: TCResponseModel {
         /// 命名空间
         public let namespaces: [Namespace]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaces = "Namespaces"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取集群命名空间列表
     @inlinable
-    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNamespaceListResponse > {
+    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNamespaceListResponse> {
         self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取集群命名空间列表
     @inlinable
     public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
         try await self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取集群命名空间列表
     @inlinable
-    public func describeClusterNamespaceList(clusterId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNamespaceListResponse > {
+    public func describeClusterNamespaceList(clusterId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNamespaceListResponse> {
         self.describeClusterNamespaceList(DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取集群命名空间列表
     @inlinable
     public func describeClusterNamespaceList(clusterId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {

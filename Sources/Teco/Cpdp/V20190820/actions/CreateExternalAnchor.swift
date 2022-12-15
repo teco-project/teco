@@ -19,23 +19,23 @@ extension Cpdp {
     public struct CreateExternalAnchorRequest: TCRequestModel {
         /// 平台业务系统唯一标示的主播id
         public let uid: String
-        
+
         /// 主播名称
         public let name: String
-        
+
         /// 身份证号
         public let idNo: String
-        
+
         /// 身份证正面图片下载链接
         public let idCardFront: String?
-        
+
         /// 身份证反面图片下载链接
         public let idCardReverse: String?
-        
+
         /// 指定分配的代理商ID
         public let agentId: String?
-        
-        public init (uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil) {
+
+        public init(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil) {
             self.uid = uid
             self.name = name
             self.idNo = idNo
@@ -43,7 +43,7 @@ extension Cpdp {
             self.idCardReverse = idCardReverse
             self.agentId = agentId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uid = "Uid"
             case name = "Name"
@@ -53,22 +53,22 @@ extension Cpdp {
             case agentId = "AgentId"
         }
     }
-    
+
     /// CreateExternalAnchor返回参数结构体
     public struct CreateExternalAnchorResponse: TCResponseModel {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
-        
+
         /// 响应消息。
         public let errMessage: String
-        
+
         /// 返回响应
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: CreateExternalAnchorData?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -76,25 +76,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 灵云-主播入驻
     @inlinable
-    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExternalAnchorResponse > {
+    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExternalAnchorResponse> {
         self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云-主播入驻
     @inlinable
     public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
         try await self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 灵云-主播入驻
     @inlinable
-    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExternalAnchorResponse > {
+    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExternalAnchorResponse> {
         self.createExternalAnchor(CreateExternalAnchorRequest(uid: uid, name: name, idNo: idNo, idCardFront: idCardFront, idCardReverse: idCardReverse, agentId: agentId), logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云-主播入驻
     @inlinable
     public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {

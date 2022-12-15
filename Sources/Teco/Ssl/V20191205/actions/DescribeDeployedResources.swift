@@ -19,53 +19,53 @@ extension Ssl {
     public struct DescribeDeployedResourcesRequest: TCRequestModel {
         /// 证书ID
         public let certificateIds: [String]
-        
+
         /// 资源类型:clb,cdn,live,waf,antiddos
         public let resourceType: String
-        
-        public init (certificateIds: [String], resourceType: String) {
+
+        public init(certificateIds: [String], resourceType: String) {
             self.certificateIds = certificateIds
             self.resourceType = resourceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateIds = "CertificateIds"
             case resourceType = "ResourceType"
         }
     }
-    
+
     /// DescribeDeployedResources返回参数结构体
     public struct DescribeDeployedResourcesResponse: TCResponseModel {
         /// 资源详情
         public let deployedResources: [DeployedResources]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deployedResources = "DeployedResources"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 证书查询关联资源
     @inlinable
-    public func describeDeployedResources(_ input: DescribeDeployedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployedResourcesResponse > {
+    public func describeDeployedResources(_ input: DescribeDeployedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployedResourcesResponse> {
         self.client.execute(action: "DescribeDeployedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 证书查询关联资源
     @inlinable
     public func describeDeployedResources(_ input: DescribeDeployedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployedResourcesResponse {
         try await self.client.execute(action: "DescribeDeployedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 证书查询关联资源
     @inlinable
-    public func describeDeployedResources(certificateIds: [String], resourceType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployedResourcesResponse > {
+    public func describeDeployedResources(certificateIds: [String], resourceType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployedResourcesResponse> {
         self.describeDeployedResources(DescribeDeployedResourcesRequest(certificateIds: certificateIds, resourceType: resourceType), logger: logger, on: eventLoop)
     }
-    
+
     /// 证书查询关联资源
     @inlinable
     public func describeDeployedResources(certificateIds: [String], resourceType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployedResourcesResponse {

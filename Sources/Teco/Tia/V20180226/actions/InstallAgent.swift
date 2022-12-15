@@ -19,58 +19,58 @@ extension Tia {
     public struct InstallAgentRequest: TCRequestModel {
         /// 集群名称
         public let cluster: String
-        
+
         /// Agent版本, 用于私有集群的agent安装，默认为“private-training”
         public let tiaVersion: String?
-        
+
         /// 是否允许更新Agent
         public let update: Bool?
-        
-        public init (cluster: String, tiaVersion: String? = nil, update: Bool? = nil) {
+
+        public init(cluster: String, tiaVersion: String? = nil, update: Bool? = nil) {
             self.cluster = cluster
             self.tiaVersion = tiaVersion
             self.update = update
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cluster = "Cluster"
             case tiaVersion = "TiaVersion"
             case update = "Update"
         }
     }
-    
+
     /// InstallAgent返回参数结构体
     public struct InstallAgentResponse: TCResponseModel {
         /// Agent版本, 用于私有集群的agent安装
         public let tiaVersion: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tiaVersion = "TiaVersion"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安装agent
     @inlinable
-    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallAgentResponse > {
+    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallAgentResponse> {
         self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安装agent
     @inlinable
     public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
         try await self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安装agent
     @inlinable
-    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallAgentResponse > {
+    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallAgentResponse> {
         self.installAgent(InstallAgentRequest(cluster: cluster, tiaVersion: tiaVersion, update: update), logger: logger, on: eventLoop)
     }
-    
+
     /// 安装agent
     @inlinable
     public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {

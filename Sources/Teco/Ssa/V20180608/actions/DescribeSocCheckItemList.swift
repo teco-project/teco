@@ -19,23 +19,23 @@ extension Ssa {
     public struct DescribeSocCheckItemListRequest: TCRequestModel {
         /// 查询参数,可支持的排序字段:Name,Type,AssetType,Level,Standard,IsFree
         public let filter: [QueryFilter]?
-        
+
         /// 排序参数:无
         public let sorter: [QuerySort]?
-        
+
         /// 当前页码数据，默认值为10
         public let pageSize: Int64?
-        
+
         /// 当前页面索引，默认值为0
         public let pageIndex: Int64?
-        
-        public init (filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil) {
+
+        public init(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil) {
             self.filter = filter
             self.sorter = sorter
             self.pageSize = pageSize
             self.pageIndex = pageIndex
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filter = "Filter"
             case sorter = "Sorter"
@@ -43,40 +43,40 @@ extension Ssa {
             case pageIndex = "PageIndex"
         }
     }
-    
+
     /// DescribeSocCheckItemList返回参数结构体
     public struct DescribeSocCheckItemListResponse: TCResponseModel {
         /// 检查项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: DescribeSocCheckItemListRspRsp?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云安全配置检查项列表
     @inlinable
-    public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocCheckItemListResponse > {
+    public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCheckItemListResponse> {
         self.client.execute(action: "DescribeSocCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云安全配置检查项列表
     @inlinable
     public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckItemListResponse {
         try await self.client.execute(action: "DescribeSocCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云安全配置检查项列表
     @inlinable
-    public func describeSocCheckItemList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocCheckItemListResponse > {
+    public func describeSocCheckItemList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCheckItemListResponse> {
         self.describeSocCheckItemList(DescribeSocCheckItemListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex), logger: logger, on: eventLoop)
     }
-    
+
     /// 云安全配置检查项列表
     @inlinable
     public func describeSocCheckItemList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckItemListResponse {

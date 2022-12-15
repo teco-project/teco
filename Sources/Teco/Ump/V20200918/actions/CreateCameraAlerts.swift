@@ -19,34 +19,34 @@ extension Ump {
     public struct CreateCameraAlertsRequest: TCRequestModel {
         /// 告警信息列表
         public let alerts: [CreateCameraAlertAlert]?
-        
-        public init (alerts: [CreateCameraAlertAlert]? = nil) {
+
+        public init(alerts: [CreateCameraAlertAlert]? = nil) {
             self.alerts = alerts
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alerts = "Alerts"
         }
     }
-    
+
     /// CreateCameraAlerts返回参数结构体
     public struct CreateCameraAlertsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上报相机告警信息
     ///
     /// 上报相机移动、遮挡等告警信息
     @inlinable
-    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCameraAlertsResponse > {
+    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraAlertsResponse> {
         self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上报相机告警信息
     ///
     /// 上报相机移动、遮挡等告警信息
@@ -54,15 +54,15 @@ extension Ump {
     public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
         try await self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上报相机告警信息
     ///
     /// 上报相机移动、遮挡等告警信息
     @inlinable
-    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCameraAlertsResponse > {
+    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraAlertsResponse> {
         self.createCameraAlerts(CreateCameraAlertsRequest(alerts: alerts), logger: logger, on: eventLoop)
     }
-    
+
     /// 上报相机告警信息
     ///
     /// 上报相机移动、遮挡等告警信息

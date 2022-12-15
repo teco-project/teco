@@ -22,61 +22,61 @@ extension TCOceanusError {
             case unsupportedStartMode = "UnsupportedOperation.UnsupportedStartMode"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Checkpoint 时间间隔，错误。
         public static var invalidCheckpointIntervalError: UnsupportedOperation {
             UnsupportedOperation(.invalidCheckpointIntervalError)
         }
-        
+
         /// 权限拦截,没有进入权限。
         ///
         /// 先赋权，再作业
         public static var noPermissionAccess: UnsupportedOperation {
             UnsupportedOperation(.noPermissionAccess)
         }
-        
+
         /// 不支持的启动模式。
         public static var unsupportedStartMode: UnsupportedOperation {
             UnsupportedOperation(.unsupportedStartMode)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asOceanusError() -> TCOceanusError {
             let code: TCOceanusError.Code
             switch self.error {
-            case .invalidCheckpointIntervalError: 
+            case .invalidCheckpointIntervalError:
                 code = .unsupportedOperation_InvalidCheckpointIntervalError
-            case .noPermissionAccess: 
+            case .noPermissionAccess:
                 code = .unsupportedOperation_NoPermissionAccess
-            case .unsupportedStartMode: 
+            case .unsupportedStartMode:
                 code = .unsupportedOperation_UnsupportedStartMode
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCOceanusError(code, context: self.context)

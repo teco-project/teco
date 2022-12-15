@@ -19,48 +19,48 @@ extension Cam {
     public struct GetSecurityLastUsedRequest: TCRequestModel {
         /// 查询密钥ID列表。最多支持10个。
         public let secretIdList: [String]
-        
-        public init (secretIdList: [String]) {
+
+        public init(secretIdList: [String]) {
             self.secretIdList = secretIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretIdList = "SecretIdList"
         }
     }
-    
+
     /// GetSecurityLastUsed返回参数结构体
     public struct GetSecurityLastUsedResponse: TCResponseModel {
         /// 密钥ID最近访问列表
         public let secretIdLastUsedRows: [SecretIdLastUsed]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretIdLastUsedRows = "SecretIdLastUsedRows"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取密钥最近使用情况
     @inlinable
-    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecurityLastUsedResponse > {
+    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecurityLastUsedResponse> {
         self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取密钥最近使用情况
     @inlinable
     public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
         try await self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取密钥最近使用情况
     @inlinable
-    public func getSecurityLastUsed(secretIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecurityLastUsedResponse > {
+    public func getSecurityLastUsed(secretIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecurityLastUsedResponse> {
         self.getSecurityLastUsed(GetSecurityLastUsedRequest(secretIdList: secretIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取密钥最近使用情况
     @inlinable
     public func getSecurityLastUsed(secretIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {

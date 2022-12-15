@@ -19,40 +19,40 @@ extension Tts {
     public struct DescribeTtsTaskStatusRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeTtsTaskStatus返回参数结构体
     public struct DescribeTtsTaskStatusResponse: TCResponseModel {
         /// 任务状态返回
         public let data: DescribeTtsTaskStatusRespData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 长文本语音合成结果查询
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。
     /// <li>当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。</li>
     /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
     @inlinable
-    public func describeTtsTaskStatus(_ input: DescribeTtsTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTtsTaskStatusResponse > {
+    public func describeTtsTaskStatus(_ input: DescribeTtsTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTtsTaskStatusResponse> {
         self.client.execute(action: "DescribeTtsTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 长文本语音合成结果查询
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。
@@ -62,17 +62,17 @@ extension Tts {
     public func describeTtsTaskStatus(_ input: DescribeTtsTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTtsTaskStatusResponse {
         try await self.client.execute(action: "DescribeTtsTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 长文本语音合成结果查询
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。
     /// <li>当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。</li>
     /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
     @inlinable
-    public func describeTtsTaskStatus(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTtsTaskStatusResponse > {
+    public func describeTtsTaskStatus(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTtsTaskStatusResponse> {
         self.describeTtsTaskStatus(DescribeTtsTaskStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 长文本语音合成结果查询
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。

@@ -19,55 +19,55 @@ extension Tcb {
     public struct DescribeEnvFreeQuotaRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// 资源类型：可选值：CDN, COS, FLEXDB, HOSTING, SCF
         /// 不传则返回全部资源指标
         public let resourceTypes: [String]?
-        
-        public init (envId: String, resourceTypes: [String]? = nil) {
+
+        public init(envId: String, resourceTypes: [String]? = nil) {
             self.envId = envId
             self.resourceTypes = resourceTypes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case resourceTypes = "ResourceTypes"
         }
     }
-    
+
     /// DescribeEnvFreeQuota返回参数结构体
     public struct DescribeEnvFreeQuotaResponse: TCResponseModel {
         /// 免费抵扣配额详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quotaItems: [PostpayEnvQuota]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case quotaItems = "QuotaItems"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询后付费免费配额信息
     @inlinable
-    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvFreeQuotaResponse > {
+    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvFreeQuotaResponse> {
         self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询后付费免费配额信息
     @inlinable
     public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
         try await self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询后付费免费配额信息
     @inlinable
-    public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvFreeQuotaResponse > {
+    public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvFreeQuotaResponse> {
         self.describeEnvFreeQuota(DescribeEnvFreeQuotaRequest(envId: envId, resourceTypes: resourceTypes), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询后付费免费配额信息
     @inlinable
     public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {

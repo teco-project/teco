@@ -19,44 +19,44 @@ extension Ump {
     public struct CreateProgramStateRequest: TCRequestModel {
         /// 集团编码
         public let groupCode: String
-        
+
         /// 进程监控信息列表
         public let programStateItems: [ProgramStateItem]
-        
+
         /// 商场ID
         public let mallId: UInt64?
-        
-        public init (groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil) {
+
+        public init(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil) {
             self.groupCode = groupCode
             self.programStateItems = programStateItems
             self.mallId = mallId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupCode = "GroupCode"
             case programStateItems = "ProgramStateItems"
             case mallId = "MallId"
         }
     }
-    
+
     /// CreateProgramState返回参数结构体
     public struct CreateProgramStateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
     @inlinable
-    public func createProgramState(_ input: CreateProgramStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProgramStateResponse > {
+    public func createProgramState(_ input: CreateProgramStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
         self.client.execute(action: "CreateProgramState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
@@ -64,15 +64,15 @@ extension Ump {
     public func createProgramState(_ input: CreateProgramStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
         try await self.client.execute(action: "CreateProgramState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
     @inlinable
-    public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProgramStateResponse > {
+    public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
         self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), logger: logger, on: eventLoop)
     }
-    
+
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息

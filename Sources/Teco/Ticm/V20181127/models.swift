@@ -19,16 +19,16 @@ extension Ticm {
     public struct Candidate: TCOutputModel {
         /// 识别出人脸对应的候选人数组。当前返回相似度最高的候选人。
         public let name: String
-        
+
         /// 相似度，0-100之间。
         public let confidence: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 恶心识别结果。
     public struct DisgustResult: TCOutputModel {
         /// 该识别场景的错误码：
@@ -36,19 +36,19 @@ extension Ticm {
         /// -1表示系统错误，
         /// -2表示引擎错误。
         public let code: Int64
-        
+
         /// 错误码描述信息。
         public let msg: String
-        
+
         /// 识别场景的审核结论：
         /// PASS：正常
         /// REVIEW：疑似
         /// BLOCK：违规
         public let suggestion: String
-        
+
         /// 图像恶心的分数，0-100之间，分数越高恶心几率越大。
         public let confidence: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case msg = "Msg"
@@ -56,21 +56,21 @@ extension Ticm {
             case confidence = "Confidence"
         }
     }
-    
+
     /// 识别出的人脸在图片中的位置。
     public struct FaceRect: TCOutputModel {
         /// 人脸区域左上角横坐标。
         public let x: Int64
-        
+
         /// 人脸区域左上角纵坐标。
         public let y: Int64
-        
+
         /// 人脸区域宽度。
         public let width: Int64
-        
+
         /// 人脸区域高度。
         public let height: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case x = "X"
             case y = "Y"
@@ -78,21 +78,21 @@ extension Ticm {
             case height = "Height"
         }
     }
-    
+
     /// 人脸识别结果。
     public struct FaceResult: TCOutputModel {
         /// 检测出的人脸框位置。
         public let faceRect: FaceRect
-        
+
         /// 候选人列表。当前返回相似度最高的候选人。
         public let candidates: [Candidate]
-        
+
         enum CodingKeys: String, CodingKey {
             case faceRect = "FaceRect"
             case candidates = "Candidates"
         }
     }
-    
+
     /// 政治敏感识别结果。
     public struct PoliticsResult: TCOutputModel {
         /// 该识别场景的错误码：
@@ -102,16 +102,16 @@ extension Ticm {
         /// -1400表示图片解码失败，
         /// -1401表示图片不符合规范。
         public let code: Int64
-        
+
         /// 错误码描述信息。
         public let msg: String
-        
+
         /// 识别场景的审核结论：
         /// PASS：正常
         /// REVIEW：疑似
         /// BLOCK：违规
         public let suggestion: String
-        
+
         /// 图像涉政的分数，0-100之间，分数越高涉政几率越大。
         /// Type为DNA时：
         /// 0到75，Suggestion建议为PASS
@@ -122,16 +122,16 @@ extension Ticm {
         /// 55到60，Suggestion建议为REVIEW
         /// 60到100，Suggestion建议为BLOCK
         public let confidence: Int64
-        
+
         /// Type取值为‘FACE’时，人脸识别的结果列表。基于图片中实际检测到的人脸数，返回数组最大值不超过5个。
         public let faceResults: [FaceResult]
-        
+
         /// 取值'DNA' 或‘FACE’。DNA表示结论和置信度来自图像指纹，FACE表示结论和置信度来自人脸识别。
         public let type: String
-        
+
         /// 鉴政识别返回的详细标签后期开放。
         public let advancedInfo: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case msg = "Msg"
@@ -142,7 +142,7 @@ extension Ticm {
             case advancedInfo = "AdvancedInfo"
         }
     }
-    
+
     /// 色情识别结果。
     public struct PornResult: TCOutputModel {
         /// 该识别场景的错误码：
@@ -151,25 +151,25 @@ extension Ticm {
         /// -2表示引擎错误，
         /// -1400表示图片解码失败。
         public let code: Int64
-        
+
         /// 错误码描述信息。
         public let msg: String
-        
+
         /// 识别场景的审核结论：
         /// PASS：正常
         /// REVIEW：疑似
         /// BLOCK：违规
         public let suggestion: String
-        
+
         /// 算法对于Suggestion的置信度，0-100之间，值越高，表示对于Suggestion越确定。
         public let confidence: Int64
-        
+
         /// 预留字段，后期用于展示更多识别信息。
         public let advancedInfo: String
-        
+
         /// 取值'LABEL‘，LABEL表示结论和置信度来自标签分类。
         public let type: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case msg = "Msg"
@@ -179,7 +179,7 @@ extension Ticm {
             case type = "Type"
         }
     }
-    
+
     /// 暴恐识别结果。
     public struct TerrorismResult: TCOutputModel {
         /// 该识别场景的错误码：
@@ -188,16 +188,16 @@ extension Ticm {
         /// -2表示引擎错误，
         /// -1400表示图片解码失败。
         public let code: Int64
-        
+
         /// 错误码描述信息。
         public let msg: String
-        
+
         /// 识别场景的审核结论：
         /// PASS：正常
         /// REVIEW：疑似
         /// BLOCK：违规
         public let suggestion: String
-        
+
         /// 图像涉恐的分数，0-100之间，分数越高涉恐几率越大。
         /// Type为LABEL时：
         /// 0到86，Suggestion建议为PASS
@@ -208,16 +208,16 @@ extension Ticm {
         /// 55到60，Suggestion建议为REVIEW
         /// 60到100，Suggestion建议为BLOCK
         public let confidence: Int64
-        
+
         /// Type取值为‘FACE’时，人脸识别的结果列表。基于图片中实际检测到的人脸数，返回数组最大值不超过5个。
         public let faceResults: [FaceResult]
-        
+
         /// 暴恐识别返回的详细标签后期开放。
         public let advancedInfo: String
-        
+
         /// 取值'LABEL' 或‘FACE’，LABEL表示结论和置信度来自标签分类，FACE表示结论和置信度来自人脸识别。
         public let type: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case msg = "Msg"
@@ -228,32 +228,32 @@ extension Ticm {
             case type = "Type"
         }
     }
-    
+
     /// 内容审核 Asr 文字审核嫌疑片段
     public struct VodAsrTextSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段置信度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// 嫌疑片段审核结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// 嫌疑关键词列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keywordSet: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -262,74 +262,74 @@ extension Ticm {
             case keywordSet = "KeywordSet"
         }
     }
-    
+
     /// 文件音频流信息
     public struct VodAudioStreamItem: TCOutputModel {
         /// 音频流的码率，单位：bps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: Int64
-        
+
         /// 音频流的采样率，单位：hz。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let samplingRate: Int64
-        
+
         /// 音频流的编码格式，例如 aac。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case samplingRate = "SamplingRate"
             case codec = "Codec"
         }
     }
-    
+
     /// 媒体文件元信息。
     public struct VodMetaData: TCOutputModel {
         /// 上传的媒体文件大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64
-        
+
         /// 容器类型，例如 m4a，mp4 等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let container: String
-        
+
         /// 视频流码率平均值与音频流码率平均值之和，单位：bps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: Int64
-        
+
         /// 视频流高度的最大值，单位：px。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let height: Int64
-        
+
         /// 视频流宽度的最大值，单位：px。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: Int64
-        
+
         /// 视频时长，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Float
-        
+
         /// 视频拍摄时的选择角度，单位：度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rotate: Int64
-        
+
         /// 视频流信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoStreamSet: [VodVideoStreamItem]
-        
+
         /// 音频流信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioStreamSet: [VodAudioStreamItem]
-        
+
         /// 视频时长，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoDuration: Float
-        
+
         /// 音频时长，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioDuration: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case size = "Size"
             case container = "Container"
@@ -344,36 +344,36 @@ extension Ticm {
             case audioDuration = "AudioDuration"
         }
     }
-    
+
     /// 内容审核 Ocr 文字审核嫌疑片段
     public struct VodOcrTextSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段置信度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// 嫌疑片段审核结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// 嫌疑关键词列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keywordSet: [String]
-        
+
         /// 嫌疑文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let areaCoordSet: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -383,20 +383,20 @@ extension Ticm {
             case areaCoordSet = "AreaCoordSet"
         }
     }
-    
+
     /// 内容审核 Asr 文字鉴政、敏感任务结果类型
     public struct VodPoliticalAsrReviewResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，0：成功，其他值：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String
-        
+
         /// 嫌疑片段审核结果建议，取值范围：
         /// pass。
         /// review。
@@ -404,18 +404,18 @@ extension Ticm {
         /// Asr 文字涉政、敏感评分，分值为0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// Asr 文字涉政、敏感结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// Asr 文字有涉政、敏感嫌疑的视频片段列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let segmentSet: [VodAsrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case code = "Code"
@@ -425,33 +425,33 @@ extension Ticm {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Ocr 文字鉴政、敏感任务结果类型
     public struct VodPoliticalOcrReviewResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，0：成功，其他值：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String
-        
+
         /// Ocr 文字涉政、敏感评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Ocr 文字涉政、敏感结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         public let suggestion: String
-        
+
         /// Ocr 文字有涉政、敏感嫌疑的视频片段列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let segmentSet: [VodOcrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case code = "Code"
@@ -461,41 +461,41 @@ extension Ticm {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 涉政信息
     public struct VodPoliticalReviewResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，0：成功，其他值：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String
-        
+
         /// 视频涉政评分，分值为0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// 涉政结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// 视频鉴政结果标签，取值范围：
         /// politician：政治人物。
         /// violation_photo：违规图标。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
-        
+
         /// 有涉政嫌疑的视频片段列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let segmentSet: [VodPoliticalReviewSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case code = "Code"
@@ -506,49 +506,49 @@ extension Ticm {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核鉴政任务结果类型
     public struct VodPoliticalReviewSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段涉政分数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// 嫌疑片段鉴政结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// 涉政人物、违规图标名字。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String
-        
+
         /// 嫌疑片段鉴政结果标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         /// PicUrlExpireTime 时间点后图片将被删除）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String
-        
+
         /// 嫌疑图片 URL 失效时间，使用 ISO 日期格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let picUrlExpireTimeStamp: Int64
-        
+
         /// 涉政人物、违规图标出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let areaCoordSet: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -561,35 +561,35 @@ extension Ticm {
             case areaCoordSet = "AreaCoordSet"
         }
     }
-    
+
     /// Asr 文字涉黄信息
     public struct VodPornAsrReviewResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，0：成功，其他值：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String
-        
+
         /// Asr 文字涉黄评分，分值为0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// Asr 文字涉黄结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// Asr 文字有涉黄嫌疑的视频片段列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let segmentSet: [VodAsrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case code = "Code"
@@ -599,35 +599,35 @@ extension Ticm {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Ocr 文字鉴黄任务结果类型
     public struct VodPornOcrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，0：成功，其他值：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String
-        
+
         /// Ocr 文字涉黄评分，分值为0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// Ocr 文字涉黄结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// Ocr 文字有涉黄嫌疑的视频片段列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let segmentSet: [VodOcrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case code = "Code"
@@ -637,31 +637,31 @@ extension Ticm {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核鉴黄任务结果类型
     public struct VodPornReviewResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，0：成功，其他值：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String
-        
+
         /// 视频鉴黄评分，分值为0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// 鉴黄结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// 视频鉴黄结果标签，取值范围：
         /// porn：色情。
         /// sexy：性感。
@@ -669,11 +669,11 @@ extension Ticm {
         /// intimacy：亲密行为。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
-        
+
         /// 有涉黄嫌疑的视频片段列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let segmentSet: [VodPornReviewSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case code = "Code"
@@ -684,41 +684,41 @@ extension Ticm {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核涉黄/暴恐嫌疑片段
     public struct VodPornReviewSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段涉黄分数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// 嫌疑片段鉴黄结果标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
-        
+
         /// 嫌疑片段鉴黄结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         /// PicUrlExpireTime 时间点后图片将被删除）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String
-        
+
         /// 嫌疑图片 URL 失效时间，使用 ISO 日期格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let picUrlExpireTimeStamp: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -729,20 +729,20 @@ extension Ticm {
             case picUrlExpireTimeStamp = "PicUrlExpireTimeStamp"
         }
     }
-    
+
     /// 暴恐信息
     public struct VodTerrorismReviewResult: TCOutputModel {
         /// 视频暴恐评分，分值为0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
-        
+
         /// 暴恐结果建议，取值范围：
         /// pass。
         /// review。
         /// block。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
-        
+
         /// 视频暴恐结果标签，取值范围：
         /// guns：武器枪支。
         /// crowd：人群聚集。
@@ -754,22 +754,22 @@ extension Ticm {
         /// terrorists：暴恐人物。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
-        
+
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，0：成功，其他值：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: Int64
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String
-        
+
         /// 有暴恐嫌疑的视频片段列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let segmentSet: [VodPornReviewSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
@@ -780,29 +780,29 @@ extension Ticm {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 文件视频流信息
     public struct VodVideoStreamItem: TCOutputModel {
         /// 视频流的码率，单位：bps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: Int64
-        
+
         /// 视频流的高度，单位：px。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let height: Int64
-        
+
         /// 视频流的宽度，单位：px。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: Int64
-        
+
         /// 视频流的编码格式，例如 h264。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String
-        
+
         /// 帧率，单位：hz。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fps: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case height = "Height"

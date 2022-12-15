@@ -19,23 +19,23 @@ extension Tcss {
     public struct DescribeComplianceWhitelistItemListRequest: TCRequestModel {
         /// 起始偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 要获取的数量，默认为10，最大为100。
         public let limit: UInt64?
-        
+
         /// 资产类型列表。
         public let assetTypeSet: [String]?
-        
+
         /// 查询过滤器
         public let filters: [ComplianceFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式 desc asc
         public let order: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, assetTypeSet: [String]? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, assetTypeSet: [String]? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.assetTypeSet = assetTypeSet
@@ -43,7 +43,7 @@ extension Tcss {
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -53,33 +53,33 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeComplianceWhitelistItemList返回参数结构体
     public struct DescribeComplianceWhitelistItemListResponse: TCResponseModel {
         /// 白名单项的列表。
         public let whitelistItemSet: [ComplianceWhitelistItem]
-        
+
         /// 白名单项的总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case whitelistItemSet = "WhitelistItemSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规查询白名单列表
     ///
     /// 查询白名单列表
     @inlinable
-    public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceWhitelistItemListResponse > {
+    public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceWhitelistItemListResponse> {
         self.client.execute(action: "DescribeComplianceWhitelistItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询白名单列表
     ///
     /// 查询白名单列表
@@ -87,15 +87,15 @@ extension Tcss {
     public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceWhitelistItemListResponse {
         try await self.client.execute(action: "DescribeComplianceWhitelistItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规查询白名单列表
     ///
     /// 查询白名单列表
     @inlinable
-    public func describeComplianceWhitelistItemList(offset: UInt64? = nil, limit: UInt64? = nil, assetTypeSet: [String]? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceWhitelistItemListResponse > {
+    public func describeComplianceWhitelistItemList(offset: UInt64? = nil, limit: UInt64? = nil, assetTypeSet: [String]? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceWhitelistItemListResponse> {
         self.describeComplianceWhitelistItemList(DescribeComplianceWhitelistItemListRequest(offset: offset, limit: limit, assetTypeSet: assetTypeSet, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询白名单列表
     ///
     /// 查询白名单列表

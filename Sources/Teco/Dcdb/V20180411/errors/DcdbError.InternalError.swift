@@ -59,316 +59,316 @@ extension TCDcdbError {
             case wanServiceFailed = "InternalError.WanServiceFailed"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM鉴权请求失败。
         public static var camAuthFailed: InternalError {
             InternalError(.camAuthFailed)
         }
-        
+
         /// 校验VIP状态失败。
         public static var checkVipStatusFailed: InternalError {
             InternalError(.checkVipStatusFailed)
         }
-        
+
         /// COS地址配置错误。
         public static var cosConfiguration: InternalError {
             InternalError(.cosConfiguration)
         }
-        
+
         /// 备份文件签名失败。
         public static var cosSignUrl: InternalError {
             InternalError(.cosSignUrl)
         }
-        
+
         public static var createFlowFailed: InternalError {
             InternalError(.createFlowFailed)
         }
-        
+
         /// 查询数据库失败。
         public static var dbOperationFailed: InternalError {
             InternalError(.dbOperationFailed)
         }
-        
+
         /// DB影响行数为0错误。
         public static var dbRowsAffectedError: InternalError {
             InternalError(.dbRowsAffectedError)
         }
-        
+
         /// 查询独享集群信息失败。
         public static var fenceError: InternalError {
             InternalError(.fenceError)
         }
-        
+
         /// 获取数据库实例参数失败。
         public static var getDbConfigFailed: InternalError {
             InternalError(.getDbConfigFailed)
         }
-        
+
         /// 获取数据库列表失败。
         public static var getDbListFailed: InternalError {
             InternalError(.getDbListFailed)
         }
-        
+
         /// 获取数据库对象失败。
         public static var getDbObjectFailed: InternalError {
             InternalError(.getDbObjectFailed)
         }
-        
+
         /// 获取实例详情失败。
         public static var getInstanceDetailFailed: InternalError {
             InternalError(.getInstanceDetailFailed)
         }
-        
+
         /// 获取实例信息失败。
         public static var getInstanceInfoFailed: InternalError {
             InternalError(.getInstanceInfoFailed)
         }
-        
+
         /// 获取账号当前权限失败。
         public static var getRightFailed: InternalError {
             InternalError(.getRightFailed)
         }
-        
+
         /// 拉圈安全组详情失败。
         public static var getSecurityGroupDetailFailed: InternalError {
             InternalError(.getSecurityGroupDetailFailed)
         }
-        
+
         /// 查询慢日志DB失败。
         public static var getSlowLogFailed: InternalError {
             InternalError(.getSlowLogFailed)
         }
-        
+
         /// 查询虚拟私有网络子网信息失败。
         public static var getSubnetFailed: InternalError {
             InternalError(.getSubnetFailed)
         }
-        
+
         /// 获取表信息失败。
         public static var getTableInfoFailed: InternalError {
             InternalError(.getTableInfoFailed)
         }
-        
+
         /// 获取账号列表失败。
         public static var getUserListFailed: InternalError {
             InternalError(.getUserListFailed)
         }
-        
+
         public static var getUserSGCountFailed: InternalError {
             InternalError(.getUserSGCountFailed)
         }
-        
+
         /// 获取用户安全组配额失败。
         public static var getUsgQuotaError: InternalError {
             InternalError(.getUsgQuotaError)
         }
-        
+
         /// 查询虚拟私有网络信息失败。
         public static var getVpcFailed: InternalError {
             InternalError(.getVpcFailed)
         }
-        
+
         /// 内部系统错误。
         public static var innerSystemError: InternalError {
             InternalError(.innerSystemError)
         }
-        
+
         /// 数据库插入失败。
         public static var insertFail: InternalError {
             InternalError(.insertFail)
         }
-        
+
         /// 用户对当前实例无操作权限。
         public static var instanceOperatePermissionError: InternalError {
             InternalError(.instanceOperatePermissionError)
         }
-        
+
         /// 单实例绑定安全组数量超限。
         public static var instanceSGOverLimitError: InternalError {
             InternalError(.instanceSGOverLimitError)
         }
-        
+
         /// 查询实例时返回的资源数量与请求不匹配。
         public static var listInstanceRespResourceCountNotMatchError: InternalError {
             InternalError(.listInstanceRespResourceCountNotMatchError)
         }
-        
+
         /// 查询实例错误。
         public static var listInstancesError: InternalError {
             InternalError(.listInstancesError)
         }
-        
+
         /// 拉取项目列表失败。
         public static var listProjectFailed: InternalError {
             InternalError(.listProjectFailed)
         }
-        
+
         /// 数据库操作失败。
         public static var operateDatabaseFailed: InternalError {
             InternalError(.operateDatabaseFailed)
         }
-        
+
         /// 操作读DB数据错误。
         public static var queryDatabaseFailed: InternalError {
             InternalError(.queryDatabaseFailed)
         }
-        
+
         /// 查询订单信息失败。
         public static var queryOrderFailed: InternalError {
             InternalError(.queryOrderFailed)
         }
-        
+
         /// 查询价格失败。
         public static var queryPriceFailed: InternalError {
             InternalError(.queryPriceFailed)
         }
-        
+
         /// 操作读DB数据错误。
         public static var readDatabaseFailed: InternalError {
             InternalError(.readDatabaseFailed)
         }
-        
+
         /// 回档的时间不合法。
         public static var retreateTime: InternalError {
             InternalError(.retreateTime)
         }
-        
+
         /// 路由未发现。
         public static var routeNotFound: InternalError {
             InternalError(.routeNotFound)
         }
-        
+
         /// 资源安全组策略下发错误。
         public static var setSvcLocationFailed: InternalError {
             InternalError(.setSvcLocationFailed)
         }
-        
+
         /// 数据库更新失败。
         public static var updateDatabaseFailed: InternalError {
             InternalError(.updateDatabaseFailed)
         }
-        
+
         /// VPC操作失败。
         public static var vpcOperationFailed: InternalError {
             InternalError(.vpcOperationFailed)
         }
-        
+
         /// 外网操作失败。
         public static var wanServiceFailed: InternalError {
             InternalError(.wanServiceFailed)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asDcdbError() -> TCDcdbError {
             let code: TCDcdbError.Code
             switch self.error {
-            case .camAuthFailed: 
+            case .camAuthFailed:
                 code = .internalError_CamAuthFailed
-            case .checkVipStatusFailed: 
+            case .checkVipStatusFailed:
                 code = .internalError_CheckVipStatusFailed
-            case .cosConfiguration: 
+            case .cosConfiguration:
                 code = .internalError_CosConfiguration
-            case .cosSignUrl: 
+            case .cosSignUrl:
                 code = .internalError_CosSignUrl
-            case .createFlowFailed: 
+            case .createFlowFailed:
                 code = .internalError_CreateFlowFailed
-            case .dbOperationFailed: 
+            case .dbOperationFailed:
                 code = .internalError_DbOperationFailed
-            case .dbRowsAffectedError: 
+            case .dbRowsAffectedError:
                 code = .internalError_DBRowsAffectedError
-            case .fenceError: 
+            case .fenceError:
                 code = .internalError_FenceError
-            case .getDbConfigFailed: 
+            case .getDbConfigFailed:
                 code = .internalError_GetDbConfigFailed
-            case .getDbListFailed: 
+            case .getDbListFailed:
                 code = .internalError_GetDbListFailed
-            case .getDbObjectFailed: 
+            case .getDbObjectFailed:
                 code = .internalError_GetDbObjectFailed
-            case .getInstanceDetailFailed: 
+            case .getInstanceDetailFailed:
                 code = .internalError_GetInstanceDetailFailed
-            case .getInstanceInfoFailed: 
+            case .getInstanceInfoFailed:
                 code = .internalError_GetInstanceInfoFailed
-            case .getRightFailed: 
+            case .getRightFailed:
                 code = .internalError_GetRightFailed
-            case .getSecurityGroupDetailFailed: 
+            case .getSecurityGroupDetailFailed:
                 code = .internalError_GetSecurityGroupDetailFailed
-            case .getSlowLogFailed: 
+            case .getSlowLogFailed:
                 code = .internalError_GetSlowLogFailed
-            case .getSubnetFailed: 
+            case .getSubnetFailed:
                 code = .internalError_GetSubnetFailed
-            case .getTableInfoFailed: 
+            case .getTableInfoFailed:
                 code = .internalError_GetTableInfoFailed
-            case .getUserListFailed: 
+            case .getUserListFailed:
                 code = .internalError_GetUserListFailed
-            case .getUserSGCountFailed: 
+            case .getUserSGCountFailed:
                 code = .internalError_GetUserSGCountFailed
-            case .getUsgQuotaError: 
+            case .getUsgQuotaError:
                 code = .internalError_GetUsgQuotaError
-            case .getVpcFailed: 
+            case .getVpcFailed:
                 code = .internalError_GetVpcFailed
-            case .innerSystemError: 
+            case .innerSystemError:
                 code = .internalError_InnerSystemError
-            case .insertFail: 
+            case .insertFail:
                 code = .internalError_InsertFail
-            case .instanceOperatePermissionError: 
+            case .instanceOperatePermissionError:
                 code = .internalError_InstanceOperatePermissionError
-            case .instanceSGOverLimitError: 
+            case .instanceSGOverLimitError:
                 code = .internalError_InstanceSGOverLimitError
-            case .listInstanceRespResourceCountNotMatchError: 
+            case .listInstanceRespResourceCountNotMatchError:
                 code = .internalError_ListInstanceRespResourceCountNotMatchError
-            case .listInstancesError: 
+            case .listInstancesError:
                 code = .internalError_ListInstancesError
-            case .listProjectFailed: 
+            case .listProjectFailed:
                 code = .internalError_ListProjectFailed
-            case .operateDatabaseFailed: 
+            case .operateDatabaseFailed:
                 code = .internalError_OperateDatabaseFailed
-            case .queryDatabaseFailed: 
+            case .queryDatabaseFailed:
                 code = .internalError_QueryDatabaseFailed
-            case .queryOrderFailed: 
+            case .queryOrderFailed:
                 code = .internalError_QueryOrderFailed
-            case .queryPriceFailed: 
+            case .queryPriceFailed:
                 code = .internalError_QueryPriceFailed
-            case .readDatabaseFailed: 
+            case .readDatabaseFailed:
                 code = .internalError_ReadDatabaseFailed
-            case .retreateTime: 
+            case .retreateTime:
                 code = .internalError_RetreateTime
-            case .routeNotFound: 
+            case .routeNotFound:
                 code = .internalError_RouteNotFound
-            case .setSvcLocationFailed: 
+            case .setSvcLocationFailed:
                 code = .internalError_SetSvcLocationFailed
-            case .updateDatabaseFailed: 
+            case .updateDatabaseFailed:
                 code = .internalError_UpdateDatabaseFailed
-            case .vpcOperationFailed: 
+            case .vpcOperationFailed:
                 code = .internalError_VpcOperationFailed
-            case .wanServiceFailed: 
+            case .wanServiceFailed:
                 code = .internalError_WanServiceFailed
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCDcdbError(code, context: self.context)

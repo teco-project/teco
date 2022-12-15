@@ -19,44 +19,44 @@ extension Cwp {
     public struct StopBaselineDetectRequest: TCRequestModel {
         /// 取消任务ID集合
         public let taskIds: [Int64]
-        
-        public init (taskIds: [Int64]) {
+
+        public init(taskIds: [Int64]) {
             self.taskIds = taskIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
         }
     }
-    
+
     /// StopBaselineDetect返回参数结构体
     public struct StopBaselineDetectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止基线检测
     @inlinable
-    public func stopBaselineDetect(_ input: StopBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBaselineDetectResponse > {
+    public func stopBaselineDetect(_ input: StopBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBaselineDetectResponse> {
         self.client.execute(action: "StopBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止基线检测
     @inlinable
     public func stopBaselineDetect(_ input: StopBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBaselineDetectResponse {
         try await self.client.execute(action: "StopBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止基线检测
     @inlinable
-    public func stopBaselineDetect(taskIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBaselineDetectResponse > {
+    public func stopBaselineDetect(taskIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBaselineDetectResponse> {
         self.stopBaselineDetect(StopBaselineDetectRequest(taskIds: taskIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止基线检测
     @inlinable
     public func stopBaselineDetect(taskIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBaselineDetectResponse {

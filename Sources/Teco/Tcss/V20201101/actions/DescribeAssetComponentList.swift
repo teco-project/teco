@@ -19,23 +19,23 @@ extension Tcss {
     public struct DescribeAssetComponentListRequest: TCRequestModel {
         /// 容器id
         public let containerID: String
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件
         public let filters: [AssetFilters]?
-        
-        public init (containerID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
+
+        public init(containerID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.containerID = containerID
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case containerID = "ContainerID"
             case limit = "Limit"
@@ -43,33 +43,33 @@ extension Tcss {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeAssetComponentList返回参数结构体
     public struct DescribeAssetComponentListResponse: TCResponseModel {
         /// 组件列表
         public let list: [ComponentInfo]
-        
+
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器组件列表
     ///
     /// 容器安全搜索查询容器组件列表
     @inlinable
-    public func describeAssetComponentList(_ input: DescribeAssetComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetComponentListResponse > {
+    public func describeAssetComponentList(_ input: DescribeAssetComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetComponentListResponse> {
         self.client.execute(action: "DescribeAssetComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器组件列表
     ///
     /// 容器安全搜索查询容器组件列表
@@ -77,15 +77,15 @@ extension Tcss {
     public func describeAssetComponentList(_ input: DescribeAssetComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetComponentListResponse {
         try await self.client.execute(action: "DescribeAssetComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器组件列表
     ///
     /// 容器安全搜索查询容器组件列表
     @inlinable
-    public func describeAssetComponentList(containerID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetComponentListResponse > {
+    public func describeAssetComponentList(containerID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetComponentListResponse> {
         self.describeAssetComponentList(DescribeAssetComponentListRequest(containerID: containerID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器组件列表
     ///
     /// 容器安全搜索查询容器组件列表

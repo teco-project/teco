@@ -19,59 +19,59 @@ extension Wedata {
     public struct DescribeRuleDataSourcesRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String?
-        
+
         /// 数据来源Id
         public let datasourceId: String?
-        
+
         /// 数据源类型
         public let dsTypes: [UInt64]?
-        
-        public init (projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil) {
+
+        public init(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil) {
             self.projectId = projectId
             self.datasourceId = datasourceId
             self.dsTypes = dsTypes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case datasourceId = "DatasourceId"
             case dsTypes = "DsTypes"
         }
     }
-    
+
     /// DescribeRuleDataSources返回参数结构体
     public struct DescribeRuleDataSourcesResponse: TCResponseModel {
         /// 数据源列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DatabaseInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询质量规则数据源
     @inlinable
-    public func describeRuleDataSources(_ input: DescribeRuleDataSourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleDataSourcesResponse > {
+    public func describeRuleDataSources(_ input: DescribeRuleDataSourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleDataSourcesResponse> {
         self.client.execute(action: "DescribeRuleDataSources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询质量规则数据源
     @inlinable
     public func describeRuleDataSources(_ input: DescribeRuleDataSourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDataSourcesResponse {
         try await self.client.execute(action: "DescribeRuleDataSources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询质量规则数据源
     @inlinable
-    public func describeRuleDataSources(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleDataSourcesResponse > {
+    public func describeRuleDataSources(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleDataSourcesResponse> {
         self.describeRuleDataSources(DescribeRuleDataSourcesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询质量规则数据源
     @inlinable
     public func describeRuleDataSources(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDataSourcesResponse {

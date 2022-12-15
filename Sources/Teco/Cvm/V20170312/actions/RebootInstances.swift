@@ -19,36 +19,36 @@ extension Cvm {
     public struct RebootInstancesRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         public let instanceIds: [String]
-        
+
         /// 本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。表示是否在正常重启失败后选择强制重启实例。取值范围：<br><li>TRUE：表示在正常重启失败后进行强制重启<br><li>FALSE：表示在正常重启失败后不进行强制重启<br><br>默认取值：FALSE。
         public let forceReboot: Bool?
-        
+
         /// 关机类型。取值范围：<br><li>SOFT：表示软关机<br><li>HARD：表示硬关机<br><li>SOFT_FIRST：表示优先软关机，失败再执行硬关机<br><br>默认取值：SOFT。
         public let stopType: String?
-        
-        public init (instanceIds: [String], forceReboot: Bool? = nil, stopType: String? = nil) {
+
+        public init(instanceIds: [String], forceReboot: Bool? = nil, stopType: String? = nil) {
             self.instanceIds = instanceIds
             self.forceReboot = forceReboot
             self.stopType = stopType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case forceReboot = "ForceReboot"
             case stopType = "StopType"
         }
     }
-    
+
     /// RebootInstances返回参数结构体
     public struct RebootInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启实例
     ///
     /// 本接口 (RebootInstances) 用于重启实例。
@@ -58,10 +58,10 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func rebootInstances(_ input: RebootInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootInstancesResponse > {
+    public func rebootInstances(_ input: RebootInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebootInstancesResponse> {
         self.client.execute(action: "RebootInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启实例
     ///
     /// 本接口 (RebootInstances) 用于重启实例。
@@ -74,7 +74,7 @@ extension Cvm {
     public func rebootInstances(_ input: RebootInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootInstancesResponse {
         try await self.client.execute(action: "RebootInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启实例
     ///
     /// 本接口 (RebootInstances) 用于重启实例。
@@ -84,10 +84,10 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func rebootInstances(instanceIds: [String], forceReboot: Bool? = nil, stopType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootInstancesResponse > {
+    public func rebootInstances(instanceIds: [String], forceReboot: Bool? = nil, stopType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebootInstancesResponse> {
         self.rebootInstances(RebootInstancesRequest(instanceIds: instanceIds, forceReboot: forceReboot, stopType: stopType), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启实例
     ///
     /// 本接口 (RebootInstances) 用于重启实例。

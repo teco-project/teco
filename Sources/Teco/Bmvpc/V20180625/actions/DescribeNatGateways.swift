@@ -19,32 +19,32 @@ extension Bmvpc {
     public struct DescribeNatGatewaysRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
         public let natId: String?
-        
+
         /// NAT名称
         public let natName: String?
-        
+
         /// 搜索字段
         public let searchKey: String?
-        
+
         /// 私有网络ID，例如：vpc-kd7d06of
         public let vpcId: String?
-        
+
         /// 起始值
         public let offset: UInt64?
-        
+
         /// 偏移值，默认值为 20
         public let limit: UInt64?
-        
+
         /// NAT所在可用区，形如：ap-guangzhou-2。
         public let zone: String?
-        
+
         /// 排序字段, 支持"CreateTime"排序
         public let orderField: String?
-        
+
         /// 排序方向, “asc”、“desc”
         public let orderDirection: String?
-        
-        public init (natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {
+
+        public init(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.natId = natId
             self.natName = natName
             self.searchKey = searchKey
@@ -55,7 +55,7 @@ extension Bmvpc {
             self.orderField = orderField
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natId = "NatId"
             case natName = "NatName"
@@ -68,33 +68,33 @@ extension Bmvpc {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeNatGateways返回参数结构体
     public struct DescribeNatGatewaysResponse: TCResponseModel {
         /// NAT网关信息列表
         public let natGatewayInfoSet: [NatGatewayInfo]
-        
+
         /// 总数目
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case natGatewayInfoSet = "NatGatewayInfoSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
-    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaysResponse > {
+    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaysResponse> {
         self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
@@ -102,15 +102,15 @@ extension Bmvpc {
     public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
         try await self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
-    public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaysResponse > {
+    public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaysResponse> {
         self.describeNatGateways(DescribeNatGatewaysRequest(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等

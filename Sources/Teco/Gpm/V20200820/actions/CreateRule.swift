@@ -19,23 +19,23 @@ extension Gpm {
     public struct CreateRuleRequest: TCRequestModel {
         /// 规则名称，[a-zA-Z0-9-\.]* 长度128
         public let ruleName: String
-        
+
         /// 规则脚本，长度65535
         public let ruleScript: String
-        
+
         /// 规则描述，最长1024
         public let ruleDesc: String?
-        
+
         /// 标签，key-value结构的数组，最多关联50组标签
         public let tags: [StringKV]?
-        
-        public init (ruleName: String, ruleScript: String, ruleDesc: String? = nil, tags: [StringKV]? = nil) {
+
+        public init(ruleName: String, ruleScript: String, ruleDesc: String? = nil, tags: [StringKV]? = nil) {
             self.ruleName = ruleName
             self.ruleScript = ruleScript
             self.ruleDesc = ruleDesc
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case ruleScript = "RuleScript"
@@ -43,30 +43,30 @@ extension Gpm {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateRule返回参数结构体
     public struct CreateRuleResponse: TCResponseModel {
         /// 规则信息
         public let ruleInfo: RuleInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleInfo = "RuleInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建规则
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 创建规则
     @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
         self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建规则
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
@@ -75,16 +75,16 @@ extension Gpm {
     public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
         try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建规则
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 创建规则
     @inlinable
-    public func createRule(ruleName: String, ruleScript: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+    public func createRule(ruleName: String, ruleScript: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
         self.createRule(CreateRuleRequest(ruleName: ruleName, ruleScript: ruleScript, ruleDesc: ruleDesc, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建规则
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持

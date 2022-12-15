@@ -34,143 +34,143 @@ extension TCRedisError {
             case updateInstanceInfoFailed = "FailedOperation.UpdateInstanceInfoFailed"
             case updateSecurityGroupsFailed = "FailedOperation.UpdateSecurityGroupsFailed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例安全组信息添加失败。
         public static var addInstanceInfoFailed: FailedOperation {
             FailedOperation(.addInstanceInfoFailed)
         }
-        
+
         /// 绑定安全组失败。
         public static var associateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.associateSecurityGroupsFailed)
         }
-        
+
         /// 实例安全组信息清除失败。
         public static var clearInstanceInfoFailed: FailedOperation {
             FailedOperation(.clearInstanceInfoFailed)
         }
-        
+
         /// 提交工作流失败。
         public static var commitFlowError: FailedOperation {
             FailedOperation(.commitFlowError)
         }
-        
+
         /// 解绑安全组失败。
         public static var disassociateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.disassociateSecurityGroupsFailed)
         }
-        
+
         /// 当前DTS状态下不允许该操作。
         public static var dtsStatusAbnormal: FailedOperation {
             FailedOperation(.dtsStatusAbnormal)
         }
-        
+
         /// 流表不存在。
         public static var flowNotExists: FailedOperation {
             FailedOperation(.flowNotExists)
         }
-        
+
         /// 获取安全组详情失败。
         public static var getSecurityGroupDetailFailed: FailedOperation {
             FailedOperation(.getSecurityGroupDetailFailed)
         }
-        
+
         /// 支付失败。
         public static var payFailed: FailedOperation {
             FailedOperation(.payFailed)
         }
-        
+
         /// 暂时笼统的定义这个错误码。
         public static var redoFlowFailed: FailedOperation {
             FailedOperation(.redoFlowFailed)
         }
-        
+
         /// 设置规则失败。
         public static var setRuleLocationFailed: FailedOperation {
             FailedOperation(.setRuleLocationFailed)
         }
-        
+
         /// 内部系统错误，和业务无关。
         public static var systemError: FailedOperation {
             FailedOperation(.systemError)
         }
-        
+
         /// 实例不支持该接口。
         public static var unSupportError: FailedOperation {
             FailedOperation(.unSupportError)
         }
-        
+
         /// weekday输入无效数据。
         public static var unknown: FailedOperation {
             FailedOperation(.unknown)
         }
-        
+
         /// 实例安全组信息更新失败。
         public static var updateInstanceInfoFailed: FailedOperation {
             FailedOperation(.updateInstanceInfoFailed)
         }
-        
+
         /// 更新安全组失败。
         public static var updateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.updateSecurityGroupsFailed)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {
-            case .addInstanceInfoFailed: 
+            case .addInstanceInfoFailed:
                 code = .failedOperation_AddInstanceInfoFailed
-            case .associateSecurityGroupsFailed: 
+            case .associateSecurityGroupsFailed:
                 code = .failedOperation_AssociateSecurityGroupsFailed
-            case .clearInstanceInfoFailed: 
+            case .clearInstanceInfoFailed:
                 code = .failedOperation_ClearInstanceInfoFailed
-            case .commitFlowError: 
+            case .commitFlowError:
                 code = .failedOperation_CommitFlowError
-            case .disassociateSecurityGroupsFailed: 
+            case .disassociateSecurityGroupsFailed:
                 code = .failedOperation_DisassociateSecurityGroupsFailed
-            case .dtsStatusAbnormal: 
+            case .dtsStatusAbnormal:
                 code = .failedOperation_DtsStatusAbnormal
-            case .flowNotExists: 
+            case .flowNotExists:
                 code = .failedOperation_FlowNotExists
-            case .getSecurityGroupDetailFailed: 
+            case .getSecurityGroupDetailFailed:
                 code = .failedOperation_GetSecurityGroupDetailFailed
-            case .payFailed: 
+            case .payFailed:
                 code = .failedOperation_PayFailed
-            case .redoFlowFailed: 
+            case .redoFlowFailed:
                 code = .failedOperation_RedoFlowFailed
-            case .setRuleLocationFailed: 
+            case .setRuleLocationFailed:
                 code = .failedOperation_SetRuleLocationFailed
-            case .systemError: 
+            case .systemError:
                 code = .failedOperation_SystemError
-            case .unSupportError: 
+            case .unSupportError:
                 code = .failedOperation_UnSupportError
-            case .unknown: 
+            case .unknown:
                 code = .failedOperation_Unknown
-            case .updateInstanceInfoFailed: 
+            case .updateInstanceInfoFailed:
                 code = .failedOperation_UpdateInstanceInfoFailed
-            case .updateSecurityGroupsFailed: 
+            case .updateSecurityGroupsFailed:
                 code = .failedOperation_UpdateSecurityGroupsFailed
             }
             return TCRedisError(code, context: self.context)

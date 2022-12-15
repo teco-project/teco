@@ -19,39 +19,39 @@ extension Ump {
     public struct CreateCaptureRequest: TCRequestModel {
         /// 原始抓拍报文
         public let data: String
-        
-        public init (data: String) {
+
+        public init(data: String) {
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
         }
     }
-    
+
     /// CreateCapture返回参数结构体
     public struct CreateCaptureResponse: TCResponseModel {
         /// 原始应答报文
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rspData: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rspData = "RspData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 抓拍上报接口
     ///
     /// 场内抓拍上报接口
     @inlinable
-    public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCaptureResponse > {
+    public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCaptureResponse> {
         self.client.execute(action: "CreateCapture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 抓拍上报接口
     ///
     /// 场内抓拍上报接口
@@ -59,15 +59,15 @@ extension Ump {
     public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCaptureResponse {
         try await self.client.execute(action: "CreateCapture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 抓拍上报接口
     ///
     /// 场内抓拍上报接口
     @inlinable
-    public func createCapture(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCaptureResponse > {
+    public func createCapture(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCaptureResponse> {
         self.createCapture(CreateCaptureRequest(data: data), logger: logger, on: eventLoop)
     }
-    
+
     /// 抓拍上报接口
     ///
     /// 场内抓拍上报接口

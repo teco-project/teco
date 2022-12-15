@@ -19,13 +19,13 @@ extension Lighthouse {
     public struct DescribeBundlesRequest: TCRequestModel {
         /// 套餐 ID 列表。
         public let bundleIds: [String]?
-        
+
         /// 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         public let limit: Int64?
-        
+
         /// 过滤器列表。
         /// <li>bundle-id</li>按照【套餐 ID】进行过滤。
         /// 类型：String
@@ -44,18 +44,18 @@ extension Lighthouse {
         /// 必选：否
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 BundleIds 和 Filters。
         public let filters: [Filter]?
-        
+
         /// 可用区列表。默认为全部可用区。
         public let zones: [String]?
-        
-        public init (bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil) {
+
+        public init(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil) {
             self.bundleIds = bundleIds
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.zones = zones
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bundleIds = "BundleIds"
             case offset = "Offset"
@@ -64,33 +64,33 @@ extension Lighthouse {
             case zones = "Zones"
         }
     }
-    
+
     /// DescribeBundles返回参数结构体
     public struct DescribeBundlesResponse: TCResponseModel {
         /// 套餐详细信息列表。
         public let bundleSet: [Bundle]
-        
+
         /// 符合要求的套餐总数，用于分页展示。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bundleSet = "BundleSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
-    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundlesResponse > {
+    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundlesResponse> {
         self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
@@ -98,15 +98,15 @@ extension Lighthouse {
     public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
         try await self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
-    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundlesResponse > {
+    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundlesResponse> {
         self.describeBundles(DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。

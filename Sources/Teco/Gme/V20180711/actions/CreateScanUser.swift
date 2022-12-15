@@ -19,53 +19,53 @@ extension Gme {
     public struct CreateScanUserRequest: TCRequestModel {
         /// 应用ID，登录控制台 - 服务管理创建应用得到的AppID
         public let bizId: UInt64
-        
+
         /// 需要新增送检的用户号。示例：1234
         public let userId: UInt64?
-        
-        public init (bizId: UInt64, userId: UInt64? = nil) {
+
+        public init(bizId: UInt64, userId: UInt64? = nil) {
             self.bizId = bizId
             self.userId = userId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
             case userId = "UserId"
         }
     }
-    
+
     /// CreateScanUser返回参数结构体
     public struct CreateScanUserResponse: TCResponseModel {
         /// 返回结果码
         public let errorCode: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errorCode = "ErrorCode"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增自定义送检用户
     @inlinable
-    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScanUserResponse > {
+    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanUserResponse> {
         self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增自定义送检用户
     @inlinable
     public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
         try await self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增自定义送检用户
     @inlinable
-    public func createScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScanUserResponse > {
+    public func createScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanUserResponse> {
         self.createScanUser(CreateScanUserRequest(bizId: bizId, userId: userId), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增自定义送检用户
     @inlinable
     public func createScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {

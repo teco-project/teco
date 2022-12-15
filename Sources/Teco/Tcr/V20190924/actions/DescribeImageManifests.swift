@@ -19,23 +19,23 @@ extension Tcr {
     public struct DescribeImageManifestsRequest: TCRequestModel {
         /// 实例ID
         public let registryId: String
-        
+
         /// 命名空间名称
         public let namespaceName: String
-        
+
         /// 镜像仓库名称
         public let repositoryName: String
-        
+
         /// 镜像版本
         public let imageVersion: String
-        
-        public init (registryId: String, namespaceName: String, repositoryName: String, imageVersion: String) {
+
+        public init(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.repositoryName = repositoryName
             self.imageVersion = imageVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
@@ -43,43 +43,43 @@ extension Tcr {
             case imageVersion = "ImageVersion"
         }
     }
-    
+
     /// DescribeImageManifests返回参数结构体
     public struct DescribeImageManifestsResponse: TCResponseModel {
         /// 镜像的Manifest信息
         public let manifest: String
-        
+
         /// 镜像的配置信息
         public let config: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case manifest = "Manifest"
             case config = "Config"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器镜像Manifest信息
     @inlinable
-    public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageManifestsResponse > {
+    public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageManifestsResponse> {
         self.client.execute(action: "DescribeImageManifests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器镜像Manifest信息
     @inlinable
     public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageManifestsResponse {
         try await self.client.execute(action: "DescribeImageManifests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器镜像Manifest信息
     @inlinable
-    public func describeImageManifests(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageManifestsResponse > {
+    public func describeImageManifests(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageManifestsResponse> {
         self.describeImageManifests(DescribeImageManifestsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器镜像Manifest信息
     @inlinable
     public func describeImageManifests(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageManifestsResponse {

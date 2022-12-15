@@ -20,47 +20,47 @@ extension TCWafError {
             case clsInternalError = "FailedOperation.CLSInternalError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CLS内部错误。
         ///
         /// 错误表示WAF的API后端访问CLS接口失败,包括接口失败,语法失败,参数校验不通过等。
         public static var clsInternalError: FailedOperation {
             FailedOperation(.clsInternalError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asWafError() -> TCWafError {
             let code: TCWafError.Code
             switch self.error {
-            case .clsInternalError: 
+            case .clsInternalError:
                 code = .failedOperation_CLSInternalError
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCWafError(code, context: self.context)

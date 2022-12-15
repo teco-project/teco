@@ -17,28 +17,28 @@
 extension Cwp {
     /// DeleteWebPageEventLog请求参数结构体
     public struct DeleteWebPageEventLogRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DeleteWebPageEventLog返回参数结构体
     public struct DeleteWebPageEventLogResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
     @inlinable
-    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebPageEventLogResponse > {
+    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
         self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
@@ -46,15 +46,15 @@ extension Cwp {
     public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
         try await self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
     @inlinable
-    public func deleteWebPageEventLog(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebPageEventLogResponse > {
+    public func deleteWebPageEventLog(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
         self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录

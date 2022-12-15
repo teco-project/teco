@@ -19,21 +19,21 @@ extension Faceid {
     public struct MobileNetworkTimeVerificationRequest: TCRequestModel {
         /// 手机号码
         public let mobile: String
-        
+
         /// 敏感数据加密信息。对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         public let encryption: Encryption?
-        
-        public init (mobile: String, encryption: Encryption? = nil) {
+
+        public init(mobile: String, encryption: Encryption? = nil) {
             self.mobile = mobile
             self.encryption = encryption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mobile = "Mobile"
             case encryption = "Encryption"
         }
     }
-    
+
     /// MobileNetworkTimeVerification返回参数结构体
     public struct MobileNetworkTimeVerificationResponse: TCResponseModel {
         /// 认证结果码，收费情况如下。
@@ -45,17 +45,17 @@ extension Faceid {
         /// -1: 手机号格式不正确
         /// -4: 验证中心服务繁忙
         public let result: String
-        
+
         /// 业务结果描述。
         public let description: String
-        
+
         /// 在网时长区间。
         /// 格式为(a,b]，表示在网时长在a个月以上，b个月以下。若b为+时表示没有上限。
         public let range: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case description = "Description"
@@ -63,15 +63,15 @@ extension Faceid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 手机号在网时长核验
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
-    public func mobileNetworkTimeVerification(_ input: MobileNetworkTimeVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MobileNetworkTimeVerificationResponse > {
+    public func mobileNetworkTimeVerification(_ input: MobileNetworkTimeVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileNetworkTimeVerificationResponse> {
         self.client.execute(action: "MobileNetworkTimeVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 手机号在网时长核验
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
@@ -79,15 +79,15 @@ extension Faceid {
     public func mobileNetworkTimeVerification(_ input: MobileNetworkTimeVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileNetworkTimeVerificationResponse {
         try await self.client.execute(action: "MobileNetworkTimeVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 手机号在网时长核验
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
-    public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MobileNetworkTimeVerificationResponse > {
+    public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileNetworkTimeVerificationResponse> {
         self.mobileNetworkTimeVerification(MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption), logger: logger, on: eventLoop)
     }
-    
+
     /// 手机号在网时长核验
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。

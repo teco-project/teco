@@ -19,44 +19,44 @@ extension Iotcloud {
     public struct DeletePrivateCARequest: TCRequestModel {
         /// 私有CA证书名称
         public let certName: String
-        
-        public init (certName: String) {
+
+        public init(certName: String) {
             self.certName = certName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certName = "CertName"
         }
     }
-    
+
     /// DeletePrivateCA返回参数结构体
     public struct DeletePrivateCAResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除私有CA证书
     @inlinable
-    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateCAResponse > {
+    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateCAResponse> {
         self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除私有CA证书
     @inlinable
     public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
         try await self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除私有CA证书
     @inlinable
-    public func deletePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateCAResponse > {
+    public func deletePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateCAResponse> {
         self.deletePrivateCA(DeletePrivateCARequest(certName: certName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除私有CA证书
     @inlinable
     public func deletePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {

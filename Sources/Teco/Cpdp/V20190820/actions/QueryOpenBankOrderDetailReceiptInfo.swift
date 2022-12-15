@@ -19,29 +19,29 @@ extension Cpdp {
     public struct QueryOpenBankOrderDetailReceiptInfoRequest: TCRequestModel {
         /// 渠道商户ID
         public let channelMerchantId: String
-        
+
         /// 渠道子商户ID
         public let channelSubMerchantId: String
-        
+
         /// 渠道名称，目前只支持ALIPAY
         public let channelName: String
-        
+
         /// 支付方式，目前只支持SAFT_ISV
         public let paymentMethod: String
-        
+
         /// 外部回单申请ID，与渠道回单申请ID二者选填其一
         public let outApplyId: String?
-        
+
         /// 渠道回单申请ID，与外部回单申请ID二者选填其一
         public let channelApplyId: String?
-        
+
         /// 环境类型。
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// _不填默认为生产环境_
         public let environment: String?
-        
-        public init (channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil) {
+
+        public init(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
             self.channelName = channelName
@@ -50,7 +50,7 @@ extension Cpdp {
             self.channelApplyId = channelApplyId
             self.environment = environment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelMerchantId = "ChannelMerchantId"
             case channelSubMerchantId = "ChannelSubMerchantId"
@@ -61,23 +61,23 @@ extension Cpdp {
             case environment = "Environment"
         }
     }
-    
+
     /// QueryOpenBankOrderDetailReceiptInfo返回参数结构体
     public struct QueryOpenBankOrderDetailReceiptInfoResponse: TCResponseModel {
         /// 错误码。
         public let errCode: String
-        
+
         /// 错误消息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: QueryOpenBankOrderDetailReceiptInfoResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -85,25 +85,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankOrderDetailReceiptInfoResponse > {
+    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankOrderDetailReceiptInfoResponse> {
         self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
     public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
         try await self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankOrderDetailReceiptInfoResponse > {
+    public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankOrderDetailReceiptInfoResponse> {
         self.queryOpenBankOrderDetailReceiptInfo(QueryOpenBankOrderDetailReceiptInfoRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
     public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {

@@ -19,23 +19,23 @@ extension Tcr {
     public struct ModifySecurityPolicyRequest: TCRequestModel {
         /// 实例的Id
         public let registryId: String
-        
+
         /// PolicyId
         public let policyIndex: Int64
-        
+
         /// 192.168.0.0/24 白名单Ip
         public let cidrBlock: String
-        
+
         /// 备注
         public let description: String
-        
-        public init (registryId: String, policyIndex: Int64, cidrBlock: String, description: String) {
+
+        public init(registryId: String, policyIndex: Int64, cidrBlock: String, description: String) {
             self.registryId = registryId
             self.policyIndex = policyIndex
             self.cidrBlock = cidrBlock
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case policyIndex = "PolicyIndex"
@@ -43,39 +43,39 @@ extension Tcr {
             case description = "Description"
         }
     }
-    
+
     /// ModifySecurityPolicy返回参数结构体
     public struct ModifySecurityPolicyResponse: TCResponseModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新实例公网访问白名单
     @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
         self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新实例公网访问白名单
     @inlinable
     public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
         try await self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新实例公网访问白名单
     @inlinable
-    public func modifySecurityPolicy(registryId: String, policyIndex: Int64, cidrBlock: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
+    public func modifySecurityPolicy(registryId: String, policyIndex: Int64, cidrBlock: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
         self.modifySecurityPolicy(ModifySecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, cidrBlock: cidrBlock, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新实例公网访问白名单
     @inlinable
     public func modifySecurityPolicy(registryId: String, policyIndex: Int64, cidrBlock: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {

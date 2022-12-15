@@ -21,54 +21,54 @@ extension TCMrsError {
             case serviceNotOpen = "FailedOperation.ServiceNotOpen"
             case unknownError = "FailedOperation.UnknownError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 用量消息推送失败。
         public static var pushUsageMessageError: FailedOperation {
             FailedOperation(.pushUsageMessageError)
         }
-        
+
         /// 服务未开通。
         public static var serviceNotOpen: FailedOperation {
             FailedOperation(.serviceNotOpen)
         }
-        
+
         /// 未知错误。
         ///
         /// 服务端故障，请重试。
         public static var unknownError: FailedOperation {
             FailedOperation(.unknownError)
         }
-        
+
         public func asMrsError() -> TCMrsError {
             let code: TCMrsError.Code
             switch self.error {
-            case .pushUsageMessageError: 
+            case .pushUsageMessageError:
                 code = .failedOperation_PushUsageMessageError
-            case .serviceNotOpen: 
+            case .serviceNotOpen:
                 code = .failedOperation_ServiceNotOpen
-            case .unknownError: 
+            case .unknownError:
                 code = .failedOperation_UnknownError
             }
             return TCMrsError(code, context: self.context)

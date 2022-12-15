@@ -19,38 +19,38 @@ extension Emr {
     public struct DescribeEmrApplicationStaticsRequest: TCRequestModel {
         /// 集群id
         public let instanceId: String
-        
+
         /// 起始时间，时间戳（秒）
         public let startTime: Int64?
-        
+
         /// 结束时间，时间戳（秒）
         public let endTime: Int64?
-        
+
         /// 过滤的队列名
         public let queues: [String]?
-        
+
         /// 过滤的用户名
         public let users: [String]?
-        
+
         /// 过滤的作业类型
         public let applicationTypes: [String]?
-        
+
         /// 分组字段，可选：queue, user, applicationType
         public let groupBy: [String]?
-        
+
         /// 排序字段，可选：sumMemorySeconds, sumVCoreSeconds, sumHDFSBytesWritten, sumHDFSBytesRead
         public let orderBy: String?
-        
+
         /// 是否顺序排序，0-逆序，1-正序
         public let isAsc: Int64?
-        
+
         /// 页号
         public let offset: Int64?
-        
+
         /// 页容量
         public let limit: Int64?
-        
-        public init (instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -63,7 +63,7 @@ extension Emr {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
@@ -78,27 +78,27 @@ extension Emr {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeEmrApplicationStatics返回参数结构体
     public struct DescribeEmrApplicationStaticsResponse: TCResponseModel {
         /// 作业统计信息
         public let statics: [ApplicationStatics]
-        
+
         /// 总数
         public let totalCount: Int64
-        
+
         /// 可选择的队列名
         public let queues: [String]
-        
+
         /// 可选择的用户名
         public let users: [String]
-        
+
         /// 可选择的作业类型
         public let applicationTypes: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case statics = "Statics"
             case totalCount = "TotalCount"
@@ -108,15 +108,15 @@ extension Emr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询YARN的任务统计信息
     ///
     ///  yarn application 统计接口查询
     @inlinable
-    public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmrApplicationStaticsResponse > {
+    public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmrApplicationStaticsResponse> {
         self.client.execute(action: "DescribeEmrApplicationStatics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询YARN的任务统计信息
     ///
     ///  yarn application 统计接口查询
@@ -124,15 +124,15 @@ extension Emr {
     public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
         try await self.client.execute(action: "DescribeEmrApplicationStatics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询YARN的任务统计信息
     ///
     ///  yarn application 统计接口查询
     @inlinable
-    public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmrApplicationStaticsResponse > {
+    public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmrApplicationStaticsResponse> {
         self.describeEmrApplicationStatics(DescribeEmrApplicationStaticsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询YARN的任务统计信息
     ///
     ///  yarn application 统计接口查询

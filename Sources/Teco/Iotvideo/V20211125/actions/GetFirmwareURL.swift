@@ -19,62 +19,62 @@ extension Iotvideo {
     public struct GetFirmwareURLRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
+
         /// 固件版本
         public let firmwareVersion: String
-        
-        public init (productID: String, firmwareVersion: String) {
+
+        public init(productID: String, firmwareVersion: String) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
             case firmwareVersion = "FirmwareVersion"
         }
     }
-    
+
     /// GetFirmwareURL返回参数结构体
     public struct GetFirmwareURLResponse: TCResponseModel {
         /// 固件URL
         public let url: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取固件下载地址
     ///
-    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL
     @inlinable
-    public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFirmwareURLResponse > {
+    public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFirmwareURLResponse> {
         self.client.execute(action: "GetFirmwareURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取固件下载地址
     ///
-    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL
     @inlinable
     public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFirmwareURLResponse {
         try await self.client.execute(action: "GetFirmwareURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取固件下载地址
     ///
-    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL
     @inlinable
-    public func getFirmwareURL(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFirmwareURLResponse > {
+    public func getFirmwareURL(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFirmwareURLResponse> {
         self.getFirmwareURL(GetFirmwareURLRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取固件下载地址
     ///
-    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL
     @inlinable
     public func getFirmwareURL(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFirmwareURLResponse {
         try await self.getFirmwareURL(GetFirmwareURLRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)

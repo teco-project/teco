@@ -19,27 +19,27 @@ extension Zj {
     public struct DescribeMmsInstanceListRequest: TCRequestModel {
         /// 商户证书
         public let license: String
-        
+
         /// 偏移量
         public let offset: Int64
-        
+
         /// 返回数量
         public let limit: Int64
-        
+
         /// 业务代码
         public let appSubId: String?
-        
+
         /// 实例标题
         public let title: String?
-        
-        public init (license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil) {
+
+        public init(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil) {
             self.license = license
             self.offset = offset
             self.limit = limit
             self.appSubId = appSubId
             self.title = title
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case license = "License"
             case offset = "Offset"
@@ -48,39 +48,39 @@ extension Zj {
             case title = "Title"
         }
     }
-    
+
     /// DescribeMmsInstanceList返回参数结构体
     public struct DescribeMmsInstanceListResponse: TCResponseModel {
         /// 彩信实例信息列表返回
         public let data: MmsInstanceInfoList
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取彩信实例列表
     @inlinable
-    public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceListResponse > {
+    public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceListResponse> {
         self.client.execute(action: "DescribeMmsInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取彩信实例列表
     @inlinable
     public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceListResponse {
         try await self.client.execute(action: "DescribeMmsInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取彩信实例列表
     @inlinable
-    public func describeMmsInstanceList(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceListResponse > {
+    public func describeMmsInstanceList(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceListResponse> {
         self.describeMmsInstanceList(DescribeMmsInstanceListRequest(license: license, offset: offset, limit: limit, appSubId: appSubId, title: title), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取彩信实例列表
     @inlinable
     public func describeMmsInstanceList(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceListResponse {

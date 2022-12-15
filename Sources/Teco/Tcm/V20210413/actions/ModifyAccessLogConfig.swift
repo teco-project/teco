@@ -19,35 +19,35 @@ extension Tcm {
     public struct ModifyAccessLogConfigRequest: TCRequestModel {
         /// mesh ID
         public let meshId: String
-        
+
         /// 选中的范围
         public let selectedRange: SelectedRange?
-        
+
         /// 采用的模板，可选值：istio（默认）、trace、custom
         public let template: String?
-        
+
         /// 是否启用
         public let enable: Bool?
-        
+
         /// 腾讯云日志服务相关参数
         public let cls: CLS?
-        
+
         /// 编码格式，可选值：TEXT、JSON
         public let encoding: String?
-        
+
         /// 日志格式
         public let format: String?
-        
+
         /// 是否启用标准输出
         public let enableStdout: Bool?
-        
+
         /// 是否启动GRPC第三方服务器
         public let enableServer: Bool?
-        
+
         /// GRPC第三方服务器地址
         public let address: String?
-        
-        public init (meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil) {
+
+        public init(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil) {
             self.meshId = meshId
             self.selectedRange = selectedRange
             self.template = template
@@ -59,7 +59,7 @@ extension Tcm {
             self.enableServer = enableServer
             self.address = address
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case meshId = "MeshId"
             case selectedRange = "SelectedRange"
@@ -73,35 +73,35 @@ extension Tcm {
             case address = "Address"
         }
     }
-    
+
     /// ModifyAccessLogConfig返回参数结构体
     public struct ModifyAccessLogConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改访问日志配置
     @inlinable
-    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessLogConfigResponse > {
+    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessLogConfigResponse> {
         self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改访问日志配置
     @inlinable
     public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
         try await self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改访问日志配置
     @inlinable
-    public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessLogConfigResponse > {
+    public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessLogConfigResponse> {
         self.modifyAccessLogConfig(ModifyAccessLogConfigRequest(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改访问日志配置
     @inlinable
     public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {

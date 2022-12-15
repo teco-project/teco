@@ -19,26 +19,26 @@ extension Bm {
     public struct DescribePsaRegulationsRequest: TCRequestModel {
         /// 数量限制
         public let limit: UInt64
-        
+
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 规则ID过滤，支持模糊查询
         public let psaIds: [String]?
-        
+
         /// 规则别名过滤，支持模糊查询
         public let psaNames: [String]?
-        
+
         /// 标签过滤
         public let tags: [Tag]?
-        
+
         /// 排序字段，取值支持：CreateTime
         public let orderField: String?
-        
+
         /// 排序方式 0:递增(默认) 1:递减
         public let order: UInt64?
-        
-        public init (limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil) {
+
+        public init(limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil) {
             self.limit = limit
             self.offset = offset
             self.psaIds = psaIds
@@ -47,7 +47,7 @@ extension Bm {
             self.orderField = orderField
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -58,43 +58,43 @@ extension Bm {
             case order = "Order"
         }
     }
-    
+
     /// DescribePsaRegulations返回参数结构体
     public struct DescribePsaRegulationsResponse: TCResponseModel {
         /// 返回规则数量
         public let totalCount: UInt64
-        
+
         /// 返回规则列表
         public let psaRegulations: [PsaRegulation]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case psaRegulations = "PsaRegulations"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取预授权规则列表
     @inlinable
-    public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePsaRegulationsResponse > {
+    public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePsaRegulationsResponse> {
         self.client.execute(action: "DescribePsaRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取预授权规则列表
     @inlinable
     public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePsaRegulationsResponse {
         try await self.client.execute(action: "DescribePsaRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取预授权规则列表
     @inlinable
-    public func describePsaRegulations(limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePsaRegulationsResponse > {
+    public func describePsaRegulations(limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePsaRegulationsResponse> {
         self.describePsaRegulations(DescribePsaRegulationsRequest(limit: limit, offset: offset, psaIds: psaIds, psaNames: psaNames, tags: tags, orderField: orderField, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取预授权规则列表
     @inlinable
     public func describePsaRegulations(limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePsaRegulationsResponse {

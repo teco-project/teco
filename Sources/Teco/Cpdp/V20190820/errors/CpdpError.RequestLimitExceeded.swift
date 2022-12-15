@@ -20,49 +20,49 @@ extension TCCpdpError {
             case midas = "RequestLimitExceeded.Midas"
             case midasInvalidRequest = "RequestLimitExceeded.MidasInvalidRequest"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 聚鑫接口请求频率限制。
         ///
         /// 请联系我们
         public static var midas: RequestLimitExceeded {
             RequestLimitExceeded(.midas)
         }
-        
+
         /// 聚鑫接口无效请求过多。
         ///
         /// 请联系我们
         public static var midasInvalidRequest: RequestLimitExceeded {
             RequestLimitExceeded(.midasInvalidRequest)
         }
-        
+
         public func asCpdpError() -> TCCpdpError {
             let code: TCCpdpError.Code
             switch self.error {
-            case .midas: 
+            case .midas:
                 code = .requestLimitExceeded_Midas
-            case .midasInvalidRequest: 
+            case .midasInvalidRequest:
                 code = .requestLimitExceeded_MidasInvalidRequest
             }
             return TCCpdpError(code, context: self.context)

@@ -19,15 +19,15 @@ extension Casb {
     public struct CryptoCopyColumnPolicyTableFilter: TCInputModel {
         /// 数据库名称
         public let databaseName: String
-        
+
         /// 表名称
         public let tableNameSet: [String]?
-        
-        public init (databaseName: String, tableNameSet: [String]? = nil) {
+
+        public init(databaseName: String, tableNameSet: [String]? = nil) {
             self.databaseName = databaseName
             self.tableNameSet = tableNameSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case tableNameSet = "TableNameSet"

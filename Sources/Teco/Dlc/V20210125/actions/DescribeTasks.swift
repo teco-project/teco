@@ -19,10 +19,10 @@ extension Dlc {
     public struct DescribeTasksRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,其中task-id支持最大50个过滤个数，其他过滤参数支持的总数不超过5个。
         /// task-id - String - （任务ID准确过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。
         /// task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。
@@ -30,23 +30,23 @@ extension Dlc {
         /// task-operator- string （子uin过滤）
         /// task-kind - string （任务类型过滤）
         public let filters: [Filter]?
-        
+
         /// 排序字段，支持如下字段类型，create-time（创建时间，默认）、update-time（更新时间）
         public let sortBy: String?
-        
+
         /// 排序方式，desc表示正序，asc表示反序， 默认为asc。
         public let sorting: String?
-        
+
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。默认为45天前的当前时刻
         public let startTime: String?
-        
+
         /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
         public let endTime: String?
-        
+
         /// 支持计算资源名字筛选
         public let dataEngineName: String?
-        
-        public init (limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil) {
+
+        public init(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -56,7 +56,7 @@ extension Dlc {
             self.endTime = endTime
             self.dataEngineName = dataEngineName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -68,22 +68,22 @@ extension Dlc {
             case dataEngineName = "DataEngineName"
         }
     }
-    
+
     /// DescribeTasks返回参数结构体
     public struct DescribeTasksResponse: TCResponseModel {
         /// 任务对象列表。
         public let taskList: [TaskResponseInfo]
-        
+
         /// 实例总数。
         public let totalCount: UInt64
-        
+
         /// 任务概览信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tasksOverview: TasksOverview?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskList = "TaskList"
             case totalCount = "TotalCount"
@@ -91,15 +91,15 @@ extension Dlc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询任务列表
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
         self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务列表
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
@@ -107,15 +107,15 @@ extension Dlc {
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询任务列表
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
-    public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+    public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
         self.describeTasks(DescribeTasksRequest(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务列表
     ///
     /// 该接口（DescribleTasks）用于查询任务列表

@@ -19,40 +19,40 @@ extension Essbasic {
     public struct ChannelCreateBatchCancelFlowUrlRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
-        
+
         /// 签署流程Id数组
         public let flowIds: [String]
-        
+
         /// 操作人信息
         public let `operator`: UserInfo?
-        
-        public init (agent: Agent, flowIds: [String], operator: UserInfo? = nil) {
+
+        public init(agent: Agent, flowIds: [String], operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case flowIds = "FlowIds"
             case `operator` = "Operator"
         }
     }
-    
+
     /// ChannelCreateBatchCancelFlowUrl返回参数结构体
     public struct ChannelCreateBatchCancelFlowUrlResponse: TCResponseModel {
         /// 批量撤销url
         public let batchCancelFlowUrl: String
-        
+
         /// 签署流程批量撤销失败原因
         public let failMessages: [String]
-        
+
         /// 签署撤销url过期时间-年月日-时分秒
         public let urlExpireOn: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchCancelFlowUrl = "BatchCancelFlowUrl"
             case failMessages = "FailMessages"
@@ -60,7 +60,7 @@ extension Essbasic {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 电子签渠道版-根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接
@@ -70,10 +70,10 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateBatchCancelFlowUrlResponse > {
+    public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
         self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 电子签渠道版-根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接
@@ -86,7 +86,7 @@ extension Essbasic {
     public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
         try await self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 电子签渠道版-根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接
@@ -96,10 +96,10 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateBatchCancelFlowUrlResponse > {
+    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
         self.channelCreateBatchCancelFlowUrl(ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 电子签渠道版-根据签署流程id创建批量撤销url
     ///
     /// 指定需要批量撤销的签署流程Id，获取批量撤销链接

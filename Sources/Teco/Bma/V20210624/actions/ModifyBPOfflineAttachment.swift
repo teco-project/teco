@@ -19,27 +19,27 @@ extension Bma {
     public struct ModifyBPOfflineAttachmentRequest: TCRequestModel {
         /// 营业执照
         public let licenseName: String?
-        
+
         /// 授权书
         public let authorizationName: String?
-        
+
         /// 商标名称
         public let brandName: String?
-        
+
         /// 商标证明
         public let brandCertificateName: String?
-        
+
         /// 商标转让证明
         public let transferName: String?
-        
-        public init (licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil) {
+
+        public init(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil) {
             self.licenseName = licenseName
             self.authorizationName = authorizationName
             self.brandName = brandName
             self.brandCertificateName = brandCertificateName
             self.transferName = transferName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case licenseName = "LicenseName"
             case authorizationName = "AuthorizationName"
@@ -48,35 +48,35 @@ extension Bma {
             case transferName = "TransferName"
         }
     }
-    
+
     /// ModifyBPOfflineAttachment返回参数结构体
     public struct ModifyBPOfflineAttachmentResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改下线材料
     @inlinable
-    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBPOfflineAttachmentResponse > {
+    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBPOfflineAttachmentResponse> {
         self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改下线材料
     @inlinable
     public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
         try await self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改下线材料
     @inlinable
-    public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBPOfflineAttachmentResponse > {
+    public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBPOfflineAttachmentResponse> {
         self.modifyBPOfflineAttachment(ModifyBPOfflineAttachmentRequest(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改下线材料
     @inlinable
     public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {

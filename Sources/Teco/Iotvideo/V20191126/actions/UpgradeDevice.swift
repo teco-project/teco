@@ -19,51 +19,51 @@ extension Iotvideo {
     public struct UpgradeDeviceRequest: TCRequestModel {
         /// 设备TID
         public let tid: String
-        
+
         /// 固件版本号
         public let otaVersion: String
-        
+
         /// 是否立即升级
         public let upgradeNow: Bool
-        
-        public init (tid: String, otaVersion: String, upgradeNow: Bool) {
+
+        public init(tid: String, otaVersion: String, upgradeNow: Bool) {
             self.tid = tid
             self.otaVersion = otaVersion
             self.upgradeNow = upgradeNow
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tid = "Tid"
             case otaVersion = "OtaVersion"
             case upgradeNow = "UpgradeNow"
         }
     }
-    
+
     /// UpgradeDevice返回参数结构体
     public struct UpgradeDeviceResponse: TCResponseModel {
         /// 设备端返回的数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设备固件升级
     ///
     /// 本接口（UpgradeDevice）用于对设备进行固件升级。
     /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
-    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDeviceResponse > {
+    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDeviceResponse> {
         self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设备固件升级
     ///
     /// 本接口（UpgradeDevice）用于对设备进行固件升级。
@@ -73,17 +73,17 @@ extension Iotvideo {
     public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
         try await self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设备固件升级
     ///
     /// 本接口（UpgradeDevice）用于对设备进行固件升级。
     /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
-    public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDeviceResponse > {
+    public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDeviceResponse> {
         self.upgradeDevice(UpgradeDeviceRequest(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow), logger: logger, on: eventLoop)
     }
-    
+
     /// 设备固件升级
     ///
     /// 本接口（UpgradeDevice）用于对设备进行固件升级。

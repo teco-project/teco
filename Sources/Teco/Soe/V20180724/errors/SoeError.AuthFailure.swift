@@ -21,54 +21,54 @@ extension TCSoeError {
             case invalidAuthorization = "AuthFailure.InvalidAuthorization"
             case other = "AuthFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号未开通口语评测服务或账号已欠费隔离，请开通服务或检查账号状态。
         ///
         /// 开通服务或检查账号状态。
         public static var accountUnavailable: AuthFailure {
             AuthFailure(.accountUnavailable)
         }
-        
+
         /// 鉴权失败。
         public static var invalidAuthorization: AuthFailure {
             AuthFailure(.invalidAuthorization)
         }
-        
+
         /// CAM签名/鉴权错误。
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-        
+
         public func asSoeError() -> TCSoeError {
             let code: TCSoeError.Code
             switch self.error {
-            case .accountUnavailable: 
+            case .accountUnavailable:
                 code = .authFailure_AccountUnavailable
-            case .invalidAuthorization: 
+            case .invalidAuthorization:
                 code = .authFailure_InvalidAuthorization
-            case .other: 
+            case .other:
                 code = .authFailure
             }
             return TCSoeError(code, context: self.context)

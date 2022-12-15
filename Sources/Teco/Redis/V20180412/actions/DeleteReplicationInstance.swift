@@ -19,48 +19,48 @@ extension Redis {
     public struct DeleteReplicationInstanceRequest: TCRequestModel {
         /// 复制组ID
         public let groupId: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 数据同步类型，true:需要数据强同步,false:不需要强同步，仅限删除主实例
         public let syncType: Bool
-        
-        public init (groupId: String, instanceId: String, syncType: Bool) {
+
+        public init(groupId: String, instanceId: String, syncType: Bool) {
             self.groupId = groupId
             self.instanceId = instanceId
             self.syncType = syncType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case instanceId = "InstanceId"
             case syncType = "SyncType"
         }
     }
-    
+
     /// DeleteReplicationInstance返回参数结构体
     public struct DeleteReplicationInstanceResponse: TCResponseModel {
         /// 异步任务ID
         public let taskId: Float
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除复制组成员
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReplicationInstanceResponse > {
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
         self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除复制组成员
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
@@ -68,15 +68,15 @@ extension Redis {
     public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
         try await self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除复制组成员
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
-    public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReplicationInstanceResponse > {
+    public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
         self.deleteReplicationInstance(DeleteReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, syncType: syncType), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除复制组成员
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance

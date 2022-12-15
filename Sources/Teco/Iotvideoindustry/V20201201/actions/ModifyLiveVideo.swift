@@ -19,49 +19,49 @@ extension Iotvideoindustry {
     public struct ModifyLiveVideoRequest: TCRequestModel {
         /// 视频ID 列表, 大小限制(100)
         public let intIDs: [Int64]
-        
+
         /// 过期时间 秒 (-1: 为永不过期)
         public let expireTime: Int64
-        
-        public init (intIDs: [Int64], expireTime: Int64) {
+
+        public init(intIDs: [Int64], expireTime: Int64) {
             self.intIDs = intIDs
             self.expireTime = expireTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case intIDs = "IntIDs"
             case expireTime = "ExpireTime"
         }
     }
-    
+
     /// ModifyLiveVideo返回参数结构体
     public struct ModifyLiveVideoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播录像编辑
     @inlinable
-    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveVideoResponse > {
+    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveVideoResponse> {
         self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播录像编辑
     @inlinable
     public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
         try await self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播录像编辑
     @inlinable
-    public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveVideoResponse > {
+    public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveVideoResponse> {
         self.modifyLiveVideo(ModifyLiveVideoRequest(intIDs: intIDs, expireTime: expireTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播录像编辑
     @inlinable
     public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {

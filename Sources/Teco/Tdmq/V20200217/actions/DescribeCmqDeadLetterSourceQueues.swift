@@ -19,23 +19,23 @@ extension Tdmq {
     public struct DescribeCmqDeadLetterSourceQueuesRequest: TCRequestModel {
         /// 死信队列名称
         public let deadLetterQueueName: String
-        
+
         /// 分页时本页获取主题列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0。
         public let limit: UInt64?
-        
+
         /// 分页时本页获取主题的个数，如果不传递该参数，则该参数默认为20，最大值为50。
         public let offset: UInt64?
-        
+
         /// 根据SourceQueueName过滤
         public let sourceQueueName: String?
-        
-        public init (deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil) {
+
+        public init(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil) {
             self.deadLetterQueueName = deadLetterQueueName
             self.limit = limit
             self.offset = offset
             self.sourceQueueName = sourceQueueName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deadLetterQueueName = "DeadLetterQueueName"
             case limit = "Limit"
@@ -43,43 +43,43 @@ extension Tdmq {
             case sourceQueueName = "SourceQueueName"
         }
     }
-    
+
     /// DescribeCmqDeadLetterSourceQueues返回参数结构体
     public struct DescribeCmqDeadLetterSourceQueuesResponse: TCResponseModel {
         /// 满足本次条件的队列个数
         public let totalCount: UInt64
-        
+
         /// 死信队列源队列
         public let queueSet: [CmqDeadLetterSource]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case queueSet = "QueueSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 枚举cmq死信队列源队列
     @inlinable
-    public func describeCmqDeadLetterSourceQueues(_ input: DescribeCmqDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqDeadLetterSourceQueuesResponse > {
+    public func describeCmqDeadLetterSourceQueues(_ input: DescribeCmqDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqDeadLetterSourceQueuesResponse> {
         self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举cmq死信队列源队列
     @inlinable
     public func describeCmqDeadLetterSourceQueues(_ input: DescribeCmqDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqDeadLetterSourceQueuesResponse {
         try await self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 枚举cmq死信队列源队列
     @inlinable
-    public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqDeadLetterSourceQueuesResponse > {
+    public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqDeadLetterSourceQueuesResponse> {
         self.describeCmqDeadLetterSourceQueues(DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName), logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举cmq死信队列源队列
     @inlinable
     public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqDeadLetterSourceQueuesResponse {

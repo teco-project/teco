@@ -19,27 +19,27 @@ extension Cmq {
     public struct DescribeQueueDetailRequest: TCRequestModel {
         /// 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0
         public let offset: UInt64?
-        
+
         /// 分页时本页获取队列的个数，如果不传递该参数，则该参数默认为20，最大值为50。
         public let limit: UInt64?
-        
+
         /// 筛选参数，目前支持QueueName筛选，且仅支持一个关键字
         public let filters: [Filter]?
-        
+
         /// 标签搜索
         public let tagKey: String?
-        
+
         /// 精确匹配QueueName
         public let queueName: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.tagKey = tagKey
             self.queueName = queueName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -48,43 +48,43 @@ extension Cmq {
             case queueName = "QueueName"
         }
     }
-    
+
     /// DescribeQueueDetail返回参数结构体
     public struct DescribeQueueDetailResponse: TCResponseModel {
         /// 总队列数。
         public let totalCount: UInt64
-        
+
         /// 队列详情列表。
         public let queueSet: [QueueSet]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case queueSet = "QueueSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 枚举队列
     @inlinable
-    public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQueueDetailResponse > {
+    public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQueueDetailResponse> {
         self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举队列
     @inlinable
     public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {
         try await self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 枚举队列
     @inlinable
-    public func describeQueueDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQueueDetailResponse > {
+    public func describeQueueDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQueueDetailResponse> {
         self.describeQueueDetail(DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName), logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举队列
     @inlinable
     public func describeQueueDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {

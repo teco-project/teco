@@ -19,30 +19,30 @@ extension Vpc {
     public struct CreateDefaultSecurityGroupRequest: TCRequestModel {
         /// 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
         public let projectId: String?
-        
-        public init (projectId: String? = nil) {
+
+        public init(projectId: String? = nil) {
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// CreateDefaultSecurityGroup返回参数结构体
     public struct CreateDefaultSecurityGroupResponse: TCResponseModel {
         /// 安全组对象。
         public let securityGroup: SecurityGroup
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroup = "SecurityGroup"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建默认安全组
     ///
     /// 本接口（CreateDefaultSecurityGroup）用于创建（如果项目下未存在默认安全组，则创建；已存在则获取。）默认安全组（SecurityGroup）。
@@ -50,10 +50,10 @@ extension Vpc {
     /// * 默认安全组会放通所有IPv4规则，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createDefaultSecurityGroup(_ input: CreateDefaultSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultSecurityGroupResponse > {
+    public func createDefaultSecurityGroup(_ input: CreateDefaultSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultSecurityGroupResponse> {
         self.client.execute(action: "CreateDefaultSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建默认安全组
     ///
     /// 本接口（CreateDefaultSecurityGroup）用于创建（如果项目下未存在默认安全组，则创建；已存在则获取。）默认安全组（SecurityGroup）。
@@ -64,7 +64,7 @@ extension Vpc {
     public func createDefaultSecurityGroup(_ input: CreateDefaultSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultSecurityGroupResponse {
         try await self.client.execute(action: "CreateDefaultSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建默认安全组
     ///
     /// 本接口（CreateDefaultSecurityGroup）用于创建（如果项目下未存在默认安全组，则创建；已存在则获取。）默认安全组（SecurityGroup）。
@@ -72,10 +72,10 @@ extension Vpc {
     /// * 默认安全组会放通所有IPv4规则，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createDefaultSecurityGroup(projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultSecurityGroupResponse > {
+    public func createDefaultSecurityGroup(projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultSecurityGroupResponse> {
         self.createDefaultSecurityGroup(CreateDefaultSecurityGroupRequest(projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建默认安全组
     ///
     /// 本接口（CreateDefaultSecurityGroup）用于创建（如果项目下未存在默认安全组，则创建；已存在则获取。）默认安全组（SecurityGroup）。

@@ -19,49 +19,49 @@ extension Antiddos {
     public struct CreateProtocolBlockConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
+
         /// 协议封禁配置
         public let protocolBlockConfig: ProtocolBlockConfig
-        
-        public init (instanceId: String, protocolBlockConfig: ProtocolBlockConfig) {
+
+        public init(instanceId: String, protocolBlockConfig: ProtocolBlockConfig) {
             self.instanceId = instanceId
             self.protocolBlockConfig = protocolBlockConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case protocolBlockConfig = "ProtocolBlockConfig"
         }
     }
-    
+
     /// CreateProtocolBlockConfig返回参数结构体
     public struct CreateProtocolBlockConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置DDoS防护的协议封禁配置
     @inlinable
-    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtocolBlockConfigResponse > {
+    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
         self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置DDoS防护的协议封禁配置
     @inlinable
     public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
         try await self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置DDoS防护的协议封禁配置
     @inlinable
-    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtocolBlockConfigResponse > {
+    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
         self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置DDoS防护的协议封禁配置
     @inlinable
     public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {

@@ -19,35 +19,35 @@ extension As {
     public struct ScaleOutInstancesRequest: TCRequestModel {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 希望扩容的实例数量。
         public let scaleOutNumber: UInt64
-        
-        public init (autoScalingGroupId: String, scaleOutNumber: UInt64) {
+
+        public init(autoScalingGroupId: String, scaleOutNumber: UInt64) {
             self.autoScalingGroupId = autoScalingGroupId
             self.scaleOutNumber = scaleOutNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case scaleOutNumber = "ScaleOutNumber"
         }
     }
-    
+
     /// ScaleOutInstances返回参数结构体
     public struct ScaleOutInstancesResponse: TCResponseModel {
         /// 伸缩活动ID。
         public let activityId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 指定数量扩容实例
     ///
     /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
@@ -56,10 +56,10 @@ extension As {
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
-    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutInstancesResponse > {
+    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
         self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 指定数量扩容实例
     ///
     /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
@@ -71,7 +71,7 @@ extension As {
     public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
         try await self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 指定数量扩容实例
     ///
     /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
@@ -80,10 +80,10 @@ extension As {
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
-    public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutInstancesResponse > {
+    public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
         self.scaleOutInstances(ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 指定数量扩容实例
     ///
     /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。

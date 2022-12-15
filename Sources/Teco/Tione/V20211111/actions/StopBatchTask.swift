@@ -19,44 +19,44 @@ extension Tione {
     public struct StopBatchTaskRequest: TCRequestModel {
         /// 跑批任务ID
         public let batchTaskId: String
-        
-        public init (batchTaskId: String) {
+
+        public init(batchTaskId: String) {
             self.batchTaskId = batchTaskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchTaskId = "BatchTaskId"
         }
     }
-    
+
     /// StopBatchTask返回参数结构体
     public struct StopBatchTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止跑批任务
     @inlinable
-    public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBatchTaskResponse > {
+    public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBatchTaskResponse> {
         self.client.execute(action: "StopBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止跑批任务
     @inlinable
     public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {
         try await self.client.execute(action: "StopBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止跑批任务
     @inlinable
-    public func stopBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBatchTaskResponse > {
+    public func stopBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBatchTaskResponse> {
         self.stopBatchTask(StopBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止跑批任务
     @inlinable
     public func stopBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {

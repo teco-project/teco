@@ -19,48 +19,48 @@ extension Ckafka {
     public struct DeleteDatahubTopicRequest: TCRequestModel {
         /// Topic名称
         public let name: String
-        
-        public init (name: String) {
+
+        public init(name: String) {
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
         }
     }
-    
+
     /// DeleteDatahubTopic返回参数结构体
     public struct DeleteDatahubTopicResponse: TCResponseModel {
         /// 返回的结果集
         public let result: JgwOperateResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Datahub主题
     @inlinable
-    public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatahubTopicResponse > {
+    public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatahubTopicResponse> {
         self.client.execute(action: "DeleteDatahubTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Datahub主题
     @inlinable
     public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTopicResponse {
         try await self.client.execute(action: "DeleteDatahubTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Datahub主题
     @inlinable
-    public func deleteDatahubTopic(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatahubTopicResponse > {
+    public func deleteDatahubTopic(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatahubTopicResponse> {
         self.deleteDatahubTopic(DeleteDatahubTopicRequest(name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Datahub主题
     @inlinable
     public func deleteDatahubTopic(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTopicResponse {

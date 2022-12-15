@@ -17,32 +17,32 @@
 extension Vpc {
     /// DescribeTemplateLimits请求参数结构体
     public struct DescribeTemplateLimitsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeTemplateLimits返回参数结构体
     public struct DescribeTemplateLimitsResponse: TCResponseModel {
         /// 参数模板配额对象。
         public let templateLimit: TemplateLimit
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templateLimit = "TemplateLimit"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询参数模板配额列表
     ///
     /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
     @inlinable
-    public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateLimitsResponse > {
+    public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateLimitsResponse> {
         self.client.execute(action: "DescribeTemplateLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询参数模板配额列表
     ///
     /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
@@ -50,15 +50,15 @@ extension Vpc {
     public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateLimitsResponse {
         try await self.client.execute(action: "DescribeTemplateLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询参数模板配额列表
     ///
     /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
     @inlinable
-    public func describeTemplateLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateLimitsResponse > {
+    public func describeTemplateLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateLimitsResponse> {
         self.describeTemplateLimits(DescribeTemplateLimitsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询参数模板配额列表
     ///
     /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。

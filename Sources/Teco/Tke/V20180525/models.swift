@@ -22,68 +22,68 @@ extension Tke {
     public struct AppChart: TCOutputModel {
         /// chart名称
         public let name: String
-        
+
         /// chart的标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// chart的版本
         public let latestVersion: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case label = "Label"
             case latestVersion = "LatestVersion"
         }
     }
-    
+
     /// 集群关联的伸缩组最大实例数最小值实例数
     public struct AutoScalingGroupRange: TCInputModel {
         /// 伸缩组最小实例数
         public let minSize: Int64?
-        
+
         /// 伸缩组最大实例数
         public let maxSize: Int64?
-        
-        public init (minSize: Int64? = nil, maxSize: Int64? = nil) {
+
+        public init(minSize: Int64? = nil, maxSize: Int64? = nil) {
             self.minSize = minSize
             self.maxSize = maxSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case minSize = "MinSize"
             case maxSize = "MaxSize"
         }
     }
-    
+
     /// 自动变配集群等级
     public struct AutoUpgradeClusterLevel: TCInputModel {
         /// 是否开启自动变配集群等级
         public let isAutoUpgrade: Bool
-        
-        public init (isAutoUpgrade: Bool) {
+
+        public init(isAutoUpgrade: Bool) {
             self.isAutoUpgrade = isAutoUpgrade
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case isAutoUpgrade = "IsAutoUpgrade"
         }
     }
-    
+
     /// 自动扩所容的节点
     public struct AutoscalingAdded: TCOutputModel {
         /// 正在加入中的节点数量
         public let joining: Int64
-        
+
         /// 初始化中的节点数量
         public let initializing: Int64
-        
+
         /// 正常的节点数量
         public let normal: Int64
-        
+
         /// 节点总数
         public let total: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case joining = "Joining"
             case initializing = "Initializing"
@@ -91,28 +91,28 @@ extension Tke {
             case total = "Total"
         }
     }
-    
+
     /// cuDNN的版本信息
     public struct CUDNN: TCInputModel {
         /// cuDNN的版本
         public let version: String
-        
+
         /// cuDNN的名字
         public let name: String
-        
+
         /// cuDNN的Doc名字
         public let docName: String?
-        
+
         /// cuDNN的Dev名字
         public let devName: String?
-        
-        public init (version: String, name: String, docName: String? = nil, devName: String? = nil) {
+
+        public init(version: String, name: String, docName: String? = nil, devName: String? = nil) {
             self.version = version
             self.name = name
             self.docName = docName
             self.devName = devName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case version = "Version"
             case name = "Name"
@@ -120,130 +120,130 @@ extension Tke {
             case devName = "DevName"
         }
     }
-    
+
     /// cloudrun安全特性能力
     public struct Capabilities: TCInputModel, TCOutputModel {
         /// 启用安全能力项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let add: [String]?
-        
+
         /// 禁用安全能力向列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drop: [String]?
-        
-        public init (add: [String]? = nil, drop: [String]? = nil) {
+
+        public init(add: [String]? = nil, drop: [String]? = nil) {
             self.add = add
             self.drop = drop
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case add = "Add"
             case drop = "Drop"
         }
     }
-    
+
     /// EKS Instnace CBS volume
     public struct CbsVolume: TCInputModel, TCOutputModel {
         /// cbs volume 数据卷名称
         public let name: String
-        
+
         /// 腾讯云cbs盘Id
         public let cbsDiskId: String
-        
-        public init (name: String, cbsDiskId: String) {
+
+        public init(name: String, cbsDiskId: String) {
             self.name = name
             self.cbsDiskId = cbsDiskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case cbsDiskId = "CbsDiskId"
         }
     }
-    
+
     /// 集群信息结构体
     public struct Cluster: TCOutputModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 集群名称
         public let clusterName: String
-        
+
         /// 集群描述
         public let clusterDescription: String
-        
+
         /// 集群版本（默认值为1.10.5）
         public let clusterVersion: String
-        
+
         /// 集群系统。centos7.2x86_64 或者 ubuntu16.04.1 LTSx86_64，默认取值为ubuntu16.04.1 LTSx86_64
         public let clusterOs: String
-        
+
         /// 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。
         public let clusterType: String
-        
+
         /// 集群网络相关参数
         public let clusterNetworkSettings: ClusterNetworkSettings
-        
+
         /// 集群当前node数量
         public let clusterNodeNum: UInt64
-        
+
         /// 集群所属的项目ID
         public let projectId: UInt64
-        
+
         /// 标签描述列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSpecification: [TagSpecification]?
-        
+
         /// 集群状态 (Running 运行中  Creating 创建中 Idling 闲置中  Abnormal 异常  )
         public let clusterStatus: String
-        
+
         /// 集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let property: String?
-        
+
         /// 集群当前master数量
         public let clusterMaterNodeNum: UInt64
-        
+
         /// 集群使用镜像id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageId: String?
-        
+
         /// OsCustomizeType 系统定制类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let osCustomizeType: String?
-        
+
         /// 集群运行环境docker或container
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerRuntime: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
-        
+
         /// 删除保护开关
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deletionProtection: Bool?
-        
+
         /// 集群是否开启第三方节点支持
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableExternalNode: Bool?
-        
+
         /// 集群等级，针对托管集群生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterLevel: String?
-        
+
         /// 自动变配集群等级，针对托管集群生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoUpgradeClusterLevel: Bool?
-        
+
         /// 是否开启QGPU共享
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qgpuShareEnable: Bool?
-        
+
         /// 运行时版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runtimeVersion: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -270,33 +270,33 @@ extension Tke {
             case runtimeVersion = "RuntimeVersion"
         }
     }
-    
+
     /// 集群高级配置
     public struct ClusterAdvancedSettings: TCInputModel {
         /// 是否启用IPVS
         public let ipvs: Bool?
-        
+
         /// 是否启用集群节点自动扩缩容(创建集群流程不支持开启此功能)
         public let asEnabled: Bool?
-        
+
         /// 集群使用的runtime类型，包括"docker"和"containerd"两种类型，默认为"docker"
         public let containerRuntime: String?
-        
+
         /// 集群中节点NodeName类型（包括 hostname,lan-ip两种形式，默认为lan-ip。如果开启了hostname模式，创建节点时需要设置HostName参数，并且InstanceName需要和HostName一致）
         public let nodeNameType: String?
-        
+
         /// 集群自定义参数
         public let extraArgs: ClusterExtraArgs?
-        
+
         /// 集群网络类型（包括GR(全局路由)和VPC-CNI两种模式，默认为GR。
         public let networkType: String?
-        
+
         /// 集群VPC-CNI模式是否为非固定IP，默认: FALSE 固定IP。
         public let isNonStaticIpMode: Bool?
-        
+
         /// 是否启用集群删除保护
         public let deletionProtection: Bool?
-        
+
         /// 集群的网络代理模型，目前tke集群支持的网络代理模式有三种：iptables,ipvs,ipvs-bpf，此参数仅在使用ipvs-bpf模式时使用，三种网络模式的参数设置关系如下：
         /// iptables模式：IPVS和KubeProxyMode都不设置
         /// ipvs模式: 设置IPVS为true, KubeProxyMode不设置
@@ -305,38 +305,38 @@ extension Tke {
         /// 1. 集群版本必须为1.14及以上；
         /// 2. 系统镜像必须是: Tencent Linux 2.4；
         public let kubeProxyMode: String?
-        
+
         /// 是否开启审计开关
         public let auditEnabled: Bool?
-        
+
         /// 审计日志上传到的logset日志集
         public let auditLogsetId: String?
-        
+
         /// 审计日志上传到的topic
         public let auditLogTopicId: String?
-        
+
         /// 区分共享网卡多IP模式和独立网卡模式，共享网卡多 IP 模式填写"tke-route-eni"，独立网卡模式填写"tke-direct-eni"，默认为共享网卡模式
         public let vpcCniType: String?
-        
+
         /// 运行时版本
         public let runtimeVersion: String?
-        
+
         /// 是否开节点podCIDR大小的自定义模式
         public let enableCustomizedPodCIDR: Bool?
-        
+
         /// 自定义模式下的基础pod数量
         public let basePodNumber: Int64?
-        
+
         /// 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
         public let ciliumMode: String?
-        
+
         /// 集群VPC-CNI模式下是否是双栈集群，默认false，表明非双栈集群。
         public let isDualStack: Bool?
-        
+
         /// 是否开启QGPU共享
         public let qgpuShareEnable: Bool?
-        
-        public init (ipvs: Bool? = nil, asEnabled: Bool? = nil, containerRuntime: String? = nil, nodeNameType: String? = nil, extraArgs: ClusterExtraArgs? = nil, networkType: String? = nil, isNonStaticIpMode: Bool? = nil, deletionProtection: Bool? = nil, kubeProxyMode: String? = nil, auditEnabled: Bool? = nil, auditLogsetId: String? = nil, auditLogTopicId: String? = nil, vpcCniType: String? = nil, runtimeVersion: String? = nil, enableCustomizedPodCIDR: Bool? = nil, basePodNumber: Int64? = nil, ciliumMode: String? = nil, isDualStack: Bool? = nil, qgpuShareEnable: Bool? = nil) {
+
+        public init(ipvs: Bool? = nil, asEnabled: Bool? = nil, containerRuntime: String? = nil, nodeNameType: String? = nil, extraArgs: ClusterExtraArgs? = nil, networkType: String? = nil, isNonStaticIpMode: Bool? = nil, deletionProtection: Bool? = nil, kubeProxyMode: String? = nil, auditEnabled: Bool? = nil, auditLogsetId: String? = nil, auditLogTopicId: String? = nil, vpcCniType: String? = nil, runtimeVersion: String? = nil, enableCustomizedPodCIDR: Bool? = nil, basePodNumber: Int64? = nil, ciliumMode: String? = nil, isDualStack: Bool? = nil, qgpuShareEnable: Bool? = nil) {
             self.ipvs = ipvs
             self.asEnabled = asEnabled
             self.containerRuntime = containerRuntime
@@ -357,7 +357,7 @@ extension Tke {
             self.isDualStack = isDualStack
             self.qgpuShareEnable = qgpuShareEnable
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ipvs = "IPVS"
             case asEnabled = "AsEnabled"
@@ -380,26 +380,26 @@ extension Tke {
             case qgpuShareEnable = "QGPUShareEnable"
         }
     }
-    
+
     /// 集群关联的伸缩组信息
     public struct ClusterAsGroup: TCOutputModel {
         /// 伸缩组ID
         public let autoScalingGroupId: String
-        
+
         /// 伸缩组状态(开启 enabled 开启中 enabling 关闭 disabled 关闭中 disabling 更新中 updating 删除中 deleting 开启缩容中 scaleDownEnabling 关闭缩容中 scaleDownDisabling)
         public let status: String
-        
+
         /// 节点是否设置成不可调度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUnschedulable: Bool?
-        
+
         /// 伸缩组的label列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [Label]?
-        
+
         /// 创建时间
         public let createdTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case status = "Status"
@@ -408,85 +408,85 @@ extension Tke {
             case createdTime = "CreatedTime"
         }
     }
-    
+
     /// 集群伸缩组属性
     public struct ClusterAsGroupAttribute: TCInputModel {
         /// 伸缩组ID
         public let autoScalingGroupId: String?
-        
+
         /// 是否开启
         public let autoScalingGroupEnabled: Bool?
-        
+
         /// 伸缩组最大最小实例数
         public let autoScalingGroupRange: AutoScalingGroupRange?
-        
-        public init (autoScalingGroupId: String? = nil, autoScalingGroupEnabled: Bool? = nil, autoScalingGroupRange: AutoScalingGroupRange? = nil) {
+
+        public init(autoScalingGroupId: String? = nil, autoScalingGroupEnabled: Bool? = nil, autoScalingGroupRange: AutoScalingGroupRange? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.autoScalingGroupEnabled = autoScalingGroupEnabled
             self.autoScalingGroupRange = autoScalingGroupRange
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case autoScalingGroupEnabled = "AutoScalingGroupEnabled"
             case autoScalingGroupRange = "AutoScalingGroupRange"
         }
     }
-    
+
     /// 集群弹性伸缩配置
     public struct ClusterAsGroupOption: TCOutputModel {
         /// 是否开启缩容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isScaleDownEnabled: Bool?
-        
+
         /// 多伸缩组情况下扩容选择算法(random 随机选择，most-pods 最多类型的Pod least-waste 最少的资源浪费，默认为random)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expander: String?
-        
+
         /// 最大并发缩容数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxEmptyBulkDelete: Int64?
-        
+
         /// 集群扩容后多少分钟开始判断缩容（默认为10分钟）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scaleDownDelay: Int64?
-        
+
         /// 节点连续空闲多少分钟后被缩容（默认为 10分钟）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scaleDownUnneededTime: Int64?
-        
+
         /// 节点资源使用量低于多少(百分比)时认为空闲(默认: 50(百分比))
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scaleDownUtilizationThreshold: Int64?
-        
+
         /// 含有本地存储Pod的节点是否不缩容(默认： FALSE)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skipNodesWithLocalStorage: Bool?
-        
+
         /// 含有kube-system namespace下非DaemonSet管理的Pod的节点是否不缩容 (默认： FALSE)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skipNodesWithSystemPods: Bool?
-        
+
         /// 计算资源使用量时是否默认忽略DaemonSet的实例(默认值: False，不忽略)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreDaemonSetsUtilization: Bool?
-        
+
         /// CA做健康性判断的个数，默认3，即超过OkTotalUnreadyCount个数后，CA会进行健康性判断。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let okTotalUnreadyCount: Int64?
-        
+
         /// 未就绪节点的最大百分比，此后CA会停止操作
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxTotalUnreadyPercentage: Int64?
-        
+
         /// 表示未准备就绪的节点在有资格进行缩减之前应该停留多长时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scaleDownUnreadyTime: Int64?
-        
+
         /// CA删除未在Kubernetes中注册的节点之前等待的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unregisteredNodeRemovalTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case isScaleDownEnabled = "IsScaleDownEnabled"
             case expander = "Expander"
@@ -503,46 +503,46 @@ extension Tke {
             case unregisteredNodeRemovalTime = "UnregisteredNodeRemovalTime"
         }
     }
-    
+
     /// 描述集群的基本配置信息
     public struct ClusterBasicSettings: TCInputModel {
         /// 集群操作系统，支持设置公共镜像(字段传相应镜像Name)和自定义镜像(字段传相应镜像ID)，详情参考：https://cloud.tencent.com/document/product/457/68289
         public let clusterOs: String?
-        
+
         /// 集群版本,默认值为1.10.5
         public let clusterVersion: String?
-        
+
         /// 集群名称
         public let clusterName: String?
-        
+
         /// 集群描述
         public let clusterDescription: String?
-        
+
         /// 私有网络ID，形如vpc-xxx。创建托管空集群时必传。
         public let vpcId: String?
-        
+
         /// 集群内新增资源所属项目ID。
         public let projectId: Int64?
-        
+
         /// 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例，当前仅支持绑定标签到集群实例。
         public let tagSpecification: [TagSpecification]?
-        
+
         /// 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         public let osCustomizeType: String?
-        
+
         /// 是否开启节点的默认安全组(默认: 否，Alpha特性)
         public let needWorkSecurityGroup: Bool?
-        
+
         /// 当选择Cilium Overlay网络插件时，TKE会从该子网获取2个IP用来创建内网负载均衡
         public let subnetId: String?
-        
+
         /// 集群等级，针对托管集群生效
         public let clusterLevel: String?
-        
+
         /// 自动变配集群等级，针对托管集群生效
         public let autoUpgradeClusterLevel: AutoUpgradeClusterLevel?
-        
-        public init (clusterOs: String? = nil, clusterVersion: String? = nil, clusterName: String? = nil, clusterDescription: String? = nil, vpcId: String? = nil, projectId: Int64? = nil, tagSpecification: [TagSpecification]? = nil, osCustomizeType: String? = nil, needWorkSecurityGroup: Bool? = nil, subnetId: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil) {
+
+        public init(clusterOs: String? = nil, clusterVersion: String? = nil, clusterName: String? = nil, clusterDescription: String? = nil, vpcId: String? = nil, projectId: Int64? = nil, tagSpecification: [TagSpecification]? = nil, osCustomizeType: String? = nil, needWorkSecurityGroup: Bool? = nil, subnetId: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil) {
             self.clusterOs = clusterOs
             self.clusterVersion = clusterVersion
             self.clusterName = clusterName
@@ -556,7 +556,7 @@ extension Tke {
             self.clusterLevel = clusterLevel
             self.autoUpgradeClusterLevel = autoUpgradeClusterLevel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterOs = "ClusterOs"
             case clusterVersion = "ClusterVersion"
@@ -572,34 +572,34 @@ extension Tke {
             case autoUpgradeClusterLevel = "AutoUpgradeClusterLevel"
         }
     }
-    
+
     /// 集群容器网络相关参数
     public struct ClusterCIDRSettings: TCInputModel {
         /// 用于分配集群容器和服务 IP 的 CIDR，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突。且网段范围必须在内网网段内，例如:10.1.0.0/14, 192.168.0.1/18,172.16.0.0/16。
         public let clusterCIDR: String?
-        
+
         /// 是否忽略 ClusterCIDR 冲突错误, 默认不忽略
         public let ignoreClusterCIDRConflict: Bool?
-        
+
         /// 集群中每个Node上最大的Pod数量。取值范围16～256。不为2的幂值时会向上取最接近的2的幂值。
         public let maxNodePodNum: UInt64?
-        
+
         /// 集群最大的service数量。取值范围32～32768，不为2的幂值时会向上取最接近的2的幂值。默认值256
         public let maxClusterServiceNum: UInt64?
-        
+
         /// 用于分配集群服务 IP 的 CIDR，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突。且网段范围必须在内网网段内，例如:10.1.0.0/14, 192.168.0.1/18,172.16.0.0/16。
         public let serviceCIDR: String?
-        
+
         /// VPC-CNI网络模式下，弹性网卡的子网Id。
         public let eniSubnetIds: [String]?
-        
+
         /// VPC-CNI网络模式下，弹性网卡IP的回收时间，取值范围[300,15768000)
         public let claimExpiredSeconds: Int64?
-        
+
         /// 是否忽略 ServiceCIDR 冲突错误, 仅在 VPC-CNI 模式生效，默认不忽略
         public let ignoreServiceCIDRConflict: Bool?
-        
-        public init (clusterCIDR: String? = nil, ignoreClusterCIDRConflict: Bool? = nil, maxNodePodNum: UInt64? = nil, maxClusterServiceNum: UInt64? = nil, serviceCIDR: String? = nil, eniSubnetIds: [String]? = nil, claimExpiredSeconds: Int64? = nil, ignoreServiceCIDRConflict: Bool? = nil) {
+
+        public init(clusterCIDR: String? = nil, ignoreClusterCIDRConflict: Bool? = nil, maxNodePodNum: UInt64? = nil, maxClusterServiceNum: UInt64? = nil, serviceCIDR: String? = nil, eniSubnetIds: [String]? = nil, claimExpiredSeconds: Int64? = nil, ignoreServiceCIDRConflict: Bool? = nil) {
             self.clusterCIDR = clusterCIDR
             self.ignoreClusterCIDRConflict = ignoreClusterCIDRConflict
             self.maxNodePodNum = maxNodePodNum
@@ -609,7 +609,7 @@ extension Tke {
             self.claimExpiredSeconds = claimExpiredSeconds
             self.ignoreServiceCIDRConflict = ignoreServiceCIDRConflict
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterCIDR = "ClusterCIDR"
             case ignoreClusterCIDRConflict = "IgnoreClusterCIDRConflict"
@@ -621,15 +621,15 @@ extension Tke {
             case ignoreServiceCIDRConflict = "IgnoreServiceCIDRConflict"
         }
     }
-    
+
     /// 集群创建过程
     public struct ClusterCondition: TCOutputModel {
         /// 集群创建过程类型
         public let type: String
-        
+
         /// 集群创建过程状态
         public let status: String
-        
+
         /// 最后一次探测到该状态的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -638,7 +638,7 @@ extension Tke {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastProbeTime: Date?
-        
+
         /// 最后一次转换到该过程的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -647,15 +647,15 @@ extension Tke {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastTransitionTime: Date?
-        
+
         /// 转换到该过程的简明原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
-        
+
         /// 转换到该过程的更多信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case status = "Status"
@@ -665,51 +665,51 @@ extension Tke {
             case message = "Message"
         }
     }
-    
+
     /// 接入k8s 的认证信息
     public struct ClusterCredential: TCInputModel, TCOutputModel {
         /// CA 根证书
         public let caCert: String
-        
+
         /// 认证用的Token
         public let token: String?
-        
-        public init (caCert: String, token: String? = nil) {
+
+        public init(caCert: String, token: String? = nil) {
             self.caCert = caCert
             self.token = token
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caCert = "CACert"
             case token = "Token"
         }
     }
-    
+
     /// 集群master自定义参数
     public struct ClusterExtraArgs: TCInputModel, TCOutputModel {
         /// kube-apiserver自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["max-requests-inflight=500","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeAPIServer: [String]?
-        
+
         /// kube-controller-manager自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeControllerManager: [String]?
-        
+
         /// kube-scheduler自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeScheduler: [String]?
-        
+
         /// etcd自定义参数，只支持独立集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let etcd: [String]?
-        
-        public init (kubeAPIServer: [String]? = nil, kubeControllerManager: [String]? = nil, kubeScheduler: [String]? = nil, etcd: [String]? = nil) {
+
+        public init(kubeAPIServer: [String]? = nil, kubeControllerManager: [String]? = nil, kubeScheduler: [String]? = nil, etcd: [String]? = nil) {
             self.kubeAPIServer = kubeAPIServer
             self.kubeControllerManager = kubeControllerManager
             self.kubeScheduler = kubeScheduler
             self.etcd = etcd
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case kubeAPIServer = "KubeAPIServer"
             case kubeControllerManager = "KubeControllerManager"
@@ -717,53 +717,53 @@ extension Tke {
             case etcd = "Etcd"
         }
     }
-    
+
     /// 弹性容器集群内网访问LB信息
     public struct ClusterInternalLB: TCInputModel {
         /// 是否开启内网访问LB
         public let enabled: Bool
-        
+
         /// 内网访问LB关联的子网Id
         public let subnetId: String?
-        
-        public init (enabled: Bool, subnetId: String? = nil) {
+
+        public init(enabled: Bool, subnetId: String? = nil) {
             self.enabled = enabled
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// 托管集群等级属性
     public struct ClusterLevelAttribute: TCOutputModel {
         /// 集群等级
         public let name: String
-        
+
         /// 等级名称
         public let alias: String
-        
+
         /// 节点数量
         public let nodeCount: UInt64
-        
+
         /// Pod数量
         public let podCount: UInt64
-        
+
         /// Configmap数量
         public let configMapCount: UInt64
-        
+
         /// CRD数量
         public let crdCount: UInt64
-        
+
         /// 是否启用
         public let enable: Bool
-        
+
         /// 其他资源数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let otherCount: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case alias = "Alias"
@@ -775,36 +775,36 @@ extension Tke {
             case otherCount = "OtherCount"
         }
     }
-    
+
     /// 集群等级变配记录
     public struct ClusterLevelChangeRecord: TCOutputModel {
         /// 记录ID
         public let id: String
-        
+
         /// 集群ID
         public let clusterID: String
-        
+
         /// 变配状态：trading 发货中,upgrading 变配中,success 变配成功,failed 变配失败。
         public let status: String
-        
+
         /// 状态描述
         public let message: String
-        
+
         /// 变配前规模
         public let oldLevel: String
-        
+
         /// 变配后规模
         public let newLevel: String
-        
+
         /// 变配触发类型：manual 手动,auto 自动
         public let triggerType: String
-        
+
         /// 开始时间
         public let startedAt: String
-        
+
         /// 结束时间
         public let endedAt: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case clusterID = "ClusterID"
@@ -817,54 +817,54 @@ extension Tke {
             case endedAt = "EndedAt"
         }
     }
-    
+
     /// 集群网络相关的参数
     public struct ClusterNetworkSettings: TCOutputModel {
         /// 用于分配集群容器和服务 IP 的 CIDR，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突
         public let clusterCIDR: String
-        
+
         /// 是否忽略 ClusterCIDR 冲突错误, 默认不忽略
         public let ignoreClusterCIDRConflict: Bool?
-        
+
         /// 集群中每个Node上最大的Pod数量(默认为256)
         public let maxNodePodNum: UInt64?
-        
+
         /// 集群最大的service数量(默认为256)
         public let maxClusterServiceNum: UInt64?
-        
+
         /// 是否启用IPVS(默认不开启)
         public let ipvs: Bool?
-        
+
         /// 集群的VPCID（如果创建空集群，为必传值，否则自动设置为和集群的节点保持一致）
         public let vpcId: String?
-        
+
         /// 网络插件是否启用CNI(默认开启)
         public let cni: Bool?
-        
+
         /// service的网络模式，当前参数只适用于ipvs+bpf模式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeProxyMode: String?
-        
+
         /// 用于分配service的IP range，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceCIDR: String?
-        
+
         /// 集群关联的容器子网
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnets: [String]?
-        
+
         /// 是否忽略 ServiceCIDR 冲突错误, 仅在 VPC-CNI 模式生效，默认不忽略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreServiceCIDRConflict: Bool?
-        
+
         /// 集群VPC-CNI模式是否为非双栈集群，默认false，非双栈。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDualStack: Bool?
-        
+
         /// 用于分配service的IP range，由系统自动分配
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6ServiceCIDR: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterCIDR = "ClusterCIDR"
             case ignoreClusterCIDRConflict = "IgnoreClusterCIDRConflict"
@@ -881,32 +881,32 @@ extension Tke {
             case ipv6ServiceCIDR = "Ipv6ServiceCIDR"
         }
     }
-    
+
     /// 弹性容器集群公网访问负载均衡信息
     public struct ClusterPublicLB: TCInputModel {
         /// 是否开启公网访问LB
         public let enabled: Bool
-        
+
         /// 允许访问的来源CIDR列表
         public let allowFromCidrs: [String]?
-        
+
         /// 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
         public let securityPolicies: [String]?
-        
+
         /// 外网访问相关的扩展参数，格式为json
         public let extraParam: String?
-        
+
         /// 新内外网功能，需要传递安全组
         public let securityGroup: String?
-        
-        public init (enabled: Bool, allowFromCidrs: [String]? = nil, securityPolicies: [String]? = nil, extraParam: String? = nil, securityGroup: String? = nil) {
+
+        public init(enabled: Bool, allowFromCidrs: [String]? = nil, securityPolicies: [String]? = nil, extraParam: String? = nil, securityGroup: String? = nil) {
             self.enabled = enabled
             self.allowFromCidrs = allowFromCidrs
             self.securityPolicies = securityPolicies
             self.extraParam = extraParam
             self.securityGroup = securityGroup
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case allowFromCidrs = "AllowFromCidrs"
@@ -915,46 +915,46 @@ extension Tke {
             case securityGroup = "SecurityGroup"
         }
     }
-    
+
     /// 集群状态信息
     public struct ClusterStatus: TCOutputModel {
         /// 集群Id
         public let clusterId: String
-        
+
         /// 集群状态
         public let clusterState: String
-        
+
         /// 集群下机器实例的状态
         public let clusterInstanceState: String
-        
+
         /// 集群是否开启监控
         public let clusterBMonitor: Bool
-        
+
         /// 集群创建中的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
         public let clusterInitNodeNum: Int64
-        
+
         /// 集群运行中的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
         public let clusterRunningNodeNum: Int64
-        
+
         /// 集群异常的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
         public let clusterFailedNodeNum: Int64
-        
+
         /// 集群已关机的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterClosedNodeNum: Int64?
-        
+
         /// 集群关机中的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterClosingNodeNum: Int64?
-        
+
         /// 集群是否开启删除保护
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterDeletionProtection: Bool?
-        
+
         /// 集群是否可审计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterAuditEnabled: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterState = "ClusterState"
@@ -969,91 +969,91 @@ extension Tke {
             case clusterAuditEnabled = "ClusterAuditEnabled"
         }
     }
-    
+
     /// 集群版本信息
     public struct ClusterVersion: TCOutputModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 集群主版本号列表，例如1.18.4
         public let versions: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case versions = "Versions"
         }
     }
-    
+
     /// 账户UIN与客户端证书CommonName的映射
     public struct CommonName: TCOutputModel {
         /// 子账户UIN
         public let subaccountUin: String
-        
+
         /// 子账户客户端证书中的CommonName字段
         public let cn: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subaccountUin = "SubaccountUin"
             case cn = "CN"
         }
     }
-    
+
     /// EKS Instance Container容器
     public struct Container: TCInputModel, TCOutputModel {
         /// 镜像
         public let image: String
-        
+
         /// 容器名
         public let name: String
-        
+
         /// 容器启动命令
         public let commands: [String]?
-        
+
         /// 容器启动参数
         public let args: [String]?
-        
+
         /// 容器内操作系统的环境变量
         public let environmentVars: [EnvironmentVariable]?
-        
+
         /// CPU，制改容器最多可使用的核数，该值不可超过容器实例的总核数。单位：核。
         public let cpu: Float?
-        
+
         /// 内存，限制该容器最多可使用的内存值，该值不可超过容器实例的总内存值。单位：GiB
         public let memory: Float?
-        
+
         /// 数据卷挂载信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeMounts: [VolumeMount]?
-        
+
         /// 当前状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentState: ContainerState?
-        
+
         /// 重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: UInt64?
-        
+
         /// 容器工作目录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workingDir: String?
-        
+
         /// 存活探针
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let livenessProbe: LivenessOrReadinessProbe?
-        
+
         /// 就绪探针
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readinessProbe: LivenessOrReadinessProbe?
-        
+
         /// Gpu限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gpuLimit: UInt64?
-        
+
         /// 容器的安全上下文
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityContext: SecurityContext?
-        
-        public init (image: String, name: String, commands: [String]? = nil, args: [String]? = nil, environmentVars: [EnvironmentVariable]? = nil, cpu: Float? = nil, memory: Float? = nil, volumeMounts: [VolumeMount]? = nil, currentState: ContainerState? = nil, restartCount: UInt64? = nil, workingDir: String? = nil, livenessProbe: LivenessOrReadinessProbe? = nil, readinessProbe: LivenessOrReadinessProbe? = nil, gpuLimit: UInt64? = nil, securityContext: SecurityContext? = nil) {
+
+        public init(image: String, name: String, commands: [String]? = nil, args: [String]? = nil, environmentVars: [EnvironmentVariable]? = nil, cpu: Float? = nil, memory: Float? = nil, volumeMounts: [VolumeMount]? = nil, currentState: ContainerState? = nil, restartCount: UInt64? = nil, workingDir: String? = nil, livenessProbe: LivenessOrReadinessProbe? = nil, readinessProbe: LivenessOrReadinessProbe? = nil, gpuLimit: UInt64? = nil, securityContext: SecurityContext? = nil) {
             self.image = image
             self.name = name
             self.commands = commands
@@ -1070,7 +1070,7 @@ extension Tke {
             self.gpuLimit = gpuLimit
             self.securityContext = securityContext
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case image = "Image"
             case name = "Name"
@@ -1089,36 +1089,36 @@ extension Tke {
             case securityContext = "SecurityContext"
         }
     }
-    
+
     /// 容器状态
     public struct ContainerState: TCOutputModel {
         /// 容器运行开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 容器状态：created, running, exited, unknown
         public let state: String
-        
+
         /// 容器运行结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finishTime: String?
-        
+
         /// 容器运行退出码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exitCode: Int64?
-        
+
         /// 容器状态 Reason
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
-        
+
         /// 容器状态信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         /// 容器重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case state = "State"
@@ -1129,110 +1129,110 @@ extension Tke {
             case restartCount = "RestartCount"
         }
     }
-    
+
     /// 集群中控制器的状态描述
     public struct ControllerStatus: TCOutputModel {
         /// 控制器的名字
         public let name: String
-        
+
         /// 控制器是否开启
         public let enabled: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case enabled = "Enabled"
         }
     }
-    
+
     /// 自定义驱动信息
     public struct CustomDriver: TCInputModel, TCOutputModel {
         /// 自定义GPU驱动地址链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: String?
-        
-        public init (address: String? = nil) {
+
+        public init(address: String? = nil) {
             self.address = address
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case address = "Address"
         }
     }
-    
+
     /// 自定义DNS配置
     public struct DNSConfig: TCInputModel, TCOutputModel {
         /// DNS 服务器IP地址列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameservers: [String]?
-        
+
         /// DNS搜索域列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let searches: [String]?
-        
+
         /// 对象选项列表，每个对象由name和value（可选）构成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let options: [DNSConfigOption]?
-        
-        public init (nameservers: [String]? = nil, searches: [String]? = nil, options: [DNSConfigOption]? = nil) {
+
+        public init(nameservers: [String]? = nil, searches: [String]? = nil, options: [DNSConfigOption]? = nil) {
             self.nameservers = nameservers
             self.searches = searches
             self.options = options
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nameservers = "Nameservers"
             case searches = "Searches"
             case options = "Options"
         }
     }
-    
+
     /// DNS配置选项
     public struct DNSConfigOption: TCInputModel, TCOutputModel {
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 项值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 描述了k8s节点数据盘相关配置与信息。
     public struct DataDisk: TCOutputModel {
         /// 云盘类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
-        
+
         /// 文件系统(ext3/ext4/xfs)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileSystem: String?
-        
+
         /// 云盘大小(G）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
-        
+
         /// 是否自动化格式盘并挂载
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoFormatAndMount: Bool?
-        
+
         /// 挂载目录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mountTarget: String?
-        
+
         /// 挂载设备名或分区名，当且仅当添加已有节点时需要
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskPartition: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
             case fileSystem = "FileSystem"
@@ -1242,151 +1242,151 @@ extension Tke {
             case diskPartition = "DiskPartition"
         }
     }
-    
+
     /// Eks 自定义域名服务器 配置
     public struct DnsServerConf: TCInputModel, TCOutputModel {
         /// 域名。空字符串表示所有域名。
         public let domain: String
-        
+
         /// dns 服务器地址列表。地址格式 ip:port
         public let dnsServers: [String]
-        
-        public init (domain: String, dnsServers: [String]) {
+
+        public init(domain: String, dnsServers: [String]) {
             self.domain = domain
             self.dnsServers = dnsServers
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case dnsServers = "DnsServers"
         }
     }
-    
+
     /// GPU驱动和CUDA的版本信息
     public struct DriverVersion: TCInputModel {
         /// GPU驱动或者CUDA的版本
         public let version: String
-        
+
         /// GPU驱动或者CUDA的名字
         public let name: String
-        
-        public init (version: String, name: String) {
+
+        public init(version: String, name: String) {
             self.version = version
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case version = "Version"
             case name = "Name"
         }
     }
-    
+
     /// ECM增强服务
     public struct ECMEnhancedService: TCInputModel {
         /// 是否开启云监控服务
         public let securityService: ECMRunMonitorServiceEnabled?
-        
+
         /// 是否开启云镜服务
         public let monitorService: ECMRunSecurityServiceEnabled?
-        
-        public init (securityService: ECMRunMonitorServiceEnabled? = nil, monitorService: ECMRunSecurityServiceEnabled? = nil) {
+
+        public init(securityService: ECMRunMonitorServiceEnabled? = nil, monitorService: ECMRunSecurityServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityService = "SecurityService"
             case monitorService = "MonitorService"
         }
     }
-    
+
     /// ECM云监控服务
     public struct ECMRunMonitorServiceEnabled: TCInputModel {
         /// 是否开启
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// ECM云镜服务
     public struct ECMRunSecurityServiceEnabled: TCInputModel {
         /// 是否开启
         public let enabled: Bool?
-        
+
         /// 云镜版本：0 基础版，1 专业版
         public let version: Int64?
-        
-        public init (enabled: Bool? = nil, version: Int64? = nil) {
+
+        public init(enabled: Bool? = nil, version: Int64? = nil) {
             self.enabled = enabled
             self.version = version
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case version = "Version"
         }
     }
-    
+
     /// ECM实例可用区及对应的实例创建数目及运营商的组合
     public struct ECMZoneInstanceCountISP: TCInputModel {
         /// 创建实例的可用区
         public let zone: String
-        
+
         /// 在当前可用区欲创建的实例数目
         public let instanceCount: Int64
-        
+
         /// 运营商
         public let isp: String
-        
-        public init (zone: String, instanceCount: Int64, isp: String) {
+
+        public init(zone: String, instanceCount: Int64, isp: String) {
             self.zone = zone
             self.instanceCount = instanceCount
             self.isp = isp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case instanceCount = "InstanceCount"
             case isp = "ISP"
         }
     }
-    
+
     /// 边缘容器参数描述
     public struct EdgeArgsFlag: TCInputModel, TCOutputModel {
         /// 参数名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 参数类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 参数描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usage: String?
-        
+
         /// 参数默认值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `default`: String?
-        
+
         /// 参数可选范围（目前包含range和in两种，"[]"代表range，如"[1, 5]"表示参数必须>=1且 <=5, "()"代表in， 如"('aa', 'bb')"表示参数只能为字符串'aa'或者'bb'，该参数为空表示不校验）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let constraint: String?
-        
-        public init (name: String? = nil, type: String? = nil, usage: String? = nil, default: String? = nil, constraint: String? = nil) {
+
+        public init(name: String? = nil, type: String? = nil, usage: String? = nil, default: String? = nil, constraint: String? = nil) {
             self.name = name
             self.type = type
             self.usage = usage
             self.`default` = `default`
             self.constraint = constraint
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -1395,32 +1395,32 @@ extension Tke {
             case constraint = "Constraint"
         }
     }
-    
+
     /// 边缘容器集群可用的自定义参数
     public struct EdgeAvailableExtraArgs: TCInputModel, TCOutputModel {
         /// kube-apiserver可用的自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeAPIServer: [EdgeArgsFlag]?
-        
+
         /// kube-controller-manager可用的自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeControllerManager: [EdgeArgsFlag]?
-        
+
         /// kube-scheduler可用的自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeScheduler: [EdgeArgsFlag]?
-        
+
         /// kubelet可用的自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubelet: [EdgeArgsFlag]?
-        
-        public init (kubeAPIServer: [EdgeArgsFlag]? = nil, kubeControllerManager: [EdgeArgsFlag]? = nil, kubeScheduler: [EdgeArgsFlag]? = nil, kubelet: [EdgeArgsFlag]? = nil) {
+
+        public init(kubeAPIServer: [EdgeArgsFlag]? = nil, kubeControllerManager: [EdgeArgsFlag]? = nil, kubeScheduler: [EdgeArgsFlag]? = nil, kubelet: [EdgeArgsFlag]? = nil) {
             self.kubeAPIServer = kubeAPIServer
             self.kubeControllerManager = kubeControllerManager
             self.kubeScheduler = kubeScheduler
             self.kubelet = kubelet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case kubeAPIServer = "KubeAPIServer"
             case kubeControllerManager = "KubeControllerManager"
@@ -1428,52 +1428,52 @@ extension Tke {
             case kubelet = "Kubelet"
         }
     }
-    
+
     /// 边缘计算集群信息
     public struct EdgeCluster: TCInputModel, TCOutputModel {
         /// 集群Id
         public let clusterId: String
-        
+
         /// 集群名称
         public let clusterName: String
-        
+
         /// Vpc Id
         public let vpcId: String
-        
+
         /// 集群pod cidr
         public let podCIDR: String
-        
+
         /// 集群 service cidr
         public let serviceCIDR: String
-        
+
         /// k8s 版本号
         public let k8sVersion: String
-        
+
         /// 集群状态
         public let status: String?
-        
+
         /// 集群描述信息
         public let clusterDesc: String?
-        
+
         /// 集群创建时间
         public let createdTime: String?
-        
+
         /// 边缘集群版本
         public let edgeClusterVersion: String?
-        
+
         /// 节点最大Pod数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxNodePodNum: Int64?
-        
+
         /// 集群高级设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterAdvancedSettings: EdgeClusterAdvancedSettings?
-        
+
         /// 边缘容器集群级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: String?
-        
-        public init (clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, edgeClusterVersion: String? = nil, maxNodePodNum: Int64? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, level: String? = nil) {
+
+        public init(clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, edgeClusterVersion: String? = nil, maxNodePodNum: Int64? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, level: String? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.vpcId = vpcId
@@ -1488,7 +1488,7 @@ extension Tke {
             self.clusterAdvancedSettings = clusterAdvancedSettings
             self.level = level
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -1505,109 +1505,109 @@ extension Tke {
             case level = "Level"
         }
     }
-    
+
     /// 边缘容器集群高级配置
     public struct EdgeClusterAdvancedSettings: TCInputModel, TCOutputModel {
         /// 集群自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraArgs: EdgeClusterExtraArgs?
-        
+
         /// 运行时类型，支持"docker"和"containerd"，默认为docker
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runtime: String?
-        
+
         /// 集群kube-proxy转发模式，支持"iptables"和"ipvs"，默认为iptables
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyMode: String?
-        
-        public init (extraArgs: EdgeClusterExtraArgs? = nil, runtime: String? = nil, proxyMode: String? = nil) {
+
+        public init(extraArgs: EdgeClusterExtraArgs? = nil, runtime: String? = nil, proxyMode: String? = nil) {
             self.extraArgs = extraArgs
             self.runtime = runtime
             self.proxyMode = proxyMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case extraArgs = "ExtraArgs"
             case runtime = "Runtime"
             case proxyMode = "ProxyMode"
         }
     }
-    
+
     /// 边缘容器集群master自定义参数
     public struct EdgeClusterExtraArgs: TCInputModel, TCOutputModel {
         /// kube-apiserver自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["max-requests-inflight=500","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeAPIServer: [String]?
-        
+
         /// kube-controller-manager自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeControllerManager: [String]?
-        
+
         /// kube-scheduler自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeScheduler: [String]?
-        
-        public init (kubeAPIServer: [String]? = nil, kubeControllerManager: [String]? = nil, kubeScheduler: [String]? = nil) {
+
+        public init(kubeAPIServer: [String]? = nil, kubeControllerManager: [String]? = nil, kubeScheduler: [String]? = nil) {
             self.kubeAPIServer = kubeAPIServer
             self.kubeControllerManager = kubeControllerManager
             self.kubeScheduler = kubeScheduler
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case kubeAPIServer = "KubeAPIServer"
             case kubeControllerManager = "KubeControllerManager"
             case kubeScheduler = "KubeScheduler"
         }
     }
-    
+
     /// 边缘计算集群内网访问LB信息
     public struct EdgeClusterInternalLB: TCInputModel, TCOutputModel {
         /// 是否开启内网访问LB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
-        
+
         /// 内网访问LB关联的子网Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: [String]?
-        
-        public init (enabled: Bool, subnetId: [String]? = nil) {
+
+        public init(enabled: Bool, subnetId: [String]? = nil) {
             self.enabled = enabled
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// 边缘计算集群公网访问负载均衡信息
     public struct EdgeClusterPublicLB: TCInputModel, TCOutputModel {
         /// 是否开启公网访问LB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
-        
+
         /// 允许访问的公网cidr
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowFromCidrs: [String]?
-        
-        public init (enabled: Bool, allowFromCidrs: [String]? = nil) {
+
+        public init(enabled: Bool, allowFromCidrs: [String]? = nil) {
             self.enabled = enabled
             self.allowFromCidrs = allowFromCidrs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case allowFromCidrs = "AllowFromCidrs"
         }
     }
-    
+
     /// 用以帮助用户自动创建EIP的配置
     public struct EipAttribute: TCInputModel, TCOutputModel {
         /// 容器实例删除后，EIP是否释放。
         /// Never表示不释放，其他任意值（包括空字符串）表示释放。
         public let deletePolicy: String
-        
+
         /// EIP线路类型。默认值：BGP。
         /// 已开通静态单线IP白名单的用户，可选值：
         /// CMCC：中国移动
@@ -1616,45 +1616,45 @@ extension Tke {
         /// 注意：仅部分地域支持静态单线IP。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetServiceProvider: String?
-        
+
         /// EIP出带宽上限，单位：Mbps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetMaxBandwidthOut: UInt64?
-        
-        public init (deletePolicy: String, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil) {
+
+        public init(deletePolicy: String, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil) {
             self.deletePolicy = deletePolicy
             self.internetServiceProvider = internetServiceProvider
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deletePolicy = "DeletePolicy"
             case internetServiceProvider = "InternetServiceProvider"
             case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
         }
     }
-    
+
     /// EksContainerInstance实例类型
     public struct EksCi: TCInputModel, TCOutputModel {
         /// EKS Cotainer Instance Id
         public let eksCiId: String?
-        
+
         /// EKS Cotainer Instance Name
         public let eksCiName: String?
-        
+
         /// 内存大小
         public let memory: Float?
-        
+
         /// CPU大小
         public let cpu: Float?
-        
+
         /// 安全组ID
         public let securityGroupIds: [String]?
-        
+
         /// 容器组的重启策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartPolicy: String?
-        
+
         /// 返回容器组创建状态：Pending，Running，Succeeded，Failed。其中：
         /// Failed （运行失败）指的容器组退出，RestartPolilcy为Never， 有容器exitCode非0；
         /// Succeeded（运行成功）指的是容器组退出了，RestartPolicy为Never或onFailure，所有容器exitCode都为0；
@@ -1662,72 +1662,72 @@ extension Tke {
         /// Pending是创建中，Running是 运行中。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 接到请求后的系统创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationTime: String?
-        
+
         /// 容器全部成功退出后的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let succeededTime: String?
-        
+
         /// 容器列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containers: [Container]?
-        
+
         /// 数据卷信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eksCiVolume: EksCiVolume?
-        
+
         /// 容器组运行的安全上下文
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityContext: SecurityContext?
-        
+
         /// 内网ip地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privateIp: String?
-        
+
         /// 容器实例绑定的Eip地址，注意可能为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eipAddress: String?
-        
+
         /// GPU类型。如无使用GPU则不返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gpuType: String?
-        
+
         /// CPU类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuType: String?
-        
+
         /// GPU卡数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gpuCount: UInt64?
-        
+
         /// 实例所属VPC的Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// 实例所属子网Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 初始化容器列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let initContainers: [Container]?
-        
+
         /// 为容器实例关联 CAM 角色，value 填写 CAM 角色名称，容器实例可获取该 CAM 角色包含的权限策略，方便 容器实例 内的程序进行如购买资源、读写存储等云资源操作。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let camRoleName: String?
-        
+
         /// 自动为用户创建的EipId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoCreatedEipId: String?
-        
+
         /// 容器状态是否持久化
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let persistStatus: Bool?
-        
-        public init (eksCiId: String? = nil, eksCiName: String? = nil, memory: Float? = nil, cpu: Float? = nil, securityGroupIds: [String]? = nil, restartPolicy: String? = nil, status: String? = nil, creationTime: String? = nil, succeededTime: String? = nil, containers: [Container]? = nil, eksCiVolume: EksCiVolume? = nil, securityContext: SecurityContext? = nil, privateIp: String? = nil, eipAddress: String? = nil, gpuType: String? = nil, cpuType: String? = nil, gpuCount: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, initContainers: [Container]? = nil, camRoleName: String? = nil, autoCreatedEipId: String? = nil, persistStatus: Bool? = nil) {
+
+        public init(eksCiId: String? = nil, eksCiName: String? = nil, memory: Float? = nil, cpu: Float? = nil, securityGroupIds: [String]? = nil, restartPolicy: String? = nil, status: String? = nil, creationTime: String? = nil, succeededTime: String? = nil, containers: [Container]? = nil, eksCiVolume: EksCiVolume? = nil, securityContext: SecurityContext? = nil, privateIp: String? = nil, eipAddress: String? = nil, gpuType: String? = nil, cpuType: String? = nil, gpuCount: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, initContainers: [Container]? = nil, camRoleName: String? = nil, autoCreatedEipId: String? = nil, persistStatus: Bool? = nil) {
             self.eksCiId = eksCiId
             self.eksCiName = eksCiName
             self.memory = memory
@@ -1752,7 +1752,7 @@ extension Tke {
             self.autoCreatedEipId = autoCreatedEipId
             self.persistStatus = persistStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eksCiId = "EksCiId"
             case eksCiName = "EksCiName"
@@ -1779,89 +1779,89 @@ extension Tke {
             case persistStatus = "PersistStatus"
         }
     }
-    
+
     /// EksCi地域信息
     public struct EksCiRegionInfo: TCOutputModel {
         /// 地域别名，形如gz
         public let alias: String
-        
+
         /// 地域名，形如ap-guangzhou
         public let regionName: String
-        
+
         /// 地域ID
         public let regionId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case alias = "Alias"
             case regionName = "RegionName"
             case regionId = "RegionId"
         }
     }
-    
+
     /// EKS Instance Volume,  可选包括CbsVolume和NfsVolume
     public struct EksCiVolume: TCInputModel, TCOutputModel {
         /// Cbs Volume
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cbsVolumes: [CbsVolume]?
-        
+
         /// Nfs Volume
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nfsVolumes: [NfsVolume]?
-        
-        public init (cbsVolumes: [CbsVolume]? = nil, nfsVolumes: [NfsVolume]? = nil) {
+
+        public init(cbsVolumes: [CbsVolume]? = nil, nfsVolumes: [NfsVolume]? = nil) {
             self.cbsVolumes = cbsVolumes
             self.nfsVolumes = nfsVolumes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cbsVolumes = "CbsVolumes"
             case nfsVolumes = "NfsVolumes"
         }
     }
-    
+
     /// 弹性集群信息
     public struct EksCluster: TCInputModel, TCOutputModel {
         /// 集群Id
         public let clusterId: String
-        
+
         /// 集群名称
         public let clusterName: String
-        
+
         /// Vpc Id
         public let vpcId: String
-        
+
         /// 子网列表
         public let subnetIds: [String]
-        
+
         /// k8s 版本号
         public let k8sVersion: String
-        
+
         /// 集群状态(running运行中，initializing 初始化中，failed异常)
         public let status: String?
-        
+
         /// 集群描述信息
         public let clusterDesc: String?
-        
+
         /// 集群创建时间
         public let createdTime: String?
-        
+
         /// Service 子网Id
         public let serviceSubnetId: String?
-        
+
         /// 集群的自定义dns 服务器信息
         public let dnsServers: [DnsServerConf]?
-        
+
         /// 将来删除集群时是否要删除cbs。默认为 FALSE
         public let needDeleteCbs: Bool?
-        
+
         /// 是否在用户集群内开启Dns。默认为TRUE
         public let enableVpcCoreDNS: Bool?
-        
+
         /// 标签描述列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSpecification: [TagSpecification]?
-        
-        public init (clusterId: String, clusterName: String, vpcId: String, subnetIds: [String], k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, needDeleteCbs: Bool? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil) {
+
+        public init(clusterId: String, clusterName: String, vpcId: String, subnetIds: [String], k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, needDeleteCbs: Bool? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.vpcId = vpcId
@@ -1876,7 +1876,7 @@ extension Tke {
             self.enableVpcCoreDNS = enableVpcCoreDNS
             self.tagSpecification = tagSpecification
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -1893,73 +1893,73 @@ extension Tke {
             case tagSpecification = "TagSpecification"
         }
     }
-    
+
     /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
     public struct EnhancedService: TCInputModel, TCOutputModel {
         /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
         public let securityService: RunSecurityServiceEnabled?
-        
+
         /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
         public let monitorService: RunMonitorServiceEnabled?
-        
+
         /// 开启云自动化助手服务（TencentCloud Automation Tools，TAT）。若不指定该参数，则公共镜像默认开启云自动化助手服务，其他镜像默认不开启云自动化助手服务。
         public let automationService: RunAutomationServiceEnabled?
-        
-        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
+
+        public init(securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.automationService = automationService
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityService = "SecurityService"
             case monitorService = "MonitorService"
             case automationService = "AutomationService"
         }
     }
-    
+
     /// EnvironmentVariable
     public struct EnvironmentVariable: TCInputModel, TCOutputModel {
         /// key
         public let name: String?
-        
+
         /// val
         public let value: String?
-        
-        public init (name: String? = nil, value: String? = nil) {
+
+        public init(name: String? = nil, value: String? = nil) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 服务事件
     public struct Event: TCOutputModel {
         /// pod名称
         public let podName: String
-        
+
         /// 事件原因内容
         public let reason: String
-        
+
         /// 事件类型
         public let type: String
-        
+
         /// 事件出现次数
         public let count: Int64
-        
+
         /// 事件第一次出现时间
         public let firstTimestamp: String
-        
+
         /// 事件最后一次出现时间
         public let lastTimestamp: String
-        
+
         /// 事件内容
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case podName = "PodName"
             case reason = "Reason"
@@ -1970,85 +1970,85 @@ extension Tke {
             case message = "Message"
         }
     }
-    
+
     /// 探针在容器内执行检测命令参数类型
     public struct Exec: TCInputModel, TCOutputModel {
         /// 容器内检测的命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let commands: [String]?
-        
-        public init (commands: [String]? = nil) {
+
+        public init(commands: [String]? = nil) {
             self.commands = commands
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case commands = "Commands"
         }
     }
-    
+
     /// 已经存在的实例信息
     public struct ExistedInstance: TCOutputModel {
         /// 实例是否支持加入集群(TRUE 可以加入 FALSE 不能加入)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usable: Bool?
-        
+
         /// 实例不支持加入的原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unusableReason: String?
-        
+
         /// 实例已经所在的集群ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alreadyInCluster: String?
-        
+
         /// 实例ID形如：ins-xxxxxxxx。
         public let instanceId: String
-        
+
         /// 实例名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 实例主网卡的内网IP列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privateIpAddresses: [String]?
-        
+
         /// 实例主网卡的公网IP列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicIpAddresses: [String]?
-        
+
         /// 创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
-        
+
         /// 实例的CPU核数，单位：核。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpu: UInt64?
-        
+
         /// 实例内存容量，单位：GB。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memory: UInt64?
-        
+
         /// 操作系统名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let osName: String?
-        
+
         /// 实例机型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
-        
+
         /// 伸缩组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoscalingGroupId: String?
-        
+
         /// 实例计费模式。取值范围： PREPAID：表示预付费，即包年包月 POSTPAID_BY_HOUR：表示后付费，即按量计费 CDHPAID：CDH付费，即只对CDH计费，不对CDH上的实例计费。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceChargeType: String?
-        
+
         /// 实例的IPv6地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let iPv6Addresses: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case usable = "Usable"
             case unusableReason = "UnusableReason"
@@ -2067,28 +2067,28 @@ extension Tke {
             case iPv6Addresses = "IPv6Addresses"
         }
     }
-    
+
     /// 不同角色的已存在节点配置参数
     public struct ExistedInstancesForNode: TCInputModel {
         /// 节点角色，取值:MASTER_ETCD, WORKER。MASTER_ETCD只有在创建 INDEPENDENT_CLUSTER 独立集群时需要指定。MASTER_ETCD节点数量为3～7，建议为奇数。MASTER_ETCD最小配置为4C8G。
         public let nodeRole: String
-        
+
         /// 已存在实例的重装参数
         public let existedInstancesPara: ExistedInstancesPara
-        
+
         /// 节点高级设置，会覆盖集群级别设置的InstanceAdvancedSettings（当前只对节点自定义参数ExtraArgs生效）
         public let instanceAdvancedSettingsOverride: InstanceAdvancedSettings?
-        
+
         /// 自定义模式集群，可指定每个节点的pod数量
         public let desiredPodNumbers: [Int64]?
-        
-        public init (nodeRole: String, existedInstancesPara: ExistedInstancesPara, instanceAdvancedSettingsOverride: InstanceAdvancedSettings? = nil, desiredPodNumbers: [Int64]? = nil) {
+
+        public init(nodeRole: String, existedInstancesPara: ExistedInstancesPara, instanceAdvancedSettingsOverride: InstanceAdvancedSettings? = nil, desiredPodNumbers: [Int64]? = nil) {
             self.nodeRole = nodeRole
             self.existedInstancesPara = existedInstancesPara
             self.instanceAdvancedSettingsOverride = instanceAdvancedSettingsOverride
             self.desiredPodNumbers = desiredPodNumbers
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeRole = "NodeRole"
             case existedInstancesPara = "ExistedInstancesPara"
@@ -2096,28 +2096,28 @@ extension Tke {
             case desiredPodNumbers = "DesiredPodNumbers"
         }
     }
-    
+
     /// 已存在实例的重装参数
     public struct ExistedInstancesPara: TCInputModel {
         /// 集群ID
         public let instanceIds: [String]
-        
+
         /// 实例额外需要设置参数信息
         public let instanceAdvancedSettings: InstanceAdvancedSettings?
-        
+
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         public let enhancedService: EnhancedService?
-        
+
         /// 节点登录信息（目前仅支持使用Password或者单个KeyIds）
         public let loginSettings: LoginSettings?
-        
+
         /// 实例所属安全组。该参数可以通过调用 DescribeSecurityGroups 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         public let securityGroupIds: [String]?
-        
+
         /// 重装系统时，可以指定修改实例的HostName(集群为HostName模式时，此参数必传，规则名称除不支持大写字符外与[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口HostName一致)
         public let hostName: String?
-        
-        public init (instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, hostName: String? = nil) {
+
+        public init(instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, hostName: String? = nil) {
             self.instanceIds = instanceIds
             self.instanceAdvancedSettings = instanceAdvancedSettings
             self.enhancedService = enhancedService
@@ -2125,7 +2125,7 @@ extension Tke {
             self.securityGroupIds = securityGroupIds
             self.hostName = hostName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case instanceAdvancedSettings = "InstanceAdvancedSettings"
@@ -2135,74 +2135,74 @@ extension Tke {
             case hostName = "HostName"
         }
     }
-    
+
     /// 创建集群时，选择安装的扩展组件的信息
     public struct ExtensionAddon: TCInputModel {
         /// 扩展组件名称
         public let addonName: String
-        
+
         /// 扩展组件信息(扩展组件资源对象的json字符串描述)
         public let addonParam: String
-        
-        public init (addonName: String, addonParam: String) {
+
+        public init(addonName: String, addonParam: String) {
             self.addonName = addonName
             self.addonParam = addonParam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addonName = "AddonName"
             case addonParam = "AddonParam"
         }
     }
-    
+
     /// 过滤器
     public struct Filter: TCInputModel {
         /// 属性名称, 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
         public let name: String
-        
+
         /// 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// GPU相关的参数，包括驱动版本，CUDA版本，cuDNN版本以及是否开启MIG
     public struct GPUArgs: TCInputModel, TCOutputModel {
         /// 是否启用MIG特性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let migEnable: Bool?
-        
+
         /// GPU驱动版本信息
         public let driver: DriverVersion?
-        
+
         /// CUDA版本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cuda: DriverVersion?
-        
+
         /// cuDNN版本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cudnn: CUDNN?
-        
+
         /// 自定义GPU驱动信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customDriver: CustomDriver?
-        
-        public init (migEnable: Bool? = nil, driver: DriverVersion? = nil, cuda: DriverVersion? = nil, cudnn: CUDNN? = nil, customDriver: CustomDriver? = nil) {
+
+        public init(migEnable: Bool? = nil, driver: DriverVersion? = nil, cuda: DriverVersion? = nil, cudnn: CUDNN? = nil, customDriver: CustomDriver? = nil) {
             self.migEnable = migEnable
             self.driver = driver
             self.cuda = cuda
             self.cudnn = cudnn
             self.customDriver = customDriver
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case migEnable = "MIGEnable"
             case driver = "Driver"
@@ -2211,87 +2211,87 @@ extension Tke {
             case customDriver = "CustomDriver"
         }
     }
-    
+
     /// Probe中的HttpGet
     public struct HttpGet: TCInputModel, TCOutputModel {
         /// HttpGet检测的路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// HttpGet检测的端口号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
-        
+
         /// HTTP or HTTPS
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheme: String?
-        
-        public init (path: String, port: Int64, scheme: String) {
+
+        public init(path: String, port: Int64, scheme: String) {
             self.path = path
             self.port = port
             self.scheme = scheme
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case port = "Port"
             case scheme = "Scheme"
         }
     }
-    
+
     /// IP 地址
     public struct IPAddress: TCInputModel, TCOutputModel {
         /// Ip 地址的类型。可为 advertise, public 等
         public let type: String
-        
+
         /// Ip 地址
         public let ip: String
-        
+
         /// 网络端口
         public let port: UInt64
-        
-        public init (type: String, ip: String, port: UInt64) {
+
+        public init(type: String, ip: String, port: UInt64) {
             self.type = type
             self.ip = ip
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// 镜像缓存的信息
     public struct ImageCache: TCOutputModel {
         /// 镜像缓存Id
         public let imageCacheId: String
-        
+
         /// 镜像缓存名称
         public let imageCacheName: String
-        
+
         /// 镜像缓存大小。单位：GiB
         public let imageCacheSize: UInt64
-        
+
         /// 镜像缓存包含的镜像列表
         public let images: [String]
-        
+
         /// 创建时间
         public let creationTime: String
-        
+
         /// 到期时间
         public let expireDateTime: String
-        
+
         /// 镜像缓存事件信息
         public let events: [ImageCacheEvent]
-        
+
         /// 最新一次匹配到镜像缓存的时间
         public let lastMatchedTime: String
-        
+
         /// 镜像缓存对应的快照Id
         public let snapshotId: String
-        
+
         /// 镜像缓存状态，可能取值：
         /// Pending：创建中
         /// Ready：创建完成
@@ -2300,7 +2300,7 @@ extension Tke {
         /// UpdateFailed：更新失败
         /// 只有状态为Ready时，才能正常使用镜像缓存
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageCacheId = "ImageCacheId"
             case imageCacheName = "ImageCacheName"
@@ -2314,27 +2314,27 @@ extension Tke {
             case status = "Status"
         }
     }
-    
+
     /// 镜像缓存的事件
     public struct ImageCacheEvent: TCOutputModel {
         /// 镜像缓存Id
         public let imageCacheId: String
-        
+
         /// 事件类型, Normal或者Warning
         public let type: String
-        
+
         /// 事件原因简述
         public let reason: String
-        
+
         /// 事件原因详述
         public let message: String
-        
+
         /// 事件第一次出现时间
         public let firstTimestamp: String
-        
+
         /// 事件最后一次出现时间
         public let lastTimestamp: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageCacheId = "ImageCacheId"
             case type = "Type"
@@ -2344,25 +2344,25 @@ extension Tke {
             case lastTimestamp = "LastTimestamp"
         }
     }
-    
+
     /// 镜像信息
     public struct ImageInstance: TCOutputModel {
         /// 镜像别名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
-        
+
         /// 操作系统名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let osName: String?
-        
+
         /// 镜像ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageId: String?
-        
+
         /// 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let osCustomizeType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case alias = "Alias"
             case osName = "OsName"
@@ -2370,28 +2370,28 @@ extension Tke {
             case osCustomizeType = "OsCustomizeType"
         }
     }
-    
+
     /// 从镜像仓库拉取镜像的凭据
     public struct ImageRegistryCredential: TCInputModel, TCOutputModel {
         /// 镜像仓库地址
         public let server: String?
-        
+
         /// 用户名
         public let username: String?
-        
+
         /// 密码
         public let password: String?
-        
+
         /// ImageRegistryCredential的名字
         public let name: String?
-        
-        public init (server: String? = nil, username: String? = nil, password: String? = nil, name: String? = nil) {
+
+        public init(server: String? = nil, username: String? = nil, password: String? = nil, name: String? = nil) {
             self.server = server
             self.username = username
             self.password = password
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case server = "Server"
             case username = "Username"
@@ -2399,44 +2399,44 @@ extension Tke {
             case name = "Name"
         }
     }
-    
+
     /// 集群的实例信息
     public struct Instance: TCOutputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 节点角色, MASTER, WORKER, ETCD, MASTER_ETCD,ALL, 默认为WORKER
         public let instanceRole: String
-        
+
         /// 实例异常(或者处于初始化中)的原因
         public let failedReason: String
-        
+
         /// 实例的状态（running 运行中，initializing 初始化中，failed 异常）
         public let instanceState: String
-        
+
         /// 实例是否封锁状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drainStatus: String?
-        
+
         /// 节点配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceAdvancedSettings: InstanceAdvancedSettings?
-        
+
         /// 添加时间
         public let createdTime: String
-        
+
         /// 节点内网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lanIP: String?
-        
+
         /// 资源池ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodePoolId: String?
-        
+
         /// 自动伸缩组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoscalingGroupId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceRole = "InstanceRole"
@@ -2450,53 +2450,53 @@ extension Tke {
             case autoscalingGroupId = "AutoscalingGroupId"
         }
     }
-    
+
     /// 描述了k8s集群相关配置与信息。
     public struct InstanceAdvancedSettings: TCOutputModel {
         /// 数据盘挂载点, 默认不挂载数据盘. 已格式化的 ext3，ext4，xfs 文件系统的数据盘将直接挂载，其他文件系统或未格式化的数据盘将自动格式化为ext4 (tlinux系统格式化成xfs)并挂载，请注意备份数据! 无数据盘或有多块数据盘的云主机此设置不生效。
         /// 注意，注意，多盘场景请使用下方的DataDisks数据结构，设置对应的云盘类型、云盘大小、挂载路径、是否格式化等信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mountTarget: String?
-        
+
         /// dockerd --graph 指定值, 默认为 /var/lib/docker
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dockerGraphPath: String?
-        
+
         /// base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看, 如果要求节点需要在进行初始化完成后才可加入调度, 可配合 unschedulable 参数使用, 在 userScript 最后初始化完成后, 添加 kubectl uncordon nodename --kubeconfig=/root/.kube/config 命令使节点加入调度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userScript: String?
-        
+
         /// 设置加入的节点是否参与调度，默认值为0，表示参与调度；非0表示不参与调度, 待节点初始化完成之后, 可执行kubectl uncordon nodename使node加入调度.
         public let unschedulable: Int64?
-        
+
         /// 节点Label数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [Label]?
-        
+
         /// 多盘数据盘挂载信息：新建节点时请确保购买CVM的参数传递了购买多个数据盘的信息，如CreateClusterInstances API的RunInstancesPara下的DataDisks也需要设置购买多个数据盘, 具体可以参考CreateClusterInstances接口的添加集群节点(多块数据盘)样例；添加已有节点时，请确保填写的分区信息在节点上真实存在
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataDisks: [DataDisk]?
-        
+
         /// 节点相关的自定义参数信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraArgs: InstanceExtraArgs?
-        
+
         /// 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desiredPodNumber: Int64?
-        
+
         /// GPU驱动相关参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gpuArgs: GPUArgs?
-        
+
         /// base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preStartUserScript: String?
-        
+
         /// 节点污点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taints: [Taint]?
-        
+
         enum CodingKeys: String, CodingKey {
             case mountTarget = "MountTarget"
             case dockerGraphPath = "DockerGraphPath"
@@ -2511,98 +2511,98 @@ extension Tke {
             case taints = "Taints"
         }
     }
-    
+
     /// CVM实例数据盘挂载配置
     public struct InstanceDataDiskMountSetting: TCInputModel {
         /// CVM实例类型
         public let instanceType: String
-        
+
         /// 数据盘挂载信息
         public let dataDisks: [DataDisk]
-        
+
         /// CVM实例所属可用区
         public let zone: String
-        
-        public init (instanceType: String, dataDisks: [DataDisk], zone: String) {
+
+        public init(instanceType: String, dataDisks: [DataDisk], zone: String) {
             self.instanceType = instanceType
             self.dataDisks = dataDisks
             self.zone = zone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceType = "InstanceType"
             case dataDisks = "DataDisks"
             case zone = "Zone"
         }
     }
-    
+
     /// 节点自定义参数
     public struct InstanceExtraArgs: TCInputModel, TCOutputModel {
         /// kubelet自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["root-dir=/var/lib/kubelet","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubelet: [String]?
-        
-        public init (kubelet: [String]? = nil) {
+
+        public init(kubelet: [String]? = nil) {
             self.kubelet = kubelet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case kubelet = "Kubelet"
         }
     }
-    
+
     /// 节点升级过程中集群当前状态
     public struct InstanceUpgradeClusterStatus: TCOutputModel {
         /// pod总数
         public let podTotal: Int64
-        
+
         /// NotReady pod总数
         public let notReadyPod: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case podTotal = "PodTotal"
             case notReadyPod = "NotReadyPod"
         }
     }
-    
+
     /// 某个节点升级前检查结果
     public struct InstanceUpgradePreCheckResult: TCOutputModel {
         /// 检查是否通过
         public let checkPass: Bool
-        
+
         /// 检查项数组
         public let items: [InstanceUpgradePreCheckResultItem]
-        
+
         /// 本节点独立pod列表
         public let singlePods: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case checkPass = "CheckPass"
             case items = "Items"
             case singlePods = "SinglePods"
         }
     }
-    
+
     /// 节点升级检查项结果
     public struct InstanceUpgradePreCheckResultItem: TCOutputModel {
         /// 工作负载的命名空间
         public let namespace: String
-        
+
         /// 工作负载类型
         public let workLoadKind: String
-        
+
         /// 工作负载名称
         public let workLoadName: String
-        
+
         /// 驱逐节点前工作负载running的pod数目
         public let before: UInt64
-        
+
         /// 驱逐节点后工作负载running的pod数目
         public let after: UInt64
-        
+
         /// 工作负载在本节点上的pod列表
         public let pods: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case workLoadKind = "WorkLoadKind"
@@ -2612,12 +2612,12 @@ extension Tke {
             case pods = "Pods"
         }
     }
-    
+
     /// 某个节点的升级进度
     public struct InstanceUpgradeProgressItem: TCOutputModel {
         /// 节点instanceID
         public let instanceID: String
-        
+
         /// 任务生命周期
         /// process 运行中
         /// paused 已停止
@@ -2627,21 +2627,21 @@ extension Tke {
         /// aborted 已取消
         /// pending 还未开始
         public let lifeState: String
-        
+
         /// 升级开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startAt: String?
-        
+
         /// 升级结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endAt: String?
-        
+
         /// 升级前检查结果
         public let checkResult: InstanceUpgradePreCheckResult
-        
+
         /// 升级步骤详情
         public let detail: [TaskStepInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceID = "InstanceID"
             case lifeState = "LifeState"
@@ -2651,51 +2651,51 @@ extension Tke {
             case detail = "Detail"
         }
     }
-    
+
     /// k8s中标签，一般以数组的方式存在
     public struct Label: TCInputModel, TCOutputModel {
         /// map表中的Name
         public let name: String
-        
+
         /// map表中的Value
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 健康探针
     public struct LivenessOrReadinessProbe: TCInputModel, TCOutputModel {
         /// 探针参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let probe: Probe?
-        
+
         /// HttpGet检测参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let httpGet: HttpGet?
-        
+
         /// 容器内检测命令参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exec: Exec?
-        
+
         /// TcpSocket检测的端口参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcpSocket: TcpSocket?
-        
-        public init (probe: Probe, httpGet: HttpGet? = nil, exec: Exec? = nil, tcpSocket: TcpSocket? = nil) {
+
+        public init(probe: Probe, httpGet: HttpGet? = nil, exec: Exec? = nil, tcpSocket: TcpSocket? = nil) {
             self.probe = probe
             self.httpGet = httpGet
             self.exec = exec
             self.tcpSocket = tcpSocket
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case probe = "Probe"
             case httpGet = "HttpGet"
@@ -2703,48 +2703,48 @@ extension Tke {
             case tcpSocket = "TcpSocket"
         }
     }
-    
+
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel, TCOutputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
-        
+
         /// 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口[DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699)获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyIds: [String]?
-        
+
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: String?
-        
-        public init (password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
+
+        public init(password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
             self.password = password
             self.keyIds = keyIds
             self.keepImageLogin = keepImageLogin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case password = "Password"
             case keyIds = "KeyIds"
             case keepImageLogin = "KeepImageLogin"
         }
     }
-    
+
     /// 手动加入的节点
     public struct ManuallyAdded: TCOutputModel {
         /// 加入中的节点数量
         public let joining: Int64
-        
+
         /// 初始化中的节点数量
         public let initializing: Int64
-        
+
         /// 正常的节点数量
         public let normal: Int64
-        
+
         /// 节点总数
         public let total: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case joining = "Joining"
             case initializing = "Initializing"
@@ -2752,28 +2752,28 @@ extension Tke {
             case total = "Total"
         }
     }
-    
+
     /// EKS Instance Nfs Volume
     public struct NfsVolume: TCInputModel, TCOutputModel {
         /// nfs volume 数据卷名称
         public let name: String
-        
+
         /// NFS 服务器地址
         public let server: String
-        
+
         /// NFS 数据卷路径
         public let path: String
-        
+
         /// 默认为 False
         public let readOnly: Bool?
-        
-        public init (name: String, server: String, path: String, readOnly: Bool? = nil) {
+
+        public init(name: String, server: String, path: String, readOnly: Bool? = nil) {
             self.name = name
             self.server = server
             self.path = path
             self.readOnly = readOnly
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case server = "Server"
@@ -2781,96 +2781,96 @@ extension Tke {
             case readOnly = "ReadOnly"
         }
     }
-    
+
     /// 节点统计列表
     public struct NodeCountSummary: TCOutputModel {
         /// 手动管理的节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manuallyAdded: ManuallyAdded?
-        
+
         /// 自动管理的节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoscalingAdded: AutoscalingAdded?
-        
+
         enum CodingKeys: String, CodingKey {
             case manuallyAdded = "ManuallyAdded"
             case autoscalingAdded = "AutoscalingAdded"
         }
     }
-    
+
     /// 节点池描述
     public struct NodePool: TCOutputModel {
         /// NodePoolId 资源池id
         public let nodePoolId: String
-        
+
         /// Name 资源池名称
         public let name: String
-        
+
         /// ClusterInstanceId 集群实例id
         public let clusterInstanceId: String
-        
+
         /// LifeState 状态，当前节点池生命周期状态包括：creating，normal，updating，deleting，deleted
         public let lifeState: String
-        
+
         /// LaunchConfigurationId 配置
         public let launchConfigurationId: String
-        
+
         /// AutoscalingGroupId 分组id
         public let autoscalingGroupId: String
-        
+
         /// Labels 标签
         public let labels: [Label]
-        
+
         /// Taints 污点标记
         public let taints: [Taint]
-        
+
         /// NodeCountSummary 节点列表
         public let nodeCountSummary: NodeCountSummary
-        
+
         /// 状态信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoscalingGroupStatus: String?
-        
+
         /// 最大节点数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxNodesNum: Int64?
-        
+
         /// 最小节点数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minNodesNum: Int64?
-        
+
         /// 期望的节点数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desiredNodesNum: Int64?
-        
+
         /// 节点池osName
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodePoolOs: String?
-        
+
         /// 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let osCustomizeType: String?
-        
+
         /// 镜像id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageId: String?
-        
+
         /// 集群属于节点podCIDR大小自定义模式时，节点池需要带上pod数量属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desiredPodNum: Int64?
-        
+
         /// 用户自定义脚本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userScript: String?
-        
+
         /// 资源标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 删除保护开关
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deletionProtection: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case nodePoolId = "NodePoolId"
             case name = "Name"
@@ -2894,64 +2894,64 @@ extension Tke {
             case deletionProtection = "DeletionProtection"
         }
     }
-    
+
     /// 加入存量节点时的节点池选项
     public struct NodePoolOption: TCInputModel {
         /// 是否加入节点池
         public let addToNodePool: Bool?
-        
+
         /// 节点池id
         public let nodePoolId: String?
-        
+
         /// 是否继承节点池相关配置
         public let inheritConfigurationFromNodePool: Bool?
-        
-        public init (addToNodePool: Bool? = nil, nodePoolId: String? = nil, inheritConfigurationFromNodePool: Bool? = nil) {
+
+        public init(addToNodePool: Bool? = nil, nodePoolId: String? = nil, inheritConfigurationFromNodePool: Bool? = nil) {
             self.addToNodePool = addToNodePool
             self.nodePoolId = nodePoolId
             self.inheritConfigurationFromNodePool = inheritConfigurationFromNodePool
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addToNodePool = "AddToNodePool"
             case nodePoolId = "NodePoolId"
             case inheritConfigurationFromNodePool = "InheritConfigurationFromNodePool"
         }
     }
-    
+
     /// OIDC认证相关配置
     public struct OIDCConfigAuthenticationOptions: TCInputModel, TCOutputModel {
         /// 创建身份提供商
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoCreateOIDCConfig: Bool?
-        
+
         /// 创建身份提供商的ClientId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoCreateClientId: [String]?
-        
+
         /// 创建PodIdentityWebhook组件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoInstallPodIdentityWebhookAddon: Bool?
-        
-        public init (autoCreateOIDCConfig: Bool? = nil, autoCreateClientId: [String]? = nil, autoInstallPodIdentityWebhookAddon: Bool? = nil) {
+
+        public init(autoCreateOIDCConfig: Bool? = nil, autoCreateClientId: [String]? = nil, autoInstallPodIdentityWebhookAddon: Bool? = nil) {
             self.autoCreateOIDCConfig = autoCreateOIDCConfig
             self.autoCreateClientId = autoCreateClientId
             self.autoInstallPodIdentityWebhookAddon = autoInstallPodIdentityWebhookAddon
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoCreateOIDCConfig = "AutoCreateOIDCConfig"
             case autoCreateClientId = "AutoCreateClientId"
             case autoInstallPodIdentityWebhookAddon = "AutoInstallPodIdentityWebhookAddon"
         }
     }
-    
+
     /// 应用市场安装的Pending应用
     public struct PendingRelease: TCOutputModel {
         /// 应用状态详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let condition: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -2960,27 +2960,27 @@ extension Tke {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 应用命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 应用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case condition = "Condition"
             case createdTime = "CreatedTime"
@@ -2991,46 +2991,46 @@ extension Tke {
             case updatedTime = "UpdatedTime"
         }
     }
-    
+
     /// 某机型可支持的最大 VPC-CNI 模式的 Pod 数量
     public struct PodLimitsByType: TCOutputModel {
         /// TKE共享网卡非固定IP模式可支持的Pod数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tkeRouteENINonStaticIP: Int64?
-        
+
         /// TKE共享网卡固定IP模式可支持的Pod数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tkeRouteENIStaticIP: Int64?
-        
+
         /// TKE独立网卡模式可支持的Pod数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tkeDirectENI: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case tkeRouteENINonStaticIP = "TKERouteENINonStaticIP"
             case tkeRouteENIStaticIP = "TKERouteENIStaticIP"
             case tkeDirectENI = "TKEDirectENI"
         }
     }
-    
+
     /// 机型信息和其可支持的最大VPC-CNI模式Pod数量信息
     public struct PodLimitsInstance: TCOutputModel {
         /// 机型所在可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// 机型所属机型族
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceFamily: String?
-        
+
         /// 实例机型名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
-        
+
         /// 机型可支持的最大VPC-CNI模式Pod数量信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podLimits: PodLimitsByType?
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case instanceFamily = "InstanceFamily"
@@ -3038,38 +3038,38 @@ extension Tke {
             case podLimits = "PodLimits"
         }
     }
-    
+
     /// 健康检查探测参数
     public struct Probe: TCInputModel, TCOutputModel {
         /// Number of seconds after the container has started before liveness probes are initiated.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let initialDelaySeconds: Int64?
-        
+
         /// Number of seconds after which the probe times out.
         /// Defaults to 1 second. Minimum value is 1.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeoutSeconds: Int64?
-        
+
         /// How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let periodSeconds: Int64?
-        
+
         /// Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successThreshold: Int64?
-        
+
         /// Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureThreshold: Int64?
-        
-        public init (initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil, successThreshold: Int64? = nil, failureThreshold: Int64? = nil) {
+
+        public init(initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil, successThreshold: Int64? = nil, failureThreshold: Int64? = nil) {
             self.initialDelaySeconds = initialDelaySeconds
             self.timeoutSeconds = timeoutSeconds
             self.periodSeconds = periodSeconds
             self.successThreshold = successThreshold
             self.failureThreshold = failureThreshold
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case initialDelaySeconds = "InitialDelaySeconds"
             case timeoutSeconds = "TimeoutSeconds"
@@ -3078,64 +3078,64 @@ extension Tke {
             case failureThreshold = "FailureThreshold"
         }
     }
-    
+
     /// 托管Prometheus agent信息
     public struct PrometheusAgentInfo: TCInputModel {
         /// 集群类型
         public let clusterType: String
-        
+
         /// 集群id
         public let clusterId: String
-        
+
         /// 备注
         public let describe: String?
-        
-        public init (clusterType: String, clusterId: String, describe: String? = nil) {
+
+        public init(clusterType: String, clusterId: String, describe: String? = nil) {
             self.clusterType = clusterType
             self.clusterId = clusterId
             self.describe = describe
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterType = "ClusterType"
             case clusterId = "ClusterId"
             case describe = "Describe"
         }
     }
-    
+
     /// 托管prometheus agent概览
     public struct PrometheusAgentOverview: TCOutputModel {
         /// 集群类型
         public let clusterType: String
-        
+
         /// 集群id
         public let clusterId: String
-        
+
         /// agent状态
         /// normal = 正常
         /// abnormal = 异常
         public let status: String
-        
+
         /// 集群名称
         public let clusterName: String
-        
+
         /// 额外labels
         /// 本集群的所有指标都会带上这几个label
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalLabels: [Label]?
-        
+
         /// 集群所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 集群所在VPC ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// 记录关联等操作的失败信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedReason: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterType = "ClusterType"
             case clusterId = "ClusterId"
@@ -3147,35 +3147,35 @@ extension Tke {
             case failedReason = "FailedReason"
         }
     }
-    
+
     /// prometheus告警历史
     public struct PrometheusAlertHistoryItem: TCInputModel, TCOutputModel {
         /// 告警名称
         public let ruleName: String
-        
+
         /// 告警开始时间
         public let startTime: String
-        
+
         /// 告警内容
         public let content: String
-        
+
         /// 告警状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let state: String?
-        
+
         /// 触发的规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleItem: String?
-        
+
         /// 告警渠道的id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicId: String?
-        
+
         /// 告警渠道的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicName: String?
-        
-        public init (ruleName: String, startTime: String, content: String, state: String? = nil, ruleItem: String? = nil, topicId: String? = nil, topicName: String? = nil) {
+
+        public init(ruleName: String, startTime: String, content: String, state: String? = nil, ruleItem: String? = nil, topicId: String? = nil, topicName: String? = nil) {
             self.ruleName = ruleName
             self.startTime = startTime
             self.content = content
@@ -3184,7 +3184,7 @@ extension Tke {
             self.topicId = topicId
             self.topicName = topicName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case startTime = "StartTime"
@@ -3195,62 +3195,62 @@ extension Tke {
             case topicName = "TopicName"
         }
     }
-    
+
     /// 告警渠道使用自建alertmanager的配置
     public struct PrometheusAlertManagerConfig: TCInputModel, TCOutputModel {
         /// alertmanager url
         public let url: String
-        
+
         /// alertmanager部署所在集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// alertmanager部署所在集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
-        public init (url: String, clusterType: String? = nil, clusterId: String? = nil) {
+
+        public init(url: String, clusterType: String? = nil, clusterId: String? = nil) {
             self.url = url
             self.clusterType = clusterType
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case clusterType = "ClusterType"
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// 托管prometheus告警策略实例
     public struct PrometheusAlertPolicyItem: TCInputModel, TCOutputModel {
         /// 策略名称
         public let name: String
-        
+
         /// 规则列表
         public let rules: [PrometheusAlertRule]
-        
+
         /// 告警策略 id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 如果该告警来自模板下发，则TemplateId为模板id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?
-        
+
         /// 告警渠道，模板中使用可能返回null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notification: PrometheusNotificationItem?
-        
+
         /// 最后修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         /// 如果告警策略来源于用户集群CRD资源定义，则ClusterId为所属集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
-        public init (name: String, rules: [PrometheusAlertRule], id: String? = nil, templateId: String? = nil, notification: PrometheusNotificationItem? = nil, updatedAt: String? = nil, clusterId: String? = nil) {
+
+        public init(name: String, rules: [PrometheusAlertRule], id: String? = nil, templateId: String? = nil, notification: PrometheusNotificationItem? = nil, updatedAt: String? = nil, clusterId: String? = nil) {
             self.name = name
             self.rules = rules
             self.id = id
@@ -3259,7 +3259,7 @@ extension Tke {
             self.updatedAt = updatedAt
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case rules = "Rules"
@@ -3270,37 +3270,37 @@ extension Tke {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// Prometheus告警规则
     public struct PrometheusAlertRule: TCInputModel, TCOutputModel {
         /// 规则名称
         public let name: String
-        
+
         /// prometheus语句
         public let rule: String
-        
+
         /// 额外标签
         public let labels: [Label]
-        
+
         /// 告警发送模板
         public let template: String
-        
+
         /// 持续时间
         public let `for`: String
-        
+
         /// 该条规则的描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describe: String?
-        
+
         /// 参考prometheus rule中的annotations
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let annotations: [Label]?
-        
+
         /// 告警规则状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleState: Int64?
-        
-        public init (name: String, rule: String, labels: [Label], template: String, for: String, describe: String? = nil, annotations: [Label]? = nil, ruleState: Int64? = nil) {
+
+        public init(name: String, rule: String, labels: [Label], template: String, for: String, describe: String? = nil, annotations: [Label]? = nil, ruleState: Int64? = nil) {
             self.name = name
             self.rule = rule
             self.labels = labels
@@ -3310,7 +3310,7 @@ extension Tke {
             self.annotations = annotations
             self.ruleState = ruleState
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case rule = "Rule"
@@ -3322,33 +3322,33 @@ extension Tke {
             case ruleState = "RuleState"
         }
     }
-    
+
     /// 托管prometheus告警配置实例
     public struct PrometheusAlertRuleDetail: TCInputModel, TCOutputModel {
         /// 规则名称
         public let name: String
-        
+
         /// 规则列表
         public let rules: [PrometheusAlertRule]
-        
+
         /// 最后修改时间
         public let updatedAt: String?
-        
+
         /// 告警渠道
         public let notification: PrometheusNotification?
-        
+
         /// 告警 id
         public let id: String?
-        
+
         /// 如果该告警来至模板下发，则TemplateId为模板id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?
-        
+
         /// 计算周期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let interval: String?
-        
-        public init (name: String, rules: [PrometheusAlertRule], updatedAt: String? = nil, notification: PrometheusNotification? = nil, id: String? = nil, templateId: String? = nil, interval: String? = nil) {
+
+        public init(name: String, rules: [PrometheusAlertRule], updatedAt: String? = nil, notification: PrometheusNotification? = nil, id: String? = nil, templateId: String? = nil, interval: String? = nil) {
             self.name = name
             self.rules = rules
             self.updatedAt = updatedAt
@@ -3357,7 +3357,7 @@ extension Tke {
             self.templateId = templateId
             self.interval = interval
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case rules = "Rules"
@@ -3368,34 +3368,34 @@ extension Tke {
             case interval = "Interval"
         }
     }
-    
+
     /// 与云监控融合托管prometheus实例，关联集群基础信息
     public struct PrometheusClusterAgentBasic: TCInputModel {
         /// 集群ID
         public let region: String
-        
+
         /// 集群类型
         public let clusterType: String
-        
+
         /// 集群ID
         public let clusterId: String
-        
+
         /// 是否开启公网CLB
         public let enableExternal: Bool
-        
+
         /// 集群内部署组件的pod配置
         public let inClusterPodConfig: PrometheusClusterAgentPodConfig?
-        
+
         /// 该集群采集的所有指标都会带上这些labels
         public let externalLabels: [Label]?
-        
+
         /// 是否安装默认采集配置
         public let notInstallBasicScrape: Bool?
-        
+
         /// 是否采集指标，true代表drop所有指标，false代表采集默认指标
         public let notScrape: Bool?
-        
-        public init (region: String, clusterType: String, clusterId: String, enableExternal: Bool, inClusterPodConfig: PrometheusClusterAgentPodConfig? = nil, externalLabels: [Label]? = nil, notInstallBasicScrape: Bool? = nil, notScrape: Bool? = nil) {
+
+        public init(region: String, clusterType: String, clusterId: String, enableExternal: Bool, inClusterPodConfig: PrometheusClusterAgentPodConfig? = nil, externalLabels: [Label]? = nil, notInstallBasicScrape: Bool? = nil, notScrape: Bool? = nil) {
             self.region = region
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -3405,7 +3405,7 @@ extension Tke {
             self.notInstallBasicScrape = notInstallBasicScrape
             self.notScrape = notScrape
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case clusterType = "ClusterType"
@@ -3417,76 +3417,76 @@ extension Tke {
             case notScrape = "NotScrape"
         }
     }
-    
+
     /// 关联集群时在集群内部署组件的pod额外配置
     public struct PrometheusClusterAgentPodConfig: TCInputModel {
         /// 是否使用HostNetWork
         public let hostNet: Bool?
-        
+
         /// 指定pod运行节点
         public let nodeSelector: [Label]?
-        
+
         /// 容忍污点
         public let tolerations: [Toleration]?
-        
-        public init (hostNet: Bool? = nil, nodeSelector: [Label]? = nil, tolerations: [Toleration]? = nil) {
+
+        public init(hostNet: Bool? = nil, nodeSelector: [Label]? = nil, tolerations: [Toleration]? = nil) {
             self.hostNet = hostNet
             self.nodeSelector = nodeSelector
             self.tolerations = tolerations
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hostNet = "HostNet"
             case nodeSelector = "NodeSelector"
             case tolerations = "Tolerations"
         }
     }
-    
+
     /// prometheus配置
     public struct PrometheusConfigItem: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 配置内容
         public let config: String
-        
+
         /// 用于出参，如果该配置来至模板，则为模板id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?
-        
-        public init (name: String, config: String, templateId: String? = nil) {
+
+        public init(name: String, config: String, templateId: String? = nil) {
             self.name = name
             self.config = config
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case config = "Config"
             case templateId = "TemplateId"
         }
     }
-    
+
     /// 托管prometheus中grafana的信息
     public struct PrometheusGrafanaInfo: TCOutputModel {
         /// 是否启用
         public let enabled: Bool
-        
+
         /// 域名，只有开启外网访问才有效果
         public let domain: String
-        
+
         /// 内网地址，或者外网地址
         public let address: String
-        
+
         /// 是否开启了外网访问
         /// close = 未开启外网访问
         /// opening = 正在开启外网访问
         /// open  = 已开启外网访问
         public let internet: String
-        
+
         /// grafana管理员用户名
         public let adminUser: String
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case domain = "Domain"
@@ -3495,42 +3495,42 @@ extension Tke {
             case adminUser = "AdminUser"
         }
     }
-    
+
     /// 托管prometheus实例概览
     public struct PrometheusInstanceOverview: TCOutputModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 实例名称
         public let name: String
-        
+
         /// 实例vpcId
         public let vpcId: String
-        
+
         /// 实例子网Id
         public let subnetId: String
-        
+
         /// 实例当前的状态
         /// prepare_env = 初始化环境
         /// install_suit = 安装组件
         /// running = 运行中
         public let status: String
-        
+
         /// COS桶存储
         public let cosBucket: String
-        
+
         /// grafana默认地址，如果开启外网访问得为域名，否则为内网地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaURL: String?
-        
+
         /// 关联集群总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let boundTotal: UInt64?
-        
+
         /// 运行正常的集群数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let boundNormal: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
@@ -3543,60 +3543,60 @@ extension Tke {
             case boundNormal = "BoundNormal"
         }
     }
-    
+
     /// 托管prometheusV2实例概览
     public struct PrometheusInstancesOverview: TCOutputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例名
         public let instanceName: String
-        
+
         /// VPC ID
         public let vpcId: String
-        
+
         /// 子网ID
         public let subnetId: String
-        
+
         /// 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:销毁中； 6:已停机； 7: 已删除）
         public let instanceStatus: Int64
-        
+
         /// 计费状态（1:正常；2:过期; 3:销毁; 4:分配中; 5:分配失败）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeStatus: Int64?
-        
+
         /// 是否开启 Grafana（0:不开启，1:开启）
         public let enableGrafana: Int64
-        
+
         /// Grafana 面板 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaURL: String?
-        
+
         /// 实例付费类型（1:试用版；2:预付费）
         public let instanceChargeType: Int64
-        
+
         /// 规格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let specName: String?
-        
+
         /// 存储周期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataRetentionTime: Int64?
-        
+
         /// 购买的实例过期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTime: String?
-        
+
         /// 自动续费标记(0:不自动续费；1:开启自动续费；2:禁止自动续费；-1:无效)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlag: Int64?
-        
+
         /// 绑定集群总数
         public let boundTotal: Int64
-        
+
         /// 绑定集群正常状态总数
         public let boundNormal: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -3615,21 +3615,21 @@ extension Tke {
             case boundNormal = "BoundNormal"
         }
     }
-    
+
     /// prometheus一个job的targets
     public struct PrometheusJobTargets: TCOutputModel {
         /// 该Job的targets列表
         public let targets: [PrometheusTarget]
-        
+
         /// job的名称
         public let jobName: String
-        
+
         /// targets总数
         public let total: UInt64
-        
+
         /// 健康的target总数
         public let up: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case targets = "Targets"
             case jobName = "JobName"
@@ -3637,66 +3637,66 @@ extension Tke {
             case up = "Up"
         }
     }
-    
+
     /// amp告警渠道配置
     public struct PrometheusNotification: TCInputModel, TCOutputModel {
         /// 是否启用
         public let enabled: Bool
-        
+
         /// 收敛时间
         public let repeatInterval: String
-        
+
         /// 生效起始时间
         public let timeRangeStart: String
-        
+
         /// 生效结束时间
         public let timeRangeEnd: String
-        
+
         /// 告警通知方式。目前有SMS、EMAIL、CALL、WECHAT方式。
         /// 分别代表：短信、邮件、电话、微信
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notifyWay: [String]?
-        
+
         /// 告警接收组（用户组）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverGroups: [UInt64]?
-        
+
         /// 电话告警顺序。
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneNotifyOrder: [UInt64]?
-        
+
         /// 电话告警次数。
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneCircleTimes: Int64?
-        
+
         /// 电话告警轮内间隔。单位：秒
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneInnerInterval: Int64?
-        
+
         /// 电话告警轮外间隔。单位：秒
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneCircleInterval: Int64?
-        
+
         /// 电话告警触达通知
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneArriveNotice: Bool?
-        
+
         /// 通道类型，默认为amp，支持以下
         /// amp
         /// webhook
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 如果Type为webhook, 则该字段为必填项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webHook: String?
-        
-        public init (enabled: Bool, repeatInterval: String, timeRangeStart: String, timeRangeEnd: String, notifyWay: [String]? = nil, receiverGroups: [UInt64]? = nil, phoneNotifyOrder: [UInt64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, phoneArriveNotice: Bool? = nil, type: String? = nil, webHook: String? = nil) {
+
+        public init(enabled: Bool, repeatInterval: String, timeRangeStart: String, timeRangeEnd: String, notifyWay: [String]? = nil, receiverGroups: [UInt64]? = nil, phoneNotifyOrder: [UInt64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, phoneArriveNotice: Bool? = nil, type: String? = nil, webHook: String? = nil) {
             self.enabled = enabled
             self.repeatInterval = repeatInterval
             self.timeRangeStart = timeRangeStart
@@ -3711,7 +3711,7 @@ extension Tke {
             self.type = type
             self.webHook = webHook
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case repeatInterval = "RepeatInterval"
@@ -3728,69 +3728,69 @@ extension Tke {
             case webHook = "WebHook"
         }
     }
-    
+
     /// 告警通知渠道配置
     public struct PrometheusNotificationItem: TCInputModel, TCOutputModel {
         /// 是否启用
         public let enabled: Bool
-        
+
         /// 通道类型，默认为amp，支持以下
         /// amp
         /// webhook
         /// alertmanager
         public let type: String
-        
+
         /// 如果Type为webhook, 则该字段为必填项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webHook: String?
-        
+
         /// 如果Type为alertmanager, 则该字段为必填项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertManager: PrometheusAlertManagerConfig?
-        
+
         /// 收敛时间
         public let repeatInterval: String?
-        
+
         /// 生效起始时间
         public let timeRangeStart: String?
-        
+
         /// 生效结束时间
         public let timeRangeEnd: String?
-        
+
         /// 告警通知方式。目前有SMS、EMAIL、CALL、WECHAT方式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notifyWay: [String]?
-        
+
         /// 告警接收组（用户组）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverGroups: [String]?
-        
+
         /// 电话告警顺序。
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneNotifyOrder: [UInt64]?
-        
+
         /// 电话告警次数。
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneCircleTimes: Int64?
-        
+
         /// 电话告警轮内间隔。单位：秒
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneInnerInterval: Int64?
-        
+
         /// 电话告警轮外间隔。单位：秒
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneCircleInterval: Int64?
-        
+
         /// 电话告警触达通知
         /// 注：NotifyWay选择CALL，采用该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneArriveNotice: Bool?
-        
-        public init (enabled: Bool, type: String, webHook: String? = nil, alertManager: PrometheusAlertManagerConfig? = nil, repeatInterval: String? = nil, timeRangeStart: String? = nil, timeRangeEnd: String? = nil, notifyWay: [String]? = nil, receiverGroups: [String]? = nil, phoneNotifyOrder: [UInt64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, phoneArriveNotice: Bool? = nil) {
+
+        public init(enabled: Bool, type: String, webHook: String? = nil, alertManager: PrometheusAlertManagerConfig? = nil, repeatInterval: String? = nil, timeRangeStart: String? = nil, timeRangeEnd: String? = nil, notifyWay: [String]? = nil, receiverGroups: [String]? = nil, phoneNotifyOrder: [UInt64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, phoneArriveNotice: Bool? = nil) {
             self.enabled = enabled
             self.type = type
             self.webHook = webHook
@@ -3806,7 +3806,7 @@ extension Tke {
             self.phoneCircleInterval = phoneCircleInterval
             self.phoneArriveNotice = phoneArriveNotice
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case type = "Type"
@@ -3824,26 +3824,26 @@ extension Tke {
             case phoneArriveNotice = "PhoneArriveNotice"
         }
     }
-    
+
     /// prometheus聚合规则实例详情，包含所属集群ID
     public struct PrometheusRecordRuleYamlItem: TCOutputModel {
         /// 实例名称
         public let name: String
-        
+
         /// 最近更新时间
         public let updateTime: String
-        
+
         /// Yaml内容
         public let templateId: String
-        
+
         /// 如果该聚合规则来至模板，则TemplateId为模板id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         /// 该聚合规则如果来源于用户集群crd资源定义，则ClusterId为所属集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case updateTime = "UpdateTime"
@@ -3852,30 +3852,30 @@ extension Tke {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// prometheus一个抓取目标的信息
     public struct PrometheusTarget: TCOutputModel {
         /// 抓取目标的URL
         public let url: String
-        
+
         /// target当前状态,当前支持
         /// up = 健康
         /// down = 不健康
         /// unknown = 未知
         public let state: String
-        
+
         /// target的元label
         public let labels: [Label]
-        
+
         /// 上一次抓取的时间
         public let lastScrape: String
-        
+
         /// 上一次抓取的耗时，单位是s
         public let scrapeDuration: Float
-        
+
         /// 上一次抓取如果错误，该字段存储错误信息
         public let error: String
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case state = "State"
@@ -3885,67 +3885,67 @@ extension Tke {
             case error = "Error"
         }
     }
-    
+
     /// 模板实例
     public struct PrometheusTemp: TCInputModel, TCOutputModel {
         /// 模板名称
         public let name: String
-        
+
         /// 模板维度，支持以下类型
         /// instance 实例级别
         /// cluster 集群级别
         public let level: String
-        
+
         /// 模板描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describe: String?
-        
+
         /// 当Level为instance时有效，
         /// 模板中的聚合规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordRules: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的ServiceMonitor规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的PodMonitors规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的RawJobs规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rawJobs: [PrometheusConfigItem]?
-        
+
         /// 模板的ID, 用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?
-        
+
         /// 最近更新时间，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 当前版本，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
-        
+
         /// 是否系统提供的默认模板，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDefault: Bool?
-        
+
         /// 当Level为instance时有效，
         /// 模板中的告警配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertDetailRules: [PrometheusAlertPolicyItem]?
-        
+
         /// 关联实例数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetsTotal: Int64?
-        
-        public init (name: String, level: String, describe: String? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, templateId: String? = nil, updateTime: String? = nil, version: String? = nil, isDefault: Bool? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil, targetsTotal: Int64? = nil) {
+
+        public init(name: String, level: String, describe: String? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, templateId: String? = nil, updateTime: String? = nil, version: String? = nil, isDefault: Bool? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil, targetsTotal: Int64? = nil) {
             self.name = name
             self.level = level
             self.describe = describe
@@ -3960,7 +3960,7 @@ extension Tke {
             self.alertDetailRules = alertDetailRules
             self.targetsTotal = targetsTotal
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case level = "Level"
@@ -3977,41 +3977,41 @@ extension Tke {
             case targetsTotal = "TargetsTotal"
         }
     }
-    
+
     /// 云原生Prometheus模板可修改项
     public struct PrometheusTempModify: TCInputModel, TCOutputModel {
         /// 修改名称
         public let name: String?
-        
+
         /// 修改描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describe: String?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的ServiceMonitor规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的PodMonitors规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的RawJobs规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rawJobs: [PrometheusConfigItem]?
-        
+
         /// 当Level为instance时有效，
         /// 模板中的聚合规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordRules: [PrometheusConfigItem]?
-        
+
         /// 修改内容，只有当模板类型是Alert时生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertDetailRules: [PrometheusAlertPolicyItem]?
-        
-        public init (name: String? = nil, describe: String? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, recordRules: [PrometheusConfigItem]? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil) {
+
+        public init(name: String? = nil, describe: String? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, recordRules: [PrometheusConfigItem]? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil) {
             self.name = name
             self.describe = describe
             self.serviceMonitors = serviceMonitors
@@ -4020,7 +4020,7 @@ extension Tke {
             self.recordRules = recordRules
             self.alertDetailRules = alertDetailRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case describe = "Describe"
@@ -4031,68 +4031,68 @@ extension Tke {
             case alertDetailRules = "AlertDetailRules"
         }
     }
-    
+
     /// 模板实例
     public struct PrometheusTemplate: TCInputModel, TCOutputModel {
         /// 模板名称
         public let name: String
-        
+
         /// 模板维度，支持以下类型
         /// instance 实例级别
         /// cluster 集群级别
         public let level: String
-        
+
         /// 模板描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describe: String?
-        
+
         /// 当Level为instance时有效，
         /// 模板中的告警配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertRules: [PrometheusAlertRule]?
-        
+
         /// 当Level为instance时有效，
         /// 模板中的聚合规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordRules: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的ServiceMonitor规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的PodMonitors规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的RawJobs规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rawJobs: [PrometheusConfigItem]?
-        
+
         /// 模板的ID, 用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?
-        
+
         /// 最近更新时间，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 当前版本，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
-        
+
         /// 是否系统提供的默认模板，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDefault: Bool?
-        
+
         /// 当Level为instance时有效，
         /// 模板中的告警配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertDetailRules: [PrometheusAlertRuleDetail]?
-        
-        public init (name: String, level: String, describe: String? = nil, alertRules: [PrometheusAlertRule]? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, templateId: String? = nil, updateTime: String? = nil, version: String? = nil, isDefault: Bool? = nil, alertDetailRules: [PrometheusAlertRuleDetail]? = nil) {
+
+        public init(name: String, level: String, describe: String? = nil, alertRules: [PrometheusAlertRule]? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, templateId: String? = nil, updateTime: String? = nil, version: String? = nil, isDefault: Bool? = nil, alertDetailRules: [PrometheusAlertRuleDetail]? = nil) {
             self.name = name
             self.level = level
             self.describe = describe
@@ -4107,7 +4107,7 @@ extension Tke {
             self.isDefault = isDefault
             self.alertDetailRules = alertDetailRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case level = "Level"
@@ -4124,45 +4124,45 @@ extension Tke {
             case alertDetailRules = "AlertDetailRules"
         }
     }
-    
+
     /// 云原生Prometheus模板可修改项
     public struct PrometheusTemplateModify: TCInputModel, TCOutputModel {
         /// 修改名称
         public let name: String?
-        
+
         /// 修改描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describe: String?
-        
+
         /// 修改内容，只有当模板类型是Alert时生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertRules: [PrometheusAlertRule]?
-        
+
         /// 当Level为instance时有效，
         /// 模板中的聚合规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordRules: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的ServiceMonitor规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的PodMonitors规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podMonitors: [PrometheusConfigItem]?
-        
+
         /// 当Level为cluster时有效，
         /// 模板中的RawJobs规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rawJobs: [PrometheusConfigItem]?
-        
+
         /// 修改内容，只有当模板类型是Alert时生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertDetailRules: [PrometheusAlertRuleDetail]?
-        
-        public init (name: String? = nil, describe: String? = nil, alertRules: [PrometheusAlertRule]? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, alertDetailRules: [PrometheusAlertRuleDetail]? = nil) {
+
+        public init(name: String? = nil, describe: String? = nil, alertRules: [PrometheusAlertRule]? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, alertDetailRules: [PrometheusAlertRuleDetail]? = nil) {
             self.name = name
             self.describe = describe
             self.alertRules = alertRules
@@ -4172,7 +4172,7 @@ extension Tke {
             self.rawJobs = rawJobs
             self.alertDetailRules = alertDetailRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case describe = "Describe"
@@ -4184,40 +4184,40 @@ extension Tke {
             case alertDetailRules = "AlertDetailRules"
         }
     }
-    
+
     /// 云原生Prometheus模板同步目标
     public struct PrometheusTemplateSyncTarget: TCInputModel, TCOutputModel {
         /// 目标所在地域
         public let region: String
-        
+
         /// 目标实例
         public let instanceId: String
-        
+
         /// 集群id，只有当采集模板的Level为cluster的时候需要
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 最后一次同步时间， 用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let syncTime: String?
-        
+
         /// 当前使用的模板版本，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
-        
+
         /// 集群类型，只有当采集模板的Level为cluster的时候需要
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 用于出参，实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 用于出参，集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
-        public init (region: String, instanceId: String, clusterId: String? = nil, syncTime: String? = nil, version: String? = nil, clusterType: String? = nil, instanceName: String? = nil, clusterName: String? = nil) {
+
+        public init(region: String, instanceId: String, clusterId: String? = nil, syncTime: String? = nil, version: String? = nil, clusterType: String? = nil, instanceName: String? = nil, clusterName: String? = nil) {
             self.region = region
             self.instanceId = instanceId
             self.clusterId = clusterId
@@ -4227,7 +4227,7 @@ extension Tke {
             self.instanceName = instanceName
             self.clusterName = clusterName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case instanceId = "InstanceId"
@@ -4239,33 +4239,33 @@ extension Tke {
             case clusterName = "ClusterName"
         }
     }
-    
+
     /// 地域属性信息
     public struct RegionInstance: TCOutputModel {
         /// 地域名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionName: String?
-        
+
         /// 地域ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionId: Int64?
-        
+
         /// 地域状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 地域特性开关(按照JSON的形式返回所有属性)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let featureGates: String?
-        
+
         /// 地域简称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
-        
+
         /// 地域白名单
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case regionName = "RegionName"
             case regionId = "RegionId"
@@ -4275,43 +4275,43 @@ extension Tke {
             case remark = "Remark"
         }
     }
-    
+
     /// 应用市场部署的应用结构
     public struct Release: TCOutputModel {
         /// 应用名称
         public let name: String
-        
+
         /// 应用命名空间
         public let namespace: String
-        
+
         /// 应用当前版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let revision: String?
-        
+
         /// 应用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 制品名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chartName: String?
-        
+
         /// 制品版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chartVersion: String?
-        
+
         /// 制品应用版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appVersion: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         /// 应用描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -4324,67 +4324,67 @@ extension Tke {
             case description = "Description"
         }
     }
-    
+
     /// 应用市场的安装应用详情
     public struct ReleaseDetails: TCOutputModel {
         /// 应用名称
         public let name: String
-        
+
         /// 应用所在命名空间
         public let namespace: String
-        
+
         /// 应用当前版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: UInt64?
-        
+
         /// 应用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 应用描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 应用提示
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notes: String?
-        
+
         /// 用户自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let config: String?
-        
+
         /// 应用资源详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manifest: String?
-        
+
         /// 应用制品版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chartVersion: String?
-        
+
         /// 应用制品名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chartName: String?
-        
+
         /// 应用制品描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chartDescription: String?
-        
+
         /// 应用制品app版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appVersion: String?
-        
+
         /// 应用首次部署时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstDeployedTime: String?
-        
+
         /// 应用最近部署时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastDeployedTime: String?
-        
+
         /// 应用参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let computedValues: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -4403,39 +4403,39 @@ extension Tke {
             case computedValues = "ComputedValues"
         }
     }
-    
+
     /// 应用市场中部署的应用版本历史
     public struct ReleaseHistory: TCOutputModel {
         /// 应用名称
         public let name: String
-        
+
         /// 应用命名空间
         public let namespace: String
-        
+
         /// 应用版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let revision: UInt64?
-        
+
         /// 应用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 应用制品名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chart: String?
-        
+
         /// 应用制品版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appVersion: String?
-        
+
         /// 应用更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         /// 应用描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -4447,112 +4447,112 @@ extension Tke {
             case description = "Description"
         }
     }
-    
+
     /// 应用市场自定义参数
     public struct ReleaseValues: TCInputModel {
         /// 自定义参数原始值
         public let rawOriginal: String
-        
+
         /// 自定义参数值类型
         public let valuesType: String
-        
-        public init (rawOriginal: String, valuesType: String) {
+
+        public init(rawOriginal: String, valuesType: String) {
             self.rawOriginal = rawOriginal
             self.valuesType = valuesType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case rawOriginal = "RawOriginal"
             case valuesType = "ValuesType"
         }
     }
-    
+
     /// 资源删除选项
     public struct ResourceDeleteOption: TCInputModel {
         /// 资源类型，例如CBS
         public let resourceType: String
-        
+
         /// 集群删除时资源的删除模式：terminate（销毁），retain （保留）
         public let deleteMode: String
-        
-        public init (resourceType: String, deleteMode: String) {
+
+        public init(resourceType: String, deleteMode: String) {
             self.resourceType = resourceType
             self.deleteMode = deleteMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceType = "ResourceType"
             case deleteMode = "DeleteMode"
         }
     }
-    
+
     /// 集群资源使用量
     public struct ResourceUsage: TCOutputModel {
         /// 资源类型
         public let name: String
-        
+
         /// 资源使用量
         public let usage: UInt64
-        
+
         /// 资源使用详情
         public let details: [ResourceUsageDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case usage = "Usage"
             case details = "Details"
         }
     }
-    
+
     /// 资源使用明细
     public struct ResourceUsageDetail: TCOutputModel {
         /// 资源名称
         public let name: String
-        
+
         /// 资源使用量
         public let usage: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case usage = "Usage"
         }
     }
-    
+
     /// 集群路由对象
     public struct RouteInfo: TCOutputModel {
         /// 路由表名称。
         public let routeTableName: String
-        
+
         /// 目的端CIDR。
         public let destinationCidrBlock: String
-        
+
         /// 下一跳地址。
         public let gatewayIp: String
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableName = "RouteTableName"
             case destinationCidrBlock = "DestinationCidrBlock"
             case gatewayIp = "GatewayIp"
         }
     }
-    
+
     /// 路由表冲突对象
     public struct RouteTableConflict: TCOutputModel {
         /// 路由表类型。
         public let routeTableType: String
-        
+
         /// 路由表CIDR。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableCidrBlock: String?
-        
+
         /// 路由表名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableName: String?
-        
+
         /// 路由表ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableType = "RouteTableType"
             case routeTableCidrBlock = "RouteTableCidrBlock"
@@ -4560,182 +4560,182 @@ extension Tke {
             case routeTableId = "RouteTableId"
         }
     }
-    
+
     /// 集群路由表对象
     public struct RouteTableInfo: TCOutputModel {
         /// 路由表名称。
         public let routeTableName: String
-        
+
         /// 路由表CIDR。
         public let routeTableCidrBlock: String
-        
+
         /// VPC实例ID。
         public let vpcId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableName = "RouteTableName"
             case routeTableCidrBlock = "RouteTableCidrBlock"
             case vpcId = "VpcId"
         }
     }
-    
+
     /// 描述了 “云自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 不同角色的节点配置参数
     public struct RunInstancesForNode: TCInputModel {
         /// 节点角色，取值:MASTER_ETCD, WORKER。MASTER_ETCD只有在创建 INDEPENDENT_CLUSTER 独立集群时需要指定。MASTER_ETCD节点数量为3～7，建议为奇数。MASTER_ETCD节点最小配置为4C8G。
         public let nodeRole: String
-        
+
         /// CVM创建透传参数，json化字符串格式，详见[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口，传入公共参数外的其他参数即可，其中ImageId会替换为TKE集群OS对应的镜像。
         public let runInstancesPara: [String]
-        
+
         /// 节点高级设置，该参数会覆盖集群级别设置的InstanceAdvancedSettings，和上边的RunInstancesPara按照顺序一一对应（当前只对节点自定义参数ExtraArgs生效）。
         public let instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]?
-        
-        public init (nodeRole: String, runInstancesPara: [String], instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil) {
+
+        public init(nodeRole: String, runInstancesPara: [String], instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil) {
             self.nodeRole = nodeRole
             self.runInstancesPara = runInstancesPara
             self.instanceAdvancedSettingsOverrides = instanceAdvancedSettingsOverrides
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeRole = "NodeRole"
             case runInstancesPara = "RunInstancesPara"
             case instanceAdvancedSettingsOverrides = "InstanceAdvancedSettingsOverrides"
         }
     }
-    
+
     /// 描述了 “云监控” 服务相关的信息
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// master节点缩容参数
     public struct ScaleInMaster: TCInputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 缩容的实例角色：MASTER,ETCD,MASTER_ETCD
         public let nodeRole: String
-        
+
         /// 实例的保留模式
         public let instanceDeleteMode: String
-        
-        public init (instanceId: String, nodeRole: String, instanceDeleteMode: String) {
+
+        public init(instanceId: String, nodeRole: String, instanceDeleteMode: String) {
             self.instanceId = instanceId
             self.nodeRole = nodeRole
             self.instanceDeleteMode = instanceDeleteMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case nodeRole = "NodeRole"
             case instanceDeleteMode = "InstanceDeleteMode"
         }
     }
-    
+
     /// cloudrun安全特性
     public struct SecurityContext: TCInputModel, TCOutputModel {
         /// 安全能力清单
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let capabilities: Capabilities?
-        
-        public init (capabilities: Capabilities? = nil) {
+
+        public init(capabilities: Capabilities? = nil) {
             self.capabilities = capabilities
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case capabilities = "Capabilities"
         }
     }
-    
+
     /// ServiceAccount认证相关配置
     public struct ServiceAccountAuthenticationOptions: TCInputModel, TCOutputModel {
         /// service-account-issuer
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let issuer: String?
-        
+
         /// service-account-jwks-uri
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jwksuri: String?
-        
+
         /// 如果为true，则会自动创建允许匿名用户访问'/.well-known/openid-configuration'和/openid/v1/jwks的rbac规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoCreateDiscoveryAnonymousAuth: Bool?
-        
-        public init (issuer: String? = nil, jwksuri: String? = nil, autoCreateDiscoveryAnonymousAuth: Bool? = nil) {
+
+        public init(issuer: String? = nil, jwksuri: String? = nil, autoCreateDiscoveryAnonymousAuth: Bool? = nil) {
             self.issuer = issuer
             self.jwksuri = jwksuri
             self.autoCreateDiscoveryAnonymousAuth = autoCreateDiscoveryAnonymousAuth
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case issuer = "Issuer"
             case jwksuri = "JWKSURI"
             case autoCreateDiscoveryAnonymousAuth = "AutoCreateDiscoveryAnonymousAuth"
         }
     }
-    
+
     /// 子网信息
     public struct SubnetInfos: TCInputModel {
         /// 子网id
         public let subnetId: String
-        
+
         /// 子网节点名称
         public let name: String
-        
+
         /// 安全组id
         public let securityGroups: [String]?
-        
+
         /// 系统
         public let os: String?
-        
+
         /// 硬件架构
         public let arch: String?
-        
-        public init (subnetId: String, name: String, securityGroups: [String]? = nil, os: String? = nil, arch: String? = nil) {
+
+        public init(subnetId: String, name: String, securityGroups: [String]? = nil, os: String? = nil, arch: String? = nil) {
             self.subnetId = subnetId
             self.name = name
             self.securityGroups = securityGroups
             self.os = os
             self.arch = arch
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subnetId = "SubnetId"
             case name = "Name"
@@ -4744,95 +4744,95 @@ extension Tke {
             case arch = "Arch"
         }
     }
-    
+
     /// 标签绑定的资源类型，当前支持类型："cluster"
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         public let key: String?
-        
+
         /// 标签值
         public let value: String?
-        
-        public init (key: String? = nil, value: String? = nil) {
+
+        public init(key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例，当前仅支持绑定标签到云主机实例。
     public struct TagSpecification: TCInputModel, TCOutputModel {
         /// 标签绑定的资源类型，当前支持类型："cluster"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceType: String?
-        
+
         /// 标签对列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
-        public init (resourceType: String? = nil, tags: [Tag]? = nil) {
+
+        public init(resourceType: String? = nil, tags: [Tag]? = nil) {
             self.resourceType = resourceType
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceType = "ResourceType"
             case tags = "Tags"
         }
     }
-    
+
     /// kubernetes Taint
     public struct Taint: TCInputModel {
         /// Key
         public let key: String?
-        
+
         /// Value
         public let value: String?
-        
+
         /// Effect
         public let effect: String?
-        
-        public init (key: String? = nil, value: String? = nil, effect: String? = nil) {
+
+        public init(key: String? = nil, value: String? = nil, effect: String? = nil) {
             self.key = key
             self.value = value
             self.effect = effect
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
             case effect = "Effect"
         }
     }
-    
+
     /// 任务步骤信息
     public struct TaskStepInfo: TCOutputModel {
         /// 步骤名称
         public let step: String
-        
+
         /// 生命周期
         /// pending : 步骤未开始
         /// running: 步骤执行中
         /// success: 步骤成功完成
         /// failed: 步骤失败
         public let lifeState: String
-        
+
         /// 步骤开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startAt: String?
-        
+
         /// 步骤结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endAt: String?
-        
+
         /// 若步骤生命周期为failed,则此字段显示错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedMsg: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case step = "Step"
             case lifeState = "LifeState"
@@ -4841,86 +4841,86 @@ extension Tke {
             case failedMsg = "FailedMsg"
         }
     }
-    
+
     /// 探针使用TcpSocket检测容器
     public struct TcpSocket: TCInputModel, TCOutputModel {
         /// TcpSocket检测的端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: UInt64?
-        
-        public init (port: UInt64? = nil) {
+
+        public init(port: UInt64? = nil) {
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
         }
     }
-    
+
     /// kubernetes Taint
     public struct Toleration: TCInputModel {
         /// 容忍应用到的 taint key
         public let key: String?
-        
+
         /// 键与值的关系
         public let `operator`: String?
-        
+
         /// 要匹配的污点效果
         public let effect: String?
-        
-        public init (key: String? = nil, operator: String? = nil, effect: String? = nil) {
+
+        public init(key: String? = nil, operator: String? = nil, effect: String? = nil) {
             self.key = key
             self.`operator` = `operator`
             self.effect = effect
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case `operator` = "Operator"
             case effect = "Effect"
         }
     }
-    
+
     /// 可升级节点信息
     public struct UpgradeAbleInstancesItem: TCOutputModel {
         /// 节点Id
         public let instanceId: String
-        
+
         /// 节点的当前版本
         public let version: String
-        
+
         /// 当前版本的最新小版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestVersion: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case version = "Version"
             case latestVersion = "LatestVersion"
         }
     }
-    
+
     /// 节点升级重装参数
     public struct UpgradeNodeResetParam: TCInputModel {
         /// 实例额外需要设置参数信息
         public let instanceAdvancedSettings: InstanceAdvancedSettings?
-        
+
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         public let enhancedService: EnhancedService?
-        
+
         /// 节点登录信息（目前仅支持使用Password或者单个KeyIds）
         public let loginSettings: LoginSettings?
-        
+
         /// 实例所属安全组。该参数可以通过调用 DescribeSecurityGroups 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。（目前仅支持设置单个sgId）
         public let securityGroupIds: [String]?
-        
-        public init (instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil) {
+
+        public init(instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil) {
             self.instanceAdvancedSettings = instanceAdvancedSettings
             self.enhancedService = enhancedService
             self.loginSettings = loginSettings
             self.securityGroupIds = securityGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceAdvancedSettings = "InstanceAdvancedSettings"
             case enhancedService = "EnhancedService"
@@ -4928,55 +4928,55 @@ extension Tke {
             case securityGroupIds = "SecurityGroupIds"
         }
     }
-    
+
     /// 版本信息
     public struct VersionInstance: TCOutputModel {
         /// 版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 版本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
-        
+
         /// Remark
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case version = "Version"
             case remark = "Remark"
         }
     }
-    
+
     /// 数据卷挂载路径信息
     public struct VolumeMount: TCInputModel, TCOutputModel {
         /// volume名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 挂载路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mountPath: String?
-        
+
         /// 是否只读
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readOnly: Bool?
-        
+
         /// 子路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subPath: String?
-        
+
         /// 传播挂载方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mountPropagation: String?
-        
+
         /// 子路径表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subPathExpr: String?
-        
-        public init (name: String, mountPath: String, readOnly: Bool? = nil, subPath: String? = nil, mountPropagation: String? = nil, subPathExpr: String? = nil) {
+
+        public init(name: String, mountPath: String, readOnly: Bool? = nil, subPath: String? = nil, mountPropagation: String? = nil, subPathExpr: String? = nil) {
             self.name = name
             self.mountPath = mountPath
             self.readOnly = readOnly
@@ -4984,7 +4984,7 @@ extension Tke {
             self.mountPropagation = mountPropagation
             self.subPathExpr = subPathExpr
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case mountPath = "MountPath"

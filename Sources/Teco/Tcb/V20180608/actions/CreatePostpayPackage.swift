@@ -19,42 +19,42 @@ extension Tcb {
     public struct CreatePostpayPackageRequest: TCRequestModel {
         /// 环境ID，需要系统自动创建环境时，此字段不传
         public let envId: String?
-        
+
         /// 微信 AppId，微信必传
         public let wxAppId: String?
-        
+
         /// 付费来源
         /// <li>miniapp</li>
         /// <li>qcloud</li>
         public let source: String?
-        
+
         /// 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
         public let freeQuota: String?
-        
+
         /// 环境创建来源，取值：
         /// <li>miniapp</li>
         /// <li>qcloud</li>
         /// 用法同CreateEnv接口的Source参数
         /// 和 Channel 参数同时传，或者同时不传；EnvId 为空时必传。
         public let envSource: String?
-        
+
         /// 环境别名，要以a-z开头，不能包含  a-z,0-9,-  以外的字符
         public let alias: String?
-        
+
         /// 如果envsource为miniapp, channel可以为ide或api;
         /// 如果envsource为qcloud, channel可以为qc_console,cocos, qq, cloudgame,dcloud,serverless_framework
         /// 和 EnvSource 参数同时传，或者同时不传；EnvId 为空时必传。
         public let channel: String?
-        
+
         /// 扩展ID
         public let extensionId: String?
-        
+
         /// 订单标记。建议使用方统一转大小写之后再判断。
         /// <li>QuickStart：快速启动来源</li>
         /// <li>Activity：活动来源</li>
         public let flag: String?
-        
-        public init (envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil) {
+
+        public init(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil) {
             self.envId = envId
             self.wxAppId = wxAppId
             self.source = source
@@ -65,7 +65,7 @@ extension Tcb {
             self.extensionId = extensionId
             self.flag = flag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case wxAppId = "WxAppId"
@@ -78,44 +78,44 @@ extension Tcb {
             case flag = "Flag"
         }
     }
-    
+
     /// CreatePostpayPackage返回参数结构体
     public struct CreatePostpayPackageResponse: TCResponseModel {
         /// 后付费订单号
         public let tranId: String
-        
+
         /// 环境ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tranId = "TranId"
             case envId = "EnvId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通后付费资源
     @inlinable
-    public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePostpayPackageResponse > {
+    public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePostpayPackageResponse> {
         self.client.execute(action: "CreatePostpayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通后付费资源
     @inlinable
     public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
         try await self.client.execute(action: "CreatePostpayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通后付费资源
     @inlinable
-    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePostpayPackageResponse > {
+    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePostpayPackageResponse> {
         self.createPostpayPackage(CreatePostpayPackageRequest(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通后付费资源
     @inlinable
     public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {

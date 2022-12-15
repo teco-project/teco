@@ -17,33 +17,33 @@
 extension Iotvideo {
     /// DescribeTraceIds请求参数结构体
     public struct DescribeTraceIdsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeTraceIds返回参数结构体
     public struct DescribeTraceIdsResponse: TCResponseModel {
         /// 设备TID列表，列表元素之间以“,”分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备日志跟踪白名单
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
-    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceIdsResponse > {
+    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceIdsResponse> {
         self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备日志跟踪白名单
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
@@ -51,15 +51,15 @@ extension Iotvideo {
     public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
         try await self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备日志跟踪白名单
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
-    public func describeTraceIds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceIdsResponse > {
+    public func describeTraceIds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceIdsResponse> {
         self.describeTraceIds(DescribeTraceIdsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备日志跟踪白名单
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。

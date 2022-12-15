@@ -19,30 +19,30 @@ extension Sqlserver {
     public struct QueryMigrationCheckProcessRequest: TCRequestModel {
         /// 迁移任务ID
         public let migrateId: Int64
-        
-        public init (migrateId: Int64) {
+
+        public init(migrateId: Int64) {
             self.migrateId = migrateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case migrateId = "MigrateId"
         }
     }
-    
+
     /// QueryMigrationCheckProcess返回参数结构体
     public struct QueryMigrationCheckProcessResponse: TCResponseModel {
         /// 总步骤数量
         public let totalStep: Int64
-        
+
         /// 当前步骤编号，从1开始
         public let currentStep: Int64
-        
+
         /// 所有步骤详情
         public let stepDetails: [StepDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalStep = "TotalStep"
             case currentStep = "CurrentStep"
@@ -50,15 +50,15 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询迁移校验任务进度
     ///
     /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func queryMigrationCheckProcess(_ input: QueryMigrationCheckProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMigrationCheckProcessResponse > {
+    public func queryMigrationCheckProcess(_ input: QueryMigrationCheckProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMigrationCheckProcessResponse> {
         self.client.execute(action: "QueryMigrationCheckProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询迁移校验任务进度
     ///
     /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
@@ -66,15 +66,15 @@ extension Sqlserver {
     public func queryMigrationCheckProcess(_ input: QueryMigrationCheckProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMigrationCheckProcessResponse {
         try await self.client.execute(action: "QueryMigrationCheckProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询迁移校验任务进度
     ///
     /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func queryMigrationCheckProcess(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMigrationCheckProcessResponse > {
+    public func queryMigrationCheckProcess(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMigrationCheckProcessResponse> {
         self.queryMigrationCheckProcess(QueryMigrationCheckProcessRequest(migrateId: migrateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询迁移校验任务进度
     ///
     /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式

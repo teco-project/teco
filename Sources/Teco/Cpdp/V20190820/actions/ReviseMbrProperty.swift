@@ -19,27 +19,27 @@ extension Cpdp {
     public struct ReviseMbrPropertyRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
-        
+
         /// STRING(50)，见证子账户的账号
         public let subAcctNo: String
-        
+
         /// STRING(10)，会员属性（00-普通子账号; SH-商户子账户。暂时只支持00-普通子账号改为SH-商户子账户）
         public let memberProperty: String
-        
+
         /// STRING(1027)，保留域
         public let reservedMsg: String?
-        
+
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
-        
-        public init (mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil) {
+
+        public init(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.subAcctNo = subAcctNo
             self.memberProperty = memberProperty
             self.reservedMsg = reservedMsg
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mrchCode = "MrchCode"
             case subAcctNo = "SubAcctNo"
@@ -48,25 +48,25 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// ReviseMbrProperty返回参数结构体
     public struct ReviseMbrPropertyResponse: TCResponseModel {
         /// String(20)，返回码
         public let txnReturnCode: String
-        
+
         /// String(100)，返回信息
         public let txnReturnMsg: String
-        
+
         /// String(22)，交易流水号
         public let cnsmrSeqNo: String
-        
+
         /// STRING(1027)，保留域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case txnReturnCode = "TxnReturnCode"
             case txnReturnMsg = "TxnReturnMsg"
@@ -75,15 +75,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云鉴-修改会员属性-普通商户子账户
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
-    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviseMbrPropertyResponse > {
+    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviseMbrPropertyResponse> {
         self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-修改会员属性-普通商户子账户
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
@@ -91,15 +91,15 @@ extension Cpdp {
     public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
         try await self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云鉴-修改会员属性-普通商户子账户
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
-    public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviseMbrPropertyResponse > {
+    public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviseMbrPropertyResponse> {
         self.reviseMbrProperty(ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-修改会员属性-普通商户子账户
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。

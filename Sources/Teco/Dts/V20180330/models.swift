@@ -22,50 +22,50 @@ extension Dts {
     public struct ConsistencyParams: TCInputModel, TCOutputModel {
         /// 数据内容检测参数。表中选出用来数据对比的行，占表的总行数的百分比。取值范围是整数[1-100]
         public let selectRowsPerTable: Int64
-        
+
         /// 数据内容检测参数。迁移库表中，要进行数据内容检测的表，占所有表的百分比。取值范围是整数[1-100]
         public let tablesSelectAll: Int64
-        
+
         /// 数据数量检测，检测表行数是否一致。迁移库表中，要进行数据数量检测的表，占所有表的百分比。取值范围是整数[1-100]
         public let tablesSelectCount: Int64
-        
-        public init (selectRowsPerTable: Int64, tablesSelectAll: Int64, tablesSelectCount: Int64) {
+
+        public init(selectRowsPerTable: Int64, tablesSelectAll: Int64, tablesSelectCount: Int64) {
             self.selectRowsPerTable = selectRowsPerTable
             self.tablesSelectAll = tablesSelectAll
             self.tablesSelectCount = tablesSelectCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case selectRowsPerTable = "SelectRowsPerTable"
             case tablesSelectAll = "TablesSelectAll"
             case tablesSelectCount = "TablesSelectCount"
         }
     }
-    
+
     /// 目的实例信息，具体内容跟迁移任务类型相关
     public struct DstInfo: TCInputModel, TCOutputModel {
         /// 目标实例地域，如ap-guangzhou
         public let region: String
-        
+
         /// 目标实例ID，如cdb-jd92ijd8
         public let instanceId: String?
-        
+
         /// 目标实例vip。已废弃，无需填写
         public let ip: String?
-        
+
         /// 目标实例vport。已废弃，无需填写
         public let port: Int64?
-        
+
         /// 目前只对MySQL有效。当为整实例迁移时，1-只读，0-可读写。
         public let readOnly: Int64?
-        
+
         /// 目标数据库账号
         public let user: String?
-        
+
         /// 目标数据库密码
         public let password: String?
-        
-        public init (region: String, instanceId: String? = nil, ip: String? = nil, port: Int64? = nil, readOnly: Int64? = nil, user: String? = nil, password: String? = nil) {
+
+        public init(region: String, instanceId: String? = nil, ip: String? = nil, port: Int64? = nil, readOnly: Int64? = nil, user: String? = nil, password: String? = nil) {
             self.region = region
             self.instanceId = instanceId
             self.ip = ip
@@ -74,7 +74,7 @@ extension Dts {
             self.user = user
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case instanceId = "InstanceId"
@@ -85,44 +85,44 @@ extension Dts {
             case password = "Password"
         }
     }
-    
+
     /// 迁移任务错误信息及提示
     public struct ErrorInfo: TCOutputModel {
         /// 具体的报错日志, 包含错误码和错误信息
         public let errorLog: String
-        
+
         /// 报错对应的帮助文档Ur
         public let helpDoc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errorLog = "ErrorLog"
             case helpDoc = "HelpDoc"
         }
     }
-    
+
     /// 描述详细迁移过程
     public struct MigrateDetailInfo: TCOutputModel {
         /// 总步骤数
         public let stepAll: Int64
-        
+
         /// 当前步骤
         public let stepNow: Int64
-        
+
         /// 总进度,如："10"
         public let progress: String
-        
+
         /// 当前步骤进度,如:"1"
         public let currentStepProgress: String
-        
+
         /// 主从差距，MB；在增量同步阶段有效，目前支持产品为：redis和mysql
         public let masterSlaveDistance: Int64
-        
+
         /// 主从差距，秒；在增量同步阶段有效，目前支持产品为：mysql
         public let secondsBehindMaster: Int64
-        
+
         /// 步骤信息
         public let stepInfo: [MigrateStepDetailInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case stepAll = "StepAll"
             case stepNow = "StepNow"
@@ -133,39 +133,39 @@ extension Dts {
             case stepInfo = "StepInfo"
         }
     }
-    
+
     /// 迁移任务详情
     public struct MigrateJobInfo: TCOutputModel {
         /// 数据迁移任务ID
         public let jobId: String
-        
+
         /// 数据迁移任务名称
         public let jobName: String
-        
+
         /// 迁移任务配置选项
         public let migrateOption: MigrateOption
-        
+
         /// 源实例数据库类型:mysql，redis，mongodb，postgresql，mariadb，percona
         public let srcDatabaseType: String
-        
+
         /// 源实例接入类型，值包括：extranet(外网),cvm(cvm自建实例),dcg(专线接入的实例),vpncloud(云vpn接入的实例),cdb(腾讯云数据库实例),ccn(云联网实例)
         public let srcAccessType: String
-        
+
         /// 源实例信息，具体内容跟迁移任务类型相关
         public let srcInfo: SrcInfo
-        
+
         /// 目标实例数据库类型:mysql，redis，mongodb，postgresql，mariadb，percona
         public let dstDatabaseType: String
-        
+
         /// 目标实例接入类型，目前支持：cdb(腾讯云数据库实例)
         public let dstAccessType: String
-        
+
         /// 目标实例信息
         public let dstInfo: DstInfo
-        
+
         /// 需要迁移的源数据库表信息，如果需要迁移的是整个实例，该字段为[]
         public let databaseInfo: String
-        
+
         /// 任务创建(提交)时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -173,7 +173,7 @@ extension Dts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 任务开始执行时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -181,7 +181,7 @@ extension Dts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 任务执行结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -189,24 +189,24 @@ extension Dts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 任务状态,取值为：1-创建中(Creating),3-校验中(Checking)4-校验通过(CheckPass),5-校验不通过（CheckNotPass）,7-任务运行(Running),8-准备完成（ReadyComplete）,9-任务成功（Success）,10-任务失败（Failed）,11-撤销中（Stopping）,12-完成中（Completing）
         public let status: Int64
-        
+
         /// 任务详情
         public let detail: MigrateDetailInfo
-        
+
         /// 任务错误信息提示，当任务发生错误时，不为null或者空值
         public let errorInfo: [ErrorInfo]
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagItem]?
-        
+
         /// 源实例为集群时且接入为非cdb时源实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srcInfoMulti: [SrcInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -228,12 +228,12 @@ extension Dts {
             case srcInfoMulti = "SrcInfoMulti"
         }
     }
-    
+
     /// 迁移任务配置选项
     public struct MigrateOption: TCInputModel, TCOutputModel {
         /// 任务运行模式，值包括：1-立即执行，2-定时执行
         public let runMode: Int64
-        
+
         /// 期望执行时间，当runMode=2时，该字段必填，时间格式：yyyy-mm-dd hh:mm:ss
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -241,41 +241,41 @@ extension Dts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var expectTime: Date?
-        
+
         /// 数据迁移类型，值包括：1-结构迁移,2-全量迁移,3-全量+增量迁移
         public let migrateType: Int64?
-        
+
         /// 迁移对象，1-整个实例，2-指定库表
         public let migrateObject: Int64?
-        
+
         /// 抽样数据一致性检测参数，1-未配置,2-全量检测,3-抽样检测, 4-仅校验不一致表,5-不检测
         public let consistencyType: Int64?
-        
+
         /// 是否用源库Root账户覆盖目标库，值包括：0-不覆盖，1-覆盖，选择库表或者结构迁移时应该为0
         public let isOverrideRoot: Int64?
-        
-        /// 不同数据库用到的额外参数.以JSON格式描述. 
-        /// Redis可定义如下的参数: 
-        /// { 
-        /// 	"ClientOutputBufferHardLimit":512, 	从机缓冲区的硬性容量限制(MB) 
-        /// 	"ClientOutputBufferSoftLimit":512, 	从机缓冲区的软性容量限制(MB) 
-        /// 	"ClientOutputBufferPersistTime":60, 从机缓冲区的软性限制持续时间(秒) 
-        /// 	"ReplBacklogSize":512, 	环形缓冲区容量限制(MB) 
-        /// 	"ReplTimeout":120，		复制超时时间(秒) 
-        /// }
-        /// MongoDB可定义如下的参数: 
+
+        /// 不同数据库用到的额外参数.以JSON格式描述.
+        /// Redis可定义如下的参数:
         /// {
-        /// 	'SrcAuthDatabase':'admin', 
-        /// 	'SrcAuthFlag': "1", 
+        /// 	"ClientOutputBufferHardLimit":512, 	从机缓冲区的硬性容量限制(MB)
+        /// 	"ClientOutputBufferSoftLimit":512, 	从机缓冲区的软性容量限制(MB)
+        /// 	"ClientOutputBufferPersistTime":60, 从机缓冲区的软性限制持续时间(秒)
+        /// 	"ReplBacklogSize":512, 	环形缓冲区容量限制(MB)
+        /// 	"ReplTimeout":120，		复制超时时间(秒)
+        /// }
+        /// MongoDB可定义如下的参数:
+        /// {
+        /// 	'SrcAuthDatabase':'admin',
+        /// 	'SrcAuthFlag': "1",
         /// 	'SrcAuthMechanism':"SCRAM-SHA-1"
         /// }
         /// MySQL暂不支持额外参数设置。
         public let externParams: String?
-        
+
         /// 仅用于“抽样数据一致性检测”，ConsistencyType配置为抽样检测时，必选
         public let consistencyParams: ConsistencyParams?
-        
-        public init (runMode: Int64, expectTime: Date? = nil, migrateType: Int64? = nil, migrateObject: Int64? = nil, consistencyType: Int64? = nil, isOverrideRoot: Int64? = nil, externParams: String? = nil, consistencyParams: ConsistencyParams? = nil) {
+
+        public init(runMode: Int64, expectTime: Date? = nil, migrateType: Int64? = nil, migrateObject: Int64? = nil, consistencyType: Int64? = nil, isOverrideRoot: Int64? = nil, externParams: String? = nil, consistencyParams: ConsistencyParams? = nil) {
             self.runMode = runMode
             self.expectTime = expectTime
             self.migrateType = migrateType
@@ -285,7 +285,7 @@ extension Dts {
             self.externParams = externParams
             self.consistencyParams = consistencyParams
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case runMode = "RunMode"
             case expectTime = "ExpectTime"
@@ -297,25 +297,25 @@ extension Dts {
             case consistencyParams = "ConsistencyParams"
         }
     }
-    
+
     /// 迁移中的步骤信息
     public struct MigrateStepDetailInfo: TCOutputModel {
         /// 步骤序列
         public let stepNo: Int64
-        
+
         /// 步骤展现名称
         public let stepName: String
-        
+
         /// 步骤英文标识
         public let stepId: String
-        
+
         /// 步骤状态:0-默认值,1-成功,2-失败,3-执行中,4-未执行
         public let status: Int64
-        
+
         /// 当前步骤开始的时间，格式为"yyyy-mm-dd hh:mm:ss"，该字段不存在或者为空是无意义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case stepNo = "StepNo"
             case stepName = "StepName"
@@ -324,59 +324,59 @@ extension Dts {
             case startTime = "StartTime"
         }
     }
-    
+
     /// 源实例信息
     public struct SrcInfo: TCInputModel, TCOutputModel {
         /// 阿里云AccessKey。源库是阿里云RDS5.6适用
         public let accessKey: String?
-        
+
         /// 实例的IP地址
         public let ip: String?
-        
+
         /// 实例的端口
         public let port: Int64?
-        
+
         /// 实例的用户名
         public let user: String?
-        
+
         /// 实例的密码
         public let password: String?
-        
+
         /// 阿里云RDS实例ID。源库是阿里云RDS5.6/5.6适用
         public let rdsInstanceId: String?
-        
+
         /// CVM实例短ID，格式如：ins-olgl39y8，与云服务器控制台页面显示的实例ID相同。如果是CVM自建实例，需要传递此字段
         public let cvmInstanceId: String?
-        
+
         /// 专线网关ID，格式如：dcg-0rxtqqxb
         public let uniqDcgId: String?
-        
+
         /// 私有网络ID，格式如：vpc-92jblxto
         public let vpcId: String?
-        
+
         /// 私有网络下的子网ID，格式如：subnet-3paxmkdz
         public let subnetId: String?
-        
+
         /// VPN网关ID，格式如：vpngw-9ghexg7q
         public let uniqVpnGwId: String?
-        
+
         /// 数据库实例ID，格式如：cdb-powiqx8q
         public let instanceId: String?
-        
+
         /// 地域英文名，如：ap-guangzhou
         public let region: String?
-        
+
         /// 当实例为RDS实例时，填写为aliyun, 其他情况均填写others
         public let supplier: String?
-        
+
         /// 云联网ID，如：ccn-afp6kltc
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ccnId: String?
-        
+
         /// 数据库版本，当实例为RDS实例时才有效，格式如：5.6或者5.7，默认为5.6
         public let engineVersion: String?
-        
-        public init (accessKey: String? = nil, ip: String? = nil, port: Int64? = nil, user: String? = nil, password: String? = nil, rdsInstanceId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, uniqVpnGwId: String? = nil, instanceId: String? = nil, region: String? = nil, supplier: String? = nil, ccnId: String? = nil, engineVersion: String? = nil) {
+
+        public init(accessKey: String? = nil, ip: String? = nil, port: Int64? = nil, user: String? = nil, password: String? = nil, rdsInstanceId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, uniqVpnGwId: String? = nil, instanceId: String? = nil, region: String? = nil, supplier: String? = nil, ccnId: String? = nil, engineVersion: String? = nil) {
             self.accessKey = accessKey
             self.ip = ip
             self.port = port
@@ -394,7 +394,7 @@ extension Dts {
             self.ccnId = ccnId
             self.engineVersion = engineVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessKey = "AccessKey"
             case ip = "Ip"
@@ -414,96 +414,96 @@ extension Dts {
             case engineVersion = "EngineVersion"
         }
     }
-    
+
     /// 查询订阅配置的错误信息
     public struct SubsErr: TCOutputModel {
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case message = "Message"
         }
     }
-    
+
     /// 订阅实例信息
     public struct SubscribeInfo: TCInputModel, TCOutputModel {
         /// 数据订阅的实例ID
         public let subscribeId: String?
-        
+
         /// 数据订阅实例的名称
         public let subscribeName: String?
-        
+
         /// 数据订阅实例绑定的通道ID
         public let channelId: String?
-        
+
         /// 数据订阅绑定实例对应的产品名称
         public let product: String?
-        
+
         /// 数据订阅实例绑定的数据库实例ID
         public let instanceId: String?
-        
+
         /// 数据订阅实例绑定的数据库实例状态
         public let instanceStatus: String?
-        
+
         /// 数据订阅实例的配置状态，unconfigure - 未配置， configuring - 配置中，configured - 已配置
         public let subsStatus: String?
-        
+
         /// 上次修改时间
         public let modifyTime: String?
-        
+
         /// 创建时间
         public let createTime: String?
-        
+
         /// 隔离时间
         public let isolateTime: String?
-        
+
         /// 到期时间
         public let expireTime: String?
-        
+
         /// 下线时间
         public let offlineTime: String?
-        
+
         /// 最近一次修改的消费时间起点，如果从未修改则为零值
         public let consumeStartTime: String?
-        
+
         /// 数据订阅实例所属地域
         public let region: String?
-        
+
         /// 计费方式，0 - 包年包月，1 - 按量计费
         public let payType: Int64?
-        
+
         /// 数据订阅实例的Vip
         public let vip: String?
-        
+
         /// 数据订阅实例的Vport
         public let vport: Int64?
-        
+
         /// 数据订阅实例Vip所在VPC的唯一ID
         public let uniqVpcId: String?
-        
+
         /// 数据订阅实例Vip所在子网的唯一ID
         public let uniqSubnetId: String?
-        
+
         /// 数据订阅实例的状态，creating - 创建中，normal - 正常运行，isolating - 隔离中，isolated - 已隔离，offlining - 下线中，offline - 已下线
         public let status: String?
-        
+
         /// SDK最后一条确认消息的时间戳，如果SDK一直消费，也可以作为SDK当前消费时间点
         public let sdkConsumedTime: String?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagItem]?
-        
+
         /// 自动续费标识。0-不自动续费，1-自动续费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlag: Int64?
-        
+
         /// 订阅实例版本；txdts-旧版数据订阅,kafka-kafka版本数据订阅
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subscribeVersion: String?
-        
-        public init (subscribeId: String? = nil, subscribeName: String? = nil, channelId: String? = nil, product: String? = nil, instanceId: String? = nil, instanceStatus: String? = nil, subsStatus: String? = nil, modifyTime: String? = nil, createTime: String? = nil, isolateTime: String? = nil, expireTime: String? = nil, offlineTime: String? = nil, consumeStartTime: String? = nil, region: String? = nil, payType: Int64? = nil, vip: String? = nil, vport: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, status: String? = nil, sdkConsumedTime: String? = nil, tags: [TagItem]? = nil, autoRenewFlag: Int64? = nil, subscribeVersion: String? = nil) {
+
+        public init(subscribeId: String? = nil, subscribeName: String? = nil, channelId: String? = nil, product: String? = nil, instanceId: String? = nil, instanceStatus: String? = nil, subsStatus: String? = nil, modifyTime: String? = nil, createTime: String? = nil, isolateTime: String? = nil, expireTime: String? = nil, offlineTime: String? = nil, consumeStartTime: String? = nil, region: String? = nil, payType: Int64? = nil, vip: String? = nil, vport: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, status: String? = nil, sdkConsumedTime: String? = nil, tags: [TagItem]? = nil, autoRenewFlag: Int64? = nil, subscribeVersion: String? = nil) {
             self.subscribeId = subscribeId
             self.subscribeName = subscribeName
             self.channelId = channelId
@@ -529,7 +529,7 @@ extension Dts {
             self.autoRenewFlag = autoRenewFlag
             self.subscribeVersion = subscribeVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subscribeId = "SubscribeId"
             case subscribeName = "SubscribeName"
@@ -557,56 +557,56 @@ extension Dts {
             case subscribeVersion = "SubscribeVersion"
         }
     }
-    
+
     /// 数据数据订阅的对象
     public struct SubscribeObject: TCInputModel, TCOutputModel {
         /// 数据订阅对象的类型，0-数据库，1-数据库内的表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectsType: Int64?
-        
+
         /// 订阅数据库的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 订阅数据库中表名称数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableNames: [String]?
-        
-        public init (objectsType: Int64, databaseName: String, tableNames: [String]? = nil) {
+
+        public init(objectsType: Int64, databaseName: String, tableNames: [String]? = nil) {
             self.objectsType = objectsType
             self.databaseName = databaseName
             self.tableNames = tableNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case objectsType = "ObjectsType"
             case databaseName = "DatabaseName"
             case tableNames = "TableNames"
         }
     }
-    
+
     /// 数据订阅地域售卖信息
     public struct SubscribeRegionConf: TCOutputModel {
         /// 地域名称，如广州
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionName: String?
-        
+
         /// 地区标识，如ap-guangzhou
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 地域名称，如华南地区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let area: String?
-        
+
         /// 是否为默认地域，0 - 不是，1 - 是的
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDefaultRegion: Int64?
-        
+
         /// 当前地域的售卖情况，1 - 正常， 2-灰度，3 - 停售
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case regionName = "RegionName"
             case region = "Region"
@@ -615,40 +615,40 @@ extension Dts {
             case status = "Status"
         }
     }
-    
+
     /// 标签过滤
     public struct TagFilter: TCInputModel {
         /// 标签键值
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: [String]?
-        
-        public init (tagKey: String, tagValue: [String]? = nil) {
+
+        public init(tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 标签
     public struct TagItem: TCInputModel, TCOutputModel {
         /// 标签键值
         public let tagKey: String
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
-        
-        public init (tagKey: String, tagValue: String? = nil) {
+
+        public init(tagKey: String, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"

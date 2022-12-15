@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,7 +35,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 统计指标列表，取值有：
         /// <li>ddos_attackFlux_protocol ：攻击总流量协议类型分布排行 ；</li>
         /// <li>ddos_attackPackageNum_protocol ：攻击总包量协议类型分布排行 ；</li>
@@ -44,37 +44,37 @@ extension Teo {
         /// <li>ddos_attackFlux_sip ：攻击总流量攻击源ip分布排行 ；</li>
         /// <li>ddos_attackFlux_sregion ：攻击总流量攻击源地区分布排行 。</li>
         public let metricName: String
-        
+
         /// 查询前多少个，传值为0返回全量。
         public let limit: Int64
-        
+
         /// 站点id集合，不填默认选择全部站点。
         public let zoneIds: [String]?
-        
+
         /// ddos策略组id 集合，不填默认选择全部策略id。
         public let policyIds: [Int64]?
-        
+
         /// 端口号。
         public let port: Int64?
-        
+
         /// 协议类型，取值有：
         /// <li>tcp ；</li>
         /// <li>udp ；</li>
         /// <li>all 。</li>
         public let protocolType: String?
-        
+
         /// 攻击类型，取值有：
         /// <li>flood ；</li>
         /// <li>icmpFlood ；</li>
         /// <li>all 。</li>
         public let attackType: String?
-        
+
         /// 数据归属地区，取值有：
         /// <li>overseas ：全球（除中国大陆地区）数据 ；</li>
         /// <li>mainland ：中国大陆地区数据 。</li>不填默认查询overseas。
         public let area: String?
-        
-        public init (startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, area: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricName = metricName
@@ -86,7 +86,7 @@ extension Teo {
             self.attackType = attackType
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -100,23 +100,23 @@ extension Teo {
             case area = "Area"
         }
     }
-    
+
     /// DescribeDDosAttackTopData返回参数结构体
     public struct DescribeDDosAttackTopDataResponse: TCResponseModel {
         /// top数据内容
         public let data: [TopNEntry]
-        
+
         /// 请求响应状态，取值有：
         /// <li>1 ：失败 ；</li>
         /// <li>0 ：成功 。</li>
         public let status: Int64
-        
+
         /// 请求响应消息。
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case status = "Status"
@@ -124,25 +124,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询DDos攻击Top数据
     @inlinable
-    public func describeDDosAttackTopData(_ input: DescribeDDosAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackTopDataResponse > {
+    public func describeDDosAttackTopData(_ input: DescribeDDosAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosAttackTopDataResponse> {
         self.client.execute(action: "DescribeDDosAttackTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDos攻击Top数据
     @inlinable
     public func describeDDosAttackTopData(_ input: DescribeDDosAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackTopDataResponse {
         try await self.client.execute(action: "DescribeDDosAttackTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询DDos攻击Top数据
     @inlinable
-    public func describeDDosAttackTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackTopDataResponse > {
+    public func describeDDosAttackTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosAttackTopDataResponse> {
         self.describeDDosAttackTopData(DescribeDDosAttackTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDos攻击Top数据
     @inlinable
     public func describeDDosAttackTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackTopDataResponse {

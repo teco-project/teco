@@ -19,39 +19,39 @@ extension Vpc {
     public struct DeleteNatGatewayDestinationIpPortTranslationNatRuleRequest: TCRequestModel {
         /// NAT网关的ID，形如：`nat-df45454`。
         public let natGatewayId: String
-        
+
         /// NAT网关的端口转换规则。
         public let destinationIpPortTranslationNatRules: [DestinationIpPortTranslationNatRule]
-        
-        public init (natGatewayId: String, destinationIpPortTranslationNatRules: [DestinationIpPortTranslationNatRule]) {
+
+        public init(natGatewayId: String, destinationIpPortTranslationNatRules: [DestinationIpPortTranslationNatRule]) {
             self.natGatewayId = natGatewayId
             self.destinationIpPortTranslationNatRules = destinationIpPortTranslationNatRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natGatewayId = "NatGatewayId"
             case destinationIpPortTranslationNatRules = "DestinationIpPortTranslationNatRules"
         }
     }
-    
+
     /// DeleteNatGatewayDestinationIpPortTranslationNatRule返回参数结构体
     public struct DeleteNatGatewayDestinationIpPortTranslationNatRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除NAT网关端口转发规则
     ///
     /// 本接口（DeleteNatGatewayDestinationIpPortTranslationNatRule）用于删除NAT网关端口转发规则。
     @inlinable
-    public func deleteNatGatewayDestinationIpPortTranslationNatRule(_ input: DeleteNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayDestinationIpPortTranslationNatRuleResponse > {
+    public func deleteNatGatewayDestinationIpPortTranslationNatRule(_ input: DeleteNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewayDestinationIpPortTranslationNatRuleResponse> {
         self.client.execute(action: "DeleteNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除NAT网关端口转发规则
     ///
     /// 本接口（DeleteNatGatewayDestinationIpPortTranslationNatRule）用于删除NAT网关端口转发规则。
@@ -59,15 +59,15 @@ extension Vpc {
     public func deleteNatGatewayDestinationIpPortTranslationNatRule(_ input: DeleteNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayDestinationIpPortTranslationNatRuleResponse {
         try await self.client.execute(action: "DeleteNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除NAT网关端口转发规则
     ///
     /// 本接口（DeleteNatGatewayDestinationIpPortTranslationNatRule）用于删除NAT网关端口转发规则。
     @inlinable
-    public func deleteNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, destinationIpPortTranslationNatRules: [DestinationIpPortTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayDestinationIpPortTranslationNatRuleResponse > {
+    public func deleteNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, destinationIpPortTranslationNatRules: [DestinationIpPortTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewayDestinationIpPortTranslationNatRuleResponse> {
         self.deleteNatGatewayDestinationIpPortTranslationNatRule(DeleteNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, destinationIpPortTranslationNatRules: destinationIpPortTranslationNatRules), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除NAT网关端口转发规则
     ///
     /// 本接口（DeleteNatGatewayDestinationIpPortTranslationNatRule）用于删除NAT网关端口转发规则。

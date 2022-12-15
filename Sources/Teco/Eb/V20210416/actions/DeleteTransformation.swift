@@ -19,44 +19,44 @@ extension Eb {
     public struct DeleteTransformationRequest: TCRequestModel {
         /// 事件集ID
         public let eventBusId: String
-        
+
         /// 规则ID
         public let ruleId: String
-        
+
         /// 转换器id
         public let transformationId: String
-        
-        public init (eventBusId: String, ruleId: String, transformationId: String) {
+
+        public init(eventBusId: String, ruleId: String, transformationId: String) {
             self.eventBusId = eventBusId
             self.ruleId = ruleId
             self.transformationId = transformationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventBusId = "EventBusId"
             case ruleId = "RuleId"
             case transformationId = "TransformationId"
         }
     }
-    
+
     /// DeleteTransformation返回参数结构体
     public struct DeleteTransformationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除转换器
     ///
     /// 用于删除转换器
     @inlinable
-    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTransformationResponse > {
+    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
         self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除转换器
     ///
     /// 用于删除转换器
@@ -64,15 +64,15 @@ extension Eb {
     public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
         try await self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除转换器
     ///
     /// 用于删除转换器
     @inlinable
-    public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTransformationResponse > {
+    public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
         self.deleteTransformation(DeleteTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除转换器
     ///
     /// 用于删除转换器

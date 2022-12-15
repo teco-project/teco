@@ -19,7 +19,7 @@ extension Tione {
     public struct DescribeTrainingModelVersionsRequest: TCRequestModel {
         /// 模型ID
         public let trainingModelId: String
-        
+
         /// 过滤条件
         /// Filter.Name: 枚举值:
         ///     TrainingModelVersionId (模型版本ID)
@@ -30,50 +30,50 @@ extension Tione {
         /// Filter.Values: 当长度为1时，支持模糊查询; 不为1时，精确查询
         /// 每次请求的Filters的上限为10，Filter.Values的上限为100
         public let filters: [Filter]?
-        
-        public init (trainingModelId: String, filters: [Filter]? = nil) {
+
+        public init(trainingModelId: String, filters: [Filter]? = nil) {
             self.trainingModelId = trainingModelId
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trainingModelId = "TrainingModelId"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeTrainingModelVersions返回参数结构体
     public struct DescribeTrainingModelVersionsResponse: TCResponseModel {
         /// 模型版本列表
         public let trainingModelVersions: [TrainingModelVersionDTO]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trainingModelVersions = "TrainingModelVersions"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 模型版本列表
     @inlinable
-    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelVersionsResponse > {
+    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelVersionsResponse> {
         self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 模型版本列表
     @inlinable
     public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {
         try await self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 模型版本列表
     @inlinable
-    public func describeTrainingModelVersions(trainingModelId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelVersionsResponse > {
+    public func describeTrainingModelVersions(trainingModelId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelVersionsResponse> {
         self.describeTrainingModelVersions(DescribeTrainingModelVersionsRequest(trainingModelId: trainingModelId, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 模型版本列表
     @inlinable
     public func describeTrainingModelVersions(trainingModelId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {

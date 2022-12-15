@@ -27,7 +27,7 @@ extension Cwp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
+
         /// 结束时间，如：2020-09-22
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,39 +35,39 @@ extension Cwp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
-        public init (beginDate: Date, endDate: Date) {
+
+        public init(beginDate: Date, endDate: Date) {
             self.beginDate = beginDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginDate = "BeginDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// DescribeAssetRecentMachineInfo返回参数结构体
     public struct DescribeAssetRecentMachineInfoResponse: TCResponseModel {
         /// 总数量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalList: [AssetKeyVal]?
-        
+
         /// 在线数量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveList: [AssetKeyVal]?
-        
+
         /// 离线数量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offlineList: [AssetKeyVal]?
-        
+
         /// 风险数量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskList: [AssetKeyVal]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalList = "TotalList"
             case liveList = "LiveList"
@@ -76,15 +76,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取主机概况趋势
     ///
     /// 获取主机最近趋势情况
     @inlinable
-    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetRecentMachineInfoResponse > {
+    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetRecentMachineInfoResponse> {
         self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主机概况趋势
     ///
     /// 获取主机最近趋势情况
@@ -92,15 +92,15 @@ extension Cwp {
     public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
         try await self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取主机概况趋势
     ///
     /// 获取主机最近趋势情况
     @inlinable
-    public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetRecentMachineInfoResponse > {
+    public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetRecentMachineInfoResponse> {
         self.describeAssetRecentMachineInfo(DescribeAssetRecentMachineInfoRequest(beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主机概况趋势
     ///
     /// 获取主机最近趋势情况

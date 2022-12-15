@@ -19,59 +19,59 @@ extension Cynosdb {
     public struct IsolateClusterRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 该参数已废用
         public let dbType: String?
-        
-        public init (clusterId: String, dbType: String? = nil) {
+
+        public init(clusterId: String, dbType: String? = nil) {
             self.clusterId = clusterId
             self.dbType = dbType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case dbType = "DbType"
         }
     }
-    
+
     /// IsolateCluster返回参数结构体
     public struct IsolateClusterResponse: TCResponseModel {
         /// 任务流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?
-        
+
         /// 退款订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealNames: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case dealNames = "DealNames"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 隔离集群
     @inlinable
-    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
+    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
         self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 隔离集群
     @inlinable
     public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
         try await self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 隔离集群
     @inlinable
-    public func isolateCluster(clusterId: String, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
+    public func isolateCluster(clusterId: String, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
         self.isolateCluster(IsolateClusterRequest(clusterId: clusterId, dbType: dbType), logger: logger, on: eventLoop)
     }
-    
+
     /// 隔离集群
     @inlinable
     public func isolateCluster(clusterId: String, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {

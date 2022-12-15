@@ -22,7 +22,7 @@ extension Dayu {
     public struct DescribeCCEvListRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         public let business: String
-        
+
         /// 开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,20 +38,20 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 资源实例ID
         public let id: String?
-        
+
         /// 资源实例的IP，当business不为basic时，如果IpList不为空则Id也必须不能为空；
         public let ipList: [String]?
-        
+
         /// 一页条数，填0表示不分页
         public let limit: UInt64?
-        
+
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
-        
-        public init (business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.startTime = startTime
             self.endTime = endTime
@@ -60,7 +60,7 @@ extension Dayu {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case startTime = "StartTime"
@@ -71,19 +71,19 @@ extension Dayu {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeCCEvList返回参数结构体
     public struct DescribeCCEvListResponse: TCResponseModel {
         /// 大禹子产品代号（shield表示棋牌盾；bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         public let business: String
-        
+
         /// 资源实例ID
         public let id: String
-        
+
         /// 资源实例的IP列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipList: [String]?
-        
+
         /// 开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -91,7 +91,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -99,16 +99,16 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// CC攻击事件列表
         public let data: [CCEventRecord]
-        
+
         /// 总记录数
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -120,25 +120,25 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取CC攻击事件列表
     @inlinable
-    public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCEvListResponse > {
+    public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCEvListResponse> {
         self.client.execute(action: "DescribeCCEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取CC攻击事件列表
     @inlinable
     public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCEvListResponse {
         try await self.client.execute(action: "DescribeCCEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取CC攻击事件列表
     @inlinable
-    public func describeCCEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCEvListResponse > {
+    public func describeCCEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCEvListResponse> {
         self.describeCCEvList(DescribeCCEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取CC攻击事件列表
     @inlinable
     public func describeCCEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCEvListResponse {

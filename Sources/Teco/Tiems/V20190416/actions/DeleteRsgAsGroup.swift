@@ -19,35 +19,35 @@ extension Tiems {
     public struct DeleteRsgAsGroupRequest: TCRequestModel {
         /// 伸缩组 ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DeleteRsgAsGroup返回参数结构体
     public struct DeleteRsgAsGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除资源组的伸缩组
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 伸缩
     @inlinable
-    public func deleteRsgAsGroup(_ input: DeleteRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRsgAsGroupResponse > {
+    public func deleteRsgAsGroup(_ input: DeleteRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRsgAsGroupResponse> {
         self.client.execute(action: "DeleteRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资源组的伸缩组
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
@@ -56,16 +56,16 @@ extension Tiems {
     public func deleteRsgAsGroup(_ input: DeleteRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRsgAsGroupResponse {
         try await self.client.execute(action: "DeleteRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除资源组的伸缩组
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 伸缩
     @inlinable
-    public func deleteRsgAsGroup(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRsgAsGroupResponse > {
+    public func deleteRsgAsGroup(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRsgAsGroupResponse> {
         self.deleteRsgAsGroup(DeleteRsgAsGroupRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资源组的伸缩组
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。

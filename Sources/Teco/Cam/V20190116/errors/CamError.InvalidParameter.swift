@@ -80,465 +80,465 @@ extension TCCamError {
             case versionError = "InvalidParameter.VersionError"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 策略文档的Action字段不合法。
         public static var actionError: InvalidParameter {
             InvalidParameter(.actionError)
         }
-        
+
         /// 策略语法中操作不存在。
         public static var actionMiss: InvalidParameter {
             InvalidParameter(.actionMiss)
         }
-        
+
         /// 策略语法中操作不存在。
         public static var actionNotExist: InvalidParameter {
             InvalidParameter(.actionNotExist)
         }
-        
+
         /// 策略语法中操作服务不存在。
         public static var actionServiceNotExist: InvalidParameter {
             InvalidParameter(.actionServiceNotExist)
         }
-        
+
         /// principal字段的授权对象关联策略数已达到上限。
         public static var attachmentFull: InvalidParameter {
             InvalidParameter(.attachmentFull)
         }
-        
+
         /// 策略语法中条件内容不正确。
         public static var conditionContentError: InvalidParameter {
             InvalidParameter(.conditionContentError)
         }
-        
+
         /// 策略文档的condition字段不合法。
         public static var conditionError: InvalidParameter {
             InvalidParameter(.conditionError)
         }
-        
+
         /// 策略语法中条件操作符不正确。
         public static var conditionTypeError: InvalidParameter {
             InvalidParameter(.conditionTypeError)
         }
-        
+
         /// 任务不存在。
         public static var deletionTaskNotExist: InvalidParameter {
             InvalidParameter(.deletionTaskNotExist)
         }
-        
+
         /// Description入参长度不能大于300字节。
         public static var descriptionLengthOverlimit: InvalidParameter {
             InvalidParameter(.descriptionLengthOverlimit)
         }
-        
+
         /// 策略文档的Effect字段不合法。
         public static var effectError: InvalidParameter {
             InvalidParameter(.effectError)
         }
-        
+
         /// EntityFilter字段不合法。
         public static var entityFilterError: InvalidParameter {
             InvalidParameter(.entityFilterError)
         }
-        
+
         /// 用户组数量达到上限。
         public static var groupFull: InvalidParameter {
             InvalidParameter(.groupFull)
         }
-        
+
         /// GroupId字段不合法。
         public static var groupIdError: InvalidParameter {
             InvalidParameter(.groupIdError)
         }
-        
+
         /// 用户组名称重复。
         public static var groupNameInUse: InvalidParameter {
             InvalidParameter(.groupNameInUse)
         }
-        
+
         /// 用户组不存在。
         public static var groupNotExist: InvalidParameter {
             InvalidParameter(.groupNotExist)
         }
-        
+
         /// 用户组中的子用户数量达到上限。
         public static var groupUserFull: InvalidParameter {
             InvalidParameter(.groupUserFull)
         }
-        
+
         /// 身份提供商名称已经使用。
         public static var identityNameInUse: InvalidParameter {
             InvalidParameter(.identityNameInUse)
         }
-        
+
         /// Keyword字段不合法。
         public static var keywordError: InvalidParameter {
             InvalidParameter(.keywordError)
         }
-        
+
         /// 多因子Token验证失败。
         public static var mfaTokenError: InvalidParameter {
             InvalidParameter(.mfaTokenError)
         }
-        
+
         /// CAM不支持策略文档中所指定的资源类型。
         public static var notSupportProduct: InvalidParameter {
             InvalidParameter(.notSupportProduct)
         }
-        
+
         /// 一次操作实体数过多。
         public static var operateEntitiesOverLimit: InvalidParameter {
             InvalidParameter(.operateEntitiesOverLimit)
         }
-        
+
         /// 非法入参。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         /// 密码不符合用户安全设置。
         public static var passwordViolatedRules: InvalidParameter {
             InvalidParameter(.passwordViolatedRules)
         }
-        
+
         /// PolicyDocument字段不合法。
         public static var policyDocumentError: InvalidParameter {
             InvalidParameter(.policyDocumentError)
         }
-        
+
         /// PolicyDocument字段超过长度限制。
         public static var policyDocumentLengthOverLimit: InvalidParameter {
             InvalidParameter(.policyDocumentLengthOverLimit)
         }
-        
+
         /// 输入参数PolicyId不合法。
         public static var policyIdError: InvalidParameter {
             InvalidParameter(.policyIdError)
         }
-        
+
         /// 策略ID不存在。
         public static var policyIdNotExist: InvalidParameter {
             InvalidParameter(.policyIdNotExist)
         }
-        
+
         /// PolicyName字段不合法。
         public static var policyNameError: InvalidParameter {
             InvalidParameter(.policyNameError)
         }
-        
+
         /// 策略版本不存在。
         public static var policyVersionNotExists: InvalidParameter {
             InvalidParameter(.policyVersionNotExists)
         }
-        
+
         /// 策略文档的principal字段不合法。
         public static var principalError: InvalidParameter {
             InvalidParameter(.principalError)
         }
-        
+
         /// 角色载体不允许跨站。
         public static var principalQcsCrossError: InvalidParameter {
             InvalidParameter(.principalQcsCrossError)
         }
-        
+
         /// PrincipalQcsc错误。
         public static var principalQcsError: InvalidParameter {
             InvalidParameter(.principalQcsError)
         }
-        
+
         /// PrincipalQcs不存在。
         public static var principalQcsNotExist: InvalidParameter {
             InvalidParameter(.principalQcsNotExist)
         }
-        
+
         /// PrincipalService不存在。
         public static var principalServiceNotExist: InvalidParameter {
             InvalidParameter(.principalServiceNotExist)
         }
-        
+
         /// 策略语法中资源内容不正确。
         public static var resourceContentError: InvalidParameter {
             InvalidParameter(.resourceContentError)
         }
-        
+
         /// 策略文档的Resource字段不合法。
         public static var resourceError: InvalidParameter {
             InvalidParameter(.resourceError)
         }
-        
+
         /// 策略语法中资源项目不正确。
         public static var resourceProjectError: InvalidParameter {
             InvalidParameter(.resourceProjectError)
         }
-        
+
         /// 资源QCS错误。
         public static var resourceQcsError: InvalidParameter {
             InvalidParameter(.resourceQcsError)
         }
-        
+
         /// 策略语法中资源地域不正确。
         public static var resourceRegionError: InvalidParameter {
             InvalidParameter(.resourceRegionError)
         }
-        
+
         /// 策略语法中资源服务不存在。
         public static var resourceServiceNotExist: InvalidParameter {
             InvalidParameter(.resourceServiceNotExist)
         }
-        
+
         /// 策略语法中资源所属主账号不正确。
         public static var resourceUinError: InvalidParameter {
             InvalidParameter(.resourceUinError)
         }
-        
+
         /// 角色数量达到上限。
         public static var roleFull: InvalidParameter {
             InvalidParameter(.roleFull)
         }
-        
+
         /// 角色名不合法。
         public static var roleNameError: InvalidParameter {
             InvalidParameter(.roleNameError)
         }
-        
+
         /// 相同名称的角色已存在。
         public static var roleNameInUse: InvalidParameter {
             InvalidParameter(.roleNameInUse)
         }
-        
+
         /// 角色不存在。
         public static var roleNotExist: InvalidParameter {
             InvalidParameter(.roleNotExist)
         }
-        
+
         /// Scope字段不合法。
         public static var scopeError: InvalidParameter {
             InvalidParameter(.scopeError)
         }
-        
+
         /// 权限边界不能用服务相关策略。
         public static var serviceLinkedPolicyCantInPermissionBoundary: InvalidParameter {
             InvalidParameter(.serviceLinkedPolicyCantInPermissionBoundary)
         }
-        
+
         /// 服务相关角色不能使用权限边界。
         public static var serviceLinkedRoleCantUsePermissionBoundary: InvalidParameter {
             InvalidParameter(.serviceLinkedRoleCantUsePermissionBoundary)
         }
-        
+
         /// ServiceType字段不合法。
         public static var serviceTypeError: InvalidParameter {
             InvalidParameter(.serviceTypeError)
         }
-        
+
         /// 策略文档的Statement字段不合法。
         public static var statementError: InvalidParameter {
             InvalidParameter(.statementError)
         }
-        
+
         /// 子帐号数量达到上限。
         public static var subUserFull: InvalidParameter {
             InvalidParameter(.subUserFull)
         }
-        
+
         /// 子用户名称重复。
         public static var subUserNameInUse: InvalidParameter {
             InvalidParameter(.subUserNameInUse)
         }
-        
+
         /// 超出标签限制。
         public static var tagLimitExceeded: InvalidParameter {
             InvalidParameter(.tagLimitExceeded)
         }
-        
+
         /// 标签参数错误。
         public static var tagParamError: InvalidParameter {
             InvalidParameter(.tagParamError)
         }
-        
+
         /// Uin字段不合法。
         public static var uinError: InvalidParameter {
             InvalidParameter(.uinError)
         }
-        
+
         /// 子用户加入的用户组数量达到上限。
         public static var userGroupFull: InvalidParameter {
             InvalidParameter(.userGroupFull)
         }
-        
+
         /// 用户名不合法。
         public static var userNameIllegal: InvalidParameter {
             InvalidParameter(.userNameIllegal)
         }
-        
+
         /// 用户对象不存在。
         public static var userNotExist: InvalidParameter {
             InvalidParameter(.userNotExist)
         }
-        
+
         /// 用户的Uin和Uid不能都为空。
         public static var userUinAndUinNotAllNull: InvalidParameter {
             InvalidParameter(.userUinAndUinNotAllNull)
         }
-        
+
         /// 策略文档的Version字段不合法。
         public static var versionError: InvalidParameter {
             InvalidParameter(.versionError)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asCamError() -> TCCamError {
             let code: TCCamError.Code
             switch self.error {
-            case .actionError: 
+            case .actionError:
                 code = .invalidParameter_ActionError
-            case .actionMiss: 
+            case .actionMiss:
                 code = .invalidParameter_ActionMiss
-            case .actionNotExist: 
+            case .actionNotExist:
                 code = .invalidParameter_ActionNotExist
-            case .actionServiceNotExist: 
+            case .actionServiceNotExist:
                 code = .invalidParameter_ActionServiceNotExist
-            case .attachmentFull: 
+            case .attachmentFull:
                 code = .invalidParameter_AttachmentFull
-            case .conditionContentError: 
+            case .conditionContentError:
                 code = .invalidParameter_ConditionContentError
-            case .conditionError: 
+            case .conditionError:
                 code = .invalidParameter_ConditionError
-            case .conditionTypeError: 
+            case .conditionTypeError:
                 code = .invalidParameter_ConditionTypeError
-            case .deletionTaskNotExist: 
+            case .deletionTaskNotExist:
                 code = .invalidParameter_DeletionTaskNotExist
-            case .descriptionLengthOverlimit: 
+            case .descriptionLengthOverlimit:
                 code = .invalidParameter_DescriptionLengthOverlimit
-            case .effectError: 
+            case .effectError:
                 code = .invalidParameter_EffectError
-            case .entityFilterError: 
+            case .entityFilterError:
                 code = .invalidParameter_EntityFilterError
-            case .groupFull: 
+            case .groupFull:
                 code = .invalidParameter_GroupFull
-            case .groupIdError: 
+            case .groupIdError:
                 code = .invalidParameter_GroupIdError
-            case .groupNameInUse: 
+            case .groupNameInUse:
                 code = .invalidParameter_GroupNameInUse
-            case .groupNotExist: 
+            case .groupNotExist:
                 code = .invalidParameter_GroupNotExist
-            case .groupUserFull: 
+            case .groupUserFull:
                 code = .invalidParameter_GroupUserFull
-            case .identityNameInUse: 
+            case .identityNameInUse:
                 code = .invalidParameter_IdentityNameInUse
-            case .keywordError: 
+            case .keywordError:
                 code = .invalidParameter_KeywordError
-            case .mfaTokenError: 
+            case .mfaTokenError:
                 code = .invalidParameter_MFATokenError
-            case .notSupportProduct: 
+            case .notSupportProduct:
                 code = .invalidParameter_NotSupportProduct
-            case .operateEntitiesOverLimit: 
+            case .operateEntitiesOverLimit:
                 code = .invalidParameter_OperateEntitiesOverLimit
-            case .paramError: 
+            case .paramError:
                 code = .invalidParameter_ParamError
-            case .passwordViolatedRules: 
+            case .passwordViolatedRules:
                 code = .invalidParameter_PasswordViolatedRules
-            case .policyDocumentError: 
+            case .policyDocumentError:
                 code = .invalidParameter_PolicyDocumentError
-            case .policyDocumentLengthOverLimit: 
+            case .policyDocumentLengthOverLimit:
                 code = .invalidParameter_PolicyDocumentLengthOverLimit
-            case .policyIdError: 
+            case .policyIdError:
                 code = .invalidParameter_PolicyIdError
-            case .policyIdNotExist: 
+            case .policyIdNotExist:
                 code = .invalidParameter_PolicyIdNotExist
-            case .policyNameError: 
+            case .policyNameError:
                 code = .invalidParameter_PolicyNameError
-            case .policyVersionNotExists: 
+            case .policyVersionNotExists:
                 code = .invalidParameter_PolicyVersionNotExists
-            case .principalError: 
+            case .principalError:
                 code = .invalidParameter_PrincipalError
-            case .principalQcsCrossError: 
+            case .principalQcsCrossError:
                 code = .invalidParameter_PrincipalQcsCrossError
-            case .principalQcsError: 
+            case .principalQcsError:
                 code = .invalidParameter_PrincipalQcsError
-            case .principalQcsNotExist: 
+            case .principalQcsNotExist:
                 code = .invalidParameter_PrincipalQcsNotExist
-            case .principalServiceNotExist: 
+            case .principalServiceNotExist:
                 code = .invalidParameter_PrincipalServiceNotExist
-            case .resourceContentError: 
+            case .resourceContentError:
                 code = .invalidParameter_ResourceContentError
-            case .resourceError: 
+            case .resourceError:
                 code = .invalidParameter_ResourceError
-            case .resourceProjectError: 
+            case .resourceProjectError:
                 code = .invalidParameter_ResourceProjectError
-            case .resourceQcsError: 
+            case .resourceQcsError:
                 code = .invalidParameter_ResourceQcsError
-            case .resourceRegionError: 
+            case .resourceRegionError:
                 code = .invalidParameter_ResourceRegionError
-            case .resourceServiceNotExist: 
+            case .resourceServiceNotExist:
                 code = .invalidParameter_ResourceServiceNotExist
-            case .resourceUinError: 
+            case .resourceUinError:
                 code = .invalidParameter_ResourceUinError
-            case .roleFull: 
+            case .roleFull:
                 code = .invalidParameter_RoleFull
-            case .roleNameError: 
+            case .roleNameError:
                 code = .invalidParameter_RoleNameError
-            case .roleNameInUse: 
+            case .roleNameInUse:
                 code = .invalidParameter_RoleNameInUse
-            case .roleNotExist: 
+            case .roleNotExist:
                 code = .invalidParameter_RoleNotExist
-            case .scopeError: 
+            case .scopeError:
                 code = .invalidParameter_ScopeError
-            case .serviceLinkedPolicyCantInPermissionBoundary: 
+            case .serviceLinkedPolicyCantInPermissionBoundary:
                 code = .invalidParameter_ServiceLinkedPolicyCantInPermissionBoundary
-            case .serviceLinkedRoleCantUsePermissionBoundary: 
+            case .serviceLinkedRoleCantUsePermissionBoundary:
                 code = .invalidParameter_ServiceLinkedRoleCantUsePermissionBoundary
-            case .serviceTypeError: 
+            case .serviceTypeError:
                 code = .invalidParameter_ServiceTypeError
-            case .statementError: 
+            case .statementError:
                 code = .invalidParameter_StatementError
-            case .subUserFull: 
+            case .subUserFull:
                 code = .invalidParameter_SubUserFull
-            case .subUserNameInUse: 
+            case .subUserNameInUse:
                 code = .invalidParameter_SubUserNameInUse
-            case .tagLimitExceeded: 
+            case .tagLimitExceeded:
                 code = .invalidParameter_TagLimitExceeded
-            case .tagParamError: 
+            case .tagParamError:
                 code = .invalidParameter_TagParamError
-            case .uinError: 
+            case .uinError:
                 code = .invalidParameter_UinError
-            case .userGroupFull: 
+            case .userGroupFull:
                 code = .invalidParameter_UserGroupFull
-            case .userNameIllegal: 
+            case .userNameIllegal:
                 code = .invalidParameter_UserNameIllegal
-            case .userNotExist: 
+            case .userNotExist:
                 code = .invalidParameter_UserNotExist
-            case .userUinAndUinNotAllNull: 
+            case .userUinAndUinNotAllNull:
                 code = .invalidParameter_UserUinAndUinNotAllNull
-            case .versionError: 
+            case .versionError:
                 code = .invalidParameter_VersionError
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCCamError(code, context: self.context)

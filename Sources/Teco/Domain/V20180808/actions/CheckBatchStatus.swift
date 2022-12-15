@@ -19,38 +19,38 @@ extension Domain {
     public struct CheckBatchStatusRequest: TCRequestModel {
         /// 操作日志 ID数组，最多 200 个
         public let logIds: [UInt64]
-        
-        public init (logIds: [UInt64]) {
+
+        public init(logIds: [UInt64]) {
             self.logIds = logIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case logIds = "LogIds"
         }
     }
-    
+
     /// CheckBatchStatus返回参数结构体
     public struct CheckBatchStatusResponse: TCResponseModel {
         /// 批量任务状态集
         public let statusSet: [BatchStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case statusSet = "StatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量操作日志状态
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
-    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBatchStatusResponse > {
+    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBatchStatusResponse> {
         self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量操作日志状态
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
@@ -58,15 +58,15 @@ extension Domain {
     public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
         try await self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量操作日志状态
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
-    public func checkBatchStatus(logIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBatchStatusResponse > {
+    public func checkBatchStatus(logIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBatchStatusResponse> {
         self.checkBatchStatus(CheckBatchStatusRequest(logIds: logIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量操作日志状态
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。

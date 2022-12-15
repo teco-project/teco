@@ -19,43 +19,43 @@ extension Postgres {
     public struct CloseDBExtranetAccessRequest: TCRequestModel {
         /// 实例ID，形如postgres-6r233v55
         public let dbInstanceId: String
-        
+
         /// 是否关闭Ipv6外网，1：是，0：否
         public let isIpv6: Int64?
-        
-        public init (dbInstanceId: String, isIpv6: Int64? = nil) {
+
+        public init(dbInstanceId: String, isIpv6: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.isIpv6 = isIpv6
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case isIpv6 = "IsIpv6"
         }
     }
-    
+
     /// CloseDBExtranetAccess返回参数结构体
     public struct CloseDBExtranetAccessResponse: TCResponseModel {
         /// 异步任务流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭实例外网链接
     ///
     /// 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
     @inlinable
-    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseDBExtranetAccessResponse > {
+    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseDBExtranetAccessResponse> {
         self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭实例外网链接
     ///
     /// 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
@@ -63,15 +63,15 @@ extension Postgres {
     public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseDBExtranetAccessResponse {
         try await self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭实例外网链接
     ///
     /// 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
     @inlinable
-    public func closeDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseDBExtranetAccessResponse > {
+    public func closeDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseDBExtranetAccessResponse> {
         self.closeDBExtranetAccess(CloseDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭实例外网链接
     ///
     /// 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。

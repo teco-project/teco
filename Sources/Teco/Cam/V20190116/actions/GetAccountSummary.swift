@@ -17,33 +17,33 @@
 extension Cam {
     /// GetAccountSummary请求参数结构体
     public struct GetAccountSummaryRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetAccountSummary返回参数结构体
     public struct GetAccountSummaryResponse: TCResponseModel {
         /// 策略数
         public let policies: UInt64
-        
+
         /// 角色数
         public let roles: UInt64
-        
+
         /// 身份提供商数
         public let idps: UInt64
-        
+
         /// 子账户数
         public let user: UInt64
-        
+
         /// 分组数
         public let group: UInt64
-        
+
         /// 分组用户总数
         public let member: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policies = "Policies"
             case roles = "Roles"
@@ -54,34 +54,34 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询账户摘要
     ///
-    /// 查询账户摘要 
+    /// 查询账户摘要
     @inlinable
-    public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAccountSummaryResponse > {
+    public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAccountSummaryResponse> {
         self.client.execute(action: "GetAccountSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账户摘要
     ///
-    /// 查询账户摘要 
+    /// 查询账户摘要
     @inlinable
     public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountSummaryResponse {
         try await self.client.execute(action: "GetAccountSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询账户摘要
     ///
-    /// 查询账户摘要 
+    /// 查询账户摘要
     @inlinable
-    public func getAccountSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAccountSummaryResponse > {
+    public func getAccountSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAccountSummaryResponse> {
         self.getAccountSummary(GetAccountSummaryRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账户摘要
     ///
-    /// 查询账户摘要 
+    /// 查询账户摘要
     @inlinable
     public func getAccountSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountSummaryResponse {
         try await self.getAccountSummary(GetAccountSummaryRequest(), logger: logger, on: eventLoop)

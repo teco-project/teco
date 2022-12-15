@@ -19,49 +19,49 @@ extension Teo {
     public struct DescribeSecurityPolicyRequest: TCRequestModel {
         /// 站点Id。
         public let zoneId: String?
-        
+
         /// 子域名/应用名。当使用Entity时可不填写TemplateId，否则必须填写TemplateId。
         public let entity: String?
-        
+
         /// 模板策略id。当使用模板Id时可不填Entity，否则必须填写Entity。
         public let templateId: String?
-        
-        public init (zoneId: String? = nil, entity: String? = nil, templateId: String? = nil) {
+
+        public init(zoneId: String? = nil, entity: String? = nil, templateId: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case entity = "Entity"
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DescribeSecurityPolicy返回参数结构体
     public struct DescribeSecurityPolicyResponse: TCResponseModel {
         /// 安全配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityConfig: SecurityConfig?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case securityConfig = "SecurityConfig"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全防护配置详情
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
     @inlinable
-    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyResponse > {
+    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyResponse> {
         self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全防护配置详情
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
@@ -69,15 +69,15 @@ extension Teo {
     public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
         try await self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全防护配置详情
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
     @inlinable
-    public func describeSecurityPolicy(zoneId: String? = nil, entity: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyResponse > {
+    public func describeSecurityPolicy(zoneId: String? = nil, entity: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyResponse> {
         self.describeSecurityPolicy(DescribeSecurityPolicyRequest(zoneId: zoneId, entity: entity, templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全防护配置详情
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。

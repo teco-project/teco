@@ -19,27 +19,27 @@ extension Trtc {
     public struct DescribeRoomInfoRequest: TCRequestModel {
         /// 用户SdkAppId（如：1400xxxxxx）
         public let sdkAppId: UInt64
-        
+
         /// 查询开始时间，本地unix时间戳，单位为秒（如：1590065777）
         /// 注意：支持查询14天内的数据
         public let startTime: UInt64
-        
+
         /// 查询结束时间，本地unix时间戳，单位为秒（如：1590065877）
         /// 注意：与StartTime间隔时间不超过24小时。
         public let endTime: UInt64
-        
+
         /// 房间号（如：223)
         public let roomId: String?
-        
+
         /// 当前页数，默认为0，
         /// 注意：PageNumber和PageSize 其中一个不填均默认返回10条数据。
         public let pageNumber: UInt64?
-        
+
         /// 每页个数，默认为10，
         /// 范围：[1，100]
         public let pageSize: UInt64?
-        
-        public init (sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil) {
+
+        public init(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil) {
             self.sdkAppId = sdkAppId
             self.startTime = startTime
             self.endTime = endTime
@@ -47,7 +47,7 @@ extension Trtc {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case startTime = "StartTime"
@@ -57,25 +57,25 @@ extension Trtc {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// DescribeRoomInfo返回参数结构体
     public struct DescribeRoomInfoResponse: TCResponseModel {
         /// 返回当页数据总数
         public let total: Int64
-        
+
         /// 房间信息列表
         public let roomList: [RoomState]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case roomList = "RoomList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询历史房间列表
     ///
     /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
@@ -83,10 +83,10 @@ extension Trtc {
     /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
     @inlinable
-    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomInfoResponse > {
+    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
         self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询历史房间列表
     ///
     /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
@@ -97,7 +97,7 @@ extension Trtc {
     public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
         try await self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询历史房间列表
     ///
     /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
@@ -105,10 +105,10 @@ extension Trtc {
     /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
     @inlinable
-    public func describeRoomInfo(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomInfoResponse > {
+    public func describeRoomInfo(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
         self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询历史房间列表
     ///
     /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）

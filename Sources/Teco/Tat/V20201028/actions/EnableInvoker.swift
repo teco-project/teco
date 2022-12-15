@@ -19,34 +19,34 @@ extension Tat {
     public struct EnableInvokerRequest: TCRequestModel {
         /// 待启用的执行器ID。
         public let invokerId: String
-        
-        public init (invokerId: String) {
+
+        public init(invokerId: String) {
             self.invokerId = invokerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case invokerId = "InvokerId"
         }
     }
-    
+
     /// EnableInvoker返回参数结构体
     public struct EnableInvokerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用执行器
     ///
     /// 此接口用于启用执行器。
     @inlinable
-    public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableInvokerResponse > {
+    public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableInvokerResponse> {
         self.client.execute(action: "EnableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用执行器
     ///
     /// 此接口用于启用执行器。
@@ -54,15 +54,15 @@ extension Tat {
     public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInvokerResponse {
         try await self.client.execute(action: "EnableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用执行器
     ///
     /// 此接口用于启用执行器。
     @inlinable
-    public func enableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableInvokerResponse > {
+    public func enableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableInvokerResponse> {
         self.enableInvoker(EnableInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用执行器
     ///
     /// 此接口用于启用执行器。

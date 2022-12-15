@@ -19,43 +19,43 @@ extension Ses {
     public struct CreateReceiverRequest: TCRequestModel {
         /// 收件人列表名称
         public let receiversName: String
-        
+
         /// 收件人列表描述
         public let desc: String?
-        
-        public init (receiversName: String, desc: String? = nil) {
+
+        public init(receiversName: String, desc: String? = nil) {
             self.receiversName = receiversName
             self.desc = desc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case receiversName = "ReceiversName"
             case desc = "Desc"
         }
     }
-    
+
     /// CreateReceiver返回参数结构体
     public struct CreateReceiverResponse: TCResponseModel {
         /// 收件人列表id，后续根据收件人列表id上传收件人地址
         public let receiverId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case receiverId = "ReceiverId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建收件人列表
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
     @inlinable
-    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReceiverResponse > {
+    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReceiverResponse> {
         self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建收件人列表
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
@@ -63,15 +63,15 @@ extension Ses {
     public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
         try await self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建收件人列表
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
     @inlinable
-    public func createReceiver(receiversName: String, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReceiverResponse > {
+    public func createReceiver(receiversName: String, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReceiverResponse> {
         self.createReceiver(CreateReceiverRequest(receiversName: receiversName, desc: desc), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建收件人列表
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能

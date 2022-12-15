@@ -38,169 +38,169 @@ extension TCDnspodError {
             case vipDomainAllowed = "OperationDenied.VipDomainAllowed"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 您没有权限执行此操作。
         public static var accessDenied: OperationDenied {
             OperationDenied(.accessDenied)
         }
-        
+
         /// 代理不能使用此功能。
         public static var agentDenied: OperationDenied {
             OperationDenied(.agentDenied)
         }
-        
+
         /// 代理名下的用户不能使用此功能。
         public static var agentSubordinateDenied: OperationDenied {
             OperationDenied(.agentSubordinateDenied)
         }
-        
+
         /// 此订单不能取消。
         public static var cancelBillNotAllowed: OperationDenied {
             OperationDenied(.cancelBillNotAllowed)
         }
-        
+
         /// 该线路正在使用当中，不能删除。
         public static var deleteUsingRecordLineNotAllowed: OperationDenied {
             OperationDenied(.deleteUsingRecordLineNotAllowed)
         }
-        
+
         /// 仅域名所有者可进行此操作。
         public static var domainOwnerAllowedOnly: OperationDenied {
             OperationDenied(.domainOwnerAllowedOnly)
         }
-        
+
         /// 抱歉，不允许添加黑名单中的IP。
         public static var ipInBlacklistNotAllowed: OperationDenied {
             OperationDenied(.ipInBlacklistNotAllowed)
         }
-        
+
         /// 抱歉，您的域名等级不支持D监控通知回调功能。
         public static var monitorCallbackNotEnabled: OperationDenied {
             OperationDenied(.monitorCallbackNotEnabled)
         }
-        
+
         /// 当前域名无权限，请返回域名列表。
         public static var noPermissionToOperateDomain: OperationDenied {
             OperationDenied(.noPermissionToOperateDomain)
         }
-        
+
         /// 您不是管理用户。
         public static var notAdmin: OperationDenied {
             OperationDenied(.notAdmin)
         }
-        
+
         /// 您不是代理用户。
         public static var notAgent: OperationDenied {
             OperationDenied(.notAgent)
         }
-        
+
         /// 您还没有获取到授权，无法执行此操作。
         public static var notGrantedByOwner: OperationDenied {
             OperationDenied(.notGrantedByOwner)
         }
-        
+
         /// 不是您名下用户。
         public static var notManagedUser: OperationDenied {
             OperationDenied(.notManagedUser)
         }
-        
+
         /// 您没有权限操作此订单。
         public static var notOrderOwner: OperationDenied {
             OperationDenied(.notOrderOwner)
         }
-        
+
         public static var notResourceOwner: OperationDenied {
             OperationDenied(.notResourceOwner)
         }
-        
+
         /// 此礼券为个人礼券，请使用企业礼券。
         public static var personalCouponNotAllowed: OperationDenied {
             OperationDenied(.personalCouponNotAllowed)
         }
-        
+
         /// 只支持 POST 方法提交数据。
         public static var postRequestAcceptOnly: OperationDenied {
             OperationDenied(.postRequestAcceptOnly)
         }
-        
+
         public static var resourceNotAllowRenew: OperationDenied {
             OperationDenied(.resourceNotAllowRenew)
         }
-        
+
         /// 企业用户的域名需要升级到VIP才能解析。
         public static var vipDomainAllowed: OperationDenied {
             OperationDenied(.vipDomainAllowed)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asDnspodError() -> TCDnspodError {
             let code: TCDnspodError.Code
             switch self.error {
-            case .accessDenied: 
+            case .accessDenied:
                 code = .operationDenied_AccessDenied
-            case .agentDenied: 
+            case .agentDenied:
                 code = .operationDenied_AgentDenied
-            case .agentSubordinateDenied: 
+            case .agentSubordinateDenied:
                 code = .operationDenied_AgentSubordinateDenied
-            case .cancelBillNotAllowed: 
+            case .cancelBillNotAllowed:
                 code = .operationDenied_CancelBillNotAllowed
-            case .deleteUsingRecordLineNotAllowed: 
+            case .deleteUsingRecordLineNotAllowed:
                 code = .operationDenied_DeleteUsingRecordLineNotAllowed
-            case .domainOwnerAllowedOnly: 
+            case .domainOwnerAllowedOnly:
                 code = .operationDenied_DomainOwnerAllowedOnly
-            case .ipInBlacklistNotAllowed: 
+            case .ipInBlacklistNotAllowed:
                 code = .operationDenied_IPInBlacklistNotAllowed
-            case .monitorCallbackNotEnabled: 
+            case .monitorCallbackNotEnabled:
                 code = .operationDenied_MonitorCallbackNotEnabled
-            case .noPermissionToOperateDomain: 
+            case .noPermissionToOperateDomain:
                 code = .operationDenied_NoPermissionToOperateDomain
-            case .notAdmin: 
+            case .notAdmin:
                 code = .operationDenied_NotAdmin
-            case .notAgent: 
+            case .notAgent:
                 code = .operationDenied_NotAgent
-            case .notGrantedByOwner: 
+            case .notGrantedByOwner:
                 code = .operationDenied_NotGrantedByOwner
-            case .notManagedUser: 
+            case .notManagedUser:
                 code = .operationDenied_NotManagedUser
-            case .notOrderOwner: 
+            case .notOrderOwner:
                 code = .operationDenied_NotOrderOwner
-            case .notResourceOwner: 
+            case .notResourceOwner:
                 code = .operationDenied_NotResourceOwner
-            case .personalCouponNotAllowed: 
+            case .personalCouponNotAllowed:
                 code = .operationDenied_PersonalCouponNotAllowed
-            case .postRequestAcceptOnly: 
+            case .postRequestAcceptOnly:
                 code = .operationDenied_PostRequestAcceptOnly
-            case .resourceNotAllowRenew: 
+            case .resourceNotAllowRenew:
                 code = .operationDenied_ResourceNotAllowRenew
-            case .vipDomainAllowed: 
+            case .vipDomainAllowed:
                 code = .operationDenied_VipDomainAllowed
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCDnspodError(code, context: self.context)

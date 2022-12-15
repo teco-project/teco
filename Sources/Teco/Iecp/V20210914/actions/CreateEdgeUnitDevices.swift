@@ -19,54 +19,54 @@ extension Iecp {
     public struct CreateEdgeUnitDevicesRequest: TCRequestModel {
         /// 无
         public let edgeUnitId: Int64
-        
+
         /// 无
         public let productId: String
-        
+
         /// 无
         public let deviceNames: [String]
-        
-        public init (edgeUnitId: Int64, productId: String, deviceNames: [String]) {
+
+        public init(edgeUnitId: Int64, productId: String, deviceNames: [String]) {
             self.edgeUnitId = edgeUnitId
             self.productId = productId
             self.deviceNames = deviceNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case productId = "ProductId"
             case deviceNames = "DeviceNames"
         }
     }
-    
+
     /// CreateEdgeUnitDevices返回参数结构体
     public struct CreateEdgeUnitDevicesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量绑定设备到单元
     @inlinable
-    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitDevicesResponse > {
+    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitDevicesResponse> {
         self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量绑定设备到单元
     @inlinable
     public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
         try await self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量绑定设备到单元
     @inlinable
-    public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitDevicesResponse > {
+    public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitDevicesResponse> {
         self.createEdgeUnitDevices(CreateEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量绑定设备到单元
     @inlinable
     public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {

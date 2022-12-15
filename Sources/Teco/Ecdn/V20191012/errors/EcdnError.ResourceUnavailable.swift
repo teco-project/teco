@@ -21,52 +21,52 @@ extension TCEcdnError {
             case ecdnDomainIsNotOffline = "ResourceUnavailable.EcdnDomainIsNotOffline"
             case ecdnDomainIsNotOnline = "ResourceUnavailable.EcdnDomainIsNotOnline"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名已锁定,请联系腾讯云工程师 。
         public static var ecdnDomainIsLocked: ResourceUnavailable {
             ResourceUnavailable(.ecdnDomainIsLocked)
         }
-        
+
         /// 域名未下线，请检查后重试。
         public static var ecdnDomainIsNotOffline: ResourceUnavailable {
             ResourceUnavailable(.ecdnDomainIsNotOffline)
         }
-        
+
         /// 域名已下线，请检查后重试。
         public static var ecdnDomainIsNotOnline: ResourceUnavailable {
             ResourceUnavailable(.ecdnDomainIsNotOnline)
         }
-        
+
         public func asEcdnError() -> TCEcdnError {
             let code: TCEcdnError.Code
             switch self.error {
-            case .ecdnDomainIsLocked: 
+            case .ecdnDomainIsLocked:
                 code = .resourceUnavailable_EcdnDomainIsLocked
-            case .ecdnDomainIsNotOffline: 
+            case .ecdnDomainIsNotOffline:
                 code = .resourceUnavailable_EcdnDomainIsNotOffline
-            case .ecdnDomainIsNotOnline: 
+            case .ecdnDomainIsNotOnline:
                 code = .resourceUnavailable_EcdnDomainIsNotOnline
             }
             return TCEcdnError(code, context: self.context)

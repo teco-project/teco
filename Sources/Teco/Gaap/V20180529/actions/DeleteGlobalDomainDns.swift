@@ -19,34 +19,34 @@ extension Gaap {
     public struct DeleteGlobalDomainDnsRequest: TCRequestModel {
         /// 解析记录的ID
         public let dnsRecordId: UInt64
-        
-        public init (dnsRecordId: UInt64) {
+
+        public init(dnsRecordId: UInt64) {
             self.dnsRecordId = dnsRecordId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dnsRecordId = "DnsRecordId"
         }
     }
-    
+
     /// DeleteGlobalDomainDns返回参数结构体
     public struct DeleteGlobalDomainDnsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录
     @inlinable
-    public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGlobalDomainDnsResponse > {
+    public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainDnsResponse> {
         self.client.execute(action: "DeleteGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录
@@ -54,15 +54,15 @@ extension Gaap {
     public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainDnsResponse {
         try await self.client.execute(action: "DeleteGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录
     @inlinable
-    public func deleteGlobalDomainDns(dnsRecordId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGlobalDomainDnsResponse > {
+    public func deleteGlobalDomainDns(dnsRecordId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainDnsResponse> {
         self.deleteGlobalDomainDns(DeleteGlobalDomainDnsRequest(dnsRecordId: dnsRecordId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录

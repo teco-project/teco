@@ -19,29 +19,29 @@ extension Scf {
     public struct CreateTriggerRequest: TCRequestModel {
         /// 新建触发器绑定的函数名称
         public let functionName: String
-        
+
         /// 新建触发器名称。如果是定时触发器，名称支持英文字母、数字、连接符和下划线，最长100个字符；如果是cos触发器，需要是对应cos存储桶适用于XML API的访问域名(例如:5401-5ff414-12345.cos.ap-shanghai.myqcloud.com);如果是其他触发器，见具体触发器绑定参数的说明
         public let triggerName: String
-        
+
         /// 触发器类型，目前支持 cos 、cmq、 timer、 ckafka、apigw类型。创建 cls 触发器请参考[CLS 创建投递 SCF 任务](https://cloud.tencent.com/document/product/614/61096)。
         public let type: String
-        
+
         /// 触发器对应的参数，可见具体[触发器描述说明](https://cloud.tencent.com/document/product/583/39901)
         public let triggerDesc: String?
-        
+
         /// 函数的命名空间
         public let namespace: String?
-        
+
         /// 函数的版本，默认为 $LATEST，建议填写 [$DEFAULT](https://cloud.tencent.com/document/product/583/36149#.E9.BB.98.E8.AE.A4.E5.88.AB.E5.90.8D)方便后续进行版本的灰度发布。
         public let qualifier: String?
-        
+
         /// 触发器的初始是能状态 OPEN表示开启 CLOSE表示关闭
         public let enable: String?
-        
+
         /// 用户自定义参数，仅支持timer触发器
         public let customArgument: String?
-        
-        public init (functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil) {
+
+        public init(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil) {
             self.functionName = functionName
             self.triggerName = triggerName
             self.type = type
@@ -51,7 +51,7 @@ extension Scf {
             self.enable = enable
             self.customArgument = customArgument
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case triggerName = "TriggerName"
@@ -63,29 +63,29 @@ extension Scf {
             case customArgument = "CustomArgument"
         }
     }
-    
+
     /// CreateTrigger返回参数结构体
     public struct CreateTriggerResponse: TCResponseModel {
         /// 触发器信息
         public let triggerInfo: Trigger
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case triggerInfo = "TriggerInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTriggerResponse > {
+    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
         self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。
@@ -93,15 +93,15 @@ extension Scf {
     public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
         try await self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTriggerResponse > {
+    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
         self.createTrigger(CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。

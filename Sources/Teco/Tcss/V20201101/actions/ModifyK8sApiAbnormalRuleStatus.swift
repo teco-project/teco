@@ -19,49 +19,49 @@ extension Tcss {
     public struct ModifyK8sApiAbnormalRuleStatusRequest: TCRequestModel {
         /// 规则ID
         public let ruleID: String
-        
+
         /// 状态(ture:开 false:关)
         public let status: Bool
-        
-        public init (ruleID: String, status: Bool) {
+
+        public init(ruleID: String, status: Bool) {
             self.ruleID = ruleID
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleID = "RuleID"
             case status = "Status"
         }
     }
-    
+
     /// ModifyK8sApiAbnormalRuleStatus返回参数结构体
     public struct ModifyK8sApiAbnormalRuleStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改k8sapi异常事件规则状态
     @inlinable
-    public func modifyK8sApiAbnormalRuleStatus(_ input: ModifyK8sApiAbnormalRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyK8sApiAbnormalRuleStatusResponse > {
+    public func modifyK8sApiAbnormalRuleStatus(_ input: ModifyK8sApiAbnormalRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleStatusResponse> {
         self.client.execute(action: "ModifyK8sApiAbnormalRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改k8sapi异常事件规则状态
     @inlinable
     public func modifyK8sApiAbnormalRuleStatus(_ input: ModifyK8sApiAbnormalRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleStatusResponse {
         try await self.client.execute(action: "ModifyK8sApiAbnormalRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改k8sapi异常事件规则状态
     @inlinable
-    public func modifyK8sApiAbnormalRuleStatus(ruleID: String, status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyK8sApiAbnormalRuleStatusResponse > {
+    public func modifyK8sApiAbnormalRuleStatus(ruleID: String, status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleStatusResponse> {
         self.modifyK8sApiAbnormalRuleStatus(ModifyK8sApiAbnormalRuleStatusRequest(ruleID: ruleID, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改k8sapi异常事件规则状态
     @inlinable
     public func modifyK8sApiAbnormalRuleStatus(ruleID: String, status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleStatusResponse {

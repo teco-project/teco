@@ -19,23 +19,23 @@ extension Tke {
     public struct UninstallClusterReleaseRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 应用名称
         public let name: String
-        
+
         /// 应用命名空间
         public let namespace: String
-        
+
         /// 集群类型
         public let clusterType: String?
-        
-        public init (clusterId: String, name: String, namespace: String, clusterType: String? = nil) {
+
+        public init(clusterId: String, name: String, namespace: String, clusterType: String? = nil) {
             self.clusterId = clusterId
             self.name = name
             self.namespace = namespace
             self.clusterType = clusterType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case name = "Name"
@@ -43,30 +43,30 @@ extension Tke {
             case clusterType = "ClusterType"
         }
     }
-    
+
     /// UninstallClusterRelease返回参数结构体
     public struct UninstallClusterReleaseResponse: TCResponseModel {
         /// 应用详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let release: PendingRelease?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case release = "Release"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 集群删除应用
     ///
     /// 在应用市场中集群删除某个应用
     @inlinable
-    public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallClusterReleaseResponse > {
+    public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallClusterReleaseResponse> {
         self.client.execute(action: "UninstallClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 集群删除应用
     ///
     /// 在应用市场中集群删除某个应用
@@ -74,15 +74,15 @@ extension Tke {
     public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
         try await self.client.execute(action: "UninstallClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 集群删除应用
     ///
     /// 在应用市场中集群删除某个应用
     @inlinable
-    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallClusterReleaseResponse > {
+    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallClusterReleaseResponse> {
         self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
     }
-    
+
     /// 集群删除应用
     ///
     /// 在应用市场中集群删除某个应用

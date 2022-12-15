@@ -19,35 +19,35 @@ extension Trtc {
     public struct UpdatePublishCdnStreamRequest: TCRequestModel {
         /// TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
         public let sdkAppId: UInt64
-        
+
         /// 唯一标识转推任务。
         public let taskId: String
-        
+
         /// 客户保证同一个任务，每次更新请求中的SequenceNumber递增，防止请求乱序。
         public let sequenceNumber: UInt64
-        
+
         /// 是否转码，0表示无需转码，1表示需要转码。
         public let withTranscoding: UInt64
-        
+
         /// 更新相关参数，只支持更新参与混音的主播列表参数。不填表示不更新此参数。
         public let audioParams: McuAudioParams?
-        
+
         /// 更新视频相关参数，转码时支持更新除编码类型之外的编码参数，视频布局参数，背景图片和背景颜色参数，水印参数。不填表示不更新此参数。
         public let videoParams: McuVideoParams?
-        
+
         /// 更新单流转推的用户上行参数，仅在非转码时有效。不填表示不更新此参数。
         public let singleSubscribeParams: SingleSubscribeParams?
-        
+
         /// 更新转推的CDN参数。不填表示不更新此参数。
         public let publishCdnParams: [McuPublishCdnParam]?
-        
+
         /// 混流SEI参数
         public let seiParams: McuSeiParams?
-        
+
         /// 回推房间信息
         public let feedBackRoomParams: [McuFeedBackRoomParams]?
-        
-        public init (sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil) {
+
+        public init(sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil) {
             self.sdkAppId = sdkAppId
             self.taskId = taskId
             self.sequenceNumber = sequenceNumber
@@ -59,7 +59,7 @@ extension Trtc {
             self.seiParams = seiParams
             self.feedBackRoomParams = feedBackRoomParams
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case taskId = "TaskId"
@@ -73,30 +73,30 @@ extension Trtc {
             case feedBackRoomParams = "FeedBackRoomParams"
         }
     }
-    
+
     /// UpdatePublishCdnStream返回参数结构体
     public struct UpdatePublishCdnStreamResponse: TCResponseModel {
         /// 转推任务唯一的String Id
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新转推任务
     ///
     /// 更新转推任务。
     /// 注：请参见启动转推任务的接口说明和使用说明。
     @inlinable
-    public func updatePublishCdnStream(_ input: UpdatePublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePublishCdnStreamResponse > {
+    public func updatePublishCdnStream(_ input: UpdatePublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePublishCdnStreamResponse> {
         self.client.execute(action: "UpdatePublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新转推任务
     ///
     /// 更新转推任务。
@@ -105,16 +105,16 @@ extension Trtc {
     public func updatePublishCdnStream(_ input: UpdatePublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePublishCdnStreamResponse {
         try await self.client.execute(action: "UpdatePublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新转推任务
     ///
     /// 更新转推任务。
     /// 注：请参见启动转推任务的接口说明和使用说明。
     @inlinable
-    public func updatePublishCdnStream(sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePublishCdnStreamResponse > {
+    public func updatePublishCdnStream(sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePublishCdnStreamResponse> {
         self.updatePublishCdnStream(UpdatePublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId, sequenceNumber: sequenceNumber, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新转推任务
     ///
     /// 更新转推任务。

@@ -19,53 +19,53 @@ extension Iotexplorer {
     public struct GetLoRaGatewayListRequest: TCRequestModel {
         /// 是否是社区网关
         public let isCommunity: Bool
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 限制个数
         public let limit: UInt64?
-        
-        public init (isCommunity: Bool, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(isCommunity: Bool, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.isCommunity = isCommunity
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case isCommunity = "IsCommunity"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// GetLoRaGatewayList返回参数结构体
     public struct GetLoRaGatewayListResponse: TCResponseModel {
         /// 返回总数
         public let total: UInt64
-        
+
         /// 返回详情项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gateways: [LoRaGatewayItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case gateways = "Gateways"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取 LoRa 网关列表
     ///
     /// 获取 LoRa 网关列表接口
     @inlinable
-    public func getLoRaGatewayList(_ input: GetLoRaGatewayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLoRaGatewayListResponse > {
+    public func getLoRaGatewayList(_ input: GetLoRaGatewayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLoRaGatewayListResponse> {
         self.client.execute(action: "GetLoRaGatewayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取 LoRa 网关列表
     ///
     /// 获取 LoRa 网关列表接口
@@ -73,15 +73,15 @@ extension Iotexplorer {
     public func getLoRaGatewayList(_ input: GetLoRaGatewayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLoRaGatewayListResponse {
         try await self.client.execute(action: "GetLoRaGatewayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取 LoRa 网关列表
     ///
     /// 获取 LoRa 网关列表接口
     @inlinable
-    public func getLoRaGatewayList(isCommunity: Bool, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLoRaGatewayListResponse > {
+    public func getLoRaGatewayList(isCommunity: Bool, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLoRaGatewayListResponse> {
         self.getLoRaGatewayList(GetLoRaGatewayListRequest(isCommunity: isCommunity, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取 LoRa 网关列表
     ///
     /// 获取 LoRa 网关列表接口

@@ -20,49 +20,49 @@ extension TCIvldError {
             case mediaNotAccessible = "UnsupportedOperation.MediaNotAccessible"
             case taskNotAccessible = "UnsupportedOperation.TaskNotAccessible"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 媒资文件不可访问。
         ///
         /// 检查文件权限是否正确配置，检查是否授予IVLD产品“服务相关角色”
         public static var mediaNotAccessible: UnsupportedOperation {
             UnsupportedOperation(.mediaNotAccessible)
         }
-        
+
         /// 任务不可访问。
         ///
         /// 检查TaskId是否正确
         public static var taskNotAccessible: UnsupportedOperation {
             UnsupportedOperation(.taskNotAccessible)
         }
-        
+
         public func asIvldError() -> TCIvldError {
             let code: TCIvldError.Code
             switch self.error {
-            case .mediaNotAccessible: 
+            case .mediaNotAccessible:
                 code = .unsupportedOperation_MediaNotAccessible
-            case .taskNotAccessible: 
+            case .taskNotAccessible:
                 code = .unsupportedOperation_TaskNotAccessible
             }
             return TCIvldError(code, context: self.context)

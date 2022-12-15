@@ -19,48 +19,48 @@ extension Yunjing {
     public struct DescribeTagMachinesRequest: TCRequestModel {
         /// 标签ID
         public let id: UInt64
-        
-        public init (id: UInt64) {
+
+        public init(id: UInt64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DescribeTagMachines返回参数结构体
     public struct DescribeTagMachinesResponse: TCResponseModel {
         /// 列表数据
         public let list: [TagMachine]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取指定标签关联的服务器信息
     @inlinable
-    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagMachinesResponse > {
+    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagMachinesResponse> {
         self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定标签关联的服务器信息
     @inlinable
     public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
         try await self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取指定标签关联的服务器信息
     @inlinable
-    public func describeTagMachines(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagMachinesResponse > {
+    public func describeTagMachines(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagMachinesResponse> {
         self.describeTagMachines(DescribeTagMachinesRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定标签关联的服务器信息
     @inlinable
     public func describeTagMachines(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {

@@ -17,35 +17,35 @@
 extension Dc {
     /// DescribeInternetAddressQuota请求参数结构体
     public struct DescribeInternetAddressQuotaRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeInternetAddressQuota返回参数结构体
     public struct DescribeInternetAddressQuotaResponse: TCResponseModel {
         /// IPv6互联网公网允许的最小前缀长度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6PrefixLen: Int64?
-        
+
         /// BGP类型IPv4互联网地址配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv4BgpQuota: Int64?
-        
+
         /// 非BGP类型IPv4互联网地址配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv4OtherQuota: Int64?
-        
+
         /// BGP类型IPv4互联网地址已使用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv4BgpNum: Int64?
-        
+
         /// 非BGP类型互联网地址已使用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv4OtherNum: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ipv6PrefixLen = "Ipv6PrefixLen"
             case ipv4BgpQuota = "Ipv4BgpQuota"
@@ -55,15 +55,15 @@ extension Dc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取互联网公网地址配额
     ///
     /// 获取用户互联网公网地址配额
     @inlinable
-    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressQuotaResponse > {
+    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressQuotaResponse> {
         self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取互联网公网地址配额
     ///
     /// 获取用户互联网公网地址配额
@@ -71,15 +71,15 @@ extension Dc {
     public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
         try await self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取互联网公网地址配额
     ///
     /// 获取用户互联网公网地址配额
     @inlinable
-    public func describeInternetAddressQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressQuotaResponse > {
+    public func describeInternetAddressQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressQuotaResponse> {
         self.describeInternetAddressQuota(DescribeInternetAddressQuotaRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取互联网公网地址配额
     ///
     /// 获取用户互联网公网地址配额

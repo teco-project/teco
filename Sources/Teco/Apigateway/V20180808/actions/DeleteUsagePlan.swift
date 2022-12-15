@@ -19,39 +19,39 @@ extension Apigateway {
     public struct DeleteUsagePlanRequest: TCRequestModel {
         /// 待删除的使用计划唯一 ID。
         public let usagePlanId: String
-        
-        public init (usagePlanId: String) {
+
+        public init(usagePlanId: String) {
             self.usagePlanId = usagePlanId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case usagePlanId = "UsagePlanId"
         }
     }
-    
+
     /// DeleteUsagePlan返回参数结构体
     public struct DeleteUsagePlanResponse: TCResponseModel {
         /// 删除操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除使用计划
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
-    public func deleteUsagePlan(_ input: DeleteUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsagePlanResponse > {
+    public func deleteUsagePlan(_ input: DeleteUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsagePlanResponse> {
         self.client.execute(action: "DeleteUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除使用计划
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
@@ -59,15 +59,15 @@ extension Apigateway {
     public func deleteUsagePlan(_ input: DeleteUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsagePlanResponse {
         try await self.client.execute(action: "DeleteUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除使用计划
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
-    public func deleteUsagePlan(usagePlanId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsagePlanResponse > {
+    public func deleteUsagePlan(usagePlanId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsagePlanResponse> {
         self.deleteUsagePlan(DeleteUsagePlanRequest(usagePlanId: usagePlanId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除使用计划
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。

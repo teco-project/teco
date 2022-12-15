@@ -19,54 +19,54 @@ extension Tcss {
     public struct ModifySecLogCleanSettingInfoRequest: TCRequestModel {
         /// 触发清理的储量底线(50-99)
         public let reservesLimit: UInt64
-        
+
         /// 清理停止时的储量截至线(>0,小于ReservesLimit)
         public let reservesDeadline: UInt64
-        
+
         /// 触发清理的存储天数(>=1)
         public let dayLimit: UInt64
-        
-        public init (reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64) {
+
+        public init(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64) {
             self.reservesLimit = reservesLimit
             self.reservesDeadline = reservesDeadline
             self.dayLimit = dayLimit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case reservesLimit = "ReservesLimit"
             case reservesDeadline = "ReservesDeadline"
             case dayLimit = "DayLimit"
         }
     }
-    
+
     /// ModifySecLogCleanSettingInfo返回参数结构体
     public struct ModifySecLogCleanSettingInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改安全日志清理设置信息
     @inlinable
-    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogCleanSettingInfoResponse > {
+    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogCleanSettingInfoResponse> {
         self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志清理设置信息
     @inlinable
     public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
         try await self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改安全日志清理设置信息
     @inlinable
-    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogCleanSettingInfoResponse > {
+    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogCleanSettingInfoResponse> {
         self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志清理设置信息
     @inlinable
     public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {

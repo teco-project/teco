@@ -24,70 +24,70 @@ extension TCTeoError {
             case nsNotAllowTrafficStrategy = "OperationDenied.NSNotAllowTrafficStrategy"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名被封禁，暂时无法操作。
         public static var domainIsBlocked: OperationDenied {
             OperationDenied(.domainIsBlocked)
         }
-        
+
         /// 域名尚未备案。
         public static var domainNoICP: OperationDenied {
             OperationDenied(.domainNoICP)
         }
-        
+
         public static var l4ProxyInBannedStatus: OperationDenied {
             OperationDenied(.l4ProxyInBannedStatus)
         }
-        
+
         public static var multipleCnameZone: OperationDenied {
             OperationDenied(.multipleCnameZone)
         }
-        
+
         public static var nsNotAllowTrafficStrategy: OperationDenied {
             OperationDenied(.nsNotAllowTrafficStrategy)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .domainIsBlocked: 
+            case .domainIsBlocked:
                 code = .operationDenied_DomainIsBlocked
-            case .domainNoICP: 
+            case .domainNoICP:
                 code = .operationDenied_DomainNoICP
-            case .l4ProxyInBannedStatus: 
+            case .l4ProxyInBannedStatus:
                 code = .operationDenied_L4ProxyInBannedStatus
-            case .multipleCnameZone: 
+            case .multipleCnameZone:
                 code = .operationDenied_MultipleCnameZone
-            case .nsNotAllowTrafficStrategy: 
+            case .nsNotAllowTrafficStrategy:
                 code = .operationDenied_NSNotAllowTrafficStrategy
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCTeoError(code, context: self.context)

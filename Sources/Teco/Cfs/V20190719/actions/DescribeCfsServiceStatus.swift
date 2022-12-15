@@ -17,32 +17,32 @@
 extension Cfs {
     /// DescribeCfsServiceStatus请求参数结构体
     public struct DescribeCfsServiceStatusRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeCfsServiceStatus返回参数结构体
     public struct DescribeCfsServiceStatusResponse: TCResponseModel {
         /// 该用户当前 CFS 服务的状态，none 为未开通，creating 为开通中，created 为已开通
         public let cfsServiceStatus: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cfsServiceStatus = "CfsServiceStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询CFS服务状态
     ///
     /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。
     @inlinable
-    public func describeCfsServiceStatus(_ input: DescribeCfsServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsServiceStatusResponse > {
+    public func describeCfsServiceStatus(_ input: DescribeCfsServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsServiceStatusResponse> {
         self.client.execute(action: "DescribeCfsServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询CFS服务状态
     ///
     /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。
@@ -50,15 +50,15 @@ extension Cfs {
     public func describeCfsServiceStatus(_ input: DescribeCfsServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsServiceStatusResponse {
         try await self.client.execute(action: "DescribeCfsServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询CFS服务状态
     ///
     /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。
     @inlinable
-    public func describeCfsServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsServiceStatusResponse > {
+    public func describeCfsServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsServiceStatusResponse> {
         self.describeCfsServiceStatus(DescribeCfsServiceStatusRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询CFS服务状态
     ///
     /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。

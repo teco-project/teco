@@ -19,34 +19,34 @@ extension Dts {
     public struct ResetSubscribeRequest: TCRequestModel {
         /// 数据订阅实例的ID
         public let subscribeId: String
-        
-        public init (subscribeId: String) {
+
+        public init(subscribeId: String) {
             self.subscribeId = subscribeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subscribeId = "SubscribeId"
         }
     }
-    
+
     /// ResetSubscribe返回参数结构体
     public struct ResetSubscribeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置数据订阅实例
     ///
     /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
     @inlinable
-    public func resetSubscribe(_ input: ResetSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSubscribeResponse > {
+    public func resetSubscribe(_ input: ResetSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetSubscribeResponse> {
         self.client.execute(action: "ResetSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置数据订阅实例
     ///
     /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
@@ -54,15 +54,15 @@ extension Dts {
     public func resetSubscribe(_ input: ResetSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSubscribeResponse {
         try await self.client.execute(action: "ResetSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置数据订阅实例
     ///
     /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
     @inlinable
-    public func resetSubscribe(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSubscribeResponse > {
+    public func resetSubscribe(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetSubscribeResponse> {
         self.resetSubscribe(ResetSubscribeRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置数据订阅实例
     ///
     /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例

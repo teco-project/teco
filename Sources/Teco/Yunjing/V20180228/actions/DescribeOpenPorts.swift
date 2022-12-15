@@ -19,30 +19,30 @@ extension Yunjing {
     public struct DescribeOpenPortsRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。Port和Uuid必填其一，使用Uuid表示，查询该主机列表信息。
         public let uuid: String?
-        
+
         /// 开放端口号。Port和Uuid必填其一，使用Port表示查询该端口的列表信息。
         public let port: UInt64?
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Port - Uint64 - 是否必填：否 - 端口号</li>
         /// <li>ProcessName - String - 是否必填：否 - 进程名</li>
         /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
         public let filters: [Filter]?
-        
-        public init (uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.uuid = uuid
             self.port = port
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
             case port = "Port"
@@ -51,33 +51,33 @@ extension Yunjing {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeOpenPorts返回参数结构体
     public struct DescribeOpenPortsResponse: TCResponseModel {
         /// 端口列表记录总数。
         public let totalCount: UInt64
-        
+
         /// 端口列表。
         public let openPorts: [OpenPort]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case openPorts = "OpenPorts"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
     @inlinable
-    public func describeOpenPorts(_ input: DescribeOpenPortsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortsResponse > {
+    public func describeOpenPorts(_ input: DescribeOpenPortsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortsResponse> {
         self.client.execute(action: "DescribeOpenPorts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
@@ -85,15 +85,15 @@ extension Yunjing {
     public func describeOpenPorts(_ input: DescribeOpenPortsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortsResponse {
         try await self.client.execute(action: "DescribeOpenPorts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
     @inlinable
-    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortsResponse > {
+    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortsResponse> {
         self.describeOpenPorts(DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。

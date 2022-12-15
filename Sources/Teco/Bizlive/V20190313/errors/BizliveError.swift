@@ -30,59 +30,59 @@ public struct TCBizliveError: TCBizliveErrorType {
         case missingParameter = "MissingParameter"
         case resourceNotFound_ClientNotExist = "ResourceNotFound.ClientNotExist"
     }
-    
+
     /// Error domains affliated to ``TCBizliveError``.
     public static var domains: [TCErrorType.Type] {
         [ResourceNotFound.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 操作失败。
     public static var failedOperation: TCBizliveError {
         TCBizliveError(.failedOperation)
     }
-    
+
     /// 内部错误。
     public static var internalError: TCBizliveError {
         TCBizliveError(.internalError)
     }
-    
+
     /// 参数取值错误。
     public static var invalidParameterValue: TCBizliveError {
         TCBizliveError(.invalidParameterValue)
     }
-    
+
     /// 缺少参数错误。
     public static var missingParameter: TCBizliveError {
         TCBizliveError(.missingParameter)
     }
-    
+
     /// 商业直播客户不存在
     public static var resourceNotFound_ClientNotExist: TCBizliveError {
         TCBizliveError(.resourceNotFound_ClientNotExist)
     }
-    
+
     public func asBizliveError() -> TCBizliveError {
         return self
     }

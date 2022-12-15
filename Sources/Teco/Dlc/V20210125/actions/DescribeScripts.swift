@@ -19,29 +19,29 @@ extension Dlc {
     public struct DescribeScriptsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 按字段排序，支持如下字段类型，update-time
         public let sortBy: String?
-        
+
         /// 排序方式，desc表示正序，asc表示反序，默认asc
         public let sorting: String?
-        
+
         /// 过滤条件，如下支持的过滤类型，传参Name应为其一
         /// script-id - String - （过滤条件）script-id取值形如：157de0d1-26b4-4df2-a2d0-b64afc406c25。
         /// script-name-keyword - String - （过滤条件）数据表名称,形如：script-test。
         public let filters: [Filter]?
-        
-        public init (limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil) {
+
+        public init(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.sortBy = sortBy
             self.sorting = sorting
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -50,34 +50,34 @@ extension Dlc {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeScripts返回参数结构体
     public struct DescribeScriptsResponse: TCResponseModel {
         /// Script列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scripts: [Script]?
-        
+
         /// 实例总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scripts = "Scripts"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
-    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScriptsResponse > {
+    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScriptsResponse> {
         self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
@@ -85,15 +85,15 @@ extension Dlc {
     public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
         try await self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
-    public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScriptsResponse > {
+    public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScriptsResponse> {
         self.describeScripts(DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。

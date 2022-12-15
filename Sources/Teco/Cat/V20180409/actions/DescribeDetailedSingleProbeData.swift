@@ -19,10 +19,10 @@ extension Cat {
     public struct DescribeDetailedSingleProbeDataRequest: TCRequestModel {
         /// 开始时间戳（毫秒级）
         public let beginTime: UInt64
-        
+
         /// 结束时间戳（毫秒级）
         public let endTime: UInt64
-        
+
         /// 任务类型
         /// AnalyzeTaskType_Network：网络质量
         /// AnalyzeTaskType_Browse：页面性能
@@ -30,45 +30,45 @@ extension Cat {
         /// AnalyzeTaskType_Transport：端口性能
         /// AnalyzeTaskType_MediaStream：音视频体验
         public let taskType: String
-        
+
         /// 待排序字段
         /// 可以填写 ProbeTime 拨测时间排序
         /// 也可填写SelectedFields 中的选中字段
         public let sortField: String
-        
+
         /// true表示升序
         public let ascending: Bool
-        
+
         /// 选中字段
         public let selectedFields: [String]
-        
+
         /// 起始取数位置
         public let offset: Int64
-        
+
         /// 取数数量
         public let limit: Int64
-        
+
         /// 任务ID
         public let taskID: [String]?
-        
+
         /// 拨测点运营商
-        /// 	
+        ///
         /// 这里实际按拨测结果中的运营商来填写即可
         /// 电信：中国电信
         /// 移动：中国移动
         /// 联通：中国联通
         public let operators: [String]?
-        
+
         /// 拨测点地区
-        /// 	
+        ///
         /// 这里实际按拨测结果中的地区来填写即可
         /// 国内一般是省级单位，如广东、广西、中国香港、新疆；直辖市则填北京、上海
         /// 境外一般是国家名，如澳大利亚、新加坡
         public let districts: [String]?
-        
+
         /// 错误类型
         public let errorTypes: [String]?
-        
+
         /// 城市
         /// 这里实际按拨测结果中的城市来填写即可
         /// 示例：
@@ -77,8 +77,8 @@ extension Cat {
         /// 首尔
         /// 多伦多
         public let city: [String]?
-        
-        public init (beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil) {
+
+        public init(beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.taskType = taskType
@@ -93,7 +93,7 @@ extension Cat {
             self.errorTypes = errorTypes
             self.city = city
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginTime = "BeginTime"
             case endTime = "EndTime"
@@ -110,33 +110,33 @@ extension Cat {
             case city = "City"
         }
     }
-    
+
     /// DescribeDetailedSingleProbeData返回参数结构体
     public struct DescribeDetailedSingleProbeDataResponse: TCResponseModel {
         /// 单次详情数据
         public let dataSet: [DetailedSingleDataDefine]
-        
+
         /// 符合条件的数据总数
         public let totalNumber: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataSet = "DataSet"
             case totalNumber = "TotalNumber"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
-    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDetailedSingleProbeDataResponse > {
+    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDetailedSingleProbeDataResponse> {
         self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
@@ -144,15 +144,15 @@ extension Cat {
     public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDetailedSingleProbeDataResponse {
         try await self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
-    public func describeDetailedSingleProbeData(beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDetailedSingleProbeDataResponse > {
+    public func describeDetailedSingleProbeData(beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDetailedSingleProbeDataResponse> {
         self.describeDetailedSingleProbeData(DescribeDetailedSingleProbeDataRequest(beginTime: beginTime, endTime: endTime, taskType: taskType, sortField: sortField, ascending: ascending, selectedFields: selectedFields, offset: offset, limit: limit, taskID: taskID, operators: operators, districts: districts, errorTypes: errorTypes, city: city), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据

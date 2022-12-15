@@ -19,52 +19,52 @@ extension Iotvideoindustry {
     public struct DescribeSceneRequest: TCRequestModel {
         /// 场景ID
         public let intId: Int64
-        
-        public init (intId: Int64) {
+
+        public init(intId: Int64) {
             self.intId = intId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case intId = "IntId"
         }
     }
-    
+
     /// DescribeScene返回参数结构体
     public struct DescribeSceneResponse: TCResponseModel {
         /// 场景ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intId: Int64?
-        
+
         /// 录制时长(秒)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordDuration: Int64?
-        
+
         /// 场景名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sceneName: String?
-        
+
         /// 场景触发规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sceneTrigger: String?
-        
+
         /// 存储时长 (天)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storeDuration: Int64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 用户Uin
         public let uin: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case intId = "IntId"
             case recordDuration = "RecordDuration"
@@ -77,25 +77,25 @@ extension Iotvideoindustry {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 场景详情
     @inlinable
-    public func describeScene(_ input: DescribeSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSceneResponse > {
+    public func describeScene(_ input: DescribeSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSceneResponse> {
         self.client.execute(action: "DescribeScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 场景详情
     @inlinable
     public func describeScene(_ input: DescribeSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSceneResponse {
         try await self.client.execute(action: "DescribeScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 场景详情
     @inlinable
-    public func describeScene(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSceneResponse > {
+    public func describeScene(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSceneResponse> {
         self.describeScene(DescribeSceneRequest(intId: intId), logger: logger, on: eventLoop)
     }
-    
+
     /// 场景详情
     @inlinable
     public func describeScene(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSceneResponse {

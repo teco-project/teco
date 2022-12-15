@@ -19,44 +19,44 @@ extension Vpc {
     public struct ModifyServiceTemplateGroupAttributeRequest: TCRequestModel {
         /// 协议端口模板集合实例ID，例如：ppmg-ei8hfd9a。
         public let serviceTemplateGroupId: String
-        
+
         /// 协议端口模板集合名称。
         public let serviceTemplateGroupName: String?
-        
+
         /// 协议端口模板实例ID，例如：ppm-4dw6agho。
         public let serviceTemplateIds: [String]?
-        
-        public init (serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil) {
+
+        public init(serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil) {
             self.serviceTemplateGroupId = serviceTemplateGroupId
             self.serviceTemplateGroupName = serviceTemplateGroupName
             self.serviceTemplateIds = serviceTemplateIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceTemplateGroupId = "ServiceTemplateGroupId"
             case serviceTemplateGroupName = "ServiceTemplateGroupName"
             case serviceTemplateIds = "ServiceTemplateIds"
         }
     }
-    
+
     /// ModifyServiceTemplateGroupAttribute返回参数结构体
     public struct ModifyServiceTemplateGroupAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
     @inlinable
-    public func modifyServiceTemplateGroupAttribute(_ input: ModifyServiceTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceTemplateGroupAttributeResponse > {
+    public func modifyServiceTemplateGroupAttribute(_ input: ModifyServiceTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateGroupAttributeResponse> {
         self.client.execute(action: "ModifyServiceTemplateGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
@@ -64,15 +64,15 @@ extension Vpc {
     public func modifyServiceTemplateGroupAttribute(_ input: ModifyServiceTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateGroupAttributeResponse {
         try await self.client.execute(action: "ModifyServiceTemplateGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
     @inlinable
-    public func modifyServiceTemplateGroupAttribute(serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceTemplateGroupAttributeResponse > {
+    public func modifyServiceTemplateGroupAttribute(serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateGroupAttributeResponse> {
         self.modifyServiceTemplateGroupAttribute(ModifyServiceTemplateGroupAttributeRequest(serviceTemplateGroupId: serviceTemplateGroupId, serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。

@@ -19,43 +19,43 @@ extension Iot {
     public struct AppAddUserRequest: TCRequestModel {
         /// 用户名
         public let userName: String
-        
+
         /// 密码
         public let password: String
-        
-        public init (userName: String, password: String) {
+
+        public init(userName: String, password: String) {
             self.userName = userName
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userName = "UserName"
             case password = "Password"
         }
     }
-    
+
     /// AppAddUser返回参数结构体
     public struct AppAddUserResponse: TCResponseModel {
         /// 应用用户
         public let appUser: AppUser
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appUser = "AppUser"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 用户注册
     ///
     /// 为APP提供用户注册功能
     @inlinable
-    public func appAddUser(_ input: AppAddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppAddUserResponse > {
+    public func appAddUser(_ input: AppAddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppAddUserResponse> {
         self.client.execute(action: "AppAddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 用户注册
     ///
     /// 为APP提供用户注册功能
@@ -63,15 +63,15 @@ extension Iot {
     public func appAddUser(_ input: AppAddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppAddUserResponse {
         try await self.client.execute(action: "AppAddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 用户注册
     ///
     /// 为APP提供用户注册功能
     @inlinable
-    public func appAddUser(userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppAddUserResponse > {
+    public func appAddUser(userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppAddUserResponse> {
         self.appAddUser(AppAddUserRequest(userName: userName, password: password), logger: logger, on: eventLoop)
     }
-    
+
     /// 用户注册
     ///
     /// 为APP提供用户注册功能

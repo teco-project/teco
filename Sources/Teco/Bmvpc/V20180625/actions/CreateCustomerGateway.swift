@@ -19,48 +19,48 @@ extension Bmvpc {
     public struct CreateCustomerGatewayRequest: TCRequestModel {
         /// 对端网关名称，可任意命名，但不得超过60个字符。
         public let customerGatewayName: String
-        
+
         /// 对端网关公网IP。
         public let ipAddress: String
-        
+
         /// 可用区ID
         public let zone: String
-        
-        public init (customerGatewayName: String, ipAddress: String, zone: String) {
+
+        public init(customerGatewayName: String, ipAddress: String, zone: String) {
             self.customerGatewayName = customerGatewayName
             self.ipAddress = ipAddress
             self.zone = zone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customerGatewayName = "CustomerGatewayName"
             case ipAddress = "IpAddress"
             case zone = "Zone"
         }
     }
-    
+
     /// CreateCustomerGateway返回参数结构体
     public struct CreateCustomerGatewayResponse: TCResponseModel {
         /// 对端网关对象
         public let customerGateway: CustomerGateway
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case customerGateway = "CustomerGateway"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建对端网关
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
-    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomerGatewayResponse > {
+    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomerGatewayResponse> {
         self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建对端网关
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
@@ -68,15 +68,15 @@ extension Bmvpc {
     public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
         try await self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建对端网关
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
-    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomerGatewayResponse > {
+    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomerGatewayResponse> {
         self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, zone: zone), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建对端网关
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。

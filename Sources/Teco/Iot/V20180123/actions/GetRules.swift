@@ -19,57 +19,57 @@ extension Iot {
     public struct GetRulesRequest: TCRequestModel {
         /// 偏移
         public let offset: UInt64?
-        
+
         /// 长度
         public let length: UInt64?
-        
-        public init (offset: UInt64? = nil, length: UInt64? = nil) {
+
+        public init(offset: UInt64? = nil, length: UInt64? = nil) {
             self.offset = offset
             self.length = length
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case length = "Length"
         }
     }
-    
+
     /// GetRules返回参数结构体
     public struct GetRulesResponse: TCResponseModel {
         /// 规则列表
         public let rules: [Rule]
-        
+
         /// 规则总数
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取转发规则列表
     @inlinable
-    public func getRules(_ input: GetRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRulesResponse > {
+    public func getRules(_ input: GetRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRulesResponse> {
         self.client.execute(action: "GetRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转发规则列表
     @inlinable
     public func getRules(_ input: GetRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRulesResponse {
         try await self.client.execute(action: "GetRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取转发规则列表
     @inlinable
-    public func getRules(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRulesResponse > {
+    public func getRules(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRulesResponse> {
         self.getRules(GetRulesRequest(offset: offset, length: length), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转发规则列表
     @inlinable
     public func getRules(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRulesResponse {

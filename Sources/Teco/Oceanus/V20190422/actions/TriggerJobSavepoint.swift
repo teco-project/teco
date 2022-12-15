@@ -19,46 +19,46 @@ extension Oceanus {
     public struct TriggerJobSavepointRequest: TCRequestModel {
         /// 作业 SerialId
         public let jobId: String
-        
+
         /// 描述
         public let description: String?
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (jobId: String, description: String? = nil, workSpaceId: String? = nil) {
+
+        public init(jobId: String, description: String? = nil, workSpaceId: String? = nil) {
             self.jobId = jobId
             self.description = description
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case description = "Description"
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// TriggerJobSavepoint返回参数结构体
     public struct TriggerJobSavepointResponse: TCResponseModel {
         /// 是否成功
         public let savepointTrigger: Bool
-        
+
         /// 错误消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?
-        
+
         /// 快照路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finalSavepointPath: String?
-        
+
         /// 快照 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let savepointId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case savepointTrigger = "SavepointTrigger"
             case errorMsg = "ErrorMsg"
@@ -67,25 +67,25 @@ extension Oceanus {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 触发Savepoint
     @inlinable
-    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerJobSavepointResponse > {
+    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerJobSavepointResponse> {
         self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 触发Savepoint
     @inlinable
     public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
         try await self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 触发Savepoint
     @inlinable
-    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerJobSavepointResponse > {
+    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerJobSavepointResponse> {
         self.triggerJobSavepoint(TriggerJobSavepointRequest(jobId: jobId, description: description, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 触发Savepoint
     @inlinable
     public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {

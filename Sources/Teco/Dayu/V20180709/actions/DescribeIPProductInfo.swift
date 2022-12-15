@@ -19,21 +19,21 @@ extension Dayu {
     public struct DescribeIPProductInfoRequest: TCRequestModel {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
         public let business: String
-        
+
         /// IP列表
         public let ipList: [String]
-        
-        public init (business: String, ipList: [String]) {
+
+        public init(business: String, ipList: [String]) {
             self.business = business
             self.ipList = ipList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case ipList = "IpList"
         }
     }
-    
+
     /// DescribeIPProductInfo返回参数结构体
     public struct DescribeIPProductInfoResponse: TCResponseModel {
         /// 云产品信息列表，如果没有查询到则返回空数组，值说明如下：
@@ -42,24 +42,24 @@ extension Dayu {
         /// Key为ProductType时，value表示的是云产品的类型（cvm表示云主机、clb表示负载均衡）;
         /// Key为IP时，value表示云产品实例的IP；
         public let data: [KeyValueRecord]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取独享包或共享包IP对应的云资产信息
     ///
     /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
     @inlinable
-    public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPProductInfoResponse > {
+    public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPProductInfoResponse> {
         self.client.execute(action: "DescribeIPProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取独享包或共享包IP对应的云资产信息
     ///
     /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
@@ -67,15 +67,15 @@ extension Dayu {
     public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPProductInfoResponse {
         try await self.client.execute(action: "DescribeIPProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取独享包或共享包IP对应的云资产信息
     ///
     /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
     @inlinable
-    public func describeIPProductInfo(business: String, ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPProductInfoResponse > {
+    public func describeIPProductInfo(business: String, ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPProductInfoResponse> {
         self.describeIPProductInfo(DescribeIPProductInfoRequest(business: business, ipList: ipList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取独享包或共享包IP对应的云资产信息
     ///
     /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP

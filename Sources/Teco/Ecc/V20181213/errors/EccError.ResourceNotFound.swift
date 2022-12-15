@@ -20,45 +20,45 @@ extension TCEccError {
             case cannotFindUser = "ResourceNotFound.CannotFindUser"
             case serverNameNotExistInLicenseError = "ResourceNotFound.ServerNameNotExistInLicenseError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无法找到用户，请确认已在控制台开通服务并使用了正确的 ECCAPPID。
         public static var cannotFindUser: ResourceNotFound {
             ResourceNotFound(.cannotFindUser)
         }
-        
+
         /// 无效的服务名称。
         public static var serverNameNotExistInLicenseError: ResourceNotFound {
             ResourceNotFound(.serverNameNotExistInLicenseError)
         }
-        
+
         public func asEccError() -> TCEccError {
             let code: TCEccError.Code
             switch self.error {
-            case .cannotFindUser: 
+            case .cannotFindUser:
                 code = .resourceNotFound_CannotFindUser
-            case .serverNameNotExistInLicenseError: 
+            case .serverNameNotExistInLicenseError:
                 code = .resourceNotFound_ServerNameNotExistInLicenseError
             }
             return TCEccError(code, context: self.context)

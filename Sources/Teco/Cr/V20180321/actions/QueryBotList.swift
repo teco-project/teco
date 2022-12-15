@@ -19,53 +19,53 @@ extension Cr {
     public struct QueryBotListRequest: TCRequestModel {
         /// 模块名：AiApi
         public let module: String
-        
+
         /// 操作名：QueryBotList
         public let operation: String
-        
-        public init (module: String, operation: String) {
+
+        public init(module: String, operation: String) {
             self.module = module
             self.operation = operation
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
         }
     }
-    
+
     /// QueryBotList返回参数结构体
     public struct QueryBotListResponse: TCResponseModel {
         /// 任务列表。
         public let botList: [BotInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case botList = "BotList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询机器人任务状态列表
     @inlinable
-    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBotListResponse > {
+    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBotListResponse> {
         self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机器人任务状态列表
     @inlinable
     public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
         try await self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询机器人任务状态列表
     @inlinable
-    public func queryBotList(module: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBotListResponse > {
+    public func queryBotList(module: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBotListResponse> {
         self.queryBotList(QueryBotListRequest(module: module, operation: operation), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机器人任务状态列表
     @inlinable
     public func queryBotList(module: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {

@@ -19,45 +19,45 @@ extension Drm {
     public struct DescribeFairPlayPemRequest: TCRequestModel {
         /// 委托者Id,适用于托管自身证书的客户。普通客户无需填该字段。
         public let bailorId: UInt64?
-        
+
         /// 需要查询的pem id。
         /// 当该值未填入时，将返回所有的私钥信息。
         public let fairPlayPemId: UInt64?
-        
-        public init (bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil) {
+
+        public init(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil) {
             self.bailorId = bailorId
             self.fairPlayPemId = fairPlayPemId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bailorId = "BailorId"
             case fairPlayPemId = "FairPlayPemId"
         }
     }
-    
+
     /// DescribeFairPlayPem返回参数结构体
     public struct DescribeFairPlayPemResponse: TCResponseModel {
         /// 该账户下，所有设置的FairPlay私钥摘要信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fairPlayPems: [FairPlayPemDigestInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fairPlayPems = "FairPlayPems"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询所设置的FairPlay私钥
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
     @inlinable
-    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFairPlayPemResponse > {
+    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFairPlayPemResponse> {
         self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所设置的FairPlay私钥
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
@@ -65,15 +65,15 @@ extension Drm {
     public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
         try await self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询所设置的FairPlay私钥
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
     @inlinable
-    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFairPlayPemResponse > {
+    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFairPlayPemResponse> {
         self.describeFairPlayPem(DescribeFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所设置的FairPlay私钥
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。

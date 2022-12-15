@@ -19,34 +19,34 @@ extension Kms {
     public struct DisableKeysRequest: TCRequestModel {
         /// 需要批量禁用的CMK Id 列表，CMK数量最大支持100
         public let keyIds: [String]
-        
-        public init (keyIds: [String]) {
+
+        public init(keyIds: [String]) {
             self.keyIds = keyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
         }
     }
-    
+
     /// DisableKeys返回参数结构体
     public struct DisableKeysResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量禁用主密钥
     ///
     /// 该接口用于批量禁止CMK的使用。
     @inlinable
-    public func disableKeys(_ input: DisableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeysResponse > {
+    public func disableKeys(_ input: DisableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeysResponse> {
         self.client.execute(action: "DisableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量禁用主密钥
     ///
     /// 该接口用于批量禁止CMK的使用。
@@ -54,15 +54,15 @@ extension Kms {
     public func disableKeys(_ input: DisableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeysResponse {
         try await self.client.execute(action: "DisableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量禁用主密钥
     ///
     /// 该接口用于批量禁止CMK的使用。
     @inlinable
-    public func disableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeysResponse > {
+    public func disableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeysResponse> {
         self.disableKeys(DisableKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量禁用主密钥
     ///
     /// 该接口用于批量禁止CMK的使用。

@@ -19,38 +19,38 @@ extension Bmlb {
     public struct DescribeLoadBalancerPortInfoRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
         public let loadBalancerId: String
-        
-        public init (loadBalancerId: String) {
+
+        public init(loadBalancerId: String) {
             self.loadBalancerId = loadBalancerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
         }
     }
-    
+
     /// DescribeLoadBalancerPortInfo返回参数结构体
     public struct DescribeLoadBalancerPortInfoResponse: TCResponseModel {
         /// 返回的监听器列表（四层和七层）。
         public let listenerSet: [LoadBalancerPortInfoListener]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取黑石负载均衡端口相关信息
     ///
     /// 获取黑石负载均衡端口相关信息。
     @inlinable
-    public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerPortInfoResponse > {
+    public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerPortInfoResponse> {
         self.client.execute(action: "DescribeLoadBalancerPortInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑石负载均衡端口相关信息
     ///
     /// 获取黑石负载均衡端口相关信息。
@@ -58,15 +58,15 @@ extension Bmlb {
     public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerPortInfoResponse {
         try await self.client.execute(action: "DescribeLoadBalancerPortInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取黑石负载均衡端口相关信息
     ///
     /// 获取黑石负载均衡端口相关信息。
     @inlinable
-    public func describeLoadBalancerPortInfo(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerPortInfoResponse > {
+    public func describeLoadBalancerPortInfo(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerPortInfoResponse> {
         self.describeLoadBalancerPortInfo(DescribeLoadBalancerPortInfoRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑石负载均衡端口相关信息
     ///
     /// 获取黑石负载均衡端口相关信息。

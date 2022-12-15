@@ -19,29 +19,29 @@ extension Tag {
     public struct DescribeResourcesByTagsRequest: TCRequestModel {
         /// 标签过滤数组
         public let tagFilters: [TagFilter]
-        
+
         /// 创建标签者uin
         public let createUin: UInt64?
-        
+
         /// 数据偏移量，默认为 0, 必须为Limit参数的整数倍
         public let offset: UInt64?
-        
+
         /// 每页大小，默认为 15
         public let limit: UInt64?
-        
+
         /// 资源前缀
         public let resourcePrefix: String?
-        
+
         /// 资源唯一标记
         public let resourceId: String?
-        
+
         /// 资源所在地域
         public let resourceRegion: String?
-        
+
         /// 业务类型
         public let serviceType: String?
-        
-        public init (tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil) {
+
+        public init(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil) {
             self.tagFilters = tagFilters
             self.createUin = createUin
             self.offset = offset
@@ -51,7 +51,7 @@ extension Tag {
             self.resourceRegion = resourceRegion
             self.serviceType = serviceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagFilters = "TagFilters"
             case createUin = "CreateUin"
@@ -63,25 +63,25 @@ extension Tag {
             case serviceType = "ServiceType"
         }
     }
-    
+
     /// DescribeResourcesByTags返回参数结构体
     public struct DescribeResourcesByTagsResponse: TCResponseModel {
         /// 结果总数
         public let totalCount: UInt64
-        
+
         /// 数据位移偏量
         public let offset: UInt64
-        
+
         /// 每页大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let limit: UInt64?
-        
+
         /// 资源标签
         public let rows: [ResourceTag]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case offset = "Offset"
@@ -90,25 +90,25 @@ extension Tag {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通过标签查询资源列表
     @inlinable
-    public func describeResourcesByTags(_ input: DescribeResourcesByTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagsResponse > {
+    public func describeResourcesByTags(_ input: DescribeResourcesByTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagsResponse> {
         self.client.execute(action: "DescribeResourcesByTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通过标签查询资源列表
     @inlinable
     public func describeResourcesByTags(_ input: DescribeResourcesByTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsResponse {
         try await self.client.execute(action: "DescribeResourcesByTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通过标签查询资源列表
     @inlinable
-    public func describeResourcesByTags(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagsResponse > {
+    public func describeResourcesByTags(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagsResponse> {
         self.describeResourcesByTags(DescribeResourcesByTagsRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType), logger: logger, on: eventLoop)
     }
-    
+
     /// 通过标签查询资源列表
     @inlinable
     public func describeResourcesByTags(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsResponse {

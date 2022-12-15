@@ -19,7 +19,7 @@ extension Monitor {
     public struct DescribePrometheusInstancesRequest: TCRequestModel {
         /// 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。请求的实例的上限为100。
         public let instanceIds: [String]?
-        
+
         /// 按照【实例状态】进行过滤。
         /// <ul>
         /// <li>1：正在创建</li>
@@ -32,31 +32,31 @@ extension Monitor {
         /// <li>9：欠费已停服</li>
         /// </ul>
         public let instanceStatus: [Int64]?
-        
+
         /// 按照【实例名称】进行过滤。
         public let instanceName: String?
-        
+
         /// 按照【可用区】进行过滤。可用区形如：ap-guangzhou-1。
         public let zones: [String]?
-        
+
         /// 按照【标签键值对】进行过滤。tag-key使用具体的标签键进行替换。
         public let tagFilters: [PrometheusTag]?
-        
+
         /// 按照【实例的IPv4地址】进行过滤。
         public let iPv4Address: [String]?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 按照【计费类型】进行过滤。
         /// <li>2：包年包月</li>
         /// <li>3：按量</li>
         public let instanceChargeType: Int64?
-        
-        public init (instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil) {
+
+        public init(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil) {
             self.instanceIds = instanceIds
             self.instanceStatus = instanceStatus
             self.instanceName = instanceName
@@ -67,7 +67,7 @@ extension Monitor {
             self.offset = offset
             self.instanceChargeType = instanceChargeType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case instanceStatus = "InstanceStatus"
@@ -80,26 +80,26 @@ extension Monitor {
             case instanceChargeType = "InstanceChargeType"
         }
     }
-    
+
     /// DescribePrometheusInstances返回参数结构体
     public struct DescribePrometheusInstancesResponse: TCResponseModel {
         /// 实例详细信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceSet: [PrometheusInstancesItem]?
-        
+
         /// 符合条件的实例数量。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceSet = "InstanceSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
@@ -108,10 +108,10 @@ extension Monitor {
     /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
     /// </ul>
     @inlinable
-    public func describePrometheusInstances(_ input: DescribePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstancesResponse > {
+    public func describePrometheusInstances(_ input: DescribePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesResponse> {
         self.client.execute(action: "DescribePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
@@ -123,7 +123,7 @@ extension Monitor {
     public func describePrometheusInstances(_ input: DescribePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesResponse {
         try await self.client.execute(action: "DescribePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
@@ -132,10 +132,10 @@ extension Monitor {
     /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
     /// </ul>
     @inlinable
-    public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstancesResponse > {
+    public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesResponse> {
         self.describePrometheusInstances(DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。

@@ -19,29 +19,29 @@ extension Tcss {
     public struct CreateAssetImageScanSettingRequest: TCRequestModel {
         /// 开关
         public let enable: Bool
-        
+
         /// 扫描时间
         public let scanTime: String
-        
+
         /// 扫描周期
         public let scanPeriod: UInt64
-        
+
         /// 扫描木马
         public let scanVirus: Bool
-        
+
         /// 扫描敏感信息
         public let scanRisk: Bool
-        
+
         /// 扫描漏洞
         public let scanVul: Bool
-        
+
         /// 全部镜像
         public let all: Bool
-        
+
         /// 自定义镜像
         public let images: [String]?
-        
-        public init (enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil) {
+
+        public init(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil) {
             self.enable = enable
             self.scanTime = scanTime
             self.scanPeriod = scanPeriod
@@ -51,7 +51,7 @@ extension Tcss {
             self.all = all
             self.images = images
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enable = "Enable"
             case scanTime = "ScanTime"
@@ -63,35 +63,35 @@ extension Tcss {
             case images = "Images"
         }
     }
-    
+
     /// CreateAssetImageScanSetting返回参数结构体
     public struct CreateAssetImageScanSettingResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加容器安全镜像扫描设置
     @inlinable
-    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageScanSettingResponse > {
+    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanSettingResponse> {
         self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加容器安全镜像扫描设置
     @inlinable
     public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
         try await self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加容器安全镜像扫描设置
     @inlinable
-    public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageScanSettingResponse > {
+    public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanSettingResponse> {
         self.createAssetImageScanSetting(CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加容器安全镜像扫描设置
     @inlinable
     public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {

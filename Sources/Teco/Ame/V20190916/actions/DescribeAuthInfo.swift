@@ -19,52 +19,52 @@ extension Ame {
     public struct DescribeAuthInfoRequest: TCRequestModel {
         /// 偏移量：Offset=Offset+Limit
         public let offset: Int64?
-        
+
         /// 数据条数
         public let limit: Int64?
-        
+
         /// 搜索关键字
         public let key: String?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, key: String? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.key = key
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case key = "Key"
         }
     }
-    
+
     /// DescribeAuthInfo返回参数结构体
     public struct DescribeAuthInfoResponse: TCResponseModel {
         /// 授权项目列表
         public let authInfo: [AuthInfo]
-        
+
         /// 总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case authInfo = "AuthInfo"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表
     @inlinable
-    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthInfoResponse > {
+    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthInfoResponse> {
         self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表
@@ -72,15 +72,15 @@ extension Ame {
     public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
         try await self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表
     @inlinable
-    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthInfoResponse > {
+    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthInfoResponse> {
         self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表

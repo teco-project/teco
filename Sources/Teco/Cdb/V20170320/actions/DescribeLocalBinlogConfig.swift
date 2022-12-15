@@ -19,42 +19,42 @@ extension Cdb {
     public struct DescribeLocalBinlogConfigRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeLocalBinlogConfig返回参数结构体
     public struct DescribeLocalBinlogConfigResponse: TCResponseModel {
         /// 实例binlog保留策略。
         public let localBinlogConfig: LocalBinlogConfig
-        
+
         /// 该地域默认binlog保留策略。
         public let localBinlogConfigDefault: LocalBinlogConfigDefault
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case localBinlogConfig = "LocalBinlogConfig"
             case localBinlogConfigDefault = "LocalBinlogConfigDefault"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询本地binlog保留策略
     ///
     /// 该接口用于查询实例本地binlog保留策略。
     @inlinable
-    public func describeLocalBinlogConfig(_ input: DescribeLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLocalBinlogConfigResponse > {
+    public func describeLocalBinlogConfig(_ input: DescribeLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLocalBinlogConfigResponse> {
         self.client.execute(action: "DescribeLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询本地binlog保留策略
     ///
     /// 该接口用于查询实例本地binlog保留策略。
@@ -62,15 +62,15 @@ extension Cdb {
     public func describeLocalBinlogConfig(_ input: DescribeLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalBinlogConfigResponse {
         try await self.client.execute(action: "DescribeLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询本地binlog保留策略
     ///
     /// 该接口用于查询实例本地binlog保留策略。
     @inlinable
-    public func describeLocalBinlogConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLocalBinlogConfigResponse > {
+    public func describeLocalBinlogConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLocalBinlogConfigResponse> {
         self.describeLocalBinlogConfig(DescribeLocalBinlogConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询本地binlog保留策略
     ///
     /// 该接口用于查询实例本地binlog保留策略。

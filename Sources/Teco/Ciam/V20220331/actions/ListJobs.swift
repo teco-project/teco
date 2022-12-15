@@ -19,54 +19,54 @@ extension Ciam {
     public struct ListJobsRequest: TCRequestModel {
         /// 用户目录ID
         public let userStoreId: String
-        
+
         /// 任务ID列表，为空时返回全部任务
         public let jobIds: [String]?
-        
-        public init (userStoreId: String, jobIds: [String]? = nil) {
+
+        public init(userStoreId: String, jobIds: [String]? = nil) {
             self.userStoreId = userStoreId
             self.jobIds = jobIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userStoreId = "UserStoreId"
             case jobIds = "JobIds"
         }
     }
-    
+
     /// ListJobs返回参数结构体
     public struct ListJobsResponse: TCResponseModel {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobSet: [Job]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobSet = "JobSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询任务详情
     @inlinable
-    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
+    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListJobsResponse> {
         self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务详情
     @inlinable
     public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
         try await self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询任务详情
     @inlinable
-    public func listJobs(userStoreId: String, jobIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
+    public func listJobs(userStoreId: String, jobIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListJobsResponse> {
         self.listJobs(ListJobsRequest(userStoreId: userStoreId, jobIds: jobIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务详情
     @inlinable
     public func listJobs(userStoreId: String, jobIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {

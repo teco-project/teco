@@ -19,49 +19,49 @@ extension Antiddos {
     public struct DeleteCCPrecisionPolicyRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 策略Id
         public let policyId: String
-        
-        public init (instanceId: String, policyId: String) {
+
+        public init(instanceId: String, policyId: String) {
             self.instanceId = instanceId
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case policyId = "PolicyId"
         }
     }
-    
+
     /// DeleteCCPrecisionPolicy返回参数结构体
     public struct DeleteCCPrecisionPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除CC精准防护策略
     @inlinable
-    public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCPrecisionPolicyResponse > {
+    public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCPrecisionPolicyResponse> {
         self.client.execute(action: "DeleteCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除CC精准防护策略
     @inlinable
     public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCPrecisionPolicyResponse {
         try await self.client.execute(action: "DeleteCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除CC精准防护策略
     @inlinable
-    public func deleteCCPrecisionPolicy(instanceId: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCPrecisionPolicyResponse > {
+    public func deleteCCPrecisionPolicy(instanceId: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCPrecisionPolicyResponse> {
         self.deleteCCPrecisionPolicy(DeleteCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除CC精准防护策略
     @inlinable
     public func deleteCCPrecisionPolicy(instanceId: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCPrecisionPolicyResponse {

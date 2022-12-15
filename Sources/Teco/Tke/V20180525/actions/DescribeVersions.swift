@@ -17,38 +17,38 @@
 extension Tke {
     /// DescribeVersions请求参数结构体
     public struct DescribeVersionsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVersions返回参数结构体
     public struct DescribeVersionsResponse: TCResponseModel {
         /// 版本数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 版本列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionInstanceSet: [VersionInstance]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case versionInstanceSet = "VersionInstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 集群版本信息
     ///
     /// 获取集群版本信息
     @inlinable
-    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionsResponse > {
+    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionsResponse> {
         self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 集群版本信息
     ///
     /// 获取集群版本信息
@@ -56,15 +56,15 @@ extension Tke {
     public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
         try await self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 集群版本信息
     ///
     /// 获取集群版本信息
     @inlinable
-    public func describeVersions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionsResponse > {
+    public func describeVersions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionsResponse> {
         self.describeVersions(DescribeVersionsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 集群版本信息
     ///
     /// 获取集群版本信息

@@ -19,23 +19,23 @@ extension Tcss {
     public struct DescribeImageAutoAuthorizedLogListRequest: TCRequestModel {
         /// 自动授权任务Id
         public let taskId: Int64
-        
+
         /// Status授权结果，SUCCESS:成功，REACH_LIMIT:达到授权上限，LICENSE_INSUFFICIENT:授权数不足
         public let filters: [AssetFilters]?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 排序字段：AuthorizedTime
         public let by: String?
-        
+
         /// 排序方式，asc，desc
         public let order: String?
-        
-        public init (taskId: Int64, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(taskId: Int64, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil) {
             self.taskId = taskId
             self.filters = filters
             self.limit = limit
@@ -43,7 +43,7 @@ extension Tcss {
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case filters = "Filters"
@@ -53,43 +53,43 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeImageAutoAuthorizedLogList返回参数结构体
     public struct DescribeImageAutoAuthorizedLogListResponse: TCResponseModel {
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 自动授权结果镜像列表
         public let list: [AutoAuthorizedImageInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询镜像自动授权结果列表
     @inlinable
-    public func describeImageAutoAuthorizedLogList(_ input: DescribeImageAutoAuthorizedLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAutoAuthorizedLogListResponse > {
+    public func describeImageAutoAuthorizedLogList(_ input: DescribeImageAutoAuthorizedLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAutoAuthorizedLogListResponse> {
         self.client.execute(action: "DescribeImageAutoAuthorizedLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像自动授权结果列表
     @inlinable
     public func describeImageAutoAuthorizedLogList(_ input: DescribeImageAutoAuthorizedLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedLogListResponse {
         try await self.client.execute(action: "DescribeImageAutoAuthorizedLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询镜像自动授权结果列表
     @inlinable
-    public func describeImageAutoAuthorizedLogList(taskId: Int64, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAutoAuthorizedLogListResponse > {
+    public func describeImageAutoAuthorizedLogList(taskId: Int64, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAutoAuthorizedLogListResponse> {
         self.describeImageAutoAuthorizedLogList(DescribeImageAutoAuthorizedLogListRequest(taskId: taskId, filters: filters, limit: limit, offset: offset, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像自动授权结果列表
     @inlinable
     public func describeImageAutoAuthorizedLogList(taskId: Int64, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedLogListResponse {

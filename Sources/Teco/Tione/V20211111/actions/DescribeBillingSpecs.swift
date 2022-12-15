@@ -19,48 +19,48 @@ extension Tione {
     public struct DescribeBillingSpecsRequest: TCRequestModel {
         /// 枚举值：TRAIN、NOTEBOOK、INFERENCE
         public let taskType: String
-        
+
         /// 付费模式：POSTPAID_BY_HOUR后付费、PREPAID预付费
         public let chargeType: String
-        
+
         /// 资源类型：CALC 计算资源、CPU CPU资源、GPU GPU资源、CBS云硬盘
         public let resourceType: String?
-        
-        public init (taskType: String, chargeType: String, resourceType: String? = nil) {
+
+        public init(taskType: String, chargeType: String, resourceType: String? = nil) {
             self.taskType = taskType
             self.chargeType = chargeType
             self.resourceType = resourceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case chargeType = "ChargeType"
             case resourceType = "ResourceType"
         }
     }
-    
+
     /// DescribeBillingSpecs返回参数结构体
     public struct DescribeBillingSpecsResponse: TCResponseModel {
         /// 计费项列表
         public let specs: [Spec]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case specs = "Specs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询计费项列表
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
-    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsResponse > {
+    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsResponse> {
         self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询计费项列表
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
@@ -68,15 +68,15 @@ extension Tione {
     public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
         try await self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询计费项列表
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
-    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsResponse > {
+    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsResponse> {
         self.describeBillingSpecs(DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询计费项列表
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表

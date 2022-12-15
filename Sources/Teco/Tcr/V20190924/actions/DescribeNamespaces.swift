@@ -19,26 +19,26 @@ extension Tcr {
     public struct DescribeNamespacesRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 指定命名空间，不填写默认查询所有命名空间
         public let namespaceName: String?
-        
+
         /// 每页个数
         public let limit: Int64?
-        
+
         /// 页面偏移（第几页）
         public let offset: Int64?
-        
+
         /// 列出所有命名空间
         public let all: Bool?
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
+
         /// 仅查询启用了 KMS 镜像签名的空间
         public let kmsSignPolicy: Bool?
-        
-        public init (registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, all: Bool? = nil, filters: [Filter]? = nil, kmsSignPolicy: Bool? = nil) {
+
+        public init(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, all: Bool? = nil, filters: [Filter]? = nil, kmsSignPolicy: Bool? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.limit = limit
@@ -47,7 +47,7 @@ extension Tcr {
             self.filters = filters
             self.kmsSignPolicy = kmsSignPolicy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
@@ -58,33 +58,33 @@ extension Tcr {
             case kmsSignPolicy = "KmsSignPolicy"
         }
     }
-    
+
     /// DescribeNamespaces返回参数结构体
     public struct DescribeNamespacesResponse: TCResponseModel {
         /// 命名空间列表信息
         public let namespaceList: [TcrNamespaceInfo]
-        
+
         /// 总个数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceList = "NamespaceList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询命名空间信息
     ///
     /// 查询命名空间列表或指定命名空间信息
     @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespacesResponse> {
         self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询命名空间信息
     ///
     /// 查询命名空间列表或指定命名空间信息
@@ -92,15 +92,15 @@ extension Tcr {
     public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
         try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询命名空间信息
     ///
     /// 查询命名空间列表或指定命名空间信息
     @inlinable
-    public func describeNamespaces(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, all: Bool? = nil, filters: [Filter]? = nil, kmsSignPolicy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+    public func describeNamespaces(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, all: Bool? = nil, filters: [Filter]? = nil, kmsSignPolicy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespacesResponse> {
         self.describeNamespaces(DescribeNamespacesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset, all: all, filters: filters, kmsSignPolicy: kmsSignPolicy), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询命名空间信息
     ///
     /// 查询命名空间列表或指定命名空间信息

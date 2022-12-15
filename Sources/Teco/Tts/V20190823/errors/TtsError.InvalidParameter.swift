@@ -20,45 +20,45 @@ extension TCTtsError {
             case invalidText = "InvalidParameter.InvalidText"
             case status = "InvalidParameter.Status"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请求文本含有非法字符。
         public static var invalidText: InvalidParameter {
             InvalidParameter(.invalidText)
         }
-        
+
         /// status 不合法。
         public static var status: InvalidParameter {
             InvalidParameter(.status)
         }
-        
+
         public func asTtsError() -> TCTtsError {
             let code: TCTtsError.Code
             switch self.error {
-            case .invalidText: 
+            case .invalidText:
                 code = .invalidParameter_InvalidText
-            case .status: 
+            case .status:
                 code = .invalidParameter_Status
             }
             return TCTtsError(code, context: self.context)

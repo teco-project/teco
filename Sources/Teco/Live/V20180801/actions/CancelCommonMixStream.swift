@@ -20,34 +20,34 @@ extension Live {
         /// 混流会话（申请混流开始到取消混流结束）标识 ID。
         /// 该值与CreateCommonMixStream中的MixStreamSessionId保持一致。
         public let mixStreamSessionId: String
-        
-        public init (mixStreamSessionId: String) {
+
+        public init(mixStreamSessionId: String) {
             self.mixStreamSessionId = mixStreamSessionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mixStreamSessionId = "MixStreamSessionId"
         }
     }
-    
+
     /// CancelCommonMixStream返回参数结构体
     public struct CancelCommonMixStreamResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable
-    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCommonMixStreamResponse > {
+    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
         self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
@@ -55,15 +55,15 @@ extension Live {
     public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
         try await self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable
-    public func cancelCommonMixStream(mixStreamSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCommonMixStreamResponse > {
+    public func cancelCommonMixStream(mixStreamSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
         self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。

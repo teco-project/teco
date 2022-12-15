@@ -20,45 +20,45 @@ extension TCSmhError {
             case sendSms = "InternalError.SendSms"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 发送短信验证码时发生错误。
         public static var sendSms: InternalError {
             InternalError(.sendSms)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asSmhError() -> TCSmhError {
             let code: TCSmhError.Code
             switch self.error {
-            case .sendSms: 
+            case .sendSms:
                 code = .internalError_SendSms
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCSmhError(code, context: self.context)

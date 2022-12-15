@@ -19,57 +19,57 @@ extension Essbasic {
     public struct DescribeFlowFilesRequest: TCRequestModel {
         /// 调用方信息; 必选
         public let caller: Caller
-        
+
         /// 需要查询的流程ID
         public let flowId: String
-        
-        public init (caller: Caller, flowId: String) {
+
+        public init(caller: Caller, flowId: String) {
             self.caller = caller
             self.flowId = flowId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case flowId = "FlowId"
         }
     }
-    
+
     /// DescribeFlowFiles返回参数结构体
     public struct DescribeFlowFilesResponse: TCResponseModel {
         /// 流程编号
         public let flowId: String
-        
+
         /// 流程文件列表
         public let flowFileInfos: [FlowFileInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case flowFileInfos = "FlowFileInfos"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询流程文件
     @inlinable
-    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowFilesResponse > {
+    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowFilesResponse> {
         self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询流程文件
     @inlinable
     public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
         try await self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询流程文件
     @inlinable
-    public func describeFlowFiles(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowFilesResponse > {
+    public func describeFlowFiles(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowFilesResponse> {
         self.describeFlowFiles(DescribeFlowFilesRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询流程文件
     @inlinable
     public func describeFlowFiles(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {

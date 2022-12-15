@@ -33,136 +33,136 @@ extension TCIotexplorerError {
             case userLicenseExceedLimit = "UnauthorizedOperation.UserLicenseExceedLimit"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// App无权限。
         public static var appNoPermission: UnauthorizedOperation {
             UnauthorizedOperation(.appNoPermission)
         }
-        
+
         /// APP对产品没有权限。
         public static var appNoPermissionToStudioProduct: UnauthorizedOperation {
             UnauthorizedOperation(.appNoPermissionToStudioProduct)
         }
-        
+
         /// 该设备绑定了网关设备，无法删除。
         public static var deviceHasAlreadyBindGateway: UnauthorizedOperation {
             UnauthorizedOperation(.deviceHasAlreadyBindGateway)
         }
-        
+
         /// 设备未启用。
         public static var deviceIsNotEnabled: UnauthorizedOperation {
             UnauthorizedOperation(.deviceIsNotEnabled)
         }
-        
+
         /// 该设备下仍有绑定的设备。
         public static var gatewayHasBindedDevices: UnauthorizedOperation {
             UnauthorizedOperation(.gatewayHasBindedDevices)
         }
-        
+
         /// 此家庭无权操作。
         public static var noPermissionToFamily: UnauthorizedOperation {
             UnauthorizedOperation(.noPermissionToFamily)
         }
-        
+
         /// 实例ACL错误。
         public static var noPermissionToInstance: UnauthorizedOperation {
             UnauthorizedOperation(.noPermissionToInstance)
         }
-        
+
         /// 项目ACL错误。
         public static var noPermissionToProject: UnauthorizedOperation {
             UnauthorizedOperation(.noPermissionToProject)
         }
-        
+
         /// 围栏ACL错误。
         public static var noPermissionToStudioFence: UnauthorizedOperation {
             UnauthorizedOperation(.noPermissionToStudioFence)
         }
-        
+
         /// 实例ACL错误。
         public static var noPermissionToStudioInstance: UnauthorizedOperation {
             UnauthorizedOperation(.noPermissionToStudioInstance)
         }
-        
+
         /// 产品ACL错误。
         public static var noPermissionToStudioProduct: UnauthorizedOperation {
             UnauthorizedOperation(.noPermissionToStudioProduct)
         }
-        
+
         /// 没有权限。
         public static var permissionDenied: UnauthorizedOperation {
             UnauthorizedOperation(.permissionDenied)
         }
-        
+
         /// 产品不支持密钥认证。
         public static var productNotSupportPSK: UnauthorizedOperation {
             UnauthorizedOperation(.productNotSupportPSK)
         }
-        
+
         /// License数量不足。
         public static var userLicenseExceedLimit: UnauthorizedOperation {
             UnauthorizedOperation(.userLicenseExceedLimit)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asIotexplorerError() -> TCIotexplorerError {
             let code: TCIotexplorerError.Code
             switch self.error {
-            case .appNoPermission: 
+            case .appNoPermission:
                 code = .unauthorizedOperation_AppNoPermission
-            case .appNoPermissionToStudioProduct: 
+            case .appNoPermissionToStudioProduct:
                 code = .unauthorizedOperation_APPNoPermissionToStudioProduct
-            case .deviceHasAlreadyBindGateway: 
+            case .deviceHasAlreadyBindGateway:
                 code = .unauthorizedOperation_DeviceHasAlreadyBindGateway
-            case .deviceIsNotEnabled: 
+            case .deviceIsNotEnabled:
                 code = .unauthorizedOperation_DeviceIsNotEnabled
-            case .gatewayHasBindedDevices: 
+            case .gatewayHasBindedDevices:
                 code = .unauthorizedOperation_GatewayHasBindedDevices
-            case .noPermissionToFamily: 
+            case .noPermissionToFamily:
                 code = .unauthorizedOperation_NoPermissionToFamily
-            case .noPermissionToInstance: 
+            case .noPermissionToInstance:
                 code = .unauthorizedOperation_NoPermissionToInstance
-            case .noPermissionToProject: 
+            case .noPermissionToProject:
                 code = .unauthorizedOperation_NoPermissionToProject
-            case .noPermissionToStudioFence: 
+            case .noPermissionToStudioFence:
                 code = .unauthorizedOperation_NoPermissionToStudioFence
-            case .noPermissionToStudioInstance: 
+            case .noPermissionToStudioInstance:
                 code = .unauthorizedOperation_NoPermissionToStudioInstance
-            case .noPermissionToStudioProduct: 
+            case .noPermissionToStudioProduct:
                 code = .unauthorizedOperation_NoPermissionToStudioProduct
-            case .permissionDenied: 
+            case .permissionDenied:
                 code = .unauthorizedOperation_PermissionDenied
-            case .productNotSupportPSK: 
+            case .productNotSupportPSK:
                 code = .unauthorizedOperation_ProductNotSupportPSK
-            case .userLicenseExceedLimit: 
+            case .userLicenseExceedLimit:
                 code = .unauthorizedOperation_UserLicenseExceedLimit
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCIotexplorerError(code, context: self.context)

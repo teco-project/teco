@@ -20,49 +20,49 @@ extension TCEmrError {
             case diskInsufficient = "ResourceInsufficient.DiskInsufficient"
             case instanceInsufficient = "ResourceInsufficient.InstanceInsufficient"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 硬盘规格不满足。
         ///
         /// 占位符
         public static var diskInsufficient: ResourceInsufficient {
             ResourceInsufficient(.diskInsufficient)
         }
-        
+
         /// 不支持或售罄的节点规格。
         ///
         /// 占位符
         public static var instanceInsufficient: ResourceInsufficient {
             ResourceInsufficient(.instanceInsufficient)
         }
-        
+
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
-            case .diskInsufficient: 
+            case .diskInsufficient:
                 code = .resourceInsufficient_DiskInsufficient
-            case .instanceInsufficient: 
+            case .instanceInsufficient:
                 code = .resourceInsufficient_InstanceInsufficient
             }
             return TCEmrError(code, context: self.context)

@@ -19,41 +19,41 @@ extension Mna {
     public struct DescribeQosRequest: TCRequestModel {
         /// 单次加速唯一 Id
         public let sessionId: String
-        
-        public init (sessionId: String) {
+
+        public init(sessionId: String) {
             self.sessionId = sessionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionId = "SessionId"
         }
     }
-    
+
     /// DescribeQos返回参数结构体
     public struct DescribeQosResponse: TCResponseModel {
         /// 0：无匹配的加速中会话
         /// 1：存在匹配的加速中会话
         public let status: UInt64
-        
+
         /// 手机公网出口IP，仅匹配时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srcPublicIpv4: String?
-        
+
         /// 业务访问目的IP，仅匹配时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destIpv4: [String]?
-        
+
         /// 当前加速剩余时长（单位秒）有，仅匹配时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: UInt64?
-        
+
         /// 加速套餐类型，仅匹配时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qosMenu: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case srcPublicIpv4 = "SrcPublicIpv4"
@@ -63,25 +63,25 @@ extension Mna {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取Qos加速状态
     @inlinable
-    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQosResponse > {
+    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQosResponse> {
         self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Qos加速状态
     @inlinable
     public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
         try await self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取Qos加速状态
     @inlinable
-    public func describeQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQosResponse > {
+    public func describeQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQosResponse> {
         self.describeQos(DescribeQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Qos加速状态
     @inlinable
     public func describeQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {

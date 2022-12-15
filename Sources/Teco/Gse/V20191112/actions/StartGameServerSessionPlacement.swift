@@ -19,29 +19,29 @@ extension Gse {
     public struct StartGameServerSessionPlacementRequest: TCRequestModel {
         /// 开始部署游戏服务器会话的唯一标识符，最大值48个ASCII字符，模式：[a-zA-Z0-9-]+
         public let placementId: String
-        
+
         /// 游戏服务器会话队列名称
         public let gameServerSessionQueueName: String
-        
+
         /// 游戏服务器允许同时连接到游戏会话的最大玩家数量，最小值1，最大值为玩家会话最大限额
         public let maximumPlayerSessionCount: UInt64
-        
+
         /// 玩家游戏会话信息
         public let desiredPlayerSessions: [DesiredPlayerSession]?
-        
+
         /// 玩家游戏会话属性
         public let gameProperties: [GameProperty]?
-        
+
         /// 游戏服务器会话数据，最大长度不超过4096个ASCII字符
         public let gameServerSessionData: String?
-        
+
         /// 游戏服务器会话名称，最大长度不超过4096个ASCII字符
         public let gameServerSessionName: String?
-        
+
         /// 玩家延迟
         public let playerLatencies: [PlayerLatency]?
-        
-        public init (placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil) {
+
+        public init(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil) {
             self.placementId = placementId
             self.gameServerSessionQueueName = gameServerSessionQueueName
             self.maximumPlayerSessionCount = maximumPlayerSessionCount
@@ -51,7 +51,7 @@ extension Gse {
             self.gameServerSessionName = gameServerSessionName
             self.playerLatencies = playerLatencies
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case placementId = "PlacementId"
             case gameServerSessionQueueName = "GameServerSessionQueueName"
@@ -63,30 +63,30 @@ extension Gse {
             case playerLatencies = "PlayerLatencies"
         }
     }
-    
+
     /// StartGameServerSessionPlacement返回参数结构体
     public struct StartGameServerSessionPlacementResponse: TCResponseModel {
         /// 游戏服务器会话放置
         public let gameServerSessionPlacement: GameServerSessionPlacement
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSessionPlacement = "GameServerSessionPlacement"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
     @inlinable
-    public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartGameServerSessionPlacementResponse > {
+    public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartGameServerSessionPlacementResponse> {
         self.client.execute(action: "StartGameServerSessionPlacement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -95,16 +95,16 @@ extension Gse {
     public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGameServerSessionPlacementResponse {
         try await self.client.execute(action: "StartGameServerSessionPlacement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
     @inlinable
-    public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartGameServerSessionPlacementResponse > {
+    public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartGameServerSessionPlacementResponse> {
         self.startGameServerSessionPlacement(StartGameServerSessionPlacementRequest(placementId: placementId, gameServerSessionQueueName: gameServerSessionQueueName, maximumPlayerSessionCount: maximumPlayerSessionCount, desiredPlayerSessions: desiredPlayerSessions, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionName: gameServerSessionName, playerLatencies: playerLatencies), logger: logger, on: eventLoop)
     }
-    
+
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

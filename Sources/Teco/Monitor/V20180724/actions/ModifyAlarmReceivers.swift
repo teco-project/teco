@@ -19,54 +19,54 @@ extension Monitor {
     public struct ModifyAlarmReceiversRequest: TCRequestModel {
         /// 需要修改接收人的策略组Id
         public let groupId: Int64
-        
+
         /// 必填。固定为“monitor”
         public let module: String
-        
+
         /// 新接收人信息, 没有填写则删除所有接收人
         public let receiverInfos: [ReceiverInfo]?
-        
-        public init (groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil) {
+
+        public init(groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil) {
             self.groupId = groupId
             self.module = module
             self.receiverInfos = receiverInfos
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case module = "Module"
             case receiverInfos = "ReceiverInfos"
         }
     }
-    
+
     /// ModifyAlarmReceivers返回参数结构体
     public struct ModifyAlarmReceiversResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改告警接收人
     @inlinable
-    public func modifyAlarmReceivers(_ input: ModifyAlarmReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmReceiversResponse > {
+    public func modifyAlarmReceivers(_ input: ModifyAlarmReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmReceiversResponse> {
         self.client.execute(action: "ModifyAlarmReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改告警接收人
     @inlinable
     public func modifyAlarmReceivers(_ input: ModifyAlarmReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmReceiversResponse {
         try await self.client.execute(action: "ModifyAlarmReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改告警接收人
     @inlinable
-    public func modifyAlarmReceivers(groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmReceiversResponse > {
+    public func modifyAlarmReceivers(groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmReceiversResponse> {
         self.modifyAlarmReceivers(ModifyAlarmReceiversRequest(groupId: groupId, module: module, receiverInfos: receiverInfos), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改告警接收人
     @inlinable
     public func modifyAlarmReceivers(groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmReceiversResponse {

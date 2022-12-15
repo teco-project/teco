@@ -19,23 +19,23 @@ extension Mmps {
     public struct DescribeScanTaskStatusRequest: TCRequestModel {
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
         public let taskType: Int64
-        
+
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         public let source: Int64
-        
+
         /// 任务id
         public let taskID: String
-        
+
         /// 应用平台, 0:android, 1:ios, 2:小程序
         public let platform: Int64
-        
-        public init (taskType: Int64, source: Int64, taskID: String, platform: Int64) {
+
+        public init(taskType: Int64, source: Int64, taskID: String, platform: Int64) {
             self.taskType = taskType
             self.source = source
             self.taskID = taskID
             self.platform = platform
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case source = "Source"
@@ -43,26 +43,26 @@ extension Mmps {
             case platform = "Platform"
         }
     }
-    
+
     /// DescribeScanTaskStatus返回参数结构体
     public struct DescribeScanTaskStatusResponse: TCResponseModel {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let result: Int64
-        
+
         /// 0:默认值(待检测/待咨询), 1.检测中,  4:任务完成/咨询完成, 5:任务失败, 6:咨询中;
         public let status: Int64
-        
+
         /// 诊断失败的错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 任务流详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowSteps: [TaskFlowStepsInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case status = "Status"
@@ -71,15 +71,15 @@ extension Mmps {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询隐私合规诊断任务状态
     ///
     /// 查询小程序隐私合规诊断任务状态
     @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskStatusResponse> {
         self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询隐私合规诊断任务状态
     ///
     /// 查询小程序隐私合规诊断任务状态
@@ -87,15 +87,15 @@ extension Mmps {
     public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
         try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询隐私合规诊断任务状态
     ///
     /// 查询小程序隐私合规诊断任务状态
     @inlinable
-    public func describeScanTaskStatus(taskType: Int64, source: Int64, taskID: String, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+    public func describeScanTaskStatus(taskType: Int64, source: Int64, taskID: String, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskStatusResponse> {
         self.describeScanTaskStatus(DescribeScanTaskStatusRequest(taskType: taskType, source: source, taskID: taskID, platform: platform), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询隐私合规诊断任务状态
     ///
     /// 查询小程序隐私合规诊断任务状态

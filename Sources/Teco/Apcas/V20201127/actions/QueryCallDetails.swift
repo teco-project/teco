@@ -19,27 +19,27 @@ extension Apcas {
     public struct QueryCallDetailsRequest: TCRequestModel {
         /// 请求类型 1:人群特征洞察统计 2:购车意向预测统计
         public let type: UInt64
-        
+
         /// 开始时间戳（毫秒）
         public let startTime: UInt64
-        
+
         /// 结束时间戳（毫秒）
         public let endTime: UInt64
-        
+
         /// 页数
         public let pageNumber: UInt64
-        
+
         /// 每页个数
         public let pageSize: UInt64
-        
-        public init (type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64) {
+
+        public init(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64) {
             self.type = type
             self.startTime = startTime
             self.endTime = endTime
             self.pageNumber = pageNumber
             self.pageSize = pageSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case startTime = "StartTime"
@@ -48,39 +48,39 @@ extension Apcas {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// QueryCallDetails返回参数结构体
     public struct QueryCallDetailsResponse: TCResponseModel {
         /// 调用明细
         public let callDetails: CallDetails
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case callDetails = "CallDetails"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询调用明细
     @inlinable
-    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallDetailsResponse > {
+    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallDetailsResponse> {
         self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询调用明细
     @inlinable
     public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
         try await self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询调用明细
     @inlinable
-    public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallDetailsResponse > {
+    public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallDetailsResponse> {
         self.queryCallDetails(QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询调用明细
     @inlinable
     public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {

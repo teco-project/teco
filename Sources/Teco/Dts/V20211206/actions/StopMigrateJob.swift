@@ -19,35 +19,35 @@ extension Dts {
     public struct StopMigrateJobRequest: TCRequestModel {
         /// 数据迁移任务ID
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// StopMigrateJob返回参数结构体
     public struct StopMigrateJobResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 终止数据迁移任务
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func stopMigrateJob(_ input: StopMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMigrateJobResponse > {
+    public func stopMigrateJob(_ input: StopMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrateJobResponse> {
         self.client.execute(action: "StopMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 终止数据迁移任务
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。
@@ -56,16 +56,16 @@ extension Dts {
     public func stopMigrateJob(_ input: StopMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrateJobResponse {
         try await self.client.execute(action: "StopMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 终止数据迁移任务
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func stopMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMigrateJobResponse > {
+    public func stopMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrateJobResponse> {
         self.stopMigrateJob(StopMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 终止数据迁移任务
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。

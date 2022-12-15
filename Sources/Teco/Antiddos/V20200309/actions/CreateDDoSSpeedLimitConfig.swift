@@ -19,49 +19,49 @@ extension Antiddos {
     public struct CreateDDoSSpeedLimitConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
+
         /// 访问限速配置，填写参数时配置ID请为空
         public let dDoSSpeedLimitConfig: DDoSSpeedLimitConfig
-        
-        public init (instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig) {
+
+        public init(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig) {
             self.instanceId = instanceId
             self.dDoSSpeedLimitConfig = dDoSSpeedLimitConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case dDoSSpeedLimitConfig = "DDoSSpeedLimitConfig"
         }
     }
-    
+
     /// CreateDDoSSpeedLimitConfig返回参数结构体
     public struct CreateDDoSSpeedLimitConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加DDoS防护的访问限速配置
     @inlinable
-    public func createDDoSSpeedLimitConfig(_ input: CreateDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSSpeedLimitConfigResponse > {
+    public func createDDoSSpeedLimitConfig(_ input: CreateDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSSpeedLimitConfigResponse> {
         self.client.execute(action: "CreateDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加DDoS防护的访问限速配置
     @inlinable
     public func createDDoSSpeedLimitConfig(_ input: CreateDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSSpeedLimitConfigResponse {
         try await self.client.execute(action: "CreateDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加DDoS防护的访问限速配置
     @inlinable
-    public func createDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSSpeedLimitConfigResponse > {
+    public func createDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSSpeedLimitConfigResponse> {
         self.createDDoSSpeedLimitConfig(CreateDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加DDoS防护的访问限速配置
     @inlinable
     public func createDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSSpeedLimitConfigResponse {

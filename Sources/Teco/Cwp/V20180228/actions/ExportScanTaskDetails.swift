@@ -19,67 +19,67 @@ extension Cwp {
     public struct ExportScanTaskDetailsRequest: TCRequestModel {
         /// 本次检测的任务id（不同于出参的导出本次检测Excel的任务Id）
         public let taskId: UInt64
-        
+
         /// 模块类型，当前提供：Malware 木马 , Vul 漏洞 , Baseline 基线
         public let moduleType: String
-        
+
         /// 过滤参数：ipOrAlias（服务器名/ip）
         public let filters: [Filters]?
-        
-        public init (taskId: UInt64, moduleType: String, filters: [Filters]? = nil) {
+
+        public init(taskId: UInt64, moduleType: String, filters: [Filters]? = nil) {
             self.taskId = taskId
             self.moduleType = moduleType
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case moduleType = "ModuleType"
             case filters = "Filters"
         }
     }
-    
+
     /// ExportScanTaskDetails返回参数结构体
     public struct ExportScanTaskDetailsResponse: TCResponseModel {
         /// 导出本次检测Excel的任务Id（不同于入参的本次检测任务id）
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出扫描任务详情
     ///
-    /// 根据任务id导出指定扫描任务详情 
+    /// 根据任务id导出指定扫描任务详情
     @inlinable
-    public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportScanTaskDetailsResponse > {
+    public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportScanTaskDetailsResponse> {
         self.client.execute(action: "ExportScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出扫描任务详情
     ///
-    /// 根据任务id导出指定扫描任务详情 
+    /// 根据任务id导出指定扫描任务详情
     @inlinable
     public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportScanTaskDetailsResponse {
         try await self.client.execute(action: "ExportScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出扫描任务详情
     ///
-    /// 根据任务id导出指定扫描任务详情 
+    /// 根据任务id导出指定扫描任务详情
     @inlinable
-    public func exportScanTaskDetails(taskId: UInt64, moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportScanTaskDetailsResponse > {
+    public func exportScanTaskDetails(taskId: UInt64, moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportScanTaskDetailsResponse> {
         self.exportScanTaskDetails(ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出扫描任务详情
     ///
-    /// 根据任务id导出指定扫描任务详情 
+    /// 根据任务id导出指定扫描任务详情
     @inlinable
     public func exportScanTaskDetails(taskId: UInt64, moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportScanTaskDetailsResponse {
         try await self.exportScanTaskDetails(ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)

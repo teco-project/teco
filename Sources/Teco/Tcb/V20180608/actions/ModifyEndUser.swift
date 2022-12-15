@@ -19,56 +19,56 @@ extension Tcb {
     public struct ModifyEndUserRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// C端用户端的唯一ID
         public let uuId: String
-        
+
         /// 帐号的状态
         /// <li>ENABLE</li>
         /// <li>DISABLE</li>
         public let status: String?
-        
-        public init (envId: String, uuId: String, status: String? = nil) {
+
+        public init(envId: String, uuId: String, status: String? = nil) {
             self.envId = envId
             self.uuId = uuId
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case uuId = "UUId"
             case status = "Status"
         }
     }
-    
+
     /// ModifyEndUser返回参数结构体
     public struct ModifyEndUserResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 管理终端用户
     @inlinable
-    public func modifyEndUser(_ input: ModifyEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEndUserResponse > {
+    public func modifyEndUser(_ input: ModifyEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEndUserResponse> {
         self.client.execute(action: "ModifyEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 管理终端用户
     @inlinable
     public func modifyEndUser(_ input: ModifyEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEndUserResponse {
         try await self.client.execute(action: "ModifyEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 管理终端用户
     @inlinable
-    public func modifyEndUser(envId: String, uuId: String, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEndUserResponse > {
+    public func modifyEndUser(envId: String, uuId: String, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEndUserResponse> {
         self.modifyEndUser(ModifyEndUserRequest(envId: envId, uuId: uuId, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 管理终端用户
     @inlinable
     public func modifyEndUser(envId: String, uuId: String, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEndUserResponse {

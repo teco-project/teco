@@ -19,26 +19,26 @@ extension Vod {
     public struct DescribeClientUploadAccelerationUsageDataRequest: TCRequestModel {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         public let startTime: String
-        
+
         /// 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         public let endTime: String
-        
+
         /// <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 客户端上传加速类型，取值有：
         /// <li> AccelerationWithHTTP：HTTP 传输方式的上传加速。</li>
         /// <li> AccelerationWithQUIC：QUIC 传输方式的上传加速。</li>
         /// 默认查询所有加速类型的用量 。
         public let type: String?
-        
-        public init (startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil) {
+
+        public init(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.subAppId = subAppId
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -46,21 +46,21 @@ extension Vod {
             case type = "Type"
         }
     }
-    
+
     /// DescribeClientUploadAccelerationUsageData返回参数结构体
     public struct DescribeClientUploadAccelerationUsageDataResponse: TCResponseModel {
         /// 客户端上传加速统计数据。
         public let clientUploadAccelerationUsageDataSet: [StatDataItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clientUploadAccelerationUsageDataSet = "ClientUploadAccelerationUsageDataSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询客户端上传加速统计数据
     ///
     /// 该接口返回查询时间范围内客户端上传加速统计信息。
@@ -68,10 +68,10 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientUploadAccelerationUsageDataResponse > {
+    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientUploadAccelerationUsageDataResponse> {
         self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户端上传加速统计数据
     ///
     /// 该接口返回查询时间范围内客户端上传加速统计信息。
@@ -82,7 +82,7 @@ extension Vod {
     public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
         try await self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询客户端上传加速统计数据
     ///
     /// 该接口返回查询时间范围内客户端上传加速统计信息。
@@ -90,10 +90,10 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientUploadAccelerationUsageDataResponse > {
+    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientUploadAccelerationUsageDataResponse> {
         self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户端上传加速统计数据
     ///
     /// 该接口返回查询时间范围内客户端上传加速统计信息。

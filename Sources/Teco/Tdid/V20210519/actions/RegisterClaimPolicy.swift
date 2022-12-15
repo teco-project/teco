@@ -19,57 +19,57 @@ extension Tdid {
     public struct RegisterClaimPolicyRequest: TCRequestModel {
         /// Cpt索引
         public let cptIndex: UInt64
-        
+
         /// 披露策略
         public let policy: String
-        
-        public init (cptIndex: UInt64, policy: String) {
+
+        public init(cptIndex: UInt64, policy: String) {
             self.cptIndex = cptIndex
             self.policy = policy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cptIndex = "CptIndex"
             case policy = "Policy"
         }
     }
-    
+
     /// RegisterClaimPolicy返回参数结构体
     public struct RegisterClaimPolicyResponse: TCResponseModel {
         /// 披露策略索引
         public let id: UInt64
-        
+
         /// 披露策略ID
         public let policyId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 披露策略Policy注册
     @inlinable
-    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterClaimPolicyResponse > {
+    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
         self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 披露策略Policy注册
     @inlinable
     public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
         try await self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 披露策略Policy注册
     @inlinable
-    public func registerClaimPolicy(cptIndex: UInt64, policy: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterClaimPolicyResponse > {
+    public func registerClaimPolicy(cptIndex: UInt64, policy: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
         self.registerClaimPolicy(RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy), logger: logger, on: eventLoop)
     }
-    
+
     /// 披露策略Policy注册
     @inlinable
     public func registerClaimPolicy(cptIndex: UInt64, policy: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {

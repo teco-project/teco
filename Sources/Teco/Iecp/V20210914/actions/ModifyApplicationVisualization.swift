@@ -19,41 +19,41 @@ extension Iecp {
     public struct ModifyApplicationVisualizationRequest: TCRequestModel {
         /// 应用ID
         public let applicationId: UInt64
-        
+
         /// 应用配置
         public let basicConfig: ApplicationBasicConfig
-        
+
         /// 卷配置
         public let volumes: [Volume]?
-        
+
         /// 初始容器
         public let initContainers: [Container]?
-        
+
         /// 容器配置
         public let containers: [Container]?
-        
+
         /// 服务配置
         public let service: Service?
-        
+
         /// Job配置
         public let job: Job?
-        
+
         /// CronJob配置
         public let cronJob: CronJob?
-        
+
         /// 重启策略
         public let restartPolicy: String?
-        
+
         /// 镜像拉取密钥
         public let imagePullSecrets: [String]?
-        
+
         /// HPA配置
         public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
-        
+
         /// 单个初始化容器
         public let initContainer: Container?
-        
-        public init (applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainer: Container? = nil) {
+
+        public init(applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainer: Container? = nil) {
             self.applicationId = applicationId
             self.basicConfig = basicConfig
             self.volumes = volumes
@@ -67,7 +67,7 @@ extension Iecp {
             self.horizontalPodAutoscaler = horizontalPodAutoscaler
             self.initContainer = initContainer
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case basicConfig = "BasicConfig"
@@ -83,35 +83,35 @@ extension Iecp {
             case initContainer = "InitContainer"
         }
     }
-    
+
     /// ModifyApplicationVisualization返回参数结构体
     public struct ModifyApplicationVisualizationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改应用模板配置
     @inlinable
-    public func modifyApplicationVisualization(_ input: ModifyApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationVisualizationResponse > {
+    public func modifyApplicationVisualization(_ input: ModifyApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationVisualizationResponse> {
         self.client.execute(action: "ModifyApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用模板配置
     @inlinable
     public func modifyApplicationVisualization(_ input: ModifyApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationVisualizationResponse {
         try await self.client.execute(action: "ModifyApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改应用模板配置
     @inlinable
-    public func modifyApplicationVisualization(applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainer: Container? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationVisualizationResponse > {
+    public func modifyApplicationVisualization(applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainer: Container? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationVisualizationResponse> {
         self.modifyApplicationVisualization(ModifyApplicationVisualizationRequest(applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainer: initContainer), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用模板配置
     @inlinable
     public func modifyApplicationVisualization(applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainer: Container? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationVisualizationResponse {

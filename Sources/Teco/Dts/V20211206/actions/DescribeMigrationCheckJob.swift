@@ -19,36 +19,36 @@ extension Dts {
     public struct DescribeMigrationCheckJobRequest: TCRequestModel {
         /// 任务id
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// DescribeMigrationCheckJob返回参数结构体
     public struct DescribeMigrationCheckJobResponse: TCResponseModel {
         /// 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 校验任务结果输出简要信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let briefMsg: String?
-        
+
         /// 检查步骤
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stepInfo: [CheckStep]?
-        
+
         /// 校验结果，如：checkPass(校验通过)、checkNotPass(校验未通过)
         public let checkFlag: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case briefMsg = "BriefMsg"
@@ -57,40 +57,40 @@ extension Dts {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询迁移校验任务结果
     ///
-    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度. 
+    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度.
     /// 若通过校验, 则可调用'StartMigrateJob' 开始迁移.
     /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrationJob'修改迁移配置或是调整源/目标实例的相关参数.
     @inlinable
-    public func describeMigrationCheckJob(_ input: DescribeMigrationCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationCheckJobResponse > {
+    public func describeMigrationCheckJob(_ input: DescribeMigrationCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationCheckJobResponse> {
         self.client.execute(action: "DescribeMigrationCheckJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询迁移校验任务结果
     ///
-    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度. 
+    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度.
     /// 若通过校验, 则可调用'StartMigrateJob' 开始迁移.
     /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrationJob'修改迁移配置或是调整源/目标实例的相关参数.
     @inlinable
     public func describeMigrationCheckJob(_ input: DescribeMigrationCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationCheckJobResponse {
         try await self.client.execute(action: "DescribeMigrationCheckJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询迁移校验任务结果
     ///
-    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度. 
+    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度.
     /// 若通过校验, 则可调用'StartMigrateJob' 开始迁移.
     /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrationJob'修改迁移配置或是调整源/目标实例的相关参数.
     @inlinable
-    public func describeMigrationCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationCheckJobResponse > {
+    public func describeMigrationCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationCheckJobResponse> {
         self.describeMigrationCheckJob(DescribeMigrationCheckJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询迁移校验任务结果
     ///
-    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度. 
+    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度.
     /// 若通过校验, 则可调用'StartMigrateJob' 开始迁移.
     /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrationJob'修改迁移配置或是调整源/目标实例的相关参数.
     @inlinable

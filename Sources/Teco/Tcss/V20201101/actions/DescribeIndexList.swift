@@ -17,42 +17,42 @@
 extension Tcss {
     /// DescribeIndexList请求参数结构体
     public struct DescribeIndexListRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeIndexList返回参数结构体
     public struct DescribeIndexListResponse: TCResponseModel {
         /// ES 索引信息
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取索引列表
     @inlinable
-    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
+    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexListResponse> {
         self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取索引列表
     @inlinable
     public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
         try await self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取索引列表
     @inlinable
-    public func describeIndexList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
+    public func describeIndexList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexListResponse> {
         self.describeIndexList(DescribeIndexListRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取索引列表
     @inlinable
     public func describeIndexList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {

@@ -19,44 +19,44 @@ extension Live {
     public struct ResumeDelayLiveStreamRequest: TCRequestModel {
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为live。
         public let appName: String
-        
+
         /// 推流域名。
         public let domainName: String
-        
+
         /// 流名称。
         public let streamName: String
-        
-        public init (appName: String, domainName: String, streamName: String) {
+
+        public init(appName: String, domainName: String, streamName: String) {
             self.appName = appName
             self.domainName = domainName
             self.streamName = streamName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
             case domainName = "DomainName"
             case streamName = "StreamName"
         }
     }
-    
+
     /// ResumeDelayLiveStream返回参数结构体
     public struct ResumeDelayLiveStreamResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。
     @inlinable
-    public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDelayLiveStreamResponse > {
+    public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDelayLiveStreamResponse> {
         self.client.execute(action: "ResumeDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。
@@ -64,15 +64,15 @@ extension Live {
     public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDelayLiveStreamResponse {
         try await self.client.execute(action: "ResumeDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。
     @inlinable
-    public func resumeDelayLiveStream(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDelayLiveStreamResponse > {
+    public func resumeDelayLiveStream(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDelayLiveStreamResponse> {
         self.resumeDelayLiveStream(ResumeDelayLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。

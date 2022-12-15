@@ -22,7 +22,7 @@ extension Dbbrain {
     public struct CreateDBDiagReportTaskRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 开始时间，如“2020-11-08T14:00:00+08:00”。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间，如“2020-11-09T14:00:00+08:00”。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,20 +38,20 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 是否发送邮件: 0 - 否，1 - 是。
         public let sendMailFlag: Int64
-        
+
         /// 接收邮件的联系人ID数组。
         public let contactPerson: [Int64]?
-        
+
         /// 接收邮件的联系组ID数组。
         public let contactGroup: [Int64]?
-        
+
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认值为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil) {
+
+        public init(instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -60,7 +60,7 @@ extension Dbbrain {
             self.contactGroup = contactGroup
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
@@ -71,30 +71,30 @@ extension Dbbrain {
             case product = "Product"
         }
     }
-    
+
     /// CreateDBDiagReportTask返回参数结构体
     public struct CreateDBDiagReportTaskResponse: TCResponseModel {
         /// 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建健康报告生成任务
     ///
     /// 创建健康报告，并可以选择是否发送邮件。
     @inlinable
-    public func createDBDiagReportTask(_ input: CreateDBDiagReportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBDiagReportTaskResponse > {
+    public func createDBDiagReportTask(_ input: CreateDBDiagReportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBDiagReportTaskResponse> {
         self.client.execute(action: "CreateDBDiagReportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建健康报告生成任务
     ///
     /// 创建健康报告，并可以选择是否发送邮件。
@@ -102,15 +102,15 @@ extension Dbbrain {
     public func createDBDiagReportTask(_ input: CreateDBDiagReportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportTaskResponse {
         try await self.client.execute(action: "CreateDBDiagReportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建健康报告生成任务
     ///
     /// 创建健康报告，并可以选择是否发送邮件。
     @inlinable
-    public func createDBDiagReportTask(instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBDiagReportTaskResponse > {
+    public func createDBDiagReportTask(instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBDiagReportTaskResponse> {
         self.createDBDiagReportTask(CreateDBDiagReportTaskRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sendMailFlag: sendMailFlag, contactPerson: contactPerson, contactGroup: contactGroup, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建健康报告生成任务
     ///
     /// 创建健康报告，并可以选择是否发送邮件。

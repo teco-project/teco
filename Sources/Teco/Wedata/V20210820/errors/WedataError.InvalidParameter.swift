@@ -24,77 +24,77 @@ extension TCWedataError {
             case workspaceNotExist = "InvalidParameter.WorkspaceNotExist"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 名称重复。
         public static var duplicateName: InvalidParameter {
             InvalidParameter(.duplicateName)
         }
-        
+
         /// 查询过滤条件参数错误。
         ///
         /// 查询过滤条件参数错误
         public static var invalidFilterParameter: InvalidParameter {
             InvalidParameter(.invalidFilterParameter)
         }
-        
+
         /// 规则不存在。
         public static var ruleNotExist: InvalidParameter {
             InvalidParameter(.ruleNotExist)
         }
-        
+
         /// 服务繁忙，请稍后重试。
         ///
         /// 服务繁忙，请稍后重试
         public static var serviceIsBusy: InvalidParameter {
             InvalidParameter(.serviceIsBusy)
         }
-        
+
         /// 工作空间不存在。
         public static var workspaceNotExist: InvalidParameter {
             InvalidParameter(.workspaceNotExist)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asWedataError() -> TCWedataError {
             let code: TCWedataError.Code
             switch self.error {
-            case .duplicateName: 
+            case .duplicateName:
                 code = .invalidParameter_DuplicateName
-            case .invalidFilterParameter: 
+            case .invalidFilterParameter:
                 code = .invalidParameter_InvalidFilterParameter
-            case .ruleNotExist: 
+            case .ruleNotExist:
                 code = .invalidParameter_RuleNotExist
-            case .serviceIsBusy: 
+            case .serviceIsBusy:
                 code = .invalidParameter_ServiceIsBusy
-            case .workspaceNotExist: 
+            case .workspaceNotExist:
                 code = .invalidParameter_WorkspaceNotExist
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCWedataError(code, context: self.context)

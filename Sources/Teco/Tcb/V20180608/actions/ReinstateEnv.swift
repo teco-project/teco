@@ -19,34 +19,34 @@ extension Tcb {
     public struct ReinstateEnvRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
-        public init (envId: String) {
+
+        public init(envId: String) {
             self.envId = envId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
         }
     }
-    
+
     /// ReinstateEnv返回参数结构体
     public struct ReinstateEnvResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 恢复环境，解除隔离状态
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable
-    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReinstateEnvResponse > {
+    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReinstateEnvResponse> {
         self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复环境，解除隔离状态
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
@@ -54,15 +54,15 @@ extension Tcb {
     public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
         try await self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 恢复环境，解除隔离状态
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable
-    public func reinstateEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReinstateEnvResponse > {
+    public func reinstateEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReinstateEnvResponse> {
         self.reinstateEnv(ReinstateEnvRequest(envId: envId), logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复环境，解除隔离状态
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。

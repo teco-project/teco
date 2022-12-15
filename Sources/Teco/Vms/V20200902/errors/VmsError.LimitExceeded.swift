@@ -19,38 +19,38 @@ extension TCVmsError {
         enum Code: String {
             case deliveryFrequencyLimit = "LimitExceeded.DeliveryFrequencyLimit"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 下发语音消息时命中频率限制策略，如需申请不受频率限制的测试号码或更改限制策略，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
         public static var deliveryFrequencyLimit: LimitExceeded {
             LimitExceeded(.deliveryFrequencyLimit)
         }
-        
+
         public func asVmsError() -> TCVmsError {
             let code: TCVmsError.Code
             switch self.error {
-            case .deliveryFrequencyLimit: 
+            case .deliveryFrequencyLimit:
                 code = .limitExceeded_DeliveryFrequencyLimit
             }
             return TCVmsError(code, context: self.context)

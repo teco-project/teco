@@ -19,30 +19,30 @@ extension Btoe {
     public struct GetDepositInfoRequest: TCRequestModel {
         /// 存证编码
         public let evidenceId: String
-        
-        public init (evidenceId: String) {
+
+        public init(evidenceId: String) {
             self.evidenceId = evidenceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case evidenceId = "EvidenceId"
         }
     }
-    
+
     /// GetDepositInfo返回参数结构体
     public struct GetDepositInfoResponse: TCResponseModel {
         /// 存证编号
         public let evidenceId: String
-        
+
         /// 上链时间
         public let evidenceTime: String
-        
+
         /// 区块链交易哈希
         public let evidenceTxHash: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case evidenceId = "EvidenceId"
             case evidenceTime = "EvidenceTime"
@@ -50,15 +50,15 @@ extension Btoe {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
-    public func getDepositInfo(_ input: GetDepositInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositInfoResponse > {
+    public func getDepositInfo(_ input: GetDepositInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
         self.client.execute(action: "GetDepositInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
@@ -66,15 +66,15 @@ extension Btoe {
     public func getDepositInfo(_ input: GetDepositInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
         try await self.client.execute(action: "GetDepositInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
-    public func getDepositInfo(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositInfoResponse > {
+    public func getDepositInfo(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
         self.getDepositInfo(GetDepositInfoRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。

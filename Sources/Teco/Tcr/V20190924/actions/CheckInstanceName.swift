@@ -19,48 +19,48 @@ extension Tcr {
     public struct CheckInstanceNameRequest: TCRequestModel {
         /// 待创建的实例名称
         public let registryName: String
-        
-        public init (registryName: String) {
+
+        public init(registryName: String) {
             self.registryName = registryName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryName = "RegistryName"
         }
     }
-    
+
     /// CheckInstanceName返回参数结构体
     public struct CheckInstanceNameResponse: TCResponseModel {
         /// 检查结果，true为合法，false为非法
         public let isValidated: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case isValidated = "IsValidated"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 检查待创建的实例名称是否符合规范
     @inlinable
-    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceNameResponse > {
+    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceNameResponse> {
         self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 检查待创建的实例名称是否符合规范
     @inlinable
     public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
         try await self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 检查待创建的实例名称是否符合规范
     @inlinable
-    public func checkInstanceName(registryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceNameResponse > {
+    public func checkInstanceName(registryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceNameResponse> {
         self.checkInstanceName(CheckInstanceNameRequest(registryName: registryName), logger: logger, on: eventLoop)
     }
-    
+
     /// 检查待创建的实例名称是否符合规范
     @inlinable
     public func checkInstanceName(registryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {

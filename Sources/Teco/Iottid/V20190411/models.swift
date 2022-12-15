@@ -19,22 +19,22 @@ extension Iottid {
     public struct TidKeysInfo: TCOutputModel {
         /// TID号码
         public let tid: String
-        
+
         /// 公钥
         public let publicKey: String
-        
+
         /// 私钥
         public let privateKey: String
-        
+
         /// 共享密钥
         public let psk: String
-        
+
         /// 软加固白盒密钥下载地址
         public let downloadUrl: String
-        
+
         /// 软加固设备标识码
         public let deviceCode: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tid = "Tid"
             case publicKey = "PublicKey"

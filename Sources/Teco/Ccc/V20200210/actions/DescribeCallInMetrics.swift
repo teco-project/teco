@@ -19,45 +19,45 @@ extension Ccc {
     public struct DescribeCallInMetricsRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 是否返回技能组维度信息，默认“是”
         public let enabledSkillGroup: Bool?
-        
+
         /// 是否返回线路维度信息，默认“否”
         public let enabledNumber: Bool?
-        
-        public init (sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil) {
+
+        public init(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.enabledSkillGroup = enabledSkillGroup
             self.enabledNumber = enabledNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case enabledSkillGroup = "EnabledSkillGroup"
             case enabledNumber = "EnabledNumber"
         }
     }
-    
+
     /// DescribeCallInMetrics返回参数结构体
     public struct DescribeCallInMetricsResponse: TCResponseModel {
         /// 时间戳
         public let timestamp: Int64
-        
+
         /// 总体指标
         public let totalMetrics: CallInMetrics
-        
+
         /// 线路维度指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let numberMetrics: [CallInNumberMetrics]?
-        
+
         /// 技能组维度指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupMetrics: [CallInSkillGroupMetrics]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case totalMetrics = "TotalMetrics"
@@ -66,25 +66,25 @@ extension Ccc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取呼入实时数据统计指标
     @inlinable
-    public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallInMetricsResponse > {
+    public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallInMetricsResponse> {
         self.client.execute(action: "DescribeCallInMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取呼入实时数据统计指标
     @inlinable
     public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {
         try await self.client.execute(action: "DescribeCallInMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取呼入实时数据统计指标
     @inlinable
-    public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallInMetricsResponse > {
+    public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallInMetricsResponse> {
         self.describeCallInMetrics(DescribeCallInMetricsRequest(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取呼入实时数据统计指标
     @inlinable
     public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {

@@ -27,104 +27,104 @@ extension TCSesError {
             case templateStatusError = "OperationDenied.TemplateStatusError"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名验证失败，请检查域名是否通过验证。
         public static var domainNotVerified: OperationDenied {
             OperationDenied(.domainNotVerified)
         }
-        
+
         /// 超出最大发信域名限制。
         public static var exceedDomainLimit: OperationDenied {
             OperationDenied(.exceedDomainLimit)
         }
-        
+
         /// 超出最大发信地址限制。
         public static var exceedSenderLimit: OperationDenied {
             OperationDenied(.exceedSenderLimit)
         }
-        
+
         /// 收件人列表正在被操作，请稍后操作。
         ///
         /// 可能是收件人列表正在上传收件人地址，等待一段时间再操作，必要时可以反馈问题
         public static var receiverIsOperating: OperationDenied {
             OperationDenied(.receiverIsOperating)
         }
-        
+
         /// 收件人列表不存在。
         ///
         /// 确认一下收件人Id是否正确真实，必须为已创建的收件人列表的id
         public static var receiverNotExist: OperationDenied {
             OperationDenied(.receiverNotExist)
         }
-        
+
         /// 收件人列表空或状态不是上传完成。
         ///
         /// 检查收件人列表中是否存在收件人地址或者正在进行上传，尚未完成全部上传工作
         public static var receiverStatusError: OperationDenied {
             OperationDenied(.receiverStatusError)
         }
-        
+
         /// 发信地址不存在或者状态不是通过状态。
         ///
         /// 发信地址不存在或者状态不是通过,请检查发信地址是否创建
         public static var sendAddressStatusError: OperationDenied {
             OperationDenied(.sendAddressStatusError)
         }
-        
+
         /// 发信模板不存在或者状态不是审核通过状态。
         ///
         /// 发信模板不存在或者状态不是审核通过，请检查
         public static var templateStatusError: OperationDenied {
             OperationDenied(.templateStatusError)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asSesError() -> TCSesError {
             let code: TCSesError.Code
             switch self.error {
-            case .domainNotVerified: 
+            case .domainNotVerified:
                 code = .operationDenied_DomainNotVerified
-            case .exceedDomainLimit: 
+            case .exceedDomainLimit:
                 code = .operationDenied_ExceedDomainLimit
-            case .exceedSenderLimit: 
+            case .exceedSenderLimit:
                 code = .operationDenied_ExceedSenderLimit
-            case .receiverIsOperating: 
+            case .receiverIsOperating:
                 code = .operationDenied_ReceiverIsOperating
-            case .receiverNotExist: 
+            case .receiverNotExist:
                 code = .operationDenied_ReceiverNotExist
-            case .receiverStatusError: 
+            case .receiverStatusError:
                 code = .operationDenied_ReceiverStatusError
-            case .sendAddressStatusError: 
+            case .sendAddressStatusError:
                 code = .operationDenied_SendAddressStatusError
-            case .templateStatusError: 
+            case .templateStatusError:
                 code = .operationDenied_TemplateStatusError
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCSesError(code, context: self.context)

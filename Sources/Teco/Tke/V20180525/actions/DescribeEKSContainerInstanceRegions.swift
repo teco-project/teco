@@ -17,47 +17,47 @@
 extension Tke {
     /// DescribeEKSContainerInstanceRegions请求参数结构体
     public struct DescribeEKSContainerInstanceRegionsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeEKSContainerInstanceRegions返回参数结构体
     public struct DescribeEKSContainerInstanceRegionsResponse: TCResponseModel {
         /// EKS Container Instance支持的地域信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regions: [EksCiRegionInfo]?
-        
+
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case regions = "Regions"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器实例支持的地域
     @inlinable
-    public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstanceRegionsResponse > {
+    public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSContainerInstanceRegionsResponse> {
         self.client.execute(action: "DescribeEKSContainerInstanceRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器实例支持的地域
     @inlinable
     public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceRegionsResponse {
         try await self.client.execute(action: "DescribeEKSContainerInstanceRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器实例支持的地域
     @inlinable
-    public func describeEKSContainerInstanceRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstanceRegionsResponse > {
+    public func describeEKSContainerInstanceRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSContainerInstanceRegionsResponse> {
         self.describeEKSContainerInstanceRegions(DescribeEKSContainerInstanceRegionsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器实例支持的地域
     @inlinable
     public func describeEKSContainerInstanceRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceRegionsResponse {

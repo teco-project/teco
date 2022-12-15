@@ -19,23 +19,23 @@ extension Cdwch {
     public struct CreateBackUpScheduleRequest: TCRequestModel {
         /// 编辑时需要传
         public let scheduleId: Int64?
-        
+
         /// 选择的星期 逗号分隔，例如 2 代表周二
         public let weekDays: String?
-        
+
         /// 执行小时
         public let executeHour: Int64?
-        
+
         /// 备份表列表
         public let backUpTables: [BackupTableContent]?
-        
-        public init (scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil) {
+
+        public init(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil) {
             self.scheduleId = scheduleId
             self.weekDays = weekDays
             self.executeHour = executeHour
             self.backUpTables = backUpTables
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scheduleId = "ScheduleId"
             case weekDays = "WeekDays"
@@ -43,35 +43,35 @@ extension Cdwch {
             case backUpTables = "BackUpTables"
         }
     }
-    
+
     /// CreateBackUpSchedule返回参数结构体
     public struct CreateBackUpScheduleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建或者修改备份策略
     @inlinable
-    public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackUpScheduleResponse > {
+    public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
         self.client.execute(action: "CreateBackUpSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建或者修改备份策略
     @inlinable
     public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
         try await self.client.execute(action: "CreateBackUpSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建或者修改备份策略
     @inlinable
-    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackUpScheduleResponse > {
+    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
         self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建或者修改备份策略
     @inlinable
     public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {

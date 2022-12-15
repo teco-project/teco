@@ -19,52 +19,52 @@ extension Dcdb {
     public struct DescribeDCDBInstanceNodeInfoRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 单次最多返回多少条，取值范围为(0-100]，默认为100
         public let limit: UInt64?
-        
+
         /// 返回数据的偏移值，默认为0
         public let offset: UInt64?
-        
-        public init (instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeDCDBInstanceNodeInfo返回参数结构体
     public struct DescribeDCDBInstanceNodeInfoResponse: TCResponseModel {
         /// 节点总个数
         public let totalCount: UInt64
-        
+
         /// 节点信息
         public let nodesInfo: [BriefNodeInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case nodesInfo = "NodesInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例节点信息
     ///
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
     @inlinable
-    public func describeDCDBInstanceNodeInfo(_ input: DescribeDCDBInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBInstanceNodeInfoResponse > {
+    public func describeDCDBInstanceNodeInfo(_ input: DescribeDCDBInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstanceNodeInfoResponse> {
         self.client.execute(action: "DescribeDCDBInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例节点信息
     ///
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
@@ -72,15 +72,15 @@ extension Dcdb {
     public func describeDCDBInstanceNodeInfo(_ input: DescribeDCDBInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstanceNodeInfoResponse {
         try await self.client.execute(action: "DescribeDCDBInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例节点信息
     ///
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
     @inlinable
-    public func describeDCDBInstanceNodeInfo(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBInstanceNodeInfoResponse > {
+    public func describeDCDBInstanceNodeInfo(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstanceNodeInfoResponse> {
         self.describeDCDBInstanceNodeInfo(DescribeDCDBInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例节点信息
     ///
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息

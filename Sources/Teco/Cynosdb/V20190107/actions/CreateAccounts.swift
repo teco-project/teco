@@ -19,49 +19,49 @@ extension Cynosdb {
     public struct CreateAccountsRequest: TCRequestModel {
         /// 集群id
         public let clusterId: String
-        
+
         /// 新账户列表
         public let accounts: [NewAccount]
-        
-        public init (clusterId: String, accounts: [NewAccount]) {
+
+        public init(clusterId: String, accounts: [NewAccount]) {
             self.clusterId = clusterId
             self.accounts = accounts
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case accounts = "Accounts"
         }
     }
-    
+
     /// CreateAccounts返回参数结构体
     public struct CreateAccountsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建账号
     @inlinable
-    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountsResponse > {
+    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
         self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建账号
     @inlinable
     public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
         try await self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建账号
     @inlinable
-    public func createAccounts(clusterId: String, accounts: [NewAccount], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountsResponse > {
+    public func createAccounts(clusterId: String, accounts: [NewAccount], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
         self.createAccounts(CreateAccountsRequest(clusterId: clusterId, accounts: accounts), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建账号
     @inlinable
     public func createAccounts(clusterId: String, accounts: [NewAccount], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {

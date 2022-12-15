@@ -19,49 +19,49 @@ extension Cdwch {
     public struct DescribeInstanceShardsRequest: TCRequestModel {
         /// 集群实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeInstanceShards返回参数结构体
     public struct DescribeInstanceShardsResponse: TCResponseModel {
         /// 实例shard信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceShardsList: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceShardsList = "InstanceShardsList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例shard信息列表
     @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
         self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例shard信息列表
     @inlinable
     public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
         try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例shard信息列表
     @inlinable
-    public func describeInstanceShards(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
+    public func describeInstanceShards(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
         self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例shard信息列表
     @inlinable
     public func describeInstanceShards(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {

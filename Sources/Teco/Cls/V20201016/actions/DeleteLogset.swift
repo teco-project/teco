@@ -19,34 +19,34 @@ extension Cls {
     public struct DeleteLogsetRequest: TCRequestModel {
         /// 日志集ID
         public let logsetId: String
-        
-        public init (logsetId: String) {
+
+        public init(logsetId: String) {
             self.logsetId = logsetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case logsetId = "LogsetId"
         }
     }
-    
+
     /// DeleteLogset返回参数结构体
     public struct DeleteLogsetResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
     @inlinable
-    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogsetResponse > {
+    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
         self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
@@ -54,15 +54,15 @@ extension Cls {
     public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
         try await self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
     @inlinable
-    public func deleteLogset(logsetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogsetResponse > {
+    public func deleteLogset(logsetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
         self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。

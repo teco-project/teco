@@ -19,23 +19,23 @@ extension Tsf {
     public struct AssociateConfigWithGroupRequest: TCRequestModel {
         /// 配置项id
         public let configId: String
-        
+
         /// 部署组信息
         public let groups: [GroupInfo]?
-        
+
         /// 是否选择全部投递，1 表示全部，0或不填表示非全部
         public let selectAll: Int64?
-        
+
         /// 命名空间id
         public let namespaceId: String?
-        
+
         /// 集群id
         public let clusterId: String?
-        
+
         /// 模糊搜索关键词
         public let searchWord: String?
-        
-        public init (configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil) {
+
+        public init(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil) {
             self.configId = configId
             self.groups = groups
             self.selectAll = selectAll
@@ -43,7 +43,7 @@ extension Tsf {
             self.clusterId = clusterId
             self.searchWord = searchWord
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case groups = "Groups"
@@ -53,40 +53,40 @@ extension Tsf {
             case searchWord = "SearchWord"
         }
     }
-    
+
     /// AssociateConfigWithGroup返回参数结构体
     public struct AssociateConfigWithGroupResponse: TCResponseModel {
         /// 绑定是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关联投递配置到部署组
     @inlinable
-    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateConfigWithGroupResponse > {
+    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateConfigWithGroupResponse> {
         self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关联投递配置到部署组
     @inlinable
     public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
         try await self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关联投递配置到部署组
     @inlinable
-    public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateConfigWithGroupResponse > {
+    public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateConfigWithGroupResponse> {
         self.associateConfigWithGroup(AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord), logger: logger, on: eventLoop)
     }
-    
+
     /// 关联投递配置到部署组
     @inlinable
     public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {

@@ -19,49 +19,49 @@ extension Cwp {
     public struct SwitchBashRulesRequest: TCRequestModel {
         /// 规则ID
         public let id: UInt64
-        
+
         /// 是否禁用
         public let disabled: UInt64
-        
-        public init (id: UInt64, disabled: UInt64) {
+
+        public init(id: UInt64, disabled: UInt64) {
             self.id = id
             self.disabled = disabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case disabled = "Disabled"
         }
     }
-    
+
     /// SwitchBashRules返回参数结构体
     public struct SwitchBashRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 切换高危命令规则状态
     @inlinable
-    public func switchBashRules(_ input: SwitchBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchBashRulesResponse > {
+    public func switchBashRules(_ input: SwitchBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchBashRulesResponse> {
         self.client.execute(action: "SwitchBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 切换高危命令规则状态
     @inlinable
     public func switchBashRules(_ input: SwitchBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchBashRulesResponse {
         try await self.client.execute(action: "SwitchBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 切换高危命令规则状态
     @inlinable
-    public func switchBashRules(id: UInt64, disabled: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchBashRulesResponse > {
+    public func switchBashRules(id: UInt64, disabled: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchBashRulesResponse> {
         self.switchBashRules(SwitchBashRulesRequest(id: id, disabled: disabled), logger: logger, on: eventLoop)
     }
-    
+
     /// 切换高危命令规则状态
     @inlinable
     public func switchBashRules(id: UInt64, disabled: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchBashRulesResponse {

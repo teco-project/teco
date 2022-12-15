@@ -19,53 +19,53 @@ extension Tke {
     public struct CreateClusterNodePoolFromExistingAsgRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 伸缩组ID
         public let autoscalingGroupId: String
-        
-        public init (clusterId: String, autoscalingGroupId: String) {
+
+        public init(clusterId: String, autoscalingGroupId: String) {
             self.clusterId = clusterId
             self.autoscalingGroupId = autoscalingGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case autoscalingGroupId = "AutoscalingGroupId"
         }
     }
-    
+
     /// CreateClusterNodePoolFromExistingAsg返回参数结构体
     public struct CreateClusterNodePoolFromExistingAsgResponse: TCResponseModel {
         /// 节点池ID
         public let nodePoolId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nodePoolId = "NodePoolId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 从伸缩组创建节点池
     @inlinable
-    public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolFromExistingAsgResponse > {
+    public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterNodePoolFromExistingAsgResponse> {
         self.client.execute(action: "CreateClusterNodePoolFromExistingAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 从伸缩组创建节点池
     @inlinable
     public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolFromExistingAsgResponse {
         try await self.client.execute(action: "CreateClusterNodePoolFromExistingAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 从伸缩组创建节点池
     @inlinable
-    public func createClusterNodePoolFromExistingAsg(clusterId: String, autoscalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolFromExistingAsgResponse > {
+    public func createClusterNodePoolFromExistingAsg(clusterId: String, autoscalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterNodePoolFromExistingAsgResponse> {
         self.createClusterNodePoolFromExistingAsg(CreateClusterNodePoolFromExistingAsgRequest(clusterId: clusterId, autoscalingGroupId: autoscalingGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 从伸缩组创建节点池
     @inlinable
     public func createClusterNodePoolFromExistingAsg(clusterId: String, autoscalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolFromExistingAsgResponse {

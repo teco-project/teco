@@ -19,54 +19,54 @@ extension Tdcpg {
     public struct ModifyAccountDescriptionRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 账号名字
         public let accountName: String
-        
+
         /// 账号描述，0-256个字符
         public let accountDescription: String
-        
-        public init (clusterId: String, accountName: String, accountDescription: String) {
+
+        public init(clusterId: String, accountName: String, accountDescription: String) {
             self.clusterId = clusterId
             self.accountName = accountName
             self.accountDescription = accountDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case accountName = "AccountName"
             case accountDescription = "AccountDescription"
         }
     }
-    
+
     /// ModifyAccountDescription返回参数结构体
     public struct ModifyAccountDescriptionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改数据库账号描述
     @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
         self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据库账号描述
     @inlinable
     public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
         try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改数据库账号描述
     @inlinable
-    public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
+    public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
         self.modifyAccountDescription(ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据库账号描述
     @inlinable
     public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {

@@ -19,48 +19,48 @@ extension Mongodb {
     public struct SetAccountUserPrivilegeRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 账号名称
         public let userName: String
-        
+
         /// 权限信息
         public let authRole: [Auth]
-        
-        public init (instanceId: String, userName: String, authRole: [Auth]) {
+
+        public init(instanceId: String, userName: String, authRole: [Auth]) {
             self.instanceId = instanceId
             self.userName = userName
             self.authRole = authRole
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case userName = "UserName"
             case authRole = "AuthRole"
         }
     }
-    
+
     /// SetAccountUserPrivilege返回参数结构体
     public struct SetAccountUserPrivilegeResponse: TCResponseModel {
         /// 设置任务ID,用于查询是否设置完成
         public let flowId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置账户权限
     ///
     /// 账户权限设置。
     @inlinable
-    public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAccountUserPrivilegeResponse > {
+    public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAccountUserPrivilegeResponse> {
         self.client.execute(action: "SetAccountUserPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置账户权限
     ///
     /// 账户权限设置。
@@ -68,15 +68,15 @@ extension Mongodb {
     public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
         try await self.client.execute(action: "SetAccountUserPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置账户权限
     ///
     /// 账户权限设置。
     @inlinable
-    public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAccountUserPrivilegeResponse > {
+    public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAccountUserPrivilegeResponse> {
         self.setAccountUserPrivilege(SetAccountUserPrivilegeRequest(instanceId: instanceId, userName: userName, authRole: authRole), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置账户权限
     ///
     /// 账户权限设置。

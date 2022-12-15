@@ -19,44 +19,44 @@ extension Vod {
     public struct ModifyAIRecognitionTemplateRequest: TCRequestModel {
         /// 音视频内容识别模板唯一标识。
         public let definition: Int64
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 音视频内容识别模板名称，长度限制：64 个字符。
         public let name: String?
-        
+
         /// 音视频内容识别模板描述信息，长度限制：256 个字符。
         public let comment: String?
-        
+
         /// 视频片头片尾识别控制参数。
         public let headTailConfigure: HeadTailConfigureInfoForUpdate?
-        
+
         /// 视频拆条识别控制参数。
         public let segmentConfigure: SegmentConfigureInfoForUpdate?
-        
+
         /// 人脸识别控制参数。
         public let faceConfigure: FaceConfigureInfoForUpdate?
-        
+
         /// 文本全文识别控制参数。
         public let ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate?
-        
+
         /// 文本关键词识别控制参数。
         public let ocrWordsConfigure: OcrWordsConfigureInfoForUpdate?
-        
+
         /// 语音全文识别控制参数。
         public let asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate?
-        
+
         /// 语音关键词识别控制参数。
         public let asrWordsConfigure: AsrWordsConfigureInfoForUpdate?
-        
+
         /// 物体识别控制参数。
         public let objectConfigure: ObjectConfigureInfoForUpdate?
-        
+
         /// 截帧间隔，单位为秒，最小值为 0.5 秒。
         public let screenshotInterval: Float?
-        
-        public init (definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfoForUpdate? = nil, segmentConfigure: SegmentConfigureInfoForUpdate? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, objectConfigure: ObjectConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil) {
+
+        public init(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfoForUpdate? = nil, segmentConfigure: SegmentConfigureInfoForUpdate? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, objectConfigure: ObjectConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil) {
             self.definition = definition
             self.subAppId = subAppId
             self.name = name
@@ -71,7 +71,7 @@ extension Vod {
             self.objectConfigure = objectConfigure
             self.screenshotInterval = screenshotInterval
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case subAppId = "SubAppId"
@@ -88,25 +88,25 @@ extension Vod {
             case screenshotInterval = "ScreenshotInterval"
         }
     }
-    
+
     /// ModifyAIRecognitionTemplate返回参数结构体
     public struct ModifyAIRecognitionTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改音视频内容识别模板
     ///
     /// 修改用户自定义音视频内容识别模板。
     @inlinable
-    public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIRecognitionTemplateResponse > {
+    public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIRecognitionTemplateResponse> {
         self.client.execute(action: "ModifyAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改音视频内容识别模板
     ///
     /// 修改用户自定义音视频内容识别模板。
@@ -114,15 +114,15 @@ extension Vod {
     public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
         try await self.client.execute(action: "ModifyAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改音视频内容识别模板
     ///
     /// 修改用户自定义音视频内容识别模板。
     @inlinable
-    public func modifyAIRecognitionTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfoForUpdate? = nil, segmentConfigure: SegmentConfigureInfoForUpdate? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, objectConfigure: ObjectConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIRecognitionTemplateResponse > {
+    public func modifyAIRecognitionTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfoForUpdate? = nil, segmentConfigure: SegmentConfigureInfoForUpdate? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, objectConfigure: ObjectConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIRecognitionTemplateResponse> {
         self.modifyAIRecognitionTemplate(ModifyAIRecognitionTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headTailConfigure: headTailConfigure, segmentConfigure: segmentConfigure, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, objectConfigure: objectConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改音视频内容识别模板
     ///
     /// 修改用户自定义音视频内容识别模板。

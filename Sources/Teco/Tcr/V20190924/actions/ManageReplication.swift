@@ -19,23 +19,23 @@ extension Tcr {
     public struct ManageReplicationRequest: TCRequestModel {
         /// 复制源实例ID
         public let sourceRegistryId: String
-        
+
         /// 复制目标实例ID
         public let destinationRegistryId: String
-        
+
         /// 同步规则
         public let rule: ReplicationRule
-        
+
         /// 规则描述
         public let description: String?
-        
+
         /// 目标实例的地域ID，如广州是1
         public let destinationRegionId: UInt64?
-        
+
         /// 开启跨主账号实例同步配置项
         public let peerReplicationOption: PeerReplicationOption?
-        
-        public init (sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil) {
+
+        public init(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil) {
             self.sourceRegistryId = sourceRegistryId
             self.destinationRegistryId = destinationRegistryId
             self.rule = rule
@@ -43,7 +43,7 @@ extension Tcr {
             self.destinationRegionId = destinationRegionId
             self.peerReplicationOption = peerReplicationOption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceRegistryId = "SourceRegistryId"
             case destinationRegistryId = "DestinationRegistryId"
@@ -53,35 +53,35 @@ extension Tcr {
             case peerReplicationOption = "PeerReplicationOption"
         }
     }
-    
+
     /// ManageReplication返回参数结构体
     public struct ManageReplicationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 管理实例同步
     @inlinable
-    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageReplicationResponse > {
+    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageReplicationResponse> {
         self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 管理实例同步
     @inlinable
     public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
         try await self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 管理实例同步
     @inlinable
-    public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageReplicationResponse > {
+    public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageReplicationResponse> {
         self.manageReplication(ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption), logger: logger, on: eventLoop)
     }
-    
+
     /// 管理实例同步
     @inlinable
     public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {

@@ -19,62 +19,62 @@ extension Iottid {
     public struct BurnTidNotifyRequest: TCRequestModel {
         /// 订单编号
         public let orderId: String
-        
+
         /// TID编号
         public let tid: String
-        
-        public init (orderId: String, tid: String) {
+
+        public init(orderId: String, tid: String) {
             self.orderId = orderId
             self.tid = tid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case tid = "Tid"
         }
     }
-    
+
     /// BurnTidNotify返回参数结构体
     public struct BurnTidNotifyResponse: TCResponseModel {
         /// 接收回执成功的TID
         public let tid: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tid = "Tid"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全芯片TID烧录回执
     ///
-    /// 安全芯片TID烧录回执 
+    /// 安全芯片TID烧录回执
     @inlinable
-    public func burnTidNotify(_ input: BurnTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BurnTidNotifyResponse > {
+    public func burnTidNotify(_ input: BurnTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BurnTidNotifyResponse> {
         self.client.execute(action: "BurnTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全芯片TID烧录回执
     ///
-    /// 安全芯片TID烧录回执 
+    /// 安全芯片TID烧录回执
     @inlinable
     public func burnTidNotify(_ input: BurnTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BurnTidNotifyResponse {
         try await self.client.execute(action: "BurnTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全芯片TID烧录回执
     ///
-    /// 安全芯片TID烧录回执 
+    /// 安全芯片TID烧录回执
     @inlinable
-    public func burnTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BurnTidNotifyResponse > {
+    public func burnTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BurnTidNotifyResponse> {
         self.burnTidNotify(BurnTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全芯片TID烧录回执
     ///
-    /// 安全芯片TID烧录回执 
+    /// 安全芯片TID烧录回执
     @inlinable
     public func burnTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BurnTidNotifyResponse {
         try await self.burnTidNotify(BurnTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)

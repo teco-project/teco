@@ -19,43 +19,43 @@ extension Tke {
     public struct DescribeClusterEndpointVipStatusRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DescribeClusterEndpointVipStatus返回参数结构体
     public struct DescribeClusterEndpointVipStatusResponse: TCResponseModel {
         /// 端口操作状态 (Creating 创建中  CreateFailed 创建失败 Created 创建完成 Deleting 删除中 DeletedFailed 删除失败 Deleted 已删除 NotFound 未发现操作 )
         public let status: String
-        
+
         /// 操作失败的原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询托管集群开启外网端口流程状态
     ///
     /// 查询集群开启端口流程状态(仅支持托管集群外网端口)
     @inlinable
-    public func describeClusterEndpointVipStatus(_ input: DescribeClusterEndpointVipStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointVipStatusResponse > {
+    public func describeClusterEndpointVipStatus(_ input: DescribeClusterEndpointVipStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointVipStatusResponse> {
         self.client.execute(action: "DescribeClusterEndpointVipStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询托管集群开启外网端口流程状态
     ///
     /// 查询集群开启端口流程状态(仅支持托管集群外网端口)
@@ -63,15 +63,15 @@ extension Tke {
     public func describeClusterEndpointVipStatus(_ input: DescribeClusterEndpointVipStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointVipStatusResponse {
         try await self.client.execute(action: "DescribeClusterEndpointVipStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询托管集群开启外网端口流程状态
     ///
     /// 查询集群开启端口流程状态(仅支持托管集群外网端口)
     @inlinable
-    public func describeClusterEndpointVipStatus(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointVipStatusResponse > {
+    public func describeClusterEndpointVipStatus(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointVipStatusResponse> {
         self.describeClusterEndpointVipStatus(DescribeClusterEndpointVipStatusRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询托管集群开启外网端口流程状态
     ///
     /// 查询集群开启端口流程状态(仅支持托管集群外网端口)

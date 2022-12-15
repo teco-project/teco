@@ -19,38 +19,38 @@ extension TCOcrError {
         enum Code: String {
             case chargeStatusException = "ResourcesSoldOut.ChargeStatusException"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 计费状态异常。
         public static var chargeStatusException: ResourcesSoldOut {
             ResourcesSoldOut(.chargeStatusException)
         }
-        
+
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
-            case .chargeStatusException: 
+            case .chargeStatusException:
                 code = .resourcesSoldOut_ChargeStatusException
             }
             return TCOcrError(code, context: self.context)

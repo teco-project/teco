@@ -19,44 +19,44 @@ extension Dts {
     public struct DescribeSubscribesRequest: TCRequestModel {
         /// 数据订阅的实例ID
         public let subscribeId: String?
-        
+
         /// 数据订阅的实例名称
         public let subscribeName: String?
-        
+
         /// 绑定数据库实例的ID
         public let instanceId: String?
-        
+
         /// 数据订阅实例的通道ID
         public let channelId: String?
-        
+
         /// 计费模式筛选，可能的值：0-包年包月，1-按量计费
         public let payType: String?
-        
+
         /// 订阅的数据库产品，如mysql
         public let product: String?
-        
+
         /// 数据订阅实例的状态，creating - 创建中，normal - 正常运行，isolating - 隔离中，isolated - 已隔离，offlining - 下线中
         public let status: [String]?
-        
+
         /// 数据订阅实例的配置状态，unconfigure - 未配置， configuring - 配置中，configured - 已配置
         public let subsStatus: [String]?
-        
+
         /// 返回记录的起始偏移量，默认为0。请输入非负整数
         public let offset: Int64?
-        
+
         /// 单次返回的记录数量，默认20。请输入1到100的整数
         public let limit: Int64?
-        
+
         /// 排序方向，可选的值为"DESC"和"ASC"，默认为"DESC"，按创建时间逆序排序
         public let orderDirection: String?
-        
+
         /// 标签过滤条件
         public let tagFilters: [TagFilter]?
-        
+
         /// 订阅实例版本;txdts-旧版数据订阅，kafka-kafka版本数据订阅
         public let subscribeVersion: String?
-        
-        public init (subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil) {
+
+        public init(subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil) {
             self.subscribeId = subscribeId
             self.subscribeName = subscribeName
             self.instanceId = instanceId
@@ -71,7 +71,7 @@ extension Dts {
             self.tagFilters = tagFilters
             self.subscribeVersion = subscribeVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subscribeId = "SubscribeId"
             case subscribeName = "SubscribeName"
@@ -88,33 +88,33 @@ extension Dts {
             case subscribeVersion = "SubscribeVersion"
         }
     }
-    
+
     /// DescribeSubscribes返回参数结构体
     public struct DescribeSubscribesResponse: TCResponseModel {
         /// 符合查询条件的实例总数
         public let totalCount: Int64
-        
+
         /// 数据订阅实例的信息列表
         public let items: [SubscribeInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
-    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribesResponse > {
+    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribesResponse> {
         self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
@@ -122,15 +122,15 @@ extension Dts {
     public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribesResponse {
         try await self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
-    public func describeSubscribes(subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribesResponse > {
+    public func describeSubscribes(subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribesResponse> {
         self.describeSubscribes(DescribeSubscribesRequest(subscribeId: subscribeId, subscribeName: subscribeName, instanceId: instanceId, channelId: channelId, payType: payType, product: product, status: status, subsStatus: subsStatus, offset: offset, limit: limit, orderDirection: orderDirection, tagFilters: tagFilters, subscribeVersion: subscribeVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条

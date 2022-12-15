@@ -19,39 +19,39 @@ extension Dcdb {
     public struct ModifyDBInstancesProjectRequest: TCRequestModel {
         /// 待修改的实例ID列表。实例 ID 形如：dcdbt-ow728lmc。
         public let instanceIds: [String]
-        
+
         /// 要分配的项目 ID，可以通过 DescribeProjects 查询项目列表接口获取。
         public let projectId: Int64
-        
-        public init (instanceIds: [String], projectId: Int64) {
+
+        public init(instanceIds: [String], projectId: Int64) {
             self.instanceIds = instanceIds
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// ModifyDBInstancesProject返回参数结构体
     public struct ModifyDBInstancesProjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
     @inlinable
-    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstancesProjectResponse > {
+    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
         self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
@@ -59,15 +59,15 @@ extension Dcdb {
     public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
         try await self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
     @inlinable
-    public func modifyDBInstancesProject(instanceIds: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstancesProjectResponse > {
+    public func modifyDBInstancesProject(instanceIds: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
         self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。

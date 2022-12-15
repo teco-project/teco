@@ -19,23 +19,23 @@ extension Tcr {
     public struct DescribeTagRetentionRulesRequest: TCRequestModel {
         /// 主实例iD
         public let registryId: String
-        
+
         /// 命名空间的名称
         public let namespaceName: String?
-        
+
         /// 分页PageSize
         public let limit: Int64?
-        
+
         /// 分页Page
         public let offset: Int64?
-        
-        public init (registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
@@ -43,43 +43,43 @@ extension Tcr {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeTagRetentionRules返回参数结构体
     public struct DescribeTagRetentionRulesResponse: TCResponseModel {
         /// 版本保留策略列表
         public let retentionPolicyList: [RetentionPolicy]
-        
+
         /// 版本保留策略总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case retentionPolicyList = "RetentionPolicyList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询版本保留规则
     @inlinable
-    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionRulesResponse > {
+    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionRulesResponse> {
         self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询版本保留规则
     @inlinable
     public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {
         try await self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询版本保留规则
     @inlinable
-    public func describeTagRetentionRules(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionRulesResponse > {
+    public func describeTagRetentionRules(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionRulesResponse> {
         self.describeTagRetentionRules(DescribeTagRetentionRulesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询版本保留规则
     @inlinable
     public func describeTagRetentionRules(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {

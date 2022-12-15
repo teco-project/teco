@@ -26,87 +26,87 @@ extension TCCbsError {
             case stateError = "UnsupportedOperation.StateError"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 暂不支持从EKS上卸载云硬盘。
         public static var detachPod: UnsupportedOperation {
             UnsupportedOperation(.detachPod)
         }
-        
+
         /// 磁盘已加密。
         public static var diskEncrypt: UnsupportedOperation {
             UnsupportedOperation(.diskEncrypt)
         }
-        
+
         /// 云盘挂载的实例未关机。
         public static var instanceNotStopped: UnsupportedOperation {
             UnsupportedOperation(.instanceNotStopped)
         }
-        
+
         /// 该快照已经共享，请先解除共享。
         public static var snapHasShared: UnsupportedOperation {
             UnsupportedOperation(.snapHasShared)
         }
-        
+
         /// 该快照创建了自定义快照，请先删除对应镜像。
         public static var snapshotHasBindedImage: UnsupportedOperation {
             UnsupportedOperation(.snapshotHasBindedImage)
         }
-        
+
         /// 快照不支持跨地域复制。
         public static var snapshotNotSupportCopy: UnsupportedOperation {
             UnsupportedOperation(.snapshotNotSupportCopy)
         }
-        
+
         /// 资源当前状态不支持该操作。
         public static var stateError: UnsupportedOperation {
             UnsupportedOperation(.stateError)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asCbsError() -> TCCbsError {
             let code: TCCbsError.Code
             switch self.error {
-            case .detachPod: 
+            case .detachPod:
                 code = .unsupportedOperation_DetachPod
-            case .diskEncrypt: 
+            case .diskEncrypt:
                 code = .unsupportedOperation_DiskEncrypt
-            case .instanceNotStopped: 
+            case .instanceNotStopped:
                 code = .unsupportedOperation_InstanceNotStopped
-            case .snapHasShared: 
+            case .snapHasShared:
                 code = .unsupportedOperation_SnapHasShared
-            case .snapshotHasBindedImage: 
+            case .snapshotHasBindedImage:
                 code = .unsupportedOperation_SnapshotHasBindedImage
-            case .snapshotNotSupportCopy: 
+            case .snapshotNotSupportCopy:
                 code = .unsupportedOperation_SnapshotNotSupportCopy
-            case .stateError: 
+            case .stateError:
                 code = .unsupportedOperation_StateError
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCCbsError(code, context: self.context)

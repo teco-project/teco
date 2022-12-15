@@ -19,54 +19,54 @@ extension Tsf {
     public struct DisassociateBusinessLogConfigRequest: TCRequestModel {
         /// 业务日志配置项ID列表
         public let configIdList: [String]
-        
+
         /// TSF分组ID
         public let groupId: String
-        
-        public init (configIdList: [String], groupId: String) {
+
+        public init(configIdList: [String], groupId: String) {
             self.configIdList = configIdList
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configIdList = "ConfigIdList"
             case groupId = "GroupId"
         }
     }
-    
+
     /// DisassociateBusinessLogConfig返回参数结构体
     public struct DisassociateBusinessLogConfigResponse: TCResponseModel {
         /// 操作结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消关联业务日志配置项和应用
     @inlinable
-    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateBusinessLogConfigResponse > {
+    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateBusinessLogConfigResponse> {
         self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消关联业务日志配置项和应用
     @inlinable
     public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
         try await self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消关联业务日志配置项和应用
     @inlinable
-    public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateBusinessLogConfigResponse > {
+    public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateBusinessLogConfigResponse> {
         self.disassociateBusinessLogConfig(DisassociateBusinessLogConfigRequest(configIdList: configIdList, groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消关联业务日志配置项和应用
     @inlinable
     public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {

@@ -19,39 +19,39 @@ extension Oceanus {
     public struct StopJobsRequest: TCRequestModel {
         /// 批量停止作业的描述信息
         public let stopJobDescriptions: [StopJobDescription]
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil) {
+
+        public init(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil) {
             self.stopJobDescriptions = stopJobDescriptions
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case stopJobDescriptions = "StopJobDescriptions"
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// StopJobs返回参数结构体
     public struct StopJobsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20
     @inlinable
-    public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopJobsResponse > {
+    public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopJobsResponse> {
         self.client.execute(action: "StopJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20
@@ -59,15 +59,15 @@ extension Oceanus {
     public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
         try await self.client.execute(action: "StopJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20
     @inlinable
-    public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopJobsResponse > {
+    public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopJobsResponse> {
         self.stopJobs(StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20

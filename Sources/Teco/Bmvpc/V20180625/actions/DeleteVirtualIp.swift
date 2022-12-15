@@ -19,43 +19,43 @@ extension Bmvpc {
     public struct DeleteVirtualIpRequest: TCRequestModel {
         /// 私有网络唯一ID。
         public let vpcId: String
-        
+
         /// 退还的IP列表。
         public let ips: [String]
-        
-        public init (vpcId: String, ips: [String]) {
+
+        public init(vpcId: String, ips: [String]) {
             self.vpcId = vpcId
             self.ips = ips
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case ips = "Ips"
         }
     }
-    
+
     /// DeleteVirtualIp返回参数结构体
     public struct DeleteVirtualIpResponse: TCResponseModel {
         /// 异步任务ID。
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 退还虚拟IP
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
-    public func deleteVirtualIp(_ input: DeleteVirtualIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVirtualIpResponse > {
+    public func deleteVirtualIp(_ input: DeleteVirtualIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVirtualIpResponse> {
         self.client.execute(action: "DeleteVirtualIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 退还虚拟IP
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
@@ -63,15 +63,15 @@ extension Bmvpc {
     public func deleteVirtualIp(_ input: DeleteVirtualIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVirtualIpResponse {
         try await self.client.execute(action: "DeleteVirtualIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 退还虚拟IP
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
-    public func deleteVirtualIp(vpcId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVirtualIpResponse > {
+    public func deleteVirtualIp(vpcId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVirtualIpResponse> {
         self.deleteVirtualIp(DeleteVirtualIpRequest(vpcId: vpcId, ips: ips), logger: logger, on: eventLoop)
     }
-    
+
     /// 退还虚拟IP
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。

@@ -19,27 +19,27 @@ extension Cam {
     public struct UpdateOIDCConfigRequest: TCRequestModel {
         /// 身份提供商URL
         public let identityUrl: String
-        
+
         /// 签名公钥，需要base64
         public let identityKey: String
-        
+
         /// 客户端ID
         public let clientId: [String]
-        
+
         /// 名称
         public let name: String
-        
+
         /// 描述
         public let description: String?
-        
-        public init (identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil) {
+
+        public init(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil) {
             self.identityUrl = identityUrl
             self.identityKey = identityKey
             self.clientId = clientId
             self.name = name
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case identityUrl = "IdentityUrl"
             case identityKey = "IdentityKey"
@@ -48,35 +48,35 @@ extension Cam {
             case description = "Description"
         }
     }
-    
+
     /// UpdateOIDCConfig返回参数结构体
     public struct UpdateOIDCConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改角色OIDC配置
     @inlinable
-    public func updateOIDCConfig(_ input: UpdateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOIDCConfigResponse > {
+    public func updateOIDCConfig(_ input: UpdateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOIDCConfigResponse> {
         self.client.execute(action: "UpdateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改角色OIDC配置
     @inlinable
     public func updateOIDCConfig(_ input: UpdateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOIDCConfigResponse {
         try await self.client.execute(action: "UpdateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改角色OIDC配置
     @inlinable
-    public func updateOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOIDCConfigResponse > {
+    public func updateOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOIDCConfigResponse> {
         self.updateOIDCConfig(UpdateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改角色OIDC配置
     @inlinable
     public func updateOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOIDCConfigResponse {

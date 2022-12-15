@@ -21,54 +21,54 @@ extension TCVmsError {
             case contentLengthLimit = "InvalidParameterValue.ContentLengthLimit"
             case sdkAppidNotExist = "InvalidParameterValue.SdkAppidNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 被叫手机号码格式校验失败。
         ///
         /// 请参考CalledNumber参数描述。
         public static var calledNumberVerifyFail: InvalidParameterValue {
             InvalidParameterValue(.calledNumberVerifyFail)
         }
-        
+
         /// 语音模板中单个变量长度超过限制，如需调整限制，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
         public static var contentLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.contentLengthLimit)
         }
-        
+
         /// SDK AppID 不存在。
         public static var sdkAppidNotExist: InvalidParameterValue {
             InvalidParameterValue(.sdkAppidNotExist)
         }
-        
+
         public func asVmsError() -> TCVmsError {
             let code: TCVmsError.Code
             switch self.error {
-            case .calledNumberVerifyFail: 
+            case .calledNumberVerifyFail:
                 code = .invalidParameterValue_CalledNumberVerifyFail
-            case .contentLengthLimit: 
+            case .contentLengthLimit:
                 code = .invalidParameterValue_ContentLengthLimit
-            case .sdkAppidNotExist: 
+            case .sdkAppidNotExist:
                 code = .invalidParameterValue_SdkAppidNotExist
             }
             return TCVmsError(code, context: self.context)

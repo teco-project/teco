@@ -19,23 +19,23 @@ extension Tcbr {
     public struct UpdateCloudRunServerRequest: TCRequestModel {
         /// 环境Id
         public let envId: String
-        
+
         /// 服务名
         public let serverName: String
-        
+
         /// 部署信息
         public let deployInfo: DeployParam
-        
+
         /// 服务配置信息
         public let serverConfig: ServerBaseConfig
-        
-        public init (envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig) {
+
+        public init(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig) {
             self.envId = envId
             self.serverName = serverName
             self.deployInfo = deployInfo
             self.serverConfig = serverConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case serverName = "ServerName"
@@ -43,43 +43,43 @@ extension Tcbr {
             case serverConfig = "ServerConfig"
         }
     }
-    
+
     /// UpdateCloudRunServer返回参数结构体
     public struct UpdateCloudRunServerResponse: TCResponseModel {
         /// 环境Id
         public let envId: String
-        
+
         /// 一键部署任务Id，暂时用不到
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新云托管服务
     @inlinable
-    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCloudRunServerResponse > {
+    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCloudRunServerResponse> {
         self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新云托管服务
     @inlinable
     public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
         try await self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新云托管服务
     @inlinable
-    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCloudRunServerResponse > {
+    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCloudRunServerResponse> {
         self.updateCloudRunServer(UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新云托管服务
     @inlinable
     public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {

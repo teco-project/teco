@@ -19,23 +19,23 @@ extension Iecp {
     public struct DeleteEdgeUnitDeployGridItemRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 负载类型（StatefulSetGrid｜DeploymentGrid）
         public let workloadKind: String
-        
+
         /// Grid部署名称
         public let gridItemName: String
-        
+
         /// 命名空间，默认default
         public let namespace: String?
-        
-        public init (edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil) {
+
+        public init(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.workloadKind = workloadKind
             self.gridItemName = gridItemName
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case workloadKind = "WorkloadKind"
@@ -43,35 +43,35 @@ extension Iecp {
             case namespace = "Namespace"
         }
     }
-    
+
     /// DeleteEdgeUnitDeployGridItem返回参数结构体
     public struct DeleteEdgeUnitDeployGridItemResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
-    public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitDeployGridItemResponse > {
+    public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDeployGridItemResponse> {
         self.client.execute(action: "DeleteEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
     public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {
         try await self.client.execute(action: "DeleteEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
-    public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitDeployGridItemResponse > {
+    public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDeployGridItemResponse> {
         self.deleteEdgeUnitDeployGridItem(DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
     public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {

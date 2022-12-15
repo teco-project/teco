@@ -19,49 +19,49 @@ extension Tke {
     public struct DeletePrometheusRecordRuleYamlRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 聚合规则列表
         public let names: [String]
-        
-        public init (instanceId: String, names: [String]) {
+
+        public init(instanceId: String, names: [String]) {
             self.instanceId = instanceId
             self.names = names
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case names = "Names"
         }
     }
-    
+
     /// DeletePrometheusRecordRuleYaml返回参数结构体
     public struct DeletePrometheusRecordRuleYamlResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除聚合实例
     @inlinable
-    public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusRecordRuleYamlResponse > {
+    public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusRecordRuleYamlResponse> {
         self.client.execute(action: "DeletePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除聚合实例
     @inlinable
     public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusRecordRuleYamlResponse {
         try await self.client.execute(action: "DeletePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除聚合实例
     @inlinable
-    public func deletePrometheusRecordRuleYaml(instanceId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusRecordRuleYamlResponse > {
+    public func deletePrometheusRecordRuleYaml(instanceId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusRecordRuleYamlResponse> {
         self.deletePrometheusRecordRuleYaml(DeletePrometheusRecordRuleYamlRequest(instanceId: instanceId, names: names), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除聚合实例
     @inlinable
     public func deletePrometheusRecordRuleYaml(instanceId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusRecordRuleYamlResponse {

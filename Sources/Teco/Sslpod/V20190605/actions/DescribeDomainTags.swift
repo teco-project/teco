@@ -17,32 +17,32 @@
 extension Sslpod {
     /// DescribeDomainTags请求参数结构体
     public struct DescribeDomainTagsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeDomainTags返回参数结构体
     public struct DescribeDomainTagsResponse: TCResponseModel {
         /// Tag数组
         public let data: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取账号的tags
     ///
     /// 获取账号下所有tag
     @inlinable
-    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainTagsResponse > {
+    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainTagsResponse> {
         self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取账号的tags
     ///
     /// 获取账号下所有tag
@@ -50,15 +50,15 @@ extension Sslpod {
     public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
         try await self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取账号的tags
     ///
     /// 获取账号下所有tag
     @inlinable
-    public func describeDomainTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainTagsResponse > {
+    public func describeDomainTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainTagsResponse> {
         self.describeDomainTags(DescribeDomainTagsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取账号的tags
     ///
     /// 获取账号下所有tag

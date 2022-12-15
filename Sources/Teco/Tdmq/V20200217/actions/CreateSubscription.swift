@@ -19,29 +19,29 @@ extension Tdmq {
     public struct CreateSubscriptionRequest: TCRequestModel {
         /// 环境（命名空间）名称。
         public let environmentId: String
-        
+
         /// 主题名称。
         public let topicName: String
-        
+
         /// 订阅者名称，不超过128个字符。
         public let subscriptionName: String
-        
+
         /// 是否幂等创建，若否不允许创建同名的订阅关系。
         public let isIdempotent: Bool
-        
+
         /// 备注，128个字符以内。
         public let remark: String?
-        
+
         /// Pulsar 集群的ID
         public let clusterId: String?
-        
+
         /// 是否自动创建死信和重试主题，True 表示创建，False表示不创建，默认自动创建死信和重试主题。
         public let autoCreatePolicyTopic: Bool?
-        
+
         /// 指定死信和重试主题名称规范，LEGACY表示历史命名规则，COMMUNITY表示Pulsar社区命名规范
         public let postFixPattern: String?
-        
-        public init (environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil) {
+
+        public init(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.subscriptionName = subscriptionName
@@ -51,7 +51,7 @@ extension Tdmq {
             self.autoCreatePolicyTopic = autoCreatePolicyTopic
             self.postFixPattern = postFixPattern
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case topicName = "TopicName"
@@ -63,29 +63,29 @@ extension Tdmq {
             case postFixPattern = "PostFixPattern"
         }
     }
-    
+
     /// CreateSubscription返回参数结构体
     public struct CreateSubscriptionResponse: TCResponseModel {
         /// 创建结果。
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建订阅关系
     ///
     /// 创建一个主题的订阅关系
     @inlinable
-    public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscriptionResponse > {
+    public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscriptionResponse> {
         self.client.execute(action: "CreateSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建订阅关系
     ///
     /// 创建一个主题的订阅关系
@@ -93,15 +93,15 @@ extension Tdmq {
     public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
         try await self.client.execute(action: "CreateSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建订阅关系
     ///
     /// 创建一个主题的订阅关系
     @inlinable
-    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscriptionResponse > {
+    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscriptionResponse> {
         self.createSubscription(CreateSubscriptionRequest(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建订阅关系
     ///
     /// 创建一个主题的订阅关系

@@ -19,41 +19,41 @@ extension Dasb {
     public struct DescribeDevicesRequest: TCRequestModel {
         /// 资产ID集合
         public let idSet: [UInt64]?
-        
+
         /// 资产名或资产IP，模糊查询
         public let name: String?
-        
+
         /// 暂未使用
         public let ip: String?
-        
+
         /// 地域码集合
         public let apCodeSet: [String]?
-        
+
         /// 操作系统类型, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         public let kind: UInt64?
-        
+
         /// 分页偏移位置，默认值为0
         public let offset: UInt64?
-        
+
         /// 每页条目数量，默认20
         public let limit: UInt64?
-        
+
         /// 有该资产访问权限的用户ID集合
         public let authorizedUserIdSet: [UInt64]?
-        
+
         /// 过滤条件，资产绑定的堡垒机服务ID集合
         public let resourceIdSet: [String]?
-        
+
         /// 可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         public let kindSet: [UInt64]?
-        
+
         /// 过滤条件，可按照部门ID进行过滤
         public let departmentId: String?
-        
+
         /// 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         public let tagFilters: [TagFilter]?
-        
-        public init (idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil) {
+
+        public init(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil) {
             self.idSet = idSet
             self.name = name
             self.ip = ip
@@ -67,7 +67,7 @@ extension Dasb {
             self.departmentId = departmentId
             self.tagFilters = tagFilters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idSet = "IdSet"
             case name = "Name"
@@ -83,43 +83,43 @@ extension Dasb {
             case tagFilters = "TagFilters"
         }
     }
-    
+
     /// DescribeDevices返回参数结构体
     public struct DescribeDevicesResponse: TCResponseModel {
         /// 资产总数
         public let totalCount: UInt64
-        
+
         /// 资产信息列表
         public let deviceSet: [Device]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case deviceSet = "DeviceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询资产列表
     @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
         self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询资产列表
     @inlinable
     public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
         try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询资产列表
     @inlinable
-    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
         self.describeDevices(DescribeDevicesRequest(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, departmentId: departmentId, tagFilters: tagFilters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询资产列表
     @inlinable
     public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {

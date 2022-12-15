@@ -23,66 +23,66 @@ extension TCTcaplusdbError {
             case noAvailableTableGroup = "ResourceUnavailable.NoAvailableTableGroup"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 集群名称重复。
         public static var duplicateClusterName: ResourceUnavailable {
             ResourceUnavailable(.duplicateClusterName)
         }
-        
+
         /// 重复的表格组id或名称。
         public static var duplicateTableGroupInfo: ResourceUnavailable {
             ResourceUnavailable(.duplicateTableGroupInfo)
         }
-        
+
         /// 重复的表格组名称。
         public static var duplicateTableGroupName: ResourceUnavailable {
             ResourceUnavailable(.duplicateTableGroupName)
         }
-        
+
         /// 没有可用的表格组资源。
         public static var noAvailableTableGroup: ResourceUnavailable {
             ResourceUnavailable(.noAvailableTableGroup)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asTcaplusdbError() -> TCTcaplusdbError {
             let code: TCTcaplusdbError.Code
             switch self.error {
-            case .duplicateClusterName: 
+            case .duplicateClusterName:
                 code = .resourceUnavailable_DuplicateClusterName
-            case .duplicateTableGroupInfo: 
+            case .duplicateTableGroupInfo:
                 code = .resourceUnavailable_DuplicateTableGroupInfo
-            case .duplicateTableGroupName: 
+            case .duplicateTableGroupName:
                 code = .resourceUnavailable_DuplicateTableGroupName
-            case .noAvailableTableGroup: 
+            case .noAvailableTableGroup:
                 code = .resourceUnavailable_NoAvailableTableGroup
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCTcaplusdbError(code, context: self.context)

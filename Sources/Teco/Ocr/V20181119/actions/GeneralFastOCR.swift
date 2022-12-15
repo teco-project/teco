@@ -22,27 +22,27 @@ extension Ocr {
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
-        
+
         /// 图片的 Url 地址。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
-        
+
         /// 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
         public let isPdf: Bool?
-        
+
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: UInt64?
-        
-        public init (imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil) {
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isPdf = isPdf
             self.pdfPageNumber = pdfPageNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
@@ -50,25 +50,25 @@ extension Ocr {
             case pdfPageNumber = "PdfPageNumber"
         }
     }
-    
+
     /// GeneralFastOCR返回参数结构体
     public struct GeneralFastOCRResponse: TCResponseModel {
         /// 检测到的文本信息，具体内容请点击左侧链接。
         public let textDetections: [TextDetection]
-        
+
         /// 检测到的语言，目前支持的语种范围为：简体中文、繁体中文、英文、日文、韩文。未来将陆续新增对更多语种的支持。
         /// 返回结果含义为：zh - 中英混合，jap - 日文，kor - 韩文。
         public let language: String
-        
+
         /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负
         public let angel: Float
-        
+
         /// 图片为PDF时，返回PDF的总页数，默认为0
         public let pdfPageSize: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case textDetections = "TextDetections"
             case language = "Language"
@@ -77,16 +77,16 @@ extension Ocr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalFastOCR(_ input: GeneralFastOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralFastOCRResponse > {
+    public func generalFastOCR(_ input: GeneralFastOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralFastOCRResponse> {
         self.client.execute(action: "GeneralFastOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
@@ -95,16 +95,16 @@ extension Ocr {
     public func generalFastOCR(_ input: GeneralFastOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralFastOCRResponse {
         try await self.client.execute(action: "GeneralFastOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalFastOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralFastOCRResponse > {
+    public func generalFastOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralFastOCRResponse> {
         self.generalFastOCR(GeneralFastOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。

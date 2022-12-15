@@ -19,44 +19,44 @@ extension Trp {
     public struct DeleteProductRequest: TCRequestModel {
         /// 商品ID
         public let productId: String
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
-        public init (productId: String, corpId: UInt64? = nil) {
+
+        public init(productId: String, corpId: UInt64? = nil) {
             self.productId = productId
             self.corpId = corpId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case corpId = "CorpId"
         }
     }
-    
+
     /// DeleteProduct返回参数结构体
     public struct DeleteProductResponse: TCResponseModel {
         /// 商品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除商品
     ///
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
-    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProductResponse > {
+    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
         self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除商品
     ///
     /// 删除商品，如果商品被使用，则不可删除
@@ -64,15 +64,15 @@ extension Trp {
     public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
         try await self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除商品
     ///
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
-    public func deleteProduct(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProductResponse > {
+    public func deleteProduct(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
         self.deleteProduct(DeleteProductRequest(productId: productId, corpId: corpId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除商品
     ///
     /// 删除商品，如果商品被使用，则不可删除

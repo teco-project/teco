@@ -19,32 +19,32 @@ extension Tics {
     public struct DescribeIpInfoRequest: TCRequestModel {
         /// 要查询的IP
         public let key: String
-        
+
         /// 附加字段，是否返回上下文。当为0时不返回上下文，当为1时返回上下文。
         public let option: UInt64?
-        
-        public init (key: String, option: UInt64? = nil) {
+
+        public init(key: String, option: UInt64? = nil) {
             self.key = key
             self.option = option
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case option = "Option"
         }
     }
-    
+
     /// DescribeIpInfo返回参数结构体
     public struct DescribeIpInfoResponse: TCResponseModel {
         /// 是否有数据，0代表有数据，1代表没有数据
         public let returnCode: UInt64
-        
+
         /// 判定结果，如：black、white、grey
         public let result: String
-        
+
         /// 置信度，取值0-100
         public let confidence: UInt64
-        
+
         /// 威胁类型。
         /// botnet = 僵尸网络
         /// trojan = 木马
@@ -63,19 +63,19 @@ extension Tics {
         /// malware IP = 恶意IP
         /// 等等
         public let threatTypes: [String]
-        
+
         /// 恶意标签，对应的团伙，家族等信息。
         public let tags: [TagType]
-        
+
         /// 对应的历史上的威胁情报事件
         public let intelligences: [IntelligenceType]
-        
+
         /// 情报相关的上下文
         public let context: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case returnCode = "ReturnCode"
             case result = "Result"
@@ -87,15 +87,15 @@ extension Tics {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询IP信誉
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
     @inlinable
-    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpInfoResponse > {
+    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpInfoResponse> {
         self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询IP信誉
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
@@ -103,15 +103,15 @@ extension Tics {
     public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
         try await self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询IP信誉
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
     @inlinable
-    public func describeIpInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpInfoResponse > {
+    public func describeIpInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpInfoResponse> {
         self.describeIpInfo(DescribeIpInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询IP信誉
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。

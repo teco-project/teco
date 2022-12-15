@@ -19,42 +19,42 @@ extension Cpdp {
     public struct QueryCityCodeRequest: TCRequestModel {
         /// 收单系统分配的开放ID
         public let openId: String
-        
+
         /// 收单系统分配的密钥
         public let openKey: String
-        
+
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
-        
-        public init (openId: String, openKey: String, profile: String? = nil) {
+
+        public init(openId: String, openKey: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case openId = "OpenId"
             case openKey = "OpenKey"
             case profile = "Profile"
         }
     }
-    
+
     /// QueryCityCode返回参数结构体
     public struct QueryCityCodeResponse: TCResponseModel {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 业务系统返回码
         public let errCode: String
-        
+
         /// 查询城市编码响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [CityCodeResult]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errMessage = "ErrMessage"
             case errCode = "ErrCode"
@@ -62,25 +62,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云支付-查询城市编码接口
     @inlinable
-    public func queryCityCode(_ input: QueryCityCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCityCodeResponse > {
+    public func queryCityCode(_ input: QueryCityCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCityCodeResponse> {
         self.client.execute(action: "QueryCityCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-查询城市编码接口
     @inlinable
     public func queryCityCode(_ input: QueryCityCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCityCodeResponse {
         try await self.client.execute(action: "QueryCityCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云支付-查询城市编码接口
     @inlinable
-    public func queryCityCode(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCityCodeResponse > {
+    public func queryCityCode(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCityCodeResponse> {
         self.queryCityCode(QueryCityCodeRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-查询城市编码接口
     @inlinable
     public func queryCityCode(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCityCodeResponse {

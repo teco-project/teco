@@ -19,44 +19,44 @@ extension Eb {
     public struct DeleteEventBusRequest: TCRequestModel {
         /// 事件集ID
         public let eventBusId: String
-        
-        public init (eventBusId: String) {
+
+        public init(eventBusId: String) {
             self.eventBusId = eventBusId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventBusId = "EventBusId"
         }
     }
-    
+
     /// DeleteEventBus返回参数结构体
     public struct DeleteEventBusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除事件集
     @inlinable
-    public func deleteEventBus(_ input: DeleteEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEventBusResponse > {
+    public func deleteEventBus(_ input: DeleteEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEventBusResponse> {
         self.client.execute(action: "DeleteEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除事件集
     @inlinable
     public func deleteEventBus(_ input: DeleteEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEventBusResponse {
         try await self.client.execute(action: "DeleteEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除事件集
     @inlinable
-    public func deleteEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEventBusResponse > {
+    public func deleteEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEventBusResponse> {
         self.deleteEventBus(DeleteEventBusRequest(eventBusId: eventBusId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除事件集
     @inlinable
     public func deleteEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEventBusResponse {

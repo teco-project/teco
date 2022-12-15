@@ -19,23 +19,23 @@ extension Iecp {
     public struct DescribeApplicationsRequest: TCRequestModel {
         /// 模糊搜索字符串
         public let namePattern: String?
-        
+
         /// 默认 0
         public let offset: UInt64?
-        
+
         /// 默认 20
         public let limit: UInt64?
-        
+
         /// 仅支持对 DistributeTime 字段排序，ASC/DESC
         public let sort: [FieldSort]?
-        
-        public init (namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil) {
+
+        public init(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil) {
             self.namePattern = namePattern
             self.offset = offset
             self.limit = limit
             self.sort = sort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namePattern = "NamePattern"
             case offset = "Offset"
@@ -43,44 +43,44 @@ extension Iecp {
             case sort = "Sort"
         }
     }
-    
+
     /// DescribeApplications返回参数结构体
     public struct DescribeApplicationsResponse: TCResponseModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 详细列表
         public let applicationSet: [ApplicationTemplate]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case applicationSet = "ApplicationSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取应用模板列表
     @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
         self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取应用模板列表
     @inlinable
     public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
         try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取应用模板列表
     @inlinable
-    public func describeApplications(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+    public func describeApplications(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
         self.describeApplications(DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取应用模板列表
     @inlinable
     public func describeApplications(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {

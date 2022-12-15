@@ -19,34 +19,34 @@ extension Eiam {
     public struct DeleteUserGroupRequest: TCRequestModel {
         /// 用户组ID，是用户组的全局唯一标识。
         public let userGroupId: String
-        
-        public init (userGroupId: String) {
+
+        public init(userGroupId: String) {
             self.userGroupId = userGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userGroupId = "UserGroupId"
         }
     }
-    
+
     /// DeleteUserGroup返回参数结构体
     public struct DeleteUserGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除用户组
     ///
     /// 删除一个用户组
     @inlinable
-    public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserGroupResponse > {
+    public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserGroupResponse> {
         self.client.execute(action: "DeleteUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除用户组
     ///
     /// 删除一个用户组
@@ -54,15 +54,15 @@ extension Eiam {
     public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupResponse {
         try await self.client.execute(action: "DeleteUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除用户组
     ///
     /// 删除一个用户组
     @inlinable
-    public func deleteUserGroup(userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserGroupResponse > {
+    public func deleteUserGroup(userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserGroupResponse> {
         self.deleteUserGroup(DeleteUserGroupRequest(userGroupId: userGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除用户组
     ///
     /// 删除一个用户组

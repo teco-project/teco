@@ -19,7 +19,7 @@ extension Tat {
     public struct DescribeCommandsRequest: TCRequestModel {
         /// 命令ID列表，每次请求的上限为100。参数不支持同时指定 `CommandIds` 和 `Filters` 。
         public let commandIds: [String]?
-        
+
         /// 过滤条件。
         /// <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。
         /// <li> command-name - String - 是否必填：否 -（过滤条件）按照命令名称过滤。
@@ -30,20 +30,20 @@ extension Tat {
         /// <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例4</li>
         /// 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `CommandIds` 和 `Filters` 。
         public let filters: [Filter]?
-        
+
         /// 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
-        
-        public init (commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.commandIds = commandIds
             self.filters = filters
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case commandIds = "CommandIds"
             case filters = "Filters"
@@ -51,33 +51,33 @@ extension Tat {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeCommands返回参数结构体
     public struct DescribeCommandsResponse: TCResponseModel {
         /// 符合条件的命令总数。
         public let totalCount: UInt64
-        
+
         /// 命令详情列表。
         public let commandSet: [Command]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case commandSet = "CommandSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询命令详情
     ///
     /// 此接口用于查询命令详情。
     @inlinable
-    public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommandsResponse > {
+    public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCommandsResponse> {
         self.client.execute(action: "DescribeCommands", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询命令详情
     ///
     /// 此接口用于查询命令详情。
@@ -85,15 +85,15 @@ extension Tat {
     public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommandsResponse {
         try await self.client.execute(action: "DescribeCommands", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询命令详情
     ///
     /// 此接口用于查询命令详情。
     @inlinable
-    public func describeCommands(commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommandsResponse > {
+    public func describeCommands(commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCommandsResponse> {
         self.describeCommands(DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询命令详情
     ///
     /// 此接口用于查询命令详情。

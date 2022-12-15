@@ -17,33 +17,33 @@
 extension Ecm {
     /// DescribeConfig请求参数结构体
     public struct DescribeConfigRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeConfig返回参数结构体
     public struct DescribeConfigResponse: TCResponseModel {
         /// 网络带宽硬盘大小的范围信息。
         public let networkStorageRange: NetworkStorageRange
-        
+
         /// 镜像操作系统白名单。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageWhiteSet: [String]?
-        
+
         /// 网络限额信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceNetworkLimitConfigs: [InstanceNetworkLimitConfig]?
-        
+
         /// 镜像限额信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageLimits: ImageLimitConfig?
-        
+
         /// 默认是否IP直通，用于模块创建，虚机购买等具有直通参数场景时的默认参数。
         public let defaultIPDirect: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case networkStorageRange = "NetworkStorageRange"
             case imageWhiteSet = "ImageWhiteSet"
@@ -53,15 +53,15 @@ extension Ecm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取配置限制信息
     ///
     /// 获取带宽硬盘等数据的限制
     @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
         self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取配置限制信息
     ///
     /// 获取带宽硬盘等数据的限制
@@ -69,15 +69,15 @@ extension Ecm {
     public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
         try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取配置限制信息
     ///
     /// 获取带宽硬盘等数据的限制
     @inlinable
-    public func describeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+    public func describeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
         self.describeConfig(DescribeConfigRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取配置限制信息
     ///
     /// 获取带宽硬盘等数据的限制

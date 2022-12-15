@@ -19,38 +19,38 @@ extension Ssl {
     public struct DeleteCertificateRequest: TCRequestModel {
         /// 证书 ID。
         public let certificateId: String
-        
-        public init (certificateId: String) {
+
+        public init(certificateId: String) {
             self.certificateId = certificateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
         }
     }
-    
+
     /// DeleteCertificate返回参数结构体
     public struct DeleteCertificateResponse: TCResponseModel {
         /// 删除结果（true：删除成功，false：删除失败）
         public let deleteResult: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deleteResult = "DeleteResult"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。
     @inlinable
-    public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertificateResponse > {
+    public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCertificateResponse> {
         self.client.execute(action: "DeleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。
@@ -58,15 +58,15 @@ extension Ssl {
     public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
         try await self.client.execute(action: "DeleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。
     @inlinable
-    public func deleteCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertificateResponse > {
+    public func deleteCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCertificateResponse> {
         self.deleteCertificate(DeleteCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。

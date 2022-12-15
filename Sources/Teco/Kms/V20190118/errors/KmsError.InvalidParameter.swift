@@ -21,52 +21,52 @@ extension TCKmsError {
             case invalidPendingWindowInDays = "InvalidParameter.InvalidPendingWindowInDays"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 解密EncryptedKeyMaterial失败。
         public static var decryptMaterialError: InvalidParameter {
             InvalidParameter(.decryptMaterialError)
         }
-        
+
         /// 计划删除时间参数非法。
         public static var invalidPendingWindowInDays: InvalidParameter {
             InvalidParameter(.invalidPendingWindowInDays)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asKmsError() -> TCKmsError {
             let code: TCKmsError.Code
             switch self.error {
-            case .decryptMaterialError: 
+            case .decryptMaterialError:
                 code = .invalidParameter_DecryptMaterialError
-            case .invalidPendingWindowInDays: 
+            case .invalidPendingWindowInDays:
                 code = .invalidParameter_InvalidPendingWindowInDays
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCKmsError(code, context: self.context)

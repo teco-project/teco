@@ -19,31 +19,31 @@ extension Faceid {
     public struct GetFaceIdTokenRequest: TCRequestModel {
         /// 本地上传照片(LOCAL)、商业库(BUSINESS)
         public let compareLib: String
-        
+
         /// CompareLib为商业库时必传。
         public let idCard: String?
-        
+
         /// CompareLib为商业库时必传。
         public let name: String?
-        
+
         /// CompareLib为上传照片比对时必传，Base64后图片最大8MB。
         /// 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
         public let imageBase64: String?
-        
+
         /// SDK中生成的Meta字符串
         public let meta: String?
-        
+
         /// 透传参数 1000长度字符串
         public let extra: String?
-        
+
         /// 默认为false，设置该参数为true后，核身过程中的视频图片将会存储在人脸核身控制台授权cos的bucket中，拉取结果时会返回对应资源完整cos地址。开通地址见https://console.cloud.tencent.com/faceid/cos
         /// 【注意】选择该参数为true后将不返回base64数据，请根据接入情况谨慎修改。
         public let useCos: Bool?
-        
+
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         public let encryption: Encryption?
-        
-        public init (compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil) {
+
+        public init(compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil) {
             self.compareLib = compareLib
             self.idCard = idCard
             self.name = name
@@ -53,7 +53,7 @@ extension Faceid {
             self.useCos = useCos
             self.encryption = encryption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case compareLib = "CompareLib"
             case idCard = "IdCard"
@@ -65,29 +65,29 @@ extension Faceid {
             case encryption = "Encryption"
         }
     }
-    
+
     /// GetFaceIdToken返回参数结构体
     public struct GetFaceIdTokenResponse: TCResponseModel {
         /// 有效期 10分钟。只能完成1次核身。
         public let faceIdToken: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case faceIdToken = "FaceIdToken"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取SDKToken
     ///
     /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
     @inlinable
-    public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdTokenResponse > {
+    public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFaceIdTokenResponse> {
         self.client.execute(action: "GetFaceIdToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SDKToken
     ///
     /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
@@ -95,15 +95,15 @@ extension Faceid {
     public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdTokenResponse {
         try await self.client.execute(action: "GetFaceIdToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取SDKToken
     ///
     /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
     @inlinable
-    public func getFaceIdToken(compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdTokenResponse > {
+    public func getFaceIdToken(compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFaceIdTokenResponse> {
         self.getFaceIdToken(GetFaceIdTokenRequest(compareLib: compareLib, idCard: idCard, name: name, imageBase64: imageBase64, meta: meta, extra: extra, useCos: useCos, encryption: encryption), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SDKToken
     ///
     /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。

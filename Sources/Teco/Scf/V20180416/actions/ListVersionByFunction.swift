@@ -19,23 +19,23 @@ extension Scf {
     public struct ListVersionByFunctionRequest: TCRequestModel {
         /// 函数名
         public let functionName: String
-        
+
         /// 函数所在命名空间
         public let namespace: String?
-        
+
         /// 数据偏移量，默认值为 0
         public let offset: UInt64?
-        
+
         /// 返回数据长度，默认值为 20
         public let limit: UInt64?
-        
+
         /// 以升序还是降序的方式返回结果，可选值 ASC 和 DESC
         public let order: String?
-        
+
         /// 根据哪个字段进行返回结果排序,支持以下字段：AddTime, ModTime
         public let orderBy: String?
-        
-        public init (functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil) {
+
+        public init(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.offset = offset
@@ -43,7 +43,7 @@ extension Scf {
             self.order = order
             self.orderBy = orderBy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case namespace = "Namespace"
@@ -53,23 +53,23 @@ extension Scf {
             case orderBy = "OrderBy"
         }
     }
-    
+
     /// ListVersionByFunction返回参数结构体
     public struct ListVersionByFunctionResponse: TCResponseModel {
         /// 函数版本。
         public let functionVersion: [String]
-        
+
         /// 函数版本列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versions: [FunctionVersion]?
-        
+
         /// 函数版本总数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case functionVersion = "FunctionVersion"
             case versions = "Versions"
@@ -77,15 +77,15 @@ extension Scf {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询函数版本
     ///
     /// 该接口根据传入的参数查询函数的版本。
     @inlinable
-    public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListVersionByFunctionResponse > {
+    public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListVersionByFunctionResponse> {
         self.client.execute(action: "ListVersionByFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询函数版本
     ///
     /// 该接口根据传入的参数查询函数的版本。
@@ -93,15 +93,15 @@ extension Scf {
     public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListVersionByFunctionResponse {
         try await self.client.execute(action: "ListVersionByFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询函数版本
     ///
     /// 该接口根据传入的参数查询函数的版本。
     @inlinable
-    public func listVersionByFunction(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListVersionByFunctionResponse > {
+    public func listVersionByFunction(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListVersionByFunctionResponse> {
         self.listVersionByFunction(ListVersionByFunctionRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, order: order, orderBy: orderBy), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询函数版本
     ///
     /// 该接口根据传入的参数查询函数的版本。

@@ -19,43 +19,43 @@ extension Ssm {
     public struct UpdateDescriptionRequest: TCRequestModel {
         /// 指定需要更新描述信息的凭据名。
         public let secretName: String
-        
+
         /// 新的描述信息，最大长度2048个字节。
         public let description: String
-        
-        public init (secretName: String, description: String) {
+
+        public init(secretName: String, description: String) {
             self.secretName = secretName
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case description = "Description"
         }
     }
-    
+
     /// UpdateDescription返回参数结构体
     public struct UpdateDescriptionResponse: TCResponseModel {
         /// 凭据名称。
         public let secretName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新凭据描述信息
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
-    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDescriptionResponse > {
+    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDescriptionResponse> {
         self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新凭据描述信息
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
@@ -63,15 +63,15 @@ extension Ssm {
     public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
         try await self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新凭据描述信息
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
-    public func updateDescription(secretName: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDescriptionResponse > {
+    public func updateDescription(secretName: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDescriptionResponse> {
         self.updateDescription(UpdateDescriptionRequest(secretName: secretName, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新凭据描述信息
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。

@@ -19,34 +19,34 @@ extension Teo {
     public struct DeleteZoneRequest: TCRequestModel {
         /// 站点 ID。
         public let zoneId: String
-        
-        public init (zoneId: String) {
+
+        public init(zoneId: String) {
             self.zoneId = zoneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
         }
     }
-    
+
     /// DeleteZone返回参数结构体
     public struct DeleteZoneResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除站点
     ///
     /// 删除站点。
     @inlinable
-    public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteZoneResponse > {
+    public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteZoneResponse> {
         self.client.execute(action: "DeleteZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除站点
     ///
     /// 删除站点。
@@ -54,15 +54,15 @@ extension Teo {
     public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
         try await self.client.execute(action: "DeleteZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除站点
     ///
     /// 删除站点。
     @inlinable
-    public func deleteZone(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteZoneResponse > {
+    public func deleteZone(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteZoneResponse> {
         self.deleteZone(DeleteZoneRequest(zoneId: zoneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除站点
     ///
     /// 删除站点。

@@ -19,49 +19,49 @@ extension Cwp {
     public struct CreateProtectServerRequest: TCRequestModel {
         /// 防护目录地址
         public let protectDir: String
-        
+
         /// 防护机器 信息
         public let protectHostConfig: [ProtectHostConfig]
-        
-        public init (protectDir: String, protectHostConfig: [ProtectHostConfig]) {
+
+        public init(protectDir: String, protectHostConfig: [ProtectHostConfig]) {
             self.protectDir = protectDir
             self.protectHostConfig = protectHostConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case protectDir = "ProtectDir"
             case protectHostConfig = "ProtectHostConfig"
         }
     }
-    
+
     /// CreateProtectServer返回参数结构体
     public struct CreateProtectServerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加网站防护服务器
     @inlinable
-    public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtectServerResponse > {
+    public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtectServerResponse> {
         self.client.execute(action: "CreateProtectServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加网站防护服务器
     @inlinable
     public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {
         try await self.client.execute(action: "CreateProtectServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加网站防护服务器
     @inlinable
-    public func createProtectServer(protectDir: String, protectHostConfig: [ProtectHostConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtectServerResponse > {
+    public func createProtectServer(protectDir: String, protectHostConfig: [ProtectHostConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtectServerResponse> {
         self.createProtectServer(CreateProtectServerRequest(protectDir: protectDir, protectHostConfig: protectHostConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加网站防护服务器
     @inlinable
     public func createProtectServer(protectDir: String, protectHostConfig: [ProtectHostConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {

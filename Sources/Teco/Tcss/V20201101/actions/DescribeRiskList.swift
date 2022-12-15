@@ -19,24 +19,24 @@ extension Tcss {
     public struct DescribeRiskListRequest: TCRequestModel {
         /// 要查询的集群ID，如果不指定，则查询用户所有的风险项
         public let clusterId: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 每次查询的最大记录数量
         public let limit: UInt64?
-        
+
         /// Name - String
         /// Name 可取值：RiskLevel风险等级, RiskTarget检查对象，风险对象,RiskType风险类别,RiskAttribute检测项所属的风险类型,Name
         public let filters: [ComplianceFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式 asc,desc
         public let order: String?
-        
-        public init (clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -44,7 +44,7 @@ extension Tcss {
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case offset = "Offset"
@@ -54,33 +54,33 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeRiskList返回参数结构体
     public struct DescribeRiskListResponse: TCResponseModel {
         /// 风险详情数组
         public let clusterRiskItems: [ClusterRiskItem]
-        
+
         /// 风险项的总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterRiskItems = "ClusterRiskItems"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群风险项列表
     ///
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
     @inlinable
-    public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskListResponse > {
+    public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskListResponse> {
         self.client.execute(action: "DescribeRiskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群风险项列表
     ///
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
@@ -88,15 +88,15 @@ extension Tcss {
     public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskListResponse {
         try await self.client.execute(action: "DescribeRiskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群风险项列表
     ///
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
     @inlinable
-    public func describeRiskList(clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskListResponse > {
+    public func describeRiskList(clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskListResponse> {
         self.describeRiskList(DescribeRiskListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群风险项列表
     ///
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤

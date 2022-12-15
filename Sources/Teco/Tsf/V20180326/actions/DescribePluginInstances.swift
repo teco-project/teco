@@ -19,23 +19,23 @@ extension Tsf {
     public struct DescribePluginInstancesRequest: TCRequestModel {
         /// 分组或者API的ID
         public let scopeValue: String
-        
+
         /// 绑定: true; 未绑定: false
         public let bound: Bool
-        
+
         /// 翻页偏移量
         public let offset: Int64
-        
+
         /// 每页展示的条数
         public let limit: Int64
-        
+
         /// 插件类型
         public let type: String?
-        
+
         /// 搜索关键字
         public let searchWord: String?
-        
-        public init (scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil) {
+
+        public init(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil) {
             self.scopeValue = scopeValue
             self.bound = bound
             self.offset = offset
@@ -43,7 +43,7 @@ extension Tsf {
             self.type = type
             self.searchWord = searchWord
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scopeValue = "ScopeValue"
             case bound = "Bound"
@@ -53,29 +53,29 @@ extension Tsf {
             case searchWord = "SearchWord"
         }
     }
-    
+
     /// DescribePluginInstances返回参数结构体
     public struct DescribePluginInstancesResponse: TCResponseModel {
         /// 插件信息列表
         public let result: TsfPageGatewayPlugin
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询网关分组或API绑定（或未绑定）的插件列表
     ///
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
     @inlinable
-    public func describePluginInstances(_ input: DescribePluginInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginInstancesResponse > {
+    public func describePluginInstances(_ input: DescribePluginInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginInstancesResponse> {
         self.client.execute(action: "DescribePluginInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询网关分组或API绑定（或未绑定）的插件列表
     ///
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
@@ -83,15 +83,15 @@ extension Tsf {
     public func describePluginInstances(_ input: DescribePluginInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginInstancesResponse {
         try await self.client.execute(action: "DescribePluginInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询网关分组或API绑定（或未绑定）的插件列表
     ///
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
     @inlinable
-    public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginInstancesResponse > {
+    public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginInstancesResponse> {
         self.describePluginInstances(DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询网关分组或API绑定（或未绑定）的插件列表
     ///
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表

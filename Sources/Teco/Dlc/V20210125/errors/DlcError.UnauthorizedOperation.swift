@@ -32,155 +32,155 @@ extension TCDlcError {
             case userNotExist = "UnauthorizedOperation.UserNotExist"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 子用户不是管理员，无权将用户添加到工作组。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var addUsersToWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.addUsersToWorkgroup)
         }
-        
+
         /// 子用户不是管理员，无权绑定工作组到用户。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var bindWorkgroupsToUser: UnauthorizedOperation {
             UnauthorizedOperation(.bindWorkgroupsToUser)
         }
-        
+
         /// 子用户不是管理员，无权创建工作组。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var createWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.createWorkgroup)
         }
-        
+
         /// 子用户不是管理员，无权删除用户。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var deleteUser: UnauthorizedOperation {
             UnauthorizedOperation(.deleteUser)
         }
-        
+
         /// 子用户不是管理员，无权将用户从工作组解绑。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var deleteUsersFromWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.deleteUsersFromWorkgroup)
         }
-        
+
         /// 子用户不是管理员，无权删除工作组。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var deleteWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.deleteWorkgroup)
         }
-        
+
         /// 子用户无权授予特定权限。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var grantPolicy: UnauthorizedOperation {
             UnauthorizedOperation(.grantPolicy)
         }
-        
+
         /// 子用户不是管理员，无权修改用户信息。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var modifyUserInfo: UnauthorizedOperation {
             UnauthorizedOperation(.modifyUserInfo)
         }
-        
+
         /// 子用户不是管理员，无权修改工作组信息。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var modifyWorkgroupInfo: UnauthorizedOperation {
             UnauthorizedOperation(.modifyWorkgroupInfo)
         }
-        
+
         /// 子用户无权取消特定权限。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var revokePolicy: UnauthorizedOperation {
             UnauthorizedOperation(.revokePolicy)
         }
-        
+
         /// 子用户不是管理员，无权将工作组和用户解绑。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var unbindWorkgroupsFromUser: UnauthorizedOperation {
             UnauthorizedOperation(.unbindWorkgroupsFromUser)
         }
-        
+
         /// 子用户无权使用计算引擎。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var useComputingEngine: UnauthorizedOperation {
             UnauthorizedOperation(.useComputingEngine)
         }
-        
+
         /// 子用户不存在。
         ///
         /// 请DLC管理员前往【权限管理】新建用户并授权后重试操作
         public static var userNotExist: UnauthorizedOperation {
             UnauthorizedOperation(.userNotExist)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asDlcError() -> TCDlcError {
             let code: TCDlcError.Code
             switch self.error {
-            case .addUsersToWorkgroup: 
+            case .addUsersToWorkgroup:
                 code = .unauthorizedOperation_AddUsersToWorkgroup
-            case .bindWorkgroupsToUser: 
+            case .bindWorkgroupsToUser:
                 code = .unauthorizedOperation_BindWorkgroupsToUser
-            case .createWorkgroup: 
+            case .createWorkgroup:
                 code = .unauthorizedOperation_CreateWorkgroup
-            case .deleteUser: 
+            case .deleteUser:
                 code = .unauthorizedOperation_DeleteUser
-            case .deleteUsersFromWorkgroup: 
+            case .deleteUsersFromWorkgroup:
                 code = .unauthorizedOperation_DeleteUsersFromWorkgroup
-            case .deleteWorkgroup: 
+            case .deleteWorkgroup:
                 code = .unauthorizedOperation_DeleteWorkgroup
-            case .grantPolicy: 
+            case .grantPolicy:
                 code = .unauthorizedOperation_GrantPolicy
-            case .modifyUserInfo: 
+            case .modifyUserInfo:
                 code = .unauthorizedOperation_ModifyUserInfo
-            case .modifyWorkgroupInfo: 
+            case .modifyWorkgroupInfo:
                 code = .unauthorizedOperation_ModifyWorkgroupInfo
-            case .revokePolicy: 
+            case .revokePolicy:
                 code = .unauthorizedOperation_RevokePolicy
-            case .unbindWorkgroupsFromUser: 
+            case .unbindWorkgroupsFromUser:
                 code = .unauthorizedOperation_UnbindWorkgroupsFromUser
-            case .useComputingEngine: 
+            case .useComputingEngine:
                 code = .unauthorizedOperation_UseComputingEngine
-            case .userNotExist: 
+            case .userNotExist:
                 code = .unauthorizedOperation_UserNotExist
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCDlcError(code, context: self.context)

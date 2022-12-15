@@ -87,516 +87,516 @@ extension TCTbaasError {
             case userInBlackList = "FailedOperation.UserInBlackList"
             case userNoJoinDemoCluster = "FailedOperation.UserNoJoinDemoCluster"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 为带来更好的服务与体验，长安链体验网络维护升级中，请稍后再试。
         public static var baaSStopServing: FailedOperation {
             FailedOperation(.baaSStopServing)
         }
-        
+
         /// Bcos网络异常。
         public static var bcosService: FailedOperation {
             FailedOperation(.bcosService)
         }
-        
+
         /// 检查CSR文件非法。
         public static var caCheckCsr: FailedOperation {
             FailedOperation(.caCheckCsr)
         }
-        
+
         /// 数据库操作错误。
         public static var caDbOption: FailedOperation {
             FailedOperation(.caDbOption)
         }
-        
+
         /// 证书已经存在。
         public static var caExsit: FailedOperation {
             FailedOperation(.caExsit)
         }
-        
+
         /// 产生密钥对失败。
         public static var caGenkey: FailedOperation {
             FailedOperation(.caGenkey)
         }
-        
+
         /// 初始化CA失败。
         public static var caInit: FailedOperation {
             FailedOperation(.caInit)
         }
-        
+
         /// 输入参数非法。
         public static var caInputParam: FailedOperation {
             FailedOperation(.caInputParam)
         }
-        
+
         /// 证书不存在。
         public static var caNoExist: FailedOperation {
             FailedOperation(.caNoExist)
         }
-        
+
         /// 注销证书失败。
         public static var caRevoke: FailedOperation {
             FailedOperation(.caRevoke)
         }
-        
+
         /// 根证书不存在。
         public static var caRootNonExist: FailedOperation {
             FailedOperation(.caRootNonExist)
         }
-        
+
         /// CA内部错误。
         public static var caService: FailedOperation {
             FailedOperation(.caService)
         }
-        
+
         /// 签发证书失败。
         public static var caSignCert: FailedOperation {
             FailedOperation(.caSignCert)
         }
-        
+
         /// CFCA云API申请证书失败。
         public static var caYunApiApplyCert: FailedOperation {
             FailedOperation(.caYunApiApplyCert)
         }
-        
+
         /// CFCA云API错误。
         public static var caYunApiCommon: FailedOperation {
             FailedOperation(.caYunApiCommon)
         }
-        
+
         /// 合约已在通道实例化。
         public static var chainCodeChannel: FailedOperation {
             FailedOperation(.chainCodeChannel)
         }
-        
+
         /// 合约已存在。
         public static var chainCodeExist: FailedOperation {
             FailedOperation(.chainCodeExist)
         }
-        
+
         /// 合约实例化错误。
         public static var chainCodeInit: FailedOperation {
             FailedOperation(.chainCodeInit)
         }
-        
+
         /// 合约安装错误。
         public static var chainCodeInstall: FailedOperation {
             FailedOperation(.chainCodeInstall)
         }
-        
+
         /// Bcos不能编译已经部署的合约。
         public static var compileDeployedContract: FailedOperation {
             FailedOperation(.compileDeployedContract)
         }
-        
+
         /// Bcos不能编译正在部署的合约。
         public static var compileDeployingContract: FailedOperation {
             FailedOperation(.compileDeployingContract)
         }
-        
+
         /// Bcos只能由该合约所属机构执行操作。
         public static var contractEditedByOtherAgency: FailedOperation {
             FailedOperation(.contractEditedByOtherAgency)
         }
-        
+
         /// 数据库操作异常。
         public static var databaseException: FailedOperation {
             FailedOperation(.databaseException)
         }
-        
+
         /// Bcos合约已部署，无法删除。
         public static var deleteDeployedContract: FailedOperation {
             FailedOperation(.deleteDeployedContract)
         }
-        
+
         /// Bcos合约正在部署，无法删除。
         public static var deleteDeployingContract: FailedOperation {
             FailedOperation(.deleteDeployingContract)
         }
-        
+
         /// Bcos不能部署未编译的合约。
         public static var deployContractNotCompile: FailedOperation {
             FailedOperation(.deployContractNotCompile)
         }
-        
+
         /// 区块详情查询失败。
         public static var fabricBlockDetail: FailedOperation {
             FailedOperation(.fabricBlockDetail)
         }
-        
+
         /// 区块列表查询失败。
         public static var fabricBlockQuery: FailedOperation {
             FailedOperation(.fabricBlockQuery)
         }
-        
+
         /// 提交失败。
         public static var fabricCommit: FailedOperation {
             FailedOperation(.fabricCommit)
         }
-        
+
         /// event hub失败。
         public static var fabricEventHub: FailedOperation {
             FailedOperation(.fabricEventHub)
         }
-        
+
         /// 区块链网络请求异常。
         public static var fabricManage: FailedOperation {
             FailedOperation(.fabricManage)
         }
-        
+
         /// 背书失败。
         public static var fabricProposal: FailedOperation {
             FailedOperation(.fabricProposal)
         }
-        
+
         /// fabric请求参数错误。
         public static var fabricRequestParams: FailedOperation {
             FailedOperation(.fabricRequestParams)
         }
-        
+
         /// 参数验证失败。
         public static var fabricRequstParams: FailedOperation {
             FailedOperation(.fabricRequstParams)
         }
-        
+
         /// 交易详情查询失败。
         public static var fabricTransactionDetail: FailedOperation {
             FailedOperation(.fabricTransactionDetail)
         }
-        
+
         /// 交易列表查询失败。
         public static var fabricTransactionQuery: FailedOperation {
             FailedOperation(.fabricTransactionQuery)
         }
-        
+
         /// Txid 查询失败。
         public static var fabricTxIdQuery: FailedOperation {
             FailedOperation(.fabricTxIdQuery)
         }
-        
+
         /// fabric invoke交易错误。
         public static var fabricTxInvoke: FailedOperation {
             FailedOperation(.fabricTxInvoke)
         }
-        
+
         /// fabric query交易错误。
         public static var fabricTxQuery: FailedOperation {
             FailedOperation(.fabricTxQuery)
         }
-        
+
         /// fabric query交易错误, 无正确。
         public static var fabricTxQueryNone: FailedOperation {
             FailedOperation(.fabricTxQueryNone)
         }
-        
+
         /// Bcos前置服务调用失败。
         public static var frontRequestFail: FailedOperation {
             FailedOperation(.frontRequestFail)
         }
-        
+
         /// 用户非法操作。
         public static var groupIllegal: FailedOperation {
             FailedOperation(.groupIllegal)
         }
-        
+
         /// 无效合约。
         public static var invalidChaincode: FailedOperation {
             FailedOperation(.invalidChaincode)
         }
-        
+
         /// 无效通道。
         public static var invalidChannel: FailedOperation {
             FailedOperation(.invalidChannel)
         }
-        
+
         /// 无效网络。
         public static var invalidCluster: FailedOperation {
             FailedOperation(.invalidCluster)
         }
-        
+
         /// 无效组织。
         public static var invalidGroup: FailedOperation {
             FailedOperation(.invalidGroup)
         }
-        
+
         /// Bcos无效的群组编号。
         public static var invalidGroupPk: FailedOperation {
             FailedOperation(.invalidGroupPk)
         }
-        
+
         /// Bcos无效的私钥用户信息。
         public static var invalidKeyUser: FailedOperation {
             FailedOperation(.invalidKeyUser)
         }
-        
+
         /// 无效操作。
         public static var invalidOperation: FailedOperation {
             FailedOperation(.invalidOperation)
         }
-        
+
         /// 无效节点。
         public static var invalidPeer: FailedOperation {
             FailedOperation(.invalidPeer)
         }
-        
+
         /// 无效资源。
         public static var invalidResource: FailedOperation {
             FailedOperation(.invalidResource)
         }
-        
+
         /// 交易请求异常。
         ///
         /// ManageService service internal error, please try again later or contact with us.
         public static var manageService: FailedOperation {
             FailedOperation(.manageService)
         }
-        
+
         /// Bcos新建合约失败。
         public static var newContract: FailedOperation {
             FailedOperation(.newContract)
         }
-        
+
         /// 合约没有在通道初始化。
         public static var noChainCodeChannel: FailedOperation {
             FailedOperation(.noChainCodeChannel)
         }
-        
+
         /// 组织没有加入合约。
         public static var noChainCodeGroup: FailedOperation {
             FailedOperation(.noChainCodeGroup)
         }
-        
+
         /// 合约没有在节点安装。
         public static var noChainCodePeer: FailedOperation {
             FailedOperation(.noChainCodePeer)
         }
-        
+
         /// 组织没有加入通道。
         public static var noChannelGroup: FailedOperation {
             FailedOperation(.noChannelGroup)
         }
-        
+
         /// 节点没有加入通道。
         public static var noChannelPeer: FailedOperation {
             FailedOperation(.noChannelPeer)
         }
-        
+
         /// 对象不存在。
         public static var noObject: FailedOperation {
             FailedOperation(.noObject)
         }
-        
+
         /// 没有可用节点。
         public static var noPeer: FailedOperation {
             FailedOperation(.noPeer)
         }
-        
+
         /// Bcos合约未部署。
         public static var notDeployedContract: FailedOperation {
             FailedOperation(.notDeployedContract)
         }
-        
+
         /// 服务调用失败，请检查参数。
         public static var serviceFailed: FailedOperation {
             FailedOperation(.serviceFailed)
         }
-        
+
         /// 操作状态不匹配。
         public static var statusNoMatch: FailedOperation {
             FailedOperation(.statusNoMatch)
         }
-        
+
         /// 后台服务请求超时。
         public static var timeOutUrl: FailedOperation {
             FailedOperation(.timeOutUrl)
         }
-        
+
         /// 交易执行超时，请稍后再试。
         public static var transactionTimeout: FailedOperation {
             FailedOperation(.transactionTimeout)
         }
-        
+
         /// Bcos更新已部署合约。
         public static var updateDeployedContract: FailedOperation {
             FailedOperation(.updateDeployedContract)
         }
-        
+
         /// 获取用户认证类型出错。
         public static var userAuthType: FailedOperation {
             FailedOperation(.userAuthType)
         }
-        
+
         /// 您因违反用户协议，目前无法使用长安链体验网络。
         public static var userInBlackList: FailedOperation {
             FailedOperation(.userInBlackList)
         }
-        
+
         /// 用户未加入体验网络。
         public static var userNoJoinDemoCluster: FailedOperation {
             FailedOperation(.userNoJoinDemoCluster)
         }
-        
+
         public func asTbaasError() -> TCTbaasError {
             let code: TCTbaasError.Code
             switch self.error {
-            case .baaSStopServing: 
+            case .baaSStopServing:
                 code = .failedOperation_BaaSStopServing
-            case .bcosService: 
+            case .bcosService:
                 code = .failedOperation_BcosService
-            case .caCheckCsr: 
+            case .caCheckCsr:
                 code = .failedOperation_CaCheckCsr
-            case .caDbOption: 
+            case .caDbOption:
                 code = .failedOperation_CaDbOption
-            case .caExsit: 
+            case .caExsit:
                 code = .failedOperation_CaExsit
-            case .caGenkey: 
+            case .caGenkey:
                 code = .failedOperation_CaGenkey
-            case .caInit: 
+            case .caInit:
                 code = .failedOperation_CaInit
-            case .caInputParam: 
+            case .caInputParam:
                 code = .failedOperation_CaInputParam
-            case .caNoExist: 
+            case .caNoExist:
                 code = .failedOperation_CaNoExist
-            case .caRevoke: 
+            case .caRevoke:
                 code = .failedOperation_CaRevoke
-            case .caRootNonExist: 
+            case .caRootNonExist:
                 code = .failedOperation_CaRootNonExist
-            case .caService: 
+            case .caService:
                 code = .failedOperation_CaService
-            case .caSignCert: 
+            case .caSignCert:
                 code = .failedOperation_CaSignCert
-            case .caYunApiApplyCert: 
+            case .caYunApiApplyCert:
                 code = .failedOperation_CaYunApiApplyCert
-            case .caYunApiCommon: 
+            case .caYunApiCommon:
                 code = .failedOperation_CaYunApiCommon
-            case .chainCodeChannel: 
+            case .chainCodeChannel:
                 code = .failedOperation_ChainCodeChannel
-            case .chainCodeExist: 
+            case .chainCodeExist:
                 code = .failedOperation_ChainCodeExist
-            case .chainCodeInit: 
+            case .chainCodeInit:
                 code = .failedOperation_ChainCodeInit
-            case .chainCodeInstall: 
+            case .chainCodeInstall:
                 code = .failedOperation_ChainCodeInstall
-            case .compileDeployedContract: 
+            case .compileDeployedContract:
                 code = .failedOperation_CompileDeployedContract
-            case .compileDeployingContract: 
+            case .compileDeployingContract:
                 code = .failedOperation_CompileDeployingContract
-            case .contractEditedByOtherAgency: 
+            case .contractEditedByOtherAgency:
                 code = .failedOperation_ContractEditedByOtherAgency
-            case .databaseException: 
+            case .databaseException:
                 code = .failedOperation_DatabaseException
-            case .deleteDeployedContract: 
+            case .deleteDeployedContract:
                 code = .failedOperation_DeleteDeployedContract
-            case .deleteDeployingContract: 
+            case .deleteDeployingContract:
                 code = .failedOperation_DeleteDeployingContract
-            case .deployContractNotCompile: 
+            case .deployContractNotCompile:
                 code = .failedOperation_DeployContractNotCompile
-            case .fabricBlockDetail: 
+            case .fabricBlockDetail:
                 code = .failedOperation_FabricBlockDetail
-            case .fabricBlockQuery: 
+            case .fabricBlockQuery:
                 code = .failedOperation_FabricBlockQuery
-            case .fabricCommit: 
+            case .fabricCommit:
                 code = .failedOperation_FabricCommit
-            case .fabricEventHub: 
+            case .fabricEventHub:
                 code = .failedOperation_FabricEventHub
-            case .fabricManage: 
+            case .fabricManage:
                 code = .failedOperation_FabricManage
-            case .fabricProposal: 
+            case .fabricProposal:
                 code = .failedOperation_FabricProposal
-            case .fabricRequestParams: 
+            case .fabricRequestParams:
                 code = .failedOperation_FabricRequestParams
-            case .fabricRequstParams: 
+            case .fabricRequstParams:
                 code = .failedOperation_FabricRequstParams
-            case .fabricTransactionDetail: 
+            case .fabricTransactionDetail:
                 code = .failedOperation_FabricTransactionDetail
-            case .fabricTransactionQuery: 
+            case .fabricTransactionQuery:
                 code = .failedOperation_FabricTransactionQuery
-            case .fabricTxIdQuery: 
+            case .fabricTxIdQuery:
                 code = .failedOperation_FabricTxIdQuery
-            case .fabricTxInvoke: 
+            case .fabricTxInvoke:
                 code = .failedOperation_FabricTxInvoke
-            case .fabricTxQuery: 
+            case .fabricTxQuery:
                 code = .failedOperation_FabricTxQuery
-            case .fabricTxQueryNone: 
+            case .fabricTxQueryNone:
                 code = .failedOperation_FabricTxQueryNone
-            case .frontRequestFail: 
+            case .frontRequestFail:
                 code = .failedOperation_FrontRequestFail
-            case .groupIllegal: 
+            case .groupIllegal:
                 code = .failedOperation_GroupIllegal
-            case .invalidChaincode: 
+            case .invalidChaincode:
                 code = .failedOperation_InvalidChaincode
-            case .invalidChannel: 
+            case .invalidChannel:
                 code = .failedOperation_InvalidChannel
-            case .invalidCluster: 
+            case .invalidCluster:
                 code = .failedOperation_InvalidCluster
-            case .invalidGroup: 
+            case .invalidGroup:
                 code = .failedOperation_InvalidGroup
-            case .invalidGroupPk: 
+            case .invalidGroupPk:
                 code = .failedOperation_InvalidGroupPk
-            case .invalidKeyUser: 
+            case .invalidKeyUser:
                 code = .failedOperation_InvalidKeyUser
-            case .invalidOperation: 
+            case .invalidOperation:
                 code = .failedOperation_InvalidOperation
-            case .invalidPeer: 
+            case .invalidPeer:
                 code = .failedOperation_InvalidPeer
-            case .invalidResource: 
+            case .invalidResource:
                 code = .failedOperation_InvalidResource
-            case .manageService: 
+            case .manageService:
                 code = .failedOperation_ManageService
-            case .newContract: 
+            case .newContract:
                 code = .failedOperation_NewContract
-            case .noChainCodeChannel: 
+            case .noChainCodeChannel:
                 code = .failedOperation_NoChainCodeChannel
-            case .noChainCodeGroup: 
+            case .noChainCodeGroup:
                 code = .failedOperation_NoChainCodeGroup
-            case .noChainCodePeer: 
+            case .noChainCodePeer:
                 code = .failedOperation_NoChainCodePeer
-            case .noChannelGroup: 
+            case .noChannelGroup:
                 code = .failedOperation_NoChannelGroup
-            case .noChannelPeer: 
+            case .noChannelPeer:
                 code = .failedOperation_NoChannelPeer
-            case .noObject: 
+            case .noObject:
                 code = .failedOperation_NoObject
-            case .noPeer: 
+            case .noPeer:
                 code = .failedOperation_NoPeer
-            case .notDeployedContract: 
+            case .notDeployedContract:
                 code = .failedOperation_NotDeployedContract
-            case .serviceFailed: 
+            case .serviceFailed:
                 code = .failedOperation_ServiceFailed
-            case .statusNoMatch: 
+            case .statusNoMatch:
                 code = .failedOperation_StatusNoMatch
-            case .timeOutUrl: 
+            case .timeOutUrl:
                 code = .failedOperation_TimeOutUrl
-            case .transactionTimeout: 
+            case .transactionTimeout:
                 code = .failedOperation_TransactionTimeout
-            case .updateDeployedContract: 
+            case .updateDeployedContract:
                 code = .failedOperation_UpdateDeployedContract
-            case .userAuthType: 
+            case .userAuthType:
                 code = .failedOperation_UserAuthType
-            case .userInBlackList: 
+            case .userInBlackList:
                 code = .failedOperation_UserInBlackList
-            case .userNoJoinDemoCluster: 
+            case .userNoJoinDemoCluster:
                 code = .failedOperation_UserNoJoinDemoCluster
             }
             return TCTbaasError(code, context: self.context)

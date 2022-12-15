@@ -17,40 +17,40 @@
 extension Tcss {
     /// DescribeImageRegistryTimingScanTask请求参数结构体
     public struct DescribeImageRegistryTimingScanTaskRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeImageRegistryTimingScanTask返回参数结构体
     public struct DescribeImageRegistryTimingScanTaskResponse: TCResponseModel {
         /// 定时扫描开关
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enable: Bool?
-        
+
         /// 定时任务扫描时间
         public let scanTime: String
-        
+
         /// 定时扫描间隔
         public let scanPeriod: UInt64
-        
+
         /// 扫描类型数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scanType: [String]?
-        
+
         /// 扫描全部镜像
         public let all: Bool
-        
+
         /// 自定义扫描镜像
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let images: [ImageInfo]?
-        
+
         /// 自动以扫描镜像Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: [UInt64]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case enable = "Enable"
             case scanTime = "ScanTime"
@@ -62,25 +62,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 镜像仓库查看定时任务
     @inlinable
-    public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryTimingScanTaskResponse > {
+    public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRegistryTimingScanTaskResponse> {
         self.client.execute(action: "DescribeImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像仓库查看定时任务
     @inlinable
     public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryTimingScanTaskResponse {
         try await self.client.execute(action: "DescribeImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 镜像仓库查看定时任务
     @inlinable
-    public func describeImageRegistryTimingScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryTimingScanTaskResponse > {
+    public func describeImageRegistryTimingScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRegistryTimingScanTaskResponse> {
         self.describeImageRegistryTimingScanTask(DescribeImageRegistryTimingScanTaskRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像仓库查看定时任务
     @inlinable
     public func describeImageRegistryTimingScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryTimingScanTaskResponse {

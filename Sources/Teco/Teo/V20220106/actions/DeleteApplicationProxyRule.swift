@@ -19,58 +19,58 @@ extension Teo {
     public struct DeleteApplicationProxyRuleRequest: TCRequestModel {
         /// 站点ID
         public let zoneId: String
-        
+
         /// 代理ID
         public let proxyId: String
-        
+
         /// 规则ID
         public let ruleId: String
-        
-        public init (zoneId: String, proxyId: String, ruleId: String) {
+
+        public init(zoneId: String, proxyId: String, ruleId: String) {
             self.zoneId = zoneId
             self.proxyId = proxyId
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case proxyId = "ProxyId"
             case ruleId = "RuleId"
         }
     }
-    
+
     /// DeleteApplicationProxyRule返回参数结构体
     public struct DeleteApplicationProxyRuleResponse: TCResponseModel {
         /// 规则ID
         public let ruleId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除应用代理规则
     @inlinable
-    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationProxyRuleResponse > {
+    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyRuleResponse> {
         self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用代理规则
     @inlinable
     public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
         try await self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除应用代理规则
     @inlinable
-    public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationProxyRuleResponse > {
+    public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyRuleResponse> {
         self.deleteApplicationProxyRule(DeleteApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用代理规则
     @inlinable
     public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {

@@ -19,7 +19,7 @@ extension Ecm {
     public struct DescribeSubnetsRequest: TCRequestModel {
         /// 子网实例ID查询。形如：subnet-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定SubnetIds和Filters。
         public let subnetIds: [String]?
-        
+
         /// 过滤条件，参数不支持同时指定SubnetIds和Filters。
         /// subnet-id - String - Subnet实例名称。
         /// subnet-name - String - 子网名称。只支持单值的模糊查询。
@@ -31,20 +31,20 @@ extension Ecm {
         /// tag-key - String -是否必填：否- 按照标签键进行过滤。
         /// tag:tag-key - String - 是否必填：否 - 按照标签键值对进行过滤。
         public let filters: [Filter]?
-        
+
         /// 偏移量
         public let offset: String?
-        
+
         /// 返回数量
         public let limit: String?
-        
+
         /// ECM 地域
         public let ecmRegion: String?
-        
+
         /// 排序方式：time时间倒序, default按照网络规划排序
         public let sort: String?
-        
-        public init (subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil) {
+
+        public init(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil) {
             self.subnetIds = subnetIds
             self.filters = filters
             self.offset = offset
@@ -52,7 +52,7 @@ extension Ecm {
             self.ecmRegion = ecmRegion
             self.sort = sort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subnetIds = "SubnetIds"
             case filters = "Filters"
@@ -62,44 +62,44 @@ extension Ecm {
             case sort = "Sort"
         }
     }
-    
+
     /// DescribeSubnets返回参数结构体
     public struct DescribeSubnetsResponse: TCResponseModel {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
-        
+
         /// 子网对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetSet: [Subnet]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case subnetSet = "SubnetSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询子网列表
     @inlinable
-    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetsResponse > {
+    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
         self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询子网列表
     @inlinable
     public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
         try await self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询子网列表
     @inlinable
-    public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetsResponse > {
+    public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
         self.describeSubnets(DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询子网列表
     @inlinable
     public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {

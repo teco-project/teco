@@ -19,32 +19,32 @@ extension Cat {
     public struct ResumeProbeTaskRequest: TCRequestModel {
         /// 任务 ID
         public let taskIds: [String]
-        
-        public init (taskIds: [String]) {
+
+        public init(taskIds: [String]) {
             self.taskIds = taskIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
         }
     }
-    
+
     /// ResumeProbeTask返回参数结构体
     public struct ResumeProbeTaskResponse: TCResponseModel {
         /// 任务总量
         public let total: Int64
-        
+
         /// 任务成功量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successCount: Int64?
-        
+
         /// 任务执行详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [TaskResult]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case successCount = "SuccessCount"
@@ -52,25 +52,25 @@ extension Cat {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 恢复拨测任务
     @inlinable
-    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeProbeTaskResponse > {
+    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeProbeTaskResponse> {
         self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复拨测任务
     @inlinable
     public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {
         try await self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 恢复拨测任务
     @inlinable
-    public func resumeProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeProbeTaskResponse > {
+    public func resumeProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeProbeTaskResponse> {
         self.resumeProbeTask(ResumeProbeTaskRequest(taskIds: taskIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复拨测任务
     @inlinable
     public func resumeProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {

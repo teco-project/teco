@@ -22,7 +22,7 @@ extension Live {
         /// 1：转码包
         /// 2: 连麦包。
         public let packageType: Int64
-        
+
         /// 排序规则:
         /// 1. BuyTimeDesc： 最新购买的排在最前面
         /// 2. BuyTimeAsc： 最老购买的排在最前面
@@ -31,21 +31,21 @@ extension Live {
         /// 注意：
         /// 1. PackageType 为 2（连麦包） 的时候，不支持 3、4 排序。
         public let orderBy: String?
-        
+
         /// 取得第几页的数据，和 PageSize 同时传递才会生效。
         public let pageNum: Int64?
-        
+
         /// 分页大小，和 PageNum 同时传递才会生效。
         /// 取值：10 ～ 100 之间的任意整数。
         public let pageSize: Int64?
-        
-        public init (packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil) {
+
+        public init(packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil) {
             self.packageType = packageType
             self.orderBy = orderBy
             self.pageNum = pageNum
             self.pageSize = pageSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case packageType = "PackageType"
             case orderBy = "OrderBy"
@@ -53,13 +53,13 @@ extension Live {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// DescribeLivePackageInfo返回参数结构体
     public struct DescribeLivePackageInfoResponse: TCResponseModel {
         /// 套餐包信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let livePackageInfoList: [LivePackageInfo]?
-        
+
         /// 套餐包当前计费方式:
         /// -1: 无计费方式或获取失败
         /// 0: 无计费方式
@@ -72,23 +72,23 @@ extension Live {
         /// 304: 日结流量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageBillMode: Int64?
-        
+
         /// 总页数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalPage: Int64?
-        
+
         /// 数据总条数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalNum: Int64?
-        
+
         /// 当前页数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageNum: Int64?
-        
+
         /// 当前每页数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageSize: Int64?
-        
+
         /// 当请求参数 PackageType = 0 时生效，逗号分隔，从第一个到最后一个分别表示：
         /// 标准直播，中国大陆（境内全地区）计费方式。
         /// 标准直播，国际/港澳台（境外多地区）计费方式。
@@ -96,10 +96,10 @@ extension Live {
         /// 快直播，国际/港澳台（境外多地区）计费方式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fluxPackageBillMode: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case livePackageInfoList = "LivePackageInfoList"
             case packageBillMode = "PackageBillMode"
@@ -111,15 +111,15 @@ extension Live {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
-    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePackageInfoResponse > {
+    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePackageInfoResponse> {
         self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
@@ -127,15 +127,15 @@ extension Live {
     public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePackageInfoResponse {
         try await self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
-    public func describeLivePackageInfo(packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePackageInfoResponse > {
+    public func describeLivePackageInfo(packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePackageInfoResponse> {
         self.describeLivePackageInfo(DescribeLivePackageInfoRequest(packageType: packageType, orderBy: orderBy, pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。

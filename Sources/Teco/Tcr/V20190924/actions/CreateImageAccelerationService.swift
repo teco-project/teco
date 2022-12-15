@@ -19,26 +19,26 @@ extension Tcr {
     public struct CreateImageAccelerationServiceRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 创建CFS的归属的VPCID
         public let vpcId: String
-        
+
         /// 创建CFS的归属的子网ID
         public let subnetId: String
-        
+
         /// 创建CFS的存储类型，其中 SD 为标准型存储， HP为性能存储。
         public let storageType: String
-        
+
         /// 权限组 ID
         public let pGroupId: String
-        
+
         /// 可用区名称，例如ap-beijing-1，请参考 概览 文档中的地域与可用区列表
         public let zone: String
-        
+
         /// 云标签描述
         public let tagSpecification: TagSpecification?
-        
-        public init (registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil) {
+
+        public init(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil) {
             self.registryId = registryId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -47,7 +47,7 @@ extension Tcr {
             self.zone = zone
             self.tagSpecification = tagSpecification
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case vpcId = "VpcId"
@@ -58,39 +58,39 @@ extension Tcr {
             case tagSpecification = "TagSpecification"
         }
     }
-    
+
     /// CreateImageAccelerationService返回参数结构体
     public struct CreateImageAccelerationServiceResponse: TCResponseModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建镜像加速服务
     @inlinable
-    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageAccelerationServiceResponse > {
+    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageAccelerationServiceResponse> {
         self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建镜像加速服务
     @inlinable
     public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {
         try await self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建镜像加速服务
     @inlinable
-    public func createImageAccelerationService(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageAccelerationServiceResponse > {
+    public func createImageAccelerationService(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageAccelerationServiceResponse> {
         self.createImageAccelerationService(CreateImageAccelerationServiceRequest(registryId: registryId, vpcId: vpcId, subnetId: subnetId, storageType: storageType, pGroupId: pGroupId, zone: zone, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建镜像加速服务
     @inlinable
     public func createImageAccelerationService(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {

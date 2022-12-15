@@ -27,7 +27,7 @@ extension Trtc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startTime: Date
-        
+
         /// 查询结束日期，格式为YYYY-MM-DD。
         /// 单次查询统计区间最多不能超过31天。
         ///
@@ -36,37 +36,37 @@ extension Trtc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endTime: Date
-        
+
         /// 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
         public let sdkAppId: UInt64?
-        
-        public init (startTime: Date, endTime: Date, sdkAppId: UInt64? = nil) {
+
+        public init(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.sdkAppId = sdkAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case sdkAppId = "SdkAppId"
         }
     }
-    
+
     /// DescribeRecordStatistic返回参数结构体
     public struct DescribeRecordStatisticResponse: TCResponseModel {
         /// 应用的用量信息数组。
         public let sdkAppIdUsages: [SdkAppIdRecordUsage]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppIdUsages = "SdkAppIdUsages"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云端录制计费时长（旧）
     ///
     /// 查询云端录制计费时长。
@@ -75,10 +75,10 @@ extension Trtc {
     /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
-    public func describeRecordStatistic(_ input: DescribeRecordStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordStatisticResponse > {
+    public func describeRecordStatistic(_ input: DescribeRecordStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStatisticResponse> {
         self.client.execute(action: "DescribeRecordStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云端录制计费时长（旧）
     ///
     /// 查询云端录制计费时长。
@@ -90,7 +90,7 @@ extension Trtc {
     public func describeRecordStatistic(_ input: DescribeRecordStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStatisticResponse {
         try await self.client.execute(action: "DescribeRecordStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云端录制计费时长（旧）
     ///
     /// 查询云端录制计费时长。
@@ -99,10 +99,10 @@ extension Trtc {
     /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
-    public func describeRecordStatistic(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordStatisticResponse > {
+    public func describeRecordStatistic(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStatisticResponse> {
         self.describeRecordStatistic(DescribeRecordStatisticRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云端录制计费时长（旧）
     ///
     /// 查询云端录制计费时长。

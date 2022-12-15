@@ -22,49 +22,49 @@ extension Tione {
     public struct DescribeTrainingJobRequest: TCRequestModel {
         /// 训练任务名称
         public let trainingJobName: String
-        
-        public init (trainingJobName: String) {
+
+        public init(trainingJobName: String) {
             self.trainingJobName = trainingJobName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trainingJobName = "TrainingJobName"
         }
     }
-    
+
     /// DescribeTrainingJob返回参数结构体
     public struct DescribeTrainingJobResponse: TCResponseModel {
         /// 算法镜像配置
         public let algorithmSpecification: AlgorithmSpecification
-        
+
         /// 任务名称
         public let trainingJobName: String
-        
+
         /// 算法超级参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hyperParameters: String?
-        
+
         /// 输入数据配置
         public let inputDataConfig: [InputDataConfig]
-        
+
         /// 输出数据配置
         public let outputDataConfig: OutputDataConfig
-        
+
         /// 中止条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stoppingCondition: StoppingCondition?
-        
+
         /// 计算实例配置
         public let resourceConfig: ResourceConfig
-        
+
         /// 私有网络配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcConfig: VpcConfig?
-        
+
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureReason: String?
-        
+
         /// 最近修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -72,7 +72,7 @@ extension Tione {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastModifiedTime: Date
-        
+
         /// 任务开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -81,7 +81,7 @@ extension Tione {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var trainingStartTime: Date?
-        
+
         /// 任务完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -90,11 +90,11 @@ extension Tione {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var trainingEndTime: Date?
-        
+
         /// 模型输出配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelArtifacts: ModelArtifacts?
-        
+
         /// 详细状态，取值范围
         /// Starting：启动中
         /// Downloading: 准备训练数据
@@ -106,15 +106,15 @@ extension Tione {
         /// Stopping: 停止中
         /// Stopped：已停止
         public let secondaryStatus: String
-        
+
         /// 详细状态事件记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secondaryStatusTransitions: [SecondaryStatusTransition]?
-        
+
         /// 角色名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleName: String?
-        
+
         /// 训练任务状态，取值范围
         /// InProgress：运行中
         /// Completed: 已完成
@@ -122,17 +122,17 @@ extension Tione {
         /// Stopping: 停止中
         /// Stopped：已停止
         public let trainingJobStatus: String
-        
+
         /// 训练任务日志链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logUrl: String?
-        
+
         /// 训练任务实例ID
         public let instanceId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case algorithmSpecification = "AlgorithmSpecification"
             case trainingJobName = "TrainingJobName"
@@ -156,25 +156,25 @@ extension Tione {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询训练任务
     @inlinable
-    public func describeTrainingJob(_ input: DescribeTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingJobResponse > {
+    public func describeTrainingJob(_ input: DescribeTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingJobResponse> {
         self.client.execute(action: "DescribeTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询训练任务
     @inlinable
     public func describeTrainingJob(_ input: DescribeTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobResponse {
         try await self.client.execute(action: "DescribeTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询训练任务
     @inlinable
-    public func describeTrainingJob(trainingJobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingJobResponse > {
+    public func describeTrainingJob(trainingJobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingJobResponse> {
         self.describeTrainingJob(DescribeTrainingJobRequest(trainingJobName: trainingJobName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询训练任务
     @inlinable
     public func describeTrainingJob(trainingJobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobResponse {

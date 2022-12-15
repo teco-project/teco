@@ -19,31 +19,31 @@ extension Cpdp {
     public struct QueryCloudChannelDataRequest: TCRequestModel {
         /// 米大师分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 业务订单号，外部订单号
         public let outOrderNo: String
-        
+
         /// 数据类型
         /// PAYMENT:支付
         public let externalChannelDataType: String
-        
+
         /// 环境类型
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// _不填默认为生产环境_
         public let midasEnvironment: String?
-        
+
         /// 子应用ID
         public let subAppId: String?
-        
+
         /// 渠道订单号
         public let channelOrderId: String?
-        
+
         /// 渠道名称，指定渠道查询
         /// wechat:微信支付
         public let channel: String?
-        
-        public init (midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil) {
+
+        public init(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil) {
             self.midasAppId = midasAppId
             self.outOrderNo = outOrderNo
             self.externalChannelDataType = externalChannelDataType
@@ -52,7 +52,7 @@ extension Cpdp {
             self.channelOrderId = channelOrderId
             self.channel = channel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case midasAppId = "MidasAppId"
             case outOrderNo = "OutOrderNo"
@@ -63,40 +63,40 @@ extension Cpdp {
             case channel = "Channel"
         }
     }
-    
+
     /// QueryCloudChannelData返回参数结构体
     public struct QueryCloudChannelDataResponse: TCResponseModel {
         /// 外部订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outOrderNo: String?
-        
+
         /// 渠道订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelOrderId: String?
-        
+
         /// 第三方渠道数据类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalChannelDataType: String?
-        
+
         /// 渠道名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channel: String?
-        
+
         /// 第三方渠道数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalChannelDataList: [CloudExternalChannelData]?
-        
+
         /// 子应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAppId: String?
-        
+
         /// 米大师分配的支付主MidasAppId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case outOrderNo = "OutOrderNo"
             case channelOrderId = "ChannelOrderId"
@@ -108,15 +108,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫V2-查询第三方渠道数据
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
-    public func queryCloudChannelData(_ input: QueryCloudChannelDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCloudChannelDataResponse > {
+    public func queryCloudChannelData(_ input: QueryCloudChannelDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudChannelDataResponse> {
         self.client.execute(action: "QueryCloudChannelData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫V2-查询第三方渠道数据
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
@@ -124,15 +124,15 @@ extension Cpdp {
     public func queryCloudChannelData(_ input: QueryCloudChannelDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudChannelDataResponse {
         try await self.client.execute(action: "QueryCloudChannelData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫V2-查询第三方渠道数据
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
-    public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCloudChannelDataResponse > {
+    public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudChannelDataResponse> {
         self.queryCloudChannelData(QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫V2-查询第三方渠道数据
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。

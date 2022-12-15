@@ -19,44 +19,44 @@ extension Vpc {
     public struct CreateAssistantCidrRequest: TCRequestModel {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
         public let vpcId: String
-        
+
         /// CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]
         public let cidrBlocks: [String]
-        
-        public init (vpcId: String, cidrBlocks: [String]) {
+
+        public init(vpcId: String, cidrBlocks: [String]) {
             self.vpcId = vpcId
             self.cidrBlocks = cidrBlocks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case cidrBlocks = "CidrBlocks"
         }
     }
-    
+
     /// CreateAssistantCidr返回参数结构体
     public struct CreateAssistantCidrResponse: TCResponseModel {
         /// 辅助CIDR数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assistantCidrSet: [AssistantCidr]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case assistantCidrSet = "AssistantCidrSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建辅助CIDR
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
     @inlinable
-    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssistantCidrResponse > {
+    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
         self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建辅助CIDR
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
@@ -64,15 +64,15 @@ extension Vpc {
     public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
         try await self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建辅助CIDR
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
     @inlinable
-    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssistantCidrResponse > {
+    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
         self.createAssistantCidr(CreateAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建辅助CIDR
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。

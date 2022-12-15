@@ -21,49 +21,49 @@ extension TCLcicError {
             case originIdExists = "FailedOperation.OriginIdExists"
             case roomNotEnd = "FailedOperation.RoomNotEnd"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var classTooLong: FailedOperation {
             FailedOperation(.classTooLong)
         }
-        
+
         public static var originIdExists: FailedOperation {
             FailedOperation(.originIdExists)
         }
-        
+
         public static var roomNotEnd: FailedOperation {
             FailedOperation(.roomNotEnd)
         }
-        
+
         public func asLcicError() -> TCLcicError {
             let code: TCLcicError.Code
             switch self.error {
-            case .classTooLong: 
+            case .classTooLong:
                 code = .failedOperation_ClassTooLong
-            case .originIdExists: 
+            case .originIdExists:
                 code = .failedOperation_OriginIdExists
-            case .roomNotEnd: 
+            case .roomNotEnd:
                 code = .failedOperation_RoomNotEnd
             }
             return TCLcicError(code, context: self.context)

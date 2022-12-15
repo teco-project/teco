@@ -19,49 +19,49 @@ extension Iecp {
     public struct DeleteEdgeUnitApplicationsRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitID: UInt64
-        
+
         /// 应用ID列表
         public let applicationIDs: [UInt64]
-        
-        public init (edgeUnitID: UInt64, applicationIDs: [UInt64]) {
+
+        public init(edgeUnitID: UInt64, applicationIDs: [UInt64]) {
             self.edgeUnitID = edgeUnitID
             self.applicationIDs = applicationIDs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitID = "EdgeUnitID"
             case applicationIDs = "ApplicationIDs"
         }
     }
-    
+
     /// DeleteEdgeUnitApplications返回参数结构体
     public struct DeleteEdgeUnitApplicationsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除应用列表
     @inlinable
-    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitApplicationsResponse > {
+    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
         self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用列表
     @inlinable
     public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
         try await self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除应用列表
     @inlinable
-    public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitApplicationsResponse > {
+    public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
         self.deleteEdgeUnitApplications(DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用列表
     @inlinable
     public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {

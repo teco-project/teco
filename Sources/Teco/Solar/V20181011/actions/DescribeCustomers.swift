@@ -19,44 +19,44 @@ extension Solar {
     public struct DescribeCustomersRequest: TCRequestModel {
         /// 查询类型，0.个人，1负责部门，2.指定部门
         public let queryType: String
-        
+
         /// 分组ID
         public let groupId: String?
-        
+
         /// 是否星级标记 1是 0否
         public let markFlag: Int64?
-        
+
         /// 客户标签，多个标签用逗号隔开
         public let tagIds: String?
-        
+
         /// 员工标识筛选，0：非员工，1：员工
         public let relChannelFlag: String?
-        
+
         /// 必须存在手机 1是 0否
         public let needPhoneFlag: Int64?
-        
+
         /// 省份
         public let province: String?
-        
+
         /// 城市
         public let city: String?
-        
+
         /// 性别 1男 2女
         public let sex: String?
-        
+
         /// 城市
         public let keyWord: String?
-        
+
         /// 查询开始位置
         public let offset: UInt64?
-        
+
         /// 每页记录条数
         public let limit: UInt64?
-        
+
         /// 子项目ID
         public let subProjectId: String?
-        
-        public init (queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil) {
+
+        public init(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil) {
             self.queryType = queryType
             self.groupId = groupId
             self.markFlag = markFlag
@@ -71,7 +71,7 @@ extension Solar {
             self.limit = limit
             self.subProjectId = subProjectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case queryType = "QueryType"
             case groupId = "GroupId"
@@ -88,44 +88,44 @@ extension Solar {
             case subProjectId = "SubProjectId"
         }
     }
-    
+
     /// DescribeCustomers返回参数结构体
     public struct DescribeCustomersResponse: TCResponseModel {
         /// 总记录条数
         public let totalCount: UInt64
-        
+
         /// 数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userList: [CustomerInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case userList = "UserList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询客户档案列表
     @inlinable
-    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomersResponse > {
+    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomersResponse> {
         self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户档案列表
     @inlinable
     public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
         try await self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询客户档案列表
     @inlinable
-    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomersResponse > {
+    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomersResponse> {
         self.describeCustomers(DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户档案列表
     @inlinable
     public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {

@@ -19,39 +19,39 @@ extension Kms {
     public struct DescribeKeyRequest: TCRequestModel {
         /// CMK全局唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// DescribeKey返回参数结构体
     public struct DescribeKeyResponse: TCResponseModel {
         /// 密钥属性信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyMetadata: KeyMetadata?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyMetadata = "KeyMetadata"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取主密钥属性
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
-    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyResponse > {
+    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyResponse> {
         self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主密钥属性
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。
@@ -59,15 +59,15 @@ extension Kms {
     public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
         try await self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取主密钥属性
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
-    public func describeKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyResponse > {
+    public func describeKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyResponse> {
         self.describeKey(DescribeKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主密钥属性
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。

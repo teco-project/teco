@@ -23,66 +23,66 @@ extension TCEisError {
             case unSupportedOperationType = "FailedOperation.UnSupportedOperationType"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 鉴权失败。
         public static var authenticationFailed: FailedOperation {
             FailedOperation(.authenticationFailed)
         }
-        
+
         /// 接口处理超时。
         public static var innerLogicTimeOut: FailedOperation {
             FailedOperation(.innerLogicTimeOut)
         }
-        
+
         /// 依赖服务错误。
         public static var metaCompilerError: FailedOperation {
             FailedOperation(.metaCompilerError)
         }
-        
+
         /// 不支持的操作类型。
         public static var unSupportedOperationType: FailedOperation {
             FailedOperation(.unSupportedOperationType)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asEisError() -> TCEisError {
             let code: TCEisError.Code
             switch self.error {
-            case .authenticationFailed: 
+            case .authenticationFailed:
                 code = .failedOperation_AuthenticationFailed
-            case .innerLogicTimeOut: 
+            case .innerLogicTimeOut:
                 code = .failedOperation_InnerLogicTimeOut
-            case .metaCompilerError: 
+            case .metaCompilerError:
                 code = .failedOperation_MetaCompilerError
-            case .unSupportedOperationType: 
+            case .unSupportedOperationType:
                 code = .failedOperation_UnSupportedOperationType
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCEisError(code, context: self.context)

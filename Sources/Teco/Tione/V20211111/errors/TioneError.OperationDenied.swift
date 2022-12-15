@@ -23,66 +23,66 @@ extension TCTioneError {
             case whitelistQuotaExceed = "OperationDenied.WhitelistQuotaExceed"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 余额不足，创建/更新失败。
         ///
         /// 请充值并查看服务使用的冻结规则
         public static var balanceInsufficient: OperationDenied {
             OperationDenied(.balanceInsufficient)
         }
-        
+
         public static var miyingBalanceInsufficient: OperationDenied {
             OperationDenied(.miyingBalanceInsufficient)
         }
-        
+
         public static var networkCidrIllegal: OperationDenied {
             OperationDenied(.networkCidrIllegal)
         }
-        
+
         /// 白名单免费配额不足。
         public static var whitelistQuotaExceed: OperationDenied {
             OperationDenied(.whitelistQuotaExceed)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
-            case .balanceInsufficient: 
+            case .balanceInsufficient:
                 code = .operationDenied_BalanceInsufficient
-            case .miyingBalanceInsufficient: 
+            case .miyingBalanceInsufficient:
                 code = .operationDenied_MIYINGBalanceInsufficient
-            case .networkCidrIllegal: 
+            case .networkCidrIllegal:
                 code = .operationDenied_NetworkCidrIllegal
-            case .whitelistQuotaExceed: 
+            case .whitelistQuotaExceed:
                 code = .operationDenied_WhitelistQuotaExceed
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCTioneError(code, context: self.context)

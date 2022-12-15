@@ -21,38 +21,38 @@ extension Live {
         /// 0： 标准直播。
         /// 1：慢直播。
         public let isDelayLive: Int64?
-        
-        public init (isDelayLive: Int64? = nil) {
+
+        public init(isDelayLive: Int64? = nil) {
             self.isDelayLive = isDelayLive
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case isDelayLive = "IsDelayLive"
         }
     }
-    
+
     /// DescribeLiveRecordTemplates返回参数结构体
     public struct DescribeLiveRecordTemplatesResponse: TCResponseModel {
         /// 录制模板信息列表。
         public let templates: [RecordTemplateInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templates = "Templates"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取录制模板列表
     ///
     /// 获取录制模板列表。
     @inlinable
-    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplatesResponse > {
+    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplatesResponse> {
         self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取录制模板列表
     ///
     /// 获取录制模板列表。
@@ -60,15 +60,15 @@ extension Live {
     public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
         try await self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取录制模板列表
     ///
     /// 获取录制模板列表。
     @inlinable
-    public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplatesResponse > {
+    public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplatesResponse> {
         self.describeLiveRecordTemplates(DescribeLiveRecordTemplatesRequest(isDelayLive: isDelayLive), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取录制模板列表
     ///
     /// 获取录制模板列表。

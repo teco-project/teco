@@ -19,53 +19,53 @@ extension Cpdp {
     public struct DescribeOrderStatusRequest: TCRequestModel {
         /// 请求类型，此接口固定填：QueryOrderStatusReq
         public let requestType: String
-        
+
         /// 商户号
         public let merchantCode: String
-        
+
         /// 支付渠道
         public let payChannel: String
-        
+
         /// 子渠道
         public let payChannelSubId: Int64
-        
+
         /// 交易订单号或流水号，提现，充值或会员交易请求时的CnsmrSeqNo值
         public let orderId: String
-        
+
         /// 父账户账号，资金汇总账号
         public let bankAccountNumber: String
-        
+
         /// 平台短号(银行分配)
         public let platformShortNumber: String
-        
+
         /// 功能标志 0：会员间交易 1：提现 2：充值
         public let queryType: String
-        
+
         /// 银行流水号
         public let transSequenceNumber: String
-        
+
         /// 计费签名
         public let midasSignature: String
-        
+
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 聚鑫分配的安全ID
         public let midasSecretId: String
-        
+
         /// Midas环境参数
         public let midasEnvironment: String
-        
+
         /// 保留字段
         public let reservedMessage: String?
-        
+
         /// 子账户账号 暂未使用
         public let bankSubAccountNumber: String?
-        
+
         /// 交易日期 暂未使用
         public let transDate: String?
-        
-        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil) {
+
+        public init(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil) {
             self.requestType = requestType
             self.merchantCode = merchantCode
             self.payChannel = payChannel
@@ -83,7 +83,7 @@ extension Cpdp {
             self.bankSubAccountNumber = bankSubAccountNumber
             self.transDate = transDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case requestType = "RequestType"
             case merchantCode = "MerchantCode"
@@ -103,39 +103,39 @@ extension Cpdp {
             case transDate = "TransDate"
         }
     }
-    
+
     /// DescribeOrderStatus返回参数结构体
     public struct DescribeOrderStatusResponse: TCResponseModel {
         /// 交易状态 （0：成功，1：失败，2：待确认, 5：待处理，6：处理中）
         public let orderStatus: String
-        
+
         /// 交易金额
         public let orderAmount: String
-        
+
         /// 交易日期
         public let orderDate: String
-        
+
         /// 交易时间
         public let orderTime: String
-        
+
         /// 转出子账户账号
         public let outSubAccountNumber: String
-        
+
         /// 转入子账户账号
         public let inSubAccountNumber: String
-        
+
         /// 记账标志（1：登记挂账 2：支付 3：提现 4：清分5:下单预支付 6：确认并付款 7：退款 8：支付到平台 N:其他）
         public let bookingFlag: String
-        
+
         /// 当交易失败时，返回交易失败原因
         public let failMessage: String
-        
+
         /// 请求类型
         public let requestType: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case orderStatus = "OrderStatus"
             case orderAmount = "OrderAmount"
@@ -149,25 +149,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询单笔订单交易状态
     @inlinable
-    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrderStatusResponse > {
+    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderStatusResponse> {
         self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单笔订单交易状态
     @inlinable
     public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {
         try await self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询单笔订单交易状态
     @inlinable
-    public func describeOrderStatus(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrderStatusResponse > {
+    public func describeOrderStatus(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderStatusResponse> {
         self.describeOrderStatus(DescribeOrderStatusRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, queryType: queryType, transSequenceNumber: transSequenceNumber, midasSignature: midasSignature, midasAppId: midasAppId, midasSecretId: midasSecretId, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, bankSubAccountNumber: bankSubAccountNumber, transDate: transDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单笔订单交易状态
     @inlinable
     public func describeOrderStatus(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {

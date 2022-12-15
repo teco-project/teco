@@ -19,41 +19,41 @@ extension Cpdp {
     public struct CreateFlexPayeeRequest: TCRequestModel {
         /// 用户外部业务ID
         public let outUserId: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 证件号
         public let idNo: String
-        
+
         /// 账户名称
         public let accountName: String
-        
+
         /// 服务商ID
         public let serviceProviderId: String
-        
+
         /// 计税信息
         public let taxInfo: PayeeTaxInfo
-        
+
         /// 证件类型
         /// 0:身份证
         /// 1:社会信用代码
         public let idType: Int64
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 手机号码
         public let phoneNo: String?
-        
+
         /// 环境类型
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// __test__:测试环境
         /// 缺省默认为生产环境
         public let environment: String?
-        
-        public init (outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil) {
+
+        public init(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil) {
             self.outUserId = outUserId
             self.name = name
             self.idNo = idNo
@@ -65,7 +65,7 @@ extension Cpdp {
             self.phoneNo = phoneNo
             self.environment = environment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case outUserId = "OutUserId"
             case name = "Name"
@@ -79,22 +79,22 @@ extension Cpdp {
             case environment = "Environment"
         }
     }
-    
+
     /// CreateFlexPayee返回参数结构体
     public struct CreateFlexPayeeResponse: TCResponseModel {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
-        
+
         /// 错误消息
         public let errMessage: String
-        
+
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: CreateFlexPayeeResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -102,25 +102,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 灵云V2-收款用户开立
     @inlinable
-    public func createFlexPayee(_ input: CreateFlexPayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlexPayeeResponse > {
+    public func createFlexPayee(_ input: CreateFlexPayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlexPayeeResponse> {
         self.client.execute(action: "CreateFlexPayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云V2-收款用户开立
     @inlinable
     public func createFlexPayee(_ input: CreateFlexPayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlexPayeeResponse {
         try await self.client.execute(action: "CreateFlexPayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 灵云V2-收款用户开立
     @inlinable
-    public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlexPayeeResponse > {
+    public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlexPayeeResponse> {
         self.createFlexPayee(CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment), logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云V2-收款用户开立
     @inlinable
     public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlexPayeeResponse {

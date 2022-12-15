@@ -50,260 +50,260 @@ extension TCTatError {
             case tooLong = "InvalidParameterValue.TooLong"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Agent不支持此命令类型。
         ///
         /// 请确认执行机器是否支持此类型命令
         public static var agentUnsupportedCommandType: InvalidParameterValue {
             InvalidParameterValue(.agentUnsupportedCommandType)
         }
-        
+
         /// Command 内容无效。
         public static var commandContentInvalid: InvalidParameterValue {
             InvalidParameterValue(.commandContentInvalid)
         }
-        
+
         /// Command 名称重复。
         public static var commandNameDuplicated: InvalidParameterValue {
             InvalidParameterValue(.commandNameDuplicated)
         }
-        
+
         /// 实例类型不一致。
         public static var inconsistentInstance: InvalidParameterValue {
             InvalidParameterValue(.inconsistentInstance)
         }
-        
+
         /// 实例ID与执行活动无关。
         ///
         /// 检查参数InstanceIds。
         public static var instanceIsNotRelatedToInvocation: InvalidParameterValue {
             InvalidParameterValue(.instanceIsNotRelatedToInvocation)
         }
-        
+
         /// CommandId 无效。
         public static var invalidCommandId: InvalidParameterValue {
             InvalidParameterValue(.invalidCommandId)
         }
-        
+
         /// Command 名称无效。
         public static var invalidCommandName: InvalidParameterValue {
             InvalidParameterValue(.invalidCommandName)
         }
-        
+
         /// 命令内容无效。
         public static var invalidContent: InvalidParameterValue {
             InvalidParameterValue(.invalidContent)
         }
-        
+
         /// Crontab 表达式无效。
         public static var invalidCronExpression: InvalidParameterValue {
             InvalidParameterValue(.invalidCronExpression)
         }
-        
+
         /// Filter 无效。
         public static var invalidFilter: InvalidParameterValue {
             InvalidParameterValue(.invalidFilter)
         }
-        
+
         /// 实例ID无效。
         public static var invalidInstanceId: InvalidParameterValue {
             InvalidParameterValue(.invalidInstanceId)
         }
-        
+
         /// 不合法的执行活动ID。
         public static var invalidInvocationId: InvalidParameterValue {
             InvalidParameterValue(.invalidInvocationId)
         }
-        
+
         /// 不合法的执行任务ID。
         public static var invalidInvocationTaskId: InvalidParameterValue {
             InvalidParameterValue(.invalidInvocationTaskId)
         }
-        
+
         /// InvokerId 无效。
         public static var invalidInvokerId: InvalidParameterValue {
             InvalidParameterValue(.invalidInvokerId)
         }
-        
+
         /// OutputCOSBucketUrl 无效。
         ///
         /// OutputCOSBucketUrl 应该形如：https://tat-123454321.cos.ap-beijing.myqcloud.com。
         public static var invalidOutputCOSBucketUrl: InvalidParameterValue {
             InvalidParameterValue(.invalidOutputCOSBucketUrl)
         }
-        
+
         /// OutputCOSKeyPrefix 无效。
         public static var invalidOutputCOSKeyPrefix: InvalidParameterValue {
             InvalidParameterValue(.invalidOutputCOSKeyPrefix)
         }
-        
+
         public static var invalidUsername: InvalidParameterValue {
             InvalidParameterValue(.invalidUsername)
         }
-        
+
         /// 命令执行路径不合法。
         public static var invalidWorkingDirectory: InvalidParameterValue {
             InvalidParameterValue(.invalidWorkingDirectory)
         }
-        
+
         /// 已启用自定义参数功能，但缺失自定义参数信息。
         public static var lackOfParameterInfo: InvalidParameterValue {
             InvalidParameterValue(.lackOfParameterInfo)
         }
-        
+
         /// 未提供 Parameters 信息。
         public static var lackOfParameters: InvalidParameterValue {
             InvalidParameterValue(.lackOfParameters)
         }
-        
+
         /// 超过参数限制。
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
         }
-        
+
         /// 未启用自定义参数功能。
         public static var parameterDisabled: InvalidParameterValue {
             InvalidParameterValue(.parameterDisabled)
         }
-        
+
         /// 参数为非法 json string 格式。
         public static var parameterInvalidJsonFormat: InvalidParameterValue {
             InvalidParameterValue(.parameterInvalidJsonFormat)
         }
-        
+
         /// 参数 Key 包含非法字符。
         public static var parameterKeyContainsInvalidChar: InvalidParameterValue {
             InvalidParameterValue(.parameterKeyContainsInvalidChar)
         }
-        
+
         /// 参数 Key 重复。
         public static var parameterKeyDuplicated: InvalidParameterValue {
             InvalidParameterValue(.parameterKeyDuplicated)
         }
-        
+
         /// 参数 Key 过长。
         public static var parameterKeyLenExceeded: InvalidParameterValue {
             InvalidParameterValue(.parameterKeyLenExceeded)
         }
-        
+
         /// 参数数目过多。
         public static var parameterNumberExceeded: InvalidParameterValue {
             InvalidParameterValue(.parameterNumberExceeded)
         }
-        
+
         /// 参数 Value 非 string 类型。
         public static var parameterValueNotString: InvalidParameterValue {
             InvalidParameterValue(.parameterValueNotString)
         }
-        
+
         /// 参数取值范围不合法。
         public static var range: InvalidParameterValue {
             InvalidParameterValue(.range)
         }
-        
+
         /// 未启用自定义参数功能。
         public static var supportParametersOnlyIfEnableParameter: InvalidParameterValue {
             InvalidParameterValue(.supportParametersOnlyIfEnableParameter)
         }
-        
+
         /// 长度超过限制。
         public static var tooLong: InvalidParameterValue {
             InvalidParameterValue(.tooLong)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asTatError() -> TCTatError {
             let code: TCTatError.Code
             switch self.error {
-            case .agentUnsupportedCommandType: 
+            case .agentUnsupportedCommandType:
                 code = .invalidParameterValue_AgentUnsupportedCommandType
-            case .commandContentInvalid: 
+            case .commandContentInvalid:
                 code = .invalidParameterValue_CommandContentInvalid
-            case .commandNameDuplicated: 
+            case .commandNameDuplicated:
                 code = .invalidParameterValue_CommandNameDuplicated
-            case .inconsistentInstance: 
+            case .inconsistentInstance:
                 code = .invalidParameterValue_InconsistentInstance
-            case .instanceIsNotRelatedToInvocation: 
+            case .instanceIsNotRelatedToInvocation:
                 code = .invalidParameterValue_InstanceIsNotRelatedToInvocation
-            case .invalidCommandId: 
+            case .invalidCommandId:
                 code = .invalidParameterValue_InvalidCommandId
-            case .invalidCommandName: 
+            case .invalidCommandName:
                 code = .invalidParameterValue_InvalidCommandName
-            case .invalidContent: 
+            case .invalidContent:
                 code = .invalidParameterValue_InvalidContent
-            case .invalidCronExpression: 
+            case .invalidCronExpression:
                 code = .invalidParameterValue_InvalidCronExpression
-            case .invalidFilter: 
+            case .invalidFilter:
                 code = .invalidParameterValue_InvalidFilter
-            case .invalidInstanceId: 
+            case .invalidInstanceId:
                 code = .invalidParameterValue_InvalidInstanceId
-            case .invalidInvocationId: 
+            case .invalidInvocationId:
                 code = .invalidParameterValue_InvalidInvocationId
-            case .invalidInvocationTaskId: 
+            case .invalidInvocationTaskId:
                 code = .invalidParameterValue_InvalidInvocationTaskId
-            case .invalidInvokerId: 
+            case .invalidInvokerId:
                 code = .invalidParameterValue_InvalidInvokerId
-            case .invalidOutputCOSBucketUrl: 
+            case .invalidOutputCOSBucketUrl:
                 code = .invalidParameterValue_InvalidOutputCOSBucketUrl
-            case .invalidOutputCOSKeyPrefix: 
+            case .invalidOutputCOSKeyPrefix:
                 code = .invalidParameterValue_InvalidOutputCOSKeyPrefix
-            case .invalidUsername: 
+            case .invalidUsername:
                 code = .invalidParameterValue_InvalidUsername
-            case .invalidWorkingDirectory: 
+            case .invalidWorkingDirectory:
                 code = .invalidParameterValue_InvalidWorkingDirectory
-            case .lackOfParameterInfo: 
+            case .lackOfParameterInfo:
                 code = .invalidParameterValue_LackOfParameterInfo
-            case .lackOfParameters: 
+            case .lackOfParameters:
                 code = .invalidParameterValue_LackOfParameters
-            case .limitExceeded: 
+            case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
-            case .parameterDisabled: 
+            case .parameterDisabled:
                 code = .invalidParameterValue_ParameterDisabled
-            case .parameterInvalidJsonFormat: 
+            case .parameterInvalidJsonFormat:
                 code = .invalidParameterValue_ParameterInvalidJsonFormat
-            case .parameterKeyContainsInvalidChar: 
+            case .parameterKeyContainsInvalidChar:
                 code = .invalidParameterValue_ParameterKeyContainsInvalidChar
-            case .parameterKeyDuplicated: 
+            case .parameterKeyDuplicated:
                 code = .invalidParameterValue_ParameterKeyDuplicated
-            case .parameterKeyLenExceeded: 
+            case .parameterKeyLenExceeded:
                 code = .invalidParameterValue_ParameterKeyLenExceeded
-            case .parameterNumberExceeded: 
+            case .parameterNumberExceeded:
                 code = .invalidParameterValue_ParameterNumberExceeded
-            case .parameterValueNotString: 
+            case .parameterValueNotString:
                 code = .invalidParameterValue_ParameterValueNotString
-            case .range: 
+            case .range:
                 code = .invalidParameterValue_Range
-            case .supportParametersOnlyIfEnableParameter: 
+            case .supportParametersOnlyIfEnableParameter:
                 code = .invalidParameterValue_SupportParametersOnlyIfEnableParameter
-            case .tooLong: 
+            case .tooLong:
                 code = .invalidParameterValue_TooLong
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCTatError(code, context: self.context)

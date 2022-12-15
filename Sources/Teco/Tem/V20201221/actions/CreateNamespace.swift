@@ -19,26 +19,26 @@ extension Tem {
     public struct CreateNamespaceRequest: TCRequestModel {
         /// 命名空间名称
         public let namespaceName: String
-        
+
         /// 私有网络名称
         public let vpc: String
-        
+
         /// 子网列表
         public let subnetIds: [String]
-        
+
         /// 命名空间描述
         public let description: String?
-        
+
         /// K8s version
         public let k8sVersion: String?
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 是否开启tsw服务
         public let enableTswTraceService: Bool?
-        
-        public init (namespaceName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil) {
+
+        public init(namespaceName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil) {
             self.namespaceName = namespaceName
             self.vpc = vpc
             self.subnetIds = subnetIds
@@ -47,7 +47,7 @@ extension Tem {
             self.sourceChannel = sourceChannel
             self.enableTswTraceService = enableTswTraceService
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceName = "NamespaceName"
             case vpc = "Vpc"
@@ -58,30 +58,30 @@ extension Tem {
             case enableTswTraceService = "EnableTswTraceService"
         }
     }
-    
+
     /// CreateNamespace返回参数结构体
     public struct CreateNamespaceResponse: TCResponseModel {
         /// 成功时为命名空间ID，失败为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建命名空间
     ///
     /// 创建环境
     @inlinable
-    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
         self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建命名空间
     ///
     /// 创建环境
@@ -89,15 +89,15 @@ extension Tem {
     public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
         try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建命名空间
     ///
     /// 创建环境
     @inlinable
-    public func createNamespace(namespaceName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+    public func createNamespace(namespaceName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
         self.createNamespace(CreateNamespaceRequest(namespaceName: namespaceName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建命名空间
     ///
     /// 创建环境

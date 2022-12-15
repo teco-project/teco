@@ -19,23 +19,23 @@ extension Clb {
     public struct DescribeCustomizedConfigAssociateListRequest: TCRequestModel {
         /// 配置ID
         public let uconfigId: String?
-        
+
         /// 拉取绑定关系列表开始位置，默认值 0
         public let offset: Int64?
-        
+
         /// 拉取绑定关系列表数目，默认值 20
         public let limit: Int64?
-        
+
         /// 搜索域名
         public let domain: String?
-        
-        public init (uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil) {
+
+        public init(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil) {
             self.uconfigId = uconfigId
             self.offset = offset
             self.limit = limit
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uconfigId = "UconfigId"
             case offset = "Offset"
@@ -43,33 +43,33 @@ extension Clb {
             case domain = "Domain"
         }
     }
-    
+
     /// DescribeCustomizedConfigAssociateList返回参数结构体
     public struct DescribeCustomizedConfigAssociateListResponse: TCResponseModel {
         /// 绑定关系列表
         public let bindList: [BindDetailItem]
-        
+
         /// 绑定关系总数目
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bindList = "BindList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
-    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizedConfigAssociateListResponse > {
+    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigAssociateListResponse> {
         self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
@@ -77,15 +77,15 @@ extension Clb {
     public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
         try await self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
-    public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizedConfigAssociateListResponse > {
+    public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigAssociateListResponse> {
         self.describeCustomizedConfigAssociateList(DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。

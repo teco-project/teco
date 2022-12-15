@@ -19,34 +19,34 @@ extension Iecp {
     public struct ApplyMarketComponentRequest: TCRequestModel {
         /// 组件ID
         public let id: Int64
-        
-        public init (id: Int64) {
+
+        public init(id: Int64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
         }
     }
-    
+
     /// ApplyMarketComponent返回参数结构体
     public struct ApplyMarketComponentResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 使用组件市场中的组件
     ///
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable
-    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyMarketComponentResponse > {
+    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyMarketComponentResponse> {
         self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 使用组件市场中的组件
     ///
     /// 从组件市场选中组件并添加到应用模板列表
@@ -54,15 +54,15 @@ extension Iecp {
     public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
         try await self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 使用组件市场中的组件
     ///
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable
-    public func applyMarketComponent(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyMarketComponentResponse > {
+    public func applyMarketComponent(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyMarketComponentResponse> {
         self.applyMarketComponent(ApplyMarketComponentRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 使用组件市场中的组件
     ///
     /// 从组件市场选中组件并添加到应用模板列表

@@ -19,39 +19,39 @@ extension Cwp {
     public struct DestroyOrderRequest: TCRequestModel {
         /// 资源ID
         public let resourceId: String
-        
+
         /// 授权类型 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
         public let licenseType: UInt64
-        
-        public init (resourceId: String, licenseType: UInt64) {
+
+        public init(resourceId: String, licenseType: UInt64) {
             self.resourceId = resourceId
             self.licenseType = licenseType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case licenseType = "LicenseType"
         }
     }
-    
+
     /// DestroyOrder返回参数结构体
     public struct DestroyOrderResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.
     @inlinable
-    public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyOrderResponse > {
+    public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyOrderResponse> {
         self.client.execute(action: "DestroyOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.
@@ -59,15 +59,15 @@ extension Cwp {
     public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyOrderResponse {
         try await self.client.execute(action: "DestroyOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.
     @inlinable
-    public func destroyOrder(resourceId: String, licenseType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyOrderResponse > {
+    public func destroyOrder(resourceId: String, licenseType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyOrderResponse> {
         self.destroyOrder(DestroyOrderRequest(resourceId: resourceId, licenseType: licenseType), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.

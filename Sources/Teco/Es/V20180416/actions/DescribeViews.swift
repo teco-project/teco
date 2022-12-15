@@ -19,33 +19,33 @@ extension Es {
     public struct DescribeViewsRequest: TCRequestModel {
         /// 集群实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeViews返回参数结构体
     public struct DescribeViewsResponse: TCResponseModel {
         /// 集群维度视图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterView: ClusterView?
-        
+
         /// 节点维度视图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodesView: [NodeView]?
-        
+
         /// Kibana维度视图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanasView: [KibanaView]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterView = "ClusterView"
             case nodesView = "NodesView"
@@ -53,15 +53,15 @@ extension Es {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群视图
     ///
     /// 查询集群各视图数据，包括集群维度、节点维度、Kibana维度
     @inlinable
-    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeViewsResponse > {
+    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
         self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群视图
     ///
     /// 查询集群各视图数据，包括集群维度、节点维度、Kibana维度
@@ -69,15 +69,15 @@ extension Es {
     public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
         try await self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群视图
     ///
     /// 查询集群各视图数据，包括集群维度、节点维度、Kibana维度
     @inlinable
-    public func describeViews(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeViewsResponse > {
+    public func describeViews(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
         self.describeViews(DescribeViewsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群视图
     ///
     /// 查询集群各视图数据，包括集群维度、节点维度、Kibana维度

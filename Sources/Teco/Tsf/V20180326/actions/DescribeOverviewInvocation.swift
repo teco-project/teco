@@ -22,13 +22,13 @@ extension Tsf {
     public struct DescribeOverviewInvocationRequest: TCRequestModel {
         /// 命名空间ID
         public let namespaceId: String?
-        
+
         /// 监控统计类型，可选值：SumReqAmount、AvgFailureRate、AvgTimeCost，分别对应请求量、请求错误率、平均响应耗时
         public let type: String?
-        
+
         /// 监控统计数据粒度，可选值：60、3600、86400，分别对应1分钟、1小时、1天
         public let period: Int64?
-        
+
         /// 查询开始时间，默认为当天的 00:00:00
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -36,7 +36,7 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date?
-        
+
         /// 查询结束时间，默认为当前时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -44,15 +44,15 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date?
-        
-        public init (namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil) {
+
+        public init(namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil) {
             self.namespaceId = namespaceId
             self.type = type
             self.period = period
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceId = "NamespaceId"
             case type = "Type"
@@ -61,40 +61,40 @@ extension Tsf {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeOverviewInvocation返回参数结构体
     public struct DescribeOverviewInvocationResponse: TCResponseModel {
         /// 监控统计数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [MetricDataPoint]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 服务调用监控统计概览
     @inlinable
-    public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewInvocationResponse > {
+    public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewInvocationResponse> {
         self.client.execute(action: "DescribeOverviewInvocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 服务调用监控统计概览
     @inlinable
     public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewInvocationResponse {
         try await self.client.execute(action: "DescribeOverviewInvocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 服务调用监控统计概览
     @inlinable
-    public func describeOverviewInvocation(namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewInvocationResponse > {
+    public func describeOverviewInvocation(namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewInvocationResponse> {
         self.describeOverviewInvocation(DescribeOverviewInvocationRequest(namespaceId: namespaceId, type: type, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 服务调用监控统计概览
     @inlinable
     public func describeOverviewInvocation(namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewInvocationResponse {

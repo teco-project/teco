@@ -19,39 +19,39 @@ extension Gaap {
     public struct ModifyCertificateAttributesRequest: TCRequestModel {
         /// 证书ID。
         public let certificateId: String
-        
+
         /// 证书名字。长度不超过50个字符。
         public let certificateAlias: String?
-        
-        public init (certificateId: String, certificateAlias: String? = nil) {
+
+        public init(certificateId: String, certificateAlias: String? = nil) {
             self.certificateId = certificateId
             self.certificateAlias = certificateAlias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
             case certificateAlias = "CertificateAlias"
         }
     }
-    
+
     /// ModifyCertificateAttributes返回参数结构体
     public struct ModifyCertificateAttributesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable
-    public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateAttributesResponse > {
+    public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
         self.client.execute(action: "ModifyCertificateAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
@@ -59,15 +59,15 @@ extension Gaap {
     public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
         try await self.client.execute(action: "ModifyCertificateAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable
-    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateAttributesResponse > {
+    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
         self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。

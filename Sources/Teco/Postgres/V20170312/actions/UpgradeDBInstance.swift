@@ -19,32 +19,32 @@ extension Postgres {
     public struct UpgradeDBInstanceRequest: TCRequestModel {
         /// 升级后的实例内存大小，单位GB
         public let memory: Int64
-        
+
         /// 升级后的实例磁盘大小，单位GB
         public let storage: Int64
-        
+
         /// 实例ID，形如postgres-lnp6j617
         public let dbInstanceId: String
-        
+
         /// 是否自动使用代金券,1是,0否，默认不使用
         public let autoVoucher: Int64?
-        
+
         /// 代金券ID列表，目前仅支持指定一张代金券
         public let voucherIds: [String]?
-        
+
         /// 活动ID
         public let activityId: Int64?
-        
+
         /// 指定实例配置完成变更后的切换时间，默认为 立即切换，入参为 0 ：立即切换 。1：指定时间切换。
         public let switchTag: Int64?
-        
+
         /// 切换开始时间
         public let switchStartTime: String?
-        
+
         /// 切换截止时间
         public let switchEndTime: String?
-        
-        public init (memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil) {
+
+        public init(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil) {
             self.memory = memory
             self.storage = storage
             self.dbInstanceId = dbInstanceId
@@ -55,7 +55,7 @@ extension Postgres {
             self.switchStartTime = switchStartTime
             self.switchEndTime = switchEndTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case memory = "Memory"
             case storage = "Storage"
@@ -68,33 +68,33 @@ extension Postgres {
             case switchEndTime = "SwitchEndTime"
         }
     }
-    
+
     /// UpgradeDBInstance返回参数结构体
     public struct UpgradeDBInstanceResponse: TCResponseModel {
         /// 交易名字。
         public let dealName: String
-        
+
         /// 冻结流水号
         public let billId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealName = "DealName"
             case billId = "BillId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 升级实例配置（废弃）
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
         self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 升级实例配置（废弃）
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
@@ -102,15 +102,15 @@ extension Postgres {
     public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
         try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 升级实例配置（废弃）
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
-    public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
+    public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
         self.upgradeDBInstance(UpgradeDBInstanceRequest(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 升级实例配置（废弃）
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。

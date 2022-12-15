@@ -22,7 +22,7 @@ extension Tbm {
     public struct DescribeBrandExposureRequest: TCRequestModel {
         /// 品牌ID
         public let brandId: String
-        
+
         /// 查询开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date
-        
+
         /// 查询结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,46 +38,46 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
-        public init (brandId: String, startDate: Date, endDate: Date) {
+
+        public init(brandId: String, startDate: Date, endDate: Date) {
             self.brandId = brandId
             self.startDate = startDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case brandId = "BrandId"
             case startDate = "StartDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// DescribeBrandExposure返回参数结构体
     public struct DescribeBrandExposureResponse: TCResponseModel {
         /// 累计曝光量
         public let totalCount: UInt64
-        
+
         /// 按天计算的统计数据
         public let dateCountSet: [DateCount]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case dateCountSet = "DateCountSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取品牌总热度
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
-    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandExposureResponse > {
+    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandExposureResponse> {
         self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取品牌总热度
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
@@ -85,15 +85,15 @@ extension Tbm {
     public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
         try await self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取品牌总热度
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
-    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandExposureResponse > {
+    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandExposureResponse> {
         self.describeBrandExposure(DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取品牌总热度
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。

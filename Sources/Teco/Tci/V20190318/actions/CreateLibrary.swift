@@ -19,57 +19,57 @@ extension Tci {
     public struct CreateLibraryRequest: TCRequestModel {
         /// 人员库名称
         public let libraryName: String
-        
+
         /// 人员库唯一标志符，为空则系统自动生成。
         public let libraryId: String?
-        
-        public init (libraryName: String, libraryId: String? = nil) {
+
+        public init(libraryName: String, libraryId: String? = nil) {
             self.libraryName = libraryName
             self.libraryId = libraryId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case libraryName = "LibraryName"
             case libraryId = "LibraryId"
         }
     }
-    
+
     /// CreateLibrary返回参数结构体
     public struct CreateLibraryResponse: TCResponseModel {
         /// 人员库唯一标识符
         public let libraryId: String
-        
+
         /// 人员库名称
         public let libraryName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case libraryId = "LibraryId"
             case libraryName = "LibraryName"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建人员库
     @inlinable
-    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLibraryResponse > {
+    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
         self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建人员库
     @inlinable
     public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
         try await self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建人员库
     @inlinable
-    public func createLibrary(libraryName: String, libraryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLibraryResponse > {
+    public func createLibrary(libraryName: String, libraryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
         self.createLibrary(CreateLibraryRequest(libraryName: libraryName, libraryId: libraryId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建人员库
     @inlinable
     public func createLibrary(libraryName: String, libraryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {

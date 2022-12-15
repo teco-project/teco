@@ -19,13 +19,13 @@ extension Tdcpg {
     public struct DescribeClusterInstancesRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 页码，取值范围为[1,INF)，默认值为1
         public let pageNumber: UInt64?
-        
+
         /// 每页个数，取值范围为默认为[1,100]，默认值为20
         public let pageSize: UInt64?
-        
+
         /// 目前支持查询条件包括：
         ///  - InstanceId : 实例ID
         ///  - InstanceName : 实例名
@@ -33,18 +33,18 @@ extension Tdcpg {
         ///  - Status : 实例状态
         ///  - InstanceType : 实例类型
         public let filters: [Filter]?
-        
+
         /// 排序字段，可选字段：
         /// - CreateTime : 实例创建时间(默认值)
         /// - PayPeriodEndTime : 实例过期时间
         public let orderBy: String?
-        
+
         /// 排序方式，可选字段：
         /// - DESC : 降序(默认值)
         /// - ASC : 升序
         public let orderByType: String?
-        
-        public init (clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil) {
+
+        public init(clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.clusterId = clusterId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -52,7 +52,7 @@ extension Tdcpg {
             self.orderBy = orderBy
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case pageNumber = "PageNumber"
@@ -62,43 +62,43 @@ extension Tdcpg {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeClusterInstances返回参数结构体
     public struct DescribeClusterInstancesResponse: TCResponseModel {
         /// 总条数
         public let totalCount: UInt64
-        
+
         /// 实例列表信息
         public let instanceSet: [Instance]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例
     @inlinable
-    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstancesResponse > {
+    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
         self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例
     @inlinable
     public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
         try await self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例
     @inlinable
-    public func describeClusterInstances(clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstancesResponse > {
+    public func describeClusterInstances(clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
         self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例
     @inlinable
     public func describeClusterInstances(clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {

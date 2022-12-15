@@ -20,47 +20,47 @@ extension TCTkeError {
             case camNoAuth = "UnauthorizedOperation.CamNoAuth"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无该接口CAM权限。
         ///
         /// 联系主账号或管理员前往CAM控制台配置该Action的权限
         public static var camNoAuth: UnauthorizedOperation {
             UnauthorizedOperation(.camNoAuth)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asTkeError() -> TCTkeError {
             let code: TCTkeError.Code
             switch self.error {
-            case .camNoAuth: 
+            case .camNoAuth:
                 code = .unauthorizedOperation_CamNoAuth
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCTkeError(code, context: self.context)

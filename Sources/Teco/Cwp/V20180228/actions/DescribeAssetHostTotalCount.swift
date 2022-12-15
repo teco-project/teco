@@ -19,21 +19,21 @@ extension Cwp {
     public struct DescribeAssetHostTotalCountRequest: TCRequestModel {
         /// 主机Uuid
         public let uuid: String
-        
+
         /// 主机Quuid
         public let quuid: String
-        
-        public init (uuid: String, quuid: String) {
+
+        public init(uuid: String, quuid: String) {
             self.uuid = uuid
             self.quuid = quuid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
             case quuid = "Quuid"
         }
     }
-    
+
     /// DescribeAssetHostTotalCount返回参数结构体
     public struct DescribeAssetHostTotalCountResponse: TCResponseModel {
         /// 各项资源数量
@@ -53,34 +53,34 @@ extension Cwp {
         /// env: 环境变量
         /// coremodule: 内核模块
         public let types: [AssetKeyVal]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case types = "Types"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取主机所有资源数量
     @inlinable
-    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostTotalCountResponse > {
+    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostTotalCountResponse> {
         self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主机所有资源数量
     @inlinable
     public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
         try await self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取主机所有资源数量
     @inlinable
-    public func describeAssetHostTotalCount(uuid: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostTotalCountResponse > {
+    public func describeAssetHostTotalCount(uuid: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostTotalCountResponse> {
         self.describeAssetHostTotalCount(DescribeAssetHostTotalCountRequest(uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主机所有资源数量
     @inlinable
     public func describeAssetHostTotalCount(uuid: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {

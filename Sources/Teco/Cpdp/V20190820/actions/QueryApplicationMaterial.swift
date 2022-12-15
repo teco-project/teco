@@ -19,43 +19,43 @@ extension Cpdp {
     public struct QueryApplicationMaterialRequest: TCRequestModel {
         /// 申报流水号
         public let declareId: String
-        
+
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
-        
-        public init (declareId: String, profile: String? = nil) {
+
+        public init(declareId: String, profile: String? = nil) {
             self.declareId = declareId
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case declareId = "DeclareId"
             case profile = "Profile"
         }
     }
-    
+
     /// QueryApplicationMaterial返回参数结构体
     public struct QueryApplicationMaterialResponse: TCResponseModel {
         /// 成功申报材料查询结果
         public let result: QueryDeclareResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 跨境-成功申报材料查询
     ///
     /// 跨境-成功申报材料查询。查询成功入库的申报材料。
     @inlinable
-    public func queryApplicationMaterial(_ input: QueryApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryApplicationMaterialResponse > {
+    public func queryApplicationMaterial(_ input: QueryApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryApplicationMaterialResponse> {
         self.client.execute(action: "QueryApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 跨境-成功申报材料查询
     ///
     /// 跨境-成功申报材料查询。查询成功入库的申报材料。
@@ -63,15 +63,15 @@ extension Cpdp {
     public func queryApplicationMaterial(_ input: QueryApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApplicationMaterialResponse {
         try await self.client.execute(action: "QueryApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 跨境-成功申报材料查询
     ///
     /// 跨境-成功申报材料查询。查询成功入库的申报材料。
     @inlinable
-    public func queryApplicationMaterial(declareId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryApplicationMaterialResponse > {
+    public func queryApplicationMaterial(declareId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryApplicationMaterialResponse> {
         self.queryApplicationMaterial(QueryApplicationMaterialRequest(declareId: declareId, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 跨境-成功申报材料查询
     ///
     /// 跨境-成功申报材料查询。查询成功入库的申报材料。

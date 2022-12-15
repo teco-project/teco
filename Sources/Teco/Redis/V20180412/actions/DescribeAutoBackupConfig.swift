@@ -19,36 +19,36 @@ extension Redis {
     public struct DescribeAutoBackupConfigRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeAutoBackupConfig返回参数结构体
     public struct DescribeAutoBackupConfigResponse: TCResponseModel {
         /// 备份类型。自动备份类型： 1 “定时回档”
         public let autoBackupType: Int64
-        
+
         /// Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
         public let weekDays: [String]
-        
+
         /// 时间段。
         public let timePeriod: String
-        
+
         /// 全量备份文件保存天数
         public let backupStorageDays: Int64
-        
+
         /// tendis binlog备份文件保存天数
         public let binlogStorageDays: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoBackupType = "AutoBackupType"
             case weekDays = "WeekDays"
@@ -58,15 +58,15 @@ extension Redis {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取自动备份配置
     ///
     /// 获取备份配置
     @inlinable
-    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoBackupConfigResponse > {
+    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoBackupConfigResponse> {
         self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自动备份配置
     ///
     /// 获取备份配置
@@ -74,15 +74,15 @@ extension Redis {
     public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
         try await self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取自动备份配置
     ///
     /// 获取备份配置
     @inlinable
-    public func describeAutoBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoBackupConfigResponse > {
+    public func describeAutoBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoBackupConfigResponse> {
         self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自动备份配置
     ///
     /// 获取备份配置

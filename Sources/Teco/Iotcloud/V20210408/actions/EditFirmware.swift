@@ -19,23 +19,23 @@ extension Iotcloud {
     public struct EditFirmwareRequest: TCRequestModel {
         /// 产品ID。
         public let productId: String
-        
+
         /// 固件版本号。
         public let firmwareVersion: String
-        
+
         /// 固件名称。
         public let firmwareName: String
-        
+
         /// 固件描述
         public let firmwareDescription: String?
-        
-        public init (productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil) {
+
+        public init(productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil) {
             self.productId = productId
             self.firmwareVersion = firmwareVersion
             self.firmwareName = firmwareName
             self.firmwareDescription = firmwareDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case firmwareVersion = "FirmwareVersion"
@@ -43,35 +43,35 @@ extension Iotcloud {
             case firmwareDescription = "FirmwareDescription"
         }
     }
-    
+
     /// EditFirmware返回参数结构体
     public struct EditFirmwareResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 编辑固件信息
     @inlinable
-    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
+    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
         self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑固件信息
     @inlinable
     public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
         try await self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 编辑固件信息
     @inlinable
-    public func editFirmware(productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
+    public func editFirmware(productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
         self.editFirmware(EditFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑固件信息
     @inlinable
     public func editFirmware(productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {

@@ -19,62 +19,62 @@ extension Iotcloud {
     public struct DescribeDeviceShadowRequest: TCRequestModel {
         /// 产品 ID
         public let productId: String
-        
+
         /// 设备名称。命名规则：[a-zA-Z0-9:_-]{1,48}
         public let deviceName: String
-        
-        public init (productId: String, deviceName: String) {
+
+        public init(productId: String, deviceName: String) {
             self.productId = productId
             self.deviceName = deviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
         }
     }
-    
+
     /// DescribeDeviceShadow返回参数结构体
     public struct DescribeDeviceShadowResponse: TCResponseModel {
         /// 设备影子数据
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备影子
     ///
-    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
-    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceShadowResponse > {
+    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceShadowResponse> {
         self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备影子
     ///
-    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
     public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
         try await self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备影子
     ///
-    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
-    public func describeDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceShadowResponse > {
+    public func describeDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceShadowResponse> {
         self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备影子
     ///
-    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
     public func describeDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
         try await self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)

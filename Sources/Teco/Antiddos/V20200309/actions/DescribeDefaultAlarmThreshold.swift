@@ -22,56 +22,56 @@ extension Antiddos {
         /// bgpip(表示高防IP产品)
         /// ]
         public let instanceType: String
-        
+
         /// 告警阈值类型搜索，取值[
         /// 1(入流量告警阈值)
         /// 2(攻击清洗流量告警阈值)
         /// ]
         public let filterAlarmType: Int64
-        
-        public init (instanceType: String, filterAlarmType: Int64) {
+
+        public init(instanceType: String, filterAlarmType: Int64) {
             self.instanceType = instanceType
             self.filterAlarmType = filterAlarmType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceType = "InstanceType"
             case filterAlarmType = "FilterAlarmType"
         }
     }
-    
+
     /// DescribeDefaultAlarmThreshold返回参数结构体
     public struct DescribeDefaultAlarmThresholdResponse: TCResponseModel {
         /// 默认告警阈值配置
         public let defaultAlarmConfigList: [DefaultAlarmThreshold]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case defaultAlarmConfigList = "DefaultAlarmConfigList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单IP默认告警阈值配置
     @inlinable
-    public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultAlarmThresholdResponse > {
+    public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultAlarmThresholdResponse> {
         self.client.execute(action: "DescribeDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单IP默认告警阈值配置
     @inlinable
     public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultAlarmThresholdResponse {
         try await self.client.execute(action: "DescribeDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单IP默认告警阈值配置
     @inlinable
-    public func describeDefaultAlarmThreshold(instanceType: String, filterAlarmType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultAlarmThresholdResponse > {
+    public func describeDefaultAlarmThreshold(instanceType: String, filterAlarmType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultAlarmThresholdResponse> {
         self.describeDefaultAlarmThreshold(DescribeDefaultAlarmThresholdRequest(instanceType: instanceType, filterAlarmType: filterAlarmType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单IP默认告警阈值配置
     @inlinable
     public func describeDefaultAlarmThreshold(instanceType: String, filterAlarmType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultAlarmThresholdResponse {

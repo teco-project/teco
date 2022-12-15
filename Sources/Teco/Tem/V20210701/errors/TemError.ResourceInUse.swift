@@ -22,57 +22,57 @@ extension TCTemError {
             case resourceAlreadyUsed = "ResourceInUse.ResourceAlreadyUsed"
             case serviceDeploying = "ResourceInUse.ServiceDeploying"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var environmentAlreadyLocked: ResourceInUse {
             ResourceInUse(.environmentAlreadyLocked)
         }
-        
+
         public static var resourceAlreadyLocked: ResourceInUse {
             ResourceInUse(.resourceAlreadyLocked)
         }
-        
+
         /// 资源已绑定。
         public static var resourceAlreadyUsed: ResourceInUse {
             ResourceInUse(.resourceAlreadyUsed)
         }
-        
+
         /// 服务部署中。
         public static var serviceDeploying: ResourceInUse {
             ResourceInUse(.serviceDeploying)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {
-            case .environmentAlreadyLocked: 
+            case .environmentAlreadyLocked:
                 code = .resourceInUse_EnvironmentAlreadyLocked
-            case .resourceAlreadyLocked: 
+            case .resourceAlreadyLocked:
                 code = .resourceInUse_ResourceAlreadyLocked
-            case .resourceAlreadyUsed: 
+            case .resourceAlreadyUsed:
                 code = .resourceInUse_ResourceAlreadyUsed
-            case .serviceDeploying: 
+            case .serviceDeploying:
                 code = .resourceInUse_ServiceDeploying
             }
             return TCTemError(code, context: self.context)

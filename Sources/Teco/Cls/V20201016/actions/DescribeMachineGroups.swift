@@ -35,53 +35,53 @@ extension Cls {
         /// 必选：否
         /// 每次请求的Filters的上限为10，Filter.Values的上限为5。
         public let filters: [Filter]?
-        
+
         /// 分页的偏移量，默认值为0
         public let offset: Int64?
-        
+
         /// 分页单页的限制数目，默认值为20，最大值100
         public let limit: Int64?
-        
-        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeMachineGroups返回参数结构体
     public struct DescribeMachineGroupsResponse: TCResponseModel {
         /// 机器组信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineGroups: [MachineGroupInfo]?
-        
+
         /// 分页的总数目
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case machineGroups = "MachineGroups"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取机器组列表
     ///
     /// 获取机器组信息列表
     @inlinable
-    public func describeMachineGroups(_ input: DescribeMachineGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineGroupsResponse > {
+    public func describeMachineGroups(_ input: DescribeMachineGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineGroupsResponse> {
         self.client.execute(action: "DescribeMachineGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取机器组列表
     ///
     /// 获取机器组信息列表
@@ -89,15 +89,15 @@ extension Cls {
     public func describeMachineGroups(_ input: DescribeMachineGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupsResponse {
         try await self.client.execute(action: "DescribeMachineGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取机器组列表
     ///
     /// 获取机器组信息列表
     @inlinable
-    public func describeMachineGroups(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineGroupsResponse > {
+    public func describeMachineGroups(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineGroupsResponse> {
         self.describeMachineGroups(DescribeMachineGroupsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取机器组列表
     ///
     /// 获取机器组信息列表

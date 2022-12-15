@@ -28,101 +28,101 @@ extension TCFtError {
             case urlIllegal = "InvalidParameterValue.UrlIllegal"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 人脸框不合法。
         public static var faceRectInvalid: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalid)
         }
-        
+
         /// 第1个人脸框参数不合法。
         public static var faceRectInvalidFirst: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalidFirst)
         }
-        
+
         /// 第2个人脸框参数不合法。
         public static var faceRectInvalidSecond: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalidSecond)
         }
-        
+
         /// 第3个人脸框参数不合法。
         public static var faceRectInvalidThrid: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalidThrid)
         }
-        
+
         /// 图片为空。
         public static var imageEmpty: InvalidParameterValue {
             InvalidParameterValue(.imageEmpty)
         }
-        
+
         /// 图片数据太大。
         public static var imageSizeExceed: InvalidParameterValue {
             InvalidParameterValue(.imageSizeExceed)
         }
-        
+
         /// 图片中没有人脸。
         public static var noFaceInPhoto: InvalidParameterValue {
             InvalidParameterValue(.noFaceInPhoto)
         }
-        
+
         /// 参数不合法。
         public static var parameterValueError: InvalidParameterValue {
             InvalidParameterValue(.parameterValueError)
         }
-        
+
         /// URL格式不合法。
         public static var urlIllegal: InvalidParameterValue {
             InvalidParameterValue(.urlIllegal)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asFtError() -> TCFtError {
             let code: TCFtError.Code
             switch self.error {
-            case .faceRectInvalid: 
+            case .faceRectInvalid:
                 code = .invalidParameterValue_FaceRectInvalid
-            case .faceRectInvalidFirst: 
+            case .faceRectInvalidFirst:
                 code = .invalidParameterValue_FaceRectInvalidFirst
-            case .faceRectInvalidSecond: 
+            case .faceRectInvalidSecond:
                 code = .invalidParameterValue_FaceRectInvalidSecond
-            case .faceRectInvalidThrid: 
+            case .faceRectInvalidThrid:
                 code = .invalidParameterValue_FaceRectInvalidThrid
-            case .imageEmpty: 
+            case .imageEmpty:
                 code = .invalidParameterValue_ImageEmpty
-            case .imageSizeExceed: 
+            case .imageSizeExceed:
                 code = .invalidParameterValue_ImageSizeExceed
-            case .noFaceInPhoto: 
+            case .noFaceInPhoto:
                 code = .invalidParameterValue_NoFaceInPhoto
-            case .parameterValueError: 
+            case .parameterValueError:
                 code = .invalidParameterValue_ParameterValueError
-            case .urlIllegal: 
+            case .urlIllegal:
                 code = .invalidParameterValue_UrlIllegal
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCFtError(code, context: self.context)

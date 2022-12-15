@@ -19,35 +19,35 @@ extension Iottid {
     public struct DeliverTidNotifyRequest: TCRequestModel {
         /// 订单编号
         public let orderId: String
-        
+
         /// TID编号
         public let tid: String
-        
-        public init (orderId: String, tid: String) {
+
+        public init(orderId: String, tid: String) {
             self.orderId = orderId
             self.tid = tid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case tid = "Tid"
         }
     }
-    
+
     /// DeliverTidNotify返回参数结构体
     public struct DeliverTidNotifyResponse: TCResponseModel {
         /// 剩余空发数量
         public let remaindCount: UInt64
-        
+
         /// 已回执的TID编码
         public let tid: String
-        
+
         /// 产品公钥
         public let productKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case remaindCount = "RemaindCount"
             case tid = "Tid"
@@ -55,34 +55,34 @@ extension Iottid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全芯片TID空发回执
     ///
-    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
-    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidNotifyResponse > {
+    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidNotifyResponse> {
         self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全芯片TID空发回执
     ///
-    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
     public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
         try await self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全芯片TID空发回执
     ///
-    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
-    public func deliverTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidNotifyResponse > {
+    public func deliverTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidNotifyResponse> {
         self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全芯片TID空发回执
     ///
-    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
     public func deliverTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
         try await self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)

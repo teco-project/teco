@@ -19,31 +19,31 @@ extension Gaap {
     public struct ModifyCertificateRequest: TCRequestModel {
         /// 监听器实例ID
         public let listenerId: String
-        
+
         /// 需要修改证书的域名
         public let domain: String
-        
+
         /// 新的服务器证书ID。其中：
         /// 当CertificateId=default时，表示使用监听器的证书。
         public let certificateId: String
-        
+
         /// 新的客户端证书ID。其中：
         /// 当ClientCertificateId=default时，表示使用监听器的证书。
         /// 仅当采用双向认证方式时，需要设置该参数或者PolyClientCertificateIds。
         public let clientCertificateId: String?
-        
+
         /// 新的多客户端证书ID列表。其中：
         /// 仅当采用双向认证方式时，需要设置该参数或ClientCertificateId参数。
         public let polyClientCertificateIds: [String]?
-        
-        public init (listenerId: String, domain: String, certificateId: String, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil) {
+
+        public init(listenerId: String, domain: String, certificateId: String, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil) {
             self.listenerId = listenerId
             self.domain = domain
             self.certificateId = certificateId
             self.clientCertificateId = clientCertificateId
             self.polyClientCertificateIds = polyClientCertificateIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case domain = "Domain"
@@ -52,25 +52,25 @@ extension Gaap {
             case polyClientCertificateIds = "PolyClientCertificateIds"
         }
     }
-    
+
     /// ModifyCertificate返回参数结构体
     public struct ModifyCertificateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
     @inlinable
-    public func modifyCertificate(_ input: ModifyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateResponse > {
+    public func modifyCertificate(_ input: ModifyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateResponse> {
         self.client.execute(action: "ModifyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
@@ -78,15 +78,15 @@ extension Gaap {
     public func modifyCertificate(_ input: ModifyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateResponse {
         try await self.client.execute(action: "ModifyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
     @inlinable
-    public func modifyCertificate(listenerId: String, domain: String, certificateId: String, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateResponse > {
+    public func modifyCertificate(listenerId: String, domain: String, certificateId: String, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateResponse> {
         self.modifyCertificate(ModifyCertificateRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。

@@ -23,66 +23,66 @@ extension TCSqlserverError {
             case payOrderFailed = "InvalidParameter.PayOrderFailed"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 输入错误。
         public static var inputIllegal: InvalidParameter {
             InvalidParameter(.inputIllegal)
         }
-        
+
         /// 接口不存在。
         public static var interfaceNameNotFound: InvalidParameter {
             InvalidParameter(.interfaceNameNotFound)
         }
-        
+
         /// 参数断言转换错误。
         public static var paramsAssertFailed: InvalidParameter {
             InvalidParameter(.paramsAssertFailed)
         }
-        
+
         /// 支付订单失败。
         public static var payOrderFailed: InvalidParameter {
             InvalidParameter(.payOrderFailed)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {
-            case .inputIllegal: 
+            case .inputIllegal:
                 code = .invalidParameter_InputIllegal
-            case .interfaceNameNotFound: 
+            case .interfaceNameNotFound:
                 code = .invalidParameter_InterfaceNameNotFound
-            case .paramsAssertFailed: 
+            case .paramsAssertFailed:
                 code = .invalidParameter_ParamsAssertFailed
-            case .payOrderFailed: 
+            case .payOrderFailed:
                 code = .invalidParameter_PayOrderFailed
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCSqlserverError(code, context: self.context)

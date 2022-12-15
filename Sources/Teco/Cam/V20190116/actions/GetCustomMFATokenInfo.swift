@@ -19,48 +19,48 @@ extension Cam {
     public struct GetCustomMFATokenInfoRequest: TCRequestModel {
         /// 自定义多因子验证Token
         public let mfaToken: String
-        
-        public init (mfaToken: String) {
+
+        public init(mfaToken: String) {
             self.mfaToken = mfaToken
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mfaToken = "MFAToken"
         }
     }
-    
+
     /// GetCustomMFATokenInfo返回参数结构体
     public struct GetCustomMFATokenInfoResponse: TCResponseModel {
         /// 自定义多因子验证Token对应的帐号Id
         public let uin: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取自定义多因子Token关联信息
     @inlinable
-    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomMFATokenInfoResponse > {
+    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomMFATokenInfoResponse> {
         self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自定义多因子Token关联信息
     @inlinable
     public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
         try await self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取自定义多因子Token关联信息
     @inlinable
-    public func getCustomMFATokenInfo(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomMFATokenInfoResponse > {
+    public func getCustomMFATokenInfo(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomMFATokenInfoResponse> {
         self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自定义多因子Token关联信息
     @inlinable
     public func getCustomMFATokenInfo(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {

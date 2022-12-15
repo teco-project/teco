@@ -19,23 +19,23 @@ extension Cam {
     public struct DetachRolePolicyRequest: TCRequestModel {
         /// 策略ID，入参PolicyId与PolicyName二选一
         public let policyId: UInt64?
-        
+
         /// 角色ID，用于指定角色，入参 DetachRoleId 与 DetachRoleName 二选一
         public let detachRoleId: String?
-        
+
         /// 角色名称，用于指定角色，入参 DetachRoleId 与 DetachRoleName 二选一
         public let detachRoleName: String?
-        
+
         /// 策略名，入参PolicyId与PolicyName二选一
         public let policyName: String?
-        
-        public init (policyId: UInt64? = nil, detachRoleId: String? = nil, detachRoleName: String? = nil, policyName: String? = nil) {
+
+        public init(policyId: UInt64? = nil, detachRoleId: String? = nil, detachRoleName: String? = nil, policyName: String? = nil) {
             self.policyId = policyId
             self.detachRoleId = detachRoleId
             self.detachRoleName = detachRoleName
             self.policyName = policyName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case detachRoleId = "DetachRoleId"
@@ -43,25 +43,25 @@ extension Cam {
             case policyName = "PolicyName"
         }
     }
-    
+
     /// DetachRolePolicy返回参数结构体
     public struct DetachRolePolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。
     @inlinable
-    public func detachRolePolicy(_ input: DetachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachRolePolicyResponse > {
+    public func detachRolePolicy(_ input: DetachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachRolePolicyResponse> {
         self.client.execute(action: "DetachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。
@@ -69,15 +69,15 @@ extension Cam {
     public func detachRolePolicy(_ input: DetachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachRolePolicyResponse {
         try await self.client.execute(action: "DetachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。
     @inlinable
-    public func detachRolePolicy(policyId: UInt64? = nil, detachRoleId: String? = nil, detachRoleName: String? = nil, policyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachRolePolicyResponse > {
+    public func detachRolePolicy(policyId: UInt64? = nil, detachRoleId: String? = nil, detachRoleName: String? = nil, policyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachRolePolicyResponse> {
         self.detachRolePolicy(DetachRolePolicyRequest(policyId: policyId, detachRoleId: detachRoleId, detachRoleName: detachRoleName, policyName: policyName), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。

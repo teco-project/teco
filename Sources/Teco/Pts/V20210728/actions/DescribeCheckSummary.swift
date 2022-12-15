@@ -19,59 +19,59 @@ extension Pts {
     public struct DescribeCheckSummaryRequest: TCRequestModel {
         /// 任务ID
         public let jobId: String
-        
+
         /// 场景ID
         public let scenarioId: String
-        
+
         /// 项目ID
         public let projectId: String
-        
-        public init (jobId: String, scenarioId: String, projectId: String) {
+
+        public init(jobId: String, scenarioId: String, projectId: String) {
             self.jobId = jobId
             self.scenarioId = scenarioId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case scenarioId = "ScenarioId"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeCheckSummary返回参数结构体
     public struct DescribeCheckSummaryResponse: TCResponseModel {
         /// 检查点汇总信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkSummarySet: [CheckSummary]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case checkSummarySet = "CheckSummarySet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询检查点汇总信息
     @inlinable
-    public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSummaryResponse > {
+    public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckSummaryResponse> {
         self.client.execute(action: "DescribeCheckSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询检查点汇总信息
     @inlinable
     public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSummaryResponse {
         try await self.client.execute(action: "DescribeCheckSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询检查点汇总信息
     @inlinable
-    public func describeCheckSummary(jobId: String, scenarioId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSummaryResponse > {
+    public func describeCheckSummary(jobId: String, scenarioId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckSummaryResponse> {
         self.describeCheckSummary(DescribeCheckSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询检查点汇总信息
     @inlinable
     public func describeCheckSummary(jobId: String, scenarioId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSummaryResponse {

@@ -19,49 +19,49 @@ extension Bma {
     public struct ModifyCRRightStatusRequest: TCRequestModel {
         /// 侵权ID
         public let tortId: Int64
-        
+
         /// 发函结果回调地址
         public let rightUrl: String?
-        
-        public init (tortId: Int64, rightUrl: String? = nil) {
+
+        public init(tortId: Int64, rightUrl: String? = nil) {
             self.tortId = tortId
             self.rightUrl = rightUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tortId = "TortId"
             case rightUrl = "RightUrl"
         }
     }
-    
+
     /// ModifyCRRightStatus返回参数结构体
     public struct ModifyCRRightStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发函申请
     @inlinable
-    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRRightStatusResponse > {
+    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRRightStatusResponse> {
         self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发函申请
     @inlinable
     public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {
         try await self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发函申请
     @inlinable
-    public func modifyCRRightStatus(tortId: Int64, rightUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRRightStatusResponse > {
+    public func modifyCRRightStatus(tortId: Int64, rightUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRRightStatusResponse> {
         self.modifyCRRightStatus(ModifyCRRightStatusRequest(tortId: tortId, rightUrl: rightUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 发函申请
     @inlinable
     public func modifyCRRightStatus(tortId: Int64, rightUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {

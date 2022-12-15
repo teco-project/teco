@@ -19,7 +19,7 @@ extension Teo {
     public struct CreatePurgeTaskRequest: TCRequestModel {
         /// 站点ID。
         public let zoneId: String
-        
+
         /// 清除缓存类型，取值有：
         /// <li>purge_url：URL；</li>
         /// <li>purge_prefix：前缀；</li>
@@ -27,7 +27,7 @@ extension Teo {
         /// <li>purge_all：全部缓存；</li>
         /// <li>purge_cache_tag：cache-tag刷新。</li>
         public let type: String
-        
+
         /// 要清除缓存的资源列表，每个元素格式依据Type而定：
         /// 1) Type = purge_host 时：
         /// 形如：www.example.com 或 foo.bar.example.com。
@@ -40,18 +40,18 @@ extension Teo {
         /// 5）Type = purge_cache_tag 时：
         /// 形如：tag1。
         public let targets: [String]?
-        
+
         /// 若有编码转换，仅清除编码转换后匹配的资源。
         /// 若内容含有非 ASCII 字符集的字符，请开启此开关进行编码转换（编码规则遵循 RFC3986）。
         public let encodeUrl: Bool?
-        
-        public init (zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil) {
+
+        public init(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.targets = targets
             self.encodeUrl = encodeUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case type = "Type"
@@ -59,44 +59,44 @@ extension Teo {
             case encodeUrl = "EncodeUrl"
         }
     }
-    
+
     /// CreatePurgeTask返回参数结构体
     public struct CreatePurgeTaskResponse: TCResponseModel {
         /// 任务ID。
         public let jobId: String
-        
+
         /// 失败的任务列表及原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedList: [FailReason]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case failedList = "FailedList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建清除缓存任务
     @inlinable
-    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePurgeTaskResponse > {
+    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
         self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建清除缓存任务
     @inlinable
     public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
         try await self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建清除缓存任务
     @inlinable
-    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePurgeTaskResponse > {
+    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
         self.createPurgeTask(CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建清除缓存任务
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {

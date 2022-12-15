@@ -29,108 +29,108 @@ extension TCBmvpcError {
             case vpnConnInUse = "UnsupportedOperation.VpnConnInUse"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 对端网关地址已存在。
         public static var customerGatewayAddrExist: UnsupportedOperation {
             UnsupportedOperation(.customerGatewayAddrExist)
         }
-        
+
         /// 对端网关地址不合法。
         public static var customerGatewayAddrInvalid: UnsupportedOperation {
             UnsupportedOperation(.customerGatewayAddrInvalid)
         }
-        
+
         /// 对等连接状态不正确。
         public static var invalidVpcPeerState: UnsupportedOperation {
             UnsupportedOperation(.invalidVpcPeerState)
         }
-        
+
         /// VPN通道状态不正确。
         public static var invalidVpnConnState: UnsupportedOperation {
             UnsupportedOperation(.invalidVpnConnState)
         }
-        
+
         /// SPD策略源目的地址冲突。
         public static var spdAclCidrInvalid: UnsupportedOperation {
             UnsupportedOperation(.spdAclCidrInvalid)
         }
-        
+
         /// SPD策略源地址不在VPC网段内。
         public static var spdSnetNotInCidr: UnsupportedOperation {
             UnsupportedOperation(.spdSnetNotInCidr)
         }
-        
+
         /// 对等连接CIDR冲突。
         public static var vpcCidrConfict: UnsupportedOperation {
             UnsupportedOperation(.vpcCidrConfict)
         }
-        
+
         /// 对等连接已存在。
         public static var vpcPeerExist: UnsupportedOperation {
             UnsupportedOperation(.vpcPeerExist)
         }
-        
+
         /// VPN通道已存在。
         public static var vpnConnExist: UnsupportedOperation {
             UnsupportedOperation(.vpnConnExist)
         }
-        
+
         /// 存在VPN通道引用。
         public static var vpnConnInUse: UnsupportedOperation {
             UnsupportedOperation(.vpnConnInUse)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asBmvpcError() -> TCBmvpcError {
             let code: TCBmvpcError.Code
             switch self.error {
-            case .customerGatewayAddrExist: 
+            case .customerGatewayAddrExist:
                 code = .unsupportedOperation_CustomerGatewayAddrExist
-            case .customerGatewayAddrInvalid: 
+            case .customerGatewayAddrInvalid:
                 code = .unsupportedOperation_CustomerGatewayAddrInvalid
-            case .invalidVpcPeerState: 
+            case .invalidVpcPeerState:
                 code = .unsupportedOperation_InvalidVpcPeerState
-            case .invalidVpnConnState: 
+            case .invalidVpnConnState:
                 code = .unsupportedOperation_InvalidVpnConnState
-            case .spdAclCidrInvalid: 
+            case .spdAclCidrInvalid:
                 code = .unsupportedOperation_SpdAclCidrInvalid
-            case .spdSnetNotInCidr: 
+            case .spdSnetNotInCidr:
                 code = .unsupportedOperation_SpdSnetNotInCidr
-            case .vpcCidrConfict: 
+            case .vpcCidrConfict:
                 code = .unsupportedOperation_VpcCidrConfict
-            case .vpcPeerExist: 
+            case .vpcPeerExist:
                 code = .unsupportedOperation_VpcPeerExist
-            case .vpnConnExist: 
+            case .vpnConnExist:
                 code = .unsupportedOperation_VpnConnExist
-            case .vpnConnInUse: 
+            case .vpnConnInUse:
                 code = .unsupportedOperation_VpnConnInUse
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCBmvpcError(code, context: self.context)

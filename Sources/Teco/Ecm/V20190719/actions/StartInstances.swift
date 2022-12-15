@@ -19,34 +19,34 @@ extension Ecm {
     public struct StartInstancesRequest: TCRequestModel {
         /// 待开启的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
         public let instanceIdSet: [String]
-        
-        public init (instanceIdSet: [String]) {
+
+        public init(instanceIdSet: [String]) {
             self.instanceIdSet = instanceIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIdSet = "InstanceIdSet"
         }
     }
-    
+
     /// StartInstances返回参数结构体
     public struct StartInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
     @inlinable
-    public func startInstances(_ input: StartInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartInstancesResponse > {
+    public func startInstances(_ input: StartInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartInstancesResponse> {
         self.client.execute(action: "StartInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
@@ -54,15 +54,15 @@ extension Ecm {
     public func startInstances(_ input: StartInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartInstancesResponse {
         try await self.client.execute(action: "StartInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
     @inlinable
-    public func startInstances(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartInstancesResponse > {
+    public func startInstances(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartInstancesResponse> {
         self.startInstances(StartInstancesRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。

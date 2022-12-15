@@ -19,33 +19,33 @@ extension Live {
     public struct ModifyLiveCallbackTemplateRequest: TCRequestModel {
         /// DescribeLiveCallbackTemplates接口返回的模板 ID。
         public let templateId: Int64
-        
+
         /// 模板名称。
         public let templateName: String?
-        
+
         /// 描述信息。
         public let description: String?
-        
+
         /// 开播回调 URL。
         public let streamBeginNotifyUrl: String?
-        
+
         /// 断流回调 URL。
         public let streamEndNotifyUrl: String?
-        
+
         /// 录制回调 URL。
         public let recordNotifyUrl: String?
-        
+
         /// 截图回调 URL。
         public let snapshotNotifyUrl: String?
-        
+
         /// 鉴黄回调 URL。
         public let pornCensorshipNotifyUrl: String?
-        
+
         /// 回调 Key，回调 URL 公用，回调签名详见事件消息通知文档。
         /// [事件消息通知](/document/product/267/32744)。
         public let callbackKey: String?
-        
-        public init (templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil) {
+
+        public init(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil) {
             self.templateId = templateId
             self.templateName = templateName
             self.description = description
@@ -56,7 +56,7 @@ extension Live {
             self.pornCensorshipNotifyUrl = pornCensorshipNotifyUrl
             self.callbackKey = callbackKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateName = "TemplateName"
@@ -69,25 +69,25 @@ extension Live {
             case callbackKey = "CallbackKey"
         }
     }
-    
+
     /// ModifyLiveCallbackTemplate返回参数结构体
     public struct ModifyLiveCallbackTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改回调模板
     ///
     /// 修改回调模板。
     @inlinable
-    public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveCallbackTemplateResponse > {
+    public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveCallbackTemplateResponse> {
         self.client.execute(action: "ModifyLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改回调模板
     ///
     /// 修改回调模板。
@@ -95,15 +95,15 @@ extension Live {
     public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
         try await self.client.execute(action: "ModifyLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改回调模板
     ///
     /// 修改回调模板。
     @inlinable
-    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveCallbackTemplateResponse > {
+    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveCallbackTemplateResponse> {
         self.modifyLiveCallbackTemplate(ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改回调模板
     ///
     /// 修改回调模板。

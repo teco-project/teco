@@ -19,48 +19,48 @@ extension Ie {
     public struct DescribeQualityControlTaskResultRequest: TCRequestModel {
         /// 质检任务 ID
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeQualityControlTaskResult返回参数结构体
     public struct DescribeQualityControlTaskResultResponse: TCResponseModel {
         /// 质检任务结果信息
         public let taskResult: QualityControlInfoTaskResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskResult = "TaskResult"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取媒体质检任务结果
     @inlinable
-    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityControlTaskResultResponse > {
+    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityControlTaskResultResponse> {
         self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取媒体质检任务结果
     @inlinable
     public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
         try await self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取媒体质检任务结果
     @inlinable
-    public func describeQualityControlTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityControlTaskResultResponse > {
+    public func describeQualityControlTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityControlTaskResultResponse> {
         self.describeQualityControlTaskResult(DescribeQualityControlTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取媒体质检任务结果
     @inlinable
     public func describeQualityControlTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {

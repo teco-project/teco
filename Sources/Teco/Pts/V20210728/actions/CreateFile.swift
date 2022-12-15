@@ -19,41 +19,41 @@ extension Pts {
     public struct CreateFileRequest: TCRequestModel {
         /// 文件 ID
         public let fileId: String
-        
+
         /// 项目 ID
         public let projectId: String
-        
+
         /// 文件种类，参数文件-1，协议文件-2，请求文件-3
         public let kind: Int64
-        
+
         /// 文件名
         public let name: String
-        
+
         /// 文件大小
         public let size: Int64
-        
+
         /// 文件类型，文件夹-folder
         public let type: String
-        
+
         /// 行数
         public let lineCount: Int64?
-        
+
         /// 前几行数据
         public let headLines: [String]?
-        
+
         /// 后几行数据
         public let tailLines: [String]?
-        
+
         /// 表头是否在文件内
         public let headerInFile: Bool?
-        
+
         /// 表头
         public let headerColumns: [String]?
-        
+
         /// 文件夹中的文件
         public let fileInfos: [FileInfo]?
-        
-        public init (fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil) {
+
+        public init(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil) {
             self.fileId = fileId
             self.projectId = projectId
             self.kind = kind
@@ -67,7 +67,7 @@ extension Pts {
             self.headerColumns = headerColumns
             self.fileInfos = fileInfos
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case projectId = "ProjectId"
@@ -83,35 +83,35 @@ extension Pts {
             case fileInfos = "FileInfos"
         }
     }
-    
+
     /// CreateFile返回参数结构体
     public struct CreateFileResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建文件
     @inlinable
-    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileResponse > {
+    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileResponse> {
         self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件
     @inlinable
     public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
         try await self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建文件
     @inlinable
-    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileResponse > {
+    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileResponse> {
         self.createFile(CreateFileRequest(fileId: fileId, projectId: projectId, kind: kind, name: name, size: size, type: type, lineCount: lineCount, headLines: headLines, tailLines: tailLines, headerInFile: headerInFile, headerColumns: headerColumns, fileInfos: fileInfos), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件
     @inlinable
     public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {

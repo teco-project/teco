@@ -25,82 +25,82 @@ extension TCTagError {
             case tagAttachedResource = "FailedOperation.TagAttachedResource"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 项目已禁用。
         public static var projectDisabled: FailedOperation {
             FailedOperation(.projectDisabled)
         }
-        
+
         /// 项目数超过限制。
         public static var projectNumExceed: FailedOperation {
             FailedOperation(.projectNumExceed)
         }
-        
+
         /// 单次请求的资源appId必须相同。
         public static var resourceAppIdNotSame: FailedOperation {
             FailedOperation(.resourceAppIdNotSame)
         }
-        
+
         /// 资源标签正在处理中。
         public static var resourceTagProcessing: FailedOperation {
             FailedOperation(.resourceTagProcessing)
         }
-        
+
         /// 标签已经关联配额。
         ///
         /// 标签已经关联配额不能删除。
         public static var tagAttachedQuota: FailedOperation {
             FailedOperation(.tagAttachedQuota)
         }
-        
+
         /// 已关联资源的标签无法删除。
         public static var tagAttachedResource: FailedOperation {
             FailedOperation(.tagAttachedResource)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTagError() -> TCTagError {
             let code: TCTagError.Code
             switch self.error {
-            case .projectDisabled: 
+            case .projectDisabled:
                 code = .failedOperation_ProjectDisabled
-            case .projectNumExceed: 
+            case .projectNumExceed:
                 code = .failedOperation_ProjectNumExceed
-            case .resourceAppIdNotSame: 
+            case .resourceAppIdNotSame:
                 code = .failedOperation_ResourceAppIdNotSame
-            case .resourceTagProcessing: 
+            case .resourceTagProcessing:
                 code = .failedOperation_ResourceTagProcessing
-            case .tagAttachedQuota: 
+            case .tagAttachedQuota:
                 code = .failedOperation_TagAttachedQuota
-            case .tagAttachedResource: 
+            case .tagAttachedResource:
                 code = .failedOperation_TagAttachedResource
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCTagError(code, context: self.context)

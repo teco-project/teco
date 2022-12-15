@@ -19,38 +19,38 @@ extension As {
     public struct DescribeAutoScalingGroupLastActivitiesRequest: TCRequestModel {
         /// 伸缩组ID列表
         public let autoScalingGroupIds: [String]
-        
-        public init (autoScalingGroupIds: [String]) {
+
+        public init(autoScalingGroupIds: [String]) {
             self.autoScalingGroupIds = autoScalingGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupIds = "AutoScalingGroupIds"
         }
     }
-    
+
     /// DescribeAutoScalingGroupLastActivities返回参数结构体
     public struct DescribeAutoScalingGroupLastActivitiesResponse: TCResponseModel {
         /// 符合条件的伸缩活动信息集合。说明：伸缩组伸缩活动不存在的则不返回，如传50个伸缩组ID，返回45条数据，说明其中有5个伸缩组伸缩活动不存在。
         public let activitySet: [Activity]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case activitySet = "ActivitySet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询伸缩组最新一次伸缩活动
     ///
     /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
     @inlinable
-    public func describeAutoScalingGroupLastActivities(_ input: DescribeAutoScalingGroupLastActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingGroupLastActivitiesResponse > {
+    public func describeAutoScalingGroupLastActivities(_ input: DescribeAutoScalingGroupLastActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupLastActivitiesResponse> {
         self.client.execute(action: "DescribeAutoScalingGroupLastActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询伸缩组最新一次伸缩活动
     ///
     /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
@@ -58,15 +58,15 @@ extension As {
     public func describeAutoScalingGroupLastActivities(_ input: DescribeAutoScalingGroupLastActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupLastActivitiesResponse {
         try await self.client.execute(action: "DescribeAutoScalingGroupLastActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询伸缩组最新一次伸缩活动
     ///
     /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
     @inlinable
-    public func describeAutoScalingGroupLastActivities(autoScalingGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingGroupLastActivitiesResponse > {
+    public func describeAutoScalingGroupLastActivities(autoScalingGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupLastActivitiesResponse> {
         self.describeAutoScalingGroupLastActivities(DescribeAutoScalingGroupLastActivitiesRequest(autoScalingGroupIds: autoScalingGroupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询伸缩组最新一次伸缩活动
     ///
     /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。

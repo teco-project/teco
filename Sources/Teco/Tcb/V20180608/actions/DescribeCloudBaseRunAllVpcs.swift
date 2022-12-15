@@ -19,39 +19,39 @@ extension Tcb {
     public struct DescribeCloudBaseRunAllVpcsRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
-        public init (envId: String) {
+
+        public init(envId: String) {
             self.envId = envId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
         }
     }
-    
+
     /// DescribeCloudBaseRunAllVpcs返回参数结构体
     public struct DescribeCloudBaseRunAllVpcsResponse: TCResponseModel {
         /// 所有vpcid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcs: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcs = "Vpcs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看环境下的所有vpc
     ///
     /// 查询环境下所有的vpc列表
     @inlinable
-    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunAllVpcsResponse > {
+    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunAllVpcsResponse> {
         self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看环境下的所有vpc
     ///
     /// 查询环境下所有的vpc列表
@@ -59,15 +59,15 @@ extension Tcb {
     public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看环境下的所有vpc
     ///
     /// 查询环境下所有的vpc列表
     @inlinable
-    public func describeCloudBaseRunAllVpcs(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunAllVpcsResponse > {
+    public func describeCloudBaseRunAllVpcs(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunAllVpcsResponse> {
         self.describeCloudBaseRunAllVpcs(DescribeCloudBaseRunAllVpcsRequest(envId: envId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看环境下的所有vpc
     ///
     /// 查询环境下所有的vpc列表

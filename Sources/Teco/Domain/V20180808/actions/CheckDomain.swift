@@ -19,69 +19,69 @@ extension Domain {
     public struct CheckDomainRequest: TCRequestModel {
         /// 所查询域名名称
         public let domainName: String
-        
+
         /// 年限。该参数为空时无法查询溢价词域名
         public let period: String?
-        
-        public init (domainName: String, period: String? = nil) {
+
+        public init(domainName: String, period: String? = nil) {
             self.domainName = domainName
             self.period = period
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case period = "Period"
         }
     }
-    
+
     /// CheckDomain返回参数结构体
     public struct CheckDomainResponse: TCResponseModel {
         /// 所查询域名名称
         public let domainName: String
-        
+
         /// 是否能够注册
         public let available: Bool
-        
+
         /// 不能注册原因
         public let reason: String
-        
+
         /// 是否是溢价词
         public let premium: Bool
-        
+
         /// 域名价格
         public let price: UInt64
-        
+
         /// 是否是敏感词
         public let blackWord: Bool
-        
+
         /// 溢价词描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describe: String?
-        
+
         /// 溢价词的续费价格
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let feeRenew: UInt64?
-        
+
         /// 域名真实价格, 溢价词时价格跟年限有关，非溢价词时价格为1年的价格
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realPrice: UInt64?
-        
+
         /// 溢价词的转入价格
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let feeTransfer: UInt64?
-        
+
         /// 溢价词的赎回价格
         public let feeRestore: UInt64
-        
+
         /// 检测年限
         public let period: UInt64
-        
+
         /// 是否支持北京备案  true 支持  false 不支持
         public let recordSupport: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case available = "Available"
@@ -99,15 +99,15 @@ extension Domain {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 域名注册查询
     ///
     /// 检查域名是否可以注册。
     @inlinable
-    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDomainResponse > {
+    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDomainResponse> {
         self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 域名注册查询
     ///
     /// 检查域名是否可以注册。
@@ -115,15 +115,15 @@ extension Domain {
     public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
         try await self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 域名注册查询
     ///
     /// 检查域名是否可以注册。
     @inlinable
-    public func checkDomain(domainName: String, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDomainResponse > {
+    public func checkDomain(domainName: String, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDomainResponse> {
         self.checkDomain(CheckDomainRequest(domainName: domainName, period: period), logger: logger, on: eventLoop)
     }
-    
+
     /// 域名注册查询
     ///
     /// 检查域名是否可以注册。

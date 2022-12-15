@@ -19,45 +19,45 @@ extension Cme {
     public struct SearchMaterialRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
-        
+
         /// 指定搜索空间，数组长度不得超过5。
         public let searchScopes: [SearchScope]
-        
+
         /// 媒体类型，可取值有：
         /// <li>AUDIO：音频；</li>
         /// <li>VIDEO：视频 ；</li>
         /// <li>IMAGE：图片；</li>
         /// <li>VIDEO_EDIT_TEMPLATE：剪辑模板。</li>
         public let materialTypes: [String]?
-        
+
         /// 搜索文本，模糊匹配媒体名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：15个字符。
         public let text: String?
-        
+
         /// 按画质检索，取值为：LD/SD/HD/FHD/2K/4K。
         public let resolution: String?
-        
+
         /// 按媒体时长检索，单位s。
         public let durationRange: IntegerRange?
-        
+
         /// 按照媒体创建时间检索。
         public let createTimeRange: TimeRange?
-        
+
         /// 按标签检索，填入检索的标签名。
         public let tags: [String]?
-        
+
         /// 排序方式。Sort.Field 可选值：CreateTime。指定 Text 搜索时，将根据匹配度排序，该字段无效。
         public let sort: SortBy?
-        
+
         /// 偏移量。默认值：0。
         public let offset: Int64?
-        
+
         /// 返回记录条数，默认值：50。
         public let limit: Int64?
-        
+
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以搜索任意媒体的信息。如果指定操作者，则操作者必须对媒体有读权限。
         public let `operator`: String?
-        
-        public init (platform: String, searchScopes: [SearchScope], materialTypes: [String]? = nil, text: String? = nil, resolution: String? = nil, durationRange: IntegerRange? = nil, createTimeRange: TimeRange? = nil, tags: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil) {
+
+        public init(platform: String, searchScopes: [SearchScope], materialTypes: [String]? = nil, text: String? = nil, resolution: String? = nil, durationRange: IntegerRange? = nil, createTimeRange: TimeRange? = nil, tags: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil) {
             self.platform = platform
             self.searchScopes = searchScopes
             self.materialTypes = materialTypes
@@ -71,7 +71,7 @@ extension Cme {
             self.limit = limit
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case searchScopes = "SearchScopes"
@@ -87,33 +87,33 @@ extension Cme {
             case `operator` = "Operator"
         }
     }
-    
+
     /// SearchMaterial返回参数结构体
     public struct SearchMaterialResponse: TCResponseModel {
         /// 符合记录总条数。
         public let totalCount: Int64
-        
+
         /// 媒体信息，仅返回基础信息。
         public let materialInfoSet: [MaterialInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case materialInfoSet = "MaterialInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 搜索媒体
     ///
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
     @inlinable
-    public func searchMaterial(_ input: SearchMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchMaterialResponse > {
+    public func searchMaterial(_ input: SearchMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMaterialResponse> {
         self.client.execute(action: "SearchMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索媒体
     ///
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
@@ -121,15 +121,15 @@ extension Cme {
     public func searchMaterial(_ input: SearchMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMaterialResponse {
         try await self.client.execute(action: "SearchMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 搜索媒体
     ///
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
     @inlinable
-    public func searchMaterial(platform: String, searchScopes: [SearchScope], materialTypes: [String]? = nil, text: String? = nil, resolution: String? = nil, durationRange: IntegerRange? = nil, createTimeRange: TimeRange? = nil, tags: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchMaterialResponse > {
+    public func searchMaterial(platform: String, searchScopes: [SearchScope], materialTypes: [String]? = nil, text: String? = nil, resolution: String? = nil, durationRange: IntegerRange? = nil, createTimeRange: TimeRange? = nil, tags: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMaterialResponse> {
         self.searchMaterial(SearchMaterialRequest(platform: platform, searchScopes: searchScopes, materialTypes: materialTypes, text: text, resolution: resolution, durationRange: durationRange, createTimeRange: createTimeRange, tags: tags, sort: sort, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索媒体
     ///
     /// 根据检索条件搜索媒体，返回媒体的基本信息。

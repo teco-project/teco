@@ -19,44 +19,44 @@ extension Apigateway {
     public struct DescribeIPStrategysStatusRequest: TCRequestModel {
         /// 服务唯一ID。
         public let serviceId: String
-        
+
         /// 过滤条件。支持StrategyName。
         public let filters: [Filter]?
-        
-        public init (serviceId: String, filters: [Filter]? = nil) {
+
+        public init(serviceId: String, filters: [Filter]? = nil) {
             self.serviceId = serviceId
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeIPStrategysStatus返回参数结构体
     public struct DescribeIPStrategysStatusResponse: TCResponseModel {
         /// 符合条件的策略列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: IPStrategysStatus?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询服务IP策略列表
     ///
     /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
     @inlinable
-    public func describeIPStrategysStatus(_ input: DescribeIPStrategysStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStrategysStatusResponse > {
+    public func describeIPStrategysStatus(_ input: DescribeIPStrategysStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategysStatusResponse> {
         self.client.execute(action: "DescribeIPStrategysStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询服务IP策略列表
     ///
     /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
@@ -64,15 +64,15 @@ extension Apigateway {
     public func describeIPStrategysStatus(_ input: DescribeIPStrategysStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategysStatusResponse {
         try await self.client.execute(action: "DescribeIPStrategysStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询服务IP策略列表
     ///
     /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
     @inlinable
-    public func describeIPStrategysStatus(serviceId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStrategysStatusResponse > {
+    public func describeIPStrategysStatus(serviceId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategysStatusResponse> {
         self.describeIPStrategysStatus(DescribeIPStrategysStatusRequest(serviceId: serviceId, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询服务IP策略列表
     ///
     /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。

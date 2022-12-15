@@ -19,34 +19,34 @@ extension Ame {
     public struct DestroyKTVRobotRequest: TCRequestModel {
         /// 机器人Id。
         public let robotId: String
-        
-        public init (robotId: String) {
+
+        public init(robotId: String) {
             self.robotId = robotId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case robotId = "RobotId"
         }
     }
-    
+
     /// DestroyKTVRobot返回参数结构体
     public struct DestroyKTVRobotResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable
-    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyKTVRobotResponse > {
+    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
         self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
@@ -54,15 +54,15 @@ extension Ame {
     public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
         try await self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable
-    public func destroyKTVRobot(robotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyKTVRobotResponse > {
+    public func destroyKTVRobot(robotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
         self.destroyKTVRobot(DestroyKTVRobotRequest(robotId: robotId), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。

@@ -19,58 +19,58 @@ extension Wedata {
     public struct DescribeTaskLockStatusRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 任务类型：201. stream,   202. offline
         public let taskType: UInt64
-        
-        public init (taskId: String, projectId: String, taskType: UInt64) {
+
+        public init(taskId: String, projectId: String, taskType: UInt64) {
             self.taskId = taskId
             self.projectId = projectId
             self.taskType = taskType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
             case taskType = "TaskType"
         }
     }
-    
+
     /// DescribeTaskLockStatus返回参数结构体
     public struct DescribeTaskLockStatusResponse: TCResponseModel {
         /// 任务锁状态信息
         public let taskLockStatus: TaskLockStatus
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskLockStatus = "TaskLockStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看任务锁状态信息
     @inlinable
-    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLockStatusResponse > {
+    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLockStatusResponse> {
         self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看任务锁状态信息
     @inlinable
     public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
         try await self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看任务锁状态信息
     @inlinable
-    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLockStatusResponse > {
+    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLockStatusResponse> {
         self.describeTaskLockStatus(DescribeTaskLockStatusRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看任务锁状态信息
     @inlinable
     public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {

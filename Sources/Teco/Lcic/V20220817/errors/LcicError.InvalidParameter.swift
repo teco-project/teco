@@ -22,55 +22,55 @@ extension TCLcicError {
             case startTime = "InvalidParameter.StartTime"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var endTime: InvalidParameter {
             InvalidParameter(.endTime)
         }
-        
+
         public static var sdkAppId: InvalidParameter {
             InvalidParameter(.sdkAppId)
         }
-        
+
         public static var startTime: InvalidParameter {
             InvalidParameter(.startTime)
         }
-        
+
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asLcicError() -> TCLcicError {
             let code: TCLcicError.Code
             switch self.error {
-            case .endTime: 
+            case .endTime:
                 code = .invalidParameter_EndTime
-            case .sdkAppId: 
+            case .sdkAppId:
                 code = .invalidParameter_SdkAppId
-            case .startTime: 
+            case .startTime:
                 code = .invalidParameter_StartTime
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCLcicError(code, context: self.context)

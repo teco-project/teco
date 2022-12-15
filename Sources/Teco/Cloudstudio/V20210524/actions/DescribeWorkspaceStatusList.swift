@@ -19,49 +19,49 @@ extension Cloudstudio {
     public struct DescribeWorkspaceStatusListRequest: TCRequestModel {
         /// xxx
         public let cloudStudioSessionTeam: String
-        
-        public init (cloudStudioSessionTeam: String) {
+
+        public init(cloudStudioSessionTeam: String) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
         }
     }
-    
+
     /// DescribeWorkspaceStatusList返回参数结构体
     public struct DescribeWorkspaceStatusListResponse: TCResponseModel {
         /// xxx
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [WorkspaceStatusInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户工作空间列表
     @inlinable
-    public func describeWorkspaceStatusList(_ input: DescribeWorkspaceStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusListResponse > {
+    public func describeWorkspaceStatusList(_ input: DescribeWorkspaceStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusListResponse> {
         self.client.execute(action: "DescribeWorkspaceStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户工作空间列表
     @inlinable
     public func describeWorkspaceStatusList(_ input: DescribeWorkspaceStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusListResponse {
         try await self.client.execute(action: "DescribeWorkspaceStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户工作空间列表
     @inlinable
-    public func describeWorkspaceStatusList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusListResponse > {
+    public func describeWorkspaceStatusList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusListResponse> {
         self.describeWorkspaceStatusList(DescribeWorkspaceStatusListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户工作空间列表
     @inlinable
     public func describeWorkspaceStatusList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusListResponse {

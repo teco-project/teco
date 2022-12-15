@@ -27,27 +27,27 @@ extension Ses {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var requestDate: Date
-        
+
         /// 偏移量。默认为0
         public let offset: UInt64
-        
+
         /// 拉取最大条数，最多 100。
         public let limit: UInt64
-        
+
         /// SendMail接口返回的MessageId字段。
         public let messageId: String?
-        
+
         /// 收件人邮箱。
         public let toEmailAddress: String?
-        
-        public init (requestDate: Date, offset: UInt64, limit: UInt64, messageId: String? = nil, toEmailAddress: String? = nil) {
+
+        public init(requestDate: Date, offset: UInt64, limit: UInt64, messageId: String? = nil, toEmailAddress: String? = nil) {
             self.requestDate = requestDate
             self.offset = offset
             self.limit = limit
             self.messageId = messageId
             self.toEmailAddress = toEmailAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case requestDate = "RequestDate"
             case offset = "Offset"
@@ -56,30 +56,30 @@ extension Ses {
             case toEmailAddress = "ToEmailAddress"
         }
     }
-    
+
     /// GetSendEmailStatus返回参数结构体
     public struct GetSendEmailStatusResponse: TCResponseModel {
         /// 邮件发送状态列表
         public let emailStatusList: [SendEmailStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case emailStatusList = "EmailStatusList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取邮件发送的状态（待废弃）
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
     @inlinable
-    public func getSendEmailStatus(_ input: GetSendEmailStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSendEmailStatusResponse > {
+    public func getSendEmailStatus(_ input: GetSendEmailStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSendEmailStatusResponse> {
         self.client.execute(action: "GetSendEmailStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取邮件发送的状态（待废弃）
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
@@ -88,16 +88,16 @@ extension Ses {
     public func getSendEmailStatus(_ input: GetSendEmailStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSendEmailStatusResponse {
         try await self.client.execute(action: "GetSendEmailStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取邮件发送的状态（待废弃）
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
     @inlinable
-    public func getSendEmailStatus(requestDate: Date, offset: UInt64, limit: UInt64, messageId: String? = nil, toEmailAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSendEmailStatusResponse > {
+    public func getSendEmailStatus(requestDate: Date, offset: UInt64, limit: UInt64, messageId: String? = nil, toEmailAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSendEmailStatusResponse> {
         self.getSendEmailStatus(GetSendEmailStatusRequest(requestDate: requestDate, offset: offset, limit: limit, messageId: messageId, toEmailAddress: toEmailAddress), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取邮件发送的状态（待废弃）
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据

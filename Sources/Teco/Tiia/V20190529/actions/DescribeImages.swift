@@ -19,40 +19,40 @@ extension Tiia {
     public struct DescribeImagesRequest: TCRequestModel {
         /// 图库名称。
         public let groupId: String
-        
+
         /// 物品ID。
         public let entityId: String
-        
+
         /// 图片名称。
         public let picName: String?
-        
-        public init (groupId: String, entityId: String, picName: String? = nil) {
+
+        public init(groupId: String, entityId: String, picName: String? = nil) {
             self.groupId = groupId
             self.entityId = entityId
             self.picName = picName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case entityId = "EntityId"
             case picName = "PicName"
         }
     }
-    
+
     /// DescribeImages返回参数结构体
     public struct DescribeImagesResponse: TCResponseModel {
         /// 图库名称。
         public let groupId: String
-        
+
         /// 物品ID。
         public let entityId: String
-        
+
         /// 图片信息。
         public let imageInfos: [ImageInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case entityId = "EntityId"
@@ -60,15 +60,15 @@ extension Tiia {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。
     @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。
@@ -76,15 +76,15 @@ extension Tiia {
     public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。
     @inlinable
-    public func describeImages(groupId: String, entityId: String, picName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+    public func describeImages(groupId: String, entityId: String, picName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.describeImages(DescribeImagesRequest(groupId: groupId, entityId: entityId, picName: picName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。

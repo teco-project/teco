@@ -21,56 +21,56 @@ extension Afc {
         /// 入参(二选一BusinessSecurityData 或
         /// BusinessCryptoData)。
         public let businessSecurityData: AntiFraudVipFilter?
-        
+
         /// 默认不传，约定用密文业务
         /// 入参(二选一
         /// BusinessSecurityData 或
         /// BusinessCryptoData)。
         public let businessCryptoData: AntiFraudVipCryptoFilter?
-        
-        public init (businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil) {
+
+        public init(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil) {
             self.businessSecurityData = businessSecurityData
             self.businessCryptoData = businessCryptoData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessSecurityData = "BusinessSecurityData"
             case businessCryptoData = "BusinessCryptoData"
         }
     }
-    
+
     /// GetAntiFraudVip返回参数结构体
     public struct GetAntiFraudVipResponse: TCResponseModel {
         /// 反欺诈评分接口结果
         public let data: AntiFraudVipRecord
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 反欺诈VIP评分接口
     @inlinable
-    public func getAntiFraudVip(_ input: GetAntiFraudVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAntiFraudVipResponse > {
+    public func getAntiFraudVip(_ input: GetAntiFraudVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAntiFraudVipResponse> {
         self.client.execute(action: "GetAntiFraudVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 反欺诈VIP评分接口
     @inlinable
     public func getAntiFraudVip(_ input: GetAntiFraudVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudVipResponse {
         try await self.client.execute(action: "GetAntiFraudVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 反欺诈VIP评分接口
     @inlinable
-    public func getAntiFraudVip(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAntiFraudVipResponse > {
+    public func getAntiFraudVip(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAntiFraudVipResponse> {
         self.getAntiFraudVip(GetAntiFraudVipRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
     }
-    
+
     /// 反欺诈VIP评分接口
     @inlinable
     public func getAntiFraudVip(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudVipResponse {

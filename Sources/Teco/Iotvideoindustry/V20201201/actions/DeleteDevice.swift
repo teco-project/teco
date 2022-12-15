@@ -19,39 +19,39 @@ extension Iotvideoindustry {
     public struct DeleteDeviceRequest: TCRequestModel {
         /// 设备唯一标识
         public let deviceId: String
-        
-        public init (deviceId: String) {
+
+        public init(deviceId: String) {
             self.deviceId = deviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
         }
     }
-    
+
     /// DeleteDevice返回参数结构体
     public struct DeleteDeviceResponse: TCResponseModel {
         /// 操作结果 OK-成功； 其他-失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除设备
     ///
     /// 本接口(DeleteDevice)用于删除设备。
     @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
         self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除设备
     ///
     /// 本接口(DeleteDevice)用于删除设备。
@@ -59,15 +59,15 @@ extension Iotvideoindustry {
     public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除设备
     ///
     /// 本接口(DeleteDevice)用于删除设备。
     @inlinable
-    public func deleteDevice(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+    public func deleteDevice(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
         self.deleteDevice(DeleteDeviceRequest(deviceId: deviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除设备
     ///
     /// 本接口(DeleteDevice)用于删除设备。

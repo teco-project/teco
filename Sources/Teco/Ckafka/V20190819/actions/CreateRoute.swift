@@ -19,32 +19,32 @@ extension Ckafka {
     public struct CreateRouteRequest: TCRequestModel {
         /// 实例唯一id
         public let instanceId: String
-        
+
         /// 路由网络类型(3:vpc路由;4:标准版支撑路由;7:专业版支撑路由)
         public let vipType: Int64
-        
+
         /// vpc网络Id
         public let vpcId: String?
-        
+
         /// vpc子网id
         public let subnetId: String?
-        
+
         /// 访问类型
         public let accessType: Int64?
-        
+
         /// 是否需要权限管理
         public let authFlag: Int64?
-        
+
         /// 调用方appId
         public let callerAppid: Int64?
-        
+
         /// 公网带宽
         public let publicNetwork: Int64?
-        
+
         /// vip地址
         public let ip: String?
-        
-        public init (instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil) {
+
+        public init(instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil) {
             self.instanceId = instanceId
             self.vipType = vipType
             self.vpcId = vpcId
@@ -55,7 +55,7 @@ extension Ckafka {
             self.publicNetwork = publicNetwork
             self.ip = ip
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case vipType = "VipType"
@@ -68,39 +68,39 @@ extension Ckafka {
             case ip = "Ip"
         }
     }
-    
+
     /// CreateRoute返回参数结构体
     public struct CreateRouteResponse: TCResponseModel {
         /// 返回结果
         public let result: JgwOperateResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加实例路由
     @inlinable
-    public func createRoute(_ input: CreateRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRouteResponse > {
+    public func createRoute(_ input: CreateRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteResponse> {
         self.client.execute(action: "CreateRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加实例路由
     @inlinable
     public func createRoute(_ input: CreateRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteResponse {
         try await self.client.execute(action: "CreateRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加实例路由
     @inlinable
-    public func createRoute(instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRouteResponse > {
+    public func createRoute(instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteResponse> {
         self.createRoute(CreateRouteRequest(instanceId: instanceId, vipType: vipType, vpcId: vpcId, subnetId: subnetId, accessType: accessType, authFlag: authFlag, callerAppid: callerAppid, publicNetwork: publicNetwork, ip: ip), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加实例路由
     @inlinable
     public func createRoute(instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteResponse {

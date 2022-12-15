@@ -20,49 +20,49 @@ extension TCIvldError {
             case batchImportOverflow = "RequestLimitExceeded.BatchImportOverflow"
             case concurrencyOverflow = "RequestLimitExceeded.ConcurrencyOverflow"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 批量导入超过限制。
         ///
         /// 联系产品增加日调用量限制
         public static var batchImportOverflow: RequestLimitExceeded {
             RequestLimitExceeded(.batchImportOverflow)
         }
-        
+
         /// 同时发起过多任务。
         ///
         /// 限制请求频率
         public static var concurrencyOverflow: RequestLimitExceeded {
             RequestLimitExceeded(.concurrencyOverflow)
         }
-        
+
         public func asIvldError() -> TCIvldError {
             let code: TCIvldError.Code
             switch self.error {
-            case .batchImportOverflow: 
+            case .batchImportOverflow:
                 code = .requestLimitExceeded_BatchImportOverflow
-            case .concurrencyOverflow: 
+            case .concurrencyOverflow:
                 code = .requestLimitExceeded_ConcurrencyOverflow
             }
             return TCIvldError(code, context: self.context)

@@ -19,39 +19,39 @@ extension Tcr {
     public struct DescribeInstanceAllNamespacesRequest: TCRequestModel {
         /// 每页个数
         public let limit: Int64?
-        
+
         /// 起始偏移位置
         public let offset: Int64?
-        
-        public init (limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(limit: Int64? = nil, offset: Int64? = nil) {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeInstanceAllNamespaces返回参数结构体
     public struct DescribeInstanceAllNamespacesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
     @inlinable
-    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAllNamespacesResponse > {
+    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
         self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
@@ -59,15 +59,15 @@ extension Tcr {
     public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
         try await self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
     @inlinable
-    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAllNamespacesResponse > {
+    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
         self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表

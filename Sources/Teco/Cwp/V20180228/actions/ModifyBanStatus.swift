@@ -19,44 +19,44 @@ extension Cwp {
     public struct ModifyBanStatusRequest: TCRequestModel {
         /// 阻断状态 0:关闭 1:开启
         public let status: UInt64
-        
-        public init (status: UInt64) {
+
+        public init(status: UInt64) {
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
         }
     }
-    
+
     /// ModifyBanStatus返回参数结构体
     public struct ModifyBanStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置阻断开关状态
     @inlinable
-    public func modifyBanStatus(_ input: ModifyBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBanStatusResponse > {
+    public func modifyBanStatus(_ input: ModifyBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanStatusResponse> {
         self.client.execute(action: "ModifyBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置阻断开关状态
     @inlinable
     public func modifyBanStatus(_ input: ModifyBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanStatusResponse {
         try await self.client.execute(action: "ModifyBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置阻断开关状态
     @inlinable
-    public func modifyBanStatus(status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBanStatusResponse > {
+    public func modifyBanStatus(status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanStatusResponse> {
         self.modifyBanStatus(ModifyBanStatusRequest(status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置阻断开关状态
     @inlinable
     public func modifyBanStatus(status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanStatusResponse {

@@ -19,27 +19,27 @@ extension Monitor {
     public struct DescribePrometheusAgentsRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// Agent 名称
         public let name: String?
-        
+
         /// Agent ID 列表
         public let agentIds: [String]?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
-        
-        public init (instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.name = name
             self.agentIds = agentIds
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
@@ -48,44 +48,44 @@ extension Monitor {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribePrometheusAgents返回参数结构体
     public struct DescribePrometheusAgentsResponse: TCResponseModel {
         /// Agent 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentSet: [PrometheusAgent]?
-        
+
         /// Agent 总量
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentSet = "AgentSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出 Prometheus CVM Agent
     @inlinable
-    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentsResponse > {
+    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAgentsResponse> {
         self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Prometheus CVM Agent
     @inlinable
     public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
         try await self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出 Prometheus CVM Agent
     @inlinable
-    public func describePrometheusAgents(instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentsResponse > {
+    public func describePrometheusAgents(instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAgentsResponse> {
         self.describePrometheusAgents(DescribePrometheusAgentsRequest(instanceId: instanceId, name: name, agentIds: agentIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Prometheus CVM Agent
     @inlinable
     public func describePrometheusAgents(instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {

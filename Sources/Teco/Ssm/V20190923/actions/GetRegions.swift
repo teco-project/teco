@@ -17,42 +17,42 @@
 extension Ssm {
     /// GetRegions请求参数结构体
     public struct GetRegionsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetRegions返回参数结构体
     public struct GetRegionsResponse: TCResponseModel {
         /// region列表。
         public let regions: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case regions = "Regions"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取控制台展示region列表
     @inlinable
-    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRegionsResponse > {
+    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRegionsResponse> {
         self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取控制台展示region列表
     @inlinable
     public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
         try await self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取控制台展示region列表
     @inlinable
-    public func getRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRegionsResponse > {
+    public func getRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRegionsResponse> {
         self.getRegions(GetRegionsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取控制台展示region列表
     @inlinable
     public func getRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {

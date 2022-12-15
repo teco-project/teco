@@ -21,23 +21,23 @@ extension Cpdp {
         /// 0 : 高灯
         /// 1 : 票易通
         public let invoicePlatformId: Int64
-        
+
         /// 订单号
         public let orderId: String
-        
+
         /// 接入环境。沙箱环境填 sandbox。
         public let profile: String?
-        
+
         /// 开票渠道。0：线上渠道，1：线下渠道。不填默认为线上渠道
         public let invoiceChannel: Int64?
-        
-        public init (invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil) {
+
+        public init(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil) {
             self.invoicePlatformId = invoicePlatformId
             self.orderId = orderId
             self.profile = profile
             self.invoiceChannel = invoiceChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case invoicePlatformId = "InvoicePlatformId"
             case orderId = "OrderId"
@@ -45,22 +45,22 @@ extension Cpdp {
             case invoiceChannel = "InvoiceChannel"
         }
     }
-    
+
     /// CreateRedInvoiceV2返回参数结构体
     public struct CreateRedInvoiceV2Response: TCResponseModel {
         /// 红冲结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: CreateRedInvoiceResultV2?
-        
+
         /// 错误码
         public let errCode: String
-        
+
         /// 错误消息
         public let errMessage: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case errCode = "ErrCode"
@@ -68,25 +68,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 智慧零售-发票红冲V2
     @inlinable
-    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRedInvoiceV2Response > {
+    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRedInvoiceV2Response> {
         self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 智慧零售-发票红冲V2
     @inlinable
     public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
         try await self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 智慧零售-发票红冲V2
     @inlinable
-    public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRedInvoiceV2Response > {
+    public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRedInvoiceV2Response> {
         self.createRedInvoiceV2(CreateRedInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel), logger: logger, on: eventLoop)
     }
-    
+
     /// 智慧零售-发票红冲V2
     @inlinable
     public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {

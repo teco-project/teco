@@ -19,62 +19,62 @@ extension Msp {
     public struct ListMigrationTaskRequest: TCRequestModel {
         /// 记录起始数，默认值为0
         public let offset: UInt64?
-        
+
         /// 记录条数，默认值为10
         public let limit: UInt64?
-        
+
         /// 项目ID，默认值为空
         public let projectId: UInt64?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// ListMigrationTask返回参数结构体
     public struct ListMigrationTaskResponse: TCResponseModel {
         /// 记录总条数
         public let totalCount: UInt64
-        
+
         /// 迁移任务列表
         public let tasks: [Task]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取迁移任务列表
     @inlinable
-    public func listMigrationTask(_ input: ListMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMigrationTaskResponse > {
+    public func listMigrationTask(_ input: ListMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMigrationTaskResponse> {
         self.client.execute(action: "ListMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取迁移任务列表
     @inlinable
     public func listMigrationTask(_ input: ListMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMigrationTaskResponse {
         try await self.client.execute(action: "ListMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取迁移任务列表
     @inlinable
-    public func listMigrationTask(offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMigrationTaskResponse > {
+    public func listMigrationTask(offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMigrationTaskResponse> {
         self.listMigrationTask(ListMigrationTaskRequest(offset: offset, limit: limit, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取迁移任务列表
     @inlinable
     public func listMigrationTask(offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMigrationTaskResponse {

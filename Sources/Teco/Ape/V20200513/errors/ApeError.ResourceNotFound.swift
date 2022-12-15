@@ -21,52 +21,52 @@ extension TCApeError {
             case sensitiveSearch = "ResourceNotFound.SensitiveSearch"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 图片涉嫌违禁内容
         public static var sensitiveImage: ResourceNotFound {
             ResourceNotFound(.sensitiveImage)
         }
-        
+
         /// 包含敏感词汇。
         public static var sensitiveSearch: ResourceNotFound {
             ResourceNotFound(.sensitiveSearch)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asApeError() -> TCApeError {
             let code: TCApeError.Code
             switch self.error {
-            case .sensitiveImage: 
+            case .sensitiveImage:
                 code = .resourceNotFound_SensitiveImage
-            case .sensitiveSearch: 
+            case .sensitiveSearch:
                 code = .resourceNotFound_SensitiveSearch
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCApeError(code, context: self.context)

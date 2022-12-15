@@ -19,40 +19,40 @@ extension TCCdcError {
         enum Code: String {
             case nonCustomerAppIdNotSupport = "UnsupportedOperation.NonCustomerAppIdNotSupport"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不支持非CUSTOMER类型的app id。
         ///
         /// 传入CUSTOMER类型的app id
         public static var nonCustomerAppIdNotSupport: UnsupportedOperation {
             UnsupportedOperation(.nonCustomerAppIdNotSupport)
         }
-        
+
         public func asCdcError() -> TCCdcError {
             let code: TCCdcError.Code
             switch self.error {
-            case .nonCustomerAppIdNotSupport: 
+            case .nonCustomerAppIdNotSupport:
                 code = .unsupportedOperation_NonCustomerAppIdNotSupport
             }
             return TCCdcError(code, context: self.context)

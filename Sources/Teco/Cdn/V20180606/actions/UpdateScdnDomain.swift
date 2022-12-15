@@ -19,23 +19,23 @@ extension Cdn {
     public struct UpdateScdnDomainRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// Web 攻击防护（WAF）配置
         public let waf: ScdnWafConfig?
-        
+
         /// 自定义防护策略配置
         public let acl: ScdnAclConfig?
-        
+
         /// CC 防护配置，目前 CC 防护默认开启
         public let cc: ScdnConfig?
-        
+
         /// DDOS 防护配置，目前 DDoS 防护默认开启
         public let ddos: ScdnDdosConfig?
-        
+
         /// BOT 防护配置
         public let bot: ScdnBotConfig?
-        
-        public init (domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil) {
+
+        public init(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil) {
             self.domain = domain
             self.waf = waf
             self.acl = acl
@@ -43,7 +43,7 @@ extension Cdn {
             self.ddos = ddos
             self.bot = bot
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case waf = "Waf"
@@ -53,29 +53,29 @@ extension Cdn {
             case bot = "Bot"
         }
     }
-    
+
     /// UpdateScdnDomain返回参数结构体
     public struct UpdateScdnDomainResponse: TCResponseModel {
         /// 提交结果，Success表示成功
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新SCDN域名配置
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
-    public func updateScdnDomain(_ input: UpdateScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScdnDomainResponse > {
+    public func updateScdnDomain(_ input: UpdateScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScdnDomainResponse> {
         self.client.execute(action: "UpdateScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新SCDN域名配置
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
@@ -83,15 +83,15 @@ extension Cdn {
     public func updateScdnDomain(_ input: UpdateScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScdnDomainResponse {
         try await self.client.execute(action: "UpdateScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新SCDN域名配置
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
-    public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScdnDomainResponse > {
+    public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScdnDomainResponse> {
         self.updateScdnDomain(UpdateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新SCDN域名配置
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置

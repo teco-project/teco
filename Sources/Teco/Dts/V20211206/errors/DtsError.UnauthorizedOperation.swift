@@ -22,58 +22,58 @@ extension TCDtsError {
             case unauthorizedOperationError = "UnauthorizedOperation.UnauthorizedOperationError"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 认证失败，没有足够权限。
         public static var notEnoughPrivileges: UnauthorizedOperation {
             UnauthorizedOperation(.notEnoughPrivileges)
         }
-        
+
         /// 操作未被授权。
         public static var permissionDenied: UnauthorizedOperation {
             UnauthorizedOperation(.permissionDenied)
         }
-        
+
         public static var unauthorizedOperationError: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorizedOperationError)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asDtsError() -> TCDtsError {
             let code: TCDtsError.Code
             switch self.error {
-            case .notEnoughPrivileges: 
+            case .notEnoughPrivileges:
                 code = .unauthorizedOperation_NotEnoughPrivileges
-            case .permissionDenied: 
+            case .permissionDenied:
                 code = .unauthorizedOperation_PermissionDenied
-            case .unauthorizedOperationError: 
+            case .unauthorizedOperationError:
                 code = .unauthorizedOperation_UnauthorizedOperationError
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCDtsError(code, context: self.context)

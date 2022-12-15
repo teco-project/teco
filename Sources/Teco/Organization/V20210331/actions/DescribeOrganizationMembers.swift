@@ -19,23 +19,23 @@ extension Organization {
     public struct DescribeOrganizationMembersRequest: TCRequestModel {
         /// 偏移量。
         public let offset: UInt64
-        
+
         /// 限制数目。最大50
         public let limit: UInt64
-        
+
         /// 国际站：en，国内站：zh
         public let lang: String?
-        
+
         /// 成员名称或者成员ID搜索。
         public let searchKey: String?
-        
+
         /// 主体名称搜索。
         public let authName: String?
-        
+
         /// 可信服务产品简称。可信服务管理员查询时必须指定
         public let product: String?
-        
-        public init (offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.lang = lang
@@ -43,7 +43,7 @@ extension Organization {
             self.authName = authName
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -53,43 +53,43 @@ extension Organization {
             case product = "Product"
         }
     }
-    
+
     /// DescribeOrganizationMembers返回参数结构体
     public struct DescribeOrganizationMembersResponse: TCResponseModel {
         /// 成员列表。
         public let items: [OrgMember]
-        
+
         /// 总数目。
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
-    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMembersResponse > {
+    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMembersResponse> {
         self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
     public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
         try await self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
-    public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMembersResponse > {
+    public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMembersResponse> {
         self.describeOrganizationMembers(DescribeOrganizationMembersRequest(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
     public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {

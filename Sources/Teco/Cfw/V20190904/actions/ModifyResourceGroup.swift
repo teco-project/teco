@@ -19,44 +19,44 @@ extension Cfw {
     public struct ModifyResourceGroupRequest: TCRequestModel {
         /// 组id
         public let groupId: String
-        
+
         /// 组名称
         public let groupName: String
-        
+
         /// 上级组id
         public let parentId: String
-        
-        public init (groupId: String, groupName: String, parentId: String) {
+
+        public init(groupId: String, groupName: String, parentId: String) {
             self.groupId = groupId
             self.groupName = groupName
             self.parentId = parentId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
             case parentId = "ParentId"
         }
     }
-    
+
     /// ModifyResourceGroup返回参数结构体
     public struct ModifyResourceGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable
-    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceGroupResponse > {
+    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
         self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
@@ -64,15 +64,15 @@ extension Cfw {
     public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
         try await self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable
-    public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceGroupResponse > {
+    public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
         self.modifyResourceGroup(ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId), logger: logger, on: eventLoop)
     }
-    
+
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改

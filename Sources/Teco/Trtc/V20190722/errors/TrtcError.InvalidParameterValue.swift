@@ -19,38 +19,38 @@ extension TCTrtcError {
         enum Code: String {
             case roomId = "InvalidParameterValue.RoomId"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// RoomId值错误。
         public static var roomId: InvalidParameterValue {
             InvalidParameterValue(.roomId)
         }
-        
+
         public func asTrtcError() -> TCTrtcError {
             let code: TCTrtcError.Code
             switch self.error {
-            case .roomId: 
+            case .roomId:
                 code = .invalidParameterValue_RoomId
             }
             return TCTrtcError(code, context: self.context)

@@ -19,27 +19,27 @@ extension Eb {
     public struct ListRulesRequest: TCRequestModel {
         /// 事件集ID
         public let eventBusId: String
-        
+
         /// 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）
         public let orderBy: String?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
-        
+
         /// 分页偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
         public let order: String?
-        
-        public init (eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil) {
+
+        public init(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil) {
             self.eventBusId = eventBusId
             self.orderBy = orderBy
             self.limit = limit
             self.offset = offset
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventBusId = "EventBusId"
             case orderBy = "OrderBy"
@@ -48,43 +48,43 @@ extension Eb {
             case order = "Order"
         }
     }
-    
+
     /// ListRules返回参数结构体
     public struct ListRulesResponse: TCResponseModel {
         /// 事件规则信息
         public let rules: [Rule]
-        
+
         /// 事件规则总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取事件规则列表
     @inlinable
-    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRulesResponse > {
+    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRulesResponse> {
         self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取事件规则列表
     @inlinable
     public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
         try await self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取事件规则列表
     @inlinable
-    public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRulesResponse > {
+    public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRulesResponse> {
         self.listRules(ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取事件规则列表
     @inlinable
     public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {

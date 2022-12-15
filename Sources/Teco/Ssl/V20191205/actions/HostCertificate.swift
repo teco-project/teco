@@ -19,53 +19,53 @@ extension Ssl {
     public struct HostCertificateRequest: TCRequestModel {
         /// 证书ID
         public let certificateId: String
-        
+
         /// 资源类型：目前仅限于CLB,CDN
         public let resourceType: [String]?
-        
-        public init (certificateId: String, resourceType: [String]? = nil) {
+
+        public init(certificateId: String, resourceType: [String]? = nil) {
             self.certificateId = certificateId
             self.resourceType = resourceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
             case resourceType = "ResourceType"
         }
     }
-    
+
     /// HostCertificate返回参数结构体
     public struct HostCertificateResponse: TCResponseModel {
         /// 云资源配置详情
         public let certHostingInfo: CertHostingInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certHostingInfo = "CertHostingInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云资源托管
     @inlinable
-    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HostCertificateResponse > {
+    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HostCertificateResponse> {
         self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云资源托管
     @inlinable
     public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
         try await self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云资源托管
     @inlinable
-    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HostCertificateResponse > {
+    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HostCertificateResponse> {
         self.hostCertificate(HostCertificateRequest(certificateId: certificateId, resourceType: resourceType), logger: logger, on: eventLoop)
     }
-    
+
     /// 云资源托管
     @inlinable
     public func hostCertificate(certificateId: String, resourceType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {

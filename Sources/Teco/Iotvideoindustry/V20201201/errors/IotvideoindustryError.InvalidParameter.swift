@@ -20,45 +20,45 @@ extension TCIotvideoindustryError {
             case deviceOnline = "InvalidParameter.DeviceOnline"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 通道状态在线。
         public static var deviceOnline: InvalidParameter {
             InvalidParameter(.deviceOnline)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asIotvideoindustryError() -> TCIotvideoindustryError {
             let code: TCIotvideoindustryError.Code
             switch self.error {
-            case .deviceOnline: 
+            case .deviceOnline:
                 code = .invalidParameter_DeviceOnline
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCIotvideoindustryError(code, context: self.context)

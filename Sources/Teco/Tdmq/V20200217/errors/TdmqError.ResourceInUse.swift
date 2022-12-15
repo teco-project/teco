@@ -26,87 +26,87 @@ extension TCTdmqError {
             case topic = "ResourceInUse.Topic"
             case other = "ResourceInUse"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 集群已存在。
         public static var cluster: ResourceInUse {
             ResourceInUse(.cluster)
         }
-        
+
         /// 环境角色已存在。
         public static var environmentRole: ResourceInUse {
             ResourceInUse(.environmentRole)
         }
-        
+
         /// 重名，命名空间已存在。
         public static var namespace: ResourceInUse {
             ResourceInUse(.namespace)
         }
-        
+
         /// 队列已存在。
         public static var queue: ResourceInUse {
             ResourceInUse(.queue)
         }
-        
+
         /// 角色已存在。
         public static var role: ResourceInUse {
             ResourceInUse(.role)
         }
-        
+
         /// 重名，订阅关系已存在。
         public static var subscription: ResourceInUse {
             ResourceInUse(.subscription)
         }
-        
+
         /// 重名，主题已存在。
         public static var topic: ResourceInUse {
             ResourceInUse(.topic)
         }
-        
+
         /// 资源被占用。
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-        
+
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
-            case .cluster: 
+            case .cluster:
                 code = .resourceInUse_Cluster
-            case .environmentRole: 
+            case .environmentRole:
                 code = .resourceInUse_EnvironmentRole
-            case .namespace: 
+            case .namespace:
                 code = .resourceInUse_Namespace
-            case .queue: 
+            case .queue:
                 code = .resourceInUse_Queue
-            case .role: 
+            case .role:
                 code = .resourceInUse_Role
-            case .subscription: 
+            case .subscription:
                 code = .resourceInUse_Subscription
-            case .topic: 
+            case .topic:
                 code = .resourceInUse_Topic
-            case .other: 
+            case .other:
                 code = .resourceInUse
             }
             return TCTdmqError(code, context: self.context)

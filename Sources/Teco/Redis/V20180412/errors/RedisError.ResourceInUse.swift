@@ -19,38 +19,38 @@ extension TCRedisError {
         enum Code: String {
             case instanceBeenLocked = "ResourceInUse.InstanceBeenLocked"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例被其它流程锁住。
         public static var instanceBeenLocked: ResourceInUse {
             ResourceInUse(.instanceBeenLocked)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {
-            case .instanceBeenLocked: 
+            case .instanceBeenLocked:
                 code = .resourceInUse_InstanceBeenLocked
             }
             return TCRedisError(code, context: self.context)

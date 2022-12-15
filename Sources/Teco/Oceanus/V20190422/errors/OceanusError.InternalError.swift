@@ -32,129 +32,129 @@ extension TCOceanusError {
             case systemError = "InternalError.SystemError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM 网关错误。
         public static var camCgwError: InternalError {
             InternalError(.camCgwError)
         }
-        
+
         /// CLS接口错误。
         public static var cls: InternalError {
             InternalError(.cls)
         }
-        
+
         /// COS 服务访问错误。
         public static var cosClient: InternalError {
             InternalError(.cosClient)
         }
-        
+
         /// 数据库异常。
         public static var db: InternalError {
             InternalError(.db)
         }
-        
+
         /// 失败的目标资源。
         public static var failedToBescribeResources: InternalError {
             InternalError(.failedToBescribeResources)
         }
-        
+
         /// 无法更新作业错误。
         public static var failedToUpdateJob: InternalError {
             InternalError(.failedToUpdateJob)
         }
-        
+
         /// 作业实例没找到。
         public static var jobInstanceNotFound: InternalError {
             InternalError(.jobInstanceNotFound)
         }
-        
+
         /// 内部错误。
         public static var logicError: InternalError {
             InternalError(.logicError)
         }
-        
+
         /// 资源只有一个版本，无法删除。
         public static var resourceConfigCanNotDelete: InternalError {
             InternalError(.resourceConfigCanNotDelete)
         }
-        
+
         /// 资源不存在。
         public static var resourceNotExist: InternalError {
             InternalError(.resourceNotExist)
         }
-        
+
         /// 未找到sqlcode错误。
         public static var sqlCodeNotFound: InternalError {
             InternalError(.sqlCodeNotFound)
         }
-        
+
         /// 内部错误。
         public static var stsNewClient: InternalError {
             InternalError(.stsNewClient)
         }
-        
+
         /// 系统错误。
         public static var systemError: InternalError {
             InternalError(.systemError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asOceanusError() -> TCOceanusError {
             let code: TCOceanusError.Code
             switch self.error {
-            case .camCgwError: 
+            case .camCgwError:
                 code = .internalError_CamCgwError
-            case .cls: 
+            case .cls:
                 code = .internalError_CLS
-            case .cosClient: 
+            case .cosClient:
                 code = .internalError_COSClient
-            case .db: 
+            case .db:
                 code = .internalError_DB
-            case .failedToBescribeResources: 
+            case .failedToBescribeResources:
                 code = .internalError_FailedToBescribeResources
-            case .failedToUpdateJob: 
+            case .failedToUpdateJob:
                 code = .internalError_FailedToUpdateJob
-            case .jobInstanceNotFound: 
+            case .jobInstanceNotFound:
                 code = .internalError_JobInstanceNotFound
-            case .logicError: 
+            case .logicError:
                 code = .internalError_LogicError
-            case .resourceConfigCanNotDelete: 
+            case .resourceConfigCanNotDelete:
                 code = .internalError_ResourceConfigCanNotDelete
-            case .resourceNotExist: 
+            case .resourceNotExist:
                 code = .internalError_ResourceNotExist
-            case .sqlCodeNotFound: 
+            case .sqlCodeNotFound:
                 code = .internalError_SqlCodeNotFound
-            case .stsNewClient: 
+            case .stsNewClient:
                 code = .internalError_StsNewClient
-            case .systemError: 
+            case .systemError:
                 code = .internalError_SystemError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCOceanusError(code, context: self.context)

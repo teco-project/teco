@@ -19,38 +19,38 @@ extension Dlc {
     public struct CreateTableRequest: TCRequestModel {
         /// 数据表配置信息
         public let tableInfo: TableInfo
-        
-        public init (tableInfo: TableInfo) {
+
+        public init(tableInfo: TableInfo) {
             self.tableInfo = tableInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableInfo = "TableInfo"
         }
     }
-    
+
     /// CreateTable返回参数结构体
     public struct CreateTableResponse: TCResponseModel {
         /// 生成的建表执行语句对象。
         public let execution: Execution
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case execution = "Execution"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 生成建表SQL
     ///
     /// 本接口（CreateTable）用于生成建表SQL。
     @inlinable
-    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableResponse > {
+    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableResponse> {
         self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 生成建表SQL
     ///
     /// 本接口（CreateTable）用于生成建表SQL。
@@ -58,15 +58,15 @@ extension Dlc {
     public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
         try await self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 生成建表SQL
     ///
     /// 本接口（CreateTable）用于生成建表SQL。
     @inlinable
-    public func createTable(tableInfo: TableInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableResponse > {
+    public func createTable(tableInfo: TableInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableResponse> {
         self.createTable(CreateTableRequest(tableInfo: tableInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 生成建表SQL
     ///
     /// 本接口（CreateTable）用于生成建表SQL。

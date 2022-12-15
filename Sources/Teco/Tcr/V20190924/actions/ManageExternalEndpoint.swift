@@ -19,53 +19,53 @@ extension Tcr {
     public struct ManageExternalEndpointRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 操作（Create/Delete）
         public let operation: String
-        
-        public init (registryId: String, operation: String) {
+
+        public init(registryId: String, operation: String) {
             self.registryId = registryId
             self.operation = operation
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case operation = "Operation"
         }
     }
-    
+
     /// ManageExternalEndpoint返回参数结构体
     public struct ManageExternalEndpointResponse: TCResponseModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 管理实例公网访问
     @inlinable
-    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageExternalEndpointResponse > {
+    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageExternalEndpointResponse> {
         self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 管理实例公网访问
     @inlinable
     public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
         try await self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 管理实例公网访问
     @inlinable
-    public func manageExternalEndpoint(registryId: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageExternalEndpointResponse > {
+    public func manageExternalEndpoint(registryId: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageExternalEndpointResponse> {
         self.manageExternalEndpoint(ManageExternalEndpointRequest(registryId: registryId, operation: operation), logger: logger, on: eventLoop)
     }
-    
+
     /// 管理实例公网访问
     @inlinable
     public func manageExternalEndpoint(registryId: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {

@@ -17,38 +17,38 @@
 extension Tdid {
     /// VerifyPurchase请求参数结构体
     public struct VerifyPurchaseRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// VerifyPurchase返回参数结构体
     public struct VerifyPurchaseResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 验证购买
     @inlinable
-    public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPurchaseResponse > {
+    public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPurchaseResponse> {
         self.client.execute(action: "VerifyPurchase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 验证购买
     @inlinable
     public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
         try await self.client.execute(action: "VerifyPurchase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 验证购买
     @inlinable
-    public func verifyPurchase(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPurchaseResponse > {
+    public func verifyPurchase(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPurchaseResponse> {
         self.verifyPurchase(VerifyPurchaseRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 验证购买
     @inlinable
     public func verifyPurchase(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {

@@ -19,45 +19,45 @@ extension Sts {
     public struct GetFederationTokenRequest: TCRequestModel {
         /// 您可以自定义调用方英文名称，由字母组成。
         public let name: String
-        
+
         /// 授予该临时证书权限的CAM策略
         /// 注意：
         /// 1、策略语法参照[ CAM 策略语法](https://cloud.tencent.com/document/product/598/10603)。
         /// 2、策略中不能包含 principal 元素。
         /// 3、该参数需要做urlencode。
         public let policy: String
-        
+
         /// 指定临时证书的有效期，单位：秒，默认1800秒，主账号最长可设定有效期为7200秒，子账号最长可设定有效期为129600秒。
         public let durationSeconds: UInt64?
-        
-        public init (name: String, policy: String, durationSeconds: UInt64? = nil) {
+
+        public init(name: String, policy: String, durationSeconds: UInt64? = nil) {
             self.name = name
             self.policy = policy
             self.durationSeconds = durationSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case policy = "Policy"
             case durationSeconds = "DurationSeconds"
         }
     }
-    
+
     /// GetFederationToken返回参数结构体
     public struct GetFederationTokenResponse: TCResponseModel {
         /// 临时证书
         public let credentials: Credentials
-        
+
         /// 临时证书有效的时间，返回 Unix 时间戳，精确到秒
         public let expiredTime: UInt64
-        
+
         /// 证书有效的时间，以 iso8601 格式的 UTC 时间表示
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expiration: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case credentials = "Credentials"
             case expiredTime = "ExpiredTime"
@@ -65,25 +65,25 @@ extension Sts {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取联合身份临时访问凭证
     @inlinable
-    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFederationTokenResponse > {
+    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
         self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取联合身份临时访问凭证
     @inlinable
     public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
         try await self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取联合身份临时访问凭证
     @inlinable
-    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFederationTokenResponse > {
+    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
         self.getFederationToken(GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取联合身份临时访问凭证
     @inlinable
     public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {

@@ -19,32 +19,32 @@ extension Acp {
     public struct DescribeScanTaskListRequest: TCRequestModel {
         /// 任务来源, -1:所有, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         public let source: Int64
-        
+
         /// 应用平台, 0:android, 1:ios, 2:小程序
         public let platform: Int64
-        
+
         /// 任务状态,可多值查询,例如:"1,2,3" 0:默认值(待检测/待咨询), 1.检测中, 2:待评估, 3:评估中, 4:任务完成/咨询完成, 5:任务失败, 6:咨询中;
         public let taskStatuses: String
-        
+
         /// 任务类型,可多值查询,采用逗号分隔,例如:"0,1" 0:基础版, 1:专家版, 2:本地化
         public let taskTypes: String
-        
+
         /// 页码
         public let pageNo: Int64
-        
+
         /// 页码大小
         public let pageSize: Int64
-        
+
         /// 应用名称或小程序名称(可选参数)
         public let appName: String?
-        
+
         /// 查询时间范围, 查询开始时间(2021-09-30 或 2021-09-30 10:57:34)
         public let startTime: String?
-        
+
         /// 查询时间范围, 查询结束时间(2021-09-30 或 2021-09-30 10:57:34)
         public let endTime: String?
-        
-        public init (source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil) {
+
+        public init(source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.source = source
             self.platform = platform
             self.taskStatuses = taskStatuses
@@ -55,7 +55,7 @@ extension Acp {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case source = "Source"
             case platform = "Platform"
@@ -68,22 +68,22 @@ extension Acp {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeScanTaskList返回参数结构体
     public struct DescribeScanTaskListResponse: TCResponseModel {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let result: Int64
-        
+
         /// 任务总数量
         public let total: Int64
-        
+
         /// 诊断任务数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [AppTaskData]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case total = "Total"
@@ -91,15 +91,15 @@ extension Acp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取应用合规隐私诊断任务列表
     ///
     /// 获取App隐私合规诊断任务列表
     @inlinable
-    public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskListResponse > {
+    public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskListResponse> {
         self.client.execute(action: "DescribeScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取应用合规隐私诊断任务列表
     ///
     /// 获取App隐私合规诊断任务列表
@@ -107,15 +107,15 @@ extension Acp {
     public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskListResponse {
         try await self.client.execute(action: "DescribeScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取应用合规隐私诊断任务列表
     ///
     /// 获取App隐私合规诊断任务列表
     @inlinable
-    public func describeScanTaskList(source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskListResponse > {
+    public func describeScanTaskList(source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskListResponse> {
         self.describeScanTaskList(DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取应用合规隐私诊断任务列表
     ///
     /// 获取App隐私合规诊断任务列表

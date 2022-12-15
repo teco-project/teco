@@ -19,44 +19,44 @@ extension Cam {
     public struct UntagRoleRequest: TCRequestModel {
         /// 标签键
         public let tagKeys: [String]
-        
+
         /// 角色名，与角色ID至少输入一个
         public let roleName: String?
-        
+
         /// 角色ID，与角色名至少输入一个
         public let roleId: String?
-        
-        public init (tagKeys: [String], roleName: String? = nil, roleId: String? = nil) {
+
+        public init(tagKeys: [String], roleName: String? = nil, roleId: String? = nil) {
             self.tagKeys = tagKeys
             self.roleName = roleName
             self.roleId = roleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKeys = "TagKeys"
             case roleName = "RoleName"
             case roleId = "RoleId"
         }
     }
-    
+
     /// UntagRole返回参数结构体
     public struct UntagRoleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 角色解绑标签
     ///
     /// 角色解绑标签。
     @inlinable
-    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UntagRoleResponse > {
+    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntagRoleResponse> {
         self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 角色解绑标签
     ///
     /// 角色解绑标签。
@@ -64,15 +64,15 @@ extension Cam {
     public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
         try await self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 角色解绑标签
     ///
     /// 角色解绑标签。
     @inlinable
-    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UntagRoleResponse > {
+    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntagRoleResponse> {
         self.untagRole(UntagRoleRequest(tagKeys: tagKeys, roleName: roleName, roleId: roleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 角色解绑标签
     ///
     /// 角色解绑标签。

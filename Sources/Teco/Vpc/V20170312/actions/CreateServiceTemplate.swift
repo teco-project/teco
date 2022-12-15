@@ -19,48 +19,48 @@ extension Vpc {
     public struct CreateServiceTemplateRequest: TCRequestModel {
         /// 协议端口模板名称
         public let serviceTemplateName: String
-        
+
         /// 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
         public let services: [String]?
-        
+
         /// 支持添加备注，单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
         public let servicesExtra: [ServicesInfo]?
-        
-        public init (serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil) {
+
+        public init(serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil) {
             self.serviceTemplateName = serviceTemplateName
             self.services = services
             self.servicesExtra = servicesExtra
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceTemplateName = "ServiceTemplateName"
             case services = "Services"
             case servicesExtra = "ServicesExtra"
         }
     }
-    
+
     /// CreateServiceTemplate返回参数结构体
     public struct CreateServiceTemplateResponse: TCResponseModel {
         /// 协议端口模板对象。
         public let serviceTemplate: ServiceTemplate
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceTemplate = "ServiceTemplate"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建协议端口模板
     ///
     /// 本接口（CreateServiceTemplate）用于创建协议端口模板
     @inlinable
-    public func createServiceTemplate(_ input: CreateServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateResponse > {
+    public func createServiceTemplate(_ input: CreateServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateResponse> {
         self.client.execute(action: "CreateServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建协议端口模板
     ///
     /// 本接口（CreateServiceTemplate）用于创建协议端口模板
@@ -68,15 +68,15 @@ extension Vpc {
     public func createServiceTemplate(_ input: CreateServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateResponse {
         try await self.client.execute(action: "CreateServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建协议端口模板
     ///
     /// 本接口（CreateServiceTemplate）用于创建协议端口模板
     @inlinable
-    public func createServiceTemplate(serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateResponse > {
+    public func createServiceTemplate(serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateResponse> {
         self.createServiceTemplate(CreateServiceTemplateRequest(serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建协议端口模板
     ///
     /// 本接口（CreateServiceTemplate）用于创建协议端口模板

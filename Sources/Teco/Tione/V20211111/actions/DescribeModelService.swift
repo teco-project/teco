@@ -19,48 +19,48 @@ extension Tione {
     public struct DescribeModelServiceRequest: TCRequestModel {
         /// 服务id
         public let serviceId: String
-        
-        public init (serviceId: String) {
+
+        public init(serviceId: String) {
             self.serviceId = serviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
         }
     }
-    
+
     /// DescribeModelService返回参数结构体
     public struct DescribeModelServiceResponse: TCResponseModel {
         /// 服务信息
         public let service: Service
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case service = "Service"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询单个服务
     @inlinable
-    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceResponse > {
+    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
         self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单个服务
     @inlinable
     public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
         try await self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询单个服务
     @inlinable
-    public func describeModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceResponse > {
+    public func describeModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
         self.describeModelService(DescribeModelServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单个服务
     @inlinable
     public func describeModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {

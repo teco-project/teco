@@ -24,73 +24,73 @@ extension TCGsError {
             case tooFrequently = "FailedOperation.TooFrequently"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 锁定机器超时或未调用TrylockWorker。
         public static var lockTimeout: FailedOperation {
             FailedOperation(.lockTimeout)
         }
-        
+
         /// 处理超时。
         public static var processTimeout: FailedOperation {
             FailedOperation(.processTimeout)
         }
-        
+
         /// 请降低访问频率。
         public static var slowDown: FailedOperation {
             FailedOperation(.slowDown)
         }
-        
+
         /// 操作超时。
         public static var timeout: FailedOperation {
             FailedOperation(.timeout)
         }
-        
+
         /// 请求太频繁。
         public static var tooFrequently: FailedOperation {
             FailedOperation(.tooFrequently)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asGsError() -> TCGsError {
             let code: TCGsError.Code
             switch self.error {
-            case .lockTimeout: 
+            case .lockTimeout:
                 code = .failedOperation_LockTimeout
-            case .processTimeout: 
+            case .processTimeout:
                 code = .failedOperation_ProcessTimeout
-            case .slowDown: 
+            case .slowDown:
                 code = .failedOperation_SlowDown
-            case .timeout: 
+            case .timeout:
                 code = .failedOperation_Timeout
-            case .tooFrequently: 
+            case .tooFrequently:
                 code = .failedOperation_TooFrequently
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCGsError(code, context: self.context)

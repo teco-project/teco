@@ -19,39 +19,39 @@ extension Cbs {
     public struct ModifyDisksRenewFlagRequest: TCRequestModel {
         /// 一个或多个待操作的云硬盘ID。
         public let diskIds: [String]
-        
+
         /// 云盘的续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费。
         public let renewFlag: String
-        
-        public init (diskIds: [String], renewFlag: String) {
+
+        public init(diskIds: [String], renewFlag: String) {
             self.diskIds = diskIds
             self.renewFlag = renewFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
             case renewFlag = "RenewFlag"
         }
     }
-    
+
     /// ModifyDisksRenewFlag返回参数结构体
     public struct ModifyDisksRenewFlagResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
     @inlinable
-    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksRenewFlagResponse > {
+    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
         self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
@@ -59,15 +59,15 @@ extension Cbs {
     public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
         try await self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
     @inlinable
-    public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksRenewFlagResponse > {
+    public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
         self.modifyDisksRenewFlag(ModifyDisksRenewFlagRequest(diskIds: diskIds, renewFlag: renewFlag), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。

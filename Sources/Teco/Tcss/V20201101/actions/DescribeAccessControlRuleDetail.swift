@@ -19,23 +19,23 @@ extension Tcss {
     public struct DescribeAccessControlRuleDetailRequest: TCRequestModel {
         /// 策略唯一id
         public let ruleId: String?
-        
+
         /// 镜像id, 仅仅在事件加白的时候使用
         public let imageId: String?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
-        public init (ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.ruleId = ruleId
             self.imageId = imageId
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case imageId = "ImageId"
@@ -43,39 +43,39 @@ extension Tcss {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeAccessControlRuleDetail返回参数结构体
     public struct DescribeAccessControlRuleDetailResponse: TCResponseModel {
         /// 运行时策略详细信息
         public let ruleDetail: AccessControlRuleInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleDetail = "RuleDetail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询运行时访问控制策略详细信息
     @inlinable
-    public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRuleDetailResponse > {
+    public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessControlRuleDetailResponse> {
         self.client.execute(action: "DescribeAccessControlRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询运行时访问控制策略详细信息
     @inlinable
     public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRuleDetailResponse {
         try await self.client.execute(action: "DescribeAccessControlRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询运行时访问控制策略详细信息
     @inlinable
-    public func describeAccessControlRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRuleDetailResponse > {
+    public func describeAccessControlRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessControlRuleDetailResponse> {
         self.describeAccessControlRuleDetail(DescribeAccessControlRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询运行时访问控制策略详细信息
     @inlinable
     public func describeAccessControlRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRuleDetailResponse {

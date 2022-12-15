@@ -19,35 +19,35 @@ extension Postgres {
     public struct InquiryPriceRenewDBInstanceRequest: TCRequestModel {
         /// 实例ID
         public let dbInstanceId: String
-        
+
         /// 续费周期，按月计算，最大不超过48
         public let period: Int64
-        
-        public init (dbInstanceId: String, period: Int64) {
+
+        public init(dbInstanceId: String, period: Int64) {
             self.dbInstanceId = dbInstanceId
             self.period = period
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case period = "Period"
         }
     }
-    
+
     /// InquiryPriceRenewDBInstance返回参数结构体
     public struct InquiryPriceRenewDBInstanceResponse: TCResponseModel {
         /// 刊例价，单位为分。如24650表示246.5元
         public let originalPrice: Int64
-        
+
         /// 折后实际付款金额，单位为分。如24650表示246.5元
         public let price: Int64
-        
+
         /// 币种。例如，CNY：人民币。
         public let currency: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case originalPrice = "OriginalPrice"
             case price = "Price"
@@ -55,15 +55,15 @@ extension Postgres {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例续费价格
     ///
     /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
     @inlinable
-    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDBInstanceResponse > {
+    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewDBInstanceResponse> {
         self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例续费价格
     ///
     /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
@@ -71,15 +71,15 @@ extension Postgres {
     public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
         try await self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例续费价格
     ///
     /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
     @inlinable
-    public func inquiryPriceRenewDBInstance(dbInstanceId: String, period: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDBInstanceResponse > {
+    public func inquiryPriceRenewDBInstance(dbInstanceId: String, period: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewDBInstanceResponse> {
         self.inquiryPriceRenewDBInstance(InquiryPriceRenewDBInstanceRequest(dbInstanceId: dbInstanceId, period: period), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例续费价格
     ///
     /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。

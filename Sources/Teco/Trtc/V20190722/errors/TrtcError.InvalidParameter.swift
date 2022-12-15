@@ -56,298 +56,298 @@ extension TCTrtcError {
             case videoResolution = "InvalidParameter.VideoResolution"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// AppId校验失败。
         public static var appId: InvalidParameter {
             InvalidParameter(.appId)
         }
-        
+
         /// 音频编码参数错误。
         public static var audioEncodeParams: InvalidParameter {
             InvalidParameter(.audioEncodeParams)
         }
-        
+
         /// body 解析参数失败。
         public static var bodyParamsError: InvalidParameter {
             InvalidParameter(.bodyParamsError)
         }
-        
+
         /// 图片过大。
         public static var checkContentFailed: InvalidParameter {
             InvalidParameter(.checkContentFailed)
         }
-        
+
         /// 后缀名校验失败。
         ///
         /// 请输入合法的后缀名。
         public static var checkSuffixFailed: InvalidParameter {
             InvalidParameter(.checkSuffixFailed)
         }
-        
+
         /// EncodeParams参数错误。
         public static var encodeParams: InvalidParameter {
             InvalidParameter(.encodeParams)
         }
-        
+
         /// EndTs参数错误。
         public static var endTs: InvalidParameter {
             InvalidParameter(.endTs)
         }
-        
+
         /// 大画面居右显示参数错误。
         public static var mainVideoRightAlign: InvalidParameter {
             InvalidParameter(.mainVideoRightAlign)
         }
-        
+
         /// 大画面流类型错误。
         public static var mainVideoStreamType: InvalidParameter {
             InvalidParameter(.mainVideoStreamType)
         }
-        
+
         /// 参数超出范围。
         public static var outOfRange: InvalidParameter {
             InvalidParameter(.outOfRange)
         }
-        
+
         /// OutputParams参数错误。
         public static var outputParams: InvalidParameter {
             InvalidParameter(.outputParams)
         }
-        
+
         /// PageNumber 参数错误。
         public static var pageNumber: InvalidParameter {
             InvalidParameter(.pageNumber)
         }
-        
+
         /// PageSize参数错误。
         public static var pageSize: InvalidParameter {
             InvalidParameter(.pageSize)
         }
-        
+
         /// PageSize超过100。
         public static var pageSizeOversize: InvalidParameter {
             InvalidParameter(.pageSizeOversize)
         }
-        
+
         /// 待操作的图片未找到。
         public static var pictureNotFound: InvalidParameter {
             InvalidParameter(.pictureNotFound)
         }
-        
+
         /// 自定义布局参数错误。
         public static var presetLayoutConfig: InvalidParameter {
             InvalidParameter(.presetLayoutConfig)
         }
-        
+
         /// PublishCdnUrls参数校验失败。
         public static var publishCdnUrls: InvalidParameter {
             InvalidParameter(.publishCdnUrls)
         }
-        
+
         /// 纯音频推流参数错误。
         public static var pureAudioStream: InvalidParameter {
             InvalidParameter(.pureAudioStream)
         }
-        
+
         /// 查询范围超过文档限制。
         public static var queryScaleOversize: InvalidParameter {
             InvalidParameter(.queryScaleOversize)
         }
-        
+
         /// 纯音频录制参数错误。
         public static var recordAudioOnly: InvalidParameter {
             InvalidParameter(.recordAudioOnly)
         }
-        
+
         /// RecordId参数错误。
         public static var recordId: InvalidParameter {
             InvalidParameter(.recordId)
         }
-        
+
         /// RoomId参数错误。
         public static var roomId: InvalidParameter {
             InvalidParameter(.roomId)
         }
-        
+
         /// SdkAppId参数错误。
         public static var sdkAppId: InvalidParameter {
             InvalidParameter(.sdkAppId)
         }
-        
+
         /// 不能操作的SdkAppid。
         public static var sdkAppid: InvalidParameter {
             InvalidParameter(.sdkAppid)
         }
-        
+
         /// 小画面布局参数错误。
         public static var smallVideoLayoutParams: InvalidParameter {
             InvalidParameter(.smallVideoLayoutParams)
         }
-        
+
         /// 小画面布局中流类型参数错误。
         public static var smallVideoStreamType: InvalidParameter {
             InvalidParameter(.smallVideoStreamType)
         }
-        
+
         /// 查询开始时间超过文档限制。
         public static var startTimeExpire: InvalidParameter {
             InvalidParameter(.startTimeExpire)
         }
-        
+
         /// 详情请见:https://cloud.tencent.com/document/product/647/81331。
         public static var startTimeOversize: InvalidParameter {
             InvalidParameter(.startTimeOversize)
         }
-        
+
         /// StartTs参数错误。
         public static var startTs: InvalidParameter {
             InvalidParameter(.startTs)
         }
-        
+
         /// 查询开始时间超过文档限制。
         public static var startTsOversize: InvalidParameter {
             InvalidParameter(.startTsOversize)
         }
-        
+
         public static var strRoomId: InvalidParameter {
             InvalidParameter(.strRoomId)
         }
-        
+
         /// StreamId参数错误。
         public static var streamId: InvalidParameter {
             InvalidParameter(.streamId)
         }
-        
+
         /// Url解析参数失败。
         public static var urlParamsError: InvalidParameter {
             InvalidParameter(.urlParamsError)
         }
-        
+
         /// UserId参数错误。
         public static var userId: InvalidParameter {
             InvalidParameter(.userId)
         }
-        
+
         /// UserIds参数错误。
         public static var userIds: InvalidParameter {
             InvalidParameter(.userIds)
         }
-        
+
         /// 用户数超过6个。
         public static var userIdsMorethanSix: InvalidParameter {
             InvalidParameter(.userIdsMorethanSix)
         }
-        
+
         /// 视频分辨率参数错误。
         public static var videoResolution: InvalidParameter {
             InvalidParameter(.videoResolution)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTrtcError() -> TCTrtcError {
             let code: TCTrtcError.Code
             switch self.error {
-            case .appId: 
+            case .appId:
                 code = .invalidParameter_AppId
-            case .audioEncodeParams: 
+            case .audioEncodeParams:
                 code = .invalidParameter_AudioEncodeParams
-            case .bodyParamsError: 
+            case .bodyParamsError:
                 code = .invalidParameter_BodyParamsError
-            case .checkContentFailed: 
+            case .checkContentFailed:
                 code = .invalidParameter_CheckContentFailed
-            case .checkSuffixFailed: 
+            case .checkSuffixFailed:
                 code = .invalidParameter_CheckSuffixFailed
-            case .encodeParams: 
+            case .encodeParams:
                 code = .invalidParameter_EncodeParams
-            case .endTs: 
+            case .endTs:
                 code = .invalidParameter_EndTs
-            case .mainVideoRightAlign: 
+            case .mainVideoRightAlign:
                 code = .invalidParameter_MainVideoRightAlign
-            case .mainVideoStreamType: 
+            case .mainVideoStreamType:
                 code = .invalidParameter_MainVideoStreamType
-            case .outOfRange: 
+            case .outOfRange:
                 code = .invalidParameter_OutOfRange
-            case .outputParams: 
+            case .outputParams:
                 code = .invalidParameter_OutputParams
-            case .pageNumber: 
+            case .pageNumber:
                 code = .invalidParameter_PageNumber
-            case .pageSize: 
+            case .pageSize:
                 code = .invalidParameter_PageSize
-            case .pageSizeOversize: 
+            case .pageSizeOversize:
                 code = .invalidParameter_PageSizeOversize
-            case .pictureNotFound: 
+            case .pictureNotFound:
                 code = .invalidParameter_PictureNotFound
-            case .presetLayoutConfig: 
+            case .presetLayoutConfig:
                 code = .invalidParameter_PresetLayoutConfig
-            case .publishCdnUrls: 
+            case .publishCdnUrls:
                 code = .invalidParameter_PublishCdnUrls
-            case .pureAudioStream: 
+            case .pureAudioStream:
                 code = .invalidParameter_PureAudioStream
-            case .queryScaleOversize: 
+            case .queryScaleOversize:
                 code = .invalidParameter_QueryScaleOversize
-            case .recordAudioOnly: 
+            case .recordAudioOnly:
                 code = .invalidParameter_RecordAudioOnly
-            case .recordId: 
+            case .recordId:
                 code = .invalidParameter_RecordId
-            case .roomId: 
+            case .roomId:
                 code = .invalidParameter_RoomId
-            case .sdkAppId: 
+            case .sdkAppId:
                 code = .invalidParameter_SdkAppId
-            case .sdkAppid: 
+            case .sdkAppid:
                 code = .invalidParameter_SdkAppid
-            case .smallVideoLayoutParams: 
+            case .smallVideoLayoutParams:
                 code = .invalidParameter_SmallVideoLayoutParams
-            case .smallVideoStreamType: 
+            case .smallVideoStreamType:
                 code = .invalidParameter_SmallVideoStreamType
-            case .startTimeExpire: 
+            case .startTimeExpire:
                 code = .invalidParameter_StartTimeExpire
-            case .startTimeOversize: 
+            case .startTimeOversize:
                 code = .invalidParameter_StartTimeOversize
-            case .startTs: 
+            case .startTs:
                 code = .invalidParameter_StartTs
-            case .startTsOversize: 
+            case .startTsOversize:
                 code = .invalidParameter_StartTsOversize
-            case .strRoomId: 
+            case .strRoomId:
                 code = .invalidParameter_StrRoomId
-            case .streamId: 
+            case .streamId:
                 code = .invalidParameter_StreamId
-            case .urlParamsError: 
+            case .urlParamsError:
                 code = .invalidParameter_UrlParamsError
-            case .userId: 
+            case .userId:
                 code = .invalidParameter_UserId
-            case .userIds: 
+            case .userIds:
                 code = .invalidParameter_UserIds
-            case .userIdsMorethanSix: 
+            case .userIdsMorethanSix:
                 code = .invalidParameter_UserIdsMorethanSix
-            case .videoResolution: 
+            case .videoResolution:
                 code = .invalidParameter_VideoResolution
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCTrtcError(code, context: self.context)

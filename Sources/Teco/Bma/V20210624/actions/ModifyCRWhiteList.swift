@@ -19,26 +19,26 @@ extension Bma {
     public struct ModifyCRWhiteListRequest: TCRequestModel {
         /// 该字段已废弃，白名单ID
         public let whiteListId: Int64?
-        
+
         /// 该字段已废弃，平台名称
         public let platForm: String?
-        
+
         /// 该字段已废弃，平台站点链接
         public let platUrl: String?
-        
+
         /// 该字段已废弃，作者ID
         public let authorId: String?
-        
+
         /// 该字段已废弃，作品ID
         public let worksId: Int64?
-        
+
         /// 作品ID
         public let workId: Int64?
-        
+
         /// 白名单列表，以\n分割
         public let whiteSites: String?
-        
-        public init (whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil) {
+
+        public init(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil) {
             self.whiteListId = whiteListId
             self.platForm = platForm
             self.platUrl = platUrl
@@ -47,7 +47,7 @@ extension Bma {
             self.workId = workId
             self.whiteSites = whiteSites
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case whiteListId = "WhiteListId"
             case platForm = "PlatForm"
@@ -58,35 +58,35 @@ extension Bma {
             case whiteSites = "WhiteSites"
         }
     }
-    
+
     /// ModifyCRWhiteList返回参数结构体
     public struct ModifyCRWhiteListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改白名单列表
     @inlinable
-    public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRWhiteListResponse > {
+    public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRWhiteListResponse> {
         self.client.execute(action: "ModifyCRWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改白名单列表
     @inlinable
     public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRWhiteListResponse {
         try await self.client.execute(action: "ModifyCRWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改白名单列表
     @inlinable
-    public func modifyCRWhiteList(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRWhiteListResponse > {
+    public func modifyCRWhiteList(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRWhiteListResponse> {
         self.modifyCRWhiteList(ModifyCRWhiteListRequest(whiteListId: whiteListId, platForm: platForm, platUrl: platUrl, authorId: authorId, worksId: worksId, workId: workId, whiteSites: whiteSites), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改白名单列表
     @inlinable
     public func modifyCRWhiteList(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRWhiteListResponse {

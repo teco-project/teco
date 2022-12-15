@@ -19,38 +19,38 @@ extension TCDcdbError {
         enum Code: String {
             case tooFrequentlyCalled = "LimitExceeded.TooFrequentlyCalled"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请求过于频繁。
         public static var tooFrequentlyCalled: LimitExceeded {
             LimitExceeded(.tooFrequentlyCalled)
         }
-        
+
         public func asDcdbError() -> TCDcdbError {
             let code: TCDcdbError.Code
             switch self.error {
-            case .tooFrequentlyCalled: 
+            case .tooFrequentlyCalled:
                 code = .limitExceeded_TooFrequentlyCalled
             }
             return TCDcdbError(code, context: self.context)

@@ -19,38 +19,38 @@ extension TCAaError {
         enum Code: String {
             case permissionDenied = "ResourceUnavailable.PermissionDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未开通服务权限。
         public static var permissionDenied: ResourceUnavailable {
             ResourceUnavailable(.permissionDenied)
         }
-        
+
         public func asAaError() -> TCAaError {
             let code: TCAaError.Code
             switch self.error {
-            case .permissionDenied: 
+            case .permissionDenied:
                 code = .resourceUnavailable_PermissionDenied
             }
             return TCAaError(code, context: self.context)

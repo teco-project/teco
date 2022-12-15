@@ -19,38 +19,38 @@ extension Live {
     public struct DescribeLiveWatermarkRequest: TCRequestModel {
         /// DescribeLiveWatermarks接口返回的水印 ID。
         public let watermarkId: UInt64
-        
-        public init (watermarkId: UInt64) {
+
+        public init(watermarkId: UInt64) {
             self.watermarkId = watermarkId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case watermarkId = "WatermarkId"
         }
     }
-    
+
     /// DescribeLiveWatermark返回参数结构体
     public struct DescribeLiveWatermarkResponse: TCResponseModel {
         /// 水印信息。
         public let watermark: WatermarkInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case watermark = "Watermark"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单个水印
     ///
     /// 获取单个水印信息。
     @inlinable
-    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkResponse > {
+    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkResponse> {
         self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个水印
     ///
     /// 获取单个水印信息。
@@ -58,15 +58,15 @@ extension Live {
     public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
         try await self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单个水印
     ///
     /// 获取单个水印信息。
     @inlinable
-    public func describeLiveWatermark(watermarkId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkResponse > {
+    public func describeLiveWatermark(watermarkId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkResponse> {
         self.describeLiveWatermark(DescribeLiveWatermarkRequest(watermarkId: watermarkId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个水印
     ///
     /// 获取单个水印信息。

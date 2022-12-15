@@ -19,42 +19,42 @@ extension Ame {
     public struct BatchDescribeKTVMusicDetailsRequest: TCRequestModel {
         /// 歌曲Id列表，注：列表最大长度为50
         public let musicIds: [String]
-        
-        public init (musicIds: [String]) {
+
+        public init(musicIds: [String]) {
             self.musicIds = musicIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case musicIds = "MusicIds"
         }
     }
-    
+
     /// BatchDescribeKTVMusicDetails返回参数结构体
     public struct BatchDescribeKTVMusicDetailsResponse: TCResponseModel {
         /// 歌曲详情列表信息
         public let ktvMusicDetailInfoSet: [KTVMusicDetailInfo]
-        
+
         /// 不存在的歌曲 ID 列表。
         public let notExistMusicIdSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ktvMusicDetailInfoSet = "KTVMusicDetailInfoSet"
             case notExistMusicIdSet = "NotExistMusicIdSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量获取直播互动曲目详情
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
-    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
+    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
         self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量获取直播互动曲目详情
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
@@ -62,15 +62,15 @@ extension Ame {
     public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
         try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量获取直播互动曲目详情
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
-    public func batchDescribeKTVMusicDetails(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
+    public func batchDescribeKTVMusicDetails(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
         self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量获取直播互动曲目详情
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。

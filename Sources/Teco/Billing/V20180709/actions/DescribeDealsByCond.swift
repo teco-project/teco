@@ -27,7 +27,7 @@ extension Billing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,13 +35,13 @@ extension Billing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 一页多少条数据，默认是20条，最大不超过1000
         public let limit: Int64
-        
+
         /// 第多少页，从0开始，默认是0
         public let offset: Int64?
-        
+
         /// 订单状态,默认为4（成功的订单）
         /// 订单的状态
         /// 1：未支付
@@ -56,17 +56,17 @@ extension Billing {
         /// 11：代付拒绝
         /// 12：支付中
         public let status: Int64?
-        
+
         /// 订单号
         public let orderId: String?
-        
+
         /// 大订单号
         public let bigDealId: String?
-        
+
         /// 资源id
         public let resourceId: String?
-        
-        public init (startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.limit = limit
@@ -76,7 +76,7 @@ extension Billing {
             self.bigDealId = bigDealId
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -88,33 +88,33 @@ extension Billing {
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// DescribeDealsByCond返回参数结构体
     public struct DescribeDealsByCondResponse: TCResponseModel {
         /// 订单列表
         public let deals: [Deal]
-        
+
         /// 订单总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deals = "Deals"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询订单数据
     ///
     /// 查询订单
     @inlinable
-    public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDealsByCondResponse > {
+    public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDealsByCondResponse> {
         self.client.execute(action: "DescribeDealsByCond", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询订单数据
     ///
     /// 查询订单
@@ -122,15 +122,15 @@ extension Billing {
     public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDealsByCondResponse {
         try await self.client.execute(action: "DescribeDealsByCond", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询订单数据
     ///
     /// 查询订单
     @inlinable
-    public func describeDealsByCond(startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDealsByCondResponse > {
+    public func describeDealsByCond(startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDealsByCondResponse> {
         self.describeDealsByCond(DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询订单数据
     ///
     /// 查询订单

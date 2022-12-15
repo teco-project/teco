@@ -24,58 +24,58 @@ extension Cwp {
         /// <li>Level - String - 是否必填：否 - 漏洞等级筛选 1:低 2:中 3:高 4:提示</li>
         /// <li>VulName- String - 是否必填：否 - 漏洞名称搜索</li>
         public let filters: [Filter]?
-        
+
         /// 是否导出详情,1是 0不是
         public let ifDetail: UInt64?
-        
-        public init (filters: [Filter]? = nil, ifDetail: UInt64? = nil) {
+
+        public init(filters: [Filter]? = nil, ifDetail: UInt64? = nil) {
             self.filters = filters
             self.ifDetail = ifDetail
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case ifDetail = "IfDetail"
         }
     }
-    
+
     /// ExportVulList返回参数结构体
     public struct ExportVulListResponse: TCResponseModel {
         /// 导出的文件下载url（已弃用！）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 导出文件Id 可通过ExportTasks接口下载
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 漏洞管理-导出漏洞列表
     @inlinable
-    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulListResponse > {
+    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulListResponse> {
         self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞管理-导出漏洞列表
     @inlinable
     public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
         try await self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 漏洞管理-导出漏洞列表
     @inlinable
-    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulListResponse > {
+    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulListResponse> {
         self.exportVulList(ExportVulListRequest(filters: filters, ifDetail: ifDetail), logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞管理-导出漏洞列表
     @inlinable
     public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {

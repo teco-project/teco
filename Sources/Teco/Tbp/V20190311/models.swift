@@ -20,11 +20,11 @@ extension Tbp {
         /// 槽位名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slotName: String?
-        
+
         /// 槽位值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slotValue: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case slotName = "SlotName"
             case slotValue = "SlotValue"

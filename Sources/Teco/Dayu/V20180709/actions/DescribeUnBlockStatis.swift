@@ -20,18 +20,18 @@ import TecoDateHelpers
 extension Dayu {
     /// DescribeUnBlockStatis请求参数结构体
     public struct DescribeUnBlockStatisRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeUnBlockStatis返回参数结构体
     public struct DescribeUnBlockStatisResponse: TCResponseModel {
         /// 解封总配额数
         public let total: UInt64
-        
+
         /// 已使用次数
         public let used: UInt64
-        
+
         /// 统计起始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -39,7 +39,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var beginTime: Date
-        
+
         /// 统计结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,10 +47,10 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case used = "Used"
@@ -59,25 +59,25 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取黑洞解封次数
     @inlinable
-    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnBlockStatisResponse > {
+    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnBlockStatisResponse> {
         self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑洞解封次数
     @inlinable
     public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
         try await self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取黑洞解封次数
     @inlinable
-    public func describeUnBlockStatis(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnBlockStatisResponse > {
+    public func describeUnBlockStatis(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnBlockStatisResponse> {
         self.describeUnBlockStatis(DescribeUnBlockStatisRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑洞解封次数
     @inlinable
     public func describeUnBlockStatis(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {

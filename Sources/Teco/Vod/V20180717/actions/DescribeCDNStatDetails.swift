@@ -22,19 +22,19 @@ extension Vod {
         /// <li>Bandwidth：带宽，单位为 Bps。</li>
         /// <li>Requests：请求数。</li>
         public let metric: String
-        
+
         /// 起始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
-        
+
         /// 结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 域名列表。一次最多查询20个域名的数据。默认返回所有域名叠加的用量数据。
         public let domainNames: [String]?
-        
+
         /// 服务区域，取值有：
         /// <li>Chinese Mainland：中国大陆。 </li>
         /// <li>Asia Pacific Region 1：亚太一区，包括中国香港、中国澳门、新加坡、越南、泰国。 </li>
@@ -47,7 +47,7 @@ extension Vod {
         /// <li>Africa：非洲。</li>
         /// 默认为中国大陆。
         public let area: String?
-        
+
         /// 用户所在地区，Area 为 Chinese Mainland 时，取值为以下地区信息，当 Area 为其它值时， 忽略 Districts 参数。
         /// <li>Beijing：北京。</li>
         /// <li>Inner Mongolia：内蒙古。</li>
@@ -84,7 +84,7 @@ extension Vod {
         /// <li>Outside Chinese Mainland：海外。</li>
         /// <li>Other：其他 。</li>
         public let districts: [String]?
-        
+
         /// 用户所属运营商信息，Area 为 Chinese Mainland 时，取值为以下运营商信息。当 Area 为其它值时忽略 Isps 参数。
         /// <li>China Telecom：中国电信。 </li>
         /// <li>China Unicom：中国联通。 </li>
@@ -95,14 +95,14 @@ extension Vod {
         /// <li>ISPs outside Chinese Mainland：海外运营商。</li>
         /// <li>Other ISPs：其他运营商。</li>
         public let isps: [String]?
-        
+
         /// 每条数据的时间粒度，单位：分钟，取值有：
         /// <li>5：5 分钟粒度，返回指定查询时间内5分钟粒度的明细数据。</li>
         /// <li>1440：天粒度，返回指定查询时间内1天粒度的数据。起始时间和结束时间跨度大于24小时，只支持天粒度的数据。</li>
         /// 当 StartTime 和 EndTime 时间跨度大于24小时时，DataInterval 默认为 1440。
         public let dataInterval: UInt64?
-        
-        public init (metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil) {
+
+        public init(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil) {
             self.metric = metric
             self.startTime = startTime
             self.endTime = endTime
@@ -113,7 +113,7 @@ extension Vod {
             self.isps = isps
             self.dataInterval = dataInterval
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case startTime = "StartTime"
@@ -126,25 +126,25 @@ extension Vod {
             case dataInterval = "DataInterval"
         }
     }
-    
+
     /// DescribeCDNStatDetails返回参数结构体
     public struct DescribeCDNStatDetailsResponse: TCResponseModel {
         /// 每条数据的时间粒度，单位：分钟。
         public let dataInterval: UInt64
-        
+
         /// CDN 用量数据。
         public let data: [StatDataItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataInterval = "DataInterval"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询点播域名的 CDN 统计数据
     ///
     /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。
@@ -152,10 +152,10 @@ extension Vod {
     /// * 可以查询不同服务区域的数据。
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
-    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDNStatDetailsResponse > {
+    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNStatDetailsResponse> {
         self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询点播域名的 CDN 统计数据
     ///
     /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。
@@ -166,7 +166,7 @@ extension Vod {
     public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
         try await self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询点播域名的 CDN 统计数据
     ///
     /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。
@@ -174,10 +174,10 @@ extension Vod {
     /// * 可以查询不同服务区域的数据。
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
-    public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDNStatDetailsResponse > {
+    public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNStatDetailsResponse> {
         self.describeCDNStatDetails(DescribeCDNStatDetailsRequest(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询点播域名的 CDN 统计数据
     ///
     /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。

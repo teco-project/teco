@@ -22,63 +22,63 @@ extension TCChdfsError {
             case quotaLessThanCurrentUsed = "FailedOperation.QuotaLessThanCurrentUsed"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 权限组被绑定。
         ///
         /// 当前权限组先解绑关联的挂载点。
         public static var accessGroupBound: FailedOperation {
             FailedOperation(.accessGroupBound)
         }
-        
+
         /// 文件系统非空。
         ///
         /// 先清空当前文件系统。
         public static var fileSystemNotEmpty: FailedOperation {
             FailedOperation(.fileSystemNotEmpty)
         }
-        
+
         /// 修改的文件系统容量小于当前使用量。
         public static var quotaLessThanCurrentUsed: FailedOperation {
             FailedOperation(.quotaLessThanCurrentUsed)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asChdfsError() -> TCChdfsError {
             let code: TCChdfsError.Code
             switch self.error {
-            case .accessGroupBound: 
+            case .accessGroupBound:
                 code = .failedOperation_AccessGroupBound
-            case .fileSystemNotEmpty: 
+            case .fileSystemNotEmpty:
                 code = .failedOperation_FileSystemNotEmpty
-            case .quotaLessThanCurrentUsed: 
+            case .quotaLessThanCurrentUsed:
                 code = .failedOperation_QuotaLessThanCurrentUsed
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCChdfsError(code, context: self.context)

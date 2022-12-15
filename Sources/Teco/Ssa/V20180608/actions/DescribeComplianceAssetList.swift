@@ -19,27 +19,27 @@ extension Ssa {
     public struct DescribeComplianceAssetListRequest: TCRequestModel {
         /// 页码
         public let offset: Int64
-        
+
         /// 每页数量
         public let limit: Int64
-        
+
         /// 检查项uuid
         public let id: String
-        
+
         /// 过滤条件
         public let filter: [Filter]?
-        
+
         /// 查询条件
         public let search: [Filter]?
-        
-        public init (offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil) {
+
+        public init(offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.id = id
             self.filter = filter
             self.search = search
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -48,43 +48,43 @@ extension Ssa {
             case search = "Search"
         }
     }
-    
+
     /// DescribeComplianceAssetList返回参数结构体
     public struct DescribeComplianceAssetListResponse: TCResponseModel {
         /// 资产组列表
         public let checkAssetsList: [CheckAssetItem]
-        
+
         /// 资产组列表总数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case checkAssetsList = "CheckAssetsList"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 合规管理-资产列表
     @inlinable
-    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetListResponse > {
+    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetListResponse> {
         self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 合规管理-资产列表
     @inlinable
     public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
         try await self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 合规管理-资产列表
     @inlinable
-    public func describeComplianceAssetList(offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetListResponse > {
+    public func describeComplianceAssetList(offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetListResponse> {
         self.describeComplianceAssetList(DescribeComplianceAssetListRequest(offset: offset, limit: limit, id: id, filter: filter, search: search), logger: logger, on: eventLoop)
     }
-    
+
     /// 合规管理-资产列表
     @inlinable
     public func describeComplianceAssetList(offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {

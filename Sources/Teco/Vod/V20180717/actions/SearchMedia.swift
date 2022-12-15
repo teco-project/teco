@@ -19,71 +19,71 @@ extension Vod {
     public struct SearchMediaRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 文件 ID 集合，匹配集合中的任意元素。
         /// <li>数组长度限制：10。</li>
         /// <li>单个 ID 长度限制：40个字符。</li>
         public let fileIds: [String]?
-        
+
         /// 文件名集合，模糊匹配媒体文件的文件名，匹配度越高，排序越优先。
         /// <li>单个文件名长度限制：40个字符。</li>
         /// <li>数组长度限制：10。</li>
         public let names: [String]?
-        
+
         /// 文件名前缀，前缀匹配媒体文件的文件名。
         /// <li>单个文件名前缀长度限制：20个字符。</li>
         /// <li>数组长度限制：10。</li>
         public let namePrefixes: [String]?
-        
+
         /// 文件描述集合，模糊匹配媒体文件的描述，匹配度越高，排序越优先。
         /// <li>单个描述长度限制：100个字符。</li>
         /// <li>数组长度限制：10。</li>
         public let descriptions: [String]?
-        
+
         /// 分类 ID 集合，匹配集合指定 ID 的分类及其所有子类。
         /// <li>数组长度限制：10。</li>
         public let classIds: [Int64]?
-        
+
         /// 标签集合，匹配集合中任意元素。
         /// <li>单个标签长度限制：16个字符。</li>
         /// <li>数组长度限制：10。</li>
         public let tags: [String]?
-        
+
         /// 文件类型。匹配集合中的任意元素：
         /// <li>Video: 视频文件</li>
         /// <li>Audio: 音频文件</li>
         /// <li>Image: 图片文件</li>
         public let categories: [String]?
-        
+
         /// 媒体文件来源集合，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
         /// <li>数组长度限制：10。</li>
         public let sourceTypes: [String]?
-        
+
         /// 推流直播码集合。匹配集合中的任意元素。
         /// <li>数组长度限制：10。</li>
         public let streamIds: [String]?
-        
+
         /// 匹配创建时间在此时间段内的文件。
         /// <li>包含所指定的头尾时间点。</li>
         public let createTime: TimeRange?
-        
+
         /// 匹配过期时间在此时间段内的文件，无法检索到已过期文件。
         /// <li>包含所指定的头尾时间点。</li>
         public let expireTime: TimeRange?
-        
+
         /// 排序方式。
         /// <li>Sort.Field 可选 CreateTime 。</li>
         /// <li>当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
         public let sort: SortBy?
-        
+
         /// <div id="p_offset">分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
         /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
         public let offset: UInt64?
-        
+
         /// <div id="p_limit">分页返回的记录条数，默认值：10。将返回第 Offset 到第 Offset+Limit-1 条。
         /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
         public let limit: UInt64?
-        
+
         /// 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
         /// <li>basicInfo（视频基础信息）。</li>
         /// <li>metaData（视频元信息）。</li>
@@ -96,61 +96,61 @@ extension Vod {
         /// <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
         /// <li>miniProgramReviewInfo（小程序审核信息）。</li>
         public let filters: [String]?
-        
+
         /// 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
         /// <li>单个存储地区长度限制：20个字符。</li>
         /// <li>数组长度限制：20。</li>
         public let storageRegions: [String]?
-        
+
         /// 存储类型数组。可选值有：
         /// <li> STANDARD：标准存储。</li>
         /// <li> STANDARD_IA：低频存储。</li>
         /// <li> ARCHIVE：归档存储。</li>
         /// <li> DEEP_ARCHIVE：深度归档存储。</li>
         public let storageClasses: [String]?
-        
+
         /// TRTC 应用 ID 集合。匹配集合中的任意元素。
         /// <li>数组长度限制：10。</li>
         public let trtcSdkAppIds: [UInt64]?
-        
+
         /// TRTC 房间 ID 集合。匹配集合中的任意元素。
         /// <li>单个房间 ID 长度限制：64个字符；</li>
         /// <li>数组长度限制：10。</li>
         public let trtcRoomIds: [String]?
-        
+
         /// （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
         /// 搜索文本，模糊匹配媒体文件名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：64个字符。
         public let text: String?
-        
+
         /// （不推荐：应使用 SourceTypes 替代）
         /// 媒体文件来源，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
         public let sourceType: String?
-        
+
         /// （不推荐：应使用 StreamIds 替代）
         /// 推流直播码。
         public let streamId: String?
-        
+
         /// （不推荐：应使用 CreateTime 替代）
         /// 创建时间的开始时间。
         /// <li>大于等于开始时间。</li>
         /// <li>当 CreateTime.After 也存在时，将优先使用 CreateTime.After。</li>
         /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         public let startTime: String?
-        
+
         /// （不推荐：应使用 CreateTime 替代）
         /// 创建时间的结束时间。
         /// <li>小于结束时间。</li>
         /// <li>当 CreateTime.Before 也存在时，将优先使用 CreateTime.Before。</li>
         /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         public let endTime: String?
-        
+
         /// 该字段已无效。
         public let vids: [String]?
-        
+
         /// 该字段已无效。
         public let vid: String?
-        
-        public init (subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil) {
+
+        public init(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil) {
             self.subAppId = subAppId
             self.fileIds = fileIds
             self.names = names
@@ -179,7 +179,7 @@ extension Vod {
             self.vids = vids
             self.vid = vid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subAppId = "SubAppId"
             case fileIds = "FileIds"
@@ -210,26 +210,26 @@ extension Vod {
             case vid = "Vid"
         }
     }
-    
+
     /// SearchMedia返回参数结构体
     public struct SearchMediaResponse: TCResponseModel {
         /// 符合搜索条件的记录总数。
         /// <li>最大值：5000。当命中记录数超过5000时，该字段将返回 5000，而非实际命中总数。</li>
         public let totalCount: UInt64
-        
+
         /// 媒体文件信息列表。
         public let mediaInfoSet: [MediaInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case mediaInfoSet = "MediaInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 搜索媒体信息
     ///
     /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：
@@ -265,10 +265,10 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchMediaResponse > {
+    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
         self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索媒体信息
     ///
     /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：
@@ -307,7 +307,7 @@ extension Vod {
     public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
         try await self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 搜索媒体信息
     ///
     /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：
@@ -343,10 +343,10 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchMediaResponse > {
+    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
         self.searchMedia(SearchMediaRequest(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索媒体信息
     ///
     /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：

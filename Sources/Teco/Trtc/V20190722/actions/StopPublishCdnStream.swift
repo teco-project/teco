@@ -19,43 +19,43 @@ extension Trtc {
     public struct StopPublishCdnStreamRequest: TCRequestModel {
         /// TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
         public let sdkAppId: UInt64
-        
+
         /// 唯一标识转推任务。
         public let taskId: String
-        
-        public init (sdkAppId: UInt64, taskId: String) {
+
+        public init(sdkAppId: UInt64, taskId: String) {
             self.sdkAppId = sdkAppId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// StopPublishCdnStream返回参数结构体
     public struct StopPublishCdnStreamResponse: TCResponseModel {
         /// 转推任务唯一的String Id
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止转推任务
     ///
     /// 停止转推任务。
     @inlinable
-    public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopPublishCdnStreamResponse > {
+    public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopPublishCdnStreamResponse> {
         self.client.execute(action: "StopPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止转推任务
     ///
     /// 停止转推任务。
@@ -63,15 +63,15 @@ extension Trtc {
     public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishCdnStreamResponse {
         try await self.client.execute(action: "StopPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止转推任务
     ///
     /// 停止转推任务。
     @inlinable
-    public func stopPublishCdnStream(sdkAppId: UInt64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopPublishCdnStreamResponse > {
+    public func stopPublishCdnStream(sdkAppId: UInt64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopPublishCdnStreamResponse> {
         self.stopPublishCdnStream(StopPublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止转推任务
     ///
     /// 停止转推任务。

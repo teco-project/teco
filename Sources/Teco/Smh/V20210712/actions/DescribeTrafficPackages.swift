@@ -19,23 +19,23 @@ extension Smh {
     public struct DescribeTrafficPackagesRequest: TCRequestModel {
         /// 按照一个或者多个资源 ID 查询，每次请求的上限为 100 个。
         public let resourceIds: [String]?
-        
+
         /// 页码，整型，配合 PageSize 使用，默认值为 1。
         public let pageNumber: UInt64?
-        
+
         /// 每页数目，整型，配合 PageNumber 使用，默认值为 20，最大值为 100。
         public let pageSize: UInt64?
-        
+
         /// 对指定列进行排序
         public let orderBy: String?
-        
+
         /// 排序方式
         public let orderByType: String?
-        
+
         /// 来源类型筛选
         public let type: UInt64?
-        
-        public init (resourceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, type: UInt64? = nil) {
+
+        public init(resourceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, type: UInt64? = nil) {
             self.resourceIds = resourceIds
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -43,7 +43,7 @@ extension Smh {
             self.orderByType = orderByType
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceIds = "ResourceIds"
             case pageNumber = "PageNumber"
@@ -53,33 +53,33 @@ extension Smh {
             case type = "Type"
         }
     }
-    
+
     /// DescribeTrafficPackages返回参数结构体
     public struct DescribeTrafficPackagesResponse: TCResponseModel {
         /// 流量包列表
         public let list: [TrafficPackage]
-        
+
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询流量包
     ///
     /// 查询流量资源包
     @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficPackagesResponse> {
         self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询流量包
     ///
     /// 查询流量资源包
@@ -87,15 +87,15 @@ extension Smh {
     public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
         try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询流量包
     ///
     /// 查询流量资源包
     @inlinable
-    public func describeTrafficPackages(resourceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, type: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+    public func describeTrafficPackages(resourceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, type: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficPackagesResponse> {
         self.describeTrafficPackages(DescribeTrafficPackagesRequest(resourceIds: resourceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询流量包
     ///
     /// 查询流量资源包

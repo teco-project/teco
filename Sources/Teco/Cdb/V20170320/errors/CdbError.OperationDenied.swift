@@ -59,316 +59,316 @@ extension TCCdbError {
             case wrongStatus = "OperationDenied.WrongStatus"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例正在执行其他任务。
         public static var actionInProcess: OperationDenied {
             OperationDenied(.actionInProcess)
         }
-        
+
         /// 不支持的操作。
         public static var actionNotSupport: OperationDenied {
             OperationDenied(.actionNotSupport)
         }
-        
+
         /// 已开启安全审计，至少保留一个全审计。
         public static var atLeastAllRuleAuditPolicyError: OperationDenied {
             OperationDenied(.atLeastAllRuleAuditPolicyError)
         }
-        
+
         /// 至少保留一个审计策略。
         public static var atLeastAuditPolicyError: OperationDenied {
             OperationDenied(.atLeastAuditPolicyError)
         }
-        
+
         /// 审计日志文件数超过最大限制数。
         public static var auditFileOverQuotaError: OperationDenied {
             OperationDenied(.auditFileOverQuotaError)
         }
-        
+
         /// 审计策略冲突。
         public static var auditPolicyConflictError: OperationDenied {
             OperationDenied(.auditPolicyConflictError)
         }
-        
+
         /// 审计策略已存在。
         public static var auditPolicyExistError: OperationDenied {
             OperationDenied(.auditPolicyExistError)
         }
-        
+
         /// 审计策略不存在。
         public static var auditPolicyNotExistError: OperationDenied {
             OperationDenied(.auditPolicyNotExistError)
         }
-        
+
         /// 审计策略数量超限。
         public static var auditPolicyOverQuotaError: OperationDenied {
             OperationDenied(.auditPolicyOverQuotaError)
         }
-        
+
         /// 审计规则删除失败。
         public static var auditRuleDeleteError: OperationDenied {
             OperationDenied(.auditRuleDeleteError)
         }
-        
+
         /// 审计规则已存在。
         public static var auditRuleExistError: OperationDenied {
             OperationDenied(.auditRuleExistError)
         }
-        
+
         /// 审计规则已绑定。
         public static var auditRuleHasBind: OperationDenied {
             OperationDenied(.auditRuleHasBind)
         }
-        
+
         /// 审计规则不存在。
         public static var auditRuleNotExistError: OperationDenied {
             OperationDenied(.auditRuleNotExistError)
         }
-        
+
         /// 审计状态异常。
         public static var auditStatusError: OperationDenied {
             OperationDenied(.auditStatusError)
         }
-        
+
         /// 审计任务冲突。
         public static var auditTaskConflictError: OperationDenied {
             OperationDenied(.auditTaskConflictError)
         }
-        
+
         /// 当前RO组有RO实例处于非法状态，不允许执行当前操作。
         public static var conflictRoStatus: OperationDenied {
             OperationDenied(.conflictRoStatus)
         }
-        
+
         /// 当前只读组配置正在变更中，请勿重复发起请求。
         public static var conflictStatus: OperationDenied {
             OperationDenied(.conflictStatus)
         }
-        
+
         /// 已开通安全审计,不支持规则审计。
         public static var dbBrainPolicyConflict: OperationDenied {
             OperationDenied(.dbBrainPolicyConflict)
         }
-        
+
         /// 延迟复制正在运行，不允许执行操作。
         public static var delayReplicationRunning: OperationDenied {
             OperationDenied(.delayReplicationRunning)
         }
-        
+
         /// root账号禁止被删除。
         public static var deleteRootAccountError: OperationDenied {
             OperationDenied(.deleteRootAccountError)
         }
-        
+
         /// 该实例无此功能权限。
         public static var functionDenied: OperationDenied {
             OperationDenied(.functionDenied)
         }
-        
+
         public static var instTypeNotSupport: OperationDenied {
             OperationDenied(.instTypeNotSupport)
         }
-        
+
         /// 实例锁冲突，请稍后重试。
         public static var instanceLockerConflict: OperationDenied {
             OperationDenied(.instanceLockerConflict)
         }
-        
+
         /// 实例状态异常。
         public static var instanceStatusError: OperationDenied {
             OperationDenied(.instanceStatusError)
         }
-        
+
         /// 当前实例正在进行其他任务，不能执行延迟复制。
         public static var instanceTaskRunning: OperationDenied {
             OperationDenied(.instanceTaskRunning)
         }
-        
+
         public static var instanceTaskStatusError: OperationDenied {
             OperationDenied(.instanceTaskStatusError)
         }
-        
+
         /// 实例不支持该操作。
         public static var instanceUnsupportedOperateError: OperationDenied {
             OperationDenied(.instanceUnsupportedOperateError)
         }
-        
+
         /// 修改审计状态失败。
         public static var modifyAuditStatusError: OperationDenied {
             OperationDenied(.modifyAuditStatusError)
         }
-        
+
         /// 基础版实例不支持当前操作（功能）。
         public static var notSupportBasic: OperationDenied {
             OperationDenied(.notSupportBasic)
         }
-        
+
         /// 不支持修改本地root账号host信息。
         public static var notSupportModifyLocalRootHostError: OperationDenied {
             OperationDenied(.notSupportModifyLocalRootHostError)
         }
-        
+
         /// 当前有其他订单正在处于下单过程中，请稍后重试。
         public static var otherOderInProcess: OperationDenied {
             OperationDenied(.otherOderInProcess)
         }
-        
+
         /// 资源配额超限。
         public static var overQuota: OperationDenied {
             OperationDenied(.overQuota)
         }
-        
+
         /// 数据库代理升级任务中，不允许该操作。
         public static var proxyUpgradeTaskStatusError: OperationDenied {
             OperationDenied(.proxyUpgradeTaskStatusError)
         }
-        
+
         /// 结果集超过限制，请缩小检索范围。
         public static var resultOverLimit: OperationDenied {
             OperationDenied(.resultOverLimit)
         }
-        
+
         /// 腾讯云子账号权限不足，不允许执行当前操作。
         public static var subAccountOperationDenied: OperationDenied {
             OperationDenied(.subAccountOperationDenied)
         }
-        
+
         /// 该实例暂不支持退款。
         public static var unSupportRefundError: OperationDenied {
             OperationDenied(.unSupportRefundError)
         }
-        
+
         /// 不支持开通审计。
         public static var unsupportOpenAuditError: OperationDenied {
             OperationDenied(.unsupportOpenAuditError)
         }
-        
+
         /// 用户没有该策略权限。
         public static var userHasNoStrategy: OperationDenied {
             OperationDenied(.userHasNoStrategy)
         }
-        
+
         /// 密码错误或校验未通过。
         public static var wrongPassword: OperationDenied {
             OperationDenied(.wrongPassword)
         }
-        
+
         /// 后端任务状态非法。
         public static var wrongStatus: OperationDenied {
             OperationDenied(.wrongStatus)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {
-            case .actionInProcess: 
+            case .actionInProcess:
                 code = .operationDenied_ActionInProcess
-            case .actionNotSupport: 
+            case .actionNotSupport:
                 code = .operationDenied_ActionNotSupport
-            case .atLeastAllRuleAuditPolicyError: 
+            case .atLeastAllRuleAuditPolicyError:
                 code = .operationDenied_AtLeastAllRuleAuditPolicyError
-            case .atLeastAuditPolicyError: 
+            case .atLeastAuditPolicyError:
                 code = .operationDenied_AtLeastAuditPolicyError
-            case .auditFileOverQuotaError: 
+            case .auditFileOverQuotaError:
                 code = .operationDenied_AuditFileOverQuotaError
-            case .auditPolicyConflictError: 
+            case .auditPolicyConflictError:
                 code = .operationDenied_AuditPolicyConflictError
-            case .auditPolicyExistError: 
+            case .auditPolicyExistError:
                 code = .operationDenied_AuditPolicyExistError
-            case .auditPolicyNotExistError: 
+            case .auditPolicyNotExistError:
                 code = .operationDenied_AuditPolicyNotExistError
-            case .auditPolicyOverQuotaError: 
+            case .auditPolicyOverQuotaError:
                 code = .operationDenied_AuditPolicyOverQuotaError
-            case .auditRuleDeleteError: 
+            case .auditRuleDeleteError:
                 code = .operationDenied_AuditRuleDeleteError
-            case .auditRuleExistError: 
+            case .auditRuleExistError:
                 code = .operationDenied_AuditRuleExistError
-            case .auditRuleHasBind: 
+            case .auditRuleHasBind:
                 code = .operationDenied_AuditRuleHasBind
-            case .auditRuleNotExistError: 
+            case .auditRuleNotExistError:
                 code = .operationDenied_AuditRuleNotExistError
-            case .auditStatusError: 
+            case .auditStatusError:
                 code = .operationDenied_AuditStatusError
-            case .auditTaskConflictError: 
+            case .auditTaskConflictError:
                 code = .operationDenied_AuditTaskConflictError
-            case .conflictRoStatus: 
+            case .conflictRoStatus:
                 code = .operationDenied_ConflictRoStatus
-            case .conflictStatus: 
+            case .conflictStatus:
                 code = .operationDenied_ConflictStatus
-            case .dbBrainPolicyConflict: 
+            case .dbBrainPolicyConflict:
                 code = .operationDenied_DBBrainPolicyConflict
-            case .delayReplicationRunning: 
+            case .delayReplicationRunning:
                 code = .operationDenied_DelayReplicationRunning
-            case .deleteRootAccountError: 
+            case .deleteRootAccountError:
                 code = .operationDenied_DeleteRootAccountError
-            case .functionDenied: 
+            case .functionDenied:
                 code = .operationDenied_FunctionDenied
-            case .instTypeNotSupport: 
+            case .instTypeNotSupport:
                 code = .operationDenied_InstTypeNotSupport
-            case .instanceLockerConflict: 
+            case .instanceLockerConflict:
                 code = .operationDenied_InstanceLockerConflict
-            case .instanceStatusError: 
+            case .instanceStatusError:
                 code = .operationDenied_InstanceStatusError
-            case .instanceTaskRunning: 
+            case .instanceTaskRunning:
                 code = .operationDenied_InstanceTaskRunning
-            case .instanceTaskStatusError: 
+            case .instanceTaskStatusError:
                 code = .operationDenied_InstanceTaskStatusError
-            case .instanceUnsupportedOperateError: 
+            case .instanceUnsupportedOperateError:
                 code = .operationDenied_InstanceUnsupportedOperateError
-            case .modifyAuditStatusError: 
+            case .modifyAuditStatusError:
                 code = .operationDenied_ModifyAuditStatusError
-            case .notSupportBasic: 
+            case .notSupportBasic:
                 code = .operationDenied_NotSupportBasic
-            case .notSupportModifyLocalRootHostError: 
+            case .notSupportModifyLocalRootHostError:
                 code = .operationDenied_NotSupportModifyLocalRootHostError
-            case .otherOderInProcess: 
+            case .otherOderInProcess:
                 code = .operationDenied_OtherOderInProcess
-            case .overQuota: 
+            case .overQuota:
                 code = .operationDenied_OverQuota
-            case .proxyUpgradeTaskStatusError: 
+            case .proxyUpgradeTaskStatusError:
                 code = .operationDenied_ProxyUpgradeTaskStatusError
-            case .resultOverLimit: 
+            case .resultOverLimit:
                 code = .operationDenied_ResultOverLimit
-            case .subAccountOperationDenied: 
+            case .subAccountOperationDenied:
                 code = .operationDenied_SubAccountOperationDenied
-            case .unSupportRefundError: 
+            case .unSupportRefundError:
                 code = .operationDenied_UnSupportRefundError
-            case .unsupportOpenAuditError: 
+            case .unsupportOpenAuditError:
                 code = .operationDenied_UnsupportOpenAuditError
-            case .userHasNoStrategy: 
+            case .userHasNoStrategy:
                 code = .operationDenied_UserHasNoStrategy
-            case .wrongPassword: 
+            case .wrongPassword:
                 code = .operationDenied_WrongPassword
-            case .wrongStatus: 
+            case .wrongStatus:
                 code = .operationDenied_WrongStatus
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCCdbError(code, context: self.context)

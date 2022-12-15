@@ -20,45 +20,45 @@ extension TCVpcError {
             case malformed = "InvalidRouteTableId.Malformed"
             case notFound = "InvalidRouteTableId.NotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的路由表,路由表实例ID不合法。
         public static var malformed: InvalidRouteTableId {
             InvalidRouteTableId(.malformed)
         }
-        
+
         /// 无效的路由表,路由表资源不存在，请再次核实您输入的资源信息是否正确。
         public static var notFound: InvalidRouteTableId {
             InvalidRouteTableId(.notFound)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
-            case .malformed: 
+            case .malformed:
                 code = .invalidRouteTableId_Malformed
-            case .notFound: 
+            case .notFound:
                 code = .invalidRouteTableId_NotFound
             }
             return TCVpcError(code, context: self.context)

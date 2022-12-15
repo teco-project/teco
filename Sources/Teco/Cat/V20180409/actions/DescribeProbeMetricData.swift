@@ -24,24 +24,24 @@ extension Cat {
         /// AnalyzeTaskType_UploadDownload：文件传输
         /// AnalyzeTaskType_MediaStream：音视频体验
         public let analyzeTaskType: String?
-        
+
         /// 指标类型，指标查询默认传gauge
         public let metricType: String?
-        
+
         /// 指标详细字段，可以传递传具体的指标也可以对指标进行聚合查询例如："avg(ping_time)"代表整体时延(ms)
         public let field: String?
-        
+
         /// 过滤条件可以传单个过滤条件也可以拼接多个参数
         public let filter: String?
-        
+
         /// 聚合时间, 1m、1d、30d 等等
         public let groupBy: String?
-        
+
         /// 多条件过滤，支持多个过滤条件组合查询
         /// 例如：[""host" = 'www.test.com'", "time >= now()-1h"]
         public let filters: [String]?
-        
-        public init (analyzeTaskType: String? = nil, metricType: String? = nil, field: String? = nil, filter: String? = nil, groupBy: String? = nil, filters: [String]? = nil) {
+
+        public init(analyzeTaskType: String? = nil, metricType: String? = nil, field: String? = nil, filter: String? = nil, groupBy: String? = nil, filters: [String]? = nil) {
             self.analyzeTaskType = analyzeTaskType
             self.metricType = metricType
             self.field = field
@@ -49,7 +49,7 @@ extension Cat {
             self.groupBy = groupBy
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case analyzeTaskType = "AnalyzeTaskType"
             case metricType = "MetricType"
@@ -59,30 +59,30 @@ extension Cat {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeProbeMetricData返回参数结构体
     public struct DescribeProbeMetricDataResponse: TCResponseModel {
         /// 返回指标 JSON 序列化后的字符串,具体如下所示：
         /// "[{\"name\":\"task_navigate_request_gauge\",\"columns\":[\"time\",\"avg(first_screen_time) / 1000\"],\"values\":[[1641571200,6.756600000000001]],\"tags\":null}]"
         public let metricSet: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metricSet = "MetricSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出云拨测指标详细数据
     ///
     /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
     @inlinable
-    public func describeProbeMetricData(_ input: DescribeProbeMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeMetricDataResponse > {
+    public func describeProbeMetricData(_ input: DescribeProbeMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeMetricDataResponse> {
         self.client.execute(action: "DescribeProbeMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出云拨测指标详细数据
     ///
     /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
@@ -90,15 +90,15 @@ extension Cat {
     public func describeProbeMetricData(_ input: DescribeProbeMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeMetricDataResponse {
         try await self.client.execute(action: "DescribeProbeMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出云拨测指标详细数据
     ///
     /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
     @inlinable
-    public func describeProbeMetricData(analyzeTaskType: String? = nil, metricType: String? = nil, field: String? = nil, filter: String? = nil, groupBy: String? = nil, filters: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeMetricDataResponse > {
+    public func describeProbeMetricData(analyzeTaskType: String? = nil, metricType: String? = nil, field: String? = nil, filter: String? = nil, groupBy: String? = nil, filters: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeMetricDataResponse> {
         self.describeProbeMetricData(DescribeProbeMetricDataRequest(analyzeTaskType: analyzeTaskType, metricType: metricType, field: field, filter: filter, groupBy: groupBy, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出云拨测指标详细数据
     ///
     /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询

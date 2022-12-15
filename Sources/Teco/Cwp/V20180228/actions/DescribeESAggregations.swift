@@ -19,48 +19,48 @@ extension Cwp {
     public struct DescribeESAggregationsRequest: TCRequestModel {
         /// ES聚合条件JSON
         public let query: String
-        
-        public init (query: String) {
+
+        public init(query: String) {
             self.query = query
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case query = "Query"
         }
     }
-    
+
     /// DescribeESAggregations返回参数结构体
     public struct DescribeESAggregationsResponse: TCResponseModel {
         /// ES聚合结果JSON
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取ES字段聚合结果
     @inlinable
-    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeESAggregationsResponse > {
+    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESAggregationsResponse> {
         self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取ES字段聚合结果
     @inlinable
     public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
         try await self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取ES字段聚合结果
     @inlinable
-    public func describeESAggregations(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeESAggregationsResponse > {
+    public func describeESAggregations(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESAggregationsResponse> {
         self.describeESAggregations(DescribeESAggregationsRequest(query: query), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取ES字段聚合结果
     @inlinable
     public func describeESAggregations(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {

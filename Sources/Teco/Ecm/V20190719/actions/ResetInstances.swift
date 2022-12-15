@@ -19,27 +19,27 @@ extension Ecm {
     public struct ResetInstancesRequest: TCRequestModel {
         /// 待重装的实例ID列表。
         public let instanceIdSet: [String]
-        
+
         /// 重装使用的镜像ID，若未指定，则使用各个实例当前的镜像进行重装。
         public let imageId: String?
-        
+
         /// 密码设置，若未指定，则后续将以站内信的形式通知密码。
         public let password: String?
-        
+
         /// 是否开启云监控和云镜服务，未指定时默认开启。
         public let enhancedService: EnhancedService?
-        
+
         /// 是否保留数据盘数据，取值"true"/"false"。默认为"true"
         public let keepData: String?
-        
+
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
         /// TRUE：表示保持镜像的登录设置
         /// FALSE：表示不保持镜像的登录设置
         /// 默认取值：FALSE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: String?
-        
-        public init (instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil) {
+
+        public init(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil) {
             self.instanceIdSet = instanceIdSet
             self.imageId = imageId
             self.password = password
@@ -47,7 +47,7 @@ extension Ecm {
             self.keepData = keepData
             self.keepImageLogin = keepImageLogin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIdSet = "InstanceIdSet"
             case imageId = "ImageId"
@@ -57,25 +57,25 @@ extension Ecm {
             case keepImageLogin = "KeepImageLogin"
         }
     }
-    
+
     /// ResetInstances返回参数结构体
     public struct ResetInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重装实例
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable
-    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesResponse > {
+    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesResponse> {
         self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重装实例
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
@@ -83,15 +83,15 @@ extension Ecm {
     public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
         try await self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重装实例
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable
-    public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesResponse > {
+    public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesResponse> {
         self.resetInstances(ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin), logger: logger, on: eventLoop)
     }
-    
+
     /// 重装实例
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。

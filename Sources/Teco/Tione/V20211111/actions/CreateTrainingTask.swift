@@ -19,68 +19,68 @@ extension Tione {
     public struct CreateTrainingTaskRequest: TCRequestModel {
         /// 训练任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         public let name: String
-        
+
         /// 计费模式，eg：PREPAID预付费，即包年包月；POSTPAID_BY_HOUR按小时后付费
         public let chargeType: String
-        
+
         /// 资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{"Role":"WORKER", "InstanceType": "TI.S.MEDIUM.POST", "InstanceNum": 1}]
         public let resourceConfigInfos: [ResourceConfigInfo]
-        
+
         /// COS代码包路径
         public let codePackagePath: CosPathInfo
-        
+
         /// 训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD
         public let trainingMode: String
-        
+
         /// COS训练输出路径
         public let output: CosPathInfo
-        
+
         /// 是否上报日志
         public let logEnable: Bool
-        
+
         /// 训练框架名称，通过DescribeTrainingFrameworks接口查询，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH
         public let frameworkName: String?
-        
+
         /// 训练框架版本，通过DescribeTrainingFrameworks接口查询，eg：1.15、1.9
         public let frameworkVersion: String?
-        
+
         /// 训练框架环境，通过DescribeTrainingFrameworks接口查询，eg：tf1.15-py3.7-cpu、torch1.9-py3.8-cuda11.1-gpu
         public let frameworkEnvironment: String?
-        
+
         /// 预付费专用资源组ID，通过DescribeBillingResourceGroups接口查询
         public let resourceGroupId: String?
-        
+
         /// 标签配置
         public let tags: [Tag]?
-        
+
         /// 自定义镜像信息
         public let imageInfo: ImageInfo?
-        
+
         /// 启动命令信息，默认为sh start.sh
         public let startCmdInfo: StartCmdInfo?
-        
+
         /// 数据配置，依赖DataSource字段
         public let dataConfigs: [DataConfig]?
-        
+
         /// VPC Id
         public let vpcId: String?
-        
+
         /// 子网Id
         public let subnetId: String?
-        
+
         /// CLS日志配置
         public let logConfig: LogConfig?
-        
+
         /// 调优参数
         public let tuningParameters: String?
-        
+
         /// 备注，最多500个字
         public let remark: String?
-        
+
         /// 数据来源，eg：DATASET、COS、CFS、HDFS
         public let dataSource: String?
-        
-        public init (name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil) {
+
+        public init(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil) {
             self.name = name
             self.chargeType = chargeType
             self.resourceConfigInfos = resourceConfigInfos
@@ -103,7 +103,7 @@ extension Tione {
             self.remark = remark
             self.dataSource = dataSource
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case chargeType = "ChargeType"
@@ -128,39 +128,39 @@ extension Tione {
             case dataSource = "DataSource"
         }
     }
-    
+
     /// CreateTrainingTask返回参数结构体
     public struct CreateTrainingTaskResponse: TCResponseModel {
         /// 训练任务ID
         public let id: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建模型训练任务
     @inlinable
-    public func createTrainingTask(_ input: CreateTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingTaskResponse > {
+    public func createTrainingTask(_ input: CreateTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrainingTaskResponse> {
         self.client.execute(action: "CreateTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建模型训练任务
     @inlinable
     public func createTrainingTask(_ input: CreateTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingTaskResponse {
         try await self.client.execute(action: "CreateTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建模型训练任务
     @inlinable
-    public func createTrainingTask(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingTaskResponse > {
+    public func createTrainingTask(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrainingTaskResponse> {
         self.createTrainingTask(CreateTrainingTaskRequest(name: name, chargeType: chargeType, resourceConfigInfos: resourceConfigInfos, codePackagePath: codePackagePath, trainingMode: trainingMode, output: output, logEnable: logEnable, frameworkName: frameworkName, frameworkVersion: frameworkVersion, frameworkEnvironment: frameworkEnvironment, resourceGroupId: resourceGroupId, tags: tags, imageInfo: imageInfo, startCmdInfo: startCmdInfo, dataConfigs: dataConfigs, vpcId: vpcId, subnetId: subnetId, logConfig: logConfig, tuningParameters: tuningParameters, remark: remark, dataSource: dataSource), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建模型训练任务
     @inlinable
     public func createTrainingTask(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingTaskResponse {

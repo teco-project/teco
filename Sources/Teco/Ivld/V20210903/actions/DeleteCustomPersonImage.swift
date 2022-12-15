@@ -19,47 +19,47 @@ extension Ivld {
     public struct DeleteCustomPersonImageRequest: TCRequestModel {
         /// 自定义人物Id
         public let personId: String
-        
+
         /// 自定义人脸图片Id
         public let imageId: String
-        
-        public init (personId: String, imageId: String) {
+
+        public init(personId: String, imageId: String) {
             self.personId = personId
             self.imageId = imageId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case imageId = "ImageId"
         }
     }
-    
+
     /// DeleteCustomPersonImage返回参数结构体
     public struct DeleteCustomPersonImageResponse: TCResponseModel {
         /// 自定义人物Id
         public let personId: String
-        
+
         /// 已删除的人物图片Id
         public let imageId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case imageId = "ImageId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除自定义人脸
     ///
     /// 删除自定义人脸数据
     @inlinable
-    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonImageResponse > {
+    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonImageResponse> {
         self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义人脸
     ///
     /// 删除自定义人脸数据
@@ -67,15 +67,15 @@ extension Ivld {
     public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
         try await self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除自定义人脸
     ///
     /// 删除自定义人脸数据
     @inlinable
-    public func deleteCustomPersonImage(personId: String, imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonImageResponse > {
+    public func deleteCustomPersonImage(personId: String, imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonImageResponse> {
         self.deleteCustomPersonImage(DeleteCustomPersonImageRequest(personId: personId, imageId: imageId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义人脸
     ///
     /// 删除自定义人脸数据

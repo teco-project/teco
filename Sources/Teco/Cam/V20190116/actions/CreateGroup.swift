@@ -19,53 +19,53 @@ extension Cam {
     public struct CreateGroupRequest: TCRequestModel {
         /// 用户组名
         public let groupName: String
-        
+
         /// 用户组描述
         public let remark: String?
-        
-        public init (groupName: String, remark: String? = nil) {
+
+        public init(groupName: String, remark: String? = nil) {
             self.groupName = groupName
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupName = "GroupName"
             case remark = "Remark"
         }
     }
-    
+
     /// CreateGroup返回参数结构体
     public struct CreateGroupResponse: TCResponseModel {
         /// 用户组 ID
         public let groupId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建用户组
     @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
         self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建用户组
     @inlinable
     public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
         try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建用户组
     @inlinable
-    public func createGroup(groupName: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+    public func createGroup(groupName: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
         self.createGroup(CreateGroupRequest(groupName: groupName, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建用户组
     @inlinable
     public func createGroup(groupName: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {

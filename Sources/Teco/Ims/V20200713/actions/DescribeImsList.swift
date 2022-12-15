@@ -19,53 +19,53 @@ extension Ims {
     public struct DescribeImsListRequest: TCRequestModel {
         /// 分页 页索引
         public let pageIndex: Int64
-        
+
         /// 分页条数
         public let pageSize: Int64
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
-        public init (pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil) {
+
+        public init(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil) {
             self.pageIndex = pageIndex
             self.pageSize = pageSize
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageIndex = "PageIndex"
             case pageSize = "PageSize"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeImsList返回参数结构体
     public struct DescribeImsListResponse: TCResponseModel {
         /// 返回列表数据----非必选，该参数暂未对外开放
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imsDetailSet: [ImsDetail]?
-        
+
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imsDetailSet = "ImsDetailSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取图片审核明细数据
     ///
     /// 图片机器审核明细
     @inlinable
-    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImsListResponse > {
+    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImsListResponse> {
         self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取图片审核明细数据
     ///
     /// 图片机器审核明细
@@ -73,15 +73,15 @@ extension Ims {
     public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
         try await self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取图片审核明细数据
     ///
     /// 图片机器审核明细
     @inlinable
-    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImsListResponse > {
+    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImsListResponse> {
         self.describeImsList(DescribeImsListRequest(pageIndex: pageIndex, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取图片审核明细数据
     ///
     /// 图片机器审核明细

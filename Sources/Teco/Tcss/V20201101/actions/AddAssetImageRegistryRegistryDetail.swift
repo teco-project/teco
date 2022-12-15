@@ -19,35 +19,35 @@ extension Tcss {
     public struct AddAssetImageRegistryRegistryDetailRequest: TCRequestModel {
         /// 仓库名
         public let name: String
-        
+
         /// 用户名
         public let username: String
-        
+
         /// 密码
         public let password: String
-        
+
         /// 仓库url
         public let url: String
-        
+
         /// 仓库类型，列表：harbor
         public let registryType: String
-        
+
         /// 网络类型，列表：public（公网）
         public let netType: String
-        
+
         /// 仓库版本
         public let registryVersion: String?
-        
+
         /// 区域，列表：default（默认）
         public let registryRegion: String?
-        
+
         /// 限速
         public let speedLimit: Int64?
-        
+
         /// 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
         public let insecure: UInt64?
-        
-        public init (name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil) {
+
+        public init(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil) {
             self.name = name
             self.username = username
             self.password = password
@@ -59,7 +59,7 @@ extension Tcss {
             self.speedLimit = speedLimit
             self.insecure = insecure
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case username = "Username"
@@ -73,24 +73,24 @@ extension Tcss {
             case insecure = "Insecure"
         }
     }
-    
+
     /// AddAssetImageRegistryRegistryDetail返回参数结构体
     public struct AddAssetImageRegistryRegistryDetailResponse: TCResponseModel {
         /// 连接错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheckErr: String?
-        
+
         /// 名称错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameRepeatErr: String?
-        
+
         /// 仓库唯一id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryId: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case healthCheckErr = "HealthCheckErr"
             case nameRepeatErr = "NameRepeatErr"
@@ -98,25 +98,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增单个镜像仓库详细信息
     @inlinable
-    public func addAssetImageRegistryRegistryDetail(_ input: AddAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAssetImageRegistryRegistryDetailResponse > {
+    public func addAssetImageRegistryRegistryDetail(_ input: AddAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAssetImageRegistryRegistryDetailResponse> {
         self.client.execute(action: "AddAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增单个镜像仓库详细信息
     @inlinable
     public func addAssetImageRegistryRegistryDetail(_ input: AddAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAssetImageRegistryRegistryDetailResponse {
         try await self.client.execute(action: "AddAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增单个镜像仓库详细信息
     @inlinable
-    public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAssetImageRegistryRegistryDetailResponse > {
+    public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAssetImageRegistryRegistryDetailResponse> {
         self.addAssetImageRegistryRegistryDetail(AddAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增单个镜像仓库详细信息
     @inlinable
     public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAssetImageRegistryRegistryDetailResponse {

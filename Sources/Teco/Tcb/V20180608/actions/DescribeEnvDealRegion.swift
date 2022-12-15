@@ -19,7 +19,7 @@ extension Tcb {
     public struct DescribeEnvDealRegionRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// 订单类型：
         /// ENV_PREPAY_MINIAPP= 预付费环境(微信小程序)
         /// ENV_PREPAY_CLOUD= 预付费环境(腾讯云)
@@ -27,27 +27,27 @@ extension Tcb {
         /// HOSTING_PREPAY = 预付费静态托管
         /// PACKAGE=套餐包
         public let dealType: String
-        
+
         /// 下单类型：
         /// CREATE = 新购
         /// RENEW = 续费
         /// MODIFY = 套餐调整(升级/降级)
         /// REFUND = 退费
         public let dealAction: String
-        
+
         /// 下单地域：
         /// ap-guangzhou = 广州地域
         /// ap-shanghai = 上海地域
         /// ap-beijing = 北京地域
         public let dealRegion: String
-        
-        public init (envId: String, dealType: String, dealAction: String, dealRegion: String) {
+
+        public init(envId: String, dealType: String, dealAction: String, dealRegion: String) {
             self.envId = envId
             self.dealType = dealType
             self.dealAction = dealAction
             self.dealRegion = dealRegion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case dealType = "DealType"
@@ -55,24 +55,24 @@ extension Tcb {
             case dealRegion = "DealRegion"
         }
     }
-    
+
     /// DescribeEnvDealRegion返回参数结构体
     public struct DescribeEnvDealRegionResponse: TCResponseModel {
         /// 下单region
         public let region: String
-        
+
         /// 下单zone
         public let zone: String
-        
+
         /// 下单regionId
         public let regionId: UInt64
-        
+
         /// 下单zoneId
         public let zoneId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case zone = "Zone"
@@ -81,25 +81,25 @@ extension Tcb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取环境下单地域
     @inlinable
-    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvDealRegionResponse > {
+    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvDealRegionResponse> {
         self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取环境下单地域
     @inlinable
     public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
         try await self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取环境下单地域
     @inlinable
-    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvDealRegionResponse > {
+    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvDealRegionResponse> {
         self.describeEnvDealRegion(DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取环境下单地域
     @inlinable
     public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {

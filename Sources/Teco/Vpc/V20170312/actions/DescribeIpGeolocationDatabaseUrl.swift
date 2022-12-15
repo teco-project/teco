@@ -22,21 +22,21 @@ extension Vpc {
     public struct DescribeIpGeolocationDatabaseUrlRequest: TCRequestModel {
         /// IP地理位置库协议类型，目前仅支持"ipv4"。
         public let type: String
-        
-        public init (type: String) {
+
+        public init(type: String) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// DescribeIpGeolocationDatabaseUrl返回参数结构体
     public struct DescribeIpGeolocationDatabaseUrlResponse: TCResponseModel {
         /// IP地理位置库下载链接地址。
         public let downLoadUrl: String
-        
+
         /// 链接到期时间。按照`ISO8601`标准表示，并且使用`UTC`时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -44,25 +44,25 @@ extension Vpc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var expiredAt: Date
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downLoadUrl = "DownLoadUrl"
             case expiredAt = "ExpiredAt"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
     @inlinable
-    public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpGeolocationDatabaseUrlResponse > {
+    public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationDatabaseUrlResponse> {
         self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
@@ -70,15 +70,15 @@ extension Vpc {
     public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
         try await self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
     @inlinable
-    public func describeIpGeolocationDatabaseUrl(type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpGeolocationDatabaseUrlResponse > {
+    public func describeIpGeolocationDatabaseUrl(type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationDatabaseUrlResponse> {
         self.describeIpGeolocationDatabaseUrl(DescribeIpGeolocationDatabaseUrlRequest(type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。

@@ -19,16 +19,16 @@ extension Ccc {
     public struct ActiveCarrierPrivilegeNumber: TCOutputModel {
         /// 实例Id
         public let sdkAppId: UInt64?
-        
+
         /// 主叫号码
         public let caller: String?
-        
+
         /// 被叫号码
         public let callee: String?
-        
+
         /// 生效unix时间戳(秒)
         public let createTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case caller = "Caller"
@@ -36,52 +36,52 @@ extension Ccc {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 外呼任务被叫信息
     public struct AutoCalloutTaskCalleeInfo: TCOutputModel {
         /// 被叫号码
         public let callee: String
-        
+
         /// 呼叫状态 0初始 1已接听 2未接听 3呼叫中 4待重试
         public let state: UInt64
-        
+
         /// 会话ID列表
         public let sessions: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case callee = "Callee"
             case state = "State"
             case sessions = "Sessions"
         }
     }
-    
+
     /// 自动外呼任务列表项
     public struct AutoCalloutTaskInfo: TCOutputModel {
         /// 任务名
         public let name: String
-        
+
         /// 被叫数量
         public let calleeCount: UInt64
-        
+
         /// 主叫号码列表
         public let callers: [String]
-        
+
         /// 起始时间戳
         public let notBefore: Int64
-        
+
         /// 结束时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notAfter: Int64?
-        
+
         /// 任务使用的IvrId
         public let ivrId: UInt64
-        
+
         /// 任务状态0初始 1运行中 2已完成 3结束中 4已结束
         public let state: UInt64
-        
+
         /// 任务Id
         public let taskId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case calleeCount = "CalleeCount"
@@ -93,42 +93,42 @@ extension Ccc {
             case taskId = "TaskId"
         }
     }
-    
+
     /// 呼入实时指标
     public struct CallInMetrics: TCOutputModel {
         /// IVR驻留数量
         public let ivrCount: Int64
-        
+
         /// 排队中数量
         public let queueCount: Int64
-        
+
         /// 振铃中数量
         public let ringCount: Int64
-        
+
         /// 接通中数量
         public let acceptCount: Int64
-        
+
         /// 客服转接外线中数量
         public let transferOuterCount: Int64
-        
+
         /// 最大排队时长
         public let maxQueueDuration: Int64
-        
+
         /// 平均排队时长
         public let avgQueueDuration: Int64
-        
+
         /// 最大振铃时长
         public let maxRingDuration: Int64
-        
+
         /// 平均振铃时长
         public let avgRingDuration: Int64
-        
+
         /// 最大接通时长
         public let maxAcceptDuration: Int64
-        
+
         /// 平均接通时长
         public let avgAcceptDuration: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case ivrCount = "IvrCount"
             case queueCount = "QueueCount"
@@ -143,70 +143,70 @@ extension Ccc {
             case avgAcceptDuration = "AvgAcceptDuration"
         }
     }
-    
+
     /// 呼入线路维度相关指标
     public struct CallInNumberMetrics: TCOutputModel {
         /// 线路号码
         public let number: String
-        
+
         /// 线路相关指标
         public let metrics: CallInMetrics
-        
+
         /// 所属技能组相关指标
         public let skillGroupMetrics: [CallInSkillGroupMetrics]
-        
+
         enum CodingKeys: String, CodingKey {
             case number = "Number"
             case metrics = "Metrics"
             case skillGroupMetrics = "SkillGroupMetrics"
         }
     }
-    
+
     /// 呼入技能组相关指标
     public struct CallInSkillGroupMetrics: TCOutputModel {
         /// 技能组ID
         public let skillGroupId: Int64
-        
+
         /// 数据指标
         public let metrics: CallInMetrics
-        
+
         /// 技能组名称
         public let name: String
-        
+
         enum CodingKeys: String, CodingKey {
             case skillGroupId = "SkillGroupId"
             case metrics = "Metrics"
             case name = "Name"
         }
     }
-    
+
     /// 运营商白名单号码申请单
     public struct CarrierPrivilegeNumberApplicant: TCOutputModel {
         /// 实例Id
         public let sdkAppId: UInt64?
-        
+
         /// 申请单Id
         public let applicantId: UInt64?
-        
+
         /// 主叫号码列表
         public let callers: [String]?
-        
+
         /// 被叫号码列表
         public let callees: [String]?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 审批状态:1 待审核、2 通过、3 拒绝
         public let state: Int64?
-        
+
         /// 创建时间，unix时间戳(秒)
         public let createTime: Int64?
-        
+
         /// 更新时间，unix时间戳(秒)
         public let updateTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case applicantId = "ApplicantId"
@@ -218,60 +218,60 @@ extension Ccc {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 批量添加客服时，返回出错客服的像个信息
     public struct ErrStaffItem: TCOutputModel {
         /// 坐席邮箱地址
         public let staffEmail: String
-        
+
         /// 错误码
         public let code: String
-        
+
         /// 错误描述
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case staffEmail = "StaffEmail"
             case code = "Code"
             case message = "Message"
         }
     }
-    
+
     /// 话机信息
     public struct ExtensionInfo: TCOutputModel {
         /// 实例ID
         public let sdkAppId: Int64
-        
+
         /// 分机全名
         public let fullExtensionId: String
-        
+
         /// 分机号
         public let extensionId: String
-        
+
         /// 所属技能组列表
         public let skillGroupId: String
-        
+
         /// 分机名称
         public let extensionName: String
-        
+
         /// 创建时间
         public let createTime: Int64
-        
+
         /// 最后修改时间
         public let modifyTime: Int64
-        
+
         /// 话机状态(0 离线、100 空闲、200忙碌）
         public let status: Int64
-        
+
         /// 是否注册
         public let register: Bool
-        
+
         /// 绑定坐席邮箱
         public let relation: String
-        
+
         /// 绑定坐席名称
         public let relationName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case fullExtensionId = "FullExtensionId"
@@ -286,36 +286,36 @@ extension Ccc {
             case relationName = "RelationName"
         }
     }
-    
+
     /// 筛选条件
     public struct Filter: TCInputModel {
         /// 筛选字段名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 筛选条件值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [String]?
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 文本会话服务记录信息
     public struct IMCdrInfo: TCOutputModel {
         /// 服务记录ID
         public let id: String
-        
+
         /// 服务时长秒数
         public let duration: Int64
-        
+
         /// 结束状态
         /// 0 异常结束
         /// 1 正常结束
@@ -326,35 +326,35 @@ extension Ccc {
         /// 102 IVR阶段放弃
         /// 108 用户超时自动结束
         public let endStatus: Int64
-        
+
         /// 用户昵称
         public let nickname: String
-        
+
         /// 服务类型 1为全媒体，2为文本客服
         public let type: Int64
-        
+
         /// 客服ID
         public let staffId: String
-        
+
         /// 服务时间戳
         public let timestamp: Int64
-        
+
         /// 会话ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionId: String?
-        
+
         /// 技能组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupId: String?
-        
+
         /// 技能组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupName: String?
-        
+
         /// 满意度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let satisfaction: IMSatisfaction?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case duration = "Duration"
@@ -369,122 +369,122 @@ extension Ccc {
             case satisfaction = "Satisfaction"
         }
     }
-    
+
     /// IM满意度
     public struct IMSatisfaction: TCOutputModel {
         /// 满意度值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: Int64?
-        
+
         /// 满意度标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case label = "Label"
         }
     }
-    
+
     /// ivr 按键信息
     public struct IVRKeyPressedElement: TCOutputModel {
         /// 按键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 按键关联的标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case label = "Label"
         }
     }
-    
+
     /// 单条消息
     public struct Message: TCOutputModel {
         /// 消息类型
         public let type: String
-        
+
         /// 消息内容
         public let content: String
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case content = "Content"
         }
     }
-    
+
     /// 聊天消息
     public struct MessageBody: TCOutputModel {
         /// 消息时间戳
         public let timestamp: Int64
-        
+
         /// 发消息的用户ID
         public let from: String
-        
+
         /// 消息列表
         public let messages: [Message]
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case from = "From"
             case messages = "Messages"
         }
     }
-    
+
     /// PSTN 会话类型。
     public struct PSTNSession: TCOutputModel {
         /// 会话 ID
         public let sessionID: String
-        
+
         /// 会话临时房间 ID
         public let roomID: String
-        
+
         /// 主叫
         public let caller: String
-        
+
         /// 被叫
         public let callee: String
-        
+
         /// 开始时间，Unix 时间戳
         public let startTimestamp: Int64
-        
+
         /// 振铃时间，Unix 时间戳
         public let ringTimestamp: Int64
-        
+
         /// 接听时间，Unix 时间戳
         public let acceptTimestamp: Int64
-        
+
         /// 坐席邮箱
         public let staffEmail: String
-        
+
         /// 坐席工号
         public let staffNumber: String
-        
+
         /// 会话状态
         /// ringing 振铃中
         /// seatJoining  等待坐席接听
         /// inProgress 进行中
         /// finished 已完成
         public let sessionStatus: String
-        
+
         /// 会话呼叫方向， 0 呼入 | 1 - 呼出
         public let direction: Int64
-        
+
         /// 转外线使用的号码（转外线主叫）
         public let outBoundCaller: String
-        
+
         /// 转外线被叫
         public let outBoundCallee: String
-        
+
         /// 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
         public let protectedCaller: String
-        
+
         /// 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
         public let protectedCallee: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionID = "SessionID"
             case roomID = "RoomID"
@@ -503,48 +503,48 @@ extension Ccc {
             case protectedCallee = "ProtectedCallee"
         }
     }
-    
+
     /// PSTN 会话信息
     public struct PSTNSessionInfo: TCOutputModel {
         /// 会话 ID
         public let sessionID: String
-        
+
         /// 会话临时房间 ID
         public let roomID: String
-        
+
         /// 主叫
         public let caller: String
-        
+
         /// 被叫
         public let callee: String
-        
+
         /// 开始时间，Unix 时间戳
         public let startTimestamp: String
-        
+
         /// 接听时间，Unix 时间戳
         public let acceptTimestamp: String
-        
+
         /// 坐席邮箱
         public let staffEmail: String
-        
+
         /// 坐席工号
         public let staffNumber: String
-        
+
         /// 坐席状态 inProgress 进行中
         public let sessionStatus: String
-        
+
         /// 会话呼叫方向， 0 呼入 | 1 - 呼出
         public let direction: Int64
-        
+
         /// 振铃时间，Unix 时间戳
         public let ringTimestamp: Int64
-        
+
         /// 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
         public let protectedCaller: String
-        
+
         /// 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
         public let protectedCallee: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionID = "SessionID"
             case roomID = "RoomID"
@@ -561,27 +561,27 @@ extension Ccc {
             case protectedCallee = "ProtectedCallee"
         }
     }
-    
+
     /// 套餐包购买信息
     public struct PackageBuyInfo: TCOutputModel {
         /// 套餐包Id
         public let packageId: String
-        
+
         /// 套餐包类型，0-外呼套餐包|1-400呼入套餐包
         public let type: Int64
-        
+
         /// 套餐包总量
         public let capacitySize: Int64
-        
+
         /// 套餐包剩余量
         public let capacityRemain: Int64
-        
+
         /// 购买时间戳
         public let buyTime: Int64
-        
+
         /// 截至时间戳
         public let endTime: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case packageId = "PackageId"
             case type = "Type"
@@ -591,27 +591,27 @@ extension Ccc {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 号码购买信息
     public struct PhoneNumBuyInfo: TCOutputModel {
         /// 电话号码
         public let phoneNum: String
-        
+
         /// 号码类型，0-固话|1-虚商号码|2-运营商号码|3-400号码
         public let type: Int64
-        
+
         /// 号码呼叫类型，1-呼入|2-呼出|3-呼入呼出
         public let callType: Int64
-        
+
         /// 购买时间戳
         public let buyTime: Int64
-        
+
         /// 截至时间戳
         public let endTime: Int64
-        
+
         /// 号码状态，1正常|2欠费停用|4管理员停用|5违规停用
         public let state: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case phoneNum = "PhoneNum"
             case type = "Type"
@@ -621,24 +621,24 @@ extension Ccc {
             case state = "State"
         }
     }
-    
+
     /// 应用购买信息
     public struct SdkAppIdBuyInfo: TCOutputModel {
         /// 应用ID
         public let sdkAppId: Int64
-        
+
         /// 应用名称
         public let name: String
-        
+
         /// 坐席购买数（还在有效期内）
         public let staffBuyNum: Int64
-        
+
         /// 坐席购买列表 （还在有效期内）
         public let staffBuyList: [StaffBuyInfo]
-        
+
         /// 号码购买列表
         public let phoneNumBuyList: [PhoneNumBuyInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case name = "Name"
@@ -647,33 +647,33 @@ extension Ccc {
             case phoneNumBuyList = "PhoneNumBuyList"
         }
     }
-    
+
     /// 坐席用户信息
     public struct SeatUserInfo: TCInputModel, TCOutputModel {
         /// 坐席名称
         public let name: String?
-        
+
         /// 坐席邮箱
         public let mail: String?
-        
+
         /// 坐席电话号码（带0086前缀）
         public let phone: String?
-        
+
         /// 坐席昵称
         public let nick: String?
-        
+
         /// 用户ID
         public let userId: String?
-        
+
         /// 坐席关联的技能组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupNameList: [String]?
-        
+
         /// 工号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let staffNumber: String?
-        
-        public init (name: String? = nil, mail: String? = nil, phone: String? = nil, nick: String? = nil, userId: String? = nil, skillGroupNameList: [String]? = nil, staffNumber: String? = nil) {
+
+        public init(name: String? = nil, mail: String? = nil, phone: String? = nil, nick: String? = nil, userId: String? = nil, skillGroupNameList: [String]? = nil, staffNumber: String? = nil) {
             self.name = name
             self.mail = mail
             self.phone = phone
@@ -682,7 +682,7 @@ extension Ccc {
             self.skillGroupNameList = skillGroupNameList
             self.staffNumber = staffNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case mail = "Mail"
@@ -693,77 +693,77 @@ extension Ccc {
             case staffNumber = "StaffNumber"
         }
     }
-    
+
     /// 参与者信息
     public struct ServeParticipant: TCOutputModel {
         /// 坐席邮箱
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mail: String?
-        
+
         /// 坐席电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phone: String?
-        
+
         /// 振铃时间戳，Unix 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ringTimestamp: Int64?
-        
+
         /// 接听时间戳，Unix 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let acceptTimestamp: Int64?
-        
+
         /// 结束时间戳，Unix 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endedTimestamp: Int64?
-        
+
         /// 录音 ID，能够索引到坐席侧的录音
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordId: String?
-        
+
         /// 参与者类型，"staffSeat", "outboundSeat", "staffPhoneSeat"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 转接来源坐席信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferFrom: String?
-        
+
         /// 转接去向坐席信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferTo: String?
-        
+
         /// 转接去向参与者类型，取值与 Type 一致
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferToType: String?
-        
+
         /// 技能组 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupId: Int64?
-        
+
         /// 结束状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endStatusString: String?
-        
+
         /// 录音 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordURL: String?
-        
+
         /// 参与者序号，从 0 开始
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sequence: Int64?
-        
+
         /// 开始时间戳，Unix 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTimestamp: Int64?
-        
+
         /// 技能组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupName: String?
-        
+
         /// 录音转存第三方COS地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customRecordURL: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case mail = "Mail"
             case phone = "Phone"
@@ -784,38 +784,38 @@ extension Ccc {
             case customRecordURL = "CustomRecordURL"
         }
     }
-    
+
     /// 技能组信息
     public struct SkillGroupInfoItem: TCOutputModel {
         /// 技能组ID
         public let skillGroupId: Int64?
-        
+
         /// 技能组名称
         public let skillGroupName: String?
-        
+
         /// （废弃）类型：IM、TEL、ALL（全媒体）
         public let type: String?
-        
+
         /// 会话分配策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routePolicy: String?
-        
+
         /// 会话分配是否优先上次服务坐席
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usingLastSeat: Int64?
-        
+
         /// 单客服最大并发数（电话类型默认1）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxConcurrency: Int64?
-        
+
         /// 最后修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastModifyTimestamp: Int64?
-        
-        /// 技能组类型0-电话，1-在线，3-音频，4-视频	
+
+        /// 技能组类型0-电话，1-在线，3-音频，4-视频
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupType: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case skillGroupId = "SkillGroupId"
             case skillGroupName = "SkillGroupName"
@@ -827,21 +827,21 @@ extension Ccc {
             case skillGroupType = "SkillGroupType"
         }
     }
-    
+
     /// 技能组信息
     public struct SkillGroupItem: TCOutputModel {
         /// 技能组ID
         public let skillGroupId: Int64
-        
+
         /// 技能组名称
         public let skillGroupName: String
-        
+
         /// 优先级
         public let priority: Int64
-        
+
         /// 类型：IM、TEL、ALL（全媒体）
         public let type: String
-        
+
         enum CodingKeys: String, CodingKey {
             case skillGroupId = "SkillGroupId"
             case skillGroupName = "SkillGroupName"
@@ -849,54 +849,54 @@ extension Ccc {
             case type = "Type"
         }
     }
-    
+
     /// 坐席购买信息
     public struct StaffBuyInfo: TCOutputModel {
         /// 购买坐席数量
         public let num: Int64
-        
+
         /// 购买时间戳
         public let buyTime: Int64
-        
+
         /// 截至时间戳
         public let endTime: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case num = "Num"
             case buyTime = "BuyTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// 带有技能组优先级的坐席信息
     public struct StaffInfo: TCOutputModel {
         /// 坐席名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 坐席邮箱
         public let mail: String
-        
+
         /// 坐席电话号码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phone: String?
-        
+
         /// 坐席昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nick: String?
-        
+
         /// 坐席工号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let staffNumber: String?
-        
+
         /// 所属技能组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupList: [SkillGroupItem]?
-        
+
         /// 最后修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastModifyTimestamp: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case mail = "Mail"
@@ -907,65 +907,65 @@ extension Ccc {
             case lastModifyTimestamp = "LastModifyTimestamp"
         }
     }
-    
+
     /// 坐席状态补充信息
     public struct StaffStatusExtra: TCOutputModel {
         /// im - 文本 | tel - 电话 | all - 全媒体
         public let type: String
-        
+
         /// in - 呼入 | out - 呼出
         public let direct: String
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case direct = "Direct"
         }
     }
-    
+
     /// 坐席状态相关信息
     public struct StaffStatusMetrics: TCOutputModel {
         /// 坐席邮箱
         public let email: String
-        
+
         /// 坐席状态 free 示闲 | busy 忙碌 | rest 小休 | notReady 示忙 | afterCallWork 话后调整 | offline 离线
         public let status: String
-        
+
         /// 坐席状态补充信息
         public let statusExtra: StaffStatusExtra
-        
+
         /// 当天在线总时长
         public let onlineDuration: Int64
-        
+
         /// 当天示闲总时长
         public let freeDuration: Int64
-        
+
         /// 当天忙碌总时长
         public let busyDuration: Int64
-        
+
         /// 当天示忙总时长
         public let notReadyDuration: Int64
-        
+
         /// 当天小休总时长
         public let restDuration: Int64
-        
+
         /// 当天话后调整总时长
         public let afterCallWorkDuration: Int64
-        
+
         /// 小休原因
         public let reason: String
-        
+
         /// 是否预约小休
         public let reserveRest: Bool
-        
+
         /// 是否预约示忙
         public let reserveNotReady: Bool
-        
+
         /// 手机接听模式： 0 - 关闭 | 1 - 仅离线 | 2- 始终
         public let useMobileAccept: Int64
-        
+
         /// 手机外呼开关
         public let useMobileCallOut: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case email = "Email"
             case status = "Status"
@@ -983,30 +983,30 @@ extension Ccc {
             case useMobileCallOut = "UseMobileCallOut"
         }
     }
-    
+
     /// 电话话单信息
     public struct TelCdrInfo: TCOutputModel {
         /// 主叫号码
         public let caller: String?
-        
+
         /// 被叫号码
         public let callee: String?
-        
+
         /// 呼叫发起时间戳，Unix 时间戳
         public let time: Int64?
-        
+
         /// 呼入呼出方向 0 呼入 1 呼出
         public let direction: Int64?
-        
+
         /// 通话时长
         public let duration: Int64?
-        
+
         /// 录音信息
         public let recordURL: String?
-        
+
         /// 坐席信息
         public let seatUser: SeatUserInfo?
-        
+
         /// 结束状态
         /// 0	错误
         /// 1	正常结束
@@ -1031,45 +1031,45 @@ extension Ccc {
         /// 209	主叫取消
         /// 210	不在服务区
         public let endStatus: Int64?
-        
+
         /// 技能组名称
         public let skillGroup: String?
-        
+
         /// 主叫归属地
         public let callerLocation: String?
-        
+
         /// IVR 阶段耗时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ivrDuration: Int64?
-        
+
         /// 振铃时间戳，UNIX 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ringTimestamp: Int64?
-        
+
         /// 接听时间戳，UNIX 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let acceptTimestamp: Int64?
-        
+
         /// 结束时间戳，UNIX 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endedTimestamp: Int64?
-        
+
         /// IVR 按键信息 ，e.g. ["1","2","3"]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ivrKeyPressed: [String]?
-        
+
         /// 挂机方 seat 坐席 user 用户
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hungUpSide: String?
-        
+
         /// 服务参与者列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serveParticipants: [ServeParticipant]?
-        
+
         /// 技能组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupId: Int64?
-        
+
         /// error                   错误
         /// ok                       正常结束
         /// unconnected      未接通
@@ -1094,55 +1094,55 @@ extension Ccc {
         /// notInService       不在服务区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endStatusString: String?
-        
+
         /// 会话开始时间戳，UNIX 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTimestamp: Int64?
-        
+
         /// 进入排队时间，Unix 秒级时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let queuedTimestamp: Int64?
-        
+
         /// 后置IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let postIVRKeyPressed: [IVRKeyPressedElement]?
-        
+
         /// 排队技能组Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let queuedSkillGroupId: Int64?
-        
+
         /// 会话 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionId: String?
-        
+
         /// 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protectedCaller: String?
-        
+
         /// 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protectedCallee: String?
-        
+
         /// 客户自定义数据（User-to-User Interface）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uui: String?
-        
+
         /// IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ivrKeyPressedEx: [IVRKeyPressedElement]?
-        
+
         /// 获取录音ASR文本信息地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asrUrl: String?
-        
+
         /// 录音转存第三方COS地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customRecordURL: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case callee = "Callee"
@@ -1177,20 +1177,20 @@ extension Ccc {
             case remark = "Remark"
         }
     }
-    
+
     /// 变量
     public struct Variable: TCInputModel {
         /// 变量名
         public let key: String
-        
+
         /// 变量值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"

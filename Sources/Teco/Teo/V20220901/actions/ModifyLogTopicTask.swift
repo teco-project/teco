@@ -19,16 +19,16 @@ extension Teo {
     public struct ModifyLogTopicTaskRequest: TCRequestModel {
         /// 站点ID。
         public let zoneId: String
-        
+
         /// 日志集所属地区。
         public let logSetRegion: String
-        
+
         /// 日志集ID。
         public let logSetId: String
-        
+
         /// 日志主题ID。
         public let topicId: String
-        
+
         /// 数据推送类型，可选的类型有：
         /// <li>domain：七层代理日志；</li>
         /// <li>application：四层代理日志；</li>
@@ -37,26 +37,26 @@ extension Teo {
         /// <li>web-rule：自定义规则日志；</li>
         /// <li>web-bot：Bot管理日志。</li>
         public let entityType: String?
-        
+
         /// 推送任务名。
         public let taskName: String?
-        
+
         /// 待更新的主题名称，不填表示不更新主题名称。
         public let topicName: String?
-        
+
         /// 更新后的日志集名称。
         public let logSetName: String?
-        
+
         /// 更新后的日志集保存时间。
         public let period: Int64?
-        
+
         /// 待添加的推送任务实体列表。
         public let dropEntityList: [String]?
-        
+
         /// 待删除的推送任务实例列表。
         public let addedEntityList: [String]?
-        
-        public init (zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil) {
+
+        public init(zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil) {
             self.zoneId = zoneId
             self.logSetRegion = logSetRegion
             self.logSetId = logSetId
@@ -69,7 +69,7 @@ extension Teo {
             self.dropEntityList = dropEntityList
             self.addedEntityList = addedEntityList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case logSetRegion = "LogSetRegion"
@@ -84,25 +84,25 @@ extension Teo {
             case addedEntityList = "AddedEntityList"
         }
     }
-    
+
     /// ModifyLogTopicTask返回参数结构体
     public struct ModifyLogTopicTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
     @inlinable
-    public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogTopicTaskResponse > {
+    public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogTopicTaskResponse> {
         self.client.execute(action: "ModifyLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
@@ -110,15 +110,15 @@ extension Teo {
     public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogTopicTaskResponse {
         try await self.client.execute(action: "ModifyLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
     @inlinable
-    public func modifyLogTopicTask(zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogTopicTaskResponse > {
+    public func modifyLogTopicTask(zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogTopicTaskResponse> {
         self.modifyLogTopicTask(ModifyLogTopicTaskRequest(zoneId: zoneId, logSetRegion: logSetRegion, logSetId: logSetId, topicId: topicId, entityType: entityType, taskName: taskName, topicName: topicName, logSetName: logSetName, period: period, dropEntityList: dropEntityList, addedEntityList: addedEntityList), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。

@@ -19,38 +19,38 @@ extension TCOcrError {
         enum Code: String {
             case taxNetworkError = "ResourceUnavailable.TaxNetworkError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 税务局网络异常，请稍后访问。
         public static var taxNetworkError: ResourceUnavailable {
             ResourceUnavailable(.taxNetworkError)
         }
-        
+
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
-            case .taxNetworkError: 
+            case .taxNetworkError:
                 code = .resourceUnavailable_TaxNetworkError
             }
             return TCOcrError(code, context: self.context)

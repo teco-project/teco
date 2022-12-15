@@ -20,45 +20,45 @@ extension TCCdcError {
             case atLeastOne = "MissingParameter.AtLeastOne"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 至少输入一个入参。
         public static var atLeastOne: MissingParameter {
             MissingParameter(.atLeastOne)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asCdcError() -> TCCdcError {
             let code: TCCdcError.Code
             switch self.error {
-            case .atLeastOne: 
+            case .atLeastOne:
                 code = .missingParameter_AtLeastOne
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCCdcError(code, context: self.context)

@@ -19,57 +19,57 @@ extension Dc {
     public struct CreateDirectConnectRequest: TCRequestModel {
         /// 物理专线的名称。
         public let directConnectName: String
-        
+
         /// 物理专线所在的接入点。
         /// 您可以通过调用 DescribeAccessPoints接口获取地域ID。所选择的接入点必须存在且处于可接入的状态。
         public let accessPointId: String
-        
+
         /// 提供接入物理专线的运营商。ChinaTelecom：中国电信， ChinaMobile：中国移动，ChinaUnicom：中国联通， In-houseWiring：楼内线，ChinaOther：中国其他， InternationalOperator：境外其他。
         public let lineOperator: String
-        
+
         /// 物理专线接入端口类型,取值：100Base-T：百兆电口,1000Base-T（默认值）：千兆电口,1000Base-LX：千兆单模光口（10千米）,10GBase-T：万兆电口10GBase-LR：万兆单模光口（10千米），默认值，千兆单模光口（10千米）。
         public let portType: String
-        
+
         /// 运营商或者服务商为物理专线提供的电路编码。
         public let circuitCode: String?
-        
+
         /// 本地数据中心的地理位置。
         public let location: String?
-        
+
         /// 物理专线接入接口带宽，单位为Mbps，默认值为1000，取值范围为 [2, 10240]。
         public let bandwidth: Int64?
-        
+
         /// 冗余物理专线的ID。
         public let redundantDirectConnectId: String?
-        
+
         /// 物理专线调试VLAN。默认开启VLAN，自动分配VLAN。
         public let vlan: Int64?
-        
+
         /// 物理专线调试腾讯侧互联 IP。默认自动分配。
         public let tencentAddress: String?
-        
+
         /// 物理专线调试用户侧互联 IP。默认自动分配。
         public let customerAddress: String?
-        
+
         /// 物理专线申请者姓名。默认从账户体系获取。
         public let customerName: String?
-        
+
         /// 物理专线申请者联系邮箱。默认从账户体系获取。
         public let customerContactMail: String?
-        
+
         /// 物理专线申请者联系号码。默认从账户体系获取。
         public let customerContactNumber: String?
-        
+
         /// 报障联系人。
         public let faultReportContactPerson: String?
-        
+
         /// 报障联系电话。
         public let faultReportContactNumber: String?
-        
+
         /// 物理专线申请者是否签署了用户使用协议。默认已签署
         public let signLaw: Bool?
-        
-        public init (directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil) {
+
+        public init(directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil) {
             self.directConnectName = directConnectName
             self.accessPointId = accessPointId
             self.lineOperator = lineOperator
@@ -88,7 +88,7 @@ extension Dc {
             self.faultReportContactNumber = faultReportContactNumber
             self.signLaw = signLaw
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectName = "DirectConnectName"
             case accessPointId = "AccessPointId"
@@ -109,21 +109,21 @@ extension Dc {
             case signLaw = "SignLaw"
         }
     }
-    
+
     /// CreateDirectConnect返回参数结构体
     public struct CreateDirectConnectResponse: TCResponseModel {
         /// 物理专线的ID。
         public let directConnectIdSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectIdSet = "DirectConnectIdSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 申请物理专线
     ///
     /// 申请物理专线接入。
@@ -131,10 +131,10 @@ extension Dc {
     /// 账号要进行实名认证，否则不允许申请物理专线；
     /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
     @inlinable
-    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectResponse > {
+    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectResponse> {
         self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 申请物理专线
     ///
     /// 申请物理专线接入。
@@ -145,7 +145,7 @@ extension Dc {
     public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectResponse {
         try await self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 申请物理专线
     ///
     /// 申请物理专线接入。
@@ -153,10 +153,10 @@ extension Dc {
     /// 账号要进行实名认证，否则不允许申请物理专线；
     /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
     @inlinable
-    public func createDirectConnect(directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectResponse > {
+    public func createDirectConnect(directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectResponse> {
         self.createDirectConnect(CreateDirectConnectRequest(directConnectName: directConnectName, accessPointId: accessPointId, lineOperator: lineOperator, portType: portType, circuitCode: circuitCode, location: location, bandwidth: bandwidth, redundantDirectConnectId: redundantDirectConnectId, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw), logger: logger, on: eventLoop)
     }
-    
+
     /// 申请物理专线
     ///
     /// 申请物理专线接入。

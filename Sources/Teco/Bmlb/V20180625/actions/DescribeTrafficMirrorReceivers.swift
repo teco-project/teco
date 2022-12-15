@@ -19,29 +19,29 @@ extension Bmlb {
     public struct DescribeTrafficMirrorReceiversRequest: TCRequestModel {
         /// 流量镜像实例ID。
         public let trafficMirrorId: String
-        
+
         /// 接收机黑石物理机实例ID数组。
         public let instanceIds: [String]?
-        
+
         /// 接收机接收端口数组。
         public let ports: [Int64]?
-        
+
         /// 接收机实例权重数组。
         public let weights: [Int64]?
-        
+
         /// 分页的偏移量，也即从第几条记录开始查询
         public let offset: Int64?
-        
+
         /// 单次查询返回的条目数，默认值：500。
         public let limit: Int64?
-        
+
         /// 搜索instance或者alias
         public let vagueStr: String?
-        
+
         /// 搜索IP
         public let vagueIp: String?
-        
-        public init (trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil) {
+
+        public init(trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.instanceIds = instanceIds
             self.ports = ports
@@ -51,7 +51,7 @@ extension Bmlb {
             self.vagueStr = vagueStr
             self.vagueIp = vagueIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorId = "TrafficMirrorId"
             case instanceIds = "InstanceIds"
@@ -63,33 +63,33 @@ extension Bmlb {
             case vagueIp = "VagueIp"
         }
     }
-    
+
     /// DescribeTrafficMirrorReceivers返回参数结构体
     public struct DescribeTrafficMirrorReceiversResponse: TCResponseModel {
         /// 接收机列表，具体结构描述如data结构所示。
         public let receiverSet: [TrafficMirrorReceiver]
-        
+
         /// 接收机总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case receiverSet = "ReceiverSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取指定流量镜像实例的接收机信息
     ///
     /// 获取指定流量镜像实例的接收机信息。
     @inlinable
-    public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiversResponse > {
+    public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiversResponse> {
         self.client.execute(action: "DescribeTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定流量镜像实例的接收机信息
     ///
     /// 获取指定流量镜像实例的接收机信息。
@@ -97,15 +97,15 @@ extension Bmlb {
     public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiversResponse {
         try await self.client.execute(action: "DescribeTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取指定流量镜像实例的接收机信息
     ///
     /// 获取指定流量镜像实例的接收机信息。
     @inlinable
-    public func describeTrafficMirrorReceivers(trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiversResponse > {
+    public func describeTrafficMirrorReceivers(trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiversResponse> {
         self.describeTrafficMirrorReceivers(DescribeTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定流量镜像实例的接收机信息
     ///
     /// 获取指定流量镜像实例的接收机信息。

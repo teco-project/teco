@@ -20,31 +20,31 @@ extension Live {
         /// 起始时间点，北京时间。
         /// 格式：yyyy-mm-dd HH:MM:SS。
         public let startTime: String
-        
+
         /// 结束时间点，北京时间。
         /// 格式：yyyy-mm-dd HH:MM:SS。
         /// 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         public let endTime: String
-        
+
         /// 播放域名列表，不填表示总体数据。
         public let playDomains: [String]?
-        
+
         /// 页数，范围[1,1000]，默认值是1。
         public let pageNum: UInt64?
-        
+
         /// 每页个数，范围：[1,1000]，默认值是20。
         public let pageSize: UInt64?
-        
+
         /// 地域，可选值：Mainland，Oversea，China，Foreign，Global（默认值）；如果为空，查询总的数据；如果为“Mainland”，查询中国大陆的数据；如果为“Oversea”，则查询中国大陆以外的数据；如果为China，查询中国的数据（包括港澳台）；如果为Foreign，查询国外的数据（不包括港澳台）。
         public let mainlandOrOversea: String?
-        
+
         /// 分组参数，可选值：CountryProIsp（默认值），Country（国家），默认是按照国家+省份+运营商来进行分组；目前国外的省份和运营商暂时无法识别。
         public let groupType: String?
-        
+
         /// 输出字段使用的语言，可选值：Chinese（默认值），English，目前国家，省份和运营商支持多语言。
         public let outLanguage: String?
-        
-        public init (startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil) {
+
+        public init(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.playDomains = playDomains
@@ -54,7 +54,7 @@ extension Live {
             self.groupType = groupType
             self.outLanguage = outLanguage
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -66,45 +66,45 @@ extension Live {
             case outLanguage = "OutLanguage"
         }
     }
-    
+
     /// DescribePlayErrorCodeSumInfoList返回参数结构体
     public struct DescribePlayErrorCodeSumInfoListResponse: TCResponseModel {
         /// 分省份分运营商错误码为2或3或4或5开头的状态码数据信息。
         public let proIspInfoList: [ProIspPlayCodeDataInfo]
-        
+
         /// 所有状态码的加和的次数。
         public let totalCodeAll: UInt64
-        
+
         /// 状态码为4开头的总次数。
         public let totalCode4xx: UInt64
-        
+
         /// 状态码为5开头的总次数。
         public let totalCode5xx: UInt64
-        
+
         /// 各状态码的总次数。
         public let totalCodeList: [PlayCodeTotalInfo]
-        
+
         /// 页号。
         public let pageNum: UInt64
-        
+
         /// 每页大小。
         public let pageSize: UInt64
-        
+
         /// 总页数。
         public let totalPage: UInt64
-        
+
         /// 总记录数。
         public let totalNum: UInt64
-        
+
         /// 状态码为2开头的总次数。
         public let totalCode2xx: UInt64
-        
+
         /// 状态码为3开头的总次数。
         public let totalCode3xx: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case proIspInfoList = "ProIspInfoList"
             case totalCodeAll = "TotalCodeAll"
@@ -120,15 +120,15 @@ extension Live {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询播放http错误码汇总数据
     ///
     /// 查询下行播放错误码信息。
     @inlinable
-    public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayErrorCodeSumInfoListResponse > {
+    public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeSumInfoListResponse> {
         self.client.execute(action: "DescribePlayErrorCodeSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询播放http错误码汇总数据
     ///
     /// 查询下行播放错误码信息。
@@ -136,15 +136,15 @@ extension Live {
     public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {
         try await self.client.execute(action: "DescribePlayErrorCodeSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询播放http错误码汇总数据
     ///
     /// 查询下行播放错误码信息。
     @inlinable
-    public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayErrorCodeSumInfoListResponse > {
+    public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeSumInfoListResponse> {
         self.describePlayErrorCodeSumInfoList(DescribePlayErrorCodeSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, groupType: groupType, outLanguage: outLanguage), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询播放http错误码汇总数据
     ///
     /// 查询下行播放错误码信息。

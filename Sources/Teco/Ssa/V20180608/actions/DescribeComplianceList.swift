@@ -19,32 +19,32 @@ extension Ssa {
     public struct DescribeComplianceListRequest: TCRequestModel {
         /// 搜索过滤条件
         public let filter: String?
-        
-        public init (filter: String? = nil) {
+
+        public init(filter: String? = nil) {
             self.filter = filter
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filter = "Filter"
         }
     }
-    
+
     /// DescribeComplianceList返回参数结构体
     public struct DescribeComplianceListResponse: TCResponseModel {
         /// 检查项列表
         public let data: [DataCompliance]
-        
+
         /// 总检查资产数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetTotalNum: Int64?
-        
+
         /// 总检查项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configTotalNum: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case assetTotalNum = "AssetTotalNum"
@@ -52,25 +52,25 @@ extension Ssa {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 合规管理总览页检查项列表
     @inlinable
-    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceListResponse > {
+    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceListResponse> {
         self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 合规管理总览页检查项列表
     @inlinable
     public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
         try await self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 合规管理总览页检查项列表
     @inlinable
-    public func describeComplianceList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceListResponse > {
+    public func describeComplianceList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceListResponse> {
         self.describeComplianceList(DescribeComplianceListRequest(filter: filter), logger: logger, on: eventLoop)
     }
-    
+
     /// 合规管理总览页检查项列表
     @inlinable
     public func describeComplianceList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {

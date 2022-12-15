@@ -19,28 +19,28 @@ extension Cpdp {
     public struct ModifyBindedAccountRequest: TCRequestModel {
         /// 主播Id
         public let anchorId: String
-        
-        /// 1 微信企业付款 
-        /// 2 支付宝转账 
+
+        /// 1 微信企业付款
+        /// 2 支付宝转账
         /// 3 平安银企直连代发转账
         public let transferType: Int64
-        
+
         /// 收款方标识。
         /// 微信为open_id；
         /// 支付宝为会员alipay_user_id;
         /// 平安为收款方银行账号;
         public let accountNo: String
-        
+
         /// 手机号
         public let phoneNum: String
-        
-        public init (anchorId: String, transferType: Int64, accountNo: String, phoneNum: String) {
+
+        public init(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String) {
             self.anchorId = anchorId
             self.transferType = transferType
             self.accountNo = accountNo
             self.phoneNum = phoneNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case anchorId = "AnchorId"
             case transferType = "TransferType"
@@ -48,22 +48,22 @@ extension Cpdp {
             case phoneNum = "PhoneNum"
         }
     }
-    
+
     /// ModifyBindedAccount返回参数结构体
     public struct ModifyBindedAccountResponse: TCResponseModel {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
-        
+
         /// 响应消息。
         public let errMessage: String
-        
+
         /// 该字段为null。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -71,25 +71,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 灵云-重新绑定账号
     @inlinable
-    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindedAccountResponse > {
+    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindedAccountResponse> {
         self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云-重新绑定账号
     @inlinable
     public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
         try await self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 灵云-重新绑定账号
     @inlinable
-    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindedAccountResponse > {
+    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindedAccountResponse> {
         self.modifyBindedAccount(ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云-重新绑定账号
     @inlinable
     public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {

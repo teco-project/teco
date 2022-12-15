@@ -19,49 +19,49 @@ extension Dlc {
     public struct DetachUserPolicyRequest: TCRequestModel {
         /// 用户Id，和CAM侧Uin匹配
         public let userId: String
-        
+
         /// 解绑的权限集合
         public let policySet: [Policy]?
-        
-        public init (userId: String, policySet: [Policy]? = nil) {
+
+        public init(userId: String, policySet: [Policy]? = nil) {
             self.userId = userId
             self.policySet = policySet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case policySet = "PolicySet"
         }
     }
-    
+
     /// DetachUserPolicy返回参数结构体
     public struct DetachUserPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑用户鉴权策略
     @inlinable
-    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachUserPolicyResponse > {
+    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
         self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑用户鉴权策略
     @inlinable
     public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
         try await self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑用户鉴权策略
     @inlinable
-    public func detachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachUserPolicyResponse > {
+    public func detachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
         self.detachUserPolicy(DetachUserPolicyRequest(userId: userId, policySet: policySet), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑用户鉴权策略
     @inlinable
     public func detachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {

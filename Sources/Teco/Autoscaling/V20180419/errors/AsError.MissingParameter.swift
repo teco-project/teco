@@ -21,52 +21,52 @@ extension TCAsError {
             case instanceMarketOptions = "MissingParameter.InstanceMarketOptions"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 在特定场景下缺少参数。
         public static var inScenario: MissingParameter {
             MissingParameter(.inScenario)
         }
-        
+
         /// 竞价计费类型缺少对应的 InstanceMarketOptions 参数。
         public static var instanceMarketOptions: MissingParameter {
             MissingParameter(.instanceMarketOptions)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asAsError() -> TCAsError {
             let code: TCAsError.Code
             switch self.error {
-            case .inScenario: 
+            case .inScenario:
                 code = .missingParameter_InScenario
-            case .instanceMarketOptions: 
+            case .instanceMarketOptions:
                 code = .missingParameter_InstanceMarketOptions
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCAsError(code, context: self.context)

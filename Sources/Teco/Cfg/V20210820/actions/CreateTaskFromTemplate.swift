@@ -19,53 +19,53 @@ extension Cfg {
     public struct CreateTaskFromTemplateRequest: TCRequestModel {
         /// 从经验库中查询到的经验模版ID
         public let templateId: UInt64
-        
+
         /// 演练的配置参数
         public let taskConfig: TaskConfig
-        
-        public init (templateId: UInt64, taskConfig: TaskConfig) {
+
+        public init(templateId: UInt64, taskConfig: TaskConfig) {
             self.templateId = templateId
             self.taskConfig = taskConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case taskConfig = "TaskConfig"
         }
     }
-    
+
     /// CreateTaskFromTemplate返回参数结构体
     public struct CreateTaskFromTemplateResponse: TCResponseModel {
         /// 创建成功的演练ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 从经验库创建演练
     @inlinable
-    public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFromTemplateResponse > {
+    public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFromTemplateResponse> {
         self.client.execute(action: "CreateTaskFromTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 从经验库创建演练
     @inlinable
     public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFromTemplateResponse {
         try await self.client.execute(action: "CreateTaskFromTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 从经验库创建演练
     @inlinable
-    public func createTaskFromTemplate(templateId: UInt64, taskConfig: TaskConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFromTemplateResponse > {
+    public func createTaskFromTemplate(templateId: UInt64, taskConfig: TaskConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFromTemplateResponse> {
         self.createTaskFromTemplate(CreateTaskFromTemplateRequest(templateId: templateId, taskConfig: taskConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 从经验库创建演练
     @inlinable
     public func createTaskFromTemplate(templateId: UInt64, taskConfig: TaskConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFromTemplateResponse {

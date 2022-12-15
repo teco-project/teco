@@ -19,23 +19,23 @@ extension Dnspod {
     public struct DescribeDomainLogListRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
-        
+
         /// 记录开始的偏移，第一条记录为 0，依次类推，默认为0
         public let offset: UInt64?
-        
+
         /// 共要获取的日志条数，比如获取20条，则为20，默认为500条，单次最多获取500条。
         public let limit: UInt64?
-        
-        public init (domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
@@ -43,22 +43,22 @@ extension Dnspod {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeDomainLogList返回参数结构体
     public struct DescribeDomainLogListResponse: TCResponseModel {
         /// 域名信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logList: [String]?
-        
+
         /// 分页大小
         public let pageSize: UInt64
-        
+
         /// 日志总条数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case logList = "LogList"
             case pageSize = "PageSize"
@@ -66,25 +66,25 @@ extension Dnspod {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名日志
     @inlinable
-    public func describeDomainLogList(_ input: DescribeDomainLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainLogListResponse > {
+    public func describeDomainLogList(_ input: DescribeDomainLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainLogListResponse> {
         self.client.execute(action: "DescribeDomainLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名日志
     @inlinable
     public func describeDomainLogList(_ input: DescribeDomainLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainLogListResponse {
         try await self.client.execute(action: "DescribeDomainLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名日志
     @inlinable
-    public func describeDomainLogList(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainLogListResponse > {
+    public func describeDomainLogList(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainLogListResponse> {
         self.describeDomainLogList(DescribeDomainLogListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名日志
     @inlinable
     public func describeDomainLogList(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainLogListResponse {

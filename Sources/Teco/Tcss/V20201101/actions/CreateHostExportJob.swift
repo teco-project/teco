@@ -29,23 +29,23 @@ extension Tcss {
         /// <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li>
         /// <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li>
         public let filters: [AssetFilters]?
-        
+
         /// 偏移量，默认为0。
         public let limit: UInt64?
-        
+
         /// 需要返回的数量，默认为10，最大值为10000
         public let offset: UInt64?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 升序降序,asc desc
         public let order: String?
-        
+
         /// 导出字段
         public let exportField: [String]?
-        
-        public init (filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil) {
+
+        public init(filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -53,7 +53,7 @@ extension Tcss {
             self.order = order
             self.exportField = exportField
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
@@ -63,39 +63,39 @@ extension Tcss {
             case exportField = "ExportField"
         }
     }
-    
+
     /// CreateHostExportJob返回参数结构体
     public struct CreateHostExportJobResponse: TCResponseModel {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建主机列表导出任务
     @inlinable
-    public func createHostExportJob(_ input: CreateHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostExportJobResponse > {
+    public func createHostExportJob(_ input: CreateHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostExportJobResponse> {
         self.client.execute(action: "CreateHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建主机列表导出任务
     @inlinable
     public func createHostExportJob(_ input: CreateHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostExportJobResponse {
         try await self.client.execute(action: "CreateHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建主机列表导出任务
     @inlinable
-    public func createHostExportJob(filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostExportJobResponse > {
+    public func createHostExportJob(filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostExportJobResponse> {
         self.createHostExportJob(CreateHostExportJobRequest(filters: filters, limit: limit, offset: offset, by: by, order: order, exportField: exportField), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建主机列表导出任务
     @inlinable
     public func createHostExportJob(filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostExportJobResponse {

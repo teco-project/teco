@@ -19,53 +19,53 @@ extension Monitor {
     public struct DescribeAlarmPolicyRequest: TCRequestModel {
         /// 固定值，为"monitor"
         public let module: String
-        
+
         /// 告警策略ID
         public let policyId: String
-        
-        public init (module: String, policyId: String) {
+
+        public init(module: String, policyId: String) {
             self.module = module
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case policyId = "PolicyId"
         }
     }
-    
+
     /// DescribeAlarmPolicy返回参数结构体
     public struct DescribeAlarmPolicyResponse: TCResponseModel {
         /// 策略详情
         public let policy: AlarmPolicy
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policy = "Policy"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单个告警策略详情
     @inlinable
-    public func describeAlarmPolicy(_ input: DescribeAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmPolicyResponse > {
+    public func describeAlarmPolicy(_ input: DescribeAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPolicyResponse> {
         self.client.execute(action: "DescribeAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个告警策略详情
     @inlinable
     public func describeAlarmPolicy(_ input: DescribeAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPolicyResponse {
         try await self.client.execute(action: "DescribeAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单个告警策略详情
     @inlinable
-    public func describeAlarmPolicy(module: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmPolicyResponse > {
+    public func describeAlarmPolicy(module: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPolicyResponse> {
         self.describeAlarmPolicy(DescribeAlarmPolicyRequest(module: module, policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个告警策略详情
     @inlinable
     public func describeAlarmPolicy(module: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPolicyResponse {

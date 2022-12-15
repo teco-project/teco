@@ -19,23 +19,23 @@ extension Apigateway {
     public struct DescribeIPStrategyApisStatusRequest: TCRequestModel {
         /// 服务唯一ID。
         public let serviceId: String
-        
+
         /// 策略唯一ID。
         public let strategyId: String
-        
+
         /// 策略所在环境。
         public let environmentName: String
-        
+
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为 0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。支持 ApiPath、ApiName、KeyWord（模糊查询Path 和Name）。
         public let filters: [Filter]?
-        
-        public init (serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.serviceId = serviceId
             self.strategyId = strategyId
             self.environmentName = environmentName
@@ -43,7 +43,7 @@ extension Apigateway {
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case strategyId = "StrategyId"
@@ -53,30 +53,30 @@ extension Apigateway {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeIPStrategyApisStatus返回参数结构体
     public struct DescribeIPStrategyApisStatusResponse: TCResponseModel {
         /// 环境绑定API列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: IPStrategyApiStatus?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询IP策略绑定的API列表
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
     @inlinable
-    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStrategyApisStatusResponse > {
+    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategyApisStatusResponse> {
         self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询IP策略绑定的API列表
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
@@ -84,15 +84,15 @@ extension Apigateway {
     public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyApisStatusResponse {
         try await self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询IP策略绑定的API列表
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
     @inlinable
-    public func describeIPStrategyApisStatus(serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStrategyApisStatusResponse > {
+    public func describeIPStrategyApisStatus(serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategyApisStatusResponse> {
         self.describeIPStrategyApisStatus(DescribeIPStrategyApisStatusRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询IP策略绑定的API列表
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。

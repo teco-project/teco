@@ -23,65 +23,65 @@ extension TCSmhError {
             case smsCode = "UnauthorizedOperation.SmsCode"
             case smsCodeExceeded = "UnauthorizedOperation.SmsCodeExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var createMediaBucket: UnauthorizedOperation {
             UnauthorizedOperation(.createMediaBucket)
         }
-        
+
         /// 未授予 cam:PassRole 权限。
         public static var passRole: UnauthorizedOperation {
             UnauthorizedOperation(.passRole)
         }
-        
+
         /// 未授予 SMH 服务相关角色。
         public static var serviceLinkedRole: UnauthorizedOperation {
             UnauthorizedOperation(.serviceLinkedRole)
         }
-        
+
         /// 短信验证码错误或已过期。
         public static var smsCode: UnauthorizedOperation {
             UnauthorizedOperation(.smsCode)
         }
-        
+
         /// 短信验证码验证次数超限，请重新发送短信验证码。
         public static var smsCodeExceeded: UnauthorizedOperation {
             UnauthorizedOperation(.smsCodeExceeded)
         }
-        
+
         public func asSmhError() -> TCSmhError {
             let code: TCSmhError.Code
             switch self.error {
-            case .createMediaBucket: 
+            case .createMediaBucket:
                 code = .unauthorizedOperation_CreateMediaBucket
-            case .passRole: 
+            case .passRole:
                 code = .unauthorizedOperation_PassRole
-            case .serviceLinkedRole: 
+            case .serviceLinkedRole:
                 code = .unauthorizedOperation_ServiceLinkedRole
-            case .smsCode: 
+            case .smsCode:
                 code = .unauthorizedOperation_SmsCode
-            case .smsCodeExceeded: 
+            case .smsCodeExceeded:
                 code = .unauthorizedOperation_SmsCodeExceeded
             }
             return TCSmhError(code, context: self.context)

@@ -22,13 +22,13 @@ extension Partners {
     public struct DescribeAgentSelfPayDealsV2Request: TCRequestModel {
         /// 下单人账号ID
         public let ownerUin: String
-        
+
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 限制数目 最大100
         public let limit: UInt64
-        
+
         /// 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -36,7 +36,7 @@ extension Partners {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var creatTimeRangeStart: Date?
-        
+
         /// 下单时间范围终止点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -44,20 +44,20 @@ extension Partners {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var creatTimeRangeEnd: Date?
-        
+
         /// 0:下单时间降序；其他：下单时间升序
         public let order: UInt64?
-        
+
         /// 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
         public let status: UInt64?
-        
+
         /// 子订单号列表
         public let dealNames: [String]?
-        
+
         /// 大订单号列表
         public let bigDealIds: [String]?
-        
-        public init (ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil) {
+
+        public init(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil) {
             self.ownerUin = ownerUin
             self.offset = offset
             self.limit = limit
@@ -68,7 +68,7 @@ extension Partners {
             self.dealNames = dealNames
             self.bigDealIds = bigDealIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ownerUin = "OwnerUin"
             case offset = "Offset"
@@ -81,33 +81,33 @@ extension Partners {
             case bigDealIds = "BigDealIds"
         }
     }
-    
+
     /// DescribeAgentSelfPayDealsV2返回参数结构体
     public struct DescribeAgentSelfPayDealsV2Response: TCResponseModel {
         /// 订单数组
         public let agentPayDealSet: [AgentDealNewElem]
-        
+
         /// 符合条件的订单总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentPayDealSet = "AgentPayDealSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 代理商自付订单查询接口（预付费）
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）
     @inlinable
-    public func describeAgentSelfPayDealsV2(_ input: DescribeAgentSelfPayDealsV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentSelfPayDealsV2Response > {
+    public func describeAgentSelfPayDealsV2(_ input: DescribeAgentSelfPayDealsV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentSelfPayDealsV2Response> {
         self.client.execute(action: "DescribeAgentSelfPayDealsV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 代理商自付订单查询接口（预付费）
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）
@@ -115,15 +115,15 @@ extension Partners {
     public func describeAgentSelfPayDealsV2(_ input: DescribeAgentSelfPayDealsV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentSelfPayDealsV2Response {
         try await self.client.execute(action: "DescribeAgentSelfPayDealsV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 代理商自付订单查询接口（预付费）
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）
     @inlinable
-    public func describeAgentSelfPayDealsV2(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentSelfPayDealsV2Response > {
+    public func describeAgentSelfPayDealsV2(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentSelfPayDealsV2Response> {
         self.describeAgentSelfPayDealsV2(DescribeAgentSelfPayDealsV2Request(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames, bigDealIds: bigDealIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 代理商自付订单查询接口（预付费）
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）

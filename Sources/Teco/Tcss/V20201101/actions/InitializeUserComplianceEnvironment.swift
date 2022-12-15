@@ -17,28 +17,28 @@
 extension Tcss {
     /// InitializeUserComplianceEnvironment请求参数结构体
     public struct InitializeUserComplianceEnvironmentRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// InitializeUserComplianceEnvironment返回参数结构体
     public struct InitializeUserComplianceEnvironmentResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
     @inlinable
-    public func initializeUserComplianceEnvironment(_ input: InitializeUserComplianceEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeUserComplianceEnvironmentResponse > {
+    public func initializeUserComplianceEnvironment(_ input: InitializeUserComplianceEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeUserComplianceEnvironmentResponse> {
         self.client.execute(action: "InitializeUserComplianceEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
@@ -46,15 +46,15 @@ extension Tcss {
     public func initializeUserComplianceEnvironment(_ input: InitializeUserComplianceEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeUserComplianceEnvironmentResponse {
         try await self.client.execute(action: "InitializeUserComplianceEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
     @inlinable
-    public func initializeUserComplianceEnvironment(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeUserComplianceEnvironmentResponse > {
+    public func initializeUserComplianceEnvironment(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeUserComplianceEnvironmentResponse> {
         self.initializeUserComplianceEnvironment(InitializeUserComplianceEnvironmentRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。

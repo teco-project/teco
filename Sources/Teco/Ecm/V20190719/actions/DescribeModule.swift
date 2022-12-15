@@ -25,31 +25,31 @@ extension Ecm {
         /// security-group-id - string 是否必填：否 - （过滤条件）按照模块绑定的安全组id过滤。
         /// 每次请求的Filters的上限为10，Filter.Values的上限为5。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。
         public let limit: Int64?
-        
+
         /// 指定排序字段。目前支持的可选值如下
         /// instance-num 按实例数量排序。
         /// node-num 按节点数量排序。
         /// timestamp 按实例创建时间排序。
         /// 如果不传，默认按实例创建时间排序
         public let orderByField: String?
-        
+
         /// 指定排序是降序还是升序。0表示降序； 1表示升序。如果不传默认为降序
         public let orderDirection: Int64?
-        
-        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
             self.orderByField = orderByField
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
@@ -58,45 +58,45 @@ extension Ecm {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeModule返回参数结构体
     public struct DescribeModuleResponse: TCResponseModel {
         /// 符合条件的模块数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 模块详情信息的列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let moduleItemSet: [ModuleItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case moduleItemSet = "ModuleItemSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取模块列表
     @inlinable
-    public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModuleResponse > {
+    public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleResponse> {
         self.client.execute(action: "DescribeModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取模块列表
     @inlinable
     public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleResponse {
         try await self.client.execute(action: "DescribeModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取模块列表
     @inlinable
-    public func describeModule(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModuleResponse > {
+    public func describeModule(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleResponse> {
         self.describeModule(DescribeModuleRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取模块列表
     @inlinable
     public func describeModule(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleResponse {

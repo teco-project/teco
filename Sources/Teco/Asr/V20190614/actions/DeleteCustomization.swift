@@ -19,34 +19,34 @@ extension Asr {
     public struct DeleteCustomizationRequest: TCRequestModel {
         /// 要删除的模型ID
         public let modelId: String
-        
-        public init (modelId: String) {
+
+        public init(modelId: String) {
             self.modelId = modelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
         }
     }
-    
+
     /// DeleteCustomization返回参数结构体
     public struct DeleteCustomizationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除自学习模型
     ///
     /// 用户通过该接口可以删除自学习模型
     @inlinable
-    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizationResponse > {
+    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
         self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自学习模型
     ///
     /// 用户通过该接口可以删除自学习模型
@@ -54,15 +54,15 @@ extension Asr {
     public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
         try await self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除自学习模型
     ///
     /// 用户通过该接口可以删除自学习模型
     @inlinable
-    public func deleteCustomization(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizationResponse > {
+    public func deleteCustomization(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
         self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自学习模型
     ///
     /// 用户通过该接口可以删除自学习模型

@@ -19,26 +19,26 @@ extension Dayu {
     public struct DescribleNewL7RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
         public let business: String
-        
+
         /// 一页条数，填0表示不分页
         public let limit: UInt64?
-        
+
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
-        
+
         /// 域名搜索，选填，当需要搜索域名请填写
         public let domain: String?
-        
+
         /// 转发协议搜索，选填，取值[http, https, http/https]
         public let protocolList: [String]?
-        
+
         /// 状态搜索，选填，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
         public let statusList: [UInt64]?
-        
+
         /// IP搜索，选填，当需要搜索IP请填写
         public let ip: String?
-        
-        public init (business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil) {
+
+        public init(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil) {
             self.business = business
             self.limit = limit
             self.offset = offset
@@ -47,7 +47,7 @@ extension Dayu {
             self.statusList = statusList
             self.ip = ip
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case limit = "Limit"
@@ -58,21 +58,21 @@ extension Dayu {
             case ip = "Ip"
         }
     }
-    
+
     /// DescribleNewL7Rules返回参数结构体
     public struct DescribleNewL7RulesResponse: TCResponseModel {
         /// 转发规则列表
         public let rules: [NewL7RuleEntry]
-        
+
         /// 总规则数
         public let total: UInt64
-        
+
         /// 健康检查配置列表
         public let healths: [L7RuleHealth]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
             case total = "Total"
@@ -80,25 +80,25 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取7层规则
     @inlinable
-    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleNewL7RulesResponse > {
+    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleNewL7RulesResponse> {
         self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取7层规则
     @inlinable
     public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
         try await self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取7层规则
     @inlinable
-    public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleNewL7RulesResponse > {
+    public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleNewL7RulesResponse> {
         self.describleNewL7Rules(DescribleNewL7RulesRequest(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取7层规则
     @inlinable
     public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {

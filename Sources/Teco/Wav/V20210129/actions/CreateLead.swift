@@ -19,50 +19,50 @@ extension Wav {
     public struct CreateLeadRequest: TCRequestModel {
         /// 来源ID
         public let channelId: UInt64
-        
+
         /// 来源名称
         public let channelName: String
-        
+
         /// 创建时间， 单位毫秒
         public let createTime: UInt64
-        
+
         /// 线索类型：1-400呼入，2-常规留资
         public let sourceType: Int64
-        
+
         /// 经销商id
         public let dealerId: UInt64
-        
+
         /// 品牌id
         public let brandId: UInt64
-        
+
         /// 车系id
         public let seriesId: UInt64
-        
+
         /// 客户姓名
         public let customerName: String
-        
+
         /// 客户手机号
         public let customerPhone: String
-        
+
         /// 车型id
         public let modelId: UInt64?
-        
+
         /// 客户性别: 0-未知, 1-男, 2-女
         public let customerSex: Int64?
-        
+
         /// 销售姓名
         public let salesName: String?
-        
+
         /// 销售手机号
         public let salesPhone: String?
-        
+
         /// Cc坐席姓名
         public let ccName: String?
-        
+
         /// 备注
         public let remark: String?
-        
-        public init (channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil) {
+
+        public init(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil) {
             self.channelId = channelId
             self.channelName = channelName
             self.createTime = createTime
@@ -79,7 +79,7 @@ extension Wav {
             self.ccName = ccName
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelId = "ChannelId"
             case channelName = "ChannelName"
@@ -98,43 +98,43 @@ extension Wav {
             case remark = "Remark"
         }
     }
-    
+
     /// CreateLead返回参数结构体
     public struct CreateLeadResponse: TCResponseModel {
         /// 线索处理状态码： 0-表示创建成功， 1-表示线索合并，2-表示线索重复
         public let businessCode: Int64
-        
+
         /// 线索处理结果描述
         public let businessMsg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case businessCode = "BusinessCode"
             case businessMsg = "BusinessMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 线索回收接口
     @inlinable
-    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLeadResponse > {
+    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLeadResponse> {
         self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 线索回收接口
     @inlinable
     public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
         try await self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 线索回收接口
     @inlinable
-    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLeadResponse > {
+    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLeadResponse> {
         self.createLead(CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 线索回收接口
     @inlinable
     public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {

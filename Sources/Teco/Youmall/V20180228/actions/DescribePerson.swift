@@ -19,52 +19,52 @@ extension Youmall {
     public struct DescribePersonRequest: TCRequestModel {
         /// 卖场编码
         public let mallId: String
-        
+
         /// 查询偏移
         public let offset: UInt64?
-        
+
         /// 查询数量，默认20，最大查询数量100
         public let limit: UInt64?
-        
-        public init (mallId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.mallId = mallId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mallId = "MallId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribePerson返回参数结构体
     public struct DescribePersonResponse: TCResponseModel {
         /// 总计客户数量
         public let totalCount: UInt64
-        
+
         /// 客户信息
         public let personSet: [PersonProfile]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case personSet = "PersonSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息
     @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
+    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
         self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息
@@ -72,15 +72,15 @@ extension Youmall {
     public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
         try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息
     @inlinable
-    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
+    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
         self.describePerson(DescribePersonRequest(mallId: mallId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息

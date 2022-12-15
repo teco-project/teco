@@ -21,52 +21,52 @@ extension TCSsaError {
             case paramError = "InternalError.ParamError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// DB错误。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// 参数校验失败。
         public static var paramError: InternalError {
             InternalError(.paramError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asSsaError() -> TCSsaError {
             let code: TCSsaError.Code
             switch self.error {
-            case .dbError: 
+            case .dbError:
                 code = .internalError_DBError
-            case .paramError: 
+            case .paramError:
                 code = .internalError_ParamError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCSsaError(code, context: self.context)

@@ -17,28 +17,28 @@
 extension Tcr {
     /// DeleteImageLifecycleGlobalPersonal请求参数结构体
     public struct DeleteImageLifecycleGlobalPersonalRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DeleteImageLifecycleGlobalPersonal返回参数结构体
     public struct DeleteImageLifecycleGlobalPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable
-    public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageLifecycleGlobalPersonalResponse > {
+    public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
         self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
@@ -46,15 +46,15 @@ extension Tcr {
     public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
         try await self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable
-    public func deleteImageLifecycleGlobalPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageLifecycleGlobalPersonalResponse > {
+    public func deleteImageLifecycleGlobalPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
         self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略

@@ -20,47 +20,47 @@ extension TCTioneError {
             case noPermission = "UnauthorizedOperation.NoPermission"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源不属于当前登陆用户主账号，无权限访问。
         ///
         /// 请确认资源ID是否正确，或者切换账号进行访问。
         public static var noPermission: UnauthorizedOperation {
             UnauthorizedOperation(.noPermission)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
-            case .noPermission: 
+            case .noPermission:
                 code = .unauthorizedOperation_NoPermission
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCTioneError(code, context: self.context)

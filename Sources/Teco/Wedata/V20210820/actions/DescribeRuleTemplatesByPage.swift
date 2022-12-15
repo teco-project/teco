@@ -19,27 +19,27 @@ extension Wedata {
     public struct DescribeRuleTemplatesByPageRequest: TCRequestModel {
         /// 当前页
         public let pageNumber: UInt64
-        
+
         /// 每页记录数
         public let pageSize: UInt64
-        
+
         /// 工作空间ID
         public let projectId: String
-        
+
         /// 通用排序字段
         public let orderFields: [OrderField]?
-        
+
         /// 通用过滤条件
         public let filters: [Filter]?
-        
-        public init (pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil) {
+
+        public init(pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.projectId = projectId
             self.orderFields = orderFields
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
             case pageSize = "PageSize"
@@ -48,29 +48,29 @@ extension Wedata {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeRuleTemplatesByPage返回参数结构体
     public struct DescribeRuleTemplatesByPageResponse: TCResponseModel {
         /// 结果
         public let data: RuleTemplatePage
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 规则模版查询接口
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}
     @inlinable
-    public func describeRuleTemplatesByPage(_ input: DescribeRuleTemplatesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplatesByPageResponse > {
+    public func describeRuleTemplatesByPage(_ input: DescribeRuleTemplatesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesByPageResponse> {
         self.client.execute(action: "DescribeRuleTemplatesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 规则模版查询接口
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}
@@ -78,15 +78,15 @@ extension Wedata {
     public func describeRuleTemplatesByPage(_ input: DescribeRuleTemplatesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesByPageResponse {
         try await self.client.execute(action: "DescribeRuleTemplatesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 规则模版查询接口
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}
     @inlinable
-    public func describeRuleTemplatesByPage(pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplatesByPageResponse > {
+    public func describeRuleTemplatesByPage(pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesByPageResponse> {
         self.describeRuleTemplatesByPage(DescribeRuleTemplatesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, orderFields: orderFields, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 规则模版查询接口
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}

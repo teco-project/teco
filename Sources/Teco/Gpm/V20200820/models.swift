@@ -19,61 +19,61 @@ extension Gpm {
     public struct AttributeMap: TCInputModel {
         /// 属性字典 key [a-zA-Z0-9-\.]*
         public let key: String
-        
+
         /// 属性字典 value
         public let value: Int64
-        
-        public init (key: String, value: Int64) {
+
+        public init(key: String, value: Int64) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// matchCode和匹配票据 ID组合结构
     public struct MTicket: TCInputModel {
         /// 匹配Code
         public let matchCode: String
-        
+
         /// 匹配票据 ID
         public let matchTicketId: String
-        
-        public init (matchCode: String, matchTicketId: String) {
+
+        public init(matchCode: String, matchTicketId: String) {
             self.matchCode = matchCode
             self.matchTicketId = matchTicketId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case matchCode = "MatchCode"
             case matchTicketId = "MatchTicketId"
         }
     }
-    
+
     /// 玩家匹配属性
     public struct MatchAttribute: TCInputModel {
         /// 属性名 长度 128 [a-zA-Z0-9-\.]*
         public let name: String
-        
+
         /// 属性类型: 0 数值; 1 string; 默认 0
         public let type: UInt64
-        
+
         /// 数字属性值 默认 0.0
         public let numberValue: Float?
-        
+
         /// 字符串属性值 长度 128 默认 ""
         public let stringValue: String?
-        
+
         /// list 属性值
         public let listValue: [String]?
-        
+
         /// 字典属性值
         public let mapValue: [AttributeMap]?
-        
-        public init (name: String, type: UInt64, numberValue: Float? = nil, stringValue: String? = nil, listValue: [String]? = nil, mapValue: [AttributeMap]? = nil) {
+
+        public init(name: String, type: UInt64, numberValue: Float? = nil, stringValue: String? = nil, listValue: [String]? = nil, mapValue: [AttributeMap]? = nil) {
             self.name = name
             self.type = type
             self.numberValue = numberValue
@@ -81,7 +81,7 @@ extension Gpm {
             self.listValue = listValue
             self.mapValue = mapValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -91,113 +91,113 @@ extension Gpm {
             case mapValue = "MapValue"
         }
     }
-    
+
     /// 匹配code
     public struct MatchCodeAttr: TCOutputModel {
         /// 匹配code
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchCode: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case matchCode = "MatchCode"
         }
     }
-    
+
     /// 匹配信息
     public struct MatchInfo: TCInputModel, TCOutputModel {
         /// 匹配code
         public let matchCode: String
-        
+
         /// 匹配名称
         public let matchName: String
-        
+
         /// 匹配描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchDesc: String?
-        
+
         /// 规则code
         public let ruleCode: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 超时时间
         public let timeout: Int64
-        
+
         /// 接收通知地址
         public let notifyUrl: String
-        
+
         /// 是否为匹配结果请求服务器资源，0否，1请求GSE资源
         public let serverType: Int64
-        
+
         /// 服务器队列所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverRegion: String?
-        
+
         /// 服务器队列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverQueue: String?
-        
+
         /// 自定义推送数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customPushData: String?
-        
+
         /// 游戏服务器会话数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverSessionData: String?
-        
+
         /// 游戏属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameProperties: [StringKV]?
-        
+
         /// 日志开关，0表示关，1表示开
         public let logSwitch: Int64
-        
+
         /// 日志集id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logsetId: String?
-        
+
         /// 日志集名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logsetName: String?
-        
+
         /// 日志主题id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logTopicId: String?
-        
+
         /// 日志主题名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logTopicName: String?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [StringKV]?
-        
+
         /// 地区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 用户AppId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 用户主账号Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 用户创建账号Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUin: String?
-        
+
         /// 规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleName: String?
-        
+
         /// 日志状态，0表示正常，1表示日志集不存在，2表示日志主题不存在，3表示日志集和日志主题都不存在。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logStatus: Int64?
-        
-        public init (matchCode: String, matchName: String, matchDesc: String, ruleCode: String, createTime: String, timeout: Int64, notifyUrl: String, serverType: Int64, serverRegion: String, serverQueue: String, customPushData: String, serverSessionData: String, gameProperties: [StringKV], logSwitch: Int64, logsetId: String, logsetName: String, logTopicId: String, logTopicName: String, tags: [StringKV], region: String, appId: String, uin: String, createUin: String, ruleName: String, logStatus: Int64? = nil) {
+
+        public init(matchCode: String, matchName: String, matchDesc: String, ruleCode: String, createTime: String, timeout: Int64, notifyUrl: String, serverType: Int64, serverRegion: String, serverQueue: String, customPushData: String, serverSessionData: String, gameProperties: [StringKV], logSwitch: Int64, logsetId: String, logsetName: String, logTopicId: String, logTopicName: String, tags: [StringKV], region: String, appId: String, uin: String, createUin: String, ruleName: String, logStatus: Int64? = nil) {
             self.matchCode = matchCode
             self.matchName = matchName
             self.matchDesc = matchDesc
@@ -224,7 +224,7 @@ extension Gpm {
             self.ruleName = ruleName
             self.logStatus = logStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case matchCode = "MatchCode"
             case matchName = "MatchName"
@@ -253,44 +253,44 @@ extension Gpm {
             case logStatus = "LogStatus"
         }
     }
-    
+
     /// 匹配票据信息
     public struct MatchTicket: TCOutputModel {
         /// 匹配票据 ID长度 128 [a-zA-Z0-9-\.]*
         public let id: String
-        
+
         /// 匹配 Code
         public let matchCode: String
-        
+
         /// 根据 MatchType 取不同的结构序列化结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchResult: String?
-        
+
         /// 表示不同的匹配类型,NORMAL | GSE
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchType: String?
-        
+
         /// 玩家信息列表
         public let players: [Player]
-        
+
         /// 匹配状态: SEARCHING 匹配中; PLACING 匹配放置中; COMPLETED 匹配完成; CANCELLED 匹配取消; TIMEDOUT 匹配超时; FAILED 匹配失败
         public let status: String
-        
+
         /// 匹配状态信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusMessage: String?
-        
+
         /// 匹配状态原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusReason: String?
-        
+
         /// 收到发起匹配请求的时间 eg: "2020-08-17T08:14:38.077Z"
         public let startTime: String
-        
+
         /// 匹配请求因完成、失败、超时、被取消而停止执行的时间 eg: "2020-08-17T08:14:38.077Z"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case matchCode = "MatchCode"
@@ -304,31 +304,31 @@ extension Gpm {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 玩家信息。
     public struct Player: TCInputModel {
         /// 玩家 PlayerId 长度 128 [a-zA-Z\d-\._]*
         public let id: String
-        
+
         /// 玩家昵称，长度 128
         public let name: String
-        
+
         /// 玩家匹配属性，最多 10 条
         public let matchAttributes: [MatchAttribute]
-        
+
         /// 队伍名，可以传递不同队伍名，长度 128 [a-zA-Z0-9-\.]*
         public let team: String?
-        
+
         /// 自定义玩家状态 透传参数 [0, 99999]
         public let customPlayerStatus: UInt64?
-        
+
         /// 自定义玩家信息 透传参数 长度 1024
         public let customProfile: String?
-        
+
         /// 各区域延迟，最多 20 条
         public let regionLatencies: [RegionLatency]?
-        
-        public init (id: String, name: String, matchAttributes: [MatchAttribute], team: String? = nil, customPlayerStatus: UInt64? = nil, customProfile: String? = nil, regionLatencies: [RegionLatency]? = nil) {
+
+        public init(id: String, name: String, matchAttributes: [MatchAttribute], team: String? = nil, customPlayerStatus: UInt64? = nil, customProfile: String? = nil, regionLatencies: [RegionLatency]? = nil) {
             self.id = id
             self.name = name
             self.matchAttributes = matchAttributes
@@ -337,7 +337,7 @@ extension Gpm {
             self.customProfile = customProfile
             self.regionLatencies = regionLatencies
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -348,7 +348,7 @@ extension Gpm {
             case regionLatencies = "RegionLatencies"
         }
     }
-    
+
     /// 玩家到各区域的延迟
     public struct RegionLatency: TCInputModel {
         /// 地域
@@ -368,38 +368,38 @@ extension Gpm {
         /// eu-moscow          欧洲地区(莫斯科)
         /// ap-tokyo          亚太地区(东京)
         public let region: String
-        
+
         /// 毫秒延迟 0～999999
         public let latency: UInt64
-        
-        public init (region: String, latency: UInt64) {
+
+        public init(region: String, latency: UInt64) {
             self.region = region
             self.latency = latency
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case latency = "Latency"
         }
     }
-    
+
     /// 匹配概况
     public struct ReportOverviewData: TCOutputModel {
         /// 总次数
         public let totalTimes: String
-        
+
         /// 成功率
         public let successPercent: Float
-        
+
         /// 超时率
         public let timeoutPercent: Float
-        
+
         /// 失败率
         public let failPercent: Float
-        
+
         /// 平均匹配时间
         public let averageSec: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case totalTimes = "TotalTimes"
             case successPercent = "SuccessPercent"
@@ -408,27 +408,27 @@ extension Gpm {
             case averageSec = "AverageSec"
         }
     }
-    
+
     /// 统计数据之趋势数据
     public struct ReportTrendData: TCOutputModel {
         /// 总次数
         public let totalList: [String]
-        
+
         /// 被取消次数
         public let cancelList: [String]
-        
+
         /// 成功次数
         public let successList: [String]
-        
+
         /// 失败次数
         public let failList: [String]
-        
+
         /// 超时次数
         public let timeoutList: [String]
-        
+
         /// 时间数组，单位：秒
         public let timeList: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalList = "TotalList"
             case cancelList = "CancelList"
@@ -438,21 +438,21 @@ extension Gpm {
             case timeList = "TimeList"
         }
     }
-    
+
     /// 规则简单信息
     public struct RuleBriefInfo: TCOutputModel {
         /// 规则名称 [a-zA-Z\d-\.]*
         public let ruleName: String
-        
+
         /// 关联匹配
         public let matchCodeList: [StringKV]
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 规则code
         public let ruleCode: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case matchCodeList = "MatchCodeList"
@@ -460,49 +460,49 @@ extension Gpm {
             case ruleCode = "RuleCode"
         }
     }
-    
+
     /// 规则信息
     public struct RuleInfo: TCOutputModel {
         /// 规则名称 [a-zA-Z0-9-\.]*
         public let ruleName: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 规则描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleDesc: String?
-        
+
         /// 规则脚本
         public let ruleScript: String
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [StringKV]?
-        
+
         /// 关联匹配
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchCodeList: [StringKV]?
-        
+
         /// 规则code
         public let ruleCode: String
-        
+
         /// 地区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 用户AppId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 用户Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 用户OwnerUin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUin: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
             case createTime = "CreateTime"
@@ -517,39 +517,39 @@ extension Gpm {
             case createUin = "CreateUin"
         }
     }
-    
+
     /// string keyValue解构
     public struct StringKV: TCInputModel, TCOutputModel {
         /// 键
         public let key: String
-        
+
         /// 值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 标签键值对
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: String
-        
-        public init (tagKey: String, tagValue: String) {
+
+        public init(tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"

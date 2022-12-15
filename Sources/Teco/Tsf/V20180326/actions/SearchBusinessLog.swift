@@ -22,10 +22,10 @@ extension Tsf {
     public struct SearchBusinessLogRequest: TCRequestModel {
         /// 日志配置项ID
         public let configId: String
-        
+
         /// 机器实例ID，不传表示全部实例
         public let instanceIds: [String]?
-        
+
         /// 开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date?
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,35 +41,35 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date?
-        
+
         /// 请求偏移量，取值范围大于等于0，默认值为0
         public let offset: UInt64?
-        
+
         /// 单页请求配置数量，取值范围[1, 200]，默认值为50
         public let limit: UInt64?
-        
+
         /// 排序规则，默认值"time"
         public let orderBy: String?
-        
+
         /// 排序方式，取值"asc"或"desc"，默认值"desc"
         public let orderType: String?
-        
+
         /// 检索关键词
         public let searchWords: [String]?
-        
+
         /// 部署组ID列表，不传表示全部部署组
         public let groupIds: [String]?
-        
+
         /// 检索类型，取值"LUCENE", "REGEXP", "NORMAL"
         public let searchWordType: String?
-        
+
         /// 批量请求类型，取值"page"或"scroll"
         public let batchType: String?
-        
+
         /// 游标ID
         public let scrollId: String?
-        
-        public init (configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil) {
+
+        public init(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil) {
             self.configId = configId
             self.instanceIds = instanceIds
             self.startTime = startTime
@@ -84,7 +84,7 @@ extension Tsf {
             self.batchType = batchType
             self.scrollId = scrollId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case instanceIds = "InstanceIds"
@@ -101,40 +101,40 @@ extension Tsf {
             case scrollId = "ScrollId"
         }
     }
-    
+
     /// SearchBusinessLog返回参数结构体
     public struct SearchBusinessLogResponse: TCResponseModel {
         /// 业务日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageBusinessLogV2?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 业务日志搜索
     @inlinable
-    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchBusinessLogResponse > {
+    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchBusinessLogResponse> {
         self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 业务日志搜索
     @inlinable
     public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {
         try await self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 业务日志搜索
     @inlinable
-    public func searchBusinessLog(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchBusinessLogResponse > {
+    public func searchBusinessLog(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchBusinessLogResponse> {
         self.searchBusinessLog(SearchBusinessLogRequest(configId: configId, instanceIds: instanceIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchWords: searchWords, groupIds: groupIds, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), logger: logger, on: eventLoop)
     }
-    
+
     /// 业务日志搜索
     @inlinable
     public func searchBusinessLog(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {

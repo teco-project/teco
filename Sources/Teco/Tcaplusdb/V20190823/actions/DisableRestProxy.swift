@@ -19,42 +19,42 @@ extension Tcaplusdb {
     public struct DisableRestProxyRequest: TCRequestModel {
         /// 对应appid
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DisableRestProxy返回参数结构体
     public struct DisableRestProxyResponse: TCResponseModel {
         /// RestProxy的状态，0为关闭，1为开启中，2为开启，3为关闭中
         public let restProxyStatus: UInt64
-        
+
         /// TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case restProxyStatus = "RestProxyStatus"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api
     @inlinable
-    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRestProxyResponse > {
+    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRestProxyResponse> {
         self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api
@@ -62,15 +62,15 @@ extension Tcaplusdb {
     public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRestProxyResponse {
         try await self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api
     @inlinable
-    public func disableRestProxy(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRestProxyResponse > {
+    public func disableRestProxy(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRestProxyResponse> {
         self.disableRestProxy(DisableRestProxyRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api

@@ -17,42 +17,42 @@
 extension Cwp {
     /// DescribeScanVulSetting请求参数结构体
     public struct DescribeScanVulSettingRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeScanVulSetting返回参数结构体
     public struct DescribeScanVulSettingResponse: TCResponseModel {
         /// 漏洞类型：1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
         public let vulCategories: String
-        
+
         /// 危害等级：1-低危；2-中危；3-高危；4-严重 (多选英文逗号分隔)
         public let vulLevels: String
-        
+
         /// 定期检测间隔时间（天）
         public let timerInterval: UInt64
-        
+
         /// 定期检测时间，如：00:00
         public let timerTime: String
-        
+
         /// 是否紧急漏洞：0-否 1-是
         public let vulEmergency: UInt64
-        
+
         /// 开始时间
         public let startTime: String
-        
+
         /// 是否开启
         public let enableScan: UInt64
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// 一键扫描超时时长，如：1800秒（s）
         public let clickTimeout: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vulCategories = "VulCategories"
             case vulLevels = "VulLevels"
@@ -66,15 +66,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 定期检测配置查询
     ///
     /// 查询定期检测的配置
     @inlinable
-    public func describeScanVulSetting(_ input: DescribeScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanVulSettingResponse > {
+    public func describeScanVulSetting(_ input: DescribeScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanVulSettingResponse> {
         self.client.execute(action: "DescribeScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 定期检测配置查询
     ///
     /// 查询定期检测的配置
@@ -82,15 +82,15 @@ extension Cwp {
     public func describeScanVulSetting(_ input: DescribeScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanVulSettingResponse {
         try await self.client.execute(action: "DescribeScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 定期检测配置查询
     ///
     /// 查询定期检测的配置
     @inlinable
-    public func describeScanVulSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanVulSettingResponse > {
+    public func describeScanVulSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanVulSettingResponse> {
         self.describeScanVulSetting(DescribeScanVulSettingRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 定期检测配置查询
     ///
     /// 查询定期检测的配置

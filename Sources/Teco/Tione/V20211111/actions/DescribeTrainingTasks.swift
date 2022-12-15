@@ -25,23 +25,23 @@ extension Tione {
         /// ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
         /// CHARGE_STATUS（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ ARREARS_STOP（欠费停止）
         public let filters: [Filter]?
-        
+
         /// 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]
         public let tagFilters: [TagFilter]?
-        
+
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为10，最大为50
         public let limit: UInt64?
-        
+
         /// 输出列表的排列顺序。取值范围：ASC（升序排列）/ DESC（降序排列），默认为DESC
         public let order: String?
-        
+
         /// 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
         public let orderField: String?
-        
-        public init (filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
+
+        public init(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.tagFilters = tagFilters
             self.offset = offset
@@ -49,7 +49,7 @@ extension Tione {
             self.order = order
             self.orderField = orderField
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case tagFilters = "TagFilters"
@@ -59,33 +59,33 @@ extension Tione {
             case orderField = "OrderField"
         }
     }
-    
+
     /// DescribeTrainingTasks返回参数结构体
     public struct DescribeTrainingTasksResponse: TCResponseModel {
         /// 训练任务集
         public let trainingTaskSet: [TrainingTaskSetItem]
-        
+
         /// 数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trainingTaskSet = "TrainingTaskSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 模型训练任务列表
     ///
     /// 训练任务列表
     @inlinable
-    public func describeTrainingTasks(_ input: DescribeTrainingTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTasksResponse > {
+    public func describeTrainingTasks(_ input: DescribeTrainingTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTasksResponse> {
         self.client.execute(action: "DescribeTrainingTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 模型训练任务列表
     ///
     /// 训练任务列表
@@ -93,15 +93,15 @@ extension Tione {
     public func describeTrainingTasks(_ input: DescribeTrainingTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTasksResponse {
         try await self.client.execute(action: "DescribeTrainingTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 模型训练任务列表
     ///
     /// 训练任务列表
     @inlinable
-    public func describeTrainingTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTasksResponse > {
+    public func describeTrainingTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTasksResponse> {
         self.describeTrainingTasks(DescribeTrainingTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
     }
-    
+
     /// 模型训练任务列表
     ///
     /// 训练任务列表

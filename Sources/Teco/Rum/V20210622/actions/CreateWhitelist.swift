@@ -19,23 +19,23 @@ extension Rum {
     public struct CreateWhitelistRequest: TCRequestModel {
         /// 实例ID：taw-123
         public let instanceID: String
-        
+
         /// 备注
         public let remark: String
-        
+
         /// uin：业务方标识
         public let whitelistUin: String
-        
+
         /// 业务方标识
         public let aid: String?
-        
-        public init (instanceID: String, remark: String, whitelistUin: String, aid: String? = nil) {
+
+        public init(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil) {
             self.instanceID = instanceID
             self.remark = remark
             self.whitelistUin = whitelistUin
             self.aid = aid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceID = "InstanceID"
             case remark = "Remark"
@@ -43,43 +43,43 @@ extension Rum {
             case aid = "Aid"
         }
     }
-    
+
     /// CreateWhitelist返回参数结构体
     public struct CreateWhitelistResponse: TCResponseModel {
         /// 消息
         public let msg: String
-        
+
         /// 白名单ID
         public let id: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case id = "ID"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建白名单
     @inlinable
-    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWhitelistResponse > {
+    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhitelistResponse> {
         self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建白名单
     @inlinable
     public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {
         try await self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建白名单
     @inlinable
-    public func createWhitelist(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWhitelistResponse > {
+    public func createWhitelist(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhitelistResponse> {
         self.createWhitelist(CreateWhitelistRequest(instanceID: instanceID, remark: remark, whitelistUin: whitelistUin, aid: aid), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建白名单
     @inlinable
     public func createWhitelist(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {

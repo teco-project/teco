@@ -19,38 +19,38 @@ extension TCBatchError {
         enum Code: String {
             case mismatchRegion = "InvalidZone.MismatchRegion"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 指定的zone不存在。
         public static var mismatchRegion: InvalidZone {
             InvalidZone(.mismatchRegion)
         }
-        
+
         public func asBatchError() -> TCBatchError {
             let code: TCBatchError.Code
             switch self.error {
-            case .mismatchRegion: 
+            case .mismatchRegion:
                 code = .invalidZone_MismatchRegion
             }
             return TCBatchError(code, context: self.context)

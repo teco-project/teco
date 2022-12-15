@@ -19,43 +19,43 @@ extension Bsca {
     public struct DescribeKBLicenseRequest: TCRequestModel {
         /// License表达式
         public let licenseExpression: String?
-        
-        public init (licenseExpression: String? = nil) {
+
+        public init(licenseExpression: String? = nil) {
             self.licenseExpression = licenseExpression
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case licenseExpression = "LicenseExpression"
         }
     }
-    
+
     /// DescribeKBLicense返回参数结构体
     public struct DescribeKBLicenseResponse: TCResponseModel {
         /// 许可证列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let licenseList: [LicenseUnion]?
-        
+
         /// 用于匹配的License表达式
         public let normalizedLicenseExpression: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case licenseList = "LicenseList"
             case normalizedLicenseExpression = "NormalizedLicenseExpression"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询知识库许可证信息
     ///
     /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。
     @inlinable
-    public func describeKBLicense(_ input: DescribeKBLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKBLicenseResponse > {
+    public func describeKBLicense(_ input: DescribeKBLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKBLicenseResponse> {
         self.client.execute(action: "DescribeKBLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询知识库许可证信息
     ///
     /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。
@@ -63,15 +63,15 @@ extension Bsca {
     public func describeKBLicense(_ input: DescribeKBLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBLicenseResponse {
         try await self.client.execute(action: "DescribeKBLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询知识库许可证信息
     ///
     /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。
     @inlinable
-    public func describeKBLicense(licenseExpression: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKBLicenseResponse > {
+    public func describeKBLicense(licenseExpression: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKBLicenseResponse> {
         self.describeKBLicense(DescribeKBLicenseRequest(licenseExpression: licenseExpression), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询知识库许可证信息
     ///
     /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。

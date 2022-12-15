@@ -19,34 +19,34 @@ extension Iotvideo {
     public struct CreateIotDataTypeRequest: TCRequestModel {
         /// 用户自定义数据类型，json格式的字符串
         public let iotDataType: String
-        
-        public init (iotDataType: String) {
+
+        public init(iotDataType: String) {
             self.iotDataType = iotDataType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case iotDataType = "IotDataType"
         }
     }
-    
+
     /// CreateIotDataType返回参数结构体
     public struct CreateIotDataTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
     @inlinable
-    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDataTypeResponse > {
+    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
         self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
@@ -54,15 +54,15 @@ extension Iotvideo {
     public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
         try await self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
     @inlinable
-    public func createIotDataType(iotDataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDataTypeResponse > {
+    public func createIotDataType(iotDataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
         self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。

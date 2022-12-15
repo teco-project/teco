@@ -22,10 +22,10 @@ extension Partners {
     public struct DescribeAgentDealsByCacheRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 限制数目 最大200
         public let limit: UInt64
-        
+
         /// 下单时间范围起始点【请保持时间范围最大90天】
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Partners {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var creatTimeRangeStart: Date?
-        
+
         /// 下单时间范围终止点【请保持时间范围最大90天】
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,26 +41,26 @@ extension Partners {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var creatTimeRangeEnd: Date?
-        
+
         /// 0:下单时间降序；其他：下单时间升序
         public let order: UInt64?
-        
+
         /// 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
         public let status: UInt64?
-        
+
         /// 下单人账号ID列表
         public let ownerUins: [String]?
-        
+
         /// 子订单号列表
         public let dealNames: [String]?
-        
+
         /// 大订单号列表
         public let bigDealIds: [String]?
-        
+
         /// 支付方式，0：自付；1：代付
         public let payerMode: UInt64?
-        
-        public init (offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, payerMode: UInt64? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, payerMode: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.creatTimeRangeStart = creatTimeRangeStart
@@ -72,7 +72,7 @@ extension Partners {
             self.bigDealIds = bigDealIds
             self.payerMode = payerMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -86,33 +86,33 @@ extension Partners {
             case payerMode = "PayerMode"
         }
     }
-    
+
     /// DescribeAgentDealsByCache返回参数结构体
     public struct DescribeAgentDealsByCacheResponse: TCResponseModel {
         /// 订单数组
         public let agentDealSet: [AgentDealNewElem]
-        
+
         /// 符合条件的订单总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentDealSet = "AgentDealSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 代理商缓存订单查询接口（预付费）
     ///
     /// 供代理商拉取缓存的全量预付费客户订单
     @inlinable
-    public func describeAgentDealsByCache(_ input: DescribeAgentDealsByCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentDealsByCacheResponse > {
+    public func describeAgentDealsByCache(_ input: DescribeAgentDealsByCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDealsByCacheResponse> {
         self.client.execute(action: "DescribeAgentDealsByCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 代理商缓存订单查询接口（预付费）
     ///
     /// 供代理商拉取缓存的全量预付费客户订单
@@ -120,15 +120,15 @@ extension Partners {
     public func describeAgentDealsByCache(_ input: DescribeAgentDealsByCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDealsByCacheResponse {
         try await self.client.execute(action: "DescribeAgentDealsByCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 代理商缓存订单查询接口（预付费）
     ///
     /// 供代理商拉取缓存的全量预付费客户订单
     @inlinable
-    public func describeAgentDealsByCache(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, payerMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentDealsByCacheResponse > {
+    public func describeAgentDealsByCache(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, payerMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDealsByCacheResponse> {
         self.describeAgentDealsByCache(DescribeAgentDealsByCacheRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames, bigDealIds: bigDealIds, payerMode: payerMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 代理商缓存订单查询接口（预付费）
     ///
     /// 供代理商拉取缓存的全量预付费客户订单

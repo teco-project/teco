@@ -19,23 +19,23 @@ extension Apigateway {
     public struct DescribePluginsRequest: TCRequestModel {
         /// 要查询的插件列表。
         public let pluginIds: [String]?
-        
+
         /// 要查询的插件名称。
         public let pluginName: String?
-        
+
         /// 要查询的插件类型。
         public let pluginType: String?
-        
+
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为 0。
         public let offset: Int64?
-        
+
         /// 过滤条件。预留字段，目前不支持过滤。
         public let filters: [Filter]?
-        
-        public init (pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil) {
+
+        public init(pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil) {
             self.pluginIds = pluginIds
             self.pluginName = pluginName
             self.pluginType = pluginType
@@ -43,7 +43,7 @@ extension Apigateway {
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginIds = "PluginIds"
             case pluginName = "PluginName"
@@ -53,29 +53,29 @@ extension Apigateway {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribePlugins返回参数结构体
     public struct DescribePluginsResponse: TCResponseModel {
         /// 插件详情。
         public let result: PluginSummary
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询插件列表和详情
     ///
     /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
     @inlinable
-    public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginsResponse > {
+    public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginsResponse> {
         self.client.execute(action: "DescribePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询插件列表和详情
     ///
     /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
@@ -83,15 +83,15 @@ extension Apigateway {
     public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginsResponse {
         try await self.client.execute(action: "DescribePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询插件列表和详情
     ///
     /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
     @inlinable
-    public func describePlugins(pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginsResponse > {
+    public func describePlugins(pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginsResponse> {
         self.describePlugins(DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询插件列表和详情
     ///
     /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。

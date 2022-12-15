@@ -19,48 +19,48 @@ extension Redis {
     public struct CloseSSLRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// CloseSSL返回参数结构体
     public struct CloseSSLResponse: TCResponseModel {
         /// 任务ID。
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭SSL
     @inlinable
-    public func closeSSL(_ input: CloseSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseSSLResponse > {
+    public func closeSSL(_ input: CloseSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSSLResponse> {
         self.client.execute(action: "CloseSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭SSL
     @inlinable
     public func closeSSL(_ input: CloseSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSSLResponse {
         try await self.client.execute(action: "CloseSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭SSL
     @inlinable
-    public func closeSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseSSLResponse > {
+    public func closeSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSSLResponse> {
         self.closeSSL(CloseSSLRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭SSL
     @inlinable
     public func closeSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSSLResponse {

@@ -19,23 +19,23 @@ extension Ecm {
     public struct MigrateNetworkInterfaceRequest: TCRequestModel {
         /// ECM 地域，形如ap-xian-ecm。
         public let ecmRegion: String
-        
+
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
         public let networkInterfaceId: String
-        
+
         /// 弹性网卡当前绑定的ECM实例ID。形如：ein-r8hr2upy。
         public let sourceInstanceId: String
-        
+
         /// 待迁移的目的ECM实例ID。
         public let destinationInstanceId: String
-        
-        public init (ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String) {
+
+        public init(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String) {
             self.ecmRegion = ecmRegion
             self.networkInterfaceId = networkInterfaceId
             self.sourceInstanceId = sourceInstanceId
             self.destinationInstanceId = destinationInstanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ecmRegion = "EcmRegion"
             case networkInterfaceId = "NetworkInterfaceId"
@@ -43,35 +43,35 @@ extension Ecm {
             case destinationInstanceId = "DestinationInstanceId"
         }
     }
-    
+
     /// MigrateNetworkInterface返回参数结构体
     public struct MigrateNetworkInterfaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 弹性网卡迁移
     @inlinable
-    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateNetworkInterfaceResponse > {
+    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigrateNetworkInterfaceResponse> {
         self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡迁移
     @inlinable
     public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
         try await self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 弹性网卡迁移
     @inlinable
-    public func migrateNetworkInterface(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateNetworkInterfaceResponse > {
+    public func migrateNetworkInterface(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigrateNetworkInterfaceResponse> {
         self.migrateNetworkInterface(MigrateNetworkInterfaceRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡迁移
     @inlinable
     public func migrateNetworkInterface(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {

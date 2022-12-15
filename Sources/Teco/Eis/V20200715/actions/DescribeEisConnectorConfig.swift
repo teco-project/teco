@@ -19,21 +19,21 @@ extension Eis {
     public struct DescribeEisConnectorConfigRequest: TCRequestModel {
         /// 连接器名称
         public let connectorName: String
-        
+
         /// 连接器版本
         public let connectorVersion: String
-        
-        public init (connectorName: String, connectorVersion: String) {
+
+        public init(connectorName: String, connectorVersion: String) {
             self.connectorName = connectorName
             self.connectorVersion = connectorVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case connectorName = "ConnectorName"
             case connectorVersion = "ConnectorVersion"
         }
     }
-    
+
     /// DescribeEisConnectorConfig返回参数结构体
     public struct DescribeEisConnectorConfigResponse: TCResponseModel {
         /// 连接器配置参数描述（json结构），示例如下：
@@ -212,34 +212,34 @@ extension Eis {
         ///     ]
         /// }
         public let connectorParameter: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case connectorParameter = "ConnectorParameter"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取连接器配置参数
     @inlinable
-    public func describeEisConnectorConfig(_ input: DescribeEisConnectorConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEisConnectorConfigResponse > {
+    public func describeEisConnectorConfig(_ input: DescribeEisConnectorConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEisConnectorConfigResponse> {
         self.client.execute(action: "DescribeEisConnectorConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取连接器配置参数
     @inlinable
     public func describeEisConnectorConfig(_ input: DescribeEisConnectorConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEisConnectorConfigResponse {
         try await self.client.execute(action: "DescribeEisConnectorConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取连接器配置参数
     @inlinable
-    public func describeEisConnectorConfig(connectorName: String, connectorVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEisConnectorConfigResponse > {
+    public func describeEisConnectorConfig(connectorName: String, connectorVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEisConnectorConfigResponse> {
         self.describeEisConnectorConfig(DescribeEisConnectorConfigRequest(connectorName: connectorName, connectorVersion: connectorVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取连接器配置参数
     @inlinable
     public func describeEisConnectorConfig(connectorName: String, connectorVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEisConnectorConfigResponse {

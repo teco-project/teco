@@ -19,44 +19,44 @@ extension Redis {
     public struct DescribeCommonDBInstancesRequest: TCRequestModel {
         /// vpc网络ID信息列表
         public let vpcIds: [Int64]?
-        
+
         /// 子网ID信息列表
         public let subnetIds: [Int64]?
-        
+
         /// 计费类型过滤列表；0表示包年包月，1表示按量计费
         public let payMode: Int64?
-        
+
         /// 实例ID过滤信息列表
         public let instanceIds: [String]?
-        
+
         /// 实例名称过滤信息列表
         public let instanceNames: [String]?
-        
+
         /// 实例状态信息过滤列表
         public let status: [String]?
-        
+
         /// 排序字段
         public let orderBy: String?
-        
+
         /// 排序方式
         public let orderByType: String?
-        
+
         /// 实例vip信息列表
         public let vips: [String]?
-        
+
         /// vpc网络ID信息列表
         public let uniqVpcIds: [String]?
-        
+
         /// 子网统一ID列表
         public let uniqSubnetIds: [String]?
-        
+
         /// 数量限制，默认推荐100
         public let limit: Int64?
-        
+
         /// 偏移量，默认0
         public let offset: Int64?
-        
-        public init (vpcIds: [Int64]? = nil, subnetIds: [Int64]? = nil, payMode: Int64? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, status: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, vips: [String]? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(vpcIds: [Int64]? = nil, subnetIds: [Int64]? = nil, payMode: Int64? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, status: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, vips: [String]? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.vpcIds = vpcIds
             self.subnetIds = subnetIds
             self.payMode = payMode
@@ -71,7 +71,7 @@ extension Redis {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcIds = "VpcIds"
             case subnetIds = "SubnetIds"
@@ -88,33 +88,33 @@ extension Redis {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeCommonDBInstances返回参数结构体
     public struct DescribeCommonDBInstancesResponse: TCResponseModel {
         /// 实例数
         public let totalCount: Int64
-        
+
         /// 实例信息
         public let instanceDetails: [RedisCommonInstanceList]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case instanceDetails = "InstanceDetails"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Redis实例列表信息
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
-    public func describeCommonDBInstances(_ input: DescribeCommonDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommonDBInstancesResponse > {
+    public func describeCommonDBInstances(_ input: DescribeCommonDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCommonDBInstancesResponse> {
         self.client.execute(action: "DescribeCommonDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Redis实例列表信息
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
@@ -122,15 +122,15 @@ extension Redis {
     public func describeCommonDBInstances(_ input: DescribeCommonDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommonDBInstancesResponse {
         try await self.client.execute(action: "DescribeCommonDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Redis实例列表信息
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
-    public func describeCommonDBInstances(vpcIds: [Int64]? = nil, subnetIds: [Int64]? = nil, payMode: Int64? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, status: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, vips: [String]? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommonDBInstancesResponse > {
+    public func describeCommonDBInstances(vpcIds: [Int64]? = nil, subnetIds: [Int64]? = nil, payMode: Int64? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, status: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, vips: [String]? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCommonDBInstancesResponse> {
         self.describeCommonDBInstances(DescribeCommonDBInstancesRequest(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Redis实例列表信息
     ///
     /// 查询Redis实例列表信息。该接口已废弃。

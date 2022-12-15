@@ -19,44 +19,44 @@ extension Organization {
     public struct DenyOrganizationInvitationRequest: TCRequestModel {
         /// 邀请ID
         public let id: UInt64
-        
-        public init (id: UInt64) {
+
+        public init(id: UInt64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DenyOrganizationInvitation返回参数结构体
     public struct DenyOrganizationInvitationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拒绝企业组织邀请
     @inlinable
-    public func denyOrganizationInvitation(_ input: DenyOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DenyOrganizationInvitationResponse > {
+    public func denyOrganizationInvitation(_ input: DenyOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DenyOrganizationInvitationResponse> {
         self.client.execute(action: "DenyOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拒绝企业组织邀请
     @inlinable
     public func denyOrganizationInvitation(_ input: DenyOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DenyOrganizationInvitationResponse {
         try await self.client.execute(action: "DenyOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拒绝企业组织邀请
     @inlinable
-    public func denyOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DenyOrganizationInvitationResponse > {
+    public func denyOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DenyOrganizationInvitationResponse> {
         self.denyOrganizationInvitation(DenyOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 拒绝企业组织邀请
     @inlinable
     public func denyOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DenyOrganizationInvitationResponse {

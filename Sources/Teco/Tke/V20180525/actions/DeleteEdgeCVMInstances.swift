@@ -19,49 +19,49 @@ extension Tke {
     public struct DeleteEdgeCVMInstancesRequest: TCRequestModel {
         /// 集群ID
         public let clusterID: String
-        
+
         /// cvm id集合
         public let cvmIdSet: [String]
-        
-        public init (clusterID: String, cvmIdSet: [String]) {
+
+        public init(clusterID: String, cvmIdSet: [String]) {
             self.clusterID = clusterID
             self.cvmIdSet = cvmIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterID = "ClusterID"
             case cvmIdSet = "CvmIdSet"
         }
     }
-    
+
     /// DeleteEdgeCVMInstances返回参数结构体
     public struct DeleteEdgeCVMInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除边缘容器CVM实例
     @inlinable
-    public func deleteEdgeCVMInstances(_ input: DeleteEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeCVMInstancesResponse > {
+    public func deleteEdgeCVMInstances(_ input: DeleteEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeCVMInstancesResponse> {
         self.client.execute(action: "DeleteEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘容器CVM实例
     @inlinable
     public func deleteEdgeCVMInstances(_ input: DeleteEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeCVMInstancesResponse {
         try await self.client.execute(action: "DeleteEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除边缘容器CVM实例
     @inlinable
-    public func deleteEdgeCVMInstances(clusterID: String, cvmIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeCVMInstancesResponse > {
+    public func deleteEdgeCVMInstances(clusterID: String, cvmIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeCVMInstancesResponse> {
         self.deleteEdgeCVMInstances(DeleteEdgeCVMInstancesRequest(clusterID: clusterID, cvmIdSet: cvmIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘容器CVM实例
     @inlinable
     public func deleteEdgeCVMInstances(clusterID: String, cvmIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeCVMInstancesResponse {

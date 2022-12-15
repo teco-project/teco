@@ -19,44 +19,44 @@ extension Tcb {
     public struct CreateAndDeployCloudBaseProjectRequest: TCRequestModel {
         /// 项目名
         public let name: String
-        
+
         /// 来源
         public let source: CodeSource
-        
+
         /// 环境id
         public let envId: String?
-        
+
         /// 项目类型, 枚举值为: framework-oneclick,qci-extension-cicd
         public let type: String?
-        
+
         /// 环境变量
         public let parameters: [KVPair]?
-        
+
         /// 环境别名。要以a-z开头，不能包含a-zA-z0-9-以外的字符
         public let envAlias: String?
-        
+
         /// rc.json的内容
         public let rcJson: String?
-        
+
         /// 插件配置内容
         public let addonConfig: String?
-        
+
         /// 标签
         public let tags: [String]?
-        
+
         /// 网络配置
         public let networkConfig: String?
-        
+
         /// 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
         public let freeQuota: String?
-        
+
         /// 是否代码变更触发自动部署
         public let autoDeployOnCodeChange: Bool?
-        
+
         /// 私有仓库地址
         public let repoUrl: String?
-        
-        public init (name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil) {
+
+        public init(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil) {
             self.name = name
             self.source = source
             self.envId = envId
@@ -71,7 +71,7 @@ extension Tcb {
             self.autoDeployOnCodeChange = autoDeployOnCodeChange
             self.repoUrl = repoUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case source = "Source"
@@ -88,40 +88,40 @@ extension Tcb {
             case repoUrl = "RepoUrl"
         }
     }
-    
+
     /// CreateAndDeployCloudBaseProject返回参数结构体
     public struct CreateAndDeployCloudBaseProjectResponse: TCResponseModel {
         /// 环境Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建云开发项目
     @inlinable
-    public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAndDeployCloudBaseProjectResponse > {
+    public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndDeployCloudBaseProjectResponse> {
         self.client.execute(action: "CreateAndDeployCloudBaseProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建云开发项目
     @inlinable
     public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndDeployCloudBaseProjectResponse {
         try await self.client.execute(action: "CreateAndDeployCloudBaseProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建云开发项目
     @inlinable
-    public func createAndDeployCloudBaseProject(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAndDeployCloudBaseProjectResponse > {
+    public func createAndDeployCloudBaseProject(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndDeployCloudBaseProjectResponse> {
         self.createAndDeployCloudBaseProject(CreateAndDeployCloudBaseProjectRequest(name: name, source: source, envId: envId, type: type, parameters: parameters, envAlias: envAlias, rcJson: rcJson, addonConfig: addonConfig, tags: tags, networkConfig: networkConfig, freeQuota: freeQuota, autoDeployOnCodeChange: autoDeployOnCodeChange, repoUrl: repoUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建云开发项目
     @inlinable
     public func createAndDeployCloudBaseProject(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndDeployCloudBaseProjectResponse {

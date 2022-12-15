@@ -19,31 +19,31 @@ extension Ecm {
     public struct AllocateAddressesRequest: TCRequestModel {
         /// ECM 地域
         public let ecmRegion: String
-        
+
         /// EIP数量。默认值：1。
         public let addressCount: UInt64?
-        
+
         /// CMCC：中国移动
         /// CTCC：中国电信
         /// CUCC：中国联通
         public let internetServiceProvider: String?
-        
+
         /// 1 Mbps 至 5000 Mbps，默认值：1 Mbps。
         public let internetMaxBandwidthOut: UInt64?
-        
+
         /// 需要关联的标签列表。
         public let tags: [Tag]?
-        
+
         /// 要绑定的实例 ID。
         public let instanceId: String?
-        
+
         /// 要绑定的弹性网卡 ID。 弹性网卡 ID 形如：eni-11112222。NetworkInterfaceId 与 InstanceId 不可同时指定。弹性网卡 ID 可通过DescribeNetworkInterfaces接口返回值中的networkInterfaceId获取。
         public let networkInterfaceId: String?
-        
+
         /// 要绑定的内网 IP。如果指定了 NetworkInterfaceId 则也必须指定 PrivateIpAddress ，表示将 EIP 绑定到指定弹性网卡的指定内网 IP 上。同时要确保指定的 PrivateIpAddress 是指定的 NetworkInterfaceId 上的一个内网 IP。指定弹性网卡的内网 IP 可通过DescribeNetworkInterfaces接口返回值中的privateIpAddress获取。
         public let privateIpAddress: String?
-        
-        public init (ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil) {
+
+        public init(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil) {
             self.ecmRegion = ecmRegion
             self.addressCount = addressCount
             self.internetServiceProvider = internetServiceProvider
@@ -53,7 +53,7 @@ extension Ecm {
             self.networkInterfaceId = networkInterfaceId
             self.privateIpAddress = privateIpAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ecmRegion = "EcmRegion"
             case addressCount = "AddressCount"
@@ -65,34 +65,34 @@ extension Ecm {
             case privateIpAddress = "PrivateIpAddress"
         }
     }
-    
+
     /// AllocateAddresses返回参数结构体
     public struct AllocateAddressesResponse: TCResponseModel {
         /// 申请到的 EIP 的唯一 ID 列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addressSet: [String]?
-        
+
         /// 异步任务TaskId。可以使用DescribeTaskResult接口查询任务状态。
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case addressSet = "AddressSet"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建弹性公网IP
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）
     @inlinable
-    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateAddressesResponse > {
+    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
         self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建弹性公网IP
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）
@@ -100,15 +100,15 @@ extension Ecm {
     public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
         try await self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建弹性公网IP
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）
     @inlinable
-    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateAddressesResponse > {
+    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
         self.allocateAddresses(AllocateAddressesRequest(ecmRegion: ecmRegion, addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetMaxBandwidthOut: internetMaxBandwidthOut, tags: tags, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建弹性公网IP
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）

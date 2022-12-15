@@ -19,44 +19,44 @@ extension Tke {
     public struct DeleteClusterRouteTableRequest: TCRequestModel {
         /// 路由表名称
         public let routeTableName: String
-        
-        public init (routeTableName: String) {
+
+        public init(routeTableName: String) {
             self.routeTableName = routeTableName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableName = "RouteTableName"
         }
     }
-    
+
     /// DeleteClusterRouteTable返回参数结构体
     public struct DeleteClusterRouteTableResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除集群路由表
     @inlinable
-    public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterRouteTableResponse > {
+    public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteTableResponse> {
         self.client.execute(action: "DeleteClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群路由表
     @inlinable
     public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
         try await self.client.execute(action: "DeleteClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除集群路由表
     @inlinable
-    public func deleteClusterRouteTable(routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterRouteTableResponse > {
+    public func deleteClusterRouteTable(routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteTableResponse> {
         self.deleteClusterRouteTable(DeleteClusterRouteTableRequest(routeTableName: routeTableName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群路由表
     @inlinable
     public func deleteClusterRouteTable(routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {

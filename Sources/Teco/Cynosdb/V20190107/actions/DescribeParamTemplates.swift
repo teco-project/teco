@@ -19,38 +19,38 @@ extension Cynosdb {
     public struct DescribeParamTemplatesRequest: TCRequestModel {
         /// 数据库引擎版本号
         public let engineVersions: [String]?
-        
+
         /// 模版名称
         public let templateNames: [String]?
-        
+
         /// 模版ID
         public let templateIds: [Int64]?
-        
+
         /// 数据库类型，可选值：NORMAL，SERVERLESS
         public let dbModes: [String]?
-        
+
         /// 查询偏移量
         public let offset: Int64?
-        
+
         /// 查询限制条数
         public let limit: Int64?
-        
+
         /// 查询的模板对应的产品类型
         public let products: [String]?
-        
+
         /// 模版类型
         public let templateTypes: [String]?
-        
+
         /// 版本类型
         public let engineTypes: [String]?
-        
+
         /// 返回结果的排序字段
         public let orderBy: String?
-        
+
         /// 排序方式（asc、desc）
         public let orderDirection: String?
-        
-        public init (engineVersions: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, dbModes: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, products: [String]? = nil, templateTypes: [String]? = nil, engineTypes: [String]? = nil, orderBy: String? = nil, orderDirection: String? = nil) {
+
+        public init(engineVersions: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, dbModes: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, products: [String]? = nil, templateTypes: [String]? = nil, engineTypes: [String]? = nil, orderBy: String? = nil, orderDirection: String? = nil) {
             self.engineVersions = engineVersions
             self.templateNames = templateNames
             self.templateIds = templateIds
@@ -63,7 +63,7 @@ extension Cynosdb {
             self.orderBy = orderBy
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case engineVersions = "EngineVersions"
             case templateNames = "TemplateNames"
@@ -78,33 +78,33 @@ extension Cynosdb {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeParamTemplates返回参数结构体
     public struct DescribeParamTemplatesResponse: TCResponseModel {
         /// 参数模板数量
         public let totalCount: Int64
-        
+
         /// 参数模板信息
         public let items: [ParamTemplateListInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询参数模板信息
     ///
     /// 查询用户指定产品下的所有参数模板信息
     @inlinable
-    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplatesResponse > {
+    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplatesResponse> {
         self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询参数模板信息
     ///
     /// 查询用户指定产品下的所有参数模板信息
@@ -112,15 +112,15 @@ extension Cynosdb {
     public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
         try await self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询参数模板信息
     ///
     /// 查询用户指定产品下的所有参数模板信息
     @inlinable
-    public func describeParamTemplates(engineVersions: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, dbModes: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, products: [String]? = nil, templateTypes: [String]? = nil, engineTypes: [String]? = nil, orderBy: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplatesResponse > {
+    public func describeParamTemplates(engineVersions: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, dbModes: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, products: [String]? = nil, templateTypes: [String]? = nil, engineTypes: [String]? = nil, orderBy: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplatesResponse> {
         self.describeParamTemplates(DescribeParamTemplatesRequest(engineVersions: engineVersions, templateNames: templateNames, templateIds: templateIds, dbModes: dbModes, offset: offset, limit: limit, products: products, templateTypes: templateTypes, engineTypes: engineTypes, orderBy: orderBy, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询参数模板信息
     ///
     /// 查询用户指定产品下的所有参数模板信息

@@ -23,66 +23,66 @@ extension TCMariadbError {
             case productConfigNotExistedError = "ResourceNotFound.ProductConfigNotExistedError"
             case syncTaskDeleted = "ResourceNotFound.SyncTaskDeleted"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 指定的账号不存在。
         public static var accountDoesNotExist: ResourceNotFound {
             ResourceNotFound(.accountDoesNotExist)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
         }
-        
+
         /// 找不到指定的数据库实例。
         public static var noInstanceFound: ResourceNotFound {
             ResourceNotFound(.noInstanceFound)
         }
-        
+
         /// 接入安全组产品配置不存在。
         public static var productConfigNotExistedError: ResourceNotFound {
             ResourceNotFound(.productConfigNotExistedError)
         }
-        
+
         /// 同步任务已删除。
         public static var syncTaskDeleted: ResourceNotFound {
             ResourceNotFound(.syncTaskDeleted)
         }
-        
+
         public func asMariadbError() -> TCMariadbError {
             let code: TCMariadbError.Code
             switch self.error {
-            case .accountDoesNotExist: 
+            case .accountDoesNotExist:
                 code = .resourceNotFound_AccountDoesNotExist
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .resourceNotFound_InstanceNotFound
-            case .noInstanceFound: 
+            case .noInstanceFound:
                 code = .resourceNotFound_NoInstanceFound
-            case .productConfigNotExistedError: 
+            case .productConfigNotExistedError:
                 code = .resourceNotFound_ProductConfigNotExistedError
-            case .syncTaskDeleted: 
+            case .syncTaskDeleted:
                 code = .resourceNotFound_SyncTaskDeleted
             }
             return TCMariadbError(code, context: self.context)

@@ -19,34 +19,34 @@ extension As {
     public struct DeleteScheduledActionRequest: TCRequestModel {
         /// 待删除的定时任务ID。
         public let scheduledActionId: String
-        
-        public init (scheduledActionId: String) {
+
+        public init(scheduledActionId: String) {
             self.scheduledActionId = scheduledActionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scheduledActionId = "ScheduledActionId"
         }
     }
-    
+
     /// DeleteScheduledAction返回参数结构体
     public struct DeleteScheduledActionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除定时任务
     ///
     /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
     @inlinable
-    public func deleteScheduledAction(_ input: DeleteScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScheduledActionResponse > {
+    public func deleteScheduledAction(_ input: DeleteScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScheduledActionResponse> {
         self.client.execute(action: "DeleteScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除定时任务
     ///
     /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
@@ -54,15 +54,15 @@ extension As {
     public func deleteScheduledAction(_ input: DeleteScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScheduledActionResponse {
         try await self.client.execute(action: "DeleteScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除定时任务
     ///
     /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
     @inlinable
-    public func deleteScheduledAction(scheduledActionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScheduledActionResponse > {
+    public func deleteScheduledAction(scheduledActionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScheduledActionResponse> {
         self.deleteScheduledAction(DeleteScheduledActionRequest(scheduledActionId: scheduledActionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除定时任务
     ///
     /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。

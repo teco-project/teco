@@ -19,54 +19,54 @@ extension Waf {
     public struct DeleteSessionRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// clb-waf 或者 sprta-waf
         public let edition: String?
-        
-        public init (domain: String, edition: String? = nil) {
+
+        public init(domain: String, edition: String? = nil) {
             self.domain = domain
             self.edition = edition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case edition = "Edition"
         }
     }
-    
+
     /// DeleteSession返回参数结构体
     public struct DeleteSessionResponse: TCResponseModel {
         /// 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除CC攻击的session设置
     @inlinable
-    public func deleteSession(_ input: DeleteSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSessionResponse > {
+    public func deleteSession(_ input: DeleteSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSessionResponse> {
         self.client.execute(action: "DeleteSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除CC攻击的session设置
     @inlinable
     public func deleteSession(_ input: DeleteSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSessionResponse {
         try await self.client.execute(action: "DeleteSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除CC攻击的session设置
     @inlinable
-    public func deleteSession(domain: String, edition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSessionResponse > {
+    public func deleteSession(domain: String, edition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSessionResponse> {
         self.deleteSession(DeleteSessionRequest(domain: domain, edition: edition), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除CC攻击的session设置
     @inlinable
     public func deleteSession(domain: String, edition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSessionResponse {

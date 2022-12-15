@@ -19,22 +19,22 @@ extension Bm {
     public struct DescribeCustomImagesRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 数量限制
         public let limit: UInt64
-        
+
         /// 排序字段，仅支持CreateTime
         public let orderField: String?
-        
+
         /// 排序方式 0:递增(默认) 1:递减
         public let order: UInt64?
-        
+
         /// 按ImageId查找指定镜像信息，ImageId字段存在时其他字段失效
         public let imageId: String?
-        
+
         /// 模糊查询过滤，可以查询镜像ID或镜像名
         public let searchKey: String?
-        
+
         /// <ul>
         /// 镜像状态过滤列表，有效取值为：
         /// <li>1：制作中</li>
@@ -43,8 +43,8 @@ extension Bm {
         /// <li>4：删除中</li>
         /// </ul>
         public let imageStatus: [UInt64]?
-        
-        public init (offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderField = orderField
@@ -53,7 +53,7 @@ extension Bm {
             self.searchKey = searchKey
             self.imageStatus = imageStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -64,43 +64,43 @@ extension Bm {
             case imageStatus = "ImageStatus"
         }
     }
-    
+
     /// DescribeCustomImages返回参数结构体
     public struct DescribeCustomImagesResponse: TCResponseModel {
         /// 返回镜像数量
         public let totalCount: UInt64
-        
+
         /// 镜像信息列表
         public let customImageSet: [CustomImage]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case customImageSet = "CustomImageSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看自定义镜像列表
     @inlinable
-    public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImagesResponse > {
+    public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImagesResponse> {
         self.client.execute(action: "DescribeCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看自定义镜像列表
     @inlinable
     public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImagesResponse {
         try await self.client.execute(action: "DescribeCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看自定义镜像列表
     @inlinable
-    public func describeCustomImages(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImagesResponse > {
+    public func describeCustomImages(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImagesResponse> {
         self.describeCustomImages(DescribeCustomImagesRequest(offset: offset, limit: limit, orderField: orderField, order: order, imageId: imageId, searchKey: searchKey, imageStatus: imageStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看自定义镜像列表
     @inlinable
     public func describeCustomImages(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImagesResponse {

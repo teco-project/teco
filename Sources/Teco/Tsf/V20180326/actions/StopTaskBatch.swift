@@ -19,43 +19,43 @@ extension Tsf {
     public struct StopTaskBatchRequest: TCRequestModel {
         /// 批次ID
         public let batchId: String
-        
+
         /// 参数ID
         public let taskId: String?
-        
-        public init (batchId: String, taskId: String? = nil) {
+
+        public init(batchId: String, taskId: String? = nil) {
             self.batchId = batchId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// StopTaskBatch返回参数结构体
     public struct StopTaskBatchResponse: TCResponseModel {
         /// 操作成功 or 失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止执行中的任务批次
     ///
     /// 停止执行中的任务批次， 非运行中的任务不可调用。
     @inlinable
-    public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskBatchResponse > {
+    public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskBatchResponse> {
         self.client.execute(action: "StopTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止执行中的任务批次
     ///
     /// 停止执行中的任务批次， 非运行中的任务不可调用。
@@ -63,15 +63,15 @@ extension Tsf {
     public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskBatchResponse {
         try await self.client.execute(action: "StopTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止执行中的任务批次
     ///
     /// 停止执行中的任务批次， 非运行中的任务不可调用。
     @inlinable
-    public func stopTaskBatch(batchId: String, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskBatchResponse > {
+    public func stopTaskBatch(batchId: String, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskBatchResponse> {
         self.stopTaskBatch(StopTaskBatchRequest(batchId: batchId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止执行中的任务批次
     ///
     /// 停止执行中的任务批次， 非运行中的任务不可调用。

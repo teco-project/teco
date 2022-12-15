@@ -19,29 +19,29 @@ extension Wss {
     public struct DescribeCertListRequest: TCRequestModel {
         /// 模块名称，应填 ssl。
         public let moduleType: String
-        
+
         /// 页数，默认第一页。
         public let offset: UInt64?
-        
+
         /// 每页条数，默认每页20条。
         public let limit: UInt64?
-        
+
         /// 搜索关键字。
         public let searchKey: String?
-        
+
         /// 证书类型（目前支持:CA=客户端证书,SVR=服务器证书）。
         public let certType: String?
-        
+
         /// 证书ID。
         public let id: String?
-        
+
         /// 是否同时获取证书内容。
         public let withCert: String?
-        
+
         /// 如传，则只返回可以给该域名使用的证书。
         public let altDomain: String?
-        
-        public init (moduleType: String, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certType: String? = nil, id: String? = nil, withCert: String? = nil, altDomain: String? = nil) {
+
+        public init(moduleType: String, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certType: String? = nil, id: String? = nil, withCert: String? = nil, altDomain: String? = nil) {
             self.moduleType = moduleType
             self.offset = offset
             self.limit = limit
@@ -51,7 +51,7 @@ extension Wss {
             self.withCert = withCert
             self.altDomain = altDomain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case moduleType = "ModuleType"
             case offset = "Offset"
@@ -63,33 +63,33 @@ extension Wss {
             case altDomain = "AltDomain"
         }
     }
-    
+
     /// DescribeCertList返回参数结构体
     public struct DescribeCertListResponse: TCResponseModel {
         /// 总数量。
         public let totalCount: UInt64
-        
+
         /// 列表。
         public let certificateSet: [SSLCertificate]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case certificateSet = "CertificateSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取证书列表
     ///
     /// 本接口(DescribeCertList)用于获取证书列表。
     @inlinable
-    public func describeCertList(_ input: DescribeCertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertListResponse > {
+    public func describeCertList(_ input: DescribeCertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertListResponse> {
         self.client.execute(action: "DescribeCertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取证书列表
     ///
     /// 本接口(DescribeCertList)用于获取证书列表。
@@ -97,15 +97,15 @@ extension Wss {
     public func describeCertList(_ input: DescribeCertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertListResponse {
         try await self.client.execute(action: "DescribeCertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取证书列表
     ///
     /// 本接口(DescribeCertList)用于获取证书列表。
     @inlinable
-    public func describeCertList(moduleType: String, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certType: String? = nil, id: String? = nil, withCert: String? = nil, altDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertListResponse > {
+    public func describeCertList(moduleType: String, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certType: String? = nil, id: String? = nil, withCert: String? = nil, altDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertListResponse> {
         self.describeCertList(DescribeCertListRequest(moduleType: moduleType, offset: offset, limit: limit, searchKey: searchKey, certType: certType, id: id, withCert: withCert, altDomain: altDomain), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取证书列表
     ///
     /// 本接口(DescribeCertList)用于获取证书列表。

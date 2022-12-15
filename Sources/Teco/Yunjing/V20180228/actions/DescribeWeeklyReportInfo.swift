@@ -27,33 +27,33 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
-        public init (beginDate: Date) {
+
+        public init(beginDate: Date) {
             self.beginDate = beginDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginDate = "BeginDate"
         }
     }
-    
+
     /// DescribeWeeklyReportInfo返回参数结构体
     public struct DescribeWeeklyReportInfoResponse: TCResponseModel {
         /// 账号所属公司或个人名称。
         public let companyName: String
-        
+
         /// 机器总数。
         public let machineNum: UInt64
-        
+
         /// 云镜客户端在线数。
         public let onlineMachineNum: UInt64
-        
+
         /// 云镜客户端离线数。
         public let offlineMachineNum: UInt64
-        
+
         /// 开通云镜专业版数量。
         public let proVersionMachineNum: UInt64
-        
+
         /// 周报开始时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -61,7 +61,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
+
         /// 周报结束时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -69,31 +69,31 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
+
         /// 安全等级。
         /// <li>HIGH：高</li>
         /// <li>MIDDLE：中</li>
         /// <li>LOW：低</li>
         public let level: String
-        
+
         /// 木马记录数。
         public let malwareNum: UInt64
-        
+
         /// 异地登录数。
         public let nonlocalLoginNum: UInt64
-        
+
         /// 密码破解成功数。
         public let bruteAttackSuccessNum: UInt64
-        
+
         /// 漏洞数。
         public let vulNum: UInt64
-        
+
         /// 导出文件下载地址。
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyName = "CompanyName"
             case machineNum = "MachineNum"
@@ -111,15 +111,15 @@ extension Yunjing {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取专业周报详情
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
     @inlinable
-    public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportInfoResponse > {
+    public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportInfoResponse> {
         self.client.execute(action: "DescribeWeeklyReportInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业周报详情
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
@@ -127,15 +127,15 @@ extension Yunjing {
     public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportInfoResponse {
         try await self.client.execute(action: "DescribeWeeklyReportInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取专业周报详情
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
     @inlinable
-    public func describeWeeklyReportInfo(beginDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportInfoResponse > {
+    public func describeWeeklyReportInfo(beginDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportInfoResponse> {
         self.describeWeeklyReportInfo(DescribeWeeklyReportInfoRequest(beginDate: beginDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业周报详情
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。

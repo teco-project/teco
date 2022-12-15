@@ -19,48 +19,48 @@ extension Tcss {
     public struct DescribeVirusEventTendencyRequest: TCRequestModel {
         /// 趋势周期(默认为7天)
         public let tendencyPeriod: UInt64
-        
-        public init (tendencyPeriod: UInt64) {
+
+        public init(tendencyPeriod: UInt64) {
             self.tendencyPeriod = tendencyPeriod
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tendencyPeriod = "TendencyPeriod"
         }
     }
-    
+
     /// DescribeVirusEventTendency返回参数结构体
     public struct DescribeVirusEventTendencyResponse: TCResponseModel {
         /// 趋势列表
         public let list: [VirusTendencyInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询木马事件趋势
     @inlinable
-    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusEventTendencyResponse > {
+    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusEventTendencyResponse> {
         self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询木马事件趋势
     @inlinable
     public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
         try await self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询木马事件趋势
     @inlinable
-    public func describeVirusEventTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusEventTendencyResponse > {
+    public func describeVirusEventTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusEventTendencyResponse> {
         self.describeVirusEventTendency(DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询木马事件趋势
     @inlinable
     public func describeVirusEventTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {

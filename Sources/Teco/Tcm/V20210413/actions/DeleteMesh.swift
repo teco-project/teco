@@ -19,27 +19,27 @@ extension Tcm {
     public struct DeleteMeshRequest: TCRequestModel {
         /// 需要删除的MeshId
         public let meshId: String
-        
+
         /// CLS组件是否被删除
         public let needDeleteCLS: Bool?
-        
+
         /// TMP组件是否被删除
         public let needDeleteTMP: Bool?
-        
+
         /// APM组件是否被删除
         public let needDeleteAPM: Bool?
-        
+
         /// Grafana组件是否被删除
         public let needDeleteGrafana: Bool?
-        
-        public init (meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil) {
+
+        public init(meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil) {
             self.meshId = meshId
             self.needDeleteCLS = needDeleteCLS
             self.needDeleteTMP = needDeleteTMP
             self.needDeleteAPM = needDeleteAPM
             self.needDeleteGrafana = needDeleteGrafana
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case meshId = "MeshId"
             case needDeleteCLS = "NeedDeleteCLS"
@@ -48,35 +48,35 @@ extension Tcm {
             case needDeleteGrafana = "NeedDeleteGrafana"
         }
     }
-    
+
     /// DeleteMesh返回参数结构体
     public struct DeleteMeshResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除网格
     @inlinable
-    public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMeshResponse > {
+    public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMeshResponse> {
         self.client.execute(action: "DeleteMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网格
     @inlinable
     public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMeshResponse {
         try await self.client.execute(action: "DeleteMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除网格
     @inlinable
-    public func deleteMesh(meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMeshResponse > {
+    public func deleteMesh(meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMeshResponse> {
         self.deleteMesh(DeleteMeshRequest(meshId: meshId, needDeleteCLS: needDeleteCLS, needDeleteTMP: needDeleteTMP, needDeleteAPM: needDeleteAPM, needDeleteGrafana: needDeleteGrafana), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网格
     @inlinable
     public func deleteMesh(meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMeshResponse {

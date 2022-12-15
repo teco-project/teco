@@ -19,58 +19,58 @@ extension Wedata {
     public struct RobAndLockIntegrationTaskRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 任务类型：201. stream,   202. offline
         public let taskType: UInt64
-        
-        public init (taskId: String, projectId: String, taskType: UInt64) {
+
+        public init(taskId: String, projectId: String, taskType: UInt64) {
             self.taskId = taskId
             self.projectId = projectId
             self.taskType = taskType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
             case taskType = "TaskType"
         }
     }
-    
+
     /// RobAndLockIntegrationTask返回参数结构体
     public struct RobAndLockIntegrationTaskResponse: TCResponseModel {
         /// 抢锁状态
         public let robLockState: RobLockState
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case robLockState = "RobLockState"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 抢占锁定集成任务
     @inlinable
-    public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RobAndLockIntegrationTaskResponse > {
+    public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RobAndLockIntegrationTaskResponse> {
         self.client.execute(action: "RobAndLockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 抢占锁定集成任务
     @inlinable
     public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RobAndLockIntegrationTaskResponse {
         try await self.client.execute(action: "RobAndLockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 抢占锁定集成任务
     @inlinable
-    public func robAndLockIntegrationTask(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RobAndLockIntegrationTaskResponse > {
+    public func robAndLockIntegrationTask(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RobAndLockIntegrationTaskResponse> {
         self.robAndLockIntegrationTask(RobAndLockIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
     }
-    
+
     /// 抢占锁定集成任务
     @inlinable
     public func robAndLockIntegrationTask(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RobAndLockIntegrationTaskResponse {

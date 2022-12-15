@@ -19,23 +19,23 @@ extension Iot {
     public struct GetDevicesRequest: TCRequestModel {
         /// 产品Id
         public let productId: String
-        
+
         /// 偏移
         public let offset: UInt64?
-        
+
         /// 长度
         public let length: UInt64?
-        
+
         /// 关键字查询
         public let keyword: String?
-        
-        public init (productId: String, offset: UInt64? = nil, length: UInt64? = nil, keyword: String? = nil) {
+
+        public init(productId: String, offset: UInt64? = nil, length: UInt64? = nil, keyword: String? = nil) {
             self.productId = productId
             self.offset = offset
             self.length = length
             self.keyword = keyword
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case offset = "Offset"
@@ -43,33 +43,33 @@ extension Iot {
             case keyword = "Keyword"
         }
     }
-    
+
     /// GetDevices返回参数结构体
     public struct GetDevicesResponse: TCResponseModel {
         /// 设备列表
         public let devices: [DeviceEntry]
-        
+
         /// 设备总数
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case devices = "Devices"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备列表
     ///
     /// 提供分页查询某个产品Id下设备信息的能力。
     @inlinable
-    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
+    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
         self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备列表
     ///
     /// 提供分页查询某个产品Id下设备信息的能力。
@@ -77,15 +77,15 @@ extension Iot {
     public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
         try await self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备列表
     ///
     /// 提供分页查询某个产品Id下设备信息的能力。
     @inlinable
-    public func getDevices(productId: String, offset: UInt64? = nil, length: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
+    public func getDevices(productId: String, offset: UInt64? = nil, length: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
         self.getDevices(GetDevicesRequest(productId: productId, offset: offset, length: length, keyword: keyword), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备列表
     ///
     /// 提供分页查询某个产品Id下设备信息的能力。

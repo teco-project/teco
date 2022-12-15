@@ -19,27 +19,27 @@ extension Cwp {
     public struct DescribeBaselinePolicyListRequest: TCRequestModel {
         /// <li>PolicyName - String - 是否必填：否 - 策略名称</li>
         public let filters: [Filter]?
-        
+
         /// 限制条数,默认10,最大100
         public let limit: Int64?
-        
+
         /// 偏移量,默认0
         public let offset: Int64?
-        
+
         /// 排序方式: [ASC:升序|DESC:降序]
         public let order: String?
-        
+
         /// 可选排序列: [RuleCount|ItemCount|HostCount]
         public let by: String?
-        
-        public init (filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
@@ -48,43 +48,43 @@ extension Cwp {
             case by = "By"
         }
     }
-    
+
     /// DescribeBaselinePolicyList返回参数结构体
     public struct DescribeBaselinePolicyListResponse: TCResponseModel {
         /// 无
         public let list: [BaselinePolicy]
-        
+
         /// 总数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取基线策略列表
     @inlinable
-    public func describeBaselinePolicyList(_ input: DescribeBaselinePolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselinePolicyListResponse > {
+    public func describeBaselinePolicyList(_ input: DescribeBaselinePolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselinePolicyListResponse> {
         self.client.execute(action: "DescribeBaselinePolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取基线策略列表
     @inlinable
     public func describeBaselinePolicyList(_ input: DescribeBaselinePolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselinePolicyListResponse {
         try await self.client.execute(action: "DescribeBaselinePolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取基线策略列表
     @inlinable
-    public func describeBaselinePolicyList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselinePolicyListResponse > {
+    public func describeBaselinePolicyList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselinePolicyListResponse> {
         self.describeBaselinePolicyList(DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取基线策略列表
     @inlinable
     public func describeBaselinePolicyList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselinePolicyListResponse {

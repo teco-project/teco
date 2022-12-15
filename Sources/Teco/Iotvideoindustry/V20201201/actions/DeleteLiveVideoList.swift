@@ -19,44 +19,44 @@ extension Iotvideoindustry {
     public struct DeleteLiveVideoListRequest: TCRequestModel {
         /// 视频ID 列表, 大小限制(100)
         public let intIDs: [UInt64]
-        
-        public init (intIDs: [UInt64]) {
+
+        public init(intIDs: [UInt64]) {
             self.intIDs = intIDs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case intIDs = "IntIDs"
         }
     }
-    
+
     /// DeleteLiveVideoList返回参数结构体
     public struct DeleteLiveVideoListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播录像删除
     @inlinable
-    public func deleteLiveVideoList(_ input: DeleteLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveVideoListResponse > {
+    public func deleteLiveVideoList(_ input: DeleteLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveVideoListResponse> {
         self.client.execute(action: "DeleteLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播录像删除
     @inlinable
     public func deleteLiveVideoList(_ input: DeleteLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveVideoListResponse {
         try await self.client.execute(action: "DeleteLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播录像删除
     @inlinable
-    public func deleteLiveVideoList(intIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveVideoListResponse > {
+    public func deleteLiveVideoList(intIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveVideoListResponse> {
         self.deleteLiveVideoList(DeleteLiveVideoListRequest(intIDs: intIDs), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播录像删除
     @inlinable
     public func deleteLiveVideoList(intIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveVideoListResponse {

@@ -19,34 +19,34 @@ extension Live {
     public struct StopRecordTaskRequest: TCRequestModel {
         /// 录制任务ID。
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// StopRecordTask返回参数结构体
     public struct StopRecordTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 终止录制任务（新）
     ///
     /// 提前结束录制，中止运行中的录制任务并生成录制文件。任务被成功终止后，本次任务将不再启动。
     @inlinable
-    public func stopRecordTask(_ input: StopRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopRecordTaskResponse > {
+    public func stopRecordTask(_ input: StopRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRecordTaskResponse> {
         self.client.execute(action: "StopRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 终止录制任务（新）
     ///
     /// 提前结束录制，中止运行中的录制任务并生成录制文件。任务被成功终止后，本次任务将不再启动。
@@ -54,15 +54,15 @@ extension Live {
     public func stopRecordTask(_ input: StopRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopRecordTaskResponse {
         try await self.client.execute(action: "StopRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 终止录制任务（新）
     ///
     /// 提前结束录制，中止运行中的录制任务并生成录制文件。任务被成功终止后，本次任务将不再启动。
     @inlinable
-    public func stopRecordTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopRecordTaskResponse > {
+    public func stopRecordTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRecordTaskResponse> {
         self.stopRecordTask(StopRecordTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 终止录制任务（新）
     ///
     /// 提前结束录制，中止运行中的录制任务并生成录制文件。任务被成功终止后，本次任务将不再启动。

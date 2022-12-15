@@ -17,33 +17,33 @@
 extension Teo {
     /// DescribeAvailablePlans请求参数结构体
     public struct DescribeAvailablePlansRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeAvailablePlans返回参数结构体
     public struct DescribeAvailablePlansResponse: TCResponseModel {
         /// 当前账户可购买套餐类型及相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let planInfoList: [PlanInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case planInfoList = "PlanInfoList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询当前账户可购买套餐信息列表
     ///
     /// 查询当前账户可用套餐信息列表
     @inlinable
-    public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailablePlansResponse > {
+    public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailablePlansResponse> {
         self.client.execute(action: "DescribeAvailablePlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询当前账户可购买套餐信息列表
     ///
     /// 查询当前账户可用套餐信息列表
@@ -51,15 +51,15 @@ extension Teo {
     public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
         try await self.client.execute(action: "DescribeAvailablePlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询当前账户可购买套餐信息列表
     ///
     /// 查询当前账户可用套餐信息列表
     @inlinable
-    public func describeAvailablePlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailablePlansResponse > {
+    public func describeAvailablePlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailablePlansResponse> {
         self.describeAvailablePlans(DescribeAvailablePlansRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询当前账户可购买套餐信息列表
     ///
     /// 查询当前账户可用套餐信息列表

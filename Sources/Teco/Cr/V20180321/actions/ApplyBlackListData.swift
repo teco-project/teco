@@ -19,54 +19,54 @@ extension Cr {
     public struct ApplyBlackListDataRequest: TCRequestModel {
         /// 模块名，AiApi
         public let module: String
-        
+
         /// 操作名，ApplyBlackListData
         public let operation: String
-        
+
         /// 黑名单列表
         public let blackList: [BlackListData]
-        
-        public init (module: String, operation: String, blackList: [BlackListData]) {
+
+        public init(module: String, operation: String, blackList: [BlackListData]) {
             self.module = module
             self.operation = operation
             self.blackList = blackList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
             case blackList = "BlackList"
         }
     }
-    
+
     /// ApplyBlackListData返回参数结构体
     public struct ApplyBlackListDataResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 提交机器人黑名单申请
     @inlinable
-    public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyBlackListDataResponse > {
+    public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListDataResponse> {
         self.client.execute(action: "ApplyBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 提交机器人黑名单申请
     @inlinable
     public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListDataResponse {
         try await self.client.execute(action: "ApplyBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 提交机器人黑名单申请
     @inlinable
-    public func applyBlackListData(module: String, operation: String, blackList: [BlackListData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyBlackListDataResponse > {
+    public func applyBlackListData(module: String, operation: String, blackList: [BlackListData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListDataResponse> {
         self.applyBlackListData(ApplyBlackListDataRequest(module: module, operation: operation, blackList: blackList), logger: logger, on: eventLoop)
     }
-    
+
     /// 提交机器人黑名单申请
     @inlinable
     public func applyBlackListData(module: String, operation: String, blackList: [BlackListData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListDataResponse {

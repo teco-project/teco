@@ -19,38 +19,38 @@ extension Tcss {
     public struct CreateCheckComponentRequest: TCRequestModel {
         /// 要安装的集群列表信息
         public let clusterInfoList: [ClusterCreateComponentItem]
-        
-        public init (clusterInfoList: [ClusterCreateComponentItem]) {
+
+        public init(clusterInfoList: [ClusterCreateComponentItem]) {
             self.clusterInfoList = clusterInfoList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterInfoList = "ClusterInfoList"
         }
     }
-    
+
     /// CreateCheckComponent返回参数结构体
     public struct CreateCheckComponentResponse: TCResponseModel {
         /// "InstallSucc"表示安装成功，"InstallFailed"表示安装失败
         public let installResult: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case installResult = "InstallResult"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安装检查组件
     ///
     /// 安装检查组件，创建防护容器
     @inlinable
-    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckComponentResponse > {
+    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckComponentResponse> {
         self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安装检查组件
     ///
     /// 安装检查组件，创建防护容器
@@ -58,15 +58,15 @@ extension Tcss {
     public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
         try await self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安装检查组件
     ///
     /// 安装检查组件，创建防护容器
     @inlinable
-    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckComponentResponse > {
+    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckComponentResponse> {
         self.createCheckComponent(CreateCheckComponentRequest(clusterInfoList: clusterInfoList), logger: logger, on: eventLoop)
     }
-    
+
     /// 安装检查组件
     ///
     /// 安装检查组件，创建防护容器

@@ -19,29 +19,29 @@ extension Wedata {
     public struct DescribeIntegrationTasksRequest: TCRequestModel {
         /// 项目id
         public let projectId: String
-        
+
         /// 分页第n页
         public let pageNumber: Int64
-        
+
         /// 分页大小
         public let pageSize: Int64
-        
+
         /// 查询filter
         public let filters: [Filter]?
-        
+
         /// 排序字段信息
         public let orderFields: [OrderField]?
-        
+
         /// 开始时间
         public let startTime: String?
-        
+
         /// 结束时间
         public let endTime: String?
-        
+
         /// 201. stream, 202. offline 默认实时
         public let taskType: UInt64?
-        
-        public init (projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil) {
+
+        public init(projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil) {
             self.projectId = projectId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -51,7 +51,7 @@ extension Wedata {
             self.endTime = endTime
             self.taskType = taskType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case pageNumber = "PageNumber"
@@ -63,40 +63,40 @@ extension Wedata {
             case taskType = "TaskType"
         }
     }
-    
+
     /// DescribeIntegrationTasks返回参数结构体
     public struct DescribeIntegrationTasksResponse: TCResponseModel {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskInfoSet: [IntegrationTaskInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskInfoSet = "TaskInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集成任务列表
     @inlinable
-    public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationTasksResponse > {
+    public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationTasksResponse> {
         self.client.execute(action: "DescribeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集成任务列表
     @inlinable
     public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationTasksResponse {
         try await self.client.execute(action: "DescribeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集成任务列表
     @inlinable
-    public func describeIntegrationTasks(projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationTasksResponse > {
+    public func describeIntegrationTasks(projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationTasksResponse> {
         self.describeIntegrationTasks(DescribeIntegrationTasksRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, startTime: startTime, endTime: endTime, taskType: taskType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集成任务列表
     @inlinable
     public func describeIntegrationTasks(projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationTasksResponse {

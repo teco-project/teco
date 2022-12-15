@@ -19,52 +19,52 @@ extension Cdb {
     public struct DescribeSlowLogsRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
+
         /// 偏移量，默认值为0，最小值为0。
         public let offset: Int64?
-        
+
         /// 分页大小，默认值为20，最小值为1，最大值为100。
         public let limit: Int64?
-        
-        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeSlowLogs返回参数结构体
     public struct DescribeSlowLogsResponse: TCResponseModel {
         /// 符合查询条件的慢查询日志总数。
         public let totalCount: Int64
-        
+
         /// 符合查询条件的慢查询日志详情。
         public let items: [SlowLogInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询慢查询日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
-    public func describeSlowLogs(_ input: DescribeSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogsResponse > {
+    public func describeSlowLogs(_ input: DescribeSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogsResponse> {
         self.client.execute(action: "DescribeSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询慢查询日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
@@ -72,15 +72,15 @@ extension Cdb {
     public func describeSlowLogs(_ input: DescribeSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogsResponse {
         try await self.client.execute(action: "DescribeSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询慢查询日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
-    public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogsResponse > {
+    public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogsResponse> {
         self.describeSlowLogs(DescribeSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询慢查询日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。

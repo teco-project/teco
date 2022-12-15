@@ -19,23 +19,23 @@ extension Iecp {
     public struct DescribeEdgeUnitDeployGridRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 命名空间，默认为default
         public let namespace: String?
-        
+
         /// 模糊匹配
         public let namePattern: String?
-        
+
         /// 分页offset，默认为0
         public let offset: Int64?
-        
+
         /// 分页limit，默认为20
         public let limit: Int64?
-        
+
         /// 排序，默认为ASC
         public let order: String?
-        
-        public init (edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil) {
+
+        public init(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.namespace = namespace
             self.namePattern = namePattern
@@ -43,7 +43,7 @@ extension Iecp {
             self.limit = limit
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case namespace = "Namespace"
@@ -53,44 +53,44 @@ extension Iecp {
             case order = "Order"
         }
     }
-    
+
     /// DescribeEdgeUnitDeployGrid返回参数结构体
     public struct DescribeEdgeUnitDeployGridResponse: TCResponseModel {
         /// 记录总数
         public let totalCount: Int64
-        
+
         /// Grid列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gridSet: [GridInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case gridSet = "GridSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询边缘单元Grid列表
     @inlinable
-    public func describeEdgeUnitDeployGrid(_ input: DescribeEdgeUnitDeployGridRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitDeployGridResponse > {
+    public func describeEdgeUnitDeployGrid(_ input: DescribeEdgeUnitDeployGridRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridResponse> {
         self.client.execute(action: "DescribeEdgeUnitDeployGrid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元Grid列表
     @inlinable
     public func describeEdgeUnitDeployGrid(_ input: DescribeEdgeUnitDeployGridRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridResponse {
         try await self.client.execute(action: "DescribeEdgeUnitDeployGrid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询边缘单元Grid列表
     @inlinable
-    public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitDeployGridResponse > {
+    public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridResponse> {
         self.describeEdgeUnitDeployGrid(DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元Grid列表
     @inlinable
     public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridResponse {

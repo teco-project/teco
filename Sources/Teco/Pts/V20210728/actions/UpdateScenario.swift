@@ -19,65 +19,65 @@ extension Pts {
     public struct UpdateScenarioRequest: TCRequestModel {
         /// 场景ID
         public let scenarioId: String
-        
+
         /// 场景名
         public let name: String?
-        
+
         /// 场景描述
         public let description: String?
-        
+
         /// 压测引擎类型
         public let type: String?
-        
+
         /// 施压配置
         public let load: Load?
-        
+
         /// deprecated
         public let encodedScripts: String?
-        
+
         /// deprecated
         public let configs: [String]?
-        
+
         /// 测试数据集
         public let datasets: [TestData]?
-        
+
         /// deprecated
         public let extensions: [String]?
-        
+
         /// SLA规则ID
         public let slaId: String?
-        
+
         /// cron job ID
         public let cronId: String?
-        
+
         /// 场景状态（注：现已无需传递该参数）
         public let status: Int64?
-        
+
         /// 项目ID
         public let projectId: String?
-        
+
         /// 测试脚本路径
         public let testScripts: [ScriptInfo]?
-        
+
         /// 协议文件路径
         public let protocols: [ProtocolInfo]?
-        
+
         /// 请求文件路径
         public let requestFiles: [FileInfo]?
-        
+
         /// SLA 策略
         public let slaPolicy: SLAPolicy?
-        
+
         /// 拓展包文件路径
         public let plugins: [FileInfo]?
-        
+
         /// 域名解析配置
         public let domainNameConfig: DomainNameConfig?
-        
+
         /// WebHook请求配置
         public let notificationHooks: [Notification]?
-        
-        public init (scenarioId: String, name: String? = nil, description: String? = nil, type: String? = nil, load: Load? = nil, encodedScripts: String? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, status: Int64? = nil, projectId: String? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, notificationHooks: [Notification]? = nil) {
+
+        public init(scenarioId: String, name: String? = nil, description: String? = nil, type: String? = nil, load: Load? = nil, encodedScripts: String? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, status: Int64? = nil, projectId: String? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, notificationHooks: [Notification]? = nil) {
             self.scenarioId = scenarioId
             self.name = name
             self.description = description
@@ -99,7 +99,7 @@ extension Pts {
             self.domainNameConfig = domainNameConfig
             self.notificationHooks = notificationHooks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioId = "ScenarioId"
             case name = "Name"
@@ -123,35 +123,35 @@ extension Pts {
             case notificationHooks = "NotificationHooks"
         }
     }
-    
+
     /// UpdateScenario返回参数结构体
     public struct UpdateScenarioResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新场景
     @inlinable
-    public func updateScenario(_ input: UpdateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScenarioResponse > {
+    public func updateScenario(_ input: UpdateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScenarioResponse> {
         self.client.execute(action: "UpdateScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新场景
     @inlinable
     public func updateScenario(_ input: UpdateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScenarioResponse {
         try await self.client.execute(action: "UpdateScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新场景
     @inlinable
-    public func updateScenario(scenarioId: String, name: String? = nil, description: String? = nil, type: String? = nil, load: Load? = nil, encodedScripts: String? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, status: Int64? = nil, projectId: String? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, notificationHooks: [Notification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScenarioResponse > {
+    public func updateScenario(scenarioId: String, name: String? = nil, description: String? = nil, type: String? = nil, load: Load? = nil, encodedScripts: String? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, status: Int64? = nil, projectId: String? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, notificationHooks: [Notification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScenarioResponse> {
         self.updateScenario(UpdateScenarioRequest(scenarioId: scenarioId, name: name, description: description, type: type, load: load, encodedScripts: encodedScripts, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, status: status, projectId: projectId, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig, notificationHooks: notificationHooks), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新场景
     @inlinable
     public func updateScenario(scenarioId: String, name: String? = nil, description: String? = nil, type: String? = nil, load: Load? = nil, encodedScripts: String? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, status: Int64? = nil, projectId: String? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, notificationHooks: [Notification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScenarioResponse {

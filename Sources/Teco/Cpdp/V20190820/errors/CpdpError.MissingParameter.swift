@@ -21,52 +21,52 @@ extension TCCpdpError {
             case appId = "MissingParameter.AppId"
             case other = "MissingParameter."
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数缺少Action或Action不存在。
         public static var action: MissingParameter {
             MissingParameter(.action)
         }
-        
+
         /// 参数缺少Appid。
         public static var appId: MissingParameter {
             MissingParameter(.appId)
         }
-        
+
         /// 参数缺失。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asCpdpError() -> TCCpdpError {
             let code: TCCpdpError.Code
             switch self.error {
-            case .action: 
+            case .action:
                 code = .missingParameter_Action
-            case .appId: 
+            case .appId:
                 code = .missingParameter_AppId
-            case .other: 
+            case .other:
                 code = .missingParameter_
             }
             return TCCpdpError(code, context: self.context)

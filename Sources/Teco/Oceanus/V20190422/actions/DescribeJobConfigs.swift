@@ -19,26 +19,26 @@ extension Oceanus {
     public struct DescribeJobConfigsRequest: TCRequestModel {
         /// 作业Id
         public let jobId: String
-        
+
         /// 作业配置版本
         public let jobConfigVersions: [UInt64]?
-        
+
         /// 偏移量，默认0
         public let offset: Int64?
-        
+
         /// 分页大小，默认20，最大100
         public let limit: UInt64?
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
+
         /// true 表示只展示草稿
         public let onlyDraft: Bool?
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil) {
+
+        public init(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil) {
             self.jobId = jobId
             self.jobConfigVersions = jobConfigVersions
             self.offset = offset
@@ -47,7 +47,7 @@ extension Oceanus {
             self.onlyDraft = onlyDraft
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobConfigVersions = "JobConfigVersions"
@@ -58,33 +58,33 @@ extension Oceanus {
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// DescribeJobConfigs返回参数结构体
     public struct DescribeJobConfigsResponse: TCResponseModel {
         /// 总的配置版本数量
         public let totalCount: Int64
-        
+
         /// 作业配置列表
         public let jobConfigSet: [JobConfig]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case jobConfigSet = "JobConfigSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询作业配置
     ///
     /// 查询作业配置列表，一次最多查询100个
     @inlinable
-    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobConfigsResponse > {
+    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobConfigsResponse> {
         self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询作业配置
     ///
     /// 查询作业配置列表，一次最多查询100个
@@ -92,15 +92,15 @@ extension Oceanus {
     public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
         try await self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询作业配置
     ///
     /// 查询作业配置列表，一次最多查询100个
     @inlinable
-    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobConfigsResponse > {
+    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobConfigsResponse> {
         self.describeJobConfigs(DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询作业配置
     ///
     /// 查询作业配置列表，一次最多查询100个

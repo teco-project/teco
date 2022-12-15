@@ -17,33 +17,33 @@
 extension Organization {
     /// GetOrganization请求参数结构体
     public struct GetOrganizationRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetOrganization返回参数结构体
     public struct GetOrganizationResponse: TCResponseModel {
         /// 企业组织ID
         public let orgId: UInt64
-        
+
         /// 创建者UIN
         public let hostUin: UInt64
-        
+
         /// 创建者昵称
         public let nickname: String
-        
+
         /// 创建者邮箱
         public let mail: String
-        
+
         /// 企业组织类型
         public let orgType: UInt64
-        
+
         /// 是否为空
         public let isEmpty: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case orgId = "OrgId"
             case hostUin = "HostUin"
@@ -54,25 +54,25 @@ extension Organization {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取企业组织信息
     @inlinable
-    public func getOrganization(_ input: GetOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOrganizationResponse > {
+    public func getOrganization(_ input: GetOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationResponse> {
         self.client.execute(action: "GetOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取企业组织信息
     @inlinable
     public func getOrganization(_ input: GetOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationResponse {
         try await self.client.execute(action: "GetOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取企业组织信息
     @inlinable
-    public func getOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOrganizationResponse > {
+    public func getOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationResponse> {
         self.getOrganization(GetOrganizationRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取企业组织信息
     @inlinable
     public func getOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationResponse {

@@ -20,45 +20,45 @@ extension TCSmsError {
             case emptyPhoneNumberSet = "MissingParameter.EmptyPhoneNumberSet"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 传入的号码列表为空，请确认您的参数中是否传入号码。
         public static var emptyPhoneNumberSet: MissingParameter {
             MissingParameter(.emptyPhoneNumberSet)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asSmsError() -> TCSmsError {
             let code: TCSmsError.Code
             switch self.error {
-            case .emptyPhoneNumberSet: 
+            case .emptyPhoneNumberSet:
                 code = .missingParameter_EmptyPhoneNumberSet
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCSmsError(code, context: self.context)

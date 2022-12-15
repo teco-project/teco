@@ -19,40 +19,40 @@ extension Tbaas {
     public struct SrvInvokeRequest: TCRequestModel {
         /// 服务类型，iss或者dam
         public let service: String
-        
+
         /// 服务接口，要调用的方法函数名
         public let method: String
-        
+
         /// 用户自定义json字符串
         public let param: String
-        
-        public init (service: String, method: String, param: String) {
+
+        public init(service: String, method: String, param: String) {
             self.service = service
             self.method = method
             self.param = param
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case service = "Service"
             case method = "Method"
             case param = "Param"
         }
     }
-    
+
     /// SrvInvoke返回参数结构体
     public struct SrvInvokeResponse: TCResponseModel {
         /// 返回码
         public let retCode: Int64
-        
+
         /// 返回消息
         public let retMsg: String
-        
+
         /// 返回数据
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case retCode = "RetCode"
             case retMsg = "RetMsg"
@@ -60,25 +60,25 @@ extension Tbaas {
             case requestId = "RequestId"
         }
     }
-    
+
     /// trustsql服务统一接口
     @inlinable
-    public func srvInvoke(_ input: SrvInvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SrvInvokeResponse > {
+    public func srvInvoke(_ input: SrvInvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SrvInvokeResponse> {
         self.client.execute(action: "SrvInvoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// trustsql服务统一接口
     @inlinable
     public func srvInvoke(_ input: SrvInvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SrvInvokeResponse {
         try await self.client.execute(action: "SrvInvoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// trustsql服务统一接口
     @inlinable
-    public func srvInvoke(service: String, method: String, param: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SrvInvokeResponse > {
+    public func srvInvoke(service: String, method: String, param: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SrvInvokeResponse> {
         self.srvInvoke(SrvInvokeRequest(service: service, method: method, param: param), logger: logger, on: eventLoop)
     }
-    
+
     /// trustsql服务统一接口
     @inlinable
     public func srvInvoke(service: String, method: String, param: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SrvInvokeResponse {

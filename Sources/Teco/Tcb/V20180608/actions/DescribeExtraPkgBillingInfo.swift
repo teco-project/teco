@@ -19,52 +19,52 @@ extension Tcb {
     public struct DescribeExtraPkgBillingInfoRequest: TCRequestModel {
         /// 已购买增值包的环境ID
         public let envId: String?
-        
-        public init (envId: String? = nil) {
+
+        public init(envId: String? = nil) {
             self.envId = envId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
         }
     }
-    
+
     /// DescribeExtraPkgBillingInfo返回参数结构体
     public struct DescribeExtraPkgBillingInfoResponse: TCResponseModel {
         /// 增值包计费信息列表
         public let envInfoList: [EnvBillingInfoItem]
-        
+
         /// 增值包数目
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case envInfoList = "EnvInfoList"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取增值包计费相关信息
     @inlinable
-    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtraPkgBillingInfoResponse > {
+    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtraPkgBillingInfoResponse> {
         self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取增值包计费相关信息
     @inlinable
     public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
         try await self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取增值包计费相关信息
     @inlinable
-    public func describeExtraPkgBillingInfo(envId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtraPkgBillingInfoResponse > {
+    public func describeExtraPkgBillingInfo(envId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtraPkgBillingInfoResponse> {
         self.describeExtraPkgBillingInfo(DescribeExtraPkgBillingInfoRequest(envId: envId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取增值包计费相关信息
     @inlinable
     public func describeExtraPkgBillingInfo(envId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {

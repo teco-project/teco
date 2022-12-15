@@ -19,23 +19,23 @@ extension Dts {
     public struct ModifySubscribeVipVportRequest: TCRequestModel {
         /// 数据订阅实例的ID
         public let subscribeId: String
-        
+
         /// 指定目的子网，如果传此参数，DstIp必须在目的子网内
         public let dstUniqSubnetId: String?
-        
+
         /// 目标IP，与DstPort至少传一个
         public let dstIp: String?
-        
+
         /// 目标PORT，支持范围为：[1025-65535]
         public let dstPort: Int64?
-        
-        public init (subscribeId: String, dstUniqSubnetId: String? = nil, dstIp: String? = nil, dstPort: Int64? = nil) {
+
+        public init(subscribeId: String, dstUniqSubnetId: String? = nil, dstIp: String? = nil, dstPort: Int64? = nil) {
             self.subscribeId = subscribeId
             self.dstUniqSubnetId = dstUniqSubnetId
             self.dstIp = dstIp
             self.dstPort = dstPort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subscribeId = "SubscribeId"
             case dstUniqSubnetId = "DstUniqSubnetId"
@@ -43,25 +43,25 @@ extension Dts {
             case dstPort = "DstPort"
         }
     }
-    
+
     /// ModifySubscribeVipVport返回参数结构体
     public struct ModifySubscribeVipVportResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改数据订阅实例的IP和端口号
     ///
     /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号
     @inlinable
-    public func modifySubscribeVipVport(_ input: ModifySubscribeVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeVipVportResponse > {
+    public func modifySubscribeVipVport(_ input: ModifySubscribeVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeVipVportResponse> {
         self.client.execute(action: "ModifySubscribeVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据订阅实例的IP和端口号
     ///
     /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号
@@ -69,15 +69,15 @@ extension Dts {
     public func modifySubscribeVipVport(_ input: ModifySubscribeVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeVipVportResponse {
         try await self.client.execute(action: "ModifySubscribeVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改数据订阅实例的IP和端口号
     ///
     /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号
     @inlinable
-    public func modifySubscribeVipVport(subscribeId: String, dstUniqSubnetId: String? = nil, dstIp: String? = nil, dstPort: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeVipVportResponse > {
+    public func modifySubscribeVipVport(subscribeId: String, dstUniqSubnetId: String? = nil, dstIp: String? = nil, dstPort: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeVipVportResponse> {
         self.modifySubscribeVipVport(ModifySubscribeVipVportRequest(subscribeId: subscribeId, dstUniqSubnetId: dstUniqSubnetId, dstIp: dstIp, dstPort: dstPort), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据订阅实例的IP和端口号
     ///
     /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号

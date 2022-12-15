@@ -19,30 +19,30 @@ extension Tdmq {
     public struct DescribeEnvironmentsRequest: TCRequestModel {
         /// 命名空间名称，模糊搜索。
         public let environmentId: String?
-        
+
         /// 起始下标，不填默认为0。
         public let offset: UInt64?
-        
+
         /// 返回数量，不填则默认为10，最大值为20。
         public let limit: UInt64?
-        
+
         /// Pulsar 集群的ID
         public let clusterId: String?
-        
+
         /// * EnvironmentId
         /// 按照名称空间进行过滤，精确查询。
         /// 类型：String
         /// 必选：否
         public let filters: [Filter]?
-        
-        public init (environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil) {
+
+        public init(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil) {
             self.environmentId = environmentId
             self.offset = offset
             self.limit = limit
             self.clusterId = clusterId
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case offset = "Offset"
@@ -51,33 +51,33 @@ extension Tdmq {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeEnvironments返回参数结构体
     public struct DescribeEnvironmentsResponse: TCResponseModel {
         /// 命名空间记录数。
         public let totalCount: UInt64
-        
+
         /// 命名空间集合数组。
         public let environmentSet: [Environment]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case environmentSet = "EnvironmentSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取命名空间列表
     ///
     /// 获取租户下命名空间列表
     @inlinable
-    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentsResponse > {
+    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentsResponse> {
         self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取命名空间列表
     ///
     /// 获取租户下命名空间列表
@@ -85,15 +85,15 @@ extension Tdmq {
     public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
         try await self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取命名空间列表
     ///
     /// 获取租户下命名空间列表
     @inlinable
-    public func describeEnvironments(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentsResponse > {
+    public func describeEnvironments(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentsResponse> {
         self.describeEnvironments(DescribeEnvironmentsRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取命名空间列表
     ///
     /// 获取租户下命名空间列表

@@ -19,49 +19,49 @@ extension Taf {
     public struct RecognizePreciseTargetAudienceRequest: TCRequestModel {
         /// 业务数据
         public let bspData: InputRecognizeTargetAudience
-        
-        public init (bspData: InputRecognizeTargetAudience) {
+
+        public init(bspData: InputRecognizeTargetAudience) {
             self.bspData = bspData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bspData = "BspData"
         }
     }
-    
+
     /// RecognizePreciseTargetAudience返回参数结构体
     public struct RecognizePreciseTargetAudienceResponse: TCResponseModel {
         /// 回包数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: OutputRecognizeTargetAudience?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 流量反欺诈-流量验准高级版
     @inlinable
-    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePreciseTargetAudienceResponse > {
+    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePreciseTargetAudienceResponse> {
         self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 流量反欺诈-流量验准高级版
     @inlinable
     public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
         try await self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 流量反欺诈-流量验准高级版
     @inlinable
-    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePreciseTargetAudienceResponse > {
+    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePreciseTargetAudienceResponse> {
         self.recognizePreciseTargetAudience(RecognizePreciseTargetAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
     }
-    
+
     /// 流量反欺诈-流量验准高级版
     @inlinable
     public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {

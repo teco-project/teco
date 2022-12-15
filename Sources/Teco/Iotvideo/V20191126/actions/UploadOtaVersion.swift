@@ -19,29 +19,29 @@ extension Iotvideo {
     public struct UploadOtaVersionRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 固件版本号，格式为x.y.z， x，y 范围0-63，z范围1~524288
         public let otaVersion: String
-        
+
         /// 固件版本URL
         public let versionUrl: String
-        
+
         /// 文件大小，单位：byte
         public let fileSize: UInt64?
-        
+
         /// 文件md5校验码（32字符）
         public let md5: String?
-        
+
         /// 操作人
         public let `operator`: String?
-        
+
         /// 备注信息
         public let remark: String?
-        
+
         /// 版本发布的描述信息，需要国际化，可以为空
         public let contents: Contents?
-        
-        public init (productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64? = nil, md5: String? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil) {
+
+        public init(productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64? = nil, md5: String? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.versionUrl = versionUrl
@@ -51,7 +51,7 @@ extension Iotvideo {
             self.remark = remark
             self.contents = contents
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case otaVersion = "OtaVersion"
@@ -63,25 +63,25 @@ extension Iotvideo {
             case contents = "Contents"
         }
     }
-    
+
     /// UploadOtaVersion返回参数结构体
     public struct UploadOtaVersionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 接收上传到控制台的固件版本信息
     ///
     /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
     @inlinable
-    public func uploadOtaVersion(_ input: UploadOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOtaVersionResponse > {
+    public func uploadOtaVersion(_ input: UploadOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOtaVersionResponse> {
         self.client.execute(action: "UploadOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 接收上传到控制台的固件版本信息
     ///
     /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
@@ -89,15 +89,15 @@ extension Iotvideo {
     public func uploadOtaVersion(_ input: UploadOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOtaVersionResponse {
         try await self.client.execute(action: "UploadOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 接收上传到控制台的固件版本信息
     ///
     /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
     @inlinable
-    public func uploadOtaVersion(productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64? = nil, md5: String? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOtaVersionResponse > {
+    public func uploadOtaVersion(productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64? = nil, md5: String? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOtaVersionResponse> {
         self.uploadOtaVersion(UploadOtaVersionRequest(productId: productId, otaVersion: otaVersion, versionUrl: versionUrl, fileSize: fileSize, md5: md5, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
     }
-    
+
     /// 接收上传到控制台的固件版本信息
     ///
     /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。

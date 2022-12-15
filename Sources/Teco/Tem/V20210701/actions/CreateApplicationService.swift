@@ -19,23 +19,23 @@ extension Tem {
     public struct CreateApplicationServiceRequest: TCRequestModel {
         /// 服务id
         public let applicationId: String
-        
+
         /// 环境ID
         public let environmentId: String
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 访问方式详情
         public let service: ServicePortMapping?
-        
-        public init (applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil) {
+
+        public init(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
             self.service = service
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case environmentId = "EnvironmentId"
@@ -43,40 +43,40 @@ extension Tem {
             case service = "Service"
         }
     }
-    
+
     /// CreateApplicationService返回参数结构体
     public struct CreateApplicationServiceResponse: TCResponseModel {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增访问方式
     @inlinable
-    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationServiceResponse > {
+    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationServiceResponse> {
         self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增访问方式
     @inlinable
     public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
         try await self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增访问方式
     @inlinable
-    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationServiceResponse > {
+    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationServiceResponse> {
         self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增访问方式
     @inlinable
     public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {

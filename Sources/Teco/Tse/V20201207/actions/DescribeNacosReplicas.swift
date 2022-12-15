@@ -19,63 +19,63 @@ extension Tse {
     public struct DescribeNacosReplicasRequest: TCRequestModel {
         /// 引擎实例ID
         public let instanceId: String
-        
+
         /// 副本列表Limit
         public let limit: UInt64?
-        
+
         /// 副本列表Offset
         public let offset: UInt64?
-        
-        public init (instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeNacosReplicas返回参数结构体
     public struct DescribeNacosReplicasResponse: TCResponseModel {
         /// 引擎实例副本信息
         public let replicas: [NacosReplica]
-        
+
         /// 副本个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case replicas = "Replicas"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Nacos类型引擎实例副本信息
     @inlinable
-    public func describeNacosReplicas(_ input: DescribeNacosReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNacosReplicasResponse > {
+    public func describeNacosReplicas(_ input: DescribeNacosReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNacosReplicasResponse> {
         self.client.execute(action: "DescribeNacosReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Nacos类型引擎实例副本信息
     @inlinable
     public func describeNacosReplicas(_ input: DescribeNacosReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNacosReplicasResponse {
         try await self.client.execute(action: "DescribeNacosReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Nacos类型引擎实例副本信息
     @inlinable
-    public func describeNacosReplicas(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNacosReplicasResponse > {
+    public func describeNacosReplicas(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNacosReplicasResponse> {
         self.describeNacosReplicas(DescribeNacosReplicasRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Nacos类型引擎实例副本信息
     @inlinable
     public func describeNacosReplicas(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNacosReplicasResponse {

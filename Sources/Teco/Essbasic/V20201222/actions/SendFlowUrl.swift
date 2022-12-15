@@ -19,22 +19,22 @@ extension Essbasic {
     public struct SendFlowUrlRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 需要推送合同的流程ID
         public let flowId: String
-        
+
         /// 签署人ID
         public let userId: String
-        
+
         /// 签署控件信息 (支持添加多个控件)
         public let signComponents: [Component]
-        
+
         /// 签署人手机号 (如果选择短信验证码签署，则此字段必填)
         public let mobile: String?
-        
+
         /// 签署人对应的子机构ID，个人签署者此字段不填
         public let subOrganizationId: String?
-        
+
         /// 签名后校验方式：
         /// 1. WEIXINAPP - 微信小程序；
         /// 2. FACEID - 慧眼 (默认) ；
@@ -43,33 +43,33 @@ extension Essbasic {
         /// 5. THIRD - 第三方 (暂不支持)
         /// 6. OFFLINE - 线下人工审核
         public let verifyChannel: [String]?
-        
+
         /// 签署链接失效截止时间，默认为7天
         public let deadline: Int64?
-        
+
         /// 是否为最后一个签署人。若为最后一人，本次签署完成以后自动归档
         public let isLastApprover: Bool?
-        
+
         /// 签署完成后，前端跳转的url
         public let jumpUrl: String?
-        
+
         /// 短信模板
         /// 默认使用腾讯电子签官方短信模板，如有自定义需求，请通过客户经理或邮件至e-contract@tencent.com与我们联系。
         public let smsTemplate: SmsTemplate?
-        
+
         /// 签署前置条件：是否要全文阅读，默认否
         public let isFullText: Bool?
-        
+
         /// 签署前置条件：强制用户阅读待签署文件时长，默认不限制
         public let preReadTime: Int64?
-        
+
         /// 当前参与者是否支持线下核身,默认为不支持
         public let canOffLine: Bool?
-        
+
         /// 签署任务的回调地址
         public let callbackUrl: String?
-        
-        public init (caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil) {
+
+        public init(caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil) {
             self.caller = caller
             self.flowId = flowId
             self.userId = userId
@@ -86,7 +86,7 @@ extension Essbasic {
             self.canOffLine = canOffLine
             self.callbackUrl = callbackUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case flowId = "FlowId"
@@ -105,33 +105,33 @@ extension Essbasic {
             case callbackUrl = "CallbackUrl"
         }
     }
-    
+
     /// SendFlowUrl返回参数结构体
     public struct SendFlowUrlResponse: TCResponseModel {
         /// 签署任务ID，标识每一次的流程发送
         public let signId: String
-        
+
         /// 签署链接
         public let signUrl: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case signId = "SignId"
             case signUrl = "SignUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发送流程并生成签署URL
     ///
     /// 发送流程并获取签署URL
     @inlinable
-    public func sendFlowUrl(_ input: SendFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendFlowUrlResponse > {
+    public func sendFlowUrl(_ input: SendFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendFlowUrlResponse> {
         self.client.execute(action: "SendFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发送流程并生成签署URL
     ///
     /// 发送流程并获取签署URL
@@ -139,15 +139,15 @@ extension Essbasic {
     public func sendFlowUrl(_ input: SendFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendFlowUrlResponse {
         try await self.client.execute(action: "SendFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发送流程并生成签署URL
     ///
     /// 发送流程并获取签署URL
     @inlinable
-    public func sendFlowUrl(caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendFlowUrlResponse > {
+    public func sendFlowUrl(caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendFlowUrlResponse> {
         self.sendFlowUrl(SendFlowUrlRequest(caller: caller, flowId: flowId, userId: userId, signComponents: signComponents, mobile: mobile, subOrganizationId: subOrganizationId, verifyChannel: verifyChannel, deadline: deadline, isLastApprover: isLastApprover, jumpUrl: jumpUrl, smsTemplate: smsTemplate, isFullText: isFullText, preReadTime: preReadTime, canOffLine: canOffLine, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 发送流程并生成签署URL
     ///
     /// 发送流程并获取签署URL

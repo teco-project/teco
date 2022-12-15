@@ -19,38 +19,38 @@ extension Ie {
     public struct DescribeEditingTaskResultRequest: TCRequestModel {
         /// 编辑任务 ID。
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeEditingTaskResult返回参数结构体
     public struct DescribeEditingTaskResultResponse: TCResponseModel {
         /// 编辑任务结果信息。
         public let taskResult: EditingTaskResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskResult = "TaskResult"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取编辑理解任务结果
     ///
     /// 获取编辑理解任务结果。
     @inlinable
-    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEditingTaskResultResponse > {
+    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEditingTaskResultResponse> {
         self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取编辑理解任务结果
     ///
     /// 获取编辑理解任务结果。
@@ -58,15 +58,15 @@ extension Ie {
     public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
         try await self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取编辑理解任务结果
     ///
     /// 获取编辑理解任务结果。
     @inlinable
-    public func describeEditingTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEditingTaskResultResponse > {
+    public func describeEditingTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEditingTaskResultResponse> {
         self.describeEditingTaskResult(DescribeEditingTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取编辑理解任务结果
     ///
     /// 获取编辑理解任务结果。

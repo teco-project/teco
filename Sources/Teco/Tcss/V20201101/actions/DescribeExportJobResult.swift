@@ -19,36 +19,36 @@ extension Tcss {
     public struct DescribeExportJobResultRequest: TCRequestModel {
         /// CreateExportComplianceStatusListJob返回的JobId字段的值
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// DescribeExportJobResult返回参数结构体
     public struct DescribeExportJobResultResponse: TCResponseModel {
         /// 导出的状态。取值为, SUCCESS:成功、FAILURE:失败，RUNNING: 进行中。
         public let exportStatus: String
-        
+
         /// 返回下载URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadURL: String?
-        
+
         /// 当ExportStatus为RUNNING时，返回导出进度。0~100范围的浮点数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exportProgress: Float?
-        
+
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case exportStatus = "ExportStatus"
             case downloadURL = "DownloadURL"
@@ -57,25 +57,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询导出任务的结果
     @inlinable
-    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobResultResponse > {
+    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobResultResponse> {
         self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询导出任务的结果
     @inlinable
     public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
         try await self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询导出任务的结果
     @inlinable
-    public func describeExportJobResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobResultResponse > {
+    public func describeExportJobResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobResultResponse> {
         self.describeExportJobResult(DescribeExportJobResultRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询导出任务的结果
     @inlinable
     public func describeExportJobResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {

@@ -19,62 +19,62 @@ extension Iotvideoindustry {
     public struct DescribeLiveRecordPlanIdsRequest: TCRequestModel {
         /// 时间模板ID
         public let templateId: String?
-        
+
         /// 分页偏移量
         public let offset: Int64?
-        
+
         /// 分页大小
         public let limit: Int64?
-        
-        public init (templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.templateId = templateId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeLiveRecordPlanIds返回参数结构体
     public struct DescribeLiveRecordPlanIdsResponse: TCResponseModel {
         /// 总个数
         public let totalCount: Int64
-        
+
         /// 计划数组
         public let plans: [LiveRecordPlanItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case plans = "Plans"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取直播录制计划列表
     @inlinable
-    public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordPlanIdsResponse > {
+    public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanIdsResponse> {
         self.client.execute(action: "DescribeLiveRecordPlanIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取直播录制计划列表
     @inlinable
     public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanIdsResponse {
         try await self.client.execute(action: "DescribeLiveRecordPlanIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取直播录制计划列表
     @inlinable
-    public func describeLiveRecordPlanIds(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordPlanIdsResponse > {
+    public func describeLiveRecordPlanIds(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanIdsResponse> {
         self.describeLiveRecordPlanIds(DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取直播录制计划列表
     @inlinable
     public func describeLiveRecordPlanIds(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanIdsResponse {

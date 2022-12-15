@@ -19,46 +19,46 @@ extension Vpc {
     public struct ModifyNetworkAclEntriesRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
         public let networkAclId: String
-        
+
         /// 网络ACL规则集。NetworkAclEntrySet和NetworkAclQuintupleSet只能输入一个。
         public let networkAclEntrySet: NetworkAclEntrySet?
-        
+
         /// 网络ACL五元组规则集。NetworkAclEntrySet和NetworkAclQuintupleSet只能输入一个。
         public let networkAclQuintupleSet: NetworkAclQuintupleEntries?
-        
-        public init (networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil) {
+
+        public init(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil) {
             self.networkAclId = networkAclId
             self.networkAclEntrySet = networkAclEntrySet
             self.networkAclQuintupleSet = networkAclQuintupleSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case networkAclId = "NetworkAclId"
             case networkAclEntrySet = "NetworkAclEntrySet"
             case networkAclQuintupleSet = "NetworkAclQuintupleSet"
         }
     }
-    
+
     /// ModifyNetworkAclEntries返回参数结构体
     public struct ModifyNetworkAclEntriesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改网络ACL规则
     ///
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable
-    public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkAclEntriesResponse > {
+    public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
         self.client.execute(action: "ModifyNetworkAclEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改网络ACL规则
     ///
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
@@ -68,17 +68,17 @@ extension Vpc {
     public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
         try await self.client.execute(action: "ModifyNetworkAclEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改网络ACL规则
     ///
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable
-    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkAclEntriesResponse > {
+    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
         self.modifyNetworkAclEntries(ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改网络ACL规则
     ///
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：

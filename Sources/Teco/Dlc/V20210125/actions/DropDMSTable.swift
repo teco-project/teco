@@ -19,23 +19,23 @@ extension Dlc {
     public struct DropDMSTableRequest: TCRequestModel {
         /// 数据库名称
         public let dbName: String?
-        
+
         /// 表名称
         public let name: String?
-        
+
         /// 是否删除数据
         public let deleteData: Bool?
-        
+
         /// 环境属性
         public let envProps: KVPair?
-        
-        public init (dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil) {
+
+        public init(dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil) {
             self.dbName = dbName
             self.name = name
             self.deleteData = deleteData
             self.envProps = envProps
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbName = "DbName"
             case name = "Name"
@@ -43,35 +43,35 @@ extension Dlc {
             case envProps = "EnvProps"
         }
     }
-    
+
     /// DropDMSTable返回参数结构体
     public struct DropDMSTableResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// DMS元数据删除表
     @inlinable
-    public func dropDMSTable(_ input: DropDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSTableResponse > {
+    public func dropDMSTable(_ input: DropDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSTableResponse> {
         self.client.execute(action: "DropDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据删除表
     @inlinable
     public func dropDMSTable(_ input: DropDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSTableResponse {
         try await self.client.execute(action: "DropDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DMS元数据删除表
     @inlinable
-    public func dropDMSTable(dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSTableResponse > {
+    public func dropDMSTable(dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSTableResponse> {
         self.dropDMSTable(DropDMSTableRequest(dbName: dbName, name: name, deleteData: deleteData, envProps: envProps), logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据删除表
     @inlinable
     public func dropDMSTable(dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSTableResponse {

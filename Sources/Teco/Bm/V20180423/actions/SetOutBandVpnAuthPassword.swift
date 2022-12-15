@@ -19,49 +19,49 @@ extension Bm {
     public struct SetOutBandVpnAuthPasswordRequest: TCRequestModel {
         /// 设置的Vpn认证密码
         public let password: String
-        
+
         /// 操作字段，取值为：Create（创建）或Update（修改）
         public let operate: String
-        
-        public init (password: String, operate: String) {
+
+        public init(password: String, operate: String) {
             self.password = password
             self.operate = operate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case password = "Password"
             case operate = "Operate"
         }
     }
-    
+
     /// SetOutBandVpnAuthPassword返回参数结构体
     public struct SetOutBandVpnAuthPasswordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置带外VPN认证用户密码
     @inlinable
-    public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOutBandVpnAuthPasswordResponse > {
+    public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetOutBandVpnAuthPasswordResponse> {
         self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置带外VPN认证用户密码
     @inlinable
     public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOutBandVpnAuthPasswordResponse {
         try await self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置带外VPN认证用户密码
     @inlinable
-    public func setOutBandVpnAuthPassword(password: String, operate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOutBandVpnAuthPasswordResponse > {
+    public func setOutBandVpnAuthPassword(password: String, operate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetOutBandVpnAuthPasswordResponse> {
         self.setOutBandVpnAuthPassword(SetOutBandVpnAuthPasswordRequest(password: password, operate: operate), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置带外VPN认证用户密码
     @inlinable
     public func setOutBandVpnAuthPassword(password: String, operate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOutBandVpnAuthPasswordResponse {

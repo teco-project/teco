@@ -19,29 +19,29 @@ extension Facefusion {
     public struct FuseFaceRequest: TCRequestModel {
         /// 活动 ID，请在人脸融合控制台查看。
         public let projectId: String
-        
+
         /// 素材 ID，请在人脸融合控制台查看。
         public let modelId: String
-        
+
         /// 返回图像方式（url 或 base64) ，二选一。url有效期为7天。
         public let rspImgType: String
-        
+
         /// 用户人脸图片、素材模板图的人脸位置信息。
         public let mergeInfos: [MergeInfo]
-        
-        /// 脸型融合比例，数值越高，融合后的脸型越像素材人物。取值范围[0,100] 
+
+        /// 脸型融合比例，数值越高，融合后的脸型越像素材人物。取值范围[0,100]
         /// 若此参数不填写，则使用人脸融合控制台中脸型参数数值。（换脸版算法暂不支持此参数调整）
         public let fuseProfileDegree: Int64?
-        
-        /// 五官融合比例，数值越高，融合后的五官越像素材人物。取值范围[0,100] 
+
+        /// 五官融合比例，数值越高，融合后的五官越像素材人物。取值范围[0,100]
         /// 若此参数不填写，则使用人脸融合控制台中五官参数数值。（换脸版算法暂不支持此参数调整）
         public let fuseFaceDegree: Int64?
-        
+
         /// 0表示不需要不适宜内容识别，1表示需要不适宜内容识别。默认值为0。
         /// 请注意，不适宜内容识别服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
         public let celebrityIdentify: Int64?
-        
-        public init (projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil) {
+
+        public init(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil) {
             self.projectId = projectId
             self.modelId = modelId
             self.rspImgType = rspImgType
@@ -50,7 +50,7 @@ extension Facefusion {
             self.fuseFaceDegree = fuseFaceDegree
             self.celebrityIdentify = celebrityIdentify
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case modelId = "ModelId"
@@ -61,26 +61,26 @@ extension Facefusion {
             case celebrityIdentify = "CelebrityIdentify"
         }
     }
-    
+
     /// FuseFace返回参数结构体
     public struct FuseFaceResponse: TCResponseModel {
         /// RspImgType 为 url 时，返回结果的 url， RspImgType 为 base64 时返回 base64 数据。
         public let fusedImage: String
-        
+
         /// 不适宜内容识别结果。该数组的顺序和请求中mergeinfo的顺序一致，一一对应
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reviewResultSet: [FuseFaceReviewResult]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fusedImage = "FusedImage"
             case reviewResultSet = "ReviewResultSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 选脸融合
     ///
     /// 本接口用于单脸、多脸融合，用户上传人脸图片，获取与模板融合后的人脸图片。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">选脸融合接入指引</a>。
@@ -88,10 +88,10 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(_ input: FuseFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FuseFaceResponse > {
+    public func fuseFace(_ input: FuseFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
         self.client.execute(action: "FuseFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 选脸融合
     ///
     /// 本接口用于单脸、多脸融合，用户上传人脸图片，获取与模板融合后的人脸图片。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">选脸融合接入指引</a>。
@@ -102,7 +102,7 @@ extension Facefusion {
     public func fuseFace(_ input: FuseFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
         try await self.client.execute(action: "FuseFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 选脸融合
     ///
     /// 本接口用于单脸、多脸融合，用户上传人脸图片，获取与模板融合后的人脸图片。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">选脸融合接入指引</a>。
@@ -110,10 +110,10 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FuseFaceResponse > {
+    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
         self.fuseFace(FuseFaceRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify), logger: logger, on: eventLoop)
     }
-    
+
     /// 选脸融合
     ///
     /// 本接口用于单脸、多脸融合，用户上传人脸图片，获取与模板融合后的人脸图片。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">选脸融合接入指引</a>。

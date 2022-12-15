@@ -19,54 +19,54 @@ extension Tcr {
     public struct DeleteRepositoryRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
+
         /// 命名空间的名称
         public let namespaceName: String
-        
+
         /// 镜像仓库的名称
         public let repositoryName: String
-        
-        public init (registryId: String, namespaceName: String, repositoryName: String) {
+
+        public init(registryId: String, namespaceName: String, repositoryName: String) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.repositoryName = repositoryName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
             case repositoryName = "RepositoryName"
         }
     }
-    
+
     /// DeleteRepository返回参数结构体
     public struct DeleteRepositoryResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除镜像仓库
     @inlinable
-    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryResponse > {
+    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
         self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像仓库
     @inlinable
     public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
         try await self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除镜像仓库
     @inlinable
-    public func deleteRepository(registryId: String, namespaceName: String, repositoryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryResponse > {
+    public func deleteRepository(registryId: String, namespaceName: String, repositoryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
         self.deleteRepository(DeleteRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像仓库
     @inlinable
     public func deleteRepository(registryId: String, namespaceName: String, repositoryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {

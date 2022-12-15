@@ -19,53 +19,53 @@ extension Dc {
     public struct ApplyInternetAddressRequest: TCRequestModel {
         /// CIDR地址掩码长度
         public let maskLen: Int64
-        
+
         /// 0:BGP类型地址
         /// 1：中国电信
         /// 2：中国移动
         /// 3：中国联通
         public let addrType: Int64
-        
+
         /// 0：IPv4
         /// 1:IPv6
         public let addrProto: Int64
-        
-        public init (maskLen: Int64, addrType: Int64, addrProto: Int64) {
+
+        public init(maskLen: Int64, addrType: Int64, addrProto: Int64) {
             self.maskLen = maskLen
             self.addrType = addrType
             self.addrProto = addrProto
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maskLen = "MaskLen"
             case addrType = "AddrType"
             case addrProto = "AddrProto"
         }
     }
-    
+
     /// ApplyInternetAddress返回参数结构体
     public struct ApplyInternetAddressResponse: TCResponseModel {
         /// 互联网公网地址ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 申请互联网地址
     ///
     /// 申请互联网CIDR地址
     @inlinable
-    public func applyInternetAddress(_ input: ApplyInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyInternetAddressResponse > {
+    public func applyInternetAddress(_ input: ApplyInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyInternetAddressResponse> {
         self.client.execute(action: "ApplyInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 申请互联网地址
     ///
     /// 申请互联网CIDR地址
@@ -73,15 +73,15 @@ extension Dc {
     public func applyInternetAddress(_ input: ApplyInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyInternetAddressResponse {
         try await self.client.execute(action: "ApplyInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 申请互联网地址
     ///
     /// 申请互联网CIDR地址
     @inlinable
-    public func applyInternetAddress(maskLen: Int64, addrType: Int64, addrProto: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyInternetAddressResponse > {
+    public func applyInternetAddress(maskLen: Int64, addrType: Int64, addrProto: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyInternetAddressResponse> {
         self.applyInternetAddress(ApplyInternetAddressRequest(maskLen: maskLen, addrType: addrType, addrProto: addrProto), logger: logger, on: eventLoop)
     }
-    
+
     /// 申请互联网地址
     ///
     /// 申请互联网CIDR地址

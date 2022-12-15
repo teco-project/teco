@@ -19,7 +19,7 @@ extension Lighthouse {
     public struct DescribeDisksRequest: TCRequestModel {
         /// 云硬盘ID列表。
         public let diskIds: [String]?
-        
+
         /// 过滤器列表。
         /// disk-id
         /// 按照【云硬盘 ID】进行过滤。
@@ -49,20 +49,20 @@ extension Lighthouse {
         /// 取值：参考数据结构[Disk](https://cloud.tencent.com/document/api/1207/47576#Disk)中DiskState取值。
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 DiskIds 和 Filters。
         public let filters: [Filter]?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 云硬盘列表排序的依据字段。取值范围："CREATED_TIME"：依据云硬盘的创建时间排序。 "EXPIRED_TIME"：依据云硬盘的到期时间排序。"DISK_SIZE"：依据云硬盘的大小排序。默认按云硬盘创建时间排序。
         public let orderField: String?
-        
+
         /// 输出云硬盘列表的排列顺序。取值范围："ASC"：升序排列。 "DESC"：降序排列。默认按降序排列。
         public let order: String?
-        
-        public init (diskIds: [String]? = nil, filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderField: String? = nil, order: String? = nil) {
+
+        public init(diskIds: [String]? = nil, filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderField: String? = nil, order: String? = nil) {
             self.diskIds = diskIds
             self.filters = filters
             self.limit = limit
@@ -70,7 +70,7 @@ extension Lighthouse {
             self.orderField = orderField
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
             case filters = "Filters"
@@ -80,33 +80,33 @@ extension Lighthouse {
             case order = "Order"
         }
     }
-    
+
     /// DescribeDisks返回参数结构体
     public struct DescribeDisksResponse: TCResponseModel {
         /// 云硬盘信息列表。
         public let diskSet: [Disk]
-        
+
         /// 符合条件的云硬盘信息数量。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case diskSet = "DiskSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云硬盘
     ///
     /// 本接口（DescribeDisks）用于查询云硬盘信息。
     @inlinable
-    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksResponse > {
+    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
         self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘
     ///
     /// 本接口（DescribeDisks）用于查询云硬盘信息。
@@ -114,15 +114,15 @@ extension Lighthouse {
     public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
         try await self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云硬盘
     ///
     /// 本接口（DescribeDisks）用于查询云硬盘信息。
     @inlinable
-    public func describeDisks(diskIds: [String]? = nil, filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksResponse > {
+    public func describeDisks(diskIds: [String]? = nil, filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
         self.describeDisks(DescribeDisksRequest(diskIds: diskIds, filters: filters, limit: limit, offset: offset, orderField: orderField, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘
     ///
     /// 本接口（DescribeDisks）用于查询云硬盘信息。

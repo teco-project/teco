@@ -19,44 +19,44 @@ extension Bma {
     public struct CreateBPOfflineTicketRequest: TCRequestModel {
         /// 仿冒网址ID
         public let fakeURLId: Int64?
-        
-        public init (fakeURLId: Int64? = nil) {
+
+        public init(fakeURLId: Int64? = nil) {
             self.fakeURLId = fakeURLId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fakeURLId = "FakeURLId"
         }
     }
-    
+
     /// CreateBPOfflineTicket返回参数结构体
     public struct CreateBPOfflineTicketResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加下线工单
     @inlinable
-    public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineTicketResponse > {
+    public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineTicketResponse> {
         self.client.execute(action: "CreateBPOfflineTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加下线工单
     @inlinable
     public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
         try await self.client.execute(action: "CreateBPOfflineTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加下线工单
     @inlinable
-    public func createBPOfflineTicket(fakeURLId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineTicketResponse > {
+    public func createBPOfflineTicket(fakeURLId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineTicketResponse> {
         self.createBPOfflineTicket(CreateBPOfflineTicketRequest(fakeURLId: fakeURLId), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加下线工单
     @inlinable
     public func createBPOfflineTicket(fakeURLId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {

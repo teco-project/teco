@@ -20,45 +20,45 @@ extension TCCmeError {
             case permissionDeny = "OperationDenied.PermissionDeny"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 权限不足，请检查对应操作者的权限。
         public static var permissionDeny: OperationDenied {
             OperationDenied(.permissionDeny)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asCmeError() -> TCCmeError {
             let code: TCCmeError.Code
             switch self.error {
-            case .permissionDeny: 
+            case .permissionDeny:
                 code = .operationDenied_PermissionDeny
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCCmeError(code, context: self.context)

@@ -19,39 +19,39 @@ extension Sqlserver {
     public struct DeleteBusinessIntelligenceFileRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 文件名称集合
         public let fileNameSet: [String]
-        
-        public init (instanceId: String, fileNameSet: [String]) {
+
+        public init(instanceId: String, fileNameSet: [String]) {
             self.instanceId = instanceId
             self.fileNameSet = fileNameSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case fileNameSet = "FileNameSet"
         }
     }
-    
+
     /// DeleteBusinessIntelligenceFile返回参数结构体
     public struct DeleteBusinessIntelligenceFileResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
     @inlinable
-    public func deleteBusinessIntelligenceFile(_ input: DeleteBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBusinessIntelligenceFileResponse > {
+    public func deleteBusinessIntelligenceFile(_ input: DeleteBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBusinessIntelligenceFileResponse> {
         self.client.execute(action: "DeleteBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
@@ -59,15 +59,15 @@ extension Sqlserver {
     public func deleteBusinessIntelligenceFile(_ input: DeleteBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBusinessIntelligenceFileResponse {
         try await self.client.execute(action: "DeleteBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
     @inlinable
-    public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBusinessIntelligenceFileResponse > {
+    public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBusinessIntelligenceFileResponse> {
         self.deleteBusinessIntelligenceFile(DeleteBusinessIntelligenceFileRequest(instanceId: instanceId, fileNameSet: fileNameSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。

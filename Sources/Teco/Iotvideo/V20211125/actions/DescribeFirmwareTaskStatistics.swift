@@ -19,38 +19,38 @@ extension Iotvideo {
     public struct DescribeFirmwareTaskStatisticsRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
+
         /// 固件版本号
         public let firmwareVersion: String
-        
-        public init (productID: String, firmwareVersion: String) {
+
+        public init(productID: String, firmwareVersion: String) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
             case firmwareVersion = "FirmwareVersion"
         }
     }
-    
+
     /// DescribeFirmwareTaskStatistics返回参数结构体
     public struct DescribeFirmwareTaskStatisticsResponse: TCResponseModel {
         /// 升级成功的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successTotal: UInt64?
-        
+
         /// 升级失败的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureTotal: UInt64?
-        
+
         /// 正在升级的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upgradingTotal: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case successTotal = "SuccessTotal"
             case failureTotal = "FailureTotal"
@@ -58,15 +58,15 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询固件升级任务统计信息
     ///
     /// 本接口用于查询固件升级任务统计信息
     @inlinable
-    public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskStatisticsResponse > {
+    public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskStatisticsResponse> {
         self.client.execute(action: "DescribeFirmwareTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询固件升级任务统计信息
     ///
     /// 本接口用于查询固件升级任务统计信息
@@ -74,15 +74,15 @@ extension Iotvideo {
     public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskStatisticsResponse {
         try await self.client.execute(action: "DescribeFirmwareTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询固件升级任务统计信息
     ///
     /// 本接口用于查询固件升级任务统计信息
     @inlinable
-    public func describeFirmwareTaskStatistics(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskStatisticsResponse > {
+    public func describeFirmwareTaskStatistics(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskStatisticsResponse> {
         self.describeFirmwareTaskStatistics(DescribeFirmwareTaskStatisticsRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询固件升级任务统计信息
     ///
     /// 本接口用于查询固件升级任务统计信息

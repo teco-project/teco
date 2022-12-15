@@ -19,23 +19,23 @@ extension Tem {
     public struct ModifyApplicationInfoRequest: TCRequestModel {
         /// 应用ID
         public let applicationId: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 是否开启调用链,（此参数已弃用）
         public let enableTracing: UInt64?
-        
-        public init (applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil) {
+
+        public init(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil) {
             self.applicationId = applicationId
             self.description = description
             self.sourceChannel = sourceChannel
             self.enableTracing = enableTracing
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case description = "Description"
@@ -43,40 +43,40 @@ extension Tem {
             case enableTracing = "EnableTracing"
         }
     }
-    
+
     /// ModifyApplicationInfo返回参数结构体
     public struct ModifyApplicationInfoResponse: TCResponseModel {
         /// 成功与否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改应用基本信息
     @inlinable
-    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationInfoResponse > {
+    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationInfoResponse> {
         self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用基本信息
     @inlinable
     public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
         try await self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改应用基本信息
     @inlinable
-    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationInfoResponse > {
+    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationInfoResponse> {
         self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用基本信息
     @inlinable
     public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {

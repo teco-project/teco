@@ -19,43 +19,43 @@ extension Antiddos {
     public struct DescribeL7RulesBySSLCertIdRequest: TCRequestModel {
         /// 域名状态，可取bindable, binded, opened, closed, all，all表示全部状态
         public let status: String
-        
+
         /// 证书ID列表
         public let certIds: [String]
-        
-        public init (status: String, certIds: [String]) {
+
+        public init(status: String, certIds: [String]) {
             self.status = status
             self.certIds = certIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case certIds = "CertIds"
         }
     }
-    
+
     /// DescribeL7RulesBySSLCertId返回参数结构体
     public struct DescribeL7RulesBySSLCertIdResponse: TCResponseModel {
         /// 证书规则集合
         public let certSet: [CertIdInsL7Rules]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certSet = "CertSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询与证书ID匹配的七层规则
     ///
     /// 查询与证书ID对于域名匹配的七层规则
     @inlinable
-    public func describeL7RulesBySSLCertId(_ input: DescribeL7RulesBySSLCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7RulesBySSLCertIdResponse > {
+    public func describeL7RulesBySSLCertId(_ input: DescribeL7RulesBySSLCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesBySSLCertIdResponse> {
         self.client.execute(action: "DescribeL7RulesBySSLCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询与证书ID匹配的七层规则
     ///
     /// 查询与证书ID对于域名匹配的七层规则
@@ -63,15 +63,15 @@ extension Antiddos {
     public func describeL7RulesBySSLCertId(_ input: DescribeL7RulesBySSLCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesBySSLCertIdResponse {
         try await self.client.execute(action: "DescribeL7RulesBySSLCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询与证书ID匹配的七层规则
     ///
     /// 查询与证书ID对于域名匹配的七层规则
     @inlinable
-    public func describeL7RulesBySSLCertId(status: String, certIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7RulesBySSLCertIdResponse > {
+    public func describeL7RulesBySSLCertId(status: String, certIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesBySSLCertIdResponse> {
         self.describeL7RulesBySSLCertId(DescribeL7RulesBySSLCertIdRequest(status: status, certIds: certIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询与证书ID匹配的七层规则
     ///
     /// 查询与证书ID对于域名匹配的七层规则

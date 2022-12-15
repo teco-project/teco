@@ -19,36 +19,36 @@ extension Npp {
     public struct DescribeCallerDisplayListRequest: TCRequestModel {
         /// 业务appid
         public let bizAppId: String
-        
-        public init (bizAppId: String) {
+
+        public init(bizAppId: String) {
             self.bizAppId = bizAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizAppId = "BizAppId"
         }
     }
-    
+
     /// DescribeCallerDisplayList返回参数结构体
     public struct DescribeCallerDisplayListResponse: TCResponseModel {
         /// appid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 主叫显号号码集合，codeList[0...*] 结构体数组，如果业务是主被叫互显，该字段为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeList: [CallBackPhoneCode]?
-        
+
         /// 错误码
         public let errorCode: String
-        
+
         /// 错误原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case codeList = "CodeList"
@@ -57,25 +57,25 @@ extension Npp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 回拨拉取主叫显号号码集合
     @inlinable
-    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallerDisplayListResponse > {
+    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallerDisplayListResponse> {
         self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 回拨拉取主叫显号号码集合
     @inlinable
     public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
         try await self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 回拨拉取主叫显号号码集合
     @inlinable
-    public func describeCallerDisplayList(bizAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallerDisplayListResponse > {
+    public func describeCallerDisplayList(bizAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallerDisplayListResponse> {
         self.describeCallerDisplayList(DescribeCallerDisplayListRequest(bizAppId: bizAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 回拨拉取主叫显号号码集合
     @inlinable
     public func describeCallerDisplayList(bizAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {

@@ -19,24 +19,24 @@ extension Ess {
     public struct DescribeIntegrationEmployeesRequest: TCRequestModel {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
-        
+
         /// 返回最大数量，最大为20
         public let limit: Int64
-        
+
         /// 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         /// 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0，最大为20000
         public let offset: Int64?
-        
-        public init (operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil) {
+
+        public init(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil) {
             self.`operator` = `operator`
             self.limit = limit
             self.filters = filters
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case limit = "Limit"
@@ -44,26 +44,26 @@ extension Ess {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeIntegrationEmployees返回参数结构体
     public struct DescribeIntegrationEmployeesResponse: TCResponseModel {
         /// 员工数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let employees: [Staff]?
-        
+
         /// 偏移量，默认为0，最大为20000
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offset: Int64?
-        
+
         /// 返回最大数量，最大为20
         public let limit: Int64
-        
+
         /// 符合条件的员工数量
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case employees = "Employees"
             case offset = "Offset"
@@ -72,15 +72,15 @@ extension Ess {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationEmployeesResponse > {
+    public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
         self.client.execute(action: "DescribeIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20
@@ -88,15 +88,15 @@ extension Ess {
     public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
         try await self.client.execute(action: "DescribeIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationEmployeesResponse > {
+    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
         self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20

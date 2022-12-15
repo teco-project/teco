@@ -19,27 +19,27 @@ extension Privatedns {
     public struct DescribeAuditLogRequest: TCRequestModel {
         /// 请求量统计起始时间
         public let timeRangeBegin: String
-        
+
         /// 筛选参数：ZoneId：私有域ID；Domain：私有域；OperatorUin：操作者账号ID
         public let filters: [Filter]?
-        
+
         /// 请求量统计结束时间
         public let timeRangeEnd: String?
-        
+
         /// 分页偏移量，从0开始
         public let offset: Int64?
-        
+
         /// 分页限制数目， 最大100，默认20
         public let limit: Int64?
-        
-        public init (timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.timeRangeBegin = timeRangeBegin
             self.filters = filters
             self.timeRangeEnd = timeRangeEnd
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case timeRangeBegin = "TimeRangeBegin"
             case filters = "Filters"
@@ -48,39 +48,39 @@ extension Privatedns {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAuditLog返回参数结构体
     public struct DescribeAuditLogResponse: TCResponseModel {
         /// 操作日志列表
         public let data: [AuditLog]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取操作日志列表
     @inlinable
-    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogResponse > {
+    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogResponse> {
         self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取操作日志列表
     @inlinable
     public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
         try await self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取操作日志列表
     @inlinable
-    public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogResponse > {
+    public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogResponse> {
         self.describeAuditLog(DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取操作日志列表
     @inlinable
     public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {

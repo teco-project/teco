@@ -17,36 +17,36 @@
 extension Cwp {
     /// DescribeVulHostCountScanTime请求参数结构体
     public struct DescribeVulHostCountScanTimeRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVulHostCountScanTime返回参数结构体
     public struct DescribeVulHostCountScanTimeResponse: TCResponseModel {
         /// 总漏洞数
         public let totalVulCount: UInt64
-        
+
         /// 漏洞影响主机数
         public let vulHostCount: UInt64
-        
+
         /// 扫描时间
         public let scanTime: String
-        
+
         /// 是否第一次检测
         public let ifFirstScan: Bool
-        
+
         /// 运行中的任务号, 没有任务则为0
         public let taskId: UInt64
-        
+
         /// 最后一次修复漏洞的时间
         public let lastFixTime: String
-        
+
         /// 是否有支持自动修复的漏洞事件
         public let hadAutoFixVul: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalVulCount = "TotalVulCount"
             case vulHostCount = "VulHostCount"
@@ -58,25 +58,25 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取待处理漏洞数+影响主机数
     @inlinable
-    public func describeVulHostCountScanTime(_ input: DescribeVulHostCountScanTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulHostCountScanTimeResponse > {
+    public func describeVulHostCountScanTime(_ input: DescribeVulHostCountScanTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulHostCountScanTimeResponse> {
         self.client.execute(action: "DescribeVulHostCountScanTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取待处理漏洞数+影响主机数
     @inlinable
     public func describeVulHostCountScanTime(_ input: DescribeVulHostCountScanTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostCountScanTimeResponse {
         try await self.client.execute(action: "DescribeVulHostCountScanTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取待处理漏洞数+影响主机数
     @inlinable
-    public func describeVulHostCountScanTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulHostCountScanTimeResponse > {
+    public func describeVulHostCountScanTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulHostCountScanTimeResponse> {
         self.describeVulHostCountScanTime(DescribeVulHostCountScanTimeRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取待处理漏洞数+影响主机数
     @inlinable
     public func describeVulHostCountScanTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostCountScanTimeResponse {

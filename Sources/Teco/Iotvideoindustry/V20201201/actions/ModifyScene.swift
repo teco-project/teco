@@ -19,23 +19,23 @@ extension Iotvideoindustry {
     public struct ModifySceneRequest: TCRequestModel {
         /// 场景ID
         public let intId: Int64
-        
+
         /// 场景名称
         public let sceneName: String?
-        
+
         /// 触发条件
         public let sceneTrigger: String?
-        
+
         /// 录制时长(秒)
         public let recordDuration: Int64?
-        
-        public init (intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil) {
+
+        public init(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil) {
             self.intId = intId
             self.sceneName = sceneName
             self.sceneTrigger = sceneTrigger
             self.recordDuration = recordDuration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case intId = "IntId"
             case sceneName = "SceneName"
@@ -43,35 +43,35 @@ extension Iotvideoindustry {
             case recordDuration = "RecordDuration"
         }
     }
-    
+
     /// ModifyScene返回参数结构体
     public struct ModifySceneResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改场景
     @inlinable
-    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySceneResponse > {
+    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySceneResponse> {
         self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改场景
     @inlinable
     public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
         try await self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改场景
     @inlinable
-    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySceneResponse > {
+    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySceneResponse> {
         self.modifyScene(ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改场景
     @inlinable
     public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {

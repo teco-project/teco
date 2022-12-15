@@ -22,10 +22,10 @@ extension Cr {
     public struct DownloadDialogueTextRequest: TCRequestModel {
         /// 模块名，本接口取值：Report
         public let module: String
-        
+
         /// 操作名，本接口取值：DownloadTextReport
         public let operation: String
-        
+
         /// 报告日期，格式为YYYY-MM-DD
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,17 +33,17 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var reportDate: Date
-        
+
         /// 实例ID
         public let instId: String
-        
-        public init (module: String, operation: String, reportDate: Date, instId: String) {
+
+        public init(module: String, operation: String, reportDate: Date, instId: String) {
             self.module = module
             self.operation = operation
             self.reportDate = reportDate
             self.instId = instId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -51,29 +51,29 @@ extension Cr {
             case instId = "InstId"
         }
     }
-    
+
     /// DownloadDialogueText返回参数结构体
     public struct DownloadDialogueTextResponse: TCResponseModel {
         /// 对话文本下载地址
         public let textReportUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case textReportUrl = "TextReportUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 对话文本下载
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
     @inlinable
-    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadDialogueTextResponse > {
+    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDialogueTextResponse> {
         self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 对话文本下载
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
@@ -81,15 +81,15 @@ extension Cr {
     public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDialogueTextResponse {
         try await self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 对话文本下载
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
     @inlinable
-    public func downloadDialogueText(module: String, operation: String, reportDate: Date, instId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadDialogueTextResponse > {
+    public func downloadDialogueText(module: String, operation: String, reportDate: Date, instId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDialogueTextResponse> {
         self.downloadDialogueText(DownloadDialogueTextRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), logger: logger, on: eventLoop)
     }
-    
+
     /// 对话文本下载
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。

@@ -22,33 +22,33 @@ extension Teo {
     public struct DescribeDnssecRequest: TCRequestModel {
         /// 站点 ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DescribeDnssec返回参数结构体
     public struct DescribeDnssecResponse: TCResponseModel {
         /// 站点 ID
         public let id: String
-        
+
         /// 站点名称
         public let name: String
-        
+
         /// DNSSEC 状态
         /// - enabled 开启
         /// - disabled 关闭
         public let status: String
-        
+
         /// DNSSEC 相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dnssec: DnssecInfo?
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -56,10 +56,10 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modifiedOn: Date
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -69,15 +69,15 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询 DNSSEC 信息
     ///
     /// 用于查询 DNSSEC 相关信息
     @inlinable
-    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnssecResponse > {
+    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnssecResponse> {
         self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 DNSSEC 信息
     ///
     /// 用于查询 DNSSEC 相关信息
@@ -85,15 +85,15 @@ extension Teo {
     public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
         try await self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询 DNSSEC 信息
     ///
     /// 用于查询 DNSSEC 相关信息
     @inlinable
-    public func describeDnssec(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnssecResponse > {
+    public func describeDnssec(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnssecResponse> {
         self.describeDnssec(DescribeDnssecRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 DNSSEC 信息
     ///
     /// 用于查询 DNSSEC 相关信息

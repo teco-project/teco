@@ -19,26 +19,26 @@ extension Cloudhsm {
     public struct ModifyVsmAttributesRequest: TCRequestModel {
         /// 资源Id
         public let resourceId: String
-        
+
         /// UpdateResourceName-修改资源名称,
         /// UpdateSgIds-修改安全组名称,
         /// UpdateNetWork-修改网络,
         /// Default-默认不修改
         public let type: [String]
-        
+
         /// 资源名称
         public let resourceName: String?
-        
+
         /// 安全组Id
         public let sgIds: [String]?
-        
+
         /// 虚拟专网Id
         public let vpcId: String?
-        
+
         /// 子网Id
         public let subnetId: String?
-        
-        public init (resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil) {
+
+        public init(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil) {
             self.resourceId = resourceId
             self.type = type
             self.resourceName = resourceName
@@ -46,7 +46,7 @@ extension Cloudhsm {
             self.vpcId = vpcId
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case type = "Type"
@@ -56,35 +56,35 @@ extension Cloudhsm {
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// ModifyVsmAttributes返回参数结构体
     public struct ModifyVsmAttributesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改VSM属性
     @inlinable
-    public func modifyVsmAttributes(_ input: ModifyVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVsmAttributesResponse > {
+    public func modifyVsmAttributes(_ input: ModifyVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVsmAttributesResponse> {
         self.client.execute(action: "ModifyVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改VSM属性
     @inlinable
     public func modifyVsmAttributes(_ input: ModifyVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVsmAttributesResponse {
         try await self.client.execute(action: "ModifyVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改VSM属性
     @inlinable
-    public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVsmAttributesResponse > {
+    public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVsmAttributesResponse> {
         self.modifyVsmAttributes(ModifyVsmAttributesRequest(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改VSM属性
     @inlinable
     public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVsmAttributesResponse {

@@ -19,39 +19,39 @@ extension Cdb {
     public struct ReloadBalanceProxyNodeRequest: TCRequestModel {
         /// 代理组ID
         public let proxyGroupId: String
-        
+
         /// 代理组地址ID
         public let proxyAddressId: String?
-        
-        public init (proxyGroupId: String, proxyAddressId: String? = nil) {
+
+        public init(proxyGroupId: String, proxyAddressId: String? = nil) {
             self.proxyGroupId = proxyGroupId
             self.proxyAddressId = proxyAddressId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyGroupId = "ProxyGroupId"
             case proxyAddressId = "ProxyAddressId"
         }
     }
-    
+
     /// ReloadBalanceProxyNode返回参数结构体
     public struct ReloadBalanceProxyNodeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
     @inlinable
-    public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReloadBalanceProxyNodeResponse > {
+    public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
         self.client.execute(action: "ReloadBalanceProxyNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
@@ -59,15 +59,15 @@ extension Cdb {
     public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
         try await self.client.execute(action: "ReloadBalanceProxyNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
     @inlinable
-    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReloadBalanceProxyNodeResponse > {
+    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
         self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), logger: logger, on: eventLoop)
     }
-    
+
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理

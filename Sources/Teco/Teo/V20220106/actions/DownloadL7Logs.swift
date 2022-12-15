@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间(需严格按照RFC3339标准传参)
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,20 +35,20 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 每页展示条数
         public let pageSize: Int64
-        
+
         /// 当前页
         public let pageNo: Int64
-        
+
         /// 站点名集合
         public let zones: [String]?
-        
+
         /// 子域名集合
         public let domains: [String]?
-        
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil) {
+
+        public init(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -56,7 +56,7 @@ extension Teo {
             self.zones = zones
             self.domains = domains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -66,32 +66,32 @@ extension Teo {
             case domains = "Domains"
         }
     }
-    
+
     /// DownloadL7Logs返回参数结构体
     public struct DownloadL7LogsResponse: TCResponseModel {
         /// 七层离线日志data
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [L7OfflineLog]?
-        
+
         /// 页面大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageSize: Int64?
-        
+
         /// 页号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageNo: Int64?
-        
+
         /// 总页数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pages: Int64?
-        
+
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalSize: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case pageSize = "PageSize"
@@ -101,15 +101,15 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志
     @inlinable
-    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadL7LogsResponse > {
+    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL7LogsResponse> {
         self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志
@@ -117,15 +117,15 @@ extension Teo {
     public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
         try await self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志
     @inlinable
-    public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadL7LogsResponse > {
+    public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL7LogsResponse> {
         self.downloadL7Logs(DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains), logger: logger, on: eventLoop)
     }
-    
+
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志

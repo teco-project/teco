@@ -19,35 +19,35 @@ extension Tcss {
     public struct AddComplianceAssetPolicySetToWhitelistRequest: TCRequestModel {
         /// 资产ID+检查项IDs. 列表
         public let assetPolicySetList: [ComplianceAssetPolicySetItem]
-        
-        public init (assetPolicySetList: [ComplianceAssetPolicySetItem]) {
+
+        public init(assetPolicySetList: [ComplianceAssetPolicySetItem]) {
             self.assetPolicySetList = assetPolicySetList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case assetPolicySetList = "AssetPolicySetList"
         }
     }
-    
+
     /// AddComplianceAssetPolicySetToWhitelist返回参数结构体
     public struct AddComplianceAssetPolicySetToWhitelistResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规忽略资产+检测项列表
     ///
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable
-    public func addComplianceAssetPolicySetToWhitelist(_ input: AddComplianceAssetPolicySetToWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddComplianceAssetPolicySetToWhitelistResponse > {
+    public func addComplianceAssetPolicySetToWhitelist(_ input: AddComplianceAssetPolicySetToWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddComplianceAssetPolicySetToWhitelistResponse> {
         self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规忽略资产+检测项列表
     ///
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
@@ -56,16 +56,16 @@ extension Tcss {
     public func addComplianceAssetPolicySetToWhitelist(_ input: AddComplianceAssetPolicySetToWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddComplianceAssetPolicySetToWhitelistResponse {
         try await self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规忽略资产+检测项列表
     ///
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable
-    public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddComplianceAssetPolicySetToWhitelistResponse > {
+    public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddComplianceAssetPolicySetToWhitelistResponse> {
         self.addComplianceAssetPolicySetToWhitelist(AddComplianceAssetPolicySetToWhitelistRequest(assetPolicySetList: assetPolicySetList), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规忽略资产+检测项列表
     ///
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容

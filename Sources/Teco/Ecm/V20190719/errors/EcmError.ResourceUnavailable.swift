@@ -25,80 +25,80 @@ extension TCEcmError {
             case repeatRefund = "ResourceUnavailable.RepeatRefund"
             case typeError = "ResourceUnavailable.TypeError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// ResourceUnavailable.Attached
         public static var attached: ResourceUnavailable {
             ResourceUnavailable(.attached)
         }
-        
+
         /// ResourceUnavailable.Expire
         public static var expire: ResourceUnavailable {
             ResourceUnavailable(.expire)
         }
-        
+
         /// 实例未运行。
         public static var instanceNotRunning: ResourceUnavailable {
             ResourceUnavailable(.instanceNotRunning)
         }
-        
+
         /// ResourceUnavailable.NotPortable
         public static var notPortable: ResourceUnavailable {
             ResourceUnavailable(.notPortable)
         }
-        
+
         /// ResourceUnavailable.NotSupported
         public static var notSupported: ResourceUnavailable {
             ResourceUnavailable(.notSupported)
         }
-        
+
         /// ResourceUnavailable.RepeatRefund
         public static var repeatRefund: ResourceUnavailable {
             ResourceUnavailable(.repeatRefund)
         }
-        
+
         /// ResourceUnavailable.TypeError
         public static var typeError: ResourceUnavailable {
             ResourceUnavailable(.typeError)
         }
-        
+
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
-            case .attached: 
+            case .attached:
                 code = .resourceUnavailable_Attached
-            case .expire: 
+            case .expire:
                 code = .resourceUnavailable_Expire
-            case .instanceNotRunning: 
+            case .instanceNotRunning:
                 code = .resourceUnavailable_InstanceNotRunning
-            case .notPortable: 
+            case .notPortable:
                 code = .resourceUnavailable_NotPortable
-            case .notSupported: 
+            case .notSupported:
                 code = .resourceUnavailable_NotSupported
-            case .repeatRefund: 
+            case .repeatRefund:
                 code = .resourceUnavailable_RepeatRefund
-            case .typeError: 
+            case .typeError:
                 code = .resourceUnavailable_TypeError
             }
             return TCEcmError(code, context: self.context)

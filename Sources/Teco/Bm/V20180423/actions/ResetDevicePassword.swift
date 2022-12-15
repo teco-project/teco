@@ -19,43 +19,43 @@ extension Bm {
     public struct ResetDevicePasswordRequest: TCRequestModel {
         /// 需要重置密码的服务器ID列表
         public let instanceIds: [String]
-        
+
         /// 新密码
         public let password: String
-        
-        public init (instanceIds: [String], password: String) {
+
+        public init(instanceIds: [String], password: String) {
             self.instanceIds = instanceIds
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case password = "Password"
         }
     }
-    
+
     /// ResetDevicePassword返回参数结构体
     public struct ResetDevicePasswordResponse: TCResponseModel {
         /// 黑石异步任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置密码
     ///
     /// 重置服务器密码
     @inlinable
-    public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDevicePasswordResponse > {
+    public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDevicePasswordResponse> {
         self.client.execute(action: "ResetDevicePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置密码
     ///
     /// 重置服务器密码
@@ -63,15 +63,15 @@ extension Bm {
     public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDevicePasswordResponse {
         try await self.client.execute(action: "ResetDevicePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置密码
     ///
     /// 重置服务器密码
     @inlinable
-    public func resetDevicePassword(instanceIds: [String], password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDevicePasswordResponse > {
+    public func resetDevicePassword(instanceIds: [String], password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDevicePasswordResponse> {
         self.resetDevicePassword(ResetDevicePasswordRequest(instanceIds: instanceIds, password: password), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置密码
     ///
     /// 重置服务器密码

@@ -23,66 +23,66 @@ extension TCTdidError {
             case unknownError = "InternalError.UnknownError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 服务器异常。
         public static var serverException: InternalError {
             InternalError(.serverException)
         }
-        
+
         /// 服务内部错误。
         public static var serviceError: InternalError {
             InternalError(.serviceError)
         }
-        
+
         /// 服务异常。
         public static var servicePanic: InternalError {
             InternalError(.servicePanic)
         }
-        
+
         /// 未知错误。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTdidError() -> TCTdidError {
             let code: TCTdidError.Code
             switch self.error {
-            case .serverException: 
+            case .serverException:
                 code = .internalError_ServerException
-            case .serviceError: 
+            case .serviceError:
                 code = .internalError_ServiceError
-            case .servicePanic: 
+            case .servicePanic:
                 code = .internalError_ServicePanic
-            case .unknownError: 
+            case .unknownError:
                 code = .internalError_UnknownError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCTdidError(code, context: self.context)

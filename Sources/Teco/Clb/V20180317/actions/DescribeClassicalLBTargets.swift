@@ -19,39 +19,39 @@ extension Clb {
     public struct DescribeClassicalLBTargetsRequest: TCRequestModel {
         /// 负载均衡实例 ID。
         public let loadBalancerId: String
-        
-        public init (loadBalancerId: String) {
+
+        public init(loadBalancerId: String) {
             self.loadBalancerId = loadBalancerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
         }
     }
-    
+
     /// DescribeClassicalLBTargets返回参数结构体
     public struct DescribeClassicalLBTargetsResponse: TCResponseModel {
         /// 后端服务列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targets: [ClassicalTarget]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case targets = "Targets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取传统型负载均衡绑定的后端服务器列表
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
-    public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBTargetsResponse > {
+    public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBTargetsResponse> {
         self.client.execute(action: "DescribeClassicalLBTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取传统型负载均衡绑定的后端服务器列表
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
@@ -59,15 +59,15 @@ extension Clb {
     public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
         try await self.client.execute(action: "DescribeClassicalLBTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取传统型负载均衡绑定的后端服务器列表
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
-    public func describeClassicalLBTargets(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBTargetsResponse > {
+    public func describeClassicalLBTargets(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBTargetsResponse> {
         self.describeClassicalLBTargets(DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取传统型负载均衡绑定的后端服务器列表
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。

@@ -19,16 +19,16 @@ extension Essbasic {
     public struct CreateSignUrlsRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
-        
+
         /// 签署流程编号数组，最多支持100个。(备注：该参数和合同组编号必须二选一)
         public let flowIds: [String]?
-        
+
         /// 合同组编号(备注：该参数和合同(流程)编号数组必须二选一)
         public let flowGroupId: String?
-        
+
         /// 签署链接类型：“WEIXINAPP”-短链直接跳小程序；“CHANNEL”-跳转H5页面；“APP”-第三方APP或小程序跳转电子签小程序；"LONGURL2WEIXINAPP"-长链接跳转小程序；默认“WEIXINAPP”类型，即跳转至小程序；
         public let endpoint: String?
-        
+
         /// 签署链接生成类型，默认是 "ALL"；
         /// "ALL"：全部签署方签署链接，此时不会给自动签署的签署方创建签署链接；
         /// "CHANNEL"：渠道合作企业；
@@ -36,33 +36,33 @@ extension Essbasic {
         /// "PERSON"：个人；
         /// "FOLLOWER"：关注方，目前是合同抄送方；
         public let generateType: String?
-        
+
         /// 非渠道合作企业参与方的企业名称，GenerateType为"NOT_CHANNEL"时必填
         public let organizationName: String?
-        
+
         /// 参与人姓名，GenerateType为"PERSON"时必填
         public let name: String?
-        
+
         /// 参与人手机号；
         /// GenerateType为"PERSON"或"FOLLOWER"时必填
         public let mobile: String?
-        
+
         /// 渠道合作企业的企业Id，GenerateType为"CHANNEL"时必填
         public let organizationOpenId: String?
-        
+
         /// 渠道合作企业参与人OpenId，GenerateType为"CHANNEL"时可用，指定到具体参与人
         public let openId: String?
-        
+
         /// Endpoint为"APP" 类型的签署链接，可以设置此值；支持调用方小程序打开签署链接，在电子签小程序完成签署后自动回跳至调用方小程序
         public let autoJumpBack: Bool?
-        
+
         /// 签署完之后的H5页面的跳转链接，针对Endpoint为CHANNEL时有效，最大长度1000个字符。
         public let jumpUrl: String?
-        
+
         /// 操作者的信息
         public let `operator`: UserInfo?
-        
-        public init (agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil) {
+
+        public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.flowGroupId = flowGroupId
@@ -77,7 +77,7 @@ extension Essbasic {
             self.jumpUrl = jumpUrl
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case flowIds = "FlowIds"
@@ -94,25 +94,25 @@ extension Essbasic {
             case `operator` = "Operator"
         }
     }
-    
+
     /// CreateSignUrls返回参数结构体
     public struct CreateSignUrlsResponse: TCResponseModel {
         /// 签署参与者签署H5链接信息数组
         public let signUrlInfos: [SignUrlInfo]
-        
+
         /// 生成失败时的错误信息，成功返回”“，顺序和出参SignUrlInfos保持一致
         public let errorMessages: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case signUrlInfos = "SignUrlInfos"
             case errorMessages = "ErrorMessages"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取跳转小程序查看或签署链接
     ///
     /// 创建跳转小程序查看或签署的链接。
@@ -132,10 +132,10 @@ extension Essbasic {
     /// 4. 客户小程序直接跳到电子签小程序-->签署完成退出电子签小程序-->回到客户小程序
     /// 实现方式同App跳小程序。
     @inlinable
-    public func createSignUrls(_ input: CreateSignUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignUrlsResponse > {
+    public func createSignUrls(_ input: CreateSignUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlsResponse> {
         self.client.execute(action: "CreateSignUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取跳转小程序查看或签署链接
     ///
     /// 创建跳转小程序查看或签署的链接。
@@ -158,7 +158,7 @@ extension Essbasic {
     public func createSignUrls(_ input: CreateSignUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlsResponse {
         try await self.client.execute(action: "CreateSignUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取跳转小程序查看或签署链接
     ///
     /// 创建跳转小程序查看或签署的链接。
@@ -178,10 +178,10 @@ extension Essbasic {
     /// 4. 客户小程序直接跳到电子签小程序-->签署完成退出电子签小程序-->回到客户小程序
     /// 实现方式同App跳小程序。
     @inlinable
-    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignUrlsResponse > {
+    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlsResponse> {
         self.createSignUrls(CreateSignUrlsRequest(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取跳转小程序查看或签署链接
     ///
     /// 创建跳转小程序查看或签署的链接。

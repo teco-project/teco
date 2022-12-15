@@ -24,79 +24,79 @@ extension TCCmeError {
             case switcherOnWorking = "FailedOperation.SwitcherOnWorking"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建录制任务失败。
         public static var createRecordTask: FailedOperation {
             FailedOperation(.createRecordTask)
         }
-        
+
         /// 云点播用户无效。
         ///
         /// 检查云点播业务状态，如未开通云点播请开通云点播，如欠费停服请充正开服。
         public static var invalidVodUser: FailedOperation {
             FailedOperation(.invalidVodUser)
         }
-        
+
         /// 直播录制功能暂未对使用腾讯云点播存储的平台开放。
         ///
         /// 请在非腾讯云点播存储的平台使用直播录制相关功能。
         public static var recordNotSupport: FailedOperation {
             FailedOperation(.recordNotSupport)
         }
-        
+
         /// 转推操作失败。
         public static var streamConnect: FailedOperation {
             FailedOperation(.streamConnect)
         }
-        
+
         /// 非法操作，导播中正在工作中。
         ///
         /// 先停止导播中。
         public static var switcherOnWorking: FailedOperation {
             FailedOperation(.switcherOnWorking)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asCmeError() -> TCCmeError {
             let code: TCCmeError.Code
             switch self.error {
-            case .createRecordTask: 
+            case .createRecordTask:
                 code = .failedOperation_CreateRecordTask
-            case .invalidVodUser: 
+            case .invalidVodUser:
                 code = .failedOperation_InvalidVodUser
-            case .recordNotSupport: 
+            case .recordNotSupport:
                 code = .failedOperation_RecordNotSupport
-            case .streamConnect: 
+            case .streamConnect:
                 code = .failedOperation_StreamConnect
-            case .switcherOnWorking: 
+            case .switcherOnWorking:
                 code = .failedOperation_SwitcherOnWorking
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCCmeError(code, context: self.context)

@@ -19,38 +19,38 @@ extension Bmvpc {
     public struct DeleteVpnConnectionRequest: TCRequestModel {
         /// VPN通道实例ID。形如：bmvpnx-f49l6u0z。
         public let vpnConnectionId: String
-        
-        public init (vpnConnectionId: String) {
+
+        public init(vpnConnectionId: String) {
             self.vpnConnectionId = vpnConnectionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpnConnectionId = "VpnConnectionId"
         }
     }
-    
+
     /// DeleteVpnConnection返回参数结构体
     public struct DeleteVpnConnectionResponse: TCResponseModel {
         /// 任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除VPN通道
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
-    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnConnectionResponse > {
+    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
         self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除VPN通道
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
@@ -58,15 +58,15 @@ extension Bmvpc {
     public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
         try await self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除VPN通道
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
-    public func deleteVpnConnection(vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnConnectionResponse > {
+    public func deleteVpnConnection(vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
         self.deleteVpnConnection(DeleteVpnConnectionRequest(vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除VPN通道
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。

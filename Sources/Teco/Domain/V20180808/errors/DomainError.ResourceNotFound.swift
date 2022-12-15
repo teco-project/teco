@@ -22,59 +22,59 @@ extension TCDomainError {
             case templateNotFound = "ResourceNotFound.TemplateNotFound"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 模板未实名。
         public static var approvedTemplateNotFound: ResourceNotFound {
             ResourceNotFound(.approvedTemplateNotFound)
         }
-        
+
         /// 域名地址有误，请输入正确的域名地址。
         public static var domainNotFound: ResourceNotFound {
             ResourceNotFound(.domainNotFound)
         }
-        
+
         /// 模板信息有误，请输入正确的信息。
         public static var templateNotFound: ResourceNotFound {
             ResourceNotFound(.templateNotFound)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asDomainError() -> TCDomainError {
             let code: TCDomainError.Code
             switch self.error {
-            case .approvedTemplateNotFound: 
+            case .approvedTemplateNotFound:
                 code = .resourceNotFound_ApprovedTemplateNotFound
-            case .domainNotFound: 
+            case .domainNotFound:
                 code = .resourceNotFound_DomainNotFound
-            case .templateNotFound: 
+            case .templateNotFound:
                 code = .resourceNotFound_TemplateNotFound
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCDomainError(code, context: self.context)

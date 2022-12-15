@@ -25,80 +25,80 @@ extension TCRedisError {
             case onlyClusterInstanceCanExportBackup = "UnsupportedOperation.OnlyClusterInstanceCanExportBackup"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// redis 集群版不允许接入安全组。
         public static var clusterInstanceAccessedDeny: UnsupportedOperation {
             UnsupportedOperation(.clusterInstanceAccessedDeny)
         }
-        
+
         /// 复制组巡检中。
         public static var inspection: UnsupportedOperation {
             UnsupportedOperation(.inspection)
         }
-        
+
         /// 不支持当前操作。
         public static var instanceNotOperation: UnsupportedOperation {
             UnsupportedOperation(.instanceNotOperation)
         }
-        
+
         /// 自动续费标识错误。
         public static var isAutoRenewError: UnsupportedOperation {
             UnsupportedOperation(.isAutoRenewError)
         }
-        
+
         /// 实例版本过低，如需使用该功能请提交工单申请。
         public static var limitProxyVersion: UnsupportedOperation {
             UnsupportedOperation(.limitProxyVersion)
         }
-        
+
         /// 只有集群版实例支持导出备份。
         public static var onlyClusterInstanceCanExportBackup: UnsupportedOperation {
             UnsupportedOperation(.onlyClusterInstanceCanExportBackup)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {
-            case .clusterInstanceAccessedDeny: 
+            case .clusterInstanceAccessedDeny:
                 code = .unsupportedOperation_ClusterInstanceAccessedDeny
-            case .inspection: 
+            case .inspection:
                 code = .unsupportedOperation_Inspection
-            case .instanceNotOperation: 
+            case .instanceNotOperation:
                 code = .unsupportedOperation_InstanceNotOperation
-            case .isAutoRenewError: 
+            case .isAutoRenewError:
                 code = .unsupportedOperation_IsAutoRenewError
-            case .limitProxyVersion: 
+            case .limitProxyVersion:
                 code = .unsupportedOperation_LimitProxyVersion
-            case .onlyClusterInstanceCanExportBackup: 
+            case .onlyClusterInstanceCanExportBackup:
                 code = .unsupportedOperation_OnlyClusterInstanceCanExportBackup
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCRedisError(code, context: self.context)

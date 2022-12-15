@@ -19,54 +19,54 @@ extension Iecp {
     public struct DeleteEdgeNodeGroupRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// NodeGroup名称
         public let name: String
-        
+
         /// 命名空间，默认为default
         public let namespace: String?
-        
-        public init (edgeUnitId: UInt64, name: String, namespace: String? = nil) {
+
+        public init(edgeUnitId: UInt64, name: String, namespace: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.name = name
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case name = "Name"
             case namespace = "Namespace"
         }
     }
-    
+
     /// DeleteEdgeNodeGroup返回参数结构体
     public struct DeleteEdgeNodeGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除边缘单元NodeGroup
     @inlinable
-    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeGroupResponse > {
+    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
         self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘单元NodeGroup
     @inlinable
     public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
         try await self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除边缘单元NodeGroup
     @inlinable
-    public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeGroupResponse > {
+    public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
         self.deleteEdgeNodeGroup(DeleteEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘单元NodeGroup
     @inlinable
     public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {

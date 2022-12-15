@@ -19,44 +19,44 @@ extension Partners {
     public struct RemovePayRelationForClientRequest: TCRequestModel {
         /// 客户账号ID
         public let clientUin: String
-        
-        public init (clientUin: String) {
+
+        public init(clientUin: String) {
             self.clientUin = clientUin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clientUin = "ClientUin"
         }
     }
-    
+
     /// RemovePayRelationForClient返回参数结构体
     public struct RemovePayRelationForClientResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 合作伙伴为客户消除强代付关系
     @inlinable
-    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePayRelationForClientResponse > {
+    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemovePayRelationForClientResponse> {
         self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 合作伙伴为客户消除强代付关系
     @inlinable
     public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
         try await self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 合作伙伴为客户消除强代付关系
     @inlinable
-    public func removePayRelationForClient(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePayRelationForClientResponse > {
+    public func removePayRelationForClient(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemovePayRelationForClientResponse> {
         self.removePayRelationForClient(RemovePayRelationForClientRequest(clientUin: clientUin), logger: logger, on: eventLoop)
     }
-    
+
     /// 合作伙伴为客户消除强代付关系
     @inlinable
     public func removePayRelationForClient(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {

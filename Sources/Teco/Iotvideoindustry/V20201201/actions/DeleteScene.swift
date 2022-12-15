@@ -19,44 +19,44 @@ extension Iotvideoindustry {
     public struct DeleteSceneRequest: TCRequestModel {
         /// 场景ID
         public let intId: Int64
-        
-        public init (intId: Int64) {
+
+        public init(intId: Int64) {
             self.intId = intId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case intId = "IntId"
         }
     }
-    
+
     /// DeleteScene返回参数结构体
     public struct DeleteSceneResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除场景
     @inlinable
-    public func deleteScene(_ input: DeleteSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSceneResponse > {
+    public func deleteScene(_ input: DeleteSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSceneResponse> {
         self.client.execute(action: "DeleteScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除场景
     @inlinable
     public func deleteScene(_ input: DeleteSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSceneResponse {
         try await self.client.execute(action: "DeleteScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除场景
     @inlinable
-    public func deleteScene(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSceneResponse > {
+    public func deleteScene(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSceneResponse> {
         self.deleteScene(DeleteSceneRequest(intId: intId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除场景
     @inlinable
     public func deleteScene(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSceneResponse {

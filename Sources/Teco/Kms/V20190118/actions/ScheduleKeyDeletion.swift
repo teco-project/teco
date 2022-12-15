@@ -19,47 +19,47 @@ extension Kms {
     public struct ScheduleKeyDeletionRequest: TCRequestModel {
         /// CMK的唯一标志
         public let keyId: String
-        
+
         /// 计划删除时间区间[7,30]
         public let pendingWindowInDays: UInt64
-        
-        public init (keyId: String, pendingWindowInDays: UInt64) {
+
+        public init(keyId: String, pendingWindowInDays: UInt64) {
             self.keyId = keyId
             self.pendingWindowInDays = pendingWindowInDays
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
             case pendingWindowInDays = "PendingWindowInDays"
         }
     }
-    
+
     /// ScheduleKeyDeletion返回参数结构体
     public struct ScheduleKeyDeletionResponse: TCResponseModel {
         /// 计划删除执行时间
         public let deletionDate: UInt64
-        
+
         /// 唯一标志被计划删除的CMK
         public let keyId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deletionDate = "DeletionDate"
             case keyId = "KeyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// CMK计划删除接口
     ///
     /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
     @inlinable
-    public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScheduleKeyDeletionResponse > {
+    public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScheduleKeyDeletionResponse> {
         self.client.execute(action: "ScheduleKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// CMK计划删除接口
     ///
     /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
@@ -67,15 +67,15 @@ extension Kms {
     public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScheduleKeyDeletionResponse {
         try await self.client.execute(action: "ScheduleKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// CMK计划删除接口
     ///
     /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
     @inlinable
-    public func scheduleKeyDeletion(keyId: String, pendingWindowInDays: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScheduleKeyDeletionResponse > {
+    public func scheduleKeyDeletion(keyId: String, pendingWindowInDays: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScheduleKeyDeletionResponse> {
         self.scheduleKeyDeletion(ScheduleKeyDeletionRequest(keyId: keyId, pendingWindowInDays: pendingWindowInDays), logger: logger, on: eventLoop)
     }
-    
+
     /// CMK计划删除接口
     ///
     /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天

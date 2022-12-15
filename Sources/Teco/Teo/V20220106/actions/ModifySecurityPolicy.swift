@@ -19,54 +19,54 @@ extension Teo {
     public struct ModifySecurityPolicyRequest: TCRequestModel {
         /// 一级域名
         public let zoneId: String
-        
+
         /// 二级域名/应用名
         public let entity: String
-        
+
         /// 安全配置
         public let config: SecurityConfig
-        
-        public init (zoneId: String, entity: String, config: SecurityConfig) {
+
+        public init(zoneId: String, entity: String, config: SecurityConfig) {
             self.zoneId = zoneId
             self.entity = entity
             self.config = config
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case entity = "Entity"
             case config = "Config"
         }
     }
-    
+
     /// ModifySecurityPolicy返回参数结构体
     public struct ModifySecurityPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改Web&Bot安全配置
     @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
         self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改Web&Bot安全配置
     @inlinable
     public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
         try await self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改Web&Bot安全配置
     @inlinable
-    public func modifySecurityPolicy(zoneId: String, entity: String, config: SecurityConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
+    public func modifySecurityPolicy(zoneId: String, entity: String, config: SecurityConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
         self.modifySecurityPolicy(ModifySecurityPolicyRequest(zoneId: zoneId, entity: entity, config: config), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改Web&Bot安全配置
     @inlinable
     public func modifySecurityPolicy(zoneId: String, entity: String, config: SecurityConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {

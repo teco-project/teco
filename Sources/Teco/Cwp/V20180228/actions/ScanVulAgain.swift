@@ -19,49 +19,49 @@ extension Cwp {
     public struct ScanVulAgainRequest: TCRequestModel {
         /// 漏洞事件id串，多个用英文逗号分隔
         public let eventIds: String
-        
+
         /// 重新检查的机器uuid,多个逗号分隔
         public let uuids: String?
-        
-        public init (eventIds: String, uuids: String? = nil) {
+
+        public init(eventIds: String, uuids: String? = nil) {
             self.eventIds = eventIds
             self.uuids = uuids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventIds = "EventIds"
             case uuids = "Uuids"
         }
     }
-    
+
     /// ScanVulAgain返回参数结构体
     public struct ScanVulAgainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 漏洞管理-重新检测接口
     @inlinable
-    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulAgainResponse > {
+    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
         self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞管理-重新检测接口
     @inlinable
     public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
         try await self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 漏洞管理-重新检测接口
     @inlinable
-    public func scanVulAgain(eventIds: String, uuids: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulAgainResponse > {
+    public func scanVulAgain(eventIds: String, uuids: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
         self.scanVulAgain(ScanVulAgainRequest(eventIds: eventIds, uuids: uuids), logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞管理-重新检测接口
     @inlinable
     public func scanVulAgain(eventIds: String, uuids: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {

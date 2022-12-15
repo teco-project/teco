@@ -20,45 +20,45 @@ extension TCTeoError {
             case domainNoICP = "OperationDenied.DomainNoICP"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名尚未备案。
         public static var domainNoICP: OperationDenied {
             OperationDenied(.domainNoICP)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .domainNoICP: 
+            case .domainNoICP:
                 code = .operationDenied_DomainNoICP
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCTeoError(code, context: self.context)

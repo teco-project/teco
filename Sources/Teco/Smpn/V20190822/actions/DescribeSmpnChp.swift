@@ -19,43 +19,43 @@ extension Smpn {
     public struct DescribeSmpnChpRequest: TCRequestModel {
         /// 客户用于计费的资源Id
         public let resourceId: String
-        
+
         /// 终端骚扰保护请求
         public let requestData: CHPRequest
-        
-        public init (resourceId: String, requestData: CHPRequest) {
+
+        public init(resourceId: String, requestData: CHPRequest) {
             self.resourceId = resourceId
             self.requestData = requestData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case requestData = "RequestData"
         }
     }
-    
+
     /// DescribeSmpnChp返回参数结构体
     public struct DescribeSmpnChpResponse: TCResponseModel {
         /// 终端骚扰保护回应
         public let responseData: CHPResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 终端骚扰保护
     ///
     /// 查询号码的标记和标记次数
     @inlinable
-    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnChpResponse > {
+    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnChpResponse> {
         self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 终端骚扰保护
     ///
     /// 查询号码的标记和标记次数
@@ -63,15 +63,15 @@ extension Smpn {
     public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
         try await self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 终端骚扰保护
     ///
     /// 查询号码的标记和标记次数
     @inlinable
-    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnChpResponse > {
+    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnChpResponse> {
         self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), logger: logger, on: eventLoop)
     }
-    
+
     /// 终端骚扰保护
     ///
     /// 查询号码的标记和标记次数

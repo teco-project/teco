@@ -19,23 +19,23 @@ extension Pts {
     public struct DescribeSampleBatchQueryRequest: TCRequestModel {
         /// job id
         public let jobId: String
-        
+
         /// 场景id
         public let scenarioId: String
-        
+
         /// 查询指标数组
         public let queries: [InternalMetricQuery]
-        
+
         /// 项目ID
         public let projectId: String
-        
-        public init (jobId: String, scenarioId: String, queries: [InternalMetricQuery], projectId: String) {
+
+        public init(jobId: String, scenarioId: String, queries: [InternalMetricQuery], projectId: String) {
             self.jobId = jobId
             self.scenarioId = scenarioId
             self.queries = queries
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case scenarioId = "ScenarioId"
@@ -43,30 +43,30 @@ extension Pts {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeSampleBatchQuery返回参数结构体
     public struct DescribeSampleBatchQueryResponse: TCResponseModel {
         /// 返回指标内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricSampleSet: [CustomSample]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metricSampleSet = "MetricSampleSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量查询指标
     ///
     /// 批量查询指标，返回固定时间点指标内容
     @inlinable
-    public func describeSampleBatchQuery(_ input: DescribeSampleBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleBatchQueryResponse > {
+    public func describeSampleBatchQuery(_ input: DescribeSampleBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleBatchQueryResponse> {
         self.client.execute(action: "DescribeSampleBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量查询指标
     ///
     /// 批量查询指标，返回固定时间点指标内容
@@ -74,15 +74,15 @@ extension Pts {
     public func describeSampleBatchQuery(_ input: DescribeSampleBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleBatchQueryResponse {
         try await self.client.execute(action: "DescribeSampleBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量查询指标
     ///
     /// 批量查询指标，返回固定时间点指标内容
     @inlinable
-    public func describeSampleBatchQuery(jobId: String, scenarioId: String, queries: [InternalMetricQuery], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleBatchQueryResponse > {
+    public func describeSampleBatchQuery(jobId: String, scenarioId: String, queries: [InternalMetricQuery], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleBatchQueryResponse> {
         self.describeSampleBatchQuery(DescribeSampleBatchQueryRequest(jobId: jobId, scenarioId: scenarioId, queries: queries, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量查询指标
     ///
     /// 批量查询指标，返回固定时间点指标内容

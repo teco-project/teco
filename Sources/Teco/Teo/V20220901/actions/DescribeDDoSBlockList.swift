@@ -27,28 +27,28 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 攻击事件列表。
         public let eventIds: [String]
-        
+
         /// 站点列表，不填默认选择全部站点。
         public let zoneIds: [String]?
-        
+
         /// 策略列表，不填默认选择全部策略。
         public let policyIds: [Int64]?
-        
+
         /// 分页查询的限制数目，默认值为20，最大查询条目为1000。
         public let limit: Int64?
-        
+
         /// 分页的偏移量，默认值为0。
         public let offset: Int64?
-        
+
         /// 数据归属地区，取值有：
         /// <li>overseas：全球（除中国大陆地区）数据；</li>
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
-        
-        public init (startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
+
+        public init(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.eventIds = eventIds
             self.zoneIds = zoneIds
@@ -57,7 +57,7 @@ extension Teo {
             self.offset = offset
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case eventIds = "EventIds"
@@ -68,34 +68,34 @@ extension Teo {
             case area = "Area"
         }
     }
-    
+
     /// DescribeDDoSBlockList返回参数结构体
     public struct DescribeDDoSBlockListResponse: TCResponseModel {
         /// 封禁解封信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DDoSBlockData]?
-        
+
         /// 查询结果的总条数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询DDoS封禁解封列表
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
     @inlinable
-    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSBlockListResponse > {
+    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSBlockListResponse> {
         self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDoS封禁解封列表
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
@@ -103,15 +103,15 @@ extension Teo {
     public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
         try await self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询DDoS封禁解封列表
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
     @inlinable
-    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSBlockListResponse > {
+    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSBlockListResponse> {
         self.describeDDoSBlockList(DescribeDDoSBlockListRequest(startTime: startTime, eventIds: eventIds, zoneIds: zoneIds, policyIds: policyIds, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDoS封禁解封列表
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。

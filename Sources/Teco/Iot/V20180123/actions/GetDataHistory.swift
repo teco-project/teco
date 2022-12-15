@@ -22,10 +22,10 @@ extension Iot {
     public struct GetDataHistoryRequest: TCRequestModel {
         /// 产品Id
         public let productId: String
-        
+
         /// 设备名称列表，允许最多一次100台
         public let deviceNames: [String]
-        
+
         /// 查询开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Iot {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,17 +41,17 @@ extension Iot {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 查询数据量
         public let size: UInt64?
-        
+
         /// 时间排序（desc/asc）
         public let order: String?
-        
+
         /// 查询游标
         public let scrollId: String?
-        
-        public init (productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil) {
+
+        public init(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil) {
             self.productId = productId
             self.deviceNames = deviceNames
             self.startTime = startTime
@@ -60,7 +60,7 @@ extension Iot {
             self.order = order
             self.scrollId = scrollId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceNames = "DeviceNames"
@@ -71,21 +71,21 @@ extension Iot {
             case scrollId = "ScrollId"
         }
     }
-    
+
     /// GetDataHistory返回参数结构体
     public struct GetDataHistoryResponse: TCResponseModel {
         /// 数据历史
         public let dataHistory: [DataHistoryEntry]
-        
+
         /// 查询游标
         public let scrollId: String
-        
+
         /// 查询游标超时
         public let scrollTimeout: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataHistory = "DataHistory"
             case scrollId = "ScrollId"
@@ -93,15 +93,15 @@ extension Iot {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备历史数据
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
-    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataHistoryResponse > {
+    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataHistoryResponse> {
         self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备历史数据
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
@@ -109,15 +109,15 @@ extension Iot {
     public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
         try await self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备历史数据
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
-    public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataHistoryResponse > {
+    public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataHistoryResponse> {
         self.getDataHistory(GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备历史数据
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品

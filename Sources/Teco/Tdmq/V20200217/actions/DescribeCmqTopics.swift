@@ -19,23 +19,23 @@ extension Tdmq {
     public struct DescribeCmqTopicsRequest: TCRequestModel {
         /// 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0
         public let offset: UInt64?
-        
+
         /// 分页时本页获取队列的个数，如果不传递该参数，则该参数默认为20，最大值为50。
         public let limit: UInt64?
-        
+
         /// 根据TopicName进行模糊搜索
         public let topicName: String?
-        
+
         /// CMQ 主题名称列表过滤
         public let topicNameList: [String]?
-        
+
         /// 标签过滤查找时，需要设置为 true
         public let isTagFilter: Bool?
-        
+
         /// 过滤器。目前支持按标签过滤，标签的Name需要加前缀“tag:”，例如：tag:负责人、tag:环境、tag:业务
         public let filters: [Filter]?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.topicName = topicName
@@ -43,7 +43,7 @@ extension Tdmq {
             self.isTagFilter = isTagFilter
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -53,44 +53,44 @@ extension Tdmq {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeCmqTopics返回参数结构体
     public struct DescribeCmqTopicsResponse: TCResponseModel {
         /// 主题列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicList: [CmqTopic]?
-        
+
         /// 全量主题数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case topicList = "TopicList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 枚举cmq全量主题
     @inlinable
-    public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicsResponse > {
+    public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicsResponse> {
         self.client.execute(action: "DescribeCmqTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举cmq全量主题
     @inlinable
     public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicsResponse {
         try await self.client.execute(action: "DescribeCmqTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 枚举cmq全量主题
     @inlinable
-    public func describeCmqTopics(offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicsResponse > {
+    public func describeCmqTopics(offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicsResponse> {
         self.describeCmqTopics(DescribeCmqTopicsRequest(offset: offset, limit: limit, topicName: topicName, topicNameList: topicNameList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举cmq全量主题
     @inlinable
     public func describeCmqTopics(offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicsResponse {

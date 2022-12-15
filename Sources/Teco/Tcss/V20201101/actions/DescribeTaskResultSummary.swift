@@ -17,27 +17,27 @@
 extension Tcss {
     /// DescribeTaskResultSummary请求参数结构体
     public struct DescribeTaskResultSummaryRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeTaskResultSummary返回参数结构体
     public struct DescribeTaskResultSummaryResponse: TCResponseModel {
         /// 严重风险影响的节点数量,返回7天数据
         public let seriousRiskNodeCount: [UInt64]
-        
+
         /// 高风险影响的节点的数量,返回7天数据
         public let highRiskNodeCount: [UInt64]
-        
+
         /// 中风险检查项的节点数量,返回7天数据
         public let middleRiskNodeCount: [UInt64]
-        
+
         /// 提示风险检查项的节点数量,返回7天数据
         public let hintRiskNodeCount: [UInt64]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case seriousRiskNodeCount = "SeriousRiskNodeCount"
             case highRiskNodeCount = "HighRiskNodeCount"
@@ -46,15 +46,15 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询检查结果总览
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
-    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultSummaryResponse > {
+    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultSummaryResponse> {
         self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询检查结果总览
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
@@ -62,15 +62,15 @@ extension Tcss {
     public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
         try await self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询检查结果总览
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
-    public func describeTaskResultSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultSummaryResponse > {
+    public func describeTaskResultSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultSummaryResponse> {
         self.describeTaskResultSummary(DescribeTaskResultSummaryRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询检查结果总览
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个

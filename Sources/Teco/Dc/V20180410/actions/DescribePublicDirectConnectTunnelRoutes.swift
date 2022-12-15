@@ -19,25 +19,25 @@ extension Dc {
     public struct DescribePublicDirectConnectTunnelRoutesRequest: TCRequestModel {
         /// 专用通道ID
         public let directConnectTunnelId: String
-        
+
         /// 过滤条件：
         /// route-type：路由类型，取值：BGP/STATIC
         /// route-subnet：路由cidr，取值如：192.68.1.0/24
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
-        
-        public init (directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.directConnectTunnelId = directConnectTunnelId
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectTunnelId = "DirectConnectTunnelId"
             case filters = "Filters"
@@ -45,33 +45,33 @@ extension Dc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribePublicDirectConnectTunnelRoutes返回参数结构体
     public struct DescribePublicDirectConnectTunnelRoutesResponse: TCResponseModel {
         /// 互联网通道路由列表
         public let routes: [DirectConnectTunnelRoute]
-        
+
         /// 记录总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case routes = "Routes"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询互联网通道路由列表
     ///
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
     @inlinable
-    public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicDirectConnectTunnelRoutesResponse > {
+    public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicDirectConnectTunnelRoutesResponse> {
         self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询互联网通道路由列表
     ///
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
@@ -79,15 +79,15 @@ extension Dc {
     public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicDirectConnectTunnelRoutesResponse {
         try await self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询互联网通道路由列表
     ///
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
     @inlinable
-    public func describePublicDirectConnectTunnelRoutes(directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicDirectConnectTunnelRoutesResponse > {
+    public func describePublicDirectConnectTunnelRoutes(directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicDirectConnectTunnelRoutesResponse> {
         self.describePublicDirectConnectTunnelRoutes(DescribePublicDirectConnectTunnelRoutesRequest(directConnectTunnelId: directConnectTunnelId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询互联网通道路由列表
     ///
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表

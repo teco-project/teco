@@ -19,40 +19,40 @@ extension Tcss {
     public struct DescribeComplianceAssetDetailInfoRequest: TCRequestModel {
         /// 客户资产ID。
         public let customerAssetId: UInt64
-        
-        public init (customerAssetId: UInt64) {
+
+        public init(customerAssetId: UInt64) {
             self.customerAssetId = customerAssetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customerAssetId = "CustomerAssetId"
         }
     }
-    
+
     /// DescribeComplianceAssetDetailInfo返回参数结构体
     public struct DescribeComplianceAssetDetailInfoResponse: TCResponseModel {
         /// 某资产的详情。
         public let assetDetailInfo: ComplianceAssetDetailInfo
-        
+
         /// 当资产为容器时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerDetailInfo: ComplianceContainerDetailInfo?
-        
+
         /// 当资产为镜像时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageDetailInfo: ComplianceImageDetailInfo?
-        
+
         /// 当资产为主机时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostDetailInfo: ComplianceHostDetailInfo?
-        
+
         /// 当资产为K8S时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let k8sDetailInfo: ComplianceK8SDetailInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case assetDetailInfo = "AssetDetailInfo"
             case containerDetailInfo = "ContainerDetailInfo"
@@ -62,15 +62,15 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规查询某个资产的详情
     ///
     /// 查询某个资产的详情
     @inlinable
-    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetDetailInfoResponse > {
+    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetDetailInfoResponse> {
         self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询某个资产的详情
     ///
     /// 查询某个资产的详情
@@ -78,15 +78,15 @@ extension Tcss {
     public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
         try await self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规查询某个资产的详情
     ///
     /// 查询某个资产的详情
     @inlinable
-    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetDetailInfoResponse > {
+    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetDetailInfoResponse> {
         self.describeComplianceAssetDetailInfo(DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询某个资产的详情
     ///
     /// 查询某个资产的详情

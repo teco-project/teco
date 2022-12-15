@@ -19,47 +19,47 @@ extension Tcaplusdb {
     public struct ClearTablesRequest: TCRequestModel {
         /// 表所属集群实例ID
         public let clusterId: String
-        
+
         /// 待清理表信息列表
         public let selectedTables: [SelectedTableInfoNew]
-        
-        public init (clusterId: String, selectedTables: [SelectedTableInfoNew]) {
+
+        public init(clusterId: String, selectedTables: [SelectedTableInfoNew]) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case selectedTables = "SelectedTables"
         }
     }
-    
+
     /// ClearTables返回参数结构体
     public struct ClearTablesResponse: TCResponseModel {
         /// 清除表结果数量
         public let totalCount: UInt64
-        
+
         /// 清除表结果列表
         public let tableResults: [TableResultNew]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 清除表数据
     ///
     /// 根据给定的表信息，清除表数据。
     @inlinable
-    public func clearTables(_ input: ClearTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearTablesResponse > {
+    public func clearTables(_ input: ClearTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearTablesResponse> {
         self.client.execute(action: "ClearTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 清除表数据
     ///
     /// 根据给定的表信息，清除表数据。
@@ -67,15 +67,15 @@ extension Tcaplusdb {
     public func clearTables(_ input: ClearTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearTablesResponse {
         try await self.client.execute(action: "ClearTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 清除表数据
     ///
     /// 根据给定的表信息，清除表数据。
     @inlinable
-    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearTablesResponse > {
+    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearTablesResponse> {
         self.clearTables(ClearTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
     }
-    
+
     /// 清除表数据
     ///
     /// 根据给定的表信息，清除表数据。

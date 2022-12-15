@@ -19,44 +19,44 @@ extension Sqlserver {
     public struct DeleteIncrementalMigrationRequest: TCRequestModel {
         /// 目标实例ID
         public let instanceId: String
-        
+
         /// 备份导入任务ID，由CreateBackupMigration接口返回
         public let backupMigrationId: String
-        
+
         /// 增量备份导入任务ID，由CreateIncrementalMigration接口返回
         public let incrementalMigrationId: String
-        
-        public init (instanceId: String, backupMigrationId: String, incrementalMigrationId: String) {
+
+        public init(instanceId: String, backupMigrationId: String, incrementalMigrationId: String) {
             self.instanceId = instanceId
             self.backupMigrationId = backupMigrationId
             self.incrementalMigrationId = incrementalMigrationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case backupMigrationId = "BackupMigrationId"
             case incrementalMigrationId = "IncrementalMigrationId"
         }
     }
-    
+
     /// DeleteIncrementalMigration返回参数结构体
     public struct DeleteIncrementalMigrationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除增量备份导入任务
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable
-    public func deleteIncrementalMigration(_ input: DeleteIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIncrementalMigrationResponse > {
+    public func deleteIncrementalMigration(_ input: DeleteIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIncrementalMigrationResponse> {
         self.client.execute(action: "DeleteIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除增量备份导入任务
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
@@ -64,15 +64,15 @@ extension Sqlserver {
     public func deleteIncrementalMigration(_ input: DeleteIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIncrementalMigrationResponse {
         try await self.client.execute(action: "DeleteIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除增量备份导入任务
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable
-    public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIncrementalMigrationResponse > {
+    public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIncrementalMigrationResponse> {
         self.deleteIncrementalMigration(DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除增量备份导入任务
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。

@@ -19,48 +19,48 @@ extension Iecp {
     public struct CreateUserTokenRequest: TCRequestModel {
         /// token过期时间，有效值是1~300秒
         public let second: Int64?
-        
-        public init (second: Int64? = nil) {
+
+        public init(second: Int64? = nil) {
             self.second = second
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case second = "Second"
         }
     }
-    
+
     /// CreateUserToken返回参数结构体
     public struct CreateUserTokenResponse: TCResponseModel {
         /// 无
         public let token: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case token = "Token"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建token
     @inlinable
-    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserTokenResponse > {
+    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserTokenResponse> {
         self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建token
     @inlinable
     public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
         try await self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建token
     @inlinable
-    public func createUserToken(second: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserTokenResponse > {
+    public func createUserToken(second: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserTokenResponse> {
         self.createUserToken(CreateUserTokenRequest(second: second), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建token
     @inlinable
     public func createUserToken(second: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {

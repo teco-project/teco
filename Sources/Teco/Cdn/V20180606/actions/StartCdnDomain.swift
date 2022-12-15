@@ -20,34 +20,34 @@ extension Cdn {
         /// 域名
         /// 域名状态需要为【已停用】
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// StartCdnDomain返回参数结构体
     public struct StartCdnDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用加速域名
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable
-    public func startCdnDomain(_ input: StartCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartCdnDomainResponse > {
+    public func startCdnDomain(_ input: StartCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCdnDomainResponse> {
         self.client.execute(action: "StartCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用加速域名
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务
@@ -55,15 +55,15 @@ extension Cdn {
     public func startCdnDomain(_ input: StartCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
         try await self.client.execute(action: "StartCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用加速域名
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable
-    public func startCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartCdnDomainResponse > {
+    public func startCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCdnDomainResponse> {
         self.startCdnDomain(StartCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用加速域名
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务

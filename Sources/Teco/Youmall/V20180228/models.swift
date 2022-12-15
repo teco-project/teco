@@ -27,7 +27,7 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var arrivedTime: Date
-        
+
         /// 出场时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,19 +35,19 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var leaveTime: Date
-        
+
         /// 停留时间，秒
         public let staySecond: UInt64
-        
+
         /// 到场抓拍图片
         public let inCapPic: String
-        
+
         /// 出场抓拍图片
         public let outCapPic: String
-        
+
         /// 轨迹编码
         public let traceId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case arrivedTime = "ArrivedTime"
             case leaveTime = "LeaveTime"
@@ -57,27 +57,27 @@ extension Youmall {
             case traceId = "TraceId"
         }
     }
-    
+
     /// 摄像头抓图人物属性
     public struct CameraPersonInfo: TCOutputModel {
         /// 临时id，还未生成face id时返回
         public let tempId: String
-        
+
         /// 人脸face id
         public let faceId: Int64
-        
+
         /// 确定当次返回的哪个id有效，1-FaceId，2-TempId
         public let idType: Int64
-        
+
         /// 当次抓拍到的人脸图片base编码
         public let facePic: String
-        
+
         /// 当次抓拍时间戳
         public let time: Int64
-        
+
         /// 当前的person基本信息，图片以FacePic为准，结构体内未填
         public let personInfo: PersonInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case tempId = "TempId"
             case faceId = "FaceId"
@@ -87,7 +87,7 @@ extension Youmall {
             case personInfo = "PersonInfo"
         }
     }
-    
+
     /// 客户天轨迹
     public struct DailyTracePoint: TCOutputModel {
         /// 轨迹日期
@@ -97,92 +97,92 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var traceDate: Date
-        
+
         /// 轨迹点序列
         public let tracePointSet: [PersonTracePoint]
-        
+
         enum CodingKeys: String, CodingKey {
             case traceDate = "TraceDate"
             case tracePointSet = "TracePointSet"
         }
     }
-    
+
     /// 性别年龄分组下的客流信息
     public struct GenderAgeTrafficDetail: TCOutputModel {
         /// 性别: 0男1女
         public let gender: UInt64
-        
+
         /// 年龄区间，枚举值：0-17、18-23、24-30、31-40、41-50、51-60、>60
         public let ageGap: String
-        
+
         /// 客流量
         public let trafficCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case gender = "Gender"
             case ageGap = "AgeGap"
             case trafficCount = "TrafficCount"
         }
     }
-    
+
     /// 分时客流量详细信息
     public struct HourTrafficInfoDetail: TCOutputModel {
         /// 小时 取值为：0，1，2，3，4，5，6，7，8，9，10，11，12，13，14，15，16，17，18，19，20，21，22，23
         public let hour: UInt64
-        
+
         /// 分时客流量
         public let hourTrafficTotalCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case hour = "Hour"
             case hourTrafficTotalCount = "HourTrafficTotalCount"
         }
     }
-    
+
     /// 网络状态
     public struct NetworkAndShopInfo: TCOutputModel {
         /// 集团id
         public let companyId: String
-        
+
         /// 店铺id
         public let shopId: Int64
-        
+
         /// 店铺省份
         public let province: String
-        
+
         /// 店铺城市
         public let city: String
-        
+
         /// 店铺名
         public let shopName: String
-        
+
         /// 上传带宽，单位Mb/s，-1：未知
         public let upload: Float
-        
+
         /// 下载带宽，单位Mb/s，-1：未知
         public let download: Float
-        
+
         /// 最小延迟，单位ms，-1：未知
         public let minRtt: Float
-        
+
         /// 平均延迟，单位ms，-1：未知
         public let avgRtt: Float
-        
+
         /// 最大延迟，单位ms，-1：未知
         public let maxRtt: Float
-        
+
         /// 平均偏差延迟，单位ms，-1：未知
         public let mdevRtt: Float
-        
+
         /// 丢包率百分比，-1：未知
         public let loss: Float
-        
+
         /// 更新时间戳
         public let updateTime: Int64
-        
+
         /// 上报网络状态设备
         public let mac: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -200,30 +200,30 @@ extension Youmall {
             case mac = "Mac"
         }
     }
-    
+
     /// 查询网络状态历史数据输出
     public struct NetworkHistoryInfo: TCOutputModel {
         /// 总数
         public let count: Int64
-        
+
         /// 集团id
         public let companyId: String
-        
+
         /// 店铺id
         public let shopId: Int64
-        
+
         /// 店铺省份
         public let province: String
-        
+
         /// 店铺城市
         public let city: String
-        
+
         /// 店铺名称
         public let shopName: String
-        
+
         /// 网络信息
         public let infos: [NetworkInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case companyId = "CompanyId"
@@ -234,36 +234,36 @@ extension Youmall {
             case infos = "Infos"
         }
     }
-    
+
     /// 没有店铺信息的网络状态
     public struct NetworkInfo: TCOutputModel {
         /// 上传带宽，单位Mb/s，-1：未知
         public let upload: Float
-        
+
         /// 下载带宽，单位Mb/s，-1：未知
         public let download: Float
-        
+
         /// 最小延迟，单位ms，-1：未知
         public let minRtt: Float
-        
+
         /// 平均延迟，单位ms，-1：未知
         public let avgRtt: Float
-        
+
         /// 最大延迟，单位ms，-1：未知
         public let maxRtt: Float
-        
+
         /// 平均偏差延迟，单位ms，-1：未知
         public let mdevRtt: Float
-        
+
         /// 丢包率百分比，-1：未知
         public let loss: Float
-        
+
         /// 更新时间戳
         public let updateTime: Int64
-        
+
         /// 上报网络状态设备
         public let mac: String
-        
+
         enum CodingKeys: String, CodingKey {
             case upload = "Upload"
             case download = "Download"
@@ -276,29 +276,29 @@ extension Youmall {
             case mac = "Mac"
         }
     }
-    
+
     /// 获取当前门店最新网络状态数据返回结构
     public struct NetworkLastInfo: TCOutputModel {
         /// 总数
         public let count: Int64
-        
+
         /// 网络状态
         public let infos: [NetworkAndShopInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case infos = "Infos"
         }
     }
-    
+
     /// 轨迹点坐标
     public struct PersonCoordinate: TCOutputModel {
         /// CAD图X坐标
         public let cadx: Float
-        
+
         /// CAD图Y坐标
         public let cady: Float
-        
+
         /// 抓拍时间点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -306,22 +306,22 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var capTime: Date
-        
+
         /// 抓拍图片
         public let capPic: String
-        
+
         /// 卖场区域类型
         public let mallAreaType: Int64
-        
+
         /// 坐标编号
         public let posId: Int64
-        
+
         /// 门店编号
         public let shopId: Int64
-        
+
         /// 事件
         public let event: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cadx = "CADX"
             case cady = "CADY"
@@ -333,39 +333,39 @@ extension Youmall {
             case event = "Event"
         }
     }
-    
+
     /// 用户信息
     public struct PersonInfo: TCOutputModel {
         /// 用户ID
         public let personId: UInt64
-        
+
         /// 人脸图片Base64内容，已弃用，返回默认空值
         public let personPicture: String
-        
+
         /// 性别：0男1女
         public let gender: Int64
-        
+
         /// 年龄
         public let age: Int64
-        
+
         /// 身份类型（0表示普通顾客，1 白名单，2 表示黑名单）
         public let personType: Int64
-        
+
         /// 人脸图片Url，在有效期内可以访问下载
         public let personPictureUrl: String
-        
+
         /// 身份子类型:
         /// PersonType=0时(普通顾客)，0普通顾客
         /// PersonType=1时(白名单)，0店员，1商场人员，2其他类型人员，3区域经理，4注册用户，5VIP用户
         /// PersonType=2时(黑名单)，0普通黑名单，1小偷)
         public let personSubType: Int64
-        
+
         /// 到访次数，-1表示未知
         public let visitTimes: Int64
-        
+
         /// 到访天数，-1表示未知
         public let visitDays: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case personPicture = "PersonPicture"
@@ -378,18 +378,18 @@ extension Youmall {
             case visitDays = "VisitDays"
         }
     }
-    
+
     /// 来访客人基本资料
     public struct PersonProfile: TCOutputModel {
         /// 客人编码
         public let personId: String
-        
+
         /// 性别
         public let gender: UInt64
-        
+
         /// 年龄
         public let age: UInt64
-        
+
         /// 首次到场时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -397,16 +397,16 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var firstArrivedTime: Date
-        
+
         /// 来访次数
         public let arrivedCount: UInt64
-        
+
         /// 客户图片
         public let picUrl: String
-        
+
         /// 置信度
         public let similarity: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case gender = "Gender"
@@ -417,45 +417,45 @@ extension Youmall {
             case similarity = "Similarity"
         }
     }
-    
+
     /// 修改顾客属性参数
     public struct PersonTagInfo: TCInputModel {
         /// 顾客原类型
         public let oldType: Int64
-        
+
         /// 顾客新类型
         public let newType: Int64
-        
+
         /// 顾客face id
         public let personId: Int64
-        
-        public init (oldType: Int64, newType: Int64, personId: Int64) {
+
+        public init(oldType: Int64, newType: Int64, personId: Int64) {
             self.oldType = oldType
             self.newType = newType
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case oldType = "OldType"
             case newType = "NewType"
             case personId = "PersonId"
         }
     }
-    
+
     /// 客户轨迹点
     public struct PersonTracePoint: TCOutputModel {
         /// 卖场区域编码
         public let mallAreaId: UInt64
-        
+
         /// 门店编码
         public let shopId: UInt64
-        
+
         /// 卖场区域类型
         public let mallAreaType: UInt64
-        
+
         /// 轨迹事件
         public let traceEventType: UInt64
-        
+
         /// 轨迹事件发生时间点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -463,16 +463,16 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var traceEventTime: Date
-        
+
         /// 抓拍图片
         public let capPic: String
-        
+
         /// 购物袋类型
         public let shoppingBagType: UInt64
-        
+
         /// 购物袋数量
         public let shoppingBagCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case mallAreaId = "MallAreaId"
             case shopId = "ShopId"
@@ -484,50 +484,50 @@ extension Youmall {
             case shoppingBagCount = "ShoppingBagCount"
         }
     }
-    
+
     /// 客户轨迹序列
     public struct PersonTraceRoute: TCOutputModel {
         /// 轨迹编码
         public let traceId: String
-        
+
         /// 轨迹点序列
         public let tracePointSet: [PersonTracePoint]
-        
+
         enum CodingKeys: String, CodingKey {
             case traceId = "TraceId"
             case tracePointSet = "TracePointSet"
         }
     }
-    
+
     /// 用户到访明细
     public struct PersonVisitInfo: TCOutputModel {
         /// 用户ID
         public let personId: UInt64
-        
+
         /// 用户到访ID
         public let visitId: UInt64
-        
+
         /// 到访时间：Unix时间戳
         public let inTime: UInt64
-        
+
         /// 抓拍到的头像Base64内容，已弃用，返回默认空值
         public let capturedPicture: String
-        
+
         /// 口罩类型：0不戴口罩，1戴口罩
         public let maskType: UInt64
-        
+
         /// 眼镜类型：0不戴眼镜，1普通眼镜 , 2墨镜
         public let glassType: UInt64
-        
+
         /// 发型：0 短发,  1长发
         public let hairType: UInt64
-        
+
         /// 抓拍到的头像Url，在有效期内可以访问下载
         public let capturedPictureUrl: String
-        
+
         /// 抓拍头像的场景图信息
         public let sceneInfo: SceneInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case visitId = "VisitId"
@@ -540,24 +540,24 @@ extension Youmall {
             case sceneInfo = "SceneInfo"
         }
     }
-    
+
     /// 场景图信息
     public struct SceneInfo: TCOutputModel {
         /// 场景图
         public let scenePictureURL: String
-        
+
         /// 抓拍头像左上角X坐标在场景图中的像素点位置
         public let headX: Int64
-        
+
         /// 抓拍头像左上角Y坐标在场景图中的像素点位置
         public let headY: Int64
-        
+
         /// 抓拍头像在场景图中占有的像素宽度
         public let headWidth: Int64
-        
+
         /// 抓拍头像在场景图中占有的像素高度
         public let headHeight: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case scenePictureURL = "ScenePictureURL"
             case headX = "HeadX"
@@ -566,7 +566,7 @@ extension Youmall {
             case headHeight = "HeadHeight"
         }
     }
-    
+
     /// 门店客流量列表信息
     public struct ShopDayTrafficInfo: TCOutputModel {
         /// 日期
@@ -576,20 +576,20 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 客流量
         public let dayTrafficTotalCount: UInt64
-        
+
         /// 性别年龄分组下的客流信息
         public let genderAgeTrafficDetailSet: [GenderAgeTrafficDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case dayTrafficTotalCount = "DayTrafficTotalCount"
             case genderAgeTrafficDetailSet = "GenderAgeTrafficDetailSet"
         }
     }
-    
+
     /// 分时客流量信息
     public struct ShopHourTrafficInfo: TCOutputModel {
         /// 日期，格式yyyy-MM-dd
@@ -599,39 +599,39 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 分时客流详细信息
         public let hourTrafficInfoDetailSet: [HourTrafficInfoDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case hourTrafficInfoDetailSet = "HourTrafficInfoDetailSet"
         }
     }
-    
+
     /// 客户所属的门店信息
     public struct ShopInfo: TCOutputModel {
         /// 公司ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 门店名称
         public let shopName: String
-        
+
         /// 客户门店编码
         public let shopCode: String
-        
+
         /// 省
         public let province: String
-        
+
         /// 市
         public let city: String
-        
+
         /// 公司名称
         public let companyName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -642,67 +642,67 @@ extension Youmall {
             case companyName = "CompanyName"
         }
     }
-    
+
     /// 轨迹动线信息子结构
     public struct TrajectorySunData: TCOutputModel {
         /// 区域动线，形如 x-x-x-x-x，其中 x 为区域 ID
         public let zones: String
-        
+
         /// 该动线出现次数
         public let count: Int64
-        
+
         /// 该动线平均停留时间（秒）
         public let avgStayTime: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case zones = "Zones"
             case count = "Count"
             case avgStayTime = "AvgStayTime"
         }
     }
-    
+
     /// 区域性别平均停留时间子结构
     public struct ZoneAgeGroupAvrStayTime: TCOutputModel {
         /// 男性平均停留时间
         public let maleAvrStayTime: Float
-        
+
         /// 女性平均停留时间
         public let femaleAvrStayTime: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case maleAvrStayTime = "MaleAvrStayTime"
             case femaleAvrStayTime = "FemaleAvrStayTime"
         }
     }
-    
+
     /// 每日客流统计子结构
     public struct ZoneDayFlow: TCOutputModel {
         /// 日期，如 2018-08-6
         public let day: String
-        
+
         /// 客流量
         public let flowCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case day = "Day"
             case flowCount = "FlowCount"
         }
     }
-    
+
     /// 客流停留统计子结构
     public struct ZoneFlowAndAvrStayTime: TCOutputModel {
         /// 区域id
         public let zoneId: Int64
-        
+
         /// 区域名称
         public let zoneName: String
-        
+
         /// 人流量
         public let flowCount: UInt64
-        
+
         /// 平均停留时长
         public let avrStayTime: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case zoneName = "ZoneName"
@@ -710,21 +710,21 @@ extension Youmall {
             case avrStayTime = "AvrStayTime"
         }
     }
-    
+
     /// 客流统计分时数据子结构
     public struct ZoneHourFlow: TCOutputModel {
         /// 分时 0~23
         public let hour: Int64
-        
+
         /// 客流量
         public let flowCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case hour = "Hour"
             case flowCount = "FlowCount"
         }
     }
-    
+
     /// 门店区域客流信息
     public struct ZoneTrafficInfo: TCOutputModel {
         /// 日期
@@ -734,30 +734,30 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 门店区域客流详细信息
         public let zoneTrafficInfoDetailSet: [ZoneTrafficInfoDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case zoneTrafficInfoDetailSet = "ZoneTrafficInfoDetailSet"
         }
     }
-    
+
     /// 门店区域客流详细信息
     public struct ZoneTrafficInfoDetail: TCOutputModel {
         /// 区域ID
         public let zoneId: UInt64
-        
+
         /// 区域名称
         public let zoneName: String
-        
+
         /// 客流量
         public let trafficTotalCount: UInt64
-        
+
         /// 平均停留时间
         public let avgStayTime: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case zoneName = "ZoneName"

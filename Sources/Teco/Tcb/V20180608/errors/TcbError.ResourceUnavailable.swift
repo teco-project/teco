@@ -24,73 +24,73 @@ extension TCTcbError {
             case resourceOverdue = "ResourceUnavailable.ResourceOverdue"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源不可用-余额不足。
         public static var balanceNotEnough: ResourceUnavailable {
             ResourceUnavailable(.balanceNotEnough)
         }
-        
+
         /// 资源不可用，CDN冻结。
         public static var cdnFreezed: ResourceUnavailable {
             ResourceUnavailable(.cdnFreezed)
         }
-        
+
         /// 当前发票余额不足，无法退费。
         public static var invoiceAmountLack: ResourceUnavailable {
             ResourceUnavailable(.invoiceAmountLack)
         }
-        
+
         /// 云项目OAuth的refreshToken已过期，需要重新授权。
         public static var refreshTokenExpired: ResourceUnavailable {
             ResourceUnavailable(.refreshTokenExpired)
         }
-        
+
         /// 资源过期。
         public static var resourceOverdue: ResourceUnavailable {
             ResourceUnavailable(.resourceOverdue)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asTcbError() -> TCTcbError {
             let code: TCTcbError.Code
             switch self.error {
-            case .balanceNotEnough: 
+            case .balanceNotEnough:
                 code = .resourceUnavailable_BalanceNotEnough
-            case .cdnFreezed: 
+            case .cdnFreezed:
                 code = .resourceUnavailable_CDNFreezed
-            case .invoiceAmountLack: 
+            case .invoiceAmountLack:
                 code = .resourceUnavailable_InvoiceAmountLack
-            case .refreshTokenExpired: 
+            case .refreshTokenExpired:
                 code = .resourceUnavailable_RefreshTokenExpired
-            case .resourceOverdue: 
+            case .resourceOverdue:
                 code = .resourceUnavailable_ResourceOverdue
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCTcbError(code, context: self.context)

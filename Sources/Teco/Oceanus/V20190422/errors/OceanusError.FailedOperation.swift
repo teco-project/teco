@@ -25,80 +25,80 @@ extension TCOceanusError {
             case userNotAuthenticated = "FailedOperation.UserNotAuthenticated"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 数据库连接失败，请检查参数是否填写正确。
         public static var dataSourceConnectionFailed: FailedOperation {
             FailedOperation(.dataSourceConnectionFailed)
         }
-        
+
         /// 重复的作业名。
         public static var duplicatedJobName: FailedOperation {
             FailedOperation(.duplicatedJobName)
         }
-        
+
         /// 查询资源关联标签失败。
         public static var getResourceTagsByResourceIds: FailedOperation {
             FailedOperation(.getResourceTagsByResourceIds)
         }
-        
+
         /// 语法检查失败。
         public static var grammarCheckFailure: FailedOperation {
             FailedOperation(.grammarCheckFailure)
         }
-        
+
         /// SQL解析失败。
         public static var parseSql: FailedOperation {
             FailedOperation(.parseSql)
         }
-        
+
         /// 用户未实名验证。
         public static var userNotAuthenticated: FailedOperation {
             FailedOperation(.userNotAuthenticated)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asOceanusError() -> TCOceanusError {
             let code: TCOceanusError.Code
             switch self.error {
-            case .dataSourceConnectionFailed: 
+            case .dataSourceConnectionFailed:
                 code = .failedOperation_DataSourceConnectionFailed
-            case .duplicatedJobName: 
+            case .duplicatedJobName:
                 code = .failedOperation_DuplicatedJobName
-            case .getResourceTagsByResourceIds: 
+            case .getResourceTagsByResourceIds:
                 code = .failedOperation_GetResourceTagsByResourceIds
-            case .grammarCheckFailure: 
+            case .grammarCheckFailure:
                 code = .failedOperation_GrammarCheckFailure
-            case .parseSql: 
+            case .parseSql:
                 code = .failedOperation_ParseSql
-            case .userNotAuthenticated: 
+            case .userNotAuthenticated:
                 code = .failedOperation_UserNotAuthenticated
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCOceanusError(code, context: self.context)

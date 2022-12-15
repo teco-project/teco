@@ -19,58 +19,58 @@ extension Iotvideo {
     public struct CreateBatchRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 批次创建的设备数量
         public let devNum: UInt64
-        
+
         /// 批次创建的设备前缀。不超过24个字符
         public let devPre: String
-        
-        public init (productId: String, devNum: UInt64, devPre: String) {
+
+        public init(productId: String, devNum: UInt64, devPre: String) {
             self.productId = productId
             self.devNum = devNum
             self.devPre = devPre
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case devNum = "DevNum"
             case devPre = "DevPre"
         }
     }
-    
+
     /// CreateBatch返回参数结构体
     public struct CreateBatchResponse: TCResponseModel {
         /// 批次ID
         public let batchId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建批次
     @inlinable
-    public func createBatch(_ input: CreateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchResponse > {
+    public func createBatch(_ input: CreateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchResponse> {
         self.client.execute(action: "CreateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建批次
     @inlinable
     public func createBatch(_ input: CreateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchResponse {
         try await self.client.execute(action: "CreateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建批次
     @inlinable
-    public func createBatch(productId: String, devNum: UInt64, devPre: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchResponse > {
+    public func createBatch(productId: String, devNum: UInt64, devPre: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchResponse> {
         self.createBatch(CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建批次
     @inlinable
     public func createBatch(productId: String, devNum: UInt64, devPre: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchResponse {

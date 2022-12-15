@@ -19,49 +19,49 @@ extension Cwp {
     public struct ModifyBanModeRequest: TCRequestModel {
         /// 阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断
         public let mode: String
-        
+
         /// 阻断时间，用于标准阻断模式
         public let ttl: UInt64?
-        
-        public init (mode: String, ttl: UInt64? = nil) {
+
+        public init(mode: String, ttl: UInt64? = nil) {
             self.mode = mode
             self.ttl = ttl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
             case ttl = "Ttl"
         }
     }
-    
+
     /// ModifyBanMode返回参数结构体
     public struct ModifyBanModeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改爆破阻断模式
     @inlinable
-    public func modifyBanMode(_ input: ModifyBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBanModeResponse > {
+    public func modifyBanMode(_ input: ModifyBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanModeResponse> {
         self.client.execute(action: "ModifyBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改爆破阻断模式
     @inlinable
     public func modifyBanMode(_ input: ModifyBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {
         try await self.client.execute(action: "ModifyBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改爆破阻断模式
     @inlinable
-    public func modifyBanMode(mode: String, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBanModeResponse > {
+    public func modifyBanMode(mode: String, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanModeResponse> {
         self.modifyBanMode(ModifyBanModeRequest(mode: mode, ttl: ttl), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改爆破阻断模式
     @inlinable
     public func modifyBanMode(mode: String, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {

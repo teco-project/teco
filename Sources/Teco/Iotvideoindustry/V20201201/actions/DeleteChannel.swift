@@ -19,40 +19,40 @@ extension Iotvideoindustry {
     public struct DeleteChannelRequest: TCRequestModel {
         /// 设备ID
         public let deviceId: String
-        
+
         /// 通道ID
         public let channelId: String
-        
-        public init (deviceId: String, channelId: String) {
+
+        public init(deviceId: String, channelId: String) {
             self.deviceId = deviceId
             self.channelId = channelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case channelId = "ChannelId"
         }
     }
-    
+
     /// DeleteChannel返回参数结构体
     public struct DeleteChannelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除指定设备下通道
     ///
     /// 本接口用于删除设备下的通道
     /// 注意： 在线状态的设备不允许删除
     @inlinable
-    public func deleteChannel(_ input: DeleteChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteChannelResponse > {
+    public func deleteChannel(_ input: DeleteChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteChannelResponse> {
         self.client.execute(action: "DeleteChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除指定设备下通道
     ///
     /// 本接口用于删除设备下的通道
@@ -61,16 +61,16 @@ extension Iotvideoindustry {
     public func deleteChannel(_ input: DeleteChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteChannelResponse {
         try await self.client.execute(action: "DeleteChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除指定设备下通道
     ///
     /// 本接口用于删除设备下的通道
     /// 注意： 在线状态的设备不允许删除
     @inlinable
-    public func deleteChannel(deviceId: String, channelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteChannelResponse > {
+    public func deleteChannel(deviceId: String, channelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteChannelResponse> {
         self.deleteChannel(DeleteChannelRequest(deviceId: deviceId, channelId: channelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除指定设备下通道
     ///
     /// 本接口用于删除设备下的通道

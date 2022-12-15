@@ -38,173 +38,173 @@ extension TCSmsError {
             case templateParameterLengthLimit = "InvalidParameterValue.TemplateParameterLengthLimit"
             case templateWithDirtyWords = "InvalidParameterValue.TemplateWithDirtyWords"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数 BeginTime 校验失败。
         public static var beginTimeVerifyFail: InvalidParameterValue {
             InvalidParameterValue(.beginTimeVerifyFail)
         }
-        
+
         /// 请求的短信内容太长，短信长度规则请参考 <a href="https://cloud.tencent.com/document/product/382/18058">国内短信内容长度计算规则</a>。
         public static var contentLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.contentLengthLimit)
         }
-        
+
         /// 参数 EndTime 校验失败。
         public static var endTimeVerifyFail: InvalidParameterValue {
             InvalidParameterValue(.endTimeVerifyFail)
         }
-        
+
         /// 上传的转码图片格式错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var imageInvalid: InvalidParameterValue {
             InvalidParameterValue(.imageInvalid)
         }
-        
+
         /// 手机号格式错误，请参考 <a href="https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1016.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F">1016错误详解</a>。
         public static var incorrectPhoneNumber: InvalidParameterValue {
             InvalidParameterValue(.incorrectPhoneNumber)
         }
-        
+
         /// DocumentType 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var invalidDocumentType: InvalidParameterValue {
             InvalidParameterValue(.invalidDocumentType)
         }
-        
+
         /// International 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var invalidInternational: InvalidParameterValue {
             InvalidParameterValue(.invalidInternational)
         }
-        
+
         /// SignPurpose 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var invalidSignPurpose: InvalidParameterValue {
             InvalidParameterValue(.invalidSignPurpose)
         }
-        
+
         /// 无效的拉取起始/截止时间，具体原因可能是请求的 SendDateTime 大于 EndDateTime。
         public static var invalidStartTime: InvalidParameterValue {
             InvalidParameterValue(.invalidStartTime)
         }
-        
+
         /// 模板格式错误，请参考<a href="https://cloud.tencent.com/document/product/382/39023">正文模板审核标准</a>。
         public static var invalidTemplateFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidTemplateFormat)
         }
-        
+
         /// UsedMethod 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var invalidUsedMethod: InvalidParameterValue {
             InvalidParameterValue(.invalidUsedMethod)
         }
-        
+
         /// 参数 Limit 校验失败。
         public static var limitVerifyFail: InvalidParameterValue {
             InvalidParameterValue(.limitVerifyFail)
         }
-        
+
         /// 参数 Offset 校验失败。
         public static var offsetVerifyFail: InvalidParameterValue {
             InvalidParameterValue(.offsetVerifyFail)
         }
-        
+
         /// 禁止在模板变量中使用 URL。
         public static var prohibitedUseUrlInTemplateParameter: InvalidParameterValue {
             InvalidParameterValue(.prohibitedUseUrlInTemplateParameter)
         }
-        
+
         /// SdkAppId 不存在。
         ///
         /// 请检查该应用ID是否属于该账号。
         public static var sdkAppIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.sdkAppIdNotExist)
         }
-        
+
         /// 此签名已经通过审核，无法再次进行修改。
         public static var signAlreadyPassedCheck: InvalidParameterValue {
             InvalidParameterValue(.signAlreadyPassedCheck)
         }
-        
+
         /// 已存在相同的待审核签名。
         public static var signExistAndUnapproved: InvalidParameterValue {
             InvalidParameterValue(.signExistAndUnapproved)
         }
-        
+
         /// 验证码模板参数格式错误，验证码类模板，模板变量只能传入0 - 6位（包括6位）纯数字。
         public static var templateParameterFormatError: InvalidParameterValue {
             InvalidParameterValue(.templateParameterFormatError)
         }
-        
+
         /// 单个模板变量字符数超过12个，企业认证用户不限制单个变量值字数，您可以 <a href="https://cloud.tencent.com/document/product/378/34075">变更实名认证模式</a>，变更为企业认证用户后，该限制变更约1小时左右生效。
         public static var templateParameterLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.templateParameterLengthLimit)
         }
-        
+
         /// 模板内容存在敏感词，请参考<a href="https://cloud.tencent.com/document/product/382/39023">正文模板审核标准</a>。
         public static var templateWithDirtyWords: InvalidParameterValue {
             InvalidParameterValue(.templateWithDirtyWords)
         }
-        
+
         public func asSmsError() -> TCSmsError {
             let code: TCSmsError.Code
             switch self.error {
-            case .beginTimeVerifyFail: 
+            case .beginTimeVerifyFail:
                 code = .invalidParameterValue_BeginTimeVerifyFail
-            case .contentLengthLimit: 
+            case .contentLengthLimit:
                 code = .invalidParameterValue_ContentLengthLimit
-            case .endTimeVerifyFail: 
+            case .endTimeVerifyFail:
                 code = .invalidParameterValue_EndTimeVerifyFail
-            case .imageInvalid: 
+            case .imageInvalid:
                 code = .invalidParameterValue_ImageInvalid
-            case .incorrectPhoneNumber: 
+            case .incorrectPhoneNumber:
                 code = .invalidParameterValue_IncorrectPhoneNumber
-            case .invalidDocumentType: 
+            case .invalidDocumentType:
                 code = .invalidParameterValue_InvalidDocumentType
-            case .invalidInternational: 
+            case .invalidInternational:
                 code = .invalidParameterValue_InvalidInternational
-            case .invalidSignPurpose: 
+            case .invalidSignPurpose:
                 code = .invalidParameterValue_InvalidSignPurpose
-            case .invalidStartTime: 
+            case .invalidStartTime:
                 code = .invalidParameterValue_InvalidStartTime
-            case .invalidTemplateFormat: 
+            case .invalidTemplateFormat:
                 code = .invalidParameterValue_InvalidTemplateFormat
-            case .invalidUsedMethod: 
+            case .invalidUsedMethod:
                 code = .invalidParameterValue_InvalidUsedMethod
-            case .limitVerifyFail: 
+            case .limitVerifyFail:
                 code = .invalidParameterValue_LimitVerifyFail
-            case .offsetVerifyFail: 
+            case .offsetVerifyFail:
                 code = .invalidParameterValue_OffsetVerifyFail
-            case .prohibitedUseUrlInTemplateParameter: 
+            case .prohibitedUseUrlInTemplateParameter:
                 code = .invalidParameterValue_ProhibitedUseUrlInTemplateParameter
-            case .sdkAppIdNotExist: 
+            case .sdkAppIdNotExist:
                 code = .invalidParameterValue_SdkAppIdNotExist
-            case .signAlreadyPassedCheck: 
+            case .signAlreadyPassedCheck:
                 code = .invalidParameterValue_SignAlreadyPassedCheck
-            case .signExistAndUnapproved: 
+            case .signExistAndUnapproved:
                 code = .invalidParameterValue_SignExistAndUnapproved
-            case .templateParameterFormatError: 
+            case .templateParameterFormatError:
                 code = .invalidParameterValue_TemplateParameterFormatError
-            case .templateParameterLengthLimit: 
+            case .templateParameterLengthLimit:
                 code = .invalidParameterValue_TemplateParameterLengthLimit
-            case .templateWithDirtyWords: 
+            case .templateWithDirtyWords:
                 code = .invalidParameterValue_TemplateWithDirtyWords
             }
             return TCSmsError(code, context: self.context)

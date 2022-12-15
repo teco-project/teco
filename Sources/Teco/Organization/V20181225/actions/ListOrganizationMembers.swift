@@ -19,57 +19,57 @@ extension Organization {
     public struct ListOrganizationMembersRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 限制数目
         public let limit: UInt64?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// ListOrganizationMembers返回参数结构体
     public struct ListOrganizationMembersResponse: TCResponseModel {
         /// 成员列表
         public let members: [OrgMember]
-        
+
         /// 总数目
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case members = "Members"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
-    public func listOrganizationMembers(_ input: ListOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationMembersResponse > {
+    public func listOrganizationMembers(_ input: ListOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationMembersResponse> {
         self.client.execute(action: "ListOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
     public func listOrganizationMembers(_ input: ListOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationMembersResponse {
         try await self.client.execute(action: "ListOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
-    public func listOrganizationMembers(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationMembersResponse > {
+    public func listOrganizationMembers(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationMembersResponse> {
         self.listOrganizationMembers(ListOrganizationMembersRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取企业组织成员列表
     @inlinable
     public func listOrganizationMembers(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationMembersResponse {

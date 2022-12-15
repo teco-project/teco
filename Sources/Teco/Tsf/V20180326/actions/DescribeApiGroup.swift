@@ -19,49 +19,49 @@ extension Tsf {
     public struct DescribeApiGroupRequest: TCRequestModel {
         /// API 分组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DescribeApiGroup返回参数结构体
     public struct DescribeApiGroupResponse: TCResponseModel {
         /// API分组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ApiGroupInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询API分组
     @inlinable
-    public func describeApiGroup(_ input: DescribeApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiGroupResponse > {
+    public func describeApiGroup(_ input: DescribeApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiGroupResponse> {
         self.client.execute(action: "DescribeApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询API分组
     @inlinable
     public func describeApiGroup(_ input: DescribeApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupResponse {
         try await self.client.execute(action: "DescribeApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询API分组
     @inlinable
-    public func describeApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiGroupResponse > {
+    public func describeApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiGroupResponse> {
         self.describeApiGroup(DescribeApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询API分组
     @inlinable
     public func describeApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupResponse {

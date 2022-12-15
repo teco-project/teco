@@ -19,39 +19,39 @@ extension Live {
     public struct ModifyLivePlayDomainRequest: TCRequestModel {
         /// 播放域名。
         public let domainName: String
-        
+
         /// 拉流域名类型。1-国内；2-全球；3-境外
         public let playType: Int64
-        
-        public init (domainName: String, playType: Int64) {
+
+        public init(domainName: String, playType: Int64) {
             self.domainName = domainName
             self.playType = playType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case playType = "PlayType"
         }
     }
-    
+
     /// ModifyLivePlayDomain返回参数结构体
     public struct ModifyLivePlayDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改播放域名信息
     ///
     /// 修改播放域名信息。
     @inlinable
-    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayDomainResponse > {
+    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayDomainResponse> {
         self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改播放域名信息
     ///
     /// 修改播放域名信息。
@@ -59,15 +59,15 @@ extension Live {
     public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
         try await self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改播放域名信息
     ///
     /// 修改播放域名信息。
     @inlinable
-    public func modifyLivePlayDomain(domainName: String, playType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayDomainResponse > {
+    public func modifyLivePlayDomain(domainName: String, playType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayDomainResponse> {
         self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改播放域名信息
     ///
     /// 修改播放域名信息。

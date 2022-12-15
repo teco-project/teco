@@ -19,28 +19,28 @@ extension Ivld {
     public struct ImportMediaRequest: TCRequestModel {
         /// 待分析视频的URL，目前只支持*不带签名的*COS地址，长度最长1KB
         public let url: String
-        
+
         /// 待分析视频的MD5，为空时不做校验，否则会做MD5校验，长度必须为32B
         public let md5: String?
-        
+
         /// 待分析视频的名称，指定后可支持筛选，最多64B
         public let name: String?
-        
+
         /// 当非本人外部视频地址导入时，该字段为转存的cos桶地址且不可为空; 示例：https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${PathPrefix}/  (注意，cos路径需要以/分隔符结尾)。
         /// 推荐采用本主帐号COS桶，如果使用其他帐号COS桶，请确保COS桶可写，否则可导致分析失败
         public let writeBackCosPath: String?
-        
+
         /// 自定义标签，可用于查询
         public let label: String?
-        
+
         /// 媒资导入完成的回调地址，该设置优先级高于控制台全局的设置；
         public let callbackURL: String?
-        
+
         /// 媒资文件类型，详细定义参见[MediaPreknownInfo.MediaType](https://cloud.tencent.com/document/product/1509/65063#MediaPreknownInfo)
         /// 默认为2(视频)
         public let mediaType: Int64?
-        
-        public init (url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil) {
+
+        public init(url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil) {
             self.url = url
             self.md5 = md5
             self.name = name
@@ -49,7 +49,7 @@ extension Ivld {
             self.callbackURL = callbackURL
             self.mediaType = mediaType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "URL"
             case md5 = "MD5"
@@ -60,21 +60,21 @@ extension Ivld {
             case mediaType = "MediaType"
         }
     }
-    
+
     /// ImportMedia返回参数结构体
     public struct ImportMediaResponse: TCResponseModel {
         /// 媒资文件在系统中的ID
         public let mediaId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaId = "MediaId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导入媒资文件
     ///
     /// 将URL指向的媒资视频文件导入系统之中。
@@ -83,10 +83,10 @@ extension Ivld {
     /// 另外，目前产品也支持使用外部URL地址，但是当传入URL为非COS地址时，需要您指定额外的WriteBackCosPath以供产品回写结果数据。
     /// 分析完成后，本产品将在您的`${Bucket}`桶内创建名为`${ObjectKey}_${task-create-time}`的目录(`task-create-time`形式为1970-01-01T08:08:08)并将分析结果将回传回该目录，也即，结构化分析结果(包括图片，JSON等数据)将会写回`https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${ObjectKey}_${task-create-time}`目录
     @inlinable
-    public func importMedia(_ input: ImportMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportMediaResponse > {
+    public func importMedia(_ input: ImportMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaResponse> {
         self.client.execute(action: "ImportMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导入媒资文件
     ///
     /// 将URL指向的媒资视频文件导入系统之中。
@@ -98,7 +98,7 @@ extension Ivld {
     public func importMedia(_ input: ImportMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaResponse {
         try await self.client.execute(action: "ImportMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导入媒资文件
     ///
     /// 将URL指向的媒资视频文件导入系统之中。
@@ -107,10 +107,10 @@ extension Ivld {
     /// 另外，目前产品也支持使用外部URL地址，但是当传入URL为非COS地址时，需要您指定额外的WriteBackCosPath以供产品回写结果数据。
     /// 分析完成后，本产品将在您的`${Bucket}`桶内创建名为`${ObjectKey}_${task-create-time}`的目录(`task-create-time`形式为1970-01-01T08:08:08)并将分析结果将回传回该目录，也即，结构化分析结果(包括图片，JSON等数据)将会写回`https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${ObjectKey}_${task-create-time}`目录
     @inlinable
-    public func importMedia(url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportMediaResponse > {
+    public func importMedia(url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaResponse> {
         self.importMedia(ImportMediaRequest(url: url, md5: md5, name: name, writeBackCosPath: writeBackCosPath, label: label, callbackURL: callbackURL, mediaType: mediaType), logger: logger, on: eventLoop)
     }
-    
+
     /// 导入媒资文件
     ///
     /// 将URL指向的媒资视频文件导入系统之中。

@@ -19,49 +19,49 @@ extension Ssa {
     public struct DescribeAssetDetailRequest: TCRequestModel {
         /// 查询过滤参数
         public let params: String
-        
-        public init (params: String) {
+
+        public init(params: String) {
             self.params = params
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case params = "Params"
         }
     }
-    
+
     /// DescribeAssetDetail返回参数结构体
     public struct DescribeAssetDetailResponse: TCResponseModel {
         /// 资产详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: AssetDetail?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资产安全页资产详情
     @inlinable
-    public func describeAssetDetail(_ input: DescribeAssetDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDetailResponse > {
+    public func describeAssetDetail(_ input: DescribeAssetDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDetailResponse> {
         self.client.execute(action: "DescribeAssetDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资产安全页资产详情
     @inlinable
     public func describeAssetDetail(_ input: DescribeAssetDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDetailResponse {
         try await self.client.execute(action: "DescribeAssetDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资产安全页资产详情
     @inlinable
-    public func describeAssetDetail(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDetailResponse > {
+    public func describeAssetDetail(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDetailResponse> {
         self.describeAssetDetail(DescribeAssetDetailRequest(params: params), logger: logger, on: eventLoop)
     }
-    
+
     /// 资产安全页资产详情
     @inlinable
     public func describeAssetDetail(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDetailResponse {

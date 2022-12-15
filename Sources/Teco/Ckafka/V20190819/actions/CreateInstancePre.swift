@@ -19,60 +19,60 @@ extension Ckafka {
     public struct CreateInstancePreRequest: TCRequestModel {
         /// 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         public let instanceName: String
-        
+
         /// 可用区，购买多可用区实例时，填写ZoneIds.N字段中的任意一个值
         public let zoneId: Int64
-        
+
         /// 预付费购买时长，例如 "1m",就是一个月
         public let period: String
-        
+
         /// 实例规格说明 专业版实例[所有规格]填写1.
         /// 标准版实例 ([入门型]填写1，[标准型]填写2，[进阶型]填写3，[容量型]填写4，[高阶型1]填写5，[高阶性2]填写6,[高阶型3]填写7,[高阶型4]填写8，[独占型]填写9。
         public let instanceType: Int64
-        
+
         /// vpcId，不填默认基础网络
         public let vpcId: String?
-        
+
         /// 子网id，vpc网络需要传该参数，基础网络可以不传
         public let subnetId: String?
-        
+
         /// 可选。实例日志的最长保留时间，单位分钟，默认为10080（7天），最大30天，不填默认0，代表不开启日志保留时间回收策略
         public let msgRetentionTime: Int64?
-        
+
         /// 创建实例时可以选择集群Id, 该入参表示集群Id
         public let clusterId: Int64?
-        
+
         /// 预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         public let renewFlag: Int64?
-        
+
         /// CKafka版本号[0.10.2、1.1.1、2.4.1], 默认是1.1.1
         public let kafkaVersion: String?
-        
+
         /// 实例类型: [标准版实例]填写 standard(默认), [专业版实例]填写 profession
         public let specificationsType: String?
-        
+
         /// 磁盘大小,专业版不填写默认最小磁盘,填写后根据磁盘带宽分区数弹性计算
         public let diskSize: Int64?
-        
+
         /// 带宽,专业版不填写默认最小带宽,填写后根据磁盘带宽分区数弹性计算
         public let bandWidth: Int64?
-        
+
         /// 分区大小,专业版不填写默认最小分区数,填写后根据磁盘带宽分区数弹性计算
         public let partition: Int64?
-        
+
         /// 标签
         public let tags: [Tag]?
-        
+
         /// 磁盘类型（ssd填写CLOUD_SSD，sata填写CLOUD_BASIC）
         public let diskType: String?
-        
+
         /// 跨可用区，zoneIds必填
         public let multiZoneFlag: Bool?
-        
+
         /// 可用区列表，购买多可用区实例时为必填项
         public let zoneIds: [Int64]?
-        
-        public init (instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil) {
+
+        public init(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil) {
             self.instanceName = instanceName
             self.zoneId = zoneId
             self.period = period
@@ -92,7 +92,7 @@ extension Ckafka {
             self.multiZoneFlag = multiZoneFlag
             self.zoneIds = zoneIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceName = "InstanceName"
             case zoneId = "ZoneId"
@@ -114,39 +114,39 @@ extension Ckafka {
             case zoneIds = "ZoneIds"
         }
     }
-    
+
     /// CreateInstancePre返回参数结构体
     public struct CreateInstancePreResponse: TCResponseModel {
         /// 返回结果
         public let result: CreateInstancePreResp
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePreResponse > {
+    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
         self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建实例(预付费包年包月)
     @inlinable
     public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
         try await self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePreResponse > {
+    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
         self.createInstancePre(CreateInstancePreRequest(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建实例(预付费包年包月)
     @inlinable
     public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {

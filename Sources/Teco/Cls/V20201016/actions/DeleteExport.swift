@@ -19,34 +19,34 @@ extension Cls {
     public struct DeleteExportRequest: TCRequestModel {
         /// 日志导出ID
         public let exportId: String
-        
-        public init (exportId: String) {
+
+        public init(exportId: String) {
             self.exportId = exportId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case exportId = "ExportId"
         }
     }
-    
+
     /// DeleteExport返回参数结构体
     public struct DeleteExportResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
     @inlinable
-    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExportResponse > {
+    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
         self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
@@ -54,15 +54,15 @@ extension Cls {
     public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
         try await self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
     @inlinable
-    public func deleteExport(exportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExportResponse > {
+    public func deleteExport(exportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
         self.deleteExport(DeleteExportRequest(exportId: exportId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务

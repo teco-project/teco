@@ -22,7 +22,7 @@ extension Dbbrain {
     public struct DescribeNoPrimaryKeyTablesRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 查询日期，如2021-05-27，最早为30天前的日期。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,24 +30,24 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 查询数目，默认为20，最大为100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil) {
+
+        public init(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.date = date
             self.limit = limit
             self.offset = offset
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case date = "Date"
@@ -56,27 +56,27 @@ extension Dbbrain {
             case product = "Product"
         }
     }
-    
+
     /// DescribeNoPrimaryKeyTables返回参数结构体
     public struct DescribeNoPrimaryKeyTablesResponse: TCResponseModel {
         /// 无主键表总数。
         public let noPrimaryKeyTableCount: Int64
-        
+
         /// 与昨日扫描无主键表的差值，正数为增加，负数为减少，0为无变化。
         public let noPrimaryKeyTableCountDiff: Int64
-        
+
         /// 记录的无主键表总数（不超过无主键表总数），可用于分页查询。
         public let noPrimaryKeyTableRecordCount: Int64
-        
+
         /// 无主键表列表。
         public let noPrimaryKeyTables: [Table]
-        
+
         /// 采集时间戳（秒）。
         public let timestamp: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case noPrimaryKeyTableCount = "NoPrimaryKeyTableCount"
             case noPrimaryKeyTableCountDiff = "NoPrimaryKeyTableCountDiff"
@@ -86,15 +86,15 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
     @inlinable
-    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoPrimaryKeyTablesResponse > {
+    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoPrimaryKeyTablesResponse> {
         self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
@@ -102,15 +102,15 @@ extension Dbbrain {
     public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
         try await self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
     @inlinable
-    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoPrimaryKeyTablesResponse > {
+    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoPrimaryKeyTablesResponse> {
         self.describeNoPrimaryKeyTables(DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。

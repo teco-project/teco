@@ -28,102 +28,102 @@ extension TCPtsError {
             case sendRequest = "FailedOperation.SendRequest"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var accessTagFail: FailedOperation {
             FailedOperation(.accessTagFail)
         }
-        
+
         /// 数据库查询失败。
         public static var dbQueryFailed: FailedOperation {
             FailedOperation(.dbQueryFailed)
         }
-        
+
         /// 数据库创建记录失败。
         public static var dbRecordCreateFailed: FailedOperation {
             FailedOperation(.dbRecordCreateFailed)
         }
-        
+
         /// 数据库记录更新失败。
         public static var dbRecordUpdateFailed: FailedOperation {
             FailedOperation(.dbRecordUpdateFailed)
         }
-        
+
         /// 任务状态不是运行中。
         public static var jobStatusNotRunning: FailedOperation {
             FailedOperation(.jobStatusNotRunning)
         }
-        
+
         /// 任务中没有task。
         public static var noTasksInJob: FailedOperation {
             FailedOperation(.noTasksInJob)
         }
-        
+
         /// 当前环境不支持。
         public static var notSupportedInEnv: FailedOperation {
             FailedOperation(.notSupportedInEnv)
         }
-        
+
         /// 资源不存在。
         public static var resourceNotFound: FailedOperation {
             FailedOperation(.resourceNotFound)
         }
-        
+
         /// 请求发送失败。
         ///
         /// 可能的原因：标签服务鉴权失败，等等。
         public static var sendRequest: FailedOperation {
             FailedOperation(.sendRequest)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asPtsError() -> TCPtsError {
             let code: TCPtsError.Code
             switch self.error {
-            case .accessTagFail: 
+            case .accessTagFail:
                 code = .failedOperation_AccessTagFail
-            case .dbQueryFailed: 
+            case .dbQueryFailed:
                 code = .failedOperation_DbQueryFailed
-            case .dbRecordCreateFailed: 
+            case .dbRecordCreateFailed:
                 code = .failedOperation_DbRecordCreateFailed
-            case .dbRecordUpdateFailed: 
+            case .dbRecordUpdateFailed:
                 code = .failedOperation_DbRecordUpdateFailed
-            case .jobStatusNotRunning: 
+            case .jobStatusNotRunning:
                 code = .failedOperation_JobStatusNotRunning
-            case .noTasksInJob: 
+            case .noTasksInJob:
                 code = .failedOperation_NoTasksInJob
-            case .notSupportedInEnv: 
+            case .notSupportedInEnv:
                 code = .failedOperation_NotSupportedInEnv
-            case .resourceNotFound: 
+            case .resourceNotFound:
                 code = .failedOperation_ResourceNotFound
-            case .sendRequest: 
+            case .sendRequest:
                 code = .failedOperation_SendRequest
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCPtsError(code, context: self.context)

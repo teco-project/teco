@@ -19,43 +19,43 @@ extension Cynosdb {
     public struct DescribeBackupDownloadUrlRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 备份ID
         public let backupId: Int64
-        
-        public init (clusterId: String, backupId: Int64) {
+
+        public init(clusterId: String, backupId: Int64) {
             self.clusterId = clusterId
             self.backupId = backupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case backupId = "BackupId"
         }
     }
-    
+
     /// DescribeBackupDownloadUrl返回参数结构体
     public struct DescribeBackupDownloadUrlResponse: TCResponseModel {
         /// 备份下载地址
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询备份下载地址
     ///
     /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
     @inlinable
-    public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadUrlResponse > {
+    public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupDownloadUrlResponse> {
         self.client.execute(action: "DescribeBackupDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份下载地址
     ///
     /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
@@ -63,15 +63,15 @@ extension Cynosdb {
     public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadUrlResponse {
         try await self.client.execute(action: "DescribeBackupDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询备份下载地址
     ///
     /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
     @inlinable
-    public func describeBackupDownloadUrl(clusterId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadUrlResponse > {
+    public func describeBackupDownloadUrl(clusterId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupDownloadUrlResponse> {
         self.describeBackupDownloadUrl(DescribeBackupDownloadUrlRequest(clusterId: clusterId, backupId: backupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份下载地址
     ///
     /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。

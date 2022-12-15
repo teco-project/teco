@@ -21,52 +21,52 @@ extension TCTdidError {
             case operationException = "FailedOperation.OperationException"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无访问权限。
         public static var invalidAuth: FailedOperation {
             FailedOperation(.invalidAuth)
         }
-        
+
         /// 操作失败。
         public static var operationException: FailedOperation {
             FailedOperation(.operationException)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTdidError() -> TCTdidError {
             let code: TCTdidError.Code
             switch self.error {
-            case .invalidAuth: 
+            case .invalidAuth:
                 code = .failedOperation_InvalidAuth
-            case .operationException: 
+            case .operationException:
                 code = .failedOperation_OperationException
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCTdidError(code, context: self.context)

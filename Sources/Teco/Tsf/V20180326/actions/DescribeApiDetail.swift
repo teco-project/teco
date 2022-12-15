@@ -19,27 +19,27 @@ extension Tsf {
     public struct DescribeApiDetailRequest: TCRequestModel {
         /// 微服务id
         public let microserviceId: String
-        
+
         /// 请求路径
         public let path: String
-        
+
         /// 请求方法
         public let method: String
-        
+
         /// 包版本
         public let pkgVersion: String
-        
+
         /// 应用ID
         public let applicationId: String
-        
-        public init (microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String) {
+
+        public init(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String) {
             self.microserviceId = microserviceId
             self.path = path
             self.method = method
             self.pkgVersion = pkgVersion
             self.applicationId = applicationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case microserviceId = "MicroserviceId"
             case path = "Path"
@@ -48,39 +48,39 @@ extension Tsf {
             case applicationId = "ApplicationId"
         }
     }
-    
+
     /// DescribeApiDetail返回参数结构体
     public struct DescribeApiDetailResponse: TCResponseModel {
         /// API 详情
         public let result: ApiDetailResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询API详情
     @inlinable
-    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiDetailResponse > {
+    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiDetailResponse> {
         self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询API详情
     @inlinable
     public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
         try await self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询API详情
     @inlinable
-    public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiDetailResponse > {
+    public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiDetailResponse> {
         self.describeApiDetail(DescribeApiDetailRequest(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询API详情
     @inlinable
     public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {

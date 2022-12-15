@@ -19,42 +19,42 @@ extension Rum {
     public struct DescribeOfflineLogConfigsRequest: TCRequestModel {
         /// 项目唯一上报 key
         public let projectKey: String
-        
-        public init (projectKey: String) {
+
+        public init(projectKey: String) {
             self.projectKey = projectKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectKey = "ProjectKey"
         }
     }
-    
+
     /// DescribeOfflineLogConfigs返回参数结构体
     public struct DescribeOfflineLogConfigsResponse: TCResponseModel {
         /// 接口调用信息
         public let msg: String
-        
+
         /// 用户唯一标示数组
         public let uniqueIDSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case uniqueIDSet = "UniqueIDSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设置的离线日志监听配置
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
-    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogConfigsResponse > {
+    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogConfigsResponse> {
         self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设置的离线日志监听配置
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
@@ -62,15 +62,15 @@ extension Rum {
     public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
         try await self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设置的离线日志监听配置
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
-    public func describeOfflineLogConfigs(projectKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogConfigsResponse > {
+    public func describeOfflineLogConfigs(projectKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogConfigsResponse> {
         self.describeOfflineLogConfigs(DescribeOfflineLogConfigsRequest(projectKey: projectKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设置的离线日志监听配置
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识

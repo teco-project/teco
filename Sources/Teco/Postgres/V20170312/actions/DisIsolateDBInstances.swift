@@ -19,23 +19,23 @@ extension Postgres {
     public struct DisIsolateDBInstancesRequest: TCRequestModel {
         /// 资源ID列表。注意：当前已不支持同时解隔离多个实例，这里只能传入单个实例ID。
         public let dbInstanceIdSet: [String]
-        
+
         /// 包年包月实例解隔离时购买时常 以月为单位
         public let period: Int64?
-        
+
         /// 是否使用代金券：true-使用,false-不使用，默认不使用
         public let autoVoucher: Bool?
-        
+
         /// 代金券id列表
         public let voucherIds: [String]?
-        
-        public init (dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil) {
+
+        public init(dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil) {
             self.dbInstanceIdSet = dbInstanceIdSet
             self.period = period
             self.autoVoucher = autoVoucher
             self.voucherIds = voucherIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceIdSet = "DBInstanceIdSet"
             case period = "Period"
@@ -43,25 +43,25 @@ extension Postgres {
             case voucherIds = "VoucherIds"
         }
     }
-    
+
     /// DisIsolateDBInstances返回参数结构体
     public struct DisIsolateDBInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
     @inlinable
-    public func disIsolateDBInstances(_ input: DisIsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisIsolateDBInstancesResponse > {
+    public func disIsolateDBInstances(_ input: DisIsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisIsolateDBInstancesResponse> {
         self.client.execute(action: "DisIsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
@@ -69,15 +69,15 @@ extension Postgres {
     public func disIsolateDBInstances(_ input: DisIsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisIsolateDBInstancesResponse {
         try await self.client.execute(action: "DisIsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
     @inlinable
-    public func disIsolateDBInstances(dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisIsolateDBInstancesResponse > {
+    public func disIsolateDBInstances(dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisIsolateDBInstancesResponse> {
         self.disIsolateDBInstances(DisIsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例

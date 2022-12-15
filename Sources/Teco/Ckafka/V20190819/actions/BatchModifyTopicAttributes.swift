@@ -19,53 +19,53 @@ extension Ckafka {
     public struct BatchModifyTopicAttributesRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 主题属性列表
         public let topic: [BatchModifyTopicInfo]
-        
-        public init (instanceId: String, topic: [BatchModifyTopicInfo]) {
+
+        public init(instanceId: String, topic: [BatchModifyTopicInfo]) {
             self.instanceId = instanceId
             self.topic = topic
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case topic = "Topic"
         }
     }
-    
+
     /// BatchModifyTopicAttributes返回参数结构体
     public struct BatchModifyTopicAttributesResponse: TCResponseModel {
         /// 返回结果
         public let result: [BatchModifyTopicResultDTO]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量设置主题属性
     @inlinable
-    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTopicAttributesResponse > {
+    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTopicAttributesResponse> {
         self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量设置主题属性
     @inlinable
     public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
         try await self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量设置主题属性
     @inlinable
-    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTopicAttributesResponse > {
+    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTopicAttributesResponse> {
         self.batchModifyTopicAttributes(BatchModifyTopicAttributesRequest(instanceId: instanceId, topic: topic), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量设置主题属性
     @inlinable
     public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {

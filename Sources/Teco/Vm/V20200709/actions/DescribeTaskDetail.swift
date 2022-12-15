@@ -19,39 +19,39 @@ extension Vm {
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 任务ID，创建任务后返回的TaskId字段
         public let taskId: String
-        
+
         /// 是否展示所有分片，默认只展示命中规则的分片
         public let showAllSegments: Bool?
-        
-        public init (taskId: String, showAllSegments: Bool? = nil) {
+
+        public init(taskId: String, showAllSegments: Bool? = nil) {
             self.taskId = taskId
             self.showAllSegments = showAllSegments
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case showAllSegments = "ShowAllSegments"
         }
     }
-    
+
     /// DescribeTaskDetail返回参数结构体
     public struct DescribeTaskDetailResponse: TCResponseModel {
         /// 任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 审核时传入的数据Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataId: String?
-        
+
         /// 业务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bizType: String?
-        
+
         /// 任务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 状态，可选值：
         /// FINISH 已完成
         /// PENDING 等待中
@@ -60,11 +60,11 @@ extension Vm {
         /// CANCELLED 已取消
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 审核建议
         /// 可选：
         /// Pass 通过
@@ -72,39 +72,39 @@ extension Vm {
         /// Block 确认违规
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 审核结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [TaskLabel]?
-        
+
         /// 媒体解码信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaInfo: MediaInfo?
-        
+
         /// 任务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputInfo: InputInfo?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdAt: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         /// 在秒后重试
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tryInSeconds: Int64?
-        
+
         /// 图片结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageSegments: [ImageSegments]?
-        
+
         /// 音频结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioSegments: [AudioSegments]?
-        
+
         /// 如果返回的状态为ERROR，该字段会标记错误类型。
         /// 可选值：：
         /// DECODE_ERROR: 解码失败。（输入资源中可能包含无法解码的视频）
@@ -112,14 +112,14 @@ extension Vm {
         /// TIMEOUT_ERROR：处理超时。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorType: String?
-        
+
         /// 审核任务错误日志。当Error不为空时，会展示该字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorDescription: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case dataId = "DataId"
@@ -141,34 +141,34 @@ extension Vm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看任务详情
     ///
-    /// 查看任务详情DescribeTaskDetail 
+    /// 查看任务详情DescribeTaskDetail
     @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
         self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看任务详情
     ///
-    /// 查看任务详情DescribeTaskDetail 
+    /// 查看任务详情DescribeTaskDetail
     @inlinable
     public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看任务详情
     ///
-    /// 查看任务详情DescribeTaskDetail 
+    /// 查看任务详情DescribeTaskDetail
     @inlinable
-    public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+    public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
         self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看任务详情
     ///
-    /// 查看任务详情DescribeTaskDetail 
+    /// 查看任务详情DescribeTaskDetail
     @inlinable
     public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments), logger: logger, on: eventLoop)

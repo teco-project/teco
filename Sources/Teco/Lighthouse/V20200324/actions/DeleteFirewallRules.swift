@@ -19,36 +19,36 @@ extension Lighthouse {
     public struct DeleteFirewallRulesRequest: TCRequestModel {
         /// 实例 ID。
         public let instanceId: String
-        
+
         /// 防火墙规则列表。
         public let firewallRules: [FirewallRule]
-        
+
         /// 防火墙当前版本。用户每次更新防火墙规则时版本会自动加1，防止规则已过期，不填不考虑冲突。
         public let firewallVersion: UInt64?
-        
-        public init (instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil) {
+
+        public init(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil) {
             self.instanceId = instanceId
             self.firewallRules = firewallRules
             self.firewallVersion = firewallVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case firewallRules = "FirewallRules"
             case firewallVersion = "FirewallVersion"
         }
     }
-    
+
     /// DeleteFirewallRules返回参数结构体
     public struct DeleteFirewallRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除防火墙规则
     ///
     /// 本接口（DeleteFirewallRules）用于删除实例的防火墙规则。
@@ -60,10 +60,10 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func deleteFirewallRules(_ input: DeleteFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirewallRulesResponse > {
+    public func deleteFirewallRules(_ input: DeleteFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirewallRulesResponse> {
         self.client.execute(action: "DeleteFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除防火墙规则
     ///
     /// 本接口（DeleteFirewallRules）用于删除实例的防火墙规则。
@@ -78,7 +78,7 @@ extension Lighthouse {
     public func deleteFirewallRules(_ input: DeleteFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirewallRulesResponse {
         try await self.client.execute(action: "DeleteFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除防火墙规则
     ///
     /// 本接口（DeleteFirewallRules）用于删除实例的防火墙规则。
@@ -90,10 +90,10 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirewallRulesResponse > {
+    public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirewallRulesResponse> {
         self.deleteFirewallRules(DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除防火墙规则
     ///
     /// 本接口（DeleteFirewallRules）用于删除实例的防火墙规则。

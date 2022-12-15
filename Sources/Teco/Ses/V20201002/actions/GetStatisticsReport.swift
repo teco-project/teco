@@ -27,7 +27,7 @@ extension Ses {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date
-        
+
         /// 结束日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,20 +35,20 @@ extension Ses {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
+
         /// 发信域名
         public let domain: String?
-        
+
         /// 收件方邮箱类型，例如gmail.com
         public let receivingMailboxType: String?
-        
-        public init (startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil) {
+
+        public init(startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil) {
             self.startDate = startDate
             self.endDate = endDate
             self.domain = domain
             self.receivingMailboxType = receivingMailboxType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startDate = "StartDate"
             case endDate = "EndDate"
@@ -56,33 +56,33 @@ extension Ses {
             case receivingMailboxType = "ReceivingMailboxType"
         }
     }
-    
+
     /// GetStatisticsReport返回参数结构体
     public struct GetStatisticsReportResponse: TCResponseModel {
         /// 发信统计报告，按天
         public let dailyVolumes: [Volume]
-        
+
         /// 发信统计报告，总览
         public let overallVolume: Volume
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dailyVolumes = "DailyVolumes"
             case overallVolume = "OverallVolume"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取发送统计数据
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
     @inlinable
-    public func getStatisticsReport(_ input: GetStatisticsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStatisticsReportResponse > {
+    public func getStatisticsReport(_ input: GetStatisticsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticsReportResponse> {
         self.client.execute(action: "GetStatisticsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取发送统计数据
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
@@ -90,15 +90,15 @@ extension Ses {
     public func getStatisticsReport(_ input: GetStatisticsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticsReportResponse {
         try await self.client.execute(action: "GetStatisticsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取发送统计数据
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
     @inlinable
-    public func getStatisticsReport(startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStatisticsReportResponse > {
+    public func getStatisticsReport(startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticsReportResponse> {
         self.getStatisticsReport(GetStatisticsReportRequest(startDate: startDate, endDate: endDate, domain: domain, receivingMailboxType: receivingMailboxType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取发送统计数据
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。

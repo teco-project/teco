@@ -19,39 +19,39 @@ extension Bmlb {
     public struct SetTrafficMirrorAliasRequest: TCRequestModel {
         /// 流量镜像实例ID。
         public let trafficMirrorId: String
-        
+
         /// 流量镜像实例别名。
         public let alias: String
-        
-        public init (trafficMirrorId: String, alias: String) {
+
+        public init(trafficMirrorId: String, alias: String) {
             self.trafficMirrorId = trafficMirrorId
             self.alias = alias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorId = "TrafficMirrorId"
             case alias = "Alias"
         }
     }
-    
+
     /// SetTrafficMirrorAlias返回参数结构体
     public struct SetTrafficMirrorAliasResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置流量镜像的别名
     ///
     /// 设置流量镜像的别名。
     @inlinable
-    public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTrafficMirrorAliasResponse > {
+    public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorAliasResponse> {
         self.client.execute(action: "SetTrafficMirrorAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置流量镜像的别名
     ///
     /// 设置流量镜像的别名。
@@ -59,15 +59,15 @@ extension Bmlb {
     public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorAliasResponse {
         try await self.client.execute(action: "SetTrafficMirrorAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置流量镜像的别名
     ///
     /// 设置流量镜像的别名。
     @inlinable
-    public func setTrafficMirrorAlias(trafficMirrorId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTrafficMirrorAliasResponse > {
+    public func setTrafficMirrorAlias(trafficMirrorId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorAliasResponse> {
         self.setTrafficMirrorAlias(SetTrafficMirrorAliasRequest(trafficMirrorId: trafficMirrorId, alias: alias), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置流量镜像的别名
     ///
     /// 设置流量镜像的别名。

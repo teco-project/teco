@@ -19,54 +19,54 @@ extension Cloudstudio {
     public struct DescribeWorkspaceStatusRequest: TCRequestModel {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
-        
+
         /// 空间标识
         public let spaceKey: String
-        
-        public init (cloudStudioSessionTeam: String, spaceKey: String) {
+
+        public init(cloudStudioSessionTeam: String, spaceKey: String) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.spaceKey = spaceKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
             case spaceKey = "SpaceKey"
         }
     }
-    
+
     /// DescribeWorkspaceStatus返回参数结构体
     public struct DescribeWorkspaceStatusResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: WorkspaceStatusInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取工作空间元信息
     @inlinable
-    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusResponse > {
+    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusResponse> {
         self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取工作空间元信息
     @inlinable
     public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
         try await self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取工作空间元信息
     @inlinable
-    public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusResponse > {
+    public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusResponse> {
         self.describeWorkspaceStatus(DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取工作空间元信息
     @inlinable
     public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {

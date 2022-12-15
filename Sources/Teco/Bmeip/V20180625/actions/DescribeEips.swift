@@ -19,50 +19,50 @@ extension Bmeip {
     public struct DescribeEipsRequest: TCRequestModel {
         /// EIP实例ID列表
         public let eipIds: [String]?
-        
+
         /// EIP IP 列表
         public let eips: [String]?
-        
+
         /// 主机实例ID 列表
         public let instanceIds: [String]?
-        
+
         /// EIP名称,模糊匹配
         public let searchKey: String?
-        
+
         /// 状态列表, 默认所有
         public let status: [Int64]?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回EIP数量，默认 20, 最大值 100
         public let limit: Int64?
-        
+
         /// 排序字段，支持： EipId,Eip,Status, InstanceId,CreatedAt
         public let orderField: String?
-        
+
         /// 排序方式 0:递增 1:递减(默认)
         public let order: Int64?
-        
+
         /// 计费模式,流量：flow，带宽：bandwidth
         public let payMode: String?
-        
+
         /// EIP归属VpcId，例如vpc-k7j1t2x1
         public let vpcId: String?
-        
+
         /// 绑定类型，-1：未绑定，0：物理机，1：nat网关，2：虚拟IP, 3:托管机器
         public let bindTypes: [Int64]?
-        
+
         /// 独占标志，0：共享，1：独占
         public let exclusiveTag: Int64?
-        
+
         /// EIP ACL实例ID
         public let aclId: String?
-        
+
         /// 搜索条件，是否绑定了EIP ACL， 0：未绑定，1：绑定
         public let bindAcl: Int64?
-        
-        public init (eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil) {
+
+        public init(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil) {
             self.eipIds = eipIds
             self.eips = eips
             self.instanceIds = instanceIds
@@ -79,7 +79,7 @@ extension Bmeip {
             self.aclId = aclId
             self.bindAcl = bindAcl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eipIds = "EipIds"
             case eips = "Eips"
@@ -98,43 +98,43 @@ extension Bmeip {
             case bindAcl = "BindAcl"
         }
     }
-    
+
     /// DescribeEips返回参数结构体
     public struct DescribeEipsResponse: TCResponseModel {
         /// 返回EIP信息数组
         public let eipSet: [EipInfo]
-        
+
         /// 返回EIP数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eipSet = "EipSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 黑石EIP查询接口
     @inlinable
-    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipsResponse > {
+    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipsResponse> {
         self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 黑石EIP查询接口
     @inlinable
     public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
         try await self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 黑石EIP查询接口
     @inlinable
-    public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipsResponse > {
+    public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipsResponse> {
         self.describeEips(DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl), logger: logger, on: eventLoop)
     }
-    
+
     /// 黑石EIP查询接口
     @inlinable
     public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {

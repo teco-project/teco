@@ -19,23 +19,23 @@ extension Kms {
     public struct ReEncryptRequest: TCRequestModel {
         /// 需要重新加密的密文
         public let ciphertextBlob: String
-        
+
         /// 重新加密使用的CMK，如果为空，则使用密文原有的CMK重新加密（若密钥没有轮换则密文不会刷新）
         public let destinationKeyId: String?
-        
+
         /// CiphertextBlob 密文加密时使用的key/value对的json字符串。如果加密时未使用，则为空
         public let sourceEncryptionContext: String?
-        
+
         /// 重新加密使用的key/value对的json字符串，如果使用该字段，则返回的新密文在解密时需要填入相同的字符串
         public let destinationEncryptionContext: String?
-        
-        public init (ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil) {
+
+        public init(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil) {
             self.ciphertextBlob = ciphertextBlob
             self.destinationKeyId = destinationKeyId
             self.sourceEncryptionContext = sourceEncryptionContext
             self.destinationEncryptionContext = destinationEncryptionContext
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ciphertextBlob = "CiphertextBlob"
             case destinationKeyId = "DestinationKeyId"
@@ -43,24 +43,24 @@ extension Kms {
             case destinationEncryptionContext = "DestinationEncryptionContext"
         }
     }
-    
+
     /// ReEncrypt返回参数结构体
     public struct ReEncryptResponse: TCResponseModel {
         /// 重新加密后的密文
         public let ciphertextBlob: String
-        
+
         /// 重新加密使用的CMK
         public let keyId: String
-        
+
         /// 重新加密前密文使用的CMK
         public let sourceKeyId: String
-        
+
         /// true表示密文已经重新加密。同一个CMK进行重加密，在密钥没有发生轮换的情况下不会进行实际重新加密操作，返回原密文
         public let reEncrypted: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ciphertextBlob = "CiphertextBlob"
             case keyId = "KeyId"
@@ -69,15 +69,15 @@ extension Kms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 密文刷新
     ///
     /// 使用指定CMK对密文重新加密。
     @inlinable
-    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReEncryptResponse > {
+    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReEncryptResponse> {
         self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 密文刷新
     ///
     /// 使用指定CMK对密文重新加密。
@@ -85,15 +85,15 @@ extension Kms {
     public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
         try await self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 密文刷新
     ///
     /// 使用指定CMK对密文重新加密。
     @inlinable
-    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReEncryptResponse > {
+    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReEncryptResponse> {
         self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), logger: logger, on: eventLoop)
     }
-    
+
     /// 密文刷新
     ///
     /// 使用指定CMK对密文重新加密。

@@ -19,38 +19,38 @@ extension Sqlserver {
     public struct DescribeDBCharsetsRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeDBCharsets返回参数结构体
     public struct DescribeDBCharsetsResponse: TCResponseModel {
         /// 数据库字符集列表
         public let databaseCharsets: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseCharsets = "DatabaseCharsets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询数据库字符集
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
-    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBCharsetsResponse > {
+    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBCharsetsResponse> {
         self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库字符集
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
@@ -58,15 +58,15 @@ extension Sqlserver {
     public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
         try await self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询数据库字符集
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
-    public func describeDBCharsets(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBCharsetsResponse > {
+    public func describeDBCharsets(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBCharsetsResponse> {
         self.describeDBCharsets(DescribeDBCharsetsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库字符集
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。

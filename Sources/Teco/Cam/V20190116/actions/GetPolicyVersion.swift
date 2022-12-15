@@ -19,44 +19,44 @@ extension Cam {
     public struct GetPolicyVersionRequest: TCRequestModel {
         /// 策略ID
         public let policyId: UInt64
-        
+
         /// 策略版本号，可由ListPolicyVersions获取
         public let versionId: UInt64
-        
-        public init (policyId: UInt64, versionId: UInt64) {
+
+        public init(policyId: UInt64, versionId: UInt64) {
             self.policyId = policyId
             self.versionId = versionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case versionId = "VersionId"
         }
     }
-    
+
     /// GetPolicyVersion返回参数结构体
     public struct GetPolicyVersionResponse: TCResponseModel {
         /// 策略版本详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyVersion: PolicyVersionDetail?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policyVersion = "PolicyVersion"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询策略版本详情
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情
     @inlinable
-    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyVersionResponse > {
+    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyVersionResponse> {
         self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询策略版本详情
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情
@@ -64,15 +64,15 @@ extension Cam {
     public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyVersionResponse {
         try await self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询策略版本详情
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情
     @inlinable
-    public func getPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyVersionResponse > {
+    public func getPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyVersionResponse> {
         self.getPolicyVersion(GetPolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询策略版本详情
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情

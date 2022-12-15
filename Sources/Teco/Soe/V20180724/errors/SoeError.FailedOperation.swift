@@ -44,257 +44,257 @@ extension TCSoeError {
             case waitPastSeqIdTimeout = "FailedOperation.WaitPastSeqIdTimeout"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 会话缓存保存失败，请重新初始化。
         public static var errorGetSession: FailedOperation {
             FailedOperation(.errorGetSession)
         }
-        
+
         /// 获取用户信息失败。
         ///
         /// 获取用户信息失败，请重新初始化后请求。
         public static var errorGetUser: FailedOperation {
             FailedOperation(.errorGetUser)
         }
-        
+
         /// 评测时间超出限制，请检查音频时间是否过长后重试。
         ///
         /// 请参考API文档检查音频时间是否过长后重试。https://cloud.tencent.com/document/product/884/19310
         public static var evaluateTimeout: FailedOperation {
             FailedOperation(.evaluateTimeout)
         }
-        
+
         /// 引擎未知错误，请检查一下RefText是否正常后重试。
         ///
         /// 请参考API文档检查参数RefText是否正确后重试。https://cloud.tencent.com/document/product/884/19310
         public static var evaluateUnknownError: FailedOperation {
             FailedOperation(.evaluateUnknownError)
         }
-        
+
         /// 获取评测引擎IP失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var failedGetEngineIP: FailedOperation {
             FailedOperation(.failedGetEngineIP)
         }
-        
+
         /// 结果缓存获取失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var failedGetResult: FailedOperation {
             FailedOperation(.failedGetResult)
         }
-        
+
         /// 会话缓存获取失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var failedGetSession: FailedOperation {
             FailedOperation(.failedGetSession)
         }
-        
+
         /// 会话分片序号缓存获取失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var failedGetSessionSeqID: FailedOperation {
             FailedOperation(.failedGetSessionSeqID)
         }
-        
+
         /// 用户信息缓存获取失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var failedGetUser: FailedOperation {
             FailedOperation(.failedGetUser)
         }
-        
+
         /// 请求初始化失败，请检查参数后重新初始化。
         ///
         /// 检查参数后重新初始化。https://cloud.tencent.com/document/product/884/19310
         public static var failedInit: FailedOperation {
             FailedOperation(.failedInit)
         }
-        
+
         /// 结果缓存保存失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var failedSetResult: FailedOperation {
             FailedOperation(.failedSetResult)
         }
-        
+
         /// 会话缓存保存失败，请重新初始化。
         ///
         /// 请重新初始化。
         public static var failedSetSession: FailedOperation {
             FailedOperation(.failedSetSession)
         }
-        
+
         /// 会话分片序号缓存保存失败，请重新初始化。
         ///
         /// 请重新初始化。
         public static var failedSetSessionSeqID: FailedOperation {
             FailedOperation(.failedSetSessionSeqID)
         }
-        
+
         /// 用户信息缓存保存失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var failedSetUser: FailedOperation {
             FailedOperation(.failedSetUser)
         }
-        
+
         /// 服务内部错误，请稍后重试或联系我们。
         public static var internalServerError: FailedOperation {
             FailedOperation(.internalServerError)
         }
-        
+
         /// 引擎参数错误，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var invalidParameterValue: FailedOperation {
             FailedOperation(.invalidParameterValue)
         }
-        
+
         /// Json编解码失败，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var jsonCodecError: FailedOperation {
             FailedOperation(.jsonCodecError)
         }
-        
+
         /// 引擎评估之前没有初始化，请重新初始化成功之后重新传输数据。
         ///
         /// 请重新初始化成功之后重新传输数据。
         public static var needInitBeforeEvaluation: FailedOperation {
             FailedOperation(.needInitBeforeEvaluation)
         }
-        
+
         /// 前序分片缺失，请重新补发前序分片。
         ///
         /// 请重发前序分片。
         public static var pastSeqIdLose: FailedOperation {
             FailedOperation(.pastSeqIdLose)
         }
-        
+
         /// 结果缓存已过期，请重新初始化成功之后重新传输数据。
         ///
         /// 请重新初始化成功之后重新传输数据。
         public static var resultExpired: FailedOperation {
             FailedOperation(.resultExpired)
         }
-        
+
         /// 分片序号缓存已过期，请重新初始化成功之后重新传输数据。
         ///
         /// 请重新初始化成功之后重新传输数据。
         public static var seqIdExpired: FailedOperation {
             FailedOperation(.seqIdExpired)
         }
-        
+
         /// 引擎服务器过载，请稍后重试。
         ///
         /// 请重试当前请求。
         public static var serverOverload: FailedOperation {
             FailedOperation(.serverOverload)
         }
-        
+
         /// 评测超时，请通过轮询查询评测结果，后续请使用分片传输或减少单次传输音频时长。
         ///
         /// 请通过轮询查询评测结果，后续请使用分片传输或减少单次传输音频时长。
         public static var serviceTimeout: FailedOperation {
             FailedOperation(.serviceTimeout)
         }
-        
+
         /// 会话缓存已过期，请重新初始化成功之后重新传输数据。
         ///
         /// 请重新初始化成功之后重新传输数据。
         public static var sessionExpired: FailedOperation {
             FailedOperation(.sessionExpired)
         }
-        
+
         /// 引擎等待前序分片超时，请重新补发前序分片。
         public static var waitPastSeqIdTimeout: FailedOperation {
             FailedOperation(.waitPastSeqIdTimeout)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asSoeError() -> TCSoeError {
             let code: TCSoeError.Code
             switch self.error {
-            case .errorGetSession: 
+            case .errorGetSession:
                 code = .failedOperation_ErrorGetSession
-            case .errorGetUser: 
+            case .errorGetUser:
                 code = .failedOperation_ErrorGetUser
-            case .evaluateTimeout: 
+            case .evaluateTimeout:
                 code = .failedOperation_EvaluateTimeout
-            case .evaluateUnknownError: 
+            case .evaluateUnknownError:
                 code = .failedOperation_EvaluateUnknownError
-            case .failedGetEngineIP: 
+            case .failedGetEngineIP:
                 code = .failedOperation_FailedGetEngineIP
-            case .failedGetResult: 
+            case .failedGetResult:
                 code = .failedOperation_FailedGetResult
-            case .failedGetSession: 
+            case .failedGetSession:
                 code = .failedOperation_FailedGetSession
-            case .failedGetSessionSeqID: 
+            case .failedGetSessionSeqID:
                 code = .failedOperation_FailedGetSessionSeqID
-            case .failedGetUser: 
+            case .failedGetUser:
                 code = .failedOperation_FailedGetUser
-            case .failedInit: 
+            case .failedInit:
                 code = .failedOperation_FailedInit
-            case .failedSetResult: 
+            case .failedSetResult:
                 code = .failedOperation_FailedSetResult
-            case .failedSetSession: 
+            case .failedSetSession:
                 code = .failedOperation_FailedSetSession
-            case .failedSetSessionSeqID: 
+            case .failedSetSessionSeqID:
                 code = .failedOperation_FailedSetSessionSeqID
-            case .failedSetUser: 
+            case .failedSetUser:
                 code = .failedOperation_FailedSetUser
-            case .internalServerError: 
+            case .internalServerError:
                 code = .failedOperation_InternalServerError
-            case .invalidParameterValue: 
+            case .invalidParameterValue:
                 code = .failedOperation_InvalidParameterValue
-            case .jsonCodecError: 
+            case .jsonCodecError:
                 code = .failedOperation_JsonCodecError
-            case .needInitBeforeEvaluation: 
+            case .needInitBeforeEvaluation:
                 code = .failedOperation_NeedInitBeforeEvaluation
-            case .pastSeqIdLose: 
+            case .pastSeqIdLose:
                 code = .failedOperation_PastSeqIdLose
-            case .resultExpired: 
+            case .resultExpired:
                 code = .failedOperation_ResultExpired
-            case .seqIdExpired: 
+            case .seqIdExpired:
                 code = .failedOperation_SeqIdExpired
-            case .serverOverload: 
+            case .serverOverload:
                 code = .failedOperation_ServerOverload
-            case .serviceTimeout: 
+            case .serviceTimeout:
                 code = .failedOperation_ServiceTimeout
-            case .sessionExpired: 
+            case .sessionExpired:
                 code = .failedOperation_SessionExpired
-            case .waitPastSeqIdTimeout: 
+            case .waitPastSeqIdTimeout:
                 code = .failedOperation_WaitPastSeqIdTimeout
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCSoeError(code, context: self.context)

@@ -19,49 +19,49 @@ extension Tcss {
     public struct ResetSecLogTopicConfigRequest: TCRequestModel {
         /// 配置类型(ckafka/cls)
         public let configType: String
-        
+
         /// 日志类型
         public let logType: String
-        
-        public init (configType: String, logType: String) {
+
+        public init(configType: String, logType: String) {
             self.configType = configType
             self.logType = logType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configType = "ConfigType"
             case logType = "LogType"
         }
     }
-    
+
     /// ResetSecLogTopicConfig返回参数结构体
     public struct ResetSecLogTopicConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置安全日志主题设置
     @inlinable
-    public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSecLogTopicConfigResponse > {
+    public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetSecLogTopicConfigResponse> {
         self.client.execute(action: "ResetSecLogTopicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置安全日志主题设置
     @inlinable
     public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSecLogTopicConfigResponse {
         try await self.client.execute(action: "ResetSecLogTopicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置安全日志主题设置
     @inlinable
-    public func resetSecLogTopicConfig(configType: String, logType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSecLogTopicConfigResponse > {
+    public func resetSecLogTopicConfig(configType: String, logType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetSecLogTopicConfigResponse> {
         self.resetSecLogTopicConfig(ResetSecLogTopicConfigRequest(configType: configType, logType: logType), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置安全日志主题设置
     @inlinable
     public func resetSecLogTopicConfig(configType: String, logType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSecLogTopicConfigResponse {

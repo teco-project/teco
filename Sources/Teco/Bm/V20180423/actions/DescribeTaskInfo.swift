@@ -22,10 +22,10 @@ extension Bm {
     public struct DescribeTaskInfoRequest: TCRequestModel {
         /// 开始位置
         public let offset: UInt64
-        
+
         /// 数据条数
         public let limit: UInt64
-        
+
         /// 时间过滤下限
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Bm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date?
-        
+
         /// 时间过滤上限
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,29 +41,29 @@ extension Bm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date?
-        
+
         /// 任务状态ID过滤
         public let taskStatus: [UInt64]?
-        
+
         /// 排序字段，目前支持：CreateTime，AuthTime，EndTime
         public let orderField: String?
-        
+
         /// 排序方式 0:递增(默认) 1:递减
         public let order: UInt64?
-        
+
         /// 任务ID过滤
         public let taskIds: [String]?
-        
+
         /// 实例ID过滤
         public let instanceIds: [String]?
-        
+
         /// 实例别名过滤
         public let aliases: [String]?
-        
+
         /// 故障类型ID过滤
         public let taskTypeIds: [UInt64]?
-        
-        public init (offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.startDate = startDate
@@ -76,7 +76,7 @@ extension Bm {
             self.aliases = aliases
             self.taskTypeIds = taskTypeIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -91,25 +91,25 @@ extension Bm {
             case taskTypeIds = "TaskTypeIds"
         }
     }
-    
+
     /// DescribeTaskInfo返回参数结构体
     public struct DescribeTaskInfoResponse: TCResponseModel {
         /// 返回任务总数量
         public let totalCount: Int64
-        
+
         /// 任务信息列表
         public let taskInfoSet: [TaskInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case taskInfoSet = "TaskInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 维修任务信息获取
     ///
     /// 获取用户维修任务列表及详细信息<br>
@@ -122,10 +122,10 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     @inlinable
-    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInfoResponse > {
+    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
         self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 维修任务信息获取
     ///
     /// 获取用户维修任务列表及详细信息<br>
@@ -141,7 +141,7 @@ extension Bm {
     public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
         try await self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 维修任务信息获取
     ///
     /// 获取用户维修任务列表及详细信息<br>
@@ -154,10 +154,10 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     @inlinable
-    public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInfoResponse > {
+    public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
         self.describeTaskInfo(DescribeTaskInfoRequest(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 维修任务信息获取
     ///
     /// 获取用户维修任务列表及详细信息<br>

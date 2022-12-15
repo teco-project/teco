@@ -19,48 +19,48 @@ extension Kms {
     public struct DescribeWhiteBoxKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// DescribeWhiteBoxKey返回参数结构体
     public struct DescribeWhiteBoxKeyResponse: TCResponseModel {
         /// 白盒密钥信息
         public let keyInfo: WhiteboxKeyInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyInfo = "KeyInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 展示白盒密钥的信息
     @inlinable
-    public func describeWhiteBoxKey(_ input: DescribeWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyResponse > {
+    public func describeWhiteBoxKey(_ input: DescribeWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxKeyResponse> {
         self.client.execute(action: "DescribeWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 展示白盒密钥的信息
     @inlinable
     public func describeWhiteBoxKey(_ input: DescribeWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyResponse {
         try await self.client.execute(action: "DescribeWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 展示白盒密钥的信息
     @inlinable
-    public func describeWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyResponse > {
+    public func describeWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxKeyResponse> {
         self.describeWhiteBoxKey(DescribeWhiteBoxKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 展示白盒密钥的信息
     @inlinable
     public func describeWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyResponse {

@@ -135,864 +135,864 @@ extension TCScfError {
             case zipFileBase64BinasciiError = "InvalidParameterValue.ZipFileBase64BinasciiError"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Action取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var action: InvalidParameterValue {
             InvalidParameterValue(.action)
         }
-        
+
         /// AdditionalVersionWeights参数传入错误。
         public static var additionalVersionWeights: InvalidParameterValue {
             InvalidParameterValue(.additionalVersionWeights)
         }
-        
+
         /// 不支持删除默认别名，请修正后重试。
         public static var alias: InvalidParameterValue {
             InvalidParameterValue(.alias)
         }
-        
+
         /// ApiGateway参数错误。
         public static var apiGateway: InvalidParameterValue {
             InvalidParameterValue(.apiGateway)
         }
-        
+
         /// ApmConfig参数传入错误。
         public static var apmConfig: InvalidParameterValue {
             InvalidParameterValue(.apmConfig)
         }
-        
+
         /// ApmConfigInstanceId参数传入错误。
         public static var apmConfigInstanceId: InvalidParameterValue {
             InvalidParameterValue(.apmConfigInstanceId)
         }
-        
+
         /// ApmConfigRegion参数传入错误。
         public static var apmConfigRegion: InvalidParameterValue {
             InvalidParameterValue(.apmConfigRegion)
         }
-        
+
         /// Args 参数值有误。
         ///
         /// 请确认不包含逗号、单引号、斜杠等非法字符
         public static var args: InvalidParameterValue {
             InvalidParameterValue(.args)
         }
-        
+
         /// AsyncRunEnable 取值不正确。
         public static var asyncRunEnable: InvalidParameterValue {
             InvalidParameterValue(.asyncRunEnable)
         }
-        
+
         /// 函数异步重试配置参数无效。
         public static var asyncTriggerConfig: InvalidParameterValue {
             InvalidParameterValue(.asyncTriggerConfig)
         }
-        
+
         /// Cdn传入错误。
         public static var cdn: InvalidParameterValue {
             InvalidParameterValue(.cdn)
         }
-        
+
         /// cfs配置项重复。
         public static var cfsParameterDuplicate: InvalidParameterValue {
             InvalidParameterValue(.cfsParameterDuplicate)
         }
-        
+
         /// cfs配置项取值与规范不符。
         public static var cfsParameterError: InvalidParameterValue {
             InvalidParameterValue(.cfsParameterError)
         }
-        
+
         /// cfs参数格式与规范不符。
         public static var cfsStructionError: InvalidParameterValue {
             InvalidParameterValue(.cfsStructionError)
         }
-        
+
         /// Ckafka传入错误。
         public static var ckafka: InvalidParameterValue {
             InvalidParameterValue(.ckafka)
         }
-        
+
         /// 运行函数时的参数传入有误。
         ///
         /// 运行函数时的参数，以json格式传入，同步调用最大支持 6MB，异步调用最大支持 128 KB
         public static var clientContext: InvalidParameterValue {
             InvalidParameterValue(.clientContext)
         }
-        
+
         /// Cls传入错误。
         public static var cls: InvalidParameterValue {
             InvalidParameterValue(.cls)
         }
-        
+
         /// 修改Cls配置需要传入Role参数，请修正后重试。
         public static var clsRole: InvalidParameterValue {
             InvalidParameterValue(.clsRole)
         }
-        
+
         /// Cmq传入错误。
         public static var cmq: InvalidParameterValue {
             InvalidParameterValue(.cmq)
         }
-        
+
         /// Code传入错误。
         public static var code: InvalidParameterValue {
             InvalidParameterValue(.code)
         }
-        
+
         /// CodeSecret传入错误。
         public static var codeSecret: InvalidParameterValue {
             InvalidParameterValue(.codeSecret)
         }
-        
+
         /// CodeSource传入错误。
         public static var codeSource: InvalidParameterValue {
             InvalidParameterValue(.codeSource)
         }
-        
+
         /// Command[Entrypoint] 参数值有误。
         ///
         /// 请确认不包含空格，逗号、单引号、双引号、斜杠等非法字符
         public static var command: InvalidParameterValue {
             InvalidParameterValue(.command)
         }
-        
+
         /// CompatibleRuntimes参数传入错误。
         public static var compatibleRuntimes: InvalidParameterValue {
             InvalidParameterValue(.compatibleRuntimes)
         }
-        
+
         /// Content参数传入错误。
         public static var content: InvalidParameterValue {
             InvalidParameterValue(.content)
         }
-        
+
         /// Cos传入错误。
         public static var cos: InvalidParameterValue {
             InvalidParameterValue(.cos)
         }
-        
+
         /// CosBucketName不符合规范。
         public static var cosBucketName: InvalidParameterValue {
             InvalidParameterValue(.cosBucketName)
         }
-        
+
         /// CosBucketRegion取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var cosBucketRegion: InvalidParameterValue {
             InvalidParameterValue(.cosBucketRegion)
         }
-        
+
         /// 请传递有效的COS通知规则。
         public static var cosNotifyRuleConflict: InvalidParameterValue {
             InvalidParameterValue(.cosNotifyRuleConflict)
         }
-        
+
         /// CosObjectName不符合规范。
         public static var cosObjectName: InvalidParameterValue {
             InvalidParameterValue(.cosObjectName)
         }
-        
+
         /// CustomArgument参数长度超限。
         public static var customArgument: InvalidParameterValue {
             InvalidParameterValue(.customArgument)
         }
-        
+
         /// DateTime传入错误。
         public static var dateTime: InvalidParameterValue {
             InvalidParameterValue(.dateTime)
         }
-        
+
         /// DeadLetterConfig取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var deadLetterConfig: InvalidParameterValue {
             InvalidParameterValue(.deadLetterConfig)
         }
-        
+
         /// 默认Namespace无法创建。
         public static var defaultNamespace: InvalidParameterValue {
             InvalidParameterValue(.defaultNamespace)
         }
-        
+
         /// DemoID  对应的函数模板 ，code 参数值有误，请确认后重试。
         public static var demo: InvalidParameterValue {
             InvalidParameterValue(.demo)
         }
-        
+
         /// DemoId 不存在。
         public static var demoId: InvalidParameterValue {
             InvalidParameterValue(.demoId)
         }
-        
+
         /// Description传入错误。
         public static var description: InvalidParameterValue {
             InvalidParameterValue(.description)
         }
-        
+
         /// 环境变量DNS[OS_NAMESERVER]配置有误。
         ///
         /// 请确认ip格式，多个ip用分号(;)分割
         public static var dnsInfo: InvalidParameterValue {
             InvalidParameterValue(.dnsInfo)
         }
-        
+
         /// DynamicEnabled 参数传入错误。
         public static var dynamicEnabled: InvalidParameterValue {
             InvalidParameterValue(.dynamicEnabled)
         }
-        
+
         /// EipConfig参数错误。
         public static var eipConfig: InvalidParameterValue {
             InvalidParameterValue(.eipConfig)
         }
-        
+
         /// Enable取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var enable: InvalidParameterValue {
             InvalidParameterValue(.enable)
         }
-        
+
         /// Environment传入错误。
         public static var environment: InvalidParameterValue {
             InvalidParameterValue(.environment)
         }
-        
+
         /// 环境变量大小超限，请保持在 4KB 以内。
         public static var environmentExceededLimit: InvalidParameterValue {
             InvalidParameterValue(.environmentExceededLimit)
         }
-        
+
         /// 不支持修改函数系统环境变量和运行环境变量。
         public static var environmentSystemProtect: InvalidParameterValue {
             InvalidParameterValue(.environmentSystemProtect)
         }
-        
+
         /// Filters参数错误。
         public static var filters: InvalidParameterValue {
             InvalidParameterValue(.filters)
         }
-        
+
         /// Function取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var function: InvalidParameterValue {
             InvalidParameterValue(.function)
         }
-        
+
         /// 函数不存在。
         public static var functionName: InvalidParameterValue {
             InvalidParameterValue(.functionName)
         }
-        
+
         /// 请求 id 传参错误。
         public static var functionRequestId: InvalidParameterValue {
             InvalidParameterValue(.functionRequestId)
         }
-        
+
         /// FunctionType参数错误。
         public static var functionType: InvalidParameterValue {
             InvalidParameterValue(.functionType)
         }
-        
+
         /// GitBranch不符合规范。
         public static var gitBranch: InvalidParameterValue {
             InvalidParameterValue(.gitBranch)
         }
-        
+
         /// GitCommitId取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var gitCommitId: InvalidParameterValue {
             InvalidParameterValue(.gitCommitId)
         }
-        
+
         /// GitDirectory不符合规范。
         public static var gitDirectory: InvalidParameterValue {
             InvalidParameterValue(.gitDirectory)
         }
-        
+
         /// GitPassword不符合规范。
         public static var gitPassword: InvalidParameterValue {
             InvalidParameterValue(.gitPassword)
         }
-        
+
         /// GitPasswordSecret 传参有误。
         public static var gitPasswordSecret: InvalidParameterValue {
             InvalidParameterValue(.gitPasswordSecret)
         }
-        
+
         /// GitUrl不符合规范。
         public static var gitUrl: InvalidParameterValue {
             InvalidParameterValue(.gitUrl)
         }
-        
+
         /// GitUserName不符合规范。
         public static var gitUserName: InvalidParameterValue {
             InvalidParameterValue(.gitUserName)
         }
-        
+
         /// GitUserNameSecret 传参有误。
         public static var gitUserNameSecret: InvalidParameterValue {
             InvalidParameterValue(.gitUserNameSecret)
         }
-        
+
         /// Handler传入错误。
         public static var handler: InvalidParameterValue {
             InvalidParameterValue(.handler)
         }
-        
+
         /// IdleTimeOut参数传入错误。
         public static var idleTimeOut: InvalidParameterValue {
             InvalidParameterValue(.idleTimeOut)
         }
-        
+
         /// ImageType 参数值有误。
         public static var imageType: InvalidParameterValue {
             InvalidParameterValue(.imageType)
         }
-        
+
         /// imageUri 传入有误。
         ///
         /// 请确认格式是否正确（字符格式[ASCII]，参数个数：tag/digest信息是否传入）。
         public static var imageUri: InvalidParameterValue {
             InvalidParameterValue(.imageUri)
         }
-        
+
         /// InlineZipFile非法。
         public static var inlineZipFile: InvalidParameterValue {
             InvalidParameterValue(.inlineZipFile)
         }
-        
+
         /// InstanceConcurrencyConfig 参数传入错误。
         public static var instanceConcurrencyConfig: InvalidParameterValue {
             InvalidParameterValue(.instanceConcurrencyConfig)
         }
-        
+
         /// InvokeType取值与规范不符，请修正后再试。
         public static var invokeType: InvalidParameterValue {
             InvalidParameterValue(.invokeType)
         }
-        
+
         /// L5Enable取值与规范不符，请修正后再试。
         public static var l5Enable: InvalidParameterValue {
             InvalidParameterValue(.l5Enable)
         }
-        
+
         /// LayerName参数传入错误。
         public static var layerName: InvalidParameterValue {
             InvalidParameterValue(.layerName)
         }
-        
+
         /// Layers参数传入错误。
         public static var layers: InvalidParameterValue {
             InvalidParameterValue(.layers)
         }
-        
+
         /// Limit传入错误。
         public static var limit: InvalidParameterValue {
             InvalidParameterValue(.limit)
         }
-        
+
         /// 参数超出长度限制。
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
         }
-        
+
         /// MaxConcurrency 参数传入错误。
         public static var maxConcurrency: InvalidParameterValue {
             InvalidParameterValue(.maxConcurrency)
         }
-        
+
         /// Memory取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var memory: InvalidParameterValue {
             InvalidParameterValue(.memory)
         }
-        
+
         /// MemorySize错误。
         public static var memorySize: InvalidParameterValue {
             InvalidParameterValue(.memorySize)
         }
-        
+
         /// MinCapacity 参数传入错误。
         public static var minCapacity: InvalidParameterValue {
             InvalidParameterValue(.minCapacity)
         }
-        
+
         /// Name参数传入错误。
         public static var name: InvalidParameterValue {
             InvalidParameterValue(.name)
         }
-        
+
         /// Namespace参数传入错误。
         public static var namespace: InvalidParameterValue {
             InvalidParameterValue(.namespace)
         }
-        
+
         /// 规则不正确，Namespace为英文字母、数字、-_ 符号组成，长度30。
         public static var namespaceInvalid: InvalidParameterValue {
             InvalidParameterValue(.namespaceInvalid)
         }
-        
+
         /// NodeSpec 参数传入错误。
         public static var nodeSpec: InvalidParameterValue {
             InvalidParameterValue(.nodeSpec)
         }
-        
+
         /// NodeType 参数传入错误。
         public static var nodeType: InvalidParameterValue {
             InvalidParameterValue(.nodeType)
         }
-        
+
         /// 偏移量不合法。
         public static var offset: InvalidParameterValue {
             InvalidParameterValue(.offset)
         }
-        
+
         /// Order传入错误。
         public static var order: InvalidParameterValue {
             InvalidParameterValue(.order)
         }
-        
+
         /// OrderBy取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var orderBy: InvalidParameterValue {
             InvalidParameterValue(.orderBy)
         }
-        
+
         /// Orderby传入错误。
         public static var orderby: InvalidParameterValue {
             InvalidParameterValue(.orderby)
         }
-        
+
         /// 入参不是标准的json。
         public static var param: InvalidParameterValue {
             InvalidParameterValue(.param)
         }
-        
+
         /// ProtocolType参数传入错误。
         public static var protocolType: InvalidParameterValue {
             InvalidParameterValue(.protocolType)
         }
-        
+
         /// 定时预置的cron配置重复。
         public static var provisionTriggerCronConfigDuplicate: InvalidParameterValue {
             InvalidParameterValue(.provisionTriggerCronConfigDuplicate)
         }
-        
+
         /// TriggerName参数传入错误。
         public static var provisionTriggerName: InvalidParameterValue {
             InvalidParameterValue(.provisionTriggerName)
         }
-        
+
         /// TriggerName重复。
         public static var provisionTriggerNameDuplicate: InvalidParameterValue {
             InvalidParameterValue(.provisionTriggerNameDuplicate)
         }
-        
+
         /// ProvisionType 参数传入错误。
         public static var provisionType: InvalidParameterValue {
             InvalidParameterValue(.provisionType)
         }
-        
+
         /// PublicNetConfig参数错误。
         public static var publicNetConfig: InvalidParameterValue {
             InvalidParameterValue(.publicNetConfig)
         }
-        
+
         /// 不支持的函数版本。
         public static var qualifier: InvalidParameterValue {
             InvalidParameterValue(.qualifier)
         }
-        
+
         /// 查询版本详情，版本参数传入错误。
         public static var queryVersion: InvalidParameterValue {
             InvalidParameterValue(.queryVersion)
         }
-        
+
         /// 企业版镜像实例ID[RegistryId]传值错误。
         ///
         /// RegistryId 取值要求：小写字母、数字和 - 的组合，且不能以 - 开头或结尾，长度为5-50字符
         public static var registryId: InvalidParameterValue {
             InvalidParameterValue(.registryId)
         }
-        
+
         /// RetCode不合法。
         public static var retCode: InvalidParameterValue {
             InvalidParameterValue(.retCode)
         }
-        
+
         /// RoutingConfig取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var routingConfig: InvalidParameterValue {
             InvalidParameterValue(.routingConfig)
         }
-        
+
         /// Runtime传入错误。
         public static var runtime: InvalidParameterValue {
             InvalidParameterValue(.runtime)
         }
-        
+
         /// searchkey 不是 Keyword,Tag 或者 Runtime。
         public static var searchKey: InvalidParameterValue {
             InvalidParameterValue(.searchKey)
         }
-        
+
         /// SecretInfo错误。
         public static var secretInfo: InvalidParameterValue {
             InvalidParameterValue(.secretInfo)
         }
-        
+
         /// ServiceName命名不规范。
         public static var serviceName: InvalidParameterValue {
             InvalidParameterValue(.serviceName)
         }
-        
+
         /// Stamp取值与规范不符，请修正后再试。
         public static var stamp: InvalidParameterValue {
             InvalidParameterValue(.stamp)
         }
-        
+
         /// 起始时间传入错误。
         public static var startTime: InvalidParameterValue {
             InvalidParameterValue(.startTime)
         }
-        
+
         /// 需要同时指定开始日期与结束日期。
         public static var startTimeOrEndTime: InvalidParameterValue {
             InvalidParameterValue(.startTimeOrEndTime)
         }
-        
+
         /// Status取值与规范不符，请修正后再试。
         public static var status: InvalidParameterValue {
             InvalidParameterValue(.status)
         }
-        
+
         /// 系统环境变量错误。
         public static var systemEnvironment: InvalidParameterValue {
             InvalidParameterValue(.systemEnvironment)
         }
-        
+
         /// 非法的TempCosObjectName。
         public static var tempCosObjectName: InvalidParameterValue {
             InvalidParameterValue(.tempCosObjectName)
         }
-        
+
         /// TraceEnable取值与规范不符，请修正后再试。
         public static var traceEnable: InvalidParameterValue {
             InvalidParameterValue(.traceEnable)
         }
-        
+
         /// TrackingTarget 参数输入错误。
         public static var trackingTarget: InvalidParameterValue {
             InvalidParameterValue(.trackingTarget)
         }
-        
+
         /// TriggerCronConfig参数传入错误。
         public static var triggerCronConfig: InvalidParameterValue {
             InvalidParameterValue(.triggerCronConfig)
         }
-        
+
         /// TriggerCronConfig参数定时触发间隔小于指定值。
         public static var triggerCronConfigTimeInterval: InvalidParameterValue {
             InvalidParameterValue(.triggerCronConfigTimeInterval)
         }
-        
+
         /// TriggerDesc传入参数错误。
         public static var triggerDesc: InvalidParameterValue {
             InvalidParameterValue(.triggerDesc)
         }
-        
+
         /// TriggerName传入错误。
         public static var triggerName: InvalidParameterValue {
             InvalidParameterValue(.triggerName)
         }
-        
+
         /// TriggerProvisionedConcurrencyNum参数传入错误。
         public static var triggerProvisionedConcurrencyNum: InvalidParameterValue {
             InvalidParameterValue(.triggerProvisionedConcurrencyNum)
         }
-        
+
         /// Type传入错误。
         public static var type: InvalidParameterValue {
             InvalidParameterValue(.type)
         }
-        
+
         /// 开启cfs配置的同时必须开启vpc。
         public static var vpcNotSetWhenOpenCfs: InvalidParameterValue {
             InvalidParameterValue(.vpcNotSetWhenOpenCfs)
         }
-        
+
         /// WebSocketsParams参数传入错误。
         public static var webSocketsParams: InvalidParameterValue {
             InvalidParameterValue(.webSocketsParams)
         }
-        
+
         /// 检测到不是标准的zip文件，请重新压缩后再试。
         public static var zipFile: InvalidParameterValue {
             InvalidParameterValue(.zipFile)
         }
-        
+
         /// 压缩文件base64解码失败: <code>Incorrect padding</code>，请修正后再试。
         ///
         /// 检查压缩文件base64编码是否合法
         public static var zipFileBase64BinasciiError: InvalidParameterValue {
             InvalidParameterValue(.zipFileBase64BinasciiError)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
-            case .action: 
+            case .action:
                 code = .invalidParameterValue_Action
-            case .additionalVersionWeights: 
+            case .additionalVersionWeights:
                 code = .invalidParameterValue_AdditionalVersionWeights
-            case .alias: 
+            case .alias:
                 code = .invalidParameterValue_Alias
-            case .apiGateway: 
+            case .apiGateway:
                 code = .invalidParameterValue_ApiGateway
-            case .apmConfig: 
+            case .apmConfig:
                 code = .invalidParameterValue_ApmConfig
-            case .apmConfigInstanceId: 
+            case .apmConfigInstanceId:
                 code = .invalidParameterValue_ApmConfigInstanceId
-            case .apmConfigRegion: 
+            case .apmConfigRegion:
                 code = .invalidParameterValue_ApmConfigRegion
-            case .args: 
+            case .args:
                 code = .invalidParameterValue_Args
-            case .asyncRunEnable: 
+            case .asyncRunEnable:
                 code = .invalidParameterValue_AsyncRunEnable
-            case .asyncTriggerConfig: 
+            case .asyncTriggerConfig:
                 code = .invalidParameterValue_AsyncTriggerConfig
-            case .cdn: 
+            case .cdn:
                 code = .invalidParameterValue_Cdn
-            case .cfsParameterDuplicate: 
+            case .cfsParameterDuplicate:
                 code = .invalidParameterValue_CfsParameterDuplicate
-            case .cfsParameterError: 
+            case .cfsParameterError:
                 code = .invalidParameterValue_CfsParameterError
-            case .cfsStructionError: 
+            case .cfsStructionError:
                 code = .invalidParameterValue_CfsStructionError
-            case .ckafka: 
+            case .ckafka:
                 code = .invalidParameterValue_Ckafka
-            case .clientContext: 
+            case .clientContext:
                 code = .invalidParameterValue_ClientContext
-            case .cls: 
+            case .cls:
                 code = .invalidParameterValue_Cls
-            case .clsRole: 
+            case .clsRole:
                 code = .invalidParameterValue_ClsRole
-            case .cmq: 
+            case .cmq:
                 code = .invalidParameterValue_Cmq
-            case .code: 
+            case .code:
                 code = .invalidParameterValue_Code
-            case .codeSecret: 
+            case .codeSecret:
                 code = .invalidParameterValue_CodeSecret
-            case .codeSource: 
+            case .codeSource:
                 code = .invalidParameterValue_CodeSource
-            case .command: 
+            case .command:
                 code = .invalidParameterValue_Command
-            case .compatibleRuntimes: 
+            case .compatibleRuntimes:
                 code = .invalidParameterValue_CompatibleRuntimes
-            case .content: 
+            case .content:
                 code = .invalidParameterValue_Content
-            case .cos: 
+            case .cos:
                 code = .invalidParameterValue_Cos
-            case .cosBucketName: 
+            case .cosBucketName:
                 code = .invalidParameterValue_CosBucketName
-            case .cosBucketRegion: 
+            case .cosBucketRegion:
                 code = .invalidParameterValue_CosBucketRegion
-            case .cosNotifyRuleConflict: 
+            case .cosNotifyRuleConflict:
                 code = .invalidParameterValue_CosNotifyRuleConflict
-            case .cosObjectName: 
+            case .cosObjectName:
                 code = .invalidParameterValue_CosObjectName
-            case .customArgument: 
+            case .customArgument:
                 code = .invalidParameterValue_CustomArgument
-            case .dateTime: 
+            case .dateTime:
                 code = .invalidParameterValue_DateTime
-            case .deadLetterConfig: 
+            case .deadLetterConfig:
                 code = .invalidParameterValue_DeadLetterConfig
-            case .defaultNamespace: 
+            case .defaultNamespace:
                 code = .invalidParameterValue_DefaultNamespace
-            case .demo: 
+            case .demo:
                 code = .invalidParameterValue_Demo
-            case .demoId: 
+            case .demoId:
                 code = .invalidParameterValue_DemoId
-            case .description: 
+            case .description:
                 code = .invalidParameterValue_Description
-            case .dnsInfo: 
+            case .dnsInfo:
                 code = .invalidParameterValue_DnsInfo
-            case .dynamicEnabled: 
+            case .dynamicEnabled:
                 code = .invalidParameterValue_DynamicEnabled
-            case .eipConfig: 
+            case .eipConfig:
                 code = .invalidParameterValue_EipConfig
-            case .enable: 
+            case .enable:
                 code = .invalidParameterValue_Enable
-            case .environment: 
+            case .environment:
                 code = .invalidParameterValue_Environment
-            case .environmentExceededLimit: 
+            case .environmentExceededLimit:
                 code = .invalidParameterValue_EnvironmentExceededLimit
-            case .environmentSystemProtect: 
+            case .environmentSystemProtect:
                 code = .invalidParameterValue_EnvironmentSystemProtect
-            case .filters: 
+            case .filters:
                 code = .invalidParameterValue_Filters
-            case .function: 
+            case .function:
                 code = .invalidParameterValue_Function
-            case .functionName: 
+            case .functionName:
                 code = .invalidParameterValue_FunctionName
-            case .functionRequestId: 
+            case .functionRequestId:
                 code = .invalidParameterValue_FunctionRequestId
-            case .functionType: 
+            case .functionType:
                 code = .invalidParameterValue_FunctionType
-            case .gitBranch: 
+            case .gitBranch:
                 code = .invalidParameterValue_GitBranch
-            case .gitCommitId: 
+            case .gitCommitId:
                 code = .invalidParameterValue_GitCommitId
-            case .gitDirectory: 
+            case .gitDirectory:
                 code = .invalidParameterValue_GitDirectory
-            case .gitPassword: 
+            case .gitPassword:
                 code = .invalidParameterValue_GitPassword
-            case .gitPasswordSecret: 
+            case .gitPasswordSecret:
                 code = .invalidParameterValue_GitPasswordSecret
-            case .gitUrl: 
+            case .gitUrl:
                 code = .invalidParameterValue_GitUrl
-            case .gitUserName: 
+            case .gitUserName:
                 code = .invalidParameterValue_GitUserName
-            case .gitUserNameSecret: 
+            case .gitUserNameSecret:
                 code = .invalidParameterValue_GitUserNameSecret
-            case .handler: 
+            case .handler:
                 code = .invalidParameterValue_Handler
-            case .idleTimeOut: 
+            case .idleTimeOut:
                 code = .invalidParameterValue_IdleTimeOut
-            case .imageType: 
+            case .imageType:
                 code = .invalidParameterValue_ImageType
-            case .imageUri: 
+            case .imageUri:
                 code = .invalidParameterValue_ImageUri
-            case .inlineZipFile: 
+            case .inlineZipFile:
                 code = .invalidParameterValue_InlineZipFile
-            case .instanceConcurrencyConfig: 
+            case .instanceConcurrencyConfig:
                 code = .invalidParameterValue_InstanceConcurrencyConfig
-            case .invokeType: 
+            case .invokeType:
                 code = .invalidParameterValue_InvokeType
-            case .l5Enable: 
+            case .l5Enable:
                 code = .invalidParameterValue_L5Enable
-            case .layerName: 
+            case .layerName:
                 code = .invalidParameterValue_LayerName
-            case .layers: 
+            case .layers:
                 code = .invalidParameterValue_Layers
-            case .limit: 
+            case .limit:
                 code = .invalidParameterValue_Limit
-            case .limitExceeded: 
+            case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
-            case .maxConcurrency: 
+            case .maxConcurrency:
                 code = .invalidParameterValue_MaxConcurrency
-            case .memory: 
+            case .memory:
                 code = .invalidParameterValue_Memory
-            case .memorySize: 
+            case .memorySize:
                 code = .invalidParameterValue_MemorySize
-            case .minCapacity: 
+            case .minCapacity:
                 code = .invalidParameterValue_MinCapacity
-            case .name: 
+            case .name:
                 code = .invalidParameterValue_Name
-            case .namespace: 
+            case .namespace:
                 code = .invalidParameterValue_Namespace
-            case .namespaceInvalid: 
+            case .namespaceInvalid:
                 code = .invalidParameterValue_NamespaceInvalid
-            case .nodeSpec: 
+            case .nodeSpec:
                 code = .invalidParameterValue_NodeSpec
-            case .nodeType: 
+            case .nodeType:
                 code = .invalidParameterValue_NodeType
-            case .offset: 
+            case .offset:
                 code = .invalidParameterValue_Offset
-            case .order: 
+            case .order:
                 code = .invalidParameterValue_Order
-            case .orderBy: 
+            case .orderBy:
                 code = .invalidParameterValue_OrderBy
-            case .orderby: 
+            case .orderby:
                 code = .invalidParameterValue_Orderby
-            case .param: 
+            case .param:
                 code = .invalidParameterValue_Param
-            case .protocolType: 
+            case .protocolType:
                 code = .invalidParameterValue_ProtocolType
-            case .provisionTriggerCronConfigDuplicate: 
+            case .provisionTriggerCronConfigDuplicate:
                 code = .invalidParameterValue_ProvisionTriggerCronConfigDuplicate
-            case .provisionTriggerName: 
+            case .provisionTriggerName:
                 code = .invalidParameterValue_ProvisionTriggerName
-            case .provisionTriggerNameDuplicate: 
+            case .provisionTriggerNameDuplicate:
                 code = .invalidParameterValue_ProvisionTriggerNameDuplicate
-            case .provisionType: 
+            case .provisionType:
                 code = .invalidParameterValue_ProvisionType
-            case .publicNetConfig: 
+            case .publicNetConfig:
                 code = .invalidParameterValue_PublicNetConfig
-            case .qualifier: 
+            case .qualifier:
                 code = .invalidParameterValue_Qualifier
-            case .queryVersion: 
+            case .queryVersion:
                 code = .invalidParameterValue_QueryVersion
-            case .registryId: 
+            case .registryId:
                 code = .invalidParameterValue_RegistryId
-            case .retCode: 
+            case .retCode:
                 code = .invalidParameterValue_RetCode
-            case .routingConfig: 
+            case .routingConfig:
                 code = .invalidParameterValue_RoutingConfig
-            case .runtime: 
+            case .runtime:
                 code = .invalidParameterValue_Runtime
-            case .searchKey: 
+            case .searchKey:
                 code = .invalidParameterValue_SearchKey
-            case .secretInfo: 
+            case .secretInfo:
                 code = .invalidParameterValue_SecretInfo
-            case .serviceName: 
+            case .serviceName:
                 code = .invalidParameterValue_ServiceName
-            case .stamp: 
+            case .stamp:
                 code = .invalidParameterValue_Stamp
-            case .startTime: 
+            case .startTime:
                 code = .invalidParameterValue_StartTime
-            case .startTimeOrEndTime: 
+            case .startTimeOrEndTime:
                 code = .invalidParameterValue_StartTimeOrEndTime
-            case .status: 
+            case .status:
                 code = .invalidParameterValue_Status
-            case .systemEnvironment: 
+            case .systemEnvironment:
                 code = .invalidParameterValue_SystemEnvironment
-            case .tempCosObjectName: 
+            case .tempCosObjectName:
                 code = .invalidParameterValue_TempCosObjectName
-            case .traceEnable: 
+            case .traceEnable:
                 code = .invalidParameterValue_TraceEnable
-            case .trackingTarget: 
+            case .trackingTarget:
                 code = .invalidParameterValue_TrackingTarget
-            case .triggerCronConfig: 
+            case .triggerCronConfig:
                 code = .invalidParameterValue_TriggerCronConfig
-            case .triggerCronConfigTimeInterval: 
+            case .triggerCronConfigTimeInterval:
                 code = .invalidParameterValue_TriggerCronConfigTimeInterval
-            case .triggerDesc: 
+            case .triggerDesc:
                 code = .invalidParameterValue_TriggerDesc
-            case .triggerName: 
+            case .triggerName:
                 code = .invalidParameterValue_TriggerName
-            case .triggerProvisionedConcurrencyNum: 
+            case .triggerProvisionedConcurrencyNum:
                 code = .invalidParameterValue_TriggerProvisionedConcurrencyNum
-            case .type: 
+            case .type:
                 code = .invalidParameterValue_Type
-            case .vpcNotSetWhenOpenCfs: 
+            case .vpcNotSetWhenOpenCfs:
                 code = .invalidParameterValue_VpcNotSetWhenOpenCfs
-            case .webSocketsParams: 
+            case .webSocketsParams:
                 code = .invalidParameterValue_WebSocketsParams
-            case .zipFile: 
+            case .zipFile:
                 code = .invalidParameterValue_ZipFile
-            case .zipFileBase64BinasciiError: 
+            case .zipFileBase64BinasciiError:
                 code = .invalidParameterValue_ZipFileBase64BinasciiError
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCScfError(code, context: self.context)

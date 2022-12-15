@@ -19,35 +19,35 @@ extension Lighthouse {
     public struct DeleteSnapshotsRequest: TCRequestModel {
         /// 要删除的快照 ID 列表，可通过 DescribeSnapshots 查询。
         public let snapshotIds: [String]
-        
-        public init (snapshotIds: [String]) {
+
+        public init(snapshotIds: [String]) {
             self.snapshotIds = snapshotIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotIds = "SnapshotIds"
         }
     }
-    
+
     /// DeleteSnapshots返回参数结构体
     public struct DeleteSnapshotsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
         self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
@@ -56,16 +56,16 @@ extension Lighthouse {
     public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
         try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable
-    public func deleteSnapshots(snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
+    public func deleteSnapshots(snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
         self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。

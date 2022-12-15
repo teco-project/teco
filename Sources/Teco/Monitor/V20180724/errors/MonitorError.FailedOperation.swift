@@ -64,352 +64,352 @@ extension TCMonitorError {
             case zoneUnavailable = "FailedOperation.ZoneUnavailable"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 访问STS失败。
         public static var accessSTSFail: FailedOperation {
             FailedOperation(.accessSTSFail)
         }
-        
+
         /// 访问用户TKE集群失败。
         public static var accessTKEFail: FailedOperation {
             FailedOperation(.accessTKEFail)
         }
-        
+
         /// 访问标签服务失败。
         public static var accessTagFail: FailedOperation {
             FailedOperation(.accessTagFail)
         }
-        
+
         /// agent当前状态不允许该操作。
         public static var agentNotAllowed: FailedOperation {
             FailedOperation(.agentNotAllowed)
         }
-        
+
         /// Agent版本不支持该操作，请升级Agent。
         public static var agentVersionNotSupported: FailedOperation {
             FailedOperation(.agentVersionNotSupported)
         }
-        
+
         /// 该实例上有正在运行的Agent。
         public static var agentsNotInUninstallStage: FailedOperation {
             FailedOperation(.agentsNotInUninstallStage)
         }
-        
+
         /// 删除过滤条件失败。
         public static var alertFilterRuleDeleteFailed: FailedOperation {
             FailedOperation(.alertFilterRuleDeleteFailed)
         }
-        
+
         /// 创建告警策略失败。
         public static var alertPolicyCreateFailed: FailedOperation {
             FailedOperation(.alertPolicyCreateFailed)
         }
-        
+
         /// 告警策略删除失败。
         public static var alertPolicyDeleteFailed: FailedOperation {
             FailedOperation(.alertPolicyDeleteFailed)
         }
-        
+
         /// 告警策略查询失败。
         public static var alertPolicyDescribeFailed: FailedOperation {
             FailedOperation(.alertPolicyDescribeFailed)
         }
-        
+
         /// 告警策略修改失败。
         public static var alertPolicyModifyFailed: FailedOperation {
             FailedOperation(.alertPolicyModifyFailed)
         }
-        
+
         /// 删除触发条件失败。
         public static var alertTriggerRuleDeleteFailed: FailedOperation {
             FailedOperation(.alertTriggerRuleDeleteFailed)
         }
-        
+
         /// Yaml 格式不正确。
         ///
         /// 修改您输入的 Yaml 数据
         public static var badYamlFormat: FailedOperation {
             FailedOperation(.badYamlFormat)
         }
-        
+
         /// 创建实例失败。
         public static var createInstance: FailedOperation {
             FailedOperation(.createInstance)
         }
-        
+
         /// 该账号创建实例被限制。
         public static var createInstanceLimited: FailedOperation {
             FailedOperation(.createInstanceLimited)
         }
-        
+
         /// 数据表字段不存在。
         public static var dataColumnNotFound: FailedOperation {
             FailedOperation(.dataColumnNotFound)
         }
-        
+
         /// 数据查询失败。
         public static var dataQueryFailed: FailedOperation {
             FailedOperation(.dataQueryFailed)
         }
-        
+
         /// 数据表不存在。
         public static var dataTableNotFound: FailedOperation {
             FailedOperation(.dataTableNotFound)
         }
-        
+
         /// 数据库查询失败。
         public static var dbQueryFailed: FailedOperation {
             FailedOperation(.dbQueryFailed)
         }
-        
+
         /// 创建数据库记录失败。
         public static var dbRecordCreateFailed: FailedOperation {
             FailedOperation(.dbRecordCreateFailed)
         }
-        
+
         /// 数据库记录删除失败。
         public static var dbRecordDeleteFailed: FailedOperation {
             FailedOperation(.dbRecordDeleteFailed)
         }
-        
+
         /// 数据库记录更新失败。
         public static var dbRecordUpdateFailed: FailedOperation {
             FailedOperation(.dbRecordUpdateFailed)
         }
-        
+
         /// 数据库事务开始失败。
         public static var dbTransactionBeginFailed: FailedOperation {
             FailedOperation(.dbTransactionBeginFailed)
         }
-        
+
         /// 数据库事务提交失败。
         public static var dbTransactionCommitFailed: FailedOperation {
             FailedOperation(.dbTransactionCommitFailed)
         }
-        
+
         /// 请求维度查询服务失败。
         public static var dimQueryRequestFailed: FailedOperation {
             FailedOperation(.dimQueryRequestFailed)
         }
-        
+
         /// 被除数为0。
         public static var divisionByZero: FailedOperation {
             FailedOperation(.divisionByZero)
         }
-        
+
         /// 查询分析数据失败。
         public static var druidQueryFailed: FailedOperation {
             FailedOperation(.druidQueryFailed)
         }
-        
+
         /// druid表不存在。
         public static var druidTableNotFound: FailedOperation {
             FailedOperation(.druidTableNotFound)
         }
-        
+
         /// 名字重复。
         public static var duplicateName: FailedOperation {
             FailedOperation(.duplicateName)
         }
-        
+
         public static var errNotOpen: FailedOperation {
             FailedOperation(.errNotOpen)
         }
-        
+
         public static var errOwed: FailedOperation {
             FailedOperation(.errOwed)
         }
-        
+
         /// 生成资源ID错误。
         public static var generateInstanceIDFailed: FailedOperation {
             FailedOperation(.generateInstanceIDFailed)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: FailedOperation {
             FailedOperation(.instanceNotFound)
         }
-        
+
         /// 实例没有运行。
         public static var instanceNotRunning: FailedOperation {
             FailedOperation(.instanceNotRunning)
         }
-        
+
         public static var internalError: FailedOperation {
             FailedOperation(.internalError)
         }
-        
+
         /// 地区不可用。
         public static var regionUnavailable: FailedOperation {
             FailedOperation(.regionUnavailable)
         }
-        
+
         /// 资源已经存在。
         public static var resourceExist: FailedOperation {
             FailedOperation(.resourceExist)
         }
-        
+
         /// 资源不存在。
         public static var resourceNotFound: FailedOperation {
             FailedOperation(.resourceNotFound)
         }
-        
+
         /// 资源正在被操作。
         public static var resourceOperating: FailedOperation {
             FailedOperation(.resourceOperating)
         }
-        
+
         /// 发送授权请求失败。
         public static var sendRequest: FailedOperation {
             FailedOperation(.sendRequest)
         }
-        
+
         /// 服务未启用，开通服务后方可使用。
         public static var serviceNotEnabled: FailedOperation {
             FailedOperation(.serviceNotEnabled)
         }
-        
+
         /// 没有访问TKE权限。
         public static var tkeClientAuthFail: FailedOperation {
             FailedOperation(.tkeClientAuthFail)
         }
-        
+
         /// TKE的endpoint不可访问。
         public static var tkeEndpointStatusError: FailedOperation {
             FailedOperation(.tkeEndpointStatusError)
         }
-        
+
         /// 更新TKE资源时出现冲突。
         public static var tkeResourceConflict: FailedOperation {
             FailedOperation(.tkeResourceConflict)
         }
-        
+
         /// 可用区不可用。
         public static var zoneUnavailable: FailedOperation {
             FailedOperation(.zoneUnavailable)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asMonitorError() -> TCMonitorError {
             let code: TCMonitorError.Code
             switch self.error {
-            case .accessSTSFail: 
+            case .accessSTSFail:
                 code = .failedOperation_AccessSTSFail
-            case .accessTKEFail: 
+            case .accessTKEFail:
                 code = .failedOperation_AccessTKEFail
-            case .accessTagFail: 
+            case .accessTagFail:
                 code = .failedOperation_AccessTagFail
-            case .agentNotAllowed: 
+            case .agentNotAllowed:
                 code = .failedOperation_AgentNotAllowed
-            case .agentVersionNotSupported: 
+            case .agentVersionNotSupported:
                 code = .failedOperation_AgentVersionNotSupported
-            case .agentsNotInUninstallStage: 
+            case .agentsNotInUninstallStage:
                 code = .failedOperation_AgentsNotInUninstallStage
-            case .alertFilterRuleDeleteFailed: 
+            case .alertFilterRuleDeleteFailed:
                 code = .failedOperation_AlertFilterRuleDeleteFailed
-            case .alertPolicyCreateFailed: 
+            case .alertPolicyCreateFailed:
                 code = .failedOperation_AlertPolicyCreateFailed
-            case .alertPolicyDeleteFailed: 
+            case .alertPolicyDeleteFailed:
                 code = .failedOperation_AlertPolicyDeleteFailed
-            case .alertPolicyDescribeFailed: 
+            case .alertPolicyDescribeFailed:
                 code = .failedOperation_AlertPolicyDescribeFailed
-            case .alertPolicyModifyFailed: 
+            case .alertPolicyModifyFailed:
                 code = .failedOperation_AlertPolicyModifyFailed
-            case .alertTriggerRuleDeleteFailed: 
+            case .alertTriggerRuleDeleteFailed:
                 code = .failedOperation_AlertTriggerRuleDeleteFailed
-            case .badYamlFormat: 
+            case .badYamlFormat:
                 code = .failedOperation_BadYamlFormat
-            case .createInstance: 
+            case .createInstance:
                 code = .failedOperation_CreateInstance
-            case .createInstanceLimited: 
+            case .createInstanceLimited:
                 code = .failedOperation_CreateInstanceLimited
-            case .dataColumnNotFound: 
+            case .dataColumnNotFound:
                 code = .failedOperation_DataColumnNotFound
-            case .dataQueryFailed: 
+            case .dataQueryFailed:
                 code = .failedOperation_DataQueryFailed
-            case .dataTableNotFound: 
+            case .dataTableNotFound:
                 code = .failedOperation_DataTableNotFound
-            case .dbQueryFailed: 
+            case .dbQueryFailed:
                 code = .failedOperation_DbQueryFailed
-            case .dbRecordCreateFailed: 
+            case .dbRecordCreateFailed:
                 code = .failedOperation_DbRecordCreateFailed
-            case .dbRecordDeleteFailed: 
+            case .dbRecordDeleteFailed:
                 code = .failedOperation_DbRecordDeleteFailed
-            case .dbRecordUpdateFailed: 
+            case .dbRecordUpdateFailed:
                 code = .failedOperation_DbRecordUpdateFailed
-            case .dbTransactionBeginFailed: 
+            case .dbTransactionBeginFailed:
                 code = .failedOperation_DbTransactionBeginFailed
-            case .dbTransactionCommitFailed: 
+            case .dbTransactionCommitFailed:
                 code = .failedOperation_DbTransactionCommitFailed
-            case .dimQueryRequestFailed: 
+            case .dimQueryRequestFailed:
                 code = .failedOperation_DimQueryRequestFailed
-            case .divisionByZero: 
+            case .divisionByZero:
                 code = .failedOperation_DivisionByZero
-            case .druidQueryFailed: 
+            case .druidQueryFailed:
                 code = .failedOperation_DruidQueryFailed
-            case .druidTableNotFound: 
+            case .druidTableNotFound:
                 code = .failedOperation_DruidTableNotFound
-            case .duplicateName: 
+            case .duplicateName:
                 code = .failedOperation_DuplicateName
-            case .errNotOpen: 
+            case .errNotOpen:
                 code = .failedOperation_ErrNotOpen
-            case .errOwed: 
+            case .errOwed:
                 code = .failedOperation_ErrOwed
-            case .generateInstanceIDFailed: 
+            case .generateInstanceIDFailed:
                 code = .failedOperation_GenerateInstanceIDFailed
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .failedOperation_InstanceNotFound
-            case .instanceNotRunning: 
+            case .instanceNotRunning:
                 code = .failedOperation_InstanceNotRunning
-            case .internalError: 
+            case .internalError:
                 code = .failedOperation_InternalError
-            case .regionUnavailable: 
+            case .regionUnavailable:
                 code = .failedOperation_RegionUnavailable
-            case .resourceExist: 
+            case .resourceExist:
                 code = .failedOperation_ResourceExist
-            case .resourceNotFound: 
+            case .resourceNotFound:
                 code = .failedOperation_ResourceNotFound
-            case .resourceOperating: 
+            case .resourceOperating:
                 code = .failedOperation_ResourceOperating
-            case .sendRequest: 
+            case .sendRequest:
                 code = .failedOperation_SendRequest
-            case .serviceNotEnabled: 
+            case .serviceNotEnabled:
                 code = .failedOperation_ServiceNotEnabled
-            case .tkeClientAuthFail: 
+            case .tkeClientAuthFail:
                 code = .failedOperation_TKEClientAuthFail
-            case .tkeEndpointStatusError: 
+            case .tkeEndpointStatusError:
                 code = .failedOperation_TKEEndpointStatusError
-            case .tkeResourceConflict: 
+            case .tkeResourceConflict:
                 code = .failedOperation_TKEResourceConflict
-            case .zoneUnavailable: 
+            case .zoneUnavailable:
                 code = .failedOperation_ZoneUnavailable
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCMonitorError(code, context: self.context)

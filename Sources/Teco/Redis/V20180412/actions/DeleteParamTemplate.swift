@@ -19,44 +19,44 @@ extension Redis {
     public struct DeleteParamTemplateRequest: TCRequestModel {
         /// 参数模板 ID。
         public let templateId: String
-        
-        public init (templateId: String) {
+
+        public init(templateId: String) {
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DeleteParamTemplate返回参数结构体
     public struct DeleteParamTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除参数模板
     @inlinable
-    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
+    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteParamTemplateResponse> {
         self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除参数模板
     @inlinable
     public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
         try await self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除参数模板
     @inlinable
-    public func deleteParamTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
+    public func deleteParamTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteParamTemplateResponse> {
         self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除参数模板
     @inlinable
     public func deleteParamTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {

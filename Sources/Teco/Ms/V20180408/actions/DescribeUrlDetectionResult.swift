@@ -19,24 +19,24 @@ extension Ms {
     public struct DescribeUrlDetectionResultRequest: TCRequestModel {
         /// 查询的网址
         public let url: String
-        
-        public init (url: String) {
+
+        public init(url: String) {
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// DescribeUrlDetectionResult返回参数结构体
     public struct DescribeUrlDetectionResultResponse: TCResponseModel {
         /// [查询结果]查询结果；枚举值：0 查询成功，否则查询失败
         public let resultCode: Int64
-        
+
         /// [固定信息]响应协议版本号
         public let respVer: Int64
-        
+
         /// [查询结果]url恶意状态
         /// 枚举值：
         /// 0-1：未知，访问暂无风险。
@@ -44,7 +44,7 @@ extension Ms {
         /// 3-4：安全，访问无风险。
         /// 注意：查询结果EvilClass字段在Urltype=2时，才有意义。
         public let urlType: Int64
-        
+
         /// [查询结果]url恶意类型大类:{
         ///     "1": "社工欺诈（仿冒、账号钓鱼、中奖诈骗）",
         ///     "2": "信息诈骗（虚假充值、虚假兼职、虚假金融投资、虚假信用卡代办、网络赌博诈骗）",
@@ -54,37 +54,37 @@ extension Ms {
         ///     "6": "色情网站（涉嫌传播色情内容，提供色情服务的网站）"
         ///   }
         public let evilClass: Int64
-        
+
         /// 该字段暂为空
         public let evilType: Int64
-        
+
         /// 该字段暂为空
         public let level: Int64
-        
+
         /// [查询详情]url检出时间；时间戳
         public let detectTime: Int64
-        
+
         /// 该字段暂为空
         public let wording: String
-        
+
         /// 该字段暂为空
         public let wordingTitle: String
-        
+
         /// [查询结果]url恶意状态说明；为UrlType字段值对应的说明
         public let urlTypeDesc: String
-        
+
         /// [查询结果]url恶意大类说明；为EvilClass字段值对应的说明
         public let evilClassDesc: String
-        
+
         /// 该字段暂为空
         public let evilTypeDesc: String
-        
+
         /// 该字段暂为空
         public let levelDesc: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resultCode = "ResultCode"
             case respVer = "RespVer"
@@ -102,15 +102,15 @@ extension Ms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 移动安全-查询网址检测结果服务
     ///
     /// 移动安全-网址检测服务
     @inlinable
-    public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlDetectionResultResponse > {
+    public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlDetectionResultResponse> {
         self.client.execute(action: "DescribeUrlDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 移动安全-查询网址检测结果服务
     ///
     /// 移动安全-网址检测服务
@@ -118,15 +118,15 @@ extension Ms {
     public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlDetectionResultResponse {
         try await self.client.execute(action: "DescribeUrlDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 移动安全-查询网址检测结果服务
     ///
     /// 移动安全-网址检测服务
     @inlinable
-    public func describeUrlDetectionResult(url: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlDetectionResultResponse > {
+    public func describeUrlDetectionResult(url: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlDetectionResultResponse> {
         self.describeUrlDetectionResult(DescribeUrlDetectionResultRequest(url: url), logger: logger, on: eventLoop)
     }
-    
+
     /// 移动安全-查询网址检测结果服务
     ///
     /// 移动安全-网址检测服务

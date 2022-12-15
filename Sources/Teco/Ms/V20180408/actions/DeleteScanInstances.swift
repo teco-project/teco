@@ -19,38 +19,38 @@ extension Ms {
     public struct DeleteScanInstancesRequest: TCRequestModel {
         /// 删除一个或多个扫描的app，最大支持20个
         public let appSids: [String]
-        
-        public init (appSids: [String]) {
+
+        public init(appSids: [String]) {
             self.appSids = appSids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case appSids = "AppSids"
         }
     }
-    
+
     /// DeleteScanInstances返回参数结构体
     public struct DeleteScanInstancesResponse: TCResponseModel {
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let progress: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case progress = "Progress"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除提交过的app扫描信息
     ///
     /// 删除一个或者多个app扫描信息
     @inlinable
-    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanInstancesResponse > {
+    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanInstancesResponse> {
         self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除提交过的app扫描信息
     ///
     /// 删除一个或者多个app扫描信息
@@ -58,15 +58,15 @@ extension Ms {
     public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
         try await self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除提交过的app扫描信息
     ///
     /// 删除一个或者多个app扫描信息
     @inlinable
-    public func deleteScanInstances(appSids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanInstancesResponse > {
+    public func deleteScanInstances(appSids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanInstancesResponse> {
         self.deleteScanInstances(DeleteScanInstancesRequest(appSids: appSids), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除提交过的app扫描信息
     ///
     /// 删除一个或者多个app扫描信息

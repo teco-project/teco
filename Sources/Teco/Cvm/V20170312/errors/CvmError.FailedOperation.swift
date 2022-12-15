@@ -42,227 +42,227 @@ extension TCCvmError {
             case tatAgentNotSupport = "FailedOperation.TatAgentNotSupport"
             case unreturnable = "FailedOperation.Unreturnable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号已经存在
         ///
         /// 无
         public static var accountAlreadyExists: FailedOperation {
             FailedOperation(.accountAlreadyExists)
         }
-        
+
         /// 账号为当前用户
         ///
         /// 无
         public static var accountIsYourSelf: FailedOperation {
             FailedOperation(.accountIsYourSelf)
         }
-        
+
         public static var byolImageShareFailed: FailedOperation {
             FailedOperation(.byolImageShareFailed)
         }
-        
+
         /// 未找到指定的容灾组
         ///
         /// 无
         public static var disasterRecoverGroupNotFound: FailedOperation {
             FailedOperation(.disasterRecoverGroupNotFound)
         }
-        
+
         /// 标签键存在不合法字符
         ///
         /// 无
         public static var illegalTagKey: FailedOperation {
             FailedOperation(.illegalTagKey)
         }
-        
+
         /// 标签值存在不合法字符。
         ///
         /// 暂无
         public static var illegalTagValue: FailedOperation {
             FailedOperation(.illegalTagValue)
         }
-        
+
         /// 询价失败
         ///
         /// 无
         public static var inquiryPriceFailed: FailedOperation {
             FailedOperation(.inquiryPriceFailed)
         }
-        
+
         /// 查询退换价格失败，找不到付款订单，请检查设备 <code>ins-xxxxxxx</code> 是否已过期。
         ///
         /// 无
         public static var inquiryRefundPriceFailed: FailedOperation {
             FailedOperation(.inquiryRefundPriceFailed)
         }
-        
+
         public static var invalidImageState: FailedOperation {
             FailedOperation(.invalidImageState)
         }
-        
+
         /// 请求不支持<code>EMR</code>的实例<code>ins-xxxxxxxx</code>。
         ///
         /// 无
         public static var invalidInstanceApplicationRoleEmr: FailedOperation {
             FailedOperation(.invalidInstanceApplicationRoleEmr)
         }
-        
+
         /// 子网可用IP已耗尽。
         public static var noAvailableIpAddressCountInSubnet: FailedOperation {
             FailedOperation(.noAvailableIpAddressCountInSubnet)
         }
-        
+
         /// 当前实例没有弹性IP
         ///
         /// 无
         public static var notFoundEIP: FailedOperation {
             FailedOperation(.notFoundEIP)
         }
-        
+
         /// 账号为协作者，请填写主账号
         ///
         /// 无
         public static var notMasterAccount: FailedOperation {
             FailedOperation(.notMasterAccount)
         }
-        
+
         /// 指定的置放群组非空。
         public static var placementSetNotEmpty: FailedOperation {
             FailedOperation(.placementSetNotEmpty)
         }
-        
+
         /// 促销期内购买的实例不允许调整配置或计费模式。
         public static var promotionalPerioRestriction: FailedOperation {
             FailedOperation(.promotionalPerioRestriction)
         }
-        
+
         /// 暂无法在此国家/地区提供该服务。
         public static var promotionalRegionRestriction: FailedOperation {
             FailedOperation(.promotionalRegionRestriction)
         }
-        
+
         /// 镜像共享失败。
         ///
         /// 无
         public static var qImageShareFailed: FailedOperation {
             FailedOperation(.qImageShareFailed)
         }
-        
+
         /// 镜像共享失败。
         ///
         /// 无
         public static var rImageShareFailed: FailedOperation {
             FailedOperation(.rImageShareFailed)
         }
-        
+
         /// 安全组操作失败。
         ///
         /// 无
         public static var securityGroupActionFailed: FailedOperation {
             FailedOperation(.securityGroupActionFailed)
         }
-        
+
         /// 快照容量大于磁盘大小，请选用更大的磁盘空间。
         public static var snapshotSizeLargerThanDataSize: FailedOperation {
             FailedOperation(.snapshotSizeLargerThanDataSize)
         }
-        
+
         /// 不支持快照size小于云盘size。
         ///
         /// 暂无
         public static var snapshotSizeLessThanDataSize: FailedOperation {
             FailedOperation(.snapshotSizeLessThanDataSize)
         }
-        
+
         /// 请求中指定的标签键为系统预留标签，禁止创建
         ///
         /// 无
         public static var tagKeyReserved: FailedOperation {
             FailedOperation(.tagKeyReserved)
         }
-        
+
         /// 镜像是公共镜像并且启用了自动化助手服务，但它不符合 Linux&amp;x86_64。
         public static var tatAgentNotSupport: FailedOperation {
             FailedOperation(.tatAgentNotSupport)
         }
-        
+
         /// 实例无法退还。
         public static var unreturnable: FailedOperation {
             FailedOperation(.unreturnable)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .accountAlreadyExists: 
+            case .accountAlreadyExists:
                 code = .failedOperation_AccountAlreadyExists
-            case .accountIsYourSelf: 
+            case .accountIsYourSelf:
                 code = .failedOperation_AccountIsYourSelf
-            case .byolImageShareFailed: 
+            case .byolImageShareFailed:
                 code = .failedOperation_BYOLImageShareFailed
-            case .disasterRecoverGroupNotFound: 
+            case .disasterRecoverGroupNotFound:
                 code = .failedOperation_DisasterRecoverGroupNotFound
-            case .illegalTagKey: 
+            case .illegalTagKey:
                 code = .failedOperation_IllegalTagKey
-            case .illegalTagValue: 
+            case .illegalTagValue:
                 code = .failedOperation_IllegalTagValue
-            case .inquiryPriceFailed: 
+            case .inquiryPriceFailed:
                 code = .failedOperation_InquiryPriceFailed
-            case .inquiryRefundPriceFailed: 
+            case .inquiryRefundPriceFailed:
                 code = .failedOperation_InquiryRefundPriceFailed
-            case .invalidImageState: 
+            case .invalidImageState:
                 code = .failedOperation_InvalidImageState
-            case .invalidInstanceApplicationRoleEmr: 
+            case .invalidInstanceApplicationRoleEmr:
                 code = .failedOperation_InvalidInstanceApplicationRoleEmr
-            case .noAvailableIpAddressCountInSubnet: 
+            case .noAvailableIpAddressCountInSubnet:
                 code = .failedOperation_NoAvailableIpAddressCountInSubnet
-            case .notFoundEIP: 
+            case .notFoundEIP:
                 code = .failedOperation_NotFoundEIP
-            case .notMasterAccount: 
+            case .notMasterAccount:
                 code = .failedOperation_NotMasterAccount
-            case .placementSetNotEmpty: 
+            case .placementSetNotEmpty:
                 code = .failedOperation_PlacementSetNotEmpty
-            case .promotionalPerioRestriction: 
+            case .promotionalPerioRestriction:
                 code = .failedOperation_PromotionalPerioRestriction
-            case .promotionalRegionRestriction: 
+            case .promotionalRegionRestriction:
                 code = .failedOperation_PromotionalRegionRestriction
-            case .qImageShareFailed: 
+            case .qImageShareFailed:
                 code = .failedOperation_QImageShareFailed
-            case .rImageShareFailed: 
+            case .rImageShareFailed:
                 code = .failedOperation_RImageShareFailed
-            case .securityGroupActionFailed: 
+            case .securityGroupActionFailed:
                 code = .failedOperation_SecurityGroupActionFailed
-            case .snapshotSizeLargerThanDataSize: 
+            case .snapshotSizeLargerThanDataSize:
                 code = .failedOperation_SnapshotSizeLargerThanDataSize
-            case .snapshotSizeLessThanDataSize: 
+            case .snapshotSizeLessThanDataSize:
                 code = .failedOperation_SnapshotSizeLessThanDataSize
-            case .tagKeyReserved: 
+            case .tagKeyReserved:
                 code = .failedOperation_TagKeyReserved
-            case .tatAgentNotSupport: 
+            case .tatAgentNotSupport:
                 code = .failedOperation_TatAgentNotSupport
-            case .unreturnable: 
+            case .unreturnable:
                 code = .failedOperation_Unreturnable
             }
             return TCCvmError(code, context: self.context)

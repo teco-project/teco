@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeIntegrationStatisticsInstanceTrendRequest: TCRequestModel {
         /// 任务类型（实时：201，离线：202）
         public let taskType: Int64
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 查询日期
         public let queryDate: String?
-        
+
         /// 资源组id
         public let executorGroupId: String?
-        
-        public init (taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil) {
+
+        public init(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil) {
             self.taskType = taskType
             self.projectId = projectId
             self.queryDate = queryDate
             self.executorGroupId = executorGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case projectId = "ProjectId"
@@ -43,40 +43,40 @@ extension Wedata {
             case executorGroupId = "ExecutorGroupId"
         }
     }
-    
+
     /// DescribeIntegrationStatisticsInstanceTrend返回参数结构体
     public struct DescribeIntegrationStatisticsInstanceTrendResponse: TCResponseModel {
         /// 统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trendsData: [IntegrationStatisticsTrendResult]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trendsData = "TrendsData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 数据集成大屏实例状态统计趋势
     @inlinable
-    public func describeIntegrationStatisticsInstanceTrend(_ input: DescribeIntegrationStatisticsInstanceTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsInstanceTrendResponse > {
+    public func describeIntegrationStatisticsInstanceTrend(_ input: DescribeIntegrationStatisticsInstanceTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsInstanceTrendResponse> {
         self.client.execute(action: "DescribeIntegrationStatisticsInstanceTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 数据集成大屏实例状态统计趋势
     @inlinable
     public func describeIntegrationStatisticsInstanceTrend(_ input: DescribeIntegrationStatisticsInstanceTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsInstanceTrendResponse {
         try await self.client.execute(action: "DescribeIntegrationStatisticsInstanceTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 数据集成大屏实例状态统计趋势
     @inlinable
-    public func describeIntegrationStatisticsInstanceTrend(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsInstanceTrendResponse > {
+    public func describeIntegrationStatisticsInstanceTrend(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsInstanceTrendResponse> {
         self.describeIntegrationStatisticsInstanceTrend(DescribeIntegrationStatisticsInstanceTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 数据集成大屏实例状态统计趋势
     @inlinable
     public func describeIntegrationStatisticsInstanceTrend(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsInstanceTrendResponse {

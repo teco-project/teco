@@ -19,43 +19,43 @@ extension Youmall {
     public struct DescribePersonTraceDetailRequest: TCRequestModel {
         /// 卖场编码
         public let mallId: String
-        
+
         /// 客户编码
         public let personId: String
-        
+
         /// 轨迹编码
         public let traceId: String
-        
-        public init (mallId: String, personId: String, traceId: String) {
+
+        public init(mallId: String, personId: String, traceId: String) {
             self.mallId = mallId
             self.personId = personId
             self.traceId = traceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mallId = "MallId"
             case personId = "PersonId"
             case traceId = "TraceId"
         }
     }
-    
+
     /// DescribePersonTraceDetail返回参数结构体
     public struct DescribePersonTraceDetailResponse: TCResponseModel {
         /// 卖场编码
         public let mallId: String
-        
+
         /// 客户编码
         public let personId: String
-        
+
         /// 轨迹编码
         public let traceId: String
-        
+
         /// 轨迹点坐标序列
         public let coordinateSet: [PersonCoordinate]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mallId = "MallId"
             case personId = "PersonId"
@@ -64,25 +64,25 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询客户单次到场轨迹明细
     @inlinable
-    public func describePersonTraceDetail(_ input: DescribePersonTraceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonTraceDetailResponse > {
+    public func describePersonTraceDetail(_ input: DescribePersonTraceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceDetailResponse> {
         self.client.execute(action: "DescribePersonTraceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户单次到场轨迹明细
     @inlinable
     public func describePersonTraceDetail(_ input: DescribePersonTraceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceDetailResponse {
         try await self.client.execute(action: "DescribePersonTraceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询客户单次到场轨迹明细
     @inlinable
-    public func describePersonTraceDetail(mallId: String, personId: String, traceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonTraceDetailResponse > {
+    public func describePersonTraceDetail(mallId: String, personId: String, traceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceDetailResponse> {
         self.describePersonTraceDetail(DescribePersonTraceDetailRequest(mallId: mallId, personId: personId, traceId: traceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户单次到场轨迹明细
     @inlinable
     public func describePersonTraceDetail(mallId: String, personId: String, traceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceDetailResponse {

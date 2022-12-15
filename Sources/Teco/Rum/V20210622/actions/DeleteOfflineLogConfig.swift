@@ -19,43 +19,43 @@ extension Rum {
     public struct DeleteOfflineLogConfigRequest: TCRequestModel {
         /// 项目唯一上报 key
         public let projectKey: String
-        
+
         /// 用户唯一标示(uin or aid)
         public let uniqueID: String
-        
-        public init (projectKey: String, uniqueID: String) {
+
+        public init(projectKey: String, uniqueID: String) {
             self.projectKey = projectKey
             self.uniqueID = uniqueID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectKey = "ProjectKey"
             case uniqueID = "UniqueID"
         }
     }
-    
+
     /// DeleteOfflineLogConfig返回参数结构体
     public struct DeleteOfflineLogConfigResponse: TCResponseModel {
         /// 接口调用信息
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除 rum 离线日志监听
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
     @inlinable
-    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineLogConfigResponse > {
+    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOfflineLogConfigResponse> {
         self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 rum 离线日志监听
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
@@ -63,15 +63,15 @@ extension Rum {
     public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
         try await self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除 rum 离线日志监听
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
     @inlinable
-    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineLogConfigResponse > {
+    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOfflineLogConfigResponse> {
         self.deleteOfflineLogConfig(DeleteOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 rum 离线日志监听
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报

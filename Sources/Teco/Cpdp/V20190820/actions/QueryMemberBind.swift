@@ -19,23 +19,23 @@ extension Cpdp {
     public struct QueryMemberBindRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
-        
+
         /// STRING(4)，查询标志（1: 全部会员; 2: 单个会员; 3: 单个会员的证件信息）
         public let queryFlag: String
-        
+
         /// STRING (10)，页码（起始值为1，每次最多返回20条记录，第二页返回的记录数为第21至40条记录，第三页为41至60条记录，顺序均按照建立时间的先后）
         public let pageNum: String
-        
+
         /// STRING(50)，见证子账户的账号（若SelectFlag为2或3时，子账户账号必输）
         public let subAcctNo: String?
-        
+
         /// STRING(1027)，保留域
         public let reservedMsg: String?
-        
+
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
-        
-        public init (mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
+
+        public init(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.queryFlag = queryFlag
             self.pageNum = pageNum
@@ -43,7 +43,7 @@ extension Cpdp {
             self.reservedMsg = reservedMsg
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mrchCode = "MrchCode"
             case queryFlag = "QueryFlag"
@@ -53,45 +53,45 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// QueryMemberBind返回参数结构体
     public struct QueryMemberBindResponse: TCResponseModel {
         /// STRING (10)，本次交易返回查询结果记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultNum: String?
-        
+
         /// STRING(30)，起始记录号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startRecordNo: String?
-        
+
         /// STRING(2)，结束标志（0: 否; 1: 是）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endFlag: String?
-        
+
         /// STRING (10)，符合业务查询条件的记录总数（重复次数，一次最多返回20条记录）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalNum: String?
-        
+
         /// 交易信息数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranItemArray: [TranItem]?
-        
+
         /// STRING(1027)，保留域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMsg: String?
-        
+
         /// String(20)，返回码
         public let txnReturnCode: String
-        
+
         /// String(100)，返回信息
         public let txnReturnMsg: String
-        
+
         /// String(22)，交易流水号
         public let cnsmrSeqNo: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resultNum = "ResultNum"
             case startRecordNo = "StartRecordNo"
@@ -105,16 +105,16 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云鉴-会员绑定信息查询
     ///
     /// 会员绑定信息查询。查询标志为“单个会员”的情况下，返回该会员的有效的绑定账户信息。
     /// 查询标志为“全部会员”的情况下，返回市场下的全部的有效的绑定账户信息。查询标志为“单个会员的证件信息”的情况下，返回市场下的指定的会员的留存在电商见证宝系统的证件信息。
     @inlinable
-    public func queryMemberBind(_ input: QueryMemberBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMemberBindResponse > {
+    public func queryMemberBind(_ input: QueryMemberBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberBindResponse> {
         self.client.execute(action: "QueryMemberBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-会员绑定信息查询
     ///
     /// 会员绑定信息查询。查询标志为“单个会员”的情况下，返回该会员的有效的绑定账户信息。
@@ -123,16 +123,16 @@ extension Cpdp {
     public func queryMemberBind(_ input: QueryMemberBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberBindResponse {
         try await self.client.execute(action: "QueryMemberBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云鉴-会员绑定信息查询
     ///
     /// 会员绑定信息查询。查询标志为“单个会员”的情况下，返回该会员的有效的绑定账户信息。
     /// 查询标志为“全部会员”的情况下，返回市场下的全部的有效的绑定账户信息。查询标志为“单个会员的证件信息”的情况下，返回市场下的指定的会员的留存在电商见证宝系统的证件信息。
     @inlinable
-    public func queryMemberBind(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMemberBindResponse > {
+    public func queryMemberBind(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberBindResponse> {
         self.queryMemberBind(QueryMemberBindRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-会员绑定信息查询
     ///
     /// 会员绑定信息查询。查询标志为“单个会员”的情况下，返回该会员的有效的绑定账户信息。

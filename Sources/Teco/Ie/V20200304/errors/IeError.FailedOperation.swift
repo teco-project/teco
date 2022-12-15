@@ -32,128 +32,128 @@ extension TCIeError {
             case videoSizeExceed = "FailedOperation.VideoSizeExceed"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Cos存储结果错误。
         public static var cosStorageError: FailedOperation {
             FailedOperation(.cosStorageError)
         }
-        
+
         /// 转码时截取失败。
         public static var editError: FailedOperation {
             FailedOperation(.editError)
         }
-        
+
         /// 编码格式或参数不支持。
         public static var encodeFormatError: FailedOperation {
             FailedOperation(.encodeFormatError)
         }
-        
+
         /// 运行中的任务达到上限，如需要增加任务上限，请提交工单。
         public static var runningTaskExceed: FailedOperation {
             FailedOperation(.runningTaskExceed)
         }
-        
+
         /// 转码后切片失败。
         public static var segmentError: FailedOperation {
             FailedOperation(.segmentError)
         }
-        
+
         /// 系统繁忙，请稍后重试。
         public static var serverBusy: FailedOperation {
             FailedOperation(.serverBusy)
         }
-        
+
         /// 内部服务错误。
         public static var serverError: FailedOperation {
             FailedOperation(.serverError)
         }
-        
+
         public static var taskResubmit: FailedOperation {
             FailedOperation(.taskResubmit)
         }
-        
+
         /// 转码服务异常。
         public static var transcodeError: FailedOperation {
             FailedOperation(.transcodeError)
         }
-        
+
         /// 转码服务未知错误。
         public static var unknowError: FailedOperation {
             FailedOperation(.unknowError)
         }
-        
+
         /// 视频源下载失败或超时。
         public static var videoDownloadError: FailedOperation {
             FailedOperation(.videoDownloadError)
         }
-        
+
         /// 视频源解析出错。
         public static var videoParseError: FailedOperation {
             FailedOperation(.videoParseError)
         }
-        
+
         /// 视频大小超过限制。
         public static var videoSizeExceed: FailedOperation {
             FailedOperation(.videoSizeExceed)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asIeError() -> TCIeError {
             let code: TCIeError.Code
             switch self.error {
-            case .cosStorageError: 
+            case .cosStorageError:
                 code = .failedOperation_CosStorageError
-            case .editError: 
+            case .editError:
                 code = .failedOperation_EditError
-            case .encodeFormatError: 
+            case .encodeFormatError:
                 code = .failedOperation_EncodeFormatError
-            case .runningTaskExceed: 
+            case .runningTaskExceed:
                 code = .failedOperation_RunningTaskExceed
-            case .segmentError: 
+            case .segmentError:
                 code = .failedOperation_SegmentError
-            case .serverBusy: 
+            case .serverBusy:
                 code = .failedOperation_ServerBusy
-            case .serverError: 
+            case .serverError:
                 code = .failedOperation_ServerError
-            case .taskResubmit: 
+            case .taskResubmit:
                 code = .failedOperation_TaskResubmit
-            case .transcodeError: 
+            case .transcodeError:
                 code = .failedOperation_TranscodeError
-            case .unknowError: 
+            case .unknowError:
                 code = .failedOperation_UnknowError
-            case .videoDownloadError: 
+            case .videoDownloadError:
                 code = .failedOperation_VideoDownloadError
-            case .videoParseError: 
+            case .videoParseError:
                 code = .failedOperation_VideoParseError
-            case .videoSizeExceed: 
+            case .videoSizeExceed:
                 code = .failedOperation_VideoSizeExceed
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCIeError(code, context: self.context)

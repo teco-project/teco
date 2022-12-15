@@ -19,54 +19,54 @@ extension Tdid {
     public struct RegisterIssuerRequest: TCRequestModel {
         /// tdid
         public let did: String
-        
+
         /// 权威机构名称
         public let name: String
-        
+
         /// 备注
         public let description: String
-        
-        public init (did: String, name: String, description: String) {
+
+        public init(did: String, name: String, description: String) {
             self.did = did
             self.name = name
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
             case name = "Name"
             case description = "Description"
         }
     }
-    
+
     /// RegisterIssuer返回参数结构体
     public struct RegisterIssuerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 注册为权威机构
     @inlinable
-    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterIssuerResponse > {
+    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
         self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 注册为权威机构
     @inlinable
     public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
         try await self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 注册为权威机构
     @inlinable
-    public func registerIssuer(did: String, name: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterIssuerResponse > {
+    public func registerIssuer(did: String, name: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
         self.registerIssuer(RegisterIssuerRequest(did: did, name: name, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 注册为权威机构
     @inlinable
     public func registerIssuer(did: String, name: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {

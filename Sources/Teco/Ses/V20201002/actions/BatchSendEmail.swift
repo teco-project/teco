@@ -21,41 +21,41 @@ extension Ses {
         /// 发信人 &lt;邮件地址&gt; 的方式填写，例如：
         /// 腾讯云团队 &lt;noreply@mail.qcloud.com&gt;
         public let fromEmailAddress: String
-        
+
         /// 收件人列表ID
         public let receiverId: UInt64
-        
+
         /// 邮件主题
         public let subject: String
-        
+
         /// 任务类型 1: 立即发送 2: 定时发送 3: 周期（频率）发送
         public let taskType: UInt64
-        
+
         /// 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。
         public let replyToAddresses: String?
-        
+
         /// 使用模板发送时，填写的模板相关参数
         public let template: Template?
-        
+
         /// 已废弃
         public let simple: Simple?
-        
+
         /// 需要发送附件时，填写附件相关参数（暂未支持）
         public let attachments: [Attachment]?
-        
+
         /// 周期发送任务的必要参数
         public let cycleParam: CycleEmailParam?
-        
+
         /// 定时发送任务的必要参数
         public let timedParam: TimedEmailParam?
-        
+
         /// 退订选项 1: 加入退订链接 0: 不加入退订链接
         public let unsubscribe: String?
-        
+
         /// 是否添加广告标识 0:不添加 1:添加到subject前面，2:添加到subject后面
         public let adLocation: UInt64?
-        
-        public init (fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, cycleParam: CycleEmailParam? = nil, timedParam: TimedEmailParam? = nil, unsubscribe: String? = nil, adLocation: UInt64? = nil) {
+
+        public init(fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, cycleParam: CycleEmailParam? = nil, timedParam: TimedEmailParam? = nil, unsubscribe: String? = nil, adLocation: UInt64? = nil) {
             self.fromEmailAddress = fromEmailAddress
             self.receiverId = receiverId
             self.subject = subject
@@ -69,7 +69,7 @@ extension Ses {
             self.unsubscribe = unsubscribe
             self.adLocation = adLocation
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fromEmailAddress = "FromEmailAddress"
             case receiverId = "ReceiverId"
@@ -85,29 +85,29 @@ extension Ses {
             case adLocation = "ADLocation"
         }
     }
-    
+
     /// BatchSendEmail返回参数结构体
     public struct BatchSendEmailResponse: TCResponseModel {
         /// 发送任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量发送邮件
     ///
     /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
     @inlinable
-    public func batchSendEmail(_ input: BatchSendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchSendEmailResponse > {
+    public func batchSendEmail(_ input: BatchSendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchSendEmailResponse> {
         self.client.execute(action: "BatchSendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量发送邮件
     ///
     /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
@@ -115,15 +115,15 @@ extension Ses {
     public func batchSendEmail(_ input: BatchSendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSendEmailResponse {
         try await self.client.execute(action: "BatchSendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量发送邮件
     ///
     /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
     @inlinable
-    public func batchSendEmail(fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, cycleParam: CycleEmailParam? = nil, timedParam: TimedEmailParam? = nil, unsubscribe: String? = nil, adLocation: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchSendEmailResponse > {
+    public func batchSendEmail(fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, cycleParam: CycleEmailParam? = nil, timedParam: TimedEmailParam? = nil, unsubscribe: String? = nil, adLocation: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchSendEmailResponse> {
         self.batchSendEmail(BatchSendEmailRequest(fromEmailAddress: fromEmailAddress, receiverId: receiverId, subject: subject, taskType: taskType, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, cycleParam: cycleParam, timedParam: timedParam, unsubscribe: unsubscribe, adLocation: adLocation), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量发送邮件
     ///
     /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam

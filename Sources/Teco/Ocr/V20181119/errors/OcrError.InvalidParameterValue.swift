@@ -23,66 +23,66 @@ extension TCOcrError {
             case ticketDateParameterValueLimit = "InvalidParameterValue.TicketDateParameterValueLimit"
             case ticketSnParameterValueLimit = "InvalidParameterValue.TicketSnParameterValueLimit"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数值错误。
         public static var invalidParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueLimit)
         }
-        
+
         /// 开票金额或校验码参数值错误。
         public static var priceOrVerificationParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.priceOrVerificationParameterValueLimit)
         }
-        
+
         /// 发票代码参数值错误。
         public static var ticketCodeParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.ticketCodeParameterValueLimit)
         }
-        
+
         /// 开票日期参数值错误。
         public static var ticketDateParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.ticketDateParameterValueLimit)
         }
-        
+
         /// 发票号码参数值错误。
         public static var ticketSnParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.ticketSnParameterValueLimit)
         }
-        
+
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
-            case .invalidParameterValueLimit: 
+            case .invalidParameterValueLimit:
                 code = .invalidParameterValue_InvalidParameterValueLimit
-            case .priceOrVerificationParameterValueLimit: 
+            case .priceOrVerificationParameterValueLimit:
                 code = .invalidParameterValue_PriceOrVerificationParameterValueLimit
-            case .ticketCodeParameterValueLimit: 
+            case .ticketCodeParameterValueLimit:
                 code = .invalidParameterValue_TicketCodeParameterValueLimit
-            case .ticketDateParameterValueLimit: 
+            case .ticketDateParameterValueLimit:
                 code = .invalidParameterValue_TicketDateParameterValueLimit
-            case .ticketSnParameterValueLimit: 
+            case .ticketSnParameterValueLimit:
                 code = .invalidParameterValue_TicketSnParameterValueLimit
             }
             return TCOcrError(code, context: self.context)

@@ -19,39 +19,39 @@ extension Tke {
     public struct ModifyPrometheusTemplateRequest: TCRequestModel {
         /// 模板ID
         public let templateId: String
-        
+
         /// 修改内容
         public let template: PrometheusTemplateModify
-        
-        public init (templateId: String, template: PrometheusTemplateModify) {
+
+        public init(templateId: String, template: PrometheusTemplateModify) {
             self.templateId = templateId
             self.template = template
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case template = "Template"
         }
     }
-    
+
     /// ModifyPrometheusTemplate返回参数结构体
     public struct ModifyPrometheusTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改模板
     ///
     /// 修改模板内容
     @inlinable
-    public func modifyPrometheusTemplate(_ input: ModifyPrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusTemplateResponse > {
+    public func modifyPrometheusTemplate(_ input: ModifyPrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusTemplateResponse> {
         self.client.execute(action: "ModifyPrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模板
     ///
     /// 修改模板内容
@@ -59,15 +59,15 @@ extension Tke {
     public func modifyPrometheusTemplate(_ input: ModifyPrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTemplateResponse {
         try await self.client.execute(action: "ModifyPrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改模板
     ///
     /// 修改模板内容
     @inlinable
-    public func modifyPrometheusTemplate(templateId: String, template: PrometheusTemplateModify, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusTemplateResponse > {
+    public func modifyPrometheusTemplate(templateId: String, template: PrometheusTemplateModify, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusTemplateResponse> {
         self.modifyPrometheusTemplate(ModifyPrometheusTemplateRequest(templateId: templateId, template: template), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模板
     ///
     /// 修改模板内容

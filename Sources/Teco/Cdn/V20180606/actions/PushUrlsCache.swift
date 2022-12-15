@@ -19,41 +19,41 @@ extension Cdn {
     public struct PushUrlsCacheRequest: TCRequestModel {
         /// URL 列表，需要包含协议头部 http:// 或 https://
         public let urls: [String]
-        
+
         /// 指定预热请求回源时 HTTP 请求的 User-Agent 头部
         /// 默认为 TencentCdn
         public let userAgent: String?
-        
+
         /// 预热生效区域
         /// mainland：预热至境内节点
         /// overseas：预热至境外节点
         /// global：预热全球节点
         /// 不填充情况下，默认为 mainland， URL 中域名必须在对应区域启用了加速服务才能提交对应区域的预热任务
         public let area: String?
-        
+
         /// 中国境内区域默认预热至中间层节点，中国境外区域默认预热至边缘节点。预热至边缘产生的边缘层流量会计入计费流量。
         /// 填写"middle"或不填充时，可指定预热至中间层节点。
         public let layer: String?
-        
+
         /// 是否递归解析m3u8文件中的ts分片预热
         /// 注意事项：
         /// 1. 该功能要求m3u8索引文件能直接请求获取
         /// 2. 当前只支持递归解析一级索引和子索引中的ts分片，递归深度不超过3层
         /// 3. 解析获取的ts分片会正常累加每日预热用量，当用量超出配额时，会静默处理，不再执行预热
         public let parseM3U8: Bool?
-        
+
         /// 是否关闭Range回源
         /// 注意事项：
         /// 此功能灰度发布中，敬请期待
         public let disableRange: Bool?
-        
+
         /// 自定义 HTTP 请求头。最多定义 20 个，Name 长度不超过 128 字节，Value 长度不超过 1024 字节
         public let headers: [HTTPHeader]?
-        
+
         /// 是否对URL进行编码
         public let urlEncode: Bool?
-        
-        public init (urls: [String], userAgent: String? = nil, area: String? = nil, layer: String? = nil, parseM3U8: Bool? = nil, disableRange: Bool? = nil, headers: [HTTPHeader]? = nil, urlEncode: Bool? = nil) {
+
+        public init(urls: [String], userAgent: String? = nil, area: String? = nil, layer: String? = nil, parseM3U8: Bool? = nil, disableRange: Bool? = nil, headers: [HTTPHeader]? = nil, urlEncode: Bool? = nil) {
             self.urls = urls
             self.userAgent = userAgent
             self.area = area
@@ -63,7 +63,7 @@ extension Cdn {
             self.headers = headers
             self.urlEncode = urlEncode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case urls = "Urls"
             case userAgent = "UserAgent"
@@ -75,30 +75,30 @@ extension Cdn {
             case urlEncode = "UrlEncode"
         }
     }
-    
+
     /// PushUrlsCache返回参数结构体
     public struct PushUrlsCacheResponse: TCResponseModel {
         /// 此批提交的任务 ID
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 预热 URL
     ///
     /// PushUrlsCache 用于将指定 URL 资源列表加载至 CDN 节点，支持指定加速区域预热。
     /// 默认情况下境内、境外每日预热 URL 限额为各 1000 条，每次最多可提交 500 条。注意：中国境外区域预热，资源默认加载至中国境外边缘节点，所产生的边缘层流量会计入计费流量。
     @inlinable
-    public func pushUrlsCache(_ input: PushUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PushUrlsCacheResponse > {
+    public func pushUrlsCache(_ input: PushUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlsCacheResponse> {
         self.client.execute(action: "PushUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 预热 URL
     ///
     /// PushUrlsCache 用于将指定 URL 资源列表加载至 CDN 节点，支持指定加速区域预热。
@@ -107,16 +107,16 @@ extension Cdn {
     public func pushUrlsCache(_ input: PushUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlsCacheResponse {
         try await self.client.execute(action: "PushUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 预热 URL
     ///
     /// PushUrlsCache 用于将指定 URL 资源列表加载至 CDN 节点，支持指定加速区域预热。
     /// 默认情况下境内、境外每日预热 URL 限额为各 1000 条，每次最多可提交 500 条。注意：中国境外区域预热，资源默认加载至中国境外边缘节点，所产生的边缘层流量会计入计费流量。
     @inlinable
-    public func pushUrlsCache(urls: [String], userAgent: String? = nil, area: String? = nil, layer: String? = nil, parseM3U8: Bool? = nil, disableRange: Bool? = nil, headers: [HTTPHeader]? = nil, urlEncode: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PushUrlsCacheResponse > {
+    public func pushUrlsCache(urls: [String], userAgent: String? = nil, area: String? = nil, layer: String? = nil, parseM3U8: Bool? = nil, disableRange: Bool? = nil, headers: [HTTPHeader]? = nil, urlEncode: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlsCacheResponse> {
         self.pushUrlsCache(PushUrlsCacheRequest(urls: urls, userAgent: userAgent, area: area, layer: layer, parseM3U8: parseM3U8, disableRange: disableRange, headers: headers, urlEncode: urlEncode), logger: logger, on: eventLoop)
     }
-    
+
     /// 预热 URL
     ///
     /// PushUrlsCache 用于将指定 URL 资源列表加载至 CDN 节点，支持指定加速区域预热。

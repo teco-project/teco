@@ -19,34 +19,34 @@ extension Lighthouse {
     public struct DeleteBlueprintsRequest: TCRequestModel {
         /// 镜像ID列表。镜像ID，可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
         public let blueprintIds: [String]
-        
-        public init (blueprintIds: [String]) {
+
+        public init(blueprintIds: [String]) {
             self.blueprintIds = blueprintIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case blueprintIds = "BlueprintIds"
         }
     }
-    
+
     /// DeleteBlueprints返回参数结构体
     public struct DeleteBlueprintsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。
     @inlinable
-    public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlueprintsResponse > {
+    public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBlueprintsResponse> {
         self.client.execute(action: "DeleteBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。
@@ -54,15 +54,15 @@ extension Lighthouse {
     public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlueprintsResponse {
         try await self.client.execute(action: "DeleteBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。
     @inlinable
-    public func deleteBlueprints(blueprintIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlueprintsResponse > {
+    public func deleteBlueprints(blueprintIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBlueprintsResponse> {
         self.deleteBlueprints(DeleteBlueprintsRequest(blueprintIds: blueprintIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。

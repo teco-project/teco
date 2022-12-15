@@ -19,26 +19,26 @@ extension Tdmq {
     public struct DescribeAMQPClustersRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 限制数目
         public let limit: UInt64
-        
+
         /// 按照集群ID关键字搜索
         public let idKeyword: String?
-        
+
         /// 按照集群名称关键字搜索
         public let nameKeyword: String?
-        
+
         /// 集群ID列表过滤
         public let clusterIdList: [String]?
-        
+
         /// 标签过滤查找时，需要设置为true
         public let isTagFilter: Bool?
-        
+
         /// 过滤器。目前支持按标签过滤。
         public let filters: [Filter]?
-        
-        public init (offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.idKeyword = idKeyword
@@ -47,7 +47,7 @@ extension Tdmq {
             self.isTagFilter = isTagFilter
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -58,44 +58,44 @@ extension Tdmq {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeAMQPClusters返回参数结构体
     public struct DescribeAMQPClustersResponse: TCResponseModel {
         /// 集群信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterList: [AMQPClusterDetail]?
-        
+
         /// 总条数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterList = "ClusterList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取amqp集群列表
     @inlinable
-    public func describeAMQPClusters(_ input: DescribeAMQPClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPClustersResponse > {
+    public func describeAMQPClusters(_ input: DescribeAMQPClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPClustersResponse> {
         self.client.execute(action: "DescribeAMQPClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取amqp集群列表
     @inlinable
     public func describeAMQPClusters(_ input: DescribeAMQPClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPClustersResponse {
         try await self.client.execute(action: "DescribeAMQPClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取amqp集群列表
     @inlinable
-    public func describeAMQPClusters(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPClustersResponse > {
+    public func describeAMQPClusters(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPClustersResponse> {
         self.describeAMQPClusters(DescribeAMQPClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取amqp集群列表
     @inlinable
     public func describeAMQPClusters(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPClustersResponse {

@@ -19,34 +19,34 @@ extension Cls {
     public struct DeleteAlarmRequest: TCRequestModel {
         /// 告警策略ID。
         public let alarmId: String
-        
-        public init (alarmId: String) {
+
+        public init(alarmId: String) {
             self.alarmId = alarmId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmId = "AlarmId"
         }
     }
-    
+
     /// DeleteAlarm返回参数结构体
     public struct DeleteAlarmResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除告警策略
     ///
     /// 本接口用于删除告警策略。
     @inlinable
-    public func deleteAlarm(_ input: DeleteAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmResponse > {
+    public func deleteAlarm(_ input: DeleteAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmResponse> {
         self.client.execute(action: "DeleteAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除告警策略
     ///
     /// 本接口用于删除告警策略。
@@ -54,15 +54,15 @@ extension Cls {
     public func deleteAlarm(_ input: DeleteAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmResponse {
         try await self.client.execute(action: "DeleteAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除告警策略
     ///
     /// 本接口用于删除告警策略。
     @inlinable
-    public func deleteAlarm(alarmId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmResponse > {
+    public func deleteAlarm(alarmId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmResponse> {
         self.deleteAlarm(DeleteAlarmRequest(alarmId: alarmId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除告警策略
     ///
     /// 本接口用于删除告警策略。

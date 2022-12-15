@@ -19,38 +19,38 @@ extension Iotexplorer {
     public struct DescribeStudioProductRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
-        public init (productId: String) {
+
+        public init(productId: String) {
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
         }
     }
-    
+
     /// DescribeStudioProduct返回参数结构体
     public struct DescribeStudioProductResponse: TCResponseModel {
         /// 产品详情
         public let product: ProductEntry
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case product = "Product"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取产品详情
     ///
     /// 提供查看产品详细信息的能力，包括产品的ID、数据协议、认证类型等重要参数
     @inlinable
-    public func describeStudioProduct(_ input: DescribeStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStudioProductResponse > {
+    public func describeStudioProduct(_ input: DescribeStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStudioProductResponse> {
         self.client.execute(action: "DescribeStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品详情
     ///
     /// 提供查看产品详细信息的能力，包括产品的ID、数据协议、认证类型等重要参数
@@ -58,15 +58,15 @@ extension Iotexplorer {
     public func describeStudioProduct(_ input: DescribeStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStudioProductResponse {
         try await self.client.execute(action: "DescribeStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取产品详情
     ///
     /// 提供查看产品详细信息的能力，包括产品的ID、数据协议、认证类型等重要参数
     @inlinable
-    public func describeStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStudioProductResponse > {
+    public func describeStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStudioProductResponse> {
         self.describeStudioProduct(DescribeStudioProductRequest(productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品详情
     ///
     /// 提供查看产品详细信息的能力，包括产品的ID、数据协议、认证类型等重要参数

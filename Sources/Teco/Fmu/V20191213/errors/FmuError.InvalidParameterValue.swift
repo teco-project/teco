@@ -36,157 +36,157 @@ extension TCFmuError {
             case whiteningIllegal = "InvalidParameterValue.WhiteningIllegal"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 大眼参数不合法。
         public static var eyeEnlargingIllegal: InvalidParameterValue {
             InvalidParameterValue(.eyeEnlargingIllegal)
         }
-        
+
         /// 瘦脸参数不合法。
         public static var faceLiftingIllegal: InvalidParameterValue {
             InvalidParameterValue(.faceLiftingIllegal)
         }
-        
+
         /// 人脸框参数不合法。
         public static var faceRectInvalid: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalid)
         }
-        
+
         /// 第1个人脸框参数不合法。
         public static var faceRectInvalidFirst: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalidFirst)
         }
-        
+
         /// 第2个人脸框参数不合法。
         public static var faceRectInvalidSecond: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalidSecond)
         }
-        
+
         /// 第3个人脸框参数不合法。
         public static var faceRectInvalidThrid: InvalidParameterValue {
             InvalidParameterValue(.faceRectInvalidThrid)
         }
-        
+
         /// 缺少参数，请检查图片参数是否为空。
         public static var imageEmpty: InvalidParameterValue {
             InvalidParameterValue(.imageEmpty)
         }
-        
+
         /// 图片不合法。
         public static var imageInvalid: InvalidParameterValue {
             InvalidParameterValue(.imageInvalid)
         }
-        
+
         /// 图片数据太大。
         public static var imageSizeExceed: InvalidParameterValue {
             InvalidParameterValue(.imageSizeExceed)
         }
-        
+
         /// 素材图片不合法, 必须是512*512的PNG图片。
         public static var lutImageInvalid: InvalidParameterValue {
             InvalidParameterValue(.lutImageInvalid)
         }
-        
+
         /// 素材图片尺寸不合法，必须是512*512的PNG图片。
         public static var lutImageSizeInvalid: InvalidParameterValue {
             InvalidParameterValue(.lutImageSizeInvalid)
         }
-        
+
         /// 素材不存在。
         public static var modelIdNotFound: InvalidParameterValue {
             InvalidParameterValue(.modelIdNotFound)
         }
-        
+
         /// 图片中没有人脸。
         public static var noFaceInPhoto: InvalidParameterValue {
             InvalidParameterValue(.noFaceInPhoto)
         }
-        
+
         /// 参数错误。
         public static var parameterValueError: InvalidParameterValue {
             InvalidParameterValue(.parameterValueError)
         }
-        
+
         /// 磨皮参数不合法。
         public static var smoothingIllegal: InvalidParameterValue {
             InvalidParameterValue(.smoothingIllegal)
         }
-        
+
         /// URL格式不合法。
         public static var urlIllegal: InvalidParameterValue {
             InvalidParameterValue(.urlIllegal)
         }
-        
+
         /// 美白参数不合法。
         public static var whiteningIllegal: InvalidParameterValue {
             InvalidParameterValue(.whiteningIllegal)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asFmuError() -> TCFmuError {
             let code: TCFmuError.Code
             switch self.error {
-            case .eyeEnlargingIllegal: 
+            case .eyeEnlargingIllegal:
                 code = .invalidParameterValue_EyeEnlargingIllegal
-            case .faceLiftingIllegal: 
+            case .faceLiftingIllegal:
                 code = .invalidParameterValue_FaceLiftingIllegal
-            case .faceRectInvalid: 
+            case .faceRectInvalid:
                 code = .invalidParameterValue_FaceRectInvalid
-            case .faceRectInvalidFirst: 
+            case .faceRectInvalidFirst:
                 code = .invalidParameterValue_FaceRectInvalidFirst
-            case .faceRectInvalidSecond: 
+            case .faceRectInvalidSecond:
                 code = .invalidParameterValue_FaceRectInvalidSecond
-            case .faceRectInvalidThrid: 
+            case .faceRectInvalidThrid:
                 code = .invalidParameterValue_FaceRectInvalidThrid
-            case .imageEmpty: 
+            case .imageEmpty:
                 code = .invalidParameterValue_ImageEmpty
-            case .imageInvalid: 
+            case .imageInvalid:
                 code = .invalidParameterValue_ImageInvalid
-            case .imageSizeExceed: 
+            case .imageSizeExceed:
                 code = .invalidParameterValue_ImageSizeExceed
-            case .lutImageInvalid: 
+            case .lutImageInvalid:
                 code = .invalidParameterValue_LutImageInvalid
-            case .lutImageSizeInvalid: 
+            case .lutImageSizeInvalid:
                 code = .invalidParameterValue_LutImageSizeInvalid
-            case .modelIdNotFound: 
+            case .modelIdNotFound:
                 code = .invalidParameterValue_ModelIdNotFound
-            case .noFaceInPhoto: 
+            case .noFaceInPhoto:
                 code = .invalidParameterValue_NoFaceInPhoto
-            case .parameterValueError: 
+            case .parameterValueError:
                 code = .invalidParameterValue_ParameterValueError
-            case .smoothingIllegal: 
+            case .smoothingIllegal:
                 code = .invalidParameterValue_SmoothingIllegal
-            case .urlIllegal: 
+            case .urlIllegal:
                 code = .invalidParameterValue_UrlIllegal
-            case .whiteningIllegal: 
+            case .whiteningIllegal:
                 code = .invalidParameterValue_WhiteningIllegal
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCFmuError(code, context: self.context)

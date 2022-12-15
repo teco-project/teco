@@ -19,48 +19,48 @@ extension Bmvpc {
     public struct AcceptVpcPeerConnectionRequest: TCRequestModel {
         /// 黑石对等连接实例ID
         public let vpcPeerConnectionId: String
-        
-        public init (vpcPeerConnectionId: String) {
+
+        public init(vpcPeerConnectionId: String) {
             self.vpcPeerConnectionId = vpcPeerConnectionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcPeerConnectionId = "VpcPeerConnectionId"
         }
     }
-    
+
     /// AcceptVpcPeerConnection返回参数结构体
     public struct AcceptVpcPeerConnectionResponse: TCResponseModel {
         /// 任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 接受黑石对等连接
     @inlinable
-    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptVpcPeerConnectionResponse > {
+    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptVpcPeerConnectionResponse> {
         self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 接受黑石对等连接
     @inlinable
     public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
         try await self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 接受黑石对等连接
     @inlinable
-    public func acceptVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptVpcPeerConnectionResponse > {
+    public func acceptVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptVpcPeerConnectionResponse> {
         self.acceptVpcPeerConnection(AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 接受黑石对等连接
     @inlinable
     public func acceptVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {

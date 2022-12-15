@@ -19,44 +19,44 @@ extension Dasb {
     public struct DeleteAclsRequest: TCRequestModel {
         /// 待删除的权限ID集合
         public let idSet: [UInt64]
-        
-        public init (idSet: [UInt64]) {
+
+        public init(idSet: [UInt64]) {
             self.idSet = idSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idSet = "IdSet"
         }
     }
-    
+
     /// DeleteAcls返回参数结构体
     public struct DeleteAclsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除访问权限
     @inlinable
-    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclsResponse > {
+    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclsResponse> {
         self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除访问权限
     @inlinable
     public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
         try await self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除访问权限
     @inlinable
-    public func deleteAcls(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclsResponse > {
+    public func deleteAcls(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclsResponse> {
         self.deleteAcls(DeleteAclsRequest(idSet: idSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除访问权限
     @inlinable
     public func deleteAcls(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {

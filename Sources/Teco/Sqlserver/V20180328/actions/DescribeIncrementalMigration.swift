@@ -19,32 +19,32 @@ extension Sqlserver {
     public struct DescribeIncrementalMigrationRequest: TCRequestModel {
         /// 备份导入任务ID，由CreateBackupMigration接口返回
         public let backupMigrationId: String
-        
+
         /// 导入目标实例ID
         public let instanceId: String
-        
+
         /// 备份文件名称
         public let backupFileName: String?
-        
+
         /// 导入任务状态集合
         public let statusSet: [Int64]?
-        
+
         /// 分页，页大小，默认值：100
         public let limit: Int64?
-        
+
         /// 分页，页数，默认值：0
         public let offset: Int64?
-        
+
         /// 排序字段，name；createTime；startTime；endTime，默认按照createTime递增排序。
         public let orderBy: String?
-        
+
         /// 排序方式，desc-递减排序，asc-递增排序。默认按照asc排序，且在OrderBy为有效值时，本参数有效
         public let orderByType: String?
-        
+
         /// 增量备份导入任务ID，由CreateIncrementalMigration接口返回
         public let incrementalMigrationId: String?
-        
-        public init (backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil) {
+
+        public init(backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil) {
             self.backupMigrationId = backupMigrationId
             self.instanceId = instanceId
             self.backupFileName = backupFileName
@@ -55,7 +55,7 @@ extension Sqlserver {
             self.orderByType = orderByType
             self.incrementalMigrationId = incrementalMigrationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case backupMigrationId = "BackupMigrationId"
             case instanceId = "InstanceId"
@@ -68,33 +68,33 @@ extension Sqlserver {
             case incrementalMigrationId = "IncrementalMigrationId"
         }
     }
-    
+
     /// DescribeIncrementalMigration返回参数结构体
     public struct DescribeIncrementalMigrationResponse: TCResponseModel {
         /// 增量导入任务总数
         public let totalCount: Int64
-        
+
         /// 增量导入任务集合
         public let incrementalMigrationSet: [Migration]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case incrementalMigrationSet = "IncrementalMigrationSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询增量备份导入任务
     ///
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
     @inlinable
-    public func describeIncrementalMigration(_ input: DescribeIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIncrementalMigrationResponse > {
+    public func describeIncrementalMigration(_ input: DescribeIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIncrementalMigrationResponse> {
         self.client.execute(action: "DescribeIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询增量备份导入任务
     ///
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
@@ -102,15 +102,15 @@ extension Sqlserver {
     public func describeIncrementalMigration(_ input: DescribeIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIncrementalMigrationResponse {
         try await self.client.execute(action: "DescribeIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询增量备份导入任务
     ///
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
     @inlinable
-    public func describeIncrementalMigration(backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIncrementalMigrationResponse > {
+    public func describeIncrementalMigration(backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIncrementalMigrationResponse> {
         self.describeIncrementalMigration(DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询增量备份导入任务
     ///
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。

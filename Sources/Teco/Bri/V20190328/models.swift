@@ -19,48 +19,48 @@ extension Bri {
     public struct BRIRequest: TCInputModel {
         /// 业务名, 必须是以下六个业务名之一(bri_num,bri_dev,bri_ip_bri_apk,bri_url,bri_social)
         public let service: String
-        
+
         /// QQ号 (业务名为bri_social时必填, 除非已填Wechat)
         public let qq: String?
-        
+
         /// QQ号的可疑标签
         public let qqTag: String?
-        
+
         /// 网址 (业务名为bri_url时必填)
         public let url: String?
-        
+
         /// Apk证书Md5  (业务名为bri_apk时必填，除非已填FileMd5)
         public let certMd5: String?
-        
+
         /// Apk安装包名 (业务名为bri_apk时必填，除非已填FileMd5)
         public let packageName: String?
-        
+
         /// Apk文件Md5 (业务名为bri_apk时必填，除非已填PackageName,CertMd5,FileSize)
         public let fileMd5: String?
-        
+
         /// 业务场景 (1-注册, 2-登录, 3-发消息)
         public let scene: String?
-        
+
         /// 电话号码 (业务名为bri_num时必填)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneNumber: String?
-        
+
         /// Apk文件大小  (业务名为bri_apk时必填，除非已填FileMd5)
         public let fileSize: Int64?
-        
+
         /// 点分格式的IP (业务名为bri_ip时必填)
         public let ip: String?
-        
+
         /// 安卓设备的Imei (业务名为bri_dev时必填)
         public let imei: String?
-        
+
         /// 微信号 (业务名为bri_social时必填, 除非已填QQ)
         public let wechat: String?
-        
+
         /// 微信号的可疑标签
         public let wechatTag: String?
-        
-        public init (service: String, qq: String? = nil, qqTag: String? = nil, url: String? = nil, certMd5: String? = nil, packageName: String? = nil, fileMd5: String? = nil, scene: String? = nil, phoneNumber: String? = nil, fileSize: Int64? = nil, ip: String? = nil, imei: String? = nil, wechat: String? = nil, wechatTag: String? = nil) {
+
+        public init(service: String, qq: String? = nil, qqTag: String? = nil, url: String? = nil, certMd5: String? = nil, packageName: String? = nil, fileMd5: String? = nil, scene: String? = nil, phoneNumber: String? = nil, fileSize: Int64? = nil, ip: String? = nil, imei: String? = nil, wechat: String? = nil, wechatTag: String? = nil) {
             self.service = service
             self.qq = qq
             self.qqTag = qqTag
@@ -76,7 +76,7 @@ extension Bri {
             self.wechat = wechat
             self.wechatTag = wechatTag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case service = "Service"
             case qq = "QQ"
@@ -94,15 +94,15 @@ extension Bri {
             case wechatTag = "WechatTag"
         }
     }
-    
+
     /// 响应
     public struct BRIResponse: TCInputModel {
         /// 风险分值，取值[0,100], 分值越高风险越高
         public let score: Float?
-        
+
         /// 当Service为bri_num时,返回的风险标签有:
-        /// 1) 疑似垃圾流量     说明: 结合号码的历史数据表现，判断该号码历史用互联网业务作恶行为，其产生的互联网行为对于其他业务来说属于作弊或垃圾流量。 
-        /// 2) 疑似新客户       说明: 通过号码互联网行为（社交，浏览等）是否异常判断为小号或接码平台帐号。 
+        /// 1) 疑似垃圾流量     说明: 结合号码的历史数据表现，判断该号码历史用互联网业务作恶行为，其产生的互联网行为对于其他业务来说属于作弊或垃圾流量。
+        /// 2) 疑似新客户       说明: 通过号码互联网行为（社交，浏览等）是否异常判断为小号或接码平台帐号。
         /// 当Service为bri_dev时,返回的风险标签有:
         /// 1) 疑似真机假用户    说明: 根据设备的一些数据表现，我们判定为群控设备
         /// 2) 疑似假机         说明: 根据设备的一些数据表现，我们判定为模拟器或虚假设备ID
@@ -122,12 +122,12 @@ extension Bri {
         /// 3) 风险   说明: APK为外挂或色情等风险应用
         /// 4) 病毒   说明: APK为包含恶意代码的恶意软件,可能破坏系统或者其他app正常使用
         public let tags: [String]?
-        
-        public init (score: Float? = nil, tags: [String]? = nil) {
+
+        public init(score: Float? = nil, tags: [String]? = nil) {
             self.score = score
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case score = "Score"
             case tags = "Tags"

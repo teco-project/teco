@@ -23,66 +23,66 @@ extension TCTcaplusdbError {
             case regionMismatch = "FailedOperation.RegionMismatch"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 旧密码已经失效。
         public static var oldPasswordHasExpired: FailedOperation {
             FailedOperation(.oldPasswordHasExpired)
         }
-        
+
         /// 旧密码还未失效。
         public static var oldPasswordInUse: FailedOperation {
             FailedOperation(.oldPasswordInUse)
         }
-        
+
         /// 密码错误。
         public static var passwordFailure: FailedOperation {
             FailedOperation(.passwordFailure)
         }
-        
+
         /// 请求的地域不匹配。
         public static var regionMismatch: FailedOperation {
             FailedOperation(.regionMismatch)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTcaplusdbError() -> TCTcaplusdbError {
             let code: TCTcaplusdbError.Code
             switch self.error {
-            case .oldPasswordHasExpired: 
+            case .oldPasswordHasExpired:
                 code = .failedOperation_OldPasswordHasExpired
-            case .oldPasswordInUse: 
+            case .oldPasswordInUse:
                 code = .failedOperation_OldPasswordInUse
-            case .passwordFailure: 
+            case .passwordFailure:
                 code = .failedOperation_PasswordFailure
-            case .regionMismatch: 
+            case .regionMismatch:
                 code = .failedOperation_RegionMismatch
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCTcaplusdbError(code, context: self.context)

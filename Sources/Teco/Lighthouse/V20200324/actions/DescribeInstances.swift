@@ -19,7 +19,7 @@ extension Lighthouse {
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。
         public let instanceIds: [String]?
-        
+
         /// 过滤器列表。
         /// <li>instance-name</li>按照【实例名称】进行过滤。
         /// 类型：String
@@ -38,20 +38,20 @@ extension Lighthouse {
         /// 必选：否
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 InstanceIds 和 Filters。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         public let limit: Int64?
-        
-        public init (instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceIds = instanceIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case filters = "Filters"
@@ -59,25 +59,25 @@ extension Lighthouse {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeInstances返回参数结构体
     public struct DescribeInstancesResponse: TCResponseModel {
         /// 符合条件的实例数量。
         public let totalCount: Int64
-        
+
         /// 实例详细信息列表。
         public let instanceSet: [Instance]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口（DescribeInstances）用于查询一个或多个实例的详细信息。
@@ -86,10 +86,10 @@ extension Lighthouse {
     /// * 如果参数为空，返回当前用户一定数量（Limit 所指定的数量，默认为 20）的实例。
     /// * 支持查询实例的最新操作（LatestOperation）以及最新操作状态（LatestOperationState）。
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口（DescribeInstances）用于查询一个或多个实例的详细信息。
@@ -101,7 +101,7 @@ extension Lighthouse {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口（DescribeInstances）用于查询一个或多个实例的详细信息。
@@ -110,10 +110,10 @@ extension Lighthouse {
     /// * 如果参数为空，返回当前用户一定数量（Limit 所指定的数量，默认为 20）的实例。
     /// * 支持查询实例的最新操作（LatestOperation）以及最新操作状态（LatestOperationState）。
     @inlinable
-    public func describeInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(DescribeInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口（DescribeInstances）用于查询一个或多个实例的详细信息。

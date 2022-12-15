@@ -19,49 +19,49 @@ extension Ciam {
     public struct DeleteUsersRequest: TCRequestModel {
         /// 用户目录ID
         public let userStoreId: String
-        
+
         /// 用户ID数组
         public let userIds: [String]
-        
-        public init (userStoreId: String, userIds: [String]) {
+
+        public init(userStoreId: String, userIds: [String]) {
             self.userStoreId = userStoreId
             self.userIds = userIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userStoreId = "UserStoreId"
             case userIds = "UserIds"
         }
     }
-    
+
     /// DeleteUsers返回参数结构体
     public struct DeleteUsersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除用户
     @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
+    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
         self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除用户
     @inlinable
     public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
         try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除用户
     @inlinable
-    public func deleteUsers(userStoreId: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
+    public func deleteUsers(userStoreId: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
         self.deleteUsers(DeleteUsersRequest(userStoreId: userStoreId, userIds: userIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除用户
     @inlinable
     public func deleteUsers(userStoreId: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {

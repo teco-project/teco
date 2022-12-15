@@ -19,23 +19,23 @@ extension Cam {
     public struct ListPoliciesGrantingServiceAccessRequest: TCRequestModel {
         /// 子账号uin，与RoleId、GroupId三选一必传
         public let targetUin: UInt64?
-        
+
         /// 角色ID，与TargetUin、GroupId三选一必传
         public let roleId: UInt64?
-        
+
         /// 用户组ID，与TargetUin、RoleId三选一必传
         public let groupId: UInt64?
-        
+
         /// 服务名，查看服务授权接口详情时需传该字段
         public let serviceType: String?
-        
-        public init (targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil) {
+
+        public init(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil) {
             self.targetUin = targetUin
             self.roleId = roleId
             self.groupId = groupId
             self.serviceType = serviceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetUin = "TargetUin"
             case roleId = "RoleId"
@@ -43,39 +43,39 @@ extension Cam {
             case serviceType = "ServiceType"
         }
     }
-    
+
     /// ListPoliciesGrantingServiceAccess返回参数结构体
     public struct ListPoliciesGrantingServiceAccessResponse: TCResponseModel {
         /// 列表
         public let list: [ListGrantServiceAccessNode]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取所有已授权服务
     @inlinable
-    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesGrantingServiceAccessResponse > {
+    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesGrantingServiceAccessResponse> {
         self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取所有已授权服务
     @inlinable
     public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
         try await self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取所有已授权服务
     @inlinable
-    public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesGrantingServiceAccessResponse > {
+    public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesGrantingServiceAccessResponse> {
         self.listPoliciesGrantingServiceAccess(ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取所有已授权服务
     @inlinable
     public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {

@@ -19,38 +19,38 @@ extension TCNlpError {
         enum Code: String {
             case authenticateFailed = "UnauthorizedOperation.AuthenticateFailed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实名认证失败
         public static var authenticateFailed: UnauthorizedOperation {
             UnauthorizedOperation(.authenticateFailed)
         }
-        
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .authenticateFailed: 
+            case .authenticateFailed:
                 code = .unauthorizedOperation_AuthenticateFailed
             }
             return TCNlpError(code, context: self.context)

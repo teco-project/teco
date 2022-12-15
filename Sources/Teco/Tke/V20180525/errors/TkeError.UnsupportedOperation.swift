@@ -23,66 +23,66 @@ extension TCTkeError {
             case notInWhitelist = "UnsupportedOperation.NotInWhitelist"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// AS伸缩关闭导致无法开启CA。
         ///
         /// 如果需要开启伸缩(CA)功能，请打开对应伸缩组的伸缩开关，重新操作即可
         public static var caEnableFailed: UnsupportedOperation {
             UnsupportedOperation(.caEnableFailed)
         }
-        
+
         public static var clusterNotSuitAddClusterCIDR: UnsupportedOperation {
             UnsupportedOperation(.clusterNotSuitAddClusterCIDR)
         }
-        
+
         public static var clusterNotSuitEnableVPCCNI: UnsupportedOperation {
             UnsupportedOperation(.clusterNotSuitEnableVPCCNI)
         }
-        
+
         /// 非白名单用户。
         public static var notInWhitelist: UnsupportedOperation {
             UnsupportedOperation(.notInWhitelist)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asTkeError() -> TCTkeError {
             let code: TCTkeError.Code
             switch self.error {
-            case .caEnableFailed: 
+            case .caEnableFailed:
                 code = .unsupportedOperation_CaEnableFailed
-            case .clusterNotSuitAddClusterCIDR: 
+            case .clusterNotSuitAddClusterCIDR:
                 code = .unsupportedOperation_ClusterNotSuitAddClusterCIDR
-            case .clusterNotSuitEnableVPCCNI: 
+            case .clusterNotSuitEnableVPCCNI:
                 code = .unsupportedOperation_ClusterNotSuitEnableVPCCNI
-            case .notInWhitelist: 
+            case .notInWhitelist:
                 code = .unsupportedOperation_NotInWhitelist
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCTkeError(code, context: self.context)

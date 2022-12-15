@@ -19,39 +19,39 @@ extension Vpc {
     public struct CreateDirectConnectGatewayCcnRoutesRequest: TCRequestModel {
         /// 专线网关ID，形如：dcg-prpqlmg1
         public let directConnectGatewayId: String
-        
+
         /// 需要连通的IDC网段列表
         public let routes: [DirectConnectGatewayCcnRoute]
-        
-        public init (directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute]) {
+
+        public init(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute]) {
             self.directConnectGatewayId = directConnectGatewayId
             self.routes = routes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectGatewayId = "DirectConnectGatewayId"
             case routes = "Routes"
         }
     }
-    
+
     /// CreateDirectConnectGatewayCcnRoutes返回参数结构体
     public struct CreateDirectConnectGatewayCcnRoutesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建专线网关云联网路由
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable
-    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectGatewayCcnRoutesResponse > {
+    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayCcnRoutesResponse> {
         self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建专线网关云联网路由
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
@@ -59,15 +59,15 @@ extension Vpc {
     public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
         try await self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建专线网关云联网路由
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable
-    public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectGatewayCcnRoutesResponse > {
+    public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayCcnRoutesResponse> {
         self.createDirectConnectGatewayCcnRoutes(CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建专线网关云联网路由
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）

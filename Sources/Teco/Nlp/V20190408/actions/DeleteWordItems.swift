@@ -19,39 +19,39 @@ extension Nlp {
     public struct DeleteWordItemsRequest: TCRequestModel {
         /// 自定义词库ID。
         public let dictId: String
-        
+
         /// 待删除的词条集合。
         public let wordItems: [WordItem]
-        
-        public init (dictId: String, wordItems: [WordItem]) {
+
+        public init(dictId: String, wordItems: [WordItem]) {
             self.dictId = dictId
             self.wordItems = wordItems
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dictId = "DictId"
             case wordItems = "WordItems"
         }
     }
-    
+
     /// DeleteWordItems返回参数结构体
     public struct DeleteWordItemsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。
     @inlinable
-    public func deleteWordItems(_ input: DeleteWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordItemsResponse > {
+    public func deleteWordItems(_ input: DeleteWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordItemsResponse> {
         self.client.execute(action: "DeleteWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。
@@ -59,15 +59,15 @@ extension Nlp {
     public func deleteWordItems(_ input: DeleteWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordItemsResponse {
         try await self.client.execute(action: "DeleteWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。
     @inlinable
-    public func deleteWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordItemsResponse > {
+    public func deleteWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordItemsResponse> {
         self.deleteWordItems(DeleteWordItemsRequest(dictId: dictId, wordItems: wordItems), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。

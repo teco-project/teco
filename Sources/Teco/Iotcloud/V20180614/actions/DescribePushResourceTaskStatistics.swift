@@ -19,38 +19,38 @@ extension Iotcloud {
     public struct DescribePushResourceTaskStatisticsRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
+
         /// 资源名称
         public let name: String
-        
-        public init (productID: String, name: String) {
+
+        public init(productID: String, name: String) {
             self.productID = productID
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
             case name = "Name"
         }
     }
-    
+
     /// DescribePushResourceTaskStatistics返回参数结构体
     public struct DescribePushResourceTaskStatisticsResponse: TCResponseModel {
         /// 推送成功的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successTotal: UInt64?
-        
+
         /// 推送失败的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureTotal: UInt64?
-        
+
         /// 正在推送的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upgradingTotal: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case successTotal = "SuccessTotal"
             case failureTotal = "FailureTotal"
@@ -58,25 +58,25 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询推送资源任务统计信息
     @inlinable
-    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushResourceTaskStatisticsResponse > {
+    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushResourceTaskStatisticsResponse> {
         self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询推送资源任务统计信息
     @inlinable
     public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
         try await self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询推送资源任务统计信息
     @inlinable
-    public func describePushResourceTaskStatistics(productID: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushResourceTaskStatisticsResponse > {
+    public func describePushResourceTaskStatistics(productID: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushResourceTaskStatisticsResponse> {
         self.describePushResourceTaskStatistics(DescribePushResourceTaskStatisticsRequest(productID: productID, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询推送资源任务统计信息
     @inlinable
     public func describePushResourceTaskStatistics(productID: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {

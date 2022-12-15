@@ -19,34 +19,34 @@ extension Tcb {
     public struct BindEnvGatewayRequest: TCRequestModel {
         /// 子环境id
         public let subEnvId: String
-        
-        public init (subEnvId: String) {
+
+        public init(subEnvId: String) {
             self.subEnvId = subEnvId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subEnvId = "SubEnvId"
         }
     }
-    
+
     /// BindEnvGateway返回参数结构体
     public struct BindEnvGatewayResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
     @inlinable
-    public func bindEnvGateway(_ input: BindEnvGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEnvGatewayResponse > {
+    public func bindEnvGateway(_ input: BindEnvGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
         self.client.execute(action: "BindEnvGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
@@ -54,15 +54,15 @@ extension Tcb {
     public func bindEnvGateway(_ input: BindEnvGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
         try await self.client.execute(action: "BindEnvGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
     @inlinable
-    public func bindEnvGateway(subEnvId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEnvGatewayResponse > {
+    public func bindEnvGateway(subEnvId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
         self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关

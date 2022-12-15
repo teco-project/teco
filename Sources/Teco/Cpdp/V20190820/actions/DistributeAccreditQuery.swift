@@ -19,42 +19,42 @@ extension Cpdp {
     public struct DistributeAccreditQueryRequest: TCRequestModel {
         /// 使用门店OpenId
         public let openId: String
-        
+
         /// 使用门店OpenKey
         public let openKey: String
-        
+
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
-        
-        public init (openId: String, openKey: String, profile: String? = nil) {
+
+        public init(openId: String, openKey: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case openId = "OpenId"
             case openKey = "OpenKey"
             case profile = "Profile"
         }
     }
-    
+
     /// DistributeAccreditQuery返回参数结构体
     public struct DistributeAccreditQueryResponse: TCResponseModel {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 业务系统返回码
         public let errCode: String
-        
+
         /// 查询授权申请结果响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: DistributeAccreditQueryResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errMessage = "ErrMessage"
             case errCode = "ErrCode"
@@ -62,25 +62,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云支付-分账授权申请查询接口
     @inlinable
-    public func distributeAccreditQuery(_ input: DistributeAccreditQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeAccreditQueryResponse > {
+    public func distributeAccreditQuery(_ input: DistributeAccreditQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditQueryResponse> {
         self.client.execute(action: "DistributeAccreditQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-分账授权申请查询接口
     @inlinable
     public func distributeAccreditQuery(_ input: DistributeAccreditQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditQueryResponse {
         try await self.client.execute(action: "DistributeAccreditQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云支付-分账授权申请查询接口
     @inlinable
-    public func distributeAccreditQuery(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeAccreditQueryResponse > {
+    public func distributeAccreditQuery(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditQueryResponse> {
         self.distributeAccreditQuery(DistributeAccreditQueryRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-分账授权申请查询接口
     @inlinable
     public func distributeAccreditQuery(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditQueryResponse {

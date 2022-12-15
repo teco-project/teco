@@ -19,49 +19,49 @@ extension Iotvideoindustry {
     public struct DescribeStatisticSummaryRequest: TCRequestModel {
         /// 指定日期。格式【YYYY-MM-DD】
         public let date: String
-        
-        public init (date: String) {
+
+        public init(date: String) {
             self.date = date
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
         }
     }
-    
+
     /// DescribeStatisticSummary返回参数结构体
     public struct DescribeStatisticSummaryResponse: TCResponseModel {
         /// 录制设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordingDevice: UInt64?
-        
+
         /// 非录制设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nonRecordingDevice: UInt64?
-        
+
         /// 观看流量总数。为直播观看流量与点播观看流量之和。单位：GB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let watchFlux: Float?
-        
+
         /// 累计有效存储容量总数。单位：GB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageUsage: Float?
-        
+
         /// X-P2P分享流量。单位 Byte
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p2pFluxTotal: Float?
-        
+
         /// X-P2P峰值带宽。 单位bps
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let p2pPeakValue: Float?
-        
+
         /// RTMP推流路数 ( 直播推流)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let livePushTotal: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case recordingDevice = "RecordingDevice"
             case nonRecordingDevice = "NonRecordingDevice"
@@ -73,15 +73,15 @@ extension Iotvideoindustry {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询统计指标概览数据
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
-    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticSummaryResponse > {
+    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticSummaryResponse> {
         self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询统计指标概览数据
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
@@ -89,15 +89,15 @@ extension Iotvideoindustry {
     public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
         try await self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询统计指标概览数据
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
-    public func describeStatisticSummary(date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticSummaryResponse > {
+    public func describeStatisticSummary(date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticSummaryResponse> {
         self.describeStatisticSummary(DescribeStatisticSummaryRequest(date: date), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询统计指标概览数据
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。

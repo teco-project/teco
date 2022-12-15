@@ -19,29 +19,29 @@ extension Sms {
     public struct SmsPackagesStatisticsRequest: TCRequestModel {
         /// 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         public let smsSdkAppId: String
-        
+
         /// 最大上限(需要拉取的套餐包个数)。
         public let limit: UInt64
-        
+
         /// 偏移量。
         public let offset: UInt64
-        
+
         /// 起始时间，格式为yyyymmddhh，精确到小时，例如2021050113，表示2021年5月1号13时。
         /// 注：拉取套餐包的创建时间不小于起始时间。
         public let beginTime: String
-        
+
         /// 结束时间，格式为yyyymmddhh，精确到小时，例如2021050118，表示2021年5月1号18时。
         /// 注：EndTime 必须大于 BeginTime且小于当前时间，拉取套餐包的创建时间不大于结束时间。
         public let endTime: String
-        
-        public init (smsSdkAppId: String, limit: UInt64, offset: UInt64, beginTime: String, endTime: String) {
+
+        public init(smsSdkAppId: String, limit: UInt64, offset: UInt64, beginTime: String, endTime: String) {
             self.smsSdkAppId = smsSdkAppId
             self.limit = limit
             self.offset = offset
             self.beginTime = beginTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case smsSdkAppId = "SmsSdkAppId"
             case limit = "Limit"
@@ -50,31 +50,31 @@ extension Sms {
             case endTime = "EndTime"
         }
     }
-    
+
     /// SmsPackagesStatistics返回参数结构体
     public struct SmsPackagesStatisticsResponse: TCResponseModel {
         /// 发送数据统计响应包体。
         public let smsPackagesStatisticsSet: [SmsPackagesStatistics]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case smsPackagesStatisticsSet = "SmsPackagesStatisticsSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SmsPackagesStatisticsResponse > {
+    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
         self.client.execute(action: "SmsPackagesStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。
@@ -84,17 +84,17 @@ extension Sms {
     public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
         try await self.client.execute(action: "SmsPackagesStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(smsSdkAppId: String, limit: UInt64, offset: UInt64, beginTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SmsPackagesStatisticsResponse > {
+    public func smsPackagesStatistics(smsSdkAppId: String, limit: UInt64, offset: UInt64, beginTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
         self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppId: smsSdkAppId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。

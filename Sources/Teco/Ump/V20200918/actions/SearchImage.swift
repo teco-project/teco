@@ -19,23 +19,23 @@ extension Ump {
     public struct SearchImageRequest: TCRequestModel {
         /// 集团编码
         public let groupCode: String
-        
+
         /// 广场ID
         public let mallId: UInt64
-        
+
         /// 图片base64字符串
         public let image: String
-        
+
         /// 时间戳，毫秒
         public let imageTime: UInt64
-        
-        public init (groupCode: String, mallId: UInt64, image: String, imageTime: UInt64) {
+
+        public init(groupCode: String, mallId: UInt64, image: String, imageTime: UInt64) {
             self.groupCode = groupCode
             self.mallId = mallId
             self.image = image
             self.imageTime = imageTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupCode = "GroupCode"
             case mallId = "MallId"
@@ -43,43 +43,43 @@ extension Ump {
             case imageTime = "ImageTime"
         }
     }
-    
+
     /// SearchImage返回参数结构体
     public struct SearchImageResponse: TCResponseModel {
         /// face id
         public let faceId: String
-        
+
         /// 搜索结果列表
         public let results: [SearchResult]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case faceId = "FaceId"
             case results = "Results"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 以图搜图
     @inlinable
-    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchImageResponse > {
+    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
         self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 以图搜图
     @inlinable
     public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
         try await self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 以图搜图
     @inlinable
-    public func searchImage(groupCode: String, mallId: UInt64, image: String, imageTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchImageResponse > {
+    public func searchImage(groupCode: String, mallId: UInt64, image: String, imageTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
         self.searchImage(SearchImageRequest(groupCode: groupCode, mallId: mallId, image: image, imageTime: imageTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 以图搜图
     @inlinable
     public func searchImage(groupCode: String, mallId: UInt64, image: String, imageTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {

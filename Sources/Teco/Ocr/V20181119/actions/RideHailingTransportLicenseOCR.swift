@@ -20,45 +20,45 @@ extension Ocr {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
-        
+
         /// 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。
         /// 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         public let imageUrl: String?
-        
-        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
         }
     }
-    
+
     /// RideHailingTransportLicenseOCR返回参数结构体
     public struct RideHailingTransportLicenseOCRResponse: TCResponseModel {
         /// 交运管许可字号。
         public let operationLicenseNumber: String
-        
+
         /// 车辆所有人，对应网约车运输证字段：车辆所有人/车主名称/业户名称。
         public let vehicleOwner: String
-        
+
         /// 车牌号码，对应网约车运输证字段：车牌号码/车辆号牌。
         public let vehicleNumber: String
-        
+
         /// 有效起始日期。
         public let startDate: String
-        
+
         /// 有效期截止时间，对应网约车运输证字段：有效期至/营运期限止。
         public let endDate: String
-        
+
         /// 初始发证日期，对应网约车运输证字段：初始领证日期/发证日期。
         public let releaseDate: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case operationLicenseNumber = "OperationLicenseNumber"
             case vehicleOwner = "VehicleOwner"
@@ -69,38 +69,38 @@ extension Ocr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
-    ///            
+    ///
     @inlinable
-    public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RideHailingTransportLicenseOCRResponse > {
+    public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
         self.client.execute(action: "RideHailingTransportLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
-    ///            
+    ///
     @inlinable
     public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
         try await self.client.execute(action: "RideHailingTransportLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
-    ///            
+    ///
     @inlinable
-    public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RideHailingTransportLicenseOCRResponse > {
+    public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
         self.rideHailingTransportLicenseOCR(RideHailingTransportLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
-    ///            
+    ///
     @inlinable
     public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
         try await self.rideHailingTransportLicenseOCR(RideHailingTransportLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)

@@ -23,66 +23,66 @@ extension TCDbdcError {
             case querySpecInfoError = "FailedOperation.QuerySpecInfoError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 修改资源信息失败。
         public static var modifyResourceInfoError: FailedOperation {
             FailedOperation(.modifyResourceInfoError)
         }
-        
+
         /// 访问管控服务失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var ossAccessError: FailedOperation {
             FailedOperation(.ossAccessError)
         }
-        
+
         /// 查询资源信息失败。
         public static var queryResourceError: FailedOperation {
             FailedOperation(.queryResourceError)
         }
-        
+
         /// 获取独享集群规格信息失败。
         public static var querySpecInfoError: FailedOperation {
             FailedOperation(.querySpecInfoError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asDbdcError() -> TCDbdcError {
             let code: TCDbdcError.Code
             switch self.error {
-            case .modifyResourceInfoError: 
+            case .modifyResourceInfoError:
                 code = .failedOperation_ModifyResourceInfoError
-            case .ossAccessError: 
+            case .ossAccessError:
                 code = .failedOperation_OssAccessError
-            case .queryResourceError: 
+            case .queryResourceError:
                 code = .failedOperation_QueryResourceError
-            case .querySpecInfoError: 
+            case .querySpecInfoError:
                 code = .failedOperation_QuerySpecInfoError
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCDbdcError(code, context: self.context)

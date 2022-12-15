@@ -19,32 +19,32 @@ extension Bm {
     public struct DescribeDeviceClassPartitionRequest: TCRequestModel {
         /// 设备类型代号。代号通过接口[查询设备型号(DescribeDeviceClass)](https://cloud.tencent.com/document/api/386/32911)查询。标准机型需要传入此参数。虽是可选参数，但DeviceClassCode和InstanceId参数，必须要填写一个。
         public let deviceClassCode: String?
-        
+
         /// 需要查询自定义机型RAID信息时，传入自定义机型实例ID。InstanceId存在时其余参数失效。
         public let instanceId: String?
-        
+
         /// CPU型号ID，查询自定义机型时需要传入
         public let cpuId: UInt64?
-        
+
         /// 内存大小，单位为G，查询自定义机型时需要传入
         public let memSize: UInt64?
-        
+
         /// 是否有RAID卡，取值：1(有) 0(无)。查询自定义机型时需要传入
         public let containRaidCard: UInt64?
-        
+
         /// 系统盘类型ID，查询自定义机型时需要传入
         public let systemDiskTypeId: UInt64?
-        
+
         /// 系统盘数量，查询自定义机型时需要传入
         public let systemDiskCount: UInt64?
-        
+
         /// 数据盘类型ID，查询自定义机型时可传入
         public let dataDiskTypeId: UInt64?
-        
+
         /// 数据盘数量，查询自定义机型时可传入
         public let dataDiskCount: UInt64?
-        
-        public init (deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil) {
+
+        public init(deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil) {
             self.deviceClassCode = deviceClassCode
             self.instanceId = instanceId
             self.cpuId = cpuId
@@ -55,7 +55,7 @@ extension Bm {
             self.dataDiskTypeId = dataDiskTypeId
             self.dataDiskCount = dataDiskCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceClassCode = "DeviceClassCode"
             case instanceId = "InstanceId"
@@ -68,29 +68,29 @@ extension Bm {
             case dataDiskCount = "DataDiskCount"
         }
     }
-    
+
     /// DescribeDeviceClassPartition返回参数结构体
     public struct DescribeDeviceClassPartitionResponse: TCResponseModel {
         /// 支持的RAID格式列表
         public let deviceClassPartitionInfoSet: [DeviceClassPartitionInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceClassPartitionInfoSet = "DeviceClassPartitionInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询机型RAID方式以及系统盘大小
     ///
     /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表
     @inlinable
-    public func describeDeviceClassPartition(_ input: DescribeDeviceClassPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassPartitionResponse > {
+    public func describeDeviceClassPartition(_ input: DescribeDeviceClassPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassPartitionResponse> {
         self.client.execute(action: "DescribeDeviceClassPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机型RAID方式以及系统盘大小
     ///
     /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表
@@ -98,15 +98,15 @@ extension Bm {
     public func describeDeviceClassPartition(_ input: DescribeDeviceClassPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassPartitionResponse {
         try await self.client.execute(action: "DescribeDeviceClassPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询机型RAID方式以及系统盘大小
     ///
     /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表
     @inlinable
-    public func describeDeviceClassPartition(deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassPartitionResponse > {
+    public func describeDeviceClassPartition(deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassPartitionResponse> {
         self.describeDeviceClassPartition(DescribeDeviceClassPartitionRequest(deviceClassCode: deviceClassCode, instanceId: instanceId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机型RAID方式以及系统盘大小
     ///
     /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表

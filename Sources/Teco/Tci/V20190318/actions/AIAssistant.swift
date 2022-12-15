@@ -19,32 +19,32 @@ extension Tci {
     public struct AIAssistantRequest: TCRequestModel {
         /// 输入分析对象内容，输入数据格式参考FileType参数释义
         public let fileContent: String
-        
+
         /// 输入分析对象类型，picture_url:图片地址，vod_url:视频地址，live_url：直播地址，audio_url: 音频文件，picture：图片二进制数据的BASE64编码
         public let fileType: String
-        
+
         /// 音频源的语言，默认0为英文，1为中文
         public let lang: Int64?
-        
+
         /// 查询人员库列表
         public let librarySet: [String]?
-        
+
         /// 视频评估时间，单位秒，点播场景默认值为2小时（无法探测长度时）或完整视频，直播场景默认值为10分钟或直播提前结束
         public let maxVideoDuration: Int64?
-        
+
         /// 标准化模板选择：0：AI助教基础版本，1：AI评教基础版本，2：AI评教标准版本。AI 助教基础版本功能包括：人脸检索、人脸检测、人脸表情识别、学生动作选项，音频信息分析，微笑识别。AI 评教基础版本功能包括：人脸检索、人脸检测、人脸表情识别、音频信息分析。AI 评教标准版功能包括人脸检索、人脸检测、人脸表情识别、手势识别、音频信息分析、音频关键词分析、视频精彩集锦分析。
         public let template: Int64?
-        
+
         /// 识别词库名列表，评估过程使用这些词汇库中的词汇进行词汇使用行为分析
         public let vocabLibNameList: [String]?
-        
+
         /// 语音编码类型 1:pcm
         public let voiceEncodeType: Int64?
-        
+
         /// 语音文件类型 1:raw, 2:wav, 3:mp3，10:视频（三种音频格式目前仅支持16k采样率16bit）
         public let voiceFileType: Int64?
-        
-        public init (fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil) {
+
+        public init(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil) {
             self.fileContent = fileContent
             self.fileType = fileType
             self.lang = lang
@@ -55,7 +55,7 @@ extension Tci {
             self.voiceEncodeType = voiceEncodeType
             self.voiceFileType = voiceFileType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileContent = "FileContent"
             case fileType = "FileType"
@@ -68,33 +68,33 @@ extension Tci {
             case voiceFileType = "VoiceFileType"
         }
     }
-    
+
     /// AIAssistant返回参数结构体
     public struct AIAssistantResponse: TCResponseModel {
         /// 图像任务直接返回结果
         public let imageResults: [ImageTaskResult]
-        
+
         /// 任务ID
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageResults = "ImageResults"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// AI 助教标准接口
     ///
     /// 提供 AI 助教基础版本功能接口
     @inlinable
-    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AIAssistantResponse > {
+    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AIAssistantResponse> {
         self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// AI 助教标准接口
     ///
     /// 提供 AI 助教基础版本功能接口
@@ -102,15 +102,15 @@ extension Tci {
     public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
         try await self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// AI 助教标准接口
     ///
     /// 提供 AI 助教基础版本功能接口
     @inlinable
-    public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AIAssistantResponse > {
+    public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AIAssistantResponse> {
         self.aiAssistant(AIAssistantRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
     }
-    
+
     /// AI 助教标准接口
     ///
     /// 提供 AI 助教基础版本功能接口

@@ -20,44 +20,44 @@ extension Essbasic {
         /// 应用信息
         /// 此接口Agent.AppId、Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
         public let agent: Agent
-        
+
         /// 领取的合同id列表
         public let flowIds: [String]?
-        
+
         /// 暂未开放
         public let `operator`: UserInfo?
-        
-        public init (agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil) {
+
+        public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case flowIds = "FlowIds"
             case `operator` = "Operator"
         }
     }
-    
+
     /// ChannelCreateBoundFlows返回参数结构体
     public struct ChannelCreateBoundFlowsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
     @inlinable
-    public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateBoundFlowsResponse > {
+    public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
         self.client.execute(action: "ChannelCreateBoundFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
@@ -65,15 +65,15 @@ extension Essbasic {
     public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
         try await self.client.execute(action: "ChannelCreateBoundFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
     @inlinable
-    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateBoundFlowsResponse > {
+    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
         self.channelCreateBoundFlows(ChannelCreateBoundFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。

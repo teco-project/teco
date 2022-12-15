@@ -19,48 +19,48 @@ extension Tsf {
     public struct StopTaskExecuteRequest: TCRequestModel {
         /// 任务执行ID
         public let executeId: String
-        
+
         /// 任务批次ID
         public let batchId: String?
-        
+
         /// 任务ID
         public let taskId: String?
-        
-        public init (executeId: String, batchId: String? = nil, taskId: String? = nil) {
+
+        public init(executeId: String, batchId: String? = nil, taskId: String? = nil) {
             self.executeId = executeId
             self.batchId = batchId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case executeId = "ExecuteId"
             case batchId = "BatchId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// StopTaskExecute返回参数结构体
     public struct StopTaskExecuteResponse: TCResponseModel {
         /// 操作成功 or 失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止正在执行的任务
     ///
     /// 停止正在某个节点上执行的任务
     @inlinable
-    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskExecuteResponse > {
+    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskExecuteResponse> {
         self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止正在执行的任务
     ///
     /// 停止正在某个节点上执行的任务
@@ -68,15 +68,15 @@ extension Tsf {
     public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskExecuteResponse {
         try await self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止正在执行的任务
     ///
     /// 停止正在某个节点上执行的任务
     @inlinable
-    public func stopTaskExecute(executeId: String, batchId: String? = nil, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskExecuteResponse > {
+    public func stopTaskExecute(executeId: String, batchId: String? = nil, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskExecuteResponse> {
         self.stopTaskExecute(StopTaskExecuteRequest(executeId: executeId, batchId: batchId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止正在执行的任务
     ///
     /// 停止正在某个节点上执行的任务

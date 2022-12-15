@@ -19,38 +19,38 @@ extension Cwp {
     public struct DescribeScanTaskStatusRequest: TCRequestModel {
         /// 模块类型 当前提供 Malware 木马 , Vul 漏洞 , Baseline 基线
         public let moduleType: String
-        
-        public init (moduleType: String) {
+
+        public init(moduleType: String) {
             self.moduleType = moduleType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case moduleType = "ModuleType"
         }
     }
-    
+
     /// DescribeScanTaskStatus返回参数结构体
     public struct DescribeScanTaskStatusResponse: TCResponseModel {
         /// 任务扫描状态列表
         public let state: TaskStatus
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case state = "State"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询机器扫描状态列表
     ///
     /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
     @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskStatusResponse> {
         self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机器扫描状态列表
     ///
     /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
@@ -58,15 +58,15 @@ extension Cwp {
     public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
         try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询机器扫描状态列表
     ///
     /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
     @inlinable
-    public func describeScanTaskStatus(moduleType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+    public func describeScanTaskStatus(moduleType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskStatusResponse> {
         self.describeScanTaskStatus(DescribeScanTaskStatusRequest(moduleType: moduleType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询机器扫描状态列表
     ///
     /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选

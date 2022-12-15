@@ -19,48 +19,48 @@ extension Redis {
     public struct DescribeInstanceSecurityGroupRequest: TCRequestModel {
         /// 实例列表
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// DescribeInstanceSecurityGroup返回参数结构体
     public struct DescribeInstanceSecurityGroupResponse: TCResponseModel {
         /// 实例安全组信息
         public let instanceSecurityGroupsDetail: [InstanceSecurityGroupDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceSecurityGroupsDetail = "InstanceSecurityGroupsDetail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例安全组信息
     @inlinable
-    public func describeInstanceSecurityGroup(_ input: DescribeInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSecurityGroupResponse > {
+    public func describeInstanceSecurityGroup(_ input: DescribeInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSecurityGroupResponse> {
         self.client.execute(action: "DescribeInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例安全组信息
     @inlinable
     public func describeInstanceSecurityGroup(_ input: DescribeInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSecurityGroupResponse {
         try await self.client.execute(action: "DescribeInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例安全组信息
     @inlinable
-    public func describeInstanceSecurityGroup(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSecurityGroupResponse > {
+    public func describeInstanceSecurityGroup(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSecurityGroupResponse> {
         self.describeInstanceSecurityGroup(DescribeInstanceSecurityGroupRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例安全组信息
     @inlinable
     public func describeInstanceSecurityGroup(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSecurityGroupResponse {

@@ -19,43 +19,43 @@ extension Vpc {
     public struct CreateServiceTemplateGroupRequest: TCRequestModel {
         /// 协议端口模板集合名称
         public let serviceTemplateGroupName: String
-        
+
         /// 协议端口模板实例ID，例如：ppm-4dw6agho。
         public let serviceTemplateIds: [String]
-        
-        public init (serviceTemplateGroupName: String, serviceTemplateIds: [String]) {
+
+        public init(serviceTemplateGroupName: String, serviceTemplateIds: [String]) {
             self.serviceTemplateGroupName = serviceTemplateGroupName
             self.serviceTemplateIds = serviceTemplateIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceTemplateGroupName = "ServiceTemplateGroupName"
             case serviceTemplateIds = "ServiceTemplateIds"
         }
     }
-    
+
     /// CreateServiceTemplateGroup返回参数结构体
     public struct CreateServiceTemplateGroupResponse: TCResponseModel {
         /// 协议端口模板集合对象。
         public let serviceTemplateGroup: ServiceTemplateGroup
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceTemplateGroup = "ServiceTemplateGroup"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建协议端口模板集合
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
-    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateGroupResponse > {
+    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateGroupResponse> {
         self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建协议端口模板集合
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
@@ -63,15 +63,15 @@ extension Vpc {
     public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
         try await self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建协议端口模板集合
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
-    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateGroupResponse > {
+    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateGroupResponse> {
         self.createServiceTemplateGroup(CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建协议端口模板集合
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合

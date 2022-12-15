@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,20 +35,20 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 站点集合，不填默认选择全部站点。
         public let zoneIds: [String]?
-        
+
         /// 域名集合，不填默认选择全部子域名。
         public let domains: [String]?
-        
+
         /// 分页查询的限制数目，默认值为20，最大查询条目为1000。
         public let limit: Int64?
-        
+
         /// 分页的偏移量，默认值为0。
         public let offset: Int64?
-        
-        public init (startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.zoneIds = zoneIds
@@ -56,7 +56,7 @@ extension Teo {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -66,34 +66,34 @@ extension Teo {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeWebProtectionAttackEvents返回参数结构体
     public struct DescribeWebProtectionAttackEventsResponse: TCResponseModel {
         /// CC相关攻击事件列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [CCInterceptEvent]?
-        
+
         /// 查询结果的总条数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询CC相关攻击事件
     ///
     /// 本接口（DescribeWebProtectionAttackEvents）用于查询CC相关攻击事件列表。
     @inlinable
-    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionAttackEventsResponse > {
+    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionAttackEventsResponse> {
         self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询CC相关攻击事件
     ///
     /// 本接口（DescribeWebProtectionAttackEvents）用于查询CC相关攻击事件列表。
@@ -101,15 +101,15 @@ extension Teo {
     public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {
         try await self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询CC相关攻击事件
     ///
     /// 本接口（DescribeWebProtectionAttackEvents）用于查询CC相关攻击事件列表。
     @inlinable
-    public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionAttackEventsResponse > {
+    public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionAttackEventsResponse> {
         self.describeWebProtectionAttackEvents(DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询CC相关攻击事件
     ///
     /// 本接口（DescribeWebProtectionAttackEvents）用于查询CC相关攻击事件列表。

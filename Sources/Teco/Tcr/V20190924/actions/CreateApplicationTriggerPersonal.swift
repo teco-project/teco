@@ -19,35 +19,35 @@ extension Tcr {
     public struct CreateApplicationTriggerPersonalRequest: TCRequestModel {
         /// 触发器关联的镜像仓库，library/test格式
         public let repoName: String
-        
+
         /// 触发器名称
         public let triggerName: String
-        
+
         /// 触发方式，"all"全部触发，"taglist"指定tag触发，"regex"正则触发
         public let invokeMethod: String
-        
+
         /// 应用所在TKE集群ID
         public let clusterId: String
-        
+
         /// 应用所在TKE集群命名空间
         public let namespace: String
-        
+
         /// 应用所在TKE集群工作负载类型,支持Deployment、StatefulSet、DaemonSet、CronJob、Job。
         public let workloadType: String
-        
+
         /// 应用所在TKE集群工作负载名称
         public let workloadName: String
-        
+
         /// 应用所在TKE集群工作负载下容器名称
         public let containerName: String
-        
+
         /// 应用所在TKE集群地域
         public let clusterRegion: Int64
-        
+
         /// 触发方式对应的表达式
         public let invokeExpr: String?
-        
-        public init (repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String? = nil) {
+
+        public init(repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String? = nil) {
             self.repoName = repoName
             self.triggerName = triggerName
             self.invokeMethod = invokeMethod
@@ -59,7 +59,7 @@ extension Tcr {
             self.clusterRegion = clusterRegion
             self.invokeExpr = invokeExpr
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
             case triggerName = "TriggerName"
@@ -73,25 +73,25 @@ extension Tcr {
             case invokeExpr = "InvokeExpr"
         }
     }
-    
+
     /// CreateApplicationTriggerPersonal返回参数结构体
     public struct CreateApplicationTriggerPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建应用更新触发器
     ///
     /// 用于创建应用更新触发器
     @inlinable
-    public func createApplicationTriggerPersonal(_ input: CreateApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationTriggerPersonalResponse > {
+    public func createApplicationTriggerPersonal(_ input: CreateApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationTriggerPersonalResponse> {
         self.client.execute(action: "CreateApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用更新触发器
     ///
     /// 用于创建应用更新触发器
@@ -99,15 +99,15 @@ extension Tcr {
     public func createApplicationTriggerPersonal(_ input: CreateApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationTriggerPersonalResponse {
         try await self.client.execute(action: "CreateApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建应用更新触发器
     ///
     /// 用于创建应用更新触发器
     @inlinable
-    public func createApplicationTriggerPersonal(repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationTriggerPersonalResponse > {
+    public func createApplicationTriggerPersonal(repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationTriggerPersonalResponse> {
         self.createApplicationTriggerPersonal(CreateApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, invokeExpr: invokeExpr), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用更新触发器
     ///
     /// 用于创建应用更新触发器

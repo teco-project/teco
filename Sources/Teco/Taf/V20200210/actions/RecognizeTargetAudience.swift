@@ -19,54 +19,54 @@ extension Taf {
     public struct RecognizeTargetAudienceRequest: TCRequestModel {
         /// 业务数据
         public let bspData: InputRecognizeTargetAudience
-        
+
         /// 业务加密数据
         public let businessEncryptData: InputBusinessEncryptData?
-        
-        public init (bspData: InputRecognizeTargetAudience, businessEncryptData: InputBusinessEncryptData? = nil) {
+
+        public init(bspData: InputRecognizeTargetAudience, businessEncryptData: InputBusinessEncryptData? = nil) {
             self.bspData = bspData
             self.businessEncryptData = businessEncryptData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bspData = "BspData"
             case businessEncryptData = "BusinessEncryptData"
         }
     }
-    
+
     /// RecognizeTargetAudience返回参数结构体
     public struct RecognizeTargetAudienceResponse: TCResponseModel {
         /// 回包数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: OutputRecognizeTargetAudience?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 流量反欺诈-流量验准
     @inlinable
-    public func recognizeTargetAudience(_ input: RecognizeTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeTargetAudienceResponse > {
+    public func recognizeTargetAudience(_ input: RecognizeTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeTargetAudienceResponse> {
         self.client.execute(action: "RecognizeTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 流量反欺诈-流量验准
     @inlinable
     public func recognizeTargetAudience(_ input: RecognizeTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTargetAudienceResponse {
         try await self.client.execute(action: "RecognizeTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 流量反欺诈-流量验准
     @inlinable
-    public func recognizeTargetAudience(bspData: InputRecognizeTargetAudience, businessEncryptData: InputBusinessEncryptData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeTargetAudienceResponse > {
+    public func recognizeTargetAudience(bspData: InputRecognizeTargetAudience, businessEncryptData: InputBusinessEncryptData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeTargetAudienceResponse> {
         self.recognizeTargetAudience(RecognizeTargetAudienceRequest(bspData: bspData, businessEncryptData: businessEncryptData), logger: logger, on: eventLoop)
     }
-    
+
     /// 流量反欺诈-流量验准
     @inlinable
     public func recognizeTargetAudience(bspData: InputRecognizeTargetAudience, businessEncryptData: InputBusinessEncryptData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTargetAudienceResponse {

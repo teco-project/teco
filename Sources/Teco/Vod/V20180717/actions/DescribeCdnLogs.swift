@@ -19,23 +19,23 @@ extension Vod {
     public struct DescribeCdnLogsRequest: TCRequestModel {
         /// 域名。
         public let domainName: String
-        
+
         /// 获取日志起始时间点，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
         public let startTime: String
-        
+
         /// 结束时间需大于起始时间；使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
         public let endTime: String
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 分页拉取的最大返回结果数。默认值：100；最大值：1000。
         public let limit: UInt64?
-        
+
         /// 分页拉取的起始偏移量。默认值：0。
         public let offset: UInt64?
-        
-        public init (domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.domainName = domainName
             self.startTime = startTime
             self.endTime = endTime
@@ -43,7 +43,7 @@ extension Vod {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case startTime = "StartTime"
@@ -53,24 +53,24 @@ extension Vod {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeCdnLogs返回参数结构体
     public struct DescribeCdnLogsResponse: TCResponseModel {
         /// 日志下载链接总数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 海外CDN节点的日志下载列表。如果域名没有开启海外加速，忽略该参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let overseaCdnLogs: [CdnLogInfo]?
-        
+
         /// 国内CDN节点的日志下载列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domesticCdnLogs: [CdnLogInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case overseaCdnLogs = "OverseaCdnLogs"
@@ -78,45 +78,45 @@ extension Vod {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询 CDN 日志下载链接列表
     ///
     /// 查询点播域名的 CDN 访问日志的下载链接。
     ///     1. 可以查询最近30天内的 CDN 日志下载链接。
-    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。    
+    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
-    public func describeCdnLogs(_ input: DescribeCdnLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnLogsResponse > {
+    public func describeCdnLogs(_ input: DescribeCdnLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnLogsResponse> {
         self.client.execute(action: "DescribeCdnLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 CDN 日志下载链接列表
     ///
     /// 查询点播域名的 CDN 访问日志的下载链接。
     ///     1. 可以查询最近30天内的 CDN 日志下载链接。
-    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。    
+    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
     public func describeCdnLogs(_ input: DescribeCdnLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
         try await self.client.execute(action: "DescribeCdnLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询 CDN 日志下载链接列表
     ///
     /// 查询点播域名的 CDN 访问日志的下载链接。
     ///     1. 可以查询最近30天内的 CDN 日志下载链接。
-    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。    
+    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
-    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnLogsResponse > {
+    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnLogsResponse> {
         self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 CDN 日志下载链接列表
     ///
     /// 查询点播域名的 CDN 访问日志的下载链接。
     ///     1. 可以查询最近30天内的 CDN 日志下载链接。
-    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。    
+    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
     public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {

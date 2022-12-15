@@ -19,33 +19,33 @@ extension Tke {
     public struct DescribeResourceUsageRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DescribeResourceUsage返回参数结构体
     public struct DescribeResourceUsageResponse: TCResponseModel {
         /// CRD使用量
         public let crdUsage: ResourceUsage
-        
+
         /// Pod使用量
         public let podUsage: UInt64
-        
+
         /// ConfigMap使用量
         public let configMapUsage: UInt64
-        
+
         /// 其他资源使用量
         public let otherUsage: ResourceUsage
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case crdUsage = "CRDUsage"
             case podUsage = "PodUsage"
@@ -54,25 +54,25 @@ extension Tke {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取集群资源使用量
     @inlinable
-    public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageResponse > {
+    public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageResponse> {
         self.client.execute(action: "DescribeResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取集群资源使用量
     @inlinable
     public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {
         try await self.client.execute(action: "DescribeResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取集群资源使用量
     @inlinable
-    public func describeResourceUsage(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageResponse > {
+    public func describeResourceUsage(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageResponse> {
         self.describeResourceUsage(DescribeResourceUsageRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取集群资源使用量
     @inlinable
     public func describeResourceUsage(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {

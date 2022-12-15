@@ -19,23 +19,23 @@ extension Cloudaudit {
     public struct LookUpEventsRequest: TCRequestModel {
         /// 开始时间
         public let startTime: Int64
-        
+
         /// 结束时间
         public let endTime: Int64
-        
+
         /// 检索条件
         public let lookupAttributes: [LookupAttribute]?
-        
+
         /// 查看更多日志的凭证
         public let nextToken: String?
-        
+
         /// 返回日志的最大条数
         public let maxResults: Int64?
-        
+
         /// 云审计模式，有效值：standard | quick，其中standard是标准模式，quick是极速模式。默认为标准模式
         public let mode: String?
-        
-        public init (startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil) {
+
+        public init(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.lookupAttributes = lookupAttributes
@@ -43,7 +43,7 @@ extension Cloudaudit {
             self.maxResults = maxResults
             self.mode = mode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -53,24 +53,24 @@ extension Cloudaudit {
             case mode = "Mode"
         }
     }
-    
+
     /// LookUpEvents返回参数结构体
     public struct LookUpEventsResponse: TCResponseModel {
         /// 查看更多日志的凭证
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextToken: String?
-        
+
         /// 日志集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let events: [Event]?
-        
+
         /// 日志集合是否结束
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listOver: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nextToken = "NextToken"
             case events = "Events"
@@ -78,15 +78,15 @@ extension Cloudaudit {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
-    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LookUpEventsResponse > {
+    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LookUpEventsResponse> {
         self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
@@ -94,15 +94,15 @@ extension Cloudaudit {
     public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
         try await self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
-    public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LookUpEventsResponse > {
+    public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LookUpEventsResponse> {
         self.lookUpEvents(LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode), logger: logger, on: eventLoop)
     }
-    
+
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。

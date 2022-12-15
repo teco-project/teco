@@ -39,192 +39,192 @@ extension TCEmrError {
             case woodServerError = "InternalError.WoodServerError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 内部服务调用异常。
         public static var accountCgwError: InternalError {
             InternalError(.accountCgwError)
         }
-        
+
         /// 内部服务调用异常。
         ///
         /// 占位符
         public static var camCgwError: InternalError {
             InternalError(.camCgwError)
         }
-        
+
         /// 内部服务调用异常。
         public static var camError: InternalError {
             InternalError(.camError)
         }
-        
+
         /// 内部服务调用异常。
         ///
         /// 占位符
         public static var cbsCgwError: InternalError {
             InternalError(.cbsCgwError)
         }
-        
+
         /// 内部服务调用异常。
         public static var cbsError: InternalError {
             InternalError(.cbsError)
         }
-        
+
         /// 内部服务调用异常。
         ///
         /// 占位符
         public static var cdbCgwError: InternalError {
             InternalError(.cdbCgwError)
         }
-        
+
         /// 内部服务调用异常。
         public static var cdbError: InternalError {
             InternalError(.cdbError)
         }
-        
+
         /// cvm或cbs资源不够或软件不合法。
         public static var checkQuotaErr: InternalError {
             InternalError(.checkQuotaErr)
         }
-        
+
         /// 内部服务调用异常。
         public static var configCgwError: InternalError {
             InternalError(.configCgwError)
         }
-        
+
         /// 内部服务调用异常。
         public static var cvmError: InternalError {
             InternalError(.cvmError)
         }
-        
+
         /// 调用EKS报错。
         public static var eksError: InternalError {
             InternalError(.eksError)
         }
-        
+
         /// 内部服务调用异常。
         public static var kmsError: InternalError {
             InternalError(.kmsError)
         }
-        
+
         /// 内部服务调用异常。
         ///
         /// 占位符
         public static var projectCgwError: InternalError {
             InternalError(.projectCgwError)
         }
-        
+
         /// 安全组接口调用异常。
         public static var sgError: InternalError {
             InternalError(.sgError)
         }
-        
+
         /// 内部服务调用异常。
         public static var tagError: InternalError {
             InternalError(.tagError)
         }
-        
+
         /// TKE调用出错。
         public static var tkeError: InternalError {
             InternalError(.tkeError)
         }
-        
+
         /// 内部服务调用异常。
         ///
         /// 占位符
         public static var tradeCgwError: InternalError {
             InternalError(.tradeCgwError)
         }
-        
+
         /// 内部服务调用异常。
         ///
         /// 占位符
         public static var vpcCgwError: InternalError {
             InternalError(.vpcCgwError)
         }
-        
+
         /// 内部服务调用异常。
         public static var vpcError: InternalError {
             InternalError(.vpcError)
         }
-        
+
         /// 内部服务调用异常。
         ///
         /// 占位符
         public static var woodServerError: InternalError {
             InternalError(.woodServerError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
-            case .accountCgwError: 
+            case .accountCgwError:
                 code = .internalError_AccountCgwError
-            case .camCgwError: 
+            case .camCgwError:
                 code = .internalError_CamCgwError
-            case .camError: 
+            case .camError:
                 code = .internalError_CamError
-            case .cbsCgwError: 
+            case .cbsCgwError:
                 code = .internalError_CbsCgwError
-            case .cbsError: 
+            case .cbsError:
                 code = .internalError_CbsError
-            case .cdbCgwError: 
+            case .cdbCgwError:
                 code = .internalError_CdbCgwError
-            case .cdbError: 
+            case .cdbError:
                 code = .internalError_CdbError
-            case .checkQuotaErr: 
+            case .checkQuotaErr:
                 code = .internalError_CheckQuotaErr
-            case .configCgwError: 
+            case .configCgwError:
                 code = .internalError_ConfigCgwError
-            case .cvmError: 
+            case .cvmError:
                 code = .internalError_CvmError
-            case .eksError: 
+            case .eksError:
                 code = .internalError_EKSError
-            case .kmsError: 
+            case .kmsError:
                 code = .internalError_KmsError
-            case .projectCgwError: 
+            case .projectCgwError:
                 code = .internalError_ProjectCgwError
-            case .sgError: 
+            case .sgError:
                 code = .internalError_SgError
-            case .tagError: 
+            case .tagError:
                 code = .internalError_TagError
-            case .tkeError: 
+            case .tkeError:
                 code = .internalError_TKEError
-            case .tradeCgwError: 
+            case .tradeCgwError:
                 code = .internalError_TradeCgwError
-            case .vpcCgwError: 
+            case .vpcCgwError:
                 code = .internalError_VpcCgwError
-            case .vpcError: 
+            case .vpcError:
                 code = .internalError_VpcError
-            case .woodServerError: 
+            case .woodServerError:
                 code = .internalError_WoodServerError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCEmrError(code, context: self.context)

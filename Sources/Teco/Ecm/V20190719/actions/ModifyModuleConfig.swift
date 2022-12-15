@@ -19,23 +19,23 @@ extension Ecm {
     public struct ModifyModuleConfigRequest: TCRequestModel {
         /// 模块ID。
         public let moduleId: String
-        
+
         /// 机型ID。
         public let instanceType: String
-        
+
         /// 默认数据盘大小，单位：G。范围不得超过数据盘范围大小，详看DescribeConfig。
         public let defaultDataDiskSize: Int64
-        
+
         /// 默认系统盘大小，单位：G。范围不得超过数据盘范围大小，详看DescribeConfig。
         public let defaultSystemDiskSize: Int64?
-        
+
         /// 系统盘
         public let systemDisk: SystemDisk?
-        
+
         /// 数据盘
         public let dataDisks: [DataDisk]?
-        
-        public init (moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil) {
+
+        public init(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil) {
             self.moduleId = moduleId
             self.instanceType = instanceType
             self.defaultDataDiskSize = defaultDataDiskSize
@@ -43,7 +43,7 @@ extension Ecm {
             self.systemDisk = systemDisk
             self.dataDisks = dataDisks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case moduleId = "ModuleId"
             case instanceType = "InstanceType"
@@ -53,25 +53,25 @@ extension Ecm {
             case dataDisks = "DataDisks"
         }
     }
-    
+
     /// ModifyModuleConfig返回参数结构体
     public struct ModifyModuleConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。
     @inlinable
-    public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleConfigResponse > {
+    public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleConfigResponse> {
         self.client.execute(action: "ModifyModuleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。
@@ -79,15 +79,15 @@ extension Ecm {
     public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
         try await self.client.execute(action: "ModifyModuleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。
     @inlinable
-    public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleConfigResponse > {
+    public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleConfigResponse> {
         self.modifyModuleConfig(ModifyModuleConfigRequest(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。

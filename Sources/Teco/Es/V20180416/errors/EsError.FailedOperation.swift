@@ -29,116 +29,116 @@ extension TCEsError {
             case unsupportReverseRegulationNodeTypeAndDisk = "FailedOperation.UnsupportReverseRegulationNodeTypeAndDisk"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 集群资源配额限制错误。
         public static var clusterResourceLimitError: FailedOperation {
             FailedOperation(.clusterResourceLimitError)
         }
-        
+
         /// 节点磁盘块数参数检查失败。
         ///
         /// 检查节点的磁盘块数是否符合要求，4C16G以下配置节点不支持多盘。
         public static var diskCountParamError: FailedOperation {
             FailedOperation(.diskCountParamError)
         }
-        
+
         /// 集群状态错误。
         public static var errorClusterState: FailedOperation {
             FailedOperation(.errorClusterState)
         }
-        
+
         /// 集群索引没有副本存在。
         ///
         /// 给集群中0副本的索引添加副本
         public static var errorClusterStateNoReplication: FailedOperation {
             FailedOperation(.errorClusterStateNoReplication)
         }
-        
+
         /// 集群状态不健康。
         ///
         /// 等集群状态健康后在进行操作。
         public static var errorClusterStateUnhealth: FailedOperation {
             FailedOperation(.errorClusterStateUnhealth)
         }
-        
+
         /// 账户未绑定信用卡或paypal，无法支付。
         public static var noPayment: FailedOperation {
             FailedOperation(.noPayment)
         }
-        
+
         /// 用户未实名认证。
         public static var notAuthenticated: FailedOperation {
             FailedOperation(.notAuthenticated)
         }
-        
+
         /// 不支持在滚动重启扩容计算资源同时扩容磁盘数量。
         public static var unsupportResetNodeTypeAndScaleoutDisk: FailedOperation {
             FailedOperation(.unsupportResetNodeTypeAndScaleoutDisk)
         }
-        
+
         /// 不支持滚动缩容计算资源同时修改磁盘大小。
         public static var unsupportResetScaledownAndModifyDisk: FailedOperation {
             FailedOperation(.unsupportResetScaledownAndModifyDisk)
         }
-        
+
         /// 不支持反向调节节点配置和磁盘容量。
         ///
         /// 只能同时扩容节点配置和磁盘容量或磁盘数量。
         public static var unsupportReverseRegulationNodeTypeAndDisk: FailedOperation {
             FailedOperation(.unsupportReverseRegulationNodeTypeAndDisk)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asEsError() -> TCEsError {
             let code: TCEsError.Code
             switch self.error {
-            case .clusterResourceLimitError: 
+            case .clusterResourceLimitError:
                 code = .failedOperation_ClusterResourceLimitError
-            case .diskCountParamError: 
+            case .diskCountParamError:
                 code = .failedOperation_DiskCountParamError
-            case .errorClusterState: 
+            case .errorClusterState:
                 code = .failedOperation_ErrorClusterState
-            case .errorClusterStateNoReplication: 
+            case .errorClusterStateNoReplication:
                 code = .failedOperation_ErrorClusterStateNoReplication
-            case .errorClusterStateUnhealth: 
+            case .errorClusterStateUnhealth:
                 code = .failedOperation_ErrorClusterStateUnhealth
-            case .noPayment: 
+            case .noPayment:
                 code = .failedOperation_NoPayment
-            case .notAuthenticated: 
+            case .notAuthenticated:
                 code = .failedOperation_NotAuthenticated
-            case .unsupportResetNodeTypeAndScaleoutDisk: 
+            case .unsupportResetNodeTypeAndScaleoutDisk:
                 code = .failedOperation_UnsupportResetNodeTypeAndScaleoutDisk
-            case .unsupportResetScaledownAndModifyDisk: 
+            case .unsupportResetScaledownAndModifyDisk:
                 code = .failedOperation_UnsupportResetScaledownAndModifyDisk
-            case .unsupportReverseRegulationNodeTypeAndDisk: 
+            case .unsupportReverseRegulationNodeTypeAndDisk:
                 code = .failedOperation_UnsupportReverseRegulationNodeTypeAndDisk
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCEsError(code, context: self.context)

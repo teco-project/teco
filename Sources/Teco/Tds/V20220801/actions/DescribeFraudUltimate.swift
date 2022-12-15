@@ -19,32 +19,32 @@ extension Tds {
     public struct DescribeFraudUltimateRequest: TCRequestModel {
         /// 客户端通过SDK获取的设备Token
         public let deviceToken: String
-        
+
         /// 使用场景。目前仅支持login-登录场景、register-注册场景
         public let sceneCode: String
-        
+
         /// 用户唯一标识
         public let userId: String
-        
+
         /// 事件时间戳（毫秒）
         public let eventTime: UInt64
-        
+
         /// 事件耗时（毫秒），例如进入登录界面到点击登录按钮耗时
         public let elapsedTime: UInt64?
-        
+
         /// 微信的OpenId
         public let weChatOpenId: String?
-        
+
         /// 手机号码（注：不需要带国家代码 例如：13430421011）。可以传入原文或MD5
         public let phoneNumber: String?
-        
+
         /// 客户端IP
         public let clientIP: String?
-        
+
         /// QQ的OpenId
         public let qqOpenId: String?
-        
-        public init (deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil) {
+
+        public init(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil) {
             self.deviceToken = deviceToken
             self.sceneCode = sceneCode
             self.userId = userId
@@ -55,7 +55,7 @@ extension Tds {
             self.clientIP = clientIP
             self.qqOpenId = qqOpenId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceToken = "DeviceToken"
             case sceneCode = "SceneCode"
@@ -68,54 +68,54 @@ extension Tds {
             case qqOpenId = "QQOpenId"
         }
     }
-    
+
     /// DescribeFraudUltimate返回参数结构体
     public struct DescribeFraudUltimateResponse: TCResponseModel {
         /// App版本信息
         public let appVersion: String
-        
+
         /// 品牌
         public let brand: String
-        
+
         /// 客户端IP
         public let clientIp: String
-        
+
         /// 机型
         public let model: String
-        
+
         /// 网络类型
         public let networkType: String
-        
+
         /// 应用包名
         public let packageName: String
-        
+
         /// 平台（2-Android，3-iOS，4-H5，5-微信小程序）
         public let platform: String
-        
+
         /// 系统版本
         public let systemVersion: String
-        
+
         /// SDK版本号
         public let sdkBuildNo: String
-        
+
         /// 实时风险信息
         public let riskInfos: [RiskInfo]
-        
+
         /// 离线风险信息
         public let histRiskInfos: [RiskInfo]
-        
+
         /// 设备匿名标识
         public let openid: String
-        
+
         /// 场景风险信息
         public let sceneRiskInfos: [RiskInfo]
-        
+
         /// 建议等级。1-极差，2-较差，3-中等，4-良好，5-优秀
         public let suggestionLevel: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appVersion = "AppVersion"
             case brand = "Brand"
@@ -134,25 +134,25 @@ extension Tds {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备标识及风险（旗舰版）
     @inlinable
-    public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudUltimateResponse > {
+    public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudUltimateResponse> {
         self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备标识及风险（旗舰版）
     @inlinable
     public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {
         try await self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备标识及风险（旗舰版）
     @inlinable
-    public func describeFraudUltimate(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudUltimateResponse > {
+    public func describeFraudUltimate(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudUltimateResponse> {
         self.describeFraudUltimate(DescribeFraudUltimateRequest(deviceToken: deviceToken, sceneCode: sceneCode, userId: userId, eventTime: eventTime, elapsedTime: elapsedTime, weChatOpenId: weChatOpenId, phoneNumber: phoneNumber, clientIP: clientIP, qqOpenId: qqOpenId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备标识及风险（旗舰版）
     @inlinable
     public func describeFraudUltimate(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {

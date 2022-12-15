@@ -19,7 +19,7 @@ extension Cdb {
     public struct ModifyAuditConfigRequest: TCRequestModel {
         /// 实例 ID。
         public let instanceId: String
-        
+
         /// 审计日志保存时长。支持值包括：
         /// 7 - 一周
         /// 30 - 一个月；
@@ -28,12 +28,12 @@ extension Cdb {
         /// 1095 - 三年；
         /// 1825 - 五年；
         public let logExpireDay: Int64?
-        
+
         /// 是否关闭审计服务。可选值：true - 关闭审计服务；false - 不关闭审计服务。默认值为 false。
         /// 当关闭审计服务时，会删除用户的审计日志和文件，并删除该实例的所有审计策略。
         /// CloseAudit、LogExpireDay必须至少提供一个，如果两个都提供则按照CloseAudit优先的逻辑处理。
         public let closeAudit: Bool?
-        
+
         /// 高频审计日志保存时长。支持值包括：
         /// 7 - 一周
         /// 30 - 一个月；
@@ -42,14 +42,14 @@ extension Cdb {
         /// 1095 - 三年；
         /// 1825 - 五年；
         public let highLogExpireDay: Int64?
-        
-        public init (instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil) {
+
+        public init(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil) {
             self.instanceId = instanceId
             self.logExpireDay = logExpireDay
             self.closeAudit = closeAudit
             self.highLogExpireDay = highLogExpireDay
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case logExpireDay = "LogExpireDay"
@@ -57,25 +57,25 @@ extension Cdb {
             case highLogExpireDay = "HighLogExpireDay"
         }
     }
-    
+
     /// ModifyAuditConfig返回参数结构体
     public struct ModifyAuditConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更改审计服务配置
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
-    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAuditConfigResponse > {
+    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditConfigResponse> {
         self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更改审计服务配置
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
@@ -83,15 +83,15 @@ extension Cdb {
     public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
         try await self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更改审计服务配置
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
-    public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAuditConfigResponse > {
+    public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditConfigResponse> {
         self.modifyAuditConfig(ModifyAuditConfigRequest(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay), logger: logger, on: eventLoop)
     }
-    
+
     /// 更改审计服务配置
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。

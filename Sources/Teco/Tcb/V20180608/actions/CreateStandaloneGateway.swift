@@ -19,23 +19,23 @@ extension Tcb {
     public struct CreateStandaloneGatewayRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// 网关名
         public let gatewayAlias: String
-        
+
         /// 私有网络ID
         public let vpcId: String
-        
+
         /// 子网ID
         public let subnetIds: [String]
-        
+
         /// 网关描述
         public let gatewayDesc: String
-        
+
         /// 网关套餐版本
         public let packageVersion: String
-        
-        public init (envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String) {
+
+        public init(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String) {
             self.envId = envId
             self.gatewayAlias = gatewayAlias
             self.vpcId = vpcId
@@ -43,7 +43,7 @@ extension Tcb {
             self.gatewayDesc = gatewayDesc
             self.packageVersion = packageVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case gatewayAlias = "GatewayAlias"
@@ -53,29 +53,29 @@ extension Tcb {
             case packageVersion = "PackageVersion"
         }
     }
-    
+
     /// CreateStandaloneGateway返回参数结构体
     public struct CreateStandaloneGatewayResponse: TCResponseModel {
         /// 网关名称
         public let gatewayName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayName = "GatewayName"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建独立网关
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
-    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStandaloneGatewayResponse > {
+    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStandaloneGatewayResponse> {
         self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建独立网关
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
@@ -83,15 +83,15 @@ extension Tcb {
     public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
         try await self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建独立网关
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
-    public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStandaloneGatewayResponse > {
+    public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStandaloneGatewayResponse> {
         self.createStandaloneGateway(CreateStandaloneGatewayRequest(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建独立网关
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。

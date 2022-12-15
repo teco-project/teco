@@ -27,7 +27,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,20 +35,20 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String?
-        
+
         /// 搜索值，只支持资源ID或用户UIN
         public let filter: String?
-        
+
         /// 一页条数，填0表示不分页
         public let limit: UInt64?
-        
+
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
-        
-        public init (startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.business = business
@@ -56,7 +56,7 @@ extension Dayu {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -66,43 +66,43 @@ extension Dayu {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeActionLog返回参数结构体
     public struct DescribeActionLogResponse: TCResponseModel {
         /// 总记录数
         public let totalCount: UInt64
-        
+
         /// 记录数组
         public let data: [KeyValueRecord]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取操作日志
     @inlinable
-    public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActionLogResponse > {
+    public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeActionLogResponse> {
         self.client.execute(action: "DescribeActionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取操作日志
     @inlinable
     public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActionLogResponse {
         try await self.client.execute(action: "DescribeActionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取操作日志
     @inlinable
-    public func describeActionLog(startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActionLogResponse > {
+    public func describeActionLog(startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeActionLogResponse> {
         self.describeActionLog(DescribeActionLogRequest(startTime: startTime, endTime: endTime, business: business, filter: filter, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取操作日志
     @inlinable
     public func describeActionLog(startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActionLogResponse {

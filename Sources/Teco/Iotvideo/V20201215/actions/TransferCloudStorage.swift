@@ -19,54 +19,54 @@ extension Iotvideo {
     public struct TransferCloudStorageRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 已开通云存的设备名称
         public let deviceName: String
-        
+
         /// 未开通云存的设备名称
         public let toDeviceName: String
-        
-        public init (productId: String, deviceName: String, toDeviceName: String) {
+
+        public init(productId: String, deviceName: String, toDeviceName: String) {
             self.productId = productId
             self.deviceName = deviceName
             self.toDeviceName = toDeviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
             case toDeviceName = "ToDeviceName"
         }
     }
-    
+
     /// TransferCloudStorage返回参数结构体
     public struct TransferCloudStorageResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 转移云存服务
     @inlinable
-    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferCloudStorageResponse > {
+    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
         self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 转移云存服务
     @inlinable
     public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
         try await self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 转移云存服务
     @inlinable
-    public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferCloudStorageResponse > {
+    public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
         self.transferCloudStorage(TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 转移云存服务
     @inlinable
     public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {

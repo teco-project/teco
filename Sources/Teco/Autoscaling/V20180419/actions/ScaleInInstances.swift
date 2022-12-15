@@ -19,35 +19,35 @@ extension As {
     public struct ScaleInInstancesRequest: TCRequestModel {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 希望缩容的实例数量。
         public let scaleInNumber: UInt64
-        
-        public init (autoScalingGroupId: String, scaleInNumber: UInt64) {
+
+        public init(autoScalingGroupId: String, scaleInNumber: UInt64) {
             self.autoScalingGroupId = autoScalingGroupId
             self.scaleInNumber = scaleInNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case scaleInNumber = "ScaleInNumber"
         }
     }
-    
+
     /// ScaleInInstances返回参数结构体
     public struct ScaleInInstancesResponse: TCResponseModel {
         /// 伸缩活动ID。
         public let activityId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 指定数量缩容实例
     ///
     /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
@@ -58,10 +58,10 @@ extension As {
     /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
-    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInInstancesResponse > {
+    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInInstancesResponse> {
         self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 指定数量缩容实例
     ///
     /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
@@ -75,7 +75,7 @@ extension As {
     public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
         try await self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 指定数量缩容实例
     ///
     /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
@@ -86,10 +86,10 @@ extension As {
     /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
-    public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInInstancesResponse > {
+    public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInInstancesResponse> {
         self.scaleInInstances(ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 指定数量缩容实例
     ///
     /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。

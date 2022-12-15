@@ -19,41 +19,41 @@ extension Scf {
     public struct ListAsyncEventsRequest: TCRequestModel {
         /// 函数名称
         public let functionName: String
-        
+
         /// 命名空间
         public let namespace: String?
-        
+
         /// 过滤条件，函数版本
         public let qualifier: String?
-        
+
         /// 过滤条件，调用类型列表
         public let invokeType: [String]?
-        
+
         /// 过滤条件，事件状态列表
         public let status: [String]?
-        
+
         /// 过滤条件，开始执行时间左闭右开区间
         public let startTimeInterval: TimeInterval?
-        
+
         /// 过滤条件，结束执行时间左闭右开区间
         public let endTimeInterval: TimeInterval?
-        
+
         /// 可选值 ASC 和 DESC，默认 DESC
         public let order: String?
-        
+
         /// 可选值 StartTime 和 EndTime，默认值 StartTime
         public let orderby: String?
-        
+
         /// 数据偏移量，默认值为 0
         public let offset: Int64?
-        
+
         /// 返回数据长度，默认值为 20，最大值 100
         public let limit: Int64?
-        
+
         /// 过滤条件，事件调用请求id
         public let invokeRequestId: String?
-        
-        public init (functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil) {
+
+        public init(functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.qualifier = qualifier
@@ -67,7 +67,7 @@ extension Scf {
             self.limit = limit
             self.invokeRequestId = invokeRequestId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case namespace = "Namespace"
@@ -83,43 +83,43 @@ extension Scf {
             case invokeRequestId = "InvokeRequestId"
         }
     }
-    
+
     /// ListAsyncEvents返回参数结构体
     public struct ListAsyncEventsResponse: TCResponseModel {
         /// 满足过滤条件的事件总数
         public let totalCount: Int64
-        
+
         /// 异步事件列表
         public let eventList: [AsyncEvent]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case eventList = "EventList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取函数异步事件列表
     @inlinable
-    public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAsyncEventsResponse > {
+    public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAsyncEventsResponse> {
         self.client.execute(action: "ListAsyncEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取函数异步事件列表
     @inlinable
     public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAsyncEventsResponse {
         try await self.client.execute(action: "ListAsyncEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取函数异步事件列表
     @inlinable
-    public func listAsyncEvents(functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAsyncEventsResponse > {
+    public func listAsyncEvents(functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAsyncEventsResponse> {
         self.listAsyncEvents(ListAsyncEventsRequest(functionName: functionName, namespace: namespace, qualifier: qualifier, invokeType: invokeType, status: status, startTimeInterval: startTimeInterval, endTimeInterval: endTimeInterval, order: order, orderby: orderby, offset: offset, limit: limit, invokeRequestId: invokeRequestId), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取函数异步事件列表
     @inlinable
     public func listAsyncEvents(functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAsyncEventsResponse {

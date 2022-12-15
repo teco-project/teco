@@ -19,41 +19,41 @@ extension Teo {
     public struct SwitchLogTopicTaskRequest: TCRequestModel {
         /// 推送任务的主题ID。
         public let topicId: String
-        
+
         /// 是否开启推送，可选的动作有：
         /// <li>true：开启推送任务；</li>
         /// <li>false：关闭推送任务。</li>
         public let isOpen: Bool
-        
-        public init (topicId: String, isOpen: Bool) {
+
+        public init(topicId: String, isOpen: Bool) {
             self.topicId = topicId
             self.isOpen = isOpen
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case isOpen = "IsOpen"
         }
     }
-    
+
     /// SwitchLogTopicTask返回参数结构体
     public struct SwitchLogTopicTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
     @inlinable
-    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchLogTopicTaskResponse > {
+    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
         self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
@@ -61,15 +61,15 @@ extension Teo {
     public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
         try await self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
     @inlinable
-    public func switchLogTopicTask(topicId: String, isOpen: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchLogTopicTaskResponse > {
+    public func switchLogTopicTask(topicId: String, isOpen: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
         self.switchLogTopicTask(SwitchLogTopicTaskRequest(topicId: topicId, isOpen: isOpen), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。

@@ -19,41 +19,41 @@ extension Mps {
     public struct AIAnalysisTemplateItem: TCOutputModel {
         /// 智能分析模板唯一标识。
         public let definition: Int64
-        
+
         /// 智能分析模板名称。
         public let name: String
-        
+
         /// 智能分析模板描述信息。
         public let comment: String
-        
+
         /// 智能分类任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classificationConfigure: ClassificationConfigureInfo?
-        
+
         /// 智能标签任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagConfigure: TagConfigureInfo?
-        
+
         /// 智能封面任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coverConfigure: CoverConfigureInfo?
-        
+
         /// 智能按帧标签任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frameTagConfigure: FrameTagConfigureInfo?
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 模板类型，取值范围：
         /// * Preset：系统预置模板；
         /// * Custom：用户自定义模板。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case name = "Name"
@@ -67,45 +67,45 @@ extension Mps {
             case type = "Type"
         }
     }
-    
+
     /// 视频内容识别模板详情
     public struct AIRecognitionTemplateItem: TCOutputModel {
         /// 视频内容识别模板唯一标识。
         public let definition: Int64
-        
+
         /// 视频内容识别模板名称。
         public let name: String
-        
+
         /// 视频内容识别模板描述信息。
         public let comment: String
-        
+
         /// 人脸识别控制参数。
         public let faceConfigure: FaceConfigureInfo
-        
+
         /// 文本全文识别控制参数。
         public let ocrFullTextConfigure: OcrFullTextConfigureInfo
-        
+
         /// 文本关键词识别控制参数。
         public let ocrWordsConfigure: OcrWordsConfigureInfo
-        
+
         /// 语音全文识别控制参数。
         public let asrFullTextConfigure: AsrFullTextConfigureInfo
-        
+
         /// 语音关键词识别控制参数。
         public let asrWordsConfigure: AsrWordsConfigureInfo
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 模板类型，取值范围：
         /// * Preset：系统预置模板；
         /// * Custom：用户自定义模板。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case name = "Name"
@@ -120,61 +120,61 @@ extension Mps {
             case type = "Type"
         }
     }
-    
+
     /// 动作识别参数配置
     public struct ActionConfigInfo: TCInputModel, TCOutputModel {
         /// 动作识别任务开关，可选值：
         /// <li>ON：开启；</li>
         /// <li>OFF：关闭。</li>
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 编排子任务输出
     public struct ActivityResItem: TCOutputModel {
         /// 转码任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transcodeTask: MediaProcessTaskTranscodeResult?
-        
+
         /// 转动图任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let animatedGraphicTask: MediaProcessTaskAnimatedGraphicResult?
-        
+
         /// 时间点截图任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotByTimeOffsetTask: MediaProcessTaskSampleSnapshotResult?
-        
+
         /// 采样截图任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sampleSnapshotTask: MediaProcessTaskSampleSnapshotResult?
-        
+
         /// 雪碧图任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageSpriteTask: MediaProcessTaskImageSpriteResult?
-        
+
         /// 自适应码流任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let adaptiveDynamicStreamingTask: MediaProcessTaskAdaptiveDynamicStreamingResult?
-        
+
         /// 识别任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recognitionTask: ScheduleRecognitionTaskResult?
-        
+
         /// 审核任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reviewTask: ScheduleReviewTaskResult?
-        
+
         /// 分析任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let analysisTask: ScheduleAnalysisTaskResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case transcodeTask = "TranscodeTask"
             case animatedGraphicTask = "AnimatedGraphicTask"
@@ -187,7 +187,7 @@ extension Mps {
             case analysisTask = "AnalysisTask"
         }
     }
-    
+
     /// 编排任务输出
     public struct ActivityResult: TCOutputModel {
         /// 原子任务类型。
@@ -201,30 +201,30 @@ extension Mps {
         /// <li>AIRecognition：智能识别。</li>
         /// <li>AIAnalysis：智能分析。</li>
         public let activityType: String
-        
+
         /// 原子任务输出。
         public let activityResItem: ActivityResItem
-        
+
         enum CodingKeys: String, CodingKey {
             case activityType = "ActivityType"
             case activityResItem = "ActivityResItem"
         }
     }
-    
+
     /// 转自适应码流信息
     public struct AdaptiveDynamicStreamingInfoItem: TCOutputModel {
         /// 转自适应码流规格。
         public let definition: Int64
-        
+
         /// 打包格式，可能为 HLS和 MPEG-DASH 两种。
         public let package: String
-        
+
         /// 播放路径。
         public let path: String
-        
+
         /// 自适应码流文件的存储位置。
         public let storage: TaskOutputStorage
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case package = "Package"
@@ -232,29 +232,29 @@ extension Mps {
             case storage = "Storage"
         }
     }
-    
+
     /// 对视频转自适应码流的输入参数类型
     public struct AdaptiveDynamicStreamingTaskInput: TCInputModel, TCOutputModel {
         /// 转自适应码流模板 ID。
         public let definition: UInt64
-        
+
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         public let watermarkSet: [WatermarkInput]?
-        
+
         /// 转自适应码流后文件的目标存储，不填则继承上层的 OutputStorage 值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputStorage: TaskOutputStorage?
-        
+
         /// 转自适应码流后，manifest 文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}.{format}`。
         public let outputObjectPath: String?
-        
+
         /// 转自适应码流后，子流文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}_{subStreamNumber}.{format}`。
         public let subStreamObjectName: String?
-        
+
         /// 转自适应码流（仅 HLS）后，分片文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}_{subStreamNumber}_{segmentNumber}.{format}`。
         public let segmentObjectName: String?
-        
-        public init (definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, subStreamObjectName: String? = nil, segmentObjectName: String? = nil) {
+
+        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, subStreamObjectName: String? = nil, segmentObjectName: String? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.outputStorage = outputStorage
@@ -262,7 +262,7 @@ extension Mps {
             self.subStreamObjectName = subStreamObjectName
             self.segmentObjectName = segmentObjectName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case watermarkSet = "WatermarkSet"
@@ -272,47 +272,47 @@ extension Mps {
             case segmentObjectName = "SegmentObjectName"
         }
     }
-    
+
     /// 转自适应码流模板详情
     public struct AdaptiveDynamicStreamingTemplate: TCOutputModel {
         /// 转自适应码流模板唯一标识。
         public let definition: UInt64
-        
+
         /// 模板类型，取值范围：
         /// <li>Preset：系统预置模板；</li>
         /// <li>Custom：用户自定义模板。</li>
         public let type: String
-        
+
         /// 转自适应码流模板名称。
         public let name: String
-        
+
         /// 转自适应码流模板描述信息。
         public let comment: String
-        
+
         /// 转自适应码流格式，取值范围：
         /// <li>HLS，</li>
         /// <li>MPEG-DASH。</li>
         public let format: String
-        
+
         /// 转自适应码流输入流参数信息，最多输入10路流。
         public let streamInfos: [AdaptiveStreamTemplate]
-        
+
         /// 是否禁止视频低码率转高码率，取值范围：
         /// <li>0：否，</li>
         /// <li>1：是。</li>
         public let disableHigherVideoBitrate: UInt64
-        
+
         /// 是否禁止视频分辨率转高分辨率，取值范围：
         /// <li>0：否，</li>
         /// <li>1：是。</li>
         public let disableHigherVideoResolution: UInt64
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case type = "Type"
@@ -326,32 +326,32 @@ extension Mps {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 自适应转码流参数模板
     public struct AdaptiveStreamTemplate: TCInputModel, TCOutputModel {
         /// 视频参数信息。
         public let video: VideoTemplateInfo
-        
+
         /// 音频参数信息。
         public let audio: AudioTemplateInfo
-        
+
         /// 是否移除音频流，取值范围：
         /// <li>0：否，</li>
         /// <li>1：是。</li>
         public let removeAudio: UInt64?
-        
+
         /// 是否移除视频流，取值范围：
         /// <li>0：否，</li>
         /// <li>1：是。</li>
         public let removeVideo: UInt64?
-        
-        public init (video: VideoTemplateInfo, audio: AudioTemplateInfo, removeAudio: UInt64? = nil, removeVideo: UInt64? = nil) {
+
+        public init(video: VideoTemplateInfo, audio: AudioTemplateInfo, removeAudio: UInt64? = nil, removeVideo: UInt64? = nil) {
             self.video = video
             self.audio = audio
             self.removeAudio = removeAudio
             self.removeVideo = removeVideo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case video = "Video"
             case audio = "Audio"
@@ -359,7 +359,7 @@ extension Mps {
             case removeVideo = "RemoveVideo"
         }
     }
-    
+
     /// 智能分析结果
     public struct AiAnalysisResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
@@ -369,23 +369,23 @@ extension Mps {
         /// <li>FrameTag：智能按帧标签</li>
         /// <li>Highlight：智能精彩集锦</li>
         public let type: String
-        
+
         /// 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classificationTask: AiAnalysisTaskClassificationResult?
-        
+
         /// 视频内容分析智能封面任务的查询结果，当任务类型为 Cover 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coverTask: AiAnalysisTaskCoverResult?
-        
+
         /// 视频内容分析智能标签任务的查询结果，当任务类型为 Tag 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagTask: AiAnalysisTaskTagResult?
-        
+
         /// 视频内容分析智能按帧标签任务的查询结果，当任务类型为 FrameTag 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frameTagTask: AiAnalysisTaskFrameTagResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case classificationTask = "ClassificationTask"
@@ -394,48 +394,48 @@ extension Mps {
             case frameTagTask = "FrameTagTask"
         }
     }
-    
+
     /// 智能分类任务输入类型
     public struct AiAnalysisTaskClassificationInput: TCOutputModel {
         /// 视频智能分类模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 智能分类结果信息
     public struct AiAnalysisTaskClassificationOutput: TCOutputModel {
         /// 视频智能分类列表。
         public let classificationSet: [MediaAiAnalysisClassificationItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case classificationSet = "ClassificationSet"
         }
     }
-    
+
     /// 智能分类任务结果类型
     public struct AiAnalysisTaskClassificationResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 智能分类任务输入。
         public let input: AiAnalysisTaskClassificationInput
-        
+
         /// 智能分类任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiAnalysisTaskClassificationOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -445,52 +445,52 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 智能分类任务输入类型
     public struct AiAnalysisTaskCoverInput: TCOutputModel {
         /// 视频智能封面模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 智能封面结果信息
     public struct AiAnalysisTaskCoverOutput: TCOutputModel {
         /// 智能封面列表。
         public let coverSet: [MediaAiAnalysisCoverItem]
-        
+
         /// 智能封面的存储位置。
         public let outputStorage: TaskOutputStorage
-        
+
         enum CodingKeys: String, CodingKey {
             case coverSet = "CoverSet"
             case outputStorage = "OutputStorage"
         }
     }
-    
+
     /// 智能封面结果类型
     public struct AiAnalysisTaskCoverResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 智能封面任务输入。
         public let input: AiAnalysisTaskCoverInput
-        
+
         /// 智能封面任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiAnalysisTaskCoverOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -500,48 +500,48 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 智能按帧标签任务输入类型
     public struct AiAnalysisTaskFrameTagInput: TCOutputModel {
         /// 视频智能按帧标签模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 智能按帧标签结果信息
     public struct AiAnalysisTaskFrameTagOutput: TCOutputModel {
         /// 视频按帧标签列表。
         public let segmentSet: [MediaAiAnalysisFrameTagSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 智能按帧标签结果类型
     public struct AiAnalysisTaskFrameTagResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 智能按帧标签任务输入。
         public let input: AiAnalysisTaskFrameTagInput
-        
+
         /// 智能按帧标签任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiAnalysisTaskFrameTagOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -551,62 +551,62 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// AI 视频智能分析输入参数类型
     public struct AiAnalysisTaskInput: TCInputModel, TCOutputModel {
         /// 视频内容分析模板 ID。
         public let definition: UInt64
-        
-        public init (definition: UInt64) {
+
+        public init(definition: UInt64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 智能标签任务输入类型
     public struct AiAnalysisTaskTagInput: TCOutputModel {
         /// 视频智能标签模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 智能标签结果信息
     public struct AiAnalysisTaskTagOutput: TCOutputModel {
         /// 视频智能标签列表。
         public let tagSet: [MediaAiAnalysisTagItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case tagSet = "TagSet"
         }
     }
-    
+
     /// 智能标签结果类型
     public struct AiAnalysisTaskTagResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 智能标签任务输入。
         public let input: AiAnalysisTaskTagInput
-        
+
         /// 智能标签任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiAnalysisTaskTagOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -616,7 +616,7 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核结果
     public struct AiContentReviewResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
@@ -631,53 +631,53 @@ extension Mps {
         /// <li>Prohibited.Asr：Asr 文字鉴违禁</li>
         /// <li>Prohibited.Ocr：Ocr 文字鉴违禁</li>
         public let type: String
-        
+
         /// 采样频率，即对视频每秒截取进行审核的帧数。
         public let sampleRate: Float
-        
+
         /// 审核的视频时长，单位：秒。
         public let duration: Float
-        
+
         /// 视频内容审核智能画面鉴黄任务的查询结果，当任务类型为 Porn 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pornTask: AiReviewTaskPornResult?
-        
+
         /// 视频内容审核智能画面敏感任务的查询结果，当任务类型为 Terrorism 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terrorismTask: AiReviewTaskTerrorismResult?
-        
+
         /// 视频内容审核智能画面敏感任务的查询结果，当任务类型为 Political 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let politicalTask: AiReviewTaskPoliticalResult?
-        
+
         /// 视频内容审核 Asr 文字鉴黄任务的查询结果，当任务类型为 Porn.Asr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pornAsrTask: AiReviewTaskPornAsrResult?
-        
+
         /// 视频内容审核 Ocr 文字鉴黄任务的查询结果，当任务类型为 Porn.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pornOcrTask: AiReviewTaskPornOcrResult?
-        
+
         /// 视频内容审核 Asr 文字敏感任务的查询结果，当任务类型为 Political.Asr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let politicalAsrTask: AiReviewTaskPoliticalAsrResult?
-        
+
         /// 视频内容审核 Ocr 文字敏感任务的查询结果，当任务类型为 Political.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let politicalOcrTask: AiReviewTaskPoliticalOcrResult?
-        
+
         /// 视频内容审核 Ocr 文字敏感任务的查询结果，当任务类型为 Terrorism.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terrorismOcrTask: AiReviewTaskTerrorismOcrResult?
-        
+
         /// 视频内容审核 Asr 文字鉴违禁任务的查询结果，当任务类型为 Prohibited.Asr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prohibitedAsrTask: AiReviewTaskProhibitedAsrResult?
-        
+
         /// 视频内容审核 Ocr 文字鉴违禁任务的查询结果，当任务类型为 Prohibited.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prohibitedOcrTask: AiReviewTaskProhibitedOcrResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case sampleRate = "SampleRate"
@@ -694,21 +694,21 @@ extension Mps {
             case prohibitedOcrTask = "ProhibitedOcrTask"
         }
     }
-    
+
     /// 智能内容审核任务类型
     public struct AiContentReviewTaskInput: TCInputModel, TCOutputModel {
         /// 视频内容审核模板 ID。
         public let definition: UInt64
-        
-        public init (definition: UInt64) {
+
+        public init(definition: UInt64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 智能识别结果。
     public struct AiRecognitionResult: TCOutputModel {
         /// 任务的类型，取值范围：
@@ -719,37 +719,37 @@ extension Mps {
         /// <li>OcrFullTextRecognition：文本全文识别。</li>
         /// <li>TransTextRecognition：语音翻译。</li>
         public let type: String
-        
-        /// 人脸识别结果，当 Type 为 
+
+        /// 人脸识别结果，当 Type 为
         ///  FaceRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let faceTask: AiRecognitionTaskFaceResult?
-        
+
         /// 语音关键词识别结果，当 Type 为
         ///  AsrWordsRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asrWordsTask: AiRecognitionTaskAsrWordsResult?
-        
+
         /// 语音全文识别结果，当 Type 为
         ///  AsrFullTextRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asrFullTextTask: AiRecognitionTaskAsrFullTextResult?
-        
+
         /// 文本关键词识别结果，当 Type 为
         ///  OcrWordsRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ocrWordsTask: AiRecognitionTaskOcrWordsResult?
-        
+
         /// 文本全文识别结果，当 Type 为
         ///  OcrFullTextRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ocrFullTextTask: AiRecognitionTaskOcrFullTextResult?
-        
+
         /// 翻译结果，当 Type 为
         ///  TransTextRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transTextTask: AiRecognitionTaskTransTextResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case faceTask = "FaceTask"
@@ -760,28 +760,28 @@ extension Mps {
             case transTextTask = "TransTextTask"
         }
     }
-    
+
     /// 语音全文识别结果。
     public struct AiRecognitionTaskAsrFullTextResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 语音全文识别任务输入信息。
         public let input: AiRecognitionTaskAsrFullTextResultInput
-        
+
         /// 语音全文识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiRecognitionTaskAsrFullTextResultOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -791,49 +791,49 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 语音全文识别的输入。
     public struct AiRecognitionTaskAsrFullTextResultInput: TCOutputModel {
         /// 语音全文识别模板 ID。
         public let definition: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 语音全文识别结果。
     public struct AiRecognitionTaskAsrFullTextResultOutput: TCOutputModel {
         /// 语音全文识别片段列表。
         public let segmentSet: [AiRecognitionTaskAsrFullTextSegmentItem]
-        
+
         /// 字幕文件地址。
         public let subtitlePath: String
-        
+
         /// 字幕文件存储位置。
         public let outputStorage: TaskOutputStorage
-        
+
         enum CodingKeys: String, CodingKey {
             case segmentSet = "SegmentSet"
             case subtitlePath = "SubtitlePath"
             case outputStorage = "OutputStorage"
         }
     }
-    
+
     /// 语音全文识别片段。
     public struct AiRecognitionTaskAsrFullTextSegmentItem: TCOutputModel {
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 识别片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 识别文本。
         public let text: String
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case startTimeOffset = "StartTimeOffset"
@@ -841,28 +841,28 @@ extension Mps {
             case text = "Text"
         }
     }
-    
+
     /// 语音关键词识别结果。
     public struct AiRecognitionTaskAsrWordsResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 语音关键词识别任务输入信息。
         public let input: AiRecognitionTaskAsrWordsResultInput
-        
+
         /// 语音关键词识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiRecognitionTaskAsrWordsResultOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -872,80 +872,80 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 语音关键词识别输入。
     public struct AiRecognitionTaskAsrWordsResultInput: TCOutputModel {
         /// 语音关键词识别模板 ID。
         public let definition: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 语音关键词识别结果。
     public struct AiRecognitionTaskAsrWordsResultItem: TCOutputModel {
         /// 语音关键词。
         public let word: String
-        
+
         /// 语音关键词出现的时间片段列表。
         public let segmentSet: [AiRecognitionTaskAsrWordsSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case word = "Word"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 语音关键词识别输出。
     public struct AiRecognitionTaskAsrWordsResultOutput: TCOutputModel {
         /// 语音关键词识别结果集。
         public let resultSet: [AiRecognitionTaskAsrWordsResultItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case resultSet = "ResultSet"
         }
     }
-    
+
     /// 语音识别片段。
     public struct AiRecognitionTaskAsrWordsSegmentItem: TCOutputModel {
         /// 识别片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 识别片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 人脸识别结果。
     public struct AiRecognitionTaskFaceResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 人脸识别任务输入信息。
         public let input: AiRecognitionTaskFaceResultInput
-        
+
         /// 人脸识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiRecognitionTaskFaceResultOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -955,75 +955,75 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 人脸识别输入。
     public struct AiRecognitionTaskFaceResultInput: TCOutputModel {
         /// 人脸识别模板 ID。
         public let definition: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 人脸识别结果
     public struct AiRecognitionTaskFaceResultItem: TCOutputModel {
         /// 人物唯一标识 ID。
         public let id: String
-        
+
         /// 人物库类型，表示识别出的人物来自哪个人物库：
         /// <li>Default：默认人物库；</li>
         /// <li>UserDefine：用户自定义人物库。</li>
         public let type: String
-        
+
         /// 人物名称。
         public let name: String
-        
+
         /// 人物出现的片段结果集。
         public let segmentSet: [AiRecognitionTaskFaceSegmentItem]
-        
+
         /// 人物性别：
         /// <li>Male：男性；</li>
         /// <li>Female：女性。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gender: String?
-        
+
         /// 人物出生日期。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let birthday: String?
-        
+
         /// 人物职业或者职务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let profession: String?
-        
+
         /// 人物毕业院校。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schoolOfGraduation: String?
-        
+
         /// 人物简介。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abstract: String?
-        
+
         /// 人物出生地或者籍贯。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let placeOfBirth: String?
-        
+
         /// 人物类型：
         /// <li>Politician：官员；</li>
         /// <li>Artist：艺人。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let personType: String?
-        
+
         /// 敏感度标注：
         /// <li>Normal：正常；</li>
         /// <li>Sensitive：敏感。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 截图链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case type = "Type"
@@ -1040,31 +1040,31 @@ extension Mps {
             case url = "Url"
         }
     }
-    
+
     /// 智能人脸识别输出。
     public struct AiRecognitionTaskFaceResultOutput: TCOutputModel {
         /// 智能人脸识别结果集。
         public let resultSet: [AiRecognitionTaskFaceResultItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case resultSet = "ResultSet"
         }
     }
-    
+
     /// 人脸识别结果片段
     public struct AiRecognitionTaskFaceSegmentItem: TCOutputModel {
         /// 识别片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 识别片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         public let areaCoordSet: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -1072,42 +1072,42 @@ extension Mps {
             case areaCoordSet = "AreaCoordSet"
         }
     }
-    
+
     /// 视频内容识别输入参数类型
     public struct AiRecognitionTaskInput: TCInputModel, TCOutputModel {
         /// 视频智能识别模板 ID 。
         public let definition: UInt64
-        
-        public init (definition: UInt64) {
+
+        public init(definition: UInt64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 文本全文识别结果。
     public struct AiRecognitionTaskOcrFullTextResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 文本全文识别任务输入信息。
         public let input: AiRecognitionTaskOcrFullTextResultInput
-        
+
         /// 文本全文识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiRecognitionTaskOcrFullTextResultOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1117,84 +1117,84 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 文本全文识别输入。
     public struct AiRecognitionTaskOcrFullTextResultInput: TCOutputModel {
         /// 文本全文识别模板 ID。
         public let definition: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 文本全文识别输出。
     public struct AiRecognitionTaskOcrFullTextResultOutput: TCOutputModel {
         /// 文本全文识别结果集。
         public let segmentSet: [AiRecognitionTaskOcrFullTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 文本全文识别片段。
     public struct AiRecognitionTaskOcrFullTextSegmentItem: TCOutputModel {
         /// 识别片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 识别片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 识别片段结果集。
         public let textSet: [AiRecognitionTaskOcrFullTextSegmentTextItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
             case textSet = "TextSet"
         }
     }
-    
+
     /// 文本全文识别片段。
     public struct AiRecognitionTaskOcrFullTextSegmentTextItem: TCOutputModel {
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         public let areaCoordSet: [Int64]
-        
+
         /// 识别文本。
         public let text: String
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case areaCoordSet = "AreaCoordSet"
             case text = "Text"
         }
     }
-    
+
     /// 文本关键识别结果。
     public struct AiRecognitionTaskOcrWordsResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 文本关键词识别任务输入信息。
         public let input: AiRecognitionTaskOcrWordsResultInput
-        
+
         /// 文本关键词识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiRecognitionTaskOcrWordsResultOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1204,55 +1204,55 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 文本关键词识别输入。
     public struct AiRecognitionTaskOcrWordsResultInput: TCOutputModel {
         /// 文本关键词识别模板 ID。
         public let definition: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 文本关键词识别结果。
     public struct AiRecognitionTaskOcrWordsResultItem: TCOutputModel {
         /// 文本关键词。
         public let word: String
-        
+
         /// 文本关键出现的片段列表。
         public let segmentSet: [AiRecognitionTaskOcrWordsSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case word = "Word"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 文本关键词识别输出。
     public struct AiRecognitionTaskOcrWordsResultOutput: TCOutputModel {
         /// 文本关键词识别结果集。
         public let resultSet: [AiRecognitionTaskOcrWordsResultItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case resultSet = "ResultSet"
         }
     }
-    
+
     /// 文本识别片段。
     public struct AiRecognitionTaskOcrWordsSegmentItem: TCOutputModel {
         /// 识别片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 识别片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         public let areaCoordSet: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -1260,28 +1260,28 @@ extension Mps {
             case areaCoordSet = "AreaCoordSet"
         }
     }
-    
+
     /// 翻译结果。
     public struct AiRecognitionTaskTransTextResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 翻译任务输入信息。
         public let input: AiRecognitionTaskTransTextResultInput
-        
+
         /// 翻译任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiRecognitionTaskTransTextResultOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1291,52 +1291,52 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 翻译的输入。
     public struct AiRecognitionTaskTransTextResultInput: TCOutputModel {
         /// 翻译模板 ID。
         public let definition: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 翻译结果。
     public struct AiRecognitionTaskTransTextResultOutput: TCOutputModel {
         /// 翻译片段列表。
         public let segmentSet: [AiRecognitionTaskTransTextSegmentItem]
-        
+
         /// 字幕文件地址。
         public let subtitlePath: String
-        
+
         /// 字幕文件存储位置。
         public let outputStorage: TaskOutputStorage
-        
+
         enum CodingKeys: String, CodingKey {
             case segmentSet = "SegmentSet"
             case subtitlePath = "SubtitlePath"
             case outputStorage = "OutputStorage"
         }
     }
-    
+
     /// 翻译片段。
     public struct AiRecognitionTaskTransTextSegmentItem: TCOutputModel {
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 识别片段终止的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 识别文本。
         public let text: String
-        
+
         /// 翻译文本。
         public let trans: String
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case startTimeOffset = "StartTimeOffset"
@@ -1345,100 +1345,100 @@ extension Mps {
             case trans = "Trans"
         }
     }
-    
+
     /// 内容审核 Asr 文字敏感任务输入参数类型
     public struct AiReviewPoliticalAsrTaskInput: TCOutputModel {
         /// 模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// Asr 文字敏感信息
     public struct AiReviewPoliticalAsrTaskOutput: TCOutputModel {
         /// Asr 文字敏感评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Asr 文字敏感结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// Asr 文字敏感嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewAsrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Ocr 文字敏感任务输入参数类型
     public struct AiReviewPoliticalOcrTaskInput: TCOutputModel {
         /// 模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// Ocr 文字敏感信息
     public struct AiReviewPoliticalOcrTaskOutput: TCOutputModel {
         /// Ocr 文字敏感评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Ocr 文字敏感结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// Ocr 文字有敏感嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核敏感任务输入参数类型
     public struct AiReviewPoliticalTaskInput: TCOutputModel {
         /// 模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 涉敏信息
     public struct AiReviewPoliticalTaskOutput: TCOutputModel {
         /// 视频涉敏评分，分值为0到100。
         public let confidence: Float
-        
+
         /// 涉敏结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// 视频涉敏结果标签。内容审核模板[画面涉敏任务控制参数](https://cloud.tencent.com/document/api/862/37615#AiReviewPoliticalTaskOutput)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
         /// <li>violation_photo：违规图标。</li>
         /// 其他（即 politician/entertainment/sport/entrepreneur/scholar/celebrity/military）：
         /// <li>politician：涉敏人物。</li>
         public let label: String
-        
+
         /// 有涉敏嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewPoliticalSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
@@ -1446,104 +1446,104 @@ extension Mps {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Asr 文字鉴黄任务输入参数类型
     public struct AiReviewPornAsrTaskInput: TCOutputModel {
         /// 鉴黄模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// Asr 文字涉黄信息
     public struct AiReviewPornAsrTaskOutput: TCOutputModel {
         /// Asr 文字涉黄评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Asr 文字涉黄结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// Asr 文字有涉黄嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewAsrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Ocr 文字鉴黄任务输入参数类型
     public struct AiReviewPornOcrTaskInput: TCOutputModel {
         /// 鉴黄模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// Ocr 文字涉黄信息
     public struct AiReviewPornOcrTaskOutput: TCOutputModel {
         /// Ocr 文字涉黄评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Ocr 文字涉黄结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// Ocr 文字有涉黄嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核鉴黄任务输入参数类型
     public struct AiReviewPornTaskInput: TCInputModel {
         /// 鉴黄模板 ID。
         public let definition: UInt64
-        
-        public init (definition: UInt64) {
+
+        public init(definition: UInt64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 鉴黄结果信息
     public struct AiReviewPornTaskOutput: TCOutputModel {
         /// 视频鉴黄评分，分值为0到100。
         public let confidence: Float
-        
+
         /// 鉴黄结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// 视频鉴黄结果标签，取值范围：
         /// <li>porn：色情。</li>
         /// <li>sexy：性感。</li>
         /// <li>vulgar：低俗。</li>
         /// <li>intimacy：亲密行为。</li>
         public let label: String
-        
+
         /// 有涉黄嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
@@ -1551,90 +1551,90 @@ extension Mps {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Asr 文字鉴违禁任务输入参数类型
     public struct AiReviewProhibitedAsrTaskInput: TCOutputModel {
         /// 鉴违禁模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// Asr 文字涉违禁信息
     public struct AiReviewProhibitedAsrTaskOutput: TCOutputModel {
         /// Asr 文字涉违禁评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Asr 文字涉违禁结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// Asr 文字有涉违禁嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewAsrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Ocr 文字鉴违禁任务输入参数类型
     public struct AiReviewProhibitedOcrTaskInput: TCOutputModel {
         /// 鉴违禁模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// Ocr 文字涉违禁信息
     public struct AiReviewProhibitedOcrTaskOutput: TCOutputModel {
         /// Ocr 文字涉违禁评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Ocr 文字涉违禁结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// Ocr 文字有涉违禁嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核 Asr 文字敏感任务结果类型
     public struct AiReviewTaskPoliticalAsrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核 Asr 文字敏感任务输入。
         public let input: AiReviewPoliticalAsrTaskInput
-        
+
         /// 内容审核 Asr 文字敏感任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewPoliticalAsrTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1644,28 +1644,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核 Ocr 文字敏感任务结果类型
     public struct AiReviewTaskPoliticalOcrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS，FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核 Ocr 文字敏感任务输入。
         public let input: AiReviewPoliticalOcrTaskInput
-        
+
         /// 内容审核 Ocr 文字敏感任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewPoliticalOcrTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1675,28 +1675,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核涉敏任务结果类型
     public struct AiReviewTaskPoliticalResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核涉敏任务输入。
         public let input: AiReviewPoliticalTaskInput
-        
+
         /// 内容审核涉敏任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewPoliticalTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1706,28 +1706,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核 Asr 文字鉴黄任务结果类型
     public struct AiReviewTaskPornAsrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核 Asr 文字鉴黄任务输入。
         public let input: AiReviewPornAsrTaskInput
-        
+
         /// 内容审核 Asr 文字鉴黄任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewPornAsrTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1737,28 +1737,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核 Ocr 文字鉴黄任务结果类型
     public struct AiReviewTaskPornOcrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核 Ocr 文字鉴黄任务输入。
         public let input: AiReviewPornOcrTaskInput
-        
+
         /// 内容审核 Ocr 文字鉴黄任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewPornOcrTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1768,28 +1768,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核鉴黄任务结果类型
     public struct AiReviewTaskPornResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核鉴黄任务输入。
         public let input: AiReviewPornTaskInput
-        
+
         /// 内容审核鉴黄任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewPornTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1799,28 +1799,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核 Asr 文字鉴任违禁务结果类型
     public struct AiReviewTaskProhibitedAsrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核 Asr 文字鉴违禁任务输入。
         public let input: AiReviewProhibitedAsrTaskInput
-        
+
         /// 内容审核 Asr 文字鉴违禁任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewProhibitedAsrTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1830,28 +1830,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核 Ocr 文字鉴任违禁务结果类型
     public struct AiReviewTaskProhibitedOcrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核 Ocr 文字鉴违禁任务输入。
         public let input: AiReviewProhibitedOcrTaskInput
-        
+
         /// 内容审核 Ocr 文字鉴违禁任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewProhibitedOcrTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1861,28 +1861,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核 Ocr 文字敏感任务结果类型
     public struct AiReviewTaskTerrorismOcrResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核 Ocr 文字敏感任务输入。
         public let input: AiReviewTerrorismOcrTaskInput
-        
+
         /// 内容审核 Ocr 文字敏感任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewTerrorismOcrTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1892,28 +1892,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核涉敏任务结果类型
     public struct AiReviewTaskTerrorismResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 内容审核涉敏任务输入。
         public let input: AiReviewTerrorismTaskInput
-        
+
         /// 内容审核涉敏任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewTerrorismTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1923,59 +1923,59 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 内容审核 Ocr 文字敏感任务输入参数类型
     public struct AiReviewTerrorismOcrTaskInput: TCOutputModel {
         /// 模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// Ocr 文字涉敏信息
     public struct AiReviewTerrorismOcrTaskOutput: TCOutputModel {
         /// Ocr 文字涉敏评分，分值为0到100。
         public let confidence: Float
-        
+
         /// Ocr 文字涉敏结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// Ocr 文字有涉敏嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// 内容审核涉敏任务输入参数类型
     public struct AiReviewTerrorismTaskInput: TCOutputModel {
         /// 模板 ID。
         public let definition: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// 涉敏信息
     public struct AiReviewTerrorismTaskOutput: TCOutputModel {
         /// 视频涉敏评分，分值为0到100。
         public let confidence: Float
-        
+
         /// 涉敏结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// 视频涉敏结果标签，取值范围：
         /// <li>guns：武器枪支。</li>
         /// <li>crowd：人群聚集。</li>
@@ -1987,10 +1987,10 @@ extension Mps {
         /// <li>terrorists：涉敏人物。</li>
         /// <li>scenario：涉敏画面。</li>
         public let label: String
-        
+
         /// 有涉敏嫌疑的视频片段列表。
         public let segmentSet: [MediaContentReviewSegmentItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case suggestion = "Suggestion"
@@ -1998,94 +1998,94 @@ extension Mps {
             case segmentSet = "SegmentSet"
         }
     }
-    
+
     /// AI 样本管理，人脸信息。
     public struct AiSampleFaceInfo: TCOutputModel {
         /// 人脸图片 ID。
         public let faceId: String
-        
+
         /// 人脸图片地址。
         public let url: String
-        
+
         enum CodingKeys: String, CodingKey {
             case faceId = "FaceId"
             case url = "Url"
         }
     }
-    
+
     /// AI 样本管理，人脸数据操作。
     public struct AiSampleFaceOperation: TCInputModel {
         /// 操作类型，可选值：add（添加）、delete（删除）、reset（重置）。重置操作将清空该人物已有人脸数据，并添加 FaceContents 指定人脸数据。
         public let type: String
-        
+
         /// 人脸 ID 集合，当 Type为delete 时，该字段必填。
         public let faceIds: [String]?
-        
+
         /// 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合。
         /// <li>当 Type为add 或 reset 时，该字段必填；</li>
         /// <li>数组长度限制：5 张图片。</li>
         /// 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
         public let faceContents: [String]?
-        
-        public init (type: String, faceIds: [String]? = nil, faceContents: [String]? = nil) {
+
+        public init(type: String, faceIds: [String]? = nil, faceContents: [String]? = nil) {
             self.type = type
             self.faceIds = faceIds
             self.faceContents = faceContents
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case faceIds = "FaceIds"
             case faceContents = "FaceContents"
         }
     }
-    
+
     /// AI 样本管理，处理失败的人脸信息
     public struct AiSampleFailFaceInfo: TCOutputModel {
         /// 对应入参 FaceContents 中错误图片下标，从 0 开始。
         public let index: UInt64
-        
+
         /// 错误码，取值：
         /// <li>0：成功；</li>
         /// <li>其他：失败。</li>
         public let errCode: Int64
-        
+
         /// 错误描述。
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case index = "Index"
             case errCode = "ErrCode"
             case message = "Message"
         }
     }
-    
+
     /// AI 样本管理，人物信息。
     public struct AiSamplePerson: TCOutputModel {
         /// 人物 ID。
         public let personId: String
-        
+
         /// 人物名称。
         public let name: String
-        
+
         /// 人物描述。
         public let description: String
-        
+
         /// 人脸信息。
         public let faceInfoSet: [AiSampleFaceInfo]
-        
+
         /// 人物标签。
         public let tagSet: [String]
-        
+
         /// 应用场景。
         public let usageSet: [String]
-        
+
         /// 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case name = "Name"
@@ -2097,43 +2097,43 @@ extension Mps {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// AI 样本管理，标签操作。
     public struct AiSampleTagOperation: TCInputModel {
         /// 操作类型，可选值：add（添加）、delete（删除）、reset（重置）。
         public let type: String
-        
+
         /// 标签，长度限制：128 个字符。
         public let tags: [String]
-        
-        public init (type: String, tags: [String]) {
+
+        public init(type: String, tags: [String]) {
             self.type = type
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case tags = "Tags"
         }
     }
-    
+
     /// AI 样本管理，关键词输出信息。
     public struct AiSampleWord: TCOutputModel {
         /// 关键词。
         public let keyword: String
-        
+
         /// 关键词标签。
         public let tagSet: [String]
-        
+
         /// 关键词应用场景。
         public let usageSet: [String]
-        
+
         /// 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case tagSet = "TagSet"
@@ -2142,54 +2142,54 @@ extension Mps {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// AI 样本管理，关键词输入信息。
     public struct AiSampleWordInfo: TCInputModel {
         /// 关键词，长度限制：20 个字符。
         public let keyword: String
-        
+
         /// 关键词标签
         /// <li>数组长度限制：20 个标签；</li>
         /// <li>单个标签长度限制：128 个字符。</li>
         public let tags: [String]?
-        
-        public init (keyword: String, tags: [String]? = nil) {
+
+        public init(keyword: String, tags: [String]? = nil) {
             self.keyword = keyword
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case tags = "Tags"
         }
     }
-    
+
     /// 转动图任务类型。
     public struct AnimatedGraphicTaskInput: TCInputModel, TCOutputModel {
         /// 视频转动图模板 ID。
         public let definition: UInt64
-        
+
         /// 动图在视频中的开始时间，单位为秒。
         public let startTimeOffset: Float
-        
+
         /// 动图在视频中的结束时间，单位为秒。
         public let endTimeOffset: Float
-        
+
         /// 转动图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputStorage: TaskOutputStorage?
-        
+
         /// 转动图后文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_animatedGraphic_{definition}.{format}`。
         public let outputObjectPath: String?
-        
-        public init (definition: UInt64, startTimeOffset: Float, endTimeOffset: Float, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil) {
+
+        public init(definition: UInt64, startTimeOffset: Float, endTimeOffset: Float, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil) {
             self.definition = definition
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
             self.outputStorage = outputStorage
             self.outputObjectPath = outputObjectPath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case startTimeOffset = "StartTimeOffset"
@@ -2198,23 +2198,23 @@ extension Mps {
             case outputObjectPath = "OutputObjectPath"
         }
     }
-    
+
     /// 转动图模板详情。
     public struct AnimatedGraphicsTemplate: TCOutputModel {
         /// 转动图模板唯一标识。
         public let definition: UInt64
-        
+
         /// 模板类型，取值范围：
         /// <li>Preset：系统预置模板；</li>
         /// <li>Custom：用户自定义模板。</li>
         public let type: String
-        
+
         /// 转动图模板名称。
         public let name: String
-        
+
         /// 转动图模板描述。
         public let comment: String
-        
+
         /// 动图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -2222,7 +2222,7 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let width: UInt64
-        
+
         /// 动图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -2230,28 +2230,28 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let height: UInt64
-        
+
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 默认值：open。
         public let resolutionAdaptive: String
-        
+
         /// 动图格式。
         public let format: String
-        
+
         /// 帧率。
         public let fps: UInt64
-        
+
         /// 图片质量。
         public let quality: Float
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case type = "Type"
@@ -2267,7 +2267,7 @@ extension Mps {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 去伪影（毛刺）配置
     public struct ArtifactRepairConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -2275,113 +2275,113 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 类型，可选值：
         /// <li>weak</li>
         /// <li>strong</li>
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (switch: String? = nil, type: String? = nil) {
+
+        public init(switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
         }
     }
-    
+
     /// 语音全文识别任务控制参数
     public struct AsrFullTextConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音全文识别任务开关，可选值：
         /// <li>ON：开启智能语音全文识别任务；</li>
         /// <li>OFF：关闭智能语音全文识别任务。</li>
         public let `switch`: String
-        
+
         /// 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
         /// <li>vtt：生成 WebVTT 字幕文件。</li>
         public let subtitleFormat: String?
-        
-        public init (switch: String, subtitleFormat: String? = nil) {
+
+        public init(switch: String, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormat = subtitleFormat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case subtitleFormat = "SubtitleFormat"
         }
     }
-    
+
     /// 语音全文识别任务控制参数
     public struct AsrFullTextConfigureInfoForUpdate: TCInputModel {
         /// 语音全文识别任务开关，可选值：
         /// <li>ON：开启智能语音全文识别任务；</li>
         /// <li>OFF：关闭智能语音全文识别任务。</li>
         public let `switch`: String?
-        
+
         /// 生成的字幕文件格式，填空字符串表示不生成字幕文件，可选值：
         /// <li>vtt：生成 WebVTT 字幕文件。</li>
         public let subtitleFormat: String?
-        
-        public init (switch: String? = nil, subtitleFormat: String? = nil) {
+
+        public init(switch: String? = nil, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormat = subtitleFormat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case subtitleFormat = "SubtitleFormat"
         }
     }
-    
+
     /// 语音关键词识别控制参数。
     public struct AsrWordsConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音关键词识别任务开关，可选值：
         /// <li>ON：开启语音关键词识别任务；</li>
         /// <li>OFF：关闭语音关键词识别任务。</li>
         public let `switch`: String
-        
+
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
-        public init (switch: String, labelSet: [String]? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
         }
     }
-    
+
     /// 语音关键词识别控制参数。
     public struct AsrWordsConfigureInfoForUpdate: TCInputModel {
         /// 语音关键词识别任务开关，可选值：
         /// <li>ON：开启语音关键词识别任务；</li>
         /// <li>OFF：关闭语音关键词识别任务。</li>
         public let `switch`: String?
-        
+
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
-        public init (switch: String? = nil, labelSet: [String]? = nil) {
+
+        public init(switch: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
         }
     }
-    
+
     /// 音频流配置参数
     public struct AudioTemplateInfo: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
@@ -2400,18 +2400,18 @@ extension Mps {
         /// <li>libfdk_aac；</li>
         /// <li>libmp3lame。</li>
         public let codec: String
-        
+
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
         /// 当取值为 0，表示音频码率和原始音频保持一致。
         public let bitrate: UInt64
-        
+
         /// 音频流的采样率，可选值：
         /// <li>32000</li>
         /// <li>44100</li>
         /// <li>48000</li>
         /// 单位：Hz。
         public let sampleRate: UInt64
-        
+
         /// 音频通道方式，可选值：
         /// <li>1：单通道</li>
         /// <li>2：双通道</li>
@@ -2419,14 +2419,14 @@ extension Mps {
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 默认值：2。
         public let audioChannel: Int64?
-        
-        public init (codec: String, bitrate: UInt64, sampleRate: UInt64, audioChannel: Int64? = nil) {
+
+        public init(codec: String, bitrate: UInt64, sampleRate: UInt64, audioChannel: Int64? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.sampleRate = sampleRate
             self.audioChannel = audioChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case codec = "Codec"
             case bitrate = "Bitrate"
@@ -2434,7 +2434,7 @@ extension Mps {
             case audioChannel = "AudioChannel"
         }
     }
-    
+
     /// 音频流配置参数
     public struct AudioTemplateInfoForUpdate: TCInputModel {
         /// 音频流的编码格式。
@@ -2454,35 +2454,35 @@ extension Mps {
         /// <li>libfdk_aac；</li>
         /// <li>libmp3lame。</li>
         public let codec: String?
-        
+
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
         public let bitrate: UInt64?
-        
+
         /// 音频流的采样率，可选值：
         /// <li>32000</li>
         /// <li>44100</li>
         /// <li>48000</li>
         /// 单位：Hz。
         public let sampleRate: UInt64?
-        
+
         /// 音频通道方式，可选值：
         /// <li>1：单通道</li>
         /// <li>2：双通道</li>
         /// <li>6：立体声</li>
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         public let audioChannel: Int64?
-        
+
         /// 指定输出要保留的音频轨道。默认是全部保留源的。
         public let streamSelects: [Int64]?
-        
-        public init (codec: String? = nil, bitrate: UInt64? = nil, sampleRate: UInt64? = nil, audioChannel: Int64? = nil, streamSelects: [Int64]? = nil) {
+
+        public init(codec: String? = nil, bitrate: UInt64? = nil, sampleRate: UInt64? = nil, audioChannel: Int64? = nil, streamSelects: [Int64]? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.sampleRate = sampleRate
             self.audioChannel = audioChannel
             self.streamSelects = streamSelects
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case codec = "Codec"
             case bitrate = "Bitrate"
@@ -2491,39 +2491,39 @@ extension Mps {
             case streamSelects = "StreamSelects"
         }
     }
-    
+
     /// 智能分类任务控制参数
     public struct ClassificationConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能分类任务开关，可选值：
         /// <li>ON：开启智能分类任务；</li>
         /// <li>OFF：关闭智能分类任务。</li>
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 智能分类任务控制参数
     public struct ClassificationConfigureInfoForUpdate: TCInputModel {
         /// 智能分类任务开关，可选值：
         /// <li>ON：开启智能分类任务；</li>
         /// <li>OFF：关闭智能分类任务。</li>
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 色彩增强配置
     public struct ColorEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -2531,7 +2531,7 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 类型，可选值：
         /// <li>weak</li>
         /// <li>normal</li>
@@ -2539,63 +2539,63 @@ extension Mps {
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (switch: String? = nil, type: String? = nil) {
+
+        public init(switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
         }
     }
-    
+
     /// 内容审核模板详情
     public struct ContentReviewTemplateItem: TCOutputModel {
         /// 内容审核模板唯一标识。
         public let definition: Int64
-        
+
         /// 内容审核模板名称，长度限制：64 个字符。
         public let name: String
-        
+
         /// 内容审核模板描述信息，长度限制：256 个字符。
         public let comment: String
-        
+
         /// 鉴黄控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pornConfigure: PornConfigureInfo?
-        
+
         /// 涉敏控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terrorismConfigure: TerrorismConfigureInfo?
-        
+
         /// 涉敏控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let politicalConfigure: PoliticalConfigureInfo?
-        
+
         /// 违禁控制参数。违禁内容包括：
         /// <li>谩骂；</li>
         /// <li>涉毒违法。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prohibitedConfigure: ProhibitedConfigureInfo?
-        
+
         /// 用户自定义内容审核控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userDefineConfigure: UserDefineConfigureInfo?
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 模板类型，取值范围：
         /// * Preset：系统预置模板；
         /// * Custom：用户自定义模板。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case name = "Name"
@@ -2610,28 +2610,28 @@ extension Mps {
             case type = "Type"
         }
     }
-    
+
     /// 绑定到 COS 的输入规则。
     public struct CosFileUploadTrigger: TCInputModel, TCOutputModel {
         /// 工作流绑定的 COS Bucket 名，如 TopRankVideo-125xxx88。
         public let bucket: String
-        
+
         /// 工作流绑定的 COS Bucket 所属园区，如 ap-chongiqng。
         public let region: String
-        
+
         /// 工作流绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
         public let dir: String?
-        
+
         /// 工作流允许触发的文件格式列表，如 ["mp4", "flv", "mov"]。不填代表所有格式的文件都可以触发工作流。
         public let formats: [String]?
-        
-        public init (bucket: String, region: String, dir: String? = nil, formats: [String]? = nil) {
+
+        public init(bucket: String, region: String, dir: String? = nil, formats: [String]? = nil) {
             self.bucket = bucket
             self.region = region
             self.dir = dir
             self.formats = formats
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
             case region = "Region"
@@ -2639,118 +2639,118 @@ extension Mps {
             case formats = "Formats"
         }
     }
-    
+
     /// 媒体处理 COS 对象信息。
     public struct CosInputInfo: TCInputModel, TCOutputModel {
         /// 媒体处理对象文件所在的 COS Bucket 名，如 TopRankVideo-125xxx88。
         public let bucket: String
-        
+
         /// 媒体处理对象文件所在的 COS Bucket 所属园区，如 ap-chongqing。
         public let region: String
-        
+
         /// 媒体处理对象文件的输入路径，如`/movie/201907/WildAnimal.mov`。
         public let object: String
-        
-        public init (bucket: String, region: String, object: String) {
+
+        public init(bucket: String, region: String, object: String) {
             self.bucket = bucket
             self.region = region
             self.object = object
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
             case region = "Region"
             case object = "Object"
         }
     }
-    
+
     /// 媒体处理 COS 输出对象信息。
     public struct CosOutputStorage: TCInputModel, TCOutputModel {
         /// 媒体处理生成的文件输出的目标 Bucket 名，如 TopRankVideo-125xxx88。如果不填，表示继承上层。
         public let bucket: String?
-        
+
         /// 媒体处理生成的文件输出的目标 Bucket 的园区，如 ap-chongqing。如果不填，表示继承上层。
         public let region: String?
-        
-        public init (bucket: String? = nil, region: String? = nil) {
+
+        public init(bucket: String? = nil, region: String? = nil) {
             self.bucket = bucket
             self.region = region
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
             case region = "Region"
         }
     }
-    
+
     /// 智能封面任务控制参数
     public struct CoverConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能封面任务开关，可选值：
         /// <li>ON：开启智能封面任务；</li>
         /// <li>OFF：关闭智能封面任务。</li>
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 智能封面任务控制参数
     public struct CoverConfigureInfoForUpdate: TCInputModel {
         /// 智能封面任务开关，可选值：
         /// <li>ON：开启智能封面任务；</li>
         /// <li>OFF：关闭智能封面任务。</li>
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 创建输入的配置信息。
     public struct CreateInput: TCInputModel {
         /// 输入名称，可填大小写、数字和下划线，长度为[1, 32]。
         public let inputName: String
-        
+
         /// 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL]。
         public let `protocol`: String
-        
+
         /// 输入描述，长度为[0, 255]。
         public let description: String?
-        
+
         /// 输入的IP白名单，格式为CIDR。
         public let allowIpList: [String]?
-        
+
         /// 输入的SRT配置信息。
         public let srtSettings: CreateInputSRTSettings?
-        
+
         /// 输入的RTP配置信息。
         public let rtpSettings: CreateInputRTPSettings?
-        
+
         /// 输入的主备开关，可选[OPEN|CLOSE]，默认为CLOSE。
         public let failOver: String?
-        
+
         /// 输入的RTMP_PULL配置信息。
         public let rtmpPullSettings: CreateInputRTMPPullSettings?
-        
+
         /// 输入的RTSP_PULL配置信息。
         public let rtspPullSettings: CreateInputRTSPPullSettings?
-        
+
         /// 输入的HLS_PULL配置信息。
         public let hlsPullSettings: CreateInputHLSPullSettings?
-        
+
         /// 延播平滑吐流配置信息。
         public let resilientStream: ResilientStreamConf?
-        
-        public init (inputName: String, protocol: String, description: String? = nil, allowIpList: [String]? = nil, srtSettings: CreateInputSRTSettings? = nil, rtpSettings: CreateInputRTPSettings? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
+
+        public init(inputName: String, protocol: String, description: String? = nil, allowIpList: [String]? = nil, srtSettings: CreateInputSRTSettings? = nil, rtpSettings: CreateInputRTPSettings? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
             self.inputName = inputName
             self.`protocol` = `protocol`
             self.description = description
@@ -2763,7 +2763,7 @@ extension Mps {
             self.hlsPullSettings = hlsPullSettings
             self.resilientStream = resilientStream
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case inputName = "InputName"
             case `protocol` = "Protocol"
@@ -2778,98 +2778,98 @@ extension Mps {
             case resilientStream = "ResilientStream"
         }
     }
-    
+
     /// 创建的输入HLS拉流的配置信息。
     public struct CreateInputHLSPullSettings: TCInputModel {
         /// HLS源站的源站地址，有且只能有一个。
         public let sourceAddresses: [HLSPullSourceAddress]
-        
-        public init (sourceAddresses: [HLSPullSourceAddress]) {
+
+        public init(sourceAddresses: [HLSPullSourceAddress]) {
             self.sourceAddresses = sourceAddresses
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 创建的输入RTMP拉流的配置信息。
     public struct CreateInputRTMPPullSettings: TCInputModel {
         /// RTMP源站的源站地址，有且只能有一个。
         public let sourceAddresses: [RTMPPullSourceAddress]
-        
-        public init (sourceAddresses: [RTMPPullSourceAddress]) {
+
+        public init(sourceAddresses: [RTMPPullSourceAddress]) {
             self.sourceAddresses = sourceAddresses
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 创建输入的RTP配置信息。
     public struct CreateInputRTPSettings: TCInputModel {
         /// 默认为“none”，可选值['none']。
         public let fec: String?
-        
+
         /// 空闲超时时间，默认5000，单位ms，范围为[1000, 10000]。
         public let idleTimeout: Int64?
-        
-        public init (fec: String? = nil, idleTimeout: Int64? = nil) {
+
+        public init(fec: String? = nil, idleTimeout: Int64? = nil) {
             self.fec = fec
             self.idleTimeout = idleTimeout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fec = "FEC"
             case idleTimeout = "IdleTimeout"
         }
     }
-    
+
     /// 创建的输入RTSP拉流的配置信息。
     public struct CreateInputRTSPPullSettings: TCInputModel {
         /// RTSP源站的源站地址，有且只能有一个。
         public let sourceAddresses: [RTSPPullSourceAddress]
-        
-        public init (sourceAddresses: [RTSPPullSourceAddress]) {
+
+        public init(sourceAddresses: [RTSPPullSourceAddress]) {
             self.sourceAddresses = sourceAddresses
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 创建的输入SRT的配置信息。
     public struct CreateInputSRTSettings: TCInputModel {
         /// SRT模式，可选[LISTENER|CALLER]，默认为LISTENER。
         public let mode: String?
-        
+
         /// 流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。
         public let streamId: String?
-        
+
         /// 延迟，默认0，单位ms，范围为[0, 3000]。
         public let latency: Int64?
-        
+
         /// 接收延迟，默认120，单位ms，范围为[0, 3000]。
         public let recvLatency: Int64?
-        
+
         /// 对端延迟，默认0，单位ms，范围为[0, 3000]。
         public let peerLatency: Int64?
-        
+
         /// 对端超时时间，默认5000，单位ms，范围为[1000, 10000]。
         public let peerIdleTimeout: Int64?
-        
+
         /// 解密密钥，默认为空，表示不加密。只可填ascii码值，长度为[10, 79]。
         public let passphrase: String?
-        
+
         /// 密钥长度，默认为0，可选[0|16|24|32]。
         public let pbKeyLen: Int64?
-        
+
         /// SRT对端地址，当Mode为CALLER时必填，且只能填1组。
         public let sourceAddresses: [SRTSourceAddressReq]?
-        
-        public init (mode: String? = nil, streamId: String? = nil, latency: Int64? = nil, recvLatency: Int64? = nil, peerLatency: Int64? = nil, peerIdleTimeout: Int64? = nil, passphrase: String? = nil, pbKeyLen: Int64? = nil, sourceAddresses: [SRTSourceAddressReq]? = nil) {
+
+        public init(mode: String? = nil, streamId: String? = nil, latency: Int64? = nil, recvLatency: Int64? = nil, peerLatency: Int64? = nil, peerIdleTimeout: Int64? = nil, passphrase: String? = nil, pbKeyLen: Int64? = nil, sourceAddresses: [SRTSourceAddressReq]? = nil) {
             self.mode = mode
             self.streamId = streamId
             self.latency = latency
@@ -2880,7 +2880,7 @@ extension Mps {
             self.pbKeyLen = pbKeyLen
             self.sourceAddresses = sourceAddresses
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
             case streamId = "StreamId"
@@ -2893,35 +2893,35 @@ extension Mps {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 创建输出的配置信息。
     public struct CreateOutputInfo: TCInputModel {
         /// 输出的名称。
         public let outputName: String
-        
+
         /// 输出描述。
         public let description: String
-        
+
         /// 输出协议，可选[SRT|RTP|RTMP|RTMP_PULL]。
         public let `protocol`: String
-        
+
         /// 输出地区。
         public let outputRegion: String
-        
+
         /// 输出的SRT的配置。
         public let srtSettings: CreateOutputSRTSettings?
-        
+
         /// 输出的RTMP的配置。
         public let rtmpSettings: CreateOutputRTMPSettings?
-        
+
         /// 输出的RTP的配置。
         public let rtpSettings: CreateOutputInfoRTPSettings?
-        
+
         /// IP白名单列表，格式为CIDR，如0.0.0.0/0。
         /// 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         public let allowIpList: [String]?
-        
-        public init (outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil) {
+
+        public init(outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil) {
             self.outputName = outputName
             self.description = description
             self.`protocol` = `protocol`
@@ -2931,7 +2931,7 @@ extension Mps {
             self.rtpSettings = rtpSettings
             self.allowIpList = allowIpList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case outputName = "OutputName"
             case description = "Description"
@@ -2943,118 +2943,118 @@ extension Mps {
             case allowIpList = "AllowIpList"
         }
     }
-    
+
     /// 创建媒体传输流的输出的RTP配置。
     public struct CreateOutputInfoRTPSettings: TCInputModel {
         /// 转推的目标地址，可填1~2个。
         public let destinations: [CreateOutputRTPSettingsDestinations]
-        
+
         /// 只能填none。
         public let fec: String
-        
+
         /// 空闲超时时间，单位ms。
         public let idleTimeout: Int64
-        
-        public init (destinations: [CreateOutputRTPSettingsDestinations], fec: String, idleTimeout: Int64) {
+
+        public init(destinations: [CreateOutputRTPSettingsDestinations], fec: String, idleTimeout: Int64) {
             self.destinations = destinations
             self.fec = fec
             self.idleTimeout = idleTimeout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case destinations = "Destinations"
             case fec = "FEC"
             case idleTimeout = "IdleTimeout"
         }
     }
-    
+
     /// 创建媒体传输流的输出的RTMP配置。
     public struct CreateOutputRTMPSettings: TCInputModel {
         /// 转推的目标地址，可填1~2个。
         public let destinations: [CreateOutputRtmpSettingsDestinations]
-        
+
         /// RTMP的Chunk大小，范围为[4096, 40960]。
         public let chunkSize: Int64?
-        
-        public init (destinations: [CreateOutputRtmpSettingsDestinations], chunkSize: Int64? = nil) {
+
+        public init(destinations: [CreateOutputRtmpSettingsDestinations], chunkSize: Int64? = nil) {
             self.destinations = destinations
             self.chunkSize = chunkSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case destinations = "Destinations"
             case chunkSize = "ChunkSize"
         }
     }
-    
+
     /// 创建媒体传输流的输出的RTP的目标地址。
     public struct CreateOutputRTPSettingsDestinations: TCInputModel {
         /// 转推的目标IP。
         public let ip: String
-        
+
         /// 转推的目标端口。
         public let port: Int64
-        
-        public init (ip: String, port: Int64) {
+
+        public init(ip: String, port: Int64) {
             self.ip = ip
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// 创建媒体传输流的输出的RTMP的目标地址。
     public struct CreateOutputRtmpSettingsDestinations: TCInputModel {
         /// 转推的URL，格式如：rtmp://domain/live。
         public let url: String
-        
+
         /// 转推的StreamKey，格式如：stream?key=value。
         public let streamKey: String
-        
-        public init (url: String, streamKey: String) {
+
+        public init(url: String, streamKey: String) {
             self.url = url
             self.streamKey = streamKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case streamKey = "StreamKey"
         }
     }
-    
+
     /// 创建媒体传输流的输出的SRT配置。
     public struct CreateOutputSRTSettings: TCInputModel {
         /// 转推的目标地址，当Mode为CALLER时必填，且只能填1组。
         public let destinations: [CreateOutputSRTSettingsDestinations]
-        
+
         /// 转推SRT的流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。
         public let streamId: String?
-        
+
         /// 转推SRT的总延迟，默认0，单位ms，范围为[0, 3000]。
         public let latency: Int64?
-        
+
         /// 转推SRT的接收延迟，默认120，单位ms，范围为[0, 3000]。
         public let recvLatency: Int64?
-        
+
         /// 转推SRT的对端延迟，默认0，单位ms，范围为[0, 3000]。
         public let peerLatency: Int64?
-        
+
         /// 转推SRT的对端空闲超时时间，默认5000，单位ms，范围为[1000, 10000]。
         public let peerIdleTimeout: Int64?
-        
+
         /// 转推SRT的加密密钥，默认为空，表示不加密。只可填ascii码值，长度为[10, 79]。
         public let passphrase: String?
-        
+
         /// 转推SRT的密钥长度，默认为0，可选[0|16|24|32]。
         public let pbKeyLen: Int64?
-        
+
         /// SRT模式，可选[LISTENER|CALLER]，默认为CALLER。
         public let mode: String?
-        
-        public init (destinations: [CreateOutputSRTSettingsDestinations], streamId: String? = nil, latency: Int64? = nil, recvLatency: Int64? = nil, peerLatency: Int64? = nil, peerIdleTimeout: Int64? = nil, passphrase: String? = nil, pbKeyLen: Int64? = nil, mode: String? = nil) {
+
+        public init(destinations: [CreateOutputSRTSettingsDestinations], streamId: String? = nil, latency: Int64? = nil, recvLatency: Int64? = nil, peerLatency: Int64? = nil, peerIdleTimeout: Int64? = nil, passphrase: String? = nil, pbKeyLen: Int64? = nil, mode: String? = nil) {
             self.destinations = destinations
             self.streamId = streamId
             self.latency = latency
@@ -3065,7 +3065,7 @@ extension Mps {
             self.pbKeyLen = pbKeyLen
             self.mode = mode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case destinations = "Destinations"
             case streamId = "StreamId"
@@ -3078,47 +3078,47 @@ extension Mps {
             case mode = "Mode"
         }
     }
-    
+
     /// 创建媒体传输流的输出SRT的目标地址。
     public struct CreateOutputSRTSettingsDestinations: TCInputModel {
         /// 输出的IP。
         public let ip: String
-        
+
         /// 输出的端口。
         public let port: Int64
-        
-        public init (ip: String, port: Int64) {
+
+        public init(ip: String, port: Int64) {
             self.ip = ip
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// 查询Flow的配置信息。
     public struct DescribeFlow: TCOutputModel {
         /// 流Id。
         public let flowId: String
-        
+
         /// 流名称。
         public let flowName: String
-        
+
         /// 流状态，目前有IDLE/RUNNING。
         public let state: String
-        
+
         /// 最大带宽值。
         public let maxBandwidth: Int64
-        
+
         /// 输入组。
         public let inputGroup: [DescribeInput]
-        
+
         /// 输出组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputGroup: [DescribeOutput]?
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case flowName = "FlowName"
@@ -3128,73 +3128,73 @@ extension Mps {
             case outputGroup = "OutputGroup"
         }
     }
-    
+
     /// 查询输入的HLS配置信息。
     public struct DescribeHLSPullSourceAddress: TCOutputModel {
         /// HLS源站的Url地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 查询输入配置信息。
     public struct DescribeInput: TCOutputModel {
         /// 输入Id。
         public let inputId: String
-        
+
         /// 输入名称。
         public let inputName: String
-        
+
         /// 输入描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 输入协议。
         public let `protocol`: String
-        
+
         /// 输入地址列表。
         public let inputAddressList: [InputAddress]
-        
+
         /// 输入IP白名单列表。
         public let allowIpList: [String]
-        
+
         /// 输入的SRT配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srtSettings: DescribeInputSRTSettings?
-        
+
         /// 输入的RTP配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtpSettings: DescribeInputRTPSettings?
-        
+
         /// 输入的地区。
         public let inputRegion: String
-        
+
         /// 输入的RTMP配置信息。
         public let rtmpSettings: DescribeInputRTMPSettings
-        
+
         /// 输入的主备开关。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failOver: String?
-        
+
         /// 输入的RTMP_PULL配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtmpPullSettings: DescribeInputRTMPPullSettings?
-        
+
         /// 输入的RTSP_PULL配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtspPullSettings: DescribeInputRTSPPullSettings?
-        
+
         /// 输入的HLS_PULL配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hlsPullSettings: DescribeInputHLSPullSettings?
-        
+
         /// 延播平滑吐流配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resilientStream: ResilientStreamConf?
-        
+
         enum CodingKeys: String, CodingKey {
             case inputId = "InputId"
             case inputName = "InputName"
@@ -3213,98 +3213,98 @@ extension Mps {
             case resilientStream = "ResilientStream"
         }
     }
-    
+
     /// 查询输入的HLS配置信息。
     public struct DescribeInputHLSPullSettings: TCOutputModel {
         /// HLS源站地址信息。
         public let sourceAddresses: [DescribeHLSPullSourceAddress]
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 查询输入的RTMP配置信息。
     public struct DescribeInputRTMPPullSettings: TCOutputModel {
         /// RTMP源站地址信息。
         public let sourceAddresses: [DescribeRTMPPullSourceAddress]
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 查询输入的RTMP配置信息。
     public struct DescribeInputRTMPSettings: TCOutputModel {
         /// RTMP的推流路径。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appName: String?
-        
+
         /// RTMP的推流StreamKey。
         /// RTMP的推流地址拼接规则为：rtmp://Ip:1935/AppName/StreamKey
         public let streamKey: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
             case streamKey = "StreamKey"
         }
     }
-    
+
     /// 查询输入的RTP配置信息。
     public struct DescribeInputRTPSettings: TCOutputModel {
         /// 是否FEC。
         public let fec: String
-        
+
         /// 空闲超时时间。
         public let idleTimeout: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case fec = "FEC"
             case idleTimeout = "IdleTimeout"
         }
     }
-    
+
     /// 查询输入的RTSP配置信息。
     public struct DescribeInputRTSPPullSettings: TCOutputModel {
         /// RTSP源站地址信息。
         public let sourceAddresses: [DescribeRTSPPullSourceAddress]
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 查询输入的SRT配置信息。
     public struct DescribeInputSRTSettings: TCOutputModel {
         /// SRT模式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
-        
+
         /// 流Id。
         public let streamId: String
-        
+
         /// 延迟。
         public let latency: Int64
-        
+
         /// 接收延迟。
         public let recvLatency: Int64
-        
+
         /// 对端延迟。
         public let peerLatency: Int64
-        
+
         /// 对端空闲超时时间。
         public let peerIdleTimeout: Int64
-        
+
         /// 解密密钥。
         public let passphrase: String
-        
+
         /// 密钥长度。
         public let pbKeyLen: Int64
-        
+
         /// SRT对端地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceAddresses: [SRTSourceAddressResp]?
-        
+
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
             case streamId = "StreamId"
@@ -3317,61 +3317,61 @@ extension Mps {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 查询输出的配置信息。
     public struct DescribeOutput: TCOutputModel {
         /// 输出Id。
         public let outputId: String
-        
+
         /// 输出名称。
         public let outputName: String
-        
+
         /// 输出类型。
         public let outputType: String
-        
+
         /// 输出描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 输出协议。
         public let `protocol`: String
-        
+
         /// 输出的出口地址信息列表。
         public let outputAddressList: [OutputAddress]
-        
+
         /// 输出的地区。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputRegion: String?
-        
+
         /// 输出的SRT配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srtSettings: DescribeOutputSRTSettings?
-        
+
         /// 输出的RTP配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtpSettings: DescribeOutputRTPSettings?
-        
+
         /// 输出的RTMP配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtmpSettings: DescribeOutputRTMPSettings?
-        
+
         /// 输出的RTMP拉流配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtmpPullSettings: DescribeOutputRTMPPullSettings?
-        
+
         /// CIDR白名单列表。
         /// 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowIpList: [String]?
-        
+
         /// 输出的RTSP拉流配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtspPullSettings: DescribeOutputRTSPPullSettings?
-        
+
         /// 输出的HLS拉流配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hlsPullSettings: DescribeOutputHLSPullSettings?
-        
+
         enum CodingKeys: String, CodingKey {
             case outputId = "OutputId"
             case outputName = "OutputName"
@@ -3389,158 +3389,158 @@ extension Mps {
             case hlsPullSettings = "HLSPullSettings"
         }
     }
-    
+
     /// 查询输出的HLS拉流URL信息。
     public struct DescribeOutputHLSPullServerUrl: TCOutputModel {
         /// HLS拉流地址的Url。
         public let url: String
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 查询输出的HLS拉流配置信息。
     public struct DescribeOutputHLSPullSettings: TCOutputModel {
         /// HLS拉流地址列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverUrls: [DescribeOutputHLSPullServerUrl]?
-        
+
         enum CodingKeys: String, CodingKey {
             case serverUrls = "ServerUrls"
         }
     }
-    
+
     /// 查询输出的RTMP拉流URL信息。
     public struct DescribeOutputRTMPPullServerUrl: TCOutputModel {
         /// RTMP拉流地址的tcUrl。
         public let tcUrl: String
-        
+
         /// RTMP拉流地址的流key。
         public let streamKey: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tcUrl = "TcUrl"
             case streamKey = "StreamKey"
         }
     }
-    
+
     /// 查询输出的RTMP拉流配置信息。
     public struct DescribeOutputRTMPPullSettings: TCOutputModel {
         /// 拉流地址列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverUrls: [DescribeOutputRTMPPullServerUrl]?
-        
+
         enum CodingKeys: String, CodingKey {
             case serverUrls = "ServerUrls"
         }
     }
-    
+
     /// 查询输出的RTMP配置信息。
     public struct DescribeOutputRTMPSettings: TCOutputModel {
         /// 空闲超时时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idleTimeout: Int64?
-        
+
         /// Chunk大小。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chunkSize: Int64?
-        
+
         /// 转推RTMP的目标地址信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destinations: [RTMPAddressDestination]?
-        
+
         enum CodingKeys: String, CodingKey {
             case idleTimeout = "IdleTimeout"
             case chunkSize = "ChunkSize"
             case destinations = "Destinations"
         }
     }
-    
+
     /// 查询输出的RTP配置信息。
     public struct DescribeOutputRTPSettings: TCOutputModel {
         /// 转推RTP的目标地址信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destinations: [RTPAddressDestination]?
-        
+
         /// 是否FEC。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fec: String?
-        
+
         /// 空闲超时时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idleTimeout: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case destinations = "Destinations"
             case fec = "FEC"
             case idleTimeout = "IdleTimeout"
         }
     }
-    
+
     /// 查询输出的RTSP拉流URL信息。
     public struct DescribeOutputRTSPPullServerUrl: TCOutputModel {
         /// RTSP拉流地址的Url。
         public let url: String
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 查询输出的RTSP拉流配置信息。
     public struct DescribeOutputRTSPPullSettings: TCOutputModel {
         /// RTSP拉流地址列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverUrls: [DescribeOutputRTSPPullServerUrl]?
-        
+
         enum CodingKeys: String, CodingKey {
             case serverUrls = "ServerUrls"
         }
     }
-    
+
     /// 查询输出的SRT配置信息。
     public struct DescribeOutputSRTSettings: TCOutputModel {
         /// 转推的目标的地址信息列表，SRT模式为CALLER时使用。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destinations: [SRTAddressDestination]?
-        
+
         /// 流Id。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamId: String?
-        
+
         /// 延迟。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latency: Int64?
-        
+
         /// 接收延迟。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recvLatency: Int64?
-        
+
         /// 对端延迟。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let peerLatency: Int64?
-        
+
         /// 对端空闲超时时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let peerIdleTimeout: Int64?
-        
+
         /// 加密密钥。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let passphrase: String?
-        
+
         /// 加密密钥长度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pbKeyLen: Int64?
-        
+
         /// SRT模式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
-        
+
         /// 服务器监听地址，SRT模式为LISTENER时使用。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceAddresses: [OutputSRTSourceAddressResp]?
-        
+
         enum CodingKeys: String, CodingKey {
             case destinations = "Destinations"
             case streamId = "StreamId"
@@ -3554,102 +3554,102 @@ extension Mps {
             case sourceAddresses = "SourceAddresses"
         }
     }
-    
+
     /// 查询输入的RTMP配置信息。
     public struct DescribeRTMPPullSourceAddress: TCOutputModel {
         /// RTMP源站的TcUrl地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcUrl: String?
-        
+
         /// RTMP源站的StreamKey。
         /// RTMP源站地址拼接规则为：$TcUrl/$StreamKey。
         public let streamKey: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tcUrl = "TcUrl"
             case streamKey = "StreamKey"
         }
     }
-    
+
     /// 查询输入的RTSP配置信息。
     public struct DescribeRTSPPullSourceAddress: TCOutputModel {
         /// RTSP源站的Url地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 编辑点播视频文件信息
     public struct EditMediaFileInfo: TCInputModel, TCOutputModel {
         /// 视频的输入信息。
         public let inputInfo: MediaInputInfo
-        
+
         /// 视频剪辑的起始时间偏移，单位：秒。
         public let startTimeOffset: Float?
-        
+
         /// 视频剪辑的结束时间偏移，单位：秒。
         public let endTimeOffset: Float?
-        
-        public init (inputInfo: MediaInputInfo, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
+
+        public init(inputInfo: MediaInputInfo, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.inputInfo = inputInfo
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case inputInfo = "InputInfo"
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
         }
     }
-    
+
     /// 编辑视频的结果文件输出配置。
     public struct EditMediaOutputConfig: TCInputModel {
         /// 封装格式，可选值：mp4、hls、mov、flv、avi。默认是 mp4。
         public let container: String?
-        
+
         /// 剪辑模式，可选值 normal、fast。默认是精确剪辑 normal
         public let type: String?
-        
-        public init (container: String? = nil, type: String? = nil) {
+
+        public init(container: String? = nil, type: String? = nil) {
             self.container = container
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case container = "Container"
             case type = "Type"
         }
     }
-    
+
     /// 编辑视频任务信息
     public struct EditMediaTask: TCOutputModel {
         /// 任务 ID。
         public let taskId: String
-        
+
         /// 任务状态，取值：
         /// <li>PROCESSING：处理中；</li>
         /// <li>FINISH：已完成。</li>
         public let status: String
-        
+
         /// 错误码
         /// <li>0：成功；</li>
         /// <li>其他值：失败。</li>
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 视频编辑任务的输入。
         public let input: EditMediaTaskInput
-        
+
         /// 视频编辑任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: EditMediaTaskOutput?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -3659,97 +3659,97 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 编辑视频任务的输入。
     public struct EditMediaTaskInput: TCOutputModel {
         /// 输入的视频文件信息。
         public let fileInfoSet: [EditMediaFileInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case fileInfoSet = "FileInfoSet"
         }
     }
-    
+
     /// 编辑视频任务的输出
     public struct EditMediaTaskOutput: TCOutputModel {
         /// 编辑后文件的目标存储。
         public let outputStorage: TaskOutputStorage
-        
+
         /// 编辑后的视频文件路径。
         public let path: String
-        
+
         enum CodingKeys: String, CodingKey {
             case outputStorage = "OutputStorage"
             case path = "Path"
         }
     }
-    
+
     /// 音视频增强配置
     public struct EnhanceConfig: TCInputModel, TCOutputModel {
         /// 视频增强配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoEnhance: VideoEnhanceConfig?
-        
-        public init (videoEnhance: VideoEnhanceConfig? = nil) {
+
+        public init(videoEnhance: VideoEnhanceConfig? = nil) {
             self.videoEnhance = videoEnhance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case videoEnhance = "VideoEnhance"
         }
     }
-    
+
     /// 表情识别参数配置
     public struct ExpressionConfigInfo: TCInputModel, TCOutputModel {
         /// 表情识别任务开关，可选值：
         /// <li>ON：开启；</li>
         /// <li>OFF：关闭。</li>
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 人脸识别任务控制参数
     public struct FaceConfigureInfo: TCInputModel, TCOutputModel {
         /// 人脸识别任务开关，可选值：
         /// <li>ON：开启智能人脸识别任务；</li>
         /// <li>OFF：关闭智能人脸识别任务。</li>
         public let `switch`: String
-        
+
         /// 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。默认 95 分。取值范围：0 - 100。
         public let score: Float?
-        
+
         /// 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
         /// <li>entertainment：娱乐明星；</li>
         /// <li>sport：体育明星；</li>
         /// <li>politician：敏感人物。</li>
         public let defaultLibraryLabelSet: [String]?
-        
+
         /// 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
         /// 标签个数最多 100 个，每个标签长度最多 16 个字符。
         public let userDefineLibraryLabelSet: [String]?
-        
+
         /// 人物库选择，可选值：
         /// <li>Default：使用默认人物库；</li>
         /// <li>UserDefine：使用用户自定义人物库。</li>
         /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
-        
-        public init (switch: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
+
+        public init(switch: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
             self.userDefineLibraryLabelSet = userDefineLibraryLabelSet
             self.faceLibrary = faceLibrary
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case score = "Score"
@@ -3758,41 +3758,41 @@ extension Mps {
             case faceLibrary = "FaceLibrary"
         }
     }
-    
+
     /// 人脸识别任务控制参数
     public struct FaceConfigureInfoForUpdate: TCInputModel {
         /// 人脸识别任务开关，可选值：
         /// <li>ON：开启智能人脸识别任务；</li>
         /// <li>OFF：关闭智能人脸识别任务。</li>
         public let `switch`: String?
-        
+
         /// 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。取值范围：0-100。
         public let score: Float?
-        
+
         /// 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
         /// <li>entertainment：娱乐明星；</li>
         /// <li>sport：体育明星；</li>
         /// <li>politician：敏感人物。</li>
         public let defaultLibraryLabelSet: [String]?
-        
+
         /// 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
         /// 标签个数最多 100 个，每个标签长度最多 16 个字符。
         public let userDefineLibraryLabelSet: [String]?
-        
+
         /// 人物库选择，可选值：
         /// <li>Default：使用默认人物库；</li>
         /// <li>UserDefine：使用用户自定义人物库。</li>
         /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
         public let faceLibrary: String?
-        
-        public init (switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
+
+        public init(switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
             self.userDefineLibraryLabelSet = userDefineLibraryLabelSet
             self.faceLibrary = faceLibrary
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case score = "Score"
@@ -3801,7 +3801,7 @@ extension Mps {
             case faceLibrary = "FaceLibrary"
         }
     }
-    
+
     /// 人脸增强配置
     public struct FaceEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -3809,73 +3809,73 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 强度，取值范围：0.0~1.0。
         /// 默认：0.0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intensity: Float?
-        
-        public init (switch: String? = nil, intensity: Float? = nil) {
+
+        public init(switch: String? = nil, intensity: Float? = nil) {
             self.`switch` = `switch`
             self.intensity = intensity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case intensity = "Intensity"
         }
     }
-    
+
     /// 流的音频数据。
     public struct FlowAudio: TCOutputModel {
         /// 帧率。
         public let fps: Int64
-        
+
         /// 码率，单位是bps。
         public let rate: Int64
-        
+
         /// 音频Pid。
         public let pid: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case fps = "Fps"
             case rate = "Rate"
             case pid = "Pid"
         }
     }
-    
+
     /// 传输流日志信息。
     public struct FlowLogInfo: TCOutputModel {
         /// 时间戳，单位为秒。
         public let timestamp: Int64
-        
+
         /// 输入输出类型（input/output）。
         public let type: String
-        
+
         /// 输入或输出Id。
         public let inputOutputId: String
-        
+
         /// 协议。
         public let `protocol`: String
-        
+
         /// 事件代码。
         public let eventCode: String
-        
+
         /// 事件信息。
         public let eventMessage: String
-        
+
         /// 对端IP。
         public let remoteIp: String
-        
+
         /// 对端端口。
         public let remotePort: String
-        
+
         /// 主备通道，0为主通道，1为备通道。
         public let pipeline: String
-        
+
         /// 输入或输出的名称。
         public let inputOutputName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case type = "Type"
@@ -3889,21 +3889,21 @@ extension Mps {
             case inputOutputName = "InputOutputName"
         }
     }
-    
+
     /// 传输流媒体的音频数据。
     public struct FlowMediaAudio: TCOutputModel {
         /// 帧率。
         public let fps: Int64
-        
+
         /// 码率，单位是bps。
         public let rate: Int64
-        
+
         /// 音频Pid。
         public let pid: Int64
-        
+
         /// 标志同一次推流。
         public let sessionId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fps = "Fps"
             case rate = "Rate"
@@ -3911,27 +3911,27 @@ extension Mps {
             case sessionId = "SessionId"
         }
     }
-    
+
     /// 传输流的媒体数据。
     public struct FlowMediaInfo: TCOutputModel {
         /// 时间戳，单位是秒。
         public let timestamp: Int64
-        
+
         /// 总带宽。
         public let network: Int64
-        
+
         /// 传输流的视频数据。
         public let video: [FlowMediaVideo]
-        
+
         /// 传输流的音频数据。
         public let audio: [FlowMediaAudio]
-        
+
         /// 标志同一次推流。
         public let sessionId: String
-        
+
         /// 客户端IP。
         public let clientIp: String
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case network = "Network"
@@ -3941,21 +3941,21 @@ extension Mps {
             case clientIp = "ClientIp"
         }
     }
-    
+
     /// 传输流媒体的视频数据。
     public struct FlowMediaVideo: TCOutputModel {
         /// 帧率。
         public let fps: Int64
-        
+
         /// 码率，单位是bps。
         public let rate: Int64
-        
+
         /// 视频Pid。
         public let pid: Int64
-        
+
         /// 标志同一次推流。
         public let sessionId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fps = "Fps"
             case rate = "Rate"
@@ -3963,24 +3963,24 @@ extension Mps {
             case sessionId = "SessionId"
         }
     }
-    
+
     /// 实时流状态查询的通用状态信息。
     public struct FlowRealtimeStatusCommon: TCOutputModel {
         /// 当前连接状态，Connected|Waiting|Idle。
         public let state: String
-        
+
         /// 连接模式，Listener|Caller。
         public let mode: String
-        
+
         /// 已连接时长，单位为ms。
         public let connectedTime: Int64
-        
+
         /// 实时码率，单位为bps。
         public let bitrate: Int64
-        
+
         /// 重试次数。
         public let reconnections: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case state = "State"
             case mode = "Mode"
@@ -3989,42 +3989,42 @@ extension Mps {
             case reconnections = "Reconnections"
         }
     }
-    
+
     /// 流状态实时查询接口的流状态信息
     public struct FlowRealtimeStatusItem: TCOutputModel {
         /// 类型，Input|Output。
         public let type: String
-        
+
         /// 输入Id，如果Type为Input，此字段不为空。
         public let inputId: String
-        
+
         /// 输出Id，如果Type为Output，此字段不为空。
         public let outputId: String
-        
+
         /// 流Id。
         public let flowId: String
-        
+
         /// 协议， SRT | RTMP。
         public let `protocol`: String
-        
+
         /// 共同状态信息。
         public let commonStatus: FlowRealtimeStatusCommon
-        
+
         /// 如果是SRT协议则有此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srtStatus: FlowRealtimeStatusSRT?
-        
+
         /// 如果是RTMP协议则有此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtmpStatus: FlowRealtimeStatusRTMP?
-        
+
         /// 服务器IP。
         public let connectServerIP: String
-        
+
         /// 如果是RTP协议则有此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rtpStatus: FlowRealtimeStatusRTP?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case inputId = "InputId"
@@ -4038,54 +4038,54 @@ extension Mps {
             case rtpStatus = "RTPStatus"
         }
     }
-    
+
     /// 流状态实时查询接口的RTMP信息。
     public struct FlowRealtimeStatusRTMP: TCOutputModel {
         /// 视频帧率。
         public let videoFPS: Int64
-        
+
         /// 音频帧率。
         public let audioFPS: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case videoFPS = "VideoFPS"
             case audioFPS = "AudioFPS"
         }
     }
-    
+
     /// 流状态实时查询接口的RTP流状态信息
     public struct FlowRealtimeStatusRTP: TCOutputModel {
         /// 传输的包个数
         public let packets: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case packets = "Packets"
         }
     }
-    
+
     /// 流状态实时查询接口的SRT信息。
     public struct FlowRealtimeStatusSRT: TCOutputModel {
         /// 延迟，单位为ms。
         public let latency: Int64
-        
+
         /// RTT，单位为ms。
         public let rtt: Int64
-        
+
         /// 实时发包数或者收包数。
         public let packets: Int64
-        
+
         /// 丢包率。
         public let packetLossRate: Float
-        
+
         /// 重传率。
         public let retransmitRate: Float
-        
+
         /// 实时丢包数。
         public let droppedPackets: Int64
-        
+
         /// 是否加密，On|Off。
         public let encryption: String
-        
+
         enum CodingKeys: String, CodingKey {
             case latency = "Latency"
             case rtt = "RTT"
@@ -4096,36 +4096,36 @@ extension Mps {
             case encryption = "Encryption"
         }
     }
-    
+
     /// 传输流的SRT质量数据。
     public struct FlowSRTInfo: TCOutputModel {
         /// 时间戳，单位是秒。
         public let timestamp: Int64
-        
+
         /// 发送丢包率。
         public let sendPacketLossRate: Int64
-        
+
         /// 发送重传率。
         public let sendRetransmissionRate: Int64
-        
+
         /// 接收丢包率。
         public let recvPacketLossRate: Int64
-        
+
         /// 接收重传率。
         public let recvRetransmissionRate: Int64
-        
+
         /// 与对端的RTT时延。
         public let rtt: Int64
-        
+
         /// 标志同一次推流。
         public let sessionId: String
-        
+
         /// 发送弃包数。
         public let sendPacketDropNumber: Int64
-        
+
         /// 接收弃包数。
         public let recvPacketDropNumber: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case sendPacketLossRate = "SendPacketLossRate"
@@ -4138,24 +4138,24 @@ extension Mps {
             case recvPacketDropNumber = "RecvPacketDropNumber"
         }
     }
-    
+
     /// 流的统计数据。
     public struct FlowStatistics: TCOutputModel {
         /// 会话Id。
         public let sessionId: String
-        
+
         /// 对端IP。
         public let clientIp: String
-        
+
         /// 总带宽。
         public let network: Int64
-        
+
         /// 视频数据。
         public let video: [FlowVideo]
-        
+
         /// 音频数据。
         public let audio: [FlowAudio]
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionId = "SessionId"
             case clientIp = "ClientIp"
@@ -4164,39 +4164,39 @@ extension Mps {
             case audio = "Audio"
         }
     }
-    
+
     /// 流的统计数据列表。
     public struct FlowStatisticsArray: TCOutputModel {
         /// 时间戳。
         public let timestamp: Int64
-        
+
         /// 每个会话的统计数据。
         public let flowStatistics: [FlowStatistics]
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case flowStatistics = "FlowStatistics"
         }
     }
-    
+
     /// 流的视频数据。
     public struct FlowVideo: TCOutputModel {
         /// 帧率。
         public let fps: Int64
-        
+
         /// 码率，单位是bps。
         public let rate: Int64
-        
+
         /// 音频Pid。
         public let pid: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case fps = "Fps"
             case rate = "Rate"
             case pid = "Pid"
         }
     }
-    
+
     /// 插帧帧率配置
     public struct FrameRateConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -4204,70 +4204,70 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 帧率，取值范围：[0, 100]，单位：Hz。
         /// 默认值 0。
         /// 注意：对于转码，该参数会覆盖 VideoTemplate 内部的 Fps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fps: UInt64?
-        
-        public init (switch: String? = nil, fps: UInt64? = nil) {
+
+        public init(switch: String? = nil, fps: UInt64? = nil) {
             self.`switch` = `switch`
             self.fps = fps
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case fps = "Fps"
         }
     }
-    
+
     /// 智能按帧标签任务控制参数
     public struct FrameTagConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能按帧标签任务开关，可选值：
         /// <li>ON：开启智能按帧标签任务；</li>
         /// <li>OFF：关闭智能按帧标签任务。</li>
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 智能按帧标签任务控制参数
     public struct FrameTagConfigureInfoForUpdate: TCInputModel {
         /// 智能按帧标签任务开关，可选值：
         /// <li>ON：开启智能按帧标签任务；</li>
         /// <li>OFF：关闭智能按帧标签任务。</li>
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 创建的输入HLS拉流源站配置信息。
     public struct HLSPullSourceAddress: TCInputModel {
         /// HLS源站的Url地址。
         public let url: String
-        
-        public init (url: String) {
+
+        public init(url: String) {
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// HDR配置
     public struct HdrConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -4275,7 +4275,7 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 类型，可选值：
         /// <li>HDR10</li>
         /// <li>HLG</li>
@@ -4284,37 +4284,37 @@ extension Mps {
         /// 注意：视频编码位深为10。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (switch: String? = nil, type: String? = nil) {
+
+        public init(switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
         }
     }
-    
+
     /// 片头片尾参数
     public struct HeadTailParameter: TCInputModel {
         /// 片头列表。
         public let headSet: [MediaInputInfo]?
-        
+
         /// 片尾列表。
         public let tailSet: [MediaInputInfo]?
-        
-        public init (headSet: [MediaInputInfo]? = nil, tailSet: [MediaInputInfo]? = nil) {
+
+        public init(headSet: [MediaInputInfo]? = nil, tailSet: [MediaInputInfo]? = nil) {
             self.headSet = headSet
             self.tailSet = tailSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case headSet = "HeadSet"
             case tailSet = "TailSet"
         }
     }
-    
+
     /// 综合增强配置
     public struct ImageQualityEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -4322,7 +4322,7 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 类型，可选值：
         /// <li>weak</li>
         /// <li>normal</li>
@@ -4330,45 +4330,45 @@ extension Mps {
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (switch: String? = nil, type: String? = nil) {
+
+        public init(switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
         }
     }
-    
+
     /// 对视频截雪碧图任务输入参数类型
     public struct ImageSpriteTaskInput: TCInputModel, TCOutputModel {
         /// 雪碧图模板 ID。
         public let definition: UInt64
-        
+
         /// 截取雪碧图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputStorage: TaskOutputStorage?
-        
+
         /// 截取雪碧图后，雪碧图图片文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_imageSprite_{definition}_{number}.{format}`。
         public let outputObjectPath: String?
-        
+
         /// 截取雪碧图后，Web VTT 文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_imageSprite_{definition}.{format}`。
         public let webVttObjectName: String?
-        
+
         /// 截取雪碧图后输出路径中的`{number}`变量的规则。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectNumberFormat: NumberFormat?
-        
-        public init (definition: UInt64, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, webVttObjectName: String? = nil, objectNumberFormat: NumberFormat? = nil) {
+
+        public init(definition: UInt64, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, webVttObjectName: String? = nil, objectNumberFormat: NumberFormat? = nil) {
             self.definition = definition
             self.outputStorage = outputStorage
             self.outputObjectPath = outputObjectPath
             self.webVttObjectName = webVttObjectName
             self.objectNumberFormat = objectNumberFormat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case outputStorage = "OutputStorage"
@@ -4377,20 +4377,20 @@ extension Mps {
             case objectNumberFormat = "ObjectNumberFormat"
         }
     }
-    
+
     /// 雪碧图模板详情
     public struct ImageSpriteTemplate: TCOutputModel {
         /// 雪碧图模板唯一标识。
         public let definition: UInt64
-        
+
         /// 模板类型，取值范围：
         /// <li>Preset：系统预置模板；</li>
         /// <li>Custom：用户自定义模板。</li>
         public let type: String
-        
+
         /// 雪碧图模板名称。
         public let name: String
-        
+
         /// 雪碧图中小图的宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -4398,7 +4398,7 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let width: UInt64
-        
+
         /// 雪碧图中小图的高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -4406,43 +4406,43 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let height: UInt64
-        
+
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 默认值：open。
         public let resolutionAdaptive: String
-        
+
         /// 采样类型。
         public let sampleType: String
-        
+
         /// 采样间隔。
         public let sampleInterval: UInt64
-        
+
         /// 雪碧图中小图的行数。
         public let rowCount: UInt64
-        
+
         /// 雪碧图中小图的列数。
         public let columnCount: UInt64
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         /// 默认值：black 。
         public let fillType: String
-        
+
         /// 模板描述信息。
         public let comment: String
-        
+
         /// 图片格式。
         public let format: String
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case type = "Type"
@@ -4461,37 +4461,37 @@ extension Mps {
             case format = "Format"
         }
     }
-    
+
     /// 图片水印模板输入参数
     public struct ImageWatermarkInput: TCInputModel {
         /// 水印图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串。支持 jpeg、png 图片格式。
         public let imageContent: String
-        
+
         /// 水印的宽度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
         /// 默认值：10%。
         public let width: String?
-        
+
         /// 水印的高度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
-        
+
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
         /// <li>once：动态水印播放完后，不再出现；</li>
         /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
         /// <li>repeat：水印循环播放，直到视频结束（默认值）。</li>
         public let repeatType: String?
-        
-        public init (imageContent: String, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
+
+        public init(imageContent: String, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
             self.imageContent = imageContent
             self.width = width
             self.height = height
             self.repeatType = repeatType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageContent = "ImageContent"
             case width = "Width"
@@ -4499,36 +4499,36 @@ extension Mps {
             case repeatType = "RepeatType"
         }
     }
-    
+
     /// 图片水印模板输入参数
     public struct ImageWatermarkInputForUpdate: TCInputModel {
         /// 水印图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串。支持 jpeg、png 图片格式。
         public let imageContent: String?
-        
+
         /// 水印的宽度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
         public let width: String?
-        
+
         /// 水印的高度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
-        
+
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
         /// <li>once：动态水印播放完后，不再出现；</li>
         /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
         /// <li>repeat：水印循环播放，直到视频结束。</li>
         public let repeatType: String?
-        
-        public init (imageContent: String? = nil, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
+
+        public init(imageContent: String? = nil, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
             self.imageContent = imageContent
             self.width = width
             self.height = height
             self.repeatType = repeatType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageContent = "ImageContent"
             case width = "Width"
@@ -4536,29 +4536,29 @@ extension Mps {
             case repeatType = "RepeatType"
         }
     }
-    
+
     /// 图片水印模板
     public struct ImageWatermarkTemplate: TCOutputModel {
         /// 水印图片地址。
         public let imageUrl: String
-        
+
         /// 水印的宽度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
         public let width: String
-        
+
         /// 水印的高度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；</li>
         /// 0px：表示 Height 按照 Width 对视频宽度的比例缩放。
         public let height: String
-        
+
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
         /// <li>once：动态水印播放完后，不再出现；</li>
         /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
         /// <li>repeat：水印循环播放，直到视频结束。</li>
         public let repeatType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageUrl = "ImageUrl"
             case width = "Width"
@@ -4566,31 +4566,31 @@ extension Mps {
             case repeatType = "RepeatType"
         }
     }
-    
+
     /// 输入地址信息。
     public struct InputAddress: TCOutputModel {
         /// 输入地址的IP。
         public let ip: String
-        
+
         /// 输入地址的端口。
         public let port: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// 直播流 AI 识别结果
     public struct LiveStreamAiRecognitionResultInfo: TCOutputModel {
         /// 内容识别结果列表。
         public let resultSet: [LiveStreamAiRecognitionResultItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case resultSet = "ResultSet"
         }
     }
-    
+
     /// 直播流 AI 识别结果
     public struct LiveStreamAiRecognitionResultItem: TCOutputModel {
         /// 结果的类型，取值范围：
@@ -4601,30 +4601,30 @@ extension Mps {
         /// <li>OcrFullTextRecognition：文本全文识别。</li>
         /// <li>TransTextRecognition：语音翻译。</li>
         public let type: String
-        
+
         /// 人脸识别结果，当 Type 为
         /// FaceRecognition 时有效。
         public let faceRecognitionResultSet: [LiveStreamFaceRecognitionResult]
-        
+
         /// 语音关键词识别结果，当 Type 为
         /// AsrWordsRecognition 时有效。
         public let asrWordsRecognitionResultSet: [LiveStreamAsrWordsRecognitionResult]
-        
+
         /// 文本关键词识别结果，当 Type 为
         /// OcrWordsRecognition 时有效。
         public let ocrWordsRecognitionResultSet: [LiveStreamOcrWordsRecognitionResult]
-        
+
         /// 语音全文识别结果，当 Type 为
         /// AsrFullTextRecognition 时有效。
         public let asrFullTextRecognitionResultSet: [LiveStreamAsrFullTextRecognitionResult]
-        
+
         /// 文本全文识别结果，当 Type 为
         /// OcrFullTextRecognition 时有效。
         public let ocrFullTextRecognitionResultSet: [LiveStreamOcrFullTextRecognitionResult]
-        
+
         /// 翻译结果，当Type 为 TransTextRecognition 时有效。
         public let transTextRecognitionResultSet: [LiveStreamTransTextRecognitionResult]
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case faceRecognitionResultSet = "FaceRecognitionResultSet"
@@ -4635,42 +4635,42 @@ extension Mps {
             case transTextRecognitionResultSet = "TransTextRecognitionResultSet"
         }
     }
-    
+
     /// 直播 AI 内容审核图片敏感结果
     public struct LiveStreamAiReviewImagePoliticalResult: TCOutputModel {
         /// 嫌疑片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 嫌疑片段结束的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 嫌疑片段敏感分数。
         public let confidence: Float
-        
+
         /// 嫌疑片段鉴黄结果建议，取值范围：
         /// <li>pass</li>
         /// <li>review</li>
         /// <li>block</li>
         public let suggestion: String
-        
+
         /// 视频敏感结果标签，取值范围：
         /// <li>politician：敏感人物。</li>
         /// <li>violation_photo：违规图标。</li>
         public let label: String
-        
+
         /// 敏感人物、违规图标名字。
         public let name: String
-        
+
         /// 敏感人物、违规图标出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
         public let areaCoordSet: [Int64]
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         /// PicUrlExpireTime 时间点后图片将被删除）。
         public let url: String
-        
+
         /// 嫌疑图片 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let picUrlExpireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startPtsTime = "StartPtsTime"
             case endPtsTime = "EndPtsTime"
@@ -4683,38 +4683,38 @@ extension Mps {
             case picUrlExpireTime = "PicUrlExpireTime"
         }
     }
-    
+
     /// 直播 AI 内容审核图片鉴黄结果
     public struct LiveStreamAiReviewImagePornResult: TCOutputModel {
         /// 嫌疑片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 嫌疑片段结束的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 嫌疑片段涉黄分数。
         public let confidence: Float
-        
+
         /// 嫌疑片段鉴黄结果建议，取值范围：
         /// <li>pass</li>
         /// <li>review</li>
         /// <li>block</li>
         public let suggestion: String
-        
+
         /// 视频鉴黄结果标签，取值范围：
         /// <li>porn：色情。</li>
         /// <li>sexy：性感。</li>
         /// <li>vulgar：低俗。</li>
         /// <li>intimacy：亲密行为。</li>
         public let label: String
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         /// PicUrlExpireTime 时间点后图片将被删除）。
         public let url: String
-        
+
         /// 嫌疑图片 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let picUrlExpireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startPtsTime = "StartPtsTime"
             case endPtsTime = "EndPtsTime"
@@ -4725,24 +4725,24 @@ extension Mps {
             case picUrlExpireTime = "PicUrlExpireTime"
         }
     }
-    
+
     /// 直播 AI 内容审核图片涉敏结果
     public struct LiveStreamAiReviewImageTerrorismResult: TCOutputModel {
         /// 嫌疑片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 嫌疑片段结束的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 嫌疑片段涉敏分数。
         public let confidence: Float
-        
+
         /// 嫌疑片段涉敏结果建议，取值范围：
         /// <li>pass</li>
         /// <li>review</li>
         /// <li>block</li>
         public let suggestion: String
-        
+
         /// 视频涉敏结果标签，取值范围：
         /// <li>guns：武器枪支。</li>
         /// <li>crowd：人群聚集。</li>
@@ -4753,14 +4753,14 @@ extension Mps {
         /// <li>explosion：爆炸火灾。</li>
         /// <li>terrorists：涉敏人物。</li>
         public let label: String
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         /// PicUrlExpireTime 时间点后图片将被删除）。
         public let url: String
-        
+
         /// 嫌疑图片 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let picUrlExpireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startPtsTime = "StartPtsTime"
             case endPtsTime = "EndPtsTime"
@@ -4771,17 +4771,17 @@ extension Mps {
             case picUrlExpireTime = "PicUrlExpireTime"
         }
     }
-    
+
     /// 直播流 AI 审核结果
     public struct LiveStreamAiReviewResultInfo: TCOutputModel {
         /// 内容审核结果列表。
         public let resultSet: [LiveStreamAiReviewResultItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case resultSet = "ResultSet"
         }
     }
-    
+
     /// 直播流 AI 审核结果
     public struct LiveStreamAiReviewResultItem: TCOutputModel {
         /// 审核结果的类型，可以取的值有：
@@ -4790,19 +4790,19 @@ extension Mps {
         /// <li>ImagePolitical：图片涉敏</li>
         /// <li>PornVoice：声音鉴黄</li>
         public let type: String
-        
+
         /// 图片鉴黄的结果，当 Type 为 ImagePorn 时有效。
         public let imagePornResultSet: [LiveStreamAiReviewImagePornResult]
-        
+
         /// 图片涉敏的结果，当 Type 为 ImageTerrorism 时有效。
         public let imageTerrorismResultSet: [LiveStreamAiReviewImageTerrorismResult]
-        
+
         /// 图片涉敏的结果，当 Type 为 ImagePolitical 时有效。
         public let imagePoliticalResultSet: [LiveStreamAiReviewImagePoliticalResult]
-        
+
         /// 声音鉴黄的结果，当 Type 为 PornVoice 时有效。
         public let voicePornResultSet: [LiveStreamAiReviewVoicePornResult]
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case imagePornResultSet = "ImagePornResultSet"
@@ -4811,28 +4811,28 @@ extension Mps {
             case voicePornResultSet = "VoicePornResultSet"
         }
     }
-    
+
     /// 直播 AI 内容审核声音鉴黄结果
     public struct LiveStreamAiReviewVoicePornResult: TCOutputModel {
         /// 嫌疑片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 嫌疑片段结束的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 嫌疑片段涉黄分数。
         public let confidence: Float
-        
+
         /// 嫌疑片段鉴黄结果建议，取值范围：
         /// <li>pass</li>
         /// <li>review</li>
         /// <li>block</li>
         public let suggestion: String
-        
+
         /// 视频鉴黄结果标签，取值范围：
         /// <li>sexual_moan：呻吟。</li>
         public let label: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startPtsTime = "StartPtsTime"
             case endPtsTime = "EndPtsTime"
@@ -4841,21 +4841,21 @@ extension Mps {
             case label = "Label"
         }
     }
-    
+
     /// 直播识别 Asr 全文识别
     public struct LiveStreamAsrFullTextRecognitionResult: TCOutputModel {
         /// 识别文本。
         public let text: String
-        
+
         /// 识别片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 识别片段终止的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case startPtsTime = "StartPtsTime"
@@ -4863,21 +4863,21 @@ extension Mps {
             case confidence = "Confidence"
         }
     }
-    
+
     /// 直播 AI Asr 单词识别结果
     public struct LiveStreamAsrWordsRecognitionResult: TCOutputModel {
         /// 语音关键词。
         public let word: String
-        
+
         /// 识别片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 识别片段终止的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case word = "Word"
             case startPtsTime = "StartPtsTime"
@@ -4885,31 +4885,31 @@ extension Mps {
             case confidence = "Confidence"
         }
     }
-    
+
     /// 直播 AI 人脸识别结果
     public struct LiveStreamFaceRecognitionResult: TCOutputModel {
         /// 人物唯一标识 ID。
         public let id: String
-        
+
         /// 人物名称。
         public let name: String
-        
+
         /// 人物库类型，表示识别出的人物来自哪个人物库：
         /// <li>Default：默认人物库；</li><li>UserDefine：用户自定义人物库。</li>
         public let type: String
-        
+
         /// 识别片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 识别片段终止的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         public let areaCoordSet: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -4920,24 +4920,24 @@ extension Mps {
             case areaCoordSet = "AreaCoordSet"
         }
     }
-    
+
     /// 直播识别 Ocr 全文识别
     public struct LiveStreamOcrFullTextRecognitionResult: TCOutputModel {
         /// 语音文本。
         public let text: String
-        
+
         /// 识别片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 识别片段终止的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         public let areaCoordSet: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case startPtsTime = "StartPtsTime"
@@ -4946,24 +4946,24 @@ extension Mps {
             case areaCoordSet = "AreaCoordSet"
         }
     }
-    
+
     /// 直播 AI Ocr 单词识别结果
     public struct LiveStreamOcrWordsRecognitionResult: TCOutputModel {
         /// 文本关键词。
         public let word: String
-        
+
         /// 识别片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 识别片段终止的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         public let areaCoords: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case word = "Word"
             case startPtsTime = "StartPtsTime"
@@ -4972,42 +4972,42 @@ extension Mps {
             case areaCoords = "AreaCoords"
         }
     }
-    
+
     /// 直播流处理错误信息
     public struct LiveStreamProcessErrorInfo: TCOutputModel {
         /// 错误码：
         /// <li>0表示没有错误；</li>
         /// <li>非0表示错误，请参考 Message 错误信息。</li>
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case message = "Message"
         }
     }
-    
+
     /// 直播处理任务信息
     public struct LiveStreamProcessTask: TCOutputModel {
         /// 媒体处理任务 ID。
         public let taskId: String
-        
+
         /// 任务流状态，取值：
         /// <li>PROCESSING：处理中；</li>
         /// <li>FINISH：已完成。</li>
         public let status: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 直播流 URL。
         public let url: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -5016,28 +5016,28 @@ extension Mps {
             case url = "Url"
         }
     }
-    
+
     /// 任务处理的事件通知配置。
     public struct LiveStreamTaskNotifyConfig: TCInputModel, TCOutputModel {
         /// CMQ 的模型，有 Queue 和 Topic 两种，目前仅支持 Queue。
         public let cmqModel: String?
-        
+
         /// CMQ 的园区，如 sh，bj 等。
         public let cmqRegion: String?
-        
+
         /// 当模型为 Queue 时有效，表示接收事件通知的 CMQ 的队列名。
         public let queueName: String?
-        
+
         /// 当模型为 Topic 时有效，表示接收事件通知的 CMQ 的主题名。
         public let topicName: String?
-        
+
         /// 通知类型，默认CMQ，指定URL时HTTP回调推送到 NotifyUrl 指定的地址。
         public let notifyType: String?
-        
+
         /// HTTP回调地址，NotifyType为URL时必填。
         public let notifyUrl: String?
-        
-        public init (cmqModel: String? = nil, cmqRegion: String? = nil, queueName: String? = nil, topicName: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil) {
+
+        public init(cmqModel: String? = nil, cmqRegion: String? = nil, queueName: String? = nil, topicName: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil) {
             self.cmqModel = cmqModel
             self.cmqRegion = cmqRegion
             self.queueName = queueName
@@ -5045,7 +5045,7 @@ extension Mps {
             self.notifyType = notifyType
             self.notifyUrl = notifyUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cmqModel = "CmqModel"
             case cmqRegion = "CmqRegion"
@@ -5055,24 +5055,24 @@ extension Mps {
             case notifyUrl = "NotifyUrl"
         }
     }
-    
+
     /// 直播实时翻译结果
     public struct LiveStreamTransTextRecognitionResult: TCOutputModel {
         /// 识别文本。
         public let text: String
-        
+
         /// 翻译片段起始的 PTS 时间，单位：秒。
         public let startPtsTime: Float
-        
+
         /// 翻译片段终止的 PTS 时间，单位：秒。
         public let endPtsTime: Float
-        
+
         /// 翻译片段置信度。取值：0~100。
         public let confidence: Float
-        
+
         /// 翻译文本。
         public let trans: String
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case startPtsTime = "StartPtsTime"
@@ -5081,7 +5081,7 @@ extension Mps {
             case trans = "Trans"
         }
     }
-    
+
     /// 低光照增强配置
     public struct LowLightEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -5089,138 +5089,138 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 类型，可选值：
         /// <li>normal</li>
         /// 默认值：normal。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (switch: String? = nil, type: String? = nil) {
+
+        public init(switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
         }
     }
-    
+
     /// 智能分类结果
     public struct MediaAiAnalysisClassificationItem: TCOutputModel {
         /// 智能分类的类别名称。
         public let classification: String
-        
+
         /// 智能分类的可信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case classification = "Classification"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 智能封面信息
     public struct MediaAiAnalysisCoverItem: TCOutputModel {
         /// 智能封面存储路径。
         public let coverPath: String
-        
+
         /// 智能封面的可信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case coverPath = "CoverPath"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 智能按帧标签结果信息
     public struct MediaAiAnalysisFrameTagItem: TCOutputModel {
         /// 按帧标签名称。
         public let tag: String
-        
+
         /// 按帧标签名称的分类列表，CategorySet.N 表示第 N+1级分类。
         /// 比如 Tag 为“塔楼”时，CategorySet 包含两个元素：CategorySet.0 为“场景”，CategorySet.1为 “建筑”，表示按帧标签为“塔楼”，且第1级分类是“场景”，第2级分类是“建筑”。
         public let categorySet: [String]
-        
+
         /// 按帧标签的可信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case tag = "Tag"
             case categorySet = "CategorySet"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 按帧标签片段列表
     public struct MediaAiAnalysisFrameTagSegmentItem: TCOutputModel {
         /// 按帧标签起始的偏移时间。
         public let startTimeOffset: Float
-        
+
         /// 按帧标签结束的偏移时间。
         public let endTimeOffset: Float
-        
+
         /// 时间片段内的标签列表。
         public let tagSet: [MediaAiAnalysisFrameTagItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
             case tagSet = "TagSet"
         }
     }
-    
+
     /// 智能标签结果信息
     public struct MediaAiAnalysisTagItem: TCOutputModel {
         /// 标签名称。
         public let tag: String
-        
+
         /// 标签的可信度，取值范围是 0 到 100。
         public let confidence: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case tag = "Tag"
             case confidence = "Confidence"
         }
     }
-    
+
     /// 视频转动图结果信息
     public struct MediaAnimatedGraphicsItem: TCOutputModel {
         /// 转动图文件的存储位置。
         public let storage: TaskOutputStorage
-        
+
         /// 转动图的文件路径。
         public let path: String
-        
+
         /// 转动图模板 ID，参见[转动图参数模板](https://cloud.tencent.com/document/product/862/37042#.E9.A2.84.E7.BD.AE.E8.BD.AC.E5.8A.A8.E5.9B.BE.E6.A8.A1.E6.9D.BF)。
         public let definition: Int64
-        
+
         /// 动图格式，如 gif。
         public let container: String
-        
+
         /// 动图的高度，单位：px。
         public let height: Int64
-        
+
         /// 动图的宽度，单位：px。
         public let width: Int64
-        
+
         /// 动图码率，单位：bps。
         public let bitrate: Int64
-        
+
         /// 动图大小，单位：字节。
         public let size: Int64
-        
+
         /// 动图的md5值。
         public let md5: String
-        
+
         /// 动图在视频中的起始时间偏移，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 动图在视频中的结束时间偏移，单位：秒。
         public let endTimeOffset: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case storage = "Storage"
             case path = "Path"
@@ -5235,22 +5235,22 @@ extension Mps {
             case endTimeOffset = "EndTimeOffset"
         }
     }
-    
+
     /// 点播文件音频流信息
     public struct MediaAudioStreamItem: TCOutputModel {
         /// 音频流的码率，单位：bps。
         public let bitrate: Int64
-        
+
         /// 音频流的采样率，单位：hz。
         public let samplingRate: Int64
-        
+
         /// 音频流的编码格式，例如 aac。
         public let codec: String
-        
+
         /// 音频声道数，例如 2。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channel: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case samplingRate = "SamplingRate"
@@ -5258,27 +5258,27 @@ extension Mps {
             case channel = "Channel"
         }
     }
-    
+
     /// 内容审核 Asr 文字审核嫌疑片段
     public struct MediaContentReviewAsrTextSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段置信度。
         public let confidence: Float
-        
+
         /// 嫌疑片段审核结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// 嫌疑关键词列表。
         public let keywordSet: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -5287,37 +5287,37 @@ extension Mps {
             case keywordSet = "KeywordSet"
         }
     }
-    
+
     /// 内容审核 Ocr 文字审核嫌疑片段
     public struct MediaContentReviewOcrTextSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段置信度。
         public let confidence: Float
-        
+
         /// 嫌疑片段审核结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// 嫌疑关键词列表。
         public let keywordSet: [String]
-        
+
         /// 嫌疑文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
         public let areaCoordSet: [Int64]
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         /// PicUrlExpireTime 时间点后图片将被删除）。
         public let url: String
-        
+
         /// 嫌疑图片 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let picUrlExpireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -5329,27 +5329,27 @@ extension Mps {
             case picUrlExpireTime = "PicUrlExpireTime"
         }
     }
-    
+
     /// 内容审核涉敏嫌疑片段
     public struct MediaContentReviewPoliticalSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段涉敏分数。
         public let confidence: Float
-        
+
         /// 嫌疑片段涉敏结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// 涉敏人物、违规图标名字。
         public let name: String
-        
+
         /// 嫌疑片段涉敏结果标签。内容审核模板[画面涉敏任务控制参数](https://cloud.tencent.com/document/api/862/37615#PoliticalImgReviewTemplateInfo)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
         /// <li>violation_photo：违规图标。</li>
@@ -5375,17 +5375,17 @@ extension Mps {
         /// military：
         /// <li>sensitive_military：敏感军事人物。</li>
         public let label: String
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         ///  PicUrlExpireTime 时间点后图片将被删除）。
         public let url: String
-        
+
         /// 涉敏人物、违规图标出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
         public let areaCoordSet: [Int64]
-        
+
         /// 嫌疑图片 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let picUrlExpireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -5398,34 +5398,34 @@ extension Mps {
             case picUrlExpireTime = "PicUrlExpireTime"
         }
     }
-    
+
     /// 内容审核涉黄/涉敏嫌疑片段
     public struct MediaContentReviewSegmentItem: TCOutputModel {
         /// 嫌疑片段起始的偏移时间，单位：秒。
         public let startTimeOffset: Float
-        
+
         /// 嫌疑片段结束的偏移时间，单位：秒。
         public let endTimeOffset: Float
-        
+
         /// 嫌疑片段涉黄分数。
         public let confidence: Float
-        
+
         /// 嫌疑片段鉴黄结果标签。
         public let label: String
-        
+
         /// 嫌疑片段鉴黄结果建议，取值范围：
         /// <li>pass。</li>
         /// <li>review。</li>
         /// <li>block。</li>
         public let suggestion: String
-        
+
         /// 嫌疑图片 URL （图片不会永久存储，到达
         ///  PicUrlExpireTime 时间点后图片将被删除）。
         public let url: String
-        
+
         /// 嫌疑图片 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let picUrlExpireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
@@ -5436,30 +5436,30 @@ extension Mps {
             case picUrlExpireTime = "PicUrlExpireTime"
         }
     }
-    
+
     /// 雪碧图信息
     public struct MediaImageSpriteItem: TCOutputModel {
         /// 雪碧图规格，参见[雪碧图参数模板](https://cloud.tencent.com/document/product/266/33480#.E9.9B.AA.E7.A2.A7.E5.9B.BE.E6.A8.A1.E6.9D.BF)。
         public let definition: Int64
-        
+
         /// 雪碧图小图的高度。
         public let height: Int64
-        
+
         /// 雪碧图小图的宽度。
         public let width: Int64
-        
+
         /// 每一张雪碧图大图里小图的数量。
         public let totalCount: Int64
-        
+
         /// 每一张雪碧图大图的路径。
         public let imagePathSet: [String]
-        
+
         /// 雪碧图子图位置与时间关系的 WebVtt 文件路径。WebVtt 文件表明了各个雪碧图小图对应的时间点，以及在雪碧大图里的坐标位置，一般被播放器用于实现预览。
         public let webVttPath: String
-        
+
         /// 雪碧图文件的存储位置。
         public let storage: TaskOutputStorage
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case height = "Height"
@@ -5470,67 +5470,67 @@ extension Mps {
             case storage = "Storage"
         }
     }
-    
+
     /// 媒体处理的输入对象信息。
     public struct MediaInputInfo: TCInputModel, TCOutputModel {
         /// 输入来源对象的类型，支持 COS 和 URL 两种。
         public let type: String
-        
+
         /// 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 对象信息。
         public let cosInputInfo: CosInputInfo?
-        
+
         /// 当 Type 为 URL 时有效，则该项为必填，表示媒体处理 URL 对象信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlInputInfo: UrlInputInfo?
-        
-        public init (type: String, cosInputInfo: CosInputInfo? = nil, urlInputInfo: UrlInputInfo? = nil) {
+
+        public init(type: String, cosInputInfo: CosInputInfo? = nil, urlInputInfo: UrlInputInfo? = nil) {
             self.type = type
             self.cosInputInfo = cosInputInfo
             self.urlInputInfo = urlInputInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case cosInputInfo = "CosInputInfo"
             case urlInputInfo = "UrlInputInfo"
         }
     }
-    
+
     /// 点播媒体文件元信息
     public struct MediaMetaData: TCOutputModel {
         /// 上传的媒体文件大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
         public let size: Int64
-        
+
         /// 容器类型，例如 m4a，mp4 等。
         public let container: String
-        
+
         /// 视频流码率平均值与音频流码率平均值之和，单位：bps。
         public let bitrate: Int64
-        
+
         /// 视频流高度的最大值，单位：px。
         public let height: Int64
-        
+
         /// 视频流宽度的最大值，单位：px。
         public let width: Int64
-        
+
         /// 视频时长，单位：秒。
         public let duration: Float
-        
+
         /// 视频拍摄时的选择角度，单位：度。
         public let rotate: Int64
-        
+
         /// 视频流信息。
         public let videoStreamSet: [MediaVideoStreamItem]
-        
+
         /// 音频流信息。
         public let audioStreamSet: [MediaAudioStreamItem]
-        
+
         /// 视频时长，单位：秒。
         public let videoDuration: Float
-        
+
         /// 音频时长，单位：秒。
         public let audioDuration: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case size = "Size"
             case container = "Container"
@@ -5545,28 +5545,28 @@ extension Mps {
             case audioDuration = "AudioDuration"
         }
     }
-    
+
     /// 对视频转自适应码流任务结果类型
     public struct MediaProcessTaskAdaptiveDynamicStreamingResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 对视频转自适应码流任务的输入。
         public let input: AdaptiveDynamicStreamingTaskInput
-        
+
         /// 对视频转自适应码流任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AdaptiveDynamicStreamingInfoItem?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5576,28 +5576,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 转动图任务结果类型
     public struct MediaProcessTaskAnimatedGraphicResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 转动图任务的输入。
         public let input: AnimatedGraphicTaskInput
-        
+
         /// 转动图任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaAnimatedGraphicsItem?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5607,28 +5607,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 对视频截雪碧图任务结果类型
     public struct MediaProcessTaskImageSpriteResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 对视频截雪碧图任务的输入。
         public let input: ImageSpriteTaskInput
-        
+
         /// 对视频截雪碧图任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaImageSpriteItem?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5638,28 +5638,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 媒体处理任务类型
     public struct MediaProcessTaskInput: TCInputModel, TCOutputModel {
         /// 视频转码任务列表。
         public let transcodeTaskSet: [TranscodeTaskInput]?
-        
+
         /// 视频转动图任务列表。
         public let animatedGraphicTaskSet: [AnimatedGraphicTaskInput]?
-        
+
         /// 对视频按时间点截图任务列表。
         public let snapshotByTimeOffsetTaskSet: [SnapshotByTimeOffsetTaskInput]?
-        
+
         /// 对视频采样截图任务列表。
         public let sampleSnapshotTaskSet: [SampleSnapshotTaskInput]?
-        
+
         /// 对视频截雪碧图任务列表。
         public let imageSpriteTaskSet: [ImageSpriteTaskInput]?
-        
+
         /// 转自适应码流任务列表。
         public let adaptiveDynamicStreamingTaskSet: [AdaptiveDynamicStreamingTaskInput]?
-        
-        public init (transcodeTaskSet: [TranscodeTaskInput]? = nil, animatedGraphicTaskSet: [AnimatedGraphicTaskInput]? = nil, snapshotByTimeOffsetTaskSet: [SnapshotByTimeOffsetTaskInput]? = nil, sampleSnapshotTaskSet: [SampleSnapshotTaskInput]? = nil, imageSpriteTaskSet: [ImageSpriteTaskInput]? = nil, adaptiveDynamicStreamingTaskSet: [AdaptiveDynamicStreamingTaskInput]? = nil) {
+
+        public init(transcodeTaskSet: [TranscodeTaskInput]? = nil, animatedGraphicTaskSet: [AnimatedGraphicTaskInput]? = nil, snapshotByTimeOffsetTaskSet: [SnapshotByTimeOffsetTaskInput]? = nil, sampleSnapshotTaskSet: [SampleSnapshotTaskInput]? = nil, imageSpriteTaskSet: [ImageSpriteTaskInput]? = nil, adaptiveDynamicStreamingTaskSet: [AdaptiveDynamicStreamingTaskInput]? = nil) {
             self.transcodeTaskSet = transcodeTaskSet
             self.animatedGraphicTaskSet = animatedGraphicTaskSet
             self.snapshotByTimeOffsetTaskSet = snapshotByTimeOffsetTaskSet
@@ -5667,7 +5667,7 @@ extension Mps {
             self.imageSpriteTaskSet = imageSpriteTaskSet
             self.adaptiveDynamicStreamingTaskSet = adaptiveDynamicStreamingTaskSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case transcodeTaskSet = "TranscodeTaskSet"
             case animatedGraphicTaskSet = "AnimatedGraphicTaskSet"
@@ -5677,7 +5677,7 @@ extension Mps {
             case adaptiveDynamicStreamingTaskSet = "AdaptiveDynamicStreamingTaskSet"
         }
     }
-    
+
     /// 任务查询结果类型
     public struct MediaProcessTaskResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
@@ -5689,31 +5689,31 @@ extension Mps {
         /// <li>CoverBySnapshot：截图做封面</li>
         /// <li>AdaptiveDynamicStreaming：自适应码流</li>
         public let type: String
-        
+
         /// 视频转码任务的查询结果，当任务类型为 Transcode 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transcodeTask: MediaProcessTaskTranscodeResult?
-        
+
         /// 视频转动图任务的查询结果，当任务类型为 AnimatedGraphics 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let animatedGraphicTask: MediaProcessTaskAnimatedGraphicResult?
-        
+
         /// 对视频按时间点截图任务的查询结果，当任务类型为 SnapshotByTimeOffset 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotByTimeOffsetTask: MediaProcessTaskSnapshotByTimeOffsetResult?
-        
+
         /// 对视频采样截图任务的查询结果，当任务类型为 SampleSnapshot 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sampleSnapshotTask: MediaProcessTaskSampleSnapshotResult?
-        
+
         /// 对视频截雪碧图任务的查询结果，当任务类型为 ImageSprite 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageSpriteTask: MediaProcessTaskImageSpriteResult?
-        
+
         /// 转自适应码流任务查询结果，当任务类型为 AdaptiveDynamicStreaming 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let adaptiveDynamicStreamingTask: MediaProcessTaskAdaptiveDynamicStreamingResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case transcodeTask = "TranscodeTask"
@@ -5724,28 +5724,28 @@ extension Mps {
             case adaptiveDynamicStreamingTask = "AdaptiveDynamicStreamingTask"
         }
     }
-    
+
     /// 对视频做采样截图任务结果类型
     public struct MediaProcessTaskSampleSnapshotResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 对视频做采样截图任务输入。
         public let input: SampleSnapshotTaskInput
-        
+
         /// 对视频做采样截图任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaSampleSnapshotItem?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5755,28 +5755,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 对视频按指定时间点截图任务结果类型
     public struct MediaProcessTaskSnapshotByTimeOffsetResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 对视频按指定时间点截图任务输入。
         public let input: SnapshotByTimeOffsetTaskInput
-        
+
         /// 对视频按指定时间点截图任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaSnapshotByTimeOffsetItem?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5786,32 +5786,32 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 转码任务结果类型
     public struct MediaProcessTaskTranscodeResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 转码任务的输入。
         public let input: TranscodeTaskInput
-        
+
         /// 转码任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaTranscodeItem?
-        
+
         /// 转码进度，取值范围 [0-100]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5822,31 +5822,31 @@ extension Mps {
             case progress = "Progress"
         }
     }
-    
+
     /// 采样截图信息
     public struct MediaSampleSnapshotItem: TCOutputModel {
         /// 采样截图规格 ID，参见[采样截图参数模板](https://cloud.tencent.com/document/product/266/33480#.E9.87.87.E6.A0.B7.E6.88.AA.E5.9B.BE.E6.A8.A1.E6.9D.BF)。
         public let definition: Int64
-        
+
         /// 采样方式，取值范围：
         /// <li>Percent：根据百分比间隔采样。</li>
         /// <li>Time：根据时间间隔采样。</li>
         public let sampleType: String
-        
+
         /// 采样间隔
         /// <li>当 SampleType 为 Percent 时，该值表示多少百分比一张图。</li>
         /// <li>当 SampleType 为 Time 时，该值表示多少时间间隔一张图，单位秒， 第一张图均为视频首帧。</li>
         public let interval: Int64
-        
+
         /// 截图后文件的存储位置。
         public let storage: TaskOutputStorage
-        
+
         /// 生成的截图 path 列表。
         public let imagePathSet: [String]
-        
+
         /// 截图如果被打上了水印，被打水印的模板 ID 列表。
         public let waterMarkDefinition: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case sampleType = "SampleType"
@@ -5856,81 +5856,81 @@ extension Mps {
             case waterMarkDefinition = "WaterMarkDefinition"
         }
     }
-    
+
     /// 点播文件指定时间点截图信息
     public struct MediaSnapshotByTimeOffsetItem: TCOutputModel {
         /// 指定时间点截图规格，参见[指定时间点截图参数模板](https://cloud.tencent.com/document/product/266/33480#.E6.97.B6.E9.97.B4.E7.82.B9.E6.88.AA.E5.9B.BE.E6.A8.A1.E6.9D.BF)。
         public let definition: Int64
-        
+
         /// 同一规格的截图信息集合，每个元素代表一张截图。
         public let picInfoSet: [MediaSnapshotByTimePicInfoItem]
-        
+
         /// 指定时间点截图文件的存储位置。
         public let storage: TaskOutputStorage
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case picInfoSet = "PicInfoSet"
             case storage = "Storage"
         }
     }
-    
+
     /// 指定时间点截图信息
     public struct MediaSnapshotByTimePicInfoItem: TCOutputModel {
         /// 该张截图对应视频文件中的时间偏移，单位为秒。
         public let timeOffset: Float
-        
+
         /// 该张截图的路径。
         public let path: String
-        
+
         /// 截图如果被打上了水印，被打水印的模板 ID 列表。
         public let waterMarkDefinition: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case timeOffset = "TimeOffset"
             case path = "Path"
             case waterMarkDefinition = "WaterMarkDefinition"
         }
     }
-    
+
     /// 转码信息
     public struct MediaTranscodeItem: TCOutputModel {
         /// 转码后文件的目标存储。
         public let outputStorage: TaskOutputStorage
-        
+
         /// 转码后的视频文件路径。
         public let path: String
-        
+
         /// 转码规格 ID，参见[转码参数模板](https://cloud.tencent.com/document/product/862/37042)。
         public let definition: Int64
-        
+
         /// 视频流码率平均值与音频流码率平均值之和， 单位：bps。
         public let bitrate: Int64
-        
+
         /// 视频流高度的最大值，单位：px。
         public let height: Int64
-        
+
         /// 视频流宽度的最大值，单位：px。
         public let width: Int64
-        
+
         /// 媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
         public let size: Int64
-        
+
         /// 视频时长，单位：秒。
         public let duration: Float
-        
+
         /// 容器类型，例如 m4a，mp4 等。
         public let container: String
-        
+
         /// 视频的 md5 值。
         public let md5: String
-        
+
         /// 音频流信息。
         public let audioStreamSet: [MediaAudioStreamItem]
-        
+
         /// 视频流信息。
         public let videoStreamSet: [MediaVideoStreamItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case outputStorage = "OutputStorage"
             case path = "Path"
@@ -5946,40 +5946,40 @@ extension Mps {
             case videoStreamSet = "VideoStreamSet"
         }
     }
-    
+
     /// 点播文件视频流信息
     public struct MediaVideoStreamItem: TCOutputModel {
         /// 视频流的码率，单位：bps。
         public let bitrate: Int64
-        
+
         /// 视频流的高度，单位：px。
         public let height: Int64
-        
+
         /// 视频流的宽度，单位：px。
         public let width: Int64
-        
+
         /// 视频流的编码格式，例如 h264。
         public let codec: String
-        
+
         /// 帧率，单位：hz。
         public let fps: Int64
-        
+
         /// 色彩空间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let colorPrimaries: String?
-        
+
         /// 色彩空间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let colorSpace: String?
-        
+
         /// 色彩空间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let colorTransfer: String?
-        
+
         /// HDR类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hdrType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case height = "Height"
@@ -5992,49 +5992,49 @@ extension Mps {
             case hdrType = "HdrType"
         }
     }
-    
+
     /// 修改输入信息的参数。
     public struct ModifyInput: TCInputModel {
         /// 输入Id。
         public let inputId: String
-        
+
         /// 输入名称。
         public let inputName: String
-        
+
         /// 输入描述。
         public let description: String
-        
+
         /// 允许的推流的IP，CIDR格式。
         public let allowIpList: [String]
-        
+
         /// SRT的配置信息。
         public let srtSettings: CreateInputSRTSettings
-        
+
         /// RTP的配置信息。
         public let rtpSettings: CreateInputRTPSettings
-        
+
         /// 输入的协议，可选[SRT|RTP|RTMP]。
         /// 当输出包含RTP时，输入只能是RTP。
         /// 当输出包含RTMP时，输入可以是SRT/RTMP。
         /// 当输出包含SRT时，输入只能是SRT。
         public let `protocol`: String?
-        
+
         /// 输入的主备开关，可选[OPEN|CLOSE]。
         public let failOver: String?
-        
+
         /// RTMP_PULL的配置信息。
         public let rtmpPullSettings: CreateInputRTMPPullSettings?
-        
+
         /// RTSP_PULL的配置信息。
         public let rtspPullSettings: CreateInputRTSPPullSettings?
-        
+
         /// HLS_PULL的配置信息。
         public let hlsPullSettings: CreateInputHLSPullSettings?
-        
+
         /// 延播平滑吐流配置信息。
         public let resilientStream: ResilientStreamConf?
-        
-        public init (inputId: String, inputName: String, description: String, allowIpList: [String], srtSettings: CreateInputSRTSettings, rtpSettings: CreateInputRTPSettings, protocol: String? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
+
+        public init(inputId: String, inputName: String, description: String, allowIpList: [String], srtSettings: CreateInputSRTSettings, rtpSettings: CreateInputRTPSettings, protocol: String? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
             self.inputId = inputId
             self.inputName = inputName
             self.description = description
@@ -6048,7 +6048,7 @@ extension Mps {
             self.hlsPullSettings = hlsPullSettings
             self.resilientStream = resilientStream
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case inputId = "InputId"
             case inputName = "InputName"
@@ -6064,35 +6064,35 @@ extension Mps {
             case resilientStream = "ResilientStream"
         }
     }
-    
+
     /// 修改Output配置。
     public struct ModifyOutputInfo: TCInputModel {
         /// 需要修改的Output的Id。
         public let outputId: String
-        
+
         /// 输出的名称。
         public let outputName: String
-        
+
         /// 输出的描述。
         public let description: String
-        
+
         /// 输出的转推协议，支持SRT|RTP|RTMP。
         public let `protocol`: String
-        
+
         /// 转推SRT的配置。
         public let srtSettings: CreateOutputSRTSettings?
-        
+
         /// 转推RTP的配置。
         public let rtpSettings: CreateOutputInfoRTPSettings?
-        
+
         /// 转推RTMP的配置。
         public let rtmpSettings: CreateOutputRTMPSettings?
-        
+
         /// IP白名单列表，格式为CIDR，如0.0.0.0/0。
         /// 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         public let allowIpList: [String]?
-        
-        public init (outputId: String, outputName: String, description: String, protocol: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil) {
+
+        public init(outputId: String, outputName: String, description: String, protocol: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil) {
             self.outputId = outputId
             self.outputName = outputName
             self.description = description
@@ -6102,7 +6102,7 @@ extension Mps {
             self.rtmpSettings = rtmpSettings
             self.allowIpList = allowIpList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case outputId = "OutputId"
             case outputName = "OutputName"
@@ -6114,51 +6114,51 @@ extension Mps {
             case allowIpList = "AllowIpList"
         }
     }
-    
+
     /// 媒体处理任务中的马赛克参数类型
     public struct MosaicInput: TCInputModel, TCOutputModel {
         /// 原点位置，目前仅支持：
         /// <li>TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。</li>
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
-        
+
         /// 马赛克原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>
         /// 默认值：0px。
         public let xPos: String?
-        
+
         /// 马赛克原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>
         /// 默认值：0px。
         public let yPos: String?
-        
+
         /// 马赛克的宽度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
         /// 默认值：10%。
         public let width: String?
-        
+
         /// 马赛克的高度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>
         /// 默认值：10%。
         public let height: String?
-        
+
         /// 马赛克的起始时间偏移，单位：秒。不填或填0，表示马赛克从画面出现时开始显现。
         /// <li>不填或填0，表示马赛克从画面开始就出现；</li>
         /// <li>当数值大于0时（假设为 n），表示马赛克从画面开始的第 n 秒出现；</li>
         /// <li>当数值小于0时（假设为 -n），表示马赛克从离画面结束 n 秒前开始出现。</li>
         public let startTimeOffset: Float?
-        
+
         /// 马赛克的结束时间偏移，单位：秒。
         /// <li>不填或填0，表示马赛克持续到画面结束；</li>
         /// <li>当数值大于0时（假设为 n），表示马赛克持续到第 n 秒时消失；</li>
         /// <li>当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。</li>
         public let endTimeOffset: Float?
-        
-        public init (coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
+
+        public init(coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.coordinateOrigin = coordinateOrigin
             self.xPos = xPos
             self.yPos = yPos
@@ -6167,7 +6167,7 @@ extension Mps {
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case coordinateOrigin = "CoordinateOrigin"
             case xPos = "XPos"
@@ -6178,28 +6178,28 @@ extension Mps {
             case endTimeOffset = "EndTimeOffset"
         }
     }
-    
+
     /// 输出文件名的`{number}`变量的规则。
     public struct NumberFormat: TCInputModel, TCOutputModel {
         /// `{number}`变量的起始值，默认为0。
         public let initialValue: UInt64?
-        
+
         /// `{number}`变量的增长步长，默认为1。
         public let increment: UInt64?
-        
+
         /// `{number}`变量的最小长度，不足时补占位符。默认为1。
         public let minLength: UInt64?
-        
+
         /// `{number}`变量的长度不足时，补充的占位符。默认为"0"。
         public let placeHolder: String?
-        
-        public init (initialValue: UInt64? = nil, increment: UInt64? = nil, minLength: UInt64? = nil, placeHolder: String? = nil) {
+
+        public init(initialValue: UInt64? = nil, increment: UInt64? = nil, minLength: UInt64? = nil, placeHolder: String? = nil) {
             self.initialValue = initialValue
             self.increment = increment
             self.minLength = minLength
             self.placeHolder = placeHolder
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case initialValue = "InitialValue"
             case increment = "Increment"
@@ -6207,140 +6207,140 @@ extension Mps {
             case placeHolder = "PlaceHolder"
         }
     }
-    
+
     /// 文本全文本识别任务控制参数
     public struct OcrFullTextConfigureInfo: TCInputModel, TCOutputModel {
         /// 文本全文识别任务开关，可选值：
         /// <li>ON：开启智能文本全文识别任务；</li>
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 文本全文本识别任务控制参数
     public struct OcrFullTextConfigureInfoForUpdate: TCInputModel {
         /// 文本全文识别任务开关，可选值：
         /// <li>ON：开启智能文本全文识别任务；</li>
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 文本关键词识别控制参数。
     public struct OcrWordsConfigureInfo: TCInputModel, TCOutputModel {
         /// 文本关键词识别任务开关，可选值：
         /// <li>ON：开启文本关键词识别任务；</li>
         /// <li>OFF：关闭文本关键词识别任务。</li>
         public let `switch`: String
-        
+
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
-        public init (switch: String, labelSet: [String]? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
         }
     }
-    
+
     /// 文本关键词识别控制参数。
     public struct OcrWordsConfigureInfoForUpdate: TCInputModel {
         /// 文本关键词识别任务开关，可选值：
         /// <li>ON：开启文本关键词识别任务；</li>
         /// <li>OFF：关闭文本关键词识别任务。</li>
         public let `switch`: String?
-        
+
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
-        public init (switch: String? = nil, labelSet: [String]? = nil) {
+
+        public init(switch: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
         }
     }
-    
+
     /// 输出的出口的地址。
     public struct OutputAddress: TCOutputModel {
         /// 出口IP。
         public let ip: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
         }
     }
-    
+
     /// SRT输出的监听地址。
     public struct OutputSRTSourceAddressResp: TCInputModel {
         /// 监听IP。
         public let ip: String
-        
+
         /// 监听端口。
         public let port: Int64
-        
-        public init (ip: String, port: Int64) {
+
+        public init(ip: String, port: Int64) {
             self.ip = ip
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// 自定义转码的规格参数。用于覆盖模板中对应参数值。
     public struct OverrideTranscodeParameter: TCInputModel, TCOutputModel {
         /// 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
         public let container: String?
-        
+
         /// 是否去除视频数据，取值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         public let removeVideo: UInt64?
-        
+
         /// 是否去除音频数据，取值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         public let removeAudio: UInt64?
-        
+
         /// 视频流配置参数。
         public let videoTemplate: VideoTemplateInfoForUpdate?
-        
+
         /// 音频流配置参数。
         public let audioTemplate: AudioTemplateInfoForUpdate?
-        
+
         /// 极速高清转码参数。
         public let tehdConfig: TEHDConfigForUpdate?
-        
+
         /// 字幕流配置参数。
         public let subtitleTemplate: SubtitleTemplate?
-        
-        public init (container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil) {
+
+        public init(container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil) {
             self.container = container
             self.removeVideo = removeVideo
             self.removeAudio = removeAudio
@@ -6349,7 +6349,7 @@ extension Mps {
             self.tehdConfig = tehdConfig
             self.subtitleTemplate = subtitleTemplate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case container = "Container"
             case removeVideo = "RemoveVideo"
@@ -6360,114 +6360,114 @@ extension Mps {
             case subtitleTemplate = "SubtitleTemplate"
         }
     }
-    
+
     /// 语音涉敏任务控制参数
     public struct PoliticalAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音涉敏任务开关，可选值：
         /// <li>ON：开启语音涉敏任务；</li>
         /// <li>OFF：关闭语音涉敏任务。</li>
         public let `switch`: String
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 语音涉敏任务控制参数。
     public struct PoliticalAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音涉敏任务开关，可选值：
         /// <li>ON：开启语音涉敏任务；</li>
         /// <li>OFF：关闭语音涉敏任务。</li>
         public let `switch`: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 涉敏任务控制参数
     public struct PoliticalConfigureInfo: TCInputModel, TCOutputModel {
         /// 画面涉敏控制参数。
         public let imgReviewInfo: PoliticalImgReviewTemplateInfo?
-        
+
         /// 语音涉敏控制参数。
         public let asrReviewInfo: PoliticalAsrReviewTemplateInfo?
-        
+
         /// 文本涉敏控制参数。
         public let ocrReviewInfo: PoliticalOcrReviewTemplateInfo?
-        
-        public init (imgReviewInfo: PoliticalImgReviewTemplateInfo? = nil, asrReviewInfo: PoliticalAsrReviewTemplateInfo? = nil, ocrReviewInfo: PoliticalOcrReviewTemplateInfo? = nil) {
+
+        public init(imgReviewInfo: PoliticalImgReviewTemplateInfo? = nil, asrReviewInfo: PoliticalAsrReviewTemplateInfo? = nil, ocrReviewInfo: PoliticalOcrReviewTemplateInfo? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imgReviewInfo = "ImgReviewInfo"
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 涉敏任务控制参数。
     public struct PoliticalConfigureInfoForUpdate: TCInputModel {
         /// 画面涉敏控制参数。
         public let imgReviewInfo: PoliticalImgReviewTemplateInfoForUpdate?
-        
+
         /// 语音涉敏控制参数。
         public let asrReviewInfo: PoliticalAsrReviewTemplateInfoForUpdate?
-        
+
         /// 文本涉敏控制参数。
         public let ocrReviewInfo: PoliticalOcrReviewTemplateInfoForUpdate?
-        
-        public init (imgReviewInfo: PoliticalImgReviewTemplateInfoForUpdate? = nil, asrReviewInfo: PoliticalAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: PoliticalOcrReviewTemplateInfoForUpdate? = nil) {
+
+        public init(imgReviewInfo: PoliticalImgReviewTemplateInfoForUpdate? = nil, asrReviewInfo: PoliticalAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: PoliticalOcrReviewTemplateInfoForUpdate? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imgReviewInfo = "ImgReviewInfo"
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 画面涉敏任务控制参数
     public struct PoliticalImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面涉敏任务开关，可选值：
         /// <li>ON：开启画面涉敏任务；</li>
         /// <li>OFF：关闭画面涉敏任务。</li>
         public let `switch`: String
-        
+
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
         /// <li>violation_photo：违规图标；</li>
         /// <li>politician：涉敏人物；</li>
@@ -6478,20 +6478,20 @@ extension Mps {
         /// <li>celebrity：知名人物；</li>
         /// <li>military：军事人物。</li>
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -6499,14 +6499,14 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 画面涉敏任务控制参数。
     public struct PoliticalImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面涉敏任务开关，可选值：
         /// <li>ON：开启画面涉敏任务；</li>
         /// <li>OFF：关闭画面涉敏任务。</li>
         public let `switch`: String?
-        
+
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
         /// <li>violation_photo：违规图标；</li>
         /// <li>politician：涉敏人物；</li>
@@ -6517,20 +6517,20 @@ extension Mps {
         /// <li>celebrity：知名人物；</li>
         /// <li>military：军事人物。</li>
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -6538,186 +6538,186 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文本涉敏任务控制参数
     public struct PoliticalOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本涉敏任务开关，可选值：
         /// <li>ON：开启文本涉敏任务；</li>
         /// <li>OFF：关闭文本涉敏任务。</li>
         public let `switch`: String
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文本涉敏任务控制参数。
     public struct PoliticalOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本涉敏任务开关，可选值：
         /// <li>ON：开启文本涉敏任务；</li>
         /// <li>OFF：关闭文本涉敏任务。</li>
         public let `switch`: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 语音鉴黄任务控制参数
     public struct PornAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音鉴黄任务开关，可选值：
         /// <li>ON：开启语音鉴黄任务；</li>
         /// <li>OFF：关闭语音鉴黄任务。</li>
         public let `switch`: String
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 语音鉴黄任务控制参数。
     public struct PornAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音鉴黄任务开关，可选值：
         /// <li>ON：开启语音鉴黄任务；</li>
         /// <li>OFF：关闭语音鉴黄任务。</li>
         public let `switch`: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 鉴黄任务控制参数
     public struct PornConfigureInfo: TCInputModel, TCOutputModel {
         /// 画面鉴黄控制参数。
         public let imgReviewInfo: PornImgReviewTemplateInfo?
-        
+
         /// 语音鉴黄控制参数。
         public let asrReviewInfo: PornAsrReviewTemplateInfo?
-        
+
         /// 文本鉴黄控制参数。
         public let ocrReviewInfo: PornOcrReviewTemplateInfo?
-        
-        public init (imgReviewInfo: PornImgReviewTemplateInfo? = nil, asrReviewInfo: PornAsrReviewTemplateInfo? = nil, ocrReviewInfo: PornOcrReviewTemplateInfo? = nil) {
+
+        public init(imgReviewInfo: PornImgReviewTemplateInfo? = nil, asrReviewInfo: PornAsrReviewTemplateInfo? = nil, ocrReviewInfo: PornOcrReviewTemplateInfo? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imgReviewInfo = "ImgReviewInfo"
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 鉴黄任务控制参数。
     public struct PornConfigureInfoForUpdate: TCInputModel {
         /// 画面鉴黄控制参数。
         public let imgReviewInfo: PornImgReviewTemplateInfoForUpdate?
-        
+
         /// 语音鉴黄控制参数。
         public let asrReviewInfo: PornAsrReviewTemplateInfoForUpdate?
-        
+
         /// 文本鉴黄控制参数。
         public let ocrReviewInfo: PornOcrReviewTemplateInfoForUpdate?
-        
-        public init (imgReviewInfo: PornImgReviewTemplateInfoForUpdate? = nil, asrReviewInfo: PornAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: PornOcrReviewTemplateInfoForUpdate? = nil) {
+
+        public init(imgReviewInfo: PornImgReviewTemplateInfoForUpdate? = nil, asrReviewInfo: PornAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: PornOcrReviewTemplateInfoForUpdate? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imgReviewInfo = "ImgReviewInfo"
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 画面鉴黄任务控制参数
     public struct PornImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面鉴黄任务开关，可选值：
         /// <li>ON：开启画面鉴黄任务；</li>
         /// <li>OFF：关闭画面鉴黄任务。</li>
         public let `switch`: String
-        
+
         /// 画面鉴黄过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
         /// <li>porn：色情；</li>
         /// <li>vulgar：低俗；</li>
         /// <li>intimacy：亲密行为；</li>
         /// <li>sexy：性感。</li>
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 0 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -6725,34 +6725,34 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 画面鉴黄任务控制参数。
     public struct PornImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面鉴黄任务开关，可选值：
         /// <li>ON：开启画面鉴黄任务；</li>
         /// <li>OFF：关闭画面鉴黄任务。</li>
         public let `switch`: String?
-        
+
         /// 画面鉴黄过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
         /// <li>porn：色情；</li>
         /// <li>vulgar：低俗；</li>
         /// <li>intimacy：亲密行为；</li>
         /// <li>sexy：性感。</li>
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -6760,294 +6760,294 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文本鉴黄任务控制参数
     public struct PornOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本鉴黄任务开关，可选值：
         /// <li>ON：开启文本鉴黄任务；</li>
         /// <li>OFF：关闭文本鉴黄任务。</li>
         public let `switch`: String
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文本鉴黄任务控制参数。
     public struct PornOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本鉴黄任务开关，可选值：
         /// <li>ON：开启文本鉴黄任务；</li>
         /// <li>OFF：关闭文本鉴黄任务。</li>
         public let `switch`: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 语音违禁任务控制参数
     public struct ProhibitedAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音违禁任务开关，可选值：
         /// <li>ON：开启语音违禁任务；</li>
         /// <li>OFF：关闭语音违禁任务。</li>
         public let `switch`: String
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 语音违禁任务控制参数
     public struct ProhibitedAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音违禁任务开关，可选值：
         /// <li>ON：开启语音违禁任务；</li>
         /// <li>OFF：关闭语音违禁任务。</li>
         public let `switch`: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 违禁任务控制参数
     public struct ProhibitedConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音违禁控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asrReviewInfo: ProhibitedAsrReviewTemplateInfo?
-        
+
         /// 文本违禁控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ocrReviewInfo: ProhibitedOcrReviewTemplateInfo?
-        
-        public init (asrReviewInfo: ProhibitedAsrReviewTemplateInfo? = nil, ocrReviewInfo: ProhibitedOcrReviewTemplateInfo? = nil) {
+
+        public init(asrReviewInfo: ProhibitedAsrReviewTemplateInfo? = nil, ocrReviewInfo: ProhibitedOcrReviewTemplateInfo? = nil) {
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 违禁任务控制参数
     public struct ProhibitedConfigureInfoForUpdate: TCInputModel {
         /// 语音违禁控制参数。
         public let asrReviewInfo: ProhibitedAsrReviewTemplateInfoForUpdate?
-        
+
         /// 文本违禁控制参数。
         public let ocrReviewInfo: ProhibitedOcrReviewTemplateInfoForUpdate?
-        
-        public init (asrReviewInfo: ProhibitedAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: ProhibitedOcrReviewTemplateInfoForUpdate? = nil) {
+
+        public init(asrReviewInfo: ProhibitedAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: ProhibitedOcrReviewTemplateInfoForUpdate? = nil) {
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 文本违禁任务控制参数
     public struct ProhibitedOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本违禁任务开关，可选值：
         /// <li>ON：开启文本违禁任务；</li>
         /// <li>OFF：关闭文本违禁任务。</li>
         public let `switch`: String
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文本违禁任务控制参数
     public struct ProhibitedOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本违禁任务开关，可选值：
         /// <li>ON：开启文本违禁任务；</li>
         /// <li>OFF：关闭文本违禁任务。</li>
         public let `switch`: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// RTMP转推的目标地址信息。
     public struct RTMPAddressDestination: TCOutputModel {
         /// 转推RTMP的目标Url，格式如'rtmp://domain/live'。
         public let url: String
-        
+
         /// 转推RTMP的目标StreamKey，格式如'steamid?key=value'。
         public let streamKey: String
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case streamKey = "StreamKey"
         }
     }
-    
+
     /// 创建的输入RTMP拉流源站配置信息。
     public struct RTMPPullSourceAddress: TCInputModel {
         /// RTMP源站的TcUrl地址。
         public let tcUrl: String
-        
+
         /// RTMP源站的StreamKey信息。
         public let streamKey: String
-        
-        public init (tcUrl: String, streamKey: String) {
+
+        public init(tcUrl: String, streamKey: String) {
             self.tcUrl = tcUrl
             self.streamKey = streamKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tcUrl = "TcUrl"
             case streamKey = "StreamKey"
         }
     }
-    
+
     /// 转推的RTP目标地址信息。
     public struct RTPAddressDestination: TCOutputModel {
         /// 转推的目标地址的IP。
         public let ip: String
-        
+
         /// 转推的目标地址的端口。
         public let port: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// 创建的输入RTSP拉流源站配置信息。
     public struct RTSPPullSourceAddress: TCInputModel {
         /// RTSP源站的Url地址。
         public let url: String
-        
-        public init (url: String) {
+
+        public init(url: String) {
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 图片水印模板输入参数
     public struct RawImageWatermarkInput: TCInputModel, TCOutputModel {
         /// 水印图片的输入内容。支持 jpeg、png 图片格式。
         public let imageContent: MediaInputInfo
-        
+
         /// 水印的宽度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
         /// 默认值：10%。
         public let width: String?
-        
+
         /// 水印的高度。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
-        
+
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
         /// <li>once：动态水印播放完后，不再出现；</li>
         /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
         /// <li>repeat：水印循环播放，直到视频结束（默认值）。</li>
         public let repeatType: String?
-        
-        public init (imageContent: MediaInputInfo, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
+
+        public init(imageContent: MediaInputInfo, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
             self.imageContent = imageContent
             self.width = width
             self.height = height
             self.repeatType = repeatType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageContent = "ImageContent"
             case width = "Width"
@@ -7055,34 +7055,34 @@ extension Mps {
             case repeatType = "RepeatType"
         }
     }
-    
+
     /// 自定义转码的规格参数。
     public struct RawTranscodeParameter: TCInputModel, TCOutputModel {
         /// 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
         public let container: String
-        
+
         /// 是否去除视频数据，取值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         /// 默认值：0。
         public let removeVideo: Int64?
-        
+
         /// 是否去除音频数据，取值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         /// 默认值：0。
         public let removeAudio: Int64?
-        
+
         /// 视频流配置参数，当 RemoveVideo 为 0，该字段必填。
         public let videoTemplate: VideoTemplateInfo?
-        
+
         /// 音频流配置参数，当 RemoveAudio 为 0，该字段必填。
         public let audioTemplate: AudioTemplateInfo?
-        
+
         /// 极速高清转码参数。
         public let tehdConfig: TEHDConfig?
-        
-        public init (container: String, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfo? = nil, audioTemplate: AudioTemplateInfo? = nil, tehdConfig: TEHDConfig? = nil) {
+
+        public init(container: String, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfo? = nil, audioTemplate: AudioTemplateInfo? = nil, tehdConfig: TEHDConfig? = nil) {
             self.container = container
             self.removeVideo = removeVideo
             self.removeAudio = removeAudio
@@ -7090,7 +7090,7 @@ extension Mps {
             self.audioTemplate = audioTemplate
             self.tehdConfig = tehdConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case container = "Container"
             case removeVideo = "RemoveVideo"
@@ -7100,41 +7100,41 @@ extension Mps {
             case tehdConfig = "TEHDConfig"
         }
     }
-    
+
     /// 自定义水印规格参数。
     public struct RawWatermarkParameter: TCInputModel, TCOutputModel {
         /// 水印类型，可选值：
         /// <li>image：图片水印。</li>
         public let type: String
-        
+
         /// 原点位置，目前仅支持：
         /// <li>TopLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角。</li>
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
-        
+
         /// 水印原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>
         /// 默认值：0px。
         public let xPos: String?
-        
+
         /// 水印原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
         /// <li>当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>
         /// 默认值：0px。
         public let yPos: String?
-        
+
         /// 图片水印模板，当 Type 为 image，该字段必填。当 Type 为 text，该字段无效。
         public let imageTemplate: RawImageWatermarkInput?
-        
-        public init (type: String, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: RawImageWatermarkInput? = nil) {
+
+        public init(type: String, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: RawImageWatermarkInput? = nil) {
             self.type = type
             self.coordinateOrigin = coordinateOrigin
             self.xPos = xPos
             self.yPos = yPos
             self.imageTemplate = imageTemplate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case coordinateOrigin = "CoordinateOrigin"
@@ -7143,117 +7143,117 @@ extension Mps {
             case imageTemplate = "ImageTemplate"
         }
     }
-    
+
     /// 地区信息。
     public struct RegionInfo: TCOutputModel {
         /// 地区名称。
         public let name: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
         }
     }
-    
+
     /// 延播平滑吐流配置。
     public struct ResilientStreamConf: TCInputModel, TCOutputModel {
         /// 是否开启延播平滑吐流，true开启，false不开启，默认不开启。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enable: Bool?
-        
+
         /// 延播时间，单位秒，目前支持的范围为10~300秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bufferTime: UInt64?
-        
-        public init (enable: Bool? = nil, bufferTime: UInt64? = nil) {
+
+        public init(enable: Bool? = nil, bufferTime: UInt64? = nil) {
             self.enable = enable
             self.bufferTime = bufferTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enable = "Enable"
             case bufferTime = "BufferTime"
         }
     }
-    
+
     /// 转推的目标地址信息。
     public struct SRTAddressDestination: TCOutputModel {
         /// 目标地址的IP。
         public let ip: String
-        
+
         /// 目标地址的端口。
         public let port: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// SRT输入源地址。
     public struct SRTSourceAddressReq: TCInputModel {
         /// 对端IP。
         public let ip: String
-        
+
         /// 对端端口。
         public let port: Int64
-        
-        public init (ip: String, port: Int64) {
+
+        public init(ip: String, port: Int64) {
             self.ip = ip
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// SRT输入源地址。
     public struct SRTSourceAddressResp: TCInputModel {
         /// 对端IP。
         public let ip: String
-        
+
         /// 对端端口。
         public let port: Int64
-        
-        public init (ip: String, port: Int64) {
+
+        public init(ip: String, port: Int64) {
             self.ip = ip
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
         }
     }
-    
+
     /// 对视频做采样截图任务输入参数类型。
     public struct SampleSnapshotTaskInput: TCInputModel, TCOutputModel {
         /// 采样截图模板 ID。
         public let definition: UInt64
-        
+
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         public let watermarkSet: [WatermarkInput]?
-        
+
         /// 采样截图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputStorage: TaskOutputStorage?
-        
+
         /// 采样截图后图片文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_sampleSnapshot_{definition}_{number}.{format}`。
         public let outputObjectPath: String?
-        
+
         /// 采样截图后输出路径中的`{number}`变量的规则。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectNumberFormat: NumberFormat?
-        
-        public init (definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, objectNumberFormat: NumberFormat? = nil) {
+
+        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, objectNumberFormat: NumberFormat? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.outputStorage = outputStorage
             self.outputObjectPath = outputObjectPath
             self.objectNumberFormat = objectNumberFormat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case watermarkSet = "WatermarkSet"
@@ -7262,23 +7262,23 @@ extension Mps {
             case objectNumberFormat = "ObjectNumberFormat"
         }
     }
-    
+
     /// 采样截图模板详情
     public struct SampleSnapshotTemplate: TCOutputModel {
         /// 采样截图模板唯一标识。
         public let definition: UInt64
-        
+
         /// 模板类型，取值范围：
         /// <li>Preset：系统预置模板；</li>
         /// <li>Custom：用户自定义模板。</li>
         public let type: String
-        
+
         /// 采样截图模板名称。
         public let name: String
-        
+
         /// 模板描述信息。
         public let comment: String
-        
+
         /// 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -7286,7 +7286,7 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let width: UInt64
-        
+
         /// 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -7294,28 +7294,28 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let height: UInt64
-        
+
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 默认值：open。
         public let resolutionAdaptive: String
-        
+
         /// 图片格式。
         public let format: String
-        
+
         /// 采样截图类型。
         public let sampleType: String
-        
+
         /// 采样间隔。
         public let sampleInterval: UInt64
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
@@ -7323,7 +7323,7 @@ extension Mps {
         /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
         /// 默认值：black 。
         public let fillType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case type = "Type"
@@ -7340,28 +7340,28 @@ extension Mps {
             case fillType = "FillType"
         }
     }
-    
+
     /// 编排视频分析任务结果类型
     public struct ScheduleAnalysisTaskResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 分析任务的输入。
         public let input: AiAnalysisTaskInput
-        
+
         /// 分析任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: [AiAnalysisResult]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -7371,28 +7371,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 编排视频识别任务结果类型
     public struct ScheduleRecognitionTaskResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 识别任务的输入。
         public let input: AiRecognitionTaskInput
-        
+
         /// 识别任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: [AiRecognitionResult]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -7402,28 +7402,28 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 编排视频审核任务结果类型
     public struct ScheduleReviewTaskResult: TCOutputModel {
         /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         public let status: String
-        
+
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
-        
+
         /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         public let errCode: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 审核任务的输入。
         public let input: AiContentReviewTaskInput
-        
+
         /// 审核任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: [AiContentReviewResult]?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -7433,29 +7433,29 @@ extension Mps {
             case output = "Output"
         }
     }
-    
+
     /// 编排任务信息
     public struct ScheduleTask: TCOutputModel {
         /// 编排任务 ID。
         public let taskId: String
-        
+
         /// 任务流状态，取值：
         /// <li>PROCESSING：处理中；</li>
         /// <li>FINISH：已完成。</li>
         public let status: String
-        
+
         /// 媒体处理的目标文件信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputInfo: MediaInputInfo?
-        
+
         /// 原始视频的元信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaData: MediaMetaData?
-        
+
         /// 编排任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activityResultSet: [ActivityResult]?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -7464,7 +7464,7 @@ extension Mps {
             case activityResultSet = "ActivityResultSet"
         }
     }
-    
+
     /// 去划痕配置
     public struct ScratchRepairConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -7472,23 +7472,23 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 强度，取值范围：0.0~1.0。
         /// 默认：0.0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intensity: Float?
-        
-        public init (switch: String? = nil, intensity: Float? = nil) {
+
+        public init(switch: String? = nil, intensity: Float? = nil) {
             self.`switch` = `switch`
             self.intensity = intensity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case intensity = "Intensity"
         }
     }
-    
+
     /// 细节增强配置
     public struct SharpEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -7496,51 +7496,51 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 强度，取值范围：0.0~1.0。
         /// 默认：0.0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intensity: Float?
-        
-        public init (switch: String? = nil, intensity: Float? = nil) {
+
+        public init(switch: String? = nil, intensity: Float? = nil) {
             self.`switch` = `switch`
             self.intensity = intensity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case intensity = "Intensity"
         }
     }
-    
+
     /// 对视频按指定时间点截图任务输入参数类型
     public struct SnapshotByTimeOffsetTaskInput: TCInputModel, TCOutputModel {
         /// 指定时间点截图模板 ID。
         public let definition: UInt64
-        
+
         /// 截图时间点列表，时间点支持 s、% 两种格式：
         /// <li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
         /// <li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
         public let extTimeOffsetSet: [String]?
-        
+
         /// 截图时间点列表，单位为<font color=red>秒</font>。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
         public let timeOffsetSet: [Float]?
-        
+
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         public let watermarkSet: [WatermarkInput]?
-        
+
         /// 时间点截图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputStorage: TaskOutputStorage?
-        
+
         /// 时间点截图后图片文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_snapshotByTimeOffset_{definition}_{number}.{format}`。
         public let outputObjectPath: String?
-        
+
         /// 时间点截图后输出路径中的`{number}`变量的规则。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectNumberFormat: NumberFormat?
-        
-        public init (definition: UInt64, extTimeOffsetSet: [String]? = nil, timeOffsetSet: [Float]? = nil, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, objectNumberFormat: NumberFormat? = nil) {
+
+        public init(definition: UInt64, extTimeOffsetSet: [String]? = nil, timeOffsetSet: [Float]? = nil, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, objectNumberFormat: NumberFormat? = nil) {
             self.definition = definition
             self.extTimeOffsetSet = extTimeOffsetSet
             self.timeOffsetSet = timeOffsetSet
@@ -7549,7 +7549,7 @@ extension Mps {
             self.outputObjectPath = outputObjectPath
             self.objectNumberFormat = objectNumberFormat
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case extTimeOffsetSet = "ExtTimeOffsetSet"
@@ -7560,23 +7560,23 @@ extension Mps {
             case objectNumberFormat = "ObjectNumberFormat"
         }
     }
-    
+
     /// 时间点截图模板详情
     public struct SnapshotByTimeOffsetTemplate: TCOutputModel {
         /// 时间点截图模板唯一标识。
         public let definition: UInt64
-        
+
         /// 模板类型，取值范围：
         /// <li>Preset：系统预置模板；</li>
         /// <li>Custom：用户自定义模板。</li>
         public let type: String
-        
+
         /// 时间点截图模板名称。
         public let name: String
-        
+
         /// 模板描述信息。
         public let comment: String
-        
+
         /// 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -7584,7 +7584,7 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let width: UInt64
-        
+
         /// 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -7592,22 +7592,22 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let height: UInt64
-        
+
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 默认值：open。
         public let resolutionAdaptive: String
-        
+
         /// 图片格式。
         public let format: String
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
@@ -7615,7 +7615,7 @@ extension Mps {
         /// <li>black：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
         /// 默认值：black 。
         public let fillType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case type = "Type"
@@ -7630,25 +7630,25 @@ extension Mps {
             case fillType = "FillType"
         }
     }
-    
+
     /// 媒体传输的地区信息。
     public struct StreamLinkRegionInfo: TCOutputModel {
         /// 媒体直传输的地区信息列表。
         public let regions: [RegionInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case regions = "Regions"
         }
     }
-    
+
     /// 字幕流配置参数。
     public struct SubtitleTemplate: TCInputModel {
         /// 要压制到视频中的字幕文件地址。
         public let path: String?
-        
+
         /// 指定要压制到视频中的字幕轨道，如果有指定Path，则Path 优先级更高。Path 和 StreamIndex 至少指定一个。
         public let streamIndex: Int64?
-        
+
         /// 字体类型，
         /// <li>hei.ttf：黑体</li>
         /// <li>song.ttf：宋体</li>
@@ -7656,20 +7656,20 @@ extension Mps {
         /// <li>arial.ttf：仅支持英文</li>
         /// 默认hei.ttf
         public let fontType: String?
-        
+
         /// 字体大小，格式：Npx，N 为数值，不指定则以字幕文件中为准。
         public let fontSize: String?
-        
+
         /// 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）
         public let fontColor: String?
-        
+
         /// 文字透明度，取值范围：(0, 1]
         /// <li>0：完全透明</li>
         /// <li>1：完全不透明</li>
         /// 默认值：1。
         public let fontAlpha: Float?
-        
-        public init (path: String? = nil, streamIndex: Int64? = nil, fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
+
+        public init(path: String? = nil, streamIndex: Int64? = nil, fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
             self.path = path
             self.streamIndex = streamIndex
             self.fontType = fontType
@@ -7677,7 +7677,7 @@ extension Mps {
             self.fontColor = fontColor
             self.fontAlpha = fontAlpha
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case streamIndex = "StreamIndex"
@@ -7687,7 +7687,7 @@ extension Mps {
             case fontAlpha = "FontAlpha"
         }
     }
-    
+
     /// 超分配置
     public struct SuperResolutionConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -7695,33 +7695,33 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 类型，可选值：
         /// <li>lq：针对低清晰度有较多噪声视频的超分；</li>
         /// <li>hq：针对高清晰度视频超分。</li>
         /// 默认值：lq。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 超分倍数，可选值：
         /// <li>2：目前只支持 2 倍超分。</li>
         /// 默认值：2。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
-        
-        public init (switch: String? = nil, type: String? = nil, size: Int64? = nil) {
+
+        public init(switch: String? = nil, type: String? = nil, size: Int64? = nil) {
             self.`switch` = `switch`
             self.type = type
             self.size = size
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
             case size = "Size"
         }
     }
-    
+
     /// SVG水印模板输入参数
     public struct SvgWatermarkInput: TCInputModel, TCOutputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
@@ -7734,7 +7734,7 @@ extension Mps {
         /// <li>当字符串以 % 结尾时，含义同 W%。</li>
         /// 默认值为 10W%。
         public let width: String?
-        
+
         /// 水印的高度，支持 px，W%，H%，S%，L% 六种格式：
         /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
         ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；</li>
@@ -7745,18 +7745,18 @@ extension Mps {
         /// <li>当字符串以 % 结尾时，含义同 H%。</li>
         /// 默认值为 0px。
         public let height: String?
-        
-        public init (width: String? = nil, height: String? = nil) {
+
+        public init(width: String? = nil, height: String? = nil) {
             self.width = width
             self.height = height
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case width = "Width"
             case height = "Height"
         }
     }
-    
+
     /// SVG水印模板输入参数
     public struct SvgWatermarkInputForUpdate: TCInputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
@@ -7769,7 +7769,7 @@ extension Mps {
         /// <li>当字符串以 % 结尾时，含义同 W%。</li>
         /// 默认值为 10W%。
         public let width: String?
-        
+
         /// 水印的高度，支持 px，%，W%，H%，S%，L% 六种格式：
         /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
         ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；</li>
@@ -7780,110 +7780,110 @@ extension Mps {
         /// <li>当字符串以 % 结尾时，含义同 H%。
         /// 默认值为 0px。
         public let height: String?
-        
-        public init (width: String? = nil, height: String? = nil) {
+
+        public init(width: String? = nil, height: String? = nil) {
             self.width = width
             self.height = height
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case width = "Width"
             case height = "Height"
         }
     }
-    
+
     /// 极速高清参数配置。
     public struct TEHDConfig: TCInputModel, TCOutputModel {
         /// 极速高清类型，可选值：
         /// <li>TEHD-100：极速高清-100。</li>
         /// 不填代表不启用极速高清。
         public let type: String
-        
+
         /// 视频码率上限，当 Type 指定了极速高清类型时有效。
         /// 不填或填0表示不设视频码率上限。
         public let maxVideoBitrate: UInt64?
-        
-        public init (type: String, maxVideoBitrate: UInt64? = nil) {
+
+        public init(type: String, maxVideoBitrate: UInt64? = nil) {
             self.type = type
             self.maxVideoBitrate = maxVideoBitrate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case maxVideoBitrate = "MaxVideoBitrate"
         }
     }
-    
+
     /// 极速高清参数配置。
     public struct TEHDConfigForUpdate: TCInputModel {
         /// 极速高清类型，可选值：
         /// <li>TEHD-100：极速高清-100。</li>
         /// 不填代表不修改。
         public let type: String?
-        
+
         /// 视频码率上限，不填代表不修改。
         public let maxVideoBitrate: UInt64?
-        
-        public init (type: String? = nil, maxVideoBitrate: UInt64? = nil) {
+
+        public init(type: String? = nil, maxVideoBitrate: UInt64? = nil) {
             self.type = type
             self.maxVideoBitrate = maxVideoBitrate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case maxVideoBitrate = "MaxVideoBitrate"
         }
     }
-    
+
     /// 智能标签任务控制参数
     public struct TagConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能标签任务开关，可选值：
         /// <li>ON：开启智能标签任务；</li>
         /// <li>OFF：关闭智能标签任务。</li>
         public let `switch`: String
-        
-        public init (switch: String) {
+
+        public init(switch: String) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 智能标签任务控制参数
     public struct TagConfigureInfoForUpdate: TCInputModel {
         /// 智能标签任务开关，可选值：
         /// <li>ON：开启智能标签任务；</li>
         /// <li>OFF：关闭智能标签任务。</li>
         public let `switch`: String?
-        
-        public init (switch: String? = nil) {
+
+        public init(switch: String? = nil) {
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
         }
     }
-    
+
     /// 任务的事件通知配置。
     public struct TaskNotifyConfig: TCInputModel, TCOutputModel {
         /// CMQ或TDMQ-CMQ 的模型，有 Queue 和 Topic 两种。
         public let cmqModel: String
-        
+
         /// CMQ或TDMQ-CMQ 的园区，如 sh，bj 等。
         public let cmqRegion: String
-        
+
         /// 当模型为 Topic 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的主题名。
         public let topicName: String?
-        
+
         /// 当模型为 Queue 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的队列名。
         public let queueName: String?
-        
+
         /// 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
         public let notifyMode: String?
-        
+
         /// 通知类型，可选值：
         /// <li>CMQ：已下线，建议切换到TDMQ-CMQ</li>
         /// <li>TDMQ-CMQ：消息队列</li>
@@ -7891,11 +7891,11 @@ extension Mps {
         /// <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
         /// 目前 默认CMQ。
         public let notifyType: String?
-        
+
         /// HTTP回调地址，NotifyType为URL时必填。
         public let notifyUrl: String?
-        
-        public init (cmqModel: String, cmqRegion: String, topicName: String? = nil, queueName: String? = nil, notifyMode: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil) {
+
+        public init(cmqModel: String, cmqRegion: String, topicName: String? = nil, queueName: String? = nil, notifyMode: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil) {
             self.cmqModel = cmqModel
             self.cmqRegion = cmqRegion
             self.topicName = topicName
@@ -7904,7 +7904,7 @@ extension Mps {
             self.notifyType = notifyType
             self.notifyUrl = notifyUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cmqModel = "CmqModel"
             case cmqRegion = "CmqRegion"
@@ -7915,50 +7915,50 @@ extension Mps {
             case notifyUrl = "NotifyUrl"
         }
     }
-    
+
     /// 媒体处理输出对象信息。
     public struct TaskOutputStorage: TCInputModel, TCOutputModel {
         /// 媒体处理输出对象存储位置的类型，现在仅支持 COS。
         public let type: String
-        
+
         /// 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 输出位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosOutputStorage: CosOutputStorage?
-        
-        public init (type: String, cosOutputStorage: CosOutputStorage? = nil) {
+
+        public init(type: String, cosOutputStorage: CosOutputStorage? = nil) {
             self.type = type
             self.cosOutputStorage = cosOutputStorage
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case cosOutputStorage = "CosOutputStorage"
         }
     }
-    
+
     /// 任务概要信息
     public struct TaskSimpleInfo: TCOutputModel {
         /// 任务 ID。
         public let taskId: String
-        
+
         /// 任务类型，包含：
         /// <li> WorkflowTask：工作流处理任务；</li>
         /// <li> EditMediaTask：视频编辑任务；</li>
         /// <li> LiveProcessTask：直播处理任务。</li>
         public let taskType: String
-        
+
         /// 任务创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 任务开始执行时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。若任务尚未开始，该字段为：0000-00-00T00:00:00Z。
         public let beginProcessTime: String
-        
+
         /// 任务结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。若任务尚未完成，该字段为：0000-00-00T00:00:00Z。
         public let finishTime: String
-        
+
         /// 子任务类型。
         public let subTaskTypes: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskType = "TaskType"
@@ -7968,47 +7968,47 @@ extension Mps {
             case subTaskTypes = "SubTaskTypes"
         }
     }
-    
+
     /// 涉敏任务控制参数
     public struct TerrorismConfigureInfo: TCOutputModel {
         /// 画面涉敏任务控制参数。
         public let imgReviewInfo: TerrorismImgReviewTemplateInfo?
-        
+
         /// 文本涉敏任务控制参数。
         public let ocrReviewInfo: TerrorismOcrReviewTemplateInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case imgReviewInfo = "ImgReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 涉敏任务控制参数。
     public struct TerrorismConfigureInfoForUpdate: TCInputModel {
         /// 画面涉敏任务控制参数。
         public let imgReviewInfo: TerrorismImgReviewTemplateInfoForUpdate?
-        
+
         /// 文本涉敏任务控制参数。
         public let ocrReviewInfo: TerrorismOcrReviewTemplateInfoForUpdate?
-        
-        public init (imgReviewInfo: TerrorismImgReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: TerrorismOcrReviewTemplateInfoForUpdate? = nil) {
+
+        public init(imgReviewInfo: TerrorismImgReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: TerrorismOcrReviewTemplateInfoForUpdate? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imgReviewInfo = "ImgReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 画面涉敏任务控制参数
     public struct TerrorismImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面涉敏任务开关，可选值：
         /// <li>ON：开启画面涉敏任务；</li>
         /// <li>OFF：关闭画面涉敏任务。</li>
         public let `switch`: String
-        
+
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
         /// <li>guns：武器枪支；</li>
         /// <li>crowd：人群聚集；</li>
@@ -8020,20 +8020,20 @@ extension Mps {
         /// <li>terrorists：涉敏人物；</li>
         /// <li>scenario：涉敏画面。</li>
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8041,14 +8041,14 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 画面涉敏任务控制参数。
     public struct TerrorismImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面涉敏任务开关，可选值：
         /// <li>ON：开启画面涉敏任务；</li>
         /// <li>OFF：关闭画面涉敏任务。</li>
         public let `switch`: String?
-        
+
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
         /// <li>guns：武器枪支；</li>
         /// <li>crowd：人群聚集；</li>
@@ -8060,20 +8060,20 @@ extension Mps {
         /// <li>terrorists：涉敏人物；</li>
         /// <li>scenario：涉敏画面。</li>
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8081,85 +8081,85 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文本涉敏任务控制参数
     public struct TerrorismOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本涉敏任务开关，可选值：
         /// <li>ON：开启文本涉敏任务；</li>
         /// <li>OFF：关闭文本涉敏任务。</li>
         public let `switch`: String
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文本涉敏任务控制参数
     public struct TerrorismOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本涉敏任务开关，可选值：
         /// <li>ON：开启文本涉敏任务；</li>
         /// <li>OFF：关闭文本涉敏任务。</li>
         public let `switch`: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case blockConfidence = "BlockConfidence"
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 文字水印模板
     public struct TextWatermarkTemplateInput: TCInputModel, TCOutputModel {
         /// 字体类型，目前可以支持两种：
         /// <li>simkai.ttf：可以支持中文和英文；</li>
         /// <li>arial.ttf：仅支持英文。</li>
         public let fontType: String
-        
+
         /// 字体大小，格式：Npx，N 为数值。
         public let fontSize: String
-        
+
         /// 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）。
         public let fontColor: String
-        
+
         /// 文字透明度，取值范围：(0, 1]
         /// <li>0：完全透明</li>
         /// <li>1：完全不透明</li>
         /// 默认值：1。
         public let fontAlpha: Float
-        
-        public init (fontType: String, fontSize: String, fontColor: String, fontAlpha: Float) {
+
+        public init(fontType: String, fontSize: String, fontColor: String, fontAlpha: Float) {
             self.fontType = fontType
             self.fontSize = fontSize
             self.fontColor = fontColor
             self.fontAlpha = fontAlpha
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fontType = "FontType"
             case fontSize = "FontSize"
@@ -8167,32 +8167,32 @@ extension Mps {
             case fontAlpha = "FontAlpha"
         }
     }
-    
+
     /// 文字水印模板
     public struct TextWatermarkTemplateInputForUpdate: TCInputModel {
         /// 字体类型，目前可以支持两种：
         /// <li>simkai.ttf：可以支持中文和英文；</li>
         /// <li>arial.ttf：仅支持英文。</li>
         public let fontType: String?
-        
+
         /// 字体大小，格式：Npx，N 为数值。
         public let fontSize: String?
-        
+
         /// 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）。
         public let fontColor: String?
-        
+
         /// 文字透明度，取值范围：(0, 1]
         /// <li>0：完全透明</li>
         /// <li>1：完全不透明</li>
         public let fontAlpha: Float?
-        
-        public init (fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
+
+        public init(fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
             self.fontType = fontType
             self.fontSize = fontSize
             self.fontColor = fontColor
             self.fontAlpha = fontAlpha
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fontType = "FontType"
             case fontSize = "FontSize"
@@ -8200,61 +8200,61 @@ extension Mps {
             case fontAlpha = "FontAlpha"
         }
     }
-    
+
     /// 转码任务输入参数类型
     public struct TranscodeTaskInput: TCInputModel, TCOutputModel {
         /// 视频转码模板 ID。
         public let definition: UInt64
-        
+
         /// 视频转码自定义参数，当 Definition 填 0 时有效。
         /// 该参数用于高度定制场景，建议您优先使用 Definition 指定转码参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rawParameter: RawTranscodeParameter?
-        
+
         /// 视频转码自定义参数，当 Definition 不填 0 时有效。
         /// 当填写了该结构中的部分转码参数时，将使用填写的参数覆盖转码模板中的参数。
         /// 该参数用于高度定制场景，建议您仅使用 Definition 指定转码参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let overrideParameter: OverrideTranscodeParameter?
-        
+
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let watermarkSet: [WatermarkInput]?
-        
+
         /// 马赛克列表，最大可支持 10 张。
         public let mosaicSet: [MosaicInput]?
-        
+
         /// 转码后的视频的起始时间偏移，单位：秒。
         /// <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
         /// <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
         /// <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
         public let startTimeOffset: Float?
-        
+
         /// 转码后视频的终止时间偏移，单位：秒。
         /// <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
         /// <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
         /// <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         public let endTimeOffset: Float?
-        
+
         /// 转码后文件的目标存储，不填则继承上层的 OutputStorage 值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputStorage: TaskOutputStorage?
-        
+
         /// 转码后主文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_transcode_{definition}.{format}`。
         public let outputObjectPath: String?
-        
+
         /// 转码后分片文件的输出路径（转码 HLS 时 ts 的路径），只能为相对路径。如果不填，则默认为：`{inputName}_transcode_{definition}_{number}.{format}`。
         public let segmentObjectName: String?
-        
+
         /// 转码后输出路径中的`{number}`变量的规则。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectNumberFormat: NumberFormat?
-        
+
         /// 片头片尾参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headTailParameter: HeadTailParameter?
-        
-        public init (definition: UInt64, rawParameter: RawTranscodeParameter? = nil, overrideParameter: OverrideTranscodeParameter? = nil, watermarkSet: [WatermarkInput]? = nil, mosaicSet: [MosaicInput]? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, segmentObjectName: String? = nil, objectNumberFormat: NumberFormat? = nil, headTailParameter: HeadTailParameter? = nil) {
+
+        public init(definition: UInt64, rawParameter: RawTranscodeParameter? = nil, overrideParameter: OverrideTranscodeParameter? = nil, watermarkSet: [WatermarkInput]? = nil, mosaicSet: [MosaicInput]? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, segmentObjectName: String? = nil, objectNumberFormat: NumberFormat? = nil, headTailParameter: HeadTailParameter? = nil) {
             self.definition = definition
             self.rawParameter = rawParameter
             self.overrideParameter = overrideParameter
@@ -8268,7 +8268,7 @@ extension Mps {
             self.objectNumberFormat = objectNumberFormat
             self.headTailParameter = headTailParameter
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case rawParameter = "RawParameter"
@@ -8284,61 +8284,61 @@ extension Mps {
             case headTailParameter = "HeadTailParameter"
         }
     }
-    
+
     /// 转码模板详情
     public struct TranscodeTemplate: TCOutputModel {
         /// 转码模板唯一标识。
         public let definition: String
-        
+
         /// 封装格式，取值：mp4、flv、hls、mp3、flac、ogg。
         public let container: String
-        
+
         /// 转码模板名称。
         public let name: String
-        
+
         /// 模板描述信息。
         public let comment: String
-        
+
         /// 模板类型，取值：
         /// <li>Preset：系统预置模板；</li>
         /// <li>Custom：用户自定义模板。</li>
         public let type: String
-        
+
         /// 是否去除视频数据，取值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         public let removeVideo: Int64
-        
+
         /// 是否去除音频数据，取值：
         /// <li>0：保留；</li>
         /// <li>1：去除。</li>
         public let removeAudio: Int64
-        
+
         /// 视频流配置参数，仅当 RemoveVideo 为 0，该字段有效。
         public let videoTemplate: VideoTemplateInfo
-        
+
         /// 音频流配置参数，仅当 RemoveAudio 为 0，该字段有效 。
         public let audioTemplate: AudioTemplateInfo
-        
+
         /// 极速高清转码参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tehdConfig: TEHDConfig?
-        
+
         /// 封装格式过滤条件，可选值：
         /// <li>Video：视频格式，可以同时包含视频流和音频流的封装格式；</li>
         /// <li>PureAudio：纯音频格式，只能包含音频流的封装格式板。</li>
         public let containerType: String
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 音视频增强配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enhanceConfig: EnhanceConfig?
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case container = "Container"
@@ -8356,45 +8356,45 @@ extension Mps {
             case enhanceConfig = "EnhanceConfig"
         }
     }
-    
+
     /// 媒体处理 URL 对象信息。
     public struct UrlInputInfo: TCInputModel, TCOutputModel {
         /// 视频的 URL。
         public let url: String
-        
-        public init (url: String) {
+
+        public init(url: String) {
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 用户自定义语音审核任务控制参数
     public struct UserDefineAsrTextReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定语音审核任务开关，可选值：
         /// <li>ON：开启自定义语音审核任务；</li>
         /// <li>OFF：关闭自定义语音审核任务。</li>
         public let `switch`: String
-        
+
         /// 用户自定义语音过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义语音关键词素材时需要添加对应标签。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8402,31 +8402,31 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 用户自定义语音审核任务控制参数
     public struct UserDefineAsrTextReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定语音审核任务开关，可选值：
         /// <li>ON：开启自定义语音审核任务；</li>
         /// <li>OFF：关闭自定义语音审核任务。</li>
         public let `switch`: String?
-        
+
         /// 用户自定义语音过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义语音关键词素材时需要添加对应标签。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8434,79 +8434,79 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 用户自定义审核任务控制参数
     public struct UserDefineConfigureInfo: TCInputModel, TCOutputModel {
         /// 用户自定义人物审核控制参数。
         public let faceReviewInfo: UserDefineFaceReviewTemplateInfo?
-        
+
         /// 用户自定义语音审核控制参数。
         public let asrReviewInfo: UserDefineAsrTextReviewTemplateInfo?
-        
+
         /// 用户自定义文本审核控制参数。
         public let ocrReviewInfo: UserDefineOcrTextReviewTemplateInfo?
-        
-        public init (faceReviewInfo: UserDefineFaceReviewTemplateInfo? = nil, asrReviewInfo: UserDefineAsrTextReviewTemplateInfo? = nil, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfo? = nil) {
+
+        public init(faceReviewInfo: UserDefineFaceReviewTemplateInfo? = nil, asrReviewInfo: UserDefineAsrTextReviewTemplateInfo? = nil, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfo? = nil) {
             self.faceReviewInfo = faceReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceReviewInfo = "FaceReviewInfo"
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 用户自定义审核任务控制参数。
     public struct UserDefineConfigureInfoForUpdate: TCInputModel {
         /// 用户自定义人物审核控制参数。
         public let faceReviewInfo: UserDefineFaceReviewTemplateInfoForUpdate
-        
+
         /// 用户自定义语音审核控制参数。
         public let asrReviewInfo: UserDefineAsrTextReviewTemplateInfoForUpdate
-        
+
         /// 用户自定义文本审核控制参数。
         public let ocrReviewInfo: UserDefineOcrTextReviewTemplateInfoForUpdate
-        
-        public init (faceReviewInfo: UserDefineFaceReviewTemplateInfoForUpdate, asrReviewInfo: UserDefineAsrTextReviewTemplateInfoForUpdate, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfoForUpdate) {
+
+        public init(faceReviewInfo: UserDefineFaceReviewTemplateInfoForUpdate, asrReviewInfo: UserDefineAsrTextReviewTemplateInfoForUpdate, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfoForUpdate) {
             self.faceReviewInfo = faceReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceReviewInfo = "FaceReviewInfo"
             case asrReviewInfo = "AsrReviewInfo"
             case ocrReviewInfo = "OcrReviewInfo"
         }
     }
-    
+
     /// 用户自定义人物审核任务控制参数
     public struct UserDefineFaceReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定义人物审核任务开关，可选值：
         /// <li>ON：开启自定义人物审核任务；</li>
         /// <li>OFF：关闭自定义人物审核任务。</li>
         public let `switch`: String
-        
+
         /// 用户自定义人物过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义人物库的时，需要添加对应人物标签。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8514,31 +8514,31 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 用户自定义人物审核任务控制参数。
     public struct UserDefineFaceReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定义人物审核任务开关，可选值：
         /// <li>ON：开启自定义人物审核任务；</li>
         /// <li>OFF：关闭自定义人物审核任务。</li>
         public let `switch`: String?
-        
+
         /// 用户自定义人物过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义人物库的时，需要添加对应人物标签。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8546,31 +8546,31 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 用户自定义文本审核任务控制参数
     public struct UserDefineOcrTextReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定文本审核任务开关，可选值：
         /// <li>ON：开启自定义文本审核任务；</li>
         /// <li>OFF：关闭自定义文本审核任务。</li>
         public let `switch`: String
-        
+
         /// 用户自定义文本过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义文本关键词素材时需要添加对应标签。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8578,31 +8578,31 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 用户自定义文本审核任务控制参数。
     public struct UserDefineOcrTextReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定文本审核任务开关，可选值：
         /// <li>ON：开启自定义文本审核任务；</li>
         /// <li>OFF：关闭自定义文本审核任务。</li>
         public let `switch`: String?
-        
+
         /// 用户自定义文本过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义文本关键词素材时需要添加对应标签。
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: String?
-        
+
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         public let blockConfidence: Int64?
-        
+
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
-        
-        public init (switch: String? = nil, labelSet: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+
+        public init(switch: String? = nil, labelSet: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case labelSet = "LabelSet"
@@ -8610,7 +8610,7 @@ extension Mps {
             case reviewConfidence = "ReviewConfidence"
         }
     }
-    
+
     /// 视频降噪配置
     public struct VideoDenoiseConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
@@ -8618,72 +8618,72 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         /// 默认值：ON。
         public let `switch`: String?
-        
+
         /// 类型，可选值：
         /// <li>weak</li>
         /// <li>strong</li>
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (switch: String? = nil, type: String? = nil) {
+
+        public init(switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
         }
     }
-    
+
     /// 视频增强配置
     public struct VideoEnhanceConfig: TCInputModel, TCOutputModel {
         /// 插帧帧率配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frameRate: FrameRateConfig?
-        
+
         /// 超分配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let superResolution: SuperResolutionConfig?
-        
+
         /// HDR配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hdr: HdrConfig?
-        
+
         /// 视频降噪配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let denoise: VideoDenoiseConfig?
-        
+
         /// 综合增强配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageQualityEnhance: ImageQualityEnhanceConfig?
-        
+
         /// 色彩增强配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let colorEnhance: ColorEnhanceConfig?
-        
+
         /// 细节增强配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sharpEnhance: SharpEnhanceConfig?
-        
+
         /// 人脸增强配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let faceEnhance: FaceEnhanceConfig?
-        
+
         /// 低光照增强配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lowLightEnhance: LowLightEnhanceConfig?
-        
+
         /// 去划痕配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scratchRepair: ScratchRepairConfig?
-        
+
         /// 去伪影（毛刺）配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let artifactRepair: ArtifactRepairConfig?
-        
-        public init (frameRate: FrameRateConfig? = nil, superResolution: SuperResolutionConfig? = nil, hdr: HdrConfig? = nil, denoise: VideoDenoiseConfig? = nil, imageQualityEnhance: ImageQualityEnhanceConfig? = nil, colorEnhance: ColorEnhanceConfig? = nil, sharpEnhance: SharpEnhanceConfig? = nil, faceEnhance: FaceEnhanceConfig? = nil, lowLightEnhance: LowLightEnhanceConfig? = nil, scratchRepair: ScratchRepairConfig? = nil, artifactRepair: ArtifactRepairConfig? = nil) {
+
+        public init(frameRate: FrameRateConfig? = nil, superResolution: SuperResolutionConfig? = nil, hdr: HdrConfig? = nil, denoise: VideoDenoiseConfig? = nil, imageQualityEnhance: ImageQualityEnhanceConfig? = nil, colorEnhance: ColorEnhanceConfig? = nil, sharpEnhance: SharpEnhanceConfig? = nil, faceEnhance: FaceEnhanceConfig? = nil, lowLightEnhance: LowLightEnhanceConfig? = nil, scratchRepair: ScratchRepairConfig? = nil, artifactRepair: ArtifactRepairConfig? = nil) {
             self.frameRate = frameRate
             self.superResolution = superResolution
             self.hdr = hdr
@@ -8696,7 +8696,7 @@ extension Mps {
             self.scratchRepair = scratchRepair
             self.artifactRepair = artifactRepair
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case frameRate = "FrameRate"
             case superResolution = "SuperResolution"
@@ -8711,7 +8711,7 @@ extension Mps {
             case artifactRepair = "ArtifactRepair"
         }
     }
-    
+
     /// 视频流配置参数
     public struct VideoTemplateInfo: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
@@ -8721,23 +8721,23 @@ extension Mps {
         /// 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         /// 注意：av1 编码容器目前只支持 mp4 。
         public let codec: String
-        
+
         /// 视频帧率，取值范围：[0, 100]，单位：Hz。
         /// 当取值为 0，表示帧率和原始视频保持一致。
         /// 注意：自适应码率时取值范围是 [0, 60]
         public let fps: UInt64
-        
+
         /// 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         /// 当取值为 0，表示视频码率和原始视频保持一致。
         public let bitrate: UInt64
-        
+
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 默认值：open。
         /// 注意：自适应模式时，Width不能小于Height。
         public let resolutionAdaptive: String?
-        
+
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -8745,7 +8745,7 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let width: UInt64?
-        
+
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -8753,11 +8753,11 @@ extension Mps {
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         /// 默认值：0。
         public let height: UInt64?
-        
+
         /// 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
         /// 当填 0 或不填时，系统将自动设置 gop 长度。
         public let gop: UInt64?
-        
+
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
@@ -8766,13 +8766,13 @@ extension Mps {
         /// 默认值：black 。
         /// 注意：自适应码流只支持 stretch、black。
         public let fillType: String?
-        
+
         /// 视频恒定码率控制因子，取值范围为[1, 51]。
         /// 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）。
         /// 如果没有特殊需求，不建议指定该参数。
         public let vcrf: UInt64?
-        
-        public init (codec: String, fps: UInt64, bitrate: UInt64, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil) {
+
+        public init(codec: String, fps: UInt64, bitrate: UInt64, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil) {
             self.codec = codec
             self.fps = fps
             self.bitrate = bitrate
@@ -8783,7 +8783,7 @@ extension Mps {
             self.fillType = fillType
             self.vcrf = vcrf
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case codec = "Codec"
             case fps = "Fps"
@@ -8796,7 +8796,7 @@ extension Mps {
             case vcrf = "Vcrf"
         }
     }
-    
+
     /// 视频流配置参数
     public struct VideoTemplateInfoForUpdate: TCInputModel {
         /// 视频流的编码格式，可选值：
@@ -8806,52 +8806,52 @@ extension Mps {
         /// 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         /// 注意：av1 编码容器目前只支持 mp4 。
         public let codec: String?
-        
+
         /// 视频帧率，取值范围：[0, 100]，单位：Hz。
         /// 当取值为 0，表示帧率和原始视频保持一致。
         public let fps: UInt64?
-        
+
         /// 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         /// 当取值为 0，表示视频码率和原始视频保持一致。
         public let bitrate: UInt64?
-        
+
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 注意：自适应模式时，Width不能小于Height。
         public let resolutionAdaptive: String?
-        
+
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         public let width: UInt64?
-        
+
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         public let height: UInt64?
-        
+
         /// 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。当填 0 时，系统将自动设置 gop 长度。
         public let gop: UInt64?
-        
+
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
         /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
         public let fillType: String?
-        
+
         /// 视频恒定码率控制因子。取值范围为[0, 51]，填0表示禁用该参数。
         /// 如果没有特殊需求，不建议指定该参数。
         public let vcrf: UInt64?
-        
+
         /// 内容自适应编码。可选值：
         /// <li>0：不开启</li>
         /// <li>1：开启</li>
         /// 默认值: 0.   当开启该参数时，将会自适应生成多个不同分辨率，不同码率的码流， 其中VideoTemplate的宽和高为多个码流中的最大分辨率，VideoTemplate中的码率为多个码流中的最高码率， VideoTemplate中的vcrf为多个码流中的最高质量。 当不设置分辨率、码率和vcrf时， ContentAdaptStream 参数生成的最高分辨率为视频源的分辨率，视频质量为接近vmaf95分。 若要开启该参数或了解计费细节, 请联系您的腾讯云商务。
         public let contentAdaptStream: UInt64?
-        
-        public init (codec: String? = nil, fps: UInt64? = nil, bitrate: UInt64? = nil, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil, contentAdaptStream: UInt64? = nil) {
+
+        public init(codec: String? = nil, fps: UInt64? = nil, bitrate: UInt64? = nil, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil, contentAdaptStream: UInt64? = nil) {
             self.codec = codec
             self.fps = fps
             self.bitrate = bitrate
@@ -8863,7 +8863,7 @@ extension Mps {
             self.vcrf = vcrf
             self.contentAdaptStream = contentAdaptStream
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case codec = "Codec"
             case fps = "Fps"
@@ -8877,38 +8877,38 @@ extension Mps {
             case contentAdaptStream = "ContentAdaptStream"
         }
     }
-    
+
     /// 媒体处理任务中的水印参数类型
     public struct WatermarkInput: TCInputModel, TCOutputModel {
         /// 水印模板 ID。
         public let definition: UInt64
-        
+
         /// 水印自定义参数，当 Definition 填 0 时有效。
         /// 该参数用于高度定制场景，建议您优先使用 Definition 指定水印参数。
         /// 水印自定义参数不支持截图打水印。
         public let rawParameter: RawWatermarkParameter?
-        
+
         /// 文字内容，长度不超过100个字符。仅当水印类型为文字水印时填写。
         /// 文字水印不支持截图打水印。
         public let textContent: String?
-        
+
         /// SVG 内容。长度不超过 2000000 个字符。仅当水印类型为 SVG 水印时填写。
         /// SVG 水印不支持截图打水印。
         public let svgContent: String?
-        
+
         /// 水印的起始时间偏移，单位：秒。不填或填0，表示水印从画面出现时开始显现。
         /// <li>不填或填0，表示水印从画面开始就出现；</li>
         /// <li>当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；</li>
         /// <li>当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。</li>
         public let startTimeOffset: Float?
-        
+
         /// 水印的结束时间偏移，单位：秒。
         /// <li>不填或填0，表示水印持续到画面结束；</li>
         /// <li>当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；</li>
         /// <li>当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。</li>
         public let endTimeOffset: Float?
-        
-        public init (definition: UInt64, rawParameter: RawWatermarkParameter? = nil, textContent: String? = nil, svgContent: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
+
+        public init(definition: UInt64, rawParameter: RawWatermarkParameter? = nil, textContent: String? = nil, svgContent: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.definition = definition
             self.rawParameter = rawParameter
             self.textContent = textContent
@@ -8916,7 +8916,7 @@ extension Mps {
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case rawParameter = "RawParameter"
@@ -8926,58 +8926,58 @@ extension Mps {
             case endTimeOffset = "EndTimeOffset"
         }
     }
-    
+
     /// 水印模板详情
     public struct WatermarkTemplate: TCOutputModel {
         /// 水印模板唯一标识。
         public let definition: Int64
-        
+
         /// 水印类型，取值：
         /// <li>image：图片水印；</li>
         /// <li>text：文字水印。</li>
         public let type: String
-        
+
         /// 水印模板名称。
         public let name: String
-        
+
         /// 模板描述信息。
         public let comment: String
-        
+
         /// 水印图片原点距离视频图像原点的水平位置。
         /// <li>当字符串以 % 结尾，表示水印 Left 为视频宽度指定百分比的位置，如 10% 表示 Left 为视频宽度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Left 为视频宽度指定像素的位置，如 100px 表示 Left 为 100 像素。</li>
         public let xPos: String
-        
+
         /// 水印图片原点距离视频图像原点的垂直位置。
         /// <li>当字符串以 % 结尾，表示水印 Top 为视频高度指定百分比的位置，如 10% 表示 Top 为视频高度的 10%；</li>
         /// <li>当字符串以 px 结尾，表示水印 Top 为视频高度指定像素的位置，如 100px 表示 Top 为 100 像素。</li>
         public let yPos: String
-        
+
         /// 图片水印模板，仅当 Type 为 image，该字段有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageTemplate: ImageWatermarkTemplate?
-        
+
         /// 文字水印模板，仅当 Type 为 text，该字段有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textTemplate: TextWatermarkTemplateInput?
-        
+
         /// SVG 水印模板，当 Type 为 svg，该字段有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let svgTemplate: SvgWatermarkInput?
-        
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         /// 原点位置，可选值：
         /// <li>topLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；</li>
         /// <li>topRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；</li>
         /// <li>bottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；</li>
         /// <li>bottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下。；</li>
         public let coordinateOrigin: String
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case type = "Type"
@@ -8993,59 +8993,59 @@ extension Mps {
             case coordinateOrigin = "CoordinateOrigin"
         }
     }
-    
+
     /// 工作流信息详情。
     public struct WorkflowInfo: TCOutputModel {
         /// 工作流 ID。
         public let workflowId: Int64
-        
+
         /// 工作流名称。
         public let workflowName: String
-        
+
         /// 工作流状态，取值范围：
         /// <li>Enabled：已启用，</li>
         /// <li>Disabled：已禁用。</li>
         public let status: String
-        
+
         /// 工作流绑定的输入规则，当上传视频命中该规则到该对象时即触发工作流。
         public let trigger: WorkflowTrigger
-        
+
         /// 媒体处理的文件输出存储位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputStorage: TaskOutputStorage?
-        
+
         /// 媒体处理类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaProcessTask: MediaProcessTaskInput?
-        
+
         /// 视频内容审核类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiContentReviewTask: AiContentReviewTaskInput?
-        
+
         /// 视频内容分析类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiAnalysisTask: AiAnalysisTaskInput?
-        
+
         /// 视频内容识别类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiRecognitionTask: AiRecognitionTaskInput?
-        
+
         /// 任务的事件通知信息，不填代表不获取事件通知。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskNotifyConfig: TaskNotifyConfig?
-        
+
         /// 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         public let taskPriority: Int64
-        
+
         /// 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。
         public let outputDir: String
-        
+
         /// 工作流创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 工作流最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case workflowId = "WorkflowId"
             case workflowName = "WorkflowName"
@@ -9063,43 +9063,43 @@ extension Mps {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 媒体处理任务信息
     public struct WorkflowTask: TCOutputModel {
         /// 媒体处理任务 ID。
         public let taskId: String
-        
+
         /// 任务流状态，取值：
         /// <li>PROCESSING：处理中；</li>
         /// <li>FINISH：已完成。</li>
         public let status: String
-        
+
         /// 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
         public let errCode: Int64
-        
+
         /// 源异常时返回对应异常Message，否则请使用各个具体任务的 Message。
         public let message: String
-        
+
         /// 媒体处理的目标文件信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputInfo: MediaInputInfo?
-        
+
         /// 原始视频的元信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaData: MediaMetaData?
-        
+
         /// 媒体处理任务的执行状态与结果。
         public let mediaProcessResultSet: [MediaProcessTaskResult]
-        
+
         /// 视频内容审核任务的执行状态与结果。
         public let aiContentReviewResultSet: [AiContentReviewResult]
-        
+
         /// 视频内容分析任务的执行状态与结果。
         public let aiAnalysisResultSet: [AiAnalysisResult]
-        
+
         /// 视频内容识别任务的执行状态与结果。
         public let aiRecognitionResultSet: [AiRecognitionResult]
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
@@ -9113,21 +9113,21 @@ extension Mps {
             case aiRecognitionResultSet = "AiRecognitionResultSet"
         }
     }
-    
+
     /// 输入规则，当上传视频命中该规则时，即触发工作流。
     public struct WorkflowTrigger: TCInputModel, TCOutputModel {
         /// 触发器的类型，目前仅支持 CosFileUpload。
         public let type: String
-        
+
         /// 当 Type 为 CosFileUpload 时必填且有效，为 COS 触发规则。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosFileUploadTrigger: CosFileUploadTrigger?
-        
-        public init (type: String, cosFileUploadTrigger: CosFileUploadTrigger? = nil) {
+
+        public init(type: String, cosFileUploadTrigger: CosFileUploadTrigger? = nil) {
             self.type = type
             self.cosFileUploadTrigger = cosFileUploadTrigger
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case cosFileUploadTrigger = "CosFileUploadTrigger"

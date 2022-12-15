@@ -27,7 +27,7 @@ extension Tcss {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endTime: Date
-        
+
         /// 开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,50 +35,50 @@ extension Tcss {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startTime: Date
-        
-        public init (endTime: Date, startTime: Date) {
+
+        public init(endTime: Date, startTime: Date) {
             self.endTime = endTime
             self.startTime = startTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case endTime = "EndTime"
             case startTime = "StartTime"
         }
     }
-    
+
     /// DescribeEscapeEventTendency返回参数结构体
     public struct DescribeEscapeEventTendencyResponse: TCResponseModel {
         /// 待处理逃逸事件趋势
         public let list: [EscapeEventTendencyInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询待处理逃逸事件趋势
     @inlinable
-    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTendencyResponse > {
+    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTendencyResponse> {
         self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待处理逃逸事件趋势
     @inlinable
     public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
         try await self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询待处理逃逸事件趋势
     @inlinable
-    public func describeEscapeEventTendency(endTime: Date, startTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTendencyResponse > {
+    public func describeEscapeEventTendency(endTime: Date, startTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTendencyResponse> {
         self.describeEscapeEventTendency(DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待处理逃逸事件趋势
     @inlinable
     public func describeEscapeEventTendency(endTime: Date, startTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {

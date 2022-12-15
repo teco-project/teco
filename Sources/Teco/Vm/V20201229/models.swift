@@ -20,56 +20,56 @@ extension Vm {
         /// 该字段用于返回审核内容是否命中审核模型；取值：0（**未命中**）、1（**命中**）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hitFlag: Int64?
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         /// 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 该字段用于返回音频文件经ASR识别后的文本信息。最长可识别**5小时**的音频文件，若超出时长限制，接口将会报错。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let text: String?
-        
+
         /// 该字段用于返回音频片段存储的链接地址，该地址有效期为1天。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 该字段用于返回音频文件的时长，单位为秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: String?
-        
+
         /// 该字段用于返回输入参数中的额外附加信息（Extra），如未配置则默认返回值为空。<br>备注：不同客户或Biztype下返回信息不同，如需配置该字段请提交工单咨询或联系售后专员处理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extra: String?
-        
+
         /// 该字段用于返回音频文件经ASR识别后产生的文本的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textResults: [AudioResultDetailTextResult]?
-        
+
         /// 该字段用于返回音频文件呻吟检测的详细审核结果。具体结果内容请参见AudioResultDetailMoanResult数据结构的细节描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let moanResults: [AudioResultDetailMoanResult]?
-        
+
         /// 该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let languageResults: [AudioResultDetailLanguageResult]?
-        
+
         /// 该字段用于返回当前标签（Lable）下的二级标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         /// 识别类标签结果信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recognitionResults: [RecognitionResult]?
-        
+
         enum CodingKeys: String, CodingKey {
             case hitFlag = "HitFlag"
             case label = "Label"
@@ -86,29 +86,29 @@ extension Vm {
             case recognitionResults = "RecognitionResults"
         }
     }
-    
+
     /// 音频语言种类检测结果
     public struct AudioResultDetailLanguageResult: TCOutputModel {
         /// 该字段用于返回对应的语言种类信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该参数用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表音频越有可能属于当前返回的语种标签；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 该参数用于返回对应语种标签的片段在音频文件内的开始时间，单位为毫秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: Float?
-        
+
         /// 该参数用于返回对应语种标签的片段在音频文件内的结束时间，单位为毫秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: Float?
-        
+
         /// *内测中，敬请期待*
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabelCode: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case label = "Label"
             case score = "Score"
@@ -117,32 +117,32 @@ extension Vm {
             case subLabelCode = "SubLabelCode"
         }
     }
-    
+
     /// 音频呻吟审核结果
     public struct AudioResultDetailMoanResult: TCOutputModel {
         /// 该字段用于返回检测结果需要检测的内容类型，此处固定为**Moan**（呻吟）以调用呻吟检测功能。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该字段用于返回呻吟检测的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表音频越有可能属于呻吟内容。
         public let score: Int64
-        
+
         /// 该字段用于返回对应呻吟标签的片段在音频文件内的开始时间，单位为毫秒。
         public let startTime: Float
-        
+
         /// 该字段用于返回对应呻吟标签的片段在音频文件内的结束时间，单位为毫秒。
         public let endTime: Float
-        
+
         /// *内测中，敬请期待*
         public let subLabelCode: String
-        
+
         /// 该字段用于返回当前标签（Lable）下的二级标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         /// 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         public let suggestion: String
-        
+
         enum CodingKeys: String, CodingKey {
             case label = "Label"
             case score = "Score"
@@ -153,42 +153,42 @@ extension Vm {
             case suggestion = "Suggestion"
         }
     }
-    
+
     /// 音频ASR文本审核结果
     public struct AudioResultDetailTextResult: TCOutputModel {
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该字段用于返回ASR识别出的文本内容命中的关键词信息，用于标注内容违规的具体原因（如：加我微信）。该参数可能会有多个返回值，代表命中的多个关键词；若返回值为空，Score不为空，则代表识别结果所对应的恶意标签（Label）来自于语义模型判断的返回值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keywords: [String]?
-        
+
         /// 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的ID，以方便自定义库管理和配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let libId: String?
-        
+
         /// 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的名称,以方便自定义库管理和配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let libName: String?
-        
+
         /// 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         /// 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 该字段用于返回自定义关键词对应的词库类型，取值为**1**（黑白库）和**2**（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let libType: Int64?
-        
+
         /// 该字段用于返回当前标签（Lable）下的二级标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case label = "Label"
             case keywords = "Keywords"
@@ -200,83 +200,83 @@ extension Vm {
             case subLabel = "SubLabel"
         }
     }
-    
+
     /// 用于返回音频片段的审核结果
     public struct AudioSegments: TCOutputModel {
         /// 该字段用于返回音频片段的开始时间，单位为秒。对于点播文件，该参数代表对应音频相对于完整音轨的偏移时间，如0（代表不偏移），5（音轨开始后5秒），10（音轨开始后10秒）；对于直播文件，该参数则返回对应音频片段开始时的Unix时间戳，如：1594650717。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offsetTime: String?
-        
+
         /// 该字段用于返回音频片段的具体审核结果，详细内容敬请参考AudioResult数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: AudioResult?
-        
+
         enum CodingKeys: String, CodingKey {
             case offsetTime = "OffsetTime"
             case result = "Result"
         }
     }
-    
+
     /// 文件桶信息
     /// 参考腾讯云存储相关说明 https://cloud.tencent.com/document/product/436/44352
     public struct BucketInfo: TCInputModel {
         /// 该字段用于标识腾讯云对象存储的存储桶名称,关于文件桶的详细信息敬请参考 [腾讯云存储相关说明](https://cloud.tencent.com/document/product/436/44352)。
         public let bucket: String
-        
+
         /// 该字段用于标识腾讯云对象存储的托管机房的分布地区，对象存储 COS 的数据存放在这些地域的存储桶中。
         public let region: String
-        
+
         /// 该字段用于标识腾讯云对象存储的对象Key,对象z作为基本单元被存放在存储桶中；用户可以通过腾讯云控制台、API、SDK 等多种方式管理对象。有关对象的详细描述敬请参阅相应 [产品文档](https://cloud.tencent.com/document/product/436/13324)。
         public let object: String
-        
-        public init (bucket: String, region: String, object: String) {
+
+        public init(bucket: String, region: String, object: String) {
             self.bucket = bucket
             self.region = region
             self.object = object
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
             case region = "Region"
             case object = "Object"
         }
     }
-    
+
     /// Result结果详情
     public struct ImageResult: TCOutputModel {
         /// 该参数用于标识审核内容是否命中恶意标签，取值：0（**未命中**）和1（**命中**）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hitFlag: Int64?
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         /// 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 -性行为 99*，则表明该文本非常有可能属于色情性行为内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 该字段用于返回图像审核结果的子结果，详细内容敬请参考ImageResultResult数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [ImageResultResult]?
-        
+
         /// 该字段用于返回审核结果的访问链接（URL），图片支持PNG、JPG、JPEG、BMP、GIF、WEBP格式。<br>备注：数据**默认有效期为12小时**。如您需要更长时间的保存，请在数据储存的COS桶中配置对应的储存时长。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 该字段用于返回输入参数中的额外附加信息（Extra），如未配置则默认返回值为空。<br>备注：不同客户或Biztype下返回信息不同，如需配置该字段请提交工单咨询或联系售后专员处理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extra: String?
-        
+
         /// 该字段用于返回当前标签（Lable）下的二级标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case hitFlag = "HitFlag"
             case label = "Label"
@@ -288,46 +288,46 @@ extension Vm {
             case subLabel = "SubLabel"
         }
     }
-    
+
     /// 图片输出结果的子结果
     public struct ImageResultResult: TCOutputModel {
         /// 该字段用于返回检测结果所对应的恶意场景。返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**AppLogo**：广告台标，**Custom**：自定义违规，以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scene: String?
-        
+
         /// 该参数用于标识审核内容是否命中恶意标签，取值：0（**未命中**）和1（**命中**）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hitFlag: Int64?
-        
+
         /// 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         /// 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该字段用于返回恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         /// 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 -性行为 99*，则表明该文本非常有可能属于色情性行为内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 该字段用于返回审核图片在敏感场景下命中的特定对象名称列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let names: [String]?
-        
+
         /// 该字段用于返回图片OCR文本识别的检测结果，识别**上限在5000字节内**。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let text: String?
-        
+
         /// 该字段用于返回图像审核子结果的其他详细信息，如文本位置、自定义库等。详细返回内容敬请参考ImageResultsResultDetail数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let details: [ImageResultsResultDetail]?
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case hitFlag = "HitFlag"
@@ -340,50 +340,50 @@ extension Vm {
             case details = "Details"
         }
     }
-    
+
     /// 具体场景下的图片识别结果
     public struct ImageResultsResultDetail: TCOutputModel {
         /// 该字段用于返回调用视频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 该字段用于返回图片OCR文本识别的检测结果，识别**上限在5000字节内**。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let text: String?
-        
+
         /// 该字段用于返回图像审核子结果的详细位置信息，如坐标、大小、旋转角度等。详细返回内容敬请参考ImageResultsResultDetailLocation数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: ImageResultsResultDetailLocation?
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的ID，以方便自定义库管理和配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let libId: String?
-        
+
         /// 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的名称,以方便自定义库管理和配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let libName: String?
-        
+
         /// 该字段用于返回检测文本命中的关键词信息，用于标注文本违规的具体原因（如：*加我微信*）。该参数可能会有多个返回值，代表命中的多个关键词；如返回值为空且Score不为空，则代表识别结果所对应的恶意标签（Label）是来自于语义模型判断的返回值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keywords: [String]?
-        
+
         /// 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         /// 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 该字段用于返回恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabelCode: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case text = "Text"
@@ -397,29 +397,29 @@ extension Vm {
             case subLabelCode = "SubLabelCode"
         }
     }
-    
+
     /// 图片详情位置信息
     public struct ImageResultsResultDetailLocation: TCOutputModel {
         /// 该参数用于标识OCR检测框左上角位置的**横坐标**（x）所在的像素位置，结合剩余参数可唯一确定检测框的大小和位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let x: Float?
-        
+
         /// 该参数用于标识OCR检测框左上角位置的**纵坐标**（y）所在的像素位置，结合剩余参数可唯一确定检测框的大小和位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let y: Float?
-        
+
         /// 该参数用于标识OCR检测框的宽度（**由左上角出发在x轴向右延伸的长度**）。结合剩余参数可唯一确定检测框的大小和位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: Int64?
-        
+
         /// 该参数用于标识OCR检测框的高度（**由左上角出发在y轴向下延伸的长度**）。结合剩余参数可唯一确定检测框的大小和位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let height: Int64?
-        
+
         /// 该参数用于标识OCR检测框的旋转角度，该参数结合X和Y两个坐标参数可唯一确定检测框的具体位置；取值：0-360（**角度制**），方向为**逆时针旋**转。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rotate: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case x = "X"
             case y = "Y"
@@ -428,112 +428,112 @@ extension Vm {
             case rotate = "Rotate"
         }
     }
-    
+
     /// 图片段信息
     public struct ImageSegments: TCOutputModel {
         /// 该字段用于返回视频片段的截帧时间，单位为秒。对于点播文件，该参数代表对应截取图片相对于视频的偏移时间，如0（代表不偏移），5（视频开始后5秒），10（视频开始后10秒）；对于直播文件，该参数则返回对应图片的Unix时间戳，如：1594650717。
         public let offsetTime: String
-        
+
         /// 该字段用于返回视频片段的具体截帧审核结果，详细内容敬请参考ImageResult数据结构的描述。
         public let result: ImageResult
-        
+
         enum CodingKeys: String, CodingKey {
             case offsetTime = "OffsetTime"
             case result = "Result"
         }
     }
-    
+
     /// 输入信息详情
     public struct InputInfo: TCOutputModel {
         /// 该字段表示文件访问类型，取值为**URL**（资源链接）和**COS** (腾讯云对象存储)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 该字段表示文件访问的链接地址，格式为标准URL格式。<br> 备注：当Type为URL时此字段不为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 该字段表示文件访问的腾讯云存储桶信息。<br> 备注：当Type为COS时此字段不为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucketInfo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case url = "Url"
             case bucketInfo = "BucketInfo"
         }
     }
-    
+
     /// 媒体类型
     public struct MediaInfo: TCOutputModel {
         /// 该字段用于返回对传入的视频流进行分片的片段时长，单位为秒。**默认值为5秒**，支持用户自定义配置。<br>备注：仅在审核文件为流媒体时生效；此字段返回0则代表未取到有效值。
         public let duration: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case duration = "Duration"
         }
     }
-    
+
     /// 识别类标签结果信息
     public struct RecognitionResult: TCOutputModel {
         /// 可能的取值有：Teenager 、Gender
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 识别标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case label = "Label"
             case tags = "Tags"
         }
     }
-    
+
     ///  数据存储信息
     public struct StorageInfo: TCInputModel {
         /// 该字段表示文件访问类型，取值为**URL**（资源链接）和**COS** (腾讯云对象存储)；该字段应当与传入的访问类型相对应，可用于强校验并方便系统快速识别访问地址；若不传入此参数，则默认值为URL，此时系统将自动判定访问地址类型。
         public let type: String?
-        
+
         /// 该字段表示文件访问的链接地址，格式为标准URL格式。<br> 备注：当Type为URL时此字段不为空，该参数与BucketInfo参数须传入其中之一
         public let url: String?
-        
+
         /// 该字段表示文件访问的腾讯云存储桶信息。<br> 备注：当Type为COS时此字段不为空，该参数与Url参数须传入其中之一。
         public let bucketInfo: BucketInfo?
-        
-        public init (type: String? = nil, url: String? = nil, bucketInfo: BucketInfo? = nil) {
+
+        public init(type: String? = nil, url: String? = nil, bucketInfo: BucketInfo? = nil) {
             self.type = type
             self.url = url
             self.bucketInfo = bucketInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case url = "Url"
             case bucketInfo = "BucketInfo"
         }
     }
-    
+
     /// 音频切片识别标签
     public struct Tag: TCOutputModel {
         /// 根据Label字段确定具体名称：
-        /// 当Label 为Teenager 时 Name可能取值有：Teenager 
+        /// 当Label 为Teenager 时 Name可能取值有：Teenager
         /// 当Label 为Gender 时 Name可能取值有：Male 、Female
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 置信分：0～100，数值越大表示置信度越高
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 识别开始偏移时间，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: Float?
-        
+
         /// 识别结束偏移时间，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case score = "Score"
@@ -541,51 +541,51 @@ extension Vm {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 任务数据
     public struct TaskData: TCOutputModel {
         /// 该字段用于返回视频审核任务数据所对应的数据ID，方便后续查询和管理审核任务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataId: String?
-        
+
         /// 该字段用于返回视频审核任务所生成的任务ID，用于标识具体审核任务，方便后续查询和管理。
         public let taskId: String
-        
+
         /// 该字段用于返回所查询内容的任务状态。
         /// <br>取值：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。
         public let status: String
-        
+
         /// 该字段用于返回视频审核任务所对应的任务名称，方便后续查询和管理审核任务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 该字段用于返回调用视频审核接口时传入的BizType参数，方便数据的辨别和管理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bizType: String?
-        
+
         /// 该字段用于返回调用音频审核接口时输入的音频审核类型，取值为：**VIDEO**（点播视频）和**LIVE_VIDEO**（直播视频），默认值为VIDEO。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         /// 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         public let labels: [TaskLabel]
-        
+
         /// 该字段用于返回输入媒体文件的详细信息，包括编码格式、分片时长等信息。详细内容敬请参考MediaInfo数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaInfo: MediaInfo?
-        
+
         /// 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
         public let createdAt: String
-        
+
         /// 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case dataId = "DataId"
             case taskId = "TaskId"
@@ -600,29 +600,29 @@ extension Vm {
             case updatedAt = "UpdatedAt"
         }
     }
-    
+
     /// 任务筛选器
     public struct TaskFilter: TCInputModel {
         /// 该字段用于传入任务对应的业务类型供筛选器进行筛选。Biztype为策略的具体的编号，用于接口调度，在内容安全控制台中可配置。不同Biztype关联不同的业务场景与审核策略，调用前请确认正确的Biztype。Biztype仅为**数字、字母与下划线的组合**，长度为3-32个字符。<br>备注：在不传入该参数时筛选器默认不筛选业务类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bizType: [String]?
-        
+
         /// 该字段用于传入视频审核对应的任务类型供筛选器进行筛选，取值为：**VIDEO**（点播视频审核），**AUDIO**（点播音频审核）， **LIVE_VIDEO**（直播视频审核）, **LIVE_AUDIO**（直播音频审核）。<br>备注：在不传入该参数时筛选器默认不筛选任务类型。
         public let type: String?
-        
+
         /// 该字段用于传入视频审核对应的建议操作供筛选器进行筛选，取值为：**Block**：建议屏蔽，**Review**：建议人工复审，**Pass**：建议通过。<br>备注：在不传入该参数时筛选器默认不筛选建议操作。
         public let suggestion: String?
-        
+
         /// 该字段用于传入审核任务的任务状态供筛选器进行筛选，取值为：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。<br>备注：在不传入该参数时筛选器默认不筛选任务状态。
         public let taskStatus: String?
-        
-        public init (bizType: [String]? = nil, type: String? = nil, suggestion: String? = nil, taskStatus: String? = nil) {
+
+        public init(bizType: [String]? = nil, type: String? = nil, suggestion: String? = nil, taskStatus: String? = nil) {
             self.bizType = bizType
             self.type = type
             self.suggestion = suggestion
             self.taskStatus = taskStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizType = "BizType"
             case type = "Type"
@@ -630,49 +630,49 @@ extension Vm {
             case taskStatus = "TaskStatus"
         }
     }
-    
+
     /// 音视频任务结构
     public struct TaskInput: TCInputModel {
         /// 选填参数，该字段表示您为待检测对象分配的数据ID，传入后可方便您对文件进行标识和管理。<br>取值：由英文字母（大小写均可）、数字及四个特殊符号（_，-，@，#）组成，**长度不超过64个字符**。
         public let dataId: String?
-        
+
         /// 选填参数，该字段表示审核任务所对应的任务名称，方便后续查询和管理审核任务。
         public let name: String?
-        
+
         /// 必填参数，该字段表示审核文件的访问参数，用于获取审核媒体文件，该参数内包括访问类型和访问地址。
         public let input: StorageInfo?
-        
-        public init (dataId: String? = nil, name: String? = nil, input: StorageInfo? = nil) {
+
+        public init(dataId: String? = nil, name: String? = nil, input: StorageInfo? = nil) {
             self.dataId = dataId
             self.name = name
             self.input = input
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dataId = "DataId"
             case name = "Name"
             case input = "Input"
         }
     }
-    
+
     /// 任务输出标签
     public struct TaskLabel: TCOutputModel {
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 该字段用于返回当前标签（Label）下的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容；*色情 0*，则表明该文本不属于色情内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
-        
+
         /// 该字段用于返回当前标签（Lable）下的二级标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case label = "Label"
             case suggestion = "Suggestion"
@@ -680,25 +680,25 @@ extension Vm {
             case subLabel = "SubLabel"
         }
     }
-    
+
     /// 创建任务时的返回结果
     public struct TaskResult: TCOutputModel {
         /// 该字段用于返回创建视频审核任务时在TaskInput结构内传入的DataId，用于标识具体审核任务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataId: String?
-        
+
         /// 该字段用于返回视频审核任务所生成的任务ID，用于标识具体审核任务，方便后续查询和管理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 该字段用于返回任务创建的状态，如返回OK则代表任务创建成功，其他返回值可参考公共错误码。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: String?
-        
+
         /// **仅在Code的返回值为错误码时生效**，用于返回错误的详情内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case dataId = "DataId"
             case taskId = "TaskId"

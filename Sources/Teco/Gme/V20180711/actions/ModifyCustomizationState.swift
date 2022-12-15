@@ -19,52 +19,52 @@ extension Gme {
     public struct ModifyCustomizationStateRequest: TCRequestModel {
         /// 自学习模型ID
         public let modelId: String
-        
+
         /// 想要变换的模型状态，-1代表下线，1代表上线
         public let toState: Int64
-        
+
         /// 应用 ID，登录控制台创建应用得到的AppID
         public let bizId: Int64
-        
-        public init (modelId: String, toState: Int64, bizId: Int64) {
+
+        public init(modelId: String, toState: Int64, bizId: Int64) {
             self.modelId = modelId
             self.toState = toState
             self.bizId = bizId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case toState = "ToState"
             case bizId = "BizId"
         }
     }
-    
+
     /// ModifyCustomizationState返回参数结构体
     public struct ModifyCustomizationStateResponse: TCResponseModel {
         /// 自学习模型ID
         public let modelId: String
-        
+
         /// 返回值。0为成功，非0为失败。
         public let errorCode: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case errorCode = "ErrorCode"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改语音消息转文本自学习模型状态
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
     @inlinable
-    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationStateResponse > {
+    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
         self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改语音消息转文本自学习模型状态
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
@@ -72,15 +72,15 @@ extension Gme {
     public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
         try await self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改语音消息转文本自学习模型状态
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
     @inlinable
-    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationStateResponse > {
+    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
         self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改语音消息转文本自学习模型状态
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型

@@ -19,23 +19,23 @@ extension Dbdc {
     public struct DescribeHostListRequest: TCRequestModel {
         /// 独享集群实例Id
         public let instanceId: String
-        
+
         /// 分页返回数量
         public let limit: Int64?
-        
+
         /// 分页偏移量
         public let offset: Int64?
-        
+
         /// 分配状态过滤，0-可分配，1-禁止分配
         public let assignStatus: [Int64]?
-        
-        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil) {
+
+        public init(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
             self.assignStatus = assignStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
@@ -43,33 +43,33 @@ extension Dbdc {
             case assignStatus = "AssignStatus"
         }
     }
-    
+
     /// DescribeHostList返回参数结构体
     public struct DescribeHostListResponse: TCResponseModel {
         /// 主机总数
         public let totalCount: Int64
-        
+
         /// 主机详情
         public let hosts: [HostDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case hosts = "Hosts"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询主机列表
     ///
     /// 本接口用于查询主机列表
     @inlinable
-    public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostListResponse > {
+    public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostListResponse> {
         self.client.execute(action: "DescribeHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主机列表
     ///
     /// 本接口用于查询主机列表
@@ -77,15 +77,15 @@ extension Dbdc {
     public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostListResponse {
         try await self.client.execute(action: "DescribeHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询主机列表
     ///
     /// 本接口用于查询主机列表
     @inlinable
-    public func describeHostList(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostListResponse > {
+    public func describeHostList(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostListResponse> {
         self.describeHostList(DescribeHostListRequest(instanceId: instanceId, limit: limit, offset: offset, assignStatus: assignStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主机列表
     ///
     /// 本接口用于查询主机列表

@@ -19,23 +19,23 @@ extension Ump {
     public struct CreateServerStateRequest: TCRequestModel {
         /// 集团编码
         public let groupCode: String
-        
+
         /// 服务器监控信息列表
         public let serverStateItems: [ServerStateItem]
-        
+
         /// 商场ID
         public let mallId: UInt64?
-        
+
         /// 服务器监控信息上报时间戳，单位毫秒
         public let reportTime: UInt64?
-        
-        public init (groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64? = nil, reportTime: UInt64? = nil) {
+
+        public init(groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64? = nil, reportTime: UInt64? = nil) {
             self.groupCode = groupCode
             self.serverStateItems = serverStateItems
             self.mallId = mallId
             self.reportTime = reportTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupCode = "GroupCode"
             case serverStateItems = "ServerStateItems"
@@ -43,25 +43,25 @@ extension Ump {
             case reportTime = "ReportTime"
         }
     }
-    
+
     /// CreateServerState返回参数结构体
     public struct CreateServerStateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 服务器监控信息上报
     ///
     /// 上报所有服务器硬件监控信息
     @inlinable
-    public func createServerState(_ input: CreateServerStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerStateResponse > {
+    public func createServerState(_ input: CreateServerStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerStateResponse> {
         self.client.execute(action: "CreateServerState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 服务器监控信息上报
     ///
     /// 上报所有服务器硬件监控信息
@@ -69,15 +69,15 @@ extension Ump {
     public func createServerState(_ input: CreateServerStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerStateResponse {
         try await self.client.execute(action: "CreateServerState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 服务器监控信息上报
     ///
     /// 上报所有服务器硬件监控信息
     @inlinable
-    public func createServerState(groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64? = nil, reportTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerStateResponse > {
+    public func createServerState(groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64? = nil, reportTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerStateResponse> {
         self.createServerState(CreateServerStateRequest(groupCode: groupCode, serverStateItems: serverStateItems, mallId: mallId, reportTime: reportTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 服务器监控信息上报
     ///
     /// 上报所有服务器硬件监控信息

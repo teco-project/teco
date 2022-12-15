@@ -19,43 +19,43 @@ extension Sqlserver {
     public struct DescribeRollbackTimeRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 需要查询的数据库列表
         public let dBs: [String]
-        
-        public init (instanceId: String, dBs: [String]) {
+
+        public init(instanceId: String, dBs: [String]) {
             self.instanceId = instanceId
             self.dBs = dBs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case dBs = "DBs"
         }
     }
-    
+
     /// DescribeRollbackTime返回参数结构体
     public struct DescribeRollbackTimeResponse: TCResponseModel {
         /// 数据库可回档实例信息
         public let details: [DbRollbackTimeInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case details = "Details"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例可回档时间范围
     ///
     /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
     @inlinable
-    public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeResponse > {
+    public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTimeResponse> {
         self.client.execute(action: "DescribeRollbackTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例可回档时间范围
     ///
     /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
@@ -63,15 +63,15 @@ extension Sqlserver {
     public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeResponse {
         try await self.client.execute(action: "DescribeRollbackTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例可回档时间范围
     ///
     /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
     @inlinable
-    public func describeRollbackTime(instanceId: String, dBs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeResponse > {
+    public func describeRollbackTime(instanceId: String, dBs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTimeResponse> {
         self.describeRollbackTime(DescribeRollbackTimeRequest(instanceId: instanceId, dBs: dBs), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例可回档时间范围
     ///
     /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围

@@ -19,23 +19,23 @@ extension Ds {
     public struct SendVcodeRequest: TCRequestModel {
         /// 模块名VerifyCode
         public let module: String
-        
+
         /// 操作名SendVcode
         public let operation: String
-        
+
         /// 合同ID
         public let contractResId: String
-        
+
         /// 帐号ID
         public let accountResId: String
-        
-        public init (module: String, operation: String, contractResId: String, accountResId: String) {
+
+        public init(module: String, operation: String, contractResId: String, accountResId: String) {
             self.module = module
             self.operation = operation
             self.contractResId = contractResId
             self.accountResId = accountResId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -43,25 +43,25 @@ extension Ds {
             case accountResId = "AccountResId"
         }
     }
-    
+
     /// SendVcode返回参数结构体
     public struct SendVcodeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
     @inlinable
-    public func sendVcode(_ input: SendVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendVcodeResponse > {
+    public func sendVcode(_ input: SendVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendVcodeResponse> {
         self.client.execute(action: "SendVcode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
@@ -69,15 +69,15 @@ extension Ds {
     public func sendVcode(_ input: SendVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendVcodeResponse {
         try await self.client.execute(action: "SendVcode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
     @inlinable
-    public func sendVcode(module: String, operation: String, contractResId: String, accountResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendVcodeResponse > {
+    public func sendVcode(module: String, operation: String, contractResId: String, accountResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendVcodeResponse> {
         self.sendVcode(SendVcodeRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId), logger: logger, on: eventLoop)
     }
-    
+
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。

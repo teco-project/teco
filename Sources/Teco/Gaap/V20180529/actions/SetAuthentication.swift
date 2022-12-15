@@ -19,44 +19,44 @@ extension Gaap {
     public struct SetAuthenticationRequest: TCRequestModel {
         /// 监听器ID。
         public let listenerId: String
-        
+
         /// 需要进行高级配置的域名，该域名为监听器下的转发规则的域名。
         public let domain: String
-        
+
         /// 基础认证开关，其中：
         /// 0，关闭基础认证；
         /// 1，开启基础认证。
         /// 默认为0。
         public let basicAuth: Int64?
-        
+
         /// 通道认证开关，用于源站对Gaap的认证，其中：
         /// 0，关闭通道认证；
         /// 1，开启通道认证。
         /// 默认为0。
         public let gaapAuth: Int64?
-        
+
         /// 源站认证开关，用于Gaap对服务器的认证，其中：
         /// 0，关闭源站认证；
         /// 1，开启源站认证。
         /// 默认为0。
         public let realServerAuth: Int64?
-        
+
         /// 基础认证配置ID，从证书管理页获取。
         public let basicAuthConfId: String?
-        
+
         /// 通道SSL证书ID，从证书管理页获取。
         public let gaapCertificateId: String?
-        
+
         /// 源站CA证书ID，从证书管理页获取。源站认证时，填写该参数或RealServerCertificateId参数
         public let realServerCertificateId: String?
-        
+
         /// 该字段已废弃，请使用创建规则和修改规则中的SNI功能。
         public let realServerCertificateDomain: String?
-        
+
         /// 多源站CA证书ID，从证书管理页获取。源站认证时，填写该参数或RealServerCertificateId参数
         public let polyRealServerCertificateIds: [String]?
-        
-        public init (listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil) {
+
+        public init(listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil) {
             self.listenerId = listenerId
             self.domain = domain
             self.basicAuth = basicAuth
@@ -68,7 +68,7 @@ extension Gaap {
             self.realServerCertificateDomain = realServerCertificateDomain
             self.polyRealServerCertificateIds = polyRealServerCertificateIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case domain = "Domain"
@@ -82,25 +82,25 @@ extension Gaap {
             case polyRealServerCertificateIds = "PolyRealServerCertificateIds"
         }
     }
-    
+
     /// SetAuthentication返回参数结构体
     public struct SetAuthenticationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 认证高级配置
     ///
     /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
     @inlinable
-    public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAuthenticationResponse > {
+    public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAuthenticationResponse> {
         self.client.execute(action: "SetAuthentication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 认证高级配置
     ///
     /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
@@ -108,15 +108,15 @@ extension Gaap {
     public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAuthenticationResponse {
         try await self.client.execute(action: "SetAuthentication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 认证高级配置
     ///
     /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
     @inlinable
-    public func setAuthentication(listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAuthenticationResponse > {
+    public func setAuthentication(listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAuthenticationResponse> {
         self.setAuthentication(SetAuthenticationRequest(listenerId: listenerId, domain: domain, basicAuth: basicAuth, gaapAuth: gaapAuth, realServerAuth: realServerAuth, basicAuthConfId: basicAuthConfId, gaapCertificateId: gaapCertificateId, realServerCertificateId: realServerCertificateId, realServerCertificateDomain: realServerCertificateDomain, polyRealServerCertificateIds: polyRealServerCertificateIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 认证高级配置
     ///
     /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。

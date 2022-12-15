@@ -22,10 +22,10 @@ extension Postgres {
     public struct DescribeDBBackupsRequest: TCRequestModel {
         /// 实例ID，形如postgres-4wdeb0zv。
         public let dbInstanceId: String
-        
+
         /// 备份方式（1-全量）。目前只支持全量，取值为1。
         public let type: Int64
-        
+
         /// 查询开始时间，形如2018-06-10 17:06:38，起始时间不得小于7天以前
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Postgres {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询结束时间，形如2018-06-10 17:06:38
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,14 +41,14 @@ extension Postgres {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 备份列表分页返回，每页返回数量，默认为 20，最小为1，最大值为 100。（当该参数不传或者传0时按默认值处理）
         public let limit: Int64?
-        
+
         /// 返回结果中的第几页，从第0页开始。默认为0。
         public let offset: Int64?
-        
-        public init (dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.type = type
             self.startTime = startTime
@@ -56,7 +56,7 @@ extension Postgres {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case type = "Type"
@@ -66,33 +66,33 @@ extension Postgres {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeDBBackups返回参数结构体
     public struct DescribeDBBackupsResponse: TCResponseModel {
         /// 返回备份列表中备份文件的个数
         public let totalCount: Int64
-        
+
         /// 备份列表
         public let backupList: [DBBackup]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case backupList = "BackupList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。
     @inlinable
-    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBBackupsResponse > {
+    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
         self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。
@@ -100,15 +100,15 @@ extension Postgres {
     public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
         try await self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。
     @inlinable
-    public func describeDBBackups(dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBBackupsResponse > {
+    public func describeDBBackups(dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
         self.describeDBBackups(DescribeDBBackupsRequest(dbInstanceId: dbInstanceId, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。

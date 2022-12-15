@@ -20,45 +20,45 @@ extension TCTcbError {
             case taskExisted = "UnsupportedOperation.TaskExisted"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 有正在进行中的任务。
         public static var taskExisted: UnsupportedOperation {
             UnsupportedOperation(.taskExisted)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asTcbError() -> TCTcbError {
             let code: TCTcbError.Code
             switch self.error {
-            case .taskExisted: 
+            case .taskExisted:
                 code = .unsupportedOperation_TaskExisted
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCTcbError(code, context: self.context)

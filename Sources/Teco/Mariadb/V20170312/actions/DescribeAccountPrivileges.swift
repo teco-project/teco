@@ -19,26 +19,26 @@ extension Mariadb {
     public struct DescribeAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
-        
+
         /// 登录用户名。
         public let userName: String
-        
+
         /// 用户允许的访问 host，用户名+host唯一确定一个账号。
         public let host: String
-        
+
         /// 数据库名。如果为 \*，表示查询全局权限（即 \*.\*），此时忽略 Type 和 Object 参数
         public let dbName: String
-        
+
         /// 类型,可以填入 table 、 view 、 proc 、 func 和 \*。当 DbName 为具体数据库名，Type为 \* 时，表示查询该数据库权限（即db.\*），此时忽略 Object 参数
         public let type: String?
-        
+
         /// 具体的 Type 的名称，例如 Type 为 table 时就是具体的表名。DbName 和 Type 都为具体名称，则 Object 表示具体对象名，不能为 \* 或者为空
         public let object: String?
-        
+
         /// 当 Type=table 时，ColName 为 \* 表示查询表的权限，如果为具体字段名，表示查询对应字段的权限
         public let colName: String?
-        
-        public init (instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil) {
+
+        public init(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil) {
             self.instanceId = instanceId
             self.userName = userName
             self.host = host
@@ -47,7 +47,7 @@ extension Mariadb {
             self.object = object
             self.colName = colName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case userName = "UserName"
@@ -58,24 +58,24 @@ extension Mariadb {
             case colName = "ColName"
         }
     }
-    
+
     /// DescribeAccountPrivileges返回参数结构体
     public struct DescribeAccountPrivilegesResponse: TCResponseModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 权限列表。
         public let privileges: [String]
-        
+
         /// 数据库账号用户名
         public let userName: String
-        
+
         /// 数据库账号Host
         public let host: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case privileges = "Privileges"
@@ -84,16 +84,16 @@ extension Mariadb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询账号权限
     ///
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
         self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账号权限
     ///
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
@@ -102,16 +102,16 @@ extension Mariadb {
     public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
         try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询账号权限
     ///
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
+    public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
         self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询账号权限
     ///
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。

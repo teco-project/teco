@@ -19,54 +19,54 @@ extension Dnspod {
     public struct DeleteRecordRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         public let recordId: UInt64
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
-        
-        public init (domain: String, recordId: UInt64, domainId: UInt64? = nil) {
+
+        public init(domain: String, recordId: UInt64, domainId: UInt64? = nil) {
             self.domain = domain
             self.recordId = recordId
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case recordId = "RecordId"
             case domainId = "DomainId"
         }
     }
-    
+
     /// DeleteRecord返回参数结构体
     public struct DeleteRecordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除记录
     @inlinable
-    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordResponse > {
+    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordResponse> {
         self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除记录
     @inlinable
     public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {
         try await self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除记录
     @inlinable
-    public func deleteRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordResponse > {
+    public func deleteRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordResponse> {
         self.deleteRecord(DeleteRecordRequest(domain: domain, recordId: recordId, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除记录
     @inlinable
     public func deleteRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {

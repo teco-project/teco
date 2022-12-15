@@ -19,34 +19,34 @@ extension Iotvideo {
     public struct RunDeviceStreamRequest: TCRequestModel {
         /// 设备TID 列表
         public let tids: [String]
-        
-        public init (tids: [String]) {
+
+        public init(tids: [String]) {
             self.tids = tids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tids = "Tids"
         }
     }
-    
+
     /// RunDeviceStream返回参数结构体
     public struct RunDeviceStreamResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func runDeviceStream(_ input: RunDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunDeviceStreamResponse > {
+    public func runDeviceStream(_ input: RunDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceStreamResponse> {
         self.client.execute(action: "RunDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
@@ -54,15 +54,15 @@ extension Iotvideo {
     public func runDeviceStream(_ input: RunDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceStreamResponse {
         try await self.client.execute(action: "RunDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func runDeviceStream(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunDeviceStreamResponse > {
+    public func runDeviceStream(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceStreamResponse> {
         self.runDeviceStream(RunDeviceStreamRequest(tids: tids), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。

@@ -19,23 +19,23 @@ extension Tsf {
     public struct DescribeRepositoriesRequest: TCRequestModel {
         /// 查询关键字（按照仓库名称搜索）
         public let searchWord: String?
-        
+
         /// 查询起始偏移
         public let offset: UInt64?
-        
+
         /// 返回数量限制
         public let limit: UInt64?
-        
+
         /// 仓库类型（默认仓库：default，私有仓库：private）
         public let repositoryType: String?
-        
-        public init (searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil) {
+
+        public init(searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil) {
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
             self.repositoryType = repositoryType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case searchWord = "SearchWord"
             case offset = "Offset"
@@ -43,39 +43,39 @@ extension Tsf {
             case repositoryType = "RepositoryType"
         }
     }
-    
+
     /// DescribeRepositories返回参数结构体
     public struct DescribeRepositoriesResponse: TCResponseModel {
         /// 符合查询仓库信息列表
         public let result: RepositoryList
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询仓库列表
     @inlinable
-    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoriesResponse > {
+    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoriesResponse> {
         self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询仓库列表
     @inlinable
     public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
         try await self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询仓库列表
     @inlinable
-    public func describeRepositories(searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoriesResponse > {
+    public func describeRepositories(searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoriesResponse> {
         self.describeRepositories(DescribeRepositoriesRequest(searchWord: searchWord, offset: offset, limit: limit, repositoryType: repositoryType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询仓库列表
     @inlinable
     public func describeRepositories(searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {

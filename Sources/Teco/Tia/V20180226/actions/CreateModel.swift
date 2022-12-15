@@ -19,32 +19,32 @@ extension Tia {
     public struct CreateModelRequest: TCRequestModel {
         /// 模型名称
         public let name: String
-        
+
         /// 要部署的模型文件路径名
         public let model: String
-        
+
         /// 关于模型的描述
         public let description: String?
-        
+
         /// 部署目标集群的名称，`集群模式` 必填
         public let cluster: String?
-        
+
         /// 运行环境镜像的标签，详见 [Serving 环境](https://cloud.tencent.com/document/product/851/17320#serving-.E7.8E.AF.E5.A2.83)
         public let runtimeVersion: String?
-        
+
         /// 要部署的模型副本数目，`集群模式` 选填
         public let replicas: UInt64?
-        
+
         /// 暴露外网或内网，默认暴露外网，`集群模式` 选填
         public let expose: String?
-        
+
         /// 部署模式，取值 `serverless` 即为 `无服务器模式`，否则为 `集群模式` 下服务的运行规模，形如 `2U4G1P`，详见 [自定义的训练规模](https://cloud.tencent.com/document/product/851/17319#.E8.87.AA.E5.AE.9A.E4.B9.89.E7.9A.84.E8.AE.AD.E7.BB.83.E8.A7.84.E6.A8.A1)
         public let servType: String?
-        
+
         /// `无服务器模式` 可选的其他配置信息，详见 [利用无服务器函数部署](https://cloud.tencent.com/document/product/851/17049#.E5.88.A9.E7.94.A8.E6.97.A0.E6.9C.8D.E5.8A.A1.E5.99.A8.E5.87.BD.E6.95.B0.E9.83.A8.E7.BD.B2)
         public let runtimeConf: [String]?
-        
-        public init (name: String, model: String, description: String? = nil, cluster: String? = nil, runtimeVersion: String? = nil, replicas: UInt64? = nil, expose: String? = nil, servType: String? = nil, runtimeConf: [String]? = nil) {
+
+        public init(name: String, model: String, description: String? = nil, cluster: String? = nil, runtimeVersion: String? = nil, replicas: UInt64? = nil, expose: String? = nil, servType: String? = nil, runtimeConf: [String]? = nil) {
             self.name = name
             self.model = model
             self.description = description
@@ -55,7 +55,7 @@ extension Tia {
             self.servType = servType
             self.runtimeConf = runtimeConf
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case model = "Model"
@@ -68,29 +68,29 @@ extension Tia {
             case runtimeConf = "RuntimeConf"
         }
     }
-    
+
     /// CreateModel返回参数结构体
     public struct CreateModelResponse: TCResponseModel {
         /// 模型的详细信息
         public let model: Model
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case model = "Model"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建Model
     ///
     /// 部署模型，用以对外提供服务。有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable
-    public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelResponse > {
+    public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelResponse> {
         self.client.execute(action: "CreateModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建Model
     ///
     /// 部署模型，用以对外提供服务。有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
@@ -98,15 +98,15 @@ extension Tia {
     public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelResponse {
         try await self.client.execute(action: "CreateModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建Model
     ///
     /// 部署模型，用以对外提供服务。有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable
-    public func createModel(name: String, model: String, description: String? = nil, cluster: String? = nil, runtimeVersion: String? = nil, replicas: UInt64? = nil, expose: String? = nil, servType: String? = nil, runtimeConf: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelResponse > {
+    public func createModel(name: String, model: String, description: String? = nil, cluster: String? = nil, runtimeVersion: String? = nil, replicas: UInt64? = nil, expose: String? = nil, servType: String? = nil, runtimeConf: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelResponse> {
         self.createModel(CreateModelRequest(name: name, model: model, description: description, cluster: cluster, runtimeVersion: runtimeVersion, replicas: replicas, expose: expose, servType: servType, runtimeConf: runtimeConf), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建Model
     ///
     /// 部署模型，用以对外提供服务。有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。

@@ -19,57 +19,57 @@ extension Tdid {
     public struct GetPolicyListRequest: TCRequestModel {
         /// 起始位置
         public let displayStart: Int64
-        
+
         /// 长度
         public let displayLength: Int64
-        
-        public init (displayStart: Int64, displayLength: Int64) {
+
+        public init(displayStart: Int64, displayLength: Int64) {
             self.displayStart = displayStart
             self.displayLength = displayLength
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case displayStart = "DisplayStart"
             case displayLength = "DisplayLength"
         }
     }
-    
+
     /// GetPolicyList返回参数结构体
     public struct GetPolicyListResponse: TCResponseModel {
         /// 策略Policy管理列表
         public let policyDataList: [Policy]
-        
+
         /// 总数
         public let allCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policyDataList = "PolicyDataList"
             case allCount = "AllCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 披露策略Policy管理列表
     @inlinable
-    public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyListResponse > {
+    public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyListResponse> {
         self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 披露策略Policy管理列表
     @inlinable
     public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {
         try await self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 披露策略Policy管理列表
     @inlinable
-    public func getPolicyList(displayStart: Int64, displayLength: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyListResponse > {
+    public func getPolicyList(displayStart: Int64, displayLength: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyListResponse> {
         self.getPolicyList(GetPolicyListRequest(displayStart: displayStart, displayLength: displayLength), logger: logger, on: eventLoop)
     }
-    
+
     /// 披露策略Policy管理列表
     @inlinable
     public func getPolicyList(displayStart: Int64, displayLength: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {

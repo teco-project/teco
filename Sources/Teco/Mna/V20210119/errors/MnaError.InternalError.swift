@@ -25,74 +25,74 @@ extension TCMnaError {
             case undefinedEncryptedKey = "InternalError.UndefinedEncryptedKey"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var controlRequestError: InternalError {
             InternalError(.controlRequestError)
         }
-        
+
         public static var duplicateDataKey: InternalError {
             InternalError(.duplicateDataKey)
         }
-        
+
         public static var duplicateDeviceName: InternalError {
             InternalError(.duplicateDeviceName)
         }
-        
+
         public static var fileIOError: InternalError {
             InternalError(.fileIOError)
         }
-        
+
         public static var networkInfoRequestError: InternalError {
             InternalError(.networkInfoRequestError)
         }
-        
+
         public static var undefinedEncryptedKey: InternalError {
             InternalError(.undefinedEncryptedKey)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asMnaError() -> TCMnaError {
             let code: TCMnaError.Code
             switch self.error {
-            case .controlRequestError: 
+            case .controlRequestError:
                 code = .internalError_ControlRequestError
-            case .duplicateDataKey: 
+            case .duplicateDataKey:
                 code = .internalError_DuplicateDataKey
-            case .duplicateDeviceName: 
+            case .duplicateDeviceName:
                 code = .internalError_DuplicateDeviceName
-            case .fileIOError: 
+            case .fileIOError:
                 code = .internalError_FileIOError
-            case .networkInfoRequestError: 
+            case .networkInfoRequestError:
                 code = .internalError_NetworkInfoRequestError
-            case .undefinedEncryptedKey: 
+            case .undefinedEncryptedKey:
                 code = .internalError_UndefinedEncryptedKey
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCMnaError(code, context: self.context)

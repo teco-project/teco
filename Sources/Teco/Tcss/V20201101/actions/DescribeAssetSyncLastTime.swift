@@ -17,42 +17,42 @@
 extension Tcss {
     /// DescribeAssetSyncLastTime请求参数结构体
     public struct DescribeAssetSyncLastTimeRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeAssetSyncLastTime返回参数结构体
     public struct DescribeAssetSyncLastTimeResponse: TCResponseModel {
         /// 资产最近同步时间
         public let assetSyncLastTime: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case assetSyncLastTime = "AssetSyncLastTime"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询资产同步最近时间
     @inlinable
-    public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSyncLastTimeResponse > {
+    public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSyncLastTimeResponse> {
         self.client.execute(action: "DescribeAssetSyncLastTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询资产同步最近时间
     @inlinable
     public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSyncLastTimeResponse {
         try await self.client.execute(action: "DescribeAssetSyncLastTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询资产同步最近时间
     @inlinable
-    public func describeAssetSyncLastTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSyncLastTimeResponse > {
+    public func describeAssetSyncLastTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSyncLastTimeResponse> {
         self.describeAssetSyncLastTime(DescribeAssetSyncLastTimeRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询资产同步最近时间
     @inlinable
     public func describeAssetSyncLastTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSyncLastTimeResponse {

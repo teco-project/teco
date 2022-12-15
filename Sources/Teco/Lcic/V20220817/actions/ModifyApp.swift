@@ -19,49 +19,49 @@ extension Lcic {
     public struct ModifyAppRequest: TCRequestModel {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
-        
+
         /// 回调地址。
         public let callback: String?
-        
-        public init (sdkAppId: UInt64, callback: String? = nil) {
+
+        public init(sdkAppId: UInt64, callback: String? = nil) {
             self.sdkAppId = sdkAppId
             self.callback = callback
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case callback = "Callback"
         }
     }
-    
+
     /// ModifyApp返回参数结构体
     public struct ModifyAppResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改应用
     @inlinable
-    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppResponse > {
+    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
         self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用
     @inlinable
     public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
         try await self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改应用
     @inlinable
-    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppResponse > {
+    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
         self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用
     @inlinable
     public func modifyApp(sdkAppId: UInt64, callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {

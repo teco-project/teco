@@ -19,39 +19,39 @@ extension Chdfs {
     public struct DescribeLifeCycleRulesRequest: TCRequestModel {
         /// 文件系统ID
         public let fileSystemId: String
-        
-        public init (fileSystemId: String) {
+
+        public init(fileSystemId: String) {
             self.fileSystemId = fileSystemId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
         }
     }
-    
+
     /// DescribeLifeCycleRules返回参数结构体
     public struct DescribeLifeCycleRulesResponse: TCResponseModel {
         /// 生命周期规则列表
         public let lifeCycleRules: [LifeCycleRule]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case lifeCycleRules = "LifeCycleRules"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看生命周期规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
-    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLifeCycleRulesResponse > {
+    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifeCycleRulesResponse> {
         self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看生命周期规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
@@ -60,16 +60,16 @@ extension Chdfs {
     public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
         try await self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看生命周期规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
-    public func describeLifeCycleRules(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLifeCycleRulesResponse > {
+    public func describeLifeCycleRules(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifeCycleRulesResponse> {
         self.describeLifeCycleRules(DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看生命周期规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。

@@ -19,38 +19,38 @@ extension Tcss {
     public struct DescribeReverseShellWhiteListDetailRequest: TCRequestModel {
         /// 白名单id
         public let whiteListId: String
-        
-        public init (whiteListId: String) {
+
+        public init(whiteListId: String) {
             self.whiteListId = whiteListId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case whiteListId = "WhiteListId"
         }
     }
-    
+
     /// DescribeReverseShellWhiteListDetail返回参数结构体
     public struct DescribeReverseShellWhiteListDetailResponse: TCResponseModel {
         /// 事件基本信息
         public let whiteListDetailInfo: ReverseShellWhiteListInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case whiteListDetailInfo = "WhiteListDetailInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时反弹shell白名单详细信息
     ///
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
-    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellWhiteListDetailResponse > {
+    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellWhiteListDetailResponse> {
         self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时反弹shell白名单详细信息
     ///
     /// 查询运行时反弹shell白名单详细信息
@@ -58,15 +58,15 @@ extension Tcss {
     public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
         try await self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时反弹shell白名单详细信息
     ///
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
-    public func describeReverseShellWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellWhiteListDetailResponse > {
+    public func describeReverseShellWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellWhiteListDetailResponse> {
         self.describeReverseShellWhiteListDetail(DescribeReverseShellWhiteListDetailRequest(whiteListId: whiteListId), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时反弹shell白名单详细信息
     ///
     /// 查询运行时反弹shell白名单详细信息

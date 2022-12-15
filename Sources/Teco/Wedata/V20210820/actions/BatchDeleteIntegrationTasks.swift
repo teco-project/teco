@@ -19,43 +19,43 @@ extension Wedata {
     public struct BatchDeleteIntegrationTasksRequest: TCRequestModel {
         /// 任务id
         public let taskIds: [String]
-        
+
         /// 任务类型
         public let taskType: Int64
-        
+
         /// 项目id
         public let projectId: String
-        
-        public init (taskIds: [String], taskType: Int64, projectId: String) {
+
+        public init(taskIds: [String], taskType: Int64, projectId: String) {
             self.taskIds = taskIds
             self.taskType = taskType
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
             case taskType = "TaskType"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// BatchDeleteIntegrationTasks返回参数结构体
     public struct BatchDeleteIntegrationTasksResponse: TCResponseModel {
         /// 操作成功的任务数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successCount: Int64?
-        
+
         /// 操作失败的任务数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedCount: Int64?
-        
+
         /// 任务总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case successCount = "SuccessCount"
             case failedCount = "FailedCount"
@@ -63,25 +63,25 @@ extension Wedata {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteIntegrationTasksResponse > {
+    public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
         self.client.execute(action: "BatchDeleteIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除集成任务
     @inlinable
     public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
         try await self.client.execute(action: "BatchDeleteIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteIntegrationTasksResponse > {
+    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
         self.batchDeleteIntegrationTasks(BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除集成任务
     @inlinable
     public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {

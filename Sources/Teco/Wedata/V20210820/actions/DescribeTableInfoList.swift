@@ -19,59 +19,59 @@ extension Wedata {
     public struct DescribeTableInfoListRequest: TCRequestModel {
         /// 表名
         public let filters: [Filter]
-        
+
         /// 如果是hive这里写rpc，如果是其他类型不传
         public let connectionType: String
-        
+
         /// 数据库源类型
         public let catalog: String
-        
-        public init (filters: [Filter], connectionType: String, catalog: String) {
+
+        public init(filters: [Filter], connectionType: String, catalog: String) {
             self.filters = filters
             self.connectionType = connectionType
             self.catalog = catalog
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case connectionType = "ConnectionType"
             case catalog = "Catalog"
         }
     }
-    
+
     /// DescribeTableInfoList返回参数结构体
     public struct DescribeTableInfoListResponse: TCResponseModel {
         /// 表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInfo: [TableInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tableInfo = "TableInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取数据表信息
     @inlinable
-    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableInfoListResponse > {
+    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableInfoListResponse> {
         self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据表信息
     @inlinable
     public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
         try await self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取数据表信息
     @inlinable
-    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableInfoListResponse > {
+    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableInfoListResponse> {
         self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据表信息
     @inlinable
     public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {

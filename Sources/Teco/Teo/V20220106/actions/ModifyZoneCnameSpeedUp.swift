@@ -22,36 +22,36 @@ extension Teo {
     public struct ModifyZoneCnameSpeedUpRequest: TCRequestModel {
         /// 站点 ID
         public let id: String
-        
+
         /// CNAME 加速状态
         /// - enabled 开启
         /// - disabled 关闭
         public let status: String
-        
-        public init (id: String, status: String) {
+
+        public init(id: String, status: String) {
             self.id = id
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case status = "Status"
         }
     }
-    
+
     /// ModifyZoneCnameSpeedUp返回参数结构体
     public struct ModifyZoneCnameSpeedUpResponse: TCResponseModel {
         /// 站点 ID
         public let id: String
-        
+
         /// 站点名称
         public let name: String
-        
+
         /// CNAME 加速状态
         /// - enabled 开启
         /// - disabled 关闭
         public let status: String
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -59,10 +59,10 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modifiedOn: Date
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -71,15 +71,15 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速
     @inlinable
-    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneCnameSpeedUpResponse > {
+    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
         self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速
@@ -87,15 +87,15 @@ extension Teo {
     public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
         try await self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速
     @inlinable
-    public func modifyZoneCnameSpeedUp(id: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneCnameSpeedUpResponse > {
+    public func modifyZoneCnameSpeedUp(id: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
         self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(id: id, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速

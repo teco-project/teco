@@ -19,48 +19,48 @@ extension Cam {
     public struct CreatePolicyRequest: TCRequestModel {
         /// 策略名
         public let policyName: String
-        
+
         /// 策略文档，示例：{"version":"2.0","statement":[{"action":"name/sts:AssumeRole","effect":"allow","principal":{"service":["cloudaudit.cloud.tencent.com","cls.cloud.tencent.com"]}}]}，principal用于指定角色的授权对象。获取该参数可参阅 获取角色详情（https://cloud.tencent.com/document/product/598/36221） 输出参数RoleInfo
         public let policyDocument: String
-        
+
         /// 策略描述
         public let description: String?
-        
-        public init (policyName: String, policyDocument: String, description: String? = nil) {
+
+        public init(policyName: String, policyDocument: String, description: String? = nil) {
             self.policyName = policyName
             self.policyDocument = policyDocument
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyName = "PolicyName"
             case policyDocument = "PolicyDocument"
             case description = "Description"
         }
     }
-    
+
     /// CreatePolicy返回参数结构体
     public struct CreatePolicyResponse: TCResponseModel {
         /// 新增策略ID
         public let policyId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建策略
     ///
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
-    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyResponse > {
+    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyResponse> {
         self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建策略
     ///
     /// 本接口（CreatePolicy）可用于创建策略。
@@ -68,15 +68,15 @@ extension Cam {
     public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
         try await self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建策略
     ///
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
-    public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyResponse > {
+    public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyResponse> {
         self.createPolicy(CreatePolicyRequest(policyName: policyName, policyDocument: policyDocument, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建策略
     ///
     /// 本接口（CreatePolicy）可用于创建策略。

@@ -17,31 +17,31 @@
 extension Iecp {
     /// DescribeEdgeDefaultVpc请求参数结构体
     public struct DescribeEdgeDefaultVpcRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeEdgeDefaultVpc返回参数结构体
     public struct DescribeEdgeDefaultVpcResponse: TCResponseModel {
         /// 私有网络ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// 网络CIDR
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcCidrBlock: String?
-        
+
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 子网CIDR
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetCidrBlock: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case vpcCidrBlock = "VpcCidrBlock"
@@ -50,25 +50,25 @@ extension Iecp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取边缘集群默认VPC信息
     @inlinable
-    public func describeEdgeDefaultVpc(_ input: DescribeEdgeDefaultVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeDefaultVpcResponse > {
+    public func describeEdgeDefaultVpc(_ input: DescribeEdgeDefaultVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeDefaultVpcResponse> {
         self.client.execute(action: "DescribeEdgeDefaultVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取边缘集群默认VPC信息
     @inlinable
     public func describeEdgeDefaultVpc(_ input: DescribeEdgeDefaultVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeDefaultVpcResponse {
         try await self.client.execute(action: "DescribeEdgeDefaultVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取边缘集群默认VPC信息
     @inlinable
-    public func describeEdgeDefaultVpc(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeDefaultVpcResponse > {
+    public func describeEdgeDefaultVpc(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeDefaultVpcResponse> {
         self.describeEdgeDefaultVpc(DescribeEdgeDefaultVpcRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取边缘集群默认VPC信息
     @inlinable
     public func describeEdgeDefaultVpc(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeDefaultVpcResponse {

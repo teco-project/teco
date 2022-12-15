@@ -27,7 +27,7 @@ extension Cwp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
+
         /// 结束时间，如：2021-07-10
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,53 +35,53 @@ extension Cwp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
-        public init (beginDate: Date, endDate: Date) {
+
+        public init(beginDate: Date, endDate: Date) {
             self.beginDate = beginDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginDate = "BeginDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// DescribeSecurityTrends返回参数结构体
     public struct DescribeSecurityTrendsResponse: TCResponseModel {
         /// 木马事件统计数据数组。
         public let malwares: [SecurityTrend]
-        
+
         /// 异地登录事件统计数据数组。
         public let nonLocalLoginPlaces: [SecurityTrend]
-        
+
         /// 密码破解事件统计数据数组。
         public let bruteAttacks: [SecurityTrend]
-        
+
         /// 漏洞统计数据数组。
         public let vuls: [SecurityTrend]
-        
+
         /// 基线统计数据数组。
         public let baseLines: [SecurityTrend]
-        
+
         /// 恶意请求统计数据数组。
         public let maliciousRequests: [SecurityTrend]
-        
+
         /// 高危命令统计数据数组。
         public let highRiskBashs: [SecurityTrend]
-        
+
         /// 反弹shell统计数据数组。
         public let reverseShells: [SecurityTrend]
-        
+
         /// 本地提权统计数据数组。
         public let privilegeEscalations: [SecurityTrend]
-        
+
         /// 网络攻击统计数据数组。
         public let cyberAttacks: [SecurityTrend]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case malwares = "Malwares"
             case nonLocalLoginPlaces = "NonLocalLoginPlaces"
@@ -96,15 +96,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取安全事件统计数据
     ///
     /// 本接口 (DescribeSecurityTrends) 用于获取安全事件统计数据。
     @inlinable
-    public func describeSecurityTrends(_ input: DescribeSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityTrendsResponse > {
+    public func describeSecurityTrends(_ input: DescribeSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityTrendsResponse> {
         self.client.execute(action: "DescribeSecurityTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全事件统计数据
     ///
     /// 本接口 (DescribeSecurityTrends) 用于获取安全事件统计数据。
@@ -112,15 +112,15 @@ extension Cwp {
     public func describeSecurityTrends(_ input: DescribeSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityTrendsResponse {
         try await self.client.execute(action: "DescribeSecurityTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取安全事件统计数据
     ///
     /// 本接口 (DescribeSecurityTrends) 用于获取安全事件统计数据。
     @inlinable
-    public func describeSecurityTrends(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityTrendsResponse > {
+    public func describeSecurityTrends(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityTrendsResponse> {
         self.describeSecurityTrends(DescribeSecurityTrendsRequest(beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全事件统计数据
     ///
     /// 本接口 (DescribeSecurityTrends) 用于获取安全事件统计数据。

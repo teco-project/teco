@@ -19,42 +19,42 @@ extension Iai {
     public struct GetPersonListNumRequest: TCRequestModel {
         /// 人员库ID，取值为创建人员库接口中的GroupId
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// GetPersonListNum返回参数结构体
     public struct GetPersonListNumResponse: TCResponseModel {
         /// 人员数量
         public let personNum: UInt64
-        
+
         /// 人脸数量
         public let faceNum: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case personNum = "PersonNum"
             case faceNum = "FaceNum"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取人员列表长度
     ///
     /// 获取指定人员库中人员数量。
     @inlinable
-    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonListNumResponse > {
+    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListNumResponse> {
         self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取人员列表长度
     ///
     /// 获取指定人员库中人员数量。
@@ -62,15 +62,15 @@ extension Iai {
     public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
         try await self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取人员列表长度
     ///
     /// 获取指定人员库中人员数量。
     @inlinable
-    public func getPersonListNum(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonListNumResponse > {
+    public func getPersonListNum(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListNumResponse> {
         self.getPersonListNum(GetPersonListNumRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取人员列表长度
     ///
     /// 获取指定人员库中人员数量。

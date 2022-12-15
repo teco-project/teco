@@ -19,27 +19,27 @@ extension Gse {
     public struct GetGameServerInstanceLogUrlRequest: TCRequestModel {
         /// 游戏舰队ID
         public let fleetId: String
-        
+
         /// 实例ID
         public let instanceId: String?
-        
+
         /// 实例IP
         public let serverIp: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 每次条数
         public let size: UInt64?
-        
-        public init (fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil) {
+
+        public init(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil) {
             self.fleetId = fleetId
             self.instanceId = instanceId
             self.serverIp = serverIp
             self.offset = offset
             self.size = size
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case instanceId = "InstanceId"
@@ -48,22 +48,22 @@ extension Gse {
             case size = "Size"
         }
     }
-    
+
     /// GetGameServerInstanceLogUrl返回参数结构体
     public struct GetGameServerInstanceLogUrlResponse: TCResponseModel {
         /// 日志下载URL的数组，最小长度不小于1个ASCII字符，最大长度不超过1024个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let presignedUrls: [String]?
-        
+
         /// 总条数
         public let total: UInt64
-        
+
         /// 是否还有没拉取完的
         public let hasNext: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case presignedUrls = "PresignedUrls"
             case total = "Total"
@@ -71,16 +71,16 @@ extension Gse {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口用于获取游戏服务器实例的日志URL。
     @inlinable
-    public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGameServerInstanceLogUrlResponse > {
+    public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerInstanceLogUrlResponse> {
         self.client.execute(action: "GetGameServerInstanceLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -89,16 +89,16 @@ extension Gse {
     public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerInstanceLogUrlResponse {
         try await self.client.execute(action: "GetGameServerInstanceLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口用于获取游戏服务器实例的日志URL。
     @inlinable
-    public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGameServerInstanceLogUrlResponse > {
+    public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerInstanceLogUrlResponse> {
         self.getGameServerInstanceLogUrl(GetGameServerInstanceLogUrlRequest(fleetId: fleetId, instanceId: instanceId, serverIp: serverIp, offset: offset, size: size), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

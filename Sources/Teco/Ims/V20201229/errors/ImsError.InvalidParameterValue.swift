@@ -26,87 +26,87 @@ extension TCImsError {
             case invalidParameter = "InvalidParameterValue.InvalidParameter"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 图片内容参数为空。
         public static var emptyImageContent: InvalidParameterValue {
             InvalidParameterValue(.emptyImageContent)
         }
-        
+
         /// 图片分辨率太低。
         public static var imageSizeTooSmall: InvalidParameterValue {
             InvalidParameterValue(.imageSizeTooSmall)
         }
-        
+
         /// FileContent和FileUrl为空。
         public static var invalidContent: InvalidParameterValue {
             InvalidParameterValue(.invalidContent)
         }
-        
+
         /// DataId格式错误。
         public static var invalidDataId: InvalidParameterValue {
             InvalidParameterValue(.invalidDataId)
         }
-        
+
         /// 图片文件内容大小异常。
         public static var invalidFileContentSize: InvalidParameterValue {
             InvalidParameterValue(.invalidFileContentSize)
         }
-        
+
         /// 图片内容错误。
         public static var invalidImageContent: InvalidParameterValue {
             InvalidParameterValue(.invalidImageContent)
         }
-        
+
         /// 参数值错误。
         public static var invalidParameter: InvalidParameterValue {
             InvalidParameterValue(.invalidParameter)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asImsError() -> TCImsError {
             let code: TCImsError.Code
             switch self.error {
-            case .emptyImageContent: 
+            case .emptyImageContent:
                 code = .invalidParameterValue_EmptyImageContent
-            case .imageSizeTooSmall: 
+            case .imageSizeTooSmall:
                 code = .invalidParameterValue_ImageSizeTooSmall
-            case .invalidContent: 
+            case .invalidContent:
                 code = .invalidParameterValue_InvalidContent
-            case .invalidDataId: 
+            case .invalidDataId:
                 code = .invalidParameterValue_InvalidDataId
-            case .invalidFileContentSize: 
+            case .invalidFileContentSize:
                 code = .invalidParameterValue_InvalidFileContentSize
-            case .invalidImageContent: 
+            case .invalidImageContent:
                 code = .invalidParameterValue_InvalidImageContent
-            case .invalidParameter: 
+            case .invalidParameter:
                 code = .invalidParameterValue_InvalidParameter
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCImsError(code, context: self.context)

@@ -19,53 +19,53 @@ extension Ess {
     public struct CreateFlowRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
-        
+
         /// 签署流程名称,最大长度200个字符
         public let flowName: String
-        
+
         /// 签署流程参与者信息，最大限制50方
         public let approvers: [FlowCreateApprover]
-        
+
         /// 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
         public let flowType: String?
-        
+
         /// 客户端Token，保持接口幂等性,最大长度64个字符
         public let clientToken: String?
-        
+
         /// 暂未开放
         public let relatedFlowId: String?
-        
+
         /// 签署流程的签署截止时间。
         /// 值为unix时间戳,精确到秒,不传默认为当前时间一年后
         public let deadLine: Int64?
-        
+
         /// 用户自定义字段，回调的时候会进行透传，长度需要小于20480
         public let userData: String?
-        
+
         /// 签署流程描述,最大长度1000个字符
         public let flowDescription: String?
-        
+
         /// 发送类型：
         /// true：无序签
         /// false：有序签
         /// 注：默认为false（有序签），请和模板中的配置保持一致
         public let unordered: Bool?
-        
+
         /// 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         public let customShowMap: String?
-        
+
         /// 发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
         /// 若设置为true，审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
         /// 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         public let needSignReview: Bool?
-        
+
         /// 暂未开放
         public let callbackUrl: String?
-        
+
         /// 应用相关信息
         public let agent: Agent?
-        
-        public init (operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, relatedFlowId: String? = nil, deadLine: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, callbackUrl: String? = nil, agent: Agent? = nil) {
+
+        public init(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, relatedFlowId: String? = nil, deadLine: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, callbackUrl: String? = nil, agent: Agent? = nil) {
             self.`operator` = `operator`
             self.flowName = flowName
             self.approvers = approvers
@@ -81,7 +81,7 @@ extension Ess {
             self.callbackUrl = callbackUrl
             self.agent = agent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case flowName = "FlowName"
@@ -99,31 +99,31 @@ extension Ess {
             case agent = "Agent"
         }
     }
-    
+
     /// CreateFlow返回参数结构体
     public struct CreateFlowResponse: TCResponseModel {
         /// 签署流程编号
         public let flowId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建签署流程
     ///
     /// 创建签署流程
     /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
     /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
-    public func createFlow(_ input: CreateFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowResponse > {
+    public func createFlow(_ input: CreateFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowResponse> {
         self.client.execute(action: "CreateFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建签署流程
     ///
     /// 创建签署流程
@@ -133,17 +133,17 @@ extension Ess {
     public func createFlow(_ input: CreateFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowResponse {
         try await self.client.execute(action: "CreateFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建签署流程
     ///
     /// 创建签署流程
     /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
     /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
-    public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, relatedFlowId: String? = nil, deadLine: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, callbackUrl: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowResponse > {
+    public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, relatedFlowId: String? = nil, deadLine: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, callbackUrl: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowResponse> {
         self.createFlow(CreateFlowRequest(operator: `operator`, flowName: flowName, approvers: approvers, flowType: flowType, clientToken: clientToken, relatedFlowId: relatedFlowId, deadLine: deadLine, userData: userData, flowDescription: flowDescription, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, callbackUrl: callbackUrl, agent: agent), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建签署流程
     ///
     /// 创建签署流程

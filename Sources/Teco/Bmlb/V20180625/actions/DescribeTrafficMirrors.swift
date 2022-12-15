@@ -19,29 +19,29 @@ extension Bmlb {
     public struct DescribeTrafficMirrorsRequest: TCRequestModel {
         /// 流量镜像实例ID的数组，支持批量查询
         public let trafficMirrorIds: [String]?
-        
+
         /// 流量镜像实例别名数组。
         public let aliases: [String]?
-        
+
         /// 流量镜像实例所属的私有网络ID数组，形如：vpc-xxx。
         public let vpcIds: [String]?
-        
+
         /// 分页的偏移量，也即从第几条记录开始查询
         public let offset: Int64?
-        
+
         /// 单次查询返回的条目数，默认值：500。
         public let limit: Int64?
-        
+
         /// 排序字段。trafficMirrorId或者createTime。
         public let orderField: String?
-        
+
         /// 排序方式，取值：0:增序(默认)，1:降序
         public let order: Int64?
-        
+
         /// 模糊匹配trafficMirrorId或者alias字段。
         public let searchKey: String?
-        
-        public init (trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil) {
+
+        public init(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil) {
             self.trafficMirrorIds = trafficMirrorIds
             self.aliases = aliases
             self.vpcIds = vpcIds
@@ -51,7 +51,7 @@ extension Bmlb {
             self.order = order
             self.searchKey = searchKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorIds = "TrafficMirrorIds"
             case aliases = "Aliases"
@@ -63,33 +63,33 @@ extension Bmlb {
             case searchKey = "SearchKey"
         }
     }
-    
+
     /// DescribeTrafficMirrors返回参数结构体
     public struct DescribeTrafficMirrorsResponse: TCResponseModel {
         /// 流量镜像总数。
         public let totalCount: Int64
-        
+
         /// 对象数组。数组元素为流量镜像信息，具体结构描述如list结构所示。
         public let trafficMirrorSet: [TrafficMirror]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case trafficMirrorSet = "TrafficMirrorSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取流量镜像实例的列表信息
     ///
     /// 获取流量镜像实例的列表信息。
     @inlinable
-    public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorsResponse > {
+    public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorsResponse> {
         self.client.execute(action: "DescribeTrafficMirrors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取流量镜像实例的列表信息
     ///
     /// 获取流量镜像实例的列表信息。
@@ -97,15 +97,15 @@ extension Bmlb {
     public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
         try await self.client.execute(action: "DescribeTrafficMirrors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取流量镜像实例的列表信息
     ///
     /// 获取流量镜像实例的列表信息。
     @inlinable
-    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorsResponse > {
+    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorsResponse> {
         self.describeTrafficMirrors(DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取流量镜像实例的列表信息
     ///
     /// 获取流量镜像实例的列表信息。

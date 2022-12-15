@@ -22,10 +22,10 @@ extension Dayu {
     public struct DescribeDDoSAttackSourceRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 起始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,17 +41,17 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 一页条数，填0表示不分页
         public let limit: UInt64
-        
+
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64
-        
+
         /// 获取指定资源的特定ip的攻击源，可选
         public let ipList: [String]?
-        
-        public init (business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil) {
+
+        public init(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil) {
             self.business = business
             self.id = id
             self.startTime = startTime
@@ -60,7 +60,7 @@ extension Dayu {
             self.offset = offset
             self.ipList = ipList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -71,43 +71,43 @@ extension Dayu {
             case ipList = "IpList"
         }
     }
-    
+
     /// DescribeDDoSAttackSource返回参数结构体
     public struct DescribeDDoSAttackSourceResponse: TCResponseModel {
         /// 总攻击源条数
         public let total: UInt64
-        
+
         /// 攻击源列表
         public let attackSourceList: [DDoSAttackSourceRecord]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case attackSourceList = "AttackSourceList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取DDoS攻击源列表
     @inlinable
-    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackSourceResponse > {
+    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackSourceResponse> {
         self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS攻击源列表
     @inlinable
     public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {
         try await self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取DDoS攻击源列表
     @inlinable
-    public func describeDDoSAttackSource(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackSourceResponse > {
+    public func describeDDoSAttackSource(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackSourceResponse> {
         self.describeDDoSAttackSource(DescribeDDoSAttackSourceRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset, ipList: ipList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS攻击源列表
     @inlinable
     public func describeDDoSAttackSource(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {

@@ -19,54 +19,54 @@ extension Dnspod {
     public struct ModifyDomainOwnerRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 域名需要转入的账号，支持Uin或者邮箱格式
         public let account: String
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
-        
-        public init (domain: String, account: String, domainId: UInt64? = nil) {
+
+        public init(domain: String, account: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.account = account
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case account = "Account"
             case domainId = "DomainId"
         }
     }
-    
+
     /// ModifyDomainOwner返回参数结构体
     public struct ModifyDomainOwnerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 域名过户
     @inlinable
-    public func modifyDomainOwner(_ input: ModifyDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainOwnerResponse > {
+    public func modifyDomainOwner(_ input: ModifyDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainOwnerResponse> {
         self.client.execute(action: "ModifyDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 域名过户
     @inlinable
     public func modifyDomainOwner(_ input: ModifyDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerResponse {
         try await self.client.execute(action: "ModifyDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 域名过户
     @inlinable
-    public func modifyDomainOwner(domain: String, account: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainOwnerResponse > {
+    public func modifyDomainOwner(domain: String, account: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainOwnerResponse> {
         self.modifyDomainOwner(ModifyDomainOwnerRequest(domain: domain, account: account, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 域名过户
     @inlinable
     public func modifyDomainOwner(domain: String, account: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerResponse {

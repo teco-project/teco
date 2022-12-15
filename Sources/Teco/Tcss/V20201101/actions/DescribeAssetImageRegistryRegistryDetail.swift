@@ -19,55 +19,55 @@ extension Tcss {
     public struct DescribeAssetImageRegistryRegistryDetailRequest: TCRequestModel {
         /// 仓库唯一id
         public let registryId: Int64
-        
-        public init (registryId: Int64) {
+
+        public init(registryId: Int64) {
             self.registryId = registryId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
         }
     }
-    
+
     /// DescribeAssetImageRegistryRegistryDetail返回参数结构体
     public struct DescribeAssetImageRegistryRegistryDetailResponse: TCResponseModel {
         /// 仓库名
         public let name: String
-        
+
         /// 用户名
         public let username: String
-        
+
         /// 密码
         public let password: String
-        
+
         /// 仓库url
         public let url: String
-        
+
         /// 仓库类型，列表：harbor
         public let registryType: String
-        
+
         /// 仓库版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryVersion: String?
-        
+
         /// 网络类型，列表：public（公网）
         public let netType: String
-        
+
         /// 区域，列表:default（默认）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryRegion: String?
-        
+
         /// 限速
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let speedLimit: UInt64?
-        
+
         /// 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let insecure: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case username = "Username"
@@ -82,25 +82,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看单个镜像仓库详细信息
     @inlinable
-    public func describeAssetImageRegistryRegistryDetail(_ input: DescribeAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRegistryDetailResponse > {
+    public func describeAssetImageRegistryRegistryDetail(_ input: DescribeAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryRegistryDetailResponse> {
         self.client.execute(action: "DescribeAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看单个镜像仓库详细信息
     @inlinable
     public func describeAssetImageRegistryRegistryDetail(_ input: DescribeAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRegistryDetailResponse {
         try await self.client.execute(action: "DescribeAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看单个镜像仓库详细信息
     @inlinable
-    public func describeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRegistryDetailResponse > {
+    public func describeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryRegistryDetailResponse> {
         self.describeAssetImageRegistryRegistryDetail(DescribeAssetImageRegistryRegistryDetailRequest(registryId: registryId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看单个镜像仓库详细信息
     @inlinable
     public func describeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRegistryDetailResponse {

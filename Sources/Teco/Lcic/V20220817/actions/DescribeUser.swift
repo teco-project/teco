@@ -19,33 +19,33 @@ extension Lcic {
     public struct DescribeUserRequest: TCRequestModel {
         /// 用户Id。
         public let userId: String
-        
-        public init (userId: String) {
+
+        public init(userId: String) {
             self.userId = userId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
         }
     }
-    
+
     /// DescribeUser返回参数结构体
     public struct DescribeUserResponse: TCResponseModel {
         /// 应用Id。
         public let sdkAppId: UInt64
-        
+
         /// 用户Id。
         public let userId: String
-        
+
         /// 用户昵称。
         public let name: String
-        
+
         /// 用户头像Url。
         public let avatar: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case userId = "UserId"
@@ -54,25 +54,25 @@ extension Lcic {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户信息
     @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
         self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户信息
     @inlinable
     public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
         try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户信息
     @inlinable
-    public func describeUser(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
+    public func describeUser(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
         self.describeUser(DescribeUserRequest(userId: userId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户信息
     @inlinable
     public func describeUser(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {

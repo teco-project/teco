@@ -19,37 +19,37 @@ extension Dcdb {
     public struct DescribeDBSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：dcdb。
         public let product: String
-        
+
         /// 实例ID。
         public let instanceId: String
-        
-        public init (product: String, instanceId: String) {
+
+        public init(product: String, instanceId: String) {
             self.product = product
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case product = "Product"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeDBSecurityGroups返回参数结构体
     public struct DescribeDBSecurityGroupsResponse: TCResponseModel {
         /// 安全组详情。
         public let groups: [SecurityGroup]
-        
+
         /// 实例VIP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vip: String?
-        
+
         /// 实例端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vPort: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groups = "Groups"
             case vip = "VIP"
@@ -57,15 +57,15 @@ extension Dcdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例安全组信息
     ///
     /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
     @inlinable
-    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSecurityGroupsResponse > {
+    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
         self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例安全组信息
     ///
     /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
@@ -73,15 +73,15 @@ extension Dcdb {
     public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
         try await self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例安全组信息
     ///
     /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
     @inlinable
-    public func describeDBSecurityGroups(product: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSecurityGroupsResponse > {
+    public func describeDBSecurityGroups(product: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
         self.describeDBSecurityGroups(DescribeDBSecurityGroupsRequest(product: product, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例安全组信息
     ///
     /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息

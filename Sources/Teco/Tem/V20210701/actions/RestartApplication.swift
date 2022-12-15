@@ -19,58 +19,58 @@ extension Tem {
     public struct RestartApplicationRequest: TCRequestModel {
         /// 服务id
         public let applicationId: String
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 环境ID
         public let environmentId: String?
-        
-        public init (applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil) {
+
+        public init(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil) {
             self.applicationId = applicationId
             self.sourceChannel = sourceChannel
             self.environmentId = environmentId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case sourceChannel = "SourceChannel"
             case environmentId = "EnvironmentId"
         }
     }
-    
+
     /// RestartApplication返回参数结构体
     public struct RestartApplicationResponse: TCResponseModel {
         /// 返回结果
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 服务重启
     @inlinable
-    public func restartApplication(_ input: RestartApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartApplicationResponse > {
+    public func restartApplication(_ input: RestartApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartApplicationResponse> {
         self.client.execute(action: "RestartApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 服务重启
     @inlinable
     public func restartApplication(_ input: RestartApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationResponse {
         try await self.client.execute(action: "RestartApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 服务重启
     @inlinable
-    public func restartApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartApplicationResponse > {
+    public func restartApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartApplicationResponse> {
         self.restartApplication(RestartApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), logger: logger, on: eventLoop)
     }
-    
+
     /// 服务重启
     @inlinable
     public func restartApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationResponse {

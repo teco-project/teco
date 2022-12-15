@@ -19,43 +19,43 @@ extension Dbbrain {
     public struct CancelKillTaskRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, product: String? = nil) {
+
+        public init(instanceId: String, product: String? = nil) {
             self.instanceId = instanceId
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case product = "Product"
         }
     }
-    
+
     /// CancelKillTask返回参数结构体
     public struct CancelKillTaskResponse: TCResponseModel {
         /// kill会话任务终止成功返回1。
         public let status: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 终止中断会话任务
     ///
     /// 终止中断会话任务。
     @inlinable
-    public func cancelKillTask(_ input: CancelKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKillTaskResponse > {
+    public func cancelKillTask(_ input: CancelKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKillTaskResponse> {
         self.client.execute(action: "CancelKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 终止中断会话任务
     ///
     /// 终止中断会话任务。
@@ -63,15 +63,15 @@ extension Dbbrain {
     public func cancelKillTask(_ input: CancelKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKillTaskResponse {
         try await self.client.execute(action: "CancelKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 终止中断会话任务
     ///
     /// 终止中断会话任务。
     @inlinable
-    public func cancelKillTask(instanceId: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKillTaskResponse > {
+    public func cancelKillTask(instanceId: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKillTaskResponse> {
         self.cancelKillTask(CancelKillTaskRequest(instanceId: instanceId, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 终止中断会话任务
     ///
     /// 终止中断会话任务。

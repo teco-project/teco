@@ -19,44 +19,44 @@ extension Bm {
     public struct DeleteUserCmdsRequest: TCRequestModel {
         /// 需要删除的脚本ID
         public let cmdIds: [String]
-        
-        public init (cmdIds: [String]) {
+
+        public init(cmdIds: [String]) {
             self.cmdIds = cmdIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cmdIds = "CmdIds"
         }
     }
-    
+
     /// DeleteUserCmds返回参数结构体
     public struct DeleteUserCmdsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除自定义脚本
     @inlinable
-    public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserCmdsResponse > {
+    public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserCmdsResponse> {
         self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义脚本
     @inlinable
     public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserCmdsResponse {
         try await self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除自定义脚本
     @inlinable
-    public func deleteUserCmds(cmdIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserCmdsResponse > {
+    public func deleteUserCmds(cmdIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserCmdsResponse> {
         self.deleteUserCmds(DeleteUserCmdsRequest(cmdIds: cmdIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义脚本
     @inlinable
     public func deleteUserCmds(cmdIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserCmdsResponse {

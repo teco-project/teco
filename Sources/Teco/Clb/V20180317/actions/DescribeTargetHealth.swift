@@ -19,39 +19,39 @@ extension Clb {
     public struct DescribeTargetHealthRequest: TCRequestModel {
         /// 要查询的负载均衡实例ID列表。
         public let loadBalancerIds: [String]
-        
-        public init (loadBalancerIds: [String]) {
+
+        public init(loadBalancerIds: [String]) {
             self.loadBalancerIds = loadBalancerIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerIds = "LoadBalancerIds"
         }
     }
-    
+
     /// DescribeTargetHealth返回参数结构体
     public struct DescribeTargetHealthResponse: TCResponseModel {
         /// 负载均衡实例列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancers: [LoadBalancerHealth]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancers = "LoadBalancers"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取负载均衡后端服务的健康检查状态
     ///
     /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。
     @inlinable
-    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetHealthResponse > {
+    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
         self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取负载均衡后端服务的健康检查状态
     ///
     /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。
@@ -59,15 +59,15 @@ extension Clb {
     public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
         try await self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取负载均衡后端服务的健康检查状态
     ///
     /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。
     @inlinable
-    public func describeTargetHealth(loadBalancerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetHealthResponse > {
+    public func describeTargetHealth(loadBalancerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
         self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取负载均衡后端服务的健康检查状态
     ///
     /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。

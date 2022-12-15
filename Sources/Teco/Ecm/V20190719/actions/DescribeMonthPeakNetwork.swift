@@ -19,44 +19,44 @@ extension Ecm {
     public struct DescribeMonthPeakNetworkRequest: TCRequestModel {
         /// 月份时间(xxxx-xx) 如2021-03,默认取当前时间的上一个月份
         public let month: String
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
-        public init (month: String, filters: [Filter]? = nil) {
+
+        public init(month: String, filters: [Filter]? = nil) {
             self.month = month
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case month = "Month"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeMonthPeakNetwork返回参数结构体
     public struct DescribeMonthPeakNetworkResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monthNetWorkData: [MonthNetwork]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case monthNetWorkData = "MonthNetWorkData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取客户节点上的出入月峰和计费带宽
     ///
     /// 获取客户节点上的出入带宽月峰和计费带宽信息
     @inlinable
-    public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthPeakNetworkResponse > {
+    public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthPeakNetworkResponse> {
         self.client.execute(action: "DescribeMonthPeakNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取客户节点上的出入月峰和计费带宽
     ///
     /// 获取客户节点上的出入带宽月峰和计费带宽信息
@@ -64,15 +64,15 @@ extension Ecm {
     public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthPeakNetworkResponse {
         try await self.client.execute(action: "DescribeMonthPeakNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取客户节点上的出入月峰和计费带宽
     ///
     /// 获取客户节点上的出入带宽月峰和计费带宽信息
     @inlinable
-    public func describeMonthPeakNetwork(month: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthPeakNetworkResponse > {
+    public func describeMonthPeakNetwork(month: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthPeakNetworkResponse> {
         self.describeMonthPeakNetwork(DescribeMonthPeakNetworkRequest(month: month, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取客户节点上的出入月峰和计费带宽
     ///
     /// 获取客户节点上的出入带宽月峰和计费带宽信息

@@ -24,73 +24,73 @@ extension TCTcaplusdbError {
             case unsupportIdlType = "InvalidParameterValue.UnsupportIdlType"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 应用名不合法。
         public static var invalidAppName: InvalidParameterValue {
             InvalidParameterValue(.invalidAppName)
         }
-        
+
         /// 集群名称不合法。
         public static var invalidClusterName: InvalidParameterValue {
             InvalidParameterValue(.invalidClusterName)
         }
-        
+
         /// 非法的表格组名称。
         public static var invalidTableGroupName: InvalidParameterValue {
             InvalidParameterValue(.invalidTableGroupName)
         }
-        
+
         /// 非法的时间格式。
         public static var invalidTimeValue: InvalidParameterValue {
             InvalidParameterValue(.invalidTimeValue)
         }
-        
+
         /// 不支持的应用数据描述类型。
         public static var unsupportIdlType: InvalidParameterValue {
             InvalidParameterValue(.unsupportIdlType)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asTcaplusdbError() -> TCTcaplusdbError {
             let code: TCTcaplusdbError.Code
             switch self.error {
-            case .invalidAppName: 
+            case .invalidAppName:
                 code = .invalidParameterValue_InvalidAppName
-            case .invalidClusterName: 
+            case .invalidClusterName:
                 code = .invalidParameterValue_InvalidClusterName
-            case .invalidTableGroupName: 
+            case .invalidTableGroupName:
                 code = .invalidParameterValue_InvalidTableGroupName
-            case .invalidTimeValue: 
+            case .invalidTimeValue:
                 code = .invalidParameterValue_InvalidTimeValue
-            case .unsupportIdlType: 
+            case .unsupportIdlType:
                 code = .invalidParameterValue_UnsupportIdlType
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCTcaplusdbError(code, context: self.context)

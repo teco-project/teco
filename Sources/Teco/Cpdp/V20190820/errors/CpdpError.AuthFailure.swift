@@ -25,84 +25,84 @@ extension TCCpdpError {
             case verifyError = "AuthFailure.VerifyError"
             case verifyTokenFailure = "AuthFailure.VerifyTokenFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未进行实名认证。
         public static var account: AuthFailure {
             AuthFailure(.account)
         }
-        
+
         /// 权限限额，禁止操作。
         ///
         /// 请联系管理人员授权
         public static var forbidden: AuthFailure {
             AuthFailure(.forbidden)
         }
-        
+
         /// 聚鑫签名信息不匹配。
         ///
         /// 请联系我们
         public static var midas: AuthFailure {
             AuthFailure(.midas)
         }
-        
+
         /// 未找到密钥。
         public static var secretKeyNotFound: AuthFailure {
             AuthFailure(.secretKeyNotFound)
         }
-        
+
         /// 账户尚未签约。
         public static var sign: AuthFailure {
             AuthFailure(.sign)
         }
-        
+
         /// 验证失败。
         public static var verifyError: AuthFailure {
             AuthFailure(.verifyError)
         }
-        
+
         /// Token校验失败。
         public static var verifyTokenFailure: AuthFailure {
             AuthFailure(.verifyTokenFailure)
         }
-        
+
         public func asCpdpError() -> TCCpdpError {
             let code: TCCpdpError.Code
             switch self.error {
-            case .account: 
+            case .account:
                 code = .authFailure_Account
-            case .forbidden: 
+            case .forbidden:
                 code = .authFailure_Forbidden
-            case .midas: 
+            case .midas:
                 code = .authFailure_Midas
-            case .secretKeyNotFound: 
+            case .secretKeyNotFound:
                 code = .authFailure_SecretKeyNotFound
-            case .sign: 
+            case .sign:
                 code = .authFailure_Sign
-            case .verifyError: 
+            case .verifyError:
                 code = .authFailure_VerifyError
-            case .verifyTokenFailure: 
+            case .verifyTokenFailure:
                 code = .authFailure_VerifyTokenFailure
             }
             return TCCpdpError(code, context: self.context)

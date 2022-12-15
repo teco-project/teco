@@ -19,23 +19,23 @@ extension Ckafka {
     public struct DescribeRegionRequest: TCRequestModel {
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 返回最大结果数
         public let limit: Int64?
-        
+
         /// 业务字段，可忽略
         public let business: String?
-        
+
         /// cdc专有集群业务字段，可忽略
         public let cdcId: String?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.business = business
             self.cdcId = cdcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -43,30 +43,30 @@ extension Ckafka {
             case cdcId = "CdcId"
         }
     }
-    
+
     /// DescribeRegion返回参数结构体
     public struct DescribeRegionResponse: TCResponseModel {
         /// 返回地域枚举结果列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [Region]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域
     @inlinable
-    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionResponse > {
+    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionResponse> {
         self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域
@@ -74,15 +74,15 @@ extension Ckafka {
     public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
         try await self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域
     @inlinable
-    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionResponse > {
+    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionResponse> {
         self.describeRegion(DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId), logger: logger, on: eventLoop)
     }
-    
+
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域

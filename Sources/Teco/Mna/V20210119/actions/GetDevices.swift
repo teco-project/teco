@@ -19,40 +19,40 @@ extension Mna {
     public struct GetDevicesRequest: TCRequestModel {
         /// 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
         public let pageSize: Int64
-        
+
         /// 当前查看页码，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
         public let pageNumber: Int64
-        
+
         /// 搜索设备的关键字（ID或者设备名），为空时匹配所有设备
         public let keyword: String?
-        
-        public init (pageSize: Int64, pageNumber: Int64, keyword: String? = nil) {
+
+        public init(pageSize: Int64, pageNumber: Int64, keyword: String? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.keyword = keyword
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageSize = "PageSize"
             case pageNumber = "PageNumber"
             case keyword = "Keyword"
         }
     }
-    
+
     /// GetDevices返回参数结构体
     public struct GetDevicesResponse: TCResponseModel {
         /// 设备信息列表
         public let deviceInfos: [DeviceBaseInfo]
-        
+
         /// 设备总记录条数
         public let length: Int64
-        
+
         /// 总页数
         public let totalPage: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceInfos = "DeviceInfos"
             case length = "Length"
@@ -60,15 +60,15 @@ extension Mna {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设备信息列表
     ///
     /// 获取设备信息列表
     @inlinable
-    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
+    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
         self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设备信息列表
     ///
     /// 获取设备信息列表
@@ -76,15 +76,15 @@ extension Mna {
     public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
         try await self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设备信息列表
     ///
     /// 获取设备信息列表
     @inlinable
-    public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
+    public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
         self.getDevices(GetDevicesRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword), logger: logger, on: eventLoop)
     }
-    
+
     /// 设备信息列表
     ///
     /// 获取设备信息列表

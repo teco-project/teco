@@ -19,23 +19,23 @@ extension Iecp {
     public struct ModifyConfigMapRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitID: UInt64
-        
+
         /// ConfigMap名称
         public let configMapName: String
-        
+
         /// Yaml配置, base64之后的串
         public let yaml: String
-        
+
         /// ConfigMap命名空间
         public let configMapNamespace: String?
-        
-        public init (edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil) {
+
+        public init(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.configMapName = configMapName
             self.yaml = yaml
             self.configMapNamespace = configMapNamespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitID = "EdgeUnitID"
             case configMapName = "ConfigMapName"
@@ -43,35 +43,35 @@ extension Iecp {
             case configMapNamespace = "ConfigMapNamespace"
         }
     }
-    
+
     /// ModifyConfigMap返回参数结构体
     public struct ModifyConfigMapResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改ConfigMap
     @inlinable
-    public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigMapResponse > {
+    public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigMapResponse> {
         self.client.execute(action: "ModifyConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改ConfigMap
     @inlinable
     public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {
         try await self.client.execute(action: "ModifyConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改ConfigMap
     @inlinable
-    public func modifyConfigMap(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigMapResponse > {
+    public func modifyConfigMap(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigMapResponse> {
         self.modifyConfigMap(ModifyConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, yaml: yaml, configMapNamespace: configMapNamespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改ConfigMap
     @inlinable
     public func modifyConfigMap(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {

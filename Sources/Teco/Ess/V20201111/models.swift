@@ -17,10 +17,10 @@
 extension Ess {
     /// 应用相关信息
     public struct Agent: TCInputModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// 参与者信息
     public struct ApproverInfo: TCInputModel {
         /// 参与者类型：
@@ -29,53 +29,53 @@ extension Ess {
         /// 3：企业静默签署
         /// 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
         public let approverType: Int64
-        
+
         /// 本环节需要操作人的名字
         public let approverName: String
-        
+
         /// 本环节需要操作人的手机号
         public let approverMobile: String
-        
+
         /// 本环节操作人签署控件配置
         public let signComponents: [Component]
-        
+
         /// 如果是企业,则为企业的名字
         public let organizationName: String?
-        
+
         /// 身份证号
         public let approverIdCardNumber: String?
-        
-        /// 证件类型 
+
+        /// 证件类型
         /// ID_CARD 身份证
         /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
         /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
         public let approverIdCardType: String?
-        
+
         /// sms--短信，none--不通知
         public let notifyType: String?
-        
+
         /// 1--收款人、2--开具人、3--见证人
         public let approverRole: Int64?
-        
+
         /// 签署意愿确认渠道,WEIXINAPP:人脸识别
         public let verifyChannel: [String]?
-        
+
         /// 合同的强制预览时间：3~300s，未指定则按合同页数计算
         public let preReadTime: Int64?
-        
+
         /// 签署人userId，传此字段则不用传姓名、手机号
         public let userId: String?
-        
+
         /// 签署人用户来源,企微侧用户请传入：WEWORKAPP
         public let approverSource: String?
-        
+
         /// 客户自定义签署人标识，64位长度，保证唯一，非企微场景不使用此字段
         public let customApproverTag: String?
-        
+
         /// 签署人个性化能力值
         public let approverOption: ApproverOption?
-        
-        public init (approverType: Int64, approverName: String, approverMobile: String, signComponents: [Component], organizationName: String? = nil, approverIdCardNumber: String? = nil, approverIdCardType: String? = nil, notifyType: String? = nil, approverRole: Int64? = nil, verifyChannel: [String]? = nil, preReadTime: Int64? = nil, userId: String? = nil, approverSource: String? = nil, customApproverTag: String? = nil, approverOption: ApproverOption? = nil) {
+
+        public init(approverType: Int64, approverName: String, approverMobile: String, signComponents: [Component], organizationName: String? = nil, approverIdCardNumber: String? = nil, approverIdCardType: String? = nil, notifyType: String? = nil, approverRole: Int64? = nil, verifyChannel: [String]? = nil, preReadTime: Int64? = nil, userId: String? = nil, approverSource: String? = nil, customApproverTag: String? = nil, approverOption: ApproverOption? = nil) {
             self.approverType = approverType
             self.approverName = approverName
             self.approverMobile = approverMobile
@@ -92,7 +92,7 @@ extension Ess {
             self.customApproverTag = customApproverTag
             self.approverOption = approverOption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case approverType = "ApproverType"
             case approverName = "ApproverName"
@@ -111,47 +111,47 @@ extension Ess {
             case approverOption = "ApproverOption"
         }
     }
-    
+
     /// 签署人个性化能力信息
     public struct ApproverOption: TCInputModel {
         /// 是否可以拒签 false-可以拒签,默认 true-不可以拒签
         public let noRefuse: Bool?
-        
+
         /// 是否可以转发 false-可以转发,默认 true-不可以转发
         public let noTransfer: Bool?
-        
-        public init (noRefuse: Bool? = nil, noTransfer: Bool? = nil) {
+
+        public init(noRefuse: Bool? = nil, noTransfer: Bool? = nil) {
             self.noRefuse = noRefuse
             self.noTransfer = noTransfer
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case noRefuse = "NoRefuse"
             case noTransfer = "NoTransfer"
         }
     }
-    
+
     /// 指定签署人限制项
     public struct ApproverRestriction: TCInputModel {
         /// 指定签署人名字
         public let name: String?
-        
+
         /// 指定签署人手机号
         public let mobile: String?
-        
+
         /// 指定签署人证件类型
         public let idCardType: String?
-        
+
         /// 指定签署人证件号码
         public let idCardNumber: String?
-        
-        public init (name: String? = nil, mobile: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil) {
+
+        public init(name: String? = nil, mobile: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil) {
             self.name = name
             self.mobile = mobile
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case mobile = "Mobile"
@@ -159,38 +159,38 @@ extension Ess {
             case idCardNumber = "IdCardNumber"
         }
     }
-    
+
     /// 授权用户
     public struct AuthorizedUser: TCOutputModel {
         /// 用户id
         public let userId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
         }
     }
-    
+
     /// 此结构体 (Caller) 用于描述调用方属性。
     public struct Caller: TCInputModel {
         /// 应用号
         public let applicationId: String?
-        
+
         /// 主机构ID
         public let organizationId: String?
-        
+
         /// 经办人的用户ID
         public let operatorId: String?
-        
+
         /// 下属机构ID
         public let subOrganizationId: String?
-        
-        public init (applicationId: String? = nil, organizationId: String? = nil, operatorId: String? = nil, subOrganizationId: String? = nil) {
+
+        public init(applicationId: String? = nil, organizationId: String? = nil, operatorId: String? = nil, subOrganizationId: String? = nil) {
             self.applicationId = applicationId
             self.organizationId = organizationId
             self.operatorId = operatorId
             self.subOrganizationId = subOrganizationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case organizationId = "OrganizationId"
@@ -198,21 +198,21 @@ extension Ess {
             case subOrganizationId = "SubOrganizationId"
         }
     }
-    
+
     /// 抄送信息
     public struct CcInfo: TCInputModel {
         /// 被抄送人手机号
         public let mobile: String?
-        
-        public init (mobile: String? = nil) {
+
+        public init(mobile: String? = nil) {
             self.mobile = mobile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mobile = "Mobile"
         }
     }
-    
+
     /// 模板控件信息
     public struct Component: TCInputModel {
         /// 如果是Component控件类型，则可选的字段为：
@@ -234,37 +234,37 @@ extension Ess {
         /// SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认
         /// 表单域的控件不能作为印章和签名控件
         public let componentType: String
-        
+
         /// 控件所属文件的序号（模板中的resourceId排列序号，取值为：0-N）
         public let fileIndex: Int64
-        
+
         /// 参数控件高度，单位pt
         public let componentHeight: Float
-        
+
         /// 参数控件宽度，单位pt
         public let componentWidth: Float
-        
+
         /// 参数控件所在页码，取值为：1-N
         public let componentPage: Int64
-        
+
         /// 参数控件X位置，单位pt
         public let componentPosX: Float
-        
+
         /// 参数控件Y位置，单位pt
         public let componentPosY: Float
-        
+
         /// GenerateMode==KEYWORD 指定关键字
         public let componentId: String?
-        
+
         /// GenerateMode==FIELD 指定表单域名称
         public let componentName: String?
-        
+
         /// 是否必选，默认为false
         public let componentRequired: Bool?
-        
+
         /// 控件关联的签署人ID
         public let componentRecipientId: String?
-        
+
         /// 扩展参数：
         /// 为JSON格式。
         /// ComponentType为FILL_IMAGE时，支持以下参数：
@@ -279,10 +279,10 @@ extension Ess {
         /// ESIGN -- 个人印章类型
         /// 如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
         public let componentExtra: String?
-        
+
         /// 是否是表单域类型，默认不存在
         public let isFormType: Bool?
-        
+
         /// 控件填充vaule，ComponentType和传入值类型对应关系：
         /// TEXT - 文本内容
         /// MULTI_LINE_TEXT - 文本内容
@@ -294,41 +294,41 @@ extension Ess {
         /// SIGN_SEAL - 印章ID，于控制台查询获取
         /// SIGN_PAGING_SEAL - 可以指定印章ID，于控制台查询获取
         public let componentValue: String?
-        
+
         /// NORMAL 正常模式，使用坐标制定签署控件位置
         /// FIELD 表单域，需使用ComponentName指定表单域名称
         /// KEYWORD 关键字，使用ComponentId指定关键字
         public let generateMode: String?
-        
+
         /// 日期签署控件的字号，默认为 12
         public let componentDateFontSize: Int64?
-        
+
         /// 渠道版控件 id 标识
         public let channelComponentId: String?
-        
+
         /// 指定关键字时横坐标偏移量，单位pt
         public let offsetX: Float?
-        
+
         /// 指定关键字时纵坐标偏移量，单位pt
         public let offsetY: Float?
-        
+
         /// //渠道子客控件来源。0-渠道指定；1-用户自定义
         public let channelComponentSource: UInt64?
-        
+
         /// 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
         /// 传入Reverse时会根据关键字在PDF文件内的反序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的最后一个关键字。
         public let keywordOrder: String?
-        
+
         /// 指定关键字页码，可选参数，指定页码后，将只在指定的页码内查找关键字，非该页码的关键字将不会查询出来
         public let keywordPage: Int64?
-        
+
         /// 关键字位置模式，Middle-居中，Below-正下方，Right-正右方，LowerRight-右上角，UpperRight-右下角。示例：如果设置Middle的关键字盖章，则印章的中心会和关键字的中心重合，如果设置Below，则印章在关键字的正下方
         public let relativeLocation: String?
-        
+
         /// 关键字索引，可选参数，如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。示例：[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
         public let keywordIndexes: [Int64]?
-        
-        public init (componentType: String, fileIndex: Int64, componentHeight: Float, componentWidth: Float, componentPage: Int64, componentPosX: Float, componentPosY: Float, componentId: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, componentRecipientId: String? = nil, componentExtra: String? = nil, isFormType: Bool? = nil, componentValue: String? = nil, generateMode: String? = nil, componentDateFontSize: Int64? = nil, channelComponentId: String? = nil, offsetX: Float? = nil, offsetY: Float? = nil, channelComponentSource: UInt64? = nil, keywordOrder: String? = nil, keywordPage: Int64? = nil, relativeLocation: String? = nil, keywordIndexes: [Int64]? = nil) {
+
+        public init(componentType: String, fileIndex: Int64, componentHeight: Float, componentWidth: Float, componentPage: Int64, componentPosX: Float, componentPosY: Float, componentId: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, componentRecipientId: String? = nil, componentExtra: String? = nil, isFormType: Bool? = nil, componentValue: String? = nil, generateMode: String? = nil, componentDateFontSize: Int64? = nil, channelComponentId: String? = nil, offsetX: Float? = nil, offsetY: Float? = nil, channelComponentSource: UInt64? = nil, keywordOrder: String? = nil, keywordPage: Int64? = nil, relativeLocation: String? = nil, keywordIndexes: [Int64]? = nil) {
             self.componentType = componentType
             self.fileIndex = fileIndex
             self.componentHeight = componentHeight
@@ -354,7 +354,7 @@ extension Ess {
             self.relativeLocation = relativeLocation
             self.keywordIndexes = keywordIndexes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case componentType = "ComponentType"
             case fileIndex = "FileIndex"
@@ -382,112 +382,112 @@ extension Ess {
             case keywordIndexes = "KeywordIndexes"
         }
     }
-    
+
     /// 创建员工的结果
     public struct CreateStaffResult: TCOutputModel {
         /// 创建员工的成功列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successEmployeeData: [SuccessCreateStaffData]?
-        
+
         /// 创建员工的失败列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedEmployeeData: [FailedCreateStaffData]?
-        
+
         enum CodingKeys: String, CodingKey {
             case successEmployeeData = "SuccessEmployeeData"
             case failedEmployeeData = "FailedEmployeeData"
         }
     }
-    
+
     /// 删除员工结果
     public struct DeleteStaffsResult: TCOutputModel {
         /// 删除员工的成功数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successEmployeeData: [SuccessDeleteStaffData]?
-        
+
         /// 删除员工的失败数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedEmployeeData: [FailedDeleteStaffData]?
-        
+
         enum CodingKeys: String, CodingKey {
             case successEmployeeData = "SuccessEmployeeData"
             case failedEmployeeData = "FailedEmployeeData"
         }
     }
-    
+
     /// 集成版员工部门信息
     public struct Department: TCOutputModel {
         /// 部门id
         public let departmentId: String
-        
+
         /// 部门名称
         public let departmentName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case departmentId = "DepartmentId"
             case departmentName = "DepartmentName"
         }
     }
-    
+
     /// 创建员工的失败数据
     public struct FailedCreateStaffData: TCOutputModel {
         /// 员工名
         public let displayName: String
-        
+
         /// 员工手机号
         public let mobile: String
-        
+
         /// 失败原因
         public let reason: String
-        
+
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
             case mobile = "Mobile"
             case reason = "Reason"
         }
     }
-    
+
     /// 删除员工失败数据
     public struct FailedDeleteStaffData: TCOutputModel {
         /// 员工在电子签的userId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: String?
-        
+
         /// 员工在第三方平台的openId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openId: String?
-        
+
         /// 失败原因
         public let reason: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case openId = "OpenId"
             case reason = "Reason"
         }
     }
-    
+
     /// 二期接口返回的模板中文件的信息结构
     public struct FileInfo: TCInputModel, TCOutputModel {
         /// 文件Id
         public let fileId: String?
-        
+
         /// 文件名
         public let fileName: String?
-        
+
         /// 文件大小，单位为Byte
         public let fileSize: Int64?
-        
+
         /// 文件上传时间，10位时间戳（精确到秒）
         public let createdOn: Int64?
-        
-        public init (fileId: String? = nil, fileName: String? = nil, fileSize: Int64? = nil, createdOn: Int64? = nil) {
+
+        public init(fileId: String? = nil, fileName: String? = nil, fileSize: Int64? = nil, createdOn: Int64? = nil) {
             self.fileId = fileId
             self.fileName = fileName
             self.fileSize = fileSize
             self.createdOn = createdOn
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case fileName = "FileName"
@@ -495,76 +495,76 @@ extension Ess {
             case createdOn = "CreatedOn"
         }
     }
-    
+
     /// 下载文件的URL信息
     public struct FileUrl: TCOutputModel {
         /// 下载文件的URL
         public let url: String
-        
+
         /// 下载文件的附加信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let option: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case option = "Option"
         }
     }
-    
+
     /// 补充签署人信息
     public struct FillApproverInfo: TCInputModel {
         /// 签署人签署Id
         public let recipientId: String
-        
+
         /// 签署人来源
         /// WEWORKAPP: 企业微信
         public let approverSource: String
-        
+
         /// 企业自定义账号Id
         /// WEWORKAPP场景下指企业自有应用获取企微明文的userid
         public let customUserId: String
-        
-        public init (recipientId: String, approverSource: String, customUserId: String) {
+
+        public init(recipientId: String, approverSource: String, customUserId: String) {
             self.recipientId = recipientId
             self.approverSource = approverSource
             self.customUserId = customUserId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case recipientId = "RecipientId"
             case approverSource = "ApproverSource"
             case customUserId = "CustomUserId"
         }
     }
-    
+
     /// 查询过滤条件
     public struct Filter: TCInputModel, TCOutputModel {
         /// 查询过滤条件的Key
         public let key: String
-        
+
         /// 查询过滤条件的Value列表
         public let values: [String]
-        
-        public init (key: String, values: [String]) {
+
+        public init(key: String, values: [String]) {
             self.key = key
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case values = "Values"
         }
     }
-    
+
     /// 签署人详情信息
     public struct FlowApproverDetail: TCOutputModel {
         /// 签署人信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approveMessage: String?
-        
+
         /// 签署人名字
         public let approveName: String
-        
+
         /// 签署人的状态
         /// 0：还没有发起
         /// 1：流程中 没有开始处理
@@ -577,43 +577,43 @@ extension Ess {
         /// 8：待填写
         /// 9：因为各种原因而终止
         public let approveStatus: Int64
-        
+
         /// 模板配置时候的签署人id,与控件绑定
         public let receiptId: String
-        
+
         /// 客户自定义userId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customUserId: String?
-        
+
         /// 签署人手机号
         public let mobile: String
-        
+
         /// 签署顺序
         public let signOrder: Int64
-        
+
         /// 签署人签署时间
         public let approveTime: Int64
-        
+
         /// 参与者类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approveType: String?
-        
+
         /// 签署人侧用户来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approverSource: String?
-        
+
         /// 客户自定义签署人标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customApproverTag: String?
-        
+
         /// 签署人企业Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationId: String?
-        
+
         /// 签署人企业名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case approveMessage = "ApproveMessage"
             case approveName = "ApproveName"
@@ -630,22 +630,22 @@ extension Ess {
             case organizationName = "OrganizationName"
         }
     }
-    
+
     /// 流程信息摘要
     public struct FlowBrief: TCOutputModel {
         /// 流程的编号
         public let flowId: String
-        
+
         /// 流程的名称
         public let flowName: String
-        
+
         /// 流程的描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowDescription: String?
-        
+
         /// 流程的类型
         public let flowType: String
-        
+
         /// 流程状态
         /// - `0`  还没有发起
         /// - `1`  未签署
@@ -660,15 +660,15 @@ extension Ess {
         /// - `10`  拒填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowStatus: Int64?
-        
+
         /// 流程创建的时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdOn: Int64?
-        
+
         /// 拒签或者取消的原因描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case flowName = "FlowName"
@@ -679,7 +679,7 @@ extension Ess {
             case flowMessage = "FlowMessage"
         }
     }
-    
+
     /// 创建流程的签署方信息
     public struct FlowCreateApprover: TCInputModel {
         /// 参与者类型：
@@ -688,58 +688,58 @@ extension Ess {
         /// 3：企业静默签署
         /// 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
         public let approverType: Int64
-        
+
         /// 如果签署方为企业，需要填入企业全称
         public let organizationName: String?
-        
+
         /// 签署方经办人姓名
         public let approverName: String?
-        
+
         /// 签署方经办人手机号码
         public let approverMobile: String?
-        
+
         /// 签署方经办人证件类型ID_CARD 身份证
         /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
         /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
         public let approverIdCardType: String?
-        
+
         /// 签署方经办人证件号码
         public let approverIdCardNumber: String?
-        
+
         /// 签署方经办人在模板中的角色ID
         public let recipientId: String?
-        
+
         /// 签署意愿确认渠道,WEIXINAPP:人脸识别
         public let verifyChannel: [String]?
-        
+
         /// 是否发送短信，sms--短信通知，none--不通知，默认为sms；发起方=签署方时不发送短信
         public let notifyType: String?
-        
+
         /// 签署前置条件：是否需要阅读全文，默认为不需要
         public let isFullText: Bool?
-        
+
         /// 签署前置条件：阅读时长限制，单位秒，默认为不需要
         public let preReadTime: UInt64?
-        
+
         /// 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个。
         public let userId: String?
-        
+
         /// 当前只支持true，默认为true
         public let required: Bool?
-        
+
         /// 签署人用户来源,企微侧用户请传入：WEWORKAPP
         public let approverSource: String?
-        
+
         /// 客户自定义签署人标识，64位长度，保证唯一。非企微场景不使用此字段
         public let customApproverTag: String?
-        
+
         /// 快速注册相关信息，目前暂未开放！
         public let registerInfo: RegisterInfo?
-        
+
         /// 签署人个性化能力值
         public let approverOption: ApproverOption?
-        
-        public init (approverType: Int64, organizationName: String? = nil, approverName: String? = nil, approverMobile: String? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, recipientId: String? = nil, verifyChannel: [String]? = nil, notifyType: String? = nil, isFullText: Bool? = nil, preReadTime: UInt64? = nil, userId: String? = nil, required: Bool? = nil, approverSource: String? = nil, customApproverTag: String? = nil, registerInfo: RegisterInfo? = nil, approverOption: ApproverOption? = nil) {
+
+        public init(approverType: Int64, organizationName: String? = nil, approverName: String? = nil, approverMobile: String? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, recipientId: String? = nil, verifyChannel: [String]? = nil, notifyType: String? = nil, isFullText: Bool? = nil, preReadTime: UInt64? = nil, userId: String? = nil, required: Bool? = nil, approverSource: String? = nil, customApproverTag: String? = nil, registerInfo: RegisterInfo? = nil, approverOption: ApproverOption? = nil) {
             self.approverType = approverType
             self.organizationName = organizationName
             self.approverName = approverName
@@ -758,7 +758,7 @@ extension Ess {
             self.registerInfo = registerInfo
             self.approverOption = approverOption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case approverType = "ApproverType"
             case organizationName = "OrganizationName"
@@ -779,19 +779,19 @@ extension Ess {
             case approverOption = "ApproverOption"
         }
     }
-    
+
     /// 此结构体(FlowDetailInfo)描述的是合同(流程)的详细信息
     public struct FlowDetailInfo: TCOutputModel {
         /// 合同(流程)的Id
         public let flowId: String
-        
+
         /// 合同(流程)的名字
         public let flowName: String
-        
+
         /// 合同(流程)的类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowType: String?
-        
+
         /// 合同(流程)的状态
         /// 1：未签署
         /// 2：部分签署
@@ -800,21 +800,21 @@ extension Ess {
         /// 5：已过期
         /// 6：已取消
         public let flowStatus: Int64
-        
+
         /// 合同(流程)的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowMessage: String?
-        
+
         /// 流程的描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowDescription: String?
-        
+
         /// 合同(流程)的创建时间戳
         public let createdOn: Int64
-        
+
         /// 合同(流程)的签署人数组
         public let flowApproverInfos: [FlowApproverDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case flowName = "FlowName"
@@ -826,7 +826,7 @@ extension Ess {
             case flowApproverInfos = "FlowApproverInfos"
         }
     }
-    
+
     /// 电子文档的控件填充信息。按照控件类型进行相应的填充。
     /// 【数据表格传参说明】
     /// 当模板的 ComponentType='DYNAMIC_TABLE'时（渠道版或集成版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充数据表格（支持内容的单元格合并）
@@ -939,63 +939,63 @@ extension Ess {
         /// SELECTOR - 选项值
         /// DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
         public let componentValue: String
-        
+
         /// 控件id，和ComponentName选择一项传入即可
         public let componentId: String?
-        
+
         /// 控件名字，最大长度不超过30字符，和ComponentId选择一项传入即可
         public let componentName: String?
-        
-        public init (componentValue: String, componentId: String? = nil, componentName: String? = nil) {
+
+        public init(componentValue: String, componentId: String? = nil, componentName: String? = nil) {
             self.componentValue = componentValue
             self.componentId = componentId
             self.componentName = componentName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case componentValue = "ComponentValue"
             case componentId = "ComponentId"
             case componentName = "ComponentName"
         }
     }
-    
+
     /// 持有的电子印章信息
     public struct OccupiedSeal: TCOutputModel {
         /// 电子印章编号
         public let sealId: String
-        
+
         /// 电子印章名称
         public let sealName: String
-        
+
         /// 电子印章授权时间戳
         public let createOn: Int64
-        
+
         /// 电子印章授权人
         public let creator: String
-        
+
         /// 电子印章策略Id
         public let sealPolicyId: String
-        
+
         /// 印章状态，有以下六种：CHECKING（审核中）SUCCESS（已启用）FAIL（审核拒绝）CHECKING-SADM（待超管审核）DISABLE（已停用）STOPPED（已终止）
         public let sealStatus: String
-        
+
         /// 审核失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         /// 印章图片url，5分钟内有效
         public let url: String
-        
+
         /// 印章类型
         public let sealType: String
-        
+
         /// 用印申请是否为永久授权
         public let isAllTime: Bool
-        
+
         /// 授权人列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authorizedUsers: [AuthorizedUser]?
-        
+
         enum CodingKeys: String, CodingKey {
             case sealId = "SealId"
             case sealName = "SealName"
@@ -1010,32 +1010,32 @@ extension Ess {
             case authorizedUsers = "AuthorizedUsers"
         }
     }
-    
+
     /// 机构信息
     public struct OrganizationInfo: TCInputModel, TCOutputModel {
         /// 机构在平台的编号
         public let organizationId: String?
-        
+
         /// 用户渠道
         public let channel: String?
-        
+
         /// 用户在渠道的机构编号
         public let organizationOpenId: String?
-        
+
         /// 用户真实的IP
         public let clientIp: String?
-        
+
         /// 机构的代理IP
         public let proxyIp: String?
-        
-        public init (organizationId: String? = nil, channel: String? = nil, organizationOpenId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
+
+        public init(organizationId: String? = nil, channel: String? = nil, organizationOpenId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
             self.organizationId = organizationId
             self.channel = channel
             self.organizationOpenId = organizationOpenId
             self.clientIp = clientIp
             self.proxyIp = proxyIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case organizationId = "OrganizationId"
             case channel = "Channel"
@@ -1044,48 +1044,48 @@ extension Ess {
             case proxyIp = "ProxyIp"
         }
     }
-    
+
     /// 合同文件验签单个结果结构体
     public struct PdfVerifyResult: TCOutputModel {
         /// 验签结果
         public let verifyResult: Int64
-        
+
         /// 签署平台
         public let signPlatform: String
-        
+
         /// 签署人名称
         public let signerName: String
-        
+
         /// 签署时间
         public let signTime: Int64
-        
+
         /// 签名算法
         public let signAlgorithm: String
-        
+
         /// 签名证书序列号
         public let certSn: String
-        
+
         /// 证书起始时间
         public let certNotBefore: Int64
-        
+
         /// 证书过期时间
         public let certNotAfter: Int64
-        
+
         /// 签名域横坐标
         public let componentPosX: Float
-        
+
         /// 签名域纵坐标
         public let componentPosY: Float
-        
+
         /// 签名域宽度
         public let componentWidth: Float
-        
+
         /// 签名域高度
         public let componentHeight: Float
-        
+
         /// 签名域所在页码
         public let componentPage: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case verifyResult = "VerifyResult"
             case signPlatform = "SignPlatform"
@@ -1102,49 +1102,49 @@ extension Ess {
             case componentPage = "ComponentPage"
         }
     }
-    
+
     /// 签署参与者信息
     public struct Recipient: TCInputModel, TCOutputModel {
         /// 签署参与者ID
         public let recipientId: String?
-        
+
         /// 参与者类型（ENTERPRISE/INDIVIDUAL）
         public let recipientType: String?
-        
+
         /// 描述信息
         public let description: String?
-        
+
         /// 角色名称
         public let roleName: String?
-        
+
         /// 是否需要验证，默认为false
         public let requireValidation: Bool?
-        
+
         /// 是否需要签署，默认为true
         public let requireSign: Bool?
-        
+
         /// 添加序列
         public let routingOrder: Int64?
-        
+
         /// 是否需要发送，默认为true
         public let requireDelivery: Bool?
-        
+
         /// 邮箱地址
         public let email: String?
-        
+
         /// 电话号码
         public let mobile: String?
-        
+
         /// 关联的用户ID
         public let userId: String?
-        
+
         /// 发送方式（EMAIL/MOBILE）
         public let deliveryMethod: String?
-        
+
         /// 附属信息
         public let recipientExtra: String?
-        
-        public init (recipientId: String? = nil, recipientType: String? = nil, description: String? = nil, roleName: String? = nil, requireValidation: Bool? = nil, requireSign: Bool? = nil, routingOrder: Int64? = nil, requireDelivery: Bool? = nil, email: String? = nil, mobile: String? = nil, userId: String? = nil, deliveryMethod: String? = nil, recipientExtra: String? = nil) {
+
+        public init(recipientId: String? = nil, recipientType: String? = nil, description: String? = nil, roleName: String? = nil, requireValidation: Bool? = nil, requireSign: Bool? = nil, routingOrder: Int64? = nil, requireDelivery: Bool? = nil, email: String? = nil, mobile: String? = nil, userId: String? = nil, deliveryMethod: String? = nil, recipientExtra: String? = nil) {
             self.recipientId = recipientId
             self.recipientType = recipientType
             self.description = description
@@ -1159,7 +1159,7 @@ extension Ess {
             self.deliveryMethod = deliveryMethod
             self.recipientExtra = recipientExtra
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case recipientId = "RecipientId"
             case recipientType = "RecipientType"
@@ -1176,104 +1176,104 @@ extension Ess {
             case recipientExtra = "RecipientExtra"
         }
     }
-    
+
     /// 发起流程快速注册相关信息
     public struct RegisterInfo: TCInputModel {
         /// 法人姓名
         public let legalName: String
-        
+
         /// 社会统一信用代码
         public let uscc: String
-        
-        public init (legalName: String, uscc: String) {
+
+        public init(legalName: String, uscc: String) {
             self.legalName = legalName
             self.uscc = uscc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case legalName = "LegalName"
             case uscc = "Uscc"
         }
     }
-    
+
     /// 一码多扫签署二维码对象
     public struct SignQrCode: TCOutputModel {
         /// 二维码id
         public let qrCodeId: String
-        
+
         /// 二维码url
         public let qrCodeUrl: String
-        
+
         /// 二维码过期时间
         public let expiredTime: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case qrCodeId = "QrCodeId"
             case qrCodeUrl = "QrCodeUrl"
             case expiredTime = "ExpiredTime"
         }
     }
-    
+
     /// 一码多扫签署二维码签署信息
     public struct SignUrl: TCOutputModel {
         /// 小程序签署链接
         public let appSignUrl: String
-        
+
         /// 签署链接有效时间
         public let effectiveTime: String
-        
+
         /// 移动端签署链接
         public let httpSignUrl: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appSignUrl = "AppSignUrl"
             case effectiveTime = "EffectiveTime"
             case httpSignUrl = "HttpSignUrl"
         }
     }
-    
+
     /// 企业员工信息
     public struct Staff: TCInputModel, TCOutputModel {
         /// 用户在电子签平台的id
         public let userId: String?
-        
+
         /// 显示的用户名/昵称
         public let displayName: String?
-        
+
         /// 用户手机号
         public let mobile: String?
-        
+
         /// 用户邮箱
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let email: String?
-        
+
         /// 用户在第三方平台id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openId: String?
-        
+
         /// 员工角色
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roles: [StaffRole]?
-        
+
         /// 员工部门
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let department: Department?
-        
+
         /// 员工是否实名
         public let verified: Bool?
-        
+
         /// 员工创建时间戳
         public let createdOn: Int64?
-        
+
         /// 员工实名时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifiedOn: Int64?
-        
+
         /// 员工是否离职：0-未离职，1-离职
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quiteJob: Int64?
-        
-        public init (userId: String? = nil, displayName: String? = nil, mobile: String? = nil, email: String? = nil, openId: String? = nil, roles: [StaffRole]? = nil, department: Department? = nil, verified: Bool? = nil, createdOn: Int64? = nil, verifiedOn: Int64? = nil, quiteJob: Int64? = nil) {
+
+        public init(userId: String? = nil, displayName: String? = nil, mobile: String? = nil, email: String? = nil, openId: String? = nil, roles: [StaffRole]? = nil, department: Department? = nil, verified: Bool? = nil, createdOn: Int64? = nil, verifiedOn: Int64? = nil, quiteJob: Int64? = nil) {
             self.userId = userId
             self.displayName = displayName
             self.mobile = mobile
@@ -1286,7 +1286,7 @@ extension Ess {
             self.verifiedOn = verifiedOn
             self.quiteJob = quiteJob
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case displayName = "DisplayName"
@@ -1301,111 +1301,111 @@ extension Ess {
             case quiteJob = "QuiteJob"
         }
     }
-    
+
     /// 集成版企业角色信息
     public struct StaffRole: TCOutputModel {
         /// 角色id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleId: String?
-        
+
         /// 角色名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case roleId = "RoleId"
             case roleName = "RoleName"
         }
     }
-    
+
     /// 创建员工的成功数据
     public struct SuccessCreateStaffData: TCOutputModel {
         /// 员工名
         public let displayName: String
-        
+
         /// 员工手机号
         public let mobile: String
-        
+
         /// 员工在电子签平台的id
         public let userId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
             case mobile = "Mobile"
             case userId = "UserId"
         }
     }
-    
+
     /// 删除员工的成功数据
     public struct SuccessDeleteStaffData: TCOutputModel {
         /// 员工名
         public let displayName: String
-        
+
         /// 员工手机号
         public let mobile: String
-        
+
         /// 员工在电子签平台的id
         public let userId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
             case mobile = "Mobile"
             case userId = "UserId"
         }
     }
-    
+
     /// 二期接口返回的模板的信息结构
     public struct TemplateInfo: TCInputModel, TCOutputModel {
         /// 模板ID
         public let templateId: String?
-        
+
         /// 模板名字
         public let templateName: String?
-        
+
         /// 模板描述信息
         public let description: String?
-        
+
         /// 模板关联的资源IDs
         public let documentResourceIds: [String]?
-        
+
         /// 返回的文件信息结构
         public let fileInfos: [FileInfo]?
-        
+
         /// 附件关联的资源ID是
         public let attachmentResourceIds: [String]?
-        
+
         /// 签署顺序
         public let signOrder: [Int64]?
-        
+
         /// 签署参与者的信息
         public let recipients: [Recipient]?
-        
+
         /// 模板信息结构
         public let components: [Component]?
-        
+
         /// 签署区模板信息结构
         public let signComponents: [Component]?
-        
+
         /// 模板状态(-1:不可用；0:草稿态；1:正式态)
         public let status: Int64?
-        
+
         /// 模板的创建人
         public let creator: String?
-        
+
         /// 模板创建的时间戳（精确到秒）
         public let createdOn: Int64?
-        
+
         /// 发起人角色信息
         public let promoter: Recipient?
-        
+
         /// 模板创建组织id
         public let organizationId: String?
-        
+
         /// 模板预览链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let previewUrl: String?
-        
-        public init (templateId: String? = nil, templateName: String? = nil, description: String? = nil, documentResourceIds: [String]? = nil, fileInfos: [FileInfo]? = nil, attachmentResourceIds: [String]? = nil, signOrder: [Int64]? = nil, recipients: [Recipient]? = nil, components: [Component]? = nil, signComponents: [Component]? = nil, status: Int64? = nil, creator: String? = nil, createdOn: Int64? = nil, promoter: Recipient? = nil, organizationId: String? = nil, previewUrl: String? = nil) {
+
+        public init(templateId: String? = nil, templateName: String? = nil, description: String? = nil, documentResourceIds: [String]? = nil, fileInfos: [FileInfo]? = nil, attachmentResourceIds: [String]? = nil, signOrder: [Int64]? = nil, recipients: [Recipient]? = nil, components: [Component]? = nil, signComponents: [Component]? = nil, status: Int64? = nil, creator: String? = nil, createdOn: Int64? = nil, promoter: Recipient? = nil, organizationId: String? = nil, previewUrl: String? = nil) {
             self.templateId = templateId
             self.templateName = templateName
             self.description = description
@@ -1423,7 +1423,7 @@ extension Ess {
             self.organizationId = organizationId
             self.previewUrl = previewUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateName = "TemplateName"
@@ -1443,51 +1443,51 @@ extension Ess {
             case previewUrl = "PreviewUrl"
         }
     }
-    
+
     /// 此结构体 (UploadFile) 用于描述多文件上传的文件信息。
     public struct UploadFile: TCInputModel {
         /// Base64编码后的文件内容
         public let fileBody: String
-        
+
         /// 文件名，最大长度不超过200字符
         public let fileName: String?
-        
-        public init (fileBody: String, fileName: String? = nil) {
+
+        public init(fileBody: String, fileName: String? = nil) {
             self.fileBody = fileBody
             self.fileName = fileName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileBody = "FileBody"
             case fileName = "FileName"
         }
     }
-    
+
     /// 用户信息
     public struct UserInfo: TCInputModel, TCOutputModel {
         /// 用户在平台的编号
         public let userId: String?
-        
+
         /// 用户的来源渠道
         public let channel: String?
-        
+
         /// 用户在渠道的编号
         public let openId: String?
-        
+
         /// 用户真实IP
         public let clientIp: String?
-        
+
         /// 用户代理IP
         public let proxyIp: String?
-        
-        public init (userId: String? = nil, channel: String? = nil, openId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
+
+        public init(userId: String? = nil, channel: String? = nil, openId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
             self.userId = userId
             self.channel = channel
             self.openId = openId
             self.clientIp = clientIp
             self.proxyIp = proxyIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case channel = "Channel"

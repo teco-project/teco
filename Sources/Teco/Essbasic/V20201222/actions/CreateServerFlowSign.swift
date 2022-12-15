@@ -19,23 +19,23 @@ extension Essbasic {
     public struct CreateServerFlowSignRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 流程ID
         public let flowId: String
-        
+
         /// 签署区域信息
         public let signComponents: [Component]
-        
+
         /// 客户端IP
         public let sourceIp: String
-        
-        public init (caller: Caller, flowId: String, signComponents: [Component], sourceIp: String) {
+
+        public init(caller: Caller, flowId: String, signComponents: [Component], sourceIp: String) {
             self.caller = caller
             self.flowId = flowId
             self.signComponents = signComponents
             self.sourceIp = sourceIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case flowId = "FlowId"
@@ -43,23 +43,23 @@ extension Essbasic {
             case sourceIp = "SourceIp"
         }
     }
-    
+
     /// CreateServerFlowSign返回参数结构体
     public struct CreateServerFlowSignResponse: TCResponseModel {
         /// 任务状态：
         /// 0：失败
         /// 1：成功
         public let signStatus: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case signStatus = "SignStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 流程静默签署
     ///
     /// 此接口（CreateServerFlowSign）用于静默签署文件。
@@ -67,10 +67,10 @@ extension Essbasic {
     /// 1、此接口为白名单接口，调用前请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     /// 2、仅合同发起者可使用流程静默签署能力。
     @inlinable
-    public func createServerFlowSign(_ input: CreateServerFlowSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerFlowSignResponse > {
+    public func createServerFlowSign(_ input: CreateServerFlowSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerFlowSignResponse> {
         self.client.execute(action: "CreateServerFlowSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 流程静默签署
     ///
     /// 此接口（CreateServerFlowSign）用于静默签署文件。
@@ -81,7 +81,7 @@ extension Essbasic {
     public func createServerFlowSign(_ input: CreateServerFlowSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerFlowSignResponse {
         try await self.client.execute(action: "CreateServerFlowSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 流程静默签署
     ///
     /// 此接口（CreateServerFlowSign）用于静默签署文件。
@@ -89,10 +89,10 @@ extension Essbasic {
     /// 1、此接口为白名单接口，调用前请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     /// 2、仅合同发起者可使用流程静默签署能力。
     @inlinable
-    public func createServerFlowSign(caller: Caller, flowId: String, signComponents: [Component], sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerFlowSignResponse > {
+    public func createServerFlowSign(caller: Caller, flowId: String, signComponents: [Component], sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerFlowSignResponse> {
         self.createServerFlowSign(CreateServerFlowSignRequest(caller: caller, flowId: flowId, signComponents: signComponents, sourceIp: sourceIp), logger: logger, on: eventLoop)
     }
-    
+
     /// 流程静默签署
     ///
     /// 此接口（CreateServerFlowSign）用于静默签署文件。

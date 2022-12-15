@@ -17,42 +17,42 @@
 extension Tcss {
     /// DescribeSecLogJoinTypeList请求参数结构体
     public struct DescribeSecLogJoinTypeListRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeSecLogJoinTypeList返回参数结构体
     public struct DescribeSecLogJoinTypeListResponse: TCResponseModel {
         /// 接入日志列表
         public let list: [SecLogJoinInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全日志接入列表
     @inlinable
-    public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogJoinTypeListResponse > {
+    public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinTypeListResponse> {
         self.client.execute(action: "DescribeSecLogJoinTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全日志接入列表
     @inlinable
     public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
         try await self.client.execute(action: "DescribeSecLogJoinTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全日志接入列表
     @inlinable
-    public func describeSecLogJoinTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogJoinTypeListResponse > {
+    public func describeSecLogJoinTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinTypeListResponse> {
         self.describeSecLogJoinTypeList(DescribeSecLogJoinTypeListRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全日志接入列表
     @inlinable
     public func describeSecLogJoinTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {

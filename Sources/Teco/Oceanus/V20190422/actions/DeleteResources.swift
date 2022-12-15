@@ -19,49 +19,49 @@ extension Oceanus {
     public struct DeleteResourcesRequest: TCRequestModel {
         /// 待删除资源ID列表
         public let resourceIds: [String]
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (resourceIds: [String], workSpaceId: String? = nil) {
+
+        public init(resourceIds: [String], workSpaceId: String? = nil) {
             self.resourceIds = resourceIds
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceIds = "ResourceIds"
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// DeleteResources返回参数结构体
     public struct DeleteResourcesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除资源接口
     @inlinable
-    public func deleteResources(_ input: DeleteResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourcesResponse > {
+    public func deleteResources(_ input: DeleteResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourcesResponse> {
         self.client.execute(action: "DeleteResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资源接口
     @inlinable
     public func deleteResources(_ input: DeleteResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourcesResponse {
         try await self.client.execute(action: "DeleteResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除资源接口
     @inlinable
-    public func deleteResources(resourceIds: [String], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourcesResponse > {
+    public func deleteResources(resourceIds: [String], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourcesResponse> {
         self.deleteResources(DeleteResourcesRequest(resourceIds: resourceIds, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资源接口
     @inlinable
     public func deleteResources(resourceIds: [String], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourcesResponse {

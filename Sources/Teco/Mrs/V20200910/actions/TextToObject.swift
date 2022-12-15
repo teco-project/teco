@@ -19,24 +19,24 @@ extension Mrs {
     public struct TextToObjectRequest: TCRequestModel {
         /// 报告文本
         public let text: String
-        
+
         /// 报告类型，目前支持12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明），363（心电图），27（内窥镜检查），215（处方单），219（免疫接种证明），301（C14呼气试验）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
         public let type: UInt64
-        
+
         /// 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为False，则Type字段不能为0，否则无法输出结果。
         /// 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
         public let isUsedClassify: Bool
-        
+
         /// 用户类型，新客户传1，老客户可不传
         public let userType: UInt64?
-        
-        public init (text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil) {
+
+        public init(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil) {
             self.text = text
             self.type = type
             self.isUsedClassify = isUsedClassify
             self.userType = userType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case type = "Type"
@@ -44,29 +44,29 @@ extension Mrs {
             case userType = "UserType"
         }
     }
-    
+
     /// TextToObject返回参数结构体
     public struct TextToObjectResponse: TCResponseModel {
         /// 报告结构化结果
         public let template: Template
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case template = "Template"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 文本结构化接口
     ///
     /// 文本转结构化对象
     @inlinable
-    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToObjectResponse > {
+    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToObjectResponse> {
         self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 文本结构化接口
     ///
     /// 文本转结构化对象
@@ -74,15 +74,15 @@ extension Mrs {
     public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
         try await self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 文本结构化接口
     ///
     /// 文本转结构化对象
     @inlinable
-    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToObjectResponse > {
+    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToObjectResponse> {
         self.textToObject(TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), logger: logger, on: eventLoop)
     }
-    
+
     /// 文本结构化接口
     ///
     /// 文本转结构化对象

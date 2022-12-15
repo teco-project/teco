@@ -19,13 +19,13 @@ extension Cdn {
     public struct ListTopWafDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         public let startTime: String
-        
+
         /// 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
         public let endTime: String
-        
+
         /// 指定域名查询，不填写查询整个AppID下数据
         public let domain: String?
-        
+
         /// 指定攻击类型
         /// 不填则查询所有攻击类型的数据总和
         /// AttackType 映射如下:
@@ -43,31 +43,31 @@ extension Cdn {
         /// "ldap" : LDAP注入攻击防护
         /// "other" : 其它漏洞防护
         public let attackType: String?
-        
+
         /// 指定防御模式
         /// 不填则查询所有防御模式的数据总和
         /// DefenceMode 映射如下：
         ///   observe = '观察模式'
         ///   intercept = '拦截模式'
         public let defenceMode: String?
-        
+
         /// 排序对象，支持以下几种形式：
         /// url：攻击目标 url 排序
         /// ip：攻击源 IP 排序
         /// attackType：攻击类型排序
         /// domain：当查询整个AppID下数据时，按照域名请求量排序
         public let metric: String?
-        
+
         /// 地域：mainland 或 overseas
         public let area: String?
-        
+
         /// 指定攻击类型列表，取值参考AttackType
         public let attackTypes: [String]?
-        
+
         /// 指定域名列表查询，不填写查询整个AppID下数据
         public let domains: [String]?
-        
-        public init (startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil) {
+
+        public init(startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.domain = domain
@@ -78,7 +78,7 @@ extension Cdn {
             self.attackTypes = attackTypes
             self.domains = domains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -91,24 +91,24 @@ extension Cdn {
             case domains = "Domains"
         }
     }
-    
+
     /// ListTopWafData返回参数结构体
     public struct ListTopWafDataResponse: TCResponseModel {
         /// 攻击类型统计
         public let topTypeData: [ScdnTypeData]
-        
+
         /// IP统计
         public let topIpData: [ScdnTopData]
-        
+
         /// URL统计
         public let topUrlData: [ScdnTopUrlData]
-        
+
         /// 域名统计
         public let topDomainData: [ScdnTopDomainData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case topTypeData = "TopTypeData"
             case topIpData = "TopIpData"
@@ -117,25 +117,25 @@ extension Cdn {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取Waf攻击Top数据
     @inlinable
-    public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopWafDataResponse > {
+    public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopWafDataResponse> {
         self.client.execute(action: "ListTopWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Waf攻击Top数据
     @inlinable
     public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopWafDataResponse {
         try await self.client.execute(action: "ListTopWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取Waf攻击Top数据
     @inlinable
-    public func listTopWafData(startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopWafDataResponse > {
+    public func listTopWafData(startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopWafDataResponse> {
         self.listTopWafData(ListTopWafDataRequest(startTime: startTime, endTime: endTime, domain: domain, attackType: attackType, defenceMode: defenceMode, metric: metric, area: area, attackTypes: attackTypes, domains: domains), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Waf攻击Top数据
     @inlinable
     public func listTopWafData(startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopWafDataResponse {

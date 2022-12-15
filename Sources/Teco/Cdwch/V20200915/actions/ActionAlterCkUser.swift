@@ -19,45 +19,45 @@ extension Cdwch {
     public struct ActionAlterCkUserRequest: TCRequestModel {
         /// 用户信息
         public let userInfo: CkUserAlterInfo
-        
+
         /// api接口类型，
         /// AddSystemUser新增用户，UpdateSystemUser，修改用户
         public let apiType: String
-        
-        public init (userInfo: CkUserAlterInfo, apiType: String) {
+
+        public init(userInfo: CkUserAlterInfo, apiType: String) {
             self.userInfo = userInfo
             self.apiType = apiType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userInfo = "UserInfo"
             case apiType = "ApiType"
         }
     }
-    
+
     /// ActionAlterCkUser返回参数结构体
     public struct ActionAlterCkUserResponse: TCResponseModel {
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增、修改ck用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
-    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActionAlterCkUserResponse > {
+    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActionAlterCkUserResponse> {
         self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增、修改ck用户接口
     ///
     /// 新增和修改用户接口
@@ -65,15 +65,15 @@ extension Cdwch {
     public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
         try await self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增、修改ck用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
-    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActionAlterCkUserResponse > {
+    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActionAlterCkUserResponse> {
         self.actionAlterCkUser(ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增、修改ck用户接口
     ///
     /// 新增和修改用户接口

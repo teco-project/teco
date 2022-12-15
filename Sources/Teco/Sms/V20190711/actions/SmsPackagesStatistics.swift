@@ -19,51 +19,51 @@ extension Sms {
     public struct SmsPackagesStatisticsRequest: TCRequestModel {
         /// 短信SdkAppid在 [短信控制台](https://console.cloud.tencent.com/smsv2) 添加应用后生成的实际SdkAppid，示例如1400006666。
         public let smsSdkAppid: String
-        
+
         /// 最大上限(需要拉取的套餐包个数)。
         public let limit: UInt64
-        
+
         /// 偏移量。
         /// 注：目前固定设置为0。
         public let offset: UInt64
-        
-        public init (smsSdkAppid: String, limit: UInt64, offset: UInt64) {
+
+        public init(smsSdkAppid: String, limit: UInt64, offset: UInt64) {
             self.smsSdkAppid = smsSdkAppid
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case smsSdkAppid = "SmsSdkAppid"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// SmsPackagesStatistics返回参数结构体
     public struct SmsPackagesStatisticsResponse: TCResponseModel {
         /// 发送数据统计响应包体。
         public let smsPackagesStatisticsSet: [SmsPackagesStatistics]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case smsPackagesStatisticsSet = "SmsPackagesStatisticsSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SmsPackagesStatisticsResponse > {
+    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
         self.client.execute(action: "SmsPackagesStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。
@@ -73,17 +73,17 @@ extension Sms {
     public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
         try await self.client.execute(action: "SmsPackagesStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SmsPackagesStatisticsResponse > {
+    public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
         self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 套餐包信息统计
     ///
     /// 用户套餐包信息统计。

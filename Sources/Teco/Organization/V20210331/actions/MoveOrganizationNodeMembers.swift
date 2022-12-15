@@ -19,49 +19,49 @@ extension Organization {
     public struct MoveOrganizationNodeMembersRequest: TCRequestModel {
         /// 组织节点ID。
         public let nodeId: Int64
-        
+
         /// 成员UIN列表。
         public let memberUin: [Int64]
-        
-        public init (nodeId: Int64, memberUin: [Int64]) {
+
+        public init(nodeId: Int64, memberUin: [Int64]) {
             self.nodeId = nodeId
             self.memberUin = memberUin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case memberUin = "MemberUin"
         }
     }
-    
+
     /// MoveOrganizationNodeMembers返回参数结构体
     public struct MoveOrganizationNodeMembersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 移动成员到指定企业组织节点
     @inlinable
-    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveOrganizationNodeMembersResponse > {
+    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationNodeMembersResponse> {
         self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 移动成员到指定企业组织节点
     @inlinable
     public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
         try await self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 移动成员到指定企业组织节点
     @inlinable
-    public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveOrganizationNodeMembersResponse > {
+    public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationNodeMembersResponse> {
         self.moveOrganizationNodeMembers(MoveOrganizationNodeMembersRequest(nodeId: nodeId, memberUin: memberUin), logger: logger, on: eventLoop)
     }
-    
+
     /// 移动成员到指定企业组织节点
     @inlinable
     public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {

@@ -19,57 +19,57 @@ extension Iotvideo {
     public struct GetAllFirmwareVersionRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
-        public init (productID: String) {
+
+        public init(productID: String) {
             self.productID = productID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
         }
     }
-    
+
     /// GetAllFirmwareVersion返回参数结构体
     public struct GetAllFirmwareVersionResponse: TCResponseModel {
         /// 固件可用版本列表
         public let version: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case version = "Version"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取所有版本列表
     ///
-    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表
     @inlinable
-    public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAllFirmwareVersionResponse > {
+    public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAllFirmwareVersionResponse> {
         self.client.execute(action: "GetAllFirmwareVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取所有版本列表
     ///
-    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表
     @inlinable
     public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllFirmwareVersionResponse {
         try await self.client.execute(action: "GetAllFirmwareVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取所有版本列表
     ///
-    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表
     @inlinable
-    public func getAllFirmwareVersion(productID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAllFirmwareVersionResponse > {
+    public func getAllFirmwareVersion(productID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAllFirmwareVersionResponse> {
         self.getAllFirmwareVersion(GetAllFirmwareVersionRequest(productID: productID), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取所有版本列表
     ///
-    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表
     @inlinable
     public func getAllFirmwareVersion(productID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllFirmwareVersionResponse {
         try await self.getAllFirmwareVersion(GetAllFirmwareVersionRequest(productID: productID), logger: logger, on: eventLoop)

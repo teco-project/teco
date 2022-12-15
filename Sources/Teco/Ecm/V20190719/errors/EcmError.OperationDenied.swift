@@ -19,38 +19,38 @@ extension TCEcmError {
         enum Code: String {
             case instanceOperationInProgress = "OperationDenied.InstanceOperationInProgress"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不允许执行当前操作。
         public static var instanceOperationInProgress: OperationDenied {
             OperationDenied(.instanceOperationInProgress)
         }
-        
+
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
-            case .instanceOperationInProgress: 
+            case .instanceOperationInProgress:
                 code = .operationDenied_InstanceOperationInProgress
             }
             return TCEcmError(code, context: self.context)

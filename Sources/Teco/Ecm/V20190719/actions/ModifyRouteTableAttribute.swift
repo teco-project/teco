@@ -19,49 +19,49 @@ extension Ecm {
     public struct ModifyRouteTableAttributeRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c
         public let routeTableId: String
-        
+
         /// 路由表名称
         public let routeTableName: String
-        
-        public init (routeTableId: String, routeTableName: String) {
+
+        public init(routeTableId: String, routeTableName: String) {
             self.routeTableId = routeTableId
             self.routeTableName = routeTableName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableId = "RouteTableId"
             case routeTableName = "RouteTableName"
         }
     }
-    
+
     /// ModifyRouteTableAttribute返回参数结构体
     public struct ModifyRouteTableAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改路由表属性
     @inlinable
-    public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRouteTableAttributeResponse > {
+    public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableAttributeResponse> {
         self.client.execute(action: "ModifyRouteTableAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改路由表属性
     @inlinable
     public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableAttributeResponse {
         try await self.client.execute(action: "ModifyRouteTableAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改路由表属性
     @inlinable
-    public func modifyRouteTableAttribute(routeTableId: String, routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRouteTableAttributeResponse > {
+    public func modifyRouteTableAttribute(routeTableId: String, routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableAttributeResponse> {
         self.modifyRouteTableAttribute(ModifyRouteTableAttributeRequest(routeTableId: routeTableId, routeTableName: routeTableName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改路由表属性
     @inlinable
     public func modifyRouteTableAttribute(routeTableId: String, routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableAttributeResponse {

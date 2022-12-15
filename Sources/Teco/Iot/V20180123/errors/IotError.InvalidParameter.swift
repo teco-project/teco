@@ -33,136 +33,136 @@ extension TCIotError {
             case iotProductInvalidSubDeviceProductId = "InvalidParameter.IotProductInvalidSubDeviceProductId"
             case iotStatInvalidDate = "InvalidParameter.IotStatInvalidDate"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 非法密码。
         public static var iotApplicationInvalidPassword: InvalidParameter {
             InvalidParameter(.iotApplicationInvalidPassword)
         }
-        
+
         /// 用户名或密码错误。
         public static var iotApplicationInvalidUserPassword: InvalidParameter {
             InvalidParameter(.iotApplicationInvalidUserPassword)
         }
-        
+
         /// 过期访问Token。
         public static var iotExpiredAccessToken: InvalidParameter {
             InvalidParameter(.iotExpiredAccessToken)
         }
-        
+
         /// 过期签名。
         public static var iotExpiredSignature: InvalidParameter {
             InvalidParameter(.iotExpiredSignature)
         }
-        
+
         /// 非法访问Token。
         public static var iotInvalidAccessToken: InvalidParameter {
             InvalidParameter(.iotInvalidAccessToken)
         }
-        
+
         /// 非法签名。
         public static var iotInvalidSignature: InvalidParameter {
             InvalidParameter(.iotInvalidSignature)
         }
-        
+
         /// 非法参数。
         public static var iotParamError: InvalidParameter {
             InvalidParameter(.iotParamError)
         }
-        
+
         /// 空数据模版。
         public static var iotProductEmptyDataTemplate: InvalidParameter {
             InvalidParameter(.iotProductEmptyDataTemplate)
         }
-        
+
         /// 非法产品鉴权类型。
         public static var iotProductInvalidAuthType: InvalidParameter {
             InvalidParameter(.iotProductInvalidAuthType)
         }
-        
+
         /// 产品数据协议错误。
         public static var iotProductInvalidDataProtocol: InvalidParameter {
             InvalidParameter(.iotProductInvalidDataProtocol)
         }
-        
+
         /// 非法数据模版。
         public static var iotProductInvalidDataTemplate: InvalidParameter {
             InvalidParameter(.iotProductInvalidDataTemplate)
         }
-        
+
         /// 非法数据模版取值范围。
         public static var iotProductInvalidDataTemplateRange: InvalidParameter {
             InvalidParameter(.iotProductInvalidDataTemplateRange)
         }
-        
+
         /// 网关设备产品Id错误。
         public static var iotProductInvalidGatewayProductId: InvalidParameter {
             InvalidParameter(.iotProductInvalidGatewayProductId)
         }
-        
+
         /// 子设备产品Id错误。
         public static var iotProductInvalidSubDeviceProductId: InvalidParameter {
             InvalidParameter(.iotProductInvalidSubDeviceProductId)
         }
-        
+
         /// 查询日期错误。
         public static var iotStatInvalidDate: InvalidParameter {
             InvalidParameter(.iotStatInvalidDate)
         }
-        
+
         public func asIotError() -> TCIotError {
             let code: TCIotError.Code
             switch self.error {
-            case .iotApplicationInvalidPassword: 
+            case .iotApplicationInvalidPassword:
                 code = .invalidParameter_IotApplicationInvalidPassword
-            case .iotApplicationInvalidUserPassword: 
+            case .iotApplicationInvalidUserPassword:
                 code = .invalidParameter_IotApplicationInvalidUserPassword
-            case .iotExpiredAccessToken: 
+            case .iotExpiredAccessToken:
                 code = .invalidParameter_IotExpiredAccessToken
-            case .iotExpiredSignature: 
+            case .iotExpiredSignature:
                 code = .invalidParameter_IotExpiredSignature
-            case .iotInvalidAccessToken: 
+            case .iotInvalidAccessToken:
                 code = .invalidParameter_IotInvalidAccessToken
-            case .iotInvalidSignature: 
+            case .iotInvalidSignature:
                 code = .invalidParameter_IotInvalidSignature
-            case .iotParamError: 
+            case .iotParamError:
                 code = .invalidParameter_IotParamError
-            case .iotProductEmptyDataTemplate: 
+            case .iotProductEmptyDataTemplate:
                 code = .invalidParameter_IotProductEmptyDataTemplate
-            case .iotProductInvalidAuthType: 
+            case .iotProductInvalidAuthType:
                 code = .invalidParameter_IotProductInvalidAuthType
-            case .iotProductInvalidDataProtocol: 
+            case .iotProductInvalidDataProtocol:
                 code = .invalidParameter_IotProductInvalidDataProtocol
-            case .iotProductInvalidDataTemplate: 
+            case .iotProductInvalidDataTemplate:
                 code = .invalidParameter_IotProductInvalidDataTemplate
-            case .iotProductInvalidDataTemplateRange: 
+            case .iotProductInvalidDataTemplateRange:
                 code = .invalidParameter_IotProductInvalidDataTemplateRange
-            case .iotProductInvalidGatewayProductId: 
+            case .iotProductInvalidGatewayProductId:
                 code = .invalidParameter_IotProductInvalidGatewayProductId
-            case .iotProductInvalidSubDeviceProductId: 
+            case .iotProductInvalidSubDeviceProductId:
                 code = .invalidParameter_IotProductInvalidSubDeviceProductId
-            case .iotStatInvalidDate: 
+            case .iotStatInvalidDate:
                 code = .invalidParameter_IotStatInvalidDate
             }
             return TCIotError(code, context: self.context)

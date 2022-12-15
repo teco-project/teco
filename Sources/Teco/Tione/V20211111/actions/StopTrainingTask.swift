@@ -19,44 +19,44 @@ extension Tione {
     public struct StopTrainingTaskRequest: TCRequestModel {
         /// 训练任务ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// StopTrainingTask返回参数结构体
     public struct StopTrainingTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止模型训练任务
     @inlinable
-    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTrainingTaskResponse > {
+    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTrainingTaskResponse> {
         self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止模型训练任务
     @inlinable
     public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
         try await self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止模型训练任务
     @inlinable
-    public func stopTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTrainingTaskResponse > {
+    public func stopTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTrainingTaskResponse> {
         self.stopTrainingTask(StopTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止模型训练任务
     @inlinable
     public func stopTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {

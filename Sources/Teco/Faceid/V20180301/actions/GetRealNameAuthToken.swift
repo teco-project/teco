@@ -19,52 +19,52 @@ extension Faceid {
     public struct GetRealNameAuthTokenRequest: TCRequestModel {
         /// 姓名
         public let name: String
-        
+
         /// 身份证号
         public let idCard: String
-        
+
         /// 回调地址。实名认证完成后，将会重定向到这个地址通知认证发起方。仅支持http或https协议。
         public let callbackURL: String
-        
-        public init (name: String, idCard: String, callbackURL: String) {
+
+        public init(name: String, idCard: String, callbackURL: String) {
             self.name = name
             self.idCard = idCard
             self.callbackURL = callbackURL
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case idCard = "IDCard"
             case callbackURL = "CallbackURL"
         }
     }
-    
+
     /// GetRealNameAuthToken返回参数结构体
     public struct GetRealNameAuthTokenResponse: TCResponseModel {
         /// 查询实名认证结果的唯一凭证
         public let authToken: String
-        
+
         /// 实名认证授权地址，认证发起方需要重定向到这个地址获取认证用户的授权，仅能在微信环境下打开。
         public let redirectURL: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case authToken = "AuthToken"
             case redirectURL = "RedirectURL"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 微信实名认证授权
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
     @inlinable
-    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRealNameAuthTokenResponse > {
+    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthTokenResponse> {
         self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 微信实名认证授权
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
@@ -72,15 +72,15 @@ extension Faceid {
     public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthTokenResponse {
         try await self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 微信实名认证授权
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
     @inlinable
-    public func getRealNameAuthToken(name: String, idCard: String, callbackURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRealNameAuthTokenResponse > {
+    public func getRealNameAuthToken(name: String, idCard: String, callbackURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthTokenResponse> {
         self.getRealNameAuthToken(GetRealNameAuthTokenRequest(name: name, idCard: idCard, callbackURL: callbackURL), logger: logger, on: eventLoop)
     }
-    
+
     /// 微信实名认证授权
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。

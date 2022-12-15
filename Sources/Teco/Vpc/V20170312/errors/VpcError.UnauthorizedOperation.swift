@@ -24,73 +24,73 @@ extension TCVpcError {
             case primaryIp = "UnauthorizedOperation.PrimaryIp"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无权限申请AnycastEip资源。
         public static var anycastEip: UnauthorizedOperation {
             UnauthorizedOperation(.anycastEip)
         }
-        
+
         /// 绑定关系不存在。
         public static var attachmentNotFound: UnauthorizedOperation {
             UnauthorizedOperation(.attachmentNotFound)
         }
-        
+
         /// 未授权的用户。
         public static var invalidAccount: UnauthorizedOperation {
             UnauthorizedOperation(.invalidAccount)
         }
-        
+
         /// 账号未实名。
         public static var noRealNameAuthentication: UnauthorizedOperation {
             UnauthorizedOperation(.noRealNameAuthentication)
         }
-        
+
         /// 主IP不支持指定操作。
         public static var primaryIp: UnauthorizedOperation {
             UnauthorizedOperation(.primaryIp)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
-            case .anycastEip: 
+            case .anycastEip:
                 code = .unauthorizedOperation_AnycastEip
-            case .attachmentNotFound: 
+            case .attachmentNotFound:
                 code = .unauthorizedOperation_AttachmentNotFound
-            case .invalidAccount: 
+            case .invalidAccount:
                 code = .unauthorizedOperation_InvalidAccount
-            case .noRealNameAuthentication: 
+            case .noRealNameAuthentication:
                 code = .unauthorizedOperation_NoRealNameAuthentication
-            case .primaryIp: 
+            case .primaryIp:
                 code = .unauthorizedOperation_PrimaryIp
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCVpcError(code, context: self.context)

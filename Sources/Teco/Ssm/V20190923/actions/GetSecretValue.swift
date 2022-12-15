@@ -19,41 +19,41 @@ extension Ssm {
     public struct GetSecretValueRequest: TCRequestModel {
         /// 指定凭据的名称。
         public let secretName: String
-        
+
         /// 指定对应凭据的版本号。
         /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
         public let versionId: String
-        
-        public init (secretName: String, versionId: String) {
+
+        public init(secretName: String, versionId: String) {
             self.secretName = secretName
             self.versionId = versionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case versionId = "VersionId"
         }
     }
-    
+
     /// GetSecretValue返回参数结构体
     public struct GetSecretValueResponse: TCResponseModel {
         /// 凭据的名称。
         public let secretName: String
-        
+
         /// 该凭据对应的版本号。
         public let versionId: String
-        
+
         /// 在创建凭据(CreateSecret)时，如果指定的是二进制数据，则该字段为返回结果，并且使用base64进行编码，应用方需要进行base64解码后获取原始数据。
         /// SecretBinary和SecretString只有一个不为空。
         public let secretBinary: String
-        
+
         /// 在创建凭据(CreateSecret)时，如果指定的是普通文本数据，则该字段为返回结果。
         /// SecretBinary和SecretString只有一个不为空。
         public let secretString: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case versionId = "VersionId"
@@ -62,16 +62,16 @@ extension Ssm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取凭据明文
     ///
     /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
     /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
     @inlinable
-    public func getSecretValue(_ input: GetSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecretValueResponse > {
+    public func getSecretValue(_ input: GetSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecretValueResponse> {
         self.client.execute(action: "GetSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取凭据明文
     ///
     /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
@@ -80,16 +80,16 @@ extension Ssm {
     public func getSecretValue(_ input: GetSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecretValueResponse {
         try await self.client.execute(action: "GetSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取凭据明文
     ///
     /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
     /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
     @inlinable
-    public func getSecretValue(secretName: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecretValueResponse > {
+    public func getSecretValue(secretName: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecretValueResponse> {
         self.getSecretValue(GetSecretValueRequest(secretName: secretName, versionId: versionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取凭据明文
     ///
     /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；

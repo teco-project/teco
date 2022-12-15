@@ -19,49 +19,49 @@ extension Tke {
     public struct DeleteClusterEndpointRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 是否为外网访问（TRUE 外网访问 FALSE 内网访问，默认值： FALSE）
         public let isExtranet: Bool?
-        
-        public init (clusterId: String, isExtranet: Bool? = nil) {
+
+        public init(clusterId: String, isExtranet: Bool? = nil) {
             self.clusterId = clusterId
             self.isExtranet = isExtranet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case isExtranet = "IsExtranet"
         }
     }
-    
+
     /// DeleteClusterEndpoint返回参数结构体
     public struct DeleteClusterEndpointResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除集群访问端口
     @inlinable
-    public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterEndpointResponse > {
+    public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
         self.client.execute(action: "DeleteClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群访问端口
     @inlinable
     public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
         try await self.client.execute(action: "DeleteClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除集群访问端口
     @inlinable
-    public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterEndpointResponse > {
+    public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
         self.deleteClusterEndpoint(DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群访问端口
     @inlinable
     public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {

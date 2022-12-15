@@ -19,59 +19,59 @@ extension Tke {
     public struct GetTkeAppChartListRequest: TCRequestModel {
         /// app类型，取值log,scheduler,network,storage,monitor,dns,image,other,invisible
         public let kind: String?
-        
+
         /// app支持的操作系统，取值arm32、arm64、amd64
         public let arch: String?
-        
+
         /// 集群类型，取值tke、eks
         public let clusterType: String?
-        
-        public init (kind: String? = nil, arch: String? = nil, clusterType: String? = nil) {
+
+        public init(kind: String? = nil, arch: String? = nil, clusterType: String? = nil) {
             self.kind = kind
             self.arch = arch
             self.clusterType = clusterType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case kind = "Kind"
             case arch = "Arch"
             case clusterType = "ClusterType"
         }
     }
-    
+
     /// GetTkeAppChartList返回参数结构体
     public struct GetTkeAppChartListResponse: TCResponseModel {
         /// 所支持的chart列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appCharts: [AppChart]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appCharts = "AppCharts"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取TKE支持的App列表
     @inlinable
-    public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTkeAppChartListResponse > {
+    public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTkeAppChartListResponse> {
         self.client.execute(action: "GetTkeAppChartList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取TKE支持的App列表
     @inlinable
     public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTkeAppChartListResponse {
         try await self.client.execute(action: "GetTkeAppChartList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取TKE支持的App列表
     @inlinable
-    public func getTkeAppChartList(kind: String? = nil, arch: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTkeAppChartListResponse > {
+    public func getTkeAppChartList(kind: String? = nil, arch: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTkeAppChartListResponse> {
         self.getTkeAppChartList(GetTkeAppChartListRequest(kind: kind, arch: arch, clusterType: clusterType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取TKE支持的App列表
     @inlinable
     public func getTkeAppChartList(kind: String? = nil, arch: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTkeAppChartListResponse {

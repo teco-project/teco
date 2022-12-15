@@ -19,37 +19,37 @@ extension Tcss {
     public struct DescribeRiskSyscallDetailRequest: TCRequestModel {
         /// 事件唯一id
         public let eventId: String
-        
-        public init (eventId: String) {
+
+        public init(eventId: String) {
             self.eventId = eventId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
         }
     }
-    
+
     /// DescribeRiskSyscallDetail返回参数结构体
     public struct DescribeRiskSyscallDetailResponse: TCResponseModel {
         /// 事件基本信息
         public let eventBaseInfo: RunTimeEventBaseInfo
-        
+
         /// 进程信息
         public let processInfo: ProcessDetailInfo
-        
+
         /// 父进程信息
         public let parentProcessInfo: ProcessDetailBaseInfo
-        
+
         /// 事件描述
         public let eventDetail: RiskSyscallEventDescription
-        
+
         /// 祖先进程信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ancestorProcessInfo: ProcessBaseInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eventBaseInfo = "EventBaseInfo"
             case processInfo = "ProcessInfo"
@@ -59,15 +59,15 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时高危系统调用事件详细信息
     ///
     /// 查询高危系统调用事件详细信息
     @inlinable
-    public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallDetailResponse > {
+    public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallDetailResponse> {
         self.client.execute(action: "DescribeRiskSyscallDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时高危系统调用事件详细信息
     ///
     /// 查询高危系统调用事件详细信息
@@ -75,15 +75,15 @@ extension Tcss {
     public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallDetailResponse {
         try await self.client.execute(action: "DescribeRiskSyscallDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时高危系统调用事件详细信息
     ///
     /// 查询高危系统调用事件详细信息
     @inlinable
-    public func describeRiskSyscallDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallDetailResponse > {
+    public func describeRiskSyscallDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallDetailResponse> {
         self.describeRiskSyscallDetail(DescribeRiskSyscallDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时高危系统调用事件详细信息
     ///
     /// 查询高危系统调用事件详细信息

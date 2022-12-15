@@ -19,54 +19,54 @@ extension Ccc {
     public struct DeleteStaffRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 待删除客服邮箱列表
         public let staffList: [String]
-        
-        public init (sdkAppId: Int64, staffList: [String]) {
+
+        public init(sdkAppId: Int64, staffList: [String]) {
             self.sdkAppId = sdkAppId
             self.staffList = staffList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case staffList = "StaffList"
         }
     }
-    
+
     /// DeleteStaff返回参数结构体
     public struct DeleteStaffResponse: TCResponseModel {
         /// 无法删除的状态为在线的客服列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let onlineStaffList: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case onlineStaffList = "OnlineStaffList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除坐席信息
     @inlinable
-    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStaffResponse > {
+    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStaffResponse> {
         self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除坐席信息
     @inlinable
     public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
         try await self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除坐席信息
     @inlinable
-    public func deleteStaff(sdkAppId: Int64, staffList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStaffResponse > {
+    public func deleteStaff(sdkAppId: Int64, staffList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStaffResponse> {
         self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除坐席信息
     @inlinable
     public func deleteStaff(sdkAppId: Int64, staffList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {

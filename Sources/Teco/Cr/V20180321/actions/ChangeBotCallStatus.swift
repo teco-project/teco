@@ -22,17 +22,17 @@ extension Cr {
     public struct ChangeBotCallStatusRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
-        
+
         /// 操作名。默认值（固定）：ChangeBotCallStatus
         public let operation: String
-        
+
         /// 作业变更状态
         /// SUSPEND：暂停；EXECUTE：恢复；
         public let status: String
-        
+
         /// 作业唯一标识
         public let callId: String
-        
+
         /// 业务日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -40,14 +40,14 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var bizDate: Date
-        
+
         /// 任务ID，二者必填一个
         public let botId: String?
-        
+
         /// 任务名称，二者必填一个
         public let botName: String?
-        
-        public init (module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil) {
+
+        public init(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.status = status
@@ -56,7 +56,7 @@ extension Cr {
             self.botId = botId
             self.botName = botName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -67,35 +67,35 @@ extension Cr {
             case botName = "BotName"
         }
     }
-    
+
     /// ChangeBotCallStatus返回参数结构体
     public struct ChangeBotCallStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新机器人任务作业状态
     @inlinable
-    public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotCallStatusResponse > {
+    public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotCallStatusResponse> {
         self.client.execute(action: "ChangeBotCallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新机器人任务作业状态
     @inlinable
     public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {
         try await self.client.execute(action: "ChangeBotCallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新机器人任务作业状态
     @inlinable
-    public func changeBotCallStatus(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotCallStatusResponse > {
+    public func changeBotCallStatus(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotCallStatusResponse> {
         self.changeBotCallStatus(ChangeBotCallStatusRequest(module: module, operation: operation, status: status, callId: callId, bizDate: bizDate, botId: botId, botName: botName), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新机器人任务作业状态
     @inlinable
     public func changeBotCallStatus(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {

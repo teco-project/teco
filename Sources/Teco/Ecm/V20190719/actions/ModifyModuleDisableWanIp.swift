@@ -19,39 +19,39 @@ extension Ecm {
     public struct ModifyModuleDisableWanIpRequest: TCRequestModel {
         /// 模块ID
         public let moduleId: String
-        
+
         /// 是否禁止分配外网ip,true：统一分配外网ip，false：禁止分配外网ip.
         public let disableWanIp: Bool
-        
-        public init (moduleId: String, disableWanIp: Bool) {
+
+        public init(moduleId: String, disableWanIp: Bool) {
             self.moduleId = moduleId
             self.disableWanIp = disableWanIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case moduleId = "ModuleId"
             case disableWanIp = "DisableWanIp"
         }
     }
-    
+
     /// ModifyModuleDisableWanIp返回参数结构体
     public struct ModifyModuleDisableWanIpResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。
     @inlinable
-    public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleDisableWanIpResponse > {
+    public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleDisableWanIpResponse> {
         self.client.execute(action: "ModifyModuleDisableWanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。
@@ -59,15 +59,15 @@ extension Ecm {
     public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
         try await self.client.execute(action: "ModifyModuleDisableWanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。
     @inlinable
-    public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleDisableWanIpResponse > {
+    public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleDisableWanIpResponse> {
         self.modifyModuleDisableWanIp(ModifyModuleDisableWanIpRequest(moduleId: moduleId, disableWanIp: disableWanIp), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。

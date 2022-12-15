@@ -17,42 +17,42 @@
 extension Privatedns {
     /// SubscribePrivateZoneService请求参数结构体
     public struct SubscribePrivateZoneServiceRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// SubscribePrivateZoneService返回参数结构体
     public struct SubscribePrivateZoneServiceResponse: TCResponseModel {
         /// 私有域解析服务开通状态
         public let serviceStatus: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceStatus = "ServiceStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通私有域解析
     @inlinable
-    public func subscribePrivateZoneService(_ input: SubscribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubscribePrivateZoneServiceResponse > {
+    public func subscribePrivateZoneService(_ input: SubscribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubscribePrivateZoneServiceResponse> {
         self.client.execute(action: "SubscribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通私有域解析
     @inlinable
     public func subscribePrivateZoneService(_ input: SubscribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubscribePrivateZoneServiceResponse {
         try await self.client.execute(action: "SubscribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通私有域解析
     @inlinable
-    public func subscribePrivateZoneService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubscribePrivateZoneServiceResponse > {
+    public func subscribePrivateZoneService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubscribePrivateZoneServiceResponse> {
         self.subscribePrivateZoneService(SubscribePrivateZoneServiceRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通私有域解析
     @inlinable
     public func subscribePrivateZoneService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubscribePrivateZoneServiceResponse {

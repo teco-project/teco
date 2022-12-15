@@ -19,23 +19,23 @@ extension Cfw {
     public struct ModifyAcRuleRequest: TCRequestModel {
         /// 规则数组
         public let data: [RuleInfoData]
-        
+
         /// EdgeId值
         public let edgeId: String?
-        
+
         /// 访问规则状态
         public let enable: Int64?
-        
+
         /// NAT地域
         public let area: String?
-        
-        public init (data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil) {
+
+        public init(data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil) {
             self.data = data
             self.edgeId = edgeId
             self.enable = enable
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case edgeId = "EdgeId"
@@ -43,44 +43,44 @@ extension Cfw {
             case area = "Area"
         }
     }
-    
+
     /// ModifyAcRule返回参数结构体
     public struct ModifyAcRuleResponse: TCResponseModel {
         /// 状态值，0:操作成功，非0：操作失败
         public let status: Int64
-        
+
         /// 返回多余的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let info: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case info = "Info"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改规则
     @inlinable
-    public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAcRuleResponse > {
+    public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAcRuleResponse> {
         self.client.execute(action: "ModifyAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改规则
     @inlinable
     public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAcRuleResponse {
         try await self.client.execute(action: "ModifyAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改规则
     @inlinable
-    public func modifyAcRule(data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAcRuleResponse > {
+    public func modifyAcRule(data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAcRuleResponse> {
         self.modifyAcRule(ModifyAcRuleRequest(data: data, edgeId: edgeId, enable: enable, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改规则
     @inlinable
     public func modifyAcRule(data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAcRuleResponse {

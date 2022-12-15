@@ -19,40 +19,40 @@ extension Eis {
     public struct EisConnectionOperation: TCOutputModel {
         /// 连接器操作名称
         public let operationName: String
-        
+
         /// 连接器展示名称
         public let displayName: String
-        
+
         /// 操作是否为触发器
         public let isTrigger: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case operationName = "OperationName"
             case displayName = "DisplayName"
             case isTrigger = "IsTrigger"
         }
     }
-    
+
     /// 连接器概要信息
     public struct EisConnectorSummary: TCOutputModel {
         /// 连接器名称
         public let connectorName: String
-        
+
         /// 连接器展示名称
         public let displayName: String
-        
+
         /// 连接器对应企业
         public let company: String
-        
+
         /// 连接器对应产品
         public let product: String
-        
+
         /// 连接器版本
         public let connectorVersion: String
-        
+
         /// 连接器创建时间
         public let createTime: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case connectorName = "ConnectorName"
             case displayName = "DisplayName"

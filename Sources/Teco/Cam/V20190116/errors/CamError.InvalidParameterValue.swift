@@ -22,59 +22,59 @@ extension TCCamError {
             case metadataError = "InvalidParameterValue.MetadataError"
             case nameError = "InvalidParameterValue.NameError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// OIDC签名公钥错误。
         public static var identityKeyError: InvalidParameterValue {
             InvalidParameterValue(.identityKeyError)
         }
-        
+
         /// 身份提供商URL错误。
         public static var identityUrlError: InvalidParameterValue {
             InvalidParameterValue(.identityUrlError)
         }
-        
+
         /// 身份提供商元数据文档错误。
         public static var metadataError: InvalidParameterValue {
             InvalidParameterValue(.metadataError)
         }
-        
+
         /// 身份提供商名称错误。
         public static var nameError: InvalidParameterValue {
             InvalidParameterValue(.nameError)
         }
-        
+
         public func asCamError() -> TCCamError {
             let code: TCCamError.Code
             switch self.error {
-            case .identityKeyError: 
+            case .identityKeyError:
                 code = .invalidParameterValue_IdentityKeyError
-            case .identityUrlError: 
+            case .identityUrlError:
                 code = .invalidParameterValue_IdentityUrlError
-            case .metadataError: 
+            case .metadataError:
                 code = .invalidParameterValue_MetadataError
-            case .nameError: 
+            case .nameError:
                 code = .invalidParameterValue_NameError
             }
             return TCCamError(code, context: self.context)

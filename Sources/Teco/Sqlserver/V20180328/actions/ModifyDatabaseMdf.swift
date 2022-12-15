@@ -19,43 +19,43 @@ extension Sqlserver {
     public struct ModifyDatabaseMdfRequest: TCRequestModel {
         /// 数据库名数组
         public let dbNames: [String]
-        
+
         /// 实例ID
         public let instanceId: String
-        
-        public init (dbNames: [String], instanceId: String) {
+
+        public init(dbNames: [String], instanceId: String) {
             self.dbNames = dbNames
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbNames = "DBNames"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// ModifyDatabaseMdf返回参数结构体
     public struct ModifyDatabaseMdfResponse: TCResponseModel {
         /// 流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 收缩数据库mdf
     ///
     /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
     @inlinable
-    public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseMdfResponse > {
+    public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseMdfResponse> {
         self.client.execute(action: "ModifyDatabaseMdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 收缩数据库mdf
     ///
     /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
@@ -63,15 +63,15 @@ extension Sqlserver {
     public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseMdfResponse {
         try await self.client.execute(action: "ModifyDatabaseMdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 收缩数据库mdf
     ///
     /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
     @inlinable
-    public func modifyDatabaseMdf(dbNames: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseMdfResponse > {
+    public func modifyDatabaseMdf(dbNames: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseMdfResponse> {
         self.modifyDatabaseMdf(ModifyDatabaseMdfRequest(dbNames: dbNames, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 收缩数据库mdf
     ///
     /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)

@@ -25,80 +25,80 @@ extension TCIotcloudError {
             case suiteTokenNoCreate = "UnsupportedOperation.SuiteTokenNoCreate"
             case wrongProductAuthType = "UnsupportedOperation.WrongProductAuthType"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 设备私钥已被获取。
         public static var clientCertAlreadyGot: UnsupportedOperation {
             UnsupportedOperation(.clientCertAlreadyGot)
         }
-        
+
         /// 设备ota升级中。
         public static var deviceOtaTaskInProgress: UnsupportedOperation {
             UnsupportedOperation(.deviceOtaTaskInProgress)
         }
-        
+
         /// 网关产品下存在绑定的子产品，无法删除。
         public static var gatewayProductHasBindedProduct: UnsupportedOperation {
             UnsupportedOperation(.gatewayProductHasBindedProduct)
         }
-        
+
         /// 存在网关设备绑定当前产品，无法删除。
         public static var productHasBindGateway: UnsupportedOperation {
             UnsupportedOperation(.productHasBindGateway)
         }
-        
+
         /// 产品存在绑定的网关产品，无法删除。
         public static var productHasBindedGatewayProduct: UnsupportedOperation {
             UnsupportedOperation(.productHasBindedGatewayProduct)
         }
-        
+
         /// 产品为Suite token类型，无法创建新设备。
         public static var suiteTokenNoCreate: UnsupportedOperation {
             UnsupportedOperation(.suiteTokenNoCreate)
         }
-        
+
         /// 不支持的认证类型。
         public static var wrongProductAuthType: UnsupportedOperation {
             UnsupportedOperation(.wrongProductAuthType)
         }
-        
+
         public func asIotcloudError() -> TCIotcloudError {
             let code: TCIotcloudError.Code
             switch self.error {
-            case .clientCertAlreadyGot: 
+            case .clientCertAlreadyGot:
                 code = .unsupportedOperation_ClientCertAlreadyGot
-            case .deviceOtaTaskInProgress: 
+            case .deviceOtaTaskInProgress:
                 code = .unsupportedOperation_DeviceOtaTaskInProgress
-            case .gatewayProductHasBindedProduct: 
+            case .gatewayProductHasBindedProduct:
                 code = .unsupportedOperation_GatewayProductHasBindedProduct
-            case .productHasBindGateway: 
+            case .productHasBindGateway:
                 code = .unsupportedOperation_ProductHasBindGateway
-            case .productHasBindedGatewayProduct: 
+            case .productHasBindedGatewayProduct:
                 code = .unsupportedOperation_ProductHasBindedGatewayProduct
-            case .suiteTokenNoCreate: 
+            case .suiteTokenNoCreate:
                 code = .unsupportedOperation_SuiteTokenNoCreate
-            case .wrongProductAuthType: 
+            case .wrongProductAuthType:
                 code = .unsupportedOperation_WrongProductAuthType
             }
             return TCIotcloudError(code, context: self.context)

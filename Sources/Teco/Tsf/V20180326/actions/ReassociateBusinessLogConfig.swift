@@ -19,23 +19,23 @@ extension Tsf {
     public struct ReassociateBusinessLogConfigRequest: TCRequestModel {
         /// 原关联日志配置ID
         public let configId: String
-        
+
         /// 新关联日志配置ID
         public let newConfigId: String
-        
+
         /// TSF应用ID
         public let applicationId: String
-        
+
         /// TSF部署组ID
         public let groupId: String
-        
-        public init (configId: String, newConfigId: String, applicationId: String, groupId: String) {
+
+        public init(configId: String, newConfigId: String, applicationId: String, groupId: String) {
             self.configId = configId
             self.newConfigId = newConfigId
             self.applicationId = applicationId
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case newConfigId = "NewConfigId"
@@ -43,35 +43,35 @@ extension Tsf {
             case groupId = "GroupId"
         }
     }
-    
+
     /// ReassociateBusinessLogConfig返回参数结构体
     public struct ReassociateBusinessLogConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重关联业务日志配置
     @inlinable
-    public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReassociateBusinessLogConfigResponse > {
+    public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReassociateBusinessLogConfigResponse> {
         self.client.execute(action: "ReassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重关联业务日志配置
     @inlinable
     public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReassociateBusinessLogConfigResponse {
         try await self.client.execute(action: "ReassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重关联业务日志配置
     @inlinable
-    public func reassociateBusinessLogConfig(configId: String, newConfigId: String, applicationId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReassociateBusinessLogConfigResponse > {
+    public func reassociateBusinessLogConfig(configId: String, newConfigId: String, applicationId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReassociateBusinessLogConfigResponse> {
         self.reassociateBusinessLogConfig(ReassociateBusinessLogConfigRequest(configId: configId, newConfigId: newConfigId, applicationId: applicationId, groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重关联业务日志配置
     @inlinable
     public func reassociateBusinessLogConfig(configId: String, newConfigId: String, applicationId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReassociateBusinessLogConfigResponse {

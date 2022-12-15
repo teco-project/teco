@@ -27,29 +27,29 @@ extension Tcss {
         /// <li>ClusterName - string  - 是否必填: 否 -集群名称</li>
         /// <li>ClusterID - string  - 是否必填: 否 -集群ID</li>
         public let filters: [RunTimeFilters]?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 排序方式
         public let order: String?
-        
+
         /// 排序字段
         /// LatestFoundTime: 最近生成时间
         /// AlarmCount: 告警数量
         public let by: String?
-        
-        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
@@ -58,43 +58,43 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeK8sApiAbnormalEventList返回参数结构体
     public struct DescribeK8sApiAbnormalEventListResponse: TCResponseModel {
         /// 事件列表
         public let list: [K8sApiAbnormalEventListItem]
-        
+
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询k8s api异常事件列表
     @inlinable
-    public func describeK8sApiAbnormalEventList(_ input: DescribeK8sApiAbnormalEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalEventListResponse > {
+    public func describeK8sApiAbnormalEventList(_ input: DescribeK8sApiAbnormalEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalEventListResponse> {
         self.client.execute(action: "DescribeK8sApiAbnormalEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询k8s api异常事件列表
     @inlinable
     public func describeK8sApiAbnormalEventList(_ input: DescribeK8sApiAbnormalEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventListResponse {
         try await self.client.execute(action: "DescribeK8sApiAbnormalEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询k8s api异常事件列表
     @inlinable
-    public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalEventListResponse > {
+    public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalEventListResponse> {
         self.describeK8sApiAbnormalEventList(DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询k8s api异常事件列表
     @inlinable
     public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventListResponse {

@@ -19,48 +19,48 @@ extension Tiw {
     public struct DescribeSnapshotTaskRequest: TCRequestModel {
         /// 查询任务ID
         public let taskID: String
-        
+
         /// 任务SdkAppId
         public let sdkAppId: UInt64
-        
-        public init (taskID: String, sdkAppId: UInt64) {
+
+        public init(taskID: String, sdkAppId: UInt64) {
             self.taskID = taskID
             self.sdkAppId = sdkAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case sdkAppId = "SdkAppId"
         }
     }
-    
+
     /// DescribeSnapshotTask返回参数结构体
     public struct DescribeSnapshotTaskResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskID: String?
-        
+
         /// 任务状态
         /// Running - 任务执行中
         /// Finished - 任务已结束
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 任务创建时间，单位s
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: UInt64?
-        
+
         /// 任务完成时间，单位s
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finishTime: UInt64?
-        
+
         /// 任务结果信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: SnapshotResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case status = "Status"
@@ -70,15 +70,15 @@ extension Tiw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取白板板书生成任务信息
     ///
     /// 获取指定白板板书生成任务信息
     @inlinable
-    public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotTaskResponse > {
+    public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotTaskResponse> {
         self.client.execute(action: "DescribeSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取白板板书生成任务信息
     ///
     /// 获取指定白板板书生成任务信息
@@ -86,15 +86,15 @@ extension Tiw {
     public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotTaskResponse {
         try await self.client.execute(action: "DescribeSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取白板板书生成任务信息
     ///
     /// 获取指定白板板书生成任务信息
     @inlinable
-    public func describeSnapshotTask(taskID: String, sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotTaskResponse > {
+    public func describeSnapshotTask(taskID: String, sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotTaskResponse> {
         self.describeSnapshotTask(DescribeSnapshotTaskRequest(taskID: taskID, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取白板板书生成任务信息
     ///
     /// 获取指定白板板书生成任务信息

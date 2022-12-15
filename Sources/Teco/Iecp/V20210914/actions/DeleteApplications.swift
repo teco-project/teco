@@ -19,44 +19,44 @@ extension Iecp {
     public struct DeleteApplicationsRequest: TCRequestModel {
         /// 应用模板ID列表
         public let applicationIds: [UInt64]
-        
-        public init (applicationIds: [UInt64]) {
+
+        public init(applicationIds: [UInt64]) {
             self.applicationIds = applicationIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationIds = "ApplicationIds"
         }
     }
-    
+
     /// DeleteApplications返回参数结构体
     public struct DeleteApplicationsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除应用模板
     @inlinable
-    public func deleteApplications(_ input: DeleteApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationsResponse > {
+    public func deleteApplications(_ input: DeleteApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationsResponse> {
         self.client.execute(action: "DeleteApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用模板
     @inlinable
     public func deleteApplications(_ input: DeleteApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationsResponse {
         try await self.client.execute(action: "DeleteApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除应用模板
     @inlinable
-    public func deleteApplications(applicationIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationsResponse > {
+    public func deleteApplications(applicationIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationsResponse> {
         self.deleteApplications(DeleteApplicationsRequest(applicationIds: applicationIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用模板
     @inlinable
     public func deleteApplications(applicationIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationsResponse {

@@ -19,44 +19,44 @@ extension Postgres {
     public struct ModifyAccountRemarkRequest: TCRequestModel {
         /// 实例ID，形如postgres-4wdeb0zv
         public let dbInstanceId: String
-        
+
         /// 实例用户名
         public let userName: String
-        
+
         /// 用户UserName对应的新备注
         public let remark: String
-        
-        public init (dbInstanceId: String, userName: String, remark: String) {
+
+        public init(dbInstanceId: String, userName: String, remark: String) {
             self.dbInstanceId = dbInstanceId
             self.userName = userName
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case userName = "UserName"
             case remark = "Remark"
         }
     }
-    
+
     /// ModifyAccountRemark返回参数结构体
     public struct ModifyAccountRemarkResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改帐号备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改帐号备注。
     @inlinable
-    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountRemarkResponse > {
+    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
         self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改帐号备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改帐号备注。
@@ -64,15 +64,15 @@ extension Postgres {
     public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
         try await self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改帐号备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改帐号备注。
     @inlinable
-    public func modifyAccountRemark(dbInstanceId: String, userName: String, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountRemarkResponse > {
+    public func modifyAccountRemark(dbInstanceId: String, userName: String, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
         self.modifyAccountRemark(ModifyAccountRemarkRequest(dbInstanceId: dbInstanceId, userName: userName, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改帐号备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改帐号备注。

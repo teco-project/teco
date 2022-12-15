@@ -19,23 +19,23 @@ extension Cam {
     public struct AttachRolePolicyRequest: TCRequestModel {
         /// 策略ID，入参PolicyId与PolicyName二选一
         public let policyId: UInt64?
-        
+
         /// 角色ID，用于指定角色，入参 AttachRoleId 与 AttachRoleName 二选一
         public let attachRoleId: String?
-        
+
         /// 角色名称，用于指定角色，入参 AttachRoleId 与 AttachRoleName 二选一
         public let attachRoleName: String?
-        
+
         /// 策略名，入参PolicyId与PolicyName二选一
         public let policyName: String?
-        
-        public init (policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil) {
+
+        public init(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil) {
             self.policyId = policyId
             self.attachRoleId = attachRoleId
             self.attachRoleName = attachRoleName
             self.policyName = policyName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case attachRoleId = "AttachRoleId"
@@ -43,25 +43,25 @@ extension Cam {
             case policyName = "PolicyName"
         }
     }
-    
+
     /// AttachRolePolicy返回参数结构体
     public struct AttachRolePolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
     @inlinable
-    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachRolePolicyResponse > {
+    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
         self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
@@ -69,15 +69,15 @@ extension Cam {
     public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
         try await self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
     @inlinable
-    public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachRolePolicyResponse > {
+    public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
         self.attachRolePolicy(AttachRolePolicyRequest(policyId: policyId, attachRoleId: attachRoleId, attachRoleName: attachRoleName, policyName: policyName), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。

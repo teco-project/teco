@@ -19,26 +19,26 @@ extension Iotexplorer {
     public struct DescribeFenceEventListRequest: TCRequestModel {
         /// 围栏告警信息的查询起始时间，Unix时间，单位为毫秒
         public let startTime: Int64
-        
+
         /// 围栏告警信息的查询结束时间，Unix时间，单位为毫秒
         public let endTime: Int64
-        
+
         /// 围栏Id
         public let fenceId: Int64?
-        
+
         /// 翻页偏移量，0起始
         public let offset: Int64?
-        
+
         /// 最大返回结果数
         public let limit: Int64?
-        
+
         /// 告警对应的产品Id
         public let productId: String?
-        
+
         /// 告警对应的设备名称
         public let deviceName: String?
-        
-        public init (startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil) {
+
+        public init(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.fenceId = fenceId
@@ -47,7 +47,7 @@ extension Iotexplorer {
             self.productId = productId
             self.deviceName = deviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -58,43 +58,43 @@ extension Iotexplorer {
             case deviceName = "DeviceName"
         }
     }
-    
+
     /// DescribeFenceEventList返回参数结构体
     public struct DescribeFenceEventListResponse: TCResponseModel {
         /// 围栏告警事件列表
         public let list: [FenceEventItem]
-        
+
         /// 围栏告警事件总数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取围栏告警事件列表
     @inlinable
-    public func describeFenceEventList(_ input: DescribeFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceEventListResponse > {
+    public func describeFenceEventList(_ input: DescribeFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceEventListResponse> {
         self.client.execute(action: "DescribeFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取围栏告警事件列表
     @inlinable
     public func describeFenceEventList(_ input: DescribeFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {
         try await self.client.execute(action: "DescribeFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取围栏告警事件列表
     @inlinable
-    public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceEventListResponse > {
+    public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceEventListResponse> {
         self.describeFenceEventList(DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取围栏告警事件列表
     @inlinable
     public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {

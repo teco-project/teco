@@ -19,44 +19,44 @@ extension Tke {
     public struct DeleteClusterRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 集群实例删除时的策略：terminate（销毁实例，仅支持按量计费云主机实例） retain （仅移除，保留实例）
         public let instanceDeleteMode: String
-        
+
         /// 集群删除时资源的删除策略，目前支持CBS（默认保留CBS）
         public let resourceDeleteOptions: [ResourceDeleteOption]?
-        
-        public init (clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil) {
+
+        public init(clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil) {
             self.clusterId = clusterId
             self.instanceDeleteMode = instanceDeleteMode
             self.resourceDeleteOptions = resourceDeleteOptions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case instanceDeleteMode = "InstanceDeleteMode"
             case resourceDeleteOptions = "ResourceDeleteOptions"
         }
     }
-    
+
     /// DeleteCluster返回参数结构体
     public struct DeleteClusterResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除集群
     ///
     /// 删除集群(YUNAPI V3版本)
     @inlinable
-    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterResponse > {
+    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterResponse> {
         self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群
     ///
     /// 删除集群(YUNAPI V3版本)
@@ -64,15 +64,15 @@ extension Tke {
     public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
         try await self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除集群
     ///
     /// 删除集群(YUNAPI V3版本)
     @inlinable
-    public func deleteCluster(clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterResponse > {
+    public func deleteCluster(clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterResponse> {
         self.deleteCluster(DeleteClusterRequest(clusterId: clusterId, instanceDeleteMode: instanceDeleteMode, resourceDeleteOptions: resourceDeleteOptions), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群
     ///
     /// 删除集群(YUNAPI V3版本)

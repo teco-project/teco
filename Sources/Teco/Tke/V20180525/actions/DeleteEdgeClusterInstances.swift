@@ -19,49 +19,49 @@ extension Tke {
     public struct DeleteEdgeClusterInstancesRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 待删除实例ID数组
         public let instanceIds: [String]
-        
-        public init (clusterId: String, instanceIds: [String]) {
+
+        public init(clusterId: String, instanceIds: [String]) {
             self.clusterId = clusterId
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// DeleteEdgeClusterInstances返回参数结构体
     public struct DeleteEdgeClusterInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除边缘计算实例
     @inlinable
-    public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeClusterInstancesResponse > {
+    public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeClusterInstancesResponse> {
         self.client.execute(action: "DeleteEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘计算实例
     @inlinable
     public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {
         try await self.client.execute(action: "DeleteEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除边缘计算实例
     @inlinable
-    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeClusterInstancesResponse > {
+    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeClusterInstancesResponse> {
         self.deleteEdgeClusterInstances(DeleteEdgeClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘计算实例
     @inlinable
     public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {

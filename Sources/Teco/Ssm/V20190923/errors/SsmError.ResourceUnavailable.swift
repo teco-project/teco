@@ -23,66 +23,66 @@ extension TCSsmError {
             case resourceUninitialized = "ResourceUnavailable.ResourceUninitialized"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 服务未购买。
         public static var notPurchased: ResourceUnavailable {
             ResourceUnavailable(.notPurchased)
         }
-        
+
         /// 凭据被禁用。
         public static var resourceDisabled: ResourceUnavailable {
             ResourceUnavailable(.resourceDisabled)
         }
-        
+
         /// 凭据处于计划删除状态。
         public static var resourcePendingDeleted: ResourceUnavailable {
             ResourceUnavailable(.resourcePendingDeleted)
         }
-        
+
         /// 凭据未完成初始化。
         public static var resourceUninitialized: ResourceUnavailable {
             ResourceUnavailable(.resourceUninitialized)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asSsmError() -> TCSsmError {
             let code: TCSsmError.Code
             switch self.error {
-            case .notPurchased: 
+            case .notPurchased:
                 code = .resourceUnavailable_NotPurchased
-            case .resourceDisabled: 
+            case .resourceDisabled:
                 code = .resourceUnavailable_ResourceDisabled
-            case .resourcePendingDeleted: 
+            case .resourcePendingDeleted:
                 code = .resourceUnavailable_ResourcePendingDeleted
-            case .resourceUninitialized: 
+            case .resourceUninitialized:
                 code = .resourceUnavailable_ResourceUninitialized
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCSsmError(code, context: self.context)

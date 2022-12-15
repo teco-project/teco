@@ -36,157 +36,157 @@ extension TCZjError {
             case uinNotEmpty = "InvalidParameter.UinNotEmpty"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 找不到该账号。
         public static var accountNotFound: InvalidParameter {
             InvalidParameter(.accountNotFound)
         }
-        
+
         /// license找到多个对应的短信子账号。
         public static var licenseMultipleSmsAccount: InvalidParameter {
             InvalidParameter(.licenseMultipleSmsAccount)
         }
-        
+
         /// license不能为空。
         public static var licenseNotEmpty: InvalidParameter {
             InvalidParameter(.licenseNotEmpty)
         }
-        
+
         /// license没有对应的短信子账号。
         public static var licenseSmsAccountNotFound: InvalidParameter {
             InvalidParameter(.licenseSmsAccountNotFound)
         }
-        
+
         /// 行为时间不能为空。
         public static var smsPostLinkActionTimeNotNull: InvalidParameter {
             InvalidParameter(.smsPostLinkActionTimeNotNull)
         }
-        
+
         /// 行为类型不合法。
         public static var smsPostLinkActionType: InvalidParameter {
             InvalidParameter(.smsPostLinkActionType)
         }
-        
+
         /// 行为类型不能为空。
         public static var smsPostLinkActionTypeNotEmpty: InvalidParameter {
             InvalidParameter(.smsPostLinkActionTypeNotEmpty)
         }
-        
+
         /// 行为值长度超出限制。
         public static var smsPostLinkActionValueExceedLimit: InvalidParameter {
             InvalidParameter(.smsPostLinkActionValueExceedLimit)
         }
-        
+
         /// 附加参数数量超出限制。
         public static var smsPostLinkParamsExceedLimit: InvalidParameter {
             InvalidParameter(.smsPostLinkParamsExceedLimit)
         }
-        
+
         /// 设备标识类型不合法。
         public static var smsPostLinkTypeKey: InvalidParameter {
             InvalidParameter(.smsPostLinkTypeKey)
         }
-        
+
         /// 设备标识类型不能为空。
         public static var smsPostLinkTypeKeyNotEmpty: InvalidParameter {
             InvalidParameter(.smsPostLinkTypeKeyNotEmpty)
         }
-        
+
         /// 设备标识值长度超出限制。
         public static var smsPostLinkTypeValueExceedLimit: InvalidParameter {
             InvalidParameter(.smsPostLinkTypeValueExceedLimit)
         }
-        
+
         /// 设备标识值不能为空。
         public static var smsPostLinkTypeValueNotEmpty: InvalidParameter {
             InvalidParameter(.smsPostLinkTypeValueNotEmpty)
         }
-        
+
         /// 签名审核中，请等待审核，无需重复创建。
         public static var smsSignCheckingInSmsAccount: InvalidParameter {
             InvalidParameter(.smsSignCheckingInSmsAccount)
         }
-        
+
         /// 当前子账号下已存在该签名。
         public static var smsSignExistsInSmsAccount: InvalidParameter {
             InvalidParameter(.smsSignExistsInSmsAccount)
         }
-        
+
         /// 证明图片不合法。
         public static var smsSignPic: InvalidParameter {
             InvalidParameter(.smsSignPic)
         }
-        
+
         /// Uin不能为空。
         public static var uinNotEmpty: InvalidParameter {
             InvalidParameter(.uinNotEmpty)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asZjError() -> TCZjError {
             let code: TCZjError.Code
             switch self.error {
-            case .accountNotFound: 
+            case .accountNotFound:
                 code = .invalidParameter_AccountNotFound
-            case .licenseMultipleSmsAccount: 
+            case .licenseMultipleSmsAccount:
                 code = .invalidParameter_LicenseMultipleSmsAccount
-            case .licenseNotEmpty: 
+            case .licenseNotEmpty:
                 code = .invalidParameter_LicenseNotEmpty
-            case .licenseSmsAccountNotFound: 
+            case .licenseSmsAccountNotFound:
                 code = .invalidParameter_LicenseSmsAccountNotFound
-            case .smsPostLinkActionTimeNotNull: 
+            case .smsPostLinkActionTimeNotNull:
                 code = .invalidParameter_SmsPostLinkActionTimeNotNull
-            case .smsPostLinkActionType: 
+            case .smsPostLinkActionType:
                 code = .invalidParameter_SmsPostLinkActionType
-            case .smsPostLinkActionTypeNotEmpty: 
+            case .smsPostLinkActionTypeNotEmpty:
                 code = .invalidParameter_SmsPostLinkActionTypeNotEmpty
-            case .smsPostLinkActionValueExceedLimit: 
+            case .smsPostLinkActionValueExceedLimit:
                 code = .invalidParameter_SmsPostLinkActionValueExceedLimit
-            case .smsPostLinkParamsExceedLimit: 
+            case .smsPostLinkParamsExceedLimit:
                 code = .invalidParameter_SmsPostLinkParamsExceedLimit
-            case .smsPostLinkTypeKey: 
+            case .smsPostLinkTypeKey:
                 code = .invalidParameter_SmsPostLinkTypeKey
-            case .smsPostLinkTypeKeyNotEmpty: 
+            case .smsPostLinkTypeKeyNotEmpty:
                 code = .invalidParameter_SmsPostLinkTypeKeyNotEmpty
-            case .smsPostLinkTypeValueExceedLimit: 
+            case .smsPostLinkTypeValueExceedLimit:
                 code = .invalidParameter_SmsPostLinkTypeValueExceedLimit
-            case .smsPostLinkTypeValueNotEmpty: 
+            case .smsPostLinkTypeValueNotEmpty:
                 code = .invalidParameter_SmsPostLinkTypeValueNotEmpty
-            case .smsSignCheckingInSmsAccount: 
+            case .smsSignCheckingInSmsAccount:
                 code = .invalidParameter_SmsSignCheckingInSmsAccount
-            case .smsSignExistsInSmsAccount: 
+            case .smsSignExistsInSmsAccount:
                 code = .invalidParameter_SmsSignExistsInSmsAccount
-            case .smsSignPic: 
+            case .smsSignPic:
                 code = .invalidParameter_SmsSignPic
-            case .uinNotEmpty: 
+            case .uinNotEmpty:
                 code = .invalidParameter_UinNotEmpty
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCZjError(code, context: self.context)

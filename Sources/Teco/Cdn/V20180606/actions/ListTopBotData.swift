@@ -22,7 +22,7 @@ extension Cdn {
     public struct ListTopBotDataRequest: TCRequestModel {
         /// 获取Top量，取值范围[1-10]
         public let topCount: Int64
-        
+
         /// 开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,19 +38,19 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// session表示查询BOT会话的Top信息
         /// ip表示查询BOT客户端IP的Top信息
         /// 不填代表获取会话信息
         public let metric: String?
-        
+
         /// 域名，仅当Metric=ip时有效，不填写表示使用Domains参数
         public let domain: String?
-        
+
         /// 域名，仅当Metric=ip，并且Domain为空时有效，不填写表示获取AppID信息
         public let domains: [String]?
-        
-        public init (topCount: Int64, startTime: Date, endTime: Date, metric: String? = nil, domain: String? = nil, domains: [String]? = nil) {
+
+        public init(topCount: Int64, startTime: Date, endTime: Date, metric: String? = nil, domain: String? = nil, domains: [String]? = nil) {
             self.topCount = topCount
             self.startTime = startTime
             self.endTime = endTime
@@ -58,7 +58,7 @@ extension Cdn {
             self.domain = domain
             self.domains = domains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topCount = "TopCount"
             case startTime = "StartTime"
@@ -68,39 +68,39 @@ extension Cdn {
             case domains = "Domains"
         }
     }
-    
+
     /// ListTopBotData返回参数结构体
     public struct ListTopBotDataResponse: TCResponseModel {
         /// 域名BOT次数列表
         public let data: [DomainBotCount]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取Bot攻击的Top信息
     @inlinable
-    public func listTopBotData(_ input: ListTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopBotDataResponse > {
+    public func listTopBotData(_ input: ListTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopBotDataResponse> {
         self.client.execute(action: "ListTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Bot攻击的Top信息
     @inlinable
     public func listTopBotData(_ input: ListTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopBotDataResponse {
         try await self.client.execute(action: "ListTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取Bot攻击的Top信息
     @inlinable
-    public func listTopBotData(topCount: Int64, startTime: Date, endTime: Date, metric: String? = nil, domain: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopBotDataResponse > {
+    public func listTopBotData(topCount: Int64, startTime: Date, endTime: Date, metric: String? = nil, domain: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopBotDataResponse> {
         self.listTopBotData(ListTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, metric: metric, domain: domain, domains: domains), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Bot攻击的Top信息
     @inlinable
     public func listTopBotData(topCount: Int64, startTime: Date, endTime: Date, metric: String? = nil, domain: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopBotDataResponse {

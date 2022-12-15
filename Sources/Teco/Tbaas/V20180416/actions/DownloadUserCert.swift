@@ -19,23 +19,23 @@ extension Tbaas {
     public struct DownloadUserCertRequest: TCRequestModel {
         /// 模块名，固定字段：cert_mng
         public let module: String
-        
+
         /// 操作名，固定字段：cert_download_for_user
         public let operation: String
-        
+
         /// 证书ID，可以在证书详情页面获取
         public let certId: UInt64
-        
+
         /// 证书DN，可以在证书详情页面获取
         public let certDn: String
-        
+
         /// 区块链网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
-        
+
         /// 下载证书的组织名称，可以在组织管理列表中获取当前组织的名称
         public let groupName: String
-        
-        public init (module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String) {
+
+        public init(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String) {
             self.module = module
             self.operation = operation
             self.certId = certId
@@ -43,7 +43,7 @@ extension Tbaas {
             self.clusterId = clusterId
             self.groupName = groupName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -53,43 +53,43 @@ extension Tbaas {
             case groupName = "GroupName"
         }
     }
-    
+
     /// DownloadUserCert返回参数结构体
     public struct DownloadUserCertResponse: TCResponseModel {
         /// 证书名称
         public let certName: String
-        
+
         /// 证书内容
         public let certCtx: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certName = "CertName"
             case certCtx = "CertCtx"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 下载用户证书
     @inlinable
-    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadUserCertResponse > {
+    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadUserCertResponse> {
         self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 下载用户证书
     @inlinable
     public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
         try await self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 下载用户证书
     @inlinable
-    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadUserCertResponse > {
+    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadUserCertResponse> {
         self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), logger: logger, on: eventLoop)
     }
-    
+
     /// 下载用户证书
     @inlinable
     public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {

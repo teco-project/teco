@@ -19,57 +19,57 @@ extension Tcss {
     public struct CreateNetworkFirewallPublishRequest: TCRequestModel {
         /// 集群Id
         public let clusterId: String
-        
+
         /// 策略Id数组
         public let id: [UInt64]
-        
-        public init (clusterId: String, id: [UInt64]) {
+
+        public init(clusterId: String, id: [UInt64]) {
             self.clusterId = clusterId
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case id = "Id"
         }
     }
-    
+
     /// CreateNetworkFirewallPublish返回参数结构体
     public struct CreateNetworkFirewallPublishResponse: TCResponseModel {
         /// 返回创建的任务的ID，为0表示创建失败。
         public let taskId: UInt64
-        
+
         /// 创建任务的结果，"Succ"为成功，"Failed"为失败
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 容器网络创建网络策略发布任务
     @inlinable
-    public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPublishResponse > {
+    public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPublishResponse> {
         self.client.execute(action: "CreateNetworkFirewallPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络创建网络策略发布任务
     @inlinable
     public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPublishResponse {
         try await self.client.execute(action: "CreateNetworkFirewallPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 容器网络创建网络策略发布任务
     @inlinable
-    public func createNetworkFirewallPublish(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPublishResponse > {
+    public func createNetworkFirewallPublish(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPublishResponse> {
         self.createNetworkFirewallPublish(CreateNetworkFirewallPublishRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络创建网络策略发布任务
     @inlinable
     public func createNetworkFirewallPublish(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPublishResponse {

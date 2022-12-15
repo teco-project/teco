@@ -19,34 +19,34 @@ extension Mps {
     public struct DeleteTranscodeTemplateRequest: TCRequestModel {
         /// 转码模板唯一标识。
         public let definition: Int64
-        
-        public init (definition: Int64) {
+
+        public init(definition: Int64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// DeleteTranscodeTemplate返回参数结构体
     public struct DeleteTranscodeTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除转码模板
     ///
     /// 删除用户自定义转码模板。
     @inlinable
-    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTranscodeTemplateResponse > {
+    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTranscodeTemplateResponse> {
         self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除转码模板
     ///
     /// 删除用户自定义转码模板。
@@ -54,15 +54,15 @@ extension Mps {
     public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
         try await self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除转码模板
     ///
     /// 删除用户自定义转码模板。
     @inlinable
-    public func deleteTranscodeTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTranscodeTemplateResponse > {
+    public func deleteTranscodeTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTranscodeTemplateResponse> {
         self.deleteTranscodeTemplate(DeleteTranscodeTemplateRequest(definition: definition), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除转码模板
     ///
     /// 删除用户自定义转码模板。

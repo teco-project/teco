@@ -19,49 +19,49 @@ extension Tke {
     public struct DescribeClusterEndpointStatusRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 是否为外网访问（TRUE 外网访问 FALSE 内网访问，默认值： FALSE）
         public let isExtranet: Bool?
-        
-        public init (clusterId: String, isExtranet: Bool? = nil) {
+
+        public init(clusterId: String, isExtranet: Bool? = nil) {
             self.clusterId = clusterId
             self.isExtranet = isExtranet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case isExtranet = "IsExtranet"
         }
     }
-    
+
     /// DescribeClusterEndpointStatus返回参数结构体
     public struct DescribeClusterEndpointStatusResponse: TCResponseModel {
         /// 查询集群访问端口状态（Created 开启成功，Creating 开启中，NotFound 未开启）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 开启访问入口失败信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群访问端口状态
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)
     @inlinable
-    public func describeClusterEndpointStatus(_ input: DescribeClusterEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointStatusResponse > {
+    public func describeClusterEndpointStatus(_ input: DescribeClusterEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointStatusResponse> {
         self.client.execute(action: "DescribeClusterEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群访问端口状态
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)
@@ -69,15 +69,15 @@ extension Tke {
     public func describeClusterEndpointStatus(_ input: DescribeClusterEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointStatusResponse {
         try await self.client.execute(action: "DescribeClusterEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群访问端口状态
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)
     @inlinable
-    public func describeClusterEndpointStatus(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointStatusResponse > {
+    public func describeClusterEndpointStatus(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointStatusResponse> {
         self.describeClusterEndpointStatus(DescribeClusterEndpointStatusRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群访问端口状态
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)

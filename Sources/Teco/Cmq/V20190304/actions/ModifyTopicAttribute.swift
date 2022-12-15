@@ -19,23 +19,23 @@ extension Cmq {
     public struct ModifyTopicAttributeRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         public let topicName: String
-        
+
         /// 消息最大长度。取值范围1024 - 65536 Byte（即1 - 64K），默认值65536。
         public let maxMsgSize: UInt64?
-        
+
         /// 消息保存时间。取值范围60 - 86400 s（即1分钟 - 1天），默认值86400。
         public let msgRetentionSeconds: UInt64?
-        
+
         /// 是否开启消息轨迹标识，true表示开启，false表示不开启，不填表示不开启。
         public let trace: Bool?
-        
-        public init (topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil) {
+
+        public init(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil) {
             self.topicName = topicName
             self.maxMsgSize = maxMsgSize
             self.msgRetentionSeconds = msgRetentionSeconds
             self.trace = trace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicName = "TopicName"
             case maxMsgSize = "MaxMsgSize"
@@ -43,35 +43,35 @@ extension Cmq {
             case trace = "Trace"
         }
     }
-    
+
     /// ModifyTopicAttribute返回参数结构体
     public struct ModifyTopicAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改主题属性
     @inlinable
-    public func modifyTopicAttribute(_ input: ModifyTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicAttributeResponse > {
+    public func modifyTopicAttribute(_ input: ModifyTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicAttributeResponse> {
         self.client.execute(action: "ModifyTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改主题属性
     @inlinable
     public func modifyTopicAttribute(_ input: ModifyTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicAttributeResponse {
         try await self.client.execute(action: "ModifyTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改主题属性
     @inlinable
-    public func modifyTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicAttributeResponse > {
+    public func modifyTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicAttributeResponse> {
         self.modifyTopicAttribute(ModifyTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改主题属性
     @inlinable
     public func modifyTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicAttributeResponse {

@@ -19,39 +19,39 @@ extension Cdb {
     public struct StopReplicationRequest: TCRequestModel {
         /// 实例 ID。仅支持只读实例。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// StopReplication返回参数结构体
     public struct StopReplicationResponse: TCResponseModel {
         /// 异步任务 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止复制
     ///
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
-    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopReplicationResponse > {
+    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopReplicationResponse> {
         self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止复制
     ///
     /// 停止 RO 复制，中断从主实例同步数据。
@@ -59,15 +59,15 @@ extension Cdb {
     public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
         try await self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止复制
     ///
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
-    public func stopReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopReplicationResponse > {
+    public func stopReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopReplicationResponse> {
         self.stopReplication(StopReplicationRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止复制
     ///
     /// 停止 RO 复制，中断从主实例同步数据。

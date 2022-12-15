@@ -19,34 +19,34 @@ extension Gaap {
     public struct DeleteGlobalDomainRequest: TCRequestModel {
         /// 域名ID
         public let domainId: String
-        
-        public init (domainId: String) {
+
+        public init(domainId: String) {
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
         }
     }
-    
+
     /// DeleteGlobalDomain返回参数结构体
     public struct DeleteGlobalDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除域名
     ///
     /// 删除统一域名
     @inlinable
-    public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGlobalDomainResponse > {
+    public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
         self.client.execute(action: "DeleteGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除域名
     ///
     /// 删除统一域名
@@ -54,15 +54,15 @@ extension Gaap {
     public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
         try await self.client.execute(action: "DeleteGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除域名
     ///
     /// 删除统一域名
     @inlinable
-    public func deleteGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGlobalDomainResponse > {
+    public func deleteGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
         self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除域名
     ///
     /// 删除统一域名

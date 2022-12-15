@@ -27,94 +27,94 @@ extension TCTsfError {
             case objectExist = "ResourceInUse.ObjectExist"
             case ratelimitRuleExistError = "ResourceInUse.RatelimitRuleExistError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 此应用下存在资源，无法执行删除操作。
         public static var applicationCannotDelete: ResourceInUse {
             ResourceInUse(.applicationCannotDelete)
         }
-        
+
         /// 资源仍在使用中 无法删除。
         public static var cvmcaeMasterCannotDelete: ResourceInUse {
             ResourceInUse(.cvmcaeMasterCannotDelete)
         }
-        
+
         /// 默认命名空间不能被删除。
         public static var defaultNamepsaceCannotBeDeleted: ResourceInUse {
             ResourceInUse(.defaultNamepsaceCannotBeDeleted)
         }
-        
+
         /// 此分组下存在资源，无法执行删除操作。
         public static var groupCannotDelete: ResourceInUse {
             ResourceInUse(.groupCannotDelete)
         }
-        
+
         /// 部署组在更新中 请稍后再执行该操作。
         public static var groupInOperation: ResourceInUse {
             ResourceInUse(.groupInOperation)
         }
-        
+
         /// 机器实例已经被使用。
         public static var instanceHasBeenUsed: ResourceInUse {
             ResourceInUse(.instanceHasBeenUsed)
         }
-        
+
         /// 此命名空间下存在资源，无法执行删除操作。
         public static var namespaceCannotDelete: ResourceInUse {
             ResourceInUse(.namespaceCannotDelete)
         }
-        
+
         /// 资源对象已存在。
         public static var objectExist: ResourceInUse {
             ResourceInUse(.objectExist)
         }
-        
+
         /// 限流规则已存在，请检查规则名和规则配置。
         public static var ratelimitRuleExistError: ResourceInUse {
             ResourceInUse(.ratelimitRuleExistError)
         }
-        
+
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
-            case .applicationCannotDelete: 
+            case .applicationCannotDelete:
                 code = .resourceInUse_ApplicationCannotDelete
-            case .cvmcaeMasterCannotDelete: 
+            case .cvmcaeMasterCannotDelete:
                 code = .resourceInUse_CvmcaeMasterCannotDelete
-            case .defaultNamepsaceCannotBeDeleted: 
+            case .defaultNamepsaceCannotBeDeleted:
                 code = .resourceInUse_DefaultNamepsaceCannotBeDeleted
-            case .groupCannotDelete: 
+            case .groupCannotDelete:
                 code = .resourceInUse_GroupCannotDelete
-            case .groupInOperation: 
+            case .groupInOperation:
                 code = .resourceInUse_GroupInOperation
-            case .instanceHasBeenUsed: 
+            case .instanceHasBeenUsed:
                 code = .resourceInUse_InstanceHasBeenUsed
-            case .namespaceCannotDelete: 
+            case .namespaceCannotDelete:
                 code = .resourceInUse_NamespaceCannotDelete
-            case .objectExist: 
+            case .objectExist:
                 code = .resourceInUse_ObjectExist
-            case .ratelimitRuleExistError: 
+            case .ratelimitRuleExistError:
                 code = .resourceInUse_RatelimitRuleExistError
             }
             return TCTsfError(code, context: self.context)

@@ -181,1172 +181,1172 @@ extension TCVodError {
             case yPos = "InvalidParameterValue.YPos"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数值错误：AddKeyFrameDescs 与 ClearKeyFrameDescs 参数冲突。
         public static var addKeyFrameDescsAndClearKeyFrameDescsConflict: InvalidParameterValue {
             InvalidParameterValue(.addKeyFrameDescsAndClearKeyFrameDescsConflict)
         }
-        
+
         /// 参数值错误：AddKeyFrameDescs 与 DeleteKeyFrameDescs 参数冲突。
         public static var addKeyFrameDescsAndDeleteKeyFrameDescsConflict: InvalidParameterValue {
             InvalidParameterValue(.addKeyFrameDescsAndDeleteKeyFrameDescsConflict)
         }
-        
+
         /// 参数值错误：AddTags 与 ClearTags 参数冲突。
         public static var addTagsAndClearTagsConflict: InvalidParameterValue {
             InvalidParameterValue(.addTagsAndClearTagsConflict)
         }
-        
+
         /// 参数值错误：AddTags 与 DeleteTags 参数冲突。
         public static var addTagsAndDeleteTagsConflict: InvalidParameterValue {
             InvalidParameterValue(.addTagsAndDeleteTagsConflict)
         }
-        
+
         /// 参数值错误：AI 分析 Definition。
         public static var aiAnalysisTaskDefinition: InvalidParameterValue {
             InvalidParameterValue(.aiAnalysisTaskDefinition)
         }
-        
+
         /// 参数值错误：AI 内容审核 Definition。
         public static var aiContentReviewTaskDefinition: InvalidParameterValue {
             InvalidParameterValue(.aiContentReviewTaskDefinition)
         }
-        
+
         /// 参数值错误：AI 识别 Definition。
         public static var aiRecognitionTaskDefinition: InvalidParameterValue {
             InvalidParameterValue(.aiRecognitionTaskDefinition)
         }
-        
+
         /// Area 参数错误。
         public static var area: InvalidParameterValue {
             InvalidParameterValue(.area)
         }
-        
+
         /// 参数错误：音频流码率。
         public static var audioBitrate: InvalidParameterValue {
             InvalidParameterValue(.audioBitrate)
         }
-        
+
         /// 参数值错误：AudioChannel。
         public static var audioChannel: InvalidParameterValue {
             InvalidParameterValue(.audioChannel)
         }
-        
+
         /// 参数错误：音频流编码格式。
         public static var audioCodec: InvalidParameterValue {
             InvalidParameterValue(.audioCodec)
         }
-        
+
         /// 参数错误：音频流采样率。
         public static var audioSampleRate: InvalidParameterValue {
             InvalidParameterValue(.audioSampleRate)
         }
-        
+
         /// 无效的音频/视频码率。
         public static var bitrate: InvalidParameterValue {
             InvalidParameterValue(.bitrate)
         }
-        
+
         /// 参数值错误：BlockConfidence 参数取值非法。
         public static var blockConfidence: InvalidParameterValue {
             InvalidParameterValue(.blockConfidence)
         }
-        
+
         /// 无效的文件类型。
         public static var categories: InvalidParameterValue {
             InvalidParameterValue(.categories)
         }
-        
+
         /// 参数值错误：分类 ID。
         public static var classId: InvalidParameterValue {
             InvalidParameterValue(.classId)
         }
-        
+
         /// 参数值错误：ClassIds 无效。
         public static var classIds: InvalidParameterValue {
             InvalidParameterValue(.classIds)
         }
-        
+
         /// 参数值错误：ClassName 无效。
         public static var className: InvalidParameterValue {
             InvalidParameterValue(.className)
         }
-        
+
         /// 智能分类控制字段参数错误。
         public static var classifcationConfigure: InvalidParameterValue {
             InvalidParameterValue(.classifcationConfigure)
         }
-        
+
         /// 参数值错误：裁剪时间段太长。
         public static var clipDuration: InvalidParameterValue {
             InvalidParameterValue(.clipDuration)
         }
-        
+
         /// 无效的音频/视频编码格式。
         public static var codec: InvalidParameterValue {
             InvalidParameterValue(.codec)
         }
-        
+
         /// 参数值错误：ColumnCount。
         public static var columnCount: InvalidParameterValue {
             InvalidParameterValue(.columnCount)
         }
-        
+
         /// 参数错误：对该模板的描述。
         public static var comment: InvalidParameterValue {
             InvalidParameterValue(.comment)
         }
-        
+
         /// 参数错误：封装格式。
         public static var container: InvalidParameterValue {
             InvalidParameterValue(.container)
         }
-        
+
         /// 参数值错误：ContainerType。
         public static var containerType: InvalidParameterValue {
             InvalidParameterValue(.containerType)
         }
-        
+
         /// 参数值错误：CoordinateOrigin。
         public static var coordinateOrigin: InvalidParameterValue {
             InvalidParameterValue(.coordinateOrigin)
         }
-        
+
         /// 智能封面控制字段参数错误。
         public static var coverConfigure: InvalidParameterValue {
             InvalidParameterValue(.coverConfigure)
         }
-        
+
         /// 参数值错误：封面类型。
         public static var coverType: InvalidParameterValue {
             InvalidParameterValue(.coverType)
         }
-        
+
         /// 参数值错误：封面 URL。
         public static var coverUrl: InvalidParameterValue {
             InvalidParameterValue(.coverUrl)
         }
-        
+
         /// 参数值错误：CutAndCrops 参数取值非法。
         public static var cutAndCrops: InvalidParameterValue {
             InvalidParameterValue(.cutAndCrops)
         }
-        
+
         /// 参数值错误，时间粒度。
         public static var dataInterval: InvalidParameterValue {
             InvalidParameterValue(.dataInterval)
         }
-        
+
         /// 参数值错误，数据类型。
         public static var dataType: InvalidParameterValue {
             InvalidParameterValue(.dataType)
         }
-        
+
         /// 参数值错误：Date。
         public static var date: InvalidParameterValue {
             InvalidParameterValue(.date)
         }
-        
+
         /// 参数值错误：人脸默认库过滤标签非法。
         public static var defaultLibraryLabelSet: InvalidParameterValue {
             InvalidParameterValue(.defaultLibraryLabelSet)
         }
-        
+
         /// 参数错误：Definition。
         public static var definition: InvalidParameterValue {
             InvalidParameterValue(.definition)
         }
-        
+
         /// 参数错误：Definitions。
         public static var definitions: InvalidParameterValue {
             InvalidParameterValue(.definitions)
         }
-        
+
         /// 参数值错误：不允许删除默认模板。
         public static var deleteDefaultTemplate: InvalidParameterValue {
             InvalidParameterValue(.deleteDefaultTemplate)
         }
-        
+
         /// 参数值错误：Description 超过长度限制。
         public static var description: InvalidParameterValue {
             InvalidParameterValue(.description)
         }
-        
+
         /// 无效的禁止码率低转高开关值。
         public static var disableHigherVideoBitrate: InvalidParameterValue {
             InvalidParameterValue(.disableHigherVideoBitrate)
         }
-        
+
         /// 无效的禁止分辨率低转高开关值。
         public static var disableHigherVideoResolution: InvalidParameterValue {
             InvalidParameterValue(.disableHigherVideoResolution)
         }
-        
+
         /// Districts 参数值错误。
         public static var districts: InvalidParameterValue {
             InvalidParameterValue(.districts)
         }
-        
+
         /// 参数错误：不存在的域名。
         public static var domainName: InvalidParameterValue {
             InvalidParameterValue(.domainName)
         }
-        
+
         /// 恶意域名，无法添加。
         public static var domainNameInBlackList: InvalidParameterValue {
             InvalidParameterValue(.domainNameInBlackList)
         }
-        
+
         /// 参数值，域名列表太大。
         public static var domainNames: InvalidParameterValue {
             InvalidParameterValue(.domainNames)
         }
-        
+
         /// 无效的DRM类型。
         public static var drmType: InvalidParameterValue {
             InvalidParameterValue(.drmType)
         }
-        
+
         /// 参数值错误：EndDate 无效。
         public static var endDate: InvalidParameterValue {
             InvalidParameterValue(.endDate)
         }
-        
+
         /// 参数值错误：EndTime 无效。
         public static var endTime: InvalidParameterValue {
             InvalidParameterValue(.endTime)
         }
-        
+
         /// 参数错误：无效的结束时间。
         public static var endTimeOffset: InvalidParameterValue {
             InvalidParameterValue(.endTimeOffset)
         }
-        
+
         /// 参数值错误：ExpireTime 格式错误。
         public static var expireTime: InvalidParameterValue {
             InvalidParameterValue(.expireTime)
         }
-        
+
         /// 参数值错误：人脸重复。
         public static var faceDuplicate: InvalidParameterValue {
             InvalidParameterValue(.faceDuplicate)
         }
-        
+
         /// 参数值错误：人脸库参数非法。
         public static var faceLibrary: InvalidParameterValue {
             InvalidParameterValue(.faceLibrary)
         }
-        
+
         /// 参数值错误：人脸分数参数取值非法。
         public static var faceScore: InvalidParameterValue {
             InvalidParameterValue(.faceScore)
         }
-        
+
         /// FileId 不存在。
         public static var fileId: InvalidParameterValue {
             InvalidParameterValue(.fileId)
         }
-        
+
         /// FileIds 参数错误。
         public static var fileIds: InvalidParameterValue {
             InvalidParameterValue(.fileIds)
         }
-        
+
         /// FileIds 数组为空。
         public static var fileIdsEmpty: InvalidParameterValue {
             InvalidParameterValue(.fileIdsEmpty)
         }
-        
+
         /// 参数值错误：FileId 过多。
         public static var fileIdsTooMany: InvalidParameterValue {
             InvalidParameterValue(.fileIdsTooMany)
         }
-        
+
         /// 错误的视频类型。
         public static var fileType: InvalidParameterValue {
             InvalidParameterValue(.fileType)
         }
-        
+
         /// 参数错误：填充方式错误。
         public static var fillType: InvalidParameterValue {
             InvalidParameterValue(.fillType)
         }
-        
+
         /// 参数错误：是否去除视频，应为0或1。
         public static var filtrateAudio: InvalidParameterValue {
             InvalidParameterValue(.filtrateAudio)
         }
-        
+
         /// 参数错误：去除视频。
         public static var filtrateVideo: InvalidParameterValue {
             InvalidParameterValue(.filtrateVideo)
         }
-        
+
         /// 参数值错误：Format。
         public static var format: InvalidParameterValue {
             InvalidParameterValue(.format)
         }
-        
+
         /// 参数值错误：Format 为 webp 时，Width、Height 均为空。
         public static var formatWebpLackWidthAndHeight: InvalidParameterValue {
             InvalidParameterValue(.formatWebpLackWidthAndHeight)
         }
-        
+
         /// 参数值错误：Format 为 webp 时，不允许 Width、Height 都为 0。
         public static var formatWebpWidthAndHeightBothZero: InvalidParameterValue {
             InvalidParameterValue(.formatWebpWidthAndHeightBothZero)
         }
-        
+
         /// 参数错误：视频帧率。
         public static var fps: InvalidParameterValue {
             InvalidParameterValue(.fps)
         }
-        
+
         /// 智能按帧标签控制字段参数错误。
         public static var frameTagConfigure: InvalidParameterValue {
             InvalidParameterValue(.frameTagConfigure)
         }
-        
+
         /// 参数值错误：FunctionArg。
         public static var functionArg: InvalidParameterValue {
             InvalidParameterValue(.functionArg)
         }
-        
+
         /// 参数值错误：FunctionName。
         public static var functionName: InvalidParameterValue {
             InvalidParameterValue(.functionName)
         }
-        
+
         /// 参数错误：高度。
         public static var height: InvalidParameterValue {
             InvalidParameterValue(.height)
         }
-        
+
         /// 智能精彩集锦控制参数错误。
         public static var highlightConfigure: InvalidParameterValue {
             InvalidParameterValue(.highlightConfigure)
         }
-        
+
         /// ImageContent参数值无效。
         public static var imageContent: InvalidParameterValue {
             InvalidParameterValue(.imageContent)
         }
-        
+
         /// 图片解 Base64 编码失败。
         public static var imageDecodeError: InvalidParameterValue {
             InvalidParameterValue(.imageDecodeError)
         }
-        
+
         /// 参数错误：图片水印模板。
         public static var imageTemplate: InvalidParameterValue {
             InvalidParameterValue(.imageTemplate)
         }
-        
+
         /// 参数值错误：Interval 无效。
         public static var interval: InvalidParameterValue {
             InvalidParameterValue(.interval)
         }
-        
+
         /// 参数错误：无效的操作类型。
         public static var invalidOperationType: InvalidParameterValue {
             InvalidParameterValue(.invalidOperationType)
         }
-        
+
         /// Isps 参数错误。
         public static var isps: InvalidParameterValue {
             InvalidParameterValue(.isps)
         }
-        
+
         /// 参数值错误：打点信息内容过长。
         public static var keyFrameDescContentTooLong: InvalidParameterValue {
             InvalidParameterValue(.keyFrameDescContentTooLong)
         }
-        
+
         /// 参数值错误：LabelSet 参数取值非法。
         public static var labelSet: InvalidParameterValue {
             InvalidParameterValue(.labelSet)
         }
-        
+
         /// 参数错误：Limit。
         public static var limit: InvalidParameterValue {
             InvalidParameterValue(.limit)
         }
-        
+
         /// 参数值错误：Limit 过大。
         public static var limitTooLarge: InvalidParameterValue {
             InvalidParameterValue(.limitTooLarge)
         }
-        
+
         /// 参数取值错误：MediaManifestContent。
         public static var mediaManifestContent: InvalidParameterValue {
             InvalidParameterValue(.mediaManifestContent)
         }
-        
+
         /// 参数值错误：媒体类型。
         public static var mediaType: InvalidParameterValue {
             InvalidParameterValue(.mediaType)
         }
-        
+
         /// 参数值错误：媒体文件 URL。
         public static var mediaUrl: InvalidParameterValue {
             InvalidParameterValue(.mediaUrl)
         }
-        
+
         /// Metric 参数错误。
         public static var metric: InvalidParameterValue {
             InvalidParameterValue(.metric)
         }
-        
+
         /// 参数值错误：不允许修改默认模板。
         public static var modifyDefaultTemplate: InvalidParameterValue {
             InvalidParameterValue(.modifyDefaultTemplate)
         }
-        
+
         /// 参数值错误：Name 超过长度限制。
         public static var name: InvalidParameterValue {
             InvalidParameterValue(.name)
         }
-        
+
         /// 无效的文件名前缀。
         public static var namePrefixes: InvalidParameterValue {
             InvalidParameterValue(.namePrefixes)
         }
-        
+
         /// Names数组中元素过多。
         public static var names: InvalidParameterValue {
             InvalidParameterValue(.names)
         }
-        
+
         /// 参数错误：文件不支持解冻。
         public static var notRestorable: InvalidParameterValue {
             InvalidParameterValue(.notRestorable)
         }
-        
+
         /// 参数值错误：物体库参数非法。
         public static var objectLibrary: InvalidParameterValue {
             InvalidParameterValue(.objectLibrary)
         }
-        
+
         /// 参数值错误：Offset 无效。
         public static var offset: InvalidParameterValue {
             InvalidParameterValue(.offset)
         }
-        
+
         /// 参数值错误：Offset 过大。
         public static var offsetTooLarge: InvalidParameterValue {
             InvalidParameterValue(.offsetTooLarge)
         }
-        
+
         /// 参数值错误：Operation 无效。
         public static var operation: InvalidParameterValue {
             InvalidParameterValue(.operation)
         }
-        
+
         /// 参数值错误：文件原存储类型异常。
         public static var originalStorageClass: InvalidParameterValue {
             InvalidParameterValue(.originalStorageClass)
         }
-        
+
         /// 参数值错误：ParentId 无效。
         public static var parentId: InvalidParameterValue {
             InvalidParameterValue(.parentId)
         }
-        
+
         /// 参数值错误：人脸图片格式错误。
         public static var picFormatError: InvalidParameterValue {
             InvalidParameterValue(.picFormatError)
         }
-        
+
         /// 任务流模板名无效。
         public static var procedureName: InvalidParameterValue {
             InvalidParameterValue(.procedureName)
         }
-        
+
         /// 参数值错误：Quality。
         public static var quality: InvalidParameterValue {
             InvalidParameterValue(.quality)
         }
-        
+
         /// 参数值错误：RemoveAudio。
         public static var removeAudio: InvalidParameterValue {
             InvalidParameterValue(.removeAudio)
         }
-        
+
         /// 参数值错误：RemoveVideo。
         public static var removeVideo: InvalidParameterValue {
             InvalidParameterValue(.removeVideo)
         }
-        
+
         /// 参数错误：RepeatType 无效。
         public static var repeatType: InvalidParameterValue {
             InvalidParameterValue(.repeatType)
         }
-        
+
         /// 参数错误：分辨率错误。
         public static var resolution: InvalidParameterValue {
             InvalidParameterValue(.resolution)
         }
-        
+
         /// 无效的ResolutionAdaptive。
         public static var resolutionAdaptive: InvalidParameterValue {
             InvalidParameterValue(.resolutionAdaptive)
         }
-        
+
         /// 参数错误：解冻天数错误。
         public static var restoreDay: InvalidParameterValue {
             InvalidParameterValue(.restoreDay)
         }
-        
+
         /// 参数错误：不支持的解冻模式。
         public static var restoreTier: InvalidParameterValue {
             InvalidParameterValue(.restoreTier)
         }
-        
+
         /// 参数值错误：ReviewConfidence 参数取值非法。
         public static var reviewConfidence: InvalidParameterValue {
             InvalidParameterValue(.reviewConfidence)
         }
-        
+
         /// 参数值错误：ReviewWallSwitch 参数取值非法。
         public static var reviewWallSwitch: InvalidParameterValue {
             InvalidParameterValue(.reviewWallSwitch)
         }
-        
+
         /// 参数值错误：RowCount。
         public static var rowCount: InvalidParameterValue {
             InvalidParameterValue(.rowCount)
         }
-        
+
         /// 参数值错误：SampleInterval。
         public static var sampleInterval: InvalidParameterValue {
             InvalidParameterValue(.sampleInterval)
         }
-        
+
         /// 无效的音频采样率。
         public static var sampleRate: InvalidParameterValue {
             InvalidParameterValue(.sampleRate)
         }
-        
+
         /// 参数值错误：SampleType。
         public static var sampleType: InvalidParameterValue {
             InvalidParameterValue(.sampleType)
         }
-        
+
         /// 参数值错误：ScreenshotInterval 参数取值非法。
         public static var screenshotInterval: InvalidParameterValue {
             InvalidParameterValue(.screenshotInterval)
         }
-        
+
         /// SessionContext 过长。
         public static var sessionContextTooLong: InvalidParameterValue {
             InvalidParameterValue(.sessionContextTooLong)
         }
-        
+
         /// 去重识别码重复，请求被去重。
         public static var sessionId: InvalidParameterValue {
             InvalidParameterValue(.sessionId)
         }
-        
+
         /// SessionId 过长。
         public static var sessionIdTooLong: InvalidParameterValue {
             InvalidParameterValue(.sessionIdTooLong)
         }
-        
+
         /// 参数值错误：Sort 无效。
         public static var sort: InvalidParameterValue {
             InvalidParameterValue(.sort)
         }
-        
+
         /// 参数错误：音频通道方式。
         public static var soundSystem: InvalidParameterValue {
             InvalidParameterValue(.soundSystem)
         }
-        
+
         /// SourceDefinition 错误，请检查媒体文件是否有对应的转码。
         public static var sourceDefinition: InvalidParameterValue {
             InvalidParameterValue(.sourceDefinition)
         }
-        
+
         /// 参数值错误：SourceType 无效。
         public static var sourceType: InvalidParameterValue {
             InvalidParameterValue(.sourceType)
         }
-        
+
         /// 未知的媒体文件来源。
         public static var sourceTypes: InvalidParameterValue {
             InvalidParameterValue(.sourceTypes)
         }
-        
+
         /// 参数值错误：StartDate 无效。
         public static var startDate: InvalidParameterValue {
             InvalidParameterValue(.startDate)
         }
-        
+
         /// 参数值错误：StartTime 无效。
         public static var startTime: InvalidParameterValue {
             InvalidParameterValue(.startTime)
         }
-        
+
         /// 参数错误：无效的起始时间。
         public static var startTimeOffset: InvalidParameterValue {
             InvalidParameterValue(.startTimeOffset)
         }
-        
+
         /// 参数值错误：人工确认结果取值非法。
         public static var status: InvalidParameterValue {
             InvalidParameterValue(.status)
         }
-        
+
         /// 参数值错误：目标存储类型不在可选值中。
         public static var storageClass: InvalidParameterValue {
             InvalidParameterValue(.storageClass)
         }
-        
+
         /// 参数值错误：存储地域。
         public static var storageRegion: InvalidParameterValue {
             InvalidParameterValue(.storageRegion)
         }
-        
+
         /// 参数值错误：StorageRegions 无效。
         public static var storageRegions: InvalidParameterValue {
             InvalidParameterValue(.storageRegions)
         }
-        
+
         /// 参数值错误：StorageType。
         public static var storageType: InvalidParameterValue {
             InvalidParameterValue(.storageType)
         }
-        
+
         /// 参数值错误：StreamId无效。
         public static var streamIdInvalid: InvalidParameterValue {
             InvalidParameterValue(.streamIdInvalid)
         }
-        
+
         /// 无效的流ID参数。
         public static var streamIds: InvalidParameterValue {
             InvalidParameterValue(.streamIds)
         }
-        
+
         /// 参数值错误：子应用 ID。
         public static var subAppId: InvalidParameterValue {
             InvalidParameterValue(.subAppId)
         }
-        
+
         /// 参数值错误：SubtitleFormat 参数非法。
         public static var subtitleFormat: InvalidParameterValue {
             InvalidParameterValue(.subtitleFormat)
         }
-        
+
         /// 参数值错误：SVG 为空。
         public static var svgTemplate: InvalidParameterValue {
             InvalidParameterValue(.svgTemplate)
         }
-        
+
         /// 参数值错误：SVG 高度。
         public static var svgTemplateHeight: InvalidParameterValue {
             InvalidParameterValue(.svgTemplateHeight)
         }
-        
+
         /// 参数值错误：SVG 宽度。
         public static var svgTemplateWidth: InvalidParameterValue {
             InvalidParameterValue(.svgTemplateWidth)
         }
-        
+
         /// 参数值错误：Switch 参数取值非法。
         public static var `switch`: InvalidParameterValue {
             InvalidParameterValue(.`switch`)
         }
-        
+
         /// 智能标签控制字段参数错误。
         public static var tagConfigure: InvalidParameterValue {
             InvalidParameterValue(.tagConfigure)
         }
-        
+
         /// 参数值错误：标签过长。
         public static var tagTooLong: InvalidParameterValue {
             InvalidParameterValue(.tagTooLong)
         }
-        
+
         /// 参数值错误：Tags 无效。
         public static var tags: InvalidParameterValue {
             InvalidParameterValue(.tags)
         }
-        
+
         /// 任务 ID 不存在。
         public static var taskId: InvalidParameterValue {
             InvalidParameterValue(.taskId)
         }
-        
+
         /// 参数值错误：TEHD Type 无效。
         public static var tehdType: InvalidParameterValue {
             InvalidParameterValue(.tehdType)
         }
-        
+
         /// 参数值错误：搜索文本。
         public static var text: InvalidParameterValue {
             InvalidParameterValue(.text)
         }
-        
+
         /// 参数错误：文字透明度。
         public static var textAlpha: InvalidParameterValue {
             InvalidParameterValue(.textAlpha)
         }
-        
+
         /// 参数错误：文字模板。
         public static var textTemplate: InvalidParameterValue {
             InvalidParameterValue(.textTemplate)
         }
-        
+
         /// 参数值错误：Thumbnail 参数取值非法。
         public static var thumbnails: InvalidParameterValue {
             InvalidParameterValue(.thumbnails)
         }
-        
+
         /// 参数值错误：TimeType。
         public static var timeType: InvalidParameterValue {
             InvalidParameterValue(.timeType)
         }
-        
+
         /// Type 参数值错误。
         public static var type: InvalidParameterValue {
             InvalidParameterValue(.type)
         }
-        
+
         /// 无效的 Types 参数。
         public static var types: InvalidParameterValue {
             InvalidParameterValue(.types)
         }
-        
+
         /// 去重识别码一天内重复，请求被去重。
         public static var uniqueIdentifier: InvalidParameterValue {
             InvalidParameterValue(.uniqueIdentifier)
         }
-        
+
         /// 参数值错误：文件不支持该解冻方式。
         public static var unsupportedRestoreTier: InvalidParameterValue {
             InvalidParameterValue(.unsupportedRestoreTier)
         }
-        
+
         /// 参数值错误：不支持的目标存储类型，深度归档只支持部分园区。
         public static var unsupportedStorageClass: InvalidParameterValue {
             InvalidParameterValue(.unsupportedStorageClass)
         }
-        
+
         /// 参数值错误：不支持的存储类型转换。
         public static var unsupportedTransition: InvalidParameterValue {
             InvalidParameterValue(.unsupportedTransition)
         }
-        
+
         /// 参数错误：无效的Url。
         public static var url: InvalidParameterValue {
             InvalidParameterValue(.url)
         }
-        
+
         /// 参数值错误：人脸用户自定义库过滤标签非法。
         public static var userDefineLibraryLabelSet: InvalidParameterValue {
             InvalidParameterValue(.userDefineLibraryLabelSet)
         }
-        
+
         /// 参数错误：vcrf。
         public static var vcrf: InvalidParameterValue {
             InvalidParameterValue(.vcrf)
         }
-        
+
         /// 参数错误：视频流码率。
         public static var videoBitrate: InvalidParameterValue {
             InvalidParameterValue(.videoBitrate)
         }
-        
+
         /// 参数错误：视频流的编码格式。
         public static var videoCodec: InvalidParameterValue {
             InvalidParameterValue(.videoCodec)
         }
-        
+
         /// 无效的 Vids 参数。
         public static var vids: InvalidParameterValue {
             InvalidParameterValue(.vids)
         }
-        
+
         /// 参数值错误：点播会话。
         public static var vodSessionKey: InvalidParameterValue {
             InvalidParameterValue(.vodSessionKey)
         }
-        
+
         /// 参数值错误：Watermarks 参数取值非法。
         public static var watermarks: InvalidParameterValue {
             InvalidParameterValue(.watermarks)
         }
-        
+
         /// 参数错误：宽度。
         public static var width: InvalidParameterValue {
             InvalidParameterValue(.width)
         }
-        
+
         /// 水印原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式。
         public static var xPos: InvalidParameterValue {
             InvalidParameterValue(.xPos)
         }
-        
+
         /// 水印原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式。
         public static var yPos: InvalidParameterValue {
             InvalidParameterValue(.yPos)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asVodError() -> TCVodError {
             let code: TCVodError.Code
             switch self.error {
-            case .addKeyFrameDescsAndClearKeyFrameDescsConflict: 
+            case .addKeyFrameDescsAndClearKeyFrameDescsConflict:
                 code = .invalidParameterValue_AddKeyFrameDescsAndClearKeyFrameDescsConflict
-            case .addKeyFrameDescsAndDeleteKeyFrameDescsConflict: 
+            case .addKeyFrameDescsAndDeleteKeyFrameDescsConflict:
                 code = .invalidParameterValue_AddKeyFrameDescsAndDeleteKeyFrameDescsConflict
-            case .addTagsAndClearTagsConflict: 
+            case .addTagsAndClearTagsConflict:
                 code = .invalidParameterValue_AddTagsAndClearTagsConflict
-            case .addTagsAndDeleteTagsConflict: 
+            case .addTagsAndDeleteTagsConflict:
                 code = .invalidParameterValue_AddTagsAndDeleteTagsConflict
-            case .aiAnalysisTaskDefinition: 
+            case .aiAnalysisTaskDefinition:
                 code = .invalidParameterValue_AiAnalysisTaskDefinition
-            case .aiContentReviewTaskDefinition: 
+            case .aiContentReviewTaskDefinition:
                 code = .invalidParameterValue_AiContentReviewTaskDefinition
-            case .aiRecognitionTaskDefinition: 
+            case .aiRecognitionTaskDefinition:
                 code = .invalidParameterValue_AiRecognitionTaskDefinition
-            case .area: 
+            case .area:
                 code = .invalidParameterValue_Area
-            case .audioBitrate: 
+            case .audioBitrate:
                 code = .invalidParameterValue_AudioBitrate
-            case .audioChannel: 
+            case .audioChannel:
                 code = .invalidParameterValue_AudioChannel
-            case .audioCodec: 
+            case .audioCodec:
                 code = .invalidParameterValue_AudioCodec
-            case .audioSampleRate: 
+            case .audioSampleRate:
                 code = .invalidParameterValue_AudioSampleRate
-            case .bitrate: 
+            case .bitrate:
                 code = .invalidParameterValue_Bitrate
-            case .blockConfidence: 
+            case .blockConfidence:
                 code = .invalidParameterValue_BlockConfidence
-            case .categories: 
+            case .categories:
                 code = .invalidParameterValue_Categories
-            case .classId: 
+            case .classId:
                 code = .invalidParameterValue_ClassId
-            case .classIds: 
+            case .classIds:
                 code = .invalidParameterValue_ClassIds
-            case .className: 
+            case .className:
                 code = .invalidParameterValue_ClassName
-            case .classifcationConfigure: 
+            case .classifcationConfigure:
                 code = .invalidParameterValue_ClassifcationConfigure
-            case .clipDuration: 
+            case .clipDuration:
                 code = .invalidParameterValue_ClipDuration
-            case .codec: 
+            case .codec:
                 code = .invalidParameterValue_Codec
-            case .columnCount: 
+            case .columnCount:
                 code = .invalidParameterValue_ColumnCount
-            case .comment: 
+            case .comment:
                 code = .invalidParameterValue_Comment
-            case .container: 
+            case .container:
                 code = .invalidParameterValue_Container
-            case .containerType: 
+            case .containerType:
                 code = .invalidParameterValue_ContainerType
-            case .coordinateOrigin: 
+            case .coordinateOrigin:
                 code = .invalidParameterValue_CoordinateOrigin
-            case .coverConfigure: 
+            case .coverConfigure:
                 code = .invalidParameterValue_CoverConfigure
-            case .coverType: 
+            case .coverType:
                 code = .invalidParameterValue_CoverType
-            case .coverUrl: 
+            case .coverUrl:
                 code = .invalidParameterValue_CoverUrl
-            case .cutAndCrops: 
+            case .cutAndCrops:
                 code = .invalidParameterValue_CutAndCrops
-            case .dataInterval: 
+            case .dataInterval:
                 code = .invalidParameterValue_DataInterval
-            case .dataType: 
+            case .dataType:
                 code = .invalidParameterValue_DataType
-            case .date: 
+            case .date:
                 code = .invalidParameterValue_Date
-            case .defaultLibraryLabelSet: 
+            case .defaultLibraryLabelSet:
                 code = .invalidParameterValue_DefaultLibraryLabelSet
-            case .definition: 
+            case .definition:
                 code = .invalidParameterValue_Definition
-            case .definitions: 
+            case .definitions:
                 code = .invalidParameterValue_Definitions
-            case .deleteDefaultTemplate: 
+            case .deleteDefaultTemplate:
                 code = .invalidParameterValue_DeleteDefaultTemplate
-            case .description: 
+            case .description:
                 code = .invalidParameterValue_Description
-            case .disableHigherVideoBitrate: 
+            case .disableHigherVideoBitrate:
                 code = .invalidParameterValue_DisableHigherVideoBitrate
-            case .disableHigherVideoResolution: 
+            case .disableHigherVideoResolution:
                 code = .invalidParameterValue_DisableHigherVideoResolution
-            case .districts: 
+            case .districts:
                 code = .invalidParameterValue_Districts
-            case .domainName: 
+            case .domainName:
                 code = .invalidParameterValue_DomainName
-            case .domainNameInBlackList: 
+            case .domainNameInBlackList:
                 code = .invalidParameterValue_DomainNameInBlackList
-            case .domainNames: 
+            case .domainNames:
                 code = .invalidParameterValue_DomainNames
-            case .drmType: 
+            case .drmType:
                 code = .invalidParameterValue_DrmType
-            case .endDate: 
+            case .endDate:
                 code = .invalidParameterValue_EndDate
-            case .endTime: 
+            case .endTime:
                 code = .invalidParameterValue_EndTime
-            case .endTimeOffset: 
+            case .endTimeOffset:
                 code = .invalidParameterValue_EndTimeOffset
-            case .expireTime: 
+            case .expireTime:
                 code = .invalidParameterValue_ExpireTime
-            case .faceDuplicate: 
+            case .faceDuplicate:
                 code = .invalidParameterValue_FaceDuplicate
-            case .faceLibrary: 
+            case .faceLibrary:
                 code = .invalidParameterValue_FaceLibrary
-            case .faceScore: 
+            case .faceScore:
                 code = .invalidParameterValue_FaceScore
-            case .fileId: 
+            case .fileId:
                 code = .invalidParameterValue_FileId
-            case .fileIds: 
+            case .fileIds:
                 code = .invalidParameterValue_FileIds
-            case .fileIdsEmpty: 
+            case .fileIdsEmpty:
                 code = .invalidParameterValue_FileIdsEmpty
-            case .fileIdsTooMany: 
+            case .fileIdsTooMany:
                 code = .invalidParameterValue_FileIdsTooMany
-            case .fileType: 
+            case .fileType:
                 code = .invalidParameterValue_FileType
-            case .fillType: 
+            case .fillType:
                 code = .invalidParameterValue_FillType
-            case .filtrateAudio: 
+            case .filtrateAudio:
                 code = .invalidParameterValue_FiltrateAudio
-            case .filtrateVideo: 
+            case .filtrateVideo:
                 code = .invalidParameterValue_FiltrateVideo
-            case .format: 
+            case .format:
                 code = .invalidParameterValue_Format
-            case .formatWebpLackWidthAndHeight: 
+            case .formatWebpLackWidthAndHeight:
                 code = .invalidParameterValue_FormatWebpLackWidthAndHeight
-            case .formatWebpWidthAndHeightBothZero: 
+            case .formatWebpWidthAndHeightBothZero:
                 code = .invalidParameterValue_FormatWebpWidthAndHeightBothZero
-            case .fps: 
+            case .fps:
                 code = .invalidParameterValue_Fps
-            case .frameTagConfigure: 
+            case .frameTagConfigure:
                 code = .invalidParameterValue_FrameTagConfigure
-            case .functionArg: 
+            case .functionArg:
                 code = .invalidParameterValue_FunctionArg
-            case .functionName: 
+            case .functionName:
                 code = .invalidParameterValue_FunctionName
-            case .height: 
+            case .height:
                 code = .invalidParameterValue_Height
-            case .highlightConfigure: 
+            case .highlightConfigure:
                 code = .invalidParameterValue_HighlightConfigure
-            case .imageContent: 
+            case .imageContent:
                 code = .invalidParameterValue_ImageContent
-            case .imageDecodeError: 
+            case .imageDecodeError:
                 code = .invalidParameterValue_ImageDecodeError
-            case .imageTemplate: 
+            case .imageTemplate:
                 code = .invalidParameterValue_ImageTemplate
-            case .interval: 
+            case .interval:
                 code = .invalidParameterValue_Interval
-            case .invalidOperationType: 
+            case .invalidOperationType:
                 code = .invalidParameterValue_InvalidOperationType
-            case .isps: 
+            case .isps:
                 code = .invalidParameterValue_Isps
-            case .keyFrameDescContentTooLong: 
+            case .keyFrameDescContentTooLong:
                 code = .invalidParameterValue_KeyFrameDescContentTooLong
-            case .labelSet: 
+            case .labelSet:
                 code = .invalidParameterValue_LabelSet
-            case .limit: 
+            case .limit:
                 code = .invalidParameterValue_Limit
-            case .limitTooLarge: 
+            case .limitTooLarge:
                 code = .invalidParameterValue_LimitTooLarge
-            case .mediaManifestContent: 
+            case .mediaManifestContent:
                 code = .invalidParameterValue_MediaManifestContent
-            case .mediaType: 
+            case .mediaType:
                 code = .invalidParameterValue_MediaType
-            case .mediaUrl: 
+            case .mediaUrl:
                 code = .invalidParameterValue_MediaUrl
-            case .metric: 
+            case .metric:
                 code = .invalidParameterValue_Metric
-            case .modifyDefaultTemplate: 
+            case .modifyDefaultTemplate:
                 code = .invalidParameterValue_ModifyDefaultTemplate
-            case .name: 
+            case .name:
                 code = .invalidParameterValue_Name
-            case .namePrefixes: 
+            case .namePrefixes:
                 code = .invalidParameterValue_NamePrefixes
-            case .names: 
+            case .names:
                 code = .invalidParameterValue_Names
-            case .notRestorable: 
+            case .notRestorable:
                 code = .invalidParameterValue_NotRestorable
-            case .objectLibrary: 
+            case .objectLibrary:
                 code = .invalidParameterValue_ObjectLibrary
-            case .offset: 
+            case .offset:
                 code = .invalidParameterValue_Offset
-            case .offsetTooLarge: 
+            case .offsetTooLarge:
                 code = .invalidParameterValue_OffsetTooLarge
-            case .operation: 
+            case .operation:
                 code = .invalidParameterValue_Operation
-            case .originalStorageClass: 
+            case .originalStorageClass:
                 code = .invalidParameterValue_OriginalStorageClass
-            case .parentId: 
+            case .parentId:
                 code = .invalidParameterValue_ParentId
-            case .picFormatError: 
+            case .picFormatError:
                 code = .invalidParameterValue_PicFormatError
-            case .procedureName: 
+            case .procedureName:
                 code = .invalidParameterValue_ProcedureName
-            case .quality: 
+            case .quality:
                 code = .invalidParameterValue_Quality
-            case .removeAudio: 
+            case .removeAudio:
                 code = .invalidParameterValue_RemoveAudio
-            case .removeVideo: 
+            case .removeVideo:
                 code = .invalidParameterValue_RemoveVideo
-            case .repeatType: 
+            case .repeatType:
                 code = .invalidParameterValue_RepeatType
-            case .resolution: 
+            case .resolution:
                 code = .invalidParameterValue_Resolution
-            case .resolutionAdaptive: 
+            case .resolutionAdaptive:
                 code = .invalidParameterValue_ResolutionAdaptive
-            case .restoreDay: 
+            case .restoreDay:
                 code = .invalidParameterValue_RestoreDay
-            case .restoreTier: 
+            case .restoreTier:
                 code = .invalidParameterValue_RestoreTier
-            case .reviewConfidence: 
+            case .reviewConfidence:
                 code = .invalidParameterValue_ReviewConfidence
-            case .reviewWallSwitch: 
+            case .reviewWallSwitch:
                 code = .invalidParameterValue_ReviewWallSwitch
-            case .rowCount: 
+            case .rowCount:
                 code = .invalidParameterValue_RowCount
-            case .sampleInterval: 
+            case .sampleInterval:
                 code = .invalidParameterValue_SampleInterval
-            case .sampleRate: 
+            case .sampleRate:
                 code = .invalidParameterValue_SampleRate
-            case .sampleType: 
+            case .sampleType:
                 code = .invalidParameterValue_SampleType
-            case .screenshotInterval: 
+            case .screenshotInterval:
                 code = .invalidParameterValue_ScreenshotInterval
-            case .sessionContextTooLong: 
+            case .sessionContextTooLong:
                 code = .invalidParameterValue_SessionContextTooLong
-            case .sessionId: 
+            case .sessionId:
                 code = .invalidParameterValue_SessionId
-            case .sessionIdTooLong: 
+            case .sessionIdTooLong:
                 code = .invalidParameterValue_SessionIdTooLong
-            case .sort: 
+            case .sort:
                 code = .invalidParameterValue_Sort
-            case .soundSystem: 
+            case .soundSystem:
                 code = .invalidParameterValue_SoundSystem
-            case .sourceDefinition: 
+            case .sourceDefinition:
                 code = .invalidParameterValue_SourceDefinition
-            case .sourceType: 
+            case .sourceType:
                 code = .invalidParameterValue_SourceType
-            case .sourceTypes: 
+            case .sourceTypes:
                 code = .invalidParameterValue_SourceTypes
-            case .startDate: 
+            case .startDate:
                 code = .invalidParameterValue_StartDate
-            case .startTime: 
+            case .startTime:
                 code = .invalidParameterValue_StartTime
-            case .startTimeOffset: 
+            case .startTimeOffset:
                 code = .invalidParameterValue_StartTimeOffset
-            case .status: 
+            case .status:
                 code = .invalidParameterValue_Status
-            case .storageClass: 
+            case .storageClass:
                 code = .invalidParameterValue_StorageClass
-            case .storageRegion: 
+            case .storageRegion:
                 code = .invalidParameterValue_StorageRegion
-            case .storageRegions: 
+            case .storageRegions:
                 code = .invalidParameterValue_StorageRegions
-            case .storageType: 
+            case .storageType:
                 code = .invalidParameterValue_StorageType
-            case .streamIdInvalid: 
+            case .streamIdInvalid:
                 code = .invalidParameterValue_StreamIdInvalid
-            case .streamIds: 
+            case .streamIds:
                 code = .invalidParameterValue_StreamIds
-            case .subAppId: 
+            case .subAppId:
                 code = .invalidParameterValue_SubAppId
-            case .subtitleFormat: 
+            case .subtitleFormat:
                 code = .invalidParameterValue_SubtitleFormat
-            case .svgTemplate: 
+            case .svgTemplate:
                 code = .invalidParameterValue_SvgTemplate
-            case .svgTemplateHeight: 
+            case .svgTemplateHeight:
                 code = .invalidParameterValue_SvgTemplateHeight
-            case .svgTemplateWidth: 
+            case .svgTemplateWidth:
                 code = .invalidParameterValue_SvgTemplateWidth
-            case .`switch`: 
+            case .`switch`:
                 code = .invalidParameterValue_Switch
-            case .tagConfigure: 
+            case .tagConfigure:
                 code = .invalidParameterValue_TagConfigure
-            case .tagTooLong: 
+            case .tagTooLong:
                 code = .invalidParameterValue_TagTooLong
-            case .tags: 
+            case .tags:
                 code = .invalidParameterValue_Tags
-            case .taskId: 
+            case .taskId:
                 code = .invalidParameterValue_TaskId
-            case .tehdType: 
+            case .tehdType:
                 code = .invalidParameterValue_TEHDType
-            case .text: 
+            case .text:
                 code = .invalidParameterValue_Text
-            case .textAlpha: 
+            case .textAlpha:
                 code = .invalidParameterValue_TextAlpha
-            case .textTemplate: 
+            case .textTemplate:
                 code = .invalidParameterValue_TextTemplate
-            case .thumbnails: 
+            case .thumbnails:
                 code = .invalidParameterValue_Thumbnails
-            case .timeType: 
+            case .timeType:
                 code = .invalidParameterValue_TimeType
-            case .type: 
+            case .type:
                 code = .invalidParameterValue_Type
-            case .types: 
+            case .types:
                 code = .invalidParameterValue_Types
-            case .uniqueIdentifier: 
+            case .uniqueIdentifier:
                 code = .invalidParameterValue_UniqueIdentifier
-            case .unsupportedRestoreTier: 
+            case .unsupportedRestoreTier:
                 code = .invalidParameterValue_UnsupportedRestoreTier
-            case .unsupportedStorageClass: 
+            case .unsupportedStorageClass:
                 code = .invalidParameterValue_UnsupportedStorageClass
-            case .unsupportedTransition: 
+            case .unsupportedTransition:
                 code = .invalidParameterValue_UnsupportedTransition
-            case .url: 
+            case .url:
                 code = .invalidParameterValue_Url
-            case .userDefineLibraryLabelSet: 
+            case .userDefineLibraryLabelSet:
                 code = .invalidParameterValue_UserDefineLibraryLabelSet
-            case .vcrf: 
+            case .vcrf:
                 code = .invalidParameterValue_Vcrf
-            case .videoBitrate: 
+            case .videoBitrate:
                 code = .invalidParameterValue_VideoBitrate
-            case .videoCodec: 
+            case .videoCodec:
                 code = .invalidParameterValue_VideoCodec
-            case .vids: 
+            case .vids:
                 code = .invalidParameterValue_Vids
-            case .vodSessionKey: 
+            case .vodSessionKey:
                 code = .invalidParameterValue_VodSessionKey
-            case .watermarks: 
+            case .watermarks:
                 code = .invalidParameterValue_Watermarks
-            case .width: 
+            case .width:
                 code = .invalidParameterValue_Width
-            case .xPos: 
+            case .xPos:
                 code = .invalidParameterValue_XPos
-            case .yPos: 
+            case .yPos:
                 code = .invalidParameterValue_YPos
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCVodError(code, context: self.context)

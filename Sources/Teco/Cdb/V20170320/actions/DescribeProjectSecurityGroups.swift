@@ -19,42 +19,42 @@ extension Cdb {
     public struct DescribeProjectSecurityGroupsRequest: TCRequestModel {
         /// 项目ID。
         public let projectId: Int64?
-        
-        public init (projectId: Int64? = nil) {
+
+        public init(projectId: Int64? = nil) {
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeProjectSecurityGroups返回参数结构体
     public struct DescribeProjectSecurityGroupsResponse: TCResponseModel {
         /// 安全组详情。
         public let groups: [SecurityGroup]
-        
+
         /// 安全组规则数量。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groups = "Groups"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询项目安全组信息
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
-    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectSecurityGroupsResponse > {
+    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
         self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询项目安全组信息
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
@@ -62,15 +62,15 @@ extension Cdb {
     public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
         try await self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询项目安全组信息
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
-    public func describeProjectSecurityGroups(projectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectSecurityGroupsResponse > {
+    public func describeProjectSecurityGroups(projectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
         self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询项目安全组信息
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。

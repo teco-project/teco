@@ -17,36 +17,36 @@
 extension Tcss {
     /// DescribeRiskSyscallNames请求参数结构体
     public struct DescribeRiskSyscallNamesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeRiskSyscallNames返回参数结构体
     public struct DescribeRiskSyscallNamesResponse: TCResponseModel {
         /// 事件总数量
         public let totalCount: UInt64
-        
+
         /// 系统调用名称列表
         public let syscallNames: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case syscallNames = "SyscallNames"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时高危系统调用系统名称列表
     ///
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
-    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallNamesResponse > {
+    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallNamesResponse> {
         self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时高危系统调用系统名称列表
     ///
     /// 查询运行时高危系统调用系统名称列表
@@ -54,15 +54,15 @@ extension Tcss {
     public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
         try await self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时高危系统调用系统名称列表
     ///
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
-    public func describeRiskSyscallNames(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallNamesResponse > {
+    public func describeRiskSyscallNames(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallNamesResponse> {
         self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时高危系统调用系统名称列表
     ///
     /// 查询运行时高危系统调用系统名称列表

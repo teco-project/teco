@@ -19,14 +19,14 @@ extension Teo {
     public struct DescribeZonesRequest: TCRequestModel {
         /// 分页查询偏移量。默认值：0。
         public let offset: Int64?
-        
+
         /// 分页查询限制数目。默认值：20，最大值：1000。
         public let limit: Int64?
-        
+
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否</li><li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为zone-name。
         public let filters: [AdvancedFilter]?
-        
+
         /// 排序字段，取值有：
         /// <li> type：接入类型；</li>
         /// <li> area：加速区域；</li>
@@ -35,20 +35,20 @@ extension Teo {
         /// <li> use-time：最近使用时间；</li>
         /// <li> active-status：生效状态。</li>不填写使用默认值create-time。
         public let order: String?
-        
+
         /// 排序方向，取值有：
         /// <li> asc：从小到大排序；</li>
         /// <li> desc：从大到小排序。</li>不填写使用默认值desc。
         public let direction: String?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.order = order
             self.direction = direction
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -57,33 +57,33 @@ extension Teo {
             case direction = "Direction"
         }
     }
-    
+
     /// DescribeZones返回参数结构体
     public struct DescribeZonesResponse: TCResponseModel {
         /// 符合条件的站点个数。
         public let totalCount: Int64
-        
+
         /// 站点详细信息列表。
         public let zones: [Zone]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case zones = "Zones"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页。
     @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页。
@@ -91,15 +91,15 @@ extension Teo {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页。
     @inlinable
-    public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+    public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.describeZones(DescribeZonesRequest(offset: offset, limit: limit, filters: filters, order: order, direction: direction), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户站点信息列表
     ///
     /// 用户查询用户站点信息列表，支持分页。

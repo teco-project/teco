@@ -19,53 +19,53 @@ extension Tsf {
     public struct ShrinkInstancesRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String
-        
+
         /// 下线机器实例ID列表
         public let instanceIdList: [String]
-        
-        public init (groupId: String, instanceIdList: [String]) {
+
+        public init(groupId: String, instanceIdList: [String]) {
             self.groupId = groupId
             self.instanceIdList = instanceIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case instanceIdList = "InstanceIdList"
         }
     }
-    
+
     /// ShrinkInstances返回参数结构体
     public struct ShrinkInstancesResponse: TCResponseModel {
         /// 任务ID
         public let result: TaskId
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 虚拟机部署组下线实例
     @inlinable
-    public func shrinkInstances(_ input: ShrinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShrinkInstancesResponse > {
+    public func shrinkInstances(_ input: ShrinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkInstancesResponse> {
         self.client.execute(action: "ShrinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 虚拟机部署组下线实例
     @inlinable
     public func shrinkInstances(_ input: ShrinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkInstancesResponse {
         try await self.client.execute(action: "ShrinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 虚拟机部署组下线实例
     @inlinable
-    public func shrinkInstances(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShrinkInstancesResponse > {
+    public func shrinkInstances(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkInstancesResponse> {
         self.shrinkInstances(ShrinkInstancesRequest(groupId: groupId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 虚拟机部署组下线实例
     @inlinable
     public func shrinkInstances(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkInstancesResponse {

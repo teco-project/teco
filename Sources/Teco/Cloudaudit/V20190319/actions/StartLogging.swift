@@ -19,48 +19,48 @@ extension Cloudaudit {
     public struct StartLoggingRequest: TCRequestModel {
         /// 跟踪集名称
         public let auditName: String
-        
-        public init (auditName: String) {
+
+        public init(auditName: String) {
             self.auditName = auditName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case auditName = "AuditName"
         }
     }
-    
+
     /// StartLogging返回参数结构体
     public struct StartLoggingResponse: TCResponseModel {
         /// 是否开启成功
         public let isSuccess: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启跟踪集
     @inlinable
-    public func startLogging(_ input: StartLoggingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartLoggingResponse > {
+    public func startLogging(_ input: StartLoggingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartLoggingResponse> {
         self.client.execute(action: "StartLogging", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启跟踪集
     @inlinable
     public func startLogging(_ input: StartLoggingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLoggingResponse {
         try await self.client.execute(action: "StartLogging", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启跟踪集
     @inlinable
-    public func startLogging(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartLoggingResponse > {
+    public func startLogging(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartLoggingResponse> {
         self.startLogging(StartLoggingRequest(auditName: auditName), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启跟踪集
     @inlinable
     public func startLogging(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLoggingResponse {

@@ -22,19 +22,19 @@ extension Cws {
     public struct CreateMonitorsRequest: TCRequestModel {
         /// 站点的url列表
         public let urls: [String]
-        
+
         /// 任务名称
         public let name: String
-        
+
         /// 扫描模式，normal-正常扫描；deep-深度扫描
         public let scannerType: String
-        
+
         /// 扫描周期，单位小时，每X小时执行一次
         public let crontab: UInt64
-        
+
         /// 扫描速率限制，每秒发送X个HTTP请求
         public let rateLimit: UInt64
-        
+
         /// 首次扫描开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -42,8 +42,8 @@ extension Cws {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var firstScanStartTime: Date
-        
-        public init (urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date) {
+
+        public init(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date) {
             self.urls = urls
             self.name = name
             self.scannerType = scannerType
@@ -51,7 +51,7 @@ extension Cws {
             self.rateLimit = rateLimit
             self.firstScanStartTime = firstScanStartTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case urls = "Urls"
             case name = "Name"
@@ -61,25 +61,25 @@ extension Cws {
             case firstScanStartTime = "FirstScanStartTime"
         }
     }
-    
+
     /// CreateMonitors返回参数结构体
     public struct CreateMonitorsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增监测任务
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable
-    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMonitorsResponse > {
+    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMonitorsResponse> {
         self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增监测任务
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
@@ -87,15 +87,15 @@ extension Cws {
     public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
         try await self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增监测任务
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable
-    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMonitorsResponse > {
+    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMonitorsResponse> {
         self.createMonitors(CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增监测任务
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。

@@ -19,24 +19,24 @@ extension Iotvideoindustry {
     public struct DescribeVideoListByChannelRequest: TCRequestModel {
         /// 设备唯一标识
         public let deviceId: String
-        
+
         /// 通道唯一标识
         public let channelId: String
-        
+
         /// 1: 云端录制 2: 本地录制
         public let type: Int64
-        
+
         /// 指定某天。取值【YYYY-MM-DD】
         /// 为空时默认查询最近一天的记录
         public let date: String?
-        
+
         /// 限制量，默认2000
         public let limit: Int64?
-        
+
         /// 偏移量，默认0
         public let offset: Int64?
-        
-        public init (deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.deviceId = deviceId
             self.channelId = channelId
             self.type = type
@@ -44,7 +44,7 @@ extension Iotvideoindustry {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case channelId = "ChannelId"
@@ -54,35 +54,35 @@ extension Iotvideoindustry {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeVideoListByChannel返回参数结构体
     public struct DescribeVideoListByChannelResponse: TCResponseModel {
         /// 录像详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoList: [RecordTaskItem]?
-        
+
         /// 录像总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case videoList = "VideoList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取通道录制文件列表
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     @inlinable
-    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoListByChannelResponse > {
+    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoListByChannelResponse> {
         self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取通道录制文件列表
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
@@ -90,15 +90,15 @@ extension Iotvideoindustry {
     public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListByChannelResponse {
         try await self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取通道录制文件列表
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     @inlinable
-    public func describeVideoListByChannel(deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoListByChannelResponse > {
+    public func describeVideoListByChannel(deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoListByChannelResponse> {
         self.describeVideoListByChannel(DescribeVideoListByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, date: date, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取通道录制文件列表
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表

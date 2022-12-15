@@ -19,49 +19,49 @@ extension Iecp {
     public struct DescribeEdgeNodeRemarkListRequest: TCRequestModel {
         /// 边缘单元ID
         public let edgeUnitId: UInt64
-        
-        public init (edgeUnitId: UInt64) {
+
+        public init(edgeUnitId: UInt64) {
             self.edgeUnitId = edgeUnitId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
         }
     }
-    
+
     /// DescribeEdgeNodeRemarkList返回参数结构体
     public struct DescribeEdgeNodeRemarkListResponse: TCResponseModel {
         /// 边缘单元内的备注列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remarks: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case remarks = "Remarks"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取节点备注信息列表
     @inlinable
-    public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodeRemarkListResponse > {
+    public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeRemarkListResponse> {
         self.client.execute(action: "DescribeEdgeNodeRemarkList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取节点备注信息列表
     @inlinable
     public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {
         try await self.client.execute(action: "DescribeEdgeNodeRemarkList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取节点备注信息列表
     @inlinable
-    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodeRemarkListResponse > {
+    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeRemarkListResponse> {
         self.describeEdgeNodeRemarkList(DescribeEdgeNodeRemarkListRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取节点备注信息列表
     @inlinable
     public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {

@@ -21,52 +21,52 @@ extension TCFaceidError {
             case unsupportEncryptField = "InvalidParameter.UnsupportEncryptField"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// RuleId不存在。
         public static var ruleId: InvalidParameter {
             InvalidParameter(.ruleId)
         }
-        
+
         /// 存在不加密的字段，请参考文档修改。
         public static var unsupportEncryptField: InvalidParameter {
             InvalidParameter(.unsupportEncryptField)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asFaceidError() -> TCFaceidError {
             let code: TCFaceidError.Code
             switch self.error {
-            case .ruleId: 
+            case .ruleId:
                 code = .invalidParameter_RuleId
-            case .unsupportEncryptField: 
+            case .unsupportEncryptField:
                 code = .invalidParameter_UnsupportEncryptField
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCFaceidError(code, context: self.context)

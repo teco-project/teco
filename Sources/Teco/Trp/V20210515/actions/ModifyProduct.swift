@@ -19,26 +19,26 @@ extension Trp {
     public struct ModifyProductRequest: TCRequestModel {
         /// 商品名称
         public let name: String
-        
+
         /// 商品ID
         public let productId: String
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 商品规格
         public let specification: String?
-        
+
         /// 商品图片
         public let logo: [String]?
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 预留字段
         public let ext: Ext?
-        
-        public init (name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil) {
+
+        public init(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil) {
             self.name = name
             self.productId = productId
             self.remark = remark
@@ -47,7 +47,7 @@ extension Trp {
             self.corpId = corpId
             self.ext = ext
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case productId = "ProductId"
@@ -58,40 +58,40 @@ extension Trp {
             case ext = "Ext"
         }
     }
-    
+
     /// ModifyProduct返回参数结构体
     public struct ModifyProductResponse: TCResponseModel {
         /// 商品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 编辑商品
     @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
         self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑商品
     @inlinable
     public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
         try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 编辑商品
     @inlinable
-    public func modifyProduct(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+    public func modifyProduct(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
         self.modifyProduct(ModifyProductRequest(name: name, productId: productId, remark: remark, specification: specification, logo: logo, corpId: corpId, ext: ext), logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑商品
     @inlinable
     public func modifyProduct(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {

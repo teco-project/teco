@@ -19,39 +19,39 @@ extension Es {
     public struct StartLogstashPipelinesRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 管道ID列表
         public let pipelineIds: [String]
-        
-        public init (instanceId: String, pipelineIds: [String]) {
+
+        public init(instanceId: String, pipelineIds: [String]) {
             self.instanceId = instanceId
             self.pipelineIds = pipelineIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case pipelineIds = "PipelineIds"
         }
     }
-    
+
     /// StartLogstashPipelines返回参数结构体
     public struct StartLogstashPipelinesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动Logstash管道
     ///
     /// 用于启动Logstash管道
     @inlinable
-    public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartLogstashPipelinesResponse > {
+    public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartLogstashPipelinesResponse> {
         self.client.execute(action: "StartLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动Logstash管道
     ///
     /// 用于启动Logstash管道
@@ -59,15 +59,15 @@ extension Es {
     public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLogstashPipelinesResponse {
         try await self.client.execute(action: "StartLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动Logstash管道
     ///
     /// 用于启动Logstash管道
     @inlinable
-    public func startLogstashPipelines(instanceId: String, pipelineIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartLogstashPipelinesResponse > {
+    public func startLogstashPipelines(instanceId: String, pipelineIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartLogstashPipelinesResponse> {
         self.startLogstashPipelines(StartLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动Logstash管道
     ///
     /// 用于启动Logstash管道

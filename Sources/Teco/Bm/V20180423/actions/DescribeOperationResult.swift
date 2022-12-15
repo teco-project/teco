@@ -19,16 +19,16 @@ extension Bm {
     public struct DescribeOperationResultRequest: TCRequestModel {
         /// 异步任务ID
         public let taskId: UInt64
-        
-        public init (taskId: UInt64) {
+
+        public init(taskId: UInt64) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeOperationResult返回参数结构体
     public struct DescribeOperationResultResponse: TCResponseModel {
         /// 任务的整体状态，取值如下：<br>
@@ -40,28 +40,28 @@ extension Bm {
         /// 6：部分未完成，部分失败<br>
         /// 7：部分未完成，部分失败，部分成功
         public let taskStatus: UInt64
-        
+
         /// 各实例对应任务的状态ID
         public let subtaskStatusSet: [SubtaskStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskStatus = "TaskStatus"
             case subtaskStatusSet = "SubtaskStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询异步任务状态
     ///
     /// 获取异步操作状态的完成状态
     @inlinable
-    public func describeOperationResult(_ input: DescribeOperationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOperationResultResponse > {
+    public func describeOperationResult(_ input: DescribeOperationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOperationResultResponse> {
         self.client.execute(action: "DescribeOperationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询异步任务状态
     ///
     /// 获取异步操作状态的完成状态
@@ -69,15 +69,15 @@ extension Bm {
     public func describeOperationResult(_ input: DescribeOperationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOperationResultResponse {
         try await self.client.execute(action: "DescribeOperationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询异步任务状态
     ///
     /// 获取异步操作状态的完成状态
     @inlinable
-    public func describeOperationResult(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOperationResultResponse > {
+    public func describeOperationResult(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOperationResultResponse> {
         self.describeOperationResult(DescribeOperationResultRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询异步任务状态
     ///
     /// 获取异步操作状态的完成状态

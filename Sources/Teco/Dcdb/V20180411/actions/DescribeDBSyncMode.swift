@@ -19,30 +19,30 @@ extension Dcdb {
     public struct DescribeDBSyncModeRequest: TCRequestModel {
         /// 待修改同步模式的实例ID。形如：dcdbt-ow728lmc。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeDBSyncMode返回参数结构体
     public struct DescribeDBSyncModeResponse: TCResponseModel {
         /// 同步模式：0 异步，1 强同步， 2 强同步可退化
         public let syncMode: Int64
-        
+
         /// 是否有修改流程在执行中：1 是， 0 否。
         public let isModifying: Int64
-        
+
         /// 当前复制方式，0 异步，1 同步
         public let currentSyncMode: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case syncMode = "SyncMode"
             case isModifying = "IsModifying"
@@ -50,15 +50,15 @@ extension Dcdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询同步模式
     ///
     /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。
     @inlinable
-    public func describeDBSyncMode(_ input: DescribeDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSyncModeResponse > {
+    public func describeDBSyncMode(_ input: DescribeDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSyncModeResponse> {
         self.client.execute(action: "DescribeDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询同步模式
     ///
     /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。
@@ -66,15 +66,15 @@ extension Dcdb {
     public func describeDBSyncMode(_ input: DescribeDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSyncModeResponse {
         try await self.client.execute(action: "DescribeDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询同步模式
     ///
     /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。
     @inlinable
-    public func describeDBSyncMode(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSyncModeResponse > {
+    public func describeDBSyncMode(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSyncModeResponse> {
         self.describeDBSyncMode(DescribeDBSyncModeRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询同步模式
     ///
     /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。

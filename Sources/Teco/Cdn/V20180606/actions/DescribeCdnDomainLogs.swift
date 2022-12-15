@@ -22,7 +22,7 @@ extension Cdn {
     public struct DescribeCdnDomainLogsRequest: TCRequestModel {
         /// 指定域名查询
         public let domain: String
-        
+
         /// 开始时间，如 2019-09-04 00:00:00
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间，如 2019-09-04 12:00:00
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,25 +38,25 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 分页查询偏移量，默认为 0
         public let offset: Int64?
-        
+
         /// 分页查询限制数目，默认为 100，最大为 1000
         public let limit: Int64?
-        
+
         /// 指定区域下载日志
         /// mainland：获取境内加速日志包下载链接
         /// overseas：获取境外加速日志包下载链接
         /// global：同时获取境内、境外加速日志包下载链接（分开打包）
         /// 不指定时默认为 mainland
         public let area: String?
-        
+
         /// 指定下载日志的类型，目前仅支持访问日志（access）。
         /// access：访问日志
         public let logType: String?
-        
-        public init (domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logType: String? = nil) {
+
+        public init(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logType: String? = nil) {
             self.domain = domain
             self.startTime = startTime
             self.endTime = endTime
@@ -65,7 +65,7 @@ extension Cdn {
             self.area = area
             self.logType = logType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case startTime = "StartTime"
@@ -76,34 +76,34 @@ extension Cdn {
             case logType = "LogType"
         }
     }
-    
+
     /// DescribeCdnDomainLogs返回参数结构体
     public struct DescribeCdnDomainLogsResponse: TCResponseModel {
         /// 日志包下载链接。
         /// 下载内容是gz后缀的压缩包，解压后是无扩展名的文本文件。
         public let domainLogs: [DomainLog]
-        
+
         /// 查询到的总条数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainLogs = "DomainLogs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 日志下载链接查询
     ///
     /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
     @inlinable
-    public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnDomainLogsResponse > {
+    public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnDomainLogsResponse> {
         self.client.execute(action: "DescribeCdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 日志下载链接查询
     ///
     /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
@@ -111,15 +111,15 @@ extension Cdn {
     public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDomainLogsResponse {
         try await self.client.execute(action: "DescribeCdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 日志下载链接查询
     ///
     /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
     @inlinable
-    public func describeCdnDomainLogs(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnDomainLogsResponse > {
+    public func describeCdnDomainLogs(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnDomainLogsResponse> {
         self.describeCdnDomainLogs(DescribeCdnDomainLogsRequest(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, logType: logType), logger: logger, on: eventLoop)
     }
-    
+
     /// 日志下载链接查询
     ///
     /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。

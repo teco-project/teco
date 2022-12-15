@@ -48,242 +48,242 @@ extension TCLighthouseError {
             case windowsNotSupportKeyPair = "UnsupportedOperation.WindowsNotSupportKeyPair"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 没有实例不支持关联到云联网。
         public static var attachCcnConditionUnsatisfied: UnsupportedOperation {
             UnsupportedOperation(.attachCcnConditionUnsatisfied)
         }
-        
+
         /// 关联云联网失败。请检查云联网状态并稍后再试。
         public static var attachCcnFailed: UnsupportedOperation {
             UnsupportedOperation(.attachCcnFailed)
         }
-        
+
         /// 镜像当前状态不支持该操作。
         public static var blueprintCurStateInvalid: UnsupportedOperation {
             UnsupportedOperation(.blueprintCurStateInvalid)
         }
-        
+
         /// 镜像被使用中，不支持该操作。
         public static var blueprintOccupied: UnsupportedOperation {
             UnsupportedOperation(.blueprintOccupied)
         }
-        
+
         /// 已经关联云联网，不支持再次关联。
         public static var ccnAlreadyAttached: UnsupportedOperation {
             UnsupportedOperation(.ccnAlreadyAttached)
         }
-        
+
         /// 云联网 尚未关联。不支持此操作。
         public static var ccnNotAttached: UnsupportedOperation {
             UnsupportedOperation(.ccnNotAttached)
         }
-        
+
         /// 查询云联网关联的实例状态失败。请稍后再试。
         public static var describeCcnAttachedInstancesFailed: UnsupportedOperation {
             UnsupportedOperation(.describeCcnAttachedInstancesFailed)
         }
-        
+
         /// 解关联云联网失败。请检查云联网状态并稍后再试。
         public static var detachCcnFailed: UnsupportedOperation {
             UnsupportedOperation(.detachCcnFailed)
         }
-        
+
         /// 磁盘忙。
         public static var diskBusy: UnsupportedOperation {
             UnsupportedOperation(.diskBusy)
         }
-        
+
         /// 不支持的操作，磁盘最近一次的操作尚未完成。
         public static var diskLatestOperationUnfinished: UnsupportedOperation {
             UnsupportedOperation(.diskLatestOperationUnfinished)
         }
-        
+
         /// 防火墙忙。
         public static var firewallBusy: UnsupportedOperation {
             UnsupportedOperation(.firewallBusy)
         }
-        
+
         /// 指定的防火墙版本号和当前版本不一致。
         public static var firewallVersionMismatch: UnsupportedOperation {
             UnsupportedOperation(.firewallVersionMismatch)
         }
-        
+
         /// 实例已到期，不支持该操作。
         public static var instanceExpired: UnsupportedOperation {
             UnsupportedOperation(.instanceExpired)
         }
-        
+
         /// LinuxUnix实例在创建时不支持设置密码。
         public static var instanceLinuxUnixCreatingNotSupportPassword: UnsupportedOperation {
             UnsupportedOperation(.instanceLinuxUnixCreatingNotSupportPassword)
         }
-        
+
         /// 磁盘状态不支持该操作。
         public static var invalidDiskState: UnsupportedOperation {
             UnsupportedOperation(.invalidDiskState)
         }
-        
+
         /// 不支持的操作，实例状态不合法。
         public static var invalidInstanceState: UnsupportedOperation {
             UnsupportedOperation(.invalidInstanceState)
         }
-        
+
         /// 不支持的操作，快照状态不合法。
         public static var invalidSnapshotState: UnsupportedOperation {
             UnsupportedOperation(.invalidSnapshotState)
         }
-        
+
         /// 不支持的操作，不支持将同一个密钥对重复绑定到同一个实例上。
         public static var keyPairBindDuplicate: UnsupportedOperation {
             UnsupportedOperation(.keyPairBindDuplicate)
         }
-        
+
         /// 不支持该操作。KeyPair 与镜像存在绑定关系。在进行该操作前请删除与密钥对有绑定关系的自定义镜像。
         public static var keyPairBindToBlueprints: UnsupportedOperation {
             UnsupportedOperation(.keyPairBindToBlueprints)
         }
-        
+
         /// 不支持的操作，不支持将未绑定到实例的密钥对从实例解绑。
         public static var keyPairNotBoundToInstance: UnsupportedOperation {
             UnsupportedOperation(.keyPairNotBoundToInstance)
         }
-        
+
         /// 不支持的操作，实例最近一次的操作尚未完成。
         public static var latestOperationUnfinished: UnsupportedOperation {
             UnsupportedOperation(.latestOperationUnfinished)
         }
-        
+
         /// 共享镜像不支持此操作。
         public static var notSupportSharedBlueprint: UnsupportedOperation {
             UnsupportedOperation(.notSupportSharedBlueprint)
         }
-        
+
         /// 计费资源中心删除资源失败。
         ///
         /// 请稍后再次重试。
         public static var postDestroyResourceFailed: UnsupportedOperation {
             UnsupportedOperation(.postDestroyResourceFailed)
         }
-        
+
         /// 重新申请关联云联网失败。请检查云联网状态并稍后再试。
         public static var resetAttachCcnFailed: UnsupportedOperation {
             UnsupportedOperation(.resetAttachCcnFailed)
         }
-        
+
         /// 资源不支持退换。
         public static var resourceNotReturnable: UnsupportedOperation {
             UnsupportedOperation(.resourceNotReturnable)
         }
-        
+
         /// 快照忙。
         public static var snapshotBusy: UnsupportedOperation {
             UnsupportedOperation(.snapshotBusy)
         }
-        
+
         public static var systemBusy: UnsupportedOperation {
             UnsupportedOperation(.systemBusy)
         }
-        
+
         /// Windows实例不支持绑定密钥对。
         public static var windowsNotAllowToAssociateKeyPair: UnsupportedOperation {
             UnsupportedOperation(.windowsNotAllowToAssociateKeyPair)
         }
-        
+
         /// 请不要对windows类型实例进行密钥对功能操作，或者将实例更换为Linux类型实例。
         public static var windowsNotSupportKeyPair: UnsupportedOperation {
             UnsupportedOperation(.windowsNotSupportKeyPair)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
-            case .attachCcnConditionUnsatisfied: 
+            case .attachCcnConditionUnsatisfied:
                 code = .unsupportedOperation_AttachCcnConditionUnsatisfied
-            case .attachCcnFailed: 
+            case .attachCcnFailed:
                 code = .unsupportedOperation_AttachCcnFailed
-            case .blueprintCurStateInvalid: 
+            case .blueprintCurStateInvalid:
                 code = .unsupportedOperation_BlueprintCurStateInvalid
-            case .blueprintOccupied: 
+            case .blueprintOccupied:
                 code = .unsupportedOperation_BlueprintOccupied
-            case .ccnAlreadyAttached: 
+            case .ccnAlreadyAttached:
                 code = .unsupportedOperation_CcnAlreadyAttached
-            case .ccnNotAttached: 
+            case .ccnNotAttached:
                 code = .unsupportedOperation_CcnNotAttached
-            case .describeCcnAttachedInstancesFailed: 
+            case .describeCcnAttachedInstancesFailed:
                 code = .unsupportedOperation_DescribeCcnAttachedInstancesFailed
-            case .detachCcnFailed: 
+            case .detachCcnFailed:
                 code = .unsupportedOperation_DetachCcnFailed
-            case .diskBusy: 
+            case .diskBusy:
                 code = .unsupportedOperation_DiskBusy
-            case .diskLatestOperationUnfinished: 
+            case .diskLatestOperationUnfinished:
                 code = .unsupportedOperation_DiskLatestOperationUnfinished
-            case .firewallBusy: 
+            case .firewallBusy:
                 code = .unsupportedOperation_FirewallBusy
-            case .firewallVersionMismatch: 
+            case .firewallVersionMismatch:
                 code = .unsupportedOperation_FirewallVersionMismatch
-            case .instanceExpired: 
+            case .instanceExpired:
                 code = .unsupportedOperation_InstanceExpired
-            case .instanceLinuxUnixCreatingNotSupportPassword: 
+            case .instanceLinuxUnixCreatingNotSupportPassword:
                 code = .unsupportedOperation_InstanceLinuxUnixCreatingNotSupportPassword
-            case .invalidDiskState: 
+            case .invalidDiskState:
                 code = .unsupportedOperation_InvalidDiskState
-            case .invalidInstanceState: 
+            case .invalidInstanceState:
                 code = .unsupportedOperation_InvalidInstanceState
-            case .invalidSnapshotState: 
+            case .invalidSnapshotState:
                 code = .unsupportedOperation_InvalidSnapshotState
-            case .keyPairBindDuplicate: 
+            case .keyPairBindDuplicate:
                 code = .unsupportedOperation_KeyPairBindDuplicate
-            case .keyPairBindToBlueprints: 
+            case .keyPairBindToBlueprints:
                 code = .unsupportedOperation_KeyPairBindToBlueprints
-            case .keyPairNotBoundToInstance: 
+            case .keyPairNotBoundToInstance:
                 code = .unsupportedOperation_KeyPairNotBoundToInstance
-            case .latestOperationUnfinished: 
+            case .latestOperationUnfinished:
                 code = .unsupportedOperation_LatestOperationUnfinished
-            case .notSupportSharedBlueprint: 
+            case .notSupportSharedBlueprint:
                 code = .unsupportedOperation_NotSupportSharedBlueprint
-            case .postDestroyResourceFailed: 
+            case .postDestroyResourceFailed:
                 code = .unsupportedOperation_PostDestroyResourceFailed
-            case .resetAttachCcnFailed: 
+            case .resetAttachCcnFailed:
                 code = .unsupportedOperation_ResetAttachCcnFailed
-            case .resourceNotReturnable: 
+            case .resourceNotReturnable:
                 code = .unsupportedOperation_ResourceNotReturnable
-            case .snapshotBusy: 
+            case .snapshotBusy:
                 code = .unsupportedOperation_SnapshotBusy
-            case .systemBusy: 
+            case .systemBusy:
                 code = .unsupportedOperation_SystemBusy
-            case .windowsNotAllowToAssociateKeyPair: 
+            case .windowsNotAllowToAssociateKeyPair:
                 code = .unsupportedOperation_WindowsNotAllowToAssociateKeyPair
-            case .windowsNotSupportKeyPair: 
+            case .windowsNotSupportKeyPair:
                 code = .unsupportedOperation_WindowsNotSupportKeyPair
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCLighthouseError(code, context: self.context)

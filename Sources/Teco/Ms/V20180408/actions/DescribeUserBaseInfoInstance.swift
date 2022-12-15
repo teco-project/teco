@@ -17,24 +17,24 @@
 extension Ms {
     /// DescribeUserBaseInfoInstance请求参数结构体
     public struct DescribeUserBaseInfoInstanceRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeUserBaseInfoInstance返回参数结构体
     public struct DescribeUserBaseInfoInstanceResponse: TCResponseModel {
         /// 用户uin信息
         public let userUin: UInt64
-        
+
         /// 用户APPID信息
         public let userAppid: UInt64
-        
+
         /// 系统时间戳
         public let timeStamp: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userUin = "UserUin"
             case userAppid = "UserAppid"
@@ -42,25 +42,25 @@ extension Ms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户基础信息
     @inlinable
-    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserBaseInfoInstanceResponse > {
+    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserBaseInfoInstanceResponse> {
         self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户基础信息
     @inlinable
     public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
         try await self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户基础信息
     @inlinable
-    public func describeUserBaseInfoInstance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserBaseInfoInstanceResponse > {
+    public func describeUserBaseInfoInstance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserBaseInfoInstanceResponse> {
         self.describeUserBaseInfoInstance(DescribeUserBaseInfoInstanceRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户基础信息
     @inlinable
     public func describeUserBaseInfoInstance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {

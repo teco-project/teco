@@ -19,16 +19,16 @@ extension Iecp {
     public struct DescribeEdgeUnitMonitorStatusRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
-        public init (edgeUnitId: UInt64) {
+
+        public init(edgeUnitId: UInt64) {
             self.edgeUnitId = edgeUnitId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
         }
     }
-    
+
     /// DescribeEdgeUnitMonitorStatus返回参数结构体
     public struct DescribeEdgeUnitMonitorStatusResponse: TCResponseModel {
         /// 监控状态描述：
@@ -38,38 +38,38 @@ extension Iecp {
         /// "abnormal" 单元监控异常
         /// "none" 单元监控不可用
         public let monitorStatus: String
-        
+
         /// 监控是否就绪
         public let isAvailable: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case monitorStatus = "MonitorStatus"
             case isAvailable = "IsAvailable"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询边缘集群监控状态
     @inlinable
-    public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitMonitorStatusResponse > {
+    public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitMonitorStatusResponse> {
         self.client.execute(action: "DescribeEdgeUnitMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘集群监控状态
     @inlinable
     public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitMonitorStatusResponse {
         try await self.client.execute(action: "DescribeEdgeUnitMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询边缘集群监控状态
     @inlinable
-    public func describeEdgeUnitMonitorStatus(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitMonitorStatusResponse > {
+    public func describeEdgeUnitMonitorStatus(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitMonitorStatusResponse> {
         self.describeEdgeUnitMonitorStatus(DescribeEdgeUnitMonitorStatusRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘集群监控状态
     @inlinable
     public func describeEdgeUnitMonitorStatus(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitMonitorStatusResponse {

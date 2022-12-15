@@ -19,13 +19,13 @@ extension Lighthouse {
     public struct DescribeKeyPairsRequest: TCRequestModel {
         /// 密钥对 ID 列表。
         public let keyIds: [String]?
-        
+
         /// 偏移量，默认为 0。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
-        
+
         /// 过滤器列表。
         /// <li>key-id</li>按照【密钥对ID】进行过滤。
         /// 类型：String
@@ -35,14 +35,14 @@ extension Lighthouse {
         /// 必选：否
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 KeyIds 和 Filters。
         public let filters: [Filter]?
-        
-        public init (keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
+
+        public init(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.keyIds = keyIds
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
             case offset = "Offset"
@@ -50,33 +50,33 @@ extension Lighthouse {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeKeyPairs返回参数结构体
     public struct DescribeKeyPairsResponse: TCResponseModel {
         /// 符合条件的密钥对数量。
         public let totalCount: Int64
-        
+
         /// 密钥对详细信息列表。
         public let keyPairSet: [KeyPair]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case keyPairSet = "KeyPairSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
         self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
@@ -84,15 +84,15 @@ extension Lighthouse {
     public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
         try await self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
-    public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
+    public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
         self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。

@@ -19,23 +19,23 @@ extension Cr {
     public struct QueryInstantDataRequest: TCRequestModel {
         /// 模块名，本接口取值：Data
         public let module: String
-        
+
         /// 操作名，本接口取值：Query
         public let operation: String
-        
+
         /// 产品ID
         public let productId: String?
-        
+
         /// 实例ID，不传默认为系统分配的初始实例
         public let instanceId: String?
-        
+
         /// 查询类型：callRecord 通话记录
         public let queryModel: String?
-        
+
         /// 查询参数
         public let data: String?
-        
-        public init (module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil) {
+
+        public init(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil) {
             self.module = module
             self.operation = operation
             self.productId = productId
@@ -43,7 +43,7 @@ extension Cr {
             self.queryModel = queryModel
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -53,45 +53,45 @@ extension Cr {
             case data = "Data"
         }
     }
-    
+
     /// QueryInstantData返回参数结构体
     public struct QueryInstantDataResponse: TCResponseModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 返回内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 实时数据查询
     @inlinable
-    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInstantDataResponse > {
+    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInstantDataResponse> {
         self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 实时数据查询
     @inlinable
     public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
         try await self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 实时数据查询
     @inlinable
-    public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInstantDataResponse > {
+    public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInstantDataResponse> {
         self.queryInstantData(QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data), logger: logger, on: eventLoop)
     }
-    
+
     /// 实时数据查询
     @inlinable
     public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {

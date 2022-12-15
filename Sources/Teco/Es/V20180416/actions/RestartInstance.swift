@@ -19,63 +19,63 @@ extension Es {
     public struct RestartInstanceRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 是否强制重启<li>true：强制重启</li><li>false：不强制重启</li>默认false
         public let forceRestart: Bool?
-        
+
         /// 重启模式：0 滚动重启； 1 全量重启
         public let restartMode: Int64?
-        
-        public init (instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil) {
+
+        public init(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil) {
             self.instanceId = instanceId
             self.forceRestart = forceRestart
             self.restartMode = restartMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case forceRestart = "ForceRestart"
             case restartMode = "RestartMode"
         }
     }
-    
+
     /// RestartInstance返回参数结构体
     public struct RestartInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启ES集群实例
     ///
-    /// 重启ES集群实例(用于系统版本更新等操作) 
+    /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
-    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInstanceResponse > {
+    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
         self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启ES集群实例
     ///
-    /// 重启ES集群实例(用于系统版本更新等操作) 
+    /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
     public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
         try await self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启ES集群实例
     ///
-    /// 重启ES集群实例(用于系统版本更新等操作) 
+    /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
-    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInstanceResponse > {
+    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
         self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启ES集群实例
     ///
-    /// 重启ES集群实例(用于系统版本更新等操作) 
+    /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
     public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
         try await self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), logger: logger, on: eventLoop)

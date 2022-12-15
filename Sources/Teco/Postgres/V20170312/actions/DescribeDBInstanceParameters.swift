@@ -19,57 +19,57 @@ extension Postgres {
     public struct DescribeDBInstanceParametersRequest: TCRequestModel {
         /// 实例ID
         public let dbInstanceId: String
-        
+
         /// 查询指定参数详情。ParamName为空或不传，默认返回全部参数列表
         public let paramName: String?
-        
-        public init (dbInstanceId: String, paramName: String? = nil) {
+
+        public init(dbInstanceId: String, paramName: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.paramName = paramName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case paramName = "ParamName"
         }
     }
-    
+
     /// DescribeDBInstanceParameters返回参数结构体
     public struct DescribeDBInstanceParametersResponse: TCResponseModel {
         /// 参数列表总数
         public let totalCount: Int64
-        
+
         /// 参数列表返回详情
         public let detail: [ParamInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case detail = "Detail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例可修改参数列表
     @inlinable
-    public func describeDBInstanceParameters(_ input: DescribeDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceParametersResponse > {
+    public func describeDBInstanceParameters(_ input: DescribeDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceParametersResponse> {
         self.client.execute(action: "DescribeDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例可修改参数列表
     @inlinable
     public func describeDBInstanceParameters(_ input: DescribeDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceParametersResponse {
         try await self.client.execute(action: "DescribeDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例可修改参数列表
     @inlinable
-    public func describeDBInstanceParameters(dbInstanceId: String, paramName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceParametersResponse > {
+    public func describeDBInstanceParameters(dbInstanceId: String, paramName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceParametersResponse> {
         self.describeDBInstanceParameters(DescribeDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramName: paramName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例可修改参数列表
     @inlinable
     public func describeDBInstanceParameters(dbInstanceId: String, paramName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceParametersResponse {

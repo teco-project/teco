@@ -20,45 +20,45 @@ extension TCMonitorError {
             case notExistTask = "ResourceNotFound.NotExistTask"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 任务不存在。
         public static var notExistTask: ResourceNotFound {
             ResourceNotFound(.notExistTask)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asMonitorError() -> TCMonitorError {
             let code: TCMonitorError.Code
             switch self.error {
-            case .notExistTask: 
+            case .notExistTask:
                 code = .resourceNotFound_NotExistTask
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCMonitorError(code, context: self.context)

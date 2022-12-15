@@ -19,62 +19,62 @@ extension Tdmq {
     public struct DescribeBindVpcsRequest: TCRequestModel {
         /// 起始下标，不填默认为0。
         public let offset: UInt64?
-        
+
         /// 返回数量，不填则默认为10，最大值为20。
         public let limit: UInt64?
-        
+
         /// Pulsar 集群的ID
         public let clusterId: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DescribeBindVpcs返回参数结构体
     public struct DescribeBindVpcsResponse: TCResponseModel {
         /// 记录数。
         public let totalCount: UInt64
-        
+
         /// Vpc集合。
         public let vpcSets: [VpcBindRecord]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case vpcSets = "VpcSets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取租户VPC绑定关系
     @inlinable
-    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindVpcsResponse > {
+    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindVpcsResponse> {
         self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取租户VPC绑定关系
     @inlinable
     public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
         try await self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取租户VPC绑定关系
     @inlinable
-    public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindVpcsResponse > {
+    public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindVpcsResponse> {
         self.describeBindVpcs(DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取租户VPC绑定关系
     @inlinable
     public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {

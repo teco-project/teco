@@ -19,23 +19,23 @@ extension Tdid {
     public struct CreateTDidByPublicKeyRequest: TCRequestModel {
         /// 网络ID
         public let clusterId: String
-        
+
         /// 群组ID
         public let groupId: UInt64
-        
+
         /// 身份公钥
         public let publicKey: String
-        
+
         /// 加密公钥
         public let encryptPubKey: String?
-        
-        public init (clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil) {
+
+        public init(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil) {
             self.clusterId = clusterId
             self.groupId = groupId
             self.publicKey = publicKey
             self.encryptPubKey = encryptPubKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case groupId = "GroupId"
@@ -43,29 +43,29 @@ extension Tdid {
             case encryptPubKey = "EncryptPubKey"
         }
     }
-    
+
     /// CreateTDidByPublicKey返回参数结构体
     public struct CreateTDidByPublicKeyResponse: TCResponseModel {
         /// did具体信息
         public let did: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建DID根据公钥生成Tdid
     ///
     ///  新建DID根据公钥生成Tdid
     @inlinable
-    public func createTDidByPublicKey(_ input: CreateTDidByPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidByPublicKeyResponse > {
+    public func createTDidByPublicKey(_ input: CreateTDidByPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPublicKeyResponse> {
         self.client.execute(action: "CreateTDidByPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建DID根据公钥生成Tdid
     ///
     ///  新建DID根据公钥生成Tdid
@@ -73,15 +73,15 @@ extension Tdid {
     public func createTDidByPublicKey(_ input: CreateTDidByPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPublicKeyResponse {
         try await self.client.execute(action: "CreateTDidByPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建DID根据公钥生成Tdid
     ///
     ///  新建DID根据公钥生成Tdid
     @inlinable
-    public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidByPublicKeyResponse > {
+    public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPublicKeyResponse> {
         self.createTDidByPublicKey(CreateTDidByPublicKeyRequest(clusterId: clusterId, groupId: groupId, publicKey: publicKey, encryptPubKey: encryptPubKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建DID根据公钥生成Tdid
     ///
     ///  新建DID根据公钥生成Tdid

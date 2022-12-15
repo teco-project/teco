@@ -19,23 +19,23 @@ extension Trtc {
     public struct ModifyPictureRequest: TCRequestModel {
         /// 图片id
         public let pictureId: UInt64
-        
+
         /// 应用id
         public let sdkAppId: UInt64
-        
+
         /// 图片长度
         public let height: UInt64?
-        
+
         /// 图片宽度
         public let width: UInt64?
-        
+
         /// 显示位置x轴方向
         public let xPosition: UInt64?
-        
+
         /// 显示位置y轴方向
         public let yPosition: UInt64?
-        
-        public init (pictureId: UInt64, sdkAppId: UInt64, height: UInt64? = nil, width: UInt64? = nil, xPosition: UInt64? = nil, yPosition: UInt64? = nil) {
+
+        public init(pictureId: UInt64, sdkAppId: UInt64, height: UInt64? = nil, width: UInt64? = nil, xPosition: UInt64? = nil, yPosition: UInt64? = nil) {
             self.pictureId = pictureId
             self.sdkAppId = sdkAppId
             self.height = height
@@ -43,7 +43,7 @@ extension Trtc {
             self.xPosition = xPosition
             self.yPosition = yPosition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pictureId = "PictureId"
             case sdkAppId = "SdkAppId"
@@ -53,25 +53,25 @@ extension Trtc {
             case yPosition = "YPosition"
         }
     }
-    
+
     /// ModifyPicture返回参数结构体
     public struct ModifyPictureResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
-    public func modifyPicture(_ input: ModifyPictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPictureResponse > {
+    public func modifyPicture(_ input: ModifyPictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPictureResponse> {
         self.client.execute(action: "ModifyPicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
@@ -79,15 +79,15 @@ extension Trtc {
     public func modifyPicture(_ input: ModifyPictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPictureResponse {
         try await self.client.execute(action: "ModifyPicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
-    public func modifyPicture(pictureId: UInt64, sdkAppId: UInt64, height: UInt64? = nil, width: UInt64? = nil, xPosition: UInt64? = nil, yPosition: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPictureResponse > {
+    public func modifyPicture(pictureId: UInt64, sdkAppId: UInt64, height: UInt64? = nil, width: UInt64? = nil, xPosition: UInt64? = nil, yPosition: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPictureResponse> {
         self.modifyPicture(ModifyPictureRequest(pictureId: pictureId, sdkAppId: sdkAppId, height: height, width: width, xPosition: xPosition, yPosition: yPosition), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。

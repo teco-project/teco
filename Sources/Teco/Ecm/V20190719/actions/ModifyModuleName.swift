@@ -19,49 +19,49 @@ extension Ecm {
     public struct ModifyModuleNameRequest: TCRequestModel {
         /// 模块ID。
         public let moduleId: String
-        
+
         /// 模块名称。
         public let moduleName: String
-        
-        public init (moduleId: String, moduleName: String) {
+
+        public init(moduleId: String, moduleName: String) {
             self.moduleId = moduleId
             self.moduleName = moduleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case moduleId = "ModuleId"
             case moduleName = "ModuleName"
         }
     }
-    
+
     /// ModifyModuleName返回参数结构体
     public struct ModifyModuleNameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改模块名称
     @inlinable
-    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleNameResponse > {
+    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNameResponse> {
         self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模块名称
     @inlinable
     public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
         try await self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改模块名称
     @inlinable
-    public func modifyModuleName(moduleId: String, moduleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleNameResponse > {
+    public func modifyModuleName(moduleId: String, moduleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNameResponse> {
         self.modifyModuleName(ModifyModuleNameRequest(moduleId: moduleId, moduleName: moduleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改模块名称
     @inlinable
     public func modifyModuleName(moduleId: String, moduleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {

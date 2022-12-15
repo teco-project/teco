@@ -19,35 +19,35 @@ extension Ckafka {
     public struct CreateDatahubTaskRequest: TCRequestModel {
         /// 任务名称
         public let taskName: String
-        
+
         /// 任务类型，SOURCE数据接入，SINK数据流出
         public let taskType: String
-        
+
         /// 数据源
         public let sourceResource: DatahubResource?
-        
+
         /// 数据目标
         public let targetResource: DatahubResource?
-        
+
         /// 数据处理规则
         public let transformParam: TransformParam?
-        
+
         /// 实例连接参数【已废弃】
         public let privateLinkParam: PrivateLinkParam?
-        
+
         /// 选择所要绑定的SchemaId
         public let schemaId: String?
-        
+
         /// 数据处理规则
         public let transformsParam: TransformsParam?
-        
+
         /// 任务ID
         public let taskId: String?
-        
+
         /// 标签列表
         public let tags: [Tag]?
-        
-        public init (taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil) {
+
+        public init(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil) {
             self.taskName = taskName
             self.taskType = taskType
             self.sourceResource = sourceResource
@@ -59,7 +59,7 @@ extension Ckafka {
             self.taskId = taskId
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case taskType = "TaskType"
@@ -73,39 +73,39 @@ extension Ckafka {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateDatahubTask返回参数结构体
     public struct CreateDatahubTaskResponse: TCResponseModel {
         /// 任务id
         public let result: CreateDatahubTaskRes
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建DIP转储任务
     @inlinable
-    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatahubTaskResponse > {
+    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatahubTaskResponse> {
         self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建DIP转储任务
     @inlinable
     public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
         try await self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建DIP转储任务
     @inlinable
-    public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatahubTaskResponse > {
+    public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatahubTaskResponse> {
         self.createDatahubTask(CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建DIP转储任务
     @inlinable
     public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {

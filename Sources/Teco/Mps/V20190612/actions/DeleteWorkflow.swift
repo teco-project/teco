@@ -19,34 +19,34 @@ extension Mps {
     public struct DeleteWorkflowRequest: TCRequestModel {
         /// 工作流 ID。
         public let workflowId: Int64
-        
-        public init (workflowId: Int64) {
+
+        public init(workflowId: Int64) {
             self.workflowId = workflowId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workflowId = "WorkflowId"
         }
     }
-    
+
     /// DeleteWorkflow返回参数结构体
     public struct DeleteWorkflowResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除工作流
     ///
     /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
     @inlinable
-    public func deleteWorkflow(_ input: DeleteWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkflowResponse > {
+    public func deleteWorkflow(_ input: DeleteWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowResponse> {
         self.client.execute(action: "DeleteWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除工作流
     ///
     /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
@@ -54,15 +54,15 @@ extension Mps {
     public func deleteWorkflow(_ input: DeleteWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowResponse {
         try await self.client.execute(action: "DeleteWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除工作流
     ///
     /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
     @inlinable
-    public func deleteWorkflow(workflowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkflowResponse > {
+    public func deleteWorkflow(workflowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowResponse> {
         self.deleteWorkflow(DeleteWorkflowRequest(workflowId: workflowId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除工作流
     ///
     /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。

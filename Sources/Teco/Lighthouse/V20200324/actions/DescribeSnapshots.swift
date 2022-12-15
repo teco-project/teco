@@ -20,7 +20,7 @@ extension Lighthouse {
         /// 要查询快照的 ID 列表。
         /// 参数不支持同时指定 SnapshotIds 和 Filters。
         public let snapshotIds: [String]?
-        
+
         /// 过滤器列表。
         /// <li>snapshot-id</li>按照【快照 ID】进行过滤。
         /// 类型：String
@@ -36,20 +36,20 @@ extension Lighthouse {
         /// 必选：否
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 SnapshotIds 和 Filters。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为 0。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
-        
-        public init (snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.snapshotIds = snapshotIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotIds = "SnapshotIds"
             case filters = "Filters"
@@ -57,33 +57,33 @@ extension Lighthouse {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeSnapshots返回参数结构体
     public struct DescribeSnapshotsResponse: TCResponseModel {
         /// 快照的数量。
         public let totalCount: Int64
-        
+
         /// 快照的详情列表。
         public let snapshotSet: [Snapshot]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case snapshotSet = "SnapshotSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看快照列表
     ///
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
     @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
         self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看快照列表
     ///
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
@@ -91,15 +91,15 @@ extension Lighthouse {
     public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
         try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看快照列表
     ///
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
     @inlinable
-    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
         self.describeSnapshots(DescribeSnapshotsRequest(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看快照列表
     ///
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。

@@ -19,27 +19,27 @@ extension Antiddos {
     public struct DescribeOverviewDDoSEventListRequest: TCRequestModel {
         /// 起始时间
         public let startTime: String
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// 可选按攻击状态过滤，start：攻击中；end：攻击结束
         public let attackStatus: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 记录条数
         public let limit: UInt64?
-        
-        public init (startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.attackStatus = attackStatus
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -48,43 +48,43 @@ extension Antiddos {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeOverviewDDoSEventList返回参数结构体
     public struct DescribeOverviewDDoSEventListResponse: TCResponseModel {
         /// 记录总数
         public let total: UInt64
-        
+
         /// 事件列表
         public let eventList: [OverviewDDoSEvent]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case eventList = "EventList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取防护概览的ddos攻击事件
     @inlinable
-    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSEventListResponse > {
+    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSEventListResponse> {
         self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取防护概览的ddos攻击事件
     @inlinable
     public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
         try await self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取防护概览的ddos攻击事件
     @inlinable
-    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSEventListResponse > {
+    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSEventListResponse> {
         self.describeOverviewDDoSEventList(DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取防护概览的ddos攻击事件
     @inlinable
     public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {

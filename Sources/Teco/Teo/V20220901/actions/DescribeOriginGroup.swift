@@ -19,63 +19,63 @@ extension Teo {
     public struct DescribeOriginGroupRequest: TCRequestModel {
         /// 分页查询偏移量，默认为0。
         public let offset: UInt64
-        
+
         /// 分页查询限制数目，默认为10，取值：1-1000。
         public let limit: UInt64
-        
+
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-20hzkd4rdmy0<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<li>origin-group-id<br>   按照【<strong>源站组ID</strong>】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<li>origin-group-name<br>   按照【<strong>源站组名称</strong>】进行过滤<br>   类型：String<br>   必选：否<br>   模糊查询：支持。使用模糊查询时，仅支持填写一个源站组名称
         public let filters: [AdvancedFilter]?
-        
-        public init (offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeOriginGroup返回参数结构体
     public struct DescribeOriginGroupResponse: TCResponseModel {
         /// 记录总数。
         public let totalCount: UInt64
-        
+
         /// 源站组信息。
         public let originGroups: [OriginGroup]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case originGroups = "OriginGroups"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取源站组列表
     @inlinable
-    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupResponse > {
+    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
         self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取源站组列表
     @inlinable
     public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
         try await self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取源站组列表
     @inlinable
-    public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupResponse > {
+    public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
         self.describeOriginGroup(DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取源站组列表
     @inlinable
     public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {

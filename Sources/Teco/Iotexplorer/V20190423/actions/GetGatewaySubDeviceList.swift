@@ -19,23 +19,23 @@ extension Iotexplorer {
     public struct GetGatewaySubDeviceListRequest: TCRequestModel {
         /// 网关产品ID
         public let gatewayProductId: String
-        
+
         /// 网关设备名称
         public let gatewayDeviceName: String
-        
+
         /// 分页偏移
         public let offset: UInt64
-        
+
         /// 分页的大小
         public let limit: UInt64
-        
-        public init (gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64) {
+
+        public init(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64) {
             self.gatewayProductId = gatewayProductId
             self.gatewayDeviceName = gatewayDeviceName
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayProductId = "GatewayProductId"
             case gatewayDeviceName = "GatewayDeviceName"
@@ -43,45 +43,45 @@ extension Iotexplorer {
             case limit = "Limit"
         }
     }
-    
+
     /// GetGatewaySubDeviceList返回参数结构体
     public struct GetGatewaySubDeviceListResponse: TCResponseModel {
         /// 设备的总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 设备列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceList: FamilySubDevice?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case deviceList = "DeviceList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取指定网关设备的子设备列表
     @inlinable
-    public func getGatewaySubDeviceList(_ input: GetGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGatewaySubDeviceListResponse > {
+    public func getGatewaySubDeviceList(_ input: GetGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGatewaySubDeviceListResponse> {
         self.client.execute(action: "GetGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定网关设备的子设备列表
     @inlinable
     public func getGatewaySubDeviceList(_ input: GetGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGatewaySubDeviceListResponse {
         try await self.client.execute(action: "GetGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取指定网关设备的子设备列表
     @inlinable
-    public func getGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGatewaySubDeviceListResponse > {
+    public func getGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGatewaySubDeviceListResponse> {
         self.getGatewaySubDeviceList(GetGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定网关设备的子设备列表
     @inlinable
     public func getGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGatewaySubDeviceListResponse {

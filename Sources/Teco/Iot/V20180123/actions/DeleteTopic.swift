@@ -19,49 +19,49 @@ extension Iot {
     public struct DeleteTopicRequest: TCRequestModel {
         /// TopicId
         public let topicId: String
-        
+
         /// 产品Id
         public let productId: String
-        
-        public init (topicId: String, productId: String) {
+
+        public init(topicId: String, productId: String) {
             self.topicId = topicId
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case productId = "ProductId"
         }
     }
-    
+
     /// DeleteTopic返回参数结构体
     public struct DeleteTopicResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Topic
     @inlinable
-    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicResponse > {
+    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicResponse> {
         self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Topic
     @inlinable
     public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
         try await self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Topic
     @inlinable
-    public func deleteTopic(topicId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicResponse > {
+    public func deleteTopic(topicId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicResponse> {
         self.deleteTopic(DeleteTopicRequest(topicId: topicId, productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Topic
     @inlinable
     public func deleteTopic(topicId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {

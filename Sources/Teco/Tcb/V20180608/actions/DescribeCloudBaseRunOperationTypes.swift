@@ -19,49 +19,49 @@ extension Tcb {
     public struct DescribeCloudBaseRunOperationTypesRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// 服务名称，精确匹配
         public let serverName: String?
-        
-        public init (envId: String, serverName: String? = nil) {
+
+        public init(envId: String, serverName: String? = nil) {
             self.envId = envId
             self.serverName = serverName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case serverName = "ServerName"
         }
     }
-    
+
     /// DescribeCloudBaseRunOperationTypes返回参数结构体
     public struct DescribeCloudBaseRunOperationTypesResponse: TCResponseModel {
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: [String]?
-        
+
         /// 服务名列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverName: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case action = "Action"
             case serverName = "ServerName"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询操作类型接口
     ///
     /// 查询服务、版本和操作类型
     @inlinable
-    public func describeCloudBaseRunOperationTypes(_ input: DescribeCloudBaseRunOperationTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunOperationTypesResponse > {
+    public func describeCloudBaseRunOperationTypes(_ input: DescribeCloudBaseRunOperationTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunOperationTypesResponse> {
         self.client.execute(action: "DescribeCloudBaseRunOperationTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询操作类型接口
     ///
     /// 查询服务、版本和操作类型
@@ -69,15 +69,15 @@ extension Tcb {
     public func describeCloudBaseRunOperationTypes(_ input: DescribeCloudBaseRunOperationTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOperationTypesResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunOperationTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询操作类型接口
     ///
     /// 查询服务、版本和操作类型
     @inlinable
-    public func describeCloudBaseRunOperationTypes(envId: String, serverName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunOperationTypesResponse > {
+    public func describeCloudBaseRunOperationTypes(envId: String, serverName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunOperationTypesResponse> {
         self.describeCloudBaseRunOperationTypes(DescribeCloudBaseRunOperationTypesRequest(envId: envId, serverName: serverName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询操作类型接口
     ///
     /// 查询服务、版本和操作类型

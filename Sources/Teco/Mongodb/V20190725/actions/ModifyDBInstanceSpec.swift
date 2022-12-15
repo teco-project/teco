@@ -19,26 +19,26 @@ extension Mongodb {
     public struct ModifyDBInstanceSpecRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
-        
+
         /// 实例配置变更后的内存大小，单位：GB。内存和磁盘必须同时升配或同时降配
         public let memory: UInt64
-        
+
         /// 实例配置变更后的硬盘大小，单位：GB。内存和磁盘必须同时升配或同时降配。降配时，新的磁盘参数必须大于已用磁盘容量的1.2倍
         public let volume: UInt64
-        
+
         /// 实例配置变更后oplog的大小，单位：GB，默认为磁盘空间的10%，允许设置的最小值为磁盘的10%，最大值为磁盘的90%
         public let oplogSize: UInt64?
-        
+
         /// 实例变更后的节点数，取值范围具体参照查询云数据库的售卖规格返回参数。默认为不变更节点数
         public let nodeNum: UInt64?
-        
+
         /// 实例变更后的分片数，取值范围具体参照查询云数据库的售卖规格返回参数。只能增加不能减少，默认为不变更分片数
         public let replicateSetNum: UInt64?
-        
+
         /// 实例配置变更的切换时间，参数为：0(默认)、1。0-调整完成时，1-维护时间内。注：调整节点数和分片数不支持在【维护时间内】变更。
         public let inMaintenance: UInt64?
-        
-        public init (instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil) {
+
+        public init(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -47,7 +47,7 @@ extension Mongodb {
             self.replicateSetNum = replicateSetNum
             self.inMaintenance = inMaintenance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case memory = "Memory"
@@ -58,29 +58,29 @@ extension Mongodb {
             case inMaintenance = "InMaintenance"
         }
     }
-    
+
     /// ModifyDBInstanceSpec返回参数结构体
     public struct ModifyDBInstanceSpecResponse: TCResponseModel {
         /// 订单ID
         public let dealId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 调整云数据库实例配置
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSpecResponse > {
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
         self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 调整云数据库实例配置
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
@@ -88,15 +88,15 @@ extension Mongodb {
     public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
         try await self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 调整云数据库实例配置
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
-    public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSpecResponse > {
+    public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
         self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance), logger: logger, on: eventLoop)
     }
-    
+
     /// 调整云数据库实例配置
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。

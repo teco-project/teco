@@ -19,32 +19,32 @@ extension Cdc {
     public struct ModifySiteInfoRequest: TCRequestModel {
         /// 机房ID
         public let siteId: String
-        
+
         /// 站点名称
         public let name: String?
-        
+
         /// 站点描述
         public let description: String?
-        
+
         /// 注意事项
         public let note: String?
-        
+
         /// 站点所在国家
         public let country: String?
-        
+
         /// 站点所在省份
         public let province: String?
-        
+
         /// 站点所在城市
         public let city: String?
-        
+
         /// 站点所在地区的邮编
         public let postalCode: String?
-        
+
         /// 站点所在地区的详细地址信息
         public let addressLine: String?
-        
-        public init (siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil) {
+
+        public init(siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil) {
             self.siteId = siteId
             self.name = name
             self.description = description
@@ -55,7 +55,7 @@ extension Cdc {
             self.postalCode = postalCode
             self.addressLine = addressLine
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case siteId = "SiteId"
             case name = "Name"
@@ -68,35 +68,35 @@ extension Cdc {
             case addressLine = "AddressLine"
         }
     }
-    
+
     /// ModifySiteInfo返回参数结构体
     public struct ModifySiteInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改机房信息
     @inlinable
-    public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteInfoResponse > {
+    public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteInfoResponse> {
         self.client.execute(action: "ModifySiteInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改机房信息
     @inlinable
     public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteInfoResponse {
         try await self.client.execute(action: "ModifySiteInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改机房信息
     @inlinable
-    public func modifySiteInfo(siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteInfoResponse > {
+    public func modifySiteInfo(siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteInfoResponse> {
         self.modifySiteInfo(ModifySiteInfoRequest(siteId: siteId, name: name, description: description, note: note, country: country, province: province, city: city, postalCode: postalCode, addressLine: addressLine), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改机房信息
     @inlinable
     public func modifySiteInfo(siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteInfoResponse {

@@ -19,21 +19,21 @@ extension Tiw {
     public struct DescribeOnlineRecordRequest: TCRequestModel {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
-        
+
         /// 实时录制任务Id
         public let taskId: String
-        
-        public init (sdkAppId: Int64, taskId: String) {
+
+        public init(sdkAppId: Int64, taskId: String) {
             self.sdkAppId = sdkAppId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeOnlineRecord返回参数结构体
     public struct DescribeOnlineRecordResponse: TCResponseModel {
         /// 录制结束原因，
@@ -42,10 +42,10 @@ extension Tiw {
         /// - EXCEPTION: 录制异常结束
         /// - FORCE_STOP: 强制停止录制，一般是因为暂停超过90分钟或者录制总时长超过24小时。
         public let finishReason: String
-        
+
         /// 需要查询结果的录制任务Id
         public let taskId: String
-        
+
         /// 录制任务状态
         /// - PREPARED: 表示录制正在准备中（进房/启动录制服务等操作）
         /// - RECORDING: 表示录制已开始
@@ -53,45 +53,45 @@ extension Tiw {
         /// - STOPPED: 表示录制已停止，正在处理并上传视频
         /// - FINISHED: 表示视频处理并上传完成，成功生成录制结果
         public let status: String
-        
+
         /// 房间号
         public let roomId: Int64
-        
+
         /// 白板的群组 Id
         public let groupId: String
-        
+
         /// 录制用户Id
         public let recordUserId: String
-        
+
         /// 实际开始录制时间，Unix 时间戳，单位秒
         public let recordStartTime: Int64
-        
+
         /// 实际停止录制时间，Unix 时间戳，单位秒
         public let recordStopTime: Int64
-        
+
         /// 回放视频总时长（单位：毫秒）
         public let totalTime: Int64
-        
+
         /// 录制过程中出现异常的次数
         public let exceptionCnt: Int64
-        
+
         /// 拼接视频中被忽略的时间段，只有开启视频拼接功能的时候，这个参数才是有效的
         public let omittedDurations: [OmittedDuration]
-        
+
         /// 录制视频列表
         public let videoInfos: [VideoInfo]
-        
+
         /// 回放URL，需配合信令播放器使用。此字段仅适用于`视频生成模式`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let replayUrl: String?
-        
+
         /// 视频流在录制过程中断流次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let interrupts: [Interrupt]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case finishReason = "FinishReason"
             case taskId = "TaskId"
@@ -110,15 +110,15 @@ extension Tiw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实时录制任务
     ///
     /// 查询录制任务状态与结果
     @inlinable
-    public func describeOnlineRecord(_ input: DescribeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOnlineRecordResponse > {
+    public func describeOnlineRecord(_ input: DescribeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordResponse> {
         self.client.execute(action: "DescribeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实时录制任务
     ///
     /// 查询录制任务状态与结果
@@ -126,15 +126,15 @@ extension Tiw {
     public func describeOnlineRecord(_ input: DescribeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordResponse {
         try await self.client.execute(action: "DescribeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实时录制任务
     ///
     /// 查询录制任务状态与结果
     @inlinable
-    public func describeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOnlineRecordResponse > {
+    public func describeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordResponse> {
         self.describeOnlineRecord(DescribeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实时录制任务
     ///
     /// 查询录制任务状态与结果

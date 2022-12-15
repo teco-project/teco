@@ -19,31 +19,31 @@ extension Cme {
     public struct HandleStreamConnectProjectRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
-        
+
         /// 云转推项目 Id 。
         public let projectId: String
-        
+
         /// 请参考 [操作类型](#Operation)
         public let operation: String
-        
+
         /// 转推输入源操作参数。具体操作方式详见 [操作类型](#Operation) 及下文示例。
         public let inputInfo: StreamInputInfo?
-        
+
         /// 主备输入源标识，取值有：
         /// <li> Main ：主源；</li>
         /// <li> Backup ：备源。</li>
         public let inputEndpoint: String?
-        
+
         /// 转推输出源操作参数。具体操作方式详见 [操作类型](#Operation) 及下文示例。
         public let outputInfo: StreamConnectOutput?
-        
+
         /// 云转推当前预计结束时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。具体操作方式详见 [操作类型](#Operation) 及下文示例。
         public let currentStopTime: String?
-        
+
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以操作所有云转推项目。如果指定操作者，则操作者必须为项目所有者。
         public let `operator`: String?
-        
-        public init (platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil) {
+
+        public init(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.operation = operation
@@ -53,7 +53,7 @@ extension Cme {
             self.currentStopTime = currentStopTime
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case projectId = "ProjectId"
@@ -65,26 +65,26 @@ extension Cme {
             case `operator` = "Operator"
         }
     }
-    
+
     /// HandleStreamConnectProject返回参数结构体
     public struct HandleStreamConnectProjectResponse: TCResponseModel {
         /// 输入源推流地址，当 Operation 取值 AddInput 且 InputType 为 RtmpPush 类型时有效。
         public let streamInputRtmpPushUrl: String
-        
+
         /// 点播输入源播放进度信息，当 Operation 取值 DescribeInputPlayInfo 且 InputType 为 VodPull 类型时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vodPullInputPlayInfo: VodPullInputPlayInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case streamInputRtmpPushUrl = "StreamInputRtmpPushUrl"
             case vodPullInputPlayInfo = "VodPullInputPlayInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 操作云转推项目
     ///
     /// 对云转推项目进行操作。
@@ -104,10 +104,10 @@ extension Cme {
     /// - `ModifyCurrentStopTime`（修改当前计划结束时间），参见 [示例13](#.E7.A4.BA.E4.BE.8B13-.E4.BF.AE.E6.94.B9.E8.BD.AC.E6.8E.A8.E7.BB.93.E6.9D.9F.E6.97.B6.E9.97.B4);
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
-    public func handleStreamConnectProject(_ input: HandleStreamConnectProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HandleStreamConnectProjectResponse > {
+    public func handleStreamConnectProject(_ input: HandleStreamConnectProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HandleStreamConnectProjectResponse> {
         self.client.execute(action: "HandleStreamConnectProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 操作云转推项目
     ///
     /// 对云转推项目进行操作。
@@ -130,7 +130,7 @@ extension Cme {
     public func handleStreamConnectProject(_ input: HandleStreamConnectProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HandleStreamConnectProjectResponse {
         try await self.client.execute(action: "HandleStreamConnectProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 操作云转推项目
     ///
     /// 对云转推项目进行操作。
@@ -150,10 +150,10 @@ extension Cme {
     /// - `ModifyCurrentStopTime`（修改当前计划结束时间），参见 [示例13](#.E7.A4.BA.E4.BE.8B13-.E4.BF.AE.E6.94.B9.E8.BD.AC.E6.8E.A8.E7.BB.93.E6.9D.9F.E6.97.B6.E9.97.B4);
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
-    public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HandleStreamConnectProjectResponse > {
+    public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HandleStreamConnectProjectResponse> {
         self.handleStreamConnectProject(HandleStreamConnectProjectRequest(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 操作云转推项目
     ///
     /// 对云转推项目进行操作。

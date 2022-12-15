@@ -19,43 +19,43 @@ extension Vpc {
     public struct CreateAddressTemplateGroupRequest: TCRequestModel {
         /// IP地址模板集合名称。
         public let addressTemplateGroupName: String
-        
+
         /// IP地址模板实例ID，例如：ipm-mdunqeb6。
         public let addressTemplateIds: [String]
-        
-        public init (addressTemplateGroupName: String, addressTemplateIds: [String]) {
+
+        public init(addressTemplateGroupName: String, addressTemplateIds: [String]) {
             self.addressTemplateGroupName = addressTemplateGroupName
             self.addressTemplateIds = addressTemplateIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addressTemplateGroupName = "AddressTemplateGroupName"
             case addressTemplateIds = "AddressTemplateIds"
         }
     }
-    
+
     /// CreateAddressTemplateGroup返回参数结构体
     public struct CreateAddressTemplateGroupResponse: TCResponseModel {
         /// IP地址模板集合对象。
         public let addressTemplateGroup: AddressTemplateGroup
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case addressTemplateGroup = "AddressTemplateGroup"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建IP地址模板集合
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
-    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateGroupResponse > {
+    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
         self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建IP地址模板集合
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
@@ -63,15 +63,15 @@ extension Vpc {
     public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
         try await self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建IP地址模板集合
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
-    public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateGroupResponse > {
+    public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
         self.createAddressTemplateGroup(CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建IP地址模板集合
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合

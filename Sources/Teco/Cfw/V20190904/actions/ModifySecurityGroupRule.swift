@@ -19,23 +19,23 @@ extension Cfw {
     public struct ModifySecurityGroupRuleRequest: TCRequestModel {
         /// 方向，0：出站，1：入站，默认1
         public let direction: UInt64
-        
+
         /// 编辑后是否启用规则，0：不启用，1：启用，默认1
         public let enable: UInt64
-        
+
         /// 编辑的企业安全组规则数据
         public let data: [SecurityGroupListData]
-        
+
         /// 编辑的企业安全组规则的原始执行顺序
         public let sgRuleOriginSequence: UInt64
-        
-        public init (direction: UInt64, enable: UInt64, data: [SecurityGroupListData], sgRuleOriginSequence: UInt64) {
+
+        public init(direction: UInt64, enable: UInt64, data: [SecurityGroupListData], sgRuleOriginSequence: UInt64) {
             self.direction = direction
             self.enable = enable
             self.data = data
             self.sgRuleOriginSequence = sgRuleOriginSequence
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case direction = "Direction"
             case enable = "Enable"
@@ -43,43 +43,43 @@ extension Cfw {
             case sgRuleOriginSequence = "SgRuleOriginSequence"
         }
     }
-    
+
     /// ModifySecurityGroupRule返回参数结构体
     public struct ModifySecurityGroupRuleResponse: TCResponseModel {
         /// 状态值，0：编辑成功，非0：编辑失败
         public let status: UInt64
-        
+
         /// 编辑后新生成规则的Id
         public let newRuleId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case newRuleId = "NewRuleId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 编辑单条安全组规则
     @inlinable
-    public func modifySecurityGroupRule(_ input: ModifySecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupRuleResponse > {
+    public func modifySecurityGroupRule(_ input: ModifySecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupRuleResponse> {
         self.client.execute(action: "ModifySecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑单条安全组规则
     @inlinable
     public func modifySecurityGroupRule(_ input: ModifySecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupRuleResponse {
         try await self.client.execute(action: "ModifySecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 编辑单条安全组规则
     @inlinable
-    public func modifySecurityGroupRule(direction: UInt64, enable: UInt64, data: [SecurityGroupListData], sgRuleOriginSequence: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupRuleResponse > {
+    public func modifySecurityGroupRule(direction: UInt64, enable: UInt64, data: [SecurityGroupListData], sgRuleOriginSequence: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupRuleResponse> {
         self.modifySecurityGroupRule(ModifySecurityGroupRuleRequest(direction: direction, enable: enable, data: data, sgRuleOriginSequence: sgRuleOriginSequence), logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑单条安全组规则
     @inlinable
     public func modifySecurityGroupRule(direction: UInt64, enable: UInt64, data: [SecurityGroupListData], sgRuleOriginSequence: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupRuleResponse {

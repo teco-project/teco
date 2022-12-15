@@ -19,52 +19,52 @@ extension Dbbrain {
     public struct DescribeUserSqlAdviceRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// SQL语句。
         public let sqlText: String
-        
+
         /// 库名。
         public let schema: String?
-        
-        public init (instanceId: String, sqlText: String, schema: String? = nil) {
+
+        public init(instanceId: String, sqlText: String, schema: String? = nil) {
             self.instanceId = instanceId
             self.sqlText = sqlText
             self.schema = schema
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case sqlText = "SqlText"
             case schema = "Schema"
         }
     }
-    
+
     /// DescribeUserSqlAdvice返回参数结构体
     public struct DescribeUserSqlAdviceResponse: TCResponseModel {
         /// SQL优化建议，可解析为JSON数组。
         public let advices: String
-        
+
         /// SQL优化建议备注，可解析为String数组。
         public let comments: String
-        
+
         /// SQL语句。
         public let sqlText: String
-        
+
         /// 库名。
         public let schema: String
-        
+
         /// 相关表的DDL信息，可解析为JSON数组。
         public let tables: String
-        
+
         /// SQL执行计划，可解析为JSON。
         public let sqlPlan: String
-        
+
         /// SQL优化后的成本节约详情，可解析为JSON。
         public let cost: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case advices = "Advices"
             case comments = "Comments"
@@ -76,15 +76,15 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取SQL优化建议
     ///
     /// 获取SQL优化建议。
     @inlinable
-    public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSqlAdviceResponse > {
+    public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSqlAdviceResponse> {
         self.client.execute(action: "DescribeUserSqlAdvice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SQL优化建议
     ///
     /// 获取SQL优化建议。
@@ -92,15 +92,15 @@ extension Dbbrain {
     public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
         try await self.client.execute(action: "DescribeUserSqlAdvice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取SQL优化建议
     ///
     /// 获取SQL优化建议。
     @inlinable
-    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSqlAdviceResponse > {
+    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSqlAdviceResponse> {
         self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SQL优化建议
     ///
     /// 获取SQL优化建议。

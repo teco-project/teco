@@ -19,43 +19,43 @@ extension Postgres {
     public struct SetAutoRenewFlagRequest: TCRequestModel {
         /// 实例ID集合。注意：当前已不支持同时操作多个实例，这里只能传入单个实例ID。
         public let dbInstanceIdSet: [String]
-        
+
         /// 续费标记。0-正常续费；1-自动续费；2-到期不续费
         public let autoRenewFlag: Int64
-        
-        public init (dbInstanceIdSet: [String], autoRenewFlag: Int64) {
+
+        public init(dbInstanceIdSet: [String], autoRenewFlag: Int64) {
             self.dbInstanceIdSet = dbInstanceIdSet
             self.autoRenewFlag = autoRenewFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceIdSet = "DBInstanceIdSet"
             case autoRenewFlag = "AutoRenewFlag"
         }
     }
-    
+
     /// SetAutoRenewFlag返回参数结构体
     public struct SetAutoRenewFlagResponse: TCResponseModel {
         /// 设置成功的实例个数
         public let count: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置自动续费
     ///
     /// 本接口（SetAutoRenewFlag）用于设置自动续费。
     @inlinable
-    public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoRenewFlagResponse > {
+    public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAutoRenewFlagResponse> {
         self.client.execute(action: "SetAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置自动续费
     ///
     /// 本接口（SetAutoRenewFlag）用于设置自动续费。
@@ -63,15 +63,15 @@ extension Postgres {
     public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewFlagResponse {
         try await self.client.execute(action: "SetAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置自动续费
     ///
     /// 本接口（SetAutoRenewFlag）用于设置自动续费。
     @inlinable
-    public func setAutoRenewFlag(dbInstanceIdSet: [String], autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoRenewFlagResponse > {
+    public func setAutoRenewFlag(dbInstanceIdSet: [String], autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAutoRenewFlagResponse> {
         self.setAutoRenewFlag(SetAutoRenewFlagRequest(dbInstanceIdSet: dbInstanceIdSet, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置自动续费
     ///
     /// 本接口（SetAutoRenewFlag）用于设置自动续费。

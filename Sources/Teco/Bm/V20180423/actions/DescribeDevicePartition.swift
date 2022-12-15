@@ -19,48 +19,48 @@ extension Bm {
     public struct DescribeDevicePartitionRequest: TCRequestModel {
         /// 物理机ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeDevicePartition返回参数结构体
     public struct DescribeDevicePartitionResponse: TCResponseModel {
         /// 物理机分区格式
         public let devicePartition: DevicePartition
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case devicePartition = "DevicePartition"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取物理机的分区格式
     @inlinable
-    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePartitionResponse > {
+    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePartitionResponse> {
         self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取物理机的分区格式
     @inlinable
     public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
         try await self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取物理机的分区格式
     @inlinable
-    public func describeDevicePartition(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePartitionResponse > {
+    public func describeDevicePartition(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePartitionResponse> {
         self.describeDevicePartition(DescribeDevicePartitionRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取物理机的分区格式
     @inlinable
     public func describeDevicePartition(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {

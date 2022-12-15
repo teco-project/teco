@@ -19,23 +19,23 @@ extension Gs {
     public struct SwitchGameArchiveRequest: TCRequestModel {
         /// 游戏用户ID
         public let userId: String
-        
+
         /// 游戏ID
         public let gameId: String
-        
+
         /// 游戏存档Url
         public let gameArchiveUrl: String?
-        
+
         /// 游戏相关参数
         public let gameContext: String?
-        
-        public init (userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil) {
+
+        public init(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil) {
             self.userId = userId
             self.gameId = gameId
             self.gameArchiveUrl = gameArchiveUrl
             self.gameContext = gameContext
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case gameId = "GameId"
@@ -43,35 +43,35 @@ extension Gs {
             case gameContext = "GameContext"
         }
     }
-    
+
     /// SwitchGameArchive返回参数结构体
     public struct SwitchGameArchiveResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 切换游戏存档
     @inlinable
-    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchGameArchiveResponse > {
+    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchGameArchiveResponse> {
         self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 切换游戏存档
     @inlinable
     public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
         try await self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 切换游戏存档
     @inlinable
-    public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchGameArchiveResponse > {
+    public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchGameArchiveResponse> {
         self.switchGameArchive(SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext), logger: logger, on: eventLoop)
     }
-    
+
     /// 切换游戏存档
     @inlinable
     public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {

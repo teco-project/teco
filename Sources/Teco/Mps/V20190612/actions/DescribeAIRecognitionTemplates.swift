@@ -19,25 +19,25 @@ extension Mps {
     public struct DescribeAIRecognitionTemplatesRequest: TCRequestModel {
         /// 视频内容识别模板唯一标识过滤条件，数组长度限制：10。
         public let definitions: [Int64]?
-        
+
         /// 分页偏移量，默认值：0。
         public let offset: UInt64?
-        
+
         /// 返回记录条数，默认值：10，最大值：50。
         public let limit: UInt64?
-        
+
         /// 模板类型过滤条件，不填则返回所有，可选值：
         /// * Preset：系统预置模板；
         /// * Custom：用户自定义模板。
         public let type: String?
-        
-        public init (definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
+
+        public init(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
             self.definitions = definitions
             self.offset = offset
             self.limit = limit
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definitions = "Definitions"
             case offset = "Offset"
@@ -45,33 +45,33 @@ extension Mps {
             case type = "Type"
         }
     }
-    
+
     /// DescribeAIRecognitionTemplates返回参数结构体
     public struct DescribeAIRecognitionTemplatesResponse: TCResponseModel {
         /// 符合过滤条件的记录总数。
         public let totalCount: UInt64
-        
+
         /// 视频内容识别模板详情列表。
         public let aiRecognitionTemplateSet: [AIRecognitionTemplateItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case aiRecognitionTemplateSet = "AIRecognitionTemplateSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取内容识别模板列表
     ///
     /// 根据内容识别模板唯一标识，获取内容识别模板详情列表。返回结果包含符合条件的所有用户自定义内容识别模板及系统预置视频内容识别模板
     @inlinable
-    public func describeAIRecognitionTemplates(_ input: DescribeAIRecognitionTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIRecognitionTemplatesResponse > {
+    public func describeAIRecognitionTemplates(_ input: DescribeAIRecognitionTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIRecognitionTemplatesResponse> {
         self.client.execute(action: "DescribeAIRecognitionTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取内容识别模板列表
     ///
     /// 根据内容识别模板唯一标识，获取内容识别模板详情列表。返回结果包含符合条件的所有用户自定义内容识别模板及系统预置视频内容识别模板
@@ -79,15 +79,15 @@ extension Mps {
     public func describeAIRecognitionTemplates(_ input: DescribeAIRecognitionTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIRecognitionTemplatesResponse {
         try await self.client.execute(action: "DescribeAIRecognitionTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取内容识别模板列表
     ///
     /// 根据内容识别模板唯一标识，获取内容识别模板详情列表。返回结果包含符合条件的所有用户自定义内容识别模板及系统预置视频内容识别模板
     @inlinable
-    public func describeAIRecognitionTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIRecognitionTemplatesResponse > {
+    public func describeAIRecognitionTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIRecognitionTemplatesResponse> {
         self.describeAIRecognitionTemplates(DescribeAIRecognitionTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取内容识别模板列表
     ///
     /// 根据内容识别模板唯一标识，获取内容识别模板详情列表。返回结果包含符合条件的所有用户自定义内容识别模板及系统预置视频内容识别模板

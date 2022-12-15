@@ -19,49 +19,49 @@ extension Wav {
     public struct QueryActivityLiveCodeListRequest: TCRequestModel {
         /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
         public let cursor: String?
-        
+
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
-        
-        public init (cursor: String? = nil, limit: Int64? = nil) {
+
+        public init(cursor: String? = nil, limit: Int64? = nil) {
             self.cursor = cursor
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cursor = "Cursor"
             case limit = "Limit"
         }
     }
-    
+
     /// QueryActivityLiveCodeList返回参数结构体
     public struct QueryActivityLiveCodeListResponse: TCResponseModel {
         /// 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextCursor: String?
-        
+
         /// 活码列表响应参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageData: [LiveCodeDetail]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nextCursor = "NextCursor"
             case pageData = "PageData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询活动活码列表接口
     ///
     /// 根据游标拉取活动活码列表信息
     @inlinable
-    public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityLiveCodeListResponse > {
+    public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityLiveCodeListResponse> {
         self.client.execute(action: "QueryActivityLiveCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询活动活码列表接口
     ///
     /// 根据游标拉取活动活码列表信息
@@ -69,15 +69,15 @@ extension Wav {
     public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityLiveCodeListResponse {
         try await self.client.execute(action: "QueryActivityLiveCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询活动活码列表接口
     ///
     /// 根据游标拉取活动活码列表信息
     @inlinable
-    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityLiveCodeListResponse > {
+    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityLiveCodeListResponse> {
         self.queryActivityLiveCodeList(QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询活动活码列表接口
     ///
     /// 根据游标拉取活动活码列表信息

@@ -19,44 +19,44 @@ extension Tcss {
     public struct DeleteIgnoreVulRequest: TCRequestModel {
         /// 漏洞PocID 信息列表
         public let list: [ModifyIgnoreVul]
-        
-        public init (list: [ModifyIgnoreVul]) {
+
+        public init(list: [ModifyIgnoreVul]) {
             self.list = list
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
         }
     }
-    
+
     /// DeleteIgnoreVul返回参数结构体
     public struct DeleteIgnoreVulResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消漏洞扫描忽略漏洞
     @inlinable
-    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIgnoreVulResponse > {
+    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIgnoreVulResponse> {
         self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消漏洞扫描忽略漏洞
     @inlinable
     public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
         try await self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消漏洞扫描忽略漏洞
     @inlinable
-    public func deleteIgnoreVul(list: [ModifyIgnoreVul], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIgnoreVulResponse > {
+    public func deleteIgnoreVul(list: [ModifyIgnoreVul], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIgnoreVulResponse> {
         self.deleteIgnoreVul(DeleteIgnoreVulRequest(list: list), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消漏洞扫描忽略漏洞
     @inlinable
     public func deleteIgnoreVul(list: [ModifyIgnoreVul], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {

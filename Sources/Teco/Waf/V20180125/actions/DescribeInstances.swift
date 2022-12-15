@@ -19,62 +19,62 @@ extension Waf {
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 偏移
         public let offset: UInt64
-        
+
         /// 容量
         public let limit: UInt64
-        
+
         /// 过滤数组
         public let filters: [FiltersItemNew]?
-        
-        public init (offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeInstances返回参数结构体
     public struct DescribeInstancesResponse: TCResponseModel {
         /// 总数
         public let total: UInt64
-        
+
         /// instance列表
         public let instances: [InstanceInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case instances = "Instances"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户所有实例的详细信息
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户所有实例的详细信息
     @inlinable
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户所有实例的详细信息
     @inlinable
-    public func describeInstances(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(DescribeInstancesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户所有实例的详细信息
     @inlinable
     public func describeInstances(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {

@@ -19,52 +19,52 @@ extension Cwp {
     public struct ExportVulDetectionExcelRequest: TCRequestModel {
         /// 本次漏洞检测任务id（不同于出参的导出本次漏洞检测Excel的任务Id）
         public let taskId: UInt64
-        
-        public init (taskId: UInt64) {
+
+        public init(taskId: UInt64) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// ExportVulDetectionExcel返回参数结构体
     public struct ExportVulDetectionExcelResponse: TCResponseModel {
         /// 导出文件下载链接地址
         public let downloadUrl: String
-        
+
         /// 导出本次漏洞检测Excel的任务Id（不同于入参的本次漏洞检测任务id）
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出本次漏洞检测Excel
     @inlinable
-    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulDetectionExcelResponse > {
+    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulDetectionExcelResponse> {
         self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出本次漏洞检测Excel
     @inlinable
     public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
         try await self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出本次漏洞检测Excel
     @inlinable
-    public func exportVulDetectionExcel(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulDetectionExcelResponse > {
+    public func exportVulDetectionExcel(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulDetectionExcelResponse> {
         self.exportVulDetectionExcel(ExportVulDetectionExcelRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出本次漏洞检测Excel
     @inlinable
     public func exportVulDetectionExcel(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {

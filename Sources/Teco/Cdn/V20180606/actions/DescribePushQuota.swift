@@ -17,32 +17,32 @@
 extension Cdn {
     /// DescribePushQuota请求参数结构体
     public struct DescribePushQuotaRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribePushQuota返回参数结构体
     public struct DescribePushQuotaResponse: TCResponseModel {
         /// Url预热用量及配额。
         public let urlPush: [Quota]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case urlPush = "UrlPush"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询预热用量配额
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。
     @inlinable
-    public func describePushQuota(_ input: DescribePushQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushQuotaResponse > {
+    public func describePushQuota(_ input: DescribePushQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushQuotaResponse> {
         self.client.execute(action: "DescribePushQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询预热用量配额
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。
@@ -50,15 +50,15 @@ extension Cdn {
     public func describePushQuota(_ input: DescribePushQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushQuotaResponse {
         try await self.client.execute(action: "DescribePushQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询预热用量配额
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。
     @inlinable
-    public func describePushQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushQuotaResponse > {
+    public func describePushQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushQuotaResponse> {
         self.describePushQuota(DescribePushQuotaRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询预热用量配额
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。

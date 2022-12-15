@@ -19,29 +19,29 @@ extension Tcss {
     public struct DescribeAssetImageVulListExportRequest: TCRequestModel {
         /// 导出字段
         public let exportField: [String]
-        
+
         /// 镜像id
         public let imageID: String
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Name- String - 是否必填：否 - 漏洞名称名称筛选，</li>
         /// <li>Level - String - 是否必填：否 - 风险等级  1,2,3,4</li>
         public let filters: [AssetFilters]?
-        
-        public init (exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
+
+        public init(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.exportField = exportField
             self.imageID = imageID
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case exportField = "ExportField"
             case imageID = "ImageID"
@@ -50,29 +50,29 @@ extension Tcss {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeAssetImageVulListExport返回参数结构体
     public struct DescribeAssetImageVulListExportResponse: TCResponseModel {
         /// excel文件下载地址
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 镜像漏洞列表导出
     ///
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
-    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVulListExportResponse > {
+    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListExportResponse> {
         self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像漏洞列表导出
     ///
     /// 容器安全搜索查询镜像漏洞列表导出
@@ -80,15 +80,15 @@ extension Tcss {
     public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
         try await self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 镜像漏洞列表导出
     ///
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
-    public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVulListExportResponse > {
+    public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListExportResponse> {
         self.describeAssetImageVulListExport(DescribeAssetImageVulListExportRequest(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像漏洞列表导出
     ///
     /// 容器安全搜索查询镜像漏洞列表导出

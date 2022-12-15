@@ -19,23 +19,23 @@ extension Tcr {
     public struct CreateReplicationInstanceRequest: TCRequestModel {
         /// 主实例iD
         public let registryId: String
-        
+
         /// 复制实例地域ID
         public let replicationRegionId: UInt64?
-        
+
         /// 复制实例地域名称
         public let replicationRegionName: String?
-        
+
         /// 是否同步TCR云标签至生成的COS Bucket
         public let syncTag: Bool?
-        
-        public init (registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil) {
+
+        public init(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil) {
             self.registryId = registryId
             self.replicationRegionId = replicationRegionId
             self.replicationRegionName = replicationRegionName
             self.syncTag = syncTag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case replicationRegionId = "ReplicationRegionId"
@@ -43,39 +43,39 @@ extension Tcr {
             case syncTag = "SyncTag"
         }
     }
-    
+
     /// CreateReplicationInstance返回参数结构体
     public struct CreateReplicationInstanceResponse: TCResponseModel {
         /// 企业版复制实例Id
         public let replicationRegistryId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case replicationRegistryId = "ReplicationRegistryId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建从实例
     @inlinable
-    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationInstanceResponse > {
+    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationInstanceResponse> {
         self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建从实例
     @inlinable
     public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
         try await self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建从实例
     @inlinable
-    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationInstanceResponse > {
+    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationInstanceResponse> {
         self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建从实例
     @inlinable
     public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {

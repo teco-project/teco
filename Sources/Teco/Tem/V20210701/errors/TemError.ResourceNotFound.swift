@@ -25,80 +25,80 @@ extension TCTemError {
             case versionNamespaceNotFound = "ResourceNotFound.VersionNamespaceNotFound"
             case versionServiceNotFound = "ResourceNotFound.VersionServiceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未提供该接口。
         public static var interfaceNotFound: ResourceNotFound {
             ResourceNotFound(.interfaceNotFound)
         }
-        
+
         /// 目标微服务已离线。
         public static var microserviceOffline: ResourceNotFound {
             ResourceNotFound(.microserviceOffline)
         }
-        
+
         /// 环境不存在。
         public static var namespaceNotFound: ResourceNotFound {
             ResourceNotFound(.namespaceNotFound)
         }
-        
+
         /// 找不到应用。
         public static var serviceNotFound: ResourceNotFound {
             ResourceNotFound(.serviceNotFound)
         }
-        
+
         /// 找不到运行的服务实例。
         public static var serviceRunningVersionNotFound: ResourceNotFound {
             ResourceNotFound(.serviceRunningVersionNotFound)
         }
-        
+
         /// 找不到版本对应的环境。
         public static var versionNamespaceNotFound: ResourceNotFound {
             ResourceNotFound(.versionNamespaceNotFound)
         }
-        
+
         /// 找不到版本对应的应用。
         public static var versionServiceNotFound: ResourceNotFound {
             ResourceNotFound(.versionServiceNotFound)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {
-            case .interfaceNotFound: 
+            case .interfaceNotFound:
                 code = .resourceNotFound_InterfaceNotFound
-            case .microserviceOffline: 
+            case .microserviceOffline:
                 code = .resourceNotFound_MicroserviceOffline
-            case .namespaceNotFound: 
+            case .namespaceNotFound:
                 code = .resourceNotFound_NamespaceNotFound
-            case .serviceNotFound: 
+            case .serviceNotFound:
                 code = .resourceNotFound_ServiceNotFound
-            case .serviceRunningVersionNotFound: 
+            case .serviceRunningVersionNotFound:
                 code = .resourceNotFound_ServiceRunningVersionNotFound
-            case .versionNamespaceNotFound: 
+            case .versionNamespaceNotFound:
                 code = .resourceNotFound_VersionNamespaceNotFound
-            case .versionServiceNotFound: 
+            case .versionServiceNotFound:
                 code = .resourceNotFound_VersionServiceNotFound
             }
             return TCTemError(code, context: self.context)

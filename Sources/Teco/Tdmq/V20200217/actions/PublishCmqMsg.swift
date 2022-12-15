@@ -19,62 +19,62 @@ extension Tdmq {
     public struct PublishCmqMsgRequest: TCRequestModel {
         /// 主题名
         public let topicName: String
-        
+
         /// 消息内容，消息总大小需不大于1024K
         public let msgContent: String
-        
+
         /// 消息标签，支持传递多标签或单路由，单个标签、路由长度不能超过64个字符。
         public let msgTag: [String]?
-        
-        public init (topicName: String, msgContent: String, msgTag: [String]? = nil) {
+
+        public init(topicName: String, msgContent: String, msgTag: [String]? = nil) {
             self.topicName = topicName
             self.msgContent = msgContent
             self.msgTag = msgTag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicName = "TopicName"
             case msgContent = "MsgContent"
             case msgTag = "MsgTag"
         }
     }
-    
+
     /// PublishCmqMsg返回参数结构体
     public struct PublishCmqMsgResponse: TCResponseModel {
         /// true表示发送成功
         public let result: Bool
-        
+
         /// 消息id
         public let msgId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case msgId = "MsgId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发送cmq主题消息
     @inlinable
-    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishCmqMsgResponse > {
+    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishCmqMsgResponse> {
         self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发送cmq主题消息
     @inlinable
     public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
         try await self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发送cmq主题消息
     @inlinable
-    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishCmqMsgResponse > {
+    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishCmqMsgResponse> {
         self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), logger: logger, on: eventLoop)
     }
-    
+
     /// 发送cmq主题消息
     @inlinable
     public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {

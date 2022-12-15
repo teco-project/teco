@@ -19,23 +19,23 @@ extension Ccc {
     public struct DescribeStaffInfoListRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 分页尺寸，上限 9999
         public let pageSize: Int64
-        
+
         /// 分页页码，从 0 开始
         public let pageNumber: Int64
-        
+
         /// 坐席账号，查询单个坐席时使用
         public let staffMail: String?
-        
+
         /// 查询修改时间大于等于ModifiedTime的坐席时使用
         public let modifiedTime: Int64?
-        
+
         /// 技能组ID
         public let skillGroupId: Int64?
-        
-        public init (sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil) {
+
+        public init(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil) {
             self.sdkAppId = sdkAppId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -43,7 +43,7 @@ extension Ccc {
             self.modifiedTime = modifiedTime
             self.skillGroupId = skillGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case pageSize = "PageSize"
@@ -53,43 +53,43 @@ extension Ccc {
             case skillGroupId = "SkillGroupId"
         }
     }
-    
+
     /// DescribeStaffInfoList返回参数结构体
     public struct DescribeStaffInfoListResponse: TCResponseModel {
         /// 坐席用户总数
         public let totalCount: Int64
-        
+
         /// 坐席用户信息列表
         public let staffList: [StaffInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case staffList = "StaffList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取坐席信息列表
     @inlinable
-    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStaffInfoListResponse > {
+    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffInfoListResponse> {
         self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取坐席信息列表
     @inlinable
     public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
         try await self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取坐席信息列表
     @inlinable
-    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStaffInfoListResponse > {
+    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffInfoListResponse> {
         self.describeStaffInfoList(DescribeStaffInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, staffMail: staffMail, modifiedTime: modifiedTime, skillGroupId: skillGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取坐席信息列表
     @inlinable
     public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {

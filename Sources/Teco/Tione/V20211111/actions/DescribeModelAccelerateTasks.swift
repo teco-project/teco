@@ -21,23 +21,23 @@ extension Tione {
         /// ModelAccTaskName 任务名称
         /// ModelSource 模型来源
         public let filters: [Filter]?
-        
+
         /// 排序字段，默认CreateTime
         public let orderField: String?
-        
+
         /// 排序方式：ASC/DESC，默认DESC
         public let order: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 返回记录条数，默认10
         public let limit: UInt64?
-        
+
         /// 标签过滤
         public let tagFilters: [TagFilter]?
-        
-        public init (filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil) {
+
+        public init(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil) {
             self.filters = filters
             self.orderField = orderField
             self.order = order
@@ -45,7 +45,7 @@ extension Tione {
             self.limit = limit
             self.tagFilters = tagFilters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case orderField = "OrderField"
@@ -55,45 +55,45 @@ extension Tione {
             case tagFilters = "TagFilters"
         }
     }
-    
+
     /// DescribeModelAccelerateTasks返回参数结构体
     public struct DescribeModelAccelerateTasksResponse: TCResponseModel {
         /// 模型加速任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelAccelerateTasks: [ModelAccelerateTask]?
-        
+
         /// 任务总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case modelAccelerateTasks = "ModelAccelerateTasks"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询模型加速任务列表
     @inlinable
-    public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTasksResponse > {
+    public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelAccelerateTasksResponse> {
         self.client.execute(action: "DescribeModelAccelerateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询模型加速任务列表
     @inlinable
     public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTasksResponse {
         try await self.client.execute(action: "DescribeModelAccelerateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询模型加速任务列表
     @inlinable
-    public func describeModelAccelerateTasks(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTasksResponse > {
+    public func describeModelAccelerateTasks(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelAccelerateTasksResponse> {
         self.describeModelAccelerateTasks(DescribeModelAccelerateTasksRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询模型加速任务列表
     @inlinable
     public func describeModelAccelerateTasks(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTasksResponse {

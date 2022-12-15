@@ -19,27 +19,27 @@ extension Tsf {
     public struct ModifyPathRewriteRequest: TCRequestModel {
         /// 路径重写规则ID
         public let pathRewriteId: String
-        
+
         /// 正则表达式
         public let regex: String?
-        
+
         /// 替换的内容
         public let replacement: String?
-        
+
         /// 是否屏蔽映射后路径，Y: 是 N: 否
         public let blocked: String?
-        
+
         /// 规则顺序，越小优先级越高
         public let order: Int64?
-        
-        public init (pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil) {
+
+        public init(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil) {
             self.pathRewriteId = pathRewriteId
             self.regex = regex
             self.replacement = replacement
             self.blocked = blocked
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pathRewriteId = "PathRewriteId"
             case regex = "Regex"
@@ -48,39 +48,39 @@ extension Tsf {
             case order = "Order"
         }
     }
-    
+
     /// ModifyPathRewrite返回参数结构体
     public struct ModifyPathRewriteResponse: TCResponseModel {
         /// true/false
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改路径重写
     @inlinable
-    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPathRewriteResponse > {
+    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPathRewriteResponse> {
         self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改路径重写
     @inlinable
     public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
         try await self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改路径重写
     @inlinable
-    public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPathRewriteResponse > {
+    public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPathRewriteResponse> {
         self.modifyPathRewrite(ModifyPathRewriteRequest(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改路径重写
     @inlinable
     public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {

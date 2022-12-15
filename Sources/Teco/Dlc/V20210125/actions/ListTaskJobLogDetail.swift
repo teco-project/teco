@@ -19,26 +19,26 @@ extension Dlc {
     public struct ListTaskJobLogDetailRequest: TCRequestModel {
         /// 列表返回的Id
         public let taskId: String
-        
+
         /// 开始运行时间，unix时间戳（毫秒）
         public let startTime: Int64
-        
+
         /// 结束运行时间，unix时间戳（毫秒）
         public let endTime: Int64
-        
+
         /// 分页大小，最大1000，配合Context一起使用
         public let limit: Int64
-        
+
         /// 下一次分页参数，第一次传空
         public let context: String
-        
+
         /// 最近1000条日志是否升序排列，true:升序排序，false:倒序，默认false，倒序排列
         public let asc: Bool?
-        
+
         /// 预览日志的通用过滤条件
         public let filters: [Filter]?
-        
-        public init (taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil) {
+
+        public init(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil) {
             self.taskId = taskId
             self.startTime = startTime
             self.endTime = endTime
@@ -47,7 +47,7 @@ extension Dlc {
             self.asc = asc
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case startTime = "StartTime"
@@ -58,24 +58,24 @@ extension Dlc {
             case filters = "Filters"
         }
     }
-    
+
     /// ListTaskJobLogDetail返回参数结构体
     public struct ListTaskJobLogDetailResponse: TCResponseModel {
         /// 下一次分页参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let context: String?
-        
+
         /// 是否获取完结
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listOver: Bool?
-        
+
         /// 日志详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [JobLogResult]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case context = "Context"
             case listOver = "ListOver"
@@ -83,15 +83,15 @@ extension Dlc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 日志列表
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
-    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTaskJobLogDetailResponse > {
+    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
         self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 日志列表
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
@@ -99,15 +99,15 @@ extension Dlc {
     public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
         try await self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 日志列表
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
-    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTaskJobLogDetailResponse > {
+    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
         self.listTaskJobLogDetail(ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 日志列表
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表

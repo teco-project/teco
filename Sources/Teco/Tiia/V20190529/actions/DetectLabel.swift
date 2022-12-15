@@ -20,21 +20,21 @@ extension Tiia {
         /// 图片 Base64 编码数据。
         /// 与ImageUrl同时存在时优先使用ImageUrl字段。
         /// 图片限制：
-        /// • 图片格式：PNG、JPG、JPEG、BMP。 
+        /// • 图片格式：PNG、JPG、JPEG、BMP。
         /// • 图片大小：经Base64编码后不超过4M。
         /// **<font color=#1E90FF>注意：图片需要Base64编码，并且要去掉编码头部。</font>**
         public let imageBase64: String?
-        
-        /// 图片 URL 地址。 
-        /// 图片限制： 
-        /// • 图片格式：PNG、JPG、JPEG、BMP。 
-        /// • 图片大小：所下载图片经Base64编码后不超过4M。图片下载时间不超过3秒。 
+
+        /// 图片 URL 地址。
+        /// 图片限制：
+        /// • 图片格式：PNG、JPG、JPEG、BMP。
+        /// • 图片大小：所下载图片经Base64编码后不超过4M。图片下载时间不超过3秒。
         /// 建议：
-        /// • 图片像素：大于50*50像素，否则影响识别效果； 
-        /// • 长宽比：长边:短边<5； 
+        /// • 图片像素：大于50*50像素，否则影响识别效果；
+        /// • 长宽比：长边:短边<5；
         /// • 接口响应时间会受到图片下载时间的影响，建议使用更可靠的存储服务，推荐将图片存储在腾讯云COS。
         public let imageUrl: String?
-        
+
         /// 本次调用支持的识别场景，可选值如下：
         /// • WEB，针对网络图片优化;
         /// • CAMERA，针对手机摄像头拍摄图片优化;
@@ -43,42 +43,42 @@ extension Tiia {
         /// 如果不传此参数，则默认为WEB。
         /// 支持多场景（Scenes）一起检测。例如，使用 Scenes=["WEB", "CAMERA"]，即对一张图片使用两个模型同时检测，输出两套识别结果。
         public let scenes: [String]?
-        
-        public init (imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil) {
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.scenes = scenes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
             case scenes = "Scenes"
         }
     }
-    
+
     /// DetectLabel返回参数结构体
     public struct DetectLabelResponse: TCResponseModel {
         /// Web网络版标签结果数组。如未选择WEB场景，则为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [DetectLabelItem]?
-        
+
         /// Camera摄像头版标签结果数组。如未选择CAMERA场景，则为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cameraLabels: [DetectLabelItem]?
-        
+
         /// Album相册版标签结果数组。如未选择ALBUM场景，则为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let albumLabels: [DetectLabelItem]?
-        
+
         /// News新闻版标签结果数组。如未选择NEWS场景，则为空。
         /// 新闻版目前为测试阶段，暂不提供每个标签的一级、二级分类信息的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newsLabels: [DetectLabelItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case labels = "Labels"
             case cameraLabels = "CameraLabels"
@@ -87,7 +87,7 @@ extension Tiia {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 图像标签
     ///
     /// 图像标签利用深度学习技术，可以对图片进行智能分类、物体识别等。
@@ -101,14 +101,14 @@ extension Tiia {
     /// >?
     /// - 图像标签已升级服务，建议使用新版接口[通用图像标签](https://cloud.tencent.com/document/product/865/75196)。
     /// - 图像标签摄像头版、相册版、网络版、新闻版分别按照各自的实际使用次数进行收费，例如一张图片同时使用相册版、摄像头版，则按照两次调用计费。建议测试对比后从中选择一个最合适的版本使用即可。
-    /// >   
+    /// >
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLabel(_ input: DetectLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectLabelResponse > {
+    public func detectLabel(_ input: DetectLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelResponse> {
         self.client.execute(action: "DetectLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 图像标签
     ///
     /// 图像标签利用深度学习技术，可以对图片进行智能分类、物体识别等。
@@ -122,14 +122,14 @@ extension Tiia {
     /// >?
     /// - 图像标签已升级服务，建议使用新版接口[通用图像标签](https://cloud.tencent.com/document/product/865/75196)。
     /// - 图像标签摄像头版、相册版、网络版、新闻版分别按照各自的实际使用次数进行收费，例如一张图片同时使用相册版、摄像头版，则按照两次调用计费。建议测试对比后从中选择一个最合适的版本使用即可。
-    /// >   
+    /// >
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectLabel(_ input: DetectLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelResponse {
         try await self.client.execute(action: "DetectLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 图像标签
     ///
     /// 图像标签利用深度学习技术，可以对图片进行智能分类、物体识别等。
@@ -143,14 +143,14 @@ extension Tiia {
     /// >?
     /// - 图像标签已升级服务，建议使用新版接口[通用图像标签](https://cloud.tencent.com/document/product/865/75196)。
     /// - 图像标签摄像头版、相册版、网络版、新闻版分别按照各自的实际使用次数进行收费，例如一张图片同时使用相册版、摄像头版，则按照两次调用计费。建议测试对比后从中选择一个最合适的版本使用即可。
-    /// >   
+    /// >
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLabel(imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectLabelResponse > {
+    public func detectLabel(imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelResponse> {
         self.detectLabel(DetectLabelRequest(imageBase64: imageBase64, imageUrl: imageUrl, scenes: scenes), logger: logger, on: eventLoop)
     }
-    
+
     /// 图像标签
     ///
     /// 图像标签利用深度学习技术，可以对图片进行智能分类、物体识别等。
@@ -164,7 +164,7 @@ extension Tiia {
     /// >?
     /// - 图像标签已升级服务，建议使用新版接口[通用图像标签](https://cloud.tencent.com/document/product/865/75196)。
     /// - 图像标签摄像头版、相册版、网络版、新闻版分别按照各自的实际使用次数进行收费，例如一张图片同时使用相册版、摄像头版，则按照两次调用计费。建议测试对比后从中选择一个最合适的版本使用即可。
-    /// >   
+    /// >
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable

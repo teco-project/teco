@@ -19,58 +19,58 @@ extension Cfs {
     public struct CreateCfsSnapshotRequest: TCRequestModel {
         /// 文件系统id
         public let fileSystemId: String
-        
+
         /// 快照名称
         public let snapshotName: String?
-        
+
         /// 快照标签
         public let resourceTags: [TagInfo]?
-        
-        public init (fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil) {
+
+        public init(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil) {
             self.fileSystemId = fileSystemId
             self.snapshotName = snapshotName
             self.resourceTags = resourceTags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
             case snapshotName = "SnapshotName"
             case resourceTags = "ResourceTags"
         }
     }
-    
+
     /// CreateCfsSnapshot返回参数结构体
     public struct CreateCfsSnapshotResponse: TCResponseModel {
         /// 文件系统快照id
         public let snapshotId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotId = "SnapshotId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建文件系统快照
     @inlinable
-    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsSnapshotResponse > {
+    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsSnapshotResponse> {
         self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件系统快照
     @inlinable
     public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
         try await self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建文件系统快照
     @inlinable
-    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsSnapshotResponse > {
+    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsSnapshotResponse> {
         self.createCfsSnapshot(CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件系统快照
     @inlinable
     public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {

@@ -19,22 +19,22 @@ extension Ms {
     public struct AdInfo: TCOutputModel {
         /// 插播广告列表
         public let spots: [PluginInfo]
-        
+
         /// 精品推荐广告列表
         public let boutiqueRecommands: [PluginInfo]
-        
+
         /// 悬浮窗广告列表
         public let floatWindowses: [PluginInfo]
-        
+
         /// banner广告列表
         public let banners: [PluginInfo]
-        
+
         /// 积分墙广告列表
         public let integralWalls: [PluginInfo]
-        
+
         /// 通知栏广告列表
         public let notifyBars: [PluginInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case spots = "Spots"
             case boutiqueRecommands = "BoutiqueRecommands"
@@ -44,30 +44,30 @@ extension Ms {
             case notifyBars = "NotifyBars"
         }
     }
-    
+
     /// app的详细基础信息
     public struct AppDetailInfo: TCOutputModel {
         /// app的名称
         public let appName: String
-        
+
         /// app的包名
         public let appPkgName: String
-        
+
         /// app的版本号
         public let appVersion: String
-        
+
         /// app的大小
         public let appSize: UInt64
-        
+
         /// app的md5
         public let appMd5: String
-        
+
         /// app的图标url
         public let appIconUrl: String
-        
+
         /// app的文件名称
         public let fileName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
             case appPkgName = "AppPkgName"
@@ -78,34 +78,34 @@ extension Ms {
             case fileName = "FileName"
         }
     }
-    
+
     /// 提交的app基本信息
     public struct AppInfo: TCInputModel {
         /// app的url，必须保证不用权限校验就可以下载
         public let appUrl: String
-        
+
         /// app的md5，需要正确传递
         public let appMd5: String
-        
+
         /// app的大小
         public let appSize: UInt64?
-        
+
         /// app的文件名
         public let fileName: String?
-        
+
         /// app的包名，需要正确的传递此字段
         public let appPkgName: String?
-        
+
         /// app的版本号
         public let appVersion: String?
-        
+
         /// app的图标url
         public let appIconUrl: String?
-        
+
         /// app的名称
         public let appName: String?
-        
-        public init (appUrl: String, appMd5: String, appSize: UInt64? = nil, fileName: String? = nil, appPkgName: String? = nil, appVersion: String? = nil, appIconUrl: String? = nil, appName: String? = nil) {
+
+        public init(appUrl: String, appMd5: String, appSize: UInt64? = nil, fileName: String? = nil, appPkgName: String? = nil, appVersion: String? = nil, appIconUrl: String? = nil, appName: String? = nil) {
             self.appUrl = appUrl
             self.appMd5 = appMd5
             self.appSize = appSize
@@ -115,7 +115,7 @@ extension Ms {
             self.appIconUrl = appIconUrl
             self.appName = appName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case appUrl = "AppUrl"
             case appMd5 = "AppMd5"
@@ -127,48 +127,48 @@ extension Ms {
             case appName = "AppName"
         }
     }
-    
+
     /// 扫描后app的信息，包含基本信息和扫描状态信息
     public struct AppScanSet: TCOutputModel {
         /// 任务唯一标识
         public let itemId: String
-        
+
         /// app的名称
         public let appName: String
-        
+
         /// app的包名
         public let appPkgName: String
-        
+
         /// app的版本号
         public let appVersion: String
-        
+
         /// app的md5
         public let appMd5: String
-        
+
         /// app的大小
         public let appSize: UInt64
-        
+
         /// 扫描结果返回码
         public let scanCode: UInt64
-        
+
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let taskStatus: UInt64
-        
+
         /// 提交扫描时间
         public let taskTime: UInt64
-        
+
         /// app的图标url
         public let appIconUrl: String
-        
+
         /// 标识唯一该app，主要用于删除
         public let appSid: String
-        
+
         /// 安全类型:1-安全软件，2-风险软件，3病毒软件
         public let safeType: UInt64
-        
+
         /// 漏洞个数
         public let vulCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case itemId = "ItemId"
             case appName = "AppName"
@@ -185,54 +185,54 @@ extension Ms {
             case vulCount = "VulCount"
         }
     }
-    
+
     /// 加固后app的信息，包含基本信息和加固信息
     public struct AppSetInfo: TCOutputModel {
         /// 任务唯一标识
         public let itemId: String
-        
+
         /// app的名称
         public let appName: String
-        
+
         /// app的包名
         public let appPkgName: String
-        
+
         /// app的版本号
         public let appVersion: String
-        
+
         /// app的md5
         public let appMd5: String
-        
+
         /// app的大小
         public let appSize: UInt64
-        
+
         /// 加固服务版本
         public let serviceEdition: String
-        
+
         /// 加固结果返回码
         public let shieldCode: UInt64
-        
+
         /// 加固后的APP下载地址
         public let appUrl: String?
-        
+
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let taskStatus: UInt64
-        
+
         /// 请求的客户端ip
         public let clientIp: String
-        
+
         /// 提交加固时间
         public let taskTime: UInt64
-        
+
         /// app的图标url
         public let appIconUrl: String
-        
+
         /// 加固后app的md5
         public let shieldMd5: String
-        
+
         /// 加固后app的大小
         public let shieldSize: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case itemId = "ItemId"
             case appName = "AppName"
@@ -251,76 +251,76 @@ extension Ms {
             case shieldSize = "ShieldSize"
         }
     }
-    
+
     /// 用户绑定app的基本信息
     public struct BindInfo: TCOutputModel {
         /// app的icon的url
         public let appIconUrl: String
-        
+
         /// app的名称
         public let appName: String
-        
+
         /// app的包名
         public let appPkgName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appIconUrl = "AppIconUrl"
             case appName = "AppName"
             case appPkgName = "AppPkgName"
         }
     }
-    
+
     /// 筛选数据结构
     public struct Filter: TCInputModel {
         /// 需要过滤的字段
         public let name: String
-        
+
         /// 需要过滤字段的值
         public let value: String?
-        
-        public init (name: String, value: String? = nil) {
+
+        public init(name: String, value: String? = nil) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// APK检测服务：非广告插件结果列表(SDK、风险插件等)
     public struct OptPluginListItem: TCOutputModel {
         /// 非广告类型
         public let pluginType: String
-        
+
         /// 非广告插件名称
         public let pluginName: String
-        
+
         /// 非广告插件描述
         public let pluginDesc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginType = "PluginType"
             case pluginName = "PluginName"
             case pluginDesc = "PluginDesc"
         }
     }
-    
+
     /// 加固策略具体信息
     public struct PlanDetailInfo: TCOutputModel {
         /// 默认策略，1为默认，0为非默认
         public let isDefault: UInt64
-        
+
         /// 策略id
         public let planId: UInt64
-        
+
         /// 策略名称
         public let planName: String
-        
+
         /// 策略信息
         public let planInfo: PlanInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case isDefault = "IsDefault"
             case planId = "PlanId"
@@ -328,57 +328,57 @@ extension Ms {
             case planInfo = "PlanInfo"
         }
     }
-    
+
     /// 加固策略信息
     public struct PlanInfo: TCOutputModel {
         /// apk大小优化，0关闭，1开启
         public let apkSizeOpt: UInt64
-        
+
         /// Dex加固，0关闭，1开启
         public let dex: UInt64
-        
+
         /// So加固，0关闭，1开启
         public let so: UInt64
-        
+
         /// 数据收集，0关闭，1开启
         public let bugly: UInt64
-        
+
         /// 防止重打包，0关闭，1开启
         public let antiRepack: UInt64
-        
+
         /// Dex分离，0关闭，1开启
         public let seperateDex: UInt64
-        
+
         /// 内存保护，0关闭，1开启
         public let db: UInt64
-        
+
         /// Dex签名校验，0关闭，1开启
         public let dexSig: UInt64
-        
+
         /// So文件信息
         public let soInfo: SoInfo
-        
+
         /// vmp，0关闭，1开启
         public let antiVMP: UInt64
-        
+
         /// 保护so的强度，
         public let soType: [String]
-        
+
         /// 防日志泄漏，0关闭，1开启
         public let antiLogLeak: UInt64
-        
+
         /// root检测，0关闭，1开启
         public let antiQemuRoot: UInt64
-        
+
         /// 资源防篡改，0关闭，1开启
         public let antiAssets: UInt64
-        
+
         /// 防止截屏，0关闭，1开启
         public let antiScreenshot: UInt64
-        
+
         /// SSL证书防窃取，0关闭，1开启
         public let antiSSL: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case apkSizeOpt = "ApkSizeOpt"
             case dex = "Dex"
@@ -398,66 +398,66 @@ extension Ms {
             case antiSSL = "AntiSSL"
         }
     }
-    
+
     /// 插件信息
     public struct PluginInfo: TCOutputModel {
         /// 插件类型，分别为 1-通知栏广告，2-积分墙广告，3-banner广告，4- 悬浮窗图标广告，5-精品推荐列表广告, 6-插播广告
         public let pluginType: UInt64
-        
+
         /// 插件名称
         public let pluginName: String
-        
+
         /// 插件描述
         public let pluginDesc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginType = "PluginType"
             case pluginName = "PluginName"
             case pluginDesc = "PluginDesc"
         }
     }
-    
+
     /// APK检测服务：广告插件结果结构体
     public struct PluginListItem: TCOutputModel {
         /// 数字类型，分别为 1-通知栏广告，2-积分墙广告，3-banner广告，4- 悬浮窗图标广告，5-精品推荐列表广告, 6-插播广告
         public let pluginType: String
-        
+
         /// 广告插件名称
         public let pluginName: String
-        
+
         /// 广告插件描述
         public let pluginDesc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginType = "PluginType"
             case pluginName = "PluginName"
             case pluginDesc = "PluginDesc"
         }
     }
-    
+
     /// 拉取某个用户的所有资源信息
     public struct ResourceInfo: TCOutputModel {
         /// 用户购买的资源id，全局唯一
         public let resourceId: String
-        
+
         /// 资源的pid，MTP加固-12767，应用加固-12750 MTP反作弊-12766 源代码混淆-12736
         public let pid: UInt64
-        
+
         /// 购买时间戳
         public let createTime: UInt64
-        
+
         /// 到期时间戳
         public let expireTime: UInt64
-        
+
         /// 0-未绑定，1-已绑定
         public let isBind: Int64
-        
+
         /// 用户绑定app的基本信息
         public let bindInfo: BindInfo
-        
+
         /// 资源名称，如应用加固，漏洞扫描
         public let resourceName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case pid = "Pid"
@@ -468,76 +468,76 @@ extension Ms {
             case resourceName = "ResourceName"
         }
     }
-    
+
     /// 资源服务信息
     public struct ResourceServiceInfo: TCOutputModel {
         /// 创建时间戳
         public let createTime: UInt64
-        
+
         /// 到期时间戳
         public let expireTime: UInt64
-        
+
         /// 资源名称，如应用加固，源码混淆
         public let resourceName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case createTime = "CreateTime"
             case expireTime = "ExpireTime"
             case resourceName = "ResourceName"
         }
     }
-    
+
     /// APK检测服务参数返回具体信息
     public struct ResultListItem: TCOutputModel {
         /// banner广告软件标记，分别为-1-不确定，0-否，1-是
         public let banner: String
-        
+
         /// 精品推荐列表广告标记，分别为-1-不确定，0-否，1-是
         public let boutiqueRecommand: String
-        
+
         /// 悬浮窗图标广告标记,分别为-1-不确定，0-否，1-是
         public let floatWindows: String
-        
+
         /// 积分墙广告软件标记，分别为 -1 -不确定，0-否，1-是
         public let integralWall: String
-        
+
         /// 安装包的md5
         public let md5: String
-        
+
         /// 通知栏广告软件标记，分别为-1-不确定，0-否，1-是
         public let notifyBar: String
-        
+
         /// 1表示官方，0表示非官方
         public let official: String
-        
+
         /// 广告插件结果列表
         public let pluginList: [PluginListItem]
-        
+
         /// 非广告插件结果列表(SDK、风险插件等)
         public let optPluginList: [OptPluginListItem]
-        
+
         /// 数字类型，分别为0-未知， 1-安全软件，2-风险软件，3-病毒软件
         public let safeType: String
-        
+
         /// Session id，合作方可以用来区分回调数据，需要唯一。
         public let sid: String
-        
+
         /// 安装包名称
         public let softName: String
-        
+
         /// 插播广告软件标记，取值：-1 不确定，0否， 1 是
         public let spot: String
-        
+
         /// 病毒名称，utf8编码
         public let virusName: String
-        
+
         /// 病毒描述，utf8编码
         public let virusDesc: String
-        
+
         /// 二次打包状态：0-表示默认；1-表示二次
         public let repackageStatus: String
-        
-        /// 应用错误码：0、1-表示正常；                  
+
+        /// 应用错误码：0、1-表示正常；
         /// 2表示System Error(engine analysis error).
         /// 3表示App analysis error, please confirm it.
         /// 4表示App have not cert, please confirm it.
@@ -550,10 +550,10 @@ extension Ms {
         /// 1001表示APP md5 different between real md5, please confirm it.
         /// 1002表示App md5 uncollect, please offer downloadlink.
         public let errno: String
-        
+
         /// 对应errno的错误信息描述
         public let errMsg: String
-        
+
         enum CodingKeys: String, CodingKey {
             case banner = "Banner"
             case boutiqueRecommand = "BoutiqueRecommand"
@@ -575,109 +575,109 @@ extension Ms {
             case errMsg = "ErrMsg"
         }
     }
-    
+
     /// 需要扫描的应用的服务信息
     public struct ScanInfo: TCInputModel {
         /// 任务处理完成后的反向通知回调地址,批量提交app每扫描完成一个会通知一次,通知为POST请求，post信息{ItemId:
         public let callbackUrl: String
-        
+
         /// VULSCAN-漏洞扫描信息，VIRUSSCAN-返回病毒扫描信息， ADSCAN-广告扫描信息，PLUGINSCAN-插件扫描信息，PERMISSION-系统权限信息，SENSITIVE-敏感词信息，可以自由组合
         public let scanTypes: [String]
-        
-        public init (callbackUrl: String, scanTypes: [String]) {
+
+        public init(callbackUrl: String, scanTypes: [String]) {
             self.callbackUrl = callbackUrl
             self.scanTypes = scanTypes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case callbackUrl = "CallbackUrl"
             case scanTypes = "ScanTypes"
         }
     }
-    
+
     /// 安全扫描系统权限信息
     public struct ScanPermissionInfo: TCOutputModel {
         /// 系统权限
         public let permission: String
-        
+
         enum CodingKeys: String, CodingKey {
             case permission = "Permission"
         }
     }
-    
+
     /// 安全扫描系统权限信息
     public struct ScanPermissionList: TCOutputModel {
         /// 系统权限信息
         public let permissionList: [ScanPermissionInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case permissionList = "PermissionList"
         }
     }
-    
+
     /// 安全扫描敏感词
     public struct ScanSensitiveInfo: TCOutputModel {
         /// 敏感词
         public let wordList: [String]
-        
+
         /// 敏感词对应的文件信息
         public let filePath: String
-        
+
         /// 文件sha1值
         public let fileSha: String
-        
+
         enum CodingKeys: String, CodingKey {
             case wordList = "WordList"
             case filePath = "FilePath"
             case fileSha = "FileSha"
         }
     }
-    
+
     /// 安全扫描敏感词列表
     public struct ScanSensitiveList: TCOutputModel {
         /// 敏感词列表
         public let sensitiveList: [ScanSensitiveInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case sensitiveList = "SensitiveList"
         }
     }
-    
+
     /// app扫描结果集
     public struct ScanSetInfo: TCOutputModel {
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let taskStatus: UInt64
-        
+
         /// app信息
         public let appDetailInfo: AppDetailInfo
-        
+
         /// 病毒信息
         public let virusInfo: VirusInfo
-        
+
         /// 漏洞信息
         public let vulInfo: VulInfo
-        
+
         /// 广告插件信息
         public let adInfo: AdInfo
-        
+
         /// 提交扫描的时间
         public let taskTime: UInt64
-        
+
         /// 状态码，成功返回0，失败返回错误码
         public let statusCode: UInt64
-        
+
         /// 状态描述
         public let statusDesc: String
-        
+
         /// 状态操作指引
         public let statusRef: String
-        
+
         /// 系统权限信息
         public let permissionInfo: ScanPermissionList
-        
+
         /// 敏感词列表
         public let sensitiveInfo: ScanSensitiveList
-        
+
         enum CodingKeys: String, CodingKey {
             case taskStatus = "TaskStatus"
             case appDetailInfo = "AppDetailInfo"
@@ -692,28 +692,28 @@ extension Ms {
             case sensitiveInfo = "SensitiveInfo"
         }
     }
-    
+
     /// 提交app加固的服务信息
     public struct ServiceInfo: TCInputModel {
         /// 服务版本，基础版basic，专业版professional，企业版enterprise。
         public let serviceEdition: String
-        
+
         /// 任务处理完成后的反向通知回调地址，如果不需要通知请传递空字符串。通知为POST请求，post包体数据示例{"Response":{"ItemId":"4cdad8fb86f036b06bccb3f58971c306","ShieldCode":0,"ShieldMd5":"78701576793c4a5f04e1c9660de0aa0b","ShieldSize":11997354,"TaskStatus":1,"TaskTime":1539148141}}，调用方需要返回如下信息，{"Result":"ok","Reason":"xxxxx"}，如果Result字段值不等于ok会继续回调。
         public let callbackUrl: String
-        
+
         /// 提交来源 YYB-应用宝 RDM-rdm MC-控制台 MAC_TOOL-mac工具 WIN_TOOL-window工具。
         public let submitSource: String
-        
+
         /// 加固策略编号，如果不传则使用系统默认加固策略。如果指定的plan不存在会返回错误。
         public let planId: UInt64?
-        
-        public init (serviceEdition: String, callbackUrl: String, submitSource: String, planId: UInt64? = nil) {
+
+        public init(serviceEdition: String, callbackUrl: String, submitSource: String, planId: UInt64? = nil) {
             self.serviceEdition = serviceEdition
             self.callbackUrl = callbackUrl
             self.submitSource = submitSource
             self.planId = planId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceEdition = "ServiceEdition"
             case callbackUrl = "CallbackUrl"
@@ -721,30 +721,30 @@ extension Ms {
             case planId = "PlanId"
         }
     }
-    
+
     /// 加固后app的信息
     public struct ShieldInfo: TCOutputModel {
         /// 加固结果的返回码
         public let shieldCode: UInt64
-        
+
         /// 加固后app的大小
         public let shieldSize: UInt64?
-        
+
         /// 加固后app的md5
         public let shieldMd5: String?
-        
+
         /// 加固后的APP下载地址，该地址有效期为20分钟，请及时下载
         public let appUrl: String?
-        
+
         /// 加固的提交时间
         public let taskTime: UInt64
-        
+
         /// 任务唯一标识
         public let itemId: String
-        
+
         /// 加固版本，basic基础版，professional专业版，enterprise企业版
         public let serviceEdition: String
-        
+
         enum CodingKeys: String, CodingKey {
             case shieldCode = "ShieldCode"
             case shieldSize = "ShieldSize"
@@ -755,89 +755,89 @@ extension Ms {
             case serviceEdition = "ServiceEdition"
         }
     }
-    
+
     /// 加固策略信息
     public struct ShieldPlanInfo: TCOutputModel {
         /// 加固策略数量
         public let totalCount: UInt64
-        
+
         /// 加固策略具体信息数组
         public let planSet: [PlanDetailInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case planSet = "PlanSet"
         }
     }
-    
+
     /// so加固信息
     public struct SoInfo: TCOutputModel {
         /// so文件列表
         public let soFileNames: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case soFileNames = "SoFileNames"
         }
     }
-    
+
     /// 病毒信息
     public struct VirusInfo: TCOutputModel {
         /// 软件安全类型，分别为0-未知、 1-安全软件、2-风险软件、3-病毒软件
         public let safeType: Int64
-        
+
         /// 病毒名称， utf8编码，非病毒时值为空
         public let virusName: String
-        
+
         /// 病毒描述，utf8编码，非病毒时值为空
         public let virusDesc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case safeType = "SafeType"
             case virusName = "VirusName"
             case virusDesc = "VirusDesc"
         }
     }
-    
+
     /// 漏洞信息
     public struct VulInfo: TCOutputModel {
         /// 漏洞列表
         public let vulList: [VulList]
-        
+
         /// 漏洞文件评分
         public let vulFileScore: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case vulList = "VulList"
             case vulFileScore = "VulFileScore"
         }
     }
-    
+
     /// 漏洞信息
     public struct VulList: TCOutputModel {
         /// 漏洞id
         public let vulId: String
-        
+
         /// 漏洞名称
         public let vulName: String
-        
+
         /// 漏洞代码
         public let vulCode: String
-        
+
         /// 漏洞描述
         public let vulDesc: String
-        
+
         /// 漏洞解决方案
         public let vulSolution: String
-        
+
         /// 漏洞来源类别，0默认自身，1第三方插件
         public let vulSrcType: Int64
-        
+
         /// 漏洞位置
         public let vulFilepath: String
-        
+
         /// 风险级别：1 低风险 ；2中等风险；3 高风险
         public let riskLevel: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case vulId = "VulId"
             case vulName = "VulName"

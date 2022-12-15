@@ -19,38 +19,38 @@ extension Dcdb {
     public struct TerminateDedicatedDBInstanceRequest: TCRequestModel {
         /// 实例 Id，形如：dcdbt-ow728lmc。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// TerminateDedicatedDBInstance返回参数结构体
     public struct TerminateDedicatedDBInstanceResponse: TCResponseModel {
         /// 异步流程Id
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁独享分布式数据库实例
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
     @inlinable
-    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDedicatedDBInstanceResponse > {
+    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDedicatedDBInstanceResponse> {
         self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁独享分布式数据库实例
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
@@ -58,15 +58,15 @@ extension Dcdb {
     public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
         try await self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁独享分布式数据库实例
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
     @inlinable
-    public func terminateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDedicatedDBInstanceResponse > {
+    public func terminateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDedicatedDBInstanceResponse> {
         self.terminateDedicatedDBInstance(TerminateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁独享分布式数据库实例
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。

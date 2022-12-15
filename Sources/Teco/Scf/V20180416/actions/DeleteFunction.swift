@@ -19,44 +19,44 @@ extension Scf {
     public struct DeleteFunctionRequest: TCRequestModel {
         /// 要删除的函数名称
         public let functionName: String
-        
+
         /// 函数所属命名空间
         public let namespace: String?
-        
+
         /// 填写需要删除的版本号，不填默认删除函数下全部版本。
         public let qualifier: String?
-        
-        public init (functionName: String, namespace: String? = nil, qualifier: String? = nil) {
+
+        public init(functionName: String, namespace: String? = nil, qualifier: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.qualifier = qualifier
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case namespace = "Namespace"
             case qualifier = "Qualifier"
         }
     }
-    
+
     /// DeleteFunction返回参数结构体
     public struct DeleteFunctionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
     @inlinable
-    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFunctionResponse > {
+    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
         self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
@@ -64,15 +64,15 @@ extension Scf {
     public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
         try await self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
     @inlinable
-    public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFunctionResponse > {
+    public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
         self.deleteFunction(DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。

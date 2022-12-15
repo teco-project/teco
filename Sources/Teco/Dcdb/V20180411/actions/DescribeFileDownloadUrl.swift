@@ -19,48 +19,48 @@ extension Dcdb {
     public struct DescribeFileDownloadUrlRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例分片ID
         public let shardId: String
-        
+
         /// 不带签名的文件路径
         public let filePath: String
-        
-        public init (instanceId: String, shardId: String, filePath: String) {
+
+        public init(instanceId: String, shardId: String, filePath: String) {
             self.instanceId = instanceId
             self.shardId = shardId
             self.filePath = filePath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case shardId = "ShardId"
             case filePath = "FilePath"
         }
     }
-    
+
     /// DescribeFileDownloadUrl返回参数结构体
     public struct DescribeFileDownloadUrlResponse: TCResponseModel {
         /// 带签名的下载连接
         public let preSignedUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case preSignedUrl = "PreSignedUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取备份或日志的下载连接
     ///
     /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
     @inlinable
-    public func describeFileDownloadUrl(_ input: DescribeFileDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileDownloadUrlResponse > {
+    public func describeFileDownloadUrl(_ input: DescribeFileDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileDownloadUrlResponse> {
         self.client.execute(action: "DescribeFileDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取备份或日志的下载连接
     ///
     /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
@@ -68,15 +68,15 @@ extension Dcdb {
     public func describeFileDownloadUrl(_ input: DescribeFileDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileDownloadUrlResponse {
         try await self.client.execute(action: "DescribeFileDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取备份或日志的下载连接
     ///
     /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
     @inlinable
-    public func describeFileDownloadUrl(instanceId: String, shardId: String, filePath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileDownloadUrlResponse > {
+    public func describeFileDownloadUrl(instanceId: String, shardId: String, filePath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileDownloadUrlResponse> {
         self.describeFileDownloadUrl(DescribeFileDownloadUrlRequest(instanceId: instanceId, shardId: shardId, filePath: filePath), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取备份或日志的下载连接
     ///
     /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。

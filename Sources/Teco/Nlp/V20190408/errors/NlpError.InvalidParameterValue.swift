@@ -24,73 +24,73 @@ extension TCNlpError {
             case textTooLong = "InvalidParameterValue.TextTooLong"
             case valueRangeError = "InvalidParameterValue.ValueRangeError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数空值错误
         public static var emptyValueError: InvalidParameterValue {
             InvalidParameterValue(.emptyValueError)
         }
-        
+
         /// 文本编码错误，不符合utf-8
         public static var textEncodeError: InvalidParameterValue {
             InvalidParameterValue(.textEncodeError)
         }
-        
+
         /// 文本输入格式错误
         public static var textFormatError: InvalidParameterValue {
             InvalidParameterValue(.textFormatError)
         }
-        
+
         /// 输入文本超出数量限制
         public static var textNumTooMuch: InvalidParameterValue {
             InvalidParameterValue(.textNumTooMuch)
         }
-        
+
         /// 输入文本超出长度限制
         public static var textTooLong: InvalidParameterValue {
             InvalidParameterValue(.textTooLong)
         }
-        
+
         /// 参数取值范围错误
         public static var valueRangeError: InvalidParameterValue {
             InvalidParameterValue(.valueRangeError)
         }
-        
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .emptyValueError: 
+            case .emptyValueError:
                 code = .invalidParameterValue_EmptyValueError
-            case .textEncodeError: 
+            case .textEncodeError:
                 code = .invalidParameterValue_TextEncodeError
-            case .textFormatError: 
+            case .textFormatError:
                 code = .invalidParameterValue_TextFormatError
-            case .textNumTooMuch: 
+            case .textNumTooMuch:
                 code = .invalidParameterValue_TextNumTooMuch
-            case .textTooLong: 
+            case .textTooLong:
                 code = .invalidParameterValue_TextTooLong
-            case .valueRangeError: 
+            case .valueRangeError:
                 code = .invalidParameterValue_ValueRangeError
             }
             return TCNlpError(code, context: self.context)

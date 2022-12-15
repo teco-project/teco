@@ -22,61 +22,61 @@ extension TCTioneError {
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM系统异常。
         public static var camException: AuthFailure {
             AuthFailure(.camException)
         }
-        
+
         /// 没有权限。
         ///
         /// 请授权
         public static var noPermission: AuthFailure {
             AuthFailure(.noPermission)
         }
-        
+
         /// 未授权操作。
         public static var unauthorizedOperation: AuthFailure {
             AuthFailure(.unauthorizedOperation)
         }
-        
+
         /// CAM签名/鉴权错误。
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-        
+
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
-            case .camException: 
+            case .camException:
                 code = .authFailure_CamException
-            case .noPermission: 
+            case .noPermission:
                 code = .authFailure_NoPermission
-            case .unauthorizedOperation: 
+            case .unauthorizedOperation:
                 code = .authFailure_UnauthorizedOperation
-            case .other: 
+            case .other:
                 code = .authFailure
             }
             return TCTioneError(code, context: self.context)

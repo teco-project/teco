@@ -17,36 +17,36 @@
 extension Cwp {
     /// DescribeWebPageGeneralize请求参数结构体
     public struct DescribeWebPageGeneralizeRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeWebPageGeneralize返回参数结构体
     public struct DescribeWebPageGeneralizeResponse: TCResponseModel {
         /// 防护监测 0 未开启 1 已开启 2 异常
         public let protectMonitor: UInt64
-        
+
         /// 防护目录数
         public let protectDirNum: UInt64
-        
+
         /// 防护文件数
         public let protectFileNum: UInt64
-        
+
         /// 篡改文件数
         public let tamperFileNum: UInt64
-        
+
         /// 篡改数
         public let tamperNum: UInt64
-        
+
         /// 今日防护数
         public let protectToday: UInt64
-        
+
         /// 防护主机数
         public let protectHostNum: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case protectMonitor = "ProtectMonitor"
             case protectDirNum = "ProtectDirNum"
@@ -58,15 +58,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询网页防篡改概览信息
     ///
     /// 查询网站防篡改概览信息
     @inlinable
-    public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageGeneralizeResponse > {
+    public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageGeneralizeResponse> {
         self.client.execute(action: "DescribeWebPageGeneralize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询网页防篡改概览信息
     ///
     /// 查询网站防篡改概览信息
@@ -74,15 +74,15 @@ extension Cwp {
     public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageGeneralizeResponse {
         try await self.client.execute(action: "DescribeWebPageGeneralize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询网页防篡改概览信息
     ///
     /// 查询网站防篡改概览信息
     @inlinable
-    public func describeWebPageGeneralize(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageGeneralizeResponse > {
+    public func describeWebPageGeneralize(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageGeneralizeResponse> {
         self.describeWebPageGeneralize(DescribeWebPageGeneralizeRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询网页防篡改概览信息
     ///
     /// 查询网站防篡改概览信息

@@ -19,34 +19,34 @@ extension Cpdp {
     public struct UnBindAcctRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String
-        
+
         /// 用于提现
         /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         public let settleAcctNo: String
-        
+
         /// 聚鑫分配的安全ID
         public let midasSecretId: String
-        
+
         /// 按照聚鑫安全密钥计算的签名
         public let midasSignature: String
-        
+
         /// 敏感信息加密类型:
         /// RSA: rsa非对称加密，使用RSA-PKCS1-v1_5
         /// AES: aes对称加密，使用AES256-CBC-PCKS7padding
         /// 缺省: RSA
         public let encryptType: String?
-        
+
         /// 环境名:
         /// release: 现网环境
         /// sandbox: 沙箱环境
         /// development: 开发环境
         /// 缺省: release
         public let midasEnvironment: String?
-        
-        public init (midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil) {
+
+        public init(midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.settleAcctNo = settleAcctNo
@@ -55,7 +55,7 @@ extension Cpdp {
             self.encryptType = encryptType
             self.midasEnvironment = midasEnvironment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case midasAppId = "MidasAppId"
             case subAppId = "SubAppId"
@@ -66,25 +66,25 @@ extension Cpdp {
             case midasEnvironment = "MidasEnvironment"
         }
     }
-    
+
     /// UnBindAcct返回参数结构体
     public struct UnBindAcctResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫-解绑银行卡
     ///
     /// 商户解除绑定的提现银行卡
     @inlinable
-    public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindAcctResponse > {
+    public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindAcctResponse> {
         self.client.execute(action: "UnBindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-解绑银行卡
     ///
     /// 商户解除绑定的提现银行卡
@@ -92,15 +92,15 @@ extension Cpdp {
     public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindAcctResponse {
         try await self.client.execute(action: "UnBindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫-解绑银行卡
     ///
     /// 商户解除绑定的提现银行卡
     @inlinable
-    public func unBindAcct(midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindAcctResponse > {
+    public func unBindAcct(midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindAcctResponse> {
         self.unBindAcct(UnBindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-解绑银行卡
     ///
     /// 商户解除绑定的提现银行卡

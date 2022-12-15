@@ -19,31 +19,31 @@ extension Vpc {
     public struct CreateSecurityGroupPoliciesRequest: TCRequestModel {
         /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
         public let securityGroupId: String
-        
+
         /// 安全组规则集合。
         public let securityGroupPolicySet: SecurityGroupPolicySet
-        
-        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet) {
+
+        public init(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet) {
             self.securityGroupId = securityGroupId
             self.securityGroupPolicySet = securityGroupPolicySet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupId = "SecurityGroupId"
             case securityGroupPolicySet = "SecurityGroupPolicySet"
         }
     }
-    
+
     /// CreateSecurityGroupPolicies返回参数结构体
     public struct CreateSecurityGroupPoliciesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全组添加规则
     ///
     /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
@@ -61,10 +61,10 @@ extension Vpc {
     /// <li>一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。如想在规则最前面插入一条，则填0即可，如果想在最后追加，该字段可不填。</li>
     /// </ul></li></ul>
     @inlinable
-    public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupPoliciesResponse > {
+    public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupPoliciesResponse> {
         self.client.execute(action: "CreateSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组添加规则
     ///
     /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
@@ -85,7 +85,7 @@ extension Vpc {
     public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "CreateSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全组添加规则
     ///
     /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
@@ -103,10 +103,10 @@ extension Vpc {
     /// <li>一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。如想在规则最前面插入一条，则填0即可，如果想在最后追加，该字段可不填。</li>
     /// </ul></li></ul>
     @inlinable
-    public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupPoliciesResponse > {
+    public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupPoliciesResponse> {
         self.createSecurityGroupPolicies(CreateSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全组添加规则
     ///
     /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。

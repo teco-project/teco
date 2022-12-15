@@ -19,38 +19,38 @@ extension Scf {
     public struct GetAsyncEventStatusRequest: TCRequestModel {
         /// 异步执行请求 id
         public let invokeRequestId: String
-        
-        public init (invokeRequestId: String) {
+
+        public init(invokeRequestId: String) {
             self.invokeRequestId = invokeRequestId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case invokeRequestId = "InvokeRequestId"
         }
     }
-    
+
     /// GetAsyncEventStatus返回参数结构体
     public struct GetAsyncEventStatusResponse: TCResponseModel {
         /// 异步事件状态
         public let result: AsyncEventStatus
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取函数异步事件状态
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
     @inlinable
-    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsyncEventStatusResponse > {
+    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsyncEventStatusResponse> {
         self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数异步事件状态
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
@@ -58,15 +58,15 @@ extension Scf {
     public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
         try await self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取函数异步事件状态
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
     @inlinable
-    public func getAsyncEventStatus(invokeRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsyncEventStatusResponse > {
+    public func getAsyncEventStatus(invokeRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsyncEventStatusResponse> {
         self.getAsyncEventStatus(GetAsyncEventStatusRequest(invokeRequestId: invokeRequestId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数异步事件状态
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。

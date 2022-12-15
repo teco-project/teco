@@ -19,49 +19,49 @@ extension Ckafka {
     public struct DeleteDatahubTaskRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DeleteDatahubTask返回参数结构体
     public struct DeleteDatahubTaskResponse: TCResponseModel {
         /// 任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: DatahubTaskIdRes?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Datahub任务
     @inlinable
-    public func deleteDatahubTask(_ input: DeleteDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatahubTaskResponse > {
+    public func deleteDatahubTask(_ input: DeleteDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatahubTaskResponse> {
         self.client.execute(action: "DeleteDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Datahub任务
     @inlinable
     public func deleteDatahubTask(_ input: DeleteDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTaskResponse {
         try await self.client.execute(action: "DeleteDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Datahub任务
     @inlinable
-    public func deleteDatahubTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatahubTaskResponse > {
+    public func deleteDatahubTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatahubTaskResponse> {
         self.deleteDatahubTask(DeleteDatahubTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Datahub任务
     @inlinable
     public func deleteDatahubTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTaskResponse {

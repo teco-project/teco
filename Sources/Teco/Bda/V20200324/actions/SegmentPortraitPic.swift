@@ -18,59 +18,59 @@ extension Bda {
     /// SegmentPortraitPic请求参数结构体
     public struct SegmentPortraitPicRequest: TCRequestModel {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
-        /// 图片分辨率须小于2000*2000。 
+        /// 图片分辨率须小于2000*2000。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
-        
+
         /// 图片的 Url 。
         /// Url、Image必须提供一个，如果都提供，只使用 Url。
-        /// 图片分辨率须小于2000*2000 ，图片 base64 编码后大小不可超过5M。 
-        /// 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。  
-        /// 非腾讯云存储的Url速度和稳定性可能受一定影响。 
+        /// 图片分辨率须小于2000*2000 ，图片 base64 编码后大小不可超过5M。
+        /// 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        /// 非腾讯云存储的Url速度和稳定性可能受一定影响。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let url: String?
-        
+
         /// 返回图像方式（base64 或 url ) ，二选一。url有效期为30分钟。
         public let rspImgType: String?
-        
-        public init (image: String? = nil, url: String? = nil, rspImgType: String? = nil) {
+
+        public init(image: String? = nil, url: String? = nil, rspImgType: String? = nil) {
             self.image = image
             self.url = url
             self.rspImgType = rspImgType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case image = "Image"
             case url = "Url"
             case rspImgType = "RspImgType"
         }
     }
-    
+
     /// SegmentPortraitPic返回参数结构体
     public struct SegmentPortraitPicResponse: TCResponseModel {
         /// 处理后的图片 base64 数据，透明背景图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultImage: String?
-        
+
         /// 一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。这些浮点数代表原图从左上角开始的每一行的每一个像素点，每一个浮点数的值是原图相应像素点位于人体轮廓内的置信度（0-1）转化的灰度值（0-255）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultMask: String?
-        
+
         /// 图片是否存在前景。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hasForeground: Bool?
-        
+
         /// 支持将处理过的图片 base64 数据，透明背景图以URL的形式返回值，URL有效期为30分钟。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultImageUrl: String?
-        
+
         /// 一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。支持以URL形式的返回值；URL有效期为30分钟。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultMaskUrl: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resultImage = "ResultImage"
             case resultMask = "ResultMask"
@@ -80,15 +80,15 @@ extension Bda {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SegmentPortraitPicResponse > {
+    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
         self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
@@ -96,15 +96,15 @@ extension Bda {
     public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
         try await self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SegmentPortraitPicResponse > {
+    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
         self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), logger: logger, on: eventLoop)
     }
-    
+
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。

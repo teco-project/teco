@@ -31,122 +31,122 @@ extension TCTtsError {
             case textTooLong = "UnsupportedOperation.TextTooLong"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 欠费。
         public static var accountArrears: UnsupportedOperation {
             UnsupportedOperation(.accountArrears)
         }
-        
+
         /// 鉴权已过期。
         public static var authorizationExpired: UnsupportedOperation {
             UnsupportedOperation(.authorizationExpired)
         }
-        
+
         /// 鉴权失败。
         public static var authorizationFailed: UnsupportedOperation {
             UnsupportedOperation(.authorizationFailed)
         }
-        
+
         /// 服务禁止使用。
         public static var forbiddenUse: UnsupportedOperation {
             UnsupportedOperation(.forbiddenUse)
         }
-        
+
         /// 没有余额。
         public static var noBanlance: UnsupportedOperation {
             UnsupportedOperation(.noBanlance)
         }
-        
+
         /// 客户免费额度已用完。
         public static var noFreeAccount: UnsupportedOperation {
             UnsupportedOperation(.noFreeAccount)
         }
-        
+
         /// 请检查资源包余量。
         public static var pkgExhausted: UnsupportedOperation {
             UnsupportedOperation(.pkgExhausted)
         }
-        
+
         /// 服务器已打开。
         public static var serverAlreadyOpen: UnsupportedOperation {
             UnsupportedOperation(.serverAlreadyOpen)
         }
-        
+
         /// 服务已销毁。
         public static var serverDestoryed: UnsupportedOperation {
             UnsupportedOperation(.serverDestoryed)
         }
-        
+
         /// 服务未开通使用。
         public static var serverNotOpen: UnsupportedOperation {
             UnsupportedOperation(.serverNotOpen)
         }
-        
+
         /// 服务已停止使用。
         public static var serverStopped: UnsupportedOperation {
             UnsupportedOperation(.serverStopped)
         }
-        
+
         /// 文本过长，请参考请求参数Text的说明。
         public static var textTooLong: UnsupportedOperation {
             UnsupportedOperation(.textTooLong)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asTtsError() -> TCTtsError {
             let code: TCTtsError.Code
             switch self.error {
-            case .accountArrears: 
+            case .accountArrears:
                 code = .unsupportedOperation_AccountArrears
-            case .authorizationExpired: 
+            case .authorizationExpired:
                 code = .unsupportedOperation_AuthorizationExpired
-            case .authorizationFailed: 
+            case .authorizationFailed:
                 code = .unsupportedOperation_AuthorizationFailed
-            case .forbiddenUse: 
+            case .forbiddenUse:
                 code = .unsupportedOperation_ForbiddenUse
-            case .noBanlance: 
+            case .noBanlance:
                 code = .unsupportedOperation_NoBanlance
-            case .noFreeAccount: 
+            case .noFreeAccount:
                 code = .unsupportedOperation_NoFreeAccount
-            case .pkgExhausted: 
+            case .pkgExhausted:
                 code = .unsupportedOperation_PkgExhausted
-            case .serverAlreadyOpen: 
+            case .serverAlreadyOpen:
                 code = .unsupportedOperation_ServerAlreadyOpen
-            case .serverDestoryed: 
+            case .serverDestoryed:
                 code = .unsupportedOperation_ServerDestoryed
-            case .serverNotOpen: 
+            case .serverNotOpen:
                 code = .unsupportedOperation_ServerNotOpen
-            case .serverStopped: 
+            case .serverStopped:
                 code = .unsupportedOperation_ServerStopped
-            case .textTooLong: 
+            case .textTooLong:
                 code = .unsupportedOperation_TextTooLong
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCTtsError(code, context: self.context)

@@ -19,49 +19,49 @@ extension Teo {
     public struct DeleteDnsRecordsRequest: TCRequestModel {
         /// 待删除记录所属站点 ID。
         public let zoneId: String
-        
+
         /// 待删除记录 ID。
         public let dnsRecordIds: [String]
-        
-        public init (zoneId: String, dnsRecordIds: [String]) {
+
+        public init(zoneId: String, dnsRecordIds: [String]) {
             self.zoneId = zoneId
             self.dnsRecordIds = dnsRecordIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case dnsRecordIds = "DnsRecordIds"
         }
     }
-    
+
     /// DeleteDnsRecords返回参数结构体
     public struct DeleteDnsRecordsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除 DNS 记录
     @inlinable
-    public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDnsRecordsResponse > {
+    public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDnsRecordsResponse> {
         self.client.execute(action: "DeleteDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除 DNS 记录
     @inlinable
     public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDnsRecordsResponse {
         try await self.client.execute(action: "DeleteDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除 DNS 记录
     @inlinable
-    public func deleteDnsRecords(zoneId: String, dnsRecordIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDnsRecordsResponse > {
+    public func deleteDnsRecords(zoneId: String, dnsRecordIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDnsRecordsResponse> {
         self.deleteDnsRecords(DeleteDnsRecordsRequest(zoneId: zoneId, dnsRecordIds: dnsRecordIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除 DNS 记录
     @inlinable
     public func deleteDnsRecords(zoneId: String, dnsRecordIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDnsRecordsResponse {

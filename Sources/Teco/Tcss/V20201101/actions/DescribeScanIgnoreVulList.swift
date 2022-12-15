@@ -19,29 +19,29 @@ extension Tcss {
     public struct DescribeScanIgnoreVulListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>CVEID- string - 是否必填：否 - CVE编号</li>
         /// <li>VulName- string - 是否必填：否 - 漏洞名称</li>
         public let filters: [RunTimeFilters]?
-        
+
         /// 排序方式:DESC,ACS
         public let order: String?
-        
+
         /// 排序字段 UpdateTime
         public let by: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -50,43 +50,43 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeScanIgnoreVulList返回参数结构体
     public struct DescribeScanIgnoreVulListResponse: TCResponseModel {
         /// 总是
         public let totalCount: Int64
-        
+
         /// 漏洞列表
         public let list: [ScanIgnoreVul]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询扫描忽略的漏洞列表
     @inlinable
-    public func describeScanIgnoreVulList(_ input: DescribeScanIgnoreVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanIgnoreVulListResponse > {
+    public func describeScanIgnoreVulList(_ input: DescribeScanIgnoreVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanIgnoreVulListResponse> {
         self.client.execute(action: "DescribeScanIgnoreVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询扫描忽略的漏洞列表
     @inlinable
     public func describeScanIgnoreVulList(_ input: DescribeScanIgnoreVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanIgnoreVulListResponse {
         try await self.client.execute(action: "DescribeScanIgnoreVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询扫描忽略的漏洞列表
     @inlinable
-    public func describeScanIgnoreVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanIgnoreVulListResponse > {
+    public func describeScanIgnoreVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanIgnoreVulListResponse> {
         self.describeScanIgnoreVulList(DescribeScanIgnoreVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询扫描忽略的漏洞列表
     @inlinable
     public func describeScanIgnoreVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanIgnoreVulListResponse {

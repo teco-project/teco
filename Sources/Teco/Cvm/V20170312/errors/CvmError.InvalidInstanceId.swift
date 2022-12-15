@@ -20,45 +20,45 @@ extension TCCvmError {
             case malformed = "InvalidInstanceId.Malformed"
             case notFound = "InvalidInstanceId.NotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效实例<code>ID</code>。指定的实例<code>ID</code>格式错误。例如实例<code>ID</code>长度错误<code>ins-1122</code>。
         public static var malformed: InvalidInstanceId {
             InvalidInstanceId(.malformed)
         }
-        
+
         /// 没有找到相应实例。
         public static var notFound: InvalidInstanceId {
             InvalidInstanceId(.notFound)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .malformed: 
+            case .malformed:
                 code = .invalidInstanceId_Malformed
-            case .notFound: 
+            case .notFound:
                 code = .invalidInstanceId_NotFound
             }
             return TCCvmError(code, context: self.context)

@@ -35,149 +35,149 @@ extension TCMariadbError {
             case superUserForbidden = "InvalidParameterValue.SuperUserForbidden"
             case syncModeNotAllowed = "InvalidParameterValue.SyncModeNotAllowed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 想要创建的账号已经存在。
         public static var accountAlreadyExists: InvalidParameterValue {
             InvalidParameterValue(.accountAlreadyExists)
         }
-        
+
         /// 该实例不支持此同步模式。
         public static var badSyncMode: InvalidParameterValue {
             InvalidParameterValue(.badSyncMode)
         }
-        
+
         /// 指定的权限无法赋予给该账号。
         public static var badUserRight: InvalidParameterValue {
             InvalidParameterValue(.badUserRight)
         }
-        
+
         /// 账号类型不正确。
         public static var badUserType: InvalidParameterValue {
             InvalidParameterValue(.badUserType)
         }
-        
+
         /// 商品数量超出限制。
         public static var illegalCount: InvalidParameterValue {
             InvalidParameterValue(.illegalCount)
         }
-        
+
         /// 找不到数据库实例所属的独享集群。
         public static var illegalExclusterID: InvalidParameterValue {
             InvalidParameterValue(.illegalExclusterID)
         }
-        
+
         /// 初始化数据库实例参数错误。
         public static var illegalInitParam: InvalidParameterValue {
             InvalidParameterValue(.illegalInitParam)
         }
-        
+
         /// 非法实例ID。
         public static var illegalInstanceId: InvalidParameterValue {
             InvalidParameterValue(.illegalInstanceId)
         }
-        
+
         /// 修改log保存天数时过小或过大。
         public static var illegalLogSaveDays: InvalidParameterValue {
             InvalidParameterValue(.illegalLogSaveDays)
         }
-        
+
         /// 商品数量超出限制。
         public static var illegalQuantity: InvalidParameterValue {
             InvalidParameterValue(.illegalQuantity)
         }
-        
+
         /// 权限参数不正确。
         public static var illegalRightParam: InvalidParameterValue {
             InvalidParameterValue(.illegalRightParam)
         }
-        
+
         /// 未找到对应的可用区信息。
         public static var illegalZone: InvalidParameterValue {
             InvalidParameterValue(.illegalZone)
         }
-        
+
         /// 非法的实例名称。
         public static var instanceNameIllegal: InvalidParameterValue {
             InvalidParameterValue(.instanceNameIllegal)
         }
-        
+
         /// 参数验证错误。
         public static var invalidParameterValueError: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueError)
         }
-        
+
         /// 找不到数据库实例对应的规格信息。
         public static var specIdIllegal: InvalidParameterValue {
             InvalidParameterValue(.specIdIllegal)
         }
-        
+
         /// 系统用户不允许操作。
         public static var superUserForbidden: InvalidParameterValue {
             InvalidParameterValue(.superUserForbidden)
         }
-        
+
         public static var syncModeNotAllowed: InvalidParameterValue {
             InvalidParameterValue(.syncModeNotAllowed)
         }
-        
+
         public func asMariadbError() -> TCMariadbError {
             let code: TCMariadbError.Code
             switch self.error {
-            case .accountAlreadyExists: 
+            case .accountAlreadyExists:
                 code = .invalidParameterValue_AccountAlreadyExists
-            case .badSyncMode: 
+            case .badSyncMode:
                 code = .invalidParameterValue_BadSyncMode
-            case .badUserRight: 
+            case .badUserRight:
                 code = .invalidParameterValue_BadUserRight
-            case .badUserType: 
+            case .badUserType:
                 code = .invalidParameterValue_BadUserType
-            case .illegalCount: 
+            case .illegalCount:
                 code = .invalidParameterValue_IllegalCount
-            case .illegalExclusterID: 
+            case .illegalExclusterID:
                 code = .invalidParameterValue_IllegalExclusterID
-            case .illegalInitParam: 
+            case .illegalInitParam:
                 code = .invalidParameterValue_IllegalInitParam
-            case .illegalInstanceId: 
+            case .illegalInstanceId:
                 code = .invalidParameterValue_IllegalInstanceId
-            case .illegalLogSaveDays: 
+            case .illegalLogSaveDays:
                 code = .invalidParameterValue_IllegalLogSaveDays
-            case .illegalQuantity: 
+            case .illegalQuantity:
                 code = .invalidParameterValue_IllegalQuantity
-            case .illegalRightParam: 
+            case .illegalRightParam:
                 code = .invalidParameterValue_IllegalRightParam
-            case .illegalZone: 
+            case .illegalZone:
                 code = .invalidParameterValue_IllegalZone
-            case .instanceNameIllegal: 
+            case .instanceNameIllegal:
                 code = .invalidParameterValue_InstanceNameIllegal
-            case .invalidParameterValueError: 
+            case .invalidParameterValueError:
                 code = .invalidParameterValue_InvalidParameterValueError
-            case .specIdIllegal: 
+            case .specIdIllegal:
                 code = .invalidParameterValue_SpecIdIllegal
-            case .superUserForbidden: 
+            case .superUserForbidden:
                 code = .invalidParameterValue_SuperUserForbidden
-            case .syncModeNotAllowed: 
+            case .syncModeNotAllowed:
                 code = .invalidParameterValue_SyncModeNotAllowed
             }
             return TCMariadbError(code, context: self.context)

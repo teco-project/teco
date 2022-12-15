@@ -19,44 +19,44 @@ extension Dlc {
     public struct DescribeResultDownloadRequest: TCRequestModel {
         /// 查询任务Id
         public let downloadId: String
-        
-        public init (downloadId: String) {
+
+        public init(downloadId: String) {
             self.downloadId = downloadId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadId = "DownloadId"
         }
     }
-    
+
     /// DescribeResultDownload返回参数结构体
     public struct DescribeResultDownloadResponse: TCResponseModel {
         /// 下载文件路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 任务状态 init | queue | format | compress | success|  timeout | error
         public let status: String
-        
+
         /// 任务异常原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
-        
+
         /// 临时AK
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretId: String?
-        
+
         /// 临时SK
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretKey: String?
-        
+
         /// 临时Token
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let token: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case status = "Status"
@@ -67,25 +67,25 @@ extension Dlc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询结果下载任务
     @inlinable
-    public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResultDownloadResponse > {
+    public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResultDownloadResponse> {
         self.client.execute(action: "DescribeResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询结果下载任务
     @inlinable
     public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResultDownloadResponse {
         try await self.client.execute(action: "DescribeResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询结果下载任务
     @inlinable
-    public func describeResultDownload(downloadId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResultDownloadResponse > {
+    public func describeResultDownload(downloadId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResultDownloadResponse> {
         self.describeResultDownload(DescribeResultDownloadRequest(downloadId: downloadId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询结果下载任务
     @inlinable
     public func describeResultDownload(downloadId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResultDownloadResponse {

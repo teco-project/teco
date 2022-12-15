@@ -19,26 +19,26 @@ extension Cls {
     public struct ModifyTopicRequest: TCRequestModel {
         /// 日志主题ID
         public let topicId: String
-        
+
         /// 日志主题名称
         public let topicName: String?
-        
+
         /// 标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，并且不能有重复的键值对。
         public let tags: [Tag]?
-        
+
         /// 该日志主题是否开始采集
         public let status: Bool?
-        
+
         /// 是否开启自动分裂
         public let autoSplit: Bool?
-        
+
         /// 若开启最大分裂，该主题能够能够允许的最大分区数
         public let maxSplitPartitions: Int64?
-        
+
         /// 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
         public let period: Int64?
-        
-        public init (topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil) {
+
+        public init(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil) {
             self.topicId = topicId
             self.topicName = topicName
             self.tags = tags
@@ -47,7 +47,7 @@ extension Cls {
             self.maxSplitPartitions = maxSplitPartitions
             self.period = period
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case topicName = "TopicName"
@@ -58,25 +58,25 @@ extension Cls {
             case period = "Period"
         }
     }
-    
+
     /// ModifyTopic返回参数结构体
     public struct ModifyTopicResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。
     @inlinable
-    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicResponse > {
+    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
         self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。
@@ -84,15 +84,15 @@ extension Cls {
     public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
         try await self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。
     @inlinable
-    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicResponse > {
+    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
         self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。

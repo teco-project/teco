@@ -19,42 +19,42 @@ extension Es {
     public struct DescribeLogstashPipelinesRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeLogstashPipelines返回参数结构体
     public struct DescribeLogstashPipelinesResponse: TCResponseModel {
         /// 管道总数
         public let totalCount: UInt64
-        
+
         /// 管道列表
         public let logstashPipelineList: [LogstashPipelineInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case logstashPipelineList = "LogstashPipelineList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取Logstash实例管道列表
     ///
     /// 用于获取Logstash实例管道列表
     @inlinable
-    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashPipelinesResponse > {
+    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashPipelinesResponse> {
         self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Logstash实例管道列表
     ///
     /// 用于获取Logstash实例管道列表
@@ -62,15 +62,15 @@ extension Es {
     public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
         try await self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取Logstash实例管道列表
     ///
     /// 用于获取Logstash实例管道列表
     @inlinable
-    public func describeLogstashPipelines(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashPipelinesResponse > {
+    public func describeLogstashPipelines(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashPipelinesResponse> {
         self.describeLogstashPipelines(DescribeLogstashPipelinesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Logstash实例管道列表
     ///
     /// 用于获取Logstash实例管道列表

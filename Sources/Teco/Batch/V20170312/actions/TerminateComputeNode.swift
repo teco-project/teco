@@ -19,40 +19,40 @@ extension Batch {
     public struct TerminateComputeNodeRequest: TCRequestModel {
         /// 计算环境ID
         public let envId: String
-        
+
         /// 计算节点ID
         public let computeNodeId: String
-        
-        public init (envId: String, computeNodeId: String) {
+
+        public init(envId: String, computeNodeId: String) {
             self.envId = envId
             self.computeNodeId = computeNodeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case computeNodeId = "ComputeNodeId"
         }
     }
-    
+
     /// TerminateComputeNode返回参数结构体
     public struct TerminateComputeNodeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁计算节点
     ///
     /// 用于销毁计算节点。
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
     @inlinable
-    public func terminateComputeNode(_ input: TerminateComputeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodeResponse > {
+    public func terminateComputeNode(_ input: TerminateComputeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodeResponse> {
         self.client.execute(action: "TerminateComputeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁计算节点
     ///
     /// 用于销毁计算节点。
@@ -61,16 +61,16 @@ extension Batch {
     public func terminateComputeNode(_ input: TerminateComputeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodeResponse {
         try await self.client.execute(action: "TerminateComputeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁计算节点
     ///
     /// 用于销毁计算节点。
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
     @inlinable
-    public func terminateComputeNode(envId: String, computeNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodeResponse > {
+    public func terminateComputeNode(envId: String, computeNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodeResponse> {
         self.terminateComputeNode(TerminateComputeNodeRequest(envId: envId, computeNodeId: computeNodeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁计算节点
     ///
     /// 用于销毁计算节点。

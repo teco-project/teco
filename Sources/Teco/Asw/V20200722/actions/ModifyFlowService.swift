@@ -19,32 +19,32 @@ extension Asw {
     public struct ModifyFlowServiceRequest: TCRequestModel {
         /// 状态机资源名
         public let flowServiceResource: String
-        
+
         /// 定义JSON
         public let definition: String
-        
+
         /// 状态机所属服务名
         public let flowServiceName: String
-        
+
         /// 状态机所属服务中文名
         public let flowServiceChineseName: String
-        
+
         /// 是否是新角色
         public let isNewRole: Bool
-        
+
         /// 状态机类型
         public let type: String
-        
+
         /// 角色资源名
         public let roleResource: String
-        
+
         /// 状态机备注
         public let description: String?
-        
+
         /// 是否允许日志投递
         public let enableCLS: Bool?
-        
-        public init (flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil) {
+
+        public init(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil) {
             self.flowServiceResource = flowServiceResource
             self.definition = definition
             self.flowServiceName = flowServiceName
@@ -55,7 +55,7 @@ extension Asw {
             self.description = description
             self.enableCLS = enableCLS
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case flowServiceResource = "FlowServiceResource"
             case definition = "Definition"
@@ -68,33 +68,33 @@ extension Asw {
             case enableCLS = "EnableCLS"
         }
     }
-    
+
     /// ModifyFlowService返回参数结构体
     public struct ModifyFlowServiceResponse: TCResponseModel {
         /// 状态机资源名
         public let flowServiceResource: String
-        
+
         /// 更新时间
         public let updateDate: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowServiceResource = "FlowServiceResource"
             case updateDate = "UpdateDate"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改状态机
     ///
     /// 该接口用于修改状态机
     @inlinable
-    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlowServiceResponse > {
+    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowServiceResponse> {
         self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改状态机
     ///
     /// 该接口用于修改状态机
@@ -102,15 +102,15 @@ extension Asw {
     public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
         try await self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改状态机
     ///
     /// 该接口用于修改状态机
     @inlinable
-    public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlowServiceResponse > {
+    public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowServiceResponse> {
         self.modifyFlowService(ModifyFlowServiceRequest(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改状态机
     ///
     /// 该接口用于修改状态机

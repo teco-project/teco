@@ -19,54 +19,54 @@ extension Cam {
     public struct UpdateSAMLProviderRequest: TCRequestModel {
         /// SAML身份提供商名称
         public let name: String
-        
+
         /// SAML身份提供商描述
         public let description: String?
-        
+
         /// SAML身份提供商Base64编码的元数据文档
         public let samlMetadataDocument: String?
-        
-        public init (name: String, description: String? = nil, samlMetadataDocument: String? = nil) {
+
+        public init(name: String, description: String? = nil, samlMetadataDocument: String? = nil) {
             self.name = name
             self.description = description
             self.samlMetadataDocument = samlMetadataDocument
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"
             case samlMetadataDocument = "SAMLMetadataDocument"
         }
     }
-    
+
     /// UpdateSAMLProvider返回参数结构体
     public struct UpdateSAMLProviderResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新SAML身份提供商信息
     @inlinable
-    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateSAMLProviderResponse > {
+    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
         self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新SAML身份提供商信息
     @inlinable
     public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
         try await self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新SAML身份提供商信息
     @inlinable
-    public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateSAMLProviderResponse > {
+    public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
         self.updateSAMLProvider(UpdateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新SAML身份提供商信息
     @inlinable
     public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {

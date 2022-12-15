@@ -19,38 +19,38 @@ extension Batch {
     public struct DescribeCpmOsInfoRequest: TCRequestModel {
         /// 黑石设备类型代号。 可以从[DescribeDeviceClass](https://cloud.tencent.com/document/api/386/32911)查询设备类型列表。
         public let deviceClassCode: String?
-        
-        public init (deviceClassCode: String? = nil) {
+
+        public init(deviceClassCode: String? = nil) {
             self.deviceClassCode = deviceClassCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceClassCode = "DeviceClassCode"
         }
     }
-    
+
     /// DescribeCpmOsInfo返回参数结构体
     public struct DescribeCpmOsInfoResponse: TCResponseModel {
         /// 操作系统信息列表。
         public let osInfoSet: [OsInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case osInfoSet = "OsInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询批量计算黑石操作系统信息
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
-    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCpmOsInfoResponse > {
+    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCpmOsInfoResponse> {
         self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询批量计算黑石操作系统信息
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
@@ -58,15 +58,15 @@ extension Batch {
     public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
         try await self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询批量计算黑石操作系统信息
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
-    public func describeCpmOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCpmOsInfoResponse > {
+    public func describeCpmOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCpmOsInfoResponse> {
         self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询批量计算黑石操作系统信息
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息

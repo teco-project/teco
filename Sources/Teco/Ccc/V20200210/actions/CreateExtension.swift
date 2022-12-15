@@ -19,54 +19,54 @@ extension Ccc {
     public struct CreateExtensionRequest: TCRequestModel {
         /// TCCC 实例应用 ID
         public let sdkAppId: UInt64
-        
+
         /// 分机号
         public let extensionId: String
-        
+
         /// 分机名称
         public let extensionName: String
-        
-        public init (sdkAppId: UInt64, extensionId: String, extensionName: String) {
+
+        public init(sdkAppId: UInt64, extensionId: String, extensionName: String) {
             self.sdkAppId = sdkAppId
             self.extensionId = extensionId
             self.extensionName = extensionName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case extensionId = "ExtensionId"
             case extensionName = "ExtensionName"
         }
     }
-    
+
     /// CreateExtension返回参数结构体
     public struct CreateExtensionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建话机账号
     @inlinable
-    public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExtensionResponse > {
+    public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExtensionResponse> {
         self.client.execute(action: "CreateExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建话机账号
     @inlinable
     public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
         try await self.client.execute(action: "CreateExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建话机账号
     @inlinable
-    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExtensionResponse > {
+    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExtensionResponse> {
         self.createExtension(CreateExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建话机账号
     @inlinable
     public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {

@@ -19,23 +19,23 @@ extension Wedata {
     public struct CreateInLongAgentRequest: TCRequestModel {
         /// 采集器类型，1：TKE Agent，2：BOSS SDK，默认：1
         public let agentType: UInt64
-        
+
         /// 采集器名称
         public let agentName: String
-        
+
         /// 集成资源组id
         public let executorGroupId: String
-        
+
         /// WeData项目ID
         public let projectId: String
-        
+
         /// TKE集群的地域
         public let tkeRegion: String
-        
+
         /// 当AgentType为1时，必填。当AgentType为2时，不用填
         public let clusterId: String?
-        
-        public init (agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil) {
+
+        public init(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil) {
             self.agentType = agentType
             self.agentName = agentName
             self.executorGroupId = executorGroupId
@@ -43,7 +43,7 @@ extension Wedata {
             self.tkeRegion = tkeRegion
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agentType = "AgentType"
             case agentName = "AgentName"
@@ -53,39 +53,39 @@ extension Wedata {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// CreateInLongAgent返回参数结构体
     public struct CreateInLongAgentResponse: TCResponseModel {
         /// 采集器ID
         public let agentId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 注册采集器
     @inlinable
-    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInLongAgentResponse > {
+    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInLongAgentResponse> {
         self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 注册采集器
     @inlinable
     public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {
         try await self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 注册采集器
     @inlinable
-    public func createInLongAgent(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInLongAgentResponse > {
+    public func createInLongAgent(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInLongAgentResponse> {
         self.createInLongAgent(CreateInLongAgentRequest(agentType: agentType, agentName: agentName, executorGroupId: executorGroupId, projectId: projectId, tkeRegion: tkeRegion, clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 注册采集器
     @inlinable
     public func createInLongAgent(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {

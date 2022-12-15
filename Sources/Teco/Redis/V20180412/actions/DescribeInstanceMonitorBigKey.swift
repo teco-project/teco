@@ -19,58 +19,58 @@ extension Redis {
     public struct DescribeInstanceMonitorBigKeyRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 请求类型：1——string类型，2——所有类型
         public let reqType: Int64
-        
+
         /// 时间；例如："20190219"
         public let date: String
-        
-        public init (instanceId: String, reqType: Int64, date: String) {
+
+        public init(instanceId: String, reqType: Int64, date: String) {
             self.instanceId = instanceId
             self.reqType = reqType
             self.date = date
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case reqType = "ReqType"
             case date = "Date"
         }
     }
-    
+
     /// DescribeInstanceMonitorBigKey返回参数结构体
     public struct DescribeInstanceMonitorBigKeyResponse: TCResponseModel {
         /// 大Key详细信息
         public let data: [BigKeyInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例大Key
     @inlinable
-    public func describeInstanceMonitorBigKey(_ input: DescribeInstanceMonitorBigKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyResponse > {
+    public func describeInstanceMonitorBigKey(_ input: DescribeInstanceMonitorBigKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyResponse> {
         self.client.execute(action: "DescribeInstanceMonitorBigKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例大Key
     @inlinable
     public func describeInstanceMonitorBigKey(_ input: DescribeInstanceMonitorBigKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorBigKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例大Key
     @inlinable
-    public func describeInstanceMonitorBigKey(instanceId: String, reqType: Int64, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyResponse > {
+    public func describeInstanceMonitorBigKey(instanceId: String, reqType: Int64, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyResponse> {
         self.describeInstanceMonitorBigKey(DescribeInstanceMonitorBigKeyRequest(instanceId: instanceId, reqType: reqType, date: date), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例大Key
     @inlinable
     public func describeInstanceMonitorBigKey(instanceId: String, reqType: Int64, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyResponse {

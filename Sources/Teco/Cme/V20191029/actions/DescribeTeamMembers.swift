@@ -19,23 +19,23 @@ extension Cme {
     public struct DescribeTeamMembersRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
-        
+
         /// 团队 ID。
         public let teamId: String
-        
+
         /// 成员 ID 列表，限指定30个指定成员。如不填，则返回指定团队下的所有成员。
         public let memberIds: [String]?
-        
+
         /// 分页偏移量，默认值：0
         public let offset: UInt64?
-        
+
         /// 返回记录条数，默认值：30，最大值：30。
         public let limit: UInt64?
-        
+
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以拉取任意团队成员的信息。如果指定操作者，则操作者必须为团队成员。
         public let `operator`: String?
-        
-        public init (platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil) {
+
+        public init(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil) {
             self.platform = platform
             self.teamId = teamId
             self.memberIds = memberIds
@@ -43,7 +43,7 @@ extension Cme {
             self.limit = limit
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case teamId = "TeamId"
@@ -53,33 +53,33 @@ extension Cme {
             case `operator` = "Operator"
         }
     }
-    
+
     /// DescribeTeamMembers返回参数结构体
     public struct DescribeTeamMembersResponse: TCResponseModel {
         /// 符合条件的记录总数。
         public let totalCount: UInt64
-        
+
         /// 团队成员列表。
         public let memberSet: [TeamMemberInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case memberSet = "MemberSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
-    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTeamMembersResponse > {
+    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTeamMembersResponse> {
         self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
@@ -87,15 +87,15 @@ extension Cme {
     public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
         try await self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
-    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTeamMembersResponse > {
+    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTeamMembersResponse> {
         self.describeTeamMembers(DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。

@@ -22,59 +22,59 @@ extension TCAaiError {
             case userHasNoFreeAmount = "FailedOperation.UserHasNoFreeAmount"
             case userNotRegistered = "FailedOperation.UserNotRegistered"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 识别错误。
         public static var errorRecognize: FailedOperation {
             FailedOperation(.errorRecognize)
         }
-        
+
         /// 账号因为欠费停止服务，请在腾讯云账户充值。
         public static var serviceIsolate: FailedOperation {
             FailedOperation(.serviceIsolate)
         }
-        
+
         /// 账号本月免费额度已用完。
         public static var userHasNoFreeAmount: FailedOperation {
             FailedOperation(.userHasNoFreeAmount)
         }
-        
+
         /// 服务未开通，请在腾讯云官网语音识别控制台开通服务。
         public static var userNotRegistered: FailedOperation {
             FailedOperation(.userNotRegistered)
         }
-        
+
         public func asAaiError() -> TCAaiError {
             let code: TCAaiError.Code
             switch self.error {
-            case .errorRecognize: 
+            case .errorRecognize:
                 code = .failedOperation_ErrorRecognize
-            case .serviceIsolate: 
+            case .serviceIsolate:
                 code = .failedOperation_ServiceIsolate
-            case .userHasNoFreeAmount: 
+            case .userHasNoFreeAmount:
                 code = .failedOperation_UserHasNoFreeAmount
-            case .userNotRegistered: 
+            case .userNotRegistered:
                 code = .failedOperation_UserNotRegistered
             }
             return TCAaiError(code, context: self.context)

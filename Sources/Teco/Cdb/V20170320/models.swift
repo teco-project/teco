@@ -22,32 +22,32 @@ extension Cdb {
     public struct Account: TCInputModel {
         /// 新账户的名称
         public let user: String
-        
+
         /// 新账户的域名
         public let host: String
-        
-        public init (user: String, host: String) {
+
+        public init(user: String, host: String) {
             self.user = user
             self.host = host
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case user = "User"
             case host = "Host"
         }
     }
-    
+
     /// 账号详细信息
     public struct AccountInfo: TCOutputModel {
         /// 账号备注信息
         public let notes: String
-        
+
         /// 账号的域名
         public let host: String
-        
+
         /// 账号的名称
         public let user: String
-        
+
         /// 账号信息修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -55,7 +55,7 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date
-        
+
         /// 修改密码的时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -63,7 +63,7 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyPasswordTime: Date
-        
+
         /// 该值已废弃
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -71,10 +71,10 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 用户最大可用实例连接数
         public let maxUserConnections: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case notes = "Notes"
             case host = "Host"
@@ -85,29 +85,29 @@ extension Cdb {
             case maxUserConnections = "MaxUserConnections"
         }
     }
-    
+
     /// 地址
     public struct Address: TCOutputModel {
         /// 地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vip: String?
-        
+
         /// 端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vPort: UInt64?
-        
+
         /// 私有网络ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uniqVpcId: String?
-        
+
         /// 私有网络子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uniqSubnet: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desc: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case vip = "Vip"
             case vPort = "VPort"
@@ -116,7 +116,7 @@ extension Cdb {
             case desc = "Desc"
         }
     }
-    
+
     /// 审计规则过滤条件
     public struct AuditFilter: TCInputModel, TCOutputModel {
         /// 过滤条件参数名称。目前支持：
@@ -124,56 +124,56 @@ extension Cdb {
         /// User – 数据库账户；
         /// DB – 数据库名称；
         public let type: String
-        
+
         /// 过滤条件匹配类型。目前支持：
         /// INC – 包含；
         /// EXC – 不包含；
         /// EQ – 等于；
         /// NEQ – 不等于；
         public let compare: String
-        
+
         /// 过滤条件匹配值。
         public let value: String
-        
-        public init (type: String, compare: String, value: String) {
+
+        public init(type: String, compare: String, value: String) {
             self.type = type
             self.compare = compare
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case compare = "Compare"
             case value = "Value"
         }
     }
-    
+
     /// 审计日志文件
     public struct AuditLogFile: TCOutputModel {
         /// 审计日志文件名称
         public let fileName: String
-        
+
         /// 审计日志文件创建时间。格式为 : "2019-03-20 17:09:13"。
         public let createTime: String
-        
+
         /// 文件状态值。可能返回的值为：
         /// "creating" - 生成中;
         /// "failed" - 创建失败;
         /// "success" - 已生成;
         public let status: String
-        
+
         /// 文件大小，单位为 KB。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileSize: Int64?
-        
+
         /// 审计日志下载地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 错误信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case createTime = "CreateTime"
@@ -183,43 +183,43 @@ extension Cdb {
             case errMsg = "ErrMsg"
         }
     }
-    
+
     /// 审计日志过滤条件。查询审计日志时，用户过滤返回的审计日志。
     public struct AuditLogFilter: TCInputModel {
         /// 客户端地址。
         public let host: [String]?
-        
+
         /// 用户名。
         public let user: [String]?
-        
+
         /// 数据库名称。
         public let dbName: [String]?
-        
+
         /// 表名称。
         public let tableName: [String]?
-        
+
         /// 审计策略名称。
         public let policyName: [String]?
-        
+
         /// SQL 语句。支持模糊匹配。
         public let sql: String?
-        
+
         /// SQL 类型。目前支持："SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "DROP", "ALTER", "SET", "REPLACE", "EXECUTE"。
         public let sqlType: String?
-        
+
         /// 执行时间。单位为：ms。表示筛选执行时间大于该值的审计日志。
         public let execTime: Int64?
-        
+
         /// 影响行数。表示筛选影响行数大于该值的审计日志。
         public let affectRows: Int64?
-        
+
         /// SQL 类型。支持多个类型同时查询。目前支持："SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "DROP", "ALTER", "SET", "REPLACE", "EXECUTE"。
         public let sqlTypes: [String]?
-        
+
         /// SQL 语句。支持传递多个sql语句。
         public let sqls: [String]?
-        
-        public init (host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil) {
+
+        public init(host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil) {
             self.host = host
             self.user = user
             self.dbName = dbName
@@ -232,7 +232,7 @@ extension Cdb {
             self.sqlTypes = sqlTypes
             self.sqls = sqls
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case host = "Host"
             case user = "User"
@@ -247,42 +247,42 @@ extension Cdb {
             case sqls = "Sqls"
         }
     }
-    
+
     /// 审计策略
     public struct AuditPolicy: TCOutputModel {
         /// 审计策略 ID。
         public let policyId: String
-        
+
         /// 审计策略的状态。可能返回的值为：
         /// "creating" - 创建中;
         /// "running" - 运行中;
         /// "paused" - 暂停中;
         /// "failed" - 创建失败。
         public let status: String
-        
+
         /// 数据库实例 ID。
         public let instanceId: String
-        
+
         /// 审计策略创建时间。格式为 : "2019-03-20 17:09:13"。
         public let createTime: String
-        
+
         /// 审计策略最后修改时间。格式为 : "2019-03-20 17:09:13"。
         public let modifyTime: String
-        
+
         /// 审计策略名称。
         public let policyName: String
-        
+
         /// 审计规则 ID。
         public let ruleId: String
-        
+
         /// 审计规则名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleName: String?
-        
+
         /// 数据库实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case status = "Status"
@@ -295,33 +295,33 @@ extension Cdb {
             case instanceName = "InstanceName"
         }
     }
-    
+
     /// 审计规则
     public struct AuditRule: TCOutputModel {
         /// 审计规则 Id。
         public let ruleId: String
-        
+
         /// 审计规则创建时间。格式为 : "2019-03-20 17:09:13"。
         public let createTime: String
-        
+
         /// 审计规则最后修改时间。格式为 : "2019-03-20 17:09:13"。
         public let modifyTime: String
-        
+
         /// 审计规则名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleName: String?
-        
+
         /// 审计规则描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 审计规则过滤条件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleFilters: [AuditFilter]?
-        
+
         /// 是否开启全审计。
         public let auditAll: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case createTime = "CreateTime"
@@ -332,21 +332,21 @@ extension Cdb {
             case auditAll = "AuditAll"
         }
     }
-    
+
     /// ECDB第二个从库的配置信息，只有ECDB实例才有这个字段
     public struct BackupConfig: TCOutputModel {
         /// 第二个从库复制方式，可能的返回值：async-异步，semisync-半同步
         public let replicationMode: String
-        
+
         /// 第二个从库可用区的正式名称，如ap-shanghai-1
         public let zone: String
-        
+
         /// 第二个从库内网IP地址
         public let vip: String
-        
+
         /// 第二个从库访问端口
         public let vport: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case replicationMode = "ReplicationMode"
             case zone = "Zone"
@@ -354,70 +354,70 @@ extension Cdb {
             case vport = "Vport"
         }
     }
-    
+
     /// 备份详细信息
     public struct BackupInfo: TCOutputModel {
         /// 备份文件名
         public let name: String
-        
+
         /// 备份文件大小，单位：Byte
         public let size: Int64
-        
+
         /// 备份快照时间，时间格式：2016-03-17 02:10:37
         public let date: String
-        
+
         /// 下载地址
         public let intranetUrl: String
-        
+
         /// 下载地址
         public let internetUrl: String
-        
+
         /// 日志具体类型。可能的值有 "logical": 逻辑冷备， "physical": 物理冷备。
         public let type: String
-        
+
         /// 备份子任务的ID，删除备份文件时使用
         public let backupId: Int64
-        
+
         /// 备份任务状态。可能的值有 "SUCCESS": 备份成功， "FAILED": 备份失败， "RUNNING": 备份进行中。
         public let status: String
-        
+
         /// 备份任务的完成时间
         public let finishTime: String
-        
+
         /// （该值将废弃，不建议使用）备份的创建者，可能的值：SYSTEM - 系统创建，Uin - 发起者Uin值。
         public let creator: String
-        
+
         /// 备份任务的开始时间
         public let startTime: String
-        
+
         /// 备份方法。可能的值有 "full": 全量备份， "partial": 部分备份。
         public let method: String
-        
+
         /// 备份方式。可能的值有 "manual": 手动备份， "automatic": 自动备份。
         public let way: String
-        
+
         /// 手动备份别名
         public let manualBackupName: String
-        
+
         /// 备份保留类型，save_mode_regular - 常规保存备份，save_mode_period - 定期保存备份
         public let saveMode: String
-        
+
         /// 本地备份所在地域
         public let region: String
-        
+
         /// 异地备份详细信息
         public let remoteInfo: [RemoteBackupInfo]
-        
+
         /// 存储方式，0-常规存储，1-归档存储，默认为0
         public let cosStorageType: Int64
-        
+
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
+
         /// 备份文件是否加密， on-加密， off-未加密
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encryptionFlag: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case size = "Size"
@@ -441,77 +441,77 @@ extension Cdb {
             case encryptionFlag = "EncryptionFlag"
         }
     }
-    
+
     /// 创建备份时，指定需要备份的库表信息
     public struct BackupItem: TCInputModel {
         /// 需要备份的库名
         public let db: String
-        
+
         /// 需要备份的表名。 如果传该参数，表示备份该库中的指定表。如果不传该参数则备份该db库
         public let table: String?
-        
-        public init (db: String, table: String? = nil) {
+
+        public init(db: String, table: String? = nil) {
             self.db = db
             self.table = table
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case db = "Db"
             case table = "Table"
         }
     }
-    
+
     /// 备份文件限制下载来源VPC设置项
     public struct BackupLimitVpcItem: TCInputModel, TCOutputModel {
         /// 限制下载来源的地域。目前仅支持当前地域。
         public let region: String
-        
+
         /// 限制下载的vpc列表。
         public let vpcList: [String]
-        
-        public init (region: String, vpcList: [String]) {
+
+        public init(region: String, vpcList: [String]) {
             self.region = region
             self.vpcList = vpcList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case vpcList = "VpcList"
         }
     }
-    
+
     /// 实例备份统计项
     public struct BackupSummaryItem: TCOutputModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 该实例自动数据备份的个数。
         public let autoBackupCount: Int64
-        
+
         /// 该实例自动数据备份的容量。
         public let autoBackupVolume: Int64
-        
+
         /// 该实例手动数据备份的个数。
         public let manualBackupCount: Int64
-        
+
         /// 该实例手动数据备份的容量。
         public let manualBackupVolume: Int64
-        
+
         /// 该实例总的数据备份（包含自动备份和手动备份）个数。
         public let dataBackupCount: Int64
-        
+
         /// 该实例总的数据备份容量。
         public let dataBackupVolume: Int64
-        
+
         /// 该实例日志备份的个数。
         public let binlogBackupCount: Int64
-        
+
         /// 该实例日志备份的容量。
         public let binlogBackupVolume: Int64
-        
+
         /// 该实例的总备份（包含数据备份和日志备份）占用容量。
         public let backupVolume: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case autoBackupCount = "AutoBackupCount"
@@ -525,41 +525,41 @@ extension Cdb {
             case backupVolume = "BackupVolume"
         }
     }
-    
+
     /// proxy代理组信息
     public struct BaseGroupInfo: TCOutputModel {
         /// 代理组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyGroupId: String?
-        
+
         /// 代理节点数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeCount: UInt64?
-        
+
         /// 状态：发货中（init）运行中（online）下线中（offline）销毁中（destroy）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// 是否开启读写分离
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openRW: Bool?
-        
+
         /// 当前代理版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentProxyVersion: String?
-        
+
         /// 支持升级版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let supportUpgradeProxyVersion: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyGroupId = "ProxyGroupId"
             case nodeCount = "NodeCount"
@@ -571,15 +571,15 @@ extension Cdb {
             case supportUpgradeProxyVersion = "SupportUpgradeProxyVersion"
         }
     }
-    
+
     /// 二进制日志信息
     public struct BinlogInfo: TCOutputModel {
         /// binlog 日志备份文件名
         public let name: String
-        
+
         /// 备份文件大小，单位：Byte
         public let size: Int64
-        
+
         /// 文件存储时间，时间格式：2016-03-17 02:10:37
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -587,37 +587,37 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var date: Date
-        
+
         /// 下载地址
         public let intranetUrl: String
-        
+
         /// 下载地址
         public let internetUrl: String
-        
+
         /// 日志具体类型，可能的值有：binlog - 二进制日志
         public let type: String
-        
+
         /// binlog 文件起始时间
         public let binlogStartTime: String
-        
+
         /// binlog 文件截止时间
         public let binlogFinishTime: String
-        
+
         /// 本地binlog文件所在地域
         public let region: String
-        
+
         /// 备份任务状态。可能的值有 "SUCCESS": 备份成功， "FAILED": 备份失败， "RUNNING": 备份进行中。
         public let status: String
-        
+
         /// binlog异地备份详细信息
         public let remoteInfo: [RemoteBackupInfo]
-        
+
         /// 存储方式，0-常规存储，1-归档存储，默认为0
         public let cosStorageType: Int64
-        
+
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case size = "Size"
@@ -634,24 +634,24 @@ extension Cdb {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 地域售卖配置
     public struct CdbRegionSellConf: TCOutputModel {
         /// 地域中文名称
         public let regionName: String
-        
+
         /// 所属大区
         public let area: String
-        
+
         /// 是否为默认地域
         public let isDefaultRegion: Int64
-        
+
         /// 地域名称
         public let region: String
-        
+
         /// 地域的可用区售卖配置
         public let regionConfig: [CdbZoneSellConf]
-        
+
         enum CodingKeys: String, CodingKey {
             case regionName = "RegionName"
             case area = "Area"
@@ -660,43 +660,43 @@ extension Cdb {
             case regionConfig = "RegionConfig"
         }
     }
-    
+
     /// 售卖配置详情
     public struct CdbSellConfig: TCOutputModel {
         /// 内存大小，单位为MB
         public let memory: Int64
-        
+
         /// CPU核心数
         public let cpu: Int64
-        
+
         /// 磁盘最小规格，单位为GB
         public let volumeMin: Int64
-        
+
         /// 磁盘最大规格，单位为GB
         public let volumeMax: Int64
-        
+
         /// 磁盘步长，单位为GB
         public let volumeStep: Int64
-        
+
         /// 每秒IO数量
         public let iops: Int64
-        
+
         /// 应用场景描述
         public let info: String
-        
+
         /// 状态值，0 表示该规格对外售卖
         public let status: Int64
-        
+
         /// 实例类型，可能的取值范围有：UNIVERSAL (通用型), EXCLUSIVE (独享型), BASIC (基础型), BASIC_V2 (基础型v2)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceType: String?
-        
+
         /// 引擎类型描述，可能的取值范围有：Innodb，RocksDB
         public let engineType: String
-        
+
         /// 售卖规格Id
         public let id: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case memory = "Memory"
             case cpu = "Cpu"
@@ -711,107 +711,107 @@ extension Cdb {
             case id = "Id"
         }
     }
-    
+
     /// 售卖实例类型
     public struct CdbSellType: TCOutputModel {
         /// 售卖实例名称。Z3是高可用类型对应规格中的DeviceType包含UNIVERSAL,EXCLUSIVE；CVM是基础版类型对应规格中的DeviceType是BASIC；TKE是基础型v2类型对应规格中的DeviceType是BASIC_V2。
         public let typeName: String
-        
+
         /// 引擎版本号
         public let engineVersion: [String]
-        
+
         /// 售卖规格Id
         public let configIds: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case typeName = "TypeName"
             case engineVersion = "EngineVersion"
             case configIds = "ConfigIds"
         }
     }
-    
+
     /// 各地域可售卖的规格配置
     public struct CdbZoneDataResult: TCOutputModel {
         /// 售卖规格所有集合
         public let configs: [CdbSellConfig]
-        
+
         /// 售卖地域可用区集合
         public let regions: [CdbRegionSellConf]
-        
+
         enum CodingKeys: String, CodingKey {
             case configs = "Configs"
             case regions = "Regions"
         }
     }
-    
+
     /// 可用区售卖配置
     public struct CdbZoneSellConf: TCOutputModel {
         /// 可用区状态。可能的返回值为：1-上线；3-停售；4-不展示
         public let status: Int64
-        
+
         /// 可用区中文名称
         public let zoneName: String
-        
+
         /// 实例类型是否为自定义类型
         public let isCustom: Bool
-        
+
         /// 是否支持灾备
         public let isSupportDr: Bool
-        
+
         /// 是否支持私有网络
         public let isSupportVpc: Bool
-        
+
         /// 小时计费实例最大售卖数量
         public let hourInstanceSaleMaxNum: Int64
-        
+
         /// 是否为默认可用区
         public let isDefaultZone: Bool
-        
+
         /// 是否为黑石区
         public let isBm: Bool
-        
+
         /// 支持的付费类型。可能的返回值为：0-包年包月；1-小时计费；2-后付费
         public let payType: [String]
-        
+
         /// 数据复制类型。0-异步复制；1-半同步复制；2-强同步复制
         public let protectMode: [String]
-        
+
         /// 可用区名称
         public let zone: String
-        
+
         /// 多可用区信息
         public let zoneConf: ZoneConf
-        
+
         /// 可支持的灾备可用区信息
         public let drZone: [String]
-        
+
         /// 是否支持跨可用区只读
         public let isSupportRemoteRo: Bool
-        
+
         /// 可支持的跨可用区只读区信息
         public let remoteRoZone: [String]
-        
+
         /// 独享型可用区状态。可能的返回值为：1-上线；3-停售；4-不展示
         public let exClusterStatus: Int64
-        
+
         /// 独享型可支持的跨可用区只读区信息
         public let exClusterRemoteRoZone: [String]
-        
+
         /// 独享型多可用区信息
         public let exClusterZoneConf: ZoneConf
-        
+
         /// 售卖实例类型数组，其中configIds的值与configs结构体中的id一一对应。
         public let sellType: [CdbSellType]
-        
+
         /// 可用区id
         public let zoneId: Int64
-        
+
         /// 是否支持ipv6
         public let isSupportIpv6: Bool
-        
+
         /// 可支持的售卖数据库引擎类型
         public let engineType: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case zoneName = "ZoneName"
@@ -837,33 +837,33 @@ extension Cdb {
             case engineType = "EngineType"
         }
     }
-    
+
     /// 克隆任务记录。
     public struct CloneItem: TCOutputModel {
         /// 克隆任务的源实例Id。
         public let srcInstanceId: String
-        
+
         /// 克隆任务的新产生实例Id。
         public let dstInstanceId: String
-        
+
         /// 克隆任务对应的任务列表Id。
         public let cloneJobId: Int64
-        
+
         /// 克隆实例使用的策略， 包括以下类型：  timepoint:指定时间点回档，  backupset: 指定备份文件回档。
         public let rollbackStrategy: String
-        
+
         /// 克隆实例回档的时间点。
         public let rollbackTargetTime: String
-        
+
         /// 任务开始时间。
         public let startTime: String
-        
+
         /// 任务结束时间。
         public let endTime: String
-        
+
         /// 任务状态，包括以下状态：initial,running,wait_complete,success,failed
         public let taskStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case srcInstanceId = "SrcInstanceId"
             case dstInstanceId = "DstInstanceId"
@@ -875,28 +875,28 @@ extension Cdb {
             case taskStatus = "TaskStatus"
         }
     }
-    
+
     /// 列权限信息
     public struct ColumnPrivilege: TCInputModel, TCOutputModel {
         /// 数据库名
         public let database: String
-        
+
         /// 数据库表名
         public let table: String
-        
+
         /// 数据库列名
         public let column: String
-        
+
         /// 权限信息
         public let privileges: [String]
-        
-        public init (database: String, table: String, column: String, privileges: [String]) {
+
+        public init(database: String, table: String, column: String, privileges: [String]) {
             self.database = database
             self.table = table
             self.column = column
             self.privileges = privileges
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case database = "Database"
             case table = "Table"
@@ -904,31 +904,31 @@ extension Cdb {
             case privileges = "Privileges"
         }
     }
-    
+
     /// 通用时间窗
     public struct CommonTimeWindow: TCInputModel {
         /// 周一的时间窗，格式如： 02:00-06:00
         public let monday: String?
-        
+
         /// 周二的时间窗，格式如： 02:00-06:00
         public let tuesday: String?
-        
+
         /// 周三的时间窗，格式如： 02:00-06:00
         public let wednesday: String?
-        
+
         /// 周四的时间窗，格式如： 02:00-06:00
         public let thursday: String?
-        
+
         /// 周五的时间窗，格式如： 02:00-06:00
         public let friday: String?
-        
+
         /// 周六的时间窗，格式如： 02:00-06:00
         public let saturday: String?
-        
+
         /// 周日的时间窗，格式如： 02:00-06:00
         public let sunday: String?
-        
-        public init (monday: String? = nil, tuesday: String? = nil, wednesday: String? = nil, thursday: String? = nil, friday: String? = nil, saturday: String? = nil, sunday: String? = nil) {
+
+        public init(monday: String? = nil, tuesday: String? = nil, wednesday: String? = nil, thursday: String? = nil, friday: String? = nil, saturday: String? = nil, sunday: String? = nil) {
             self.monday = monday
             self.tuesday = tuesday
             self.wednesday = wednesday
@@ -937,7 +937,7 @@ extension Cdb {
             self.saturday = saturday
             self.sunday = sunday
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case monday = "Monday"
             case tuesday = "Tuesday"
@@ -948,50 +948,50 @@ extension Cdb {
             case sunday = "Sunday"
         }
     }
-    
+
     /// 连接池信息
     public struct ConnectionPoolInfo: TCOutputModel {
         /// 是否开启了连接池
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let connectionPool: Bool?
-        
+
         /// 连接池类型：SessionConnectionPool（会话级别连接池）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let connectionPoolType: String?
-        
+
         /// 连接池保持阈值：单位（秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let poolConnectionTimeOut: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case connectionPool = "ConnectionPool"
             case connectionPoolType = "ConnectionPoolType"
             case poolConnectionTimeOut = "PoolConnectionTimeOut"
         }
     }
-    
+
     /// proxy配置
     public struct CustomConfig: TCOutputModel {
         /// 设备
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let device: String?
-        
+
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 设备类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceType: String?
-        
+
         /// 内存
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memory: UInt64?
-        
+
         /// 核数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpu: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case device = "Device"
             case type = "Type"
@@ -1000,7 +1000,7 @@ extension Cdb {
             case cpu = "Cpu"
         }
     }
-    
+
     /// 云数据库切换记录
     public struct DBSwitchInfo: TCOutputModel {
         /// 切换时间，格式为：2017-09-03 01:34:31
@@ -1010,88 +1010,88 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var switchTime: Date
-        
+
         /// 切换类型，可能的返回值为：TRANSFER - 数据迁移；MASTER2SLAVE - 主备切换；RECOVERY - 主从恢复
         public let switchType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case switchTime = "SwitchTime"
             case switchType = "SwitchType"
         }
     }
-    
+
     /// 数据库表名
     public struct DatabaseName: TCOutputModel {
         /// 数据库表名
         public let databaseName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
         }
     }
-    
+
     /// 数据库权限
     public struct DatabasePrivilege: TCInputModel, TCOutputModel {
         /// 权限信息
         public let privileges: [String]
-        
+
         /// 数据库名
         public let database: String
-        
-        public init (privileges: [String], database: String) {
+
+        public init(privileges: [String], database: String) {
             self.privileges = privileges
             self.database = database
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case privileges = "Privileges"
             case database = "Database"
         }
     }
-    
+
     /// 数据库名以及字符集
     public struct DatabasesWithCharacterLists: TCOutputModel {
         /// 数据库名
         public let databaseName: String
-        
+
         /// 字符集类型
         public let characterSet: String
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case characterSet = "CharacterSet"
         }
     }
-    
+
     /// 置放群组信息
     public struct DeployGroupInfo: TCOutputModel {
         /// 置放群组 ID。
         public let deployGroupId: String
-        
+
         /// 置放群组名称。
         public let deployGroupName: String
-        
+
         /// 创建时间。
         public let createTime: String
-        
+
         /// 置放群组实例配额，表示一个置放群组中可容纳的最大实例数目。
         public let quota: Int64
-        
+
         /// 置放群组亲和性策略，目前仅支持策略1，即在物理机纬度打散实例的分布。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let affinity: String?
-        
+
         /// 置放群组亲和性策略1中，同台物理机上同个置放群组实例的限制个数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let limitNum: Int64?
-        
+
         /// 置放群组详细信息。
         public let description: String
-        
+
         /// 置放群组物理机型属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let devClass: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case deployGroupId = "DeployGroupId"
             case deployGroupName = "DeployGroupName"
@@ -1103,52 +1103,52 @@ extension Cdb {
             case devClass = "DevClass"
         }
     }
-    
+
     ///  CPU负载
     public struct DeviceCpuInfo: TCOutputModel {
         /// 实例CPU平均使用率
         public let rate: [DeviceCpuRateInfo]
-        
+
         /// 实例CPU监控数据
         public let load: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case rate = "Rate"
             case load = "Load"
         }
     }
-    
+
     /// 实例CPU平均使用率
     public struct DeviceCpuRateInfo: TCOutputModel {
         /// Cpu核编号
         public let cpuCore: Int64
-        
+
         /// Cpu使用率
         public let rate: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case cpuCore = "CpuCore"
             case rate = "Rate"
         }
     }
-    
+
     /// 实例磁盘监控数据
     public struct DeviceDiskInfo: TCOutputModel {
         /// 平均每秒有百分之几的时间用于IO操作
         public let ioRatioPerSec: [Int64]
-        
+
         /// 平均每次设备I/O操作的等待时间*100，单位为毫秒。例如：该值为201，表示平均每次I/O操作等待时间为：201/100=2.1毫秒
         public let ioWaitTime: [Int64]
-        
+
         /// 磁盘平均每秒完成的读操作次数总和*100。例如：该值为2002，表示磁盘平均每秒完成读操作为：2002/100=20.2次
         public let read: [Int64]
-        
+
         /// 磁盘平均每秒完成的写操作次数总和*100。例如：该值为30001，表示磁盘平均每秒完成写操作为：30001/100=300.01次
         public let write: [Int64]
-        
+
         /// 磁盘空间容量，每两个一组，第一个为已使用容量，第二个为磁盘总容量
         public let capacityRatio: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case ioRatioPerSec = "IoRatioPerSec"
             case ioWaitTime = "IoWaitTime"
@@ -1157,38 +1157,38 @@ extension Cdb {
             case capacityRatio = "CapacityRatio"
         }
     }
-    
+
     /// 实例所在物理机内存监控信息
     public struct DeviceMemInfo: TCOutputModel {
         /// 总内存大小。free命令中Mem:一行total的值,单位：KB
         public let total: [Int64]
-        
+
         /// 已使用内存。free命令中Mem:一行used的值,单位：KB
         public let used: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case used = "Used"
         }
     }
-    
+
     /// 实例所在物理机网络监控信息
     public struct DeviceNetInfo: TCOutputModel {
         /// tcp连接数
         public let conn: [Int64]
-        
+
         /// 网卡入包量，单位：个/秒
         public let packageIn: [Int64]
-        
+
         /// 网卡出包量，单位：个/秒
         public let packageOut: [Int64]
-        
+
         /// 入流量，单位：kbps
         public let flowIn: [Int64]
-        
+
         /// 出流量，单位：kbps
         public let flowOut: [Int64]
-        
+
         enum CodingKeys: String, CodingKey {
             case conn = "Conn"
             case packageIn = "PackageIn"
@@ -1197,21 +1197,21 @@ extension Cdb {
             case flowOut = "FlowOut"
         }
     }
-    
+
     /// 灾备实例信息
     public struct DrInfo: TCOutputModel {
         /// 灾备实例状态
         public let status: Int64
-        
+
         /// 可用区信息
         public let zone: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 地域信息
         public let region: String
-        
+
         /// 实例同步状态。可能的返回值为：
         /// 0 - 灾备未同步；
         /// 1 - 灾备同步中；
@@ -1219,13 +1219,13 @@ extension Cdb {
         /// 3 - 灾备同步失败；
         /// 4 - 灾备同步修复中。
         public let syncStatus: Int64
-        
+
         /// 实例名称
         public let instanceName: String
-        
+
         /// 实例类型
         public let instanceType: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case zone = "Zone"
@@ -1236,46 +1236,46 @@ extension Cdb {
             case instanceType = "InstanceType"
         }
     }
-    
+
     /// 结构化的错误日志详情
     public struct ErrlogItem: TCOutputModel {
         /// 错误发生时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestamp: UInt64?
-        
+
         /// 错误详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case content = "Content"
         }
     }
-    
+
     /// 导入任务记录
     public struct ImportRecord: TCOutputModel {
         /// 状态值
         public let status: Int64
-        
+
         /// 状态值
         public let code: Int64
-        
+
         /// 执行时间
         public let costTime: Int64
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 后端任务ID
         public let workId: String
-        
+
         /// 导入文件名
         public let fileName: String
-        
+
         /// 执行进度
         public let process: Int64
-        
+
         /// 任务创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1283,22 +1283,22 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 文件大小
         public let fileSize: String
-        
+
         /// 任务执行信息
         public let message: String
-        
+
         /// 任务ID
         public let jobId: Int64
-        
+
         /// 导入库表名
         public let dbName: String
-        
+
         /// 异步任务的请求ID
         public let asyncRequestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case code = "Code"
@@ -1315,27 +1315,27 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
         }
     }
-    
+
     /// 安全组入站规则
     public struct Inbound: TCOutputModel {
         /// 策略，ACCEPT 或者 DROP
         public let action: String?
-        
+
         /// 来源 IP 或 IP 段，例如192.168.0.0/16
         public let cidrIp: String?
-        
+
         /// 端口
         public let portRange: String?
-        
+
         /// 网络协议，支持 UDP、TCP 等
         public let ipProtocol: String?
-        
+
         /// 规则限定的方向，进站规则为 INPUT
         public let dir: String?
-        
+
         /// 规则描述
         public let desc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case action = "Action"
             case cidrIp = "CidrIp"
@@ -1345,63 +1345,63 @@ extension Cdb {
             case desc = "Desc"
         }
     }
-    
+
     /// 实例详细信息
     public struct InstanceInfo: TCOutputModel {
         /// 外网状态，可能的返回值为：0-未开通外网；1-已开通外网；2-已关闭外网
         public let wanStatus: Int64
-        
+
         /// 可用区信息
         public let zone: String
-        
+
         /// 初始化标志，可能的返回值为：0-未初始化；1-已初始化
         public let initFlag: Int64
-        
+
         /// 只读vip信息。单独开通只读实例访问的只读实例才有该字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roVipInfo: RoVipInfo?
-        
+
         /// 内存容量，单位为 MB
         public let memory: Int64
-        
+
         /// 实例状态，可能的返回值：0-创建中；1-运行中；4-隔离中；5-已隔离
         public let status: Int64
-        
+
         /// 私有网络 ID，例如：51102
         public let vpcId: Int64
-        
+
         /// 备机信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slaveInfo: SlaveInfo?
-        
+
         /// 实例 ID
         public let instanceId: String
-        
+
         /// 硬盘容量，单位为 GB
         public let volume: Int64
-        
+
         /// 自动续费标志，可能的返回值：0-未开通自动续费；1-已开通自动续费；2-已关闭自动续费
         public let autoRenew: Int64
-        
+
         /// 数据复制方式。0 - 异步复制；1 - 半同步复制；2 - 强同步复制
         public let protectMode: Int64
-        
+
         /// 只读组详细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roGroups: [RoGroup]?
-        
+
         /// 子网 ID，例如：2333
         public let subnetId: Int64
-        
+
         /// 实例类型，可能的返回值：1-主实例；2-灾备实例；3-只读实例
         public let instanceType: Int64
-        
+
         /// 项目 ID
         public let projectId: Int64
-        
+
         /// 地域信息
         public let region: String
-        
+
         /// 实例到期时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1409,96 +1409,96 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var deadlineTime: Date
-        
+
         /// 可用区部署方式。可能的值为：0 - 单可用区；1 - 多可用区
         public let deployMode: Int64
-        
+
         /// 实例任务状态。0 - 没有任务 ,1 - 升级中,2 - 数据导入中,3 - 开放Slave中,4 - 外网访问开通中,5 - 批量操作执行中,6 - 回档中,7 - 外网访问关闭中,8 - 密码修改中,9 - 实例名修改中,10 - 重启中,12 - 自建迁移中,13 - 删除库表中,14 - 灾备实例创建同步中,15 - 升级待切换,16 - 升级切换中,17 - 升级切换完成
         public let taskStatus: Int64
-        
+
         /// 主实例详细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let masterInfo: MasterInfo?
-        
+
         /// 实例类型
         public let deviceType: String
-        
+
         /// 内核版本
         public let engineVersion: String
-        
+
         /// 实例名称
         public let instanceName: String
-        
+
         /// 灾备实例详细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drInfo: [DrInfo]?
-        
+
         /// 外网域名
         public let wanDomain: String
-        
+
         /// 外网端口号
         public let wanPort: Int64
-        
+
         /// 付费类型，可能的返回值：0-包年包月；1-按量计费
         public let payType: Int64
-        
+
         /// 实例创建时间
         public let createTime: String
-        
+
         /// 实例 IP
         public let vip: String
-        
+
         /// 端口号
         public let vport: Int64
-        
+
         /// 磁盘写入是否被锁定（实例数据写入量已经超过磁盘配额）。0 -未被锁定 1 -已被锁定
         public let cdbError: Int64
-        
+
         /// 私有网络描述符，例如：“vpc-5v8wn9mg”
         public let uniqVpcId: String
-        
+
         /// 子网描述符，例如：“subnet-1typ0s7d”
         public let uniqSubnetId: String
-        
+
         /// 物理 ID
         public let physicalId: String
-        
+
         /// 核心数
         public let cpu: Int64
-        
+
         /// 每秒查询数量
         public let qps: Int64
-        
+
         /// 可用区中文名称
         public let zoneName: String
-        
+
         /// 物理机型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceClass: String?
-        
+
         /// 置放群组 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployGroupId: String?
-        
+
         /// 可用区 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneId: Int64?
-        
+
         /// 节点数
         public let instanceNodes: Int64
-        
+
         /// 标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagList: [TagInfoItem]?
-        
+
         /// 引擎类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let engineType: String?
-        
+
         /// 最大延迟阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxDelayTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case wanStatus = "WanStatus"
             case zone = "Zone"
@@ -1547,35 +1547,35 @@ extension Cdb {
             case maxDelayTime = "MaxDelayTime"
         }
     }
-    
+
     /// 实例预期重启时间
     public struct InstanceRebootTime: TCOutputModel {
         /// 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
-        
+
         /// 预期重启时间
         public let timeInSeconds: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case timeInSeconds = "TimeInSeconds"
         }
     }
-    
+
     /// 实例可回档时间范围
     public struct InstanceRollbackRangeTime: TCOutputModel {
         /// 查询数据库错误码
         public let code: Int64
-        
+
         /// 查询数据库错误信息
         public let message: String
-        
+
         /// 实例ID列表，单个实例Id的格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
-        
+
         /// 可回档时间范围
         public let times: [RollbackTimeRange]
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"
@@ -1583,91 +1583,91 @@ extension Cdb {
             case times = "Times"
         }
     }
-    
+
     /// 本地binlog保留配置
     public struct LocalBinlogConfig: TCOutputModel {
         /// 本地binlog保留时长，可取值范围：[72,168]。
         public let saveHours: Int64
-        
+
         /// 本地binlog空间使用率，可取值范围：[30,50]。
         public let maxUsage: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case saveHours = "SaveHours"
             case maxUsage = "MaxUsage"
         }
     }
-    
+
     /// 本地binlog保留策略默认配置。
     public struct LocalBinlogConfigDefault: TCOutputModel {
         /// 本地binlog保留时长，可取值范围：[72,168]。
         public let saveHours: Int64
-        
+
         /// 本地binlog空间使用率，可取值范围：[30,50]。
         public let maxUsage: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case saveHours = "SaveHours"
             case maxUsage = "MaxUsage"
         }
     }
-    
+
     /// 主实例信息
     public struct MasterInfo: TCOutputModel {
         /// 地域信息
         public let region: String
-        
+
         /// 地域ID
         public let regionId: Int64
-        
+
         /// 可用区ID
         public let zoneId: Int64
-        
+
         /// 可用区信息
         public let zone: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例长ID
         public let resourceId: String
-        
+
         /// 实例状态
         public let status: Int64
-        
+
         /// 实例名称
         public let instanceName: String
-        
+
         /// 实例类型
         public let instanceType: Int64
-        
+
         /// 任务状态
         public let taskStatus: Int64
-        
+
         /// 内存容量
         public let memory: Int64
-        
+
         /// 硬盘容量
         public let volume: Int64
-        
+
         /// 实例机型
         public let deviceType: String
-        
+
         /// 每秒查询数
         public let qps: Int64
-        
+
         /// 私有网络ID
         public let vpcId: Int64
-        
+
         /// 子网ID
         public let subnetId: Int64
-        
+
         /// 独享集群ID
         public let exClusterId: String
-        
+
         /// 独享集群名称
         public let exClusterName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionId = "RegionId"
@@ -1689,27 +1689,27 @@ extension Cdb {
             case exClusterName = "ExClusterName"
         }
     }
-    
+
     /// 安全组出站规则
     public struct Outbound: TCOutputModel {
         /// 策略，ACCEPT 或者 DROP
         public let action: String?
-        
+
         /// 目的 IP 或 IP 段，例如172.16.0.0/12
         public let cidrIp: String?
-        
+
         /// 端口或者端口范围
         public let portRange: String?
-        
+
         /// 网络协议，支持 UDP、TCP等
         public let ipProtocol: String?
-        
+
         /// 规则限定的方向，进站规则为 OUTPUT
         public let dir: String?
-        
+
         /// 规则描述
         public let desc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case action = "Action"
             case cidrIp = "CidrIp"
@@ -1719,46 +1719,46 @@ extension Cdb {
             case desc = "Desc"
         }
     }
-    
+
     /// 实例参数信息
     public struct ParamInfo: TCInputModel {
         /// 参数名
         public let name: String
-        
+
         /// 参数值
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 参数修改记录
     public struct ParamRecord: TCOutputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 参数名称
         public let paramName: String
-        
+
         /// 参数修改前的值
         public let oldValue: String
-        
+
         /// 参数修改后的值
         public let newValue: String
-        
+
         /// 参数是否修改成功
         public let isSucess: Bool
-        
+
         /// 修改时间
         public let modifyTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case paramName = "ParamName"
@@ -1768,24 +1768,24 @@ extension Cdb {
             case modifyTime = "ModifyTime"
         }
     }
-    
+
     /// 参数模板信息
     public struct ParamTemplateInfo: TCOutputModel {
         /// 参数模板ID
         public let templateId: Int64
-        
+
         /// 参数模板名称
         public let name: String
-        
+
         /// 参数模板描述
         public let description: String
-        
+
         /// 实例引擎版本
         public let engineVersion: String
-        
+
         /// 参数模板类型
         public let templateType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case name = "Name"
@@ -1794,61 +1794,61 @@ extension Cdb {
             case templateType = "TemplateType"
         }
     }
-    
+
     /// 数据库实例参数
     public struct Parameter: TCInputModel {
         /// 参数名称
         public let name: String?
-        
+
         /// 参数值
         public let currentValue: String?
-        
-        public init (name: String? = nil, currentValue: String? = nil) {
+
+        public init(name: String? = nil, currentValue: String? = nil) {
             self.name = name
             self.currentValue = currentValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case currentValue = "CurrentValue"
         }
     }
-    
+
     /// 实例参数的详细描述
     public struct ParameterDetail: TCOutputModel {
         /// 参数名称
         public let name: String
-        
+
         /// 参数类型：integer，enum，float，string，func
         public let paramType: String
-        
+
         /// 参数默认值
         public let `default`: String
-        
+
         /// 参数描述
         public let description: String
-        
+
         /// 参数当前值
         public let currentValue: String
-        
+
         /// 修改参数后，是否需要重启数据库以使参数生效。可能的值包括：0-不需要重启；1-需要重启
         public let needReboot: Int64
-        
+
         /// 参数允许的最大值
         public let max: Int64
-        
+
         /// 参数允许的最小值
         public let min: Int64
-        
+
         /// 参数的可选枚举值。如果为非枚举参数，则为空
         public let enumValue: [String]
-        
+
         /// 参数是公式类型时，该字段有效，表示公式类型最大值
         public let maxFunc: String
-        
+
         /// 参数是公式类型时，该字段有效，表示公式类型最小值
         public let minFunc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case paramType = "ParamType"
@@ -1863,50 +1863,50 @@ extension Cdb {
             case minFunc = "MinFunc"
         }
     }
-    
+
     /// 数据库代理连接池规格配置
     public struct PoolConf: TCOutputModel {
         /// 连接池类型：SessionConnectionPool（会话级别连接池
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let connectionPoolType: String?
-        
+
         /// 最大可保持连接阈值：单位（秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxPoolConnectionTimeOut: Int64?
-        
+
         /// 最小可保持连接阈值：单位（秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minPoolConnectionTimeOut: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case connectionPoolType = "ConnectionPoolType"
             case maxPoolConnectionTimeOut = "MaxPoolConnectionTimeOut"
             case minPoolConnectionTimeOut = "MinPoolConnectionTimeOut"
         }
     }
-    
+
     /// 数据代理组信息
     public struct ProxyGroup: TCOutputModel {
         /// 代理基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baseGroup: BaseGroupInfo?
-        
+
         /// 代理地址信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: [Address]?
-        
+
         /// 代理连接池信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let connectionPoolInfo: ConnectionPoolInfo?
-        
+
         /// 代理节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyNode: [ProxyNodeInfo]?
-        
+
         /// 代理路由信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rwInstInfo: RWInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case baseGroup = "BaseGroup"
             case address = "Address"
@@ -1915,29 +1915,29 @@ extension Cdb {
             case rwInstInfo = "RWInstInfo"
         }
     }
-    
+
     /// 数据代理组信息
     public struct ProxyGroups: TCOutputModel {
         /// 代理基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baseGroup: BaseGroupInfo?
-        
+
         /// 代理地址信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: [Address]?
-        
+
         /// 代理连接池信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let connectionPoolInfo: ConnectionPoolInfo?
-        
+
         /// 代理节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyNode: [ProxyNodeInfo]?
-        
+
         /// 代理路由信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rwInstInfo: RWInfos?
-        
+
         enum CodingKeys: String, CodingKey {
             case baseGroup = "BaseGroup"
             case address = "Address"
@@ -1946,25 +1946,25 @@ extension Cdb {
             case rwInstInfo = "RWInstInfo"
         }
     }
-    
+
     /// 代理节点信息
     public struct ProxyNodeInfo: TCOutputModel {
         /// 代理节点ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyNodeId: String?
-        
+
         /// 节点当前连接数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyNodeConnections: UInt64?
-        
+
         /// cup
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyNodeCpu: UInt64?
-        
+
         /// 内存
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyNodeMem: UInt64?
-        
+
         /// 节点状态：
         /// init（申请中）
         /// online（运行中）
@@ -1974,7 +1974,7 @@ extension Cdb {
         /// error（节点故障）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyStatus: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyNodeId = "ProxyNodeId"
             case proxyNodeConnections = "ProxyNodeConnections"
@@ -1983,42 +1983,42 @@ extension Cdb {
             case proxyStatus = "ProxyStatus"
         }
     }
-    
+
     /// proxy读写分离信息
     public struct RWInfo: TCOutputModel {
         /// 代理实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instCount: UInt64?
-        
+
         /// 权重分配模式；
         /// 系统自动分配："system"， 自定义："custom"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weightMode: String?
-        
+
         /// 是否开启延迟剔除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isKickOut: Bool?
-        
+
         /// 最小保留数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minCount: UInt64?
-        
+
         /// 延迟剔除阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxDelay: UInt64?
-        
+
         /// 是否开启故障转移
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failOver: Bool?
-        
+
         /// 是否自动添加RO
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoAddRo: Bool?
-        
+
         /// 代理实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rwInstInfo: RWInstanceInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case instCount = "InstCount"
             case weightMode = "WeightMode"
@@ -2030,42 +2030,42 @@ extension Cdb {
             case rwInstInfo = "RWInstInfo"
         }
     }
-    
+
     /// proxy读写分离信息
     public struct RWInfos: TCOutputModel {
         /// 代理实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instCount: UInt64?
-        
+
         /// 权重分配模式；
         /// 系统自动分配："system"， 自定义："custom"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weightMode: String?
-        
+
         /// 是否开启延迟剔除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isKickOut: Bool?
-        
+
         /// 最小保留数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minCount: UInt64?
-        
+
         /// 延迟剔除阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxDelay: UInt64?
-        
+
         /// 是否开启故障转移
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failOver: Bool?
-        
+
         /// 是否自动添加RO
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoAddRo: Bool?
-        
+
         /// 代理实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rwInstInfo: [RWInstanceInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case instCount = "InstCount"
             case weightMode = "WeightMode"
@@ -2077,49 +2077,49 @@ extension Cdb {
             case rwInstInfo = "RWInstInfo"
         }
     }
-    
+
     /// 代理实例信息
     public struct RWInstanceInfo: TCOutputModel {
     }
-    
+
     /// 解隔离任务结果
     public struct ReleaseResult: TCOutputModel {
         /// 实例 ID。
         public let instanceId: String
-        
+
         /// 实例解隔离操作的结果值。返回值为0表示成功。
         public let code: Int64
-        
+
         /// 实例解隔离操作的错误信息。
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case code = "Code"
             case message = "Message"
         }
     }
-    
+
     /// 异地备份信息
     public struct RemoteBackupInfo: TCOutputModel {
         /// 异地备份子任务的ID
         public let subBackupId: [Int64]
-        
+
         /// 异地备份所在地域
         public let region: String
-        
+
         /// 备份任务状态。可能的值有 "SUCCESS": 备份成功， "FAILED": 备份失败， "RUNNING": 备份进行中。
         public let status: String
-        
+
         /// 异地备份任务的开始时间
         public let startTime: String
-        
+
         /// 异地备份任务的结束时间
         public let finishTime: String
-        
+
         /// 下载地址
         public let url: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subBackupId = "SubBackupId"
             case region = "Region"
@@ -2129,63 +2129,63 @@ extension Cdb {
             case url = "Url"
         }
     }
-    
+
     /// 只读组参数
     public struct RoGroup: TCInputModel, TCOutputModel {
         /// 只读组模式，可选值为：alone-系统自动分配只读组；allinone-新建只读组；join-使用现有只读组。
         public let roGroupMode: String
-        
+
         /// 只读组 ID。
         public let roGroupId: String?
-        
+
         /// 只读组名称。
         public let roGroupName: String?
-        
+
         /// 是否启用延迟超限剔除功能，启用该功能后，只读实例与主实例的延迟超过延迟阈值，只读实例将被隔离。可选值：1-启用；0-不启用。
         public let roOfflineDelay: Int64?
-        
+
         /// 延迟阈值。
         public let roMaxDelayTime: Int64?
-        
+
         /// 最少实例保留个数，若购买只读实例数量小于设置数量将不做剔除。
         public let minRoInGroup: Int64?
-        
+
         /// 读写权重分配模式，可选值：system-系统自动分配；custom-自定义。
         public let weightMode: String?
-        
+
         /// 权重值。
         public let weight: Int64?
-        
+
         /// 只读组中的只读实例详情。
         public let roInstances: [RoInstanceInfo]?
-        
+
         /// 只读组的内网 IP。
         public let vip: String?
-        
+
         /// 只读组的内网端口号。
         public let vport: Int64?
-        
+
         /// 私有网络 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uniqVpcId: String?
-        
+
         /// 子网 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uniqSubnetId: String?
-        
+
         /// 只读组所在的地域。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roGroupRegion: String?
-        
+
         /// 只读组所在的可用区。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roGroupZone: String?
-        
+
         /// 延迟复制时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let delayReplicationTime: Int64?
-        
-        public init (roGroupMode: String, roGroupId: String? = nil, roGroupName: String? = nil, roOfflineDelay: Int64? = nil, roMaxDelayTime: Int64? = nil, minRoInGroup: Int64? = nil, weightMode: String? = nil, weight: Int64? = nil, roInstances: [RoInstanceInfo]? = nil, vip: String? = nil, vport: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, roGroupRegion: String? = nil, roGroupZone: String? = nil, delayReplicationTime: Int64? = nil) {
+
+        public init(roGroupMode: String, roGroupId: String? = nil, roGroupName: String? = nil, roOfflineDelay: Int64? = nil, roMaxDelayTime: Int64? = nil, minRoInGroup: Int64? = nil, weightMode: String? = nil, weight: Int64? = nil, roInstances: [RoInstanceInfo]? = nil, vip: String? = nil, vport: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, roGroupRegion: String? = nil, roGroupZone: String? = nil, delayReplicationTime: Int64? = nil) {
             self.roGroupMode = roGroupMode
             self.roGroupId = roGroupId
             self.roGroupName = roGroupName
@@ -2203,7 +2203,7 @@ extension Cdb {
             self.roGroupZone = roGroupZone
             self.delayReplicationTime = delayReplicationTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case roGroupMode = "RoGroupMode"
             case roGroupId = "RoGroupId"
@@ -2223,28 +2223,28 @@ extension Cdb {
             case delayReplicationTime = "DelayReplicationTime"
         }
     }
-    
+
     /// RO 组的配置信息
     public struct RoGroupAttr: TCInputModel {
         /// RO 组名称。
         public let roGroupName: String?
-        
+
         /// RO 实例最大延迟阈值。单位为秒，最小值为 1。注意，RO 组必须设置了开启实例延迟剔除策略，该值才有效。
         public let roMaxDelayTime: Int64?
-        
+
         /// 是否开启实例延迟剔除。支持的值包括：1 - 开启；0 - 不开启。注意，若设置开启实例延迟剔除，则必须设置延迟阈值（RoMaxDelayTime）参数。
         public let roOfflineDelay: Int64?
-        
+
         /// 最少保留实例数。可设置为小于或等于该 RO 组下 RO 实例个数的任意值。注意，若设置值大于 RO 实例数量将不做剔除；若设置为 0，所有实例延迟超限都会被剔除。
         public let minRoInGroup: Int64?
-        
+
         /// 权重模式。支持值包括："system" - 系统自动分配； "custom" - 用户自定义设置。注意，若设置 "custom" 模式，则必须设置 RO 实例权重配置（RoWeightValues）参数。
         public let weightMode: String?
-        
+
         /// 延迟复制时间。
         public let replicationDelayTime: Int64?
-        
-        public init (roGroupName: String? = nil, roMaxDelayTime: Int64? = nil, roOfflineDelay: Int64? = nil, minRoInGroup: Int64? = nil, weightMode: String? = nil, replicationDelayTime: Int64? = nil) {
+
+        public init(roGroupName: String? = nil, roMaxDelayTime: Int64? = nil, roOfflineDelay: Int64? = nil, minRoInGroup: Int64? = nil, weightMode: String? = nil, replicationDelayTime: Int64? = nil) {
             self.roGroupName = roGroupName
             self.roMaxDelayTime = roMaxDelayTime
             self.roOfflineDelay = roOfflineDelay
@@ -2252,7 +2252,7 @@ extension Cdb {
             self.weightMode = weightMode
             self.replicationDelayTime = replicationDelayTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case roGroupName = "RoGroupName"
             case roMaxDelayTime = "RoMaxDelayTime"
@@ -2262,78 +2262,78 @@ extension Cdb {
             case replicationDelayTime = "ReplicationDelayTime"
         }
     }
-    
+
     /// RO实例的详细信息
     public struct RoInstanceInfo: TCOutputModel {
         /// RO组对应的主实例的ID
         public let masterInstanceId: String
-        
+
         /// RO实例在RO组内的状态，可能的值：online-在线，offline-下线
         public let roStatus: String
-        
+
         /// RO实例在RO组内上一次下线的时间
         public let offlineTime: String
-        
+
         /// RO实例在RO组内的权重
         public let weight: Int64
-        
+
         /// RO实例所在区域名称，如ap-shanghai
         public let region: String
-        
+
         /// RO可用区的正式名称，如ap-shanghai-1
         public let zone: String
-        
+
         /// RO实例ID，格式如：cdbro-c1nl9rpv
         public let instanceId: String
-        
+
         /// RO实例状态，可能返回值：0-创建中，1-运行中，3-异地RO（仅在使用DescribeDBInstances查询主实例信息时，返回值中异地RO的状态恒等于3，其他场景下无此值），4-删除中
         public let status: Int64
-        
+
         /// 实例类型，可能返回值：1-主实例，2-灾备实例，3-只读实例
         public let instanceType: Int64
-        
+
         /// RO实例名称
         public let instanceName: String
-        
+
         /// 按量计费状态，可能的取值：1-正常，2-欠费
         public let hourFeeStatus: Int64
-        
+
         /// RO实例任务状态，可能返回值：<br>0-没有任务<br>1-升级中<br>2-数据导入中<br>3-开放Slave中<br>4-外网访问开通中<br>5-批量操作执行中<br>6-回档中<br>7-外网访问关闭中<br>8-密码修改中<br>9-实例名修改中<br>10-重启中<br>12-自建迁移中<br>13-删除库表中<br>14-灾备实例创建同步中
         public let taskStatus: Int64
-        
+
         /// RO实例内存大小，单位：MB
         public let memory: Int64
-        
+
         /// RO实例硬盘大小，单位：GB
         public let volume: Int64
-        
+
         /// 每次查询数量
         public let qps: Int64
-        
+
         /// RO实例的内网IP地址
         public let vip: String
-        
+
         /// RO实例访问端口
         public let vport: Int64
-        
+
         /// RO实例所在私有网络ID
         public let vpcId: Int64
-        
+
         /// RO实例所在私有网络子网ID
         public let subnetId: Int64
-        
+
         /// RO实例规格描述，目前可取值 CUSTOM
         public let deviceType: String
-        
+
         /// RO实例数据库引擎版本，可能返回值：5.1、5.5、5.6、5.7、8.0
         public let engineVersion: String
-        
+
         /// RO实例到期时间，时间格式：yyyy-mm-dd hh:mm:ss，如实例为按量计费模式，则此字段值为0000-00-00 00:00:00
         public let deadlineTime: String
-        
+
         /// RO实例计费类型，可能返回值：0-包年包月，1-按量计费，2-后付费月结
         public let payType: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case masterInstanceId = "MasterInstanceId"
             case roStatus = "RoStatus"
@@ -2360,24 +2360,24 @@ extension Cdb {
             case payType = "PayType"
         }
     }
-    
+
     /// 只读vip信息
     public struct RoVipInfo: TCOutputModel {
         /// 只读vip状态
         public let roVipStatus: Int64
-        
+
         /// 只读vip的子网
         public let roSubnetId: Int64
-        
+
         /// 只读vip的私有网络
         public let roVpcId: Int64
-        
+
         /// 只读vip的端口号
         public let roVport: Int64
-        
+
         /// 只读vip
         public let roVip: String
-        
+
         enum CodingKeys: String, CodingKey {
             case roVipStatus = "RoVipStatus"
             case roSubnetId = "RoSubnetId"
@@ -2386,75 +2386,75 @@ extension Cdb {
             case roVip = "RoVip"
         }
     }
-    
+
     /// RO 实例的权重值
     public struct RoWeightValue: TCInputModel {
         /// RO 实例 ID。
         public let instanceId: String
-        
+
         /// 权重值。取值范围为 [0, 100]。
         public let weight: Int64
-        
-        public init (instanceId: String, weight: Int64) {
+
+        public init(instanceId: String, weight: Int64) {
             self.instanceId = instanceId
             self.weight = weight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case weight = "Weight"
         }
     }
-    
+
     /// 用于回档的数据库名
     public struct RollbackDBName: TCInputModel, TCOutputModel {
         /// 回档前的原数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 回档后的新数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newDatabaseName: String?
-        
-        public init (databaseName: String, newDatabaseName: String) {
+
+        public init(databaseName: String, newDatabaseName: String) {
             self.databaseName = databaseName
             self.newDatabaseName = newDatabaseName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case newDatabaseName = "NewDatabaseName"
         }
     }
-    
+
     /// 用于回档的实例详情
     public struct RollbackInstancesInfo: TCInputModel, TCOutputModel {
         /// 云数据库实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 回档策略。可选值为：table、db、full；默认值为full。table - 极速回档模式，仅导入所选中表级别的备份和binlog，如有跨表操作，且关联表未被同时选中，将会导致回档失败，该模式下参数Databases必须为空；db - 快速模式，仅导入所选中库级别的备份和binlog，如有跨库操作，且关联库未被同时选中，将会导致回档失败；full - 普通回档模式，将导入整个实例的备份和binlog，速度较慢。
         public let strategy: String
-        
+
         /// 数据库回档时间，时间格式为：yyyy-mm-dd hh:mm:ss
         public let rollbackTime: String
-        
+
         /// 待回档的数据库信息，表示整库回档
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databases: [RollbackDBName]?
-        
+
         /// 待回档的数据库表信息，表示按表回档
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tables: [RollbackTables]?
-        
-        public init (instanceId: String, strategy: String, rollbackTime: String, databases: [RollbackDBName]? = nil, tables: [RollbackTables]? = nil) {
+
+        public init(instanceId: String, strategy: String, rollbackTime: String, databases: [RollbackDBName]? = nil, tables: [RollbackTables]? = nil) {
             self.instanceId = instanceId
             self.strategy = strategy
             self.rollbackTime = rollbackTime
             self.databases = databases
             self.tables = tables
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case strategy = "Strategy"
@@ -2463,70 +2463,70 @@ extension Cdb {
             case tables = "Tables"
         }
     }
-    
+
     /// 用于回档的数据库表名
     public struct RollbackTableName: TCInputModel, TCOutputModel {
         /// 回档前的原数据库表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 回档后的新数据库表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newTableName: String?
-        
-        public init (tableName: String, newTableName: String) {
+
+        public init(tableName: String, newTableName: String) {
             self.tableName = tableName
             self.newTableName = newTableName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableName = "TableName"
             case newTableName = "NewTableName"
         }
     }
-    
+
     /// 用于回档的数据库表详情
     public struct RollbackTables: TCInputModel, TCOutputModel {
         /// 数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let database: String?
-        
+
         /// 数据库表详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let table: [RollbackTableName]?
-        
-        public init (database: String, table: [RollbackTableName]) {
+
+        public init(database: String, table: [RollbackTableName]) {
             self.database = database
             self.table = table
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case database = "Database"
             case table = "Table"
         }
     }
-    
+
     /// 回档任务详情
     public struct RollbackTask: TCOutputModel {
         /// 任务执行信息描述。
         public let info: String
-        
+
         /// 任务执行结果。可能的取值：INITIAL - 初始化，RUNNING - 运行中，SUCCESS - 执行成功，FAILED - 执行失败，KILLED - 已终止，REMOVED - 已删除，PAUSED - 终止中。
         public let status: String
-        
+
         /// 任务执行进度。取值范围为[0, 100]。
         public let progress: Int64
-        
+
         /// 任务开始时间。
         public let startTime: String
-        
+
         /// 任务结束时间。
         public let endTime: String
-        
+
         /// 回档任务详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let detail: [RollbackInstancesInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case info = "Info"
             case status = "Status"
@@ -2536,60 +2536,60 @@ extension Cdb {
             case detail = "Detail"
         }
     }
-    
+
     /// 可回档时间范围
     public struct RollbackTimeRange: TCOutputModel {
         /// 实例可回档开始时间，时间格式：2016-10-29 01:06:04
         public let begin: String
-        
+
         /// 实例可回档结束时间，时间格式：2016-11-02 11:44:47
         public let end: String
-        
+
         enum CodingKeys: String, CodingKey {
             case begin = "Begin"
             case end = "End"
         }
     }
-    
+
     /// 权重分配规则
     public struct Rule: TCOutputModel {
         /// 划分上限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lessThan: UInt64?
-        
+
         /// 权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case lessThan = "LessThan"
             case weight = "Weight"
         }
     }
-    
+
     /// 安全组详情
     public struct SecurityGroup: TCOutputModel {
         /// 项目ID
         public let projectId: Int64
-        
+
         /// 创建时间，时间格式：yyyy-mm-dd hh:mm:ss
         public let createTime: String
-        
+
         /// 入站规则
         public let inbound: [Inbound]
-        
+
         /// 出站规则
         public let outbound: [Outbound]
-        
+
         /// 安全组ID
         public let securityGroupId: String
-        
+
         /// 安全组名称
         public let securityGroupName: String
-        
+
         /// 安全组备注
         public let securityGroupRemark: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case createTime = "CreateTime"
@@ -2600,50 +2600,50 @@ extension Cdb {
             case securityGroupRemark = "SecurityGroupRemark"
         }
     }
-    
+
     /// 从库的配置信息
     public struct SlaveConfig: TCOutputModel {
         /// 从库复制方式，可能的返回值：aysnc-异步，semisync-半同步
         public let replicationMode: String
-        
+
         /// 从库可用区的正式名称，如ap-shanghai-1
         public let zone: String
-        
+
         enum CodingKeys: String, CodingKey {
             case replicationMode = "ReplicationMode"
             case zone = "Zone"
         }
     }
-    
+
     /// 备机信息
     public struct SlaveInfo: TCOutputModel {
         /// 第一备机信息
         public let first: SlaveInstanceInfo
-        
+
         /// 第二备机信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let second: SlaveInstanceInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case first = "First"
             case second = "Second"
         }
     }
-    
+
     /// 备机信息
     public struct SlaveInstanceInfo: TCOutputModel {
         /// 端口号
         public let vport: Int64
-        
+
         /// 地域信息
         public let region: String
-        
+
         /// 虚拟 IP 信息
         public let vip: String
-        
+
         /// 可用区信息
         public let zone: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vport = "Vport"
             case region = "Region"
@@ -2651,27 +2651,27 @@ extension Cdb {
             case zone = "Zone"
         }
     }
-    
+
     /// 慢查询日志详情
     public struct SlowLogInfo: TCOutputModel {
         /// 备份文件名
         public let name: String
-        
+
         /// 备份文件大小，单位：Byte
         public let size: Int64
-        
+
         /// 备份快照时间，时间格式：2016-03-17 02:10:37
         public let date: String
-        
+
         /// 内网下载地址
         public let intranetUrl: String
-        
+
         /// 外网下载地址
         public let internetUrl: String
-        
+
         /// 日志具体类型，可能的值：slowlog - 慢日志
         public let type: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case size = "Size"
@@ -2681,53 +2681,53 @@ extension Cdb {
             case type = "Type"
         }
     }
-    
+
     /// 结构化的慢日志详情
     public struct SlowLogItem: TCOutputModel {
         /// Sql的执行时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestamp: UInt64?
-        
+
         /// Sql的执行时长（秒）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let queryTime: Float?
-        
+
         /// Sql语句。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sqlText: String?
-        
+
         /// 客户端地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userHost: String?
-        
+
         /// 用户名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
-        
+
         /// 数据库名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let database: String?
-        
+
         /// 锁时长（秒）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lockTime: Float?
-        
+
         /// 扫描行数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rowsExamined: Int64?
-        
+
         /// 结果集行数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rowsSent: Int64?
-        
+
         /// Sql模板。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sqlTemplate: String?
-        
+
         /// Sql语句的md5。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case queryTime = "QueryTime"
@@ -2742,7 +2742,7 @@ extension Cdb {
             case md5 = "Md5"
         }
     }
-    
+
     /// sql文件信息
     public struct SqlFileInfo: TCOutputModel {
         /// 上传时间
@@ -2752,22 +2752,22 @@ extension Cdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var uploadTime: Date
-        
+
         /// 上传进度
         public let uploadInfo: UploadInfo
-        
+
         /// 文件名
         public let fileName: String
-        
+
         /// 文件大小，单位为Bytes
         public let fileSize: Int64
-        
+
         /// 上传是否完成标志，可选值：0 - 未完成，1 - 已完成
         public let isUploadFinished: Int64
-        
+
         /// 文件ID
         public let fileId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uploadTime = "UploadTime"
             case uploadInfo = "UploadInfo"
@@ -2777,132 +2777,132 @@ extension Cdb {
             case fileId = "FileId"
         }
     }
-    
+
     /// 表名
     public struct TableName: TCOutputModel {
         /// 表名
         public let tableName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tableName = "TableName"
         }
     }
-    
+
     /// 数据库表权限
     public struct TablePrivilege: TCInputModel, TCOutputModel {
         /// 数据库名
         public let database: String
-        
+
         /// 数据库表名
         public let table: String
-        
+
         /// 权限信息
         public let privileges: [String]
-        
-        public init (database: String, table: String, privileges: [String]) {
+
+        public init(database: String, table: String, privileges: [String]) {
             self.database = database
             self.table = table
             self.privileges = privileges
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case database = "Database"
             case table = "Table"
             case privileges = "Privileges"
         }
     }
-    
+
     /// 标签结构
     public struct Tag: TCInputModel {
         /// 标签键
         public let key: String
-        
+
         /// 标签值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 标签信息
     public struct TagInfo: TCOutputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 标签信息
     public struct TagInfoItem: TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagKey: String?
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// tag信息单元
     public struct TagInfoUnit: TCOutputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 实例的标签信息
     public struct TagsInfoOfInstance: TCOutputModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 标签信息
         public let tags: [TagInfoUnit]
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case tags = "Tags"
         }
     }
-    
+
     /// 实例任务详情
     public struct TaskDetail: TCOutputModel {
         /// 错误码。
         public let code: Int64
-        
+
         /// 错误信息。
         public let message: String
-        
+
         /// 实例任务 ID。
         public let jobId: Int64
-        
+
         /// 实例任务进度。
         public let progress: Int64
-        
+
         /// 实例任务状态，可能的值包括：
         /// "UNDEFINED" - 未定义；
         /// "INITIAL" - 初始化；
@@ -2914,7 +2914,7 @@ extension Cdb {
         /// "PAUSED" - 已暂停。
         /// "WAITING" - 等待中（可撤销）
         public let taskStatus: String
-        
+
         /// 实例任务类型，可能的值包括：
         /// "ROLLBACK" - 数据库回档；
         /// "SQL OPERATION" - SQL操作；
@@ -2929,20 +2929,20 @@ extension Cdb {
         /// "DROP TABLES" - 删除云数据库库表；
         /// "SWITCH DR TO MASTER" - 灾备实例提升为主。
         public let taskType: String
-        
+
         /// 实例任务开始时间。
         public let startTime: String
-        
+
         /// 实例任务结束时间。
         public let endTime: String
-        
+
         /// 任务关联的实例 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceIds: [String]?
-        
+
         /// 异步任务的请求 ID。
         public let asyncRequestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"
@@ -2956,42 +2956,42 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
         }
     }
-    
+
     /// 文件上传描述
     public struct UploadInfo: TCOutputModel {
         /// 文件所有分片数
         public let allSliceNum: Int64
-        
+
         /// 已完成分片数
         public let completeNum: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case allSliceNum = "AllSliceNum"
             case completeNum = "CompleteNum"
         }
     }
-    
+
     /// 多可用区信息
     public struct ZoneConf: TCInputModel, TCOutputModel {
         /// 可用区部署方式，可能的值为：0-单可用区；1-多可用区
         public let deployMode: [Int64]
-        
+
         /// 主实例所在的可用区
         public let masterZone: [String]
-        
+
         /// 实例为多可用区部署时，备库1所在的可用区
         public let slaveZone: [String]
-        
+
         /// 实例为多可用区部署时，备库2所在的可用区
         public let backupZone: [String]
-        
-        public init (deployMode: [Int64], masterZone: [String], slaveZone: [String], backupZone: [String]) {
+
+        public init(deployMode: [Int64], masterZone: [String], slaveZone: [String], backupZone: [String]) {
             self.deployMode = deployMode
             self.masterZone = masterZone
             self.slaveZone = slaveZone
             self.backupZone = backupZone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deployMode = "DeployMode"
             case masterZone = "MasterZone"

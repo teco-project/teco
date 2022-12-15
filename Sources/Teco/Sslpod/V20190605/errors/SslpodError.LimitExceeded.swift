@@ -20,45 +20,45 @@ extension TCSslpodError {
             case addExceeded = "LimitExceeded.AddExceeded"
             case monitorExceeded = "LimitExceeded.MonitorExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 套餐管理额度已满。
         public static var addExceeded: LimitExceeded {
             LimitExceeded(.addExceeded)
         }
-        
+
         /// 套餐监控额度已满。
         public static var monitorExceeded: LimitExceeded {
             LimitExceeded(.monitorExceeded)
         }
-        
+
         public func asSslpodError() -> TCSslpodError {
             let code: TCSslpodError.Code
             switch self.error {
-            case .addExceeded: 
+            case .addExceeded:
                 code = .limitExceeded_AddExceeded
-            case .monitorExceeded: 
+            case .monitorExceeded:
                 code = .limitExceeded_MonitorExceeded
             }
             return TCSslpodError(code, context: self.context)

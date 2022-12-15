@@ -19,54 +19,54 @@ extension Tan {
     public struct CreateBlockNodeRecordsRequest: TCRequestModel {
         /// 盘查组id，可在“盘查组概览”功能中获取。
         public let groupId: String
-        
+
         /// 节点id，可在“数据接入管理”中获取。
         public let nodeId: String
-        
+
         /// 节点数据json，具体demo请参考输入示例，其中key为数据接入管理中节点内创建的属性变量名，value为期望的推送值。
         public let records: String
-        
-        public init (groupId: String, nodeId: String, records: String) {
+
+        public init(groupId: String, nodeId: String, records: String) {
             self.groupId = groupId
             self.nodeId = nodeId
             self.records = records
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case nodeId = "NodeId"
             case records = "Records"
         }
     }
-    
+
     /// CreateBlockNodeRecords返回参数结构体
     public struct CreateBlockNodeRecordsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 推送节点数据
     @inlinable
-    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlockNodeRecordsResponse > {
+    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlockNodeRecordsResponse> {
         self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 推送节点数据
     @inlinable
     public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
         try await self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 推送节点数据
     @inlinable
-    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlockNodeRecordsResponse > {
+    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlockNodeRecordsResponse> {
         self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), logger: logger, on: eventLoop)
     }
-    
+
     /// 推送节点数据
     @inlinable
     public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {

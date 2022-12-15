@@ -20,45 +20,45 @@ extension TCCdbError {
             case subAccountDenied = "AuthFailure.SubAccountDenied"
             case other = "AuthFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 子账号无权限。
         public static var subAccountDenied: AuthFailure {
             AuthFailure(.subAccountDenied)
         }
-        
+
         /// CAM签名/鉴权错误。
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-        
+
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {
-            case .subAccountDenied: 
+            case .subAccountDenied:
                 code = .authFailure_SubAccountDenied
-            case .other: 
+            case .other:
                 code = .authFailure
             }
             return TCCdbError(code, context: self.context)

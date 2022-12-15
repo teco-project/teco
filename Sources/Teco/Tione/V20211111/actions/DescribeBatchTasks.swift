@@ -25,23 +25,23 @@ extension Tione {
         /// ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
         /// CHARGE_STATUS（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ ARREARS_STOP（欠费停止）
         public let filters: [Filter]?
-        
+
         /// 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]
         public let tagFilters: [TagFilter]?
-        
+
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为10，最大为50
         public let limit: UInt64?
-        
+
         /// 输出列表的排列顺序。取值范围：ASC（升序排列）/ DESC（降序排列），默认为DESC
         public let order: String?
-        
+
         /// 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
         public let orderField: String?
-        
-        public init (filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
+
+        public init(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.tagFilters = tagFilters
             self.offset = offset
@@ -49,7 +49,7 @@ extension Tione {
             self.order = order
             self.orderField = orderField
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case tagFilters = "TagFilters"
@@ -59,34 +59,34 @@ extension Tione {
             case orderField = "OrderField"
         }
     }
-    
+
     /// DescribeBatchTasks返回参数结构体
     public struct DescribeBatchTasksResponse: TCResponseModel {
         /// 数量
         public let totalCount: UInt64
-        
+
         /// 任务集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchTaskSet: [BatchTaskSetItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case batchTaskSet = "BatchTaskSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 跑批任务列表
     ///
     /// 批量预测任务列表信息
     @inlinable
-    public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTasksResponse > {
+    public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTasksResponse> {
         self.client.execute(action: "DescribeBatchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 跑批任务列表
     ///
     /// 批量预测任务列表信息
@@ -94,15 +94,15 @@ extension Tione {
     public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTasksResponse {
         try await self.client.execute(action: "DescribeBatchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 跑批任务列表
     ///
     /// 批量预测任务列表信息
     @inlinable
-    public func describeBatchTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTasksResponse > {
+    public func describeBatchTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTasksResponse> {
         self.describeBatchTasks(DescribeBatchTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
     }
-    
+
     /// 跑批任务列表
     ///
     /// 批量预测任务列表信息

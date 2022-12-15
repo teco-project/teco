@@ -19,32 +19,32 @@ extension Tci {
     public struct SubmitHighlightsRequest: TCRequestModel {
         /// 表情配置开关项。
         public let functions: HLFunction
-        
+
         /// 视频url。
         public let fileContent: String
-        
+
         /// 视频类型及来源，目前只支持点播类型："vod_url"。
         public let fileType: String
-        
+
         /// 需要检索的人脸合集库，不在库中的人脸将不参与精彩集锦。
         public let libIds: [String]
-        
+
         /// 视频处理的抽帧间隔，单位毫秒。建议留空。
         public let frameInterval: Int64?
-        
+
         /// 关键词语言类型，0为英文，1为中文。
         public let keywordsLanguage: Int64?
-        
+
         /// 关键词数组，当且仅当Funtions中的EnableKeywordWonderfulTime为true时有意义，匹配相应的关键字。
         public let keywordsStrings: [String]?
-        
+
         /// 处理视频的总时长，单位毫秒。该值为0或未设置时，默认值两小时生效；当该值大于视频实际时长时，视频实际时长生效；当该值小于视频实际时长时，该值生效；当获取视频实际时长失败时，若该值设置则生效，否则默认值生效。建议留空。
         public let maxVideoDuration: Int64?
-        
+
         /// 人脸检索的相似度阈值，默认值0.89。建议留空。
         public let simThreshold: Float?
-        
-        public init (functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil) {
+
+        public init(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil) {
             self.functions = functions
             self.fileContent = fileContent
             self.fileType = fileType
@@ -55,7 +55,7 @@ extension Tci {
             self.maxVideoDuration = maxVideoDuration
             self.simThreshold = simThreshold
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functions = "Functions"
             case fileContent = "FileContent"
@@ -68,29 +68,29 @@ extension Tci {
             case simThreshold = "SimThreshold"
         }
     }
-    
+
     /// SubmitHighlights返回参数结构体
     public struct SubmitHighlightsResponse: TCResponseModel {
         /// 视频拆条任务ID，用来唯一标识视频拆条任务。
         public let jobId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发起视频生成精彩集锦接口
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
-    public func submitHighlights(_ input: SubmitHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitHighlightsResponse > {
+    public func submitHighlights(_ input: SubmitHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitHighlightsResponse> {
         self.client.execute(action: "SubmitHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发起视频生成精彩集锦接口
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
@@ -98,15 +98,15 @@ extension Tci {
     public func submitHighlights(_ input: SubmitHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitHighlightsResponse {
         try await self.client.execute(action: "SubmitHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发起视频生成精彩集锦接口
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
-    public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitHighlightsResponse > {
+    public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitHighlightsResponse> {
         self.submitHighlights(SubmitHighlightsRequest(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), logger: logger, on: eventLoop)
     }
-    
+
     /// 发起视频生成精彩集锦接口
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。

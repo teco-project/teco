@@ -19,23 +19,23 @@ extension Dlc {
     public struct DropDMSPartitionsRequest: TCRequestModel {
         /// 数据库名称
         public let databaseName: String?
-        
+
         /// 数据库Schema名称
         public let schemaName: String?
-        
+
         /// 数据表名称
         public let tableName: String?
-        
+
         /// 分区名称
         public let name: String?
-        
+
         /// 单个分区名称
         public let values: [String]?
-        
+
         /// 是否删除分区数据
         public let deleteData: Bool?
-        
-        public init (databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil) {
+
+        public init(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil) {
             self.databaseName = databaseName
             self.schemaName = schemaName
             self.tableName = tableName
@@ -43,7 +43,7 @@ extension Dlc {
             self.values = values
             self.deleteData = deleteData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case schemaName = "SchemaName"
@@ -53,39 +53,39 @@ extension Dlc {
             case deleteData = "DeleteData"
         }
     }
-    
+
     /// DropDMSPartitions返回参数结构体
     public struct DropDMSPartitionsResponse: TCResponseModel {
         /// 状态
         public let status: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// DMS元数据删除分区
     @inlinable
-    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSPartitionsResponse > {
+    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSPartitionsResponse> {
         self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据删除分区
     @inlinable
     public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
         try await self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DMS元数据删除分区
     @inlinable
-    public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSPartitionsResponse > {
+    public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSPartitionsResponse> {
         self.dropDMSPartitions(DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData), logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据删除分区
     @inlinable
     public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {

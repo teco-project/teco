@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeTaskInstanceReportDetailRequest: TCRequestModel {
         /// WeData项目ID
         public let projectId: String
-        
+
         /// 任务ID
         public let taskId: String
-        
+
         /// 任务实例数据时间
         public let curRunDate: String?
-        
+
         /// 任务实例运行时间
         public let issueDate: String?
-        
-        public init (projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil) {
+
+        public init(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil) {
             self.projectId = projectId
             self.taskId = taskId
             self.curRunDate = curRunDate
             self.issueDate = issueDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case taskId = "TaskId"
@@ -43,21 +43,21 @@ extension Wedata {
             case issueDate = "IssueDate"
         }
     }
-    
+
     /// DescribeTaskInstanceReportDetail返回参数结构体
     public struct DescribeTaskInstanceReportDetailResponse: TCResponseModel {
         /// 任务实例运行指标概览
         public let summary: InstanceReportSummary
-        
+
         /// 任务实例读取节点运行指标
         public let readNode: InstanceReportReadNode
-        
+
         /// 任务实例写入节点运行指标
         public let writeNode: InstanceReportWriteNode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case summary = "Summary"
             case readNode = "ReadNode"
@@ -65,25 +65,25 @@ extension Wedata {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 离线任务实例统计明细
     @inlinable
-    public func describeTaskInstanceReportDetail(_ input: DescribeTaskInstanceReportDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstanceReportDetailResponse > {
+    public func describeTaskInstanceReportDetail(_ input: DescribeTaskInstanceReportDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceReportDetailResponse> {
         self.client.execute(action: "DescribeTaskInstanceReportDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 离线任务实例统计明细
     @inlinable
     public func describeTaskInstanceReportDetail(_ input: DescribeTaskInstanceReportDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceReportDetailResponse {
         try await self.client.execute(action: "DescribeTaskInstanceReportDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 离线任务实例统计明细
     @inlinable
-    public func describeTaskInstanceReportDetail(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstanceReportDetailResponse > {
+    public func describeTaskInstanceReportDetail(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceReportDetailResponse> {
         self.describeTaskInstanceReportDetail(DescribeTaskInstanceReportDetailRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 离线任务实例统计明细
     @inlinable
     public func describeTaskInstanceReportDetail(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceReportDetailResponse {

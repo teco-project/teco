@@ -19,28 +19,28 @@ extension Nlp {
     public struct LexicalAnalysisRequest: TCRequestModel {
         /// 待分析的文本（仅支持UTF-8格式，不超过500字）
         public let text: String
-        
+
         /// 指定要加载的自定义词库ID。
         public let dictId: String?
-        
+
         /// 词法分析模式（默认取2值）：
         /// 1、高精度（混合粒度分词能力）；
         /// 2、高性能（单粒度分词能力）；
         public let flag: UInt64?
-        
-        public init (text: String, dictId: String? = nil, flag: UInt64? = nil) {
+
+        public init(text: String, dictId: String? = nil, flag: UInt64? = nil) {
             self.text = text
             self.dictId = dictId
             self.flag = flag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case dictId = "DictId"
             case flag = "Flag"
         }
     }
-    
+
     /// LexicalAnalysis返回参数结构体
     public struct LexicalAnalysisResponse: TCResponseModel {
         /// 命名实体识别结果。取值范围：
@@ -50,20 +50,20 @@ extension Nlp {
         /// <li>PRODUCTION：表示产品名，如QQ、微信、iPhone</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nerTokens: [NerToken]?
-        
+
         /// 分词&词性标注结果（词性表请参见附录）
         public let posTokens: [PosToken]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nerTokens = "NerTokens"
             case posTokens = "PosTokens"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 词法分析
     ///
     /// 词法分析接口提供以下三个功能：
@@ -72,10 +72,10 @@ extension Nlp {
     /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
     /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
     @inlinable
-    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LexicalAnalysisResponse > {
+    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LexicalAnalysisResponse> {
         self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 词法分析
     ///
     /// 词法分析接口提供以下三个功能：
@@ -87,7 +87,7 @@ extension Nlp {
     public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LexicalAnalysisResponse {
         try await self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 词法分析
     ///
     /// 词法分析接口提供以下三个功能：
@@ -96,10 +96,10 @@ extension Nlp {
     /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
     /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
     @inlinable
-    public func lexicalAnalysis(text: String, dictId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LexicalAnalysisResponse > {
+    public func lexicalAnalysis(text: String, dictId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LexicalAnalysisResponse> {
         self.lexicalAnalysis(LexicalAnalysisRequest(text: text, dictId: dictId, flag: flag), logger: logger, on: eventLoop)
     }
-    
+
     /// 词法分析
     ///
     /// 词法分析接口提供以下三个功能：

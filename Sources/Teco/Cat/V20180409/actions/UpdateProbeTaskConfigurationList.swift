@@ -19,24 +19,24 @@ extension Cat {
     public struct UpdateProbeTaskConfigurationListRequest: TCRequestModel {
         /// 任务 ID
         public let taskIds: [String]
-        
+
         /// 拨测节点
         public let nodes: [String]
-        
+
         /// 拨测间隔
         public let interval: Int64
-        
+
         /// 拨测参数
         public let parameters: String
-        
+
         /// 定时任务cron表达式
         public let cron: String?
-        
+
         /// 预付费套餐id
         /// 需要与taskId对应
         public let resourceIDs: [String]?
-        
-        public init (taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil) {
+
+        public init(taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil) {
             self.taskIds = taskIds
             self.nodes = nodes
             self.interval = interval
@@ -44,7 +44,7 @@ extension Cat {
             self.cron = cron
             self.resourceIDs = resourceIDs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
             case nodes = "Nodes"
@@ -54,35 +54,35 @@ extension Cat {
             case resourceIDs = "ResourceIDs"
         }
     }
-    
+
     /// UpdateProbeTaskConfigurationList返回参数结构体
     public struct UpdateProbeTaskConfigurationListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量更新拨测任务配置
     @inlinable
-    public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProbeTaskConfigurationListResponse > {
+    public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskConfigurationListResponse> {
         self.client.execute(action: "UpdateProbeTaskConfigurationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量更新拨测任务配置
     @inlinable
     public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskConfigurationListResponse {
         try await self.client.execute(action: "UpdateProbeTaskConfigurationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量更新拨测任务配置
     @inlinable
-    public func updateProbeTaskConfigurationList(taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProbeTaskConfigurationListResponse > {
+    public func updateProbeTaskConfigurationList(taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskConfigurationListResponse> {
         self.updateProbeTaskConfigurationList(UpdateProbeTaskConfigurationListRequest(taskIds: taskIds, nodes: nodes, interval: interval, parameters: parameters, cron: cron, resourceIDs: resourceIDs), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量更新拨测任务配置
     @inlinable
     public func updateProbeTaskConfigurationList(taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskConfigurationListResponse {

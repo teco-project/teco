@@ -19,54 +19,54 @@ extension Cloudstudio {
     public struct RemoveWorkspaceRequest: TCRequestModel {
         /// 无
         public let cloudStudioSessionTeam: String
-        
+
         /// 无
         public let spaceKey: String
-        
+
         /// 是否强制，true或者false
         public let force: Bool?
-        
-        public init (cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil) {
+
+        public init(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.spaceKey = spaceKey
             self.force = force
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
             case spaceKey = "SpaceKey"
             case force = "Force"
         }
     }
-    
+
     /// RemoveWorkspace返回参数结构体
     public struct RemoveWorkspaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除工作空间
     @inlinable
-    public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWorkspaceResponse > {
+    public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWorkspaceResponse> {
         self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除工作空间
     @inlinable
     public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {
         try await self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除工作空间
     @inlinable
-    public func removeWorkspace(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWorkspaceResponse > {
+    public func removeWorkspace(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWorkspaceResponse> {
         self.removeWorkspace(RemoveWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey, force: force), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除工作空间
     @inlinable
     public func removeWorkspace(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {

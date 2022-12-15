@@ -19,40 +19,40 @@ extension Privatedns {
     public struct ModifyPrivateZoneVpcRequest: TCRequestModel {
         /// 私有域ID
         public let zoneId: String
-        
+
         /// 私有域关联的全部VPC列表
         public let vpcSet: [VpcInfo]?
-        
+
         /// 私有域账号关联的全部VPC列表
         public let accountVpcSet: [AccountVpcInfo]?
-        
-        public init (zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil) {
+
+        public init(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil) {
             self.zoneId = zoneId
             self.vpcSet = vpcSet
             self.accountVpcSet = accountVpcSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case vpcSet = "VpcSet"
             case accountVpcSet = "AccountVpcSet"
         }
     }
-    
+
     /// ModifyPrivateZoneVpc返回参数结构体
     public struct ModifyPrivateZoneVpcResponse: TCResponseModel {
         /// 私有域ID, zone-xxxxxx
         public let zoneId: String
-        
+
         /// 解析域关联的VPC列表
         public let vpcSet: [VpcInfo]
-        
+
         /// 私有域账号关联的全部VPC列表
         public let accountVpcSet: [AccountVpcInfoOutput]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case vpcSet = "VpcSet"
@@ -60,25 +60,25 @@ extension Privatedns {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改私有域关联的VPC
     @inlinable
-    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneVpcResponse > {
+    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneVpcResponse> {
         self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改私有域关联的VPC
     @inlinable
     public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
         try await self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改私有域关联的VPC
     @inlinable
-    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneVpcResponse > {
+    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneVpcResponse> {
         self.modifyPrivateZoneVpc(ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改私有域关联的VPC
     @inlinable
     public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {

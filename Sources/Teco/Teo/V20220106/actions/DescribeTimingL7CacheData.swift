@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// RFC3339标准，客户端时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,29 +35,29 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 时序类访问流量指标列表，支持的指标
         /// l7Cache_outFlux: 访问流量
         /// l7Cache_request: 访问请求数
         public let metricNames: [String]
-        
+
         /// 时间间隔，选填{min, 5min, hour, day, week}
         public let interval: String
-        
+
         /// 站点id列表
         public let zoneIds: [String]?
-        
+
         /// 筛选条件，筛选EO/源站响应如下：
         /// EO响应：{Key: "cacheType", Value: ["hit"], Operator: "equals"}；
         /// 源站响应：{Key: "cacheType", Value: ["miss", "dynamic"], Operator: "equals"}
         public let filters: [Filter]?
-        
+
         /// 加速区域，取值有：
         /// <li>mainland：中国大陆境内;</li>
         /// <li>overseas：全球（不含中国大陆）。</li>
         public let area: String?
-        
-        public init (startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricNames = metricNames
@@ -66,7 +66,7 @@ extension Teo {
             self.filters = filters
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -77,22 +77,22 @@ extension Teo {
             case area = "Area"
         }
     }
-    
+
     /// DescribeTimingL7CacheData返回参数结构体
     public struct DescribeTimingL7CacheDataResponse: TCResponseModel {
         /// 详细数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [TimingDataRecord]?
-        
+
         /// 查询维度
         public let type: String
-        
+
         /// 时间间隔
         public let interval: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case type = "Type"
@@ -100,15 +100,15 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 七层缓存分析类时序流量数据接口
     ///
     /// 七层查询缓存分析时序类流量数据
     @inlinable
-    public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7CacheDataResponse > {
+    public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL7CacheDataResponse> {
         self.client.execute(action: "DescribeTimingL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 七层缓存分析类时序流量数据接口
     ///
     /// 七层查询缓存分析时序类流量数据
@@ -116,15 +116,15 @@ extension Teo {
     public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7CacheDataResponse {
         try await self.client.execute(action: "DescribeTimingL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 七层缓存分析类时序流量数据接口
     ///
     /// 七层查询缓存分析时序类流量数据
     @inlinable
-    public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7CacheDataResponse > {
+    public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL7CacheDataResponse> {
         self.describeTimingL7CacheData(DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 七层缓存分析类时序流量数据接口
     ///
     /// 七层查询缓存分析时序类流量数据

@@ -19,54 +19,54 @@ extension Dnspod {
     public struct ModifyDomainStatusRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 域名状态，”enable” 、”disable” 分别代表启用和暂停
         public let status: String
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
-        
-        public init (domain: String, status: String, domainId: UInt64? = nil) {
+
+        public init(domain: String, status: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.status = status
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case status = "Status"
             case domainId = "DomainId"
         }
     }
-    
+
     /// ModifyDomainStatus返回参数结构体
     public struct ModifyDomainStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改域名状态
     @inlinable
-    public func modifyDomainStatus(_ input: ModifyDomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainStatusResponse > {
+    public func modifyDomainStatus(_ input: ModifyDomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainStatusResponse> {
         self.client.execute(action: "ModifyDomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改域名状态
     @inlinable
     public func modifyDomainStatus(_ input: ModifyDomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainStatusResponse {
         try await self.client.execute(action: "ModifyDomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改域名状态
     @inlinable
-    public func modifyDomainStatus(domain: String, status: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainStatusResponse > {
+    public func modifyDomainStatus(domain: String, status: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainStatusResponse> {
         self.modifyDomainStatus(ModifyDomainStatusRequest(domain: domain, status: status, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改域名状态
     @inlinable
     public func modifyDomainStatus(domain: String, status: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainStatusResponse {

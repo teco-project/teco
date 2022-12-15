@@ -26,7 +26,7 @@ extension Cdn {
         ///   cc = "CC攻击"
         ///   bot = "Bot攻击"
         public let mode: String
-        
+
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -34,7 +34,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -42,10 +42,10 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 指定域名查询, 不填默认查询全部域名
         public let domain: String?
-        
+
         /// 指定攻击类型, 不填默认查询全部攻击类型
         /// AttackType 映射如下:
         ///   other = '未知类型'
@@ -66,7 +66,7 @@ extension Cdn {
         ///   js = "JS主动探测"
         ///   cookie = "Cookie指纹"
         public let attackType: String?
-        
+
         /// 指定执行动作, 不填默认查询全部执行动作
         /// DefenceMode 映射如下：
         ///   observe = '观察模式'
@@ -74,26 +74,26 @@ extension Cdn {
         ///   captcha = "验证码"
         ///   redirect = "重定向"
         public let defenceMode: String?
-        
+
         /// 不填为全部ip
         public let ip: String?
-        
+
         /// 指定域名查询, 与 Domain 参数同时有值时使用 Domains 参数，不填默认查询全部域名，指定域名查询时最多支持同时选择 5 个域名查询
         public let domains: [String]?
-        
+
         /// 指定攻击类型查询, 与 AttackType 参数同时有值时使用 AttackTypes 参数，不填默认查询全部攻击类型
         public let attackTypes: [String]?
-        
+
         /// 查询条件
         public let conditions: [ScdnEventLogConditions]?
-        
+
         /// 来源产品 cdn ecdn
         public let source: String?
-        
+
         /// 地域：mainland 或 overseas
         public let area: String?
-        
-        public init (mode: String, startTime: Date, endTime: Date, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, ip: String? = nil, domains: [String]? = nil, attackTypes: [String]? = nil, conditions: [ScdnEventLogConditions]? = nil, source: String? = nil, area: String? = nil) {
+
+        public init(mode: String, startTime: Date, endTime: Date, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, ip: String? = nil, domains: [String]? = nil, attackTypes: [String]? = nil, conditions: [ScdnEventLogConditions]? = nil, source: String? = nil, area: String? = nil) {
             self.mode = mode
             self.startTime = startTime
             self.endTime = endTime
@@ -107,7 +107,7 @@ extension Cdn {
             self.source = source
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
             case startTime = "StartTime"
@@ -123,30 +123,30 @@ extension Cdn {
             case area = "Area"
         }
     }
-    
+
     /// CreateScdnLogTask返回参数结构体
     public struct CreateScdnLogTaskResponse: TCResponseModel {
-        /// 创建结果, 
+        /// 创建结果,
         /// "0" -> 创建成功
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建事件日志任务
     ///
     /// CreateScdnLogTask 用于创建事件日志任务
     @inlinable
-    public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScdnLogTaskResponse > {
+    public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScdnLogTaskResponse> {
         self.client.execute(action: "CreateScdnLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建事件日志任务
     ///
     /// CreateScdnLogTask 用于创建事件日志任务
@@ -154,15 +154,15 @@ extension Cdn {
     public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnLogTaskResponse {
         try await self.client.execute(action: "CreateScdnLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建事件日志任务
     ///
     /// CreateScdnLogTask 用于创建事件日志任务
     @inlinable
-    public func createScdnLogTask(mode: String, startTime: Date, endTime: Date, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, ip: String? = nil, domains: [String]? = nil, attackTypes: [String]? = nil, conditions: [ScdnEventLogConditions]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScdnLogTaskResponse > {
+    public func createScdnLogTask(mode: String, startTime: Date, endTime: Date, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, ip: String? = nil, domains: [String]? = nil, attackTypes: [String]? = nil, conditions: [ScdnEventLogConditions]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScdnLogTaskResponse> {
         self.createScdnLogTask(CreateScdnLogTaskRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, attackType: attackType, defenceMode: defenceMode, ip: ip, domains: domains, attackTypes: attackTypes, conditions: conditions, source: source, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建事件日志任务
     ///
     /// CreateScdnLogTask 用于创建事件日志任务

@@ -19,34 +19,34 @@ extension Tke {
     public struct GetUpgradeInstanceProgressRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 最多获取多少个节点的进度
         public let limit: Int64?
-        
+
         /// 从第几个节点开始获取进度
         public let offset: Int64?
-        
-        public init (clusterId: String, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// GetUpgradeInstanceProgress返回参数结构体
     public struct GetUpgradeInstanceProgressResponse: TCResponseModel {
         /// 升级节点总数
         public let total: Int64
-        
+
         /// 已升级节点总数
         public let done: Int64
-        
+
         /// 升级任务生命周期
         /// process 运行中
         /// paused 已停止
@@ -55,16 +55,16 @@ extension Tke {
         /// timeout 已超时
         /// aborted 已取消
         public let lifeState: String
-        
+
         /// 各节点升级进度详情
         public let instances: [InstanceUpgradeProgressItem]
-        
+
         /// 集群当前状态
         public let clusterStatus: InstanceUpgradeClusterStatus
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case done = "Done"
@@ -74,34 +74,34 @@ extension Tke {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获得节点升级当前的进度
     ///
-    /// 获得节点升级当前的进度 
+    /// 获得节点升级当前的进度
     @inlinable
-    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeInstanceProgressResponse > {
+    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeInstanceProgressResponse> {
         self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获得节点升级当前的进度
     ///
-    /// 获得节点升级当前的进度 
+    /// 获得节点升级当前的进度
     @inlinable
     public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
         try await self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获得节点升级当前的进度
     ///
-    /// 获得节点升级当前的进度 
+    /// 获得节点升级当前的进度
     @inlinable
-    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeInstanceProgressResponse > {
+    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeInstanceProgressResponse> {
         self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获得节点升级当前的进度
     ///
-    /// 获得节点升级当前的进度 
+    /// 获得节点升级当前的进度
     @inlinable
     public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
         try await self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), logger: logger, on: eventLoop)

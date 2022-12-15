@@ -36,159 +36,159 @@ extension TCEssbasicError {
             case userNotInOrganization = "OperationDenied.UserNotInOrganization"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var authTag: OperationDenied {
             OperationDenied(.authTag)
         }
-        
+
         /// 应用号已被禁止。
         ///
         /// 当前应用号已经被禁止，请联系运营人员处理。
         public static var bannedApplication: OperationDenied {
             OperationDenied(.bannedApplication)
         }
-        
+
         public static var byFilesServerSignForbid: OperationDenied {
             OperationDenied(.byFilesServerSignForbid)
         }
-        
+
         public static var downLoadMoreThanOne: OperationDenied {
             OperationDenied(.downLoadMoreThanOne)
         }
-        
+
         public static var errNoResourceAccess: OperationDenied {
             OperationDenied(.errNoResourceAccess)
         }
-        
+
         public static var fileDeleted: OperationDenied {
             OperationDenied(.fileDeleted)
         }
-        
+
         public static var flowHasTerminated: OperationDenied {
             OperationDenied(.flowHasTerminated)
         }
-        
+
         /// 禁止操作。
         ///
         /// 请检查是否有足够的权限。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var forbid: OperationDenied {
             OperationDenied(.forbid)
         }
-        
+
         public static var invalidApproverAge: OperationDenied {
             OperationDenied(.invalidApproverAge)
         }
-        
+
         /// 没有API权限。
         ///
         /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
         public static var noApiAuth: OperationDenied {
             OperationDenied(.noApiAuth)
         }
-        
+
         public static var noFlowPermission: OperationDenied {
             OperationDenied(.noFlowPermission)
         }
-        
+
         /// 未通过个人实名。
         ///
         /// 请检查证件信息是否正确、人脸是否匹配。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var noIdentityVerify: OperationDenied {
             OperationDenied(.noIdentityVerify)
         }
-        
+
         /// 流程配额不足。
         ///
         /// 请检查企业的配额是否充足。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var noQuota: OperationDenied {
             OperationDenied(.noQuota)
         }
-        
+
         public static var operateType: OperationDenied {
             OperationDenied(.operateType)
         }
-        
+
         /// 联系管理员获取权限。
         public static var operatorHasNoPermission: OperationDenied {
             OperationDenied(.operatorHasNoPermission)
         }
-        
+
         public static var outQueryLimit: OperationDenied {
             OperationDenied(.outQueryLimit)
         }
-        
+
         /// 用户与企业不对应。
         ///
         /// 请确认用户是否已经在企业中。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var userNotInOrganization: OperationDenied {
             OperationDenied(.userNotInOrganization)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asEssbasicError() -> TCEssbasicError {
             let code: TCEssbasicError.Code
             switch self.error {
-            case .authTag: 
+            case .authTag:
                 code = .operationDenied_AuthTag
-            case .bannedApplication: 
+            case .bannedApplication:
                 code = .operationDenied_BannedApplication
-            case .byFilesServerSignForbid: 
+            case .byFilesServerSignForbid:
                 code = .operationDenied_ByFilesServerSignForbid
-            case .downLoadMoreThanOne: 
+            case .downLoadMoreThanOne:
                 code = .operationDenied_DownLoadMoreThanOne
-            case .errNoResourceAccess: 
+            case .errNoResourceAccess:
                 code = .operationDenied_ErrNoResourceAccess
-            case .fileDeleted: 
+            case .fileDeleted:
                 code = .operationDenied_FileDeleted
-            case .flowHasTerminated: 
+            case .flowHasTerminated:
                 code = .operationDenied_FlowHasTerminated
-            case .forbid: 
+            case .forbid:
                 code = .operationDenied_Forbid
-            case .invalidApproverAge: 
+            case .invalidApproverAge:
                 code = .operationDenied_InvalidApproverAge
-            case .noApiAuth: 
+            case .noApiAuth:
                 code = .operationDenied_NoApiAuth
-            case .noFlowPermission: 
+            case .noFlowPermission:
                 code = .operationDenied_NoFlowPermission
-            case .noIdentityVerify: 
+            case .noIdentityVerify:
                 code = .operationDenied_NoIdentityVerify
-            case .noQuota: 
+            case .noQuota:
                 code = .operationDenied_NoQuota
-            case .operateType: 
+            case .operateType:
                 code = .operationDenied_OperateType
-            case .operatorHasNoPermission: 
+            case .operatorHasNoPermission:
                 code = .operationDenied_OperatorHasNoPermission
-            case .outQueryLimit: 
+            case .outQueryLimit:
                 code = .operationDenied_OutQueryLimit
-            case .userNotInOrganization: 
+            case .userNotInOrganization:
                 code = .operationDenied_UserNotInOrganization
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCEssbasicError(code, context: self.context)

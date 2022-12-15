@@ -19,38 +19,38 @@ extension Apigateway {
     public struct DeletePluginRequest: TCRequestModel {
         /// 要删除的API网关插件的ID。
         public let pluginId: String
-        
-        public init (pluginId: String) {
+
+        public init(pluginId: String) {
             self.pluginId = pluginId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginId = "PluginId"
         }
     }
-    
+
     /// DeletePlugin返回参数结构体
     public struct DeletePluginResponse: TCResponseModel {
         /// 删除操作是否成功。
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除插件
     ///
     /// 删除API网关插件
     @inlinable
-    public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePluginResponse > {
+    public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePluginResponse> {
         self.client.execute(action: "DeletePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除插件
     ///
     /// 删除API网关插件
@@ -58,15 +58,15 @@ extension Apigateway {
     public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePluginResponse {
         try await self.client.execute(action: "DeletePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除插件
     ///
     /// 删除API网关插件
     @inlinable
-    public func deletePlugin(pluginId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePluginResponse > {
+    public func deletePlugin(pluginId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePluginResponse> {
         self.deletePlugin(DeletePluginRequest(pluginId: pluginId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除插件
     ///
     /// 删除API网关插件

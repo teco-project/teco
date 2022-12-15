@@ -19,42 +19,42 @@ extension Bsca {
     public struct MatchKBPURLListRequest: TCRequestModel {
         /// SHA1。
         public let sha1: String?
-        
-        public init (sha1: String? = nil) {
+
+        public init(sha1: String? = nil) {
             self.sha1 = sha1
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sha1 = "SHA1"
         }
     }
-    
+
     /// MatchKBPURLList返回参数结构体
     public struct MatchKBPURLListResponse: TCResponseModel {
         /// 组件列表。
         public let purlList: [PURL]
-        
+
         /// 是否命中数据库。
         public let hit: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case purlList = "PURLList"
             case hit = "Hit"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 匹配知识库组件列表
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
     @inlinable
-    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MatchKBPURLListResponse > {
+    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MatchKBPURLListResponse> {
         self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 匹配知识库组件列表
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
@@ -62,15 +62,15 @@ extension Bsca {
     public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
         try await self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 匹配知识库组件列表
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
     @inlinable
-    public func matchKBPURLList(sha1: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MatchKBPURLListResponse > {
+    public func matchKBPURLList(sha1: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MatchKBPURLListResponse> {
         self.matchKBPURLList(MatchKBPURLListRequest(sha1: sha1), logger: logger, on: eventLoop)
     }
-    
+
     /// 匹配知识库组件列表
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。

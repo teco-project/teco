@@ -19,48 +19,48 @@ extension Cfw {
     public struct CreateDatabaseWhiteListRulesRequest: TCRequestModel {
         /// 创建白名单数据
         public let databaseWhiteListRuleData: [DatabaseWhiteListRuleData]
-        
-        public init (databaseWhiteListRuleData: [DatabaseWhiteListRuleData]) {
+
+        public init(databaseWhiteListRuleData: [DatabaseWhiteListRuleData]) {
             self.databaseWhiteListRuleData = databaseWhiteListRuleData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseWhiteListRuleData = "DatabaseWhiteListRuleData"
         }
     }
-    
+
     /// CreateDatabaseWhiteListRules返回参数结构体
     public struct CreateDatabaseWhiteListRulesResponse: TCResponseModel {
         /// 状态值，0:添加成功，非0：添加失败
         public let status: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建暴露数据库白名单规则
     @inlinable
-    public func createDatabaseWhiteListRules(_ input: CreateDatabaseWhiteListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatabaseWhiteListRulesResponse > {
+    public func createDatabaseWhiteListRules(_ input: CreateDatabaseWhiteListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseWhiteListRulesResponse> {
         self.client.execute(action: "CreateDatabaseWhiteListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建暴露数据库白名单规则
     @inlinable
     public func createDatabaseWhiteListRules(_ input: CreateDatabaseWhiteListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseWhiteListRulesResponse {
         try await self.client.execute(action: "CreateDatabaseWhiteListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建暴露数据库白名单规则
     @inlinable
-    public func createDatabaseWhiteListRules(databaseWhiteListRuleData: [DatabaseWhiteListRuleData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatabaseWhiteListRulesResponse > {
+    public func createDatabaseWhiteListRules(databaseWhiteListRuleData: [DatabaseWhiteListRuleData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseWhiteListRulesResponse> {
         self.createDatabaseWhiteListRules(CreateDatabaseWhiteListRulesRequest(databaseWhiteListRuleData: databaseWhiteListRuleData), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建暴露数据库白名单规则
     @inlinable
     public func createDatabaseWhiteListRules(databaseWhiteListRuleData: [DatabaseWhiteListRuleData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseWhiteListRulesResponse {

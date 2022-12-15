@@ -31,122 +31,122 @@ extension TCTbaasError {
             case transactionService = "InternalError.TransactionService"
             case unknownError = "InternalError.UnknownError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Bcos数据库操作异常，请重试。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// 内部错误。
         public static var failPreform: InternalError {
             InternalError(.failPreform)
         }
-        
+
         /// 服务器异常，请重试。
         public static var failUrl: InternalError {
             InternalError(.failUrl)
         }
-        
+
         /// Flask内部错误。
         public static var flaskException: InternalError {
             InternalError(.flaskException)
         }
-        
+
         /// Bcos无效的合约参数。
         public static var invalidContractParam: InternalError {
             InternalError(.invalidContractParam)
         }
-        
+
         /// Bcos不支持的请求类型。
         public static var methodTypeNotSupport: InternalError {
             InternalError(.methodTypeNotSupport)
         }
-        
+
         /// 错误码未定义。
         public static var noDefineError: InternalError {
             InternalError(.noDefineError)
         }
-        
+
         /// Bcos服务器异常，请重试。
         public static var serverError: InternalError {
             InternalError(.serverError)
         }
-        
+
         /// 服务器异常。
         public static var serverException: InternalError {
             InternalError(.serverException)
         }
-        
+
         /// 服务异常，请重试。
         public static var serviceError: InternalError {
             InternalError(.serviceError)
         }
-        
+
         /// 交易服务异常，请重试。
         public static var servicePanic: InternalError {
             InternalError(.servicePanic)
         }
-        
+
         /// 交易服务内部错误。
         public static var transactionService: InternalError {
             InternalError(.transactionService)
         }
-        
+
         /// 交易服务未知错误，请重试。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-        
+
         public func asTbaasError() -> TCTbaasError {
             let code: TCTbaasError.Code
             switch self.error {
-            case .dbError: 
+            case .dbError:
                 code = .internalError_DBError
-            case .failPreform: 
+            case .failPreform:
                 code = .internalError_FailPreform
-            case .failUrl: 
+            case .failUrl:
                 code = .internalError_FailUrl
-            case .flaskException: 
+            case .flaskException:
                 code = .internalError_FlaskException
-            case .invalidContractParam: 
+            case .invalidContractParam:
                 code = .internalError_InvalidContractParam
-            case .methodTypeNotSupport: 
+            case .methodTypeNotSupport:
                 code = .internalError_MethodTypeNotSupport
-            case .noDefineError: 
+            case .noDefineError:
                 code = .internalError_NoDefineError
-            case .serverError: 
+            case .serverError:
                 code = .internalError_ServerError
-            case .serverException: 
+            case .serverException:
                 code = .internalError_ServerException
-            case .serviceError: 
+            case .serviceError:
                 code = .internalError_ServiceError
-            case .servicePanic: 
+            case .servicePanic:
                 code = .internalError_ServicePanic
-            case .transactionService: 
+            case .transactionService:
                 code = .internalError_TransactionService
-            case .unknownError: 
+            case .unknownError:
                 code = .internalError_UnknownError
             }
             return TCTbaasError(code, context: self.context)

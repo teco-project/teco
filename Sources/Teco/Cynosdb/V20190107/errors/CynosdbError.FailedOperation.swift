@@ -30,115 +30,115 @@ extension TCCynosdbError {
             case querySpecBySpecCodeError = "FailedOperation.QuerySpecBySpecCodeError"
             case tradeCreateOrderError = "FailedOperation.TradeCreateOrderError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 批量查询失败。
         public static var batchGetInstanceError: FailedOperation {
             FailedOperation(.batchGetInstanceError)
         }
-        
+
         /// 获取权限失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var camCheckResourceError: FailedOperation {
             FailedOperation(.camCheckResourceError)
         }
-        
+
         /// 鉴权失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var camSigAndAuthError: FailedOperation {
             FailedOperation(.camSigAndAuthError)
         }
-        
+
         /// 创建并支付订单失败。
         public static var createOrder: FailedOperation {
             FailedOperation(.createOrder)
         }
-        
+
         /// 数据库访问失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var databaseAccessError: FailedOperation {
             FailedOperation(.databaseAccessError)
         }
-        
+
         /// 创建流程失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var flowCreateError: FailedOperation {
             FailedOperation(.flowCreateError)
         }
-        
+
         /// Flow不存在。
         public static var flowNotFoundError: FailedOperation {
             FailedOperation(.flowNotFoundError)
         }
-        
+
         /// 获取备份策略失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var getBackupStrategyError: FailedOperation {
             FailedOperation(.getBackupStrategyError)
         }
-        
+
         /// 账号余额不足。
         public static var insufficientBalance: FailedOperation {
             FailedOperation(.insufficientBalance)
         }
-        
+
         /// 操作失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var operationFailedError: FailedOperation {
             FailedOperation(.operationFailedError)
         }
-        
+
         /// 规格信息查询失败。
         public static var querySpecBySpecCodeError: FailedOperation {
             FailedOperation(.querySpecBySpecCodeError)
         }
-        
+
         /// 创建并支付订单失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var tradeCreateOrderError: FailedOperation {
             FailedOperation(.tradeCreateOrderError)
         }
-        
+
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
-            case .batchGetInstanceError: 
+            case .batchGetInstanceError:
                 code = .failedOperation_BatchGetInstanceError
-            case .camCheckResourceError: 
+            case .camCheckResourceError:
                 code = .failedOperation_CamCheckResourceError
-            case .camSigAndAuthError: 
+            case .camSigAndAuthError:
                 code = .failedOperation_CamSigAndAuthError
-            case .createOrder: 
+            case .createOrder:
                 code = .failedOperation_CreateOrder
-            case .databaseAccessError: 
+            case .databaseAccessError:
                 code = .failedOperation_DatabaseAccessError
-            case .flowCreateError: 
+            case .flowCreateError:
                 code = .failedOperation_FlowCreateError
-            case .flowNotFoundError: 
+            case .flowNotFoundError:
                 code = .failedOperation_FlowNotFoundError
-            case .getBackupStrategyError: 
+            case .getBackupStrategyError:
                 code = .failedOperation_GetBackupStrategyError
-            case .insufficientBalance: 
+            case .insufficientBalance:
                 code = .failedOperation_InsufficientBalance
-            case .operationFailedError: 
+            case .operationFailedError:
                 code = .failedOperation_OperationFailedError
-            case .querySpecBySpecCodeError: 
+            case .querySpecBySpecCodeError:
                 code = .failedOperation_QuerySpecBySpecCodeError
-            case .tradeCreateOrderError: 
+            case .tradeCreateOrderError:
                 code = .failedOperation_TradeCreateOrderError
             }
             return TCCynosdbError(code, context: self.context)

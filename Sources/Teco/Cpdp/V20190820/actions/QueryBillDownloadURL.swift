@@ -19,44 +19,44 @@ extension Cpdp {
     public struct QueryBillDownloadURLRequest: TCRequestModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 代发类型：
-        /// 1、 微信企业付款 
-        /// 2、 支付宝转账 
+        /// 1、 微信企业付款
+        /// 2、 支付宝转账
         /// 3、 平安银企直联代发转账
         public let transferType: Int64
-        
+
         /// 账单日期，格式yyyy-MM-dd
         public let billDate: String
-        
-        public init (merchantId: String, transferType: Int64, billDate: String) {
+
+        public init(merchantId: String, transferType: Int64, billDate: String) {
             self.merchantId = merchantId
             self.transferType = transferType
             self.billDate = billDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case transferType = "TransferType"
             case billDate = "BillDate"
         }
     }
-    
+
     /// QueryBillDownloadURL返回参数结构体
     public struct QueryBillDownloadURLResponse: TCResponseModel {
         /// 错误码。响应成功："SUCCESS"，其他为不成功
         public let errCode: String
-        
+
         /// 响应消息
         public let errMessage: String
-        
+
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: QueryBillDownloadURLData?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -64,15 +64,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 智能代发-单笔代发转账对账单下载接口
     ///
     /// 获取单笔代发转账对账单下载URL
     @inlinable
-    public func queryBillDownloadURL(_ input: QueryBillDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBillDownloadURLResponse > {
+    public func queryBillDownloadURL(_ input: QueryBillDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBillDownloadURLResponse> {
         self.client.execute(action: "QueryBillDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 智能代发-单笔代发转账对账单下载接口
     ///
     /// 获取单笔代发转账对账单下载URL
@@ -80,15 +80,15 @@ extension Cpdp {
     public func queryBillDownloadURL(_ input: QueryBillDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBillDownloadURLResponse {
         try await self.client.execute(action: "QueryBillDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 智能代发-单笔代发转账对账单下载接口
     ///
     /// 获取单笔代发转账对账单下载URL
     @inlinable
-    public func queryBillDownloadURL(merchantId: String, transferType: Int64, billDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBillDownloadURLResponse > {
+    public func queryBillDownloadURL(merchantId: String, transferType: Int64, billDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBillDownloadURLResponse> {
         self.queryBillDownloadURL(QueryBillDownloadURLRequest(merchantId: merchantId, transferType: transferType, billDate: billDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 智能代发-单笔代发转账对账单下载接口
     ///
     /// 获取单笔代发转账对账单下载URL

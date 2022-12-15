@@ -24,39 +24,39 @@ extension Mps {
         /// <li>否则，对于其他 [任务类型](/document/product/862/37614#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)，只支持终止 [任务状态](/document/product/862/37614#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0) 为等待中（WAITING）的任务。</li></ul>
         /// </li></ul>
         public let operationType: String
-        
+
         /// 视频处理的任务 ID。
         public let taskId: String
-        
-        public init (operationType: String, taskId: String) {
+
+        public init(operationType: String, taskId: String) {
             self.operationType = operationType
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case operationType = "OperationType"
             case taskId = "TaskId"
         }
     }
-    
+
     /// ManageTask返回参数结构体
     public struct ManageTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
     @inlinable
-    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageTaskResponse > {
+    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
         self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
@@ -64,15 +64,15 @@ extension Mps {
     public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
         try await self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
     @inlinable
-    public func manageTask(operationType: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageTaskResponse > {
+    public func manageTask(operationType: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
         self.manageTask(ManageTaskRequest(operationType: operationType, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。

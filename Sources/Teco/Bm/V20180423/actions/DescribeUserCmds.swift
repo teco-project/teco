@@ -19,23 +19,23 @@ extension Bm {
     public struct DescribeUserCmdsRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 数量限制
         public let limit: UInt64
-        
+
         /// 排序字段，支持： OsType,CreateTime,ModifyTime
         public let orderField: String?
-        
+
         /// 排序方式，取值: 1倒序，0顺序；默认倒序
         public let order: UInt64?
-        
+
         /// 关键字搜索，可搜索ID或别名，支持模糊搜索
         public let searchKey: String?
-        
+
         /// 查询的脚本ID
         public let cmdId: String?
-        
-        public init (offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderField = orderField
@@ -43,7 +43,7 @@ extension Bm {
             self.searchKey = searchKey
             self.cmdId = cmdId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -53,43 +53,43 @@ extension Bm {
             case cmdId = "CmdId"
         }
     }
-    
+
     /// DescribeUserCmds返回参数结构体
     public struct DescribeUserCmdsResponse: TCResponseModel {
         /// 返回数量
         public let totalCount: UInt64
-        
+
         /// 脚本信息列表
         public let userCmds: [UserCmd]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case userCmds = "UserCmds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取自定义脚本信息列表
     @inlinable
-    public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdsResponse > {
+    public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdsResponse> {
         self.client.execute(action: "DescribeUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自定义脚本信息列表
     @inlinable
     public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdsResponse {
         try await self.client.execute(action: "DescribeUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取自定义脚本信息列表
     @inlinable
-    public func describeUserCmds(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdsResponse > {
+    public func describeUserCmds(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdsResponse> {
         self.describeUserCmds(DescribeUserCmdsRequest(offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey, cmdId: cmdId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自定义脚本信息列表
     @inlinable
     public func describeUserCmds(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdsResponse {

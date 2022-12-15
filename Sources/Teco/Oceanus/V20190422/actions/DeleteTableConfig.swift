@@ -19,23 +19,23 @@ extension Oceanus {
     public struct DeleteTableConfigRequest: TCRequestModel {
         /// 作业ID
         public let jobId: String
-        
+
         /// 调试作业ID
         public let debugId: Int64
-        
+
         /// 表名
         public let tableName: String
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil) {
+
+        public init(jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil) {
             self.jobId = jobId
             self.debugId = debugId
             self.tableName = tableName
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case debugId = "DebugId"
@@ -43,35 +43,35 @@ extension Oceanus {
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// DeleteTableConfig返回参数结构体
     public struct DeleteTableConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除作业表配置
     @inlinable
-    public func deleteTableConfig(_ input: DeleteTableConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableConfigResponse > {
+    public func deleteTableConfig(_ input: DeleteTableConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableConfigResponse> {
         self.client.execute(action: "DeleteTableConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除作业表配置
     @inlinable
     public func deleteTableConfig(_ input: DeleteTableConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableConfigResponse {
         try await self.client.execute(action: "DeleteTableConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除作业表配置
     @inlinable
-    public func deleteTableConfig(jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableConfigResponse > {
+    public func deleteTableConfig(jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableConfigResponse> {
         self.deleteTableConfig(DeleteTableConfigRequest(jobId: jobId, debugId: debugId, tableName: tableName, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除作业表配置
     @inlinable
     public func deleteTableConfig(jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableConfigResponse {

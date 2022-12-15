@@ -19,38 +19,38 @@ extension Cynosdb {
     public struct DescribeBinlogSaveDaysRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DescribeBinlogSaveDays返回参数结构体
     public struct DescribeBinlogSaveDaysResponse: TCResponseModel {
         /// Binlog保留天数
         public let binlogSaveDays: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case binlogSaveDays = "BinlogSaveDays"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Binlog保留天数
     ///
     /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
     @inlinable
-    public func describeBinlogSaveDays(_ input: DescribeBinlogSaveDaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogSaveDaysResponse > {
+    public func describeBinlogSaveDays(_ input: DescribeBinlogSaveDaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogSaveDaysResponse> {
         self.client.execute(action: "DescribeBinlogSaveDays", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Binlog保留天数
     ///
     /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
@@ -58,15 +58,15 @@ extension Cynosdb {
     public func describeBinlogSaveDays(_ input: DescribeBinlogSaveDaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogSaveDaysResponse {
         try await self.client.execute(action: "DescribeBinlogSaveDays", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Binlog保留天数
     ///
     /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
     @inlinable
-    public func describeBinlogSaveDays(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogSaveDaysResponse > {
+    public func describeBinlogSaveDays(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogSaveDaysResponse> {
         self.describeBinlogSaveDays(DescribeBinlogSaveDaysRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Binlog保留天数
     ///
     /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。

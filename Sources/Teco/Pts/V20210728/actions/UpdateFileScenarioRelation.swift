@@ -19,54 +19,54 @@ extension Pts {
     public struct UpdateFileScenarioRelationRequest: TCRequestModel {
         /// 文件 ID
         public let fileId: String
-        
+
         /// 项目 ID
         public let projectId: String
-        
+
         /// 场景 ID 数组
         public let scenarioIds: [String]?
-        
-        public init (fileId: String, projectId: String, scenarioIds: [String]? = nil) {
+
+        public init(fileId: String, projectId: String, scenarioIds: [String]? = nil) {
             self.fileId = fileId
             self.projectId = projectId
             self.scenarioIds = scenarioIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case projectId = "ProjectId"
             case scenarioIds = "ScenarioIds"
         }
     }
-    
+
     /// UpdateFileScenarioRelation返回参数结构体
     public struct UpdateFileScenarioRelationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新关联文件场景
     @inlinable
-    public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFileScenarioRelationResponse > {
+    public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFileScenarioRelationResponse> {
         self.client.execute(action: "UpdateFileScenarioRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新关联文件场景
     @inlinable
     public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFileScenarioRelationResponse {
         try await self.client.execute(action: "UpdateFileScenarioRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新关联文件场景
     @inlinable
-    public func updateFileScenarioRelation(fileId: String, projectId: String, scenarioIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFileScenarioRelationResponse > {
+    public func updateFileScenarioRelation(fileId: String, projectId: String, scenarioIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFileScenarioRelationResponse> {
         self.updateFileScenarioRelation(UpdateFileScenarioRelationRequest(fileId: fileId, projectId: projectId, scenarioIds: scenarioIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新关联文件场景
     @inlinable
     public func updateFileScenarioRelation(fileId: String, projectId: String, scenarioIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFileScenarioRelationResponse {

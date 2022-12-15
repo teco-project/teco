@@ -21,52 +21,52 @@ extension TCSsmError {
             case rotationForbidden = "FailedOperation.RotationForbidden"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// KMS操作失败。
         public static var accessKmsError: FailedOperation {
             FailedOperation(.accessKmsError)
         }
-        
+
         /// 凭据被禁止轮转。
         public static var rotationForbidden: FailedOperation {
             FailedOperation(.rotationForbidden)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asSsmError() -> TCSsmError {
             let code: TCSsmError.Code
             switch self.error {
-            case .accessKmsError: 
+            case .accessKmsError:
                 code = .failedOperation_AccessKmsError
-            case .rotationForbidden: 
+            case .rotationForbidden:
                 code = .failedOperation_RotationForbidden
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCSsmError(code, context: self.context)

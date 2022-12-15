@@ -17,46 +17,46 @@
 extension Tcss {
     /// CreateNetworkFirewallClusterRefresh请求参数结构体
     public struct CreateNetworkFirewallClusterRefreshRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// CreateNetworkFirewallClusterRefresh返回参数结构体
     public struct CreateNetworkFirewallClusterRefreshResponse: TCResponseModel {
         /// 返回创建的集群检查任务的ID，为0表示创建失败。
         public let taskId: UInt64
-        
+
         /// 创建检查任务的结果，"Succ"为成功，"Failed"为失败
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 容器网络集群下发刷新任务
     @inlinable
-    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallClusterRefreshResponse > {
+    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallClusterRefreshResponse> {
         self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络集群下发刷新任务
     @inlinable
     public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
         try await self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 容器网络集群下发刷新任务
     @inlinable
-    public func createNetworkFirewallClusterRefresh(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallClusterRefreshResponse > {
+    public func createNetworkFirewallClusterRefresh(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallClusterRefreshResponse> {
         self.createNetworkFirewallClusterRefresh(CreateNetworkFirewallClusterRefreshRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络集群下发刷新任务
     @inlinable
     public func createNetworkFirewallClusterRefresh(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {

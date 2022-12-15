@@ -19,23 +19,23 @@ extension Cme {
     public struct FlattenListMediaRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
-        
+
         /// 媒体分类路径，例如填写"/a/b"，则代表平铺该分类路径下及其子分类路径下的媒体信息。
         public let classPath: String
-        
+
         /// 媒体分类的归属者。
         public let owner: Entity
-        
+
         /// 分页偏移量，默认值：0。
         public let offset: Int64?
-        
+
         /// 返回记录条数，默认值：10，最大值：50。
         public let limit: Int64?
-        
+
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以平铺查询任意分类下的媒体信息。如果指定操作者，则操作者必须对当前分类有读权限。
         public let `operator`: String?
-        
-        public init (platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil) {
+
+        public init(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil) {
             self.platform = platform
             self.classPath = classPath
             self.owner = owner
@@ -43,7 +43,7 @@ extension Cme {
             self.limit = limit
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case classPath = "ClassPath"
@@ -53,33 +53,33 @@ extension Cme {
             case `operator` = "Operator"
         }
     }
-    
+
     /// FlattenListMedia返回参数结构体
     public struct FlattenListMediaResponse: TCResponseModel {
         /// 符合条件的记录总数。
         public let totalCount: Int64
-        
+
         /// 该分类路径下及其子分类下的所有媒体基础信息列表。
         public let materialInfoSet: [MaterialInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case materialInfoSet = "MaterialInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 平铺浏览媒体
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
-    public func flattenListMedia(_ input: FlattenListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlattenListMediaResponse > {
+    public func flattenListMedia(_ input: FlattenListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlattenListMediaResponse> {
         self.client.execute(action: "FlattenListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 平铺浏览媒体
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
@@ -87,15 +87,15 @@ extension Cme {
     public func flattenListMedia(_ input: FlattenListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
         try await self.client.execute(action: "FlattenListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 平铺浏览媒体
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
-    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlattenListMediaResponse > {
+    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlattenListMediaResponse> {
         self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 平铺浏览媒体
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。

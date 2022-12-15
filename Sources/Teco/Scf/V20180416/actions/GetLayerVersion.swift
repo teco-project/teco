@@ -19,57 +19,57 @@ extension Scf {
     public struct GetLayerVersionRequest: TCRequestModel {
         /// 层名称
         public let layerName: String
-        
+
         /// 版本号
         public let layerVersion: Int64
-        
-        public init (layerName: String, layerVersion: Int64) {
+
+        public init(layerName: String, layerVersion: Int64) {
             self.layerName = layerName
             self.layerVersion = layerVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case layerName = "LayerName"
             case layerVersion = "LayerVersion"
         }
     }
-    
+
     /// GetLayerVersion返回参数结构体
     public struct GetLayerVersionResponse: TCResponseModel {
         /// 适配的运行时
         public let compatibleRuntimes: [String]
-        
+
         /// 层中版本文件的SHA256编码
         public let codeSha256: String
-        
+
         /// 层中版本文件的下载地址
         public let location: String
-        
+
         /// 版本的创建时间
         public let addTime: String
-        
+
         /// 版本的描述
         public let description: String
-        
+
         /// 许可证信息
         public let licenseInfo: String
-        
+
         /// 版本号
         public let layerVersion: Int64
-        
+
         /// 层名称
         public let layerName: String
-        
+
         /// 层的具体版本当前状态，可能取值：
         /// Active 正常
         /// Publishing  发布中
         /// PublishFailed  发布失败
         /// Deleted 已删除
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case compatibleRuntimes = "CompatibleRuntimes"
             case codeSha256 = "CodeSha256"
@@ -83,15 +83,15 @@ extension Scf {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取层版本详细信息
     ///
     /// 获取层版本详细信息，包括用于下载层中文件的链接。
     @inlinable
-    public func getLayerVersion(_ input: GetLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLayerVersionResponse > {
+    public func getLayerVersion(_ input: GetLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLayerVersionResponse> {
         self.client.execute(action: "GetLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取层版本详细信息
     ///
     /// 获取层版本详细信息，包括用于下载层中文件的链接。
@@ -99,15 +99,15 @@ extension Scf {
     public func getLayerVersion(_ input: GetLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLayerVersionResponse {
         try await self.client.execute(action: "GetLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取层版本详细信息
     ///
     /// 获取层版本详细信息，包括用于下载层中文件的链接。
     @inlinable
-    public func getLayerVersion(layerName: String, layerVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLayerVersionResponse > {
+    public func getLayerVersion(layerName: String, layerVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLayerVersionResponse> {
         self.getLayerVersion(GetLayerVersionRequest(layerName: layerName, layerVersion: layerVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取层版本详细信息
     ///
     /// 获取层版本详细信息，包括用于下载层中文件的链接。

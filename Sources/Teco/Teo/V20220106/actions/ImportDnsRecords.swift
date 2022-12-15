@@ -19,53 +19,53 @@ extension Teo {
     public struct ImportDnsRecordsRequest: TCRequestModel {
         /// 站点 ID
         public let zoneId: String
-        
+
         /// 文件内容
         public let file: String
-        
-        public init (zoneId: String, file: String) {
+
+        public init(zoneId: String, file: String) {
             self.zoneId = zoneId
             self.file = file
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case file = "File"
         }
     }
-    
+
     /// ImportDnsRecords返回参数结构体
     public struct ImportDnsRecordsResponse: TCResponseModel {
         /// 记录 ID
         public let ids: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导入 DNS 记录
     @inlinable
-    public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportDnsRecordsResponse > {
+    public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportDnsRecordsResponse> {
         self.client.execute(action: "ImportDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导入 DNS 记录
     @inlinable
     public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportDnsRecordsResponse {
         try await self.client.execute(action: "ImportDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导入 DNS 记录
     @inlinable
-    public func importDnsRecords(zoneId: String, file: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportDnsRecordsResponse > {
+    public func importDnsRecords(zoneId: String, file: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportDnsRecordsResponse> {
         self.importDnsRecords(ImportDnsRecordsRequest(zoneId: zoneId, file: file), logger: logger, on: eventLoop)
     }
-    
+
     /// 导入 DNS 记录
     @inlinable
     public func importDnsRecords(zoneId: String, file: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportDnsRecordsResponse {

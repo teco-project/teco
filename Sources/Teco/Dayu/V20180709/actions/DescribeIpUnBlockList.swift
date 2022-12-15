@@ -27,7 +27,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var beginTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,20 +35,20 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// IP（不为空时，进行IP过滤）
         public let ip: String?
-        
+
         /// 分页参数（不为空时，进行分页查询），此字段后面会弃用，请用Limit和Offset字段代替；
         public let paging: Paging?
-        
+
         /// 一页条数，填0表示不分页
         public let limit: UInt64?
-        
+
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
-        
-        public init (beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.ip = ip
@@ -56,7 +56,7 @@ extension Dayu {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginTime = "BeginTime"
             case endTime = "EndTime"
@@ -66,24 +66,24 @@ extension Dayu {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeIpUnBlockList返回参数结构体
     public struct DescribeIpUnBlockListResponse: TCResponseModel {
         /// 开始时间
         public let beginTime: String
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// IP解封记录
         public let list: [IpUnBlockData]
-        
+
         /// 总记录数
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case beginTime = "BeginTime"
             case endTime = "EndTime"
@@ -92,25 +92,25 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取IP解封记录
     @inlinable
-    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpUnBlockListResponse > {
+    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpUnBlockListResponse> {
         self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取IP解封记录
     @inlinable
     public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
         try await self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取IP解封记录
     @inlinable
-    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpUnBlockListResponse > {
+    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpUnBlockListResponse> {
         self.describeIpUnBlockList(DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取IP解封记录
     @inlinable
     public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {

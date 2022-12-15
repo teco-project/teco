@@ -27,100 +27,100 @@ extension TCTdmqError {
             case topic = "ResourceNotFound.Topic"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 服务的集群不存在。
         public static var brokerCluster: ResourceNotFound {
             ResourceNotFound(.brokerCluster)
         }
-        
+
         /// 集群不存在。
         public static var cluster: ResourceNotFound {
             ResourceNotFound(.cluster)
         }
-        
+
         /// 环境不存在。
         ///
         /// 创建环境。
         public static var environment: ResourceNotFound {
             ResourceNotFound(.environment)
         }
-        
+
         /// 环境角色不存在。
         public static var environmentRole: ResourceNotFound {
             ResourceNotFound(.environmentRole)
         }
-        
+
         /// 命名空间不存在。
         public static var namespace: ResourceNotFound {
             ResourceNotFound(.namespace)
         }
-        
+
         /// 角色不存在。
         public static var role: ResourceNotFound {
             ResourceNotFound(.role)
         }
-        
+
         /// 订阅关系不存在。
         ///
         /// 创建订阅关系。
         public static var subscription: ResourceNotFound {
             ResourceNotFound(.subscription)
         }
-        
+
         /// 主题不存在。
         ///
         /// 创建主题。
         public static var topic: ResourceNotFound {
             ResourceNotFound(.topic)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
-            case .brokerCluster: 
+            case .brokerCluster:
                 code = .resourceNotFound_BrokerCluster
-            case .cluster: 
+            case .cluster:
                 code = .resourceNotFound_Cluster
-            case .environment: 
+            case .environment:
                 code = .resourceNotFound_Environment
-            case .environmentRole: 
+            case .environmentRole:
                 code = .resourceNotFound_EnvironmentRole
-            case .namespace: 
+            case .namespace:
                 code = .resourceNotFound_Namespace
-            case .role: 
+            case .role:
                 code = .resourceNotFound_Role
-            case .subscription: 
+            case .subscription:
                 code = .resourceNotFound_Subscription
-            case .topic: 
+            case .topic:
                 code = .resourceNotFound_Topic
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCTdmqError(code, context: self.context)

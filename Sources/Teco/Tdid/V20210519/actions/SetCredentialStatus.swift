@@ -19,44 +19,44 @@ extension Tdid {
     public struct SetCredentialStatusRequest: TCRequestModel {
         /// 凭证状态
         public let credentialStatus: CredentialStatus
-        
-        public init (credentialStatus: CredentialStatus) {
+
+        public init(credentialStatus: CredentialStatus) {
             self.credentialStatus = credentialStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case credentialStatus = "CredentialStatus"
         }
     }
-    
+
     /// SetCredentialStatus返回参数结构体
     public struct SetCredentialStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置凭证链上状态
     @inlinable
-    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCredentialStatusResponse > {
+    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
         self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置凭证链上状态
     @inlinable
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
         try await self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置凭证链上状态
     @inlinable
-    public func setCredentialStatus(credentialStatus: CredentialStatus, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCredentialStatusResponse > {
+    public func setCredentialStatus(credentialStatus: CredentialStatus, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
         self.setCredentialStatus(SetCredentialStatusRequest(credentialStatus: credentialStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置凭证链上状态
     @inlinable
     public func setCredentialStatus(credentialStatus: CredentialStatus, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {

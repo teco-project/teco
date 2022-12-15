@@ -22,10 +22,10 @@ extension Teo {
     public struct DescribePurgeTasksRequest: TCRequestModel {
         /// 任务ID
         public let jobId: String?
-        
+
         /// 类型
         public let type: String?
-        
+
         /// 查询起始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date?
-        
+
         /// 查询结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,27 +41,27 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date?
-        
+
         /// 查询起始偏移量
         public let offset: Int64?
-        
+
         /// 查询最大返回的结果条数
         public let limit: Int64?
-        
+
         /// 查询的状态
         /// 允许的值为：processing、success、failed、timeout、invalid
         public let statuses: [String]?
-        
+
         /// zone id
         public let zoneId: String?
-        
+
         /// 查询的域名列表
         public let domains: [String]?
-        
+
         /// 查询内容
         public let target: String?
-        
-        public init (jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil) {
+
+        public init(jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil) {
             self.jobId = jobId
             self.type = type
             self.startTime = startTime
@@ -73,7 +73,7 @@ extension Teo {
             self.domains = domains
             self.target = target
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case type = "Type"
@@ -87,43 +87,43 @@ extension Teo {
             case target = "Target"
         }
     }
-    
+
     /// DescribePurgeTasks返回参数结构体
     public struct DescribePurgeTasksResponse: TCResponseModel {
         /// 该查询条件总共条目数
         public let totalCount: UInt64
-        
+
         /// 任务结果列表
         public let tasks: [Task]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询清除缓存历史记录
     @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询清除缓存历史记录
     @inlinable
     public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
         try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询清除缓存历史记录
     @inlinable
-    public func describePurgeTasks(jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+    public func describePurgeTasks(jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.describePurgeTasks(DescribePurgeTasksRequest(jobId: jobId, type: type, startTime: startTime, endTime: endTime, offset: offset, limit: limit, statuses: statuses, zoneId: zoneId, domains: domains, target: target), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询清除缓存历史记录
     @inlinable
     public func describePurgeTasks(jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {

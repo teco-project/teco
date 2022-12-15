@@ -19,48 +19,48 @@ extension Redis {
     public struct ModifyMaintenanceWindowRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 维护时间窗起始时间，如：17:00
         public let startTime: String
-        
+
         /// 维护时间窗结束时间，如：19:00
         public let endTime: String
-        
-        public init (instanceId: String, startTime: String, endTime: String) {
+
+        public init(instanceId: String, startTime: String, endTime: String) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// ModifyMaintenanceWindow返回参数结构体
     public struct ModifyMaintenanceWindowResponse: TCResponseModel {
         /// 修改状态：success 或者 failed
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例维护时间窗时间
     ///
     /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
     @inlinable
-    public func modifyMaintenanceWindow(_ input: ModifyMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaintenanceWindowResponse > {
+    public func modifyMaintenanceWindow(_ input: ModifyMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintenanceWindowResponse> {
         self.client.execute(action: "ModifyMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例维护时间窗时间
     ///
     /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
@@ -68,15 +68,15 @@ extension Redis {
     public func modifyMaintenanceWindow(_ input: ModifyMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceWindowResponse {
         try await self.client.execute(action: "ModifyMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例维护时间窗时间
     ///
     /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
     @inlinable
-    public func modifyMaintenanceWindow(instanceId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaintenanceWindowResponse > {
+    public func modifyMaintenanceWindow(instanceId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintenanceWindowResponse> {
         self.modifyMaintenanceWindow(ModifyMaintenanceWindowRequest(instanceId: instanceId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例维护时间窗时间
     ///
     /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。

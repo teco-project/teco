@@ -19,49 +19,49 @@ extension Pts {
     public struct DeleteCronJobsRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String
-        
+
         /// 定时任务ID数组
         public let cronJobIds: [String]
-        
-        public init (projectId: String, cronJobIds: [String]) {
+
+        public init(projectId: String, cronJobIds: [String]) {
             self.projectId = projectId
             self.cronJobIds = cronJobIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case cronJobIds = "CronJobIds"
         }
     }
-    
+
     /// DeleteCronJobs返回参数结构体
     public struct DeleteCronJobsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除定时任务
     @inlinable
-    public func deleteCronJobs(_ input: DeleteCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCronJobsResponse > {
+    public func deleteCronJobs(_ input: DeleteCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCronJobsResponse> {
         self.client.execute(action: "DeleteCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除定时任务
     @inlinable
     public func deleteCronJobs(_ input: DeleteCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCronJobsResponse {
         try await self.client.execute(action: "DeleteCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除定时任务
     @inlinable
-    public func deleteCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCronJobsResponse > {
+    public func deleteCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCronJobsResponse> {
         self.deleteCronJobs(DeleteCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除定时任务
     @inlinable
     public func deleteCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCronJobsResponse {

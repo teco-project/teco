@@ -21,52 +21,52 @@ extension TCApigatewayError {
             case uncertifiedUser = "UnauthorizedOperation.UncertifiedUser"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 您没有权限访问资源。
         public static var accessResource: UnauthorizedOperation {
             UnauthorizedOperation(.accessResource)
         }
-        
+
         /// 用户未实名制。
         public static var uncertifiedUser: UnauthorizedOperation {
             UnauthorizedOperation(.uncertifiedUser)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asApigatewayError() -> TCApigatewayError {
             let code: TCApigatewayError.Code
             switch self.error {
-            case .accessResource: 
+            case .accessResource:
                 code = .unauthorizedOperation_AccessResource
-            case .uncertifiedUser: 
+            case .uncertifiedUser:
                 code = .unauthorizedOperation_UncertifiedUser
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCApigatewayError(code, context: self.context)

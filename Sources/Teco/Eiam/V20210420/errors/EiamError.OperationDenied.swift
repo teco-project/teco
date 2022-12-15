@@ -19,40 +19,40 @@ extension TCEiamError {
         enum Code: String {
             case actionPermissionDeny = "OperationDenied.ActionPermissionDeny"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 当前用户缺乏访问该操作的权限。
         ///
         /// 尝试向管理员或资源拥有者申请权限。
         public static var actionPermissionDeny: OperationDenied {
             OperationDenied(.actionPermissionDeny)
         }
-        
+
         public func asEiamError() -> TCEiamError {
             let code: TCEiamError.Code
             switch self.error {
-            case .actionPermissionDeny: 
+            case .actionPermissionDeny:
                 code = .operationDenied_ActionPermissionDeny
             }
             return TCEiamError(code, context: self.context)

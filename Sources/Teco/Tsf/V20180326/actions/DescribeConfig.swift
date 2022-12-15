@@ -19,49 +19,49 @@ extension Tsf {
     public struct DescribeConfigRequest: TCRequestModel {
         /// 配置项ID
         public let configId: String
-        
-        public init (configId: String) {
+
+        public init(configId: String) {
             self.configId = configId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
         }
     }
-    
+
     /// DescribeConfig返回参数结构体
     public struct DescribeConfigResponse: TCResponseModel {
         /// 配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Config?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询配置
     @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
         self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询配置
     @inlinable
     public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
         try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询配置
     @inlinable
-    public func describeConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+    public func describeConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
         self.describeConfig(DescribeConfigRequest(configId: configId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询配置
     @inlinable
     public func describeConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {

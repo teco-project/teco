@@ -19,48 +19,48 @@ extension Tcss {
     public struct ModifyAccessControlStatusRequest: TCRequestModel {
         /// 处理事件ids
         public let eventIdSet: [String]
-        
-        /// 标记事件的状态，     
+
+        /// 标记事件的状态，
         /// EVENT_DEALED:事件已经处理
         ///      EVENT_INGNORE：事件忽略
         ///      EVENT_DEL:事件删除
         ///      EVENT_ADD_WHITE:事件加白
         public let status: String
-        
+
         /// 备注事件信息
         public let remark: String?
-        
-        public init (eventIdSet: [String], status: String, remark: String? = nil) {
+
+        public init(eventIdSet: [String], status: String, remark: String? = nil) {
             self.eventIdSet = eventIdSet
             self.status = status
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventIdSet = "EventIdSet"
             case status = "Status"
             case remark = "Remark"
         }
     }
-    
+
     /// ModifyAccessControlStatus返回参数结构体
     public struct ModifyAccessControlStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
     @inlinable
-    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessControlStatusResponse > {
+    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
         self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
@@ -68,15 +68,15 @@ extension Tcss {
     public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
         try await self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
     @inlinable
-    public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessControlStatusResponse > {
+    public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
         self.modifyAccessControlStatus(ModifyAccessControlStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息

@@ -19,34 +19,34 @@ extension Dc {
     public struct DisableInternetAddressRequest: TCRequestModel {
         /// 公网互联网地址ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DisableInternetAddress返回参数结构体
     public struct DisableInternetAddressResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址
     @inlinable
-    public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInternetAddressResponse > {
+    public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInternetAddressResponse> {
         self.client.execute(action: "DisableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址
@@ -54,15 +54,15 @@ extension Dc {
     public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
         try await self.client.execute(action: "DisableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址
     @inlinable
-    public func disableInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInternetAddressResponse > {
+    public func disableInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInternetAddressResponse> {
         self.disableInternetAddress(DisableInternetAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址

@@ -17,42 +17,42 @@
 extension Tcb {
     /// CheckTcbService请求参数结构体
     public struct CheckTcbServiceRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// CheckTcbService返回参数结构体
     public struct CheckTcbServiceResponse: TCResponseModel {
         /// true表示已开通
         public let initialized: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case initialized = "Initialized"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 检查是否开通Tcb服务
     @inlinable
-    public func checkTcbService(_ input: CheckTcbServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTcbServiceResponse > {
+    public func checkTcbService(_ input: CheckTcbServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTcbServiceResponse> {
         self.client.execute(action: "CheckTcbService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 检查是否开通Tcb服务
     @inlinable
     public func checkTcbService(_ input: CheckTcbServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTcbServiceResponse {
         try await self.client.execute(action: "CheckTcbService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 检查是否开通Tcb服务
     @inlinable
-    public func checkTcbService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTcbServiceResponse > {
+    public func checkTcbService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTcbServiceResponse> {
         self.checkTcbService(CheckTcbServiceRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 检查是否开通Tcb服务
     @inlinable
     public func checkTcbService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTcbServiceResponse {

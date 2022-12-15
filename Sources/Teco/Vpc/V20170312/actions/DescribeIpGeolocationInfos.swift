@@ -19,48 +19,48 @@ extension Vpc {
     public struct DescribeIpGeolocationInfosRequest: TCRequestModel {
         /// 需查询的IP地址列表，目前仅支持IPv4地址。查询的IP地址数量上限为100个。
         public let addressIps: [String]
-        
+
         /// 需查询的IP地址的字段信息。
         public let fields: IpField?
-        
-        public init (addressIps: [String], fields: IpField? = nil) {
+
+        public init(addressIps: [String], fields: IpField? = nil) {
             self.addressIps = addressIps
             self.fields = fields
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addressIps = "AddressIps"
             case fields = "Fields"
         }
     }
-    
+
     /// DescribeIpGeolocationInfos返回参数结构体
     public struct DescribeIpGeolocationInfosResponse: TCResponseModel {
         /// IP地址信息列表。
         public let addressInfo: [IpGeolocationInfo]
-        
+
         /// IP地址信息个数。
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case addressInfo = "AddressInfo"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询IP地理位置信息
     ///
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。
     /// 本接口仅供存量客户使用，如有疑问，请提交[工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=660&source=0&data_title=%E5%BC%B9%E6%80%A7%E5%85%AC%E7%BD%91%20EIP&level3_id=662&queue=96&scene_code=16400&step=2)。
     @inlinable
-    public func describeIpGeolocationInfos(_ input: DescribeIpGeolocationInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpGeolocationInfosResponse > {
+    public func describeIpGeolocationInfos(_ input: DescribeIpGeolocationInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationInfosResponse> {
         self.client.execute(action: "DescribeIpGeolocationInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询IP地理位置信息
     ///
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。
@@ -69,16 +69,16 @@ extension Vpc {
     public func describeIpGeolocationInfos(_ input: DescribeIpGeolocationInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationInfosResponse {
         try await self.client.execute(action: "DescribeIpGeolocationInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询IP地理位置信息
     ///
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。
     /// 本接口仅供存量客户使用，如有疑问，请提交[工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=660&source=0&data_title=%E5%BC%B9%E6%80%A7%E5%85%AC%E7%BD%91%20EIP&level3_id=662&queue=96&scene_code=16400&step=2)。
     @inlinable
-    public func describeIpGeolocationInfos(addressIps: [String], fields: IpField? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpGeolocationInfosResponse > {
+    public func describeIpGeolocationInfos(addressIps: [String], fields: IpField? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationInfosResponse> {
         self.describeIpGeolocationInfos(DescribeIpGeolocationInfosRequest(addressIps: addressIps, fields: fields), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询IP地理位置信息
     ///
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。

@@ -19,48 +19,48 @@ extension Iot {
     public struct AppGetUserRequest: TCRequestModel {
         /// 访问Token
         public let accessToken: String
-        
-        public init (accessToken: String) {
+
+        public init(accessToken: String) {
             self.accessToken = accessToken
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessToken = "AccessToken"
         }
     }
-    
+
     /// AppGetUser返回参数结构体
     public struct AppGetUserResponse: TCResponseModel {
         /// 用户信息
         public let appUser: AppUser
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appUser = "AppUser"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户信息
     @inlinable
-    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetUserResponse > {
+    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetUserResponse> {
         self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户信息
     @inlinable
     public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
         try await self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户信息
     @inlinable
-    public func appGetUser(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetUserResponse > {
+    public func appGetUser(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetUserResponse> {
         self.appGetUser(AppGetUserRequest(accessToken: accessToken), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户信息
     @inlinable
     public func appGetUser(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {

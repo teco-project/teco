@@ -19,41 +19,41 @@ extension Teo {
     public struct ModifyZoneStatusRequest: TCRequestModel {
         /// 站点 ID。
         public let zoneId: String
-        
+
         /// 站点状态，取值有：
         /// <li> false：开启站点；</li>
         /// <li> true：关闭站点。</li>
         public let paused: Bool
-        
-        public init (zoneId: String, paused: Bool) {
+
+        public init(zoneId: String, paused: Bool) {
             self.zoneId = zoneId
             self.paused = paused
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case paused = "Paused"
         }
     }
-    
+
     /// ModifyZoneStatus返回参数结构体
     public struct ModifyZoneStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 切换站点状态
     ///
     /// 用于开启，关闭站点。
     @inlinable
-    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneStatusResponse > {
+    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneStatusResponse> {
         self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 切换站点状态
     ///
     /// 用于开启，关闭站点。
@@ -61,15 +61,15 @@ extension Teo {
     public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
         try await self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 切换站点状态
     ///
     /// 用于开启，关闭站点。
     @inlinable
-    public func modifyZoneStatus(zoneId: String, paused: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneStatusResponse > {
+    public func modifyZoneStatus(zoneId: String, paused: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneStatusResponse> {
         self.modifyZoneStatus(ModifyZoneStatusRequest(zoneId: zoneId, paused: paused), logger: logger, on: eventLoop)
     }
-    
+
     /// 切换站点状态
     ///
     /// 用于开启，关闭站点。

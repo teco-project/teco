@@ -20,45 +20,45 @@ extension TCSqlserverError {
             case notSupportRepeat = "UnsupportedOperation.NotSupportRepeat"
             case uploadTypeError = "UnsupportedOperation.UploadTypeError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不支持重复操作。
         public static var notSupportRepeat: UnsupportedOperation {
             UnsupportedOperation(.notSupportRepeat)
         }
-        
+
         /// 上传类型错误。
         public static var uploadTypeError: UnsupportedOperation {
             UnsupportedOperation(.uploadTypeError)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {
-            case .notSupportRepeat: 
+            case .notSupportRepeat:
                 code = .unsupportedOperation_NotSupportRepeat
-            case .uploadTypeError: 
+            case .uploadTypeError:
                 code = .unsupportedOperation_UploadTypeError
             }
             return TCSqlserverError(code, context: self.context)

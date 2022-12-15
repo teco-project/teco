@@ -21,52 +21,52 @@ extension TCMsError {
             case serverError = "InternalError.ServerError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请联系客服或稍后重试。
         public static var apkServerError: InternalError {
             InternalError(.apkServerError)
         }
-        
+
         /// 服务端无法响应。
         public static var serverError: InternalError {
             InternalError(.serverError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {
-            case .apkServerError: 
+            case .apkServerError:
                 code = .internalError_ApkServerError
-            case .serverError: 
+            case .serverError:
                 code = .internalError_ServerError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCMsError(code, context: self.context)

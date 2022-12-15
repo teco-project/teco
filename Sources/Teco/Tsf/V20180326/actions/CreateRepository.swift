@@ -19,23 +19,23 @@ extension Tsf {
     public struct CreateRepositoryRequest: TCRequestModel {
         /// 仓库名称
         public let repositoryName: String
-        
+
         /// 仓库类型（默认仓库：default，私有仓库：private）
         public let repositoryType: String
-        
+
         /// 仓库所在桶名称
         public let bucketName: String
-        
+
         /// 仓库所在桶地域
         public let bucketRegion: String
-        
+
         /// 目录
         public let directory: String?
-        
+
         /// 仓库描述
         public let repositoryDesc: String?
-        
-        public init (repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil) {
+
+        public init(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil) {
             self.repositoryName = repositoryName
             self.repositoryType = repositoryType
             self.bucketName = bucketName
@@ -43,7 +43,7 @@ extension Tsf {
             self.directory = directory
             self.repositoryDesc = repositoryDesc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repositoryName = "RepositoryName"
             case repositoryType = "RepositoryType"
@@ -53,40 +53,40 @@ extension Tsf {
             case repositoryDesc = "RepositoryDesc"
         }
     }
-    
+
     /// CreateRepository返回参数结构体
     public struct CreateRepositoryResponse: TCResponseModel {
         /// 创建仓库是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建仓库
     @inlinable
-    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryResponse > {
+    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
         self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建仓库
     @inlinable
     public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
         try await self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建仓库
     @inlinable
-    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryResponse > {
+    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
         self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建仓库
     @inlinable
     public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {

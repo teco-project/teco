@@ -17,39 +17,39 @@
 extension Iotvideoindustry {
     /// GetRecordPlans请求参数结构体
     public struct GetRecordPlansRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetRecordPlans返回参数结构体
     public struct GetRecordPlansResponse: TCResponseModel {
         /// 录制计划详情·列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let plans: [RecordPlanItem]?
-        
+
         /// 录制计划总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case plans = "Plans"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取全部录制计划（旧）
     ///
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
     /// 请使用DescribeRecordingPlans接口
     @inlinable
-    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordPlansResponse > {
+    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlansResponse> {
         self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取全部录制计划（旧）
     ///
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
@@ -58,16 +58,16 @@ extension Iotvideoindustry {
     public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlansResponse {
         try await self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取全部录制计划（旧）
     ///
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
     /// 请使用DescribeRecordingPlans接口
     @inlinable
-    public func getRecordPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordPlansResponse > {
+    public func getRecordPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlansResponse> {
         self.getRecordPlans(GetRecordPlansRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取全部录制计划（旧）
     ///
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。

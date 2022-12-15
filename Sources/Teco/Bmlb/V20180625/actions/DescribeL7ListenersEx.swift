@@ -19,16 +19,16 @@ extension Bmlb {
     public struct DescribeL7ListenersExRequest: TCRequestModel {
         /// 返回的监听器中标识是否绑定在此流量镜像中。
         public let trafficMirrorId: String
-        
+
         /// 待获取监听器所在的VPC的ID。
         public let vpcId: String
-        
+
         /// 此VPC中获取负载均衡的偏移。
         public let offset: UInt64?
-        
+
         /// 此VPC中获取负载均衡的数量。
         public let limit: UInt64?
-        
+
         /// 过滤条件。
         /// LoadBalancerId - String - （过滤条件）负载均衡ID。
         /// LoadBalancerName - String - （过滤条件）负载均衡名称。
@@ -38,15 +38,15 @@ extension Bmlb {
         /// Protocol -  String - （过滤条件）七层协议。
         /// LoadBalancerPort -  String - （过滤条件）监听器端口。
         public let filters: [Filter]?
-        
-        public init (trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.vpcId = vpcId
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trafficMirrorId = "TrafficMirrorId"
             case vpcId = "VpcId"
@@ -55,33 +55,33 @@ extension Bmlb {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeL7ListenersEx返回参数结构体
     public struct DescribeL7ListenersExResponse: TCResponseModel {
         /// 此指定VPC中负载均衡的总数。
         public let totalCount: UInt64
-        
+
         /// 符合条件的监听器。
         public let listenerSet: [L7ExListener]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
-    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenersExResponse > {
+    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersExResponse> {
         self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
@@ -89,15 +89,15 @@ extension Bmlb {
     public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
         try await self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
-    public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenersExResponse > {
+    public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersExResponse> {
         self.describeL7ListenersEx(DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。

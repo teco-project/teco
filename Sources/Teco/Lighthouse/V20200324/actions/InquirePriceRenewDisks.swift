@@ -19,43 +19,43 @@ extension Lighthouse {
     public struct InquirePriceRenewDisksRequest: TCRequestModel {
         /// 云硬盘ID列表。
         public let diskIds: [String]
-        
+
         /// 续费云硬盘包年包月相关参数设置。
         public let renewDiskChargePrepaid: RenewDiskChargePrepaid
-        
-        public init (diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid) {
+
+        public init(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid) {
             self.diskIds = diskIds
             self.renewDiskChargePrepaid = renewDiskChargePrepaid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
             case renewDiskChargePrepaid = "RenewDiskChargePrepaid"
         }
     }
-    
+
     /// InquirePriceRenewDisks返回参数结构体
     public struct InquirePriceRenewDisksResponse: TCResponseModel {
         /// 云硬盘价格。
         public let diskPrice: DiskPrice
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case diskPrice = "DiskPrice"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 续费云硬盘询价
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
-    public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewDisksResponse > {
+    public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDisksResponse> {
         self.client.execute(action: "InquirePriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 续费云硬盘询价
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
@@ -63,15 +63,15 @@ extension Lighthouse {
     public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
         try await self.client.execute(action: "InquirePriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 续费云硬盘询价
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
-    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewDisksResponse > {
+    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDisksResponse> {
         self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), logger: logger, on: eventLoop)
     }
-    
+
     /// 续费云硬盘询价
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。

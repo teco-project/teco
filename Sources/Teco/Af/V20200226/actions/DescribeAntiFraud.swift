@@ -19,46 +19,46 @@ extension Af {
     public struct DescribeAntiFraudRequest: TCRequestModel {
         /// 原始业务入参(二选一）
         public let businessSecurityData: FinanceAntiFraudFilter?
-        
+
         /// 密文业务入参(二选一）
         public let businessCryptoData: FinanceAntiFraudCryptoFilter?
-        
-        public init (businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil) {
+
+        public init(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil) {
             self.businessSecurityData = businessSecurityData
             self.businessCryptoData = businessCryptoData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessSecurityData = "BusinessSecurityData"
             case businessCryptoData = "BusinessCryptoData"
         }
     }
-    
+
     /// DescribeAntiFraud返回参数结构体
     public struct DescribeAntiFraudResponse: TCResponseModel {
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: FinanceAntiFraudRecord?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 金融借贷反欺诈
     ///
     /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
     /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
     /// 的损失。
     @inlinable
-    public func describeAntiFraud(_ input: DescribeAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAntiFraudResponse > {
+    public func describeAntiFraud(_ input: DescribeAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAntiFraudResponse> {
         self.client.execute(action: "DescribeAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 金融借贷反欺诈
     ///
     /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
@@ -68,17 +68,17 @@ extension Af {
     public func describeAntiFraud(_ input: DescribeAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAntiFraudResponse {
         try await self.client.execute(action: "DescribeAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 金融借贷反欺诈
     ///
     /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
     /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
     /// 的损失。
     @inlinable
-    public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAntiFraudResponse > {
+    public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAntiFraudResponse> {
         self.describeAntiFraud(DescribeAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
     }
-    
+
     /// 金融借贷反欺诈
     ///
     /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，

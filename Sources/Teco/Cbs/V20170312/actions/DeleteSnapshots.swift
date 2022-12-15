@@ -19,41 +19,41 @@ extension Cbs {
     public struct DeleteSnapshotsRequest: TCRequestModel {
         /// 要删除的快照ID列表，可通过[DescribeSnapshots](/document/product/362/15647)查询。
         public let snapshotIds: [String]
-        
+
         /// 是否强制删除快照关联的镜像
         public let deleteBindImages: Bool?
-        
-        public init (snapshotIds: [String], deleteBindImages: Bool? = nil) {
+
+        public init(snapshotIds: [String], deleteBindImages: Bool? = nil) {
             self.snapshotIds = snapshotIds
             self.deleteBindImages = deleteBindImages
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotIds = "SnapshotIds"
             case deleteBindImages = "DeleteBindImages"
         }
     }
-    
+
     /// DeleteSnapshots返回参数结构体
     public struct DeleteSnapshotsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// * 快照必须处于NORMAL状态，快照状态可以通过[DescribeSnapshots](/document/product/362/15647)接口查询，见输出参数中SnapshotState字段解释。
     /// * 支持批量操作。如果多个快照存在无法删除的快照，则操作不执行，以特定的错误码返回。
     @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
         self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
@@ -63,17 +63,17 @@ extension Cbs {
     public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
         try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// * 快照必须处于NORMAL状态，快照状态可以通过[DescribeSnapshots](/document/product/362/15647)接口查询，见输出参数中SnapshotState字段解释。
     /// * 支持批量操作。如果多个快照存在无法删除的快照，则操作不执行，以特定的错误码返回。
     @inlinable
-    public func deleteSnapshots(snapshotIds: [String], deleteBindImages: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
+    public func deleteSnapshots(snapshotIds: [String], deleteBindImages: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
         self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds, deleteBindImages: deleteBindImages), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。

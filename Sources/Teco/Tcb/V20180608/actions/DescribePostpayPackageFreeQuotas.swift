@@ -19,54 +19,54 @@ extension Tcb {
     public struct DescribePostpayPackageFreeQuotasRequest: TCRequestModel {
         /// 环境ID
         public let envId: String?
-        
+
         /// 免费额度类型标识
         public let freeQuotaType: String?
-        
-        public init (envId: String? = nil, freeQuotaType: String? = nil) {
+
+        public init(envId: String? = nil, freeQuotaType: String? = nil) {
             self.envId = envId
             self.freeQuotaType = freeQuotaType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case freeQuotaType = "FreeQuotaType"
         }
     }
-    
+
     /// DescribePostpayPackageFreeQuotas返回参数结构体
     public struct DescribePostpayPackageFreeQuotasResponse: TCResponseModel {
         /// 免费量资源信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageFreeQuotaInfos: [PackageFreeQuotaInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case packageFreeQuotaInfos = "PackageFreeQuotaInfos"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取后付费免费额度
     @inlinable
-    public func describePostpayPackageFreeQuotas(_ input: DescribePostpayPackageFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostpayPackageFreeQuotasResponse > {
+    public func describePostpayPackageFreeQuotas(_ input: DescribePostpayPackageFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePostpayPackageFreeQuotasResponse> {
         self.client.execute(action: "DescribePostpayPackageFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取后付费免费额度
     @inlinable
     public func describePostpayPackageFreeQuotas(_ input: DescribePostpayPackageFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostpayPackageFreeQuotasResponse {
         try await self.client.execute(action: "DescribePostpayPackageFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取后付费免费额度
     @inlinable
-    public func describePostpayPackageFreeQuotas(envId: String? = nil, freeQuotaType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostpayPackageFreeQuotasResponse > {
+    public func describePostpayPackageFreeQuotas(envId: String? = nil, freeQuotaType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePostpayPackageFreeQuotasResponse> {
         self.describePostpayPackageFreeQuotas(DescribePostpayPackageFreeQuotasRequest(envId: envId, freeQuotaType: freeQuotaType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取后付费免费额度
     @inlinable
     public func describePostpayPackageFreeQuotas(envId: String? = nil, freeQuotaType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostpayPackageFreeQuotasResponse {

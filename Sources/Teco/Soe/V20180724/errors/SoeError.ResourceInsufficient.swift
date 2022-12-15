@@ -19,38 +19,38 @@ extension TCSoeError {
         enum Code: String {
             case serverTimeout = "ResourceInsufficient.ServerTimeout"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 评测超时，请检查语音数据大小。
         public static var serverTimeout: ResourceInsufficient {
             ResourceInsufficient(.serverTimeout)
         }
-        
+
         public func asSoeError() -> TCSoeError {
             let code: TCSoeError.Code
             switch self.error {
-            case .serverTimeout: 
+            case .serverTimeout:
                 code = .resourceInsufficient_ServerTimeout
             }
             return TCSoeError(code, context: self.context)

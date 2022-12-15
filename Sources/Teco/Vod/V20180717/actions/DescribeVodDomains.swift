@@ -20,23 +20,23 @@ extension Vod {
         /// 域名列表。当该字段不填时，则默认列出所有域名信息。本字段字段限制如下：
         /// <li>域名个数度最大为 20。</li>
         public let domains: [String]?
-        
+
         /// 分页拉取的最大返回结果数。默认值：20。
         public let limit: UInt64?
-        
+
         /// 分页拉取的起始偏移量。默认值：0。
         public let offset: UInt64?
-        
+
         /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         public let subAppId: UInt64?
-        
-        public init (domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, subAppId: UInt64? = nil) {
+
+        public init(domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, subAppId: UInt64? = nil) {
             self.domains = domains
             self.limit = limit
             self.offset = offset
             self.subAppId = subAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domains = "Domains"
             case limit = "Limit"
@@ -44,33 +44,33 @@ extension Vod {
             case subAppId = "SubAppId"
         }
     }
-    
+
     /// DescribeVodDomains返回参数结构体
     public struct DescribeVodDomainsResponse: TCResponseModel {
         /// 域名总数量。
         public let totalCount: UInt64
-        
+
         /// 域名信息列表。
         public let domainSet: [DomainDetailInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case domainSet = "DomainSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询点播域名列表
     ///
     /// 该接口用于查询点播域名信息列表。
     @inlinable
-    public func describeVodDomains(_ input: DescribeVodDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVodDomainsResponse > {
+    public func describeVodDomains(_ input: DescribeVodDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVodDomainsResponse> {
         self.client.execute(action: "DescribeVodDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询点播域名列表
     ///
     /// 该接口用于查询点播域名信息列表。
@@ -78,15 +78,15 @@ extension Vod {
     public func describeVodDomains(_ input: DescribeVodDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVodDomainsResponse {
         try await self.client.execute(action: "DescribeVodDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询点播域名列表
     ///
     /// 该接口用于查询点播域名信息列表。
     @inlinable
-    public func describeVodDomains(domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVodDomainsResponse > {
+    public func describeVodDomains(domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVodDomainsResponse> {
         self.describeVodDomains(DescribeVodDomainsRequest(domains: domains, limit: limit, offset: offset, subAppId: subAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询点播域名列表
     ///
     /// 该接口用于查询点播域名信息列表。

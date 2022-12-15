@@ -19,23 +19,23 @@ extension Cfs {
     public struct DescribeAutoSnapshotPoliciesRequest: TCRequestModel {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String?
-        
+
         /// 分页码
         public let offset: UInt64?
-        
+
         /// 页面长
         public let limit: UInt64?
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
+
         /// 升序，降序
         public let order: String?
-        
+
         /// 排序字段
         public let orderField: String?
-        
-        public init (autoSnapshotPolicyId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, orderField: String? = nil) {
+
+        public init(autoSnapshotPolicyId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, orderField: String? = nil) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Cfs {
             self.order = order
             self.orderField = orderField
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case offset = "Offset"
@@ -53,33 +53,33 @@ extension Cfs {
             case orderField = "OrderField"
         }
     }
-    
+
     /// DescribeAutoSnapshotPolicies返回参数结构体
     public struct DescribeAutoSnapshotPoliciesResponse: TCResponseModel {
         /// 快照策略总个数
         public let totalCount: UInt64
-        
+
         /// 快照策略信息
         public let autoSnapshotPolicies: [AutoSnapshotPolicyInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case autoSnapshotPolicies = "AutoSnapshotPolicies"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询文件系统快照策略列表信息
     ///
     /// 查询文件系统快照定期策略列表信息
     @inlinable
-    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoSnapshotPoliciesResponse > {
+    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoSnapshotPoliciesResponse> {
         self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文件系统快照策略列表信息
     ///
     /// 查询文件系统快照定期策略列表信息
@@ -87,15 +87,15 @@ extension Cfs {
     public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
         try await self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询文件系统快照策略列表信息
     ///
     /// 查询文件系统快照定期策略列表信息
     @inlinable
-    public func describeAutoSnapshotPolicies(autoSnapshotPolicyId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoSnapshotPoliciesResponse > {
+    public func describeAutoSnapshotPolicies(autoSnapshotPolicyId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoSnapshotPoliciesResponse> {
         self.describeAutoSnapshotPolicies(DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, offset: offset, limit: limit, filters: filters, order: order, orderField: orderField), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文件系统快照策略列表信息
     ///
     /// 查询文件系统快照定期策略列表信息

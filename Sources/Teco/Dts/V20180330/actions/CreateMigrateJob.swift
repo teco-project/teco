@@ -19,45 +19,45 @@ extension Dts {
     public struct CreateMigrateJobRequest: TCRequestModel {
         /// 数据迁移任务名称
         public let jobName: String
-        
+
         /// 迁移任务配置选项
         public let migrateOption: MigrateOption
-        
+
         /// 源实例数据库类型，目前支持：mysql，redis，mongodb，postgresql，mariadb，percona，sqlserver 不同地域数据库类型的具体支持情况，请参考控制台创建迁移页面。
         public let srcDatabaseType: String
-        
+
         /// 源实例接入类型，值包括：extranet(外网),cvm(CVM自建实例),dcg(专线接入的实例),vpncloud(云VPN接入的实例),cdb(腾讯云数据库实例),ccn(云联网实例)
         public let srcAccessType: String
-        
+
         /// 源实例信息，具体内容跟迁移任务类型相关
         public let srcInfo: SrcInfo
-        
+
         /// 目标实例数据库类型，目前支持：mysql，redis，mongodb，postgresql，mariadb，percona，sqlserver，cynosdbmysql。不同地域数据库类型的具体支持情况，请参考控制台创建迁移页面。
         public let dstDatabaseType: String
-        
+
         /// 目标实例接入类型，目前支持：cdb（腾讯云数据库实例）
         public let dstAccessType: String
-        
+
         /// 目标实例信息
         public let dstInfo: DstInfo
-        
+
         /// 需要迁移的源数据库表信息，用json格式的字符串描述。当MigrateOption.MigrateObject配置为2（指定库表迁移）时必填。
         /// 对于database-table两级结构的数据库：
         /// [{"Database":"db1","Table":["table1","table2"]},{"Database":"db2"}]
         /// 对于database-schema-table三级结构：
         /// [{"Database":"db1","Schema":"s1","Table":["table1","table2"]},{"Database":"db1","Schema":"s2","Table":["table1","table2"]},{"Database":"db2","Schema":"s1","Table":["table1","table2"]},{"Database":"db3"},{"Database":"db4","Schema":"s1"}]
         public let databaseInfo: String?
-        
+
         /// 迁移实例的tag
         public let tags: [TagItem]?
-        
+
         /// 源实例类型: ""或者"simple":主从节点，"cluster": 集群节点
         public let srcNodeType: String?
-        
+
         /// 源实例信息，具体内容跟迁移任务类型相关
         public let srcInfoMulti: [SrcInfo]?
-        
-        public init (jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil) {
+
+        public init(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil) {
             self.jobName = jobName
             self.migrateOption = migrateOption
             self.srcDatabaseType = srcDatabaseType
@@ -71,7 +71,7 @@ extension Dts {
             self.srcNodeType = srcNodeType
             self.srcInfoMulti = srcInfoMulti
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobName = "JobName"
             case migrateOption = "MigrateOption"
@@ -87,30 +87,30 @@ extension Dts {
             case srcInfoMulti = "SrcInfoMulti"
         }
     }
-    
+
     /// CreateMigrateJob返回参数结构体
     public struct CreateMigrateJobResponse: TCResponseModel {
         /// 数据迁移任务ID
         public let jobId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrateJobResponse > {
+    public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateJobResponse> {
         self.client.execute(action: "CreateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
@@ -119,16 +119,16 @@ extension Dts {
     public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {
         try await self.client.execute(action: "CreateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrateJobResponse > {
+    public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateJobResponse> {
         self.createMigrateJob(CreateMigrateJobRequest(jobName: jobName, migrateOption: migrateOption, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, srcInfo: srcInfo, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, tags: tags, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。

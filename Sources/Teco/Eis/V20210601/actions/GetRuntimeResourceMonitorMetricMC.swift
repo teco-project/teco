@@ -19,26 +19,26 @@ extension Eis {
     public struct GetRuntimeResourceMonitorMetricMCRequest: TCRequestModel {
         /// 运行时id
         public let runtimeId: Int64
-        
+
         /// 起始时间
         public let startTime: Int64
-        
+
         /// 结束时间
         public let endTime: Int64
-        
+
         /// 指标类型：0:CPU, 1:MemUsageBytes, 2:K8sWorkloadNetworkReceiveBytesBw, 3:K8sWorkloadNetworkTransmitBytesBw
         public let metricType: Int64
-        
+
         /// 是否返回百分比数值，仅支持CPU，Memory
         public let rateType: Bool
-        
+
         /// 采样粒度：60(s), 300(s), 3600(s), 86400(s)
         public let interval: Int64?
-        
+
         /// 环境运行类型：0:运行时类型、1:api类型
         public let runtimeClass: Int64?
-        
-        public init (runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil) {
+
+        public init(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil) {
             self.runtimeId = runtimeId
             self.startTime = startTime
             self.endTime = endTime
@@ -47,7 +47,7 @@ extension Eis {
             self.interval = interval
             self.runtimeClass = runtimeClass
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case runtimeId = "RuntimeId"
             case startTime = "StartTime"
@@ -58,33 +58,33 @@ extension Eis {
             case runtimeClass = "RuntimeClass"
         }
     }
-    
+
     /// GetRuntimeResourceMonitorMetricMC返回参数结构体
     public struct GetRuntimeResourceMonitorMetricMCResponse: TCResponseModel {
         /// 指标名称，K8sWorkloadCpuCoreUsed，K8sWorkloadMemUsageBytes，K8sWorkloadNetworkReceiveBytesBw，K8sWorkloadNetworkTransmitBytesBw
         public let metricType: String
-        
+
         /// metric数值列表
         public let values: [MetricValueMC]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metricType = "MetricType"
             case values = "Values"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取运行时资源监控详情
     ///
     /// 获取运行时资源监控详情，cpu，memory，bandwidth
     @inlinable
-    public func getRuntimeResourceMonitorMetricMC(_ input: GetRuntimeResourceMonitorMetricMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuntimeResourceMonitorMetricMCResponse > {
+    public func getRuntimeResourceMonitorMetricMC(_ input: GetRuntimeResourceMonitorMetricMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeResourceMonitorMetricMCResponse> {
         self.client.execute(action: "GetRuntimeResourceMonitorMetricMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取运行时资源监控详情
     ///
     /// 获取运行时资源监控详情，cpu，memory，bandwidth
@@ -92,15 +92,15 @@ extension Eis {
     public func getRuntimeResourceMonitorMetricMC(_ input: GetRuntimeResourceMonitorMetricMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeResourceMonitorMetricMCResponse {
         try await self.client.execute(action: "GetRuntimeResourceMonitorMetricMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取运行时资源监控详情
     ///
     /// 获取运行时资源监控详情，cpu，memory，bandwidth
     @inlinable
-    public func getRuntimeResourceMonitorMetricMC(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuntimeResourceMonitorMetricMCResponse > {
+    public func getRuntimeResourceMonitorMetricMC(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeResourceMonitorMetricMCResponse> {
         self.getRuntimeResourceMonitorMetricMC(GetRuntimeResourceMonitorMetricMCRequest(runtimeId: runtimeId, startTime: startTime, endTime: endTime, metricType: metricType, rateType: rateType, interval: interval, runtimeClass: runtimeClass), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取运行时资源监控详情
     ///
     /// 获取运行时资源监控详情，cpu，memory，bandwidth

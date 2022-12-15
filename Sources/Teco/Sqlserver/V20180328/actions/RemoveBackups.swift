@@ -19,23 +19,23 @@ extension Sqlserver {
     public struct RemoveBackupsRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
-        
+
         /// 待删除的备份名称，备份名称可通过DescribeBackups接口的FileName字段获得。单次请求批量删除备份数不能超过10个。
         public let backupNames: [String]?
-        
+
         /// 批量删除手动备份起始时间
         public let startTime: String?
-        
+
         /// 批量删除手动备份截止时间
         public let endTime: String?
-        
-        public init (instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil) {
+
+        public init(instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.instanceId = instanceId
             self.backupNames = backupNames
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case backupNames = "BackupNames"
@@ -43,25 +43,25 @@ extension Sqlserver {
             case endTime = "EndTime"
         }
     }
-    
+
     /// RemoveBackups返回参数结构体
     public struct RemoveBackupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除手动备份
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
     @inlinable
-    public func removeBackups(_ input: RemoveBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveBackupsResponse > {
+    public func removeBackups(_ input: RemoveBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBackupsResponse> {
         self.client.execute(action: "RemoveBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除手动备份
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
@@ -69,15 +69,15 @@ extension Sqlserver {
     public func removeBackups(_ input: RemoveBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBackupsResponse {
         try await self.client.execute(action: "RemoveBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除手动备份
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
     @inlinable
-    public func removeBackups(instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveBackupsResponse > {
+    public func removeBackups(instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBackupsResponse> {
         self.removeBackups(RemoveBackupsRequest(instanceId: instanceId, backupNames: backupNames, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除手动备份
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。

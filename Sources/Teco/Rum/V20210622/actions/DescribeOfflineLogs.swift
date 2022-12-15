@@ -19,57 +19,57 @@ extension Rum {
     public struct DescribeOfflineLogsRequest: TCRequestModel {
         /// 项目唯一上报 key
         public let projectKey: String
-        
+
         /// 离线日志文件 id 列表
         public let fileIDs: [String]
-        
-        public init (projectKey: String, fileIDs: [String]) {
+
+        public init(projectKey: String, fileIDs: [String]) {
             self.projectKey = projectKey
             self.fileIDs = fileIDs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectKey = "ProjectKey"
             case fileIDs = "FileIDs"
         }
     }
-    
+
     /// DescribeOfflineLogs返回参数结构体
     public struct DescribeOfflineLogsResponse: TCResponseModel {
         /// 接口调用返回信息
         public let msg: String
-        
+
         /// 日志列表
         public let logSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case logSet = "LogSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取对应离线日志
     @inlinable
-    public func describeOfflineLogs(_ input: DescribeOfflineLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogsResponse > {
+    public func describeOfflineLogs(_ input: DescribeOfflineLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogsResponse> {
         self.client.execute(action: "DescribeOfflineLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取对应离线日志
     @inlinable
     public func describeOfflineLogs(_ input: DescribeOfflineLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogsResponse {
         try await self.client.execute(action: "DescribeOfflineLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取对应离线日志
     @inlinable
-    public func describeOfflineLogs(projectKey: String, fileIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogsResponse > {
+    public func describeOfflineLogs(projectKey: String, fileIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogsResponse> {
         self.describeOfflineLogs(DescribeOfflineLogsRequest(projectKey: projectKey, fileIDs: fileIDs), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取对应离线日志
     @inlinable
     public func describeOfflineLogs(projectKey: String, fileIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogsResponse {

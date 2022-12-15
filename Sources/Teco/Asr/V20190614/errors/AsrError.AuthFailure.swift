@@ -21,52 +21,52 @@ extension TCAsrError {
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 用户没有权限进行此查询操作。
         public static var checkResourceResponseCodeError: AuthFailure {
             AuthFailure(.checkResourceResponseCodeError)
         }
-        
+
         /// 未授权操作。
         public static var unauthorizedOperation: AuthFailure {
             AuthFailure(.unauthorizedOperation)
         }
-        
+
         /// CAM签名/鉴权错误。
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-        
+
         public func asAsrError() -> TCAsrError {
             let code: TCAsrError.Code
             switch self.error {
-            case .checkResourceResponseCodeError: 
+            case .checkResourceResponseCodeError:
                 code = .authFailure_CheckResourceResponseCodeError
-            case .unauthorizedOperation: 
+            case .unauthorizedOperation:
                 code = .authFailure_UnauthorizedOperation
-            case .other: 
+            case .other:
                 code = .authFailure
             }
             return TCAsrError(code, context: self.context)

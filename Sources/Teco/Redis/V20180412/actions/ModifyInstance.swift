@@ -19,29 +19,29 @@ extension Redis {
     public struct ModifyInstanceRequest: TCRequestModel {
         /// 修改实例操作，如填写：rename-表示实例重命名；modifyProject-修改实例所属项目；modifyAutoRenew-修改实例续费标记
         public let operation: String
-        
+
         /// 实例Id
         public let instanceIds: [String]?
-        
+
         /// 实例的新名称
         public let instanceNames: [String]?
-        
+
         /// 项目Id
         public let projectId: Int64?
-        
+
         /// 自动续费标识。0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费
         public let autoRenews: [Int64]?
-        
+
         /// 已经废弃
         public let instanceId: String?
-        
+
         /// 已经废弃
         public let instanceName: String?
-        
+
         /// 已经废弃
         public let autoRenew: Int64?
-        
-        public init (operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil) {
+
+        public init(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil) {
             self.operation = operation
             self.instanceIds = instanceIds
             self.instanceNames = instanceNames
@@ -51,7 +51,7 @@ extension Redis {
             self.instanceName = instanceName
             self.autoRenew = autoRenew
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case operation = "Operation"
             case instanceIds = "InstanceIds"
@@ -63,35 +63,35 @@ extension Redis {
             case autoRenew = "AutoRenew"
         }
     }
-    
+
     /// ModifyInstance返回参数结构体
     public struct ModifyInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例相关信息
     @inlinable
-    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
+    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
         self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例相关信息
     @inlinable
     public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
         try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例相关信息
     @inlinable
-    public func modifyInstance(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
+    public func modifyInstance(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
         self.modifyInstance(ModifyInstanceRequest(operation: operation, instanceIds: instanceIds, instanceNames: instanceNames, projectId: projectId, autoRenews: autoRenews, instanceId: instanceId, instanceName: instanceName, autoRenew: autoRenew), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例相关信息
     @inlinable
     public func modifyInstance(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {

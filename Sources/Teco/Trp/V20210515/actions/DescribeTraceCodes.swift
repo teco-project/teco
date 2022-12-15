@@ -19,27 +19,27 @@ extension Trp {
     public struct DescribeTraceCodesRequest: TCRequestModel {
         /// 搜索关键字 码标识，或者批次ID
         public let keyword: String?
-        
+
         /// 条数
         public let pageNumber: UInt64?
-        
+
         /// 页码
         public let pageSize: UInt64?
-        
+
         /// 批次ID，弃用
         public let batchId: String?
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
-        public init (keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil) {
+
+        public init(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil) {
             self.keyword = keyword
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.batchId = batchId
             self.corpId = corpId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case pageNumber = "PageNumber"
@@ -48,45 +48,45 @@ extension Trp {
             case corpId = "CorpId"
         }
     }
-    
+
     /// DescribeTraceCodes返回参数结构体
     public struct DescribeTraceCodesResponse: TCResponseModel {
         /// 标识列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let traceCodes: [TraceCode]?
-        
+
         /// 条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case traceCodes = "TraceCodes"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询二维码列表
     @inlinable
-    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceCodesResponse > {
+    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodesResponse> {
         self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询二维码列表
     @inlinable
     public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {
         try await self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询二维码列表
     @inlinable
-    public func describeTraceCodes(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceCodesResponse > {
+    public func describeTraceCodes(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodesResponse> {
         self.describeTraceCodes(DescribeTraceCodesRequest(keyword: keyword, pageNumber: pageNumber, pageSize: pageSize, batchId: batchId, corpId: corpId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询二维码列表
     @inlinable
     public func describeTraceCodes(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {

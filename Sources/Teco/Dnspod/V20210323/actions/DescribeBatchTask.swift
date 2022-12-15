@@ -19,39 +19,39 @@ extension Dnspod {
     public struct DescribeBatchTaskRequest: TCRequestModel {
         /// 任务ID。操作批量接口时会返回JobId
         public let jobId: UInt64
-        
-        public init (jobId: UInt64) {
+
+        public init(jobId: UInt64) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// DescribeBatchTask返回参数结构体
     public struct DescribeBatchTaskResponse: TCResponseModel {
         /// 批量任务详情
         public let detailList: [DescribeBatchTaskDetail]
-        
+
         /// 总任务条数
         public let totalCount: UInt64
-        
+
         /// 成功条数
         public let successCount: UInt64
-        
+
         /// 失败条数
         public let failCount: UInt64
-        
+
         /// 批量任务类型
         public let jobType: String
-        
+
         /// 任务创建时间
         public let createdAt: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case detailList = "DetailList"
             case totalCount = "TotalCount"
@@ -62,25 +62,25 @@ extension Dnspod {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取任务详情
     @inlinable
-    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskResponse > {
+    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskResponse> {
         self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务详情
     @inlinable
     public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskResponse {
         try await self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取任务详情
     @inlinable
-    public func describeBatchTask(jobId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskResponse > {
+    public func describeBatchTask(jobId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskResponse> {
         self.describeBatchTask(DescribeBatchTaskRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务详情
     @inlinable
     public func describeBatchTask(jobId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskResponse {

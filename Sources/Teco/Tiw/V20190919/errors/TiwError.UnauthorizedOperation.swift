@@ -20,45 +20,45 @@ extension TCTiwError {
             case sdkAppId = "UnauthorizedOperation.SdkAppId"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// SdkAppId不存在或者SdkAppId与当前腾讯云账号不对应。
         public static var sdkAppId: UnauthorizedOperation {
             UnauthorizedOperation(.sdkAppId)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asTiwError() -> TCTiwError {
             let code: TCTiwError.Code
             switch self.error {
-            case .sdkAppId: 
+            case .sdkAppId:
                 code = .unauthorizedOperation_SdkAppId
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCTiwError(code, context: self.context)

@@ -19,44 +19,44 @@ extension Cpdp {
     public struct BindRelateAcctUnionPayRequest: TCRequestModel {
         /// STRING(32)，交易网会员代码（若需要把一个待绑定账户关联到两个会员名下，此字段可上送两个会员的交易网代码，并且须用“|::|”（右侧）进行分隔）
         public let tranNetMemberCode: String
-        
+
         /// STRING(150)，见证子账户的户名（首次绑定的情况下，此字段即为待绑定的提现账户的户名。非首次绑定的情况下，须注意带绑定的提现账户的户名须与留存在后台系统的会员户名一致）
         public let memberName: String
-        
+
         /// STRING(5)，会员证件类型（详情见“常见问题”）
         public let memberGlobalType: String
-        
+
         /// STRING(32)，会员证件号码
         public let memberGlobalId: String
-        
+
         /// STRING(50)，会员的待绑定账户的账号（提现的银行卡）
         public let memberAcctNo: String
-        
+
         /// STRING(10)，会员的待绑定账户的本他行类型（1: 本行; 2: 他行）
         public let bankType: String
-        
+
         /// STRING(150)，会员的待绑定账户的开户行名称（若大小额行号不填则送超级网银号对应的银行名称，若填大小额行号则送大小额行号对应的银行名称）
         public let acctOpenBranchName: String
-        
+
         /// STRING(30)，会员的手机号（手机号须由长度为11位的数字构成）
         public let mobile: String
-        
+
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
-        
+
         /// STRING(20)，会员的待绑定账户的开户行的联行号（本他行类型为他行的情况下，此字段和下一个字段至少一个不为空）
         public let cnapsBranchId: String?
-        
+
         /// STRING(20)，会员的待绑定账户的开户行的超级网银行号（本他行类型为他行的情况下，此字段和上一个字段至少一个不为空）
         public let eiconBankBranchId: String?
-        
+
         /// STRING(1027)，保留域
         public let reservedMsg: String?
-        
+
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
-        
-        public init (tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, mrchCode: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
+
+        public init(tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, mrchCode: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.tranNetMemberCode = tranNetMemberCode
             self.memberName = memberName
             self.memberGlobalType = memberGlobalType
@@ -71,7 +71,7 @@ extension Cpdp {
             self.reservedMsg = reservedMsg
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tranNetMemberCode = "TranNetMemberCode"
             case memberName = "MemberName"
@@ -88,25 +88,25 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// BindRelateAcctUnionPay返回参数结构体
     public struct BindRelateAcctUnionPayResponse: TCResponseModel {
         /// STRING(1027)，保留域（在同名子账户绑定的场景下，若返回"VERIFIED"则说明无需验证直接绑定成功）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMsg: String?
-        
+
         /// String(20)，返回码
         public let txnReturnCode: String
-        
+
         /// String(100)，返回信息
         public let txnReturnMsg: String
-        
+
         /// String(22)，交易流水号
         public let cnsmrSeqNo: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case reservedMsg = "ReservedMsg"
             case txnReturnCode = "TxnReturnCode"
@@ -115,7 +115,7 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云鉴-会员绑定提现账户-银联鉴权
     ///
     /// 会员绑定提现账户-银联鉴权。用于会员申请绑定提现账户，申请后银行前往银联验证卡信息：姓名、证件、卡号、银行预留手机是否相符，相符则发送给会员手机动态验证码并返回成功，不相符则返回失败。
@@ -124,10 +124,10 @@ extension Cpdp {
     /// 超级网银号：单笔转账金额不超过5万，不限制笔数，只用选XX银行，不用具体到支行，可实时知道对方是否收款成功。
     /// 大小额联行号：单笔转账可超过5万，需具体到支行，不能实时知道对方是否收款成功。金额超过5万的，在工作日的8点30-17点间才会成功。
     @inlinable
-    public func bindRelateAcctUnionPay(_ input: BindRelateAcctUnionPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRelateAcctUnionPayResponse > {
+    public func bindRelateAcctUnionPay(_ input: BindRelateAcctUnionPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAcctUnionPayResponse> {
         self.client.execute(action: "BindRelateAcctUnionPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-会员绑定提现账户-银联鉴权
     ///
     /// 会员绑定提现账户-银联鉴权。用于会员申请绑定提现账户，申请后银行前往银联验证卡信息：姓名、证件、卡号、银行预留手机是否相符，相符则发送给会员手机动态验证码并返回成功，不相符则返回失败。
@@ -139,7 +139,7 @@ extension Cpdp {
     public func bindRelateAcctUnionPay(_ input: BindRelateAcctUnionPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAcctUnionPayResponse {
         try await self.client.execute(action: "BindRelateAcctUnionPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云鉴-会员绑定提现账户-银联鉴权
     ///
     /// 会员绑定提现账户-银联鉴权。用于会员申请绑定提现账户，申请后银行前往银联验证卡信息：姓名、证件、卡号、银行预留手机是否相符，相符则发送给会员手机动态验证码并返回成功，不相符则返回失败。
@@ -148,10 +148,10 @@ extension Cpdp {
     /// 超级网银号：单笔转账金额不超过5万，不限制笔数，只用选XX银行，不用具体到支行，可实时知道对方是否收款成功。
     /// 大小额联行号：单笔转账可超过5万，需具体到支行，不能实时知道对方是否收款成功。金额超过5万的，在工作日的8点30-17点间才会成功。
     @inlinable
-    public func bindRelateAcctUnionPay(tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, mrchCode: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRelateAcctUnionPayResponse > {
+    public func bindRelateAcctUnionPay(tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, mrchCode: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAcctUnionPayResponse> {
         self.bindRelateAcctUnionPay(BindRelateAcctUnionPayRequest(tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, mrchCode: mrchCode, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-会员绑定提现账户-银联鉴权
     ///
     /// 会员绑定提现账户-银联鉴权。用于会员申请绑定提现账户，申请后银行前往银联验证卡信息：姓名、证件、卡号、银行预留手机是否相符，相符则发送给会员手机动态验证码并返回成功，不相符则返回失败。

@@ -21,54 +21,54 @@ extension TCPrivatednsError {
             case unauthorizedAccount = "UnauthorizedOperation.UnauthorizedAccount"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 角色未授权。
         ///
         /// 资源所有者账号新增关联角色，并给授权账号授权
         public static var roleUnAuthorized: UnauthorizedOperation {
             UnauthorizedOperation(.roleUnAuthorized)
         }
-        
+
         /// 未实名账号。
         public static var unauthorizedAccount: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorizedAccount)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asPrivatednsError() -> TCPrivatednsError {
             let code: TCPrivatednsError.Code
             switch self.error {
-            case .roleUnAuthorized: 
+            case .roleUnAuthorized:
                 code = .unauthorizedOperation_RoleUnAuthorized
-            case .unauthorizedAccount: 
+            case .unauthorizedAccount:
                 code = .unauthorizedOperation_UnauthorizedAccount
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCPrivatednsError(code, context: self.context)

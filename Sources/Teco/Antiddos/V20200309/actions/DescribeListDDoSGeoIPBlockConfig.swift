@@ -19,23 +19,23 @@ extension Antiddos {
     public struct DescribeListDDoSGeoIPBlockConfigRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64
-        
+
         /// 一页条数，当Limit=0时，默认一页条数为100;最大取值为100
         public let limit: UInt64
-        
+
         /// 资源实例ID搜索, 支持资源实例前缀通配搜索，例如bgp-*表示获取高防包类型的资源实例
         public let filterInstanceId: String
-        
+
         /// IP搜索
         public let filterIp: String?
-        
-        public init (offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterInstanceId = filterInstanceId
             self.filterIp = filterIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -43,43 +43,43 @@ extension Antiddos {
             case filterIp = "FilterIp"
         }
     }
-    
+
     /// DescribeListDDoSGeoIPBlockConfig返回参数结构体
     public struct DescribeListDDoSGeoIPBlockConfigResponse: TCResponseModel {
         /// 总数
         public let total: UInt64
-        
+
         /// DDoS区域封禁配置列表
         public let configList: [DDoSGeoIPBlockConfigRelation]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case configList = "ConfigList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取DDoS防护的区域封禁配置列表
     @inlinable
-    public func describeListDDoSGeoIPBlockConfig(_ input: DescribeListDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListDDoSGeoIPBlockConfigResponse > {
+    public func describeListDDoSGeoIPBlockConfig(_ input: DescribeListDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSGeoIPBlockConfigResponse> {
         self.client.execute(action: "DescribeListDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS防护的区域封禁配置列表
     @inlinable
     public func describeListDDoSGeoIPBlockConfig(_ input: DescribeListDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSGeoIPBlockConfigResponse {
         try await self.client.execute(action: "DescribeListDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取DDoS防护的区域封禁配置列表
     @inlinable
-    public func describeListDDoSGeoIPBlockConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListDDoSGeoIPBlockConfigResponse > {
+    public func describeListDDoSGeoIPBlockConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSGeoIPBlockConfigResponse> {
         self.describeListDDoSGeoIPBlockConfig(DescribeListDDoSGeoIPBlockConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS防护的区域封禁配置列表
     @inlinable
     public func describeListDDoSGeoIPBlockConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSGeoIPBlockConfigResponse {

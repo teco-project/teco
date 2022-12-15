@@ -19,38 +19,38 @@ extension As {
     public struct DescribeAutoScalingAdvicesRequest: TCRequestModel {
         /// 待查询的伸缩组列表，上限100。
         public let autoScalingGroupIds: [String]
-        
-        public init (autoScalingGroupIds: [String]) {
+
+        public init(autoScalingGroupIds: [String]) {
             self.autoScalingGroupIds = autoScalingGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupIds = "AutoScalingGroupIds"
         }
     }
-    
+
     /// DescribeAutoScalingAdvices返回参数结构体
     public struct DescribeAutoScalingAdvicesResponse: TCResponseModel {
         /// 伸缩组配置建议集合。
         public let autoScalingAdviceSet: [AutoScalingAdvice]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingAdviceSet = "AutoScalingAdviceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询弹性伸缩配置建议
     ///
     /// 此接口用于查询伸缩组配置建议。
     @inlinable
-    public func describeAutoScalingAdvices(_ input: DescribeAutoScalingAdvicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingAdvicesResponse > {
+    public func describeAutoScalingAdvices(_ input: DescribeAutoScalingAdvicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingAdvicesResponse> {
         self.client.execute(action: "DescribeAutoScalingAdvices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询弹性伸缩配置建议
     ///
     /// 此接口用于查询伸缩组配置建议。
@@ -58,15 +58,15 @@ extension As {
     public func describeAutoScalingAdvices(_ input: DescribeAutoScalingAdvicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingAdvicesResponse {
         try await self.client.execute(action: "DescribeAutoScalingAdvices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询弹性伸缩配置建议
     ///
     /// 此接口用于查询伸缩组配置建议。
     @inlinable
-    public func describeAutoScalingAdvices(autoScalingGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingAdvicesResponse > {
+    public func describeAutoScalingAdvices(autoScalingGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingAdvicesResponse> {
         self.describeAutoScalingAdvices(DescribeAutoScalingAdvicesRequest(autoScalingGroupIds: autoScalingGroupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询弹性伸缩配置建议
     ///
     /// 此接口用于查询伸缩组配置建议。

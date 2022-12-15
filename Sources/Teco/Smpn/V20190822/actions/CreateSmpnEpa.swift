@@ -19,53 +19,53 @@ extension Smpn {
     public struct CreateSmpnEpaRequest: TCRequestModel {
         /// 企业号码认证请求内容
         public let requestData: EPARequest
-        
+
         /// 用于计费的资源ID
         public let resourceId: String
-        
-        public init (requestData: EPARequest, resourceId: String) {
+
+        public init(requestData: EPARequest, resourceId: String) {
             self.requestData = requestData
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case requestData = "RequestData"
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// CreateSmpnEpa返回参数结构体
     public struct CreateSmpnEpaResponse: TCResponseModel {
         /// 业号码认证回应内容
         public let responseData: EPAResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 企业号码认证
     @inlinable
-    public func createSmpnEpa(_ input: CreateSmpnEpaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSmpnEpaResponse > {
+    public func createSmpnEpa(_ input: CreateSmpnEpaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSmpnEpaResponse> {
         self.client.execute(action: "CreateSmpnEpa", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 企业号码认证
     @inlinable
     public func createSmpnEpa(_ input: CreateSmpnEpaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSmpnEpaResponse {
         try await self.client.execute(action: "CreateSmpnEpa", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 企业号码认证
     @inlinable
-    public func createSmpnEpa(requestData: EPARequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSmpnEpaResponse > {
+    public func createSmpnEpa(requestData: EPARequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSmpnEpaResponse> {
         self.createSmpnEpa(CreateSmpnEpaRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 企业号码认证
     @inlinable
     public func createSmpnEpa(requestData: EPARequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSmpnEpaResponse {

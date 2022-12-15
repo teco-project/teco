@@ -19,49 +19,49 @@ extension Dasb {
     public struct AddUserGroupMembersRequest: TCRequestModel {
         /// 用户组ID
         public let id: UInt64
-        
+
         /// 成员用户ID集合
         public let memberIdSet: [UInt64]
-        
-        public init (id: UInt64, memberIdSet: [UInt64]) {
+
+        public init(id: UInt64, memberIdSet: [UInt64]) {
             self.id = id
             self.memberIdSet = memberIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case memberIdSet = "MemberIdSet"
         }
     }
-    
+
     /// AddUserGroupMembers返回参数结构体
     public struct AddUserGroupMembersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加用户组成员
     @inlinable
-    public func addUserGroupMembers(_ input: AddUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserGroupMembersResponse > {
+    public func addUserGroupMembers(_ input: AddUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserGroupMembersResponse> {
         self.client.execute(action: "AddUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加用户组成员
     @inlinable
     public func addUserGroupMembers(_ input: AddUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserGroupMembersResponse {
         try await self.client.execute(action: "AddUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加用户组成员
     @inlinable
-    public func addUserGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserGroupMembersResponse > {
+    public func addUserGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserGroupMembersResponse> {
         self.addUserGroupMembers(AddUserGroupMembersRequest(id: id, memberIdSet: memberIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加用户组成员
     @inlinable
     public func addUserGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserGroupMembersResponse {

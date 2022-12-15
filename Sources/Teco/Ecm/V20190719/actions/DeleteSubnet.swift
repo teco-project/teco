@@ -19,39 +19,39 @@ extension Ecm {
     public struct DeleteSubnetRequest: TCRequestModel {
         /// 子网实例ID。可通过DescribeSubnets接口返回值中的SubnetId获取。
         public let subnetId: String
-        
+
         /// ECM 地域
         public let ecmRegion: String
-        
-        public init (subnetId: String, ecmRegion: String) {
+
+        public init(subnetId: String, ecmRegion: String) {
             self.subnetId = subnetId
             self.ecmRegion = ecmRegion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subnetId = "SubnetId"
             case ecmRegion = "EcmRegion"
         }
     }
-    
+
     /// DeleteSubnet返回参数结构体
     public struct DeleteSubnetResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
     @inlinable
-    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
+    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
         self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
@@ -59,15 +59,15 @@ extension Ecm {
     public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
         try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
     @inlinable
-    public func deleteSubnet(subnetId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
+    public func deleteSubnet(subnetId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
         self.deleteSubnet(DeleteSubnetRequest(subnetId: subnetId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。

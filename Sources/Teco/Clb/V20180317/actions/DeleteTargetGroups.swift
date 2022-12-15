@@ -19,44 +19,44 @@ extension Clb {
     public struct DeleteTargetGroupsRequest: TCRequestModel {
         /// 目标组的ID数组。
         public let targetGroupIds: [String]
-        
-        public init (targetGroupIds: [String]) {
+
+        public init(targetGroupIds: [String]) {
             self.targetGroupIds = targetGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetGroupIds = "TargetGroupIds"
         }
     }
-    
+
     /// DeleteTargetGroups返回参数结构体
     public struct DeleteTargetGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除目标组
     @inlinable
-    public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTargetGroupsResponse > {
+    public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetGroupsResponse> {
         self.client.execute(action: "DeleteTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除目标组
     @inlinable
     public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetGroupsResponse {
         try await self.client.execute(action: "DeleteTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除目标组
     @inlinable
-    public func deleteTargetGroups(targetGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTargetGroupsResponse > {
+    public func deleteTargetGroups(targetGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetGroupsResponse> {
         self.deleteTargetGroups(DeleteTargetGroupsRequest(targetGroupIds: targetGroupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除目标组
     @inlinable
     public func deleteTargetGroups(targetGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetGroupsResponse {

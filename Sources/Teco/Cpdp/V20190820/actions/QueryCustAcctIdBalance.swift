@@ -19,23 +19,23 @@ extension Cpdp {
     public struct QueryCustAcctIdBalanceRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
-        
+
         /// STRING(4)，查询标志（2: 普通会员子账号; 3: 功能子账号）
         public let queryFlag: String
-        
+
         /// STRING(10)，页码（起始值为1，每次最多返回20条记录，第二页返回的记录数为第21至40条记录，第三页为41至60条记录，顺序均按照建立时间的先后）
         public let pageNum: String
-        
+
         /// STRING(50)，见证子账户的账号（若SelectFlag为2时，子账号必输）
         public let subAcctNo: String?
-        
+
         /// STRING(1027)，保留域
         public let reservedMsg: String?
-        
+
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
-        
-        public init (mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
+
+        public init(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.queryFlag = queryFlag
             self.pageNum = pageNum
@@ -43,7 +43,7 @@ extension Cpdp {
             self.reservedMsg = reservedMsg
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mrchCode = "MrchCode"
             case queryFlag = "QueryFlag"
@@ -53,45 +53,45 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// QueryCustAcctIdBalance返回参数结构体
     public struct QueryCustAcctIdBalanceResponse: TCResponseModel {
         /// String(20)，返回码
         public let txnReturnCode: String
-        
+
         /// String(100)，返回信息
         public let txnReturnMsg: String
-        
+
         /// String(22)，交易流水号
         public let cnsmrSeqNo: String
-        
+
         /// STRING(10)，本次交易返回查询结果记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultNum: String?
-        
+
         /// STRING(30)，起始记录号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startRecordNo: String?
-        
+
         /// STRING(2)，结束标志（0: 否; 1: 是）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endFlag: String?
-        
+
         /// STRING(10)，符合业务查询条件的记录总数（重复次数，一次最多返回20条记录）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalNum: String?
-        
+
         /// 账户信息数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let acctArray: [Acct]?
-        
+
         /// STRING(1027)，保留域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case txnReturnCode = "TxnReturnCode"
             case txnReturnMsg = "TxnReturnMsg"
@@ -105,15 +105,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云鉴-查询银行子账户余额
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
     @inlinable
-    public func queryCustAcctIdBalance(_ input: QueryCustAcctIdBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCustAcctIdBalanceResponse > {
+    public func queryCustAcctIdBalance(_ input: QueryCustAcctIdBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCustAcctIdBalanceResponse> {
         self.client.execute(action: "QueryCustAcctIdBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-查询银行子账户余额
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
@@ -121,15 +121,15 @@ extension Cpdp {
     public func queryCustAcctIdBalance(_ input: QueryCustAcctIdBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCustAcctIdBalanceResponse {
         try await self.client.execute(action: "QueryCustAcctIdBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云鉴-查询银行子账户余额
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
     @inlinable
-    public func queryCustAcctIdBalance(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCustAcctIdBalanceResponse > {
+    public func queryCustAcctIdBalance(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCustAcctIdBalanceResponse> {
         self.queryCustAcctIdBalance(QueryCustAcctIdBalanceRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-查询银行子账户余额
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。

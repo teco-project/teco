@@ -19,26 +19,26 @@ extension Ds {
     public struct SignInfo: TCInputModel {
         /// 账户ID
         public let accountResId: String
-        
+
         /// 授权时间（上传合同可不传该参数）
         public let authorizationTime: String?
-        
+
         /// 授权IP地址（上传合同可不传该参数）
         public let location: String?
-        
+
         /// 签章ID
         public let sealId: String?
-        
+
         /// 签名图片，优先级比SealId高
         public let imageData: String?
-        
+
         /// 默认值：1  表示RSA证书， 2 表示国密证书， 参数不传时默认为1
         public let certType: Int64?
-        
+
         /// 签名域的标签值
         public let signLocation: String?
-        
-        public init (accountResId: String, authorizationTime: String? = nil, location: String? = nil, sealId: String? = nil, imageData: String? = nil, certType: Int64? = nil, signLocation: String? = nil) {
+
+        public init(accountResId: String, authorizationTime: String? = nil, location: String? = nil, sealId: String? = nil, imageData: String? = nil, certType: Int64? = nil, signLocation: String? = nil) {
             self.accountResId = accountResId
             self.authorizationTime = authorizationTime
             self.location = location
@@ -47,7 +47,7 @@ extension Ds {
             self.certType = certType
             self.signLocation = signLocation
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountResId = "AccountResId"
             case authorizationTime = "AuthorizationTime"
@@ -58,32 +58,32 @@ extension Ds {
             case signLocation = "SignLocation"
         }
     }
-    
+
     /// 签署关键字信息
     public struct SignKeyword: TCInputModel {
         /// 关键字
         public let keyword: String
-        
+
         /// X轴偏移坐标
         public let offsetCoordX: String
-        
+
         /// Y轴偏移坐标
         public let offsetCoordY: String
-        
+
         /// 签章图片宽度
         public let imageWidth: String
-        
+
         /// 签章图片高度
         public let imageHeight: String
-        
-        public init (keyword: String, offsetCoordX: String, offsetCoordY: String, imageWidth: String, imageHeight: String) {
+
+        public init(keyword: String, offsetCoordX: String, offsetCoordY: String, imageWidth: String, imageHeight: String) {
             self.keyword = keyword
             self.offsetCoordX = offsetCoordX
             self.offsetCoordY = offsetCoordY
             self.imageWidth = imageWidth
             self.imageHeight = imageHeight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case offsetCoordX = "OffsetCoordX"
@@ -92,32 +92,32 @@ extension Ds {
             case imageHeight = "ImageHeight"
         }
     }
-    
+
     /// 签署坐标对象
     public struct SignLocation: TCInputModel {
         /// 签名域页数
         public let signOnPage: String
-        
+
         /// 签名域左下角X轴坐标轴
         public let signLocationLBX: String
-        
+
         /// 签名域左下角Y轴坐标轴
         public let signLocationLBY: String
-        
+
         /// 签名域右上角X轴坐标轴
         public let signLocationRUX: String
-        
+
         /// 签名域右上角Y轴坐标轴
         public let signLocationRUY: String
-        
-        public init (signOnPage: String, signLocationLBX: String, signLocationLBY: String, signLocationRUX: String, signLocationRUY: String) {
+
+        public init(signOnPage: String, signLocationLBX: String, signLocationLBY: String, signLocationRUX: String, signLocationRUY: String) {
             self.signOnPage = signOnPage
             self.signLocationLBX = signLocationLBX
             self.signLocationLBY = signLocationLBY
             self.signLocationRUX = signLocationRUX
             self.signLocationRUY = signLocationRUY
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case signOnPage = "SignOnPage"
             case signLocationLBX = "SignLocationLBX"

@@ -19,58 +19,58 @@ extension Dayu {
     public struct ModifyL7RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 规则
         public let rule: L7RuleEntry
-        
-        public init (business: String, id: String, rule: L7RuleEntry) {
+
+        public init(business: String, id: String, rule: L7RuleEntry) {
             self.business = business
             self.id = id
             self.rule = rule
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
             case rule = "Rule"
         }
     }
-    
+
     /// ModifyL7Rules返回参数结构体
     public struct ModifyL7RulesResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改L7转发规则
     @inlinable
-    public func modifyL7Rules(_ input: ModifyL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7RulesResponse > {
+    public func modifyL7Rules(_ input: ModifyL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7RulesResponse> {
         self.client.execute(action: "ModifyL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改L7转发规则
     @inlinable
     public func modifyL7Rules(_ input: ModifyL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7RulesResponse {
         try await self.client.execute(action: "ModifyL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改L7转发规则
     @inlinable
-    public func modifyL7Rules(business: String, id: String, rule: L7RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7RulesResponse > {
+    public func modifyL7Rules(business: String, id: String, rule: L7RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7RulesResponse> {
         self.modifyL7Rules(ModifyL7RulesRequest(business: business, id: id, rule: rule), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改L7转发规则
     @inlinable
     public func modifyL7Rules(business: String, id: String, rule: L7RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7RulesResponse {

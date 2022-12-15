@@ -19,26 +19,26 @@ extension Teo {
     public struct DescribeBotManagedRulesRequest: TCRequestModel {
         /// 分页查询偏移量。默认值：0。
         public let offset: Int64
-        
+
         /// 分页查询限制数目。默认值：20，最大值：1000。
         public let limit: Int64
-        
+
         /// 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         public let zoneId: String?
-        
+
         /// 子域名/应用名。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         public let entity: String?
-        
+
         /// 规则类型，取值有：
         /// <li> idcid；</li>
         /// <li>sipbot；</li>
         /// <li>uabot。</li>传空或不传，即全部类型。
         public let ruleType: String?
-        
+
         /// 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
         public let templateId: String?
-        
-        public init (offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil) {
+
+        public init(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.zoneId = zoneId
@@ -46,7 +46,7 @@ extension Teo {
             self.ruleType = ruleType
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -56,21 +56,21 @@ extension Teo {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DescribeBotManagedRules返回参数结构体
     public struct DescribeBotManagedRulesResponse: TCResponseModel {
         /// 本次返回的规则数。
         public let count: Int64
-        
+
         /// Bot规则。
         public let botManagedRuleDetails: [BotManagedRuleDetail]
-        
+
         /// 总规则数。
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case botManagedRuleDetails = "BotManagedRuleDetails"
@@ -78,25 +78,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
         self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Bot托管规则
     @inlinable
     public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
         try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
         self.describeBotManagedRules(DescribeBotManagedRulesRequest(offset: offset, limit: limit, zoneId: zoneId, entity: entity, ruleType: ruleType, templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Bot托管规则
     @inlinable
     public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {

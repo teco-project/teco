@@ -19,54 +19,54 @@ extension Wav {
     public struct QueryActivityJoinListRequest: TCRequestModel {
         /// 活动id
         public let activityId: Int64
-        
+
         /// 分页游标，对应结果返回的NextCursor,首次请求保持为空
         public let cursor: String?
-        
+
         /// 单页数据限制
         public let limit: Int64?
-        
-        public init (activityId: Int64, cursor: String? = nil, limit: Int64? = nil) {
+
+        public init(activityId: Int64, cursor: String? = nil, limit: Int64? = nil) {
             self.activityId = activityId
             self.cursor = cursor
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case activityId = "ActivityId"
             case cursor = "Cursor"
             case limit = "Limit"
         }
     }
-    
+
     /// QueryActivityJoinList返回参数结构体
     public struct QueryActivityJoinListResponse: TCResponseModel {
         /// 分页游标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextCursor: String?
-        
+
         /// 活码列表响应参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageData: [ActivityJoinDetail]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nextCursor = "NextCursor"
             case pageData = "PageData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询活动参与明细列表接口
     ///
     /// 根据游标拉取活动参与列表信息
     @inlinable
-    public func queryActivityJoinList(_ input: QueryActivityJoinListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityJoinListResponse > {
+    public func queryActivityJoinList(_ input: QueryActivityJoinListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityJoinListResponse> {
         self.client.execute(action: "QueryActivityJoinList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询活动参与明细列表接口
     ///
     /// 根据游标拉取活动参与列表信息
@@ -74,15 +74,15 @@ extension Wav {
     public func queryActivityJoinList(_ input: QueryActivityJoinListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityJoinListResponse {
         try await self.client.execute(action: "QueryActivityJoinList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询活动参与明细列表接口
     ///
     /// 根据游标拉取活动参与列表信息
     @inlinable
-    public func queryActivityJoinList(activityId: Int64, cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityJoinListResponse > {
+    public func queryActivityJoinList(activityId: Int64, cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityJoinListResponse> {
         self.queryActivityJoinList(QueryActivityJoinListRequest(activityId: activityId, cursor: cursor, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询活动参与明细列表接口
     ///
     /// 根据游标拉取活动参与列表信息

@@ -19,34 +19,34 @@ extension Vpc {
     public struct DeleteNetworkAclRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
         public let networkAclId: String
-        
-        public init (networkAclId: String) {
+
+        public init(networkAclId: String) {
             self.networkAclId = networkAclId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case networkAclId = "NetworkAclId"
         }
     }
-    
+
     /// DeleteNetworkAcl返回参数结构体
     public struct DeleteNetworkAclResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
     @inlinable
-    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkAclResponse > {
+    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
         self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
@@ -54,15 +54,15 @@ extension Vpc {
     public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
         try await self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
     @inlinable
-    public func deleteNetworkAcl(networkAclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkAclResponse > {
+    public func deleteNetworkAcl(networkAclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
         self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。

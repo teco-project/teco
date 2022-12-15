@@ -19,43 +19,43 @@ extension As {
     public struct StopAutoScalingInstancesRequest: TCRequestModel {
         /// 伸缩组ID
         public let autoScalingGroupId: String
-        
+
         /// 待关闭的CVM实例ID列表
         public let instanceIds: [String]
-        
-        /// 关闭的实例是否收费，取值为：  
-        /// KEEP_CHARGING：关机继续收费  
+
+        /// 关闭的实例是否收费，取值为：
+        /// KEEP_CHARGING：关机继续收费
         /// STOP_CHARGING：关机停止收费
         /// 默认为 KEEP_CHARGING
         public let stoppedMode: String?
-        
-        public init (autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil) {
+
+        public init(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.instanceIds = instanceIds
             self.stoppedMode = stoppedMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case instanceIds = "InstanceIds"
             case stoppedMode = "StoppedMode"
         }
     }
-    
+
     /// StopAutoScalingInstances返回参数结构体
     public struct StopAutoScalingInstancesResponse: TCResponseModel {
         /// 伸缩活动ID
         public let activityId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭伸缩组内 CVM 实例
     ///
     /// 本接口（StopAutoScalingInstances）用于关闭伸缩组内 CVM 实例。
@@ -64,10 +64,10 @@ extension As {
     /// * 使用`STOP_CHARGING`选项关机，待关机的实例需要满足[关机不收费条件](https://cloud.tencent.com/document/product/213/19918)
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
-    public func stopAutoScalingInstances(_ input: StopAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopAutoScalingInstancesResponse > {
+    public func stopAutoScalingInstances(_ input: StopAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoScalingInstancesResponse> {
         self.client.execute(action: "StopAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭伸缩组内 CVM 实例
     ///
     /// 本接口（StopAutoScalingInstances）用于关闭伸缩组内 CVM 实例。
@@ -79,7 +79,7 @@ extension As {
     public func stopAutoScalingInstances(_ input: StopAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoScalingInstancesResponse {
         try await self.client.execute(action: "StopAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭伸缩组内 CVM 实例
     ///
     /// 本接口（StopAutoScalingInstances）用于关闭伸缩组内 CVM 实例。
@@ -88,10 +88,10 @@ extension As {
     /// * 使用`STOP_CHARGING`选项关机，待关机的实例需要满足[关机不收费条件](https://cloud.tencent.com/document/product/213/19918)
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
-    public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopAutoScalingInstancesResponse > {
+    public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoScalingInstancesResponse> {
         self.stopAutoScalingInstances(StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭伸缩组内 CVM 实例
     ///
     /// 本接口（StopAutoScalingInstances）用于关闭伸缩组内 CVM 实例。

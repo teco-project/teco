@@ -19,38 +19,38 @@ extension Mongodb {
     public struct OfflineIsolatedDBInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// OfflineIsolatedDBInstance返回参数结构体
     public struct OfflineIsolatedDBInstanceResponse: TCResponseModel {
         /// 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
         public let asyncRequestId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedDBInstance)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态。
     @inlinable
-    public func offlineIsolatedDBInstance(_ input: OfflineIsolatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineIsolatedDBInstanceResponse > {
+    public func offlineIsolatedDBInstance(_ input: OfflineIsolatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedDBInstanceResponse> {
         self.client.execute(action: "OfflineIsolatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedDBInstance)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态。
@@ -58,15 +58,15 @@ extension Mongodb {
     public func offlineIsolatedDBInstance(_ input: OfflineIsolatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedDBInstanceResponse {
         try await self.client.execute(action: "OfflineIsolatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedDBInstance)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态。
     @inlinable
-    public func offlineIsolatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineIsolatedDBInstanceResponse > {
+    public func offlineIsolatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedDBInstanceResponse> {
         self.offlineIsolatedDBInstance(OfflineIsolatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedDBInstance)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态。

@@ -19,41 +19,41 @@ extension Tcaplusdb {
     public struct ModifyCensorshipRequest: TCRequestModel {
         /// 集群id
         public let clusterId: String
-        
+
         /// 集群是否开启审核 0-关闭 1-开启
         public let censorship: Int64
-        
+
         /// 审批人uin列表
         public let uins: [String]?
-        
-        public init (clusterId: String, censorship: Int64, uins: [String]? = nil) {
+
+        public init(clusterId: String, censorship: Int64, uins: [String]? = nil) {
             self.clusterId = clusterId
             self.censorship = censorship
             self.uins = uins
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case censorship = "Censorship"
             case uins = "Uins"
         }
     }
-    
+
     /// ModifyCensorship返回参数结构体
     public struct ModifyCensorshipResponse: TCResponseModel {
         /// 集群id
         public let clusterId: String
-        
+
         /// 已加入审批人的uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uins: [String]?
-        
+
         /// 集群是否开启审核 0-关闭 1-开启
         public let censorship: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case uins = "Uins"
@@ -61,25 +61,25 @@ extension Tcaplusdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改集群审批状态
     @inlinable
-    public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCensorshipResponse > {
+    public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCensorshipResponse> {
         self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群审批状态
     @inlinable
     public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCensorshipResponse {
         try await self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改集群审批状态
     @inlinable
-    public func modifyCensorship(clusterId: String, censorship: Int64, uins: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCensorshipResponse > {
+    public func modifyCensorship(clusterId: String, censorship: Int64, uins: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCensorshipResponse> {
         self.modifyCensorship(ModifyCensorshipRequest(clusterId: clusterId, censorship: censorship, uins: uins), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群审批状态
     @inlinable
     public func modifyCensorship(clusterId: String, censorship: Int64, uins: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCensorshipResponse {

@@ -26,87 +26,87 @@ extension TCRedisError {
             case netWorkErr = "InternalError.NetWorkErr"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// cam鉴权错误。
         public static var camAuthOssResponseReturnCodeError: InternalError {
             InternalError(.camAuthOssResponseReturnCodeError)
         }
-        
+
         /// 统一的 DB 操作错误，可以是 update insert select..。
         public static var dbOperationFailed: InternalError {
             InternalError(.dbOperationFailed)
         }
-        
+
         /// 执行Http请求失败。
         public static var execHttpRequestError: InternalError {
             InternalError(.execHttpRequestError)
         }
-        
+
         /// 无操作权限。
         public static var instanceOperatePermissionError: InternalError {
             InternalError(.instanceOperatePermissionError)
         }
-        
+
         /// 内部错误。
         public static var internalError: InternalError {
             InternalError(.internalError)
         }
-        
+
         /// 获取实例列表出错。
         public static var listInstancesError: InternalError {
             InternalError(.listInstancesError)
         }
-        
+
         /// 网络错误。
         public static var netWorkErr: InternalError {
             InternalError(.netWorkErr)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {
-            case .camAuthOssResponseReturnCodeError: 
+            case .camAuthOssResponseReturnCodeError:
                 code = .internalError_CamAuthOssResponseReturnCodeError
-            case .dbOperationFailed: 
+            case .dbOperationFailed:
                 code = .internalError_DbOperationFailed
-            case .execHttpRequestError: 
+            case .execHttpRequestError:
                 code = .internalError_ExecHttpRequestError
-            case .instanceOperatePermissionError: 
+            case .instanceOperatePermissionError:
                 code = .internalError_InstanceOperatePermissionError
-            case .internalError: 
+            case .internalError:
                 code = .internalError_InternalError
-            case .listInstancesError: 
+            case .listInstancesError:
                 code = .internalError_ListInstancesError
-            case .netWorkErr: 
+            case .netWorkErr:
                 code = .internalError_NetWorkErr
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCRedisError(code, context: self.context)

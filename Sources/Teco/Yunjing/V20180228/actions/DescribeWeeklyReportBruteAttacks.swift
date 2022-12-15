@@ -27,52 +27,52 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
-        public init (beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.beginDate = beginDate
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginDate = "BeginDate"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeWeeklyReportBruteAttacks返回参数结构体
     public struct DescribeWeeklyReportBruteAttacksResponse: TCResponseModel {
         /// 专业周报密码破解数组。
         public let weeklyReportBruteAttacks: [WeeklyReportBruteAttack]
-        
+
         /// 记录总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case weeklyReportBruteAttacks = "WeeklyReportBruteAttacks"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
-    public func describeWeeklyReportBruteAttacks(_ input: DescribeWeeklyReportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportBruteAttacksResponse > {
+    public func describeWeeklyReportBruteAttacks(_ input: DescribeWeeklyReportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportBruteAttacksResponse> {
         self.client.execute(action: "DescribeWeeklyReportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
@@ -80,15 +80,15 @@ extension Yunjing {
     public func describeWeeklyReportBruteAttacks(_ input: DescribeWeeklyReportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportBruteAttacksResponse {
         try await self.client.execute(action: "DescribeWeeklyReportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
-    public func describeWeeklyReportBruteAttacks(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportBruteAttacksResponse > {
+    public func describeWeeklyReportBruteAttacks(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportBruteAttacksResponse> {
         self.describeWeeklyReportBruteAttacks(DescribeWeeklyReportBruteAttacksRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。

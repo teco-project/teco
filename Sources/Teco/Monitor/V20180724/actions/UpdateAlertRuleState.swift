@@ -19,47 +19,47 @@ extension Monitor {
     public struct UpdateAlertRuleStateRequest: TCRequestModel {
         /// 规则 ID 列表
         public let ruleIds: [String]
-        
+
         /// Prometheus 实例 ID
         public let instanceId: String
-        
+
         /// 规则状态码，取值如下：
         /// <li>2=RuleEnabled</li>
         /// <li>3=RuleDisabled</li>
         /// 默认状态码为 2 启用。
         public let ruleState: Int64
-        
-        public init (ruleIds: [String], instanceId: String, ruleState: Int64) {
+
+        public init(ruleIds: [String], instanceId: String, ruleState: Int64) {
             self.ruleIds = ruleIds
             self.instanceId = instanceId
             self.ruleState = ruleState
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleIds = "RuleIds"
             case instanceId = "InstanceId"
             case ruleState = "RuleState"
         }
     }
-    
+
     /// UpdateAlertRuleState返回参数结构体
     public struct UpdateAlertRuleStateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态
     @inlinable
-    public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleStateResponse > {
+    public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAlertRuleStateResponse> {
         self.client.execute(action: "UpdateAlertRuleState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态
@@ -67,15 +67,15 @@ extension Monitor {
     public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
         try await self.client.execute(action: "UpdateAlertRuleState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态
     @inlinable
-    public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleStateResponse > {
+    public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAlertRuleStateResponse> {
         self.updateAlertRuleState(UpdateAlertRuleStateRequest(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态

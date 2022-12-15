@@ -19,49 +19,49 @@ extension Iecp {
     public struct DeleteEdgeNodeUnitTemplatesRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 删除的NodeUnit模板ID列表
         public let nodeUnitTemplateIDs: [UInt64]
-        
-        public init (edgeUnitId: UInt64, nodeUnitTemplateIDs: [UInt64]) {
+
+        public init(edgeUnitId: UInt64, nodeUnitTemplateIDs: [UInt64]) {
             self.edgeUnitId = edgeUnitId
             self.nodeUnitTemplateIDs = nodeUnitTemplateIDs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case nodeUnitTemplateIDs = "NodeUnitTemplateIDs"
         }
     }
-    
+
     /// DeleteEdgeNodeUnitTemplates返回参数结构体
     public struct DeleteEdgeNodeUnitTemplatesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除边缘单元NodeUnit模板
     @inlinable
-    public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeUnitTemplatesResponse > {
+    public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeUnitTemplatesResponse> {
         self.client.execute(action: "DeleteEdgeNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘单元NodeUnit模板
     @inlinable
     public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeUnitTemplatesResponse {
         try await self.client.execute(action: "DeleteEdgeNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除边缘单元NodeUnit模板
     @inlinable
-    public func deleteEdgeNodeUnitTemplates(edgeUnitId: UInt64, nodeUnitTemplateIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeUnitTemplatesResponse > {
+    public func deleteEdgeNodeUnitTemplates(edgeUnitId: UInt64, nodeUnitTemplateIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeUnitTemplatesResponse> {
         self.deleteEdgeNodeUnitTemplates(DeleteEdgeNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateIDs: nodeUnitTemplateIDs), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘单元NodeUnit模板
     @inlinable
     public func deleteEdgeNodeUnitTemplates(edgeUnitId: UInt64, nodeUnitTemplateIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeUnitTemplatesResponse {

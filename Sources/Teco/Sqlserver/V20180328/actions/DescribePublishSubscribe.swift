@@ -19,32 +19,32 @@ extension Sqlserver {
     public struct DescribePublishSubscribeRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
-        
+
         /// 订阅/发布实例ID，与InstanceId是发布实例还是订阅实例有关；当InstanceId为发布实例时，本字段按照订阅实例ID做筛选；当InstanceId为订阅实例时，本字段按照发布实例ID做筛选；
         public let pubOrSubInstanceId: String?
-        
+
         /// 订阅/发布实例内网IP，与InstanceId是发布实例还是订阅实例有关；当InstanceId为发布实例时，本字段按照订阅实例内网IP做筛选；当InstanceId为订阅实例时，本字段按照发布实例内网IP做筛选；
         public let pubOrSubInstanceIp: String?
-        
+
         /// 订阅发布ID，用于筛选
         public let publishSubscribeId: UInt64?
-        
+
         /// 订阅发布名字，用于筛选
         public let publishSubscribeName: String?
-        
+
         /// 发布库名字，用于筛选
         public let publishDBName: String?
-        
+
         /// 订阅库名字，用于筛选
         public let subscribeDBName: String?
-        
+
         /// 分页，页数
         public let offset: UInt64?
-        
+
         /// 分页，页大小
         public let limit: UInt64?
-        
-        public init (instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.pubOrSubInstanceId = pubOrSubInstanceId
             self.pubOrSubInstanceIp = pubOrSubInstanceIp
@@ -55,7 +55,7 @@ extension Sqlserver {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case pubOrSubInstanceId = "PubOrSubInstanceId"
@@ -68,33 +68,33 @@ extension Sqlserver {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribePublishSubscribe返回参数结构体
     public struct DescribePublishSubscribeResponse: TCResponseModel {
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 发布订阅列表
         public let publishSubscribeSet: [PublishSubscribe]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case publishSubscribeSet = "PublishSubscribeSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
-    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublishSubscribeResponse > {
+    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishSubscribeResponse> {
         self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
@@ -102,15 +102,15 @@ extension Sqlserver {
     public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
         try await self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
-    public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublishSubscribeResponse > {
+    public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishSubscribeResponse> {
         self.describePublishSubscribe(DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。

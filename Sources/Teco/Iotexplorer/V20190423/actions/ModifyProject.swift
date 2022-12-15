@@ -19,58 +19,58 @@ extension Iotexplorer {
     public struct ModifyProjectRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String
-        
+
         /// 项目名称
         public let projectName: String
-        
+
         /// 项目描述
         public let projectDesc: String
-        
-        public init (projectId: String, projectName: String, projectDesc: String) {
+
+        public init(projectId: String, projectName: String, projectDesc: String) {
             self.projectId = projectId
             self.projectName = projectName
             self.projectDesc = projectDesc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case projectName = "ProjectName"
             case projectDesc = "ProjectDesc"
         }
     }
-    
+
     /// ModifyProject返回参数结构体
     public struct ModifyProjectResponse: TCResponseModel {
         /// 项目详情
         public let project: ProjectEntry
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case project = "Project"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改项目
     @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
         self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改项目
     @inlinable
     public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改项目
     @inlinable
-    public func modifyProject(projectId: String, projectName: String, projectDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+    public func modifyProject(projectId: String, projectName: String, projectDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
         self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectDesc: projectDesc), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改项目
     @inlinable
     public func modifyProject(projectId: String, projectName: String, projectDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {

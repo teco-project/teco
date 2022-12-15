@@ -19,23 +19,23 @@ extension Vod {
     public struct SplitMediaRequest: TCRequestModel {
         /// 视频的 ID。
         public let fileId: String
-        
+
         /// 视频拆条任务信息列表，最多同时支持100个拆条信息。
         public let segments: [SplitMediaTaskConfig]
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// 标识来源上下文，用于透传用户请求信息，在 SplitMediaComplete 回调和任务流状态变更回调将返回该字段值，最长 1000个字符。
         public let sessionContext: String?
-        
+
         /// 用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String?
-        
+
         /// 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         public let tasksPriority: Int64?
-        
-        public init (fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil) {
+
+        public init(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil) {
             self.fileId = fileId
             self.segments = segments
             self.subAppId = subAppId
@@ -43,7 +43,7 @@ extension Vod {
             self.sessionId = sessionId
             self.tasksPriority = tasksPriority
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case segments = "Segments"
@@ -53,29 +53,29 @@ extension Vod {
             case tasksPriority = "TasksPriority"
         }
     }
-    
+
     /// SplitMedia返回参数结构体
     public struct SplitMediaResponse: TCResponseModel {
         /// 视频拆条的任务 ID，可以通过该 ID 查询拆条任务（任务类型为 SplitMedia）的状态。
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 视频拆条
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
-    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitMediaResponse > {
+    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitMediaResponse> {
         self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 视频拆条
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。
@@ -83,15 +83,15 @@ extension Vod {
     public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
         try await self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 视频拆条
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
-    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitMediaResponse > {
+    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitMediaResponse> {
         self.splitMedia(SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), logger: logger, on: eventLoop)
     }
-    
+
     /// 视频拆条
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。

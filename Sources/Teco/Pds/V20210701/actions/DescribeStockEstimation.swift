@@ -19,38 +19,38 @@ extension Pds {
     public struct DescribeStockEstimationRequest: TCRequestModel {
         /// 用户信息
         public let serviceParams: UserInfos
-        
-        public init (serviceParams: UserInfos) {
+
+        public init(serviceParams: UserInfos) {
             self.serviceParams = serviceParams
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceParams = "ServiceParams"
         }
     }
-    
+
     /// DescribeStockEstimation返回参数结构体
     public struct DescribeStockEstimationResponse: TCResponseModel {
         /// 用户信誉分，1-5从低到高
         public let serviceRsp: Score
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceRsp = "ServiceRsp"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 存量判断服务
     ///
     /// 查询存量判断服务
     @inlinable
-    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStockEstimationResponse > {
+    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStockEstimationResponse> {
         self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 存量判断服务
     ///
     /// 查询存量判断服务
@@ -58,15 +58,15 @@ extension Pds {
     public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
         try await self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 存量判断服务
     ///
     /// 查询存量判断服务
     @inlinable
-    public func describeStockEstimation(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStockEstimationResponse > {
+    public func describeStockEstimation(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStockEstimationResponse> {
         self.describeStockEstimation(DescribeStockEstimationRequest(serviceParams: serviceParams), logger: logger, on: eventLoop)
     }
-    
+
     /// 存量判断服务
     ///
     /// 查询存量判断服务

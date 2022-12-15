@@ -19,53 +19,53 @@ extension Tcaplusdb {
     public struct UpdateApplyRequest: TCRequestModel {
         /// 申请单状态
         public let applyStatus: [ApplyStatus]
-        
-        public init (applyStatus: [ApplyStatus]) {
+
+        public init(applyStatus: [ApplyStatus]) {
             self.applyStatus = applyStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applyStatus = "ApplyStatus"
         }
     }
-    
+
     /// UpdateApply返回参数结构体
     public struct UpdateApplyResponse: TCResponseModel {
         /// 已更新的申请单列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applyResults: [ApplyResult]?
-        
+
         /// 更新数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case applyResults = "ApplyResults"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新申请单状态
     @inlinable
-    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApplyResponse > {
+    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApplyResponse> {
         self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新申请单状态
     @inlinable
     public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
         try await self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新申请单状态
     @inlinable
-    public func updateApply(applyStatus: [ApplyStatus], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApplyResponse > {
+    public func updateApply(applyStatus: [ApplyStatus], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApplyResponse> {
         self.updateApply(UpdateApplyRequest(applyStatus: applyStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新申请单状态
     @inlinable
     public func updateApply(applyStatus: [ApplyStatus], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {

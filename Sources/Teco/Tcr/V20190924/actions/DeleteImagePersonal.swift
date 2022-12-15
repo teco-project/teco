@@ -19,39 +19,39 @@ extension Tcr {
     public struct DeleteImagePersonalRequest: TCRequestModel {
         /// 仓库名称
         public let repoName: String
-        
+
         /// Tag名
         public let tag: String
-        
-        public init (repoName: String, tag: String) {
+
+        public init(repoName: String, tag: String) {
             self.repoName = repoName
             self.tag = tag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
             case tag = "Tag"
         }
     }
-    
+
     /// DeleteImagePersonal返回参数结构体
     public struct DeleteImagePersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag
     @inlinable
-    public func deleteImagePersonal(_ input: DeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagePersonalResponse > {
+    public func deleteImagePersonal(_ input: DeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagePersonalResponse> {
         self.client.execute(action: "DeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag
@@ -59,15 +59,15 @@ extension Tcr {
     public func deleteImagePersonal(_ input: DeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagePersonalResponse {
         try await self.client.execute(action: "DeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag
     @inlinable
-    public func deleteImagePersonal(repoName: String, tag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagePersonalResponse > {
+    public func deleteImagePersonal(repoName: String, tag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagePersonalResponse> {
         self.deleteImagePersonal(DeleteImagePersonalRequest(repoName: repoName, tag: tag), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag

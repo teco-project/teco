@@ -19,64 +19,64 @@ extension Wedata {
     public struct AlarmEventInfo: TCInputModel, TCOutputModel {
         /// 告警ID
         public let alarmId: String
-        
+
         /// 告警时间
         public let alarmTime: String
-        
+
         /// 任务ID
         public let taskId: String
-        
+
         /// 规则名称
         public let regularName: String
-        
+
         /// 告警级别,0表示普通，1表示重要，2表示紧急
         public let alarmLevel: UInt64
-        
+
         /// 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
         public let alarmIndicator: UInt64
-        
+
         /// 告警方式,多个用逗号隔开（1:邮件，2:短信，3:微信，4:语音，5:代表企业微信，6:http）
         public let alarmWay: UInt64
-        
+
         /// 告警接收人Id，多个用逗号隔开
         public let alarmRecipientId: String
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// 告警指标描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmIndicatorDesc: String?
-        
+
         /// 指标阈值，1表示离线任务第一次运行失败，2表示离线任务所有重试完成后失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerType: UInt64?
-        
+
         /// 预计的超时时间，分钟级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let estimatedTime: UInt64?
-        
+
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 任务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
-        
+
         /// 0：部分成功，1：全部成功，2：全部失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isSendSuccess: UInt64?
-        
+
         /// 消息ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let messageId: String?
-        
+
         /// 阈值计算算子，1 : 大于 2 ：小于
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: Int64?
-        
-        public init (alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, instanceId: String? = nil, taskName: String? = nil, isSendSuccess: UInt64? = nil, messageId: String? = nil, operator: Int64? = nil) {
+
+        public init(alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, instanceId: String? = nil, taskName: String? = nil, isSendSuccess: UInt64? = nil, messageId: String? = nil, operator: Int64? = nil) {
             self.alarmId = alarmId
             self.alarmTime = alarmTime
             self.taskId = taskId
@@ -95,7 +95,7 @@ extension Wedata {
             self.messageId = messageId
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmId = "AlarmId"
             case alarmTime = "AlarmTime"
@@ -116,40 +116,40 @@ extension Wedata {
             case `operator` = "Operator"
         }
     }
-    
+
     /// 任务告警信息
     public struct AlarmInfo: TCInputModel {
         /// 关联任务id
         public let taskIds: String
-        
+
         /// 告警类别；failure表示失败告警；overtime表示超时告警
         public let alarmType: String
-        
+
         /// 告警方式；SMS表示短信；Email表示邮件；HTTP 表示接口方式；Wechat表示微信方式
         public let alarmWay: String
-        
+
         /// 告警接收人，多个告警接收人以;分割
         public let alarmRecipient: String
-        
+
         /// 告警接收人id，多个告警接收人id以;分割
         public let alarmRecipientId: String
-        
+
         /// 预计运行的小时，取值范围0-23
         public let hours: UInt64
-        
+
         /// 预计运行分钟，取值范围0-59
         public let minutes: UInt64
-        
+
         /// 告警出发时机；1表示第一次运行失败；2表示所有重试完成后失败；
         public let triggerType: UInt64
-        
+
         /// 告警信息id
         public let alarmId: String?
-        
+
         /// 告警状态设置；1表示可用；0表示不可用，默认可用
         public let status: UInt64?
-        
-        public init (taskIds: String, alarmType: String, alarmWay: String, alarmRecipient: String, alarmRecipientId: String, hours: UInt64, minutes: UInt64, triggerType: UInt64, alarmId: String? = nil, status: UInt64? = nil) {
+
+        public init(taskIds: String, alarmType: String, alarmWay: String, alarmRecipient: String, alarmRecipientId: String, hours: UInt64, minutes: UInt64, triggerType: UInt64, alarmId: String? = nil, status: UInt64? = nil) {
             self.taskIds = taskIds
             self.alarmType = alarmType
             self.alarmWay = alarmWay
@@ -161,7 +161,7 @@ extension Wedata {
             self.alarmId = alarmId
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
             case alarmType = "AlarmType"
@@ -175,34 +175,34 @@ extension Wedata {
             case status = "Status"
         }
     }
-    
+
     /// 告警接收人详情
     public struct AlarmReceiverInfo: TCInputModel, TCOutputModel {
         /// 告警ID
         public let alarmId: String
-        
+
         /// 告警接收人ID
         public let alarmReceiver: String
-        
+
         /// 邮件，0：未设置，1：成功，2：失败
         public let email: UInt64
-        
+
         /// 短信，0：未设置，1：成功，2：失败
         public let sms: UInt64
-        
+
         /// 微信，0：未设置，1：成功，2：失败
         public let wechat: UInt64
-        
+
         /// 电话，0：未设置，1：成功，2：失败
         public let voice: UInt64
-        
+
         /// 企业微信，0：未设置，1：成功，2：失败
         public let wecom: UInt64
-        
+
         /// http，0：未设置，1：成功，2：失败
         public let http: UInt64
-        
-        public init (alarmId: String, alarmReceiver: String, email: UInt64, sms: UInt64, wechat: UInt64, voice: UInt64, wecom: UInt64, http: UInt64) {
+
+        public init(alarmId: String, alarmReceiver: String, email: UInt64, sms: UInt64, wechat: UInt64, voice: UInt64, wecom: UInt64, http: UInt64) {
             self.alarmId = alarmId
             self.alarmReceiver = alarmReceiver
             self.email = email
@@ -212,7 +212,7 @@ extension Wedata {
             self.wecom = wecom
             self.http = http
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmId = "AlarmId"
             case alarmReceiver = "AlarmReceiver"
@@ -224,39 +224,39 @@ extension Wedata {
             case http = "Http"
         }
     }
-    
+
     /// 批量操作的结果返回
     public struct BatchOperateResult: TCOutputModel {
         /// 批量操作成功数
         public let successCount: Int64
-        
+
         /// 批量操作失败数
         public let failedCount: Int64
-        
+
         /// 批量操作的总数
         public let totalCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case successCount = "SuccessCount"
             case failedCount = "FailedCount"
             case totalCount = "TotalCount"
         }
     }
-    
+
     /// 批量操作结果
     public struct BatchResult: TCOutputModel {
         /// 正在运行的任务数
         public let running: Int64
-        
+
         /// 执行成功的任务数
         public let success: Int64
-        
+
         /// 执行失败的任务数
         public let failed: Int64
-        
+
         /// 总任务数
         public let total: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case running = "Running"
             case success = "Success"
@@ -264,106 +264,106 @@ extension Wedata {
             case total = "Total"
         }
     }
-    
+
     /// 操作结果
     public struct BatchReturn: TCOutputModel {
         /// 执行结果
         public let result: Bool
-        
+
         /// 执行情况备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorDesc: String?
-        
+
         /// 执行情况id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case errorDesc = "ErrorDesc"
             case errorId = "ErrorId"
         }
     }
-    
+
     /// 实时任务同步速度 字节/s
     public struct BytesSpeed: TCOutputModel {
         /// 节点类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeType: String?
-        
+
         /// 节点名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
-        
+
         /// 速度值列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [SpeedValue]?
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeType = "NodeType"
             case nodeName = "NodeName"
             case values = "Values"
         }
     }
-    
+
     /// 画布所需的信息
     public struct CanvasInfo: TCOutputModel {
         /// 画布任务信息
         public let tasksList: [TaskCanvasInfo]
-        
+
         /// 画布任务链接信息
         public let linksList: [TaskLinkInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case tasksList = "TasksList"
             case linksList = "LinksList"
         }
     }
-    
+
     /// 内容详情
     public struct CommonContent: TCOutputModel {
         /// 详情内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
         }
     }
-    
+
     /// Id包装对象
     public struct CommonId: TCInputModel, TCOutputModel {
         /// Id值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// 质量检查对比结果
     public struct CompareResult: TCOutputModel {
         /// 对比结果项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [CompareResultItem]?
-        
+
         /// 检测总行数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalRows: UInt64?
-        
+
         /// 检测通过行数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let passRows: UInt64?
-        
+
         /// 检测不通过行数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerRows: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
             case totalRows = "TotalRows"
@@ -371,33 +371,33 @@ extension Wedata {
             case triggerRows = "TriggerRows"
         }
     }
-    
+
     /// 对比结果项
     public struct CompareResultItem: TCOutputModel {
         /// 对比结果， 1为真 2为假
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fixResult: UInt64?
-        
+
         /// 质量sql执行结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultValue: String?
-        
+
         /// 阈值列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [ThresholdValue]?
-        
+
         /// 比较操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
-        
+
         /// 比较类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareType: UInt64?
-        
+
         /// 值比较类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueComputeType: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case fixResult = "FixResult"
             case resultValue = "ResultValue"
@@ -407,47 +407,47 @@ extension Wedata {
             case valueComputeType = "ValueComputeType"
         }
     }
-    
+
     /// 对比规则
     public struct CompareRule: TCInputModel, TCOutputModel {
         /// 比较条件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [CompareRuleItem]?
-        
-        public init (items: [CompareRuleItem]? = nil) {
+
+        public init(items: [CompareRuleItem]? = nil) {
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
         }
     }
-    
+
     /// 比较条件
     public struct CompareRuleItem: TCInputModel, TCOutputModel {
         /// 比较类型 1.固定值  2.波动值  3.数值范围比较  4.枚举范围比较  5.不用比较
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareType: UInt64?
-        
+
         /// 比较操作类型 <  <=  ==  =>  >
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
-        
+
         /// 质量统计值类型 1.绝对值  2.上升 3. 下降  4._C包含   5. N_C不包含
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueComputeType: UInt64?
-        
+
         /// 比较阈值列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueList: [ThresholdValue]?
-        
-        public init (compareType: UInt64? = nil, operator: String? = nil, valueComputeType: UInt64? = nil, valueList: [ThresholdValue]? = nil) {
+
+        public init(compareType: UInt64? = nil, operator: String? = nil, valueComputeType: UInt64? = nil, valueList: [ThresholdValue]? = nil) {
             self.compareType = compareType
             self.`operator` = `operator`
             self.valueComputeType = valueComputeType
             self.valueList = valueList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case compareType = "CompareType"
             case `operator` = "Operator"
@@ -455,43 +455,43 @@ extension Wedata {
             case valueList = "ValueList"
         }
     }
-    
+
     /// 日评分信息
     public struct DailyScoreInfo: TCOutputModel {
         /// 统计日期 时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticsDate: Int64?
-        
+
         /// 评分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case statisticsDate = "StatisticsDate"
             case score = "Score"
         }
     }
-    
+
     /// 数据监测情况结果
     public struct DataCheckStat: TCOutputModel {
         /// 表总数
         public let tableTotal: UInt64
-        
+
         /// 字段总数
         public let columnTotal: UInt64
-        
+
         /// 表配置检测数
         public let tableConfig: UInt64
-        
+
         /// 字段配置检测数
         public let columnConfig: UInt64
-        
+
         /// 表实际检测数
         public let tableExec: UInt64
-        
+
         /// 字段实际检测数
         public let columnExec: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case tableTotal = "TableTotal"
             case columnTotal = "ColumnTotal"
@@ -501,125 +501,125 @@ extension Wedata {
             case columnExec = "ColumnExec"
         }
     }
-    
+
     /// 数据源对象
     public struct DataSourceInfo: TCOutputModel {
         /// 若数据源列表为绑定数据库，则为db名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 数据源描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 数据源ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: UInt64?
-        
+
         /// 数据源引擎的实例ID，如CDB实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instance: String?
-        
+
         /// 数据源名称，在相同SpaceName下，数据源名称不能为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 数据源引擎所属区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 数据源类型:枚举值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 数据源所属的集群id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 应用ID AppId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: UInt64?
-        
+
         /// 业务侧数据源的配置信息扩展
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bizParams: String?
-        
+
         /// 数据源类别：绑定引擎、绑定数据库
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let category: String?
-        
+
         /// 数据源展示名，为了可视化查看
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let display: String?
-        
+
         /// 数据源责任人账号ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerAccount: String?
-        
+
         /// 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let params: String?
-        
+
         /// 数据源数据源的可见性，1为可见、0为不可见。默认为1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
-        
+
         /// 数据源责任人账号名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerAccountName: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 归属项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerProjectId: String?
-        
+
         /// 归属项目Name
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerProjectName: String?
-        
+
         /// 归属项目标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerProjectIdent: String?
-        
+
         /// 授权项目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authorityProjectName: String?
-        
+
         /// 授权用户
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authorityUserName: String?
-        
+
         /// 是否有编辑权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let edit: Bool?
-        
+
         /// 是否有授权权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let author: Bool?
-        
+
         /// 是否有转交权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deliver: Bool?
-        
+
         /// 数据源状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataSourceStatus: String?
-        
+
         /// 时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: Int64?
-        
+
         /// Params json字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paramsString: String?
-        
+
         /// BizParams json字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bizParamsString: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case description = "Description"
@@ -652,29 +652,29 @@ extension Wedata {
             case bizParamsString = "BizParamsString"
         }
     }
-    
+
     /// 查询数据源分页列表
     public struct DataSourceInfoPage: TCOutputModel {
         /// 分页页码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageNumber: UInt64?
-        
+
         /// 分页大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageSize: UInt64?
-        
+
         /// 数据源列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rows: [DataSourceInfo]?
-        
+
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 总分页页码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalPageNumber: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
             case pageSize = "PageSize"
@@ -683,42 +683,42 @@ extension Wedata {
             case totalPageNumber = "TotalPageNumber"
         }
     }
-    
+
     /// 数据质量数据来源数据库
     public struct DatabaseInfo: TCInputModel, TCOutputModel {
         /// 数据源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceName: String?
-        
+
         /// 数据源Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: String?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 数据库id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 实例Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 数据源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceType: UInt64?
-        
+
         /// 数据库原始名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originDatabaseName: String?
-        
+
         /// schema名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originSchemaName: String?
-        
-        public init (datasourceName: String? = nil, datasourceId: String? = nil, databaseName: String? = nil, databaseId: String? = nil, instanceId: String? = nil, datasourceType: UInt64? = nil, originDatabaseName: String? = nil, originSchemaName: String? = nil) {
+
+        public init(datasourceName: String? = nil, datasourceId: String? = nil, databaseName: String? = nil, databaseId: String? = nil, instanceId: String? = nil, datasourceType: UInt64? = nil, originDatabaseName: String? = nil, originSchemaName: String? = nil) {
             self.datasourceName = datasourceName
             self.datasourceId = datasourceId
             self.databaseName = databaseName
@@ -728,7 +728,7 @@ extension Wedata {
             self.originDatabaseName = originDatabaseName
             self.originSchemaName = originSchemaName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case datasourceName = "DatasourceName"
             case datasourceId = "DatasourceId"
@@ -740,39 +740,39 @@ extension Wedata {
             case originSchemaName = "OriginSchemaName"
         }
     }
-    
+
     /// 数据源对象
     public struct DatasourceBaseInfo: TCOutputModel {
         /// 若数据源列表为绑定数据库，则为db名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseNames: [String]?
-        
+
         /// 数据源描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 数据源ID
         public let id: UInt64
-        
+
         /// 数据源引擎的实例ID，如CDB实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instance: String?
-        
+
         /// 数据源名称，在相同SpaceName下，数据源名称不能为空
         public let name: String
-        
+
         /// 数据源引擎所属区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 数据源类型:枚举值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 数据源所属的集群id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseNames = "DatabaseNames"
             case description = "Description"
@@ -784,35 +784,35 @@ extension Wedata {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// 依赖配置
     public struct DependencyConfig: TCInputModel, TCOutputModel {
         /// 仅五种周期运行依赖配置： HOUR,DAY,WEEK,MONTH,YEAR,CRONTAB,MINUTE
         public let dependConfType: String
-        
+
         /// 依赖配置从属周期类型，CURRENT_HOUR，PREVIOUS_HOUR，CURRENT_DAY，PREVIOUS_DAY，PREVIOUS_WEEK，PREVIOUS_FRIDAY，PREVIOUS_WEEKEND，CURRENT_MONTH，PREVIOUS_MONTH，PREVIOUS_END_OF_MONTH
         ///      * PREVIOUS_BEGIN_OF_MONTH，ALL_MONTH_OF_YEAR，ALL_DAY_OF_YEAR，CURRENT_YEAR，CURRENT，CURRENT_MINUTE，PREVIOUS_MINUTE_CYCLE，PREVIOUS_HOUR_CYCLE
         public let subordinateCyclicType: String
-        
+
         /// WAITING，等待（默认策略）EXECUTING:执行
         public let dependencyStrategy: String
-        
+
         /// 父任务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parentTask: TaskInnerInfo?
-        
+
         /// 子任务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sonTask: TaskInnerInfo?
-        
-        public init (dependConfType: String, subordinateCyclicType: String, dependencyStrategy: String, parentTask: TaskInnerInfo? = nil, sonTask: TaskInnerInfo? = nil) {
+
+        public init(dependConfType: String, subordinateCyclicType: String, dependencyStrategy: String, parentTask: TaskInnerInfo? = nil, sonTask: TaskInnerInfo? = nil) {
             self.dependConfType = dependConfType
             self.subordinateCyclicType = subordinateCyclicType
             self.dependencyStrategy = dependencyStrategy
             self.parentTask = parentTask
             self.sonTask = sonTask
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dependConfType = "DependConfType"
             case subordinateCyclicType = "SubordinateCyclicType"
@@ -821,21 +821,21 @@ extension Wedata {
             case sonTask = "SonTask"
         }
     }
-    
+
     /// 文件夹分页信息
     public struct DescribeFolderListData: TCOutputModel {
         /// 文件夹信息列表
         public let items: [Folder]
-        
+
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 页号
         public let pageNumber: Int64
-        
+
         /// 页大小
         public let pageSize: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
             case totalCount = "TotalCount"
@@ -843,21 +843,21 @@ extension Wedata {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// 文件夹分页信息
     public struct DescribeFolderWorkflowListData: TCOutputModel {
         /// 工作流信息列表
         public let items: [Workflow]
-        
+
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 页号
         public let pageNumber: Int64
-        
+
         /// 页大小
         public let pageSize: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
             case totalCount = "TotalCount"
@@ -865,21 +865,21 @@ extension Wedata {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// 查询任务实例列表
     public struct DescribeTaskInstancesData: TCOutputModel {
         /// 实例列表
         public let items: [TaskInstanceInfo]
-        
+
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 页号
         public let pageNumber: Int64
-        
+
         /// 页大小
         public let pageSize: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
             case totalCount = "TotalCount"
@@ -887,67 +887,67 @@ extension Wedata {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// 维度统计业务视图
     public struct DimensionCount: TCInputModel, TCOutputModel {
         /// 维度类型1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimType: UInt64?
-        
+
         /// 统计值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: UInt64?
-        
-        public init (dimType: UInt64? = nil, count: UInt64? = nil) {
+
+        public init(dimType: UInt64? = nil, count: UInt64? = nil) {
             self.dimType = dimType
             self.count = count
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dimType = "DimType"
             case count = "Count"
         }
     }
-    
+
     /// 维度评分
     public struct DimensionScore: TCOutputModel {
         /// 维度评分列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensionScoreList: [DimensionScoreInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case dimensionScoreList = "DimensionScoreList"
         }
     }
-    
+
     /// 维度评分信息
     public struct DimensionScoreInfo: TCOutputModel {
         /// 维度名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Float?
-        
+
         /// 设置人id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: Int64?
-        
+
         /// 设置人名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
-        
+
         /// 更新时间 时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         /// 参与评估表数量
         public let joinTableNumber: Int64
-        
+
         /// 评分
         public let score: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case weight = "Weight"
@@ -958,46 +958,46 @@ extension Wedata {
             case score = "Score"
         }
     }
-    
+
     /// 数据导出任务详情
     public struct ExportTaskInfo: TCInputModel, TCOutputModel {
         /// 导出任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exportTaskId: UInt64?
-        
+
         /// 导出任务类型(1.全部,2.触发行,3.通过行)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskType: UInt64?
-        
+
         /// 任务创建人 id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorId: UInt64?
-        
+
         /// 任务创建人昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorName: String?
-        
+
         /// 任务创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 导出状态(1.已提交 2.导出中 3.导出成功 4.导出失败)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
-        
+
         /// 调度任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schedulerTaskId: String?
-        
+
         /// 调度时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schedulerCurRunDate: String?
-        
+
         /// 文件相对路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filePath: String?
-        
-        public init (exportTaskId: UInt64? = nil, taskType: UInt64? = nil, operatorId: UInt64? = nil, operatorName: String? = nil, createTime: String? = nil, status: UInt64? = nil, schedulerTaskId: String? = nil, schedulerCurRunDate: String? = nil, filePath: String? = nil) {
+
+        public init(exportTaskId: UInt64? = nil, taskType: UInt64? = nil, operatorId: UInt64? = nil, operatorName: String? = nil, createTime: String? = nil, status: UInt64? = nil, schedulerTaskId: String? = nil, schedulerCurRunDate: String? = nil, filePath: String? = nil) {
             self.exportTaskId = exportTaskId
             self.taskType = taskType
             self.operatorId = operatorId
@@ -1008,7 +1008,7 @@ extension Wedata {
             self.schedulerCurRunDate = schedulerCurRunDate
             self.filePath = filePath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case exportTaskId = "ExportTaskId"
             case taskType = "TaskType"
@@ -1021,70 +1021,70 @@ extension Wedata {
             case filePath = "FilePath"
         }
     }
-    
+
     /// 字段变量
     public struct FieldConfig: TCInputModel, TCOutputModel {
         /// 字段key
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldKey: String?
-        
+
         /// 字段值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldValue: String?
-        
+
         /// 字段值类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldDataType: String?
-        
-        public init (fieldKey: String? = nil, fieldValue: String? = nil, fieldDataType: String? = nil) {
+
+        public init(fieldKey: String? = nil, fieldValue: String? = nil, fieldDataType: String? = nil) {
             self.fieldKey = fieldKey
             self.fieldValue = fieldValue
             self.fieldDataType = fieldDataType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fieldKey = "FieldKey"
             case fieldValue = "FieldValue"
             case fieldDataType = "FieldDataType"
         }
     }
-    
+
     /// 通用过滤器
     public struct Filter: TCInputModel {
         /// 过滤字段名称
         public let name: String?
-        
+
         /// 过滤值列表
         public let values: [String]?
-        
-        public init (name: String? = nil, values: [String]? = nil) {
+
+        public init(name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 文件夹信息
     public struct Folder: TCOutputModel {
         /// 文件ID
         public let id: String
-        
+
         /// 文件夹名称
         public let name: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 所属项目id
         public let projectId: String
-        
+
         /// 更新时间
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -1093,36 +1093,36 @@ extension Wedata {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 函数资源信息
     public struct FunctionResource: TCInputModel, TCOutputModel {
         /// 资源路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 资源唯一标识
         public let id: String?
-        
+
         /// 资源 MD5 值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5: String?
-        
+
         /// 默认是 hdfs
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (path: String, name: String, id: String? = nil, md5: String? = nil, type: String? = nil) {
+
+        public init(path: String, name: String, id: String? = nil, md5: String? = nil, type: String? = nil) {
             self.path = path
             self.name = name
             self.id = id
             self.md5 = md5
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case name = "Name"
@@ -1131,50 +1131,50 @@ extension Wedata {
             case type = "Type"
         }
     }
-    
+
     /// 函数类型或函数分类
     public struct FunctionTypeOrKind: TCOutputModel {
         /// 无
         public let name: String
-        
+
         /// 无
         public let zhName: String
-        
+
         /// 无
         public let enName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case zhName = "ZhName"
             case enName = "EnName"
         }
     }
-    
+
     /// 函数提交版本信息
     public struct FunctionVersion: TCOutputModel {
         /// 版本号：V0 V1 V2
         public let tag: String
-        
+
         /// 提交人 ID
         public let userId: String
-        
+
         /// 变更类型：ADD、MODIFY
         public let type: String
-        
+
         /// 备注
         public let comment: String
-        
+
         /// 提交时间: UTC 秒数
         public let timestamp: String
-        
+
         /// 提交人名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
-        
+
         /// 版本内容：json string 格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case tag = "Tag"
             case userId = "UserId"
@@ -1185,60 +1185,60 @@ extension Wedata {
             case content = "Content"
         }
     }
-    
+
     /// Spark SQL配置参数
     public struct GeneralTaskParam: TCInputModel {
         /// 通用任务参数类型,例：SPARK_SQL
         public let type: String
-        
+
         /// 通用任务参数内容,直接作用于任务的参数。不同参数用;
         /// 分割
         public let value: String
-        
-        public init (type: String, value: String) {
+
+        public init(type: String, value: String) {
             self.type = type
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case value = "Value"
         }
     }
-    
+
     /// 采集器详细信息
     public struct InLongAgentDetail: TCOutputModel {
         /// Agent ID
         public let agentId: String
-        
+
         /// Agent Name
         public let agentName: String
-        
+
         /// Agent状态(running运行中，initializing 操作中，failed心跳异常)
         public let status: String
-        
+
         /// Agent状态描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusDesc: String?
-        
+
         /// 集群类型，1：TKE Agent，2：BOSS SDK，默认：1
         public let agentType: UInt64
-        
+
         /// 采集来源
         public let source: String
-        
+
         /// VPC
         public let vpcId: String
-        
+
         /// 集成资源组Id
         public let executorGroupId: String
-        
+
         /// 集成资源组名称
         public let executorGroupName: String
-        
+
         /// 关联任务数
         public let taskCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case agentName = "AgentName"
@@ -1252,52 +1252,52 @@ extension Wedata {
             case taskCount = "TaskCount"
         }
     }
-    
+
     /// 采集器关联的集成任务
     public struct InLongAgentTask: TCOutputModel {
         /// 集成任务ID
         public let taskId: String
-        
+
         /// 集成任务名称
         public let taskName: String
-        
+
         /// 集成任务状态
         public let taskStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
             case taskStatus = "TaskStatus"
         }
     }
-    
+
     /// TKE集群信息详情
     public struct InLongTkeDetail: TCOutputModel {
         /// 集群Id
         public let clusterId: String
-        
+
         /// 集群名称
         public let clusterName: String
-        
+
         /// TKE集群状态 (Running 运行中 Creating 创建中 Idling 闲置中 Abnormal 异常)
         public let status: String
-        
+
         /// 是否安装Agent，true: 是，false: 否
         public let hasAgent: Bool
-        
+
         /// 采集器ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentId: String?
-        
+
         /// VPC ID
         public let vpcId: String
-        
+
         /// TKE集群区域ID
         public let tkeRegion: String
-        
+
         /// 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER
         public let clusterType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -1309,57 +1309,57 @@ extension Wedata {
             case clusterType = "ClusterType"
         }
     }
-    
+
     /// 实例请求实体
     public struct InstanceInfo: TCInputModel, TCOutputModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 数据时间
         public let curRunDate: String
-        
-        public init (taskId: String, curRunDate: String) {
+
+        public init(taskId: String, curRunDate: String) {
             self.taskId = taskId
             self.curRunDate = curRunDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case curRunDate = "CurRunDate"
         }
     }
-    
+
     /// 实例日志实体
     public struct InstanceLog: TCOutputModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 数据时间
         public let curRunDate: String
-        
+
         /// 尝试运行次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tries: String?
-        
+
         /// 日志更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpdate: String?
-        
+
         /// 日志所在节点
         public let brokerIp: String
-        
+
         /// 文件名  含全路径
         public let originFileName: String
-        
+
         /// 日志创建时间
         public let createTime: String
-        
+
         /// 实例日志类型, run: 运行; kill: 终止
         public let instanceLogType: String
-        
+
         /// 运行耗时
         public let costTime: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case curRunDate = "CurRunDate"
@@ -1372,51 +1372,51 @@ extension Wedata {
             case costTime = "CostTime"
         }
     }
-    
+
     /// 查询实时任务实例当前的节点信息
     public struct InstanceNodeInfo: TCOutputModel {
         /// 读取节点SOURCE 写入节点SINK
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeType: String?
-        
+
         /// 节点id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeId: String?
-        
+
         /// 节点名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeType = "NodeType"
             case nodeId = "NodeId"
             case nodeName = "NodeName"
         }
     }
-    
+
     /// 离线任务实例读取节点的运行指标
     public struct InstanceReportReadNode: TCOutputModel {
         /// 节点名称
         public let nodeName: String
-        
+
         /// 数据来源
         public let dataSource: String
-        
+
         /// 总条数
         public let totalReadRecords: UInt64
-        
+
         /// 总字节数
         public let totalReadBytes: UInt64
-        
+
         /// 速度（条/秒）
         public let recordSpeed: UInt64
-        
+
         /// 吞吐（Byte/秒）
         public let byteSpeed: Float
-        
+
         /// 脏数据条数
         public let totalErrorRecords: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeName = "NodeName"
             case dataSource = "DataSource"
@@ -1427,42 +1427,42 @@ extension Wedata {
             case totalErrorRecords = "TotalErrorRecords"
         }
     }
-    
+
     /// 离线任务实例运行指标概览
     public struct InstanceReportSummary: TCOutputModel {
         /// 总读取记录数
         public let totalReadRecords: UInt64
-        
+
         /// 总读取字节数
         public let totalReadBytes: UInt64
-        
+
         /// 总写入记录数
         public let totalWriteRecords: UInt64
-        
+
         /// 总写入字节数
         public let totalWriteBytes: UInt64
-        
+
         /// 速率（条/秒）
         public let recordSpeed: UInt64
-        
+
         /// 流量（Byte/秒）
         public let byteSpeed: Float
-        
+
         /// 脏数据记录数
         public let totalErrorRecords: UInt64
-        
+
         /// 脏数据字节数
         public let totalErrorBytes: UInt64
-        
+
         /// 任务运行总时长
         public let totalRunDuration: UInt64
-        
+
         /// 任务开始运行时间
         public let beginRunTime: String
-        
+
         /// 任务结束运行时间
         public let endRunTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalReadRecords = "TotalReadRecords"
             case totalReadBytes = "TotalReadBytes"
@@ -1477,30 +1477,30 @@ extension Wedata {
             case endRunTime = "EndRunTime"
         }
     }
-    
+
     /// 离线任务实例写入节点的运行指标
     public struct InstanceReportWriteNode: TCOutputModel {
         /// 节点名称
         public let nodeName: String
-        
+
         /// 数据来源
         public let dataSource: String
-        
+
         /// 总条数
         public let totalWriteRecords: UInt64
-        
+
         /// 总字节数
         public let totalWriteBytes: UInt64
-        
+
         /// 速度（条/秒）
         public let recordSpeed: UInt64
-        
+
         /// 吞吐（Byte/秒）
         public let byteSpeed: Float
-        
+
         /// 脏数据条数
         public let totalErrorRecords: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeName = "NodeName"
             case dataSource = "DataSource"
@@ -1511,46 +1511,46 @@ extension Wedata {
             case totalErrorRecords = "TotalErrorRecords"
         }
     }
-    
+
     /// 集成节点详情
     public struct IntegrationNodeDetail: TCInputModel, TCOutputModel {
         /// 集成节点名称
         public let name: String?
-        
+
         /// 集成节点类型
         public let nodeType: String?
-        
+
         /// 节点数据源类型
         public let dataSourceType: String?
-        
+
         /// 节点描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 数据源id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: String?
-        
+
         /// 节点配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let config: [RecordField]?
-        
+
         /// 节点扩展配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extConfig: [RecordField]?
-        
+
         /// 节点schema
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schema: [IntegrationNodeSchema]?
-        
+
         /// 节点映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeMapping: IntegrationNodeMapping?
-        
+
         /// owner uin
         public let ownerUin: String?
-        
-        public init (name: String? = nil, nodeType: String? = nil, dataSourceType: String? = nil, description: String? = nil, datasourceId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, schema: [IntegrationNodeSchema]? = nil, nodeMapping: IntegrationNodeMapping? = nil, ownerUin: String? = nil) {
+
+        public init(name: String? = nil, nodeType: String? = nil, dataSourceType: String? = nil, description: String? = nil, datasourceId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, schema: [IntegrationNodeSchema]? = nil, nodeMapping: IntegrationNodeMapping? = nil, ownerUin: String? = nil) {
             self.name = name
             self.nodeType = nodeType
             self.dataSourceType = dataSourceType
@@ -1562,7 +1562,7 @@ extension Wedata {
             self.nodeMapping = nodeMapping
             self.ownerUin = ownerUin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case nodeType = "NodeType"
@@ -1576,75 +1576,75 @@ extension Wedata {
             case ownerUin = "OwnerUin"
         }
     }
-    
+
     /// 集成节点
     public struct IntegrationNodeInfo: TCInputModel, TCOutputModel {
         /// 集成节点id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 集成节点所属任务id
         public let taskId: String?
-        
+
         /// 集成节点名称
         public let name: String?
-        
+
         /// 集成节点类型
         public let nodeType: String?
-        
+
         /// 节点数据源类型
         public let dataSourceType: String?
-        
+
         /// 节点描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 数据源id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: String?
-        
+
         /// 节点配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let config: [RecordField]?
-        
+
         /// 节点扩展配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extConfig: [RecordField]?
-        
+
         /// 节点schema
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schema: [IntegrationNodeSchema]?
-        
+
         /// 节点映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeMapping: IntegrationNodeMapping?
-        
+
         /// 应用id
         public let appId: String?
-        
+
         /// 项目id
         public let projectId: String?
-        
+
         /// 创建人uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creatorUin: String?
-        
+
         /// 操作人uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorUin: String?
-        
+
         /// owner uin
         public let ownerUin: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
-        public init (id: String? = nil, taskId: String? = nil, name: String? = nil, nodeType: String? = nil, dataSourceType: String? = nil, description: String? = nil, datasourceId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, schema: [IntegrationNodeSchema]? = nil, nodeMapping: IntegrationNodeMapping? = nil, appId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, createTime: String? = nil, updateTime: String? = nil) {
+
+        public init(id: String? = nil, taskId: String? = nil, name: String? = nil, nodeType: String? = nil, dataSourceType: String? = nil, description: String? = nil, datasourceId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, schema: [IntegrationNodeSchema]? = nil, nodeMapping: IntegrationNodeMapping? = nil, appId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, createTime: String? = nil, updateTime: String? = nil) {
             self.id = id
             self.taskId = taskId
             self.name = name
@@ -1664,7 +1664,7 @@ extension Wedata {
             self.createTime = createTime
             self.updateTime = updateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case taskId = "TaskId"
@@ -1686,35 +1686,35 @@ extension Wedata {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 集成节点映射
     public struct IntegrationNodeMapping: TCInputModel, TCOutputModel {
         /// 源节点id
         public let sourceId: String?
-        
+
         /// 目标节点id
         public let sinkId: String?
-        
+
         /// 源节点schema
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceSchema: [IntegrationNodeSchema]?
-        
+
         /// 节点schema映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaMappings: [IntegrationNodeSchemaMapping]?
-        
+
         /// 节点映射扩展信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extConfig: [RecordField]?
-        
-        public init (sourceId: String? = nil, sinkId: String? = nil, sourceSchema: [IntegrationNodeSchema]? = nil, schemaMappings: [IntegrationNodeSchemaMapping]? = nil, extConfig: [RecordField]? = nil) {
+
+        public init(sourceId: String? = nil, sinkId: String? = nil, sourceSchema: [IntegrationNodeSchema]? = nil, schemaMappings: [IntegrationNodeSchemaMapping]? = nil, extConfig: [RecordField]? = nil) {
             self.sourceId = sourceId
             self.sinkId = sinkId
             self.sourceSchema = sourceSchema
             self.schemaMappings = schemaMappings
             self.extConfig = extConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceId = "SourceId"
             case sinkId = "SinkId"
@@ -1723,31 +1723,31 @@ extension Wedata {
             case extConfig = "ExtConfig"
         }
     }
-    
+
     /// 集成节点schema
     public struct IntegrationNodeSchema: TCInputModel, TCOutputModel {
         /// schema id
         public let id: String
-        
+
         /// schema名称
         public let name: String
-        
+
         /// schema类型
         public let type: String
-        
+
         /// schema值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// schema拓展属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let properties: [RecordField]?
-        
+
         /// schema别名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
-        
-        public init (id: String, name: String, type: String, value: String? = nil, properties: [RecordField]? = nil, alias: String? = nil) {
+
+        public init(id: String, name: String, type: String, value: String? = nil, properties: [RecordField]? = nil, alias: String? = nil) {
             self.id = id
             self.name = name
             self.type = type
@@ -1755,7 +1755,7 @@ extension Wedata {
             self.properties = properties
             self.alias = alias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -1765,155 +1765,155 @@ extension Wedata {
             case alias = "Alias"
         }
     }
-    
+
     /// 集成节点schema映射
     public struct IntegrationNodeSchemaMapping: TCInputModel, TCOutputModel {
         /// 源schema id
         public let sourceSchemaId: String
-        
+
         /// 目标schema id
         public let sinkSchemaId: String
-        
-        public init (sourceSchemaId: String, sinkSchemaId: String) {
+
+        public init(sourceSchemaId: String, sinkSchemaId: String) {
             self.sourceSchemaId = sourceSchemaId
             self.sinkSchemaId = sinkSchemaId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceSchemaId = "SourceSchemaId"
             case sinkSchemaId = "SinkSchemaId"
         }
     }
-    
+
     /// 数据集成大屏趋势图统计结果
     public struct IntegrationStatisticsTrendResult: TCOutputModel {
         /// 统计属性名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticName: [String]?
-        
+
         /// 统计值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticValue: [Int64]?
-        
+
         /// 统计项目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case statisticName = "StatisticName"
             case statisticValue = "StatisticValue"
             case statisticType = "StatisticType"
         }
     }
-    
+
     /// 集成任务
     public struct IntegrationTaskInfo: TCInputModel, TCOutputModel {
         /// 任务名称
         public let taskName: String?
-        
+
         /// 任务描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 同步类型1.解决方案(整库迁移),2.单表同步
         public let syncType: Int64?
-        
+
         /// 201.实时,202.离线
         public let taskType: Int64?
-        
+
         /// 任务所属工作流id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowId: String?
-        
+
         /// 任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 任务调度id(oceanus or us等作业id)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheduleTaskId: String?
-        
+
         /// 任务组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupId: String?
-        
+
         /// 项目id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 创建人uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creatorUin: String?
-        
+
         /// 操作人uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorUin: String?
-        
+
         /// owner uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerUin: String?
-        
+
         /// 应用id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 任务状态1.初始化,2.操作中,3.运行中,4.暂停,5.任务停止中,6.停止,7.执行失败,8.已删除,9.已锁定,10.配置过期,11.提交中,12.提交成功,13.提交失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodes: [IntegrationNodeInfo]?
-        
+
         /// 执行资源id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executorId: String?
-        
+
         /// 任务配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let config: [RecordField]?
-        
+
         /// 任务扩展配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extConfig: [RecordField]?
-        
+
         /// 任务执行context信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executeContext: [RecordField]?
-        
+
         /// 节点映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mappings: [IntegrationNodeMapping]?
-        
+
         /// 任务模式：1.画布模式，2.flink jar
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskMode: String?
-        
+
         /// 责任人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let incharge: String?
-        
+
         /// 离线新增参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offlineTaskAddEntity: OfflineTaskAddParam?
-        
+
         /// group name
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executorGroupName: String?
-        
+
         /// url
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inLongManagerUrl: String?
-        
+
         /// stream id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inLongStreamId: String?
-        
+
         /// version
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inLongManagerVersion: String?
-        
-        public init (taskName: String? = nil, description: String? = nil, syncType: Int64? = nil, taskType: Int64? = nil, workflowId: String? = nil, taskId: String? = nil, scheduleTaskId: String? = nil, taskGroupId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, appId: String? = nil, status: Int64? = nil, nodes: [IntegrationNodeInfo]? = nil, executorId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, executeContext: [RecordField]? = nil, mappings: [IntegrationNodeMapping]? = nil, taskMode: String? = nil, incharge: String? = nil, offlineTaskAddEntity: OfflineTaskAddParam? = nil, executorGroupName: String? = nil, inLongManagerUrl: String? = nil, inLongStreamId: String? = nil, inLongManagerVersion: String? = nil) {
+
+        public init(taskName: String? = nil, description: String? = nil, syncType: Int64? = nil, taskType: Int64? = nil, workflowId: String? = nil, taskId: String? = nil, scheduleTaskId: String? = nil, taskGroupId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, appId: String? = nil, status: Int64? = nil, nodes: [IntegrationNodeInfo]? = nil, executorId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, executeContext: [RecordField]? = nil, mappings: [IntegrationNodeMapping]? = nil, taskMode: String? = nil, incharge: String? = nil, offlineTaskAddEntity: OfflineTaskAddParam? = nil, executorGroupName: String? = nil, inLongManagerUrl: String? = nil, inLongStreamId: String? = nil, inLongManagerVersion: String? = nil) {
             self.taskName = taskName
             self.description = description
             self.syncType = syncType
@@ -1942,7 +1942,7 @@ extension Wedata {
             self.inLongStreamId = inLongStreamId
             self.inLongManagerVersion = inLongManagerVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case description = "Description"
@@ -1973,63 +1973,63 @@ extension Wedata {
             case inLongManagerVersion = "InLongManagerVersion"
         }
     }
-    
+
     /// 标签类型
     public struct Label: TCOutputModel {
         /// 类型值。
         public let value: String
-        
+
         /// 类型名称。
         public let text: String
-        
+
         enum CodingKeys: String, CodingKey {
             case value = "Value"
             case text = "Text"
         }
     }
-    
+
     /// 实时任务日志内容
     public struct LogContent: TCOutputModel {
         /// 日志时间戳，单位毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let time: UInt64?
-        
+
         /// 日志包id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgId: String?
-        
+
         /// 日志内容
         public let log: String
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case pkgId = "PkgId"
             case log = "Log"
         }
     }
-    
+
     /// 日志内容实体
     public struct LogContentInfo: TCOutputModel {
         /// 日志内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let log: String?
-        
+
         /// 日志组Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgId: String?
-        
+
         /// 日志Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgLogId: String?
-        
+
         /// 时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let time: UInt64?
-        
+
         /// 日志所属的容器名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case log = "Log"
             case pkgId = "PkgId"
@@ -2038,89 +2038,89 @@ extension Wedata {
             case containerName = "ContainerName"
         }
     }
-    
+
     /// 命名空间
     public struct Namespace: TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 当前状态
         public let status: String
-        
+
         /// 创建时间
         public let createdAt: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case status = "Status"
             case createdAt = "CreatedAt"
         }
     }
-    
+
     /// 离线实例
     public struct OfflineInstance: TCOutputModel {
         /// 创建账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUin: String?
-        
+
         /// 操作账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorUin: String?
-        
+
         /// 主账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerUin: String?
-        
+
         /// 账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 项目Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workspaceId: String?
-        
+
         /// 任务Id
         public let taskId: String
-        
+
         /// 数据时间
         public let curRunDate: String
-        
+
         /// 下发时间
         public let issueId: String
-        
+
         /// 资源组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inlongTaskId: String?
-        
+
         /// 资源组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroup: String?
-        
+
         /// 实例类型
         public let taskRunType: UInt64
-        
+
         /// 实例状态
         public let state: String
-        
+
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 最后更新时间
         public let updateTime: String
-        
+
         /// 唯一key
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceKey: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case createUin = "CreateUin"
             case operatorUin = "OperatorUin"
@@ -2141,68 +2141,68 @@ extension Wedata {
             case instanceKey = "InstanceKey"
         }
     }
-    
+
     /// 离线任务新增参数
     public struct OfflineTaskAddParam: TCInputModel, TCOutputModel {
         /// 名称
         public let workflowName: String
-        
+
         /// 依赖
         public let dependencyWorkflow: String
-        
+
         /// 开始时间
         public let startTime: String
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// 周期
         public let cycleType: UInt64
-        
+
         /// 周期间隔
         public let cycleStep: UInt64
-        
+
         /// 延迟时间
         public let delayTime: UInt64
-        
+
         /// crontab
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let crontabExpression: String?
-        
+
         /// 重试等待
         public let retryWait: UInt64
-        
+
         /// 是否可以重试
         public let retriable: UInt64
-        
+
         /// 重试限制
         public let tryLimit: UInt64
-        
+
         /// 优先级
         public let runPriority: UInt64
-        
+
         /// 产品名称
         public let productName: String
-        
-        /// 1 有序串行 一次一个，排队 orderly 
-        /// 2 无序串行 一次一个，不排队 serial  
+
+        /// 1 有序串行 一次一个，排队 orderly
+        /// 2 无序串行 一次一个，不排队 serial
         /// 3 并行 一次多个 parallel
         public let selfDepend: UInt64
-        
+
         /// 周任务：1是周天，2是周1，7是周6 。
         /// 月任务：如具体1，3号则写 "1,3"，指定月末不可和具体号数一起输入，仅能为 "L"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskAction: String?
-        
+
         /// 调度执行结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executionEndTime: String?
-        
+
         /// 调度执行开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executionStartTime: String?
-        
-        public init (workflowName: String, dependencyWorkflow: String, startTime: String, endTime: String, cycleType: UInt64, cycleStep: UInt64, delayTime: UInt64, crontabExpression: String, retryWait: UInt64, retriable: UInt64, tryLimit: UInt64, runPriority: UInt64, productName: String, selfDepend: UInt64, taskAction: String? = nil, executionEndTime: String? = nil, executionStartTime: String? = nil) {
+
+        public init(workflowName: String, dependencyWorkflow: String, startTime: String, endTime: String, cycleType: UInt64, cycleStep: UInt64, delayTime: UInt64, crontabExpression: String, retryWait: UInt64, retriable: UInt64, tryLimit: UInt64, runPriority: UInt64, productName: String, selfDepend: UInt64, taskAction: String? = nil, executionEndTime: String? = nil, executionStartTime: String? = nil) {
             self.workflowName = workflowName
             self.dependencyWorkflow = dependencyWorkflow
             self.startTime = startTime
@@ -2221,7 +2221,7 @@ extension Wedata {
             self.executionEndTime = executionEndTime
             self.executionStartTime = executionStartTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workflowName = "WorkflowName"
             case dependencyWorkflow = "DependencyWorkflow"
@@ -2242,128 +2242,128 @@ extension Wedata {
             case executionStartTime = "ExecutionStartTime"
         }
     }
-    
+
     /// 操作结果
     public struct OperateResult: TCOutputModel {
         /// 操作结果；true表示成功；false表示失败
         public let result: Bool
-        
+
         /// 错误编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorId: String?
-        
+
         /// 操作信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorDesc: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case errorId = "ErrorId"
             case errorDesc = "ErrorDesc"
         }
     }
-    
+
     /// 通用排序字段
     public struct OrderField: TCInputModel {
         /// 排序字段名称
         public let name: String
-        
+
         /// 排序方向：ASC|DESC
         public let direction: String
-        
-        public init (name: String, direction: String) {
+
+        public init(name: String, direction: String) {
             self.name = name
             self.direction = direction
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case direction = "Direction"
         }
     }
-    
+
     /// 包含层级信息的函数
     public struct OrganizationalFunction: TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 展示名称
         public let displayName: String
-        
+
         /// 层级路径
         public let layerPath: String
-        
+
         /// 上级层级路径
         public let parentLayerPath: String
-        
+
         /// 函数类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 函数分类：窗口函数、聚合函数、日期函数......
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kind: String?
-        
+
         /// 函数种类：系统函数、自定义函数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let category: String?
-        
+
         /// 函数状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 函数说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 函数用法
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usage: String?
-        
+
         /// 函数参数说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paramDesc: String?
-        
+
         /// 函数返回值说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnDesc: String?
-        
+
         /// 函数示例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let example: String?
-        
+
         /// 集群实例引擎 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterIdentifier: String?
-        
+
         /// 函数 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let funcId: String?
-        
+
         /// 函数类名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let className: String?
-        
+
         /// 函数资源列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceList: [FunctionVersion]?
-        
+
         /// 操作人 ID 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorUserIds: [Int64]?
-        
+
         /// 公有云 Owner ID 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerUserIds: [Int64]?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbName: String?
-        
+
         /// 提交失败错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let submitErrorMsg: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case displayName = "DisplayName"
@@ -2388,212 +2388,212 @@ extension Wedata {
             case submitErrorMsg = "SubmitErrorMsg"
         }
     }
-    
+
     /// 参数参数
     public struct ParamInfo: TCInputModel, TCOutputModel {
         /// 参数名
         public let paramKey: String
-        
+
         /// 参数值
         public let paramValue: String
-        
-        public init (paramKey: String, paramValue: String) {
+
+        public init(paramKey: String, paramValue: String) {
             self.paramKey = paramKey
             self.paramValue = paramValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case paramKey = "ParamKey"
             case paramValue = "ParamValue"
         }
     }
-    
+
     /// 数据质量生产调度任务业务实体
     public struct ProdSchedulerTask: TCInputModel, TCOutputModel {
         /// 生产调度任务工作流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowId: String?
-        
+
         /// 生产调度任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 生产调度任务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
-        
-        public init (workflowId: String, taskId: String? = nil, taskName: String? = nil) {
+
+        public init(workflowId: String, taskId: String? = nil, taskName: String? = nil) {
             self.workflowId = workflowId
             self.taskId = taskId
             self.taskName = taskName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workflowId = "WorkflowId"
             case taskId = "TaskId"
             case taskName = "TaskName"
         }
     }
-    
+
     /// 质量评分
     public struct QualityScore: TCOutputModel {
         /// 综合分数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compositeScore: Float?
-        
+
         /// 评分分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scoringDistribution: [TableScoreStatisticsInfo]?
-        
+
         /// 总表数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalTableNumber: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case compositeScore = "CompositeScore"
             case scoringDistribution = "ScoringDistribution"
             case totalTableNumber = "TotalTableNumber"
         }
     }
-    
+
     /// 质量评分趋势
     public struct QualityScoreTrend: TCOutputModel {
         /// 周期平均分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let averageScore: Float?
-        
+
         /// 日评分列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dailyScoreList: [DailyScoreInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case averageScore = "AverageScore"
             case dailyScoreList = "DailyScoreList"
         }
     }
-    
+
     /// 实时任务实例当前的节点信息
     public struct RealTimeTaskInstanceNodeInfo: TCOutputModel {
         /// 任务名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
-        
+
         /// 任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 实时任务实例节点信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceNodeInfoList: [InstanceNodeInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case taskId = "TaskId"
             case instanceNodeInfoList = "InstanceNodeInfoList"
         }
     }
-    
+
     /// 通用记录字段
     public struct RecordField: TCOutputModel {
         /// 字段名称
         public let name: String
-        
+
         /// 字段值
         public let value: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 实时任务同步速度 条/s
     public struct RecordsSpeed: TCOutputModel {
         /// 节点类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeType: String?
-        
+
         /// 节点名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
-        
+
         /// 速度值列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [SpeedValue]?
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeType = "NodeType"
             case nodeName = "NodeName"
             case values = "Values"
         }
     }
-    
+
     /// 资源管理目录树节点
     public struct ResourcePathTree: TCOutputModel {
         /// 资源名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 是否为叶子节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isLeaf: Bool?
-        
+
         /// 资源ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceId: String?
-        
+
         /// 本地路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let localPath: String?
-        
+
         /// 远程路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remotePath: String?
-        
+
         /// 文件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileExtensionType: String?
-        
+
         /// 文件大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
-        
+
         /// 文件MD5值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5Value: String?
-        
+
         /// 文件拥有者名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerName: String?
-        
+
         /// 更新人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateUser: String?
-        
+
         /// 文件更新人uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateUserId: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: UInt64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: UInt64?
-        
+
         /// Cos存储桶名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosBucket: String?
-        
+
         /// Cos地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosRegion: String?
-        
+
         /// 额外信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraInfo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case isLeaf = "IsLeaf"
@@ -2613,136 +2613,136 @@ extension Wedata {
             case extraInfo = "ExtraInfo"
         }
     }
-    
+
     /// 抢锁状态：是否可以抢锁和当前持锁人
     public struct RobLockState: TCOutputModel {
         /// 是否可以抢锁
         public let isRob: Bool
-        
+
         /// 当前持锁人
         public let locker: String
-        
+
         enum CodingKeys: String, CodingKey {
             case isRob = "IsRob"
             case locker = "Locker"
         }
     }
-    
+
     /// 数据质量规则
     public struct Rule: TCInputModel, TCOutputModel {
         /// 规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: UInt64?
-        
+
         /// 规则组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupId: UInt64?
-        
+
         /// 数据表Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: UInt64?
-        
+
         /// 规则模板Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTemplateId: UInt64?
-        
+
         /// 规则模板概述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTemplateContent: String?
-        
+
         /// 规则所属质量维度 1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualityDim: UInt64?
-        
+
         /// 规则适用的源数据对象类型（1：常量，2：离线表级，3：离线字段级别）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectType: UInt64?
-        
+
         /// 规则适用的源数据对象类型（1：数值，2：字符串）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectDataType: UInt64?
-        
+
         /// 源字段详细类型，INT、STRING
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectDataTypeName: String?
-        
+
         /// 源字段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectValue: String?
-        
+
         /// 检测范围 1.全表, 2.条件扫描
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionType: UInt64?
-        
+
         /// 条件扫描WHERE条件表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionExpression: String?
-        
+
         /// 自定义SQL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customSql: String?
-        
+
         /// 报警触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareRule: CompareRule?
-        
+
         /// 报警触发级别 1.低, 2.中, 3.高
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmLevel: UInt64?
-        
+
         /// 规则描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 规则配置人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
-        
+
         /// 目标库Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetDatabaseId: String?
-        
+
         /// 目标库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetDatabaseName: String?
-        
+
         /// 目标表Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetTableId: String?
-        
+
         /// 目标表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetTableName: String?
-        
+
         /// 目标字段过滤条件表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetConditionExpr: String?
-        
+
         /// 源字段与目标字段关联条件on表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let relConditionExpr: String?
-        
+
         /// 自定义模版sql表达式参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldConfig: RuleFieldConfig?
-        
+
         /// 是否关联多表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let multiSourceFlag: Bool?
-        
+
         /// 是否where参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let whereFlag: Bool?
-        
-        public init (ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, tableId: String? = nil, name: String? = nil, type: UInt64? = nil, ruleTemplateId: UInt64? = nil, ruleTemplateContent: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, sourceObjectDataType: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, operator: String? = nil, targetDatabaseId: String? = nil, targetDatabaseName: String? = nil, targetTableId: String? = nil, targetTableName: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, multiSourceFlag: Bool? = nil, whereFlag: Bool? = nil) {
+
+        public init(ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, tableId: String? = nil, name: String? = nil, type: UInt64? = nil, ruleTemplateId: UInt64? = nil, ruleTemplateContent: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, sourceObjectDataType: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, operator: String? = nil, targetDatabaseId: String? = nil, targetDatabaseName: String? = nil, targetTableId: String? = nil, targetTableName: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, multiSourceFlag: Bool? = nil, whereFlag: Bool? = nil) {
             self.ruleId = ruleId
             self.ruleGroupId = ruleGroupId
             self.tableId = tableId
@@ -2772,7 +2772,7 @@ extension Wedata {
             self.multiSourceFlag = multiSourceFlag
             self.whereFlag = whereFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case ruleGroupId = "RuleGroupId"
@@ -2804,32 +2804,32 @@ extension Wedata {
             case whereFlag = "WhereFlag"
         }
     }
-    
+
     /// 规则配置
     public struct RuleConfig: TCInputModel, TCOutputModel {
         /// 规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: UInt64?
-        
+
         /// 规则检测范围类型 1.全表  2.条件扫描
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionType: UInt64?
-        
+
         /// 检测范围表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let condition: String?
-        
+
         /// 目标检测范围表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetCondition: String?
-        
-        public init (ruleId: UInt64? = nil, conditionType: UInt64? = nil, condition: String? = nil, targetCondition: String? = nil) {
+
+        public init(ruleId: UInt64? = nil, conditionType: UInt64? = nil, condition: String? = nil, targetCondition: String? = nil) {
             self.ruleId = ruleId
             self.conditionType = conditionType
             self.condition = condition
             self.targetCondition = targetCondition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case conditionType = "ConditionType"
@@ -2837,189 +2837,189 @@ extension Wedata {
             case targetCondition = "TargetCondition"
         }
     }
-    
+
     /// RuleDimCnt 规则维度统计
     public struct RuleDimCnt: TCOutputModel {
         /// 1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
         public let dim: UInt64
-        
+
         /// count 数
         public let cnt: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case dim = "Dim"
             case cnt = "Cnt"
         }
     }
-    
+
     /// 规则维度数统计
     public struct RuleDimStat: TCOutputModel {
         /// 总数
         public let totalCnt: UInt64
-        
+
         /// 维度统计数
         public let dimCntList: [RuleDimCnt]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCnt = "TotalCnt"
             case dimCntList = "DimCntList"
         }
     }
-    
+
     /// 规则执行配置
     public struct RuleExecConfig: TCInputModel, TCOutputModel {
         /// 计算队列名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let queueName: String?
-        
+
         /// 执行资源组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executorGroupId: String?
-        
-        public init (queueName: String? = nil, executorGroupId: String? = nil) {
+
+        public init(queueName: String? = nil, executorGroupId: String? = nil) {
             self.queueName = queueName
             self.executorGroupId = executorGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case queueName = "QueueName"
             case executorGroupId = "ExecutorGroupId"
         }
     }
-    
+
     /// 概览趋势结果
     public struct RuleExecDateStat: TCOutputModel {
         /// 统计日期
         public let statDate: String
-        
+
         /// 告警数
         public let alarmCnt: UInt64
-        
+
         /// 阻塞数
         public let pipelineCnt: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case statDate = "StatDate"
             case alarmCnt = "AlarmCnt"
             case pipelineCnt = "PipelineCnt"
         }
     }
-    
+
     /// 规则执行结果导出结果
     public struct RuleExecExportResult: TCInputModel, TCOutputModel {
         /// 规则执行id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleExecId: UInt64?
-        
+
         /// 导出任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exportTasks: [ExportTaskInfo]?
-        
-        public init (ruleExecId: UInt64? = nil, exportTasks: [ExportTaskInfo]? = nil) {
+
+        public init(ruleExecId: UInt64? = nil, exportTasks: [ExportTaskInfo]? = nil) {
             self.ruleExecId = ruleExecId
             self.exportTasks = exportTasks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleExecId = "RuleExecId"
             case exportTasks = "ExportTasks"
         }
     }
-    
+
     /// 规则执行日志
     public struct RuleExecLog: TCOutputModel {
         /// 是否完成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finished: Bool?
-        
+
         /// 内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let log: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case finished = "Finished"
             case log = "Log"
         }
     }
-    
+
     /// 规则执行结果
     public struct RuleExecResult: TCOutputModel {
         /// 规则执行ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleExecId: UInt64?
-        
+
         /// 规则组执行ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupExecId: UInt64?
-        
+
         /// 规则组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupId: UInt64?
-        
+
         /// 规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: UInt64?
-        
+
         /// 规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleName: String?
-        
+
         /// 规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: UInt64?
-        
+
         /// 源字段详细类型，int string
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectDataTypeName: String?
-        
+
         /// 源字段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectValue: String?
-        
+
         /// 条件扫描WHERE条件表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionExpression: String?
-        
+
         /// 检测结果（1:检测通过，2：触发规则，3：检测失败）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let execResultStatus: UInt64?
-        
+
         /// 触发结果，告警发送成功, 阻断任务成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerResult: String?
-        
+
         /// 对比结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareResult: CompareResult?
-        
+
         /// 模版名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateName: String?
-        
+
         /// 质量维度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualityDim: UInt64?
-        
+
         /// 目标表-库表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetDBTableName: String?
-        
+
         /// 目标表-字段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetObjectValue: String?
-        
+
         /// 目标表-字段类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetObjectDataType: String?
-        
+
         /// 自定义模版sql表达式参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldConfig: RuleFieldConfig?
-        
+
         /// 源字段与目标字段关联条件on表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let relConditionExpr: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleExecId = "RuleExecId"
             case ruleGroupExecId = "RuleGroupExecId"
@@ -3042,46 +3042,46 @@ extension Wedata {
             case relConditionExpr = "RelConditionExpr"
         }
     }
-    
+
     /// 规则执行结果详情
     public struct RuleExecResultDetail: TCInputModel, TCOutputModel {
         /// 数据源id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: UInt64?
-        
+
         /// 数据源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceName: String?
-        
+
         /// 数据库guid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 表guid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 规则执行记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleExecResult: RuleExecResult?
-        
+
         /// 表负责人userId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableOwnerUserId: UInt64?
-        
-        public init (datasourceId: UInt64? = nil, datasourceName: String? = nil, databaseId: String? = nil, databaseName: String? = nil, instanceId: String? = nil, tableId: String? = nil, tableName: String? = nil, ruleExecResult: RuleExecResult? = nil, tableOwnerUserId: UInt64? = nil) {
+
+        public init(datasourceId: UInt64? = nil, datasourceName: String? = nil, databaseId: String? = nil, databaseName: String? = nil, instanceId: String? = nil, tableId: String? = nil, tableName: String? = nil, ruleExecResult: RuleExecResult? = nil, tableOwnerUserId: UInt64? = nil) {
             self.datasourceId = datasourceId
             self.datasourceName = datasourceName
             self.databaseId = databaseId
@@ -3092,7 +3092,7 @@ extension Wedata {
             self.ruleExecResult = ruleExecResult
             self.tableOwnerUserId = tableOwnerUserId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case datasourceId = "DatasourceId"
             case datasourceName = "DatasourceName"
@@ -3105,80 +3105,80 @@ extension Wedata {
             case tableOwnerUserId = "TableOwnerUserId"
         }
     }
-    
+
     /// 规则执行结果分页
     public struct RuleExecResultPage: TCOutputModel {
         /// 记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 规则执行结果
         public let items: [RuleExecResult]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 规则运行情况结果
     public struct RuleExecStat: TCOutputModel {
         /// 规则运行总数
         public let totalCnt: UInt64
-        
+
         /// 环比规则运行总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastTotalCnt: UInt64?
-        
+
         /// 规则运行总数占比
         public let totalCntRatio: Float
-        
+
         /// 规则运行总数环比变化
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastTotalCntRatio: Float?
-        
+
         /// 规则触发数
         public let triggerCnt: UInt64
-        
+
         /// 环比规则触发数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastTriggerCnt: UInt64?
-        
+
         /// 触发占总数占比
         public let triggerCntRatio: Float
-        
+
         /// 环比规则触发数变化
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastTriggerCntRatio: Float?
-        
+
         /// 规则报警数
         public let alarmCnt: UInt64
-        
+
         /// 环比规则报警数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastAlarmCnt: UInt64?
-        
+
         /// 报警占总数占比
         public let alarmCntRatio: Float
-        
+
         /// 环比报警数变化
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastAlarmCntRatio: Float?
-        
+
         /// 阻塞发生数
         public let pipelineCnt: UInt64
-        
+
         /// 环比阻塞发生数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastPipelineCnt: UInt64?
-        
+
         /// 阻塞占总数占比
         public let pipelineCntRatio: Float
-        
+
         /// 环比阻塞发生数变化
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastPipelineCntRatio: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCnt = "TotalCnt"
             case lastTotalCnt = "LastTotalCnt"
@@ -3198,99 +3198,99 @@ extension Wedata {
             case lastPipelineCntRatio = "LastPipelineCntRatio"
         }
     }
-    
+
     /// 规则变量替换
     public struct RuleFieldConfig: TCInputModel, TCOutputModel {
         /// where变量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let whereConfig: [FieldConfig]?
-        
+
         /// 库表变量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableConfig: [TableConfig]?
-        
-        public init (whereConfig: [FieldConfig]? = nil, tableConfig: [TableConfig]? = nil) {
+
+        public init(whereConfig: [FieldConfig]? = nil, tableConfig: [TableConfig]? = nil) {
             self.whereConfig = whereConfig
             self.tableConfig = tableConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case whereConfig = "WhereConfig"
             case tableConfig = "TableConfig"
         }
     }
-    
+
     /// 数据质量规则组
     public struct RuleGroup: TCInputModel, TCOutputModel {
         /// 规则组Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupId: UInt64?
-        
+
         /// 数据源Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: String?
-        
+
         /// 数据源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceName: String?
-        
+
         /// 数据源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceType: UInt64?
-        
+
         /// 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorType: UInt64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 关联数据表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 关联数据表Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 关联数据表负责人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableOwnerName: String?
-        
+
         /// 执行策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let execStrategy: RuleGroupExecStrategy?
-        
+
         /// 执行策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subscription: RuleGroupSubscribe?
-        
+
         /// 数据库id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 是否有权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let permission: Bool?
-        
+
         /// 已经配置的规则数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleCount: UInt64?
-        
+
         /// 监控状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorStatus: Bool?
-        
+
         /// 表负责人UserId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableOwnerUserId: UInt64?
-        
-        public init (ruleGroupId: UInt64? = nil, datasourceId: String? = nil, datasourceName: String? = nil, datasourceType: UInt64? = nil, monitorType: UInt64? = nil, updateTime: String? = nil, tableName: String? = nil, tableId: String? = nil, tableOwnerName: String? = nil, execStrategy: RuleGroupExecStrategy? = nil, subscription: RuleGroupSubscribe? = nil, databaseId: String? = nil, databaseName: String? = nil, permission: Bool? = nil, ruleCount: UInt64? = nil, monitorStatus: Bool? = nil, tableOwnerUserId: UInt64? = nil) {
+
+        public init(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, datasourceName: String? = nil, datasourceType: UInt64? = nil, monitorType: UInt64? = nil, updateTime: String? = nil, tableName: String? = nil, tableId: String? = nil, tableOwnerName: String? = nil, execStrategy: RuleGroupExecStrategy? = nil, subscription: RuleGroupSubscribe? = nil, databaseId: String? = nil, databaseName: String? = nil, permission: Bool? = nil, ruleCount: UInt64? = nil, monitorStatus: Bool? = nil, tableOwnerUserId: UInt64? = nil) {
             self.ruleGroupId = ruleGroupId
             self.datasourceId = datasourceId
             self.datasourceName = datasourceName
@@ -3309,7 +3309,7 @@ extension Wedata {
             self.monitorStatus = monitorStatus
             self.tableOwnerUserId = tableOwnerUserId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleGroupId = "RuleGroupId"
             case datasourceId = "DatasourceId"
@@ -3330,66 +3330,66 @@ extension Wedata {
             case tableOwnerUserId = "TableOwnerUserId"
         }
     }
-    
+
     /// 规则组执行结果
     public struct RuleGroupExecResult: TCInputModel, TCOutputModel {
         /// 规则组执行ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupExecId: UInt64?
-        
+
         /// 规则组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupId: UInt64?
-        
+
         /// 执行触发类型（1：手动触发， 2：调度事中触发，3：周期调度触发）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerType: UInt64?
-        
+
         /// 执行时间 yyyy-MM-dd HH:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let execTime: String?
-        
+
         /// 执行状态（1.已提交 2.检测中 3.正常 4.异常）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
-        
+
         /// 异常规则数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmRuleCount: UInt64?
-        
+
         /// 总规则数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalRuleCount: UInt64?
-        
+
         /// 源表负责人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableOwnerName: String?
-        
+
         /// 源表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 数据库id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 数据源ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: String?
-        
+
         /// 有无权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let permission: Bool?
-        
+
         /// 执行详情，调度计划或者关联生产任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let execDetail: String?
-        
-        public init (ruleGroupExecId: UInt64? = nil, ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execTime: String? = nil, status: UInt64? = nil, alarmRuleCount: UInt64? = nil, totalRuleCount: UInt64? = nil, tableOwnerName: String? = nil, tableName: String? = nil, tableId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, permission: Bool? = nil, execDetail: String? = nil) {
+
+        public init(ruleGroupExecId: UInt64? = nil, ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execTime: String? = nil, status: UInt64? = nil, alarmRuleCount: UInt64? = nil, totalRuleCount: UInt64? = nil, tableOwnerName: String? = nil, tableName: String? = nil, tableId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, permission: Bool? = nil, execDetail: String? = nil) {
             self.ruleGroupExecId = ruleGroupExecId
             self.ruleGroupId = ruleGroupId
             self.triggerType = triggerType
@@ -3405,7 +3405,7 @@ extension Wedata {
             self.permission = permission
             self.execDetail = execDetail
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleGroupExecId = "RuleGroupExecId"
             case ruleGroupId = "RuleGroupId"
@@ -3423,78 +3423,78 @@ extension Wedata {
             case execDetail = "ExecDetail"
         }
     }
-    
+
     /// 规则组执行结果分页
     public struct RuleGroupExecResultPage: TCInputModel, TCOutputModel {
         /// 记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 规则组执行结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleGroupExecResult]?
-        
-        public init (totalCount: UInt64? = nil, items: [RuleGroupExecResult]? = nil) {
+
+        public init(totalCount: UInt64? = nil, items: [RuleGroupExecResult]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 质量规则执行策略
     public struct RuleGroupExecStrategy: TCOutputModel {
         /// 规则组Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupId: UInt64?
-        
+
         /// 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorType: UInt64?
-        
+
         /// 计算队列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let execQueue: String?
-        
+
         /// 执行资源组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executorGroupId: String?
-        
+
         /// 执行资源组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executorGroupName: String?
-        
+
         /// 关联的生产调度任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tasks: [ProdSchedulerTask]?
-        
+
         /// 周期开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 周期结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 调度周期类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleType: String?
-        
+
         /// 延迟调度时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let delayTime: UInt64?
-        
+
         /// 间隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleStep: UInt64?
-        
+
         /// 时间指定
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskAction: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleGroupId = "RuleGroupId"
             case monitorType = "MonitorType"
@@ -3510,46 +3510,46 @@ extension Wedata {
             case taskAction = "TaskAction"
         }
     }
-    
+
     /// 规则组监控业务视图
     public struct RuleGroupMonitor: TCInputModel, TCOutputModel {
         /// 规则组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupId: UInt64?
-        
+
         /// 表guid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 数据源id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: UInt64?
-        
+
         /// 数据库guid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorType: UInt64?
-        
+
         /// 监控状态 0.false 1.true
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorStatus: UInt64?
-        
+
         /// 规则组创建人id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUserId: UInt64?
-        
+
         /// 规则组创建人昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUserName: String?
-        
+
         /// 规则创建时间 yyyy-MM-dd HH:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
-        public init (ruleGroupId: UInt64? = nil, tableId: String? = nil, datasourceId: UInt64? = nil, databaseId: String? = nil, monitorType: UInt64? = nil, monitorStatus: UInt64? = nil, createUserId: UInt64? = nil, createUserName: String? = nil, createTime: String? = nil) {
+
+        public init(ruleGroupId: UInt64? = nil, tableId: String? = nil, datasourceId: UInt64? = nil, databaseId: String? = nil, monitorType: UInt64? = nil, monitorStatus: UInt64? = nil, createUserId: UInt64? = nil, createUserName: String? = nil, createTime: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.tableId = tableId
             self.datasourceId = datasourceId
@@ -3560,7 +3560,7 @@ extension Wedata {
             self.createUserName = createUserName
             self.createTime = createTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleGroupId = "RuleGroupId"
             case tableId = "TableId"
@@ -3573,90 +3573,90 @@ extension Wedata {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 规则组监控业务分页视图
     public struct RuleGroupMonitorPage: TCInputModel, TCOutputModel {
         /// 记录总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleGroupMonitor]?
-        
-        public init (totalCount: UInt64? = nil, items: [RuleGroupMonitor]? = nil) {
+
+        public init(totalCount: UInt64? = nil, items: [RuleGroupMonitor]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 规则组分页
     public struct RuleGroupPage: TCOutputModel {
         /// 记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 规则组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleGroup]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 规则组调度信息
     public struct RuleGroupSchedulerInfo: TCOutputModel {
         /// 规则组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: Int64?
-        
+
         /// 1:未配置 2:关联生产调度 3:离线周期检测
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorType: Int64?
-        
+
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 循环类型简写
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleType: String?
-        
+
         /// 循环步长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleStep: Int64?
-        
+
         /// 循环类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleDesc: String?
-        
+
         /// 离线周期检测下指定时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskAction: String?
-        
+
         /// 离线周期检测下延迟时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let delayTime: Int64?
-        
+
         /// 离线周期检测下注册到任务调度的任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleTaskId: String?
-        
+
         /// 关联生产调度下关联的任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let associateTaskIds: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case monitorType = "MonitorType"
@@ -3671,32 +3671,32 @@ extension Wedata {
             case associateTaskIds = "AssociateTaskIds"
         }
     }
-    
+
     /// 数据质量规则组订阅信息
     public struct RuleGroupSubscribe: TCInputModel, TCOutputModel {
         /// 规则组Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroupId: UInt64?
-        
+
         /// 订阅接收人列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receivers: [SubscribeReceiver]?
-        
+
         /// 订阅方式 1.邮件email  2.短信sms
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subscribeType: [UInt64]?
-        
+
         /// 群机器人配置的webhook信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webHooks: [SubscribeWebHook]?
-        
-        public init (ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, webHooks: [SubscribeWebHook]? = nil) {
+
+        public init(ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, webHooks: [SubscribeWebHook]? = nil) {
             self.ruleGroupId = ruleGroupId
             self.receivers = receivers
             self.subscribeType = subscribeType
             self.webHooks = webHooks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleGroupId = "RuleGroupId"
             case receivers = "Receivers"
@@ -3704,70 +3704,70 @@ extension Wedata {
             case webHooks = "WebHooks"
         }
     }
-    
+
     /// 表绑定规则组信息
     public struct RuleGroupTable: TCOutputModel {
         /// 表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInfo: RuleGroupTableInnerInfo?
-        
+
         /// 规则组调度信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleGroups: [RuleGroupSchedulerInfo]?
-        
+
         /// 订阅者信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subscriptions: [RuleGroupSubscribe]?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableInfo = "TableInfo"
             case ruleGroups = "RuleGroups"
             case subscriptions = "Subscriptions"
         }
     }
-    
+
     /// 规则组关联表信息
     public struct RuleGroupTableInnerInfo: TCOutputModel {
         /// 表ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 数据源ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceId: String?
-        
+
         /// 数据源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceName: String?
-        
+
         /// 数据源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceType: Int64?
-        
+
         /// 数据库ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: Int64?
-        
+
         /// 责任人ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableId = "TableId"
             case tableName = "TableName"
@@ -3781,37 +3781,37 @@ extension Wedata {
             case userId = "UserId"
         }
     }
-    
+
     /// 规则操作记录业务
     public struct RuleHistory: TCInputModel, TCOutputModel {
         /// 规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: UInt64?
-        
+
         /// 变更时间 yyyy-MM-dd HH:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alterTime: String?
-        
+
         /// 变更内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alterContent: String?
-        
+
         /// 操作账号UId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorUserId: UInt64?
-        
+
         /// 操作人名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorName: String?
-        
-        public init (ruleId: UInt64? = nil, alterTime: String? = nil, alterContent: String? = nil, operatorUserId: UInt64? = nil, operatorName: String? = nil) {
+
+        public init(ruleId: UInt64? = nil, alterTime: String? = nil, alterContent: String? = nil, operatorUserId: UInt64? = nil, operatorName: String? = nil) {
             self.ruleId = ruleId
             self.alterTime = alterTime
             self.alterContent = alterContent
             self.operatorUserId = operatorUserId
             self.operatorName = operatorName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case alterTime = "AlterTime"
@@ -3820,117 +3820,117 @@ extension Wedata {
             case operatorName = "OperatorName"
         }
     }
-    
+
     /// 数据质量规则操作历史分页
     public struct RuleHistoryPage: TCInputModel, TCOutputModel {
         /// 记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 规则操作历史列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleHistory]?
-        
-        public init (totalCount: UInt64? = nil, items: [RuleHistory]? = nil) {
+
+        public init(totalCount: UInt64? = nil, items: [RuleHistory]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 数据质量规则分页
     public struct RulePage: TCInputModel, TCOutputModel {
         /// 记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [Rule]?
-        
-        public init (totalCount: UInt64? = nil, items: [Rule]? = nil) {
+
+        public init(totalCount: UInt64? = nil, items: [Rule]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 规则模版
     public struct RuleTemplate: TCOutputModel {
         /// 规则模版ID
         public let ruleTemplateId: UInt64
-        
+
         /// 规则模版名称
         public let name: String
-        
+
         /// 规则模版描述
         public let description: String
-        
+
         /// 模版类型（1：系统模版，2：自定义）
         public let type: UInt64
-        
+
         /// 规则适用的源数据对象类型（1：常量，2：离线表级，3：离线字段级别）
         public let sourceObjectType: UInt64
-        
+
         /// 规则适用的源数据对象类型（1：数值，2：字符串）
         public let sourceObjectDataType: UInt64
-        
+
         /// 规则模版源侧内容，区分引擎，JSON 结构
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceContent: String?
-        
+
         /// 源数据适用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceEngineTypes: [UInt64]?
-        
+
         /// 规则所属质量维度（1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualityDim: UInt64?
-        
+
         /// 规则支持的比较方式类型（1：固定值比较，大于、小于，大于等于等 2：波动值比较，绝对值、上升、下降）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareType: UInt64?
-        
+
         /// 引用次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let citationCount: UInt64?
-        
+
         /// 创建人id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: UInt64?
-        
+
         /// 创建人昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
-        
+
         /// 更新时间yyyy-MM-dd HH:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 是否添加where参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let whereFlag: Bool?
-        
+
         /// 是否关联多个库表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let multiSourceFlag: Bool?
-        
+
         /// 自定义模板SQL表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sqlExpression: String?
-        
+
         /// 模版子维度，0.父维度类型,1.一致性: 枚举范围一致性,2.一致性：数值范围一致性,3.一致性：字段数据相关性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subQualityDim: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleTemplateId = "RuleTemplateId"
             case name = "Name"
@@ -3952,28 +3952,28 @@ extension Wedata {
             case subQualityDim = "SubQualityDim"
         }
     }
-    
+
     /// 规则模版变更历史记录视图
     public struct RuleTemplateHistory: TCInputModel, TCOutputModel {
         /// 模版ID
         public let templateId: UInt64?
-        
+
         /// 版本
         public let version: UInt64?
-        
+
         /// 用户Id
         public let userId: UInt64?
-        
+
         /// 用户昵称
         public let userName: String?
-        
+
         /// 变更类型1.新增2.修改3.删除
         public let alterType: UInt64?
-        
+
         /// 变更内容
         public let alterContent: String?
-        
-        public init (templateId: UInt64? = nil, version: UInt64? = nil, userId: UInt64? = nil, userName: String? = nil, alterType: UInt64? = nil, alterContent: String? = nil) {
+
+        public init(templateId: UInt64? = nil, version: UInt64? = nil, userId: UInt64? = nil, userName: String? = nil, alterType: UInt64? = nil, alterContent: String? = nil) {
             self.templateId = templateId
             self.version = version
             self.userId = userId
@@ -3981,7 +3981,7 @@ extension Wedata {
             self.alterType = alterType
             self.alterContent = alterContent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case version = "Version"
@@ -3991,63 +3991,63 @@ extension Wedata {
             case alterContent = "AlterContent"
         }
     }
-    
+
     /// 规则模版分页
     public struct RuleTemplateHistoryPage: TCInputModel, TCOutputModel {
         /// 总记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 记录列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleTemplateHistory]?
-        
-        public init (totalCount: UInt64? = nil, items: [RuleTemplateHistory]? = nil) {
+
+        public init(totalCount: UInt64? = nil, items: [RuleTemplateHistory]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// RuleTemplatePage 结果
     public struct RuleTemplatePage: TCOutputModel {
         /// 记录数
         public let totalCount: UInt64
-        
+
         /// 模版列表
         public let items: [RuleTemplate]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 规则执行结果
     public struct RunnerRuleExecResult: TCInputModel {
         /// rule id
         public let ruleId: UInt64
-        
+
         /// rule exec id
         public let ruleExecId: UInt64
-        
+
         /// exec state
         public let state: String
-        
+
         /// 结果
         public let data: [String]
-        
-        public init (ruleId: UInt64, ruleExecId: UInt64, state: String, data: [String]) {
+
+        public init(ruleId: UInt64, ruleExecId: UInt64, state: String, data: [String]) {
             self.ruleId = ruleId
             self.ruleExecId = ruleExecId
             self.state = state
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case ruleExecId = "RuleExecId"
@@ -4055,44 +4055,44 @@ extension Wedata {
             case data = "Data"
         }
     }
-    
+
     /// 集成离线任务实例信息
     public struct SchedulerTaskInstanceInfo: TCInputModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 实例运行时间
         public let curRunDate: String
-        
-        public init (taskId: String, curRunDate: String) {
+
+        public init(taskId: String, curRunDate: String) {
             self.taskId = taskId
             self.curRunDate = curRunDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case curRunDate = "CurRunDate"
         }
     }
-    
+
     /// 元数据字段信息
     public struct SchemaDetail: TCOutputModel {
         /// 列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columnKey: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case columnKey = "ColumnKey"
             case description = "Description"
@@ -4100,28 +4100,28 @@ extension Wedata {
             case type = "Type"
         }
     }
-    
+
     /// 查询实例条件
     public struct SearchCondition: TCInputModel {
         /// 查询框架，必选
         public let instance: SearchConditionInstance
-        
+
         /// 查询关键字（任务Id精确匹配，任务名称模糊匹配），可选
         public let keyword: String?
-        
+
         /// 排序顺序（asc，desc）
         public let sort: String?
-        
+
         /// 排序列（costTime 运行耗时，startTime 开始时间，state 实例状态，curRunDate 数据时间）
         public let sortCol: String?
-        
-        public init (instance: SearchConditionInstance, keyword: String? = nil, sort: String? = nil, sortCol: String? = nil) {
+
+        public init(instance: SearchConditionInstance, keyword: String? = nil, sort: String? = nil, sortCol: String? = nil) {
             self.instance = instance
             self.keyword = keyword
             self.sort = sort
             self.sortCol = sortCol
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instance = "Instance"
             case keyword = "Keyword"
@@ -4129,78 +4129,78 @@ extension Wedata {
             case sortCol = "SortCol"
         }
     }
-    
+
     /// 查询框架
     public struct SearchConditionInstance: TCInputModel {
         /// 执行空间 "DRY_RUN"
         public let executionSpace: UInt64
-        
+
         /// 产品名称，可选
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productName: UInt64?
-        
+
         /// 资源组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroup: UInt64?
-        
-        public init (executionSpace: UInt64, productName: UInt64? = nil, resourceGroup: UInt64? = nil) {
+
+        public init(executionSpace: UInt64, productName: UInt64? = nil, resourceGroup: UInt64? = nil) {
             self.executionSpace = executionSpace
             self.productName = productName
             self.resourceGroup = resourceGroup
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case executionSpace = "ExecutionSpace"
             case productName = "ProductName"
             case resourceGroup = "ResourceGroup"
         }
     }
-    
+
     /// 搜索条件
     public struct SearchConditionInstanceNew: TCInputModel {
         /// 执行空间 "DRY_RUN"
         public let executionSpace: String
-        
+
         /// 产品名称，可选
         public let productName: String?
-        
+
         /// 资源组
         public let resourceGroup: String?
-        
-        public init (executionSpace: String, productName: String? = nil, resourceGroup: String? = nil) {
+
+        public init(executionSpace: String, productName: String? = nil, resourceGroup: String? = nil) {
             self.executionSpace = executionSpace
             self.productName = productName
             self.resourceGroup = resourceGroup
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case executionSpace = "ExecutionSpace"
             case productName = "ProductName"
             case resourceGroup = "ResourceGroup"
         }
     }
-    
+
     /// 查询实例条件(新)
     public struct SearchConditionNew: TCInputModel {
         /// 查询框架，必选
         public let instance: SearchConditionInstanceNew
-        
+
         /// 查询关键字（任务Id精确匹配，任务名称模糊匹配），可选
         public let keyword: String?
-        
+
         /// 排序顺序（asc，desc）
         public let sort: String?
-        
+
         /// 排序列（costTime 运行耗时，startTime 开始时间，state 实例状态，curRunDate 数据时间）
         public let sortCol: String?
-        
-        public init (instance: SearchConditionInstanceNew, keyword: String? = nil, sort: String? = nil, sortCol: String? = nil) {
+
+        public init(instance: SearchConditionInstanceNew, keyword: String? = nil, sort: String? = nil, sortCol: String? = nil) {
             self.instance = instance
             self.keyword = keyword
             self.sort = sort
             self.sortCol = sortCol
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instance = "Instance"
             case keyword = "Keyword"
@@ -4208,104 +4208,104 @@ extension Wedata {
             case sortCol = "SortCol"
         }
     }
-    
+
     /// 简单Task信息
     public struct SimpleTaskInfo: TCInputModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 任务名
         public let taskName: String
-        
-        public init (taskId: String, taskName: String) {
+
+        public init(taskId: String, taskName: String) {
             self.taskId = taskId
             self.taskName = taskName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
         }
     }
-    
+
     /// 上游节点字段信息
     public struct SourceFieldInfo: TCInputModel {
         /// 字段名称
         public let fieldName: String?
-        
+
         /// 字段类型
         public let fieldType: String?
-        
+
         /// 字段别名
         public let alias: String?
-        
-        public init (fieldName: String? = nil, fieldType: String? = nil, alias: String? = nil) {
+
+        public init(fieldName: String? = nil, fieldType: String? = nil, alias: String? = nil) {
             self.fieldName = fieldName
             self.fieldType = fieldType
             self.alias = alias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fieldName = "FieldName"
             case fieldType = "FieldType"
             case alias = "Alias"
         }
     }
-    
+
     /// 数据质量数据对象
     public struct SourceObject: TCInputModel, TCOutputModel {
         /// 源字段详细类型，int、string
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectDataTypeName: String?
-        
+
         /// 源字段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectValue: String?
-        
-        public init (sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil) {
+
+        public init(sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil) {
             self.sourceObjectDataTypeName = sourceObjectDataTypeName
             self.sourceObjectValue = sourceObjectValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceObjectDataTypeName = "SourceObjectDataTypeName"
             case sourceObjectValue = "SourceObjectValue"
         }
     }
-    
+
     /// 速度值对象
     public struct SpeedValue: TCOutputModel {
         /// 带毫秒的时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let time: UInt64?
-        
+
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let speed: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case speed = "Speed"
         }
     }
-    
+
     /// 提交工作流实体
     public struct SubmitWorkflow: TCOutputModel {
         /// 被提交的任务id集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskIds: [String]?
-        
+
         /// 执行结果
         public let result: Bool
-        
+
         /// 执行情况备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorDesc: String?
-        
+
         /// 执行情况id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
             case result = "Result"
@@ -4313,76 +4313,76 @@ extension Wedata {
             case errorId = "ErrorId"
         }
     }
-    
+
     /// 订阅接收人
     public struct SubscribeReceiver: TCInputModel, TCOutputModel {
         /// 接收人Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverUserId: UInt64?
-        
+
         /// 接收人名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverName: String?
-        
-        public init (receiverUserId: UInt64? = nil, receiverName: String? = nil) {
+
+        public init(receiverUserId: UInt64? = nil, receiverName: String? = nil) {
             self.receiverUserId = receiverUserId
             self.receiverName = receiverName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case receiverUserId = "ReceiverUserId"
             case receiverName = "ReceiverName"
         }
     }
-    
+
     /// 群机器人订阅配置
     public struct SubscribeWebHook: TCInputModel, TCOutputModel {
         /// 群机器人类型，当前支持飞书
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hookType: String?
-        
+
         /// 群机器人webhook地址，配置方式参考https://cloud.tencent.com/document/product/1254/70736
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hookAddress: String?
-        
-        public init (hookType: String? = nil, hookAddress: String? = nil) {
+
+        public init(hookType: String? = nil, hookAddress: String? = nil) {
             self.hookType = hookType
             self.hookAddress = hookAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hookType = "HookType"
             case hookAddress = "HookAddress"
         }
     }
-    
+
     /// 规则表变量替换
     public struct TableConfig: TCInputModel, TCOutputModel {
         /// 数据库Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 表Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表Key
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableKey: String?
-        
+
         /// 字段变量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldConfig: [FieldConfig]?
-        
-        public init (databaseId: String? = nil, databaseName: String? = nil, tableId: String? = nil, tableName: String? = nil, tableKey: String? = nil, fieldConfig: [FieldConfig]? = nil) {
+
+        public init(databaseId: String? = nil, databaseName: String? = nil, tableId: String? = nil, tableName: String? = nil, tableKey: String? = nil, fieldConfig: [FieldConfig]? = nil) {
             self.databaseId = databaseId
             self.databaseName = databaseName
             self.tableId = tableId
@@ -4390,7 +4390,7 @@ extension Wedata {
             self.tableKey = tableKey
             self.fieldConfig = fieldConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseId = "DatabaseId"
             case databaseName = "DatabaseName"
@@ -4400,61 +4400,61 @@ extension Wedata {
             case fieldConfig = "FieldConfig"
         }
     }
-    
+
     /// 元数据表详细信息
     public struct TableInfo: TCOutputModel {
         /// 表Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableId = "TableId"
             case tableName = "TableName"
         }
     }
-    
+
     /// 表质量详情
     public struct TableQualityDetail: TCOutputModel {
         /// 数据库id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 表id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableId: String?
-        
+
         /// 表名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表责任人ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerUserId: Int64?
-        
+
         /// 表责任人名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerUserName: String?
-        
+
         /// 库得分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseScore: Float?
-        
+
         /// 表得分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableScore: Float?
-        
+
         /// 表环比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastPeriodRatio: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseId = "DatabaseId"
             case databaseName = "DatabaseName"
@@ -4467,115 +4467,115 @@ extension Wedata {
             case lastPeriodRatio = "LastPeriodRatio"
         }
     }
-    
+
     /// 表质量分分页结果
     public struct TableQualityDetailPage: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 表质量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [TableQualityDetail]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
         }
     }
-    
+
     /// 表评分统计信息
     public struct TableScoreStatisticsInfo: TCOutputModel {
         /// 等级 1、2、3、4、5
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: Int64?
-        
+
         /// 占比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scale: Int64?
-        
+
         /// 表数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableNumber: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case level = "Level"
             case scale = "Scale"
             case tableNumber = "TableNumber"
         }
     }
-    
+
     /// 任务告警信息
     public struct TaskAlarmInfo: TCInputModel, TCOutputModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 规则名称
         public let regularName: String
-        
+
         /// 规则状态(0表示关闭，1表示打开)
         public let regularStatus: UInt64
-        
+
         /// 告警级别(0表示普通，1表示重要，2表示紧急)
         public let alarmLevel: UInt64
-        
+
         /// 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
         /// ，4写入速度，5读取速度，6读取吞吐，7写入吞吐, 8脏数据字节数，9脏数据条数
         public let alarmIndicator: UInt64
-        
+
         /// 告警方式,多个用逗号隔开（1:邮件，2:短信，3:微信，4:语音，5:代表企业微信，6:http）
         public let alarmWay: String
-        
+
         /// 告警接收人ID，多个用逗号隔开
         public let alarmRecipientId: String
-        
+
         /// 任务类型(201表示实时，202表示离线)
         public let taskType: UInt64
-        
+
         /// 告警接收人昵称，多个用逗号隔开
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmRecipientName: String?
-        
+
         /// 主键ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 规则ID
         public let regularId: String?
-        
+
         /// 指标阈值(1表示离线任务第一次运行失败，2表示离线任务所有重试完成后失败)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerType: UInt64?
-        
+
         /// 预计的超时时间(分钟级别)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let estimatedTime: UInt64?
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 创建人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creater: String?
-        
+
         /// 告警指标描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmIndicatorDesc: String?
-        
+
         /// 实时任务告警需要的参数，1是大于2是小于
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: UInt64?
-        
+
         /// 节点id，多个逗号分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeId: String?
-        
+
         /// 节点名称，多个逗号分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
-        
-        public init (taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String? = nil, regularId: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, projectId: String? = nil, creater: String? = nil, alarmIndicatorDesc: String? = nil, operator: UInt64? = nil, nodeId: String? = nil, nodeName: String? = nil) {
+
+        public init(taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String? = nil, regularId: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, projectId: String? = nil, creater: String? = nil, alarmIndicatorDesc: String? = nil, operator: UInt64? = nil, nodeId: String? = nil, nodeName: String? = nil) {
             self.taskId = taskId
             self.regularName = regularName
             self.regularStatus = regularStatus
@@ -4596,7 +4596,7 @@ extension Wedata {
             self.nodeId = nodeId
             self.nodeName = nodeName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case regularName = "RegularName"
@@ -4619,41 +4619,41 @@ extension Wedata {
             case nodeName = "NodeName"
         }
     }
-    
+
     /// 任务信息
     public struct TaskCanvasInfo: TCOutputModel {
         /// 任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 任务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
-        
+
         /// 工作流id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowId: String?
-        
+
         /// 工作流名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowName: String?
-        
+
         /// 项目名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
-        
+
         /// 项目标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectIdent: String?
-        
+
         /// 任务状态，'Y','F','O','T','INVALID' 分别表示调度中、已停止、已暂停、停止中、已失效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 任务类型id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskTypeId: UInt64?
-        
+
         /// 任务类型描述，其中任务类型id和任务类型描述的对应的关系为
         /// 20	通用数据同步任务
         /// 21	JDBC SQL
@@ -4707,59 +4707,59 @@ extension Wedata {
         /// 10000	自定义业务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskTypeDesc: String?
-        
+
         /// 项目id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 文件夹名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let folderName: String?
-        
+
         /// 文件夹id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let folderId: String?
-        
+
         /// 最近提交时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstSubmitTime: String?
-        
+
         /// 首次运行时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstRunTime: String?
-        
+
         /// 调度计划展示描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheduleDesc: String?
-        
+
         /// 负责人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inCharge: String?
-        
+
         /// 调度周期类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleUnit: String?
-        
+
         /// 画布x轴坐标点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let leftCoordinate: Float?
-        
+
         /// 画布y轴坐标点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topCoordinate: Float?
-        
+
         /// 跨工作流虚拟任务标识；true标识跨工作流任务；false标识本工作流任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualFlag: Bool?
-        
+
         /// 弹性周期配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskAction: String?
-        
+
         /// 延迟时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let delayTime: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
@@ -4785,252 +4785,252 @@ extension Wedata {
             case delayTime = "DelayTime"
         }
     }
-    
+
     /// 任务扩展信息
     public struct TaskExtInfo: TCInputModel, TCOutputModel {
         /// 键
         public let key: String?
-        
+
         /// 值
         public let value: String?
-        
-        public init (key: String? = nil, value: String? = nil) {
+
+        public init(key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 任务信息数据
     public struct TaskInfoData: TCOutputModel {
         /// 任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 任务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
-        
+
         /// 工作流id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowId: String?
-        
+
         /// 工作流名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowName: String?
-        
+
         /// 项目名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
-        
+
         /// 项目标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectIdent: String?
-        
+
         /// 任务状态，'Y','F','O','T','INVALID' 分别表示调度中、已停止、已暂停、停止中、已失效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 项目id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 文件夹名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let folderName: String?
-        
+
         /// 文件夹id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let folderId: String?
-        
+
         /// 负责人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inCharge: String?
-        
+
         /// 跨工作流虚拟任务标识；true标识跨工作流任务；false标识本工作流任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualFlag: Bool?
-        
+
         /// 延时实例生成时间(延时调度)，转换为分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let delayTime: UInt64?
-        
+
         /// crontab表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let crontabExpression: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpdate: String?
-        
+
         /// 生效日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 结束日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 执行时间左闭区间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executionStartTime: String?
-        
+
         /// 执行时间右闭区间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executionEndTime: String?
-        
+
         /// 周期类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleType: Int64?
-        
+
         /// 步长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleStep: Int64?
-        
+
         /// 延时执行时间（延时执行) 对应为 开始时间 状态为分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startupTime: Int64?
-        
+
         /// 重试等待时间,单位分钟
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retryWait: Int64?
-        
+
         /// 是否可重试
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retriable: Int64?
-        
+
         /// 调度扩展信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskAction: String?
-        
+
         /// 运行次数限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tryLimit: Int64?
-        
+
         /// 运行优先级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runPriority: Int64?
-        
+
         /// 任务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskType: Int64?
-        
+
         /// 指定的运行节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let brokerIp: String?
-        
+
         /// 集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 最小数据时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minDateTime: String?
-        
+
         /// 最大数据时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxDateTime: String?
-        
+
         /// 是否自身依赖 是1 否2 并行3
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selfDepend: Int64?
-        
+
         /// 扩展属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskExt: [TaskExtInfo]?
-        
+
         /// 任务备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notes: String?
-        
+
         /// 队列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yarnQueue: String?
-        
+
         /// 任务版本是否已提交
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let submit: Bool?
-        
+
         /// 最新调度计划变更时间 仅生产态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastSchedulerCommitTime: String?
-        
+
         /// 仅生产态存储于生产态序列化任务信息, 减少base CPU重复密集计算
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let normalizedJobStartTime: String?
-        
+
         /// 源数据源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceServer: String?
-        
+
         /// 创建者
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creater: String?
-        
+
         /// 分支，依赖关系，and/or, 默认and
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dependencyRel: String?
-        
+
         /// 是否支持工作流依赖 yes / no 默认 no
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dependencyWorkflow: String?
-        
+
         /// 任务参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let params: [ParamInfo]?
-        
+
         /// 最后修改的人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateUser: String?
-        
+
         /// 最后修改的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 最后修改的人Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateUserId: String?
-        
+
         /// 调度计划
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schedulerDesc: String?
-        
+
         /// 资源组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroup: String?
-        
+
         /// 版本提交说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionDesc: String?
-        
+
         /// 真实工作流Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realWorkflowId: String?
-        
+
         /// 目标数据源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetServer: String?
-        
+
         /// 依赖配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dependencyConfigs: [DependencyConfig]?
-        
+
         /// 虚拟任务状态1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualTaskStatus: String?
-        
+
         /// 虚拟任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualTaskId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
@@ -5090,21 +5090,21 @@ extension Wedata {
             case virtualTaskId = "VirtualTaskId"
         }
     }
-    
+
     /// 任务分页数据查询
     public struct TaskInfoDataPage: TCOutputModel {
         /// 页号
         public let pageNumber: UInt64
-        
+
         /// 页大小
         public let pageSize: UInt64
-        
+
         /// 任务集合信息
         public let items: [TaskInfoData]
-        
+
         /// 总页数1
         public let totalCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
             case pageSize = "PageSize"
@@ -5112,34 +5112,34 @@ extension Wedata {
             case totalCount = "TotalCount"
         }
     }
-    
+
     /// 任务属性
     public struct TaskInnerInfo: TCInputModel, TCOutputModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 任务名
         public let taskName: String
-        
+
         /// 工作流id
         public let workflowId: String
-        
+
         /// 周期类型  0:crontab类型, 1:分钟，2:小时，3:天，4:周，5:月，6:一次性，7:用户驱动，10:弹性周期 周,11:弹性周期 月,12:年,13:即时触发Instant类型，与正常周期调度任务逻辑隔离
         public let cycleType: Int64
-        
+
         /// 虚拟任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualTaskId: String?
-        
+
         /// 虚拟任务标记
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualFlag: Bool?
-        
+
         /// 真实任务工作流id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realWorkflowId: String?
-        
-        public init (taskId: String, taskName: String, workflowId: String, cycleType: Int64, virtualTaskId: String? = nil, virtualFlag: Bool? = nil, realWorkflowId: String? = nil) {
+
+        public init(taskId: String, taskName: String, workflowId: String, cycleType: Int64, virtualTaskId: String? = nil, virtualFlag: Bool? = nil, realWorkflowId: String? = nil) {
             self.taskId = taskId
             self.taskName = taskName
             self.workflowId = workflowId
@@ -5148,7 +5148,7 @@ extension Wedata {
             self.virtualFlag = virtualFlag
             self.realWorkflowId = realWorkflowId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
@@ -5159,72 +5159,72 @@ extension Wedata {
             case realWorkflowId = "RealWorkflowId"
         }
     }
-    
+
     /// 离线任务实例详情
     public struct TaskInstanceDetail: TCOutputModel {
         /// 实例id
         public let taskRunId: String
-        
+
         /// 任务id
         public let taskId: String
-        
+
         /// 实例数据运行时间
         public let curRunDate: String
-        
+
         /// 实例实际运行时间
         public let issueDate: String
-        
+
         /// InLong任务Id
         public let inlongTaskId: String
-        
+
         /// 执行资源组id
         public let executorGroupId: String
-        
+
         /// 任务类型(1 调试运行,2 调度执行)
         public let taskRunType: UInt64
-        
+
         /// 任务状态(1 正在执行,2 成功,3 失败,4 等待终止,5 正在终止,6 已终止,7 终止失败,9 等待执行)
         public let state: UInt64
-        
+
         /// 实例开始运行时间，格式：yyyy-MM-dd HH:mm:ss
         public let startTime: String
-        
+
         /// 实例结束运行时间，格式：yyyy-MM-dd HH:mm:ss
         public let endTime: String
-        
+
         /// Broker IP
         public let brokerIp: String
-        
+
         /// 运行实例的EKS Pod名称
         public let podName: String
-        
+
         /// 下一个调度周期的数据运行时间
         public let nextRunDate: String
-        
+
         /// 创建者的账号Id
         public let createUin: UInt64
-        
+
         /// 操作者的账号Id
         public let operatorUin: UInt64
-        
+
         /// 拥有者的账号Id
         public let ownerUin: UInt64
-        
+
         /// App Id
         public let appId: UInt64
-        
+
         /// WeData项目id
         public let projectId: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 更新时间
         public let updateTime: String
-        
+
         /// 任务名称
         public let taskName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskRunId = "TaskRunId"
             case taskId = "TaskId"
@@ -5249,97 +5249,97 @@ extension Wedata {
             case taskName = "TaskName"
         }
     }
-    
+
     /// 任务实例信息
     public struct TaskInstanceInfo: TCOutputModel {
         /// 任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 任务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
-        
+
         /// 工作流id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowId: String?
-        
+
         /// 工作流名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowName: String?
-        
+
         /// 项目名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
-        
+
         /// 项目标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectIdent: String?
-        
+
         /// 实例状态，0等待事件，1等待上游，2等待运行，3运行中，4正在终止，5失败重试，6失败，7成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let state: Int64?
-        
+
         /// 任务类型id，26离线同步，30Python，31PySpark，32DLC，33Impala，34Hive SQL，35Shell，36Spark SQL，39Spark，40CDW PG，92MapReduce
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskTypeId: UInt64?
-        
+
         /// 任务类型描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskTypeDesc: String?
-        
+
         /// 项目id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 文件夹名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let folderName: String?
-        
+
         /// 文件夹id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let folderId: String?
-        
+
         /// 调度计划展示描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schedulerDesc: String?
-        
+
         /// 负责人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inCharge: String?
-        
+
         /// 调度周期类型，I分钟，H小时，D天，W周，M月，Y年，O一次性，C crontab
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleType: String?
-        
+
         /// 实例开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 实例结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 实例类型，0补录实例，1周期实例，2非周期实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: Int64?
-        
+
         /// 最大重试次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tryLimit: Int64?
-        
+
         /// 当前重试次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tries: Int64?
-        
+
         /// 计划调度时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schedulerDateTime: String?
-        
+
         /// 运行耗时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let costTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
@@ -5365,21 +5365,21 @@ extension Wedata {
             case costTime = "CostTime"
         }
     }
-    
+
     /// 任务依赖的边信息
     public struct TaskLinkInfo: TCOutputModel {
         /// 下游任务id
         public let taskTo: String
-        
+
         /// 上游任务id
         public let taskFrom: String
-        
+
         /// 依赖边类型 1、“real_real”表示任务->任务；2、"virtual_real" 跨工作流任务->任务
         public let linkType: String
-        
+
         /// 依赖边id
         public let linkId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskTo = "TaskTo"
             case taskFrom = "TaskFrom"
@@ -5387,21 +5387,21 @@ extension Wedata {
             case linkId = "LinkId"
         }
     }
-    
+
     /// 任务锁的状态
     public struct TaskLockStatus: TCOutputModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 持锁者
         public let locker: String
-        
+
         /// 当前操作用户是否为持锁者，1表示为持锁者，0表示为不为持锁者
         public let isLocker: Int64
-        
+
         /// 是否可以抢锁，1表示可以抢锁，0表示不可以抢锁
         public let isRob: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case locker = "Locker"
@@ -5409,45 +5409,45 @@ extension Wedata {
             case isRob = "IsRob"
         }
     }
-    
+
     /// 离线任务统计指标明细
     public struct TaskReportDetail: TCOutputModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 任务实例ID
         public let instanceId: String
-        
+
         /// 实例数据运行时间
         public let curRunDate: String
-        
+
         /// 实例实际下发时间
         public let issueDate: String
-        
+
         /// 任务状态码。1 正在执行,2 成功,3 失败,4 等待终止,5 正在终止,6 已终止,7 终止失败,9 等待执行。
         public let taskState: String
-        
+
         /// 总读取条数
         public let totalReadRecords: UInt64
-        
+
         /// 总读取字节数
         public let totalReadBytes: UInt64
-        
+
         /// 总写入条数
         public let totalWriteRecords: UInt64
-        
+
         /// 总写入字节数
         public let totalWriteBytes: UInt64
-        
+
         /// 写入速度（条/秒）
         public let recordSpeed: UInt64
-        
+
         /// 吞吐（Byte/秒）
         public let byteSpeed: Float
-        
+
         /// 脏数据条数
         public let totalErrorRecords: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case instanceId = "InstanceId"
@@ -5463,150 +5463,150 @@ extension Wedata {
             case totalErrorRecords = "TotalErrorRecords"
         }
     }
-    
+
     /// 任务执行脚本
     public struct TaskScriptContent: TCOutputModel {
         /// 脚本内容 base64编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptContent: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case scriptContent = "ScriptContent"
         }
     }
-    
+
     /// 数据质量阈值
     public struct ThresholdValue: TCInputModel, TCOutputModel {
         /// 阈值类型  1.低阈值  2.高阈值   3.普通阈值  4.枚举值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueType: UInt64?
-        
+
         /// 阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (valueType: UInt64? = nil, value: String? = nil) {
+
+        public init(valueType: UInt64? = nil, value: String? = nil) {
             self.valueType = valueType
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case valueType = "ValueType"
             case value = "Value"
         }
     }
-    
+
     /// 质量概览表排行结果
     public struct TopTableStat: TCOutputModel {
         /// 告警表列表
         public let alarmTables: [TopTableStatItem]
-        
+
         /// 阻塞表列表
         public let pipelineTables: [TopTableStatItem]
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmTables = "AlarmTables"
             case pipelineTables = "PipelineTables"
         }
     }
-    
+
     /// 质量概览表排行元素
     public struct TopTableStatItem: TCOutputModel {
         /// 表Id
         public let tableId: String
-        
+
         /// 表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 数
         public let cnt: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case tableId = "TableId"
             case tableName = "TableName"
             case cnt = "Cnt"
         }
     }
-    
+
     /// 用户文件信息
     public struct UserFileDTO: TCOutputModel {
         /// 资源ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceId: String?
-        
+
         /// 文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileName: String?
-        
+
         /// 文件类型，如 jar zip 等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileExtensionType: String?
-        
+
         /// 文件上传类型，资源管理为 resource
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileUploadType: String?
-        
+
         /// 文件MD5值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5Value: String?
-        
+
         /// 创建时间，秒级别的时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: UInt64?
-        
+
         /// 更新时间，秒级别的时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: UInt64?
-        
+
         /// 文件大小，单位为字节
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: UInt64?
-        
+
         /// 本地路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let localPath: String?
-        
+
         /// 本地临时路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let localTmpPath: String?
-        
+
         /// 远程路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remotePath: String?
-        
+
         /// 文件拥有者名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerName: String?
-        
+
         /// 文件拥有者uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let owner: String?
-        
+
         /// 文件深度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathDepth: String?
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 附加信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraInfo: String?
-        
+
         /// 本地临时压缩文件绝对路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zipPath: String?
-        
+
         /// 文件所属存储桶
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
-        
+
         /// 文件所属存储桶的地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case fileName = "FileName"
@@ -5629,66 +5629,66 @@ extension Wedata {
             case region = "Region"
         }
     }
-    
+
     /// 权重信息
     public struct WeightInfo: TCInputModel {
         /// 权重
         public let weight: Int64
-        
+
         /// 维度类型 1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
         public let qualityDim: Int64
-        
-        public init (weight: Int64, qualityDim: Int64) {
+
+        public init(weight: Int64, qualityDim: Int64) {
             self.weight = weight
             self.qualityDim = qualityDim
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case weight = "Weight"
             case qualityDim = "QualityDim"
         }
     }
-    
+
     /// 工作流信息
     public struct Workflow: TCOutputModel {
         /// 工作流id
         public let workflowId: String
-        
+
         /// 责任人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let owner: String?
-        
+
         /// 责任人Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerId: String?
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 项目标识
         public let projectIdent: String
-        
+
         /// 项目名称
         public let projectName: String
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowDesc: String?
-        
+
         /// 工作流名称
         public let workflowName: String
-        
+
         /// 所属文件夹id
         public let folderId: String
-        
+
         /// 工作流所属用户分组id 若有多个,分号隔开: a;b;c
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userGroupId: String?
-        
+
         /// 工作流所属用户分组名称  若有多个,分号隔开: a;b;c
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userGroupName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case workflowId = "WorkflowId"
             case owner = "Owner"

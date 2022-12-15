@@ -19,54 +19,54 @@ extension Tione {
     public struct DeleteTrainingModelRequest: TCRequestModel {
         /// 模型ID
         public let trainingModelId: String
-        
+
         /// 是否同步清理cos
         public let enableDeleteCos: Bool?
-        
+
         /// 删除模型类型，枚举值：NORMAL 普通，ACCELERATE 加速，不传则删除所有
         public let modelVersionType: String?
-        
-        public init (trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil) {
+
+        public init(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil) {
             self.trainingModelId = trainingModelId
             self.enableDeleteCos = enableDeleteCos
             self.modelVersionType = modelVersionType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case trainingModelId = "TrainingModelId"
             case enableDeleteCos = "EnableDeleteCos"
             case modelVersionType = "ModelVersionType"
         }
     }
-    
+
     /// DeleteTrainingModel返回参数结构体
     public struct DeleteTrainingModelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除模型
     @inlinable
-    public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrainingModelResponse > {
+    public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
         self.client.execute(action: "DeleteTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除模型
     @inlinable
     public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {
         try await self.client.execute(action: "DeleteTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除模型
     @inlinable
-    public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrainingModelResponse > {
+    public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
         self.deleteTrainingModel(DeleteTrainingModelRequest(trainingModelId: trainingModelId, enableDeleteCos: enableDeleteCos, modelVersionType: modelVersionType), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除模型
     @inlinable
     public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {

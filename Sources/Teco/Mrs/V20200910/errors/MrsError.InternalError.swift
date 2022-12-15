@@ -24,73 +24,73 @@ extension TCMrsError {
             case textClassifyError = "InternalError.TextClassifyError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 图片ocr识别异常。
         public static var imageOcrError: InternalError {
             InternalError(.imageOcrError)
         }
-        
+
         /// 图片处理异常。
         public static var imageProcessError: InternalError {
             InternalError(.imageProcessError)
         }
-        
+
         /// 服务调用超时。
         public static var serverTimeOutError: InternalError {
             InternalError(.serverTimeOutError)
         }
-        
+
         /// 报告结构化异常。
         public static var structionError: InternalError {
             InternalError(.structionError)
         }
-        
+
         /// 报告文本分类异常。
         public static var textClassifyError: InternalError {
             InternalError(.textClassifyError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asMrsError() -> TCMrsError {
             let code: TCMrsError.Code
             switch self.error {
-            case .imageOcrError: 
+            case .imageOcrError:
                 code = .internalError_ImageOcrError
-            case .imageProcessError: 
+            case .imageProcessError:
                 code = .internalError_ImageProcessError
-            case .serverTimeOutError: 
+            case .serverTimeOutError:
                 code = .internalError_ServerTimeOutError
-            case .structionError: 
+            case .structionError:
                 code = .internalError_StructionError
-            case .textClassifyError: 
+            case .textClassifyError:
                 code = .internalError_TextClassifyError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCMrsError(code, context: self.context)

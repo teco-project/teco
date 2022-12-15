@@ -19,49 +19,49 @@ extension Iecp {
     public struct DescribeDracoEdgeNodeInstallerRequest: TCRequestModel {
         /// 设备SN
         public let sn: String
-        
-        public init (sn: String) {
+
+        public init(sn: String) {
             self.sn = sn
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sn = "SN"
         }
     }
-    
+
     /// DescribeDracoEdgeNodeInstaller返回参数结构体
     public struct DescribeDracoEdgeNodeInstallerResponse: TCResponseModel {
         /// 在线安装命名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let onlineInstallationCommand: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case onlineInstallationCommand = "OnlineInstallationCommand"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 自动获取Draco设备的安装包
     @inlinable
-    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDracoEdgeNodeInstallerResponse > {
+    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDracoEdgeNodeInstallerResponse> {
         self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 自动获取Draco设备的安装包
     @inlinable
     public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
         try await self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 自动获取Draco设备的安装包
     @inlinable
-    public func describeDracoEdgeNodeInstaller(sn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDracoEdgeNodeInstallerResponse > {
+    public func describeDracoEdgeNodeInstaller(sn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDracoEdgeNodeInstallerResponse> {
         self.describeDracoEdgeNodeInstaller(DescribeDracoEdgeNodeInstallerRequest(sn: sn), logger: logger, on: eventLoop)
     }
-    
+
     /// 自动获取Draco设备的安装包
     @inlinable
     public func describeDracoEdgeNodeInstaller(sn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {

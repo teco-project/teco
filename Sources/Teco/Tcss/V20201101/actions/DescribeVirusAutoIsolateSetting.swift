@@ -17,46 +17,46 @@
 extension Tcss {
     /// DescribeVirusAutoIsolateSetting请求参数结构体
     public struct DescribeVirusAutoIsolateSettingRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVirusAutoIsolateSetting返回参数结构体
     public struct DescribeVirusAutoIsolateSettingResponse: TCResponseModel {
         /// 自动隔离开关(true:开 false:关)
         public let autoIsolateSwitch: Bool
-        
+
         /// 是否中断隔离文件关联的进程(true:是 false:否)
         public let isKillProgress: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoIsolateSwitch = "AutoIsolateSwitch"
             case isKillProgress = "IsKillProgress"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询木马自动隔离设置
     @inlinable
-    public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSettingResponse > {
+    public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSettingResponse> {
         self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询木马自动隔离设置
     @inlinable
     public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {
         try await self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询木马自动隔离设置
     @inlinable
-    public func describeVirusAutoIsolateSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSettingResponse > {
+    public func describeVirusAutoIsolateSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSettingResponse> {
         self.describeVirusAutoIsolateSetting(DescribeVirusAutoIsolateSettingRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询木马自动隔离设置
     @inlinable
     public func describeVirusAutoIsolateSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {

@@ -34,83 +34,83 @@ public struct TCTmsError: TCTmsErrorType {
         case invalidParameter_ParameterError = "InvalidParameter.ParameterError"
         case unauthorizedOperation_Unauthorized = "UnauthorizedOperation.Unauthorized"
     }
-    
+
     /// Error domains affliated to ``TCTmsError``.
     public static var domains: [TCErrorType.Type] {
         [InternalError.self, InvalidParameter.self, InvalidParameterValue.self, UnauthorizedOperation.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 请求超时。
     public static var internalError_ErrTextTimeOut: TCTmsError {
         TCTmsError(.internalError_ErrTextTimeOut)
     }
-    
+
     /// FileContent不可用，传入的Base64编码无法转换成标准utf8内容。
     public static var invalidParameterValue_ErrFileContent: TCTmsError {
         TCTmsError(.invalidParameterValue_ErrFileContent)
     }
-    
+
     /// 请求的文本长度超过限制。
     ///
     /// 咨询运营人员，获取接口的文本入参长度限制，调整文本入参长度。
     public static var invalidParameterValue_ErrTextContentLen: TCTmsError {
         TCTmsError(.invalidParameterValue_ErrTextContentLen)
     }
-    
+
     /// 请求的文本格式错误（需要base64编码格式的文本）。
     ///
     /// 对请求的文本进行base64编码
     public static var invalidParameterValue_ErrTextContentType: TCTmsError {
         TCTmsError(.invalidParameterValue_ErrTextContentType)
     }
-    
+
     /// 错误的action。
     public static var invalidParameter_ErrAction: TCTmsError {
         TCTmsError(.invalidParameter_ErrAction)
     }
-    
+
     /// 请求的文本长度过长。
     public static var invalidParameter_ErrTextContentLen: TCTmsError {
         TCTmsError(.invalidParameter_ErrTextContentLen)
     }
-    
+
     /// 文本类型错误，需要base64的文本。
     public static var invalidParameter_ErrTextContentType: TCTmsError {
         TCTmsError(.invalidParameter_ErrTextContentType)
     }
-    
+
     /// InvalidParameter.ParameterError
     public static var invalidParameter_ParameterError: TCTmsError {
         TCTmsError(.invalidParameter_ParameterError)
     }
-    
+
     /// 未获取到接口授权。
     public static var unauthorizedOperation_Unauthorized: TCTmsError {
         TCTmsError(.unauthorizedOperation_Unauthorized)
     }
-    
+
     public func asTmsError() -> TCTmsError {
         return self
     }

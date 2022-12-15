@@ -19,29 +19,29 @@ extension Cfw {
     public struct CreateAcRulesRequest: TCRequestModel {
         /// 创建规则数据
         public let data: [RuleInfoData]
-        
+
         /// 0：添加（默认），1：插入
         public let type: UInt64?
-        
+
         /// 边id
         public let edgeId: String?
-        
+
         /// 访问控制规则状态
         public let enable: Int64?
-        
+
         /// 0：添加，1：覆盖
         public let overwrite: UInt64?
-        
+
         /// NAT实例ID, 参数Area存在的时候这个必传
         public let instanceId: String?
-        
+
         /// portScan: 来自于端口扫描, patchImport: 来自于批量导入
         public let from: String?
-        
+
         /// NAT地域
         public let area: String?
-        
-        public init (data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil) {
+
+        public init(data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil) {
             self.data = data
             self.type = type
             self.edgeId = edgeId
@@ -51,7 +51,7 @@ extension Cfw {
             self.from = from
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case type = "Type"
@@ -63,44 +63,44 @@ extension Cfw {
             case area = "Area"
         }
     }
-    
+
     /// CreateAcRules返回参数结构体
     public struct CreateAcRulesResponse: TCResponseModel {
         /// 状态值，0:操作成功
         public let status: Int64
-        
+
         /// 返回多余的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let info: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case info = "Info"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建访问控制规则
     @inlinable
-    public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAcRulesResponse > {
+    public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAcRulesResponse> {
         self.client.execute(action: "CreateAcRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建访问控制规则
     @inlinable
     public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcRulesResponse {
         try await self.client.execute(action: "CreateAcRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建访问控制规则
     @inlinable
-    public func createAcRules(data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAcRulesResponse > {
+    public func createAcRules(data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAcRulesResponse> {
         self.createAcRules(CreateAcRulesRequest(data: data, type: type, edgeId: edgeId, enable: enable, overwrite: overwrite, instanceId: instanceId, from: from, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建访问控制规则
     @inlinable
     public func createAcRules(data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcRulesResponse {

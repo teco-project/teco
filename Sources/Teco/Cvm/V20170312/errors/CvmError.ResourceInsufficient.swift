@@ -24,81 +24,81 @@ extension TCCvmError {
             case specifiedInstanceType = "ResourceInsufficient.SpecifiedInstanceType"
             case zoneSoldOutForSpecifiedInstance = "ResourceInsufficient.ZoneSoldOutForSpecifiedInstance"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该可用区已售罄
         ///
         /// 无
         public static var availabilityZoneSoldOut: ResourceInsufficient {
             ResourceInsufficient(.availabilityZoneSoldOut)
         }
-        
+
         /// 指定的云盘规格已售罄
         ///
         /// 无
         public static var cloudDiskSoldOut: ResourceInsufficient {
             ResourceInsufficient(.cloudDiskSoldOut)
         }
-        
+
         /// 云盘参数不符合规范
         ///
         /// 无
         public static var cloudDiskUnavailable: ResourceInsufficient {
             ResourceInsufficient(.cloudDiskUnavailable)
         }
-        
+
         /// 实例个数超过容灾组的配额
         ///
         /// 无
         public static var disasterRecoverGroupCvmQuota: ResourceInsufficient {
             ResourceInsufficient(.disasterRecoverGroupCvmQuota)
         }
-        
+
         /// 指定的实例类型库存不足。
         public static var specifiedInstanceType: ResourceInsufficient {
             ResourceInsufficient(.specifiedInstanceType)
         }
-        
+
         /// 指定的实例类型在选择的可用区已售罄。
         public static var zoneSoldOutForSpecifiedInstance: ResourceInsufficient {
             ResourceInsufficient(.zoneSoldOutForSpecifiedInstance)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .availabilityZoneSoldOut: 
+            case .availabilityZoneSoldOut:
                 code = .resourceInsufficient_AvailabilityZoneSoldOut
-            case .cloudDiskSoldOut: 
+            case .cloudDiskSoldOut:
                 code = .resourceInsufficient_CloudDiskSoldOut
-            case .cloudDiskUnavailable: 
+            case .cloudDiskUnavailable:
                 code = .resourceInsufficient_CloudDiskUnavailable
-            case .disasterRecoverGroupCvmQuota: 
+            case .disasterRecoverGroupCvmQuota:
                 code = .resourceInsufficient_DisasterRecoverGroupCvmQuota
-            case .specifiedInstanceType: 
+            case .specifiedInstanceType:
                 code = .resourceInsufficient_SpecifiedInstanceType
-            case .zoneSoldOutForSpecifiedInstance: 
+            case .zoneSoldOutForSpecifiedInstance:
                 code = .resourceInsufficient_ZoneSoldOutForSpecifiedInstance
             }
             return TCCvmError(code, context: self.context)

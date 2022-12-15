@@ -19,23 +19,23 @@ extension Dbbrain {
     public struct VerifyUserAccountRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 数据库账号名。
         public let user: String
-        
+
         /// 数据库账号密码。
         public let password: String
-        
+
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, user: String, password: String, product: String? = nil) {
+
+        public init(instanceId: String, user: String, password: String, product: String? = nil) {
             self.instanceId = instanceId
             self.user = user
             self.password = password
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case user = "User"
@@ -43,29 +43,29 @@ extension Dbbrain {
             case product = "Product"
         }
     }
-    
+
     /// VerifyUserAccount返回参数结构体
     public struct VerifyUserAccountResponse: TCResponseModel {
         /// 会话token，有效期为5分钟。
         public let sessionToken: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionToken = "SessionToken"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 验证用户数据库账号权限
     ///
     /// 验证用户数据库账号权限，获取会话token。
     @inlinable
-    public func verifyUserAccount(_ input: VerifyUserAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyUserAccountResponse > {
+    public func verifyUserAccount(_ input: VerifyUserAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyUserAccountResponse> {
         self.client.execute(action: "VerifyUserAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 验证用户数据库账号权限
     ///
     /// 验证用户数据库账号权限，获取会话token。
@@ -73,15 +73,15 @@ extension Dbbrain {
     public func verifyUserAccount(_ input: VerifyUserAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyUserAccountResponse {
         try await self.client.execute(action: "VerifyUserAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 验证用户数据库账号权限
     ///
     /// 验证用户数据库账号权限，获取会话token。
     @inlinable
-    public func verifyUserAccount(instanceId: String, user: String, password: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyUserAccountResponse > {
+    public func verifyUserAccount(instanceId: String, user: String, password: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyUserAccountResponse> {
         self.verifyUserAccount(VerifyUserAccountRequest(instanceId: instanceId, user: user, password: password, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 验证用户数据库账号权限
     ///
     /// 验证用户数据库账号权限，获取会话token。

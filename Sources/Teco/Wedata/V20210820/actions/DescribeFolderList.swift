@@ -19,27 +19,27 @@ extension Wedata {
     public struct DescribeFolderListRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String
-        
+
         /// 文件夹ID
         public let parentsFolderId: String
-        
+
         /// 关键字
         public let keyWords: String?
-        
+
         /// 页码，默认1
         public let pageNumber: Int64?
-        
+
         /// 页大小，默认10
         public let pageSize: Int64?
-        
-        public init (projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil) {
+
+        public init(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil) {
             self.projectId = projectId
             self.parentsFolderId = parentsFolderId
             self.keyWords = keyWords
             self.pageNumber = pageNumber
             self.pageSize = pageSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case parentsFolderId = "ParentsFolderId"
@@ -48,31 +48,31 @@ extension Wedata {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// DescribeFolderList返回参数结构体
     public struct DescribeFolderListResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: DescribeFolderListData?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取文件夹目录【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 拉取文件夹目录
     @inlinable
-    public func describeFolderList(_ input: DescribeFolderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFolderListResponse > {
+    public func describeFolderList(_ input: DescribeFolderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderListResponse> {
         self.client.execute(action: "DescribeFolderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取文件夹目录【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
@@ -81,16 +81,16 @@ extension Wedata {
     public func describeFolderList(_ input: DescribeFolderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderListResponse {
         try await self.client.execute(action: "DescribeFolderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取文件夹目录【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 拉取文件夹目录
     @inlinable
-    public func describeFolderList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFolderListResponse > {
+    public func describeFolderList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderListResponse> {
         self.describeFolderList(DescribeFolderListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取文件夹目录【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>

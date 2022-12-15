@@ -19,54 +19,54 @@ extension Cloudstudio {
     public struct CreateWorkspaceByVersionControlRequest: TCRequestModel {
         /// 工作空间结构
         public let workspaceDTO: WorkspaceDTO
-        
+
         /// 用户所属组
         public let cloudStudioSessionTeam: String
-        
-        public init (workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String) {
+
+        public init(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String) {
             self.workspaceDTO = workspaceDTO
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workspaceDTO = "WorkspaceDTO"
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
         }
     }
-    
+
     /// CreateWorkspaceByVersionControl返回参数结构体
     public struct CreateWorkspaceByVersionControlResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: WorkspaceInfoDTO?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据模板创建工作空间
     @inlinable
-    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByVersionControlResponse > {
+    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByVersionControlResponse> {
         self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据模板创建工作空间
     @inlinable
     public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
         try await self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据模板创建工作空间
     @inlinable
-    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByVersionControlResponse > {
+    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByVersionControlResponse> {
         self.createWorkspaceByVersionControl(CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据模板创建工作空间
     @inlinable
     public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {

@@ -19,49 +19,49 @@ extension Cloudstudio {
     public struct RunWorkspaceRequest: TCRequestModel {
         /// 空间标识
         public let spaceKey: String
-        
+
         /// 用户所属组
         public let cloudStudioSessionTeam: String
-        
-        public init (spaceKey: String, cloudStudioSessionTeam: String) {
+
+        public init(spaceKey: String, cloudStudioSessionTeam: String) {
             self.spaceKey = spaceKey
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case spaceKey = "SpaceKey"
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
         }
     }
-    
+
     /// RunWorkspace返回参数结构体
     public struct RunWorkspaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行空间
     @inlinable
-    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunWorkspaceResponse > {
+    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
         self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行空间
     @inlinable
     public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
         try await self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行空间
     @inlinable
-    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunWorkspaceResponse > {
+    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
         self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行空间
     @inlinable
     public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {

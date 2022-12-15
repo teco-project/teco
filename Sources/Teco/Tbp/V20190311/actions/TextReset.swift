@@ -19,59 +19,59 @@ extension Tbp {
     public struct TextResetRequest: TCRequestModel {
         /// 机器人标识，用于定义抽象机器人。
         public let botId: String
-        
+
         /// 终端标识，每个终端(或线程)对应一个，区分并发多用户。
         public let terminalId: String
-        
+
         /// 机器人版本，取值"dev"或"release"，{调试版本：dev；线上版本：release}。
         public let botEnv: String?
-        
-        public init (botId: String, terminalId: String, botEnv: String? = nil) {
+
+        public init(botId: String, terminalId: String, botEnv: String? = nil) {
             self.botId = botId
             self.terminalId = terminalId
             self.botEnv = botEnv
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case botId = "BotId"
             case terminalId = "TerminalId"
             case botEnv = "BotEnv"
         }
     }
-    
+
     /// TextReset返回参数结构体
     public struct TextResetResponse: TCResponseModel {
         /// 当前会话状态，取值："START"/"COUTINUE"/"COMPLETE"。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dialogStatus: String?
-        
+
         /// 匹配到的机器人名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let botName: String?
-        
+
         /// 匹配到的意图名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intentName: String?
-        
+
         /// 槽位信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slotInfoList: [SlotInfo]?
-        
+
         /// 原始的用户说法。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputText: String?
-        
+
         /// 透传字段，由用户自定义的WebService服务返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionAttributes: String?
-        
+
         /// 机器人对话的应答文本。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseText: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dialogStatus = "DialogStatus"
             case botName = "BotName"
@@ -83,15 +83,15 @@ extension Tbp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 会话重置
     ///
     /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。
     @inlinable
-    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextResetResponse > {
+    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextResetResponse> {
         self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 会话重置
     ///
     /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。
@@ -99,15 +99,15 @@ extension Tbp {
     public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
         try await self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 会话重置
     ///
     /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。
     @inlinable
-    public func textReset(botId: String, terminalId: String, botEnv: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextResetResponse > {
+    public func textReset(botId: String, terminalId: String, botEnv: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextResetResponse> {
         self.textReset(TextResetRequest(botId: botId, terminalId: terminalId, botEnv: botEnv), logger: logger, on: eventLoop)
     }
-    
+
     /// 会话重置
     ///
     /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。

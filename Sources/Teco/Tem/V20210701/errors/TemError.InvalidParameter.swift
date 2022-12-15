@@ -24,67 +24,67 @@ extension TCTemError {
             case serviceUseReserveSuffix = "InvalidParameter.ServiceUseReserveSuffix"
             case tooManyPortMappingRules = "InvalidParameter.TooManyPortMappingRules"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var applicationAccessServiceReachMaximum: InvalidParameter {
             InvalidParameter(.applicationAccessServiceReachMaximum)
         }
-        
+
         public static var lbServiceCannotSupportTcpUdpSameTime: InvalidParameter {
             InvalidParameter(.lbServiceCannotSupportTcpUdpSameTime)
         }
-        
+
         public static var mustProvidePortMappingRules: InvalidParameter {
             InvalidParameter(.mustProvidePortMappingRules)
         }
-        
+
         public static var serviceNameNotValid: InvalidParameter {
             InvalidParameter(.serviceNameNotValid)
         }
-        
+
         public static var serviceUseReserveSuffix: InvalidParameter {
             InvalidParameter(.serviceUseReserveSuffix)
         }
-        
+
         public static var tooManyPortMappingRules: InvalidParameter {
             InvalidParameter(.tooManyPortMappingRules)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {
-            case .applicationAccessServiceReachMaximum: 
+            case .applicationAccessServiceReachMaximum:
                 code = .invalidParameter_ApplicationAccessServiceReachMaximum
-            case .lbServiceCannotSupportTcpUdpSameTime: 
+            case .lbServiceCannotSupportTcpUdpSameTime:
                 code = .invalidParameter_LBServiceCannotSupportTcpUdpSameTime
-            case .mustProvidePortMappingRules: 
+            case .mustProvidePortMappingRules:
                 code = .invalidParameter_MustProvidePortMappingRules
-            case .serviceNameNotValid: 
+            case .serviceNameNotValid:
                 code = .invalidParameter_ServiceNameNotValid
-            case .serviceUseReserveSuffix: 
+            case .serviceUseReserveSuffix:
                 code = .invalidParameter_ServiceUseReserveSuffix
-            case .tooManyPortMappingRules: 
+            case .tooManyPortMappingRules:
                 code = .invalidParameter_TooManyPortMappingRules
             }
             return TCTemError(code, context: self.context)

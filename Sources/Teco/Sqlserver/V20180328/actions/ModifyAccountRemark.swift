@@ -19,39 +19,39 @@ extension Sqlserver {
     public struct ModifyAccountRemarkRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
-        
+
         /// 修改备注的账户信息
         public let accounts: [AccountRemark]
-        
-        public init (instanceId: String, accounts: [AccountRemark]) {
+
+        public init(instanceId: String, accounts: [AccountRemark]) {
             self.instanceId = instanceId
             self.accounts = accounts
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case accounts = "Accounts"
         }
     }
-    
+
     /// ModifyAccountRemark返回参数结构体
     public struct ModifyAccountRemarkResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
     @inlinable
-    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountRemarkResponse > {
+    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
         self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
@@ -59,15 +59,15 @@ extension Sqlserver {
     public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
         try await self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
     @inlinable
-    public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountRemarkResponse > {
+    public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
         self.modifyAccountRemark(ModifyAccountRemarkRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。

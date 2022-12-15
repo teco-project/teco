@@ -19,45 +19,45 @@ extension Tic {
     public struct DescribeStackEventRequest: TCRequestModel {
         /// 事件ID
         public let eventId: String
-        
-        public init (eventId: String) {
+
+        public init(eventId: String) {
             self.eventId = eventId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
         }
     }
-    
+
     /// DescribeStackEvent返回参数结构体
     public struct DescribeStackEventResponse: TCResponseModel {
         /// 事件ID
         public let eventId: String
-        
+
         /// 版本ID
         public let versionId: String
-        
+
         /// 资源栈ID
         public let stackId: String
-        
+
         /// 事件类型
         public let type: String
-        
+
         /// 事件状态
         public let status: String
-        
+
         /// 状态信息
         public let eventMessage: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 控制台输出文本
         public let consoleLog: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case versionId = "VersionId"
@@ -70,15 +70,15 @@ extension Tic {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单个事件详情
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
-    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventResponse > {
+    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventResponse> {
         self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个事件详情
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
@@ -86,15 +86,15 @@ extension Tic {
     public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
         try await self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单个事件详情
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
-    public func describeStackEvent(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventResponse > {
+    public func describeStackEvent(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventResponse> {
         self.describeStackEvent(DescribeStackEventRequest(eventId: eventId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个事件详情
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。

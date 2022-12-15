@@ -19,44 +19,44 @@ extension Vpc {
     public struct ModifyVpcEndPointServiceWhiteListRequest: TCRequestModel {
         /// 用户UIN。
         public let userUin: String
-        
+
         /// 终端节点服务ID。
         public let endPointServiceId: String
-        
+
         /// 白名单描述信息。
         public let description: String?
-        
-        public init (userUin: String, endPointServiceId: String, description: String? = nil) {
+
+        public init(userUin: String, endPointServiceId: String, description: String? = nil) {
             self.userUin = userUin
             self.endPointServiceId = endPointServiceId
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userUin = "UserUin"
             case endPointServiceId = "EndPointServiceId"
             case description = "Description"
         }
     }
-    
+
     /// ModifyVpcEndPointServiceWhiteList返回参数结构体
     public struct ModifyVpcEndPointServiceWhiteListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改终端节点服务白名单属性
     ///
     /// 修改终端节点服务白名单属性。
     @inlinable
-    public func modifyVpcEndPointServiceWhiteList(_ input: ModifyVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcEndPointServiceWhiteListResponse > {
+    public func modifyVpcEndPointServiceWhiteList(_ input: ModifyVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointServiceWhiteListResponse> {
         self.client.execute(action: "ModifyVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改终端节点服务白名单属性
     ///
     /// 修改终端节点服务白名单属性。
@@ -64,15 +64,15 @@ extension Vpc {
     public func modifyVpcEndPointServiceWhiteList(_ input: ModifyVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointServiceWhiteListResponse {
         try await self.client.execute(action: "ModifyVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改终端节点服务白名单属性
     ///
     /// 修改终端节点服务白名单属性。
     @inlinable
-    public func modifyVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcEndPointServiceWhiteListResponse > {
+    public func modifyVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointServiceWhiteListResponse> {
         self.modifyVpcEndPointServiceWhiteList(ModifyVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改终端节点服务白名单属性
     ///
     /// 修改终端节点服务白名单属性。

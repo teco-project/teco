@@ -20,48 +20,48 @@ extension Tag {
         /// 从上一页的响应中获取的下一页的Token值。
         /// 如果是第一次请求，设置为空。
         public let paginationToken: String?
-        
+
         /// 每一页返回的数据最大条数，最大1000。
         /// 缺省值：50。
         public let maxResults: UInt64?
-        
-        public init (paginationToken: String? = nil, maxResults: UInt64? = nil) {
+
+        public init(paginationToken: String? = nil, maxResults: UInt64? = nil) {
             self.paginationToken = paginationToken
             self.maxResults = maxResults
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case paginationToken = "PaginationToken"
             case maxResults = "MaxResults"
         }
     }
-    
+
     /// GetTagKeys返回参数结构体
     public struct GetTagKeysResponse: TCResponseModel {
         /// 获取的下一页的Token值
         public let paginationToken: String
-        
+
         /// 标签键信息。
         public let tagKeys: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case paginationToken = "PaginationToken"
             case tagKeys = "TagKeys"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询标签键列表
     ///
     /// 查询标签键列表。
     @inlinable
-    public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagKeysResponse > {
+    public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagKeysResponse> {
         self.client.execute(action: "GetTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询标签键列表
     ///
     /// 查询标签键列表。
@@ -69,15 +69,15 @@ extension Tag {
     public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
         try await self.client.execute(action: "GetTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询标签键列表
     ///
     /// 查询标签键列表。
     @inlinable
-    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagKeysResponse > {
+    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagKeysResponse> {
         self.getTagKeys(GetTagKeysRequest(paginationToken: paginationToken, maxResults: maxResults), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询标签键列表
     ///
     /// 查询标签键列表。

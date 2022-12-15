@@ -19,44 +19,44 @@ extension Gse {
     public struct GetInstanceAccessRequest: TCRequestModel {
         /// 服务器舰队ID
         public let fleetId: String
-        
+
         /// 实例Id
         public let instanceId: String
-        
-        public init (fleetId: String, instanceId: String) {
+
+        public init(fleetId: String, instanceId: String) {
             self.fleetId = fleetId
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// GetInstanceAccess返回参数结构体
     public struct GetInstanceAccessResponse: TCResponseModel {
         /// 实例登录所需要的凭据
         public let instanceAccess: InstanceAccess
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceAccess = "InstanceAccess"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
     @inlinable
-    public func getInstanceAccess(_ input: GetInstanceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetInstanceAccessResponse > {
+    public func getInstanceAccess(_ input: GetInstanceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetInstanceAccessResponse> {
         self.client.execute(action: "GetInstanceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -65,16 +65,16 @@ extension Gse {
     public func getInstanceAccess(_ input: GetInstanceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInstanceAccessResponse {
         try await self.client.execute(action: "GetInstanceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
     @inlinable
-    public func getInstanceAccess(fleetId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetInstanceAccessResponse > {
+    public func getInstanceAccess(fleetId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetInstanceAccessResponse> {
         self.getInstanceAccess(GetInstanceAccessRequest(fleetId: fleetId, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

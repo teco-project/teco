@@ -19,30 +19,30 @@ extension Kms {
     public struct GetPublicKeyRequest: TCRequestModel {
         /// CMK的唯一标识。
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// GetPublicKey返回参数结构体
     public struct GetPublicKeyResponse: TCResponseModel {
         /// CMK的唯一标识。
         public let keyId: String
-        
+
         /// 经过base64编码的公钥内容。
         public let publicKey: String
-        
+
         /// PEM格式的公钥内容。
         public let publicKeyPem: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
             case publicKey = "PublicKey"
@@ -50,15 +50,15 @@ extension Kms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取非对称密钥的公钥
     ///
     /// 该接口用于获取非对称密钥的公钥信息，可用于本地数据加密或验签。只有处于Enabled状态的非对称密钥才可能获取公钥。
     @inlinable
-    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
+    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
         self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取非对称密钥的公钥
     ///
     /// 该接口用于获取非对称密钥的公钥信息，可用于本地数据加密或验签。只有处于Enabled状态的非对称密钥才可能获取公钥。
@@ -66,15 +66,15 @@ extension Kms {
     public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
         try await self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取非对称密钥的公钥
     ///
     /// 该接口用于获取非对称密钥的公钥信息，可用于本地数据加密或验签。只有处于Enabled状态的非对称密钥才可能获取公钥。
     @inlinable
-    public func getPublicKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
+    public func getPublicKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
         self.getPublicKey(GetPublicKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取非对称密钥的公钥
     ///
     /// 该接口用于获取非对称密钥的公钥信息，可用于本地数据加密或验签。只有处于Enabled状态的非对称密钥才可能获取公钥。

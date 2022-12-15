@@ -27,94 +27,94 @@ extension TCStsError {
             case systemError = "InternalError.SystemError"
             case unknownError = "InternalError.UnknownError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// DB错误。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// 加密失败。
         public static var encryptError: InternalError {
             InternalError(.encryptError)
         }
-        
+
         /// 获取appid错误。
         public static var getAppIdError: InternalError {
             InternalError(.getAppIdError)
         }
-        
+
         /// 获取角色失败。
         public static var getRoleError: InternalError {
             InternalError(.getRoleError)
         }
-        
+
         /// 获取token失败。
         public static var getSeedTokenError: InternalError {
             InternalError(.getSeedTokenError)
         }
-        
+
         /// 角色非法。
         public static var illegalRole: InternalError {
             InternalError(.illegalRole)
         }
-        
+
         /// pb打包失败。
         public static var pbSerializeError: InternalError {
             InternalError(.pbSerializeError)
         }
-        
+
         /// 系统内部错误，如网络错误。
         public static var systemError: InternalError {
             InternalError(.systemError)
         }
-        
+
         /// 未知错误。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-        
+
         public func asStsError() -> TCStsError {
             let code: TCStsError.Code
             switch self.error {
-            case .dbError: 
+            case .dbError:
                 code = .internalError_DbError
-            case .encryptError: 
+            case .encryptError:
                 code = .internalError_EncryptError
-            case .getAppIdError: 
+            case .getAppIdError:
                 code = .internalError_GetAppIdError
-            case .getRoleError: 
+            case .getRoleError:
                 code = .internalError_GetRoleError
-            case .getSeedTokenError: 
+            case .getSeedTokenError:
                 code = .internalError_GetSeedTokenError
-            case .illegalRole: 
+            case .illegalRole:
                 code = .internalError_IllegalRole
-            case .pbSerializeError: 
+            case .pbSerializeError:
                 code = .internalError_PbSerializeError
-            case .systemError: 
+            case .systemError:
                 code = .internalError_SystemError
-            case .unknownError: 
+            case .unknownError:
                 code = .internalError_UnknownError
             }
             return TCStsError(code, context: self.context)

@@ -19,27 +19,27 @@ extension Ssa {
     public struct DescribeEventDetailRequest: TCRequestModel {
         /// 事件索引名
         public let index: String?
-        
+
         /// 事件id
         public let id: String?
-        
+
         /// 事件来源
         public let source: String?
-        
+
         /// 事件子类型
         public let subEventType: UInt64?
-        
+
         /// 事件名称
         public let name: String?
-        
-        public init (index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil) {
+
+        public init(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil) {
             self.index = index
             self.id = id
             self.source = source
             self.subEventType = subEventType
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case index = "Index"
             case id = "Id"
@@ -48,39 +48,39 @@ extension Ssa {
             case name = "Name"
         }
     }
-    
+
     /// DescribeEventDetail返回参数结构体
     public struct DescribeEventDetailResponse: TCResponseModel {
         /// 事件详情
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取安全事件详情
     @inlinable
-    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventDetailResponse > {
+    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventDetailResponse> {
         self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全事件详情
     @inlinable
     public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
         try await self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取安全事件详情
     @inlinable
-    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventDetailResponse > {
+    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventDetailResponse> {
         self.describeEventDetail(DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全事件详情
     @inlinable
     public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {

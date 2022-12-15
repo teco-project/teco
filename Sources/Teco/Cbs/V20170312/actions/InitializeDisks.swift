@@ -19,26 +19,26 @@ extension Cbs {
     public struct InitializeDisksRequest: TCRequestModel {
         /// 待重新初始化的云硬盘ID列表， 单次初始化限制20块以内
         public let diskIds: [String]
-        
-        public init (diskIds: [String]) {
+
+        public init(diskIds: [String]) {
             self.diskIds = diskIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
         }
     }
-    
+
     /// InitializeDisks返回参数结构体
     public struct InitializeDisksResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重新初始化云硬盘
     ///
     /// 重新初始化云硬盘至云硬盘初始创建时的状态。使用云硬盘的重新初始化功能时需要注意以下4点：
@@ -47,10 +47,10 @@ extension Cbs {
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable
-    public func initializeDisks(_ input: InitializeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeDisksResponse > {
+    public func initializeDisks(_ input: InitializeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
         self.client.execute(action: "InitializeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重新初始化云硬盘
     ///
     /// 重新初始化云硬盘至云硬盘初始创建时的状态。使用云硬盘的重新初始化功能时需要注意以下4点：
@@ -62,7 +62,7 @@ extension Cbs {
     public func initializeDisks(_ input: InitializeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
         try await self.client.execute(action: "InitializeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重新初始化云硬盘
     ///
     /// 重新初始化云硬盘至云硬盘初始创建时的状态。使用云硬盘的重新初始化功能时需要注意以下4点：
@@ -71,10 +71,10 @@ extension Cbs {
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable
-    public func initializeDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeDisksResponse > {
+    public func initializeDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
         self.initializeDisks(InitializeDisksRequest(diskIds: diskIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 重新初始化云硬盘
     ///
     /// 重新初始化云硬盘至云硬盘初始创建时的状态。使用云硬盘的重新初始化功能时需要注意以下4点：

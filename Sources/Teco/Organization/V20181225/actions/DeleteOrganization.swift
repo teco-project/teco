@@ -17,38 +17,38 @@
 extension Organization {
     /// DeleteOrganization请求参数结构体
     public struct DeleteOrganizationRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DeleteOrganization返回参数结构体
     public struct DeleteOrganizationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除企业组织
     @inlinable
-    public func deleteOrganization(_ input: DeleteOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationResponse > {
+    public func deleteOrganization(_ input: DeleteOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationResponse> {
         self.client.execute(action: "DeleteOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除企业组织
     @inlinable
     public func deleteOrganization(_ input: DeleteOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationResponse {
         try await self.client.execute(action: "DeleteOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除企业组织
     @inlinable
-    public func deleteOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationResponse > {
+    public func deleteOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationResponse> {
         self.deleteOrganization(DeleteOrganizationRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除企业组织
     @inlinable
     public func deleteOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationResponse {

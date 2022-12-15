@@ -19,51 +19,51 @@ extension Tdid {
     public struct GetDidDetailRequest: TCRequestModel {
         /// DID号码的具体信息
         public let did: String
-        
-        public init (did: String) {
+
+        public init(did: String) {
             self.did = did
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
         }
     }
-    
+
     /// GetDidDetail返回参数结构体
     public struct GetDidDetailResponse: TCResponseModel {
         /// DID名称
         public let did: String
-        
+
         /// 备注
         public let remark: String
-        
+
         /// 公钥
         public let publicKey: String
-        
+
         /// 权威认证
         public let authorityState: Int64
-        
+
         /// 联盟ID
         public let consortiumId: Int64
-        
+
         /// 联盟名称
         public let consortiumName: String
-        
+
         /// 群组ID
         public let groupId: Int64
-        
+
         /// 网络ID
         public let clusterId: String
-        
+
         /// bcos资源ID
         public let resChainId: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
             case remark = "Remark"
@@ -78,25 +78,25 @@ extension Tdid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// DID详情
     @inlinable
-    public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidDetailResponse > {
+    public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDetailResponse> {
         self.client.execute(action: "GetDidDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DID详情
     @inlinable
     public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
         try await self.client.execute(action: "GetDidDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DID详情
     @inlinable
-    public func getDidDetail(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidDetailResponse > {
+    public func getDidDetail(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDetailResponse> {
         self.getDidDetail(GetDidDetailRequest(did: did), logger: logger, on: eventLoop)
     }
-    
+
     /// DID详情
     @inlinable
     public func getDidDetail(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {

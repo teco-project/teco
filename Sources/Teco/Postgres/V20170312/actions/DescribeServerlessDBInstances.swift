@@ -19,27 +19,27 @@ extension Postgres {
     public struct DescribeServerlessDBInstancesRequest: TCRequestModel {
         /// 查询条件
         public let filter: [Filter]?
-        
+
         /// 查询个数
         public let limit: UInt64?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 排序指标，目前支持实例创建时间CreateTime
         public let orderBy: String?
-        
+
         /// 排序方式，包括升序、降序
         public let orderByType: String?
-        
-        public init (filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
+
+        public init(filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.filter = filter
             self.limit = limit
             self.offset = offset
             self.orderBy = orderBy
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filter = "Filter"
             case limit = "Limit"
@@ -48,34 +48,34 @@ extension Postgres {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeServerlessDBInstances返回参数结构体
     public struct DescribeServerlessDBInstancesResponse: TCResponseModel {
         /// 查询结果数
         public let totalCount: Int64
-        
+
         /// 查询结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbInstanceSet: [ServerlessDBInstance]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case dbInstanceSet = "DBInstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询ServerlessDB实例列表
     ///
     /// 用于查询一个或多个serverlessDB实例的详细信息
     @inlinable
-    public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerlessDBInstancesResponse > {
+    public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServerlessDBInstancesResponse> {
         self.client.execute(action: "DescribeServerlessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询ServerlessDB实例列表
     ///
     /// 用于查询一个或多个serverlessDB实例的详细信息
@@ -83,15 +83,15 @@ extension Postgres {
     public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerlessDBInstancesResponse {
         try await self.client.execute(action: "DescribeServerlessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询ServerlessDB实例列表
     ///
     /// 用于查询一个或多个serverlessDB实例的详细信息
     @inlinable
-    public func describeServerlessDBInstances(filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerlessDBInstancesResponse > {
+    public func describeServerlessDBInstances(filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServerlessDBInstancesResponse> {
         self.describeServerlessDBInstances(DescribeServerlessDBInstancesRequest(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询ServerlessDB实例列表
     ///
     /// 用于查询一个或多个serverlessDB实例的详细信息

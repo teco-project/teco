@@ -17,42 +17,42 @@
 extension Cam {
     /// ListUsers请求参数结构体
     public struct ListUsersRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ListUsers返回参数结构体
     public struct ListUsersResponse: TCResponseModel {
         /// 子用户信息
         public let data: [SubAccountInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取子用户
     @inlinable
-    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersResponse > {
+    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
         self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取子用户
     @inlinable
     public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
         try await self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取子用户
     @inlinable
-    public func listUsers(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersResponse > {
+    public func listUsers(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
         self.listUsers(ListUsersRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取子用户
     @inlinable
     public func listUsers(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {

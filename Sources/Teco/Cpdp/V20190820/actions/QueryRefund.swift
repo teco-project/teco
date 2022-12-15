@@ -19,27 +19,27 @@ extension Cpdp {
     public struct QueryRefundRequest: TCRequestModel {
         /// 用户ID，长度不小于5位，仅支持字母和数字的组合。
         public let userId: String
-        
+
         /// 退款订单号，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合。
         public let refundId: String
-        
+
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 聚鑫分配的安全ID
         public let midasSecretId: String
-        
+
         /// 按照聚鑫安全密钥计算的签名
         public let midasSignature: String
-        
+
         /// 环境名:
         /// release: 现网环境
         /// sandbox: 沙箱环境
         /// development: 开发环境
         /// 缺省: release
         public let midasEnvironment: String?
-        
-        public init (userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil) {
+
+        public init(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil) {
             self.userId = userId
             self.refundId = refundId
             self.midasAppId = midasAppId
@@ -47,7 +47,7 @@ extension Cpdp {
             self.midasSignature = midasSignature
             self.midasEnvironment = midasEnvironment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case refundId = "RefundId"
@@ -57,54 +57,54 @@ extension Cpdp {
             case midasEnvironment = "MidasEnvironment"
         }
     }
-    
+
     /// QueryRefund返回参数结构体
     public struct QueryRefundResponse: TCResponseModel {
         /// 退款状态码，退款提交成功后返回  1：退款中；  2：退款成功；  3：退款失败。
         public let state: String
-        
+
         /// 支付机构订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalOrderId: String?
-        
+
         /// 支付机构退款单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalRefundId: String?
-        
+
         /// 渠道订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelOrderId: String?
-        
+
         /// 退款总金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalRefundAmt: Int64?
-        
+
         /// 货币类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currencyType: String?
-        
+
         /// 外部订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outTradeNo: String?
-        
+
         /// 退款订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundId: String?
-        
+
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 指定退款订单号。与RefundId的区别是，UsedRefundId不会再做修饰，而RefundId则可能在查询退款处理时做了如添加前缀等的修饰
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usedRefundId: String?
-        
+
         /// 子单退款信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subRefundList: [OldSubRefund]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case state = "State"
             case channelExternalOrderId = "ChannelExternalOrderId"
@@ -120,15 +120,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫-查询退款接口
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
-    public func queryRefund(_ input: QueryRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryRefundResponse > {
+    public func queryRefund(_ input: QueryRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRefundResponse> {
         self.client.execute(action: "QueryRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-查询退款接口
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
@@ -136,15 +136,15 @@ extension Cpdp {
     public func queryRefund(_ input: QueryRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRefundResponse {
         try await self.client.execute(action: "QueryRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫-查询退款接口
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
-    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryRefundResponse > {
+    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRefundResponse> {
         self.queryRefund(QueryRefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-查询退款接口
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。

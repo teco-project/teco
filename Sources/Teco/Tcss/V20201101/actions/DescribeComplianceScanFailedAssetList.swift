@@ -23,23 +23,23 @@ extension Tcss {
         /// ASSET_HOST, 主机
         /// ASSET_K8S, K8S资产
         public let assetTypeSet: [String]?
-        
+
         /// 起始偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 返回的数据量，默认为10，最大为100。
         public let limit: UInt64?
-        
+
         /// 查询过滤器
         public let filters: [ComplianceFilters]?
-        
-        public init (assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
+
+        public init(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
             self.assetTypeSet = assetTypeSet
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case assetTypeSet = "AssetTypeSet"
             case offset = "Offset"
@@ -47,34 +47,34 @@ extension Tcss {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeComplianceScanFailedAssetList返回参数结构体
     public struct DescribeComplianceScanFailedAssetListResponse: TCResponseModel {
         /// 返回检测失败的资产的总数。
         public let totalCount: UInt64
-        
+
         /// 返回各类检测失败的资产的汇总信息的列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scanFailedAssetList: [ComplianceScanFailedAsset]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case scanFailedAssetList = "ScanFailedAssetList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全合规查询上次检测失败的资产的列表
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
     @inlinable
-    public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceScanFailedAssetListResponse > {
+    public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceScanFailedAssetListResponse> {
         self.client.execute(action: "DescribeComplianceScanFailedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询上次检测失败的资产的列表
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
@@ -82,15 +82,15 @@ extension Tcss {
     public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceScanFailedAssetListResponse {
         try await self.client.execute(action: "DescribeComplianceScanFailedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全合规查询上次检测失败的资产的列表
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
     @inlinable
-    public func describeComplianceScanFailedAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceScanFailedAssetListResponse > {
+    public func describeComplianceScanFailedAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceScanFailedAssetListResponse> {
         self.describeComplianceScanFailedAssetList(DescribeComplianceScanFailedAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全合规查询上次检测失败的资产的列表
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。

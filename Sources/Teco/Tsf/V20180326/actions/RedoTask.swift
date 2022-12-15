@@ -19,48 +19,48 @@ extension Tsf {
     public struct RedoTaskRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// RedoTask返回参数结构体
     public struct RedoTaskResponse: TCResponseModel {
         /// 操作成功or失败
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重新执行任务
     @inlinable
-    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskResponse > {
+    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskResponse> {
         self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重新执行任务
     @inlinable
     public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
         try await self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重新执行任务
     @inlinable
-    public func redoTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskResponse > {
+    public func redoTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskResponse> {
         self.redoTask(RedoTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重新执行任务
     @inlinable
     public func redoTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {

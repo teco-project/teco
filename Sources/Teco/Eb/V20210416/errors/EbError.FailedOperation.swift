@@ -36,147 +36,147 @@ extension TCEbError {
             case updateRule = "FailedOperation.UpdateRule"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var addPrivateLink: FailedOperation {
             FailedOperation(.addPrivateLink)
         }
-        
+
         public static var authenticateUserFailed: FailedOperation {
             FailedOperation(.authenticateUserFailed)
         }
-        
+
         /// 投递目标创建失败，请检查函数状态。
         public static var createTrigger: FailedOperation {
             FailedOperation(.createTrigger)
         }
-        
+
         /// 删除连接器失败，请检查资源状态。
         public static var deleteConnection: FailedOperation {
             FailedOperation(.deleteConnection)
         }
-        
+
         public static var deletePrivateLink: FailedOperation {
             FailedOperation(.deletePrivateLink)
         }
-        
+
         /// 规则删除失败，请检查资源信息，确认是资源否存在或状态正常。
         public static var deleteRule: FailedOperation {
             FailedOperation(.deleteRule)
         }
-        
+
         /// 规则与事件不匹配，请修正后再试。
         public static var errorFilter: FailedOperation {
             FailedOperation(.errorFilter)
         }
-        
+
         public static var esInternalError: FailedOperation {
             FailedOperation(.esInternalError)
         }
-        
+
         public static var esRequestFailed: FailedOperation {
             FailedOperation(.esRequestFailed)
         }
-        
+
         public static var esTemplateConflict: FailedOperation {
             FailedOperation(.esTemplateConflict)
         }
-        
+
         public static var registerCLSService: FailedOperation {
             FailedOperation(.registerCLSService)
         }
-        
+
         /// ServiceError操作失败，请检查资源信息。
         public static var serviceError: FailedOperation {
             FailedOperation(.serviceError)
         }
-        
+
         public static var tagResource: FailedOperation {
             FailedOperation(.tagResource)
         }
-        
+
         public static var tagResourceAllocateQuotas: FailedOperation {
             FailedOperation(.tagResourceAllocateQuotas)
         }
-        
+
         public static var unTagResource: FailedOperation {
             FailedOperation(.unTagResource)
         }
-        
+
         /// 连接器更新失败，请检查资源信息，确认是资源否存在或状态正常。
         public static var updateConnection: FailedOperation {
             FailedOperation(.updateConnection)
         }
-        
+
         /// 规则更新失败，请检查资源信息，确认是资源否存在或状态正常。
         public static var updateRule: FailedOperation {
             FailedOperation(.updateRule)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
-            case .addPrivateLink: 
+            case .addPrivateLink:
                 code = .failedOperation_AddPrivateLink
-            case .authenticateUserFailed: 
+            case .authenticateUserFailed:
                 code = .failedOperation_AuthenticateUserFailed
-            case .createTrigger: 
+            case .createTrigger:
                 code = .failedOperation_CreateTrigger
-            case .deleteConnection: 
+            case .deleteConnection:
                 code = .failedOperation_DeleteConnection
-            case .deletePrivateLink: 
+            case .deletePrivateLink:
                 code = .failedOperation_DeletePrivateLink
-            case .deleteRule: 
+            case .deleteRule:
                 code = .failedOperation_DeleteRule
-            case .errorFilter: 
+            case .errorFilter:
                 code = .failedOperation_ErrorFilter
-            case .esInternalError: 
+            case .esInternalError:
                 code = .failedOperation_ESInternalError
-            case .esRequestFailed: 
+            case .esRequestFailed:
                 code = .failedOperation_ESRequestFailed
-            case .esTemplateConflict: 
+            case .esTemplateConflict:
                 code = .failedOperation_ESTemplateConflict
-            case .registerCLSService: 
+            case .registerCLSService:
                 code = .failedOperation_RegisterCLSService
-            case .serviceError: 
+            case .serviceError:
                 code = .failedOperation_ServiceError
-            case .tagResource: 
+            case .tagResource:
                 code = .failedOperation_TagResource
-            case .tagResourceAllocateQuotas: 
+            case .tagResourceAllocateQuotas:
                 code = .failedOperation_TagResourceAllocateQuotas
-            case .unTagResource: 
+            case .unTagResource:
                 code = .failedOperation_UnTagResource
-            case .updateConnection: 
+            case .updateConnection:
                 code = .failedOperation_UpdateConnection
-            case .updateRule: 
+            case .updateRule:
                 code = .failedOperation_UpdateRule
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCEbError(code, context: self.context)

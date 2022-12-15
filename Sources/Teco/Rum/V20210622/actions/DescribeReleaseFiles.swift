@@ -19,53 +19,53 @@ extension Rum {
     public struct DescribeReleaseFilesRequest: TCRequestModel {
         /// 项目 id
         public let projectID: Int64
-        
+
         /// 文件版本
         public let fileVersion: String?
-        
-        public init (projectID: Int64, fileVersion: String? = nil) {
+
+        public init(projectID: Int64, fileVersion: String? = nil) {
             self.projectID = projectID
             self.fileVersion = fileVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectID = "ProjectID"
             case fileVersion = "FileVersion"
         }
     }
-    
+
     /// DescribeReleaseFiles返回参数结构体
     public struct DescribeReleaseFilesResponse: TCResponseModel {
         /// 文件信息列表
         public let files: [ReleaseFile]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case files = "Files"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取项目对应sourcemap文件列表
     @inlinable
-    public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFilesResponse > {
+    public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFilesResponse> {
         self.client.execute(action: "DescribeReleaseFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目对应sourcemap文件列表
     @inlinable
     public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFilesResponse {
         try await self.client.execute(action: "DescribeReleaseFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取项目对应sourcemap文件列表
     @inlinable
-    public func describeReleaseFiles(projectID: Int64, fileVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFilesResponse > {
+    public func describeReleaseFiles(projectID: Int64, fileVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFilesResponse> {
         self.describeReleaseFiles(DescribeReleaseFilesRequest(projectID: projectID, fileVersion: fileVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取项目对应sourcemap文件列表
     @inlinable
     public func describeReleaseFiles(projectID: Int64, fileVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFilesResponse {

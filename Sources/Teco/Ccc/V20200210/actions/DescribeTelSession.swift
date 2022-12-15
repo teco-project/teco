@@ -19,53 +19,53 @@ extension Ccc {
     public struct DescribeTelSessionRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 会话 ID
         public let sessionId: String
-        
-        public init (sdkAppId: Int64, sessionId: String) {
+
+        public init(sdkAppId: Int64, sessionId: String) {
             self.sdkAppId = sdkAppId
             self.sessionId = sessionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case sessionId = "SessionId"
         }
     }
-    
+
     /// DescribeTelSession返回参数结构体
     public struct DescribeTelSessionResponse: TCResponseModel {
         /// 会话信息
         public let session: PSTNSession
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case session = "Session"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取 PSTN 会话信息
     @inlinable
-    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelSessionResponse > {
+    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelSessionResponse> {
         self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取 PSTN 会话信息
     @inlinable
     public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
         try await self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取 PSTN 会话信息
     @inlinable
-    public func describeTelSession(sdkAppId: Int64, sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelSessionResponse > {
+    public func describeTelSession(sdkAppId: Int64, sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelSessionResponse> {
         self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取 PSTN 会话信息
     @inlinable
     public func describeTelSession(sdkAppId: Int64, sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {

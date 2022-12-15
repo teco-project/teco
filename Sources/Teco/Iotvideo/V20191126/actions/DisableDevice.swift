@@ -19,34 +19,34 @@ extension Iotvideo {
     public struct DisableDeviceRequest: TCRequestModel {
         /// 设备TID ≤100
         public let tids: [String]
-        
-        public init (tids: [String]) {
+
+        public init(tids: [String]) {
             self.tids = tids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tids = "Tids"
         }
     }
-    
+
     /// DisableDevice返回参数结构体
     public struct DisableDeviceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 禁用设备
     ///
     /// 本接口（DisableDevice）用于禁用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func disableDevice(_ input: DisableDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableDeviceResponse > {
+    public func disableDevice(_ input: DisableDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceResponse> {
         self.client.execute(action: "DisableDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用设备
     ///
     /// 本接口（DisableDevice）用于禁用设备，可进行批量操作，每次操作最多100台设备。
@@ -54,15 +54,15 @@ extension Iotvideo {
     public func disableDevice(_ input: DisableDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceResponse {
         try await self.client.execute(action: "DisableDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 禁用设备
     ///
     /// 本接口（DisableDevice）用于禁用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func disableDevice(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableDeviceResponse > {
+    public func disableDevice(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceResponse> {
         self.disableDevice(DisableDeviceRequest(tids: tids), logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用设备
     ///
     /// 本接口（DisableDevice）用于禁用设备，可进行批量操作，每次操作最多100台设备。

@@ -19,48 +19,48 @@ extension Ssl {
     public struct SubmitAuditManagerRequest: TCRequestModel {
         /// 管理人ID
         public let managerId: Int64
-        
-        public init (managerId: Int64) {
+
+        public init(managerId: Int64) {
             self.managerId = managerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case managerId = "ManagerId"
         }
     }
-    
+
     /// SubmitAuditManager返回参数结构体
     public struct SubmitAuditManagerResponse: TCResponseModel {
         /// 管理人ID
         public let managerId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case managerId = "ManagerId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重新提交审核管理人
     @inlinable
-    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitAuditManagerResponse > {
+    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitAuditManagerResponse> {
         self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重新提交审核管理人
     @inlinable
     public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
         try await self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重新提交审核管理人
     @inlinable
-    public func submitAuditManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitAuditManagerResponse > {
+    public func submitAuditManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitAuditManagerResponse> {
         self.submitAuditManager(SubmitAuditManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重新提交审核管理人
     @inlinable
     public func submitAuditManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {

@@ -19,57 +19,57 @@ extension Iai {
     public struct GetUpgradeGroupFaceModelVersionJobListRequest: TCRequestModel {
         /// 起始序号，默认值为0。
         public let offset: UInt64?
-        
+
         /// 返回数量，默认值为10，最大值为1000。
         public let limit: UInt64?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// GetUpgradeGroupFaceModelVersionJobList返回参数结构体
     public struct GetUpgradeGroupFaceModelVersionJobListResponse: TCResponseModel {
         /// 人员库升级任务信息列表。
         public let jobInfos: [UpgradeJobInfo]
-        
+
         /// 升级任务总数量。
         public let jobNum: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobInfos = "JobInfos"
             case jobNum = "JobNum"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取人员库升级任务列表
     @inlinable
-    public func getUpgradeGroupFaceModelVersionJobList(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeGroupFaceModelVersionJobListResponse > {
+    public func getUpgradeGroupFaceModelVersionJobList(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionJobListResponse> {
         self.client.execute(action: "GetUpgradeGroupFaceModelVersionJobList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取人员库升级任务列表
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionJobListResponse {
         try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionJobList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取人员库升级任务列表
     @inlinable
-    public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeGroupFaceModelVersionJobListResponse > {
+    public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionJobListResponse> {
         self.getUpgradeGroupFaceModelVersionJobList(GetUpgradeGroupFaceModelVersionJobListRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取人员库升级任务列表
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionJobListResponse {

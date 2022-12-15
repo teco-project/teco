@@ -19,48 +19,48 @@ extension Redis {
     public struct StartupInstanceRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// StartupInstance返回参数结构体
     public struct StartupInstanceResponse: TCResponseModel {
         /// 任务id
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 实例解隔离
     @inlinable
-    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartupInstanceResponse > {
+    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartupInstanceResponse> {
         self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 实例解隔离
     @inlinable
     public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
         try await self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 实例解隔离
     @inlinable
-    public func startupInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartupInstanceResponse > {
+    public func startupInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartupInstanceResponse> {
         self.startupInstance(StartupInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 实例解隔离
     @inlinable
     public func startupInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {

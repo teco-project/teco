@@ -19,24 +19,24 @@ extension Tcss {
     public struct DescribeNetworkFirewallNamespaceLabelListRequest: TCRequestModel {
         /// 集群id
         public let clusterId: String
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 每次查询的最大记录数量
         public let limit: UInt64?
-        
+
         /// Name - String
         /// Name 可取值：ClusterName,ClusterId,ClusterType,Region,ClusterCheckMode,ClusterAutoCheck
         public let filters: [ComplianceFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式 asc,desc
         public let order: String?
-        
-        public init (clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -44,7 +44,7 @@ extension Tcss {
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case offset = "Offset"
@@ -54,43 +54,43 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeNetworkFirewallNamespaceLabelList返回参数结构体
     public struct DescribeNetworkFirewallNamespaceLabelListResponse: TCResponseModel {
         /// 集群总数
         public let totalCount: UInt64
-        
+
         /// 集群空间标签详细信息
         public let clusterNamespaceLabelList: [NetworkClusterNamespaceLabelInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case clusterNamespaceLabelList = "ClusterNamespaceLabelList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群网络空间标签列表
     @inlinable
-    public func describeNetworkFirewallNamespaceLabelList(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallNamespaceLabelListResponse > {
+    public func describeNetworkFirewallNamespaceLabelList(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallNamespaceLabelListResponse> {
         self.client.execute(action: "DescribeNetworkFirewallNamespaceLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群网络空间标签列表
     @inlinable
     public func describeNetworkFirewallNamespaceLabelList(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallNamespaceLabelListResponse {
         try await self.client.execute(action: "DescribeNetworkFirewallNamespaceLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群网络空间标签列表
     @inlinable
-    public func describeNetworkFirewallNamespaceLabelList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallNamespaceLabelListResponse > {
+    public func describeNetworkFirewallNamespaceLabelList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallNamespaceLabelListResponse> {
         self.describeNetworkFirewallNamespaceLabelList(DescribeNetworkFirewallNamespaceLabelListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群网络空间标签列表
     @inlinable
     public func describeNetworkFirewallNamespaceLabelList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallNamespaceLabelListResponse {

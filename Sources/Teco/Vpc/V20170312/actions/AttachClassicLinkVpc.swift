@@ -19,31 +19,31 @@ extension Vpc {
     public struct AttachClassicLinkVpcRequest: TCRequestModel {
         /// VPC实例ID
         public let vpcId: String
-        
+
         /// CVM实例ID
         public let instanceIds: [String]
-        
-        public init (vpcId: String, instanceIds: [String]) {
+
+        public init(vpcId: String, instanceIds: [String]) {
             self.vpcId = vpcId
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// AttachClassicLinkVpc返回参数结构体
     public struct AttachClassicLinkVpcResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建基础网络互通
     ///
     /// 本接口(AttachClassicLinkVpc)用于创建私有网络和基础网络设备互通。
@@ -52,10 +52,10 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachClassicLinkVpcResponse > {
+    public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
         self.client.execute(action: "AttachClassicLinkVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建基础网络互通
     ///
     /// 本接口(AttachClassicLinkVpc)用于创建私有网络和基础网络设备互通。
@@ -67,7 +67,7 @@ extension Vpc {
     public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
         try await self.client.execute(action: "AttachClassicLinkVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建基础网络互通
     ///
     /// 本接口(AttachClassicLinkVpc)用于创建私有网络和基础网络设备互通。
@@ -76,10 +76,10 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachClassicLinkVpcResponse > {
+    public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
         self.attachClassicLinkVpc(AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建基础网络互通
     ///
     /// 本接口(AttachClassicLinkVpc)用于创建私有网络和基础网络设备互通。

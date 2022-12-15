@@ -19,27 +19,27 @@ extension Apigateway {
     public struct ModifyAPIDocRequest: TCRequestModel {
         /// API文档ID
         public let apiDocId: String
-        
+
         /// API文档名称
         public let apiDocName: String?
-        
+
         /// 服务名称
         public let serviceId: String?
-        
+
         /// 环境名称
         public let environment: String?
-        
+
         /// 生成文档的API列表
         public let apiIds: [String]?
-        
-        public init (apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil) {
+
+        public init(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil) {
             self.apiDocId = apiDocId
             self.apiDocName = apiDocName
             self.serviceId = serviceId
             self.environment = environment
             self.apiIds = apiIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case apiDocId = "ApiDocId"
             case apiDocName = "ApiDocName"
@@ -48,39 +48,39 @@ extension Apigateway {
             case apiIds = "ApiIds"
         }
     }
-    
+
     /// ModifyAPIDoc返回参数结构体
     public struct ModifyAPIDocResponse: TCResponseModel {
         /// API文档基本信息
         public let result: APIDoc
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改 API 文档
     @inlinable
-    public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAPIDocResponse > {
+    public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAPIDocResponse> {
         self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改 API 文档
     @inlinable
     public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {
         try await self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改 API 文档
     @inlinable
-    public func modifyAPIDoc(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAPIDocResponse > {
+    public func modifyAPIDoc(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAPIDocResponse> {
         self.modifyAPIDoc(ModifyAPIDocRequest(apiDocId: apiDocId, apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改 API 文档
     @inlinable
     public func modifyAPIDoc(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {

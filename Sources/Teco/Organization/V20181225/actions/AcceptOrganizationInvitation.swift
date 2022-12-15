@@ -19,44 +19,44 @@ extension Organization {
     public struct AcceptOrganizationInvitationRequest: TCRequestModel {
         /// 邀请ID
         public let id: UInt64
-        
-        public init (id: UInt64) {
+
+        public init(id: UInt64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// AcceptOrganizationInvitation返回参数结构体
     public struct AcceptOrganizationInvitationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 接受加入企业组织邀请
     @inlinable
-    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptOrganizationInvitationResponse > {
+    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
         self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 接受加入企业组织邀请
     @inlinable
     public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
         try await self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 接受加入企业组织邀请
     @inlinable
-    public func acceptOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptOrganizationInvitationResponse > {
+    public func acceptOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
         self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 接受加入企业组织邀请
     @inlinable
     public func acceptOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {

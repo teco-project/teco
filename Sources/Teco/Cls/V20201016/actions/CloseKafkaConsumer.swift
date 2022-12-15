@@ -19,44 +19,44 @@ extension Cls {
     public struct CloseKafkaConsumerRequest: TCRequestModel {
         /// CLS对应的topic标识
         public let fromTopicId: String
-        
-        public init (fromTopicId: String) {
+
+        public init(fromTopicId: String) {
             self.fromTopicId = fromTopicId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fromTopicId = "FromTopicId"
         }
     }
-    
+
     /// CloseKafkaConsumer返回参数结构体
     public struct CloseKafkaConsumerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭Kafka协议消费
     @inlinable
-    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseKafkaConsumerResponse > {
+    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
         self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭Kafka协议消费
     @inlinable
     public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
         try await self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭Kafka协议消费
     @inlinable
-    public func closeKafkaConsumer(fromTopicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseKafkaConsumerResponse > {
+    public func closeKafkaConsumer(fromTopicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
         self.closeKafkaConsumer(CloseKafkaConsumerRequest(fromTopicId: fromTopicId), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭Kafka协议消费
     @inlinable
     public func closeKafkaConsumer(fromTopicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {

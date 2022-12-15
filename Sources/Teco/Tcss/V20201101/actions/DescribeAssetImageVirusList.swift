@@ -19,25 +19,25 @@ extension Tcss {
     public struct DescribeAssetImageVirusListRequest: TCRequestModel {
         /// 镜像id
         public let imageID: String
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Name- String - 是否必填：否 - 镜像名称筛选，</li>
         /// <li>RiskLevel - String - 是否必填：否 - 风险等级  1,2,3,4</li>
         public let filters: [AssetFilters]?
-        
+
         /// 排序 asc desc
         public let order: String?
-        
+
         /// 排序字段
         public let by: String?
-        
-        public init (imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.imageID = imageID
             self.limit = limit
             self.offset = offset
@@ -45,7 +45,7 @@ extension Tcss {
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageID = "ImageID"
             case limit = "Limit"
@@ -55,15 +55,15 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeAssetImageVirusList返回参数结构体
     public struct DescribeAssetImageVirusListResponse: TCResponseModel {
         /// 镜像病毒列表
         public let list: [ImageVirusInfo]
-        
+
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 病毒扫描状态
         /// 0:未扫描
         /// 1:扫描中
@@ -71,10 +71,10 @@ extension Tcss {
         /// 3:扫描出错
         /// 4:扫描取消
         public let virusScanStatus: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
@@ -82,15 +82,15 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询镜像病毒列表
     ///
     /// 容器安全查询镜像病毒列表
     @inlinable
-    public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVirusListResponse > {
+    public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListResponse> {
         self.client.execute(action: "DescribeAssetImageVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像病毒列表
     ///
     /// 容器安全查询镜像病毒列表
@@ -98,15 +98,15 @@ extension Tcss {
     public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListResponse {
         try await self.client.execute(action: "DescribeAssetImageVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询镜像病毒列表
     ///
     /// 容器安全查询镜像病毒列表
     @inlinable
-    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVirusListResponse > {
+    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListResponse> {
         self.describeAssetImageVirusList(DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像病毒列表
     ///
     /// 容器安全查询镜像病毒列表

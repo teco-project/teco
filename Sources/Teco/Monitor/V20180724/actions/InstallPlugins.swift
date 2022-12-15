@@ -19,54 +19,54 @@ extension Monitor {
     public struct InstallPluginsRequest: TCRequestModel {
         /// 插件信息
         public let plugins: [GrafanaPlugin]
-        
+
         /// 实例 ID
         public let instanceId: String
-        
-        public init (plugins: [GrafanaPlugin], instanceId: String) {
+
+        public init(plugins: [GrafanaPlugin], instanceId: String) {
             self.plugins = plugins
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case plugins = "Plugins"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// InstallPlugins返回参数结构体
     public struct InstallPluginsResponse: TCResponseModel {
         /// 已安装插件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pluginIds: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginIds = "PluginIds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安装 Grafana Plugin
     @inlinable
-    public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallPluginsResponse > {
+    public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallPluginsResponse> {
         self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安装 Grafana Plugin
     @inlinable
     public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {
         try await self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安装 Grafana Plugin
     @inlinable
-    public func installPlugins(plugins: [GrafanaPlugin], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallPluginsResponse > {
+    public func installPlugins(plugins: [GrafanaPlugin], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallPluginsResponse> {
         self.installPlugins(InstallPluginsRequest(plugins: plugins, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 安装 Grafana Plugin
     @inlinable
     public func installPlugins(plugins: [GrafanaPlugin], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {

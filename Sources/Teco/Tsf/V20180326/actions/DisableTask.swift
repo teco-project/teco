@@ -19,48 +19,48 @@ extension Tsf {
     public struct DisableTaskRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DisableTask返回参数结构体
     public struct DisableTaskResponse: TCResponseModel {
         /// 操作成功 or 失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停用任务
     @inlinable
-    public func disableTask(_ input: DisableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableTaskResponse > {
+    public func disableTask(_ input: DisableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskResponse> {
         self.client.execute(action: "DisableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停用任务
     @inlinable
     public func disableTask(_ input: DisableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskResponse {
         try await self.client.execute(action: "DisableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停用任务
     @inlinable
-    public func disableTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableTaskResponse > {
+    public func disableTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskResponse> {
         self.disableTask(DisableTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停用任务
     @inlinable
     public func disableTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskResponse {

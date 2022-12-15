@@ -19,36 +19,36 @@ extension Ms {
     public struct DescribeShieldResultRequest: TCRequestModel {
         /// 任务唯一标识
         public let itemId: String
-        
-        public init (itemId: String) {
+
+        public init(itemId: String) {
             self.itemId = itemId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case itemId = "ItemId"
         }
     }
-    
+
     /// DescribeShieldResult返回参数结构体
     public struct DescribeShieldResultResponse: TCResponseModel {
         /// 任务状态: 0-请返回,1-已完成,2-处理中,3-处理出错,4-处理超时
         public let taskStatus: UInt64
-        
+
         /// app加固前的详细信息
         public let appDetailInfo: AppDetailInfo
-        
+
         /// app加固后的详细信息
         public let shieldInfo: ShieldInfo
-        
+
         /// 状态描述
         public let statusDesc: String
-        
+
         /// 状态指引
         public let statusRef: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskStatus = "TaskStatus"
             case appDetailInfo = "AppDetailInfo"
@@ -58,15 +58,15 @@ extension Ms {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询加固结果
     ///
     /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldResult(_ input: DescribeShieldResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldResultResponse > {
+    public func describeShieldResult(_ input: DescribeShieldResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldResultResponse> {
         self.client.execute(action: "DescribeShieldResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询加固结果
     ///
     /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
@@ -74,15 +74,15 @@ extension Ms {
     public func describeShieldResult(_ input: DescribeShieldResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldResultResponse {
         try await self.client.execute(action: "DescribeShieldResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询加固结果
     ///
     /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldResult(itemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldResultResponse > {
+    public func describeShieldResult(itemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldResultResponse> {
         self.describeShieldResult(DescribeShieldResultRequest(itemId: itemId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询加固结果
     ///
     /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）

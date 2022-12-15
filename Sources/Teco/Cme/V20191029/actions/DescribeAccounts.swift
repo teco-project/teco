@@ -19,23 +19,23 @@ extension Cme {
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
-        
+
         /// 手机号码。指定手机号获取账号信息，目前仅支持国内手机号，且号码不加地区码 `+86` 等。
         public let phone: String?
-        
+
         /// 分页返回的起始偏移量，默认值：0。
         public let offset: Int64?
-        
+
         /// 分页返回的记录条数，默认值：10，最大值：20。
         public let limit: Int64?
-        
-        public init (platform: String, phone: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(platform: String, phone: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.platform = platform
             self.phone = phone
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case phone = "Phone"
@@ -43,33 +43,33 @@ extension Cme {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAccounts返回参数结构体
     public struct DescribeAccountsResponse: TCResponseModel {
         /// 符合搜索条件的记录总数。
         public let totalCount: Int64
-        
+
         /// 账号信息列表。
         public let accountInfoSet: [AccountInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case accountInfoSet = "AccountInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取账号信息
     ///
     /// 获取平台中所有的已注册账号。
     @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取账号信息
     ///
     /// 获取平台中所有的已注册账号。
@@ -77,15 +77,15 @@ extension Cme {
     public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取账号信息
     ///
     /// 获取平台中所有的已注册账号。
     @inlinable
-    public func describeAccounts(platform: String, phone: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+    public func describeAccounts(platform: String, phone: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.describeAccounts(DescribeAccountsRequest(platform: platform, phone: phone, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取账号信息
     ///
     /// 获取平台中所有的已注册账号。

@@ -23,66 +23,66 @@ extension TCVodError {
             case storageRegion = "InvalidParameter.StorageRegion"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 任务流模板名字已存在。
         public static var existedProcedureName: InvalidParameter {
             InvalidParameter(.existedProcedureName)
         }
-        
+
         /// 参数值错误：过期时间。
         public static var expireTime: InvalidParameter {
             InvalidParameter(.expireTime)
         }
-        
+
         /// 任务流模板名字不存在。
         public static var procedureNameNotExist: InvalidParameter {
             InvalidParameter(.procedureNameNotExist)
         }
-        
+
         /// 参数值错误：存储地域。
         public static var storageRegion: InvalidParameter {
             InvalidParameter(.storageRegion)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asVodError() -> TCVodError {
             let code: TCVodError.Code
             switch self.error {
-            case .existedProcedureName: 
+            case .existedProcedureName:
                 code = .invalidParameter_ExistedProcedureName
-            case .expireTime: 
+            case .expireTime:
                 code = .invalidParameter_ExpireTime
-            case .procedureNameNotExist: 
+            case .procedureNameNotExist:
                 code = .invalidParameter_ProcedureNameNotExist
-            case .storageRegion: 
+            case .storageRegion:
                 code = .invalidParameter_StorageRegion
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCVodError(code, context: self.context)

@@ -19,54 +19,54 @@ extension Cloudstudio {
     public struct CreateWorkspaceByAgentRequest: TCRequestModel {
         /// 无
         public let cloudStudioSessionTeam: String
-        
+
         /// 无
         public let agentSpaceDTO: AgentSpaceDTO
-        
-        public init (cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO) {
+
+        public init(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.agentSpaceDTO = agentSpaceDTO
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
             case agentSpaceDTO = "AgentSpaceDTO"
         }
     }
-    
+
     /// CreateWorkspaceByAgent返回参数结构体
     public struct CreateWorkspaceByAgentResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: WorkspaceInfoDTO?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云服务器方式创建工作空间
     @inlinable
-    public func createWorkspaceByAgent(_ input: CreateWorkspaceByAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByAgentResponse > {
+    public func createWorkspaceByAgent(_ input: CreateWorkspaceByAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByAgentResponse> {
         self.client.execute(action: "CreateWorkspaceByAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云服务器方式创建工作空间
     @inlinable
     public func createWorkspaceByAgent(_ input: CreateWorkspaceByAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByAgentResponse {
         try await self.client.execute(action: "CreateWorkspaceByAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云服务器方式创建工作空间
     @inlinable
-    public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByAgentResponse > {
+    public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByAgentResponse> {
         self.createWorkspaceByAgent(CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO), logger: logger, on: eventLoop)
     }
-    
+
     /// 云服务器方式创建工作空间
     @inlinable
     public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByAgentResponse {

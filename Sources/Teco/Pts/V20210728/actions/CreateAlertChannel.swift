@@ -19,54 +19,54 @@ extension Pts {
     public struct CreateAlertChannelRequest: TCRequestModel {
         /// Notice ID
         public let noticeId: String
-        
+
         /// 项目 ID
         public let projectId: String
-        
+
         /// AMP Consumer ID
         public let ampConsumerId: String?
-        
-        public init (noticeId: String, projectId: String, ampConsumerId: String? = nil) {
+
+        public init(noticeId: String, projectId: String, ampConsumerId: String? = nil) {
             self.noticeId = noticeId
             self.projectId = projectId
             self.ampConsumerId = ampConsumerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case noticeId = "NoticeId"
             case projectId = "ProjectId"
             case ampConsumerId = "AMPConsumerId"
         }
     }
-    
+
     /// CreateAlertChannel返回参数结构体
     public struct CreateAlertChannelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建告警通知接收组
     @inlinable
-    public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlertChannelResponse > {
+    public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertChannelResponse> {
         self.client.execute(action: "CreateAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建告警通知接收组
     @inlinable
     public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
         try await self.client.execute(action: "CreateAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建告警通知接收组
     @inlinable
-    public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlertChannelResponse > {
+    public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertChannelResponse> {
         self.createAlertChannel(CreateAlertChannelRequest(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建告警通知接收组
     @inlinable
     public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {

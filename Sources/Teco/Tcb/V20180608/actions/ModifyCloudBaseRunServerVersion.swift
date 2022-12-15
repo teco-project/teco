@@ -19,41 +19,41 @@ extension Tcb {
     public struct ModifyCloudBaseRunServerVersionRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// 服务名称
         public let serverName: String
-        
+
         /// 版本名称
         public let versionName: String
-        
+
         /// 环境变量
         public let envParams: String?
-        
+
         /// 最小副本数
         public let minNum: String?
-        
+
         /// 最大副本数
         public let maxNum: String?
-        
+
         /// 端口
         public let containerPort: String?
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 日志采集路径
         public let customLogs: String?
-        
+
         /// 是否重设备注
         public let isResetRemark: Bool?
-        
+
         /// 修改基础信息
         public let basicModify: Bool?
-        
+
         /// 操作备注
         public let operatorRemark: String?
-        
-        public init (envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil) {
+
+        public init(envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.versionName = versionName
@@ -67,7 +67,7 @@ extension Tcb {
             self.basicModify = basicModify
             self.operatorRemark = operatorRemark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case serverName = "ServerName"
@@ -83,30 +83,30 @@ extension Tcb {
             case operatorRemark = "OperatorRemark"
         }
     }
-    
+
     /// ModifyCloudBaseRunServerVersion返回参数结构体
     public struct ModifyCloudBaseRunServerVersionResponse: TCResponseModel {
         /// 返回结果（succ为成功）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改服务版本信息
     ///
     /// 修改服务版本的副本数，环境变量
     @inlinable
-    public func modifyCloudBaseRunServerVersion(_ input: ModifyCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudBaseRunServerVersionResponse > {
+    public func modifyCloudBaseRunServerVersion(_ input: ModifyCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerVersionResponse> {
         self.client.execute(action: "ModifyCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改服务版本信息
     ///
     /// 修改服务版本的副本数，环境变量
@@ -114,15 +114,15 @@ extension Tcb {
     public func modifyCloudBaseRunServerVersion(_ input: ModifyCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerVersionResponse {
         try await self.client.execute(action: "ModifyCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改服务版本信息
     ///
     /// 修改服务版本的副本数，环境变量
     @inlinable
-    public func modifyCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudBaseRunServerVersionResponse > {
+    public func modifyCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerVersionResponse> {
         self.modifyCloudBaseRunServerVersion(ModifyCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, envParams: envParams, minNum: minNum, maxNum: maxNum, containerPort: containerPort, remark: remark, customLogs: customLogs, isResetRemark: isResetRemark, basicModify: basicModify, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改服务版本信息
     ///
     /// 修改服务版本的副本数，环境变量

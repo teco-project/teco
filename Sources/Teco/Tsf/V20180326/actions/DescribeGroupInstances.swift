@@ -19,23 +19,23 @@ extension Tsf {
     public struct DescribeGroupInstancesRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String
-        
+
         /// 搜索字段
         public let searchWord: String?
-        
+
         /// 排序字段
         public let orderBy: String?
-        
+
         /// 排序类型
         public let orderType: Int64?
-        
+
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 分页个数
         public let limit: Int64?
-        
-        public init (groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.groupId = groupId
             self.searchWord = searchWord
             self.orderBy = orderBy
@@ -43,7 +43,7 @@ extension Tsf {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case searchWord = "SearchWord"
@@ -53,40 +53,40 @@ extension Tsf {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeGroupInstances返回参数结构体
     public struct DescribeGroupInstancesResponse: TCResponseModel {
         /// 部署组机器信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageInstance?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询虚拟机部署组云主机列表
     @inlinable
-    public func describeGroupInstances(_ input: DescribeGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupInstancesResponse > {
+    public func describeGroupInstances(_ input: DescribeGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInstancesResponse> {
         self.client.execute(action: "DescribeGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询虚拟机部署组云主机列表
     @inlinable
     public func describeGroupInstances(_ input: DescribeGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInstancesResponse {
         try await self.client.execute(action: "DescribeGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询虚拟机部署组云主机列表
     @inlinable
-    public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupInstancesResponse > {
+    public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInstancesResponse> {
         self.describeGroupInstances(DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询虚拟机部署组云主机列表
     @inlinable
     public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInstancesResponse {

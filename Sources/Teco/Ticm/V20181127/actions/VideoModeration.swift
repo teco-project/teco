@@ -19,23 +19,23 @@ extension Ticm {
     public struct VideoModerationRequest: TCRequestModel {
         /// 需要审核的视频的URL地址
         public let videoUrl: String
-        
+
         /// 开发者标识
         public let developerId: String?
-        
+
         /// 审核完成后回调地址
         public let cbUrl: String?
-        
+
         /// 透传字段，透传简单信息。
         public let extra: String?
-        
-        public init (videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil) {
+
+        public init(videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil) {
             self.videoUrl = videoUrl
             self.developerId = developerId
             self.cbUrl = cbUrl
             self.extra = extra
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case videoUrl = "VideoUrl"
             case developerId = "DeveloperId"
@@ -43,29 +43,29 @@ extension Ticm {
             case extra = "Extra"
         }
     }
-    
+
     /// VideoModeration返回参数结构体
     public struct VideoModerationResponse: TCResponseModel {
         /// 视频审核任务ID
         public let vodTaskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vodTaskId = "VodTaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 视频内容识别
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
     @inlinable
-    public func videoModeration(_ input: VideoModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VideoModerationResponse > {
+    public func videoModeration(_ input: VideoModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VideoModerationResponse> {
         self.client.execute(action: "VideoModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 视频内容识别
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
@@ -73,15 +73,15 @@ extension Ticm {
     public func videoModeration(_ input: VideoModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VideoModerationResponse {
         try await self.client.execute(action: "VideoModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 视频内容识别
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
     @inlinable
-    public func videoModeration(videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VideoModerationResponse > {
+    public func videoModeration(videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VideoModerationResponse> {
         self.videoModeration(VideoModerationRequest(videoUrl: videoUrl, developerId: developerId, cbUrl: cbUrl, extra: extra), logger: logger, on: eventLoop)
     }
-    
+
     /// 视频内容识别
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。

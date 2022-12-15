@@ -33,140 +33,140 @@ extension TCLighthouseError {
             case tradeGetPriceFailed = "InternalError.TradeGetPriceFailed"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 查询磁盘返回了不合法内容。
         public static var describeDisksReturnableError: InternalError {
             InternalError(.describeDisksReturnableError)
         }
-        
+
         /// 查询实例状态失败，请稍后重试。
         public static var describeInstanceStatus: InternalError {
             InternalError(.describeInstanceStatus)
         }
-        
+
         /// 查询实例是否可变配失败。
         public static var describeInstancesModification: InternalError {
             InternalError(.describeInstancesModification)
         }
-        
+
         /// 查询实例是否可变配失败。
         public static var describeInstancesModificationError: InternalError {
             InternalError(.describeInstancesModificationError)
         }
-        
+
         /// 查询实例是否可退还失败。
         public static var describeInstancesReturnableError: InternalError {
             InternalError(.describeInstancesReturnableError)
         }
-        
+
         /// 查询实例流量包错误。
         public static var describeInstancesTrafficPackagesFailed: InternalError {
             InternalError(.describeInstancesTrafficPackagesFailed)
         }
-        
+
         /// 查询资源返回了不符合要求内容。
         public static var describeResourcesReturnableError: InternalError {
             InternalError(.describeResourcesReturnableError)
         }
-        
+
         /// 快照配额锁获取失败。
         public static var getSnapshotAllocQuotaLockError: InternalError {
             InternalError(.getSnapshotAllocQuotaLockError)
         }
-        
+
         /// 无法找到此接口。
         ///
         /// 请确认接口是否存在。
         public static var invalidActionNotFound: InternalError {
             InternalError(.invalidActionNotFound)
         }
-        
+
         /// 套餐价格错误。
         public static var invalidBundlePrice: InternalError {
             InternalError(.invalidBundlePrice)
         }
-        
+
         /// 命令 <code>DescribeInstanceLoginKeyPair</code> 无法找到。
         public static var invalidCommandNotFound: InternalError {
             InternalError(.invalidCommandNotFound)
         }
-        
+
         /// 请求出现错误。
         public static var requestError: InternalError {
             InternalError(.requestError)
         }
-        
+
         /// 调用计费网关服务失败。
         ///
         /// 请稍后再次重试。
         public static var tradeCallBillingGatewayFailed: InternalError {
             InternalError(.tradeCallBillingGatewayFailed)
         }
-        
+
         /// 价格获取失败。
         public static var tradeGetPriceFailed: InternalError {
             InternalError(.tradeGetPriceFailed)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
-            case .describeDisksReturnableError: 
+            case .describeDisksReturnableError:
                 code = .internalError_DescribeDisksReturnableError
-            case .describeInstanceStatus: 
+            case .describeInstanceStatus:
                 code = .internalError_DescribeInstanceStatus
-            case .describeInstancesModification: 
+            case .describeInstancesModification:
                 code = .internalError_DescribeInstancesModification
-            case .describeInstancesModificationError: 
+            case .describeInstancesModificationError:
                 code = .internalError_DescribeInstancesModificationError
-            case .describeInstancesReturnableError: 
+            case .describeInstancesReturnableError:
                 code = .internalError_DescribeInstancesReturnableError
-            case .describeInstancesTrafficPackagesFailed: 
+            case .describeInstancesTrafficPackagesFailed:
                 code = .internalError_DescribeInstancesTrafficPackagesFailed
-            case .describeResourcesReturnableError: 
+            case .describeResourcesReturnableError:
                 code = .internalError_DescribeResourcesReturnableError
-            case .getSnapshotAllocQuotaLockError: 
+            case .getSnapshotAllocQuotaLockError:
                 code = .internalError_GetSnapshotAllocQuotaLockError
-            case .invalidActionNotFound: 
+            case .invalidActionNotFound:
                 code = .internalError_InvalidActionNotFound
-            case .invalidBundlePrice: 
+            case .invalidBundlePrice:
                 code = .internalError_InvalidBundlePrice
-            case .invalidCommandNotFound: 
+            case .invalidCommandNotFound:
                 code = .internalError_InvalidCommandNotFound
-            case .requestError: 
+            case .requestError:
                 code = .internalError_RequestError
-            case .tradeCallBillingGatewayFailed: 
+            case .tradeCallBillingGatewayFailed:
                 code = .internalError_TradeCallBillingGatewayFailed
-            case .tradeGetPriceFailed: 
+            case .tradeGetPriceFailed:
                 code = .internalError_TradeGetPriceFailed
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCLighthouseError(code, context: self.context)

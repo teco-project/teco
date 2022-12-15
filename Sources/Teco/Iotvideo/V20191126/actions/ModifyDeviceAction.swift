@@ -19,27 +19,27 @@ extension Iotvideo {
     public struct ModifyDeviceActionRequest: TCRequestModel {
         /// 设备TID
         public let tid: String
-        
+
         /// 如果设备处于休眠状态，是否唤醒设备
         public let wakeup: Bool
-        
+
         /// 物模型的分支路径
         public let branch: String
-        
+
         /// 写入的物模型数据，如果是json需要转义成字符串
         public let value: String
-        
+
         /// Value字段的类型是否为数值（float、int）
         public let isNum: Bool?
-        
-        public init (tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil) {
+
+        public init(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil) {
             self.tid = tid
             self.wakeup = wakeup
             self.branch = branch
             self.value = value
             self.isNum = isNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tid = "Tid"
             case wakeup = "Wakeup"
@@ -48,28 +48,28 @@ extension Iotvideo {
             case isNum = "IsNum"
         }
     }
-    
+
     /// ModifyDeviceAction返回参数结构体
     public struct ModifyDeviceActionResponse: TCResponseModel {
         /// 设备端的响应结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 任务ID
         /// 若设备端未能及时响应时，会返回此字段，用户可以通过DescribeModelDataRet获取设备的最终响应结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改设备物模型行为
     ///
     /// 本接口（ModifyDeviceAction）用于修改设备物模型的行为（Action）。
@@ -79,10 +79,10 @@ extension Iotvideo {
     ///   2.若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
-    public func modifyDeviceAction(_ input: ModifyDeviceActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceActionResponse > {
+    public func modifyDeviceAction(_ input: ModifyDeviceActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceActionResponse> {
         self.client.execute(action: "ModifyDeviceAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备物模型行为
     ///
     /// 本接口（ModifyDeviceAction）用于修改设备物模型的行为（Action）。
@@ -95,7 +95,7 @@ extension Iotvideo {
     public func modifyDeviceAction(_ input: ModifyDeviceActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceActionResponse {
         try await self.client.execute(action: "ModifyDeviceAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改设备物模型行为
     ///
     /// 本接口（ModifyDeviceAction）用于修改设备物模型的行为（Action）。
@@ -105,10 +105,10 @@ extension Iotvideo {
     ///   2.若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
-    public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceActionResponse > {
+    public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceActionResponse> {
         self.modifyDeviceAction(ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备物模型行为
     ///
     /// 本接口（ModifyDeviceAction）用于修改设备物模型的行为（Action）。

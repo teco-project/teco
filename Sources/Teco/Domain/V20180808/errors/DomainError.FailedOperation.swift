@@ -36,157 +36,157 @@ extension TCDomainError {
             case verifyUinIsRealname = "FailedOperation.VerifyUinIsRealname"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名查询失败，请稍后重试。
         public static var checkDomainFailed: FailedOperation {
             FailedOperation(.checkDomainFailed)
         }
-        
+
         /// 创建模板操作失败。
         public static var createTemplateFailed: FailedOperation {
             FailedOperation(.createTemplateFailed)
         }
-        
+
         /// 删除模版操作失败，请稍后重试。
         public static var deleteTemplateFailed: FailedOperation {
             FailedOperation(.deleteTemplateFailed)
         }
-        
+
         /// 获取域名信息操作失败，请稍后重试。
         public static var describeDomainFailed: FailedOperation {
             FailedOperation(.describeDomainFailed)
         }
-        
+
         /// 获取域名信息操作失败，请稍后重试。
         public static var describeDomainListFailed: FailedOperation {
             FailedOperation(.describeDomainListFailed)
         }
-        
+
         /// 查询模板操作失败。
         public static var describeTemplateFailed: FailedOperation {
             FailedOperation(.describeTemplateFailed)
         }
-        
+
         /// 获取域名价格列表失败。
         public static var domainPriceListFailed: FailedOperation {
             FailedOperation(.domainPriceListFailed)
         }
-        
+
         /// 当前账号下已有相同的手机/邮箱，无需重复添加。
         public static var duplicatePhoneEmail: FailedOperation {
             FailedOperation(.duplicatePhoneEmail)
         }
-        
+
         /// 域名过户失败。
         public static var modifyDomainOwnerFailed: FailedOperation {
             FailedOperation(.modifyDomainOwnerFailed)
         }
-        
+
         /// 域名注册操作失败，请稍后重试。
         public static var registerDomain: FailedOperation {
             FailedOperation(.registerDomain)
         }
-        
+
         /// 域名注册操作失败，请稍后重试。
         public static var registerDomainFailed: FailedOperation {
             FailedOperation(.registerDomainFailed)
         }
-        
+
         /// 当前账号为云开发（TCB）账号，无法使用验证功能，请切换登录小程序公众号后重新操作。
         public static var sendTcbPhoneEmailCodeFailed: FailedOperation {
             FailedOperation(.sendTcbPhoneEmailCodeFailed)
         }
-        
+
         /// 发送验证码过于频繁，请稍后重试。
         public static var sendVerifyCodeIsLimited: FailedOperation {
             FailedOperation(.sendVerifyCodeIsLimited)
         }
-        
+
         /// 修改 DNS 失败，请输入正确的 DNS 服务器地址。
         public static var setDomainDnsFailed: FailedOperation {
             FailedOperation(.setDomainDnsFailed)
         }
-        
+
         /// 信息模板超过可用数量上限，建议删除已有模板后重试。
         public static var templateMaxNumFailed: FailedOperation {
             FailedOperation(.templateMaxNumFailed)
         }
-        
+
         /// 上传图片操作失败。
         public static var uploadImageFailed: FailedOperation {
             FailedOperation(.uploadImageFailed)
         }
-        
+
         /// 当前用户未在官网进行实名操作。
         public static var verifyUinIsRealname: FailedOperation {
             FailedOperation(.verifyUinIsRealname)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asDomainError() -> TCDomainError {
             let code: TCDomainError.Code
             switch self.error {
-            case .checkDomainFailed: 
+            case .checkDomainFailed:
                 code = .failedOperation_CheckDomainFailed
-            case .createTemplateFailed: 
+            case .createTemplateFailed:
                 code = .failedOperation_CreateTemplateFailed
-            case .deleteTemplateFailed: 
+            case .deleteTemplateFailed:
                 code = .failedOperation_DeleteTemplateFailed
-            case .describeDomainFailed: 
+            case .describeDomainFailed:
                 code = .failedOperation_DescribeDomainFailed
-            case .describeDomainListFailed: 
+            case .describeDomainListFailed:
                 code = .failedOperation_DescribeDomainListFailed
-            case .describeTemplateFailed: 
+            case .describeTemplateFailed:
                 code = .failedOperation_DescribeTemplateFailed
-            case .domainPriceListFailed: 
+            case .domainPriceListFailed:
                 code = .failedOperation_DomainPriceListFailed
-            case .duplicatePhoneEmail: 
+            case .duplicatePhoneEmail:
                 code = .failedOperation_DuplicatePhoneEmail
-            case .modifyDomainOwnerFailed: 
+            case .modifyDomainOwnerFailed:
                 code = .failedOperation_ModifyDomainOwnerFailed
-            case .registerDomain: 
+            case .registerDomain:
                 code = .failedOperation_RegisterDomain
-            case .registerDomainFailed: 
+            case .registerDomainFailed:
                 code = .failedOperation_RegisterDomainFailed
-            case .sendTcbPhoneEmailCodeFailed: 
+            case .sendTcbPhoneEmailCodeFailed:
                 code = .failedOperation_SendTcbPhoneEmailCodeFailed
-            case .sendVerifyCodeIsLimited: 
+            case .sendVerifyCodeIsLimited:
                 code = .failedOperation_SendVerifyCodeIsLimited
-            case .setDomainDnsFailed: 
+            case .setDomainDnsFailed:
                 code = .failedOperation_SetDomainDnsFailed
-            case .templateMaxNumFailed: 
+            case .templateMaxNumFailed:
                 code = .failedOperation_TemplateMaxNumFailed
-            case .uploadImageFailed: 
+            case .uploadImageFailed:
                 code = .failedOperation_UploadImageFailed
-            case .verifyUinIsRealname: 
+            case .verifyUinIsRealname:
                 code = .failedOperation_VerifyUinIsRealname
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCDomainError(code, context: self.context)

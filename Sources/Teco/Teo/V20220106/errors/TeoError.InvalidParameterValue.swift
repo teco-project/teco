@@ -29,108 +29,108 @@ extension TCTeoError {
             case recordAlreadyExists = "InvalidParameterValue.RecordAlreadyExists"
             case recordNotAllowed = "InvalidParameterValue.RecordNotAllowed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 与已经添加的记录冲突。
         public static var conflictRecord: InvalidParameterValue {
             InvalidParameterValue(.conflictRecord)
         }
-        
+
         /// DNS 记录与 DNSSEC 功能冲突。
         public static var conflictWithDNSSEC: InvalidParameterValue {
             InvalidParameterValue(.conflictWithDNSSEC)
         }
-        
+
         /// DNS 记录与 LB 记录冲突。
         public static var conflictWithLBRecord: InvalidParameterValue {
             InvalidParameterValue(.conflictWithLBRecord)
         }
-        
+
         /// DNS 记录与 NS 记录冲突。
         public static var conflictWithNSRecord: InvalidParameterValue {
             InvalidParameterValue(.conflictWithNSRecord)
         }
-        
+
         /// DNS 记录内容错误。
         public static var invalidDNSContent: InvalidParameterValue {
             InvalidParameterValue(.invalidDNSContent)
         }
-        
+
         /// DNS 记录名称错误。
         public static var invalidDNSName: InvalidParameterValue {
             InvalidParameterValue(.invalidDNSName)
         }
-        
+
         /// DNS 代理域名错误。
         public static var invalidProxyName: InvalidParameterValue {
             InvalidParameterValue(.invalidProxyName)
         }
-        
+
         /// DNS 代理域名源站错误。
         public static var invalidProxyOrigin: InvalidParameterValue {
             InvalidParameterValue(.invalidProxyOrigin)
         }
-        
+
         /// SRV 记录名称错误。
         public static var invalidSRVName: InvalidParameterValue {
             InvalidParameterValue(.invalidSRVName)
         }
-        
+
         /// 记录已存在。
         public static var recordAlreadyExists: InvalidParameterValue {
             InvalidParameterValue(.recordAlreadyExists)
         }
-        
+
         /// 记录不允许添加。
         public static var recordNotAllowed: InvalidParameterValue {
             InvalidParameterValue(.recordNotAllowed)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .conflictRecord: 
+            case .conflictRecord:
                 code = .invalidParameterValue_ConflictRecord
-            case .conflictWithDNSSEC: 
+            case .conflictWithDNSSEC:
                 code = .invalidParameterValue_ConflictWithDNSSEC
-            case .conflictWithLBRecord: 
+            case .conflictWithLBRecord:
                 code = .invalidParameterValue_ConflictWithLBRecord
-            case .conflictWithNSRecord: 
+            case .conflictWithNSRecord:
                 code = .invalidParameterValue_ConflictWithNSRecord
-            case .invalidDNSContent: 
+            case .invalidDNSContent:
                 code = .invalidParameterValue_InvalidDNSContent
-            case .invalidDNSName: 
+            case .invalidDNSName:
                 code = .invalidParameterValue_InvalidDNSName
-            case .invalidProxyName: 
+            case .invalidProxyName:
                 code = .invalidParameterValue_InvalidProxyName
-            case .invalidProxyOrigin: 
+            case .invalidProxyOrigin:
                 code = .invalidParameterValue_InvalidProxyOrigin
-            case .invalidSRVName: 
+            case .invalidSRVName:
                 code = .invalidParameterValue_InvalidSRVName
-            case .recordAlreadyExists: 
+            case .recordAlreadyExists:
                 code = .invalidParameterValue_RecordAlreadyExists
-            case .recordNotAllowed: 
+            case .recordNotAllowed:
                 code = .invalidParameterValue_RecordNotAllowed
             }
             return TCTeoError(code, context: self.context)

@@ -19,48 +19,48 @@ extension Bmeip {
     public struct DeleteEipRequest: TCRequestModel {
         /// Eip实例ID列表
         public let eipIds: [String]
-        
-        public init (eipIds: [String]) {
+
+        public init(eipIds: [String]) {
             self.eipIds = eipIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eipIds = "EipIds"
         }
     }
-    
+
     /// DeleteEip返回参数结构体
     public struct DeleteEipResponse: TCResponseModel {
         /// 任务Id
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 释放黑石弹性公网IP
     @inlinable
-    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEipResponse > {
+    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipResponse> {
         self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 释放黑石弹性公网IP
     @inlinable
     public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
         try await self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 释放黑石弹性公网IP
     @inlinable
-    public func deleteEip(eipIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEipResponse > {
+    public func deleteEip(eipIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipResponse> {
         self.deleteEip(DeleteEipRequest(eipIds: eipIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 释放黑石弹性公网IP
     @inlinable
     public func deleteEip(eipIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {

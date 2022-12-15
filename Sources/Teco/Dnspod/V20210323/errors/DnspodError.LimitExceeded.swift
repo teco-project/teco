@@ -33,136 +33,136 @@ extension TCDnspodError {
             case urlCountLimit = "LimitExceeded.UrlCountLimit"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// AAAA记录数量超出限制。
         public static var aaaaCountLimit: LimitExceeded {
             LimitExceeded(.aaaaCountLimit)
         }
-        
+
         /// @的NS记录只能设置为默认线路。
         public static var atNsRecordLimit: LimitExceeded {
             LimitExceeded(.atNsRecordLimit)
         }
-        
+
         /// 别名数量已经达到限制。
         public static var domainAliasCountExceeded: LimitExceeded {
             LimitExceeded(.domainAliasCountExceeded)
         }
-        
+
         /// 当前绑定别名数量已达到限制。
         public static var domainAliasNumberLimit: LimitExceeded {
             LimitExceeded(.domainAliasNumberLimit)
         }
-        
+
         /// 登录失败次数过多已被系统封禁。
         public static var failedLoginLimitExceeded: LimitExceeded {
             LimitExceeded(.failedLoginLimitExceeded)
         }
-        
+
         /// 已经达到最大分组数量限制。
         public static var groupNumberLimit: LimitExceeded {
             LimitExceeded(.groupNumberLimit)
         }
-        
+
         /// 该域名使用的套餐不支持隐性URL转发或数量已达上限，如需要使用，请去商城购买。
         public static var hiddenUrlExceeded: LimitExceeded {
             LimitExceeded(.hiddenUrlExceeded)
         }
-        
+
         /// NS记录数量超出限制。
         public static var nsCountLimit: LimitExceeded {
             LimitExceeded(.nsCountLimit)
         }
-        
+
         /// 记录的TTL值超出了限制。
         public static var recordTtlLimit: LimitExceeded {
             LimitExceeded(.recordTtlLimit)
         }
-        
+
         /// SRV记录数量超出限制。
         public static var srvCountLimit: LimitExceeded {
             LimitExceeded(.srvCountLimit)
         }
-        
+
         /// 子域名级数超出限制。
         public static var subdomainLevelLimit: LimitExceeded {
             LimitExceeded(.subdomainLevelLimit)
         }
-        
+
         /// 子域名负载均衡数量超出限制。
         public static var subdomainRollLimit: LimitExceeded {
             LimitExceeded(.subdomainRollLimit)
         }
-        
+
         /// 泛解析级数超出限制。
         public static var subdomainWcardLimit: LimitExceeded {
             LimitExceeded(.subdomainWcardLimit)
         }
-        
+
         /// 该域名的显性URL转发数量已达上限，如需继续使用，请去商城购买。
         public static var urlCountLimit: LimitExceeded {
             LimitExceeded(.urlCountLimit)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asDnspodError() -> TCDnspodError {
             let code: TCDnspodError.Code
             switch self.error {
-            case .aaaaCountLimit: 
+            case .aaaaCountLimit:
                 code = .limitExceeded_AAAACountLimit
-            case .atNsRecordLimit: 
+            case .atNsRecordLimit:
                 code = .limitExceeded_AtNsRecordLimit
-            case .domainAliasCountExceeded: 
+            case .domainAliasCountExceeded:
                 code = .limitExceeded_DomainAliasCountExceeded
-            case .domainAliasNumberLimit: 
+            case .domainAliasNumberLimit:
                 code = .limitExceeded_DomainAliasNumberLimit
-            case .failedLoginLimitExceeded: 
+            case .failedLoginLimitExceeded:
                 code = .limitExceeded_FailedLoginLimitExceeded
-            case .groupNumberLimit: 
+            case .groupNumberLimit:
                 code = .limitExceeded_GroupNumberLimit
-            case .hiddenUrlExceeded: 
+            case .hiddenUrlExceeded:
                 code = .limitExceeded_HiddenUrlExceeded
-            case .nsCountLimit: 
+            case .nsCountLimit:
                 code = .limitExceeded_NsCountLimit
-            case .recordTtlLimit: 
+            case .recordTtlLimit:
                 code = .limitExceeded_RecordTtlLimit
-            case .srvCountLimit: 
+            case .srvCountLimit:
                 code = .limitExceeded_SrvCountLimit
-            case .subdomainLevelLimit: 
+            case .subdomainLevelLimit:
                 code = .limitExceeded_SubdomainLevelLimit
-            case .subdomainRollLimit: 
+            case .subdomainRollLimit:
                 code = .limitExceeded_SubdomainRollLimit
-            case .subdomainWcardLimit: 
+            case .subdomainWcardLimit:
                 code = .limitExceeded_SubdomainWcardLimit
-            case .urlCountLimit: 
+            case .urlCountLimit:
                 code = .limitExceeded_UrlCountLimit
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCDnspodError(code, context: self.context)

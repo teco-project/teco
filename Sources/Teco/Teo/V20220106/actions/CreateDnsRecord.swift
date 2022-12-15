@@ -22,26 +22,26 @@ extension Teo {
     public struct CreateDnsRecordRequest: TCRequestModel {
         /// 站点 ID
         public let zoneId: String
-        
+
         /// 记录类型
         public let type: String
-        
+
         /// 记录名
         public let name: String
-        
+
         /// 记录内容
         public let content: String
-        
+
         /// 代理模式，可选值：dns_only, cdn_only, secure_cdn
         public let mode: String
-        
+
         /// 生存时间值
         public let ttl: Int64?
-        
+
         /// 优先级
         public let priority: Int64?
-        
-        public init (zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil) {
+
+        public init(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.name = name
@@ -50,7 +50,7 @@ extension Teo {
             self.ttl = ttl
             self.priority = priority
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case type = "Type"
@@ -61,38 +61,38 @@ extension Teo {
             case priority = "Priority"
         }
     }
-    
+
     /// CreateDnsRecord返回参数结构体
     public struct CreateDnsRecordResponse: TCResponseModel {
         /// 记录 ID
         public let id: String
-        
+
         /// 记录类型
         public let type: String
-        
+
         /// 记录名称
         public let name: String
-        
+
         /// 记录内容
         public let content: String
-        
+
         /// 生存时间值
         public let ttl: Int64
-        
+
         /// 优先级
         public let priority: Int64
-        
+
         /// 代理模式
         public let mode: String
-        
+
         /// 解析状态
         /// active: 生效
         /// pending: 不生效
         public let status: String
-        
+
         /// 已锁定
         public let locked: Bool
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -100,7 +100,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdOn: Date
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -108,20 +108,20 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modifiedOn: Date
-        
+
         /// 站点 ID
         public let zoneId: String
-        
+
         /// 站点名称
         public let zoneName: String
-        
+
         /// CNAME 地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cname: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case type = "Type"
@@ -140,25 +140,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建 DNS 记录
     @inlinable
-    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
+    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDnsRecordResponse> {
         self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 DNS 记录
     @inlinable
     public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
         try await self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建 DNS 记录
     @inlinable
-    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
+    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDnsRecordResponse> {
         self.createDnsRecord(CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 DNS 记录
     @inlinable
     public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {

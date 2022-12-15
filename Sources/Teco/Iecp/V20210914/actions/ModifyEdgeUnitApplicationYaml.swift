@@ -19,54 +19,54 @@ extension Iecp {
     public struct ModifyEdgeUnitApplicationYamlRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 应用ID
         public let applicationId: UInt64
-        
+
         /// Yaml配置
         public let yaml: String
-        
-        public init (edgeUnitId: UInt64, applicationId: UInt64, yaml: String) {
+
+        public init(edgeUnitId: UInt64, applicationId: UInt64, yaml: String) {
             self.edgeUnitId = edgeUnitId
             self.applicationId = applicationId
             self.yaml = yaml
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case applicationId = "ApplicationId"
             case yaml = "Yaml"
         }
     }
-    
+
     /// ModifyEdgeUnitApplicationYaml返回参数结构体
     public struct ModifyEdgeUnitApplicationYamlResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// Yaml方式修改应用配置
     @inlinable
-    public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationYamlResponse > {
+    public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationYamlResponse> {
         self.client.execute(action: "ModifyEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// Yaml方式修改应用配置
     @inlinable
     public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationYamlResponse {
         try await self.client.execute(action: "ModifyEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// Yaml方式修改应用配置
     @inlinable
-    public func modifyEdgeUnitApplicationYaml(edgeUnitId: UInt64, applicationId: UInt64, yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationYamlResponse > {
+    public func modifyEdgeUnitApplicationYaml(edgeUnitId: UInt64, applicationId: UInt64, yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationYamlResponse> {
         self.modifyEdgeUnitApplicationYaml(ModifyEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, yaml: yaml), logger: logger, on: eventLoop)
     }
-    
+
     /// Yaml方式修改应用配置
     @inlinable
     public func modifyEdgeUnitApplicationYaml(edgeUnitId: UInt64, applicationId: UInt64, yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationYamlResponse {

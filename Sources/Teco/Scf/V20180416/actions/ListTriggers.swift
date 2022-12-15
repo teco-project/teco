@@ -19,27 +19,27 @@ extension Scf {
     public struct ListTriggersRequest: TCRequestModel {
         /// 函数名称
         public let functionName: String
-        
+
         /// 命名空间，默认是default
         public let namespace: String?
-        
+
         /// 数据偏移量，默认值为 0
         public let offset: UInt64?
-        
+
         /// 返回数据长度，默认值为 20
         public let limit: UInt64?
-        
+
         /// 根据哪个字段进行返回结果排序,支持以下字段：add_time，mod_time，默认mod_time
         public let orderBy: String?
-        
+
         /// 以升序还是降序的方式返回结果，可选值 ASC 和 DESC，默认DESC
         public let order: String?
-        
+
         /// * Qualifier:
         /// 函数版本，别名
         public let filters: [Filter]?
-        
-        public init (functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil) {
+
+        public init(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.offset = offset
@@ -48,7 +48,7 @@ extension Scf {
             self.order = order
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case namespace = "Namespace"
@@ -59,43 +59,43 @@ extension Scf {
             case filters = "Filters"
         }
     }
-    
+
     /// ListTriggers返回参数结构体
     public struct ListTriggersResponse: TCResponseModel {
         /// 触发器总数
         public let totalCount: UInt64
-        
+
         /// 触发器列表
         public let triggers: [TriggerInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case triggers = "Triggers"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取函数触发器列表
     @inlinable
-    public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTriggersResponse > {
+    public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTriggersResponse> {
         self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数触发器列表
     @inlinable
     public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {
         try await self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取函数触发器列表
     @inlinable
-    public func listTriggers(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTriggersResponse > {
+    public func listTriggers(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTriggersResponse> {
         self.listTriggers(ListTriggersRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数触发器列表
     @inlinable
     public func listTriggers(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {

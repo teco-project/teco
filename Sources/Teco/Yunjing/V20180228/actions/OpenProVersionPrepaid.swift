@@ -19,43 +19,43 @@ extension Yunjing {
     public struct OpenProVersionPrepaidRequest: TCRequestModel {
         /// 购买相关参数。
         public let chargePrepaid: ChargePrepaid
-        
+
         /// 需要开通专业版主机信息数组。
         public let machines: [ProVersionMachine]
-        
-        public init (chargePrepaid: ChargePrepaid, machines: [ProVersionMachine]) {
+
+        public init(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine]) {
             self.chargePrepaid = chargePrepaid
             self.machines = machines
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case chargePrepaid = "ChargePrepaid"
             case machines = "Machines"
         }
     }
-    
+
     /// OpenProVersionPrepaid返回参数结构体
     public struct OpenProVersionPrepaidResponse: TCResponseModel {
         /// 订单ID列表。
         public let dealIds: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealIds = "DealIds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通专业版(包年包月)
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
-    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProVersionPrepaidResponse > {
+    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionPrepaidResponse> {
         self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通专业版(包年包月)
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
@@ -63,15 +63,15 @@ extension Yunjing {
     public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
         try await self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通专业版(包年包月)
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
-    public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProVersionPrepaidResponse > {
+    public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionPrepaidResponse> {
         self.openProVersionPrepaid(OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通专业版(包年包月)
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。

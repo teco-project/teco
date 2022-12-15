@@ -19,49 +19,49 @@ extension Antiddos {
     public struct DeletePortAclConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
+
         /// 端口acl策略
         public let aclConfig: AclConfig
-        
-        public init (instanceId: String, aclConfig: AclConfig) {
+
+        public init(instanceId: String, aclConfig: AclConfig) {
             self.instanceId = instanceId
             self.aclConfig = aclConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case aclConfig = "AclConfig"
         }
     }
-    
+
     /// DeletePortAclConfig返回参数结构体
     public struct DeletePortAclConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除DDoS防护的端口acl策略
     @inlinable
-    public func deletePortAclConfig(_ input: DeletePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePortAclConfigResponse > {
+    public func deletePortAclConfig(_ input: DeletePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePortAclConfigResponse> {
         self.client.execute(action: "DeletePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DDoS防护的端口acl策略
     @inlinable
     public func deletePortAclConfig(_ input: DeletePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePortAclConfigResponse {
         try await self.client.execute(action: "DeletePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除DDoS防护的端口acl策略
     @inlinable
-    public func deletePortAclConfig(instanceId: String, aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePortAclConfigResponse > {
+    public func deletePortAclConfig(instanceId: String, aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePortAclConfigResponse> {
         self.deletePortAclConfig(DeletePortAclConfigRequest(instanceId: instanceId, aclConfig: aclConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DDoS防护的端口acl策略
     @inlinable
     public func deletePortAclConfig(instanceId: String, aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePortAclConfigResponse {

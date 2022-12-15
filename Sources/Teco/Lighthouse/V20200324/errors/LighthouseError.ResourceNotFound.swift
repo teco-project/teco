@@ -32,128 +32,128 @@ extension TCLighthouseError {
             case snapshotNotFound = "ResourceNotFound.SnapshotNotFound"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 镜像 ID 不存在。
         public static var blueprintIdNotFound: ResourceNotFound {
             ResourceNotFound(.blueprintIdNotFound)
         }
-        
+
         /// 指定的镜像不存在。请检查镜像的BlueprintId是否正确。
         public static var blueprintNotFound: ResourceNotFound {
             ResourceNotFound(.blueprintNotFound)
         }
-        
+
         /// 磁盘 ID 不存在。
         public static var diskIdNotFound: ResourceNotFound {
             ResourceNotFound(.diskIdNotFound)
         }
-        
+
         /// 磁盘不存在。
         public static var diskNotFound: ResourceNotFound {
             ResourceNotFound(.diskNotFound)
         }
-        
+
         /// 防火墙不存在。
         public static var firewallNotFound: ResourceNotFound {
             ResourceNotFound(.firewallNotFound)
         }
-        
+
         /// 防火墙规则不存在。
         public static var firewallRulesNotFound: ResourceNotFound {
             ResourceNotFound(.firewallRulesNotFound)
         }
-        
+
         /// 实例不存在挂载的数据盘。
         public static var instanceDataDiskNotFound: ResourceNotFound {
             ResourceNotFound(.instanceDataDiskNotFound)
         }
-        
+
         /// 实例 ID 不存在。
         public static var instanceIdNotFound: ResourceNotFound {
             ResourceNotFound(.instanceIdNotFound)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
         }
-        
+
         /// 密钥对 ID 不存在。
         public static var keyIdNotFound: ResourceNotFound {
             ResourceNotFound(.keyIdNotFound)
         }
-        
+
         public static var privateBlueprintNotFound: ResourceNotFound {
             ResourceNotFound(.privateBlueprintNotFound)
         }
-        
+
         /// 快照 ID 不存在。
         public static var snapshotIdNotFound: ResourceNotFound {
             ResourceNotFound(.snapshotIdNotFound)
         }
-        
+
         /// 快照不存在。
         public static var snapshotNotFound: ResourceNotFound {
             ResourceNotFound(.snapshotNotFound)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
-            case .blueprintIdNotFound: 
+            case .blueprintIdNotFound:
                 code = .resourceNotFound_BlueprintIdNotFound
-            case .blueprintNotFound: 
+            case .blueprintNotFound:
                 code = .resourceNotFound_BlueprintNotFound
-            case .diskIdNotFound: 
+            case .diskIdNotFound:
                 code = .resourceNotFound_DiskIdNotFound
-            case .diskNotFound: 
+            case .diskNotFound:
                 code = .resourceNotFound_DiskNotFound
-            case .firewallNotFound: 
+            case .firewallNotFound:
                 code = .resourceNotFound_FirewallNotFound
-            case .firewallRulesNotFound: 
+            case .firewallRulesNotFound:
                 code = .resourceNotFound_FirewallRulesNotFound
-            case .instanceDataDiskNotFound: 
+            case .instanceDataDiskNotFound:
                 code = .resourceNotFound_InstanceDataDiskNotFound
-            case .instanceIdNotFound: 
+            case .instanceIdNotFound:
                 code = .resourceNotFound_InstanceIdNotFound
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .resourceNotFound_InstanceNotFound
-            case .keyIdNotFound: 
+            case .keyIdNotFound:
                 code = .resourceNotFound_KeyIdNotFound
-            case .privateBlueprintNotFound: 
+            case .privateBlueprintNotFound:
                 code = .resourceNotFound_PrivateBlueprintNotFound
-            case .snapshotIdNotFound: 
+            case .snapshotIdNotFound:
                 code = .resourceNotFound_SnapshotIdNotFound
-            case .snapshotNotFound: 
+            case .snapshotNotFound:
                 code = .resourceNotFound_SnapshotNotFound
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCLighthouseError(code, context: self.context)

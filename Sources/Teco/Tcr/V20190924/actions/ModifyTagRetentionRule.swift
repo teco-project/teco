@@ -19,23 +19,23 @@ extension Tcr {
     public struct ModifyTagRetentionRuleRequest: TCRequestModel {
         /// 主实例iD
         public let registryId: String
-        
+
         /// 命名空间的Id，必须填写原有的命名空间id
         public let namespaceId: Int64
-        
+
         /// 保留策略
         public let retentionRule: RetentionRule
-        
+
         /// 执行周期，必须填写为原来的设置
         public let cronSetting: String
-        
+
         /// 规则Id
         public let retentionId: Int64
-        
+
         /// 是否禁用规则
         public let disabled: Bool?
-        
-        public init (registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil) {
+
+        public init(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil) {
             self.registryId = registryId
             self.namespaceId = namespaceId
             self.retentionRule = retentionRule
@@ -43,7 +43,7 @@ extension Tcr {
             self.retentionId = retentionId
             self.disabled = disabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceId = "NamespaceId"
@@ -53,35 +53,35 @@ extension Tcr {
             case disabled = "Disabled"
         }
     }
-    
+
     /// ModifyTagRetentionRule返回参数结构体
     public struct ModifyTagRetentionRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新版本保留规则
     @inlinable
-    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTagRetentionRuleResponse > {
+    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
         self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新版本保留规则
     @inlinable
     public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
         try await self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新版本保留规则
     @inlinable
-    public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTagRetentionRuleResponse > {
+    public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
         self.modifyTagRetentionRule(ModifyTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, retentionId: retentionId, disabled: disabled), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新版本保留规则
     @inlinable
     public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {

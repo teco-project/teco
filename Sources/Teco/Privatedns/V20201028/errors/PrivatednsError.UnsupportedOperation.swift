@@ -23,74 +23,74 @@ extension TCPrivatednsError {
             case notSupportDnsForward = "UnsupportedOperation.NotSupportDnsForward"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号未绑定。
         ///
         /// 账号未绑定，请绑定账号后再试
         public static var accountNotBound: UnsupportedOperation {
             UnsupportedOperation(.accountNotBound)
         }
-        
+
         /// 存在绑定的VPC资源。
         ///
         /// 存在绑定的VPC资源，先解绑VPC资源后再删除绑定账号
         public static var existBoundVpc: UnsupportedOperation {
             UnsupportedOperation(.existBoundVpc)
         }
-        
+
         /// 接口调用超过限频。
         ///
         /// 减少单位之间内的调用次数
         public static var frequencyLimit: UnsupportedOperation {
             UnsupportedOperation(.frequencyLimit)
         }
-        
+
         /// 不支持设置子域名递归解析。
         ///
         /// 目前暂不支持设置子域名递归解析，不开启子域名递归解析即可
         public static var notSupportDnsForward: UnsupportedOperation {
             UnsupportedOperation(.notSupportDnsForward)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asPrivatednsError() -> TCPrivatednsError {
             let code: TCPrivatednsError.Code
             switch self.error {
-            case .accountNotBound: 
+            case .accountNotBound:
                 code = .unsupportedOperation_AccountNotBound
-            case .existBoundVpc: 
+            case .existBoundVpc:
                 code = .unsupportedOperation_ExistBoundVpc
-            case .frequencyLimit: 
+            case .frequencyLimit:
                 code = .unsupportedOperation_FrequencyLimit
-            case .notSupportDnsForward: 
+            case .notSupportDnsForward:
                 code = .unsupportedOperation_NotSupportDnsForward
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCPrivatednsError(code, context: self.context)

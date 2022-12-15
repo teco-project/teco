@@ -19,23 +19,23 @@ extension Mna {
     public struct AddDeviceRequest: TCRequestModel {
         /// 新建设备的名称
         public let deviceName: String
-        
+
         /// 新建设备的备注
         public let remark: String?
-        
+
         /// 新建设备的base64密钥字符串，非必选，如果不填写则由系统自动生成
         public let dataKey: String?
-        
+
         /// 是否设置预置密钥
         public let encrypted: Bool?
-        
-        public init (deviceName: String, remark: String? = nil, dataKey: String? = nil, encrypted: Bool? = nil) {
+
+        public init(deviceName: String, remark: String? = nil, dataKey: String? = nil, encrypted: Bool? = nil) {
             self.deviceName = deviceName
             self.remark = remark
             self.dataKey = dataKey
             self.encrypted = encrypted
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceName = "DeviceName"
             case remark = "Remark"
@@ -43,22 +43,22 @@ extension Mna {
             case encrypted = "Encrypted"
         }
     }
-    
+
     /// AddDevice返回参数结构体
     public struct AddDeviceResponse: TCResponseModel {
         /// 经过加密算法加密后的base64格式密钥
         public let dataKey: String
-        
+
         /// 设备ID
         public let deviceId: String
-        
+
         /// 签名字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signature: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataKey = "DataKey"
             case deviceId = "DeviceId"
@@ -66,15 +66,15 @@ extension Mna {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建设备
     ///
     /// 新建设备记录
     @inlinable
-    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDeviceResponse > {
+    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
         self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建设备
     ///
     /// 新建设备记录
@@ -82,15 +82,15 @@ extension Mna {
     public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
         try await self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建设备
     ///
     /// 新建设备记录
     @inlinable
-    public func addDevice(deviceName: String, remark: String? = nil, dataKey: String? = nil, encrypted: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDeviceResponse > {
+    public func addDevice(deviceName: String, remark: String? = nil, dataKey: String? = nil, encrypted: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
         self.addDevice(AddDeviceRequest(deviceName: deviceName, remark: remark, dataKey: dataKey, encrypted: encrypted), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建设备
     ///
     /// 新建设备记录

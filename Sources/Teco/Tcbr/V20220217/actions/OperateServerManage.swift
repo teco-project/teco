@@ -19,27 +19,27 @@ extension Tcbr {
     public struct OperateServerManageRequest: TCRequestModel {
         /// 环境Id
         public let envId: String
-        
+
         /// 服务名
         public let serverName: String
-        
+
         /// 任报Id
         public let taskId: Int64
-        
+
         /// 操作类型:cancel | go_back | done
         public let operateType: String
-        
+
         /// 操作标识
         public let operatorRemark: String?
-        
-        public init (envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil) {
+
+        public init(envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.taskId = taskId
             self.operateType = operateType
             self.operatorRemark = operatorRemark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case serverName = "ServerName"
@@ -48,35 +48,35 @@ extension Tcbr {
             case operatorRemark = "OperatorRemark"
         }
     }
-    
+
     /// OperateServerManage返回参数结构体
     public struct OperateServerManageResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 操作发布单
     @inlinable
-    public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateServerManageResponse > {
+    public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateServerManageResponse> {
         self.client.execute(action: "OperateServerManage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 操作发布单
     @inlinable
     public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateServerManageResponse {
         try await self.client.execute(action: "OperateServerManage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 操作发布单
     @inlinable
-    public func operateServerManage(envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateServerManageResponse > {
+    public func operateServerManage(envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateServerManageResponse> {
         self.operateServerManage(OperateServerManageRequest(envId: envId, serverName: serverName, taskId: taskId, operateType: operateType, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
     }
-    
+
     /// 操作发布单
     @inlinable
     public func operateServerManage(envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateServerManageResponse {

@@ -20,45 +20,45 @@ extension TCVpcError {
             case malformed = "InvalidSecurityGroupID.Malformed"
             case notFound = "InvalidSecurityGroupID.NotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的安全组,安全组实例ID不合法。
         public static var malformed: InvalidSecurityGroupID {
             InvalidSecurityGroupID(.malformed)
         }
-        
+
         /// 无效的安全组,安全组实例ID不存在。
         public static var notFound: InvalidSecurityGroupID {
             InvalidSecurityGroupID(.notFound)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
-            case .malformed: 
+            case .malformed:
                 code = .invalidSecurityGroupID_Malformed
-            case .notFound: 
+            case .notFound:
                 code = .invalidSecurityGroupID_NotFound
             }
             return TCVpcError(code, context: self.context)

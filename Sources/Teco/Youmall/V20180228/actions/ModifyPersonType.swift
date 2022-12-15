@@ -19,30 +19,30 @@ extension Youmall {
     public struct ModifyPersonTypeRequest: TCRequestModel {
         /// 集团ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 顾客ID
         public let personId: UInt64
-        
+
         /// 身份类型(0表示普通顾客，1 白名单，2 表示黑名单）
         public let personType: UInt64
-        
+
         /// 身份子类型:
         /// PersonType=0时(普通顾客)，0普通顾客
         /// PersonType=1时(白名单)，0店员，1商场人员，2其他类型人员，3区域经理，4注册会员，5VIP用户
         /// PersonType=2时(黑名单)，0普通黑名单，1小偷)
         public let personSubType: UInt64
-        
-        public init (companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64) {
+
+        public init(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64) {
             self.companyId = companyId
             self.shopId = shopId
             self.personId = personId
             self.personType = personType
             self.personSubType = personSubType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -51,35 +51,35 @@ extension Youmall {
             case personSubType = "PersonSubType"
         }
     }
-    
+
     /// ModifyPersonType返回参数结构体
     public struct ModifyPersonTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改顾客身份类型接口
     @inlinable
-    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTypeResponse > {
+    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
         self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改顾客身份类型接口
     @inlinable
     public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
         try await self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改顾客身份类型接口
     @inlinable
-    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTypeResponse > {
+    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
         self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改顾客身份类型接口
     @inlinable
     public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {

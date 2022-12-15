@@ -19,32 +19,32 @@ extension Tdmq {
     public struct DescribeRocketMQGroupsRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 命名空间
         public let namespaceId: String
-        
+
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 限制条数
         public let limit: UInt64
-        
+
         /// 主题名称，输入此参数可查询该主题下所有的订阅组
         public let filterTopic: String?
-        
+
         /// 按消费组名称查询消费组，支持模糊查询
         public let filterGroup: String?
-        
+
         /// 按照指定字段排序，可选值为tps，accumulative
         public let sortedBy: String?
-        
+
         /// 按升序或降序排列，可选值为asc，desc
         public let sortOrder: String?
-        
+
         /// 订阅组名称，指定此参数后将只返回该订阅组信息
         public let filterOneGroup: String?
-        
-        public init (clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil) {
+
+        public init(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.offset = offset
@@ -55,7 +55,7 @@ extension Tdmq {
             self.sortOrder = sortOrder
             self.filterOneGroup = filterOneGroup
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case namespaceId = "NamespaceId"
@@ -68,43 +68,43 @@ extension Tdmq {
             case filterOneGroup = "FilterOneGroup"
         }
     }
-    
+
     /// DescribeRocketMQGroups返回参数结构体
     public struct DescribeRocketMQGroupsResponse: TCResponseModel {
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 订阅组列表
         public let groups: [RocketMQGroup]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case groups = "Groups"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(_ input: DescribeRocketMQGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQGroupsResponse > {
+    public func describeRocketMQGroups(_ input: DescribeRocketMQGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
         self.client.execute(action: "DescribeRocketMQGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取RocketMQ消费组列表
     @inlinable
     public func describeRocketMQGroups(_ input: DescribeRocketMQGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
         try await self.client.execute(action: "DescribeRocketMQGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQGroupsResponse > {
+    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
         self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取RocketMQ消费组列表
     @inlinable
     public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {

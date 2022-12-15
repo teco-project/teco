@@ -19,10 +19,10 @@ extension Iotvideo {
     public struct CreateCloudStorageRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// 云存套餐ID：
         /// yc1m3d ： 全时3天存储月套餐。
         /// yc1m7d ： 全时7天存储月套餐。
@@ -45,21 +45,21 @@ extension Iotvideo {
         /// lye1y7d：低功耗事件7天年套餐。
         /// lye1y30d：低功耗事件30天年套餐。
         public let packageId: String
-        
+
         /// 如果当前设备已开启云存套餐，Override=1会使用新套餐覆盖原有套餐。不传此参数则默认为0。
         public let override: UInt64?
-        
+
         /// 套餐列表顺序：PackageQueue=front会立即使用新购买的套餐，新购套餐结束后，列表中下一个未过期的套餐继续生效；PackageQueue=end会等设备当前所有已购买套餐过期后才会生效新购套餐。与Override参数不能同时使用。
         public let packageQueue: String?
-        
-        public init (productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil) {
+
+        public init(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.packageId = packageId
             self.override = override
             self.packageQueue = packageQueue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
@@ -68,35 +68,35 @@ extension Iotvideo {
             case packageQueue = "PackageQueue"
         }
     }
-    
+
     /// CreateCloudStorage返回参数结构体
     public struct CreateCloudStorageResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通云存服务
     @inlinable
-    public func createCloudStorage(_ input: CreateCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudStorageResponse > {
+    public func createCloudStorage(_ input: CreateCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudStorageResponse> {
         self.client.execute(action: "CreateCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通云存服务
     @inlinable
     public func createCloudStorage(_ input: CreateCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
         try await self.client.execute(action: "CreateCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通云存服务
     @inlinable
-    public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudStorageResponse > {
+    public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudStorageResponse> {
         self.createCloudStorage(CreateCloudStorageRequest(productId: productId, deviceName: deviceName, packageId: packageId, override: override, packageQueue: packageQueue), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通云存服务
     @inlinable
     public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {

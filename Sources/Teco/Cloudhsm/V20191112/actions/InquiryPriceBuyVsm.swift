@@ -19,26 +19,26 @@ extension Cloudhsm {
     public struct InquiryPriceBuyVsmRequest: TCRequestModel {
         /// 需购买实例的数量
         public let goodsNum: Int64
-        
+
         /// 付费模式：0表示按需计费/后付费，1表示预付费
         public let payMode: Int64
-        
+
         /// 商品的时间大小，整型参数，举例：当TimeSpan为1，TImeUnit为m时，表示询价购买时长为1个月时的价格
         public let timeSpan: String
-        
+
         /// 商品的时间单位，m表示月，y表示年
         public let timeUnit: String
-        
+
         /// 货币类型，默认为CNY
         public let currency: String?
-        
+
         /// 默认为CREATE，可选RENEW
         public let type: String?
-        
+
         /// Hsm服务类型，可选值virtualization、physical、GHSM、EHSM、SHSM
         public let hsmType: String?
-        
-        public init (goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil) {
+
+        public init(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil) {
             self.goodsNum = goodsNum
             self.payMode = payMode
             self.timeSpan = timeSpan
@@ -47,7 +47,7 @@ extension Cloudhsm {
             self.type = type
             self.hsmType = hsmType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case goodsNum = "GoodsNum"
             case payMode = "PayMode"
@@ -58,32 +58,32 @@ extension Cloudhsm {
             case hsmType = "HsmType"
         }
     }
-    
+
     /// InquiryPriceBuyVsm返回参数结构体
     public struct InquiryPriceBuyVsmResponse: TCResponseModel {
         /// 原始总金额，浮点型参数，精确到小数点后两位，如：2000.99
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCost: Float?
-        
+
         /// 购买的实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let goodsNum: Int64?
-        
+
         /// 商品的时间大小，整型参数，举例：当TimeSpan为1，TImeUnit为m时，表示询价购买时长为1个月时的价格
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeSpan: String?
-        
+
         /// 商品的时间单位，m表示月，y表示年
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeUnit: String?
-        
+
         /// 应付总金额，浮点型参数，精确到小数点后两位，如：2000.99
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalCost: Float?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCost = "TotalCost"
             case goodsNum = "GoodsNum"
@@ -93,15 +93,15 @@ extension Cloudhsm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 询价
     ///
     /// 购买询价接口
     @inlinable
-    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceBuyVsmResponse > {
+    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceBuyVsmResponse> {
         self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 询价
     ///
     /// 购买询价接口
@@ -109,15 +109,15 @@ extension Cloudhsm {
     public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
         try await self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 询价
     ///
     /// 购买询价接口
     @inlinable
-    public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceBuyVsmResponse > {
+    public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceBuyVsmResponse> {
         self.inquiryPriceBuyVsm(InquiryPriceBuyVsmRequest(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType), logger: logger, on: eventLoop)
     }
-    
+
     /// 询价
     ///
     /// 购买询价接口

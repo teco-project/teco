@@ -19,54 +19,54 @@ extension Iotvideo {
     public struct ModifyDeviceRequest: TCRequestModel {
         /// 设备所属产品id
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// 要设置的设备状态，1为启用，0为禁用
         public let enableState: UInt64?
-        
-        public init (productId: String, deviceName: String, enableState: UInt64? = nil) {
+
+        public init(productId: String, deviceName: String, enableState: UInt64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.enableState = enableState
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
             case enableState = "EnableState"
         }
     }
-    
+
     /// ModifyDevice返回参数结构体
     public struct ModifyDeviceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改设备信息
     @inlinable
-    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceResponse > {
+    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceResponse> {
         self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备信息
     @inlinable
     public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {
         try await self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改设备信息
     @inlinable
-    public func modifyDevice(productId: String, deviceName: String, enableState: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceResponse > {
+    public func modifyDevice(productId: String, deviceName: String, enableState: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceResponse> {
         self.modifyDevice(ModifyDeviceRequest(productId: productId, deviceName: deviceName, enableState: enableState), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备信息
     @inlinable
     public func modifyDevice(productId: String, deviceName: String, enableState: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {

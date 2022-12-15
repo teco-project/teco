@@ -19,44 +19,44 @@ extension Tke {
     public struct EnableClusterDeletionProtectionRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// EnableClusterDeletionProtection返回参数结构体
     public struct EnableClusterDeletionProtectionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用集群删除保护
     @inlinable
-    public func enableClusterDeletionProtection(_ input: EnableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterDeletionProtectionResponse > {
+    public func enableClusterDeletionProtection(_ input: EnableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClusterDeletionProtectionResponse> {
         self.client.execute(action: "EnableClusterDeletionProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用集群删除保护
     @inlinable
     public func enableClusterDeletionProtection(_ input: EnableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterDeletionProtectionResponse {
         try await self.client.execute(action: "EnableClusterDeletionProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用集群删除保护
     @inlinable
-    public func enableClusterDeletionProtection(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterDeletionProtectionResponse > {
+    public func enableClusterDeletionProtection(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClusterDeletionProtectionResponse> {
         self.enableClusterDeletionProtection(EnableClusterDeletionProtectionRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用集群删除保护
     @inlinable
     public func enableClusterDeletionProtection(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterDeletionProtectionResponse {

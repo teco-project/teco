@@ -19,38 +19,38 @@ extension Tsf {
     public struct DescribeContainerGroupDetailRequest: TCRequestModel {
         /// 分组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DescribeContainerGroupDetail返回参数结构体
     public struct DescribeContainerGroupDetailResponse: TCResponseModel {
         /// 容器部署组详情
         public let result: ContainerGroupDetail
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器部署组详情
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
-    public func describeContainerGroupDetail(_ input: DescribeContainerGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupDetailResponse > {
+    public func describeContainerGroupDetail(_ input: DescribeContainerGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupDetailResponse> {
         self.client.execute(action: "DescribeContainerGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器部署组详情
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
@@ -58,15 +58,15 @@ extension Tsf {
     public func describeContainerGroupDetail(_ input: DescribeContainerGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDetailResponse {
         try await self.client.execute(action: "DescribeContainerGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器部署组详情
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
-    public func describeContainerGroupDetail(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupDetailResponse > {
+    public func describeContainerGroupDetail(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupDetailResponse> {
         self.describeContainerGroupDetail(DescribeContainerGroupDetailRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器部署组详情
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）

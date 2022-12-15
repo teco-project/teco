@@ -19,58 +19,58 @@ extension Dnspod {
     public struct CreateDomainAliasRequest: TCRequestModel {
         /// 域名别名
         public let domainAlias: String
-        
+
         /// 域名
         public let domain: String
-        
+
         /// 域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: Int64?
-        
-        public init (domainAlias: String, domain: String, domainId: Int64? = nil) {
+
+        public init(domainAlias: String, domain: String, domainId: Int64? = nil) {
             self.domainAlias = domainAlias
             self.domain = domain
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainAlias = "DomainAlias"
             case domain = "Domain"
             case domainId = "DomainId"
         }
     }
-    
+
     /// CreateDomainAlias返回参数结构体
     public struct CreateDomainAliasResponse: TCResponseModel {
         /// 域名别名ID
         public let domainAliasId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainAliasId = "DomainAliasId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建域名别名
     @inlinable
-    public func createDomainAlias(_ input: CreateDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainAliasResponse > {
+    public func createDomainAlias(_ input: CreateDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainAliasResponse> {
         self.client.execute(action: "CreateDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建域名别名
     @inlinable
     public func createDomainAlias(_ input: CreateDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainAliasResponse {
         try await self.client.execute(action: "CreateDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建域名别名
     @inlinable
-    public func createDomainAlias(domainAlias: String, domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainAliasResponse > {
+    public func createDomainAlias(domainAlias: String, domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainAliasResponse> {
         self.createDomainAlias(CreateDomainAliasRequest(domainAlias: domainAlias, domain: domain, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建域名别名
     @inlinable
     public func createDomainAlias(domainAlias: String, domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainAliasResponse {

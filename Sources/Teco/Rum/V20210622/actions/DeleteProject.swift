@@ -19,38 +19,38 @@ extension Rum {
     public struct DeleteProjectRequest: TCRequestModel {
         /// 需要删除的项目 ID
         public let id: UInt64
-        
-        public init (id: UInt64) {
+
+        public init(id: UInt64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
         }
     }
-    
+
     /// DeleteProject返回参数结构体
     public struct DeleteProjectResponse: TCResponseModel {
         /// 操作信息
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除 rum 项目
     ///
     /// 删除给定的 rum 的项目
     @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 rum 项目
     ///
     /// 删除给定的 rum 的项目
@@ -58,15 +58,15 @@ extension Rum {
     public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除 rum 项目
     ///
     /// 删除给定的 rum 的项目
     @inlinable
-    public func deleteProject(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+    public func deleteProject(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.deleteProject(DeleteProjectRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除 rum 项目
     ///
     /// 删除给定的 rum 的项目

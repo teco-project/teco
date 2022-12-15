@@ -19,35 +19,35 @@ extension Dc {
     public struct DeleteDirectConnectRequest: TCRequestModel {
         /// 物理专线的ID。
         public let directConnectId: String
-        
-        public init (directConnectId: String) {
+
+        public init(directConnectId: String) {
             self.directConnectId = directConnectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectId = "DirectConnectId"
         }
     }
-    
+
     /// DeleteDirectConnect返回参数结构体
     public struct DeleteDirectConnectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除物理专线
     ///
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
     @inlinable
-    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectResponse > {
+    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
         self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除物理专线
     ///
     /// 删除物理专线。
@@ -56,16 +56,16 @@ extension Dc {
     public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
         try await self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除物理专线
     ///
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
     @inlinable
-    public func deleteDirectConnect(directConnectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectResponse > {
+    public func deleteDirectConnect(directConnectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
         self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除物理专线
     ///
     /// 删除物理专线。

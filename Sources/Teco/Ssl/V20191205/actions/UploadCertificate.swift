@@ -19,23 +19,23 @@ extension Ssl {
     public struct UploadCertificateRequest: TCRequestModel {
         /// 证书内容。
         public let certificatePublicKey: String
-        
+
         /// 私钥内容，证书类型为 SVR 时必填，为 CA 时可不填。
         public let certificatePrivateKey: String?
-        
+
         /// 证书类型，默认 SVR。CA = 客户端证书，SVR = 服务器证书。
         public let certificateType: String?
-        
+
         /// 备注名称。
         public let alias: String?
-        
+
         /// 项目 ID。
         public let projectId: UInt64?
-        
+
         /// 证书用途/证书来源。“CLB，CDN，WAF，LIVE，DDOS”
         public let certificateUse: String?
-        
-        public init (certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil) {
+
+        public init(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil) {
             self.certificatePublicKey = certificatePublicKey
             self.certificatePrivateKey = certificatePrivateKey
             self.certificateType = certificateType
@@ -43,7 +43,7 @@ extension Ssl {
             self.projectId = projectId
             self.certificateUse = certificateUse
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificatePublicKey = "CertificatePublicKey"
             case certificatePrivateKey = "CertificatePrivateKey"
@@ -53,29 +53,29 @@ extension Ssl {
             case certificateUse = "CertificateUse"
         }
     }
-    
+
     /// UploadCertificate返回参数结构体
     public struct UploadCertificateResponse: TCResponseModel {
         /// 证书 ID。
         public let certificateId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertificateResponse > {
+    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
         self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
@@ -83,15 +83,15 @@ extension Ssl {
     public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
         try await self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertificateResponse > {
+    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
         self.uploadCertificate(UploadCertificateRequest(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。

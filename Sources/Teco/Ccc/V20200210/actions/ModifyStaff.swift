@@ -19,29 +19,29 @@ extension Ccc {
     public struct ModifyStaffRequest: TCRequestModel {
         /// 应用ID
         public let sdkAppId: UInt64
-        
+
         /// 坐席账户
         public let email: String
-        
+
         /// 坐席名称
         public let name: String?
-        
+
         /// 坐席手机号（带0086前缀,示例：008618011111111）
         public let phone: String?
-        
+
         /// 坐席昵称
         public let nick: String?
-        
+
         /// 绑定技能组ID列表
         public let skillGroupIds: [Int64]?
-        
+
         /// 是否开启手机外呼开关
         public let useMobileCallOut: Bool?
-        
+
         /// 手机接听模式 0 - 关闭 | 1 - 仅离线 | 2 - 始终
         public let useMobileAccept: Int64?
-        
-        public init (sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil) {
+
+        public init(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil) {
             self.sdkAppId = sdkAppId
             self.email = email
             self.name = name
@@ -51,7 +51,7 @@ extension Ccc {
             self.useMobileCallOut = useMobileCallOut
             self.useMobileAccept = useMobileAccept
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case email = "Email"
@@ -63,35 +63,35 @@ extension Ccc {
             case useMobileAccept = "UseMobileAccept"
         }
     }
-    
+
     /// ModifyStaff返回参数结构体
     public struct ModifyStaffResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改客服账号
     @inlinable
-    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStaffResponse > {
+    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStaffResponse> {
         self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改客服账号
     @inlinable
     public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
         try await self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改客服账号
     @inlinable
-    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStaffResponse > {
+    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStaffResponse> {
         self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改客服账号
     @inlinable
     public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {

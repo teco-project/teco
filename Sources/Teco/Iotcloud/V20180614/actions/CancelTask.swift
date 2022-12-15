@@ -19,53 +19,53 @@ extension Iotcloud {
     public struct CancelTaskRequest: TCRequestModel {
         /// 任务 ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// CancelTask返回参数结构体
     public struct CancelTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消任务
     ///
-    /// 本接口（CancelTask）用于取消一个未被调度的任务。 
+    /// 本接口（CancelTask）用于取消一个未被调度的任务。
     @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
         self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消任务
     ///
-    /// 本接口（CancelTask）用于取消一个未被调度的任务。 
+    /// 本接口（CancelTask）用于取消一个未被调度的任务。
     @inlinable
     public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
         try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消任务
     ///
-    /// 本接口（CancelTask）用于取消一个未被调度的任务。 
+    /// 本接口（CancelTask）用于取消一个未被调度的任务。
     @inlinable
-    public func cancelTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+    public func cancelTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
         self.cancelTask(CancelTaskRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消任务
     ///
-    /// 本接口（CancelTask）用于取消一个未被调度的任务。 
+    /// 本接口（CancelTask）用于取消一个未被调度的任务。
     @inlinable
     public func cancelTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
         try await self.cancelTask(CancelTaskRequest(id: id), logger: logger, on: eventLoop)

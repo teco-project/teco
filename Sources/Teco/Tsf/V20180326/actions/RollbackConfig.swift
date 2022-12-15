@@ -19,53 +19,53 @@ extension Tsf {
     public struct RollbackConfigRequest: TCRequestModel {
         /// 配置项发布历史ID
         public let configReleaseLogId: String
-        
+
         /// 回滚描述
         public let releaseDesc: String?
-        
-        public init (configReleaseLogId: String, releaseDesc: String? = nil) {
+
+        public init(configReleaseLogId: String, releaseDesc: String? = nil) {
             self.configReleaseLogId = configReleaseLogId
             self.releaseDesc = releaseDesc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configReleaseLogId = "ConfigReleaseLogId"
             case releaseDesc = "ReleaseDesc"
         }
     }
-    
+
     /// RollbackConfig返回参数结构体
     public struct RollbackConfigResponse: TCResponseModel {
         /// true：回滚成功；false：回滚失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 回滚配置
     @inlinable
-    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackConfigResponse > {
+    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackConfigResponse> {
         self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 回滚配置
     @inlinable
     public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
         try await self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 回滚配置
     @inlinable
-    public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackConfigResponse > {
+    public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackConfigResponse> {
         self.rollbackConfig(RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
     }
-    
+
     /// 回滚配置
     @inlinable
     public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {

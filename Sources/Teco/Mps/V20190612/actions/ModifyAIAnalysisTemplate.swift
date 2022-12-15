@@ -19,26 +19,26 @@ extension Mps {
     public struct ModifyAIAnalysisTemplateRequest: TCRequestModel {
         /// 视频内容分析模板唯一标识。
         public let definition: Int64
-        
+
         /// 视频内容分析模板名称，长度限制：64 个字符。
         public let name: String?
-        
+
         /// 视频内容分析模板描述信息，长度限制：256 个字符。
         public let comment: String?
-        
+
         /// 智能分类任务控制参数。
         public let classificationConfigure: ClassificationConfigureInfoForUpdate?
-        
+
         /// 智能标签任务控制参数。
         public let tagConfigure: TagConfigureInfoForUpdate?
-        
+
         /// 智能封面任务控制参数。
         public let coverConfigure: CoverConfigureInfoForUpdate?
-        
+
         /// 智能按帧标签任务控制参数。
         public let frameTagConfigure: FrameTagConfigureInfoForUpdate?
-        
-        public init (definition: Int64, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil) {
+
+        public init(definition: Int64, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil) {
             self.definition = definition
             self.name = name
             self.comment = comment
@@ -47,7 +47,7 @@ extension Mps {
             self.coverConfigure = coverConfigure
             self.frameTagConfigure = frameTagConfigure
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case name = "Name"
@@ -58,26 +58,26 @@ extension Mps {
             case frameTagConfigure = "FrameTagConfigure"
         }
     }
-    
+
     /// ModifyAIAnalysisTemplate返回参数结构体
     public struct ModifyAIAnalysisTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改内容分析模板
     ///
     /// 修改用户自定义内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable
-    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIAnalysisTemplateResponse > {
+    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
         self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改内容分析模板
     ///
     /// 修改用户自定义内容分析模板。
@@ -86,16 +86,16 @@ extension Mps {
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
         try await self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改内容分析模板
     ///
     /// 修改用户自定义内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable
-    public func modifyAIAnalysisTemplate(definition: Int64, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIAnalysisTemplateResponse > {
+    public func modifyAIAnalysisTemplate(definition: Int64, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
         self.modifyAIAnalysisTemplate(ModifyAIAnalysisTemplateRequest(definition: definition, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改内容分析模板
     ///
     /// 修改用户自定义内容分析模板。

@@ -17,46 +17,46 @@
 extension Antiddos {
     /// DescribeListListener请求参数结构体
     public struct DescribeListListenerRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeListListener返回参数结构体
     public struct DescribeListListenerResponse: TCResponseModel {
         /// 4层转发监听器列表
         public let layer4Listeners: [Layer4Rule]
-        
+
         /// 7层转发监听器列表
         public let layer7Listeners: [Layer7Rule]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case layer4Listeners = "Layer4Listeners"
             case layer7Listeners = "Layer7Listeners"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取转发监听器列表
     @inlinable
-    public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListListenerResponse > {
+    public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListListenerResponse> {
         self.client.execute(action: "DescribeListListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转发监听器列表
     @inlinable
     public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListListenerResponse {
         try await self.client.execute(action: "DescribeListListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取转发监听器列表
     @inlinable
-    public func describeListListener(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListListenerResponse > {
+    public func describeListListener(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListListenerResponse> {
         self.describeListListener(DescribeListListenerRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转发监听器列表
     @inlinable
     public func describeListListener(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListListenerResponse {

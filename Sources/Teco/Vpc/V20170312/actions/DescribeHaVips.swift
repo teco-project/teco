@@ -19,7 +19,7 @@ extension Vpc {
     public struct DescribeHaVipsRequest: TCRequestModel {
         /// `HAVIP`唯一`ID`，形如：`havip-9o233uri`。
         public let haVipIds: [String]?
-        
+
         /// 过滤条件，参数不支持同时指定`HaVipIds`和`Filters`。
         /// <li>havip-id - String - `HAVIP`唯一`ID`，形如：`havip-9o233uri`。</li>
         /// <li>havip-name - String - `HAVIP`名称。</li>
@@ -28,20 +28,20 @@ extension Vpc {
         /// <li>vip - String - `HAVIP`的地址`VIP`。</li>
         /// <li>address-ip - String - `HAVIP`绑定的弹性公网`IP`。</li>
         public let filters: [Filter]?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 返回数量
         public let limit: UInt64?
-        
-        public init (haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.haVipIds = haVipIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case haVipIds = "HaVipIds"
             case filters = "Filters"
@@ -49,33 +49,33 @@ extension Vpc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeHaVips返回参数结构体
     public struct DescribeHaVipsResponse: TCResponseModel {
         /// 符合条件的对象数。
         public let totalCount: UInt64
-        
+
         /// `HAVIP`对象数组。
         public let haVipSet: [HaVip]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case haVipSet = "HaVipSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
     @inlinable
-    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHaVipsResponse > {
+    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHaVipsResponse> {
         self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
@@ -83,15 +83,15 @@ extension Vpc {
     public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHaVipsResponse {
         try await self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
     @inlinable
-    public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHaVipsResponse > {
+    public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHaVipsResponse> {
         self.describeHaVips(DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。

@@ -19,50 +19,50 @@ extension Sqlserver {
     public struct DescribeUploadBackupInfoRequest: TCRequestModel {
         /// 导入目标实例ID
         public let instanceId: String
-        
+
         /// 备份导入任务ID，由CreateBackupMigration接口返回
         public let backupMigrationId: String
-        
-        public init (instanceId: String, backupMigrationId: String) {
+
+        public init(instanceId: String, backupMigrationId: String) {
             self.instanceId = instanceId
             self.backupMigrationId = backupMigrationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case backupMigrationId = "BackupMigrationId"
         }
     }
-    
+
     /// DescribeUploadBackupInfo返回参数结构体
     public struct DescribeUploadBackupInfoResponse: TCResponseModel {
         /// 存储桶名称
         public let bucketName: String
-        
+
         /// 存储桶地域信息
         public let region: String
-        
+
         /// 存储路径
         public let path: String
-        
+
         /// 临时密钥ID
         public let tmpSecretId: String
-        
+
         /// 临时密钥Key
         public let tmpSecretKey: String
-        
+
         /// 临时密钥Token
         public let xCosSecurityToken: String
-        
+
         /// 临时密钥开始时间
         public let startTime: String
-        
+
         /// 临时密钥到期时间
         public let expiredTime: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bucketName = "BucketName"
             case region = "Region"
@@ -75,15 +75,15 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询备份上传权限
     ///
     /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
     @inlinable
-    public func describeUploadBackupInfo(_ input: DescribeUploadBackupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadBackupInfoResponse > {
+    public func describeUploadBackupInfo(_ input: DescribeUploadBackupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadBackupInfoResponse> {
         self.client.execute(action: "DescribeUploadBackupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份上传权限
     ///
     /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
@@ -91,15 +91,15 @@ extension Sqlserver {
     public func describeUploadBackupInfo(_ input: DescribeUploadBackupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadBackupInfoResponse {
         try await self.client.execute(action: "DescribeUploadBackupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询备份上传权限
     ///
     /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
     @inlinable
-    public func describeUploadBackupInfo(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadBackupInfoResponse > {
+    public func describeUploadBackupInfo(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadBackupInfoResponse> {
         self.describeUploadBackupInfo(DescribeUploadBackupInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份上传权限
     ///
     /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。

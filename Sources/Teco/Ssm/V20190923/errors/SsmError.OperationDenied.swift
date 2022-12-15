@@ -22,61 +22,61 @@ extension TCSsmError {
             case roleNotExist = "OperationDenied.RoleNotExist"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// AccessKey已经达到上限。
         public static var accessKeyOverLimit: OperationDenied {
             OperationDenied(.accessKeyOverLimit)
         }
-        
+
         /// 不允许手动更新具有自动轮换功能的凭据。
         public static var autoRotatedResource: OperationDenied {
             OperationDenied(.autoRotatedResource)
         }
-        
+
         /// 角色不存在。
         ///
         /// 检查调用方账号中是否已定义该接口所需的角色。
         public static var roleNotExist: OperationDenied {
             OperationDenied(.roleNotExist)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asSsmError() -> TCSsmError {
             let code: TCSsmError.Code
             switch self.error {
-            case .accessKeyOverLimit: 
+            case .accessKeyOverLimit:
                 code = .operationDenied_AccessKeyOverLimit
-            case .autoRotatedResource: 
+            case .autoRotatedResource:
                 code = .operationDenied_AutoRotatedResource
-            case .roleNotExist: 
+            case .roleNotExist:
                 code = .operationDenied_RoleNotExist
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCSsmError(code, context: self.context)

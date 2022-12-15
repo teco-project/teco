@@ -19,35 +19,35 @@ extension Ds {
     public struct SignContractByCoordinateRequest: TCRequestModel {
         /// 模块名ContractMng
         public let module: String
-        
+
         /// 操作名SignContractByCoordinate
         public let operation: String
-        
+
         /// 合同ID
         public let contractResId: String
-        
+
         /// 帐户ID
         public let accountResId: String
-        
+
         /// 签署坐标，坐标原点在文件左下角，坐标单位为磅，坐标不得超过合同文件边界
         public let signLocations: [SignLocation]
-        
+
         /// 授权时间（由平台自动填充）
         public let authorizationTime: String?
-        
+
         /// 授权IP地址（由平台自动填充）
         public let position: String?
-        
+
         /// 签章ID
         public let sealResId: String?
-        
+
         /// 选用证书类型：1  表示RSA证书， 2 表示国密证书， 参数不传时默认为1
         public let certType: Int64?
-        
+
         /// 签名图片，base64编码
         public let imageData: String?
-        
-        public init (module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil) {
+
+        public init(module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil) {
             self.module = module
             self.operation = operation
             self.contractResId = contractResId
@@ -59,7 +59,7 @@ extension Ds {
             self.certType = certType
             self.imageData = imageData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -73,25 +73,25 @@ extension Ds {
             case imageData = "ImageData"
         }
     }
-    
+
     /// SignContractByCoordinate返回参数结构体
     public struct SignContractByCoordinateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 按坐标签署合同
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。
     @inlinable
-    public func signContractByCoordinate(_ input: SignContractByCoordinateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignContractByCoordinateResponse > {
+    public func signContractByCoordinate(_ input: SignContractByCoordinateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignContractByCoordinateResponse> {
         self.client.execute(action: "SignContractByCoordinate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 按坐标签署合同
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。
@@ -99,15 +99,15 @@ extension Ds {
     public func signContractByCoordinate(_ input: SignContractByCoordinateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignContractByCoordinateResponse {
         try await self.client.execute(action: "SignContractByCoordinate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 按坐标签署合同
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。
     @inlinable
-    public func signContractByCoordinate(module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignContractByCoordinateResponse > {
+    public func signContractByCoordinate(module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignContractByCoordinateResponse> {
         self.signContractByCoordinate(SignContractByCoordinateRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signLocations: signLocations, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData), logger: logger, on: eventLoop)
     }
-    
+
     /// 按坐标签署合同
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。

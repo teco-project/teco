@@ -20,45 +20,45 @@ extension TCCloudauditError {
             case time = "InvalidParameter.Time"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 必须包含开始时间和结束时间，且必须为整形时间戳（精确到秒）
         public static var time: InvalidParameter {
             InvalidParameter(.time)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asCloudauditError() -> TCCloudauditError {
             let code: TCCloudauditError.Code
             switch self.error {
-            case .time: 
+            case .time:
                 code = .invalidParameter_Time
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCCloudauditError(code, context: self.context)

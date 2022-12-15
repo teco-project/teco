@@ -19,53 +19,53 @@ extension Monitor {
     public struct CreatePrometheusAgentRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// Agent 名称
         public let name: String
-        
-        public init (instanceId: String, name: String) {
+
+        public init(instanceId: String, name: String) {
             self.instanceId = instanceId
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
         }
     }
-    
+
     /// CreatePrometheusAgent返回参数结构体
     public struct CreatePrometheusAgentResponse: TCResponseModel {
         /// 创建成功的 Agent Id
         public let agentId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建 Prometheus CVM Agent
     @inlinable
-    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusAgentResponse > {
+    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAgentResponse> {
         self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 Prometheus CVM Agent
     @inlinable
     public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
         try await self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建 Prometheus CVM Agent
     @inlinable
-    public func createPrometheusAgent(instanceId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusAgentResponse > {
+    public func createPrometheusAgent(instanceId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAgentResponse> {
         self.createPrometheusAgent(CreatePrometheusAgentRequest(instanceId: instanceId, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 Prometheus CVM Agent
     @inlinable
     public func createPrometheusAgent(instanceId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {

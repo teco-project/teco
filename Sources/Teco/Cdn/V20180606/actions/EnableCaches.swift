@@ -22,7 +22,7 @@ extension Cdn {
     public struct EnableCachesRequest: TCRequestModel {
         /// 解封 URL 列表
         public let urls: [String]
-        
+
         /// URL封禁日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,46 +30,46 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date?
-        
-        public init (urls: [String], date: Date? = nil) {
+
+        public init(urls: [String], date: Date? = nil) {
             self.urls = urls
             self.date = date
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case urls = "Urls"
             case date = "Date"
         }
     }
-    
+
     /// EnableCaches返回参数结构体
     public struct EnableCachesResponse: TCResponseModel {
         /// 结果列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheOptResult: CacheOptResult?
-        
+
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cacheOptResult = "CacheOptResult"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解禁 URL
     ///
     /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
     @inlinable
-    public func enableCaches(_ input: EnableCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableCachesResponse > {
+    public func enableCaches(_ input: EnableCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCachesResponse> {
         self.client.execute(action: "EnableCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解禁 URL
     ///
     /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
@@ -77,15 +77,15 @@ extension Cdn {
     public func enableCaches(_ input: EnableCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCachesResponse {
         try await self.client.execute(action: "EnableCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解禁 URL
     ///
     /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
     @inlinable
-    public func enableCaches(urls: [String], date: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableCachesResponse > {
+    public func enableCaches(urls: [String], date: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCachesResponse> {
         self.enableCaches(EnableCachesRequest(urls: urls, date: date), logger: logger, on: eventLoop)
     }
-    
+
     /// 解禁 URL
     ///
     /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）

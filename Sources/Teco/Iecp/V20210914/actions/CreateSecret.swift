@@ -19,26 +19,26 @@ extension Iecp {
     public struct CreateSecretRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitID: UInt64
-        
+
         /// secret名
         public let secretName: String
-        
+
         /// 命名空间（默认:default）
         public let secretNamespace: String?
-        
+
         /// secret类型(取值范围:DockerConfigJson,Opaque 默认Opaque)
         public let secretType: String?
-        
+
         /// DockerConfig的序列化base64编码后的字符串
         public let dockerConfigJson: String?
-        
+
         /// Opaque类型的Secret内容
         public let cloudData: [KeyValueObj]?
-        
+
         /// DockerConfig配置
         public let dockerConfig: DockerConfig?
-        
-        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil) {
+
+        public init(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil) {
             self.edgeUnitID = edgeUnitID
             self.secretName = secretName
             self.secretNamespace = secretNamespace
@@ -47,7 +47,7 @@ extension Iecp {
             self.cloudData = cloudData
             self.dockerConfig = dockerConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitID = "EdgeUnitID"
             case secretName = "SecretName"
@@ -58,35 +58,35 @@ extension Iecp {
             case dockerConfig = "DockerConfig"
         }
     }
-    
+
     /// CreateSecret返回参数结构体
     public struct CreateSecretResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建Secret
     @inlinable
-    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
+    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
         self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建Secret
     @inlinable
     public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
         try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建Secret
     @inlinable
-    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
+    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
         self.createSecret(CreateSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace, secretType: secretType, dockerConfigJson: dockerConfigJson, cloudData: cloudData, dockerConfig: dockerConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建Secret
     @inlinable
     public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {

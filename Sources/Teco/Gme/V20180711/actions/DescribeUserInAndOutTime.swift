@@ -19,27 +19,27 @@ extension Gme {
     public struct DescribeUserInAndOutTimeRequest: TCRequestModel {
         /// 应用ID
         public let bizId: Int64
-        
+
         /// 房间ID
         public let roomId: Int64
-        
+
         /// 用户ID
         public let userId: Int64
-        
+
         /// 字符串类型用户ID
         public let userIdStr: String?
-        
+
         /// 字符串类型房间ID
         public let roomIdStr: String?
-        
-        public init (bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil) {
+
+        public init(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil) {
             self.bizId = bizId
             self.roomId = roomId
             self.userId = userId
             self.userIdStr = userIdStr
             self.roomIdStr = roomIdStr
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
             case roomId = "RoomId"
@@ -48,43 +48,43 @@ extension Gme {
             case roomIdStr = "RoomIdStr"
         }
     }
-    
+
     /// DescribeUserInAndOutTime返回参数结构体
     public struct DescribeUserInAndOutTimeResponse: TCResponseModel {
         /// 用户在房间得进出时间列表
         public let inOutList: [InOutTimeInfo]
-        
+
         /// 用户在房间中总时长
         public let duration: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case inOutList = "InOutList"
             case duration = "Duration"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取用户在房间得进出时间
     @inlinable
-    public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInAndOutTimeResponse > {
+    public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserInAndOutTimeResponse> {
         self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取用户在房间得进出时间
     @inlinable
     public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {
         try await self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取用户在房间得进出时间
     @inlinable
-    public func describeUserInAndOutTime(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInAndOutTimeResponse > {
+    public func describeUserInAndOutTime(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserInAndOutTimeResponse> {
         self.describeUserInAndOutTime(DescribeUserInAndOutTimeRequest(bizId: bizId, roomId: roomId, userId: userId, userIdStr: userIdStr, roomIdStr: roomIdStr), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取用户在房间得进出时间
     @inlinable
     public func describeUserInAndOutTime(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {

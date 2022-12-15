@@ -19,48 +19,48 @@ extension Redis {
     public struct DestroyPrepaidInstanceRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DestroyPrepaidInstance返回参数结构体
     public struct DestroyPrepaidInstanceResponse: TCResponseModel {
         /// 订单Id
         public let dealId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 包年包月实例退还
     @inlinable
-    public func destroyPrepaidInstance(_ input: DestroyPrepaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPrepaidInstanceResponse > {
+    public func destroyPrepaidInstance(_ input: DestroyPrepaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrepaidInstanceResponse> {
         self.client.execute(action: "DestroyPrepaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 包年包月实例退还
     @inlinable
     public func destroyPrepaidInstance(_ input: DestroyPrepaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrepaidInstanceResponse {
         try await self.client.execute(action: "DestroyPrepaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 包年包月实例退还
     @inlinable
-    public func destroyPrepaidInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPrepaidInstanceResponse > {
+    public func destroyPrepaidInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrepaidInstanceResponse> {
         self.destroyPrepaidInstance(DestroyPrepaidInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 包年包月实例退还
     @inlinable
     public func destroyPrepaidInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrepaidInstanceResponse {

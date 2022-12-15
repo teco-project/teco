@@ -36,157 +36,157 @@ extension TCAsError {
             case tdmqcmqQueueNotFound = "ResourceNotFound.TDMQCMQQueueNotFound"
             case tdmqcmqTopicNotFound = "ResourceNotFound.TDMQCMQTopicNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 伸缩组不存在。
         public static var autoScalingGroupNotFound: ResourceNotFound {
             ResourceNotFound(.autoScalingGroupNotFound)
         }
-        
+
         /// 通知不存在。
         public static var autoScalingNotificationNotFound: ResourceNotFound {
             ResourceNotFound(.autoScalingNotificationNotFound)
         }
-        
+
         public static var bandwidthPackageIdNotFound: ResourceNotFound {
             ResourceNotFound(.bandwidthPackageIdNotFound)
         }
-        
+
         /// 指定的 CMQ queue 不存在。
         ///
         /// 请核实您提供的 queue。
         public static var cmqQueueNotFound: ResourceNotFound {
             ResourceNotFound(.cmqQueueNotFound)
         }
-        
+
         public static var commandNotFound: ResourceNotFound {
             ResourceNotFound(.commandNotFound)
         }
-        
+
         /// 指定的实例不存在。
         public static var instancesNotFound: ResourceNotFound {
             ResourceNotFound(.instancesNotFound)
         }
-        
+
         /// 目标实例不在伸缩组内。
         public static var instancesNotInAutoScalingGroup: ResourceNotFound {
             ResourceNotFound(.instancesNotInAutoScalingGroup)
         }
-        
+
         /// 指定的启动配置不存在。
         public static var launchConfigurationIdNotFound: ResourceNotFound {
             ResourceNotFound(.launchConfigurationIdNotFound)
         }
-        
+
         /// 生命周期挂钩对应实例不存在。
         public static var lifecycleHookInstanceNotFound: ResourceNotFound {
             ResourceNotFound(.lifecycleHookInstanceNotFound)
         }
-        
+
         /// 无法找到指定生命周期挂钩。
         public static var lifecycleHookNotFound: ResourceNotFound {
             ResourceNotFound(.lifecycleHookNotFound)
         }
-        
+
         /// 指定的Listener不存在。
         public static var listenerNotFound: ResourceNotFound {
             ResourceNotFound(.listenerNotFound)
         }
-        
+
         /// 找不到指定负载均衡器。
         public static var loadBalancerNotFound: ResourceNotFound {
             ResourceNotFound(.loadBalancerNotFound)
         }
-        
+
         /// 指定的负载均衡器在当前伸缩组中没有找到。
         public static var loadBalancerNotInAutoScalingGroup: ResourceNotFound {
             ResourceNotFound(.loadBalancerNotInAutoScalingGroup)
         }
-        
+
         /// 指定的Location不存在。
         public static var locationNotFound: ResourceNotFound {
             ResourceNotFound(.locationNotFound)
         }
-        
+
         /// 告警策略不存在。
         public static var scalingPolicyNotFound: ResourceNotFound {
             ResourceNotFound(.scalingPolicyNotFound)
         }
-        
+
         /// 指定的定时任务不存在。
         public static var scheduledActionNotFound: ResourceNotFound {
             ResourceNotFound(.scheduledActionNotFound)
         }
-        
+
         /// TDMQ-CMQ 队列不存在。
         public static var tdmqcmqQueueNotFound: ResourceNotFound {
             ResourceNotFound(.tdmqcmqQueueNotFound)
         }
-        
+
         /// TDMQ-CMQ 主题不存在。
         public static var tdmqcmqTopicNotFound: ResourceNotFound {
             ResourceNotFound(.tdmqcmqTopicNotFound)
         }
-        
+
         public func asAsError() -> TCAsError {
             let code: TCAsError.Code
             switch self.error {
-            case .autoScalingGroupNotFound: 
+            case .autoScalingGroupNotFound:
                 code = .resourceNotFound_AutoScalingGroupNotFound
-            case .autoScalingNotificationNotFound: 
+            case .autoScalingNotificationNotFound:
                 code = .resourceNotFound_AutoScalingNotificationNotFound
-            case .bandwidthPackageIdNotFound: 
+            case .bandwidthPackageIdNotFound:
                 code = .resourceNotFound_BandwidthPackageIdNotFound
-            case .cmqQueueNotFound: 
+            case .cmqQueueNotFound:
                 code = .resourceNotFound_CmqQueueNotFound
-            case .commandNotFound: 
+            case .commandNotFound:
                 code = .resourceNotFound_CommandNotFound
-            case .instancesNotFound: 
+            case .instancesNotFound:
                 code = .resourceNotFound_InstancesNotFound
-            case .instancesNotInAutoScalingGroup: 
+            case .instancesNotInAutoScalingGroup:
                 code = .resourceNotFound_InstancesNotInAutoScalingGroup
-            case .launchConfigurationIdNotFound: 
+            case .launchConfigurationIdNotFound:
                 code = .resourceNotFound_LaunchConfigurationIdNotFound
-            case .lifecycleHookInstanceNotFound: 
+            case .lifecycleHookInstanceNotFound:
                 code = .resourceNotFound_LifecycleHookInstanceNotFound
-            case .lifecycleHookNotFound: 
+            case .lifecycleHookNotFound:
                 code = .resourceNotFound_LifecycleHookNotFound
-            case .listenerNotFound: 
+            case .listenerNotFound:
                 code = .resourceNotFound_ListenerNotFound
-            case .loadBalancerNotFound: 
+            case .loadBalancerNotFound:
                 code = .resourceNotFound_LoadBalancerNotFound
-            case .loadBalancerNotInAutoScalingGroup: 
+            case .loadBalancerNotInAutoScalingGroup:
                 code = .resourceNotFound_LoadBalancerNotInAutoScalingGroup
-            case .locationNotFound: 
+            case .locationNotFound:
                 code = .resourceNotFound_LocationNotFound
-            case .scalingPolicyNotFound: 
+            case .scalingPolicyNotFound:
                 code = .resourceNotFound_ScalingPolicyNotFound
-            case .scheduledActionNotFound: 
+            case .scheduledActionNotFound:
                 code = .resourceNotFound_ScheduledActionNotFound
-            case .tdmqcmqQueueNotFound: 
+            case .tdmqcmqQueueNotFound:
                 code = .resourceNotFound_TDMQCMQQueueNotFound
-            case .tdmqcmqTopicNotFound: 
+            case .tdmqcmqTopicNotFound:
                 code = .resourceNotFound_TDMQCMQTopicNotFound
             }
             return TCAsError(code, context: self.context)

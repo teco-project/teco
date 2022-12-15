@@ -19,49 +19,49 @@ extension Tdmq {
     public struct AcknowledgeMessageRequest: TCRequestModel {
         /// 用作标识消息的唯一的ID（可从 receiveMessage 的返回值中获得）
         public let messageId: String
-        
+
         /// Topic 名字（可从 receiveMessage 的返回值中获得）这里尽量需要使用topic的全路径，即：tenant/namespace/topic。如果不指定，默认使用的是：public/default
         public let ackTopic: String
-        
+
         /// 订阅者的名字，可以从receiveMessage的返回值中获取到。这里尽量与receiveMessage中的订阅者保持一致，否则没办法正确ack 接收回来的消息。
         public let subName: String
-        
-        public init (messageId: String, ackTopic: String, subName: String) {
+
+        public init(messageId: String, ackTopic: String, subName: String) {
             self.messageId = messageId
             self.ackTopic = ackTopic
             self.subName = subName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case messageId = "MessageId"
             case ackTopic = "AckTopic"
             case subName = "SubName"
         }
     }
-    
+
     /// AcknowledgeMessage返回参数结构体
     public struct AcknowledgeMessageResponse: TCResponseModel {
         /// 如果为“”，则说明没有错误返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 确认消息
     ///
     /// 根据提供的 MessageID 确认指定 topic 中的消息
     @inlinable
-    public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcknowledgeMessageResponse > {
+    public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcknowledgeMessageResponse> {
         self.client.execute(action: "AcknowledgeMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 确认消息
     ///
     /// 根据提供的 MessageID 确认指定 topic 中的消息
@@ -69,15 +69,15 @@ extension Tdmq {
     public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcknowledgeMessageResponse {
         try await self.client.execute(action: "AcknowledgeMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 确认消息
     ///
     /// 根据提供的 MessageID 确认指定 topic 中的消息
     @inlinable
-    public func acknowledgeMessage(messageId: String, ackTopic: String, subName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcknowledgeMessageResponse > {
+    public func acknowledgeMessage(messageId: String, ackTopic: String, subName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcknowledgeMessageResponse> {
         self.acknowledgeMessage(AcknowledgeMessageRequest(messageId: messageId, ackTopic: ackTopic, subName: subName), logger: logger, on: eventLoop)
     }
-    
+
     /// 确认消息
     ///
     /// 根据提供的 MessageID 确认指定 topic 中的消息

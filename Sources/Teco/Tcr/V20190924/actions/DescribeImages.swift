@@ -19,29 +19,29 @@ extension Tcr {
     public struct DescribeImagesRequest: TCRequestModel {
         /// 实例ID
         public let registryId: String
-        
+
         /// 命名空间名称
         public let namespaceName: String
-        
+
         /// 镜像仓库名称
         public let repositoryName: String
-        
+
         /// 指定镜像版本进行查找，当前为模糊搜索
         public let imageVersion: String?
-        
+
         /// 每页个数，用于分页，默认20
         public let limit: Int64?
-        
+
         /// 页数，默认值为1
         public let offset: Int64?
-        
+
         /// 指定镜像 Digest 进行查找
         public let digest: String?
-        
+
         /// 指定是否为精准匹配，true为精准匹配，不填为模糊匹配
         public let exactMatch: Bool?
-        
-        public init (registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil) {
+
+        public init(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.repositoryName = repositoryName
@@ -51,7 +51,7 @@ extension Tcr {
             self.digest = digest
             self.exactMatch = exactMatch
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
@@ -63,33 +63,33 @@ extension Tcr {
             case exactMatch = "ExactMatch"
         }
     }
-    
+
     /// DescribeImages返回参数结构体
     public struct DescribeImagesResponse: TCResponseModel {
         /// 容器镜像信息列表
         public let imageInfoList: [TcrImageInfo]
-        
+
         /// 容器镜像总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageInfoList = "ImageInfoList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器镜像信息
     ///
     /// 查询镜像版本列表或指定容器镜像信息
     @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器镜像信息
     ///
     /// 查询镜像版本列表或指定容器镜像信息
@@ -97,15 +97,15 @@ extension Tcr {
     public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器镜像信息
     ///
     /// 查询镜像版本列表或指定容器镜像信息
     @inlinable
-    public func describeImages(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+    public func describeImages(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.describeImages(DescribeImagesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器镜像信息
     ///
     /// 查询镜像版本列表或指定容器镜像信息

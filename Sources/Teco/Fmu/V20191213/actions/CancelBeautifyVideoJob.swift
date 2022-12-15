@@ -19,34 +19,34 @@ extension Fmu {
     public struct CancelBeautifyVideoJobRequest: TCRequestModel {
         /// 美颜视频的Job id
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// CancelBeautifyVideoJob返回参数结构体
     public struct CancelBeautifyVideoJobResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
     @inlinable
-    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelBeautifyVideoJobResponse > {
+    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
         self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
@@ -54,15 +54,15 @@ extension Fmu {
     public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
         try await self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
     @inlinable
-    public func cancelBeautifyVideoJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelBeautifyVideoJobResponse > {
+    public func cancelBeautifyVideoJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
         self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求

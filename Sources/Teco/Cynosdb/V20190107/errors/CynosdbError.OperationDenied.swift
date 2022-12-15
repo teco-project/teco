@@ -27,94 +27,94 @@ extension TCCynosdbError {
             case userNotAuthenticatedError = "OperationDenied.UserNotAuthenticatedError"
             case versionNotSupportError = "OperationDenied.VersionNotSupportError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 由于操作禁止，当前集群不允许该操作。
         public static var clusterOpNotAllowedError: OperationDenied {
             OperationDenied(.clusterOpNotAllowedError)
         }
-        
+
         /// 集群当前状态不允许该操作。
         public static var clusterStatusDeniedError: OperationDenied {
             OperationDenied(.clusterStatusDeniedError)
         }
-        
+
         /// 实例当前状态不允许该操作。
         public static var instanceStatusDeniedError: OperationDenied {
             OperationDenied(.instanceStatusDeniedError)
         }
-        
+
         /// 账号余额不足。
         public static var insufficientBalanceError: OperationDenied {
             OperationDenied(.insufficientBalanceError)
         }
-        
+
         /// serverless集群当前状态不允许该操作。
         public static var serverlessClusterStatusDenied: OperationDenied {
             OperationDenied(.serverlessClusterStatusDenied)
         }
-        
+
         /// serverless实例当前状态不允许该操作。
         public static var serverlessInstanceStatusDenied: OperationDenied {
             OperationDenied(.serverlessInstanceStatusDenied)
         }
-        
+
         /// 任务冲突检查不通过。
         public static var taskConflictError: OperationDenied {
             OperationDenied(.taskConflictError)
         }
-        
+
         /// 用户未进行实名认证，请先进行实名认证才可购买。
         public static var userNotAuthenticatedError: OperationDenied {
             OperationDenied(.userNotAuthenticatedError)
         }
-        
+
         /// Serverless不支持该版本。
         public static var versionNotSupportError: OperationDenied {
             OperationDenied(.versionNotSupportError)
         }
-        
+
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
-            case .clusterOpNotAllowedError: 
+            case .clusterOpNotAllowedError:
                 code = .operationDenied_ClusterOpNotAllowedError
-            case .clusterStatusDeniedError: 
+            case .clusterStatusDeniedError:
                 code = .operationDenied_ClusterStatusDeniedError
-            case .instanceStatusDeniedError: 
+            case .instanceStatusDeniedError:
                 code = .operationDenied_InstanceStatusDeniedError
-            case .insufficientBalanceError: 
+            case .insufficientBalanceError:
                 code = .operationDenied_InsufficientBalanceError
-            case .serverlessClusterStatusDenied: 
+            case .serverlessClusterStatusDenied:
                 code = .operationDenied_ServerlessClusterStatusDenied
-            case .serverlessInstanceStatusDenied: 
+            case .serverlessInstanceStatusDenied:
                 code = .operationDenied_ServerlessInstanceStatusDenied
-            case .taskConflictError: 
+            case .taskConflictError:
                 code = .operationDenied_TaskConflictError
-            case .userNotAuthenticatedError: 
+            case .userNotAuthenticatedError:
                 code = .operationDenied_UserNotAuthenticatedError
-            case .versionNotSupportError: 
+            case .versionNotSupportError:
                 code = .operationDenied_VersionNotSupportError
             }
             return TCCynosdbError(code, context: self.context)

@@ -19,23 +19,23 @@ extension Cfs {
     public struct CreateAutoSnapshotPolicyRequest: TCRequestModel {
         /// 快照重复日期，星期一到星期日
         public let dayOfWeek: String
-        
+
         /// 快照重复时间点
         public let hour: String
-        
+
         /// 策略名称
         public let policyName: String?
-        
+
         /// 快照保留时长
         public let aliveDays: UInt64?
-        
-        public init (dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil) {
+
+        public init(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil) {
             self.dayOfWeek = dayOfWeek
             self.hour = hour
             self.policyName = policyName
             self.aliveDays = aliveDays
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dayOfWeek = "DayOfWeek"
             case hour = "Hour"
@@ -43,39 +43,39 @@ extension Cfs {
             case aliveDays = "AliveDays"
         }
     }
-    
+
     /// CreateAutoSnapshotPolicy返回参数结构体
     public struct CreateAutoSnapshotPolicyResponse: TCResponseModel {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建定期快照策略
     @inlinable
-    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoSnapshotPolicyResponse > {
+    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
         self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建定期快照策略
     @inlinable
     public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建定期快照策略
     @inlinable
-    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoSnapshotPolicyResponse > {
+    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
         self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建定期快照策略
     @inlinable
     public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {

@@ -17,42 +17,42 @@
 extension Tcss {
     /// DescribePublicKey请求参数结构体
     public struct DescribePublicKeyRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribePublicKey返回参数结构体
     public struct DescribePublicKeyResponse: TCResponseModel {
         /// 公钥
         public let publicKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case publicKey = "PublicKey"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取公钥
     @inlinable
-    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
+    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicKeyResponse> {
         self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取公钥
     @inlinable
     public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
         try await self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取公钥
     @inlinable
-    public func describePublicKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
+    public func describePublicKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicKeyResponse> {
         self.describePublicKey(DescribePublicKeyRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取公钥
     @inlinable
     public func describePublicKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {

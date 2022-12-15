@@ -19,13 +19,13 @@ extension Tcss {
     public struct DescribeVulImageListRequest: TCRequestModel {
         /// 漏洞PocID
         public let pocID: String
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
         /// <li>ImageID- string - 是否必填：否 - 镜像ID</li>
@@ -36,14 +36,14 @@ extension Tcss {
         /// <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
         /// <li>HostName- string -是否必填: 否 - 主机名称</li>
         public let filters: [RunTimeFilters]?
-        
+
         /// 排序方式
         public let order: String?
-        
+
         /// 排序字段
         public let by: String?
-        
-        public init (pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.pocID = pocID
             self.limit = limit
             self.offset = offset
@@ -51,7 +51,7 @@ extension Tcss {
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pocID = "PocID"
             case limit = "Limit"
@@ -61,43 +61,43 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeVulImageList返回参数结构体
     public struct DescribeVulImageListResponse: TCResponseModel {
         /// 受影响的镜像列表
         public let list: [VulAffectedImageInfo]
-        
+
         /// 镜像总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询漏洞影响的镜像列表
     @inlinable
-    public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageListResponse > {
+    public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulImageListResponse> {
         self.client.execute(action: "DescribeVulImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞影响的镜像列表
     @inlinable
     public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageListResponse {
         try await self.client.execute(action: "DescribeVulImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询漏洞影响的镜像列表
     @inlinable
-    public func describeVulImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageListResponse > {
+    public func describeVulImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulImageListResponse> {
         self.describeVulImageList(DescribeVulImageListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询漏洞影响的镜像列表
     @inlinable
     public func describeVulImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageListResponse {

@@ -19,43 +19,43 @@ extension Vod {
     public struct CreateSubAppIdRequest: TCRequestModel {
         /// 子应用名称，长度限制：40个字符。
         public let name: String
-        
+
         /// 子应用简介，长度限制： 300个字符。
         public let description: String?
-        
-        public init (name: String, description: String? = nil) {
+
+        public init(name: String, description: String? = nil) {
             self.name = name
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"
         }
     }
-    
+
     /// CreateSubAppId返回参数结构体
     public struct CreateSubAppIdResponse: TCResponseModel {
         /// 新创建的子应用 ID。
         public let subAppId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subAppId = "SubAppId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建子应用
     ///
     /// 该接口用于创建点播子应用。
     @inlinable
-    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubAppIdResponse > {
+    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubAppIdResponse> {
         self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建子应用
     ///
     /// 该接口用于创建点播子应用。
@@ -63,15 +63,15 @@ extension Vod {
     public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
         try await self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建子应用
     ///
     /// 该接口用于创建点播子应用。
     @inlinable
-    public func createSubAppId(name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubAppIdResponse > {
+    public func createSubAppId(name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubAppIdResponse> {
         self.createSubAppId(CreateSubAppIdRequest(name: name, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建子应用
     ///
     /// 该接口用于创建点播子应用。

@@ -19,10 +19,10 @@ extension Tcss {
     public struct DescribeAssetProcessListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>RunAs - String - 是否必填：否 - 运行用户筛选，</li>
         /// <li>ContainerID - String - 是否必填：否 - 容器id</li>
@@ -31,46 +31,46 @@ extension Tcss {
         /// <li>ProcessName- string - 是否必填：否 - 进程名搜索</li>
         /// <li>Pid- string - 是否必填：否 - 进程id搜索(关联进程)</li>
         public let filters: [AssetFilters]?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeAssetProcessList返回参数结构体
     public struct DescribeAssetProcessListResponse: TCResponseModel {
         /// 端口列表
         public let list: [ProcessInfo]
-        
+
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表
     @inlinable
-    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessListResponse > {
+    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessListResponse> {
         self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表
@@ -78,15 +78,15 @@ extension Tcss {
     public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessListResponse {
         try await self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表
     @inlinable
-    public func describeAssetProcessList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessListResponse > {
+    public func describeAssetProcessList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessListResponse> {
         self.describeAssetProcessList(DescribeAssetProcessListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表

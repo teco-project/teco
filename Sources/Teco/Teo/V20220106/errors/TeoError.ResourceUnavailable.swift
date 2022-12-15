@@ -22,59 +22,59 @@ extension TCTeoError {
             case zoneNotFound = "ResourceUnavailable.ZoneNotFound"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 证书不存在或未授权。
         public static var certNotFound: ResourceUnavailable {
             ResourceUnavailable(.certNotFound)
         }
-        
+
         /// 域名不存在或未开启代理。
         public static var hostNotFound: ResourceUnavailable {
             ResourceUnavailable(.hostNotFound)
         }
-        
+
         /// 站点不存在或不属于该账号。
         public static var zoneNotFound: ResourceUnavailable {
             ResourceUnavailable(.zoneNotFound)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .certNotFound: 
+            case .certNotFound:
                 code = .resourceUnavailable_CertNotFound
-            case .hostNotFound: 
+            case .hostNotFound:
                 code = .resourceUnavailable_HostNotFound
-            case .zoneNotFound: 
+            case .zoneNotFound:
                 code = .resourceUnavailable_ZoneNotFound
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCTeoError(code, context: self.context)

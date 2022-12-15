@@ -22,7 +22,7 @@ extension Dbbrain {
     public struct DescribeSlowLogTimeSeriesStatsRequest: TCRequestModel {
         /// 实例 ID 。
         public let instanceId: String
-        
+
         /// 开始时间，如“2019-09-10 12:13:14”。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间，如“2019-09-10 12:13:14”，结束时间与开始时间的间隔最大可为7天。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,17 +38,17 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, startTime: Date, endTime: Date, product: String? = nil) {
+
+        public init(instanceId: String, startTime: Date, endTime: Date, product: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
@@ -56,21 +56,21 @@ extension Dbbrain {
             case product = "Product"
         }
     }
-    
+
     /// DescribeSlowLogTimeSeriesStats返回参数结构体
     public struct DescribeSlowLogTimeSeriesStatsResponse: TCResponseModel {
         /// 柱间单位时间间隔，单位为秒。
         public let period: Int64
-        
+
         /// 单位时间间隔内慢日志数量统计。
         public let timeSeries: [TimeSlice]
-        
+
         /// 单位时间间隔内的实例 cpu 利用率监控数据。
         public let seriesData: MonitorMetricSeriesData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case timeSeries = "TimeSeries"
@@ -78,15 +78,15 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取慢日志统计柱状图
     ///
     /// 获取慢日志统计柱状图。
     @inlinable
-    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogTimeSeriesStatsResponse > {
+    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogTimeSeriesStatsResponse> {
         self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取慢日志统计柱状图
     ///
     /// 获取慢日志统计柱状图。
@@ -94,15 +94,15 @@ extension Dbbrain {
     public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
         try await self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取慢日志统计柱状图
     ///
     /// 获取慢日志统计柱状图。
     @inlinable
-    public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogTimeSeriesStatsResponse > {
+    public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogTimeSeriesStatsResponse> {
         self.describeSlowLogTimeSeriesStats(DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取慢日志统计柱状图
     ///
     /// 获取慢日志统计柱状图。

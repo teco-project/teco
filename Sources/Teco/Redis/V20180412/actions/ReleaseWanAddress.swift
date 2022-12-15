@@ -19,42 +19,42 @@ extension Redis {
     public struct ReleaseWanAddressRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// ReleaseWanAddress返回参数结构体
     public struct ReleaseWanAddressResponse: TCResponseModel {
         /// 异步流程ID
         public let flowId: Int64
-        
+
         /// 关闭外网的状态
         public let wanStatus: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case wanStatus = "WanStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭外网接口
     ///
     /// 关闭外网
     @inlinable
-    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseWanAddressResponse > {
+    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseWanAddressResponse> {
         self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭外网接口
     ///
     /// 关闭外网
@@ -62,15 +62,15 @@ extension Redis {
     public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
         try await self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭外网接口
     ///
     /// 关闭外网
     @inlinable
-    public func releaseWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseWanAddressResponse > {
+    public func releaseWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseWanAddressResponse> {
         self.releaseWanAddress(ReleaseWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭外网接口
     ///
     /// 关闭外网

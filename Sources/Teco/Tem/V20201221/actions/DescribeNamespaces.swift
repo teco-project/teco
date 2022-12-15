@@ -19,48 +19,48 @@ extension Tem {
     public struct DescribeNamespacesRequest: TCRequestModel {
         /// 分页limit
         public let limit: Int64?
-        
+
         /// 分页下标
         public let offset: Int64?
-        
+
         /// 来源source
         public let sourceChannel: Int64?
-        
-        public init (limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil) {
+
+        public init(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil) {
             self.limit = limit
             self.offset = offset
             self.sourceChannel = sourceChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
             case sourceChannel = "SourceChannel"
         }
     }
-    
+
     /// DescribeNamespaces返回参数结构体
     public struct DescribeNamespacesResponse: TCResponseModel {
         /// 返回结果
         public let result: NamespacePage
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取租户命名空间列表
     ///
     /// 获取租户环境列表
     @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespacesResponse> {
         self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取租户命名空间列表
     ///
     /// 获取租户环境列表
@@ -68,15 +68,15 @@ extension Tem {
     public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
         try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取租户命名空间列表
     ///
     /// 获取租户环境列表
     @inlinable
-    public func describeNamespaces(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+    public func describeNamespaces(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespacesResponse> {
         self.describeNamespaces(DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取租户命名空间列表
     ///
     /// 获取租户环境列表

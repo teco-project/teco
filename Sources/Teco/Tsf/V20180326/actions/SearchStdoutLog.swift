@@ -22,13 +22,13 @@ extension Tsf {
     public struct SearchStdoutLogRequest: TCRequestModel {
         /// 机器实例ID
         public let instanceId: String?
-        
+
         /// 单页请求配置数量，取值范围[1, 500]，默认值为100
         public let limit: Int64?
-        
+
         /// 检索关键词
         public let searchWords: [String]?
-        
+
         /// 查询起始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -36,10 +36,10 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date?
-        
+
         /// 部署组ID
         public let groupId: String?
-        
+
         /// 查询结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,30 +47,30 @@ extension Tsf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date?
-        
+
         /// 请求偏移量，取值范围大于等于0，默认值为
         /// 0
         public let offset: Int64?
-        
+
         /// 排序规则，默认值"time"
         public let orderBy: String?
-        
+
         /// 排序方式，取值"asc"或"desc"，默认
         /// 值"desc"
         public let orderType: String?
-        
+
         /// 检索类型，取值"LUCENE", "REGEXP",
         /// "NORMAL"
         public let searchWordType: String?
-        
+
         /// 批量请求类型，取值"page"或"scroll"，默认
         /// 值"page"
         public let batchType: String?
-        
+
         /// 游标ID
         public let scrollId: String?
-        
-        public init (instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil) {
+
+        public init(instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.searchWords = searchWords
@@ -84,7 +84,7 @@ extension Tsf {
             self.batchType = batchType
             self.scrollId = scrollId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
@@ -100,40 +100,40 @@ extension Tsf {
             case scrollId = "ScrollId"
         }
     }
-    
+
     /// SearchStdoutLog返回参数结构体
     public struct SearchStdoutLogResponse: TCResponseModel {
         /// 标准输出日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageStdoutLogV2?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 标准输出日志搜索
     @inlinable
-    public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchStdoutLogResponse > {
+    public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStdoutLogResponse> {
         self.client.execute(action: "SearchStdoutLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 标准输出日志搜索
     @inlinable
     public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStdoutLogResponse {
         try await self.client.execute(action: "SearchStdoutLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 标准输出日志搜索
     @inlinable
-    public func searchStdoutLog(instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchStdoutLogResponse > {
+    public func searchStdoutLog(instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStdoutLogResponse> {
         self.searchStdoutLog(SearchStdoutLogRequest(instanceId: instanceId, limit: limit, searchWords: searchWords, startTime: startTime, groupId: groupId, endTime: endTime, offset: offset, orderBy: orderBy, orderType: orderType, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), logger: logger, on: eventLoop)
     }
-    
+
     /// 标准输出日志搜索
     @inlinable
     public func searchStdoutLog(instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStdoutLogResponse {

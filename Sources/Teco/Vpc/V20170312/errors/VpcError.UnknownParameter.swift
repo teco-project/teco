@@ -20,45 +20,45 @@ extension TCVpcError {
             case withGuess = "UnknownParameter.WithGuess"
             case other = "UnknownParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数无法识别，可以尝试相似参数代替。
         public static var withGuess: UnknownParameter {
             UnknownParameter(.withGuess)
         }
-        
+
         /// 未知参数错误。
         public static var other: UnknownParameter {
             UnknownParameter(.other)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
-            case .withGuess: 
+            case .withGuess:
                 code = .unknownParameter_WithGuess
-            case .other: 
+            case .other:
                 code = .unknownParameter
             }
             return TCVpcError(code, context: self.context)

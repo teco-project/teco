@@ -19,40 +19,40 @@ extension Tiw {
     public struct SetTranscodeCallbackRequest: TCRequestModel {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
-        
+
         /// 文档转码进度回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持http或https协议，即回调地址以http://或https://开头。
         /// 回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
         public let callback: String
-        
-        public init (sdkAppId: Int64, callback: String) {
+
+        public init(sdkAppId: Int64, callback: String) {
             self.sdkAppId = sdkAppId
             self.callback = callback
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case callback = "Callback"
         }
     }
-    
+
     /// SetTranscodeCallback返回参数结构体
     public struct SetTranscodeCallbackResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置文档转码回调地址
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
     @inlinable
-    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackResponse > {
+    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTranscodeCallbackResponse> {
         self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置文档转码回调地址
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
@@ -60,15 +60,15 @@ extension Tiw {
     public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
         try await self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置文档转码回调地址
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
     @inlinable
-    public func setTranscodeCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackResponse > {
+    public func setTranscodeCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTranscodeCallbackResponse> {
         self.setTranscodeCallback(SetTranscodeCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置文档转码回调地址
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260

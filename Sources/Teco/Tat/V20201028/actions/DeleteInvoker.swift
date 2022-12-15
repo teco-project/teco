@@ -19,34 +19,34 @@ extension Tat {
     public struct DeleteInvokerRequest: TCRequestModel {
         /// 待删除的执行器ID。
         public let invokerId: String
-        
-        public init (invokerId: String) {
+
+        public init(invokerId: String) {
             self.invokerId = invokerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case invokerId = "InvokerId"
         }
     }
-    
+
     /// DeleteInvoker返回参数结构体
     public struct DeleteInvokerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
     @inlinable
-    public func deleteInvoker(_ input: DeleteInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInvokerResponse > {
+    public func deleteInvoker(_ input: DeleteInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
         self.client.execute(action: "DeleteInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
@@ -54,15 +54,15 @@ extension Tat {
     public func deleteInvoker(_ input: DeleteInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInvokerResponse {
         try await self.client.execute(action: "DeleteInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
     @inlinable
-    public func deleteInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInvokerResponse > {
+    public func deleteInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
         self.deleteInvoker(DeleteInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。

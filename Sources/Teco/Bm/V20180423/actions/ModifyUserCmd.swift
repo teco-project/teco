@@ -19,23 +19,23 @@ extension Bm {
     public struct ModifyUserCmdRequest: TCRequestModel {
         /// 待修改的脚本ID
         public let cmdId: String
-        
+
         /// 待修改的脚本名称
         public let alias: String?
-        
+
         /// 脚本适用的操作系统类型
         public let osType: String?
-        
+
         /// 待修改的脚本内容，必须经过base64编码
         public let content: String?
-        
-        public init (cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil) {
+
+        public init(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil) {
             self.cmdId = cmdId
             self.alias = alias
             self.osType = osType
             self.content = content
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cmdId = "CmdId"
             case alias = "Alias"
@@ -43,35 +43,35 @@ extension Bm {
             case content = "Content"
         }
     }
-    
+
     /// ModifyUserCmd返回参数结构体
     public struct ModifyUserCmdResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改自定义脚本
     @inlinable
-    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCmdResponse > {
+    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCmdResponse> {
         self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义脚本
     @inlinable
     public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
         try await self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改自定义脚本
     @inlinable
-    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCmdResponse > {
+    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCmdResponse> {
         self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义脚本
     @inlinable
     public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {

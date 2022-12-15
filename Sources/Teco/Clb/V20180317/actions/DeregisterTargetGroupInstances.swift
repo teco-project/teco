@@ -19,40 +19,40 @@ extension Clb {
     public struct DeregisterTargetGroupInstancesRequest: TCRequestModel {
         /// 目标组ID。
         public let targetGroupId: String
-        
+
         /// 待解绑的服务器信息。
         public let targetGroupInstances: [TargetGroupInstance]
-        
-        public init (targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
+
+        public init(targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
             self.targetGroupId = targetGroupId
             self.targetGroupInstances = targetGroupInstances
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetGroupId = "TargetGroupId"
             case targetGroupInstances = "TargetGroupInstances"
         }
     }
-    
+
     /// DeregisterTargetGroupInstances返回参数结构体
     public struct DeregisterTargetGroupInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑目标组服务器
     ///
     /// 从目标组中解绑服务器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterTargetGroupInstancesResponse > {
+    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterTargetGroupInstancesResponse> {
         self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑目标组服务器
     ///
     /// 从目标组中解绑服务器。
@@ -61,16 +61,16 @@ extension Clb {
     public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetGroupInstancesResponse {
         try await self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑目标组服务器
     ///
     /// 从目标组中解绑服务器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deregisterTargetGroupInstances(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterTargetGroupInstancesResponse > {
+    public func deregisterTargetGroupInstances(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterTargetGroupInstancesResponse> {
         self.deregisterTargetGroupInstances(DeregisterTargetGroupInstancesRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑目标组服务器
     ///
     /// 从目标组中解绑服务器。

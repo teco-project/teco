@@ -19,27 +19,27 @@ extension Tcb {
     public struct ReplaceActivityRecordRequest: TCRequestModel {
         /// 活动id
         public let activityId: Int64
-        
+
         /// 状态码
         public let status: Int64
-        
+
         /// 自定义子状态
         public let subStatus: String?
-        
+
         /// 鉴权token
         public let channelToken: String?
-        
+
         /// 渠道名，不同渠道对应不同secretKey
         public let channel: String?
-        
-        public init (activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil) {
+
+        public init(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil) {
             self.activityId = activityId
             self.status = status
             self.subStatus = subStatus
             self.channelToken = channelToken
             self.channel = channel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case activityId = "ActivityId"
             case status = "Status"
@@ -48,35 +48,35 @@ extension Tcb {
             case channel = "Channel"
         }
     }
-    
+
     /// ReplaceActivityRecord返回参数结构体
     public struct ReplaceActivityRecordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新活动详情
     @inlinable
-    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceActivityRecordResponse > {
+    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
         self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新活动详情
     @inlinable
     public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
         try await self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新活动详情
     @inlinable
-    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceActivityRecordResponse > {
+    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
         self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新活动详情
     @inlinable
     public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {

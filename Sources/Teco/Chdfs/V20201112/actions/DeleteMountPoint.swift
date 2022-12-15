@@ -19,34 +19,34 @@ extension Chdfs {
     public struct DeleteMountPointRequest: TCRequestModel {
         /// 挂载点ID
         public let mountPointId: String
-        
-        public init (mountPointId: String) {
+
+        public init(mountPointId: String) {
             self.mountPointId = mountPointId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mountPointId = "MountPointId"
         }
     }
-    
+
     /// DeleteMountPoint返回参数结构体
     public struct DeleteMountPointResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除挂载点
     ///
     /// 删除挂载点。
     @inlinable
-    public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountPointResponse > {
+    public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMountPointResponse> {
         self.client.execute(action: "DeleteMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除挂载点
     ///
     /// 删除挂载点。
@@ -54,15 +54,15 @@ extension Chdfs {
     public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountPointResponse {
         try await self.client.execute(action: "DeleteMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除挂载点
     ///
     /// 删除挂载点。
     @inlinable
-    public func deleteMountPoint(mountPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountPointResponse > {
+    public func deleteMountPoint(mountPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMountPointResponse> {
         self.deleteMountPoint(DeleteMountPointRequest(mountPointId: mountPointId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除挂载点
     ///
     /// 删除挂载点。

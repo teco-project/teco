@@ -19,48 +19,48 @@ extension Bm {
     public struct DescribeRegionsRequest: TCRequestModel {
         /// 地域整型ID，目前黑石可用地域包括：8-北京，4-上海，1-广州， 19-重庆
         public let regionId: UInt64?
-        
-        public init (regionId: UInt64? = nil) {
+
+        public init(regionId: UInt64? = nil) {
             self.regionId = regionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
         }
     }
-    
+
     /// DescribeRegions返回参数结构体
     public struct DescribeRegionsResponse: TCResponseModel {
         /// 地域信息
         public let regionInfoSet: [RegionInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case regionInfoSet = "RegionInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询地域以及可用区
     @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionsResponse> {
         self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询地域以及可用区
     @inlinable
     public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
         try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询地域以及可用区
     @inlinable
-    public func describeRegions(regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+    public func describeRegions(regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionsResponse> {
         self.describeRegions(DescribeRegionsRequest(regionId: regionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询地域以及可用区
     @inlinable
     public func describeRegions(regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {

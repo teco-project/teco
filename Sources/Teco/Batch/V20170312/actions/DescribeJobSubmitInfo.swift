@@ -19,43 +19,43 @@ extension Batch {
     public struct DescribeJobSubmitInfoRequest: TCRequestModel {
         /// 作业ID
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// DescribeJobSubmitInfo返回参数结构体
     public struct DescribeJobSubmitInfoResponse: TCResponseModel {
         /// 作业ID
         public let jobId: String
-        
+
         /// 作业名称
         public let jobName: String
-        
+
         /// 作业描述
         public let jobDescription: String
-        
+
         /// 作业优先级，任务（Task）和任务实例（TaskInstance）会继承作业优先级
         public let priority: Int64
-        
+
         /// 任务信息
         public let tasks: [Task]
-        
+
         /// 依赖信息
         public let dependences: [Dependence]
-        
+
         /// 作业绑定的标签列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -67,15 +67,15 @@ extension Batch {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取作业的提交信息
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
-    public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobSubmitInfoResponse > {
+    public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSubmitInfoResponse> {
         self.client.execute(action: "DescribeJobSubmitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取作业的提交信息
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
@@ -83,15 +83,15 @@ extension Batch {
     public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
         try await self.client.execute(action: "DescribeJobSubmitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取作业的提交信息
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
-    public func describeJobSubmitInfo(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobSubmitInfoResponse > {
+    public func describeJobSubmitInfo(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSubmitInfoResponse> {
         self.describeJobSubmitInfo(DescribeJobSubmitInfoRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取作业的提交信息
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息

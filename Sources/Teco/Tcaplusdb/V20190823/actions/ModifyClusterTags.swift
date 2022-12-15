@@ -19,59 +19,59 @@ extension Tcaplusdb {
     public struct ModifyClusterTagsRequest: TCRequestModel {
         /// 待修改标签的集群ID
         public let clusterId: String
-        
+
         /// 待增加或修改的标签列表
         public let replaceTags: [TagInfoUnit]?
-        
+
         /// 待删除的标签
         public let deleteTags: [TagInfoUnit]?
-        
-        public init (clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil) {
+
+        public init(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil) {
             self.clusterId = clusterId
             self.replaceTags = replaceTags
             self.deleteTags = deleteTags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case replaceTags = "ReplaceTags"
             case deleteTags = "DeleteTags"
         }
     }
-    
+
     /// ModifyClusterTags返回参数结构体
     public struct ModifyClusterTagsResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改集群标签
     @inlinable
-    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterTagsResponse > {
+    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterTagsResponse> {
         self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群标签
     @inlinable
     public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
         try await self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改集群标签
     @inlinable
-    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterTagsResponse > {
+    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterTagsResponse> {
         self.modifyClusterTags(ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群标签
     @inlinable
     public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {

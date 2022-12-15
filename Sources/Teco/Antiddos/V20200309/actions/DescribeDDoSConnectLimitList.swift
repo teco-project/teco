@@ -19,23 +19,23 @@ extension Antiddos {
     public struct DescribeDDoSConnectLimitListRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64
-        
+
         /// 一页条数
         public let limit: UInt64
-        
+
         /// 可选参数，按照IP进行过滤
         public let filterIp: String?
-        
+
         /// 可选参数，按照实例id进行过滤
         public let filterInstanceId: String?
-        
-        public init (offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterIp = filterIp
             self.filterInstanceId = filterInstanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -43,43 +43,43 @@ extension Antiddos {
             case filterInstanceId = "FilterInstanceId"
         }
     }
-    
+
     /// DescribeDDoSConnectLimitList返回参数结构体
     public struct DescribeDDoSConnectLimitListResponse: TCResponseModel {
         /// 连接抑制配置总数
         public let total: UInt64
-        
+
         /// 连接抑制配置详情信息
         public let configList: [ConnectLimitRelation]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case configList = "ConfigList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取DDoS连接抑制配置列表
     @inlinable
-    public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSConnectLimitListResponse > {
+    public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSConnectLimitListResponse> {
         self.client.execute(action: "DescribeDDoSConnectLimitList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS连接抑制配置列表
     @inlinable
     public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSConnectLimitListResponse {
         try await self.client.execute(action: "DescribeDDoSConnectLimitList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取DDoS连接抑制配置列表
     @inlinable
-    public func describeDDoSConnectLimitList(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSConnectLimitListResponse > {
+    public func describeDDoSConnectLimitList(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSConnectLimitListResponse> {
         self.describeDDoSConnectLimitList(DescribeDDoSConnectLimitListRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS连接抑制配置列表
     @inlinable
     public func describeDDoSConnectLimitList(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSConnectLimitListResponse {

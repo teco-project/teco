@@ -21,52 +21,52 @@ extension TCNlpError {
             case serviceNotOpenedError = "ResourceUnavailable.ServiceNotOpenedError"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 文件资源不可用
         public static var fileUnavailable: ResourceUnavailable {
             ResourceUnavailable(.fileUnavailable)
         }
-        
+
         /// 您的账号尚未开通NLP服务，请登录腾讯云NLP控制台进行服务开通后再使用
         public static var serviceNotOpenedError: ResourceUnavailable {
             ResourceUnavailable(.serviceNotOpenedError)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .fileUnavailable: 
+            case .fileUnavailable:
                 code = .resourceUnavailable_FileUnavailable
-            case .serviceNotOpenedError: 
+            case .serviceNotOpenedError:
                 code = .resourceUnavailable_ServiceNotOpenedError
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCNlpError(code, context: self.context)

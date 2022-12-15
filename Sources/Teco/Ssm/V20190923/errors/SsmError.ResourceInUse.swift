@@ -21,52 +21,52 @@ extension TCSsmError {
             case versionIdExists = "ResourceInUse.VersionIdExists"
             case other = "ResourceInUse"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 凭据名已存在。
         public static var secretExists: ResourceInUse {
             ResourceInUse(.secretExists)
         }
-        
+
         /// 版本号已存在。
         public static var versionIdExists: ResourceInUse {
             ResourceInUse(.versionIdExists)
         }
-        
+
         /// 资源被占用。
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-        
+
         public func asSsmError() -> TCSsmError {
             let code: TCSsmError.Code
             switch self.error {
-            case .secretExists: 
+            case .secretExists:
                 code = .resourceInUse_SecretExists
-            case .versionIdExists: 
+            case .versionIdExists:
                 code = .resourceInUse_VersionIdExists
-            case .other: 
+            case .other:
                 code = .resourceInUse
             }
             return TCSsmError(code, context: self.context)

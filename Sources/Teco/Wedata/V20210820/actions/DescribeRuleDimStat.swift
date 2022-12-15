@@ -19,48 +19,48 @@ extension Wedata {
     public struct DescribeRuleDimStatRequest: TCRequestModel {
         /// Project Id
         public let projectId: String
-        
+
         /// 开始时间，时间戳到秒
         public let beginDate: String
-        
+
         /// 结束时间，时间戳到秒
         public let endDate: String
-        
-        public init (projectId: String, beginDate: String, endDate: String) {
+
+        public init(projectId: String, beginDate: String, endDate: String) {
             self.projectId = projectId
             self.beginDate = beginDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case beginDate = "BeginDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// DescribeRuleDimStat返回参数结构体
     public struct DescribeRuleDimStatResponse: TCResponseModel {
         /// 结果
         public let data: RuleDimStat
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 数据质量触发维度分布统计接口
     ///
     /// 数据质量概览页面触发维度分布统计接口
     @inlinable
-    public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleDimStatResponse > {
+    public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleDimStatResponse> {
         self.client.execute(action: "DescribeRuleDimStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 数据质量触发维度分布统计接口
     ///
     /// 数据质量概览页面触发维度分布统计接口
@@ -68,15 +68,15 @@ extension Wedata {
     public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDimStatResponse {
         try await self.client.execute(action: "DescribeRuleDimStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 数据质量触发维度分布统计接口
     ///
     /// 数据质量概览页面触发维度分布统计接口
     @inlinable
-    public func describeRuleDimStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleDimStatResponse > {
+    public func describeRuleDimStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleDimStatResponse> {
         self.describeRuleDimStat(DescribeRuleDimStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 数据质量触发维度分布统计接口
     ///
     /// 数据质量概览页面触发维度分布统计接口

@@ -19,23 +19,23 @@ extension Asr {
     public struct CreateCustomizationRequest: TCRequestModel {
         /// 自学习模型名称，需在1-20字符之间
         public let modelName: String
-        
+
         /// 文本文件的下载地址，服务会从该地址下载文件，目前仅支持腾讯云cos
         public let textUrl: String
-        
+
         /// 自学习模型类型，填写8k或者16k
         public let modelType: String
-        
+
         /// 标签信息
         public let tagInfos: [String]?
-        
-        public init (modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil) {
+
+        public init(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil) {
             self.modelName = modelName
             self.textUrl = textUrl
             self.modelType = modelType
             self.tagInfos = tagInfos
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelName = "ModelName"
             case textUrl = "TextUrl"
@@ -43,30 +43,30 @@ extension Asr {
             case tagInfos = "TagInfos"
         }
     }
-    
+
     /// CreateCustomization返回参数结构体
     public struct CreateCustomizationResponse: TCResponseModel {
         /// 模型ID
         public let modelId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建自学习模型
     ///
     /// 用户使用该接口可以创建自学习模型，以供识别调用。
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
-    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomizationResponse > {
+    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
         self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自学习模型
     ///
     /// 用户使用该接口可以创建自学习模型，以供识别调用。
@@ -75,16 +75,16 @@ extension Asr {
     public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
         try await self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建自学习模型
     ///
     /// 用户使用该接口可以创建自学习模型，以供识别调用。
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
-    public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomizationResponse > {
+    public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
         self.createCustomization(CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自学习模型
     ///
     /// 用户使用该接口可以创建自学习模型，以供识别调用。

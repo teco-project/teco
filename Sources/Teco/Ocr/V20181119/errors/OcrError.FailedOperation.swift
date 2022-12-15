@@ -43,207 +43,207 @@ extension TCOcrError {
             case unKnowError = "FailedOperation.UnKnowError"
             case unOpenError = "FailedOperation.UnOpenError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 帐号已欠费。
         public static var arrearsError: FailedOperation {
             FailedOperation(.arrearsError)
         }
-        
+
         /// 今日次数达到限制。
         public static var countLimitError: FailedOperation {
             FailedOperation(.countLimitError)
         }
-        
+
         /// 数据源查询失败。
         public static var dataSourceQueryFailed: FailedOperation {
             FailedOperation(.dataSourceQueryFailed)
         }
-        
+
         /// 检测失败。
         public static var detectFailed: FailedOperation {
             FailedOperation(.detectFailed)
         }
-        
+
         /// 文件下载失败。
         public static var downLoadError: FailedOperation {
             FailedOperation(.downLoadError)
         }
-        
+
         /// 图片内容为空。
         public static var emptyImageError: FailedOperation {
             FailedOperation(.emptyImageError)
         }
-        
+
         /// 引擎识别超时。
         public static var engineRecognizeTimeout: FailedOperation {
             FailedOperation(.engineRecognizeTimeout)
         }
-        
+
         /// 身份证信息不合法（身份证号、姓名字段校验非法等）。
         public static var idCardInfoIllegal: FailedOperation {
             FailedOperation(.idCardInfoIllegal)
         }
-        
+
         /// 图片模糊。
         public static var imageBlur: FailedOperation {
             FailedOperation(.imageBlur)
         }
-        
+
         /// 图片解码失败。
         public static var imageDecodeFailed: FailedOperation {
             FailedOperation(.imageDecodeFailed)
         }
-        
+
         /// 照片未检测到名片。
         public static var imageNoBusinessCard: FailedOperation {
             FailedOperation(.imageNoBusinessCard)
         }
-        
+
         /// 图片中未检测到身份证。
         public static var imageNoIdCard: FailedOperation {
             FailedOperation(.imageNoIdCard)
         }
-        
+
         /// 图片中未检测到文本。
         public static var imageNoText: FailedOperation {
             FailedOperation(.imageNoText)
         }
-        
+
         /// 图片尺寸过大，请参考输出参数中关于图片大小限制的说明。
         public static var imageSizeTooLarge: FailedOperation {
             FailedOperation(.imageSizeTooLarge)
         }
-        
+
         /// 发票数据不一致。
         public static var invoiceMismatch: FailedOperation {
             FailedOperation(.invoiceMismatch)
         }
-        
+
         /// 输入的Language不支持。
         public static var languageNotSupport: FailedOperation {
             FailedOperation(.languageNotSupport)
         }
-        
+
         /// 照片中存在多张卡。
         ///
         /// 卡片中有多个卡证，请保持一张图片中只有一张卡证。
         public static var multiCardError: FailedOperation {
             FailedOperation(.multiCardError)
         }
-        
+
         public static var noBizLicense: FailedOperation {
             FailedOperation(.noBizLicense)
         }
-        
+
         /// 非香港身份证。
         public static var noHKIDCard: FailedOperation {
             FailedOperation(.noHKIDCard)
         }
-        
+
         /// 非马来身份证。
         public static var noMASIDCard: FailedOperation {
             FailedOperation(.noMASIDCard)
         }
-        
+
         /// 非护照。
         public static var noPassport: FailedOperation {
             FailedOperation(.noPassport)
         }
-        
+
         /// OCR识别失败。
         public static var ocrFailed: FailedOperation {
             FailedOperation(.ocrFailed)
         }
-        
+
         /// 查询无记录。
         public static var queryNoRecord: FailedOperation {
             FailedOperation(.queryNoRecord)
         }
-        
+
         /// 未知错误。
         public static var unKnowError: FailedOperation {
             FailedOperation(.unKnowError)
         }
-        
+
         /// 服务未开通。
         public static var unOpenError: FailedOperation {
             FailedOperation(.unOpenError)
         }
-        
+
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
-            case .arrearsError: 
+            case .arrearsError:
                 code = .failedOperation_ArrearsError
-            case .countLimitError: 
+            case .countLimitError:
                 code = .failedOperation_CountLimitError
-            case .dataSourceQueryFailed: 
+            case .dataSourceQueryFailed:
                 code = .failedOperation_DataSourceQueryFailed
-            case .detectFailed: 
+            case .detectFailed:
                 code = .failedOperation_DetectFailed
-            case .downLoadError: 
+            case .downLoadError:
                 code = .failedOperation_DownLoadError
-            case .emptyImageError: 
+            case .emptyImageError:
                 code = .failedOperation_EmptyImageError
-            case .engineRecognizeTimeout: 
+            case .engineRecognizeTimeout:
                 code = .failedOperation_EngineRecognizeTimeout
-            case .idCardInfoIllegal: 
+            case .idCardInfoIllegal:
                 code = .failedOperation_IdCardInfoIllegal
-            case .imageBlur: 
+            case .imageBlur:
                 code = .failedOperation_ImageBlur
-            case .imageDecodeFailed: 
+            case .imageDecodeFailed:
                 code = .failedOperation_ImageDecodeFailed
-            case .imageNoBusinessCard: 
+            case .imageNoBusinessCard:
                 code = .failedOperation_ImageNoBusinessCard
-            case .imageNoIdCard: 
+            case .imageNoIdCard:
                 code = .failedOperation_ImageNoIdCard
-            case .imageNoText: 
+            case .imageNoText:
                 code = .failedOperation_ImageNoText
-            case .imageSizeTooLarge: 
+            case .imageSizeTooLarge:
                 code = .failedOperation_ImageSizeTooLarge
-            case .invoiceMismatch: 
+            case .invoiceMismatch:
                 code = .failedOperation_InvoiceMismatch
-            case .languageNotSupport: 
+            case .languageNotSupport:
                 code = .failedOperation_LanguageNotSupport
-            case .multiCardError: 
+            case .multiCardError:
                 code = .failedOperation_MultiCardError
-            case .noBizLicense: 
+            case .noBizLicense:
                 code = .failedOperation_NoBizLicense
-            case .noHKIDCard: 
+            case .noHKIDCard:
                 code = .failedOperation_NoHKIDCard
-            case .noMASIDCard: 
+            case .noMASIDCard:
                 code = .failedOperation_NoMASIDCard
-            case .noPassport: 
+            case .noPassport:
                 code = .failedOperation_NoPassport
-            case .ocrFailed: 
+            case .ocrFailed:
                 code = .failedOperation_OcrFailed
-            case .queryNoRecord: 
+            case .queryNoRecord:
                 code = .failedOperation_QueryNoRecord
-            case .unKnowError: 
+            case .unKnowError:
                 code = .failedOperation_UnKnowError
-            case .unOpenError: 
+            case .unOpenError:
                 code = .failedOperation_UnOpenError
             }
             return TCOcrError(code, context: self.context)

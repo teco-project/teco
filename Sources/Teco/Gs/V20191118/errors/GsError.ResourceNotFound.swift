@@ -20,45 +20,45 @@ extension TCGsError {
             case noIdle = "ResourceNotFound.NoIdle"
             case sessionNotFound = "ResourceNotFound.SessionNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 没有空闲机器。
         public static var noIdle: ResourceNotFound {
             ResourceNotFound(.noIdle)
         }
-        
+
         /// 会话未找到。
         public static var sessionNotFound: ResourceNotFound {
             ResourceNotFound(.sessionNotFound)
         }
-        
+
         public func asGsError() -> TCGsError {
             let code: TCGsError.Code
             switch self.error {
-            case .noIdle: 
+            case .noIdle:
                 code = .resourceNotFound_NoIdle
-            case .sessionNotFound: 
+            case .sessionNotFound:
                 code = .resourceNotFound_SessionNotFound
             }
             return TCGsError(code, context: self.context)

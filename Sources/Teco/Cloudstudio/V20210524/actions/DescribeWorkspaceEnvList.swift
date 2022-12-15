@@ -19,39 +19,39 @@ extension Cloudstudio {
     public struct DescribeWorkspaceEnvListRequest: TCRequestModel {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
-        
-        public init (cloudStudioSessionTeam: String) {
+
+        public init(cloudStudioSessionTeam: String) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
         }
     }
-    
+
     /// DescribeWorkspaceEnvList返回参数结构体
     public struct DescribeWorkspaceEnvListResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [ImageUserDTO]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 环境列表接口
     ///
     /// 环境列表接口返回信息
     @inlinable
-    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceEnvListResponse > {
+    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceEnvListResponse> {
         self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 环境列表接口
     ///
     /// 环境列表接口返回信息
@@ -59,15 +59,15 @@ extension Cloudstudio {
     public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
         try await self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 环境列表接口
     ///
     /// 环境列表接口返回信息
     @inlinable
-    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceEnvListResponse > {
+    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceEnvListResponse> {
         self.describeWorkspaceEnvList(DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
     }
-    
+
     /// 环境列表接口
     ///
     /// 环境列表接口返回信息

@@ -19,49 +19,49 @@ extension Wedata {
     public struct DeleteInLongAgentRequest: TCRequestModel {
         /// 采集器ID
         public let agentId: String
-        
+
         /// WeData项目ID
         public let projectId: String
-        
-        public init (agentId: String, projectId: String) {
+
+        public init(agentId: String, projectId: String) {
             self.agentId = agentId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DeleteInLongAgent返回参数结构体
     public struct DeleteInLongAgentResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除采集器
     @inlinable
-    public func deleteInLongAgent(_ input: DeleteInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInLongAgentResponse > {
+    public func deleteInLongAgent(_ input: DeleteInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInLongAgentResponse> {
         self.client.execute(action: "DeleteInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除采集器
     @inlinable
     public func deleteInLongAgent(_ input: DeleteInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInLongAgentResponse {
         try await self.client.execute(action: "DeleteInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除采集器
     @inlinable
-    public func deleteInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInLongAgentResponse > {
+    public func deleteInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInLongAgentResponse> {
         self.deleteInLongAgent(DeleteInLongAgentRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除采集器
     @inlinable
     public func deleteInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInLongAgentResponse {

@@ -47,236 +47,236 @@ extension TCScfError {
             case vpc = "ResourceNotFound.Vpc"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 别名不存在。
         public static var alias: ResourceNotFound {
             ResourceNotFound(.alias)
         }
-        
+
         /// 未找到指定的AsyncEvent，请创建后再试。
         public static var asyncEvent: ResourceNotFound {
             ResourceNotFound(.asyncEvent)
         }
-        
+
         /// Cdn不存在。
         public static var cdn: ResourceNotFound {
             ResourceNotFound(.cdn)
         }
-        
+
         /// 指定的cfs下未找到您所指定的挂载点。
         public static var cfsMountInsNotMatch: ResourceNotFound {
             ResourceNotFound(.cfsMountInsNotMatch)
         }
-        
+
         /// CfsProtocolError 参数异常。
         public static var cfsProtocolError: ResourceNotFound {
             ResourceNotFound(.cfsProtocolError)
         }
-        
+
         /// 检测cfs状态为不可用。
         public static var cfsStatusError: ResourceNotFound {
             ResourceNotFound(.cfsStatusError)
         }
-        
+
         /// cfs与云函数所处vpc不一致。
         public static var cfsVpcNotMatch: ResourceNotFound {
             ResourceNotFound(.cfsVpcNotMatch)
         }
-        
+
         /// Ckafka不存在。
         public static var ckafka: ResourceNotFound {
             ResourceNotFound(.ckafka)
         }
-        
+
         /// Cmq不存在。
         public static var cmq: ResourceNotFound {
             ResourceNotFound(.cmq)
         }
-        
+
         /// Cos不存在。
         public static var cos: ResourceNotFound {
             ResourceNotFound(.cos)
         }
-        
+
         /// 不存在的Demo。
         public static var demo: ResourceNotFound {
             ResourceNotFound(.demo)
         }
-        
+
         /// 函数不存在。
         public static var function: ResourceNotFound {
             ResourceNotFound(.function)
         }
-        
+
         /// 函数不存在。
         public static var functionName: ResourceNotFound {
             ResourceNotFound(.functionName)
         }
-        
+
         /// 函数版本不存在。
         public static var functionVersion: ResourceNotFound {
             ResourceNotFound(.functionVersion)
         }
-        
+
         /// 获取cfs挂载点信息错误。
         public static var getCfsMountInsError: ResourceNotFound {
             ResourceNotFound(.getCfsMountInsError)
         }
-        
+
         /// 获取cfs信息错误。
         public static var getCfsNotMatch: ResourceNotFound {
             ResourceNotFound(.getCfsNotMatch)
         }
-        
+
         /// 未找到指定的ImageConfig，请创建后再试。
         ///
         /// 检查入参Code是否包含ImageConfig成员或ImageConfig是否有效
         public static var imageConfig: ResourceNotFound {
             ResourceNotFound(.imageConfig)
         }
-        
+
         /// layer不存在。
         public static var layer: ResourceNotFound {
             ResourceNotFound(.layer)
         }
-        
+
         /// Layer版本不存在。
         public static var layerVersion: ResourceNotFound {
             ResourceNotFound(.layerVersion)
         }
-        
+
         /// Namespace不存在。
         public static var namespace: ResourceNotFound {
             ResourceNotFound(.namespace)
         }
-        
+
         /// 版本不存在。
         public static var qualifier: ResourceNotFound {
             ResourceNotFound(.qualifier)
         }
-        
+
         /// 角色不存在。
         public static var role: ResourceNotFound {
             ResourceNotFound(.role)
         }
-        
+
         /// Role不存在。
         public static var roleCheck: ResourceNotFound {
             ResourceNotFound(.roleCheck)
         }
-        
+
         /// Timer不存在。
         public static var timer: ResourceNotFound {
             ResourceNotFound(.timer)
         }
-        
+
         /// 并发内存配额资源未找到。
         public static var totalConcurrencyMemory: ResourceNotFound {
             ResourceNotFound(.totalConcurrencyMemory)
         }
-        
+
         /// 触发器不存在。
         public static var trigger: ResourceNotFound {
             ResourceNotFound(.trigger)
         }
-        
+
         /// 版本不存在。
         public static var version: ResourceNotFound {
             ResourceNotFound(.version)
         }
-        
+
         /// VPC或子网不存在。
         public static var vpc: ResourceNotFound {
             ResourceNotFound(.vpc)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
-            case .alias: 
+            case .alias:
                 code = .resourceNotFound_Alias
-            case .asyncEvent: 
+            case .asyncEvent:
                 code = .resourceNotFound_AsyncEvent
-            case .cdn: 
+            case .cdn:
                 code = .resourceNotFound_Cdn
-            case .cfsMountInsNotMatch: 
+            case .cfsMountInsNotMatch:
                 code = .resourceNotFound_CfsMountInsNotMatch
-            case .cfsProtocolError: 
+            case .cfsProtocolError:
                 code = .resourceNotFound_CfsProtocolError
-            case .cfsStatusError: 
+            case .cfsStatusError:
                 code = .resourceNotFound_CfsStatusError
-            case .cfsVpcNotMatch: 
+            case .cfsVpcNotMatch:
                 code = .resourceNotFound_CfsVpcNotMatch
-            case .ckafka: 
+            case .ckafka:
                 code = .resourceNotFound_Ckafka
-            case .cmq: 
+            case .cmq:
                 code = .resourceNotFound_Cmq
-            case .cos: 
+            case .cos:
                 code = .resourceNotFound_Cos
-            case .demo: 
+            case .demo:
                 code = .resourceNotFound_Demo
-            case .function: 
+            case .function:
                 code = .resourceNotFound_Function
-            case .functionName: 
+            case .functionName:
                 code = .resourceNotFound_FunctionName
-            case .functionVersion: 
+            case .functionVersion:
                 code = .resourceNotFound_FunctionVersion
-            case .getCfsMountInsError: 
+            case .getCfsMountInsError:
                 code = .resourceNotFound_GetCfsMountInsError
-            case .getCfsNotMatch: 
+            case .getCfsNotMatch:
                 code = .resourceNotFound_GetCfsNotMatch
-            case .imageConfig: 
+            case .imageConfig:
                 code = .resourceNotFound_ImageConfig
-            case .layer: 
+            case .layer:
                 code = .resourceNotFound_Layer
-            case .layerVersion: 
+            case .layerVersion:
                 code = .resourceNotFound_LayerVersion
-            case .namespace: 
+            case .namespace:
                 code = .resourceNotFound_Namespace
-            case .qualifier: 
+            case .qualifier:
                 code = .resourceNotFound_Qualifier
-            case .role: 
+            case .role:
                 code = .resourceNotFound_Role
-            case .roleCheck: 
+            case .roleCheck:
                 code = .resourceNotFound_RoleCheck
-            case .timer: 
+            case .timer:
                 code = .resourceNotFound_Timer
-            case .totalConcurrencyMemory: 
+            case .totalConcurrencyMemory:
                 code = .resourceNotFound_TotalConcurrencyMemory
-            case .trigger: 
+            case .trigger:
                 code = .resourceNotFound_Trigger
-            case .version: 
+            case .version:
                 code = .resourceNotFound_Version
-            case .vpc: 
+            case .vpc:
                 code = .resourceNotFound_Vpc
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCScfError(code, context: self.context)

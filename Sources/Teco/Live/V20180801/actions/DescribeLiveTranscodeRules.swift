@@ -19,53 +19,53 @@ extension Live {
     public struct DescribeLiveTranscodeRulesRequest: TCRequestModel {
         /// 要筛选的模板ID数组。
         public let templateIds: [Int64]?
-        
+
         /// 要筛选的域名数组。
         public let domainNames: [String]?
-        
-        public init (templateIds: [Int64]? = nil, domainNames: [String]? = nil) {
+
+        public init(templateIds: [Int64]? = nil, domainNames: [String]? = nil) {
             self.templateIds = templateIds
             self.domainNames = domainNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateIds = "TemplateIds"
             case domainNames = "DomainNames"
         }
     }
-    
+
     /// DescribeLiveTranscodeRules返回参数结构体
     public struct DescribeLiveTranscodeRulesResponse: TCResponseModel {
         /// 转码规则列表。
         public let rules: [RuleInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取转码规则列表
     @inlinable
-    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeRulesResponse > {
+    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeRulesResponse> {
         self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转码规则列表
     @inlinable
     public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
         try await self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取转码规则列表
     @inlinable
-    public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeRulesResponse > {
+    public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeRulesResponse> {
         self.describeLiveTranscodeRules(DescribeLiveTranscodeRulesRequest(templateIds: templateIds, domainNames: domainNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转码规则列表
     @inlinable
     public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {

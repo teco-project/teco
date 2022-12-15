@@ -61,308 +61,308 @@ extension TCEssbasicError {
             case unsupportedComponentType = "InvalidParameter.UnsupportedComponentType"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 应用号不存在。
         ///
         /// 请检查AppId是否正确后重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var application: InvalidParameter {
             InvalidParameter(.application)
         }
-        
+
         public static var approverType: InvalidParameter {
             InvalidParameter(.approverType)
         }
-        
+
         /// 重复添加签署人。
         ///
         /// 请参考错误信息，检查合同签署人手机号或身份证号，是否唯一。
         public static var bizApproverAlreadyExists: InvalidParameter {
             InvalidParameter(.bizApproverAlreadyExists)
         }
-        
+
         public static var businessLicense: InvalidParameter {
             InvalidParameter(.businessLicense)
         }
-        
+
         public static var cardType: InvalidParameter {
             InvalidParameter(.cardType)
         }
-        
+
         public static var componentValue: InvalidParameter {
             InvalidParameter(.componentValue)
         }
-        
+
         public static var contentType: InvalidParameter {
             InvalidParameter(.contentType)
         }
-        
+
         public static var customShowMap: InvalidParameter {
             InvalidParameter(.customShowMap)
         }
-        
+
         public static var customerData: InvalidParameter {
             InvalidParameter(.customerData)
         }
-        
+
         /// 数据不存在。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var dataNotFound: InvalidParameter {
             InvalidParameter(.dataNotFound)
         }
-        
+
         public static var date: InvalidParameter {
             InvalidParameter(.date)
         }
-        
+
         public static var departUserId: InvalidParameter {
             InvalidParameter(.departUserId)
         }
-        
+
         public static var dupTask: InvalidParameter {
             InvalidParameter(.dupTask)
         }
-        
+
         /// 参数为空。
         ///
         /// 必填参数不能为空，请检查参数及重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var emptyParams: InvalidParameter {
             InvalidParameter(.emptyParams)
         }
-        
+
         public static var endPoint: InvalidParameter {
             InvalidParameter(.endPoint)
         }
-        
+
         public static var fileType: InvalidParameter {
             InvalidParameter(.fileType)
         }
-        
+
         public static var flowApproverInfos: InvalidParameter {
             InvalidParameter(.flowApproverInfos)
         }
-        
+
         public static var flowApprovers: InvalidParameter {
             InvalidParameter(.flowApprovers)
         }
-        
+
         public static var flowCallbackUrl: InvalidParameter {
             InvalidParameter(.flowCallbackUrl)
         }
-        
+
         public static var flowDeadLine: InvalidParameter {
             InvalidParameter(.flowDeadLine)
         }
-        
+
         public static var flowDescription: InvalidParameter {
             InvalidParameter(.flowDescription)
         }
-        
+
         public static var flowFileIds: InvalidParameter {
             InvalidParameter(.flowFileIds)
         }
-        
+
         public static var flowIds: InvalidParameter {
             InvalidParameter(.flowIds)
         }
-        
+
         public static var flowInfos: InvalidParameter {
             InvalidParameter(.flowInfos)
         }
-        
+
         public static var flowName: InvalidParameter {
             InvalidParameter(.flowName)
         }
-        
+
         public static var flowType: InvalidParameter {
             InvalidParameter(.flowType)
         }
-        
+
         public static var generateType: InvalidParameter {
             InvalidParameter(.generateType)
         }
-        
+
         public static var image: InvalidParameter {
             InvalidParameter(.image)
         }
-        
+
         public static var limitSealName: InvalidParameter {
             InvalidParameter(.limitSealName)
         }
-        
+
         public static var menuStatus: InvalidParameter {
             InvalidParameter(.menuStatus)
         }
-        
+
         public static var missingRequiredParameterValue: InvalidParameter {
             InvalidParameter(.missingRequiredParameterValue)
         }
-        
+
         public static var name: InvalidParameter {
             InvalidParameter(.name)
         }
-        
+
         public static var nonsupportMobile: InvalidParameter {
             InvalidParameter(.nonsupportMobile)
         }
-        
+
         public static var openId: InvalidParameter {
             InvalidParameter(.openId)
         }
-        
+
         public static var organizationId: InvalidParameter {
             InvalidParameter(.organizationId)
         }
-        
+
         public static var organizationName: InvalidParameter {
             InvalidParameter(.organizationName)
         }
-        
+
         /// 参数错误。
         ///
         /// 请确认参数类型及值是否符合定义。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         public static var sensitiveFileContent: InvalidParameter {
             InvalidParameter(.sensitiveFileContent)
         }
-        
+
         public static var signComponentType: InvalidParameter {
             InvalidParameter(.signComponentType)
         }
-        
+
         /// 状态异常。
         ///
         /// 请检查流程状态是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var status: InvalidParameter {
             InvalidParameter(.status)
         }
-        
+
         public static var unordered: InvalidParameter {
             InvalidParameter(.unordered)
         }
-        
+
         public static var unsupportedComponentType: InvalidParameter {
             InvalidParameter(.unsupportedComponentType)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asEssbasicError() -> TCEssbasicError {
             let code: TCEssbasicError.Code
             switch self.error {
-            case .application: 
+            case .application:
                 code = .invalidParameter_Application
-            case .approverType: 
+            case .approverType:
                 code = .invalidParameter_ApproverType
-            case .bizApproverAlreadyExists: 
+            case .bizApproverAlreadyExists:
                 code = .invalidParameter_BizApproverAlreadyExists
-            case .businessLicense: 
+            case .businessLicense:
                 code = .invalidParameter_BusinessLicense
-            case .cardType: 
+            case .cardType:
                 code = .invalidParameter_CardType
-            case .componentValue: 
+            case .componentValue:
                 code = .invalidParameter_ComponentValue
-            case .contentType: 
+            case .contentType:
                 code = .invalidParameter_ContentType
-            case .customShowMap: 
+            case .customShowMap:
                 code = .invalidParameter_CustomShowMap
-            case .customerData: 
+            case .customerData:
                 code = .invalidParameter_CustomerData
-            case .dataNotFound: 
+            case .dataNotFound:
                 code = .invalidParameter_DataNotFound
-            case .date: 
+            case .date:
                 code = .invalidParameter_Date
-            case .departUserId: 
+            case .departUserId:
                 code = .invalidParameter_DepartUserId
-            case .dupTask: 
+            case .dupTask:
                 code = .invalidParameter_DupTask
-            case .emptyParams: 
+            case .emptyParams:
                 code = .invalidParameter_EmptyParams
-            case .endPoint: 
+            case .endPoint:
                 code = .invalidParameter_EndPoint
-            case .fileType: 
+            case .fileType:
                 code = .invalidParameter_FileType
-            case .flowApproverInfos: 
+            case .flowApproverInfos:
                 code = .invalidParameter_FlowApproverInfos
-            case .flowApprovers: 
+            case .flowApprovers:
                 code = .invalidParameter_FlowApprovers
-            case .flowCallbackUrl: 
+            case .flowCallbackUrl:
                 code = .invalidParameter_FlowCallbackUrl
-            case .flowDeadLine: 
+            case .flowDeadLine:
                 code = .invalidParameter_FlowDeadLine
-            case .flowDescription: 
+            case .flowDescription:
                 code = .invalidParameter_FlowDescription
-            case .flowFileIds: 
+            case .flowFileIds:
                 code = .invalidParameter_FlowFileIds
-            case .flowIds: 
+            case .flowIds:
                 code = .invalidParameter_FlowIds
-            case .flowInfos: 
+            case .flowInfos:
                 code = .invalidParameter_FlowInfos
-            case .flowName: 
+            case .flowName:
                 code = .invalidParameter_FlowName
-            case .flowType: 
+            case .flowType:
                 code = .invalidParameter_FlowType
-            case .generateType: 
+            case .generateType:
                 code = .invalidParameter_GenerateType
-            case .image: 
+            case .image:
                 code = .invalidParameter_Image
-            case .limitSealName: 
+            case .limitSealName:
                 code = .invalidParameter_LimitSealName
-            case .menuStatus: 
+            case .menuStatus:
                 code = .invalidParameter_MenuStatus
-            case .missingRequiredParameterValue: 
+            case .missingRequiredParameterValue:
                 code = .invalidParameter_MissingRequiredParameterValue
-            case .name: 
+            case .name:
                 code = .invalidParameter_Name
-            case .nonsupportMobile: 
+            case .nonsupportMobile:
                 code = .invalidParameter_NonsupportMobile
-            case .openId: 
+            case .openId:
                 code = .invalidParameter_OpenId
-            case .organizationId: 
+            case .organizationId:
                 code = .invalidParameter_OrganizationId
-            case .organizationName: 
+            case .organizationName:
                 code = .invalidParameter_OrganizationName
-            case .paramError: 
+            case .paramError:
                 code = .invalidParameter_ParamError
-            case .sensitiveFileContent: 
+            case .sensitiveFileContent:
                 code = .invalidParameter_SensitiveFileContent
-            case .signComponentType: 
+            case .signComponentType:
                 code = .invalidParameter_SignComponentType
-            case .status: 
+            case .status:
                 code = .invalidParameter_Status
-            case .unordered: 
+            case .unordered:
                 code = .invalidParameter_Unordered
-            case .unsupportedComponentType: 
+            case .unsupportedComponentType:
                 code = .invalidParameter_UnsupportedComponentType
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCEssbasicError(code, context: self.context)

@@ -17,42 +17,42 @@
 extension Waf {
     /// GetAttackDownloadRecords请求参数结构体
     public struct GetAttackDownloadRecordsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetAttackDownloadRecords返回参数结构体
     public struct GetAttackDownloadRecordsResponse: TCResponseModel {
         /// 下载攻击日志记录数组
         public let records: [DownloadAttackRecordInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case records = "Records"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询下载攻击日志任务记录列表
     @inlinable
-    public func getAttackDownloadRecords(_ input: GetAttackDownloadRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAttackDownloadRecordsResponse > {
+    public func getAttackDownloadRecords(_ input: GetAttackDownloadRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttackDownloadRecordsResponse> {
         self.client.execute(action: "GetAttackDownloadRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询下载攻击日志任务记录列表
     @inlinable
     public func getAttackDownloadRecords(_ input: GetAttackDownloadRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttackDownloadRecordsResponse {
         try await self.client.execute(action: "GetAttackDownloadRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询下载攻击日志任务记录列表
     @inlinable
-    public func getAttackDownloadRecords(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAttackDownloadRecordsResponse > {
+    public func getAttackDownloadRecords(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttackDownloadRecordsResponse> {
         self.getAttackDownloadRecords(GetAttackDownloadRecordsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询下载攻击日志任务记录列表
     @inlinable
     public func getAttackDownloadRecords(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttackDownloadRecordsResponse {

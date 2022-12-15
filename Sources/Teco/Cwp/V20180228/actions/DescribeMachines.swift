@@ -17,23 +17,23 @@
 extension Cwp {
     /// DescribeMachines请求参数结构体
     public struct DescribeMachinesRequest: TCRequestModel {
-        /// 机器所属专区类型 
+        /// 机器所属专区类型
         /// CVM 云服务器
         /// BM 黑石
         /// ECM 边缘计算
         /// LH 轻量应用服务器
         /// Other 混合云专区
         public let machineType: String
-        
+
         /// 机器所属地域。如：ap-guangzhou，ap-shanghai
         public let machineRegion: String
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Ips - String - 是否必填：否 - 通过ip查询 </li>
         /// <li>Names - String - 是否必填：否 - 通过实例名查询 </li>
@@ -46,11 +46,11 @@ extension Cwp {
         /// <li>Quuid - String - 是否必填: 否 - 云服务器uuid  最大100条.</li>
         /// <li>AddedOnTheFifteen- String 是否必填: 否 - 是否只查询15天内新增的主机( 1：是) </li>
         public let filters: [Filter]?
-        
+
         /// 机器所属业务ID列表
         public let projectIds: [UInt64]?
-        
-        public init (machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil) {
+
+        public init(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
             self.limit = limit
@@ -58,7 +58,7 @@ extension Cwp {
             self.filters = filters
             self.projectIds = projectIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case machineType = "MachineType"
             case machineRegion = "MachineRegion"
@@ -68,33 +68,33 @@ extension Cwp {
             case projectIds = "ProjectIds"
         }
     }
-    
+
     /// DescribeMachines返回参数结构体
     public struct DescribeMachinesResponse: TCResponseModel {
         /// 主机列表
         public let machines: [Machine]
-        
+
         /// 主机数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case machines = "Machines"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取区域主机列表
     ///
     /// 本接口 (DescribeMachines) 用于获取区域主机列表。
     @inlinable
-    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachinesResponse > {
+    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachinesResponse> {
         self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取区域主机列表
     ///
     /// 本接口 (DescribeMachines) 用于获取区域主机列表。
@@ -102,15 +102,15 @@ extension Cwp {
     public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachinesResponse {
         try await self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取区域主机列表
     ///
     /// 本接口 (DescribeMachines) 用于获取区域主机列表。
     @inlinable
-    public func describeMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachinesResponse > {
+    public func describeMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachinesResponse> {
         self.describeMachines(DescribeMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取区域主机列表
     ///
     /// 本接口 (DescribeMachines) 用于获取区域主机列表。

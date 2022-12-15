@@ -19,47 +19,47 @@ extension Cfs {
     public struct DeleteCfsRuleRequest: TCRequestModel {
         /// 权限组 ID
         public let pGroupId: String
-        
+
         /// 规则 ID
         public let ruleId: String
-        
-        public init (pGroupId: String, ruleId: String) {
+
+        public init(pGroupId: String, ruleId: String) {
             self.pGroupId = pGroupId
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pGroupId = "PGroupId"
             case ruleId = "RuleId"
         }
     }
-    
+
     /// DeleteCfsRule返回参数结构体
     public struct DeleteCfsRuleResponse: TCResponseModel {
         /// 规则 ID
         public let ruleId: String
-        
+
         /// 权限组 ID
         public let pGroupId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case pGroupId = "PGroupId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除权限组规则
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
-    public func deleteCfsRule(_ input: DeleteCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsRuleResponse > {
+    public func deleteCfsRule(_ input: DeleteCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsRuleResponse> {
         self.client.execute(action: "DeleteCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除权限组规则
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
@@ -67,15 +67,15 @@ extension Cfs {
     public func deleteCfsRule(_ input: DeleteCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsRuleResponse {
         try await self.client.execute(action: "DeleteCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除权限组规则
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
-    public func deleteCfsRule(pGroupId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsRuleResponse > {
+    public func deleteCfsRule(pGroupId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsRuleResponse> {
         self.deleteCfsRule(DeleteCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除权限组规则
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。

@@ -19,26 +19,26 @@ extension Monitor {
     public struct CreatePrometheusMultiTenantInstancePostPayModeRequest: TCRequestModel {
         /// 实例名
         public let instanceName: String
-        
+
         /// VPC ID
         public let vpcId: String
-        
+
         /// 子网 ID
         public let subnetId: String
-        
+
         /// 数据存储时间（单位天），限制值为15，30，45之一
         public let dataRetentionTime: Int64
-        
+
         /// 可用区
         public let zone: String
-        
+
         /// 实例的标签
         public let tagSpecification: [PrometheusTag]?
-        
+
         /// 需要关联的 Grafana 实例
         public let grafanaInstanceId: String?
-        
-        public init (instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil) {
+
+        public init(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil) {
             self.instanceName = instanceName
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -47,7 +47,7 @@ extension Monitor {
             self.tagSpecification = tagSpecification
             self.grafanaInstanceId = grafanaInstanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceName = "InstanceName"
             case vpcId = "VpcId"
@@ -58,29 +58,29 @@ extension Monitor {
             case grafanaInstanceId = "GrafanaInstanceId"
         }
     }
-    
+
     /// CreatePrometheusMultiTenantInstancePostPayMode返回参数结构体
     public struct CreatePrometheusMultiTenantInstancePostPayModeResponse: TCResponseModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建按量 Prometheus 实例
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusMultiTenantInstancePostPayModeResponse > {
+    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusMultiTenantInstancePostPayModeResponse> {
         self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建按量 Prometheus 实例
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例
@@ -88,15 +88,15 @@ extension Monitor {
     public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
         try await self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建按量 Prometheus 实例
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusMultiTenantInstancePostPayModeResponse > {
+    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusMultiTenantInstancePostPayModeResponse> {
         self.createPrometheusMultiTenantInstancePostPayMode(CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建按量 Prometheus 实例
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例

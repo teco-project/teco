@@ -19,49 +19,49 @@ extension Apigateway {
     public struct ModifyApiAppRequest: TCRequestModel {
         /// 应用唯一 ID。
         public let apiAppId: String
-        
+
         /// 修改的应用名称
         public let apiAppName: String?
-        
+
         /// 修改的应用描述
         public let apiAppDesc: String?
-        
-        public init (apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil) {
+
+        public init(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil) {
             self.apiAppId = apiAppId
             self.apiAppName = apiAppName
             self.apiAppDesc = apiAppDesc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case apiAppId = "ApiAppId"
             case apiAppName = "ApiAppName"
             case apiAppDesc = "ApiAppDesc"
         }
     }
-    
+
     /// ModifyApiApp返回参数结构体
     public struct ModifyApiAppResponse: TCResponseModel {
         /// 修改操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改应用
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
-    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiAppResponse > {
+    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiAppResponse> {
         self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
@@ -69,15 +69,15 @@ extension Apigateway {
     public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
         try await self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改应用
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
-    public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiAppResponse > {
+    public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiAppResponse> {
         self.modifyApiApp(ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。

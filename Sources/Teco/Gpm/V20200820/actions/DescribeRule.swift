@@ -19,40 +19,40 @@ extension Gpm {
     public struct DescribeRuleRequest: TCRequestModel {
         /// 规则code
         public let ruleCode: String
-        
-        public init (ruleCode: String) {
+
+        public init(ruleCode: String) {
             self.ruleCode = ruleCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleCode = "RuleCode"
         }
     }
-    
+
     /// DescribeRule返回参数结构体
     public struct DescribeRuleResponse: TCResponseModel {
         /// 规则信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleInfo: RuleInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleInfo = "RuleInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询规则详情
     @inlinable
-    public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleResponse > {
+    public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
         self.client.execute(action: "DescribeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
@@ -61,16 +61,16 @@ extension Gpm {
     public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
         try await self.client.execute(action: "DescribeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询规则详情
     @inlinable
-    public func describeRule(ruleCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleResponse > {
+    public func describeRule(ruleCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
         self.describeRule(DescribeRuleRequest(ruleCode: ruleCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持

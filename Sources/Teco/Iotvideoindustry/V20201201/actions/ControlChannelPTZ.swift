@@ -19,10 +19,10 @@ extension Iotvideoindustry {
     public struct ControlChannelPTZRequest: TCRequestModel {
         /// 设备唯一标识
         public let deviceId: String
-        
+
         /// 通道唯一标识
         public let channelId: String
-        
+
         /// PTZ控制命令类型：
         /// stop - 停止当前PTZ信令
         /// left - 向左移动
@@ -40,38 +40,38 @@ extension Iotvideoindustry {
         /// focusIn - 焦距变近
         /// focusOut - 焦距变远
         public let command: String
-        
-        public init (deviceId: String, channelId: String, command: String) {
+
+        public init(deviceId: String, channelId: String, command: String) {
             self.deviceId = deviceId
             self.channelId = channelId
             self.command = command
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case channelId = "ChannelId"
             case command = "Command"
         }
     }
-    
+
     /// ControlChannelPTZ返回参数结构体
     public struct ControlChannelPTZResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 远程PTZ控制设备通道
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
     @inlinable
-    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlChannelPTZResponse > {
+    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelPTZResponse> {
         self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 远程PTZ控制设备通道
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
@@ -79,15 +79,15 @@ extension Iotvideoindustry {
     public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelPTZResponse {
         try await self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 远程PTZ控制设备通道
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
     @inlinable
-    public func controlChannelPTZ(deviceId: String, channelId: String, command: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlChannelPTZResponse > {
+    public func controlChannelPTZ(deviceId: String, channelId: String, command: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelPTZResponse> {
         self.controlChannelPTZ(ControlChannelPTZRequest(deviceId: deviceId, channelId: channelId, command: command), logger: logger, on: eventLoop)
     }
-    
+
     /// 远程PTZ控制设备通道
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。

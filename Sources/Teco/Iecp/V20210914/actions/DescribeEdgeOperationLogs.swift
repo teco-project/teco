@@ -19,26 +19,26 @@ extension Iecp {
     public struct DescribeEdgeOperationLogsRequest: TCRequestModel {
         /// 开始时间
         public let beginTime: String
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// 偏移量
         public let offset: UInt64
-        
+
         /// 翻页大小
         public let limit: UInt64
-        
+
         /// 排序字段
         public let sort: [FieldSort]?
-        
+
         /// 模块
         public let module: String?
-        
+
         /// 过滤条件
         public let condition: OperationLogsCondition?
-        
-        public init (beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil) {
+
+        public init(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.offset = offset
@@ -47,7 +47,7 @@ extension Iecp {
             self.module = module
             self.condition = condition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginTime = "BeginTime"
             case endTime = "EndTime"
@@ -58,45 +58,45 @@ extension Iecp {
             case condition = "Condition"
         }
     }
-    
+
     /// DescribeEdgeOperationLogs返回参数结构体
     public struct DescribeEdgeOperationLogsResponse: TCResponseModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 操作日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operationLogSet: [OperationLog]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case operationLogSet = "OperationLogSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询边缘操作日志
     @inlinable
-    public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeOperationLogsResponse > {
+    public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeOperationLogsResponse> {
         self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘操作日志
     @inlinable
     public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {
         try await self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询边缘操作日志
     @inlinable
-    public func describeEdgeOperationLogs(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeOperationLogsResponse > {
+    public func describeEdgeOperationLogs(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeOperationLogsResponse> {
         self.describeEdgeOperationLogs(DescribeEdgeOperationLogsRequest(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘操作日志
     @inlinable
     public func describeEdgeOperationLogs(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {

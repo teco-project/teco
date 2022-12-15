@@ -19,44 +19,44 @@ extension Ame {
     public struct DescribePackagesRequest: TCRequestModel {
         /// 默认0，Offset=Offset+Length
         public let offset: UInt64?
-        
+
         /// 默认20
         public let length: UInt64?
-        
-        public init (offset: UInt64? = nil, length: UInt64? = nil) {
+
+        public init(offset: UInt64? = nil, length: UInt64? = nil) {
             self.offset = offset
             self.length = length
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case length = "Length"
         }
     }
-    
+
     /// DescribePackages返回参数结构体
     public struct DescribePackagesResponse: TCResponseModel {
         /// 已购曲库包列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packages: [Package]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case packages = "Packages"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取已购曲库包列表
     ///
     /// 获取已购曲库包列表接口
     @inlinable
-    public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackagesResponse > {
+    public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackagesResponse> {
         self.client.execute(action: "DescribePackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取已购曲库包列表
     ///
     /// 获取已购曲库包列表接口
@@ -64,15 +64,15 @@ extension Ame {
     public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackagesResponse {
         try await self.client.execute(action: "DescribePackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取已购曲库包列表
     ///
     /// 获取已购曲库包列表接口
     @inlinable
-    public func describePackages(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackagesResponse > {
+    public func describePackages(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackagesResponse> {
         self.describePackages(DescribePackagesRequest(offset: offset, length: length), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取已购曲库包列表
     ///
     /// 获取已购曲库包列表接口

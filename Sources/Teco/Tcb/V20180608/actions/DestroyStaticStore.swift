@@ -19,43 +19,43 @@ extension Tcb {
     public struct DestroyStaticStoreRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// cdn域名
         public let cdnDomain: String?
-        
-        public init (envId: String, cdnDomain: String? = nil) {
+
+        public init(envId: String, cdnDomain: String? = nil) {
             self.envId = envId
             self.cdnDomain = cdnDomain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case cdnDomain = "CdnDomain"
         }
     }
-    
+
     /// DestroyStaticStore返回参数结构体
     public struct DestroyStaticStoreResponse: TCResponseModel {
         /// 条件任务结果(succ/fail)
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁静态资源
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
     @inlinable
-    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStaticStoreResponse > {
+    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStaticStoreResponse> {
         self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁静态资源
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
@@ -63,15 +63,15 @@ extension Tcb {
     public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
         try await self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁静态资源
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
     @inlinable
-    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStaticStoreResponse > {
+    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStaticStoreResponse> {
         self.destroyStaticStore(DestroyStaticStoreRequest(envId: envId, cdnDomain: cdnDomain), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁静态资源
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看

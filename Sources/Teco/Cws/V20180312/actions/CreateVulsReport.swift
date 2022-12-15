@@ -19,43 +19,43 @@ extension Cws {
     public struct CreateVulsReportRequest: TCRequestModel {
         /// 站点ID
         public let siteId: UInt64?
-        
+
         /// 监控任务ID
         public let monitorId: UInt64?
-        
-        public init (siteId: UInt64? = nil, monitorId: UInt64? = nil) {
+
+        public init(siteId: UInt64? = nil, monitorId: UInt64? = nil) {
             self.siteId = siteId
             self.monitorId = monitorId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case siteId = "SiteId"
             case monitorId = "MonitorId"
         }
     }
-    
+
     /// CreateVulsReport返回参数结构体
     public struct CreateVulsReportResponse: TCResponseModel {
         /// 报告下载地址
         public let reportFileUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case reportFileUrl = "ReportFileUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 生成漏洞报告
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
-    public func createVulsReport(_ input: CreateVulsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulsReportResponse > {
+    public func createVulsReport(_ input: CreateVulsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsReportResponse> {
         self.client.execute(action: "CreateVulsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 生成漏洞报告
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
@@ -63,15 +63,15 @@ extension Cws {
     public func createVulsReport(_ input: CreateVulsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsReportResponse {
         try await self.client.execute(action: "CreateVulsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 生成漏洞报告
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
-    public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulsReportResponse > {
+    public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsReportResponse> {
         self.createVulsReport(CreateVulsReportRequest(siteId: siteId, monitorId: monitorId), logger: logger, on: eventLoop)
     }
-    
+
     /// 生成漏洞报告
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。

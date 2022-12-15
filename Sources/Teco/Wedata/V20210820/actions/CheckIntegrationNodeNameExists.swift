@@ -19,23 +19,23 @@ extension Wedata {
     public struct CheckIntegrationNodeNameExistsRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 节点名称
         public let name: String
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// 节点ID
         public let id: Int64?
-        
-        public init (taskId: String, name: String, projectId: String, id: Int64? = nil) {
+
+        public init(taskId: String, name: String, projectId: String, id: Int64? = nil) {
             self.taskId = taskId
             self.name = name
             self.projectId = projectId
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case name = "Name"
@@ -43,39 +43,39 @@ extension Wedata {
             case id = "Id"
         }
     }
-    
+
     /// CheckIntegrationNodeNameExists返回参数结构体
     public struct CheckIntegrationNodeNameExistsResponse: TCResponseModel {
         /// 返回true代表存在，返回false代表不存在
         public let data: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 判断集成节点名称是否存在
     @inlinable
-    public func checkIntegrationNodeNameExists(_ input: CheckIntegrationNodeNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIntegrationNodeNameExistsResponse > {
+    public func checkIntegrationNodeNameExists(_ input: CheckIntegrationNodeNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIntegrationNodeNameExistsResponse> {
         self.client.execute(action: "CheckIntegrationNodeNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 判断集成节点名称是否存在
     @inlinable
     public func checkIntegrationNodeNameExists(_ input: CheckIntegrationNodeNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationNodeNameExistsResponse {
         try await self.client.execute(action: "CheckIntegrationNodeNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 判断集成节点名称是否存在
     @inlinable
-    public func checkIntegrationNodeNameExists(taskId: String, name: String, projectId: String, id: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIntegrationNodeNameExistsResponse > {
+    public func checkIntegrationNodeNameExists(taskId: String, name: String, projectId: String, id: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIntegrationNodeNameExistsResponse> {
         self.checkIntegrationNodeNameExists(CheckIntegrationNodeNameExistsRequest(taskId: taskId, name: name, projectId: projectId, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 判断集成节点名称是否存在
     @inlinable
     public func checkIntegrationNodeNameExists(taskId: String, name: String, projectId: String, id: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationNodeNameExistsResponse {

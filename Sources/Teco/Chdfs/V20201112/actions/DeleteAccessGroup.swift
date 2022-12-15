@@ -19,34 +19,34 @@ extension Chdfs {
     public struct DeleteAccessGroupRequest: TCRequestModel {
         /// 权限组ID
         public let accessGroupId: String
-        
-        public init (accessGroupId: String) {
+
+        public init(accessGroupId: String) {
             self.accessGroupId = accessGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessGroupId = "AccessGroupId"
         }
     }
-    
+
     /// DeleteAccessGroup返回参数结构体
     public struct DeleteAccessGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除权限组
     ///
     /// 删除权限组。
     @inlinable
-    public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessGroupResponse > {
+    public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessGroupResponse> {
         self.client.execute(action: "DeleteAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除权限组
     ///
     /// 删除权限组。
@@ -54,15 +54,15 @@ extension Chdfs {
     public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessGroupResponse {
         try await self.client.execute(action: "DeleteAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除权限组
     ///
     /// 删除权限组。
     @inlinable
-    public func deleteAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessGroupResponse > {
+    public func deleteAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessGroupResponse> {
         self.deleteAccessGroup(DeleteAccessGroupRequest(accessGroupId: accessGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除权限组
     ///
     /// 删除权限组。

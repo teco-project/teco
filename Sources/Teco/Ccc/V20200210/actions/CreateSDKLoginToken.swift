@@ -19,35 +19,35 @@ extension Ccc {
     public struct CreateSDKLoginTokenRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 坐席账号。
         public let seatUserId: String
-        
-        public init (sdkAppId: Int64, seatUserId: String) {
+
+        public init(sdkAppId: Int64, seatUserId: String) {
             self.sdkAppId = sdkAppId
             self.seatUserId = seatUserId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case seatUserId = "SeatUserId"
         }
     }
-    
+
     /// CreateSDKLoginToken返回参数结构体
     public struct CreateSDKLoginTokenResponse: TCResponseModel {
         /// SDK 登录 Token。
         public let token: String
-        
+
         /// 过期时间戳，Unix 时间戳。
         public let expiredTime: Int64
-        
+
         /// SDK 加载路径会随着 SDK 的发布而变动。
         public let sdkURL: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case token = "Token"
             case expiredTime = "ExpiredTime"
@@ -55,15 +55,15 @@ extension Ccc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSDKLoginTokenResponse > {
+    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
         self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。
@@ -71,15 +71,15 @@ extension Ccc {
     public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
         try await self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSDKLoginTokenResponse > {
+    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
         self.createSDKLoginToken(CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。

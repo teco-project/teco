@@ -20,79 +20,79 @@ extension Dtf {
         /// 总条数，特定在该接口中总是会返回null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 主事务分组列表
         public let content: [Transaction]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 主事务
     public struct Transaction: TCInputModel, TCOutputModel {
         /// 主事务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionId: Int64?
-        
+
         /// 主事务开始时间戳，UTC，精确到毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionBegin: Int64?
-        
+
         /// 主事务结束时间戳，UTC，精确到毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionEnd: Int64?
-        
+
         /// 主事务提交时间戳，UTC，精确到毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionCommit: Int64?
-        
+
         /// 主事务回滚时间戳，UTC，精确到毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionRollback: Int64?
-        
+
         /// 主事务异常停止时间戳，UTC，精确到毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionError: Int64?
-        
+
         /// 主事务超时时长，单位毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeout: Int64?
-        
+
         /// 主事务状态：0:Trying, 1:Confirming, 2: Confirmed, 3:Canceling, 4: Canceled
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 主事务结束标识：0:运行中, 1: 已结束
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endFlag: Int64?
-        
+
         /// 主事务超时标识：0:运行中, 1: 已超时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeoutFlag: Int64?
-        
+
         /// 异常信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let comment: String?
-        
+
         /// 事务分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 主事务来源服务标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
-        
+
         /// 分支事务数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let branchQuantity: Int64?
-        
+
         /// 重试标识：true：可以重试；false：不可重试
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retryFlag: Bool?
-        
-        public init (transactionId: Int64? = nil, transactionBegin: Int64? = nil, transactionEnd: Int64? = nil, transactionCommit: Int64? = nil, transactionRollback: Int64? = nil, transactionError: Int64? = nil, timeout: Int64? = nil, status: Int64? = nil, endFlag: Int64? = nil, timeoutFlag: Int64? = nil, comment: String? = nil, groupId: String? = nil, server: String? = nil, branchQuantity: Int64? = nil, retryFlag: Bool? = nil) {
+
+        public init(transactionId: Int64? = nil, transactionBegin: Int64? = nil, transactionEnd: Int64? = nil, transactionCommit: Int64? = nil, transactionRollback: Int64? = nil, transactionError: Int64? = nil, timeout: Int64? = nil, status: Int64? = nil, endFlag: Int64? = nil, timeoutFlag: Int64? = nil, comment: String? = nil, groupId: String? = nil, server: String? = nil, branchQuantity: Int64? = nil, retryFlag: Bool? = nil) {
             self.transactionId = transactionId
             self.transactionBegin = transactionBegin
             self.transactionEnd = transactionEnd
@@ -109,7 +109,7 @@ extension Dtf {
             self.branchQuantity = branchQuantity
             self.retryFlag = retryFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case transactionId = "TransactionId"
             case transactionBegin = "TransactionBegin"

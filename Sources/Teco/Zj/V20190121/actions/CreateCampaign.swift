@@ -19,26 +19,26 @@ extension Zj {
     public struct CreateCampaignRequest: TCRequestModel {
         /// 商户证书
         public let license: String
-        
+
         /// 短信活动发送时间
         public let sendTime: Int64
-        
+
         /// 短信活动名称
         public let name: String
-        
+
         /// 发送策略
         public let strategies: [PaasStrategy]?
-        
+
         /// 废弃
         public let templateId: Int64?
-        
+
         /// 废弃
         public let crowdID: Int64?
-        
+
         /// 活动类型(0-短信,1-超短,不填默认为超短)
         public let smsType: UInt64?
-        
-        public init (license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil) {
+
+        public init(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil) {
             self.license = license
             self.sendTime = sendTime
             self.name = name
@@ -47,7 +47,7 @@ extension Zj {
             self.crowdID = crowdID
             self.smsType = smsType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case license = "License"
             case sendTime = "SendTime"
@@ -58,29 +58,29 @@ extension Zj {
             case smsType = "SmsType"
         }
     }
-    
+
     /// CreateCampaign返回参数结构体
     public struct CreateCampaignResponse: TCResponseModel {
         /// 活动信息
         public let data: SmsCreateCampaignResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建短信活动
     ///
     /// 创建短信推送活动
     @inlinable
-    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCampaignResponse > {
+    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCampaignResponse> {
         self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建短信活动
     ///
     /// 创建短信推送活动
@@ -88,15 +88,15 @@ extension Zj {
     public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
         try await self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建短信活动
     ///
     /// 创建短信推送活动
     @inlinable
-    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCampaignResponse > {
+    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCampaignResponse> {
         self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建短信活动
     ///
     /// 创建短信推送活动

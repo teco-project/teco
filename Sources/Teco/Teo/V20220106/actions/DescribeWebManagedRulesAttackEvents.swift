@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,26 +35,26 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 条数
         public let pageSize: Int64
-        
+
         /// 当前页
         public let pageNo: Int64
-        
+
         /// ddos策略组id列表
         public let policyIds: [Int64]?
-        
+
         /// 站点集合
         public let zoneIds: [String]?
-        
+
         /// 子域名列表
         public let domains: [String]?
-        
+
         /// 选填{Y、N},默认为Y；Y：展示，N：不展示
         public let isShowDetail: String?
-        
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -64,7 +64,7 @@ extension Teo {
             self.domains = domains
             self.isShowDetail = isShowDetail
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -76,21 +76,21 @@ extension Teo {
             case isShowDetail = "IsShowDetail"
         }
     }
-    
+
     /// DescribeWebManagedRulesAttackEvents返回参数结构体
     public struct DescribeWebManagedRulesAttackEventsResponse: TCResponseModel {
         /// Web攻击事件数据
         public let data: WebEventData
-        
+
         /// 状态，1:失败，0:成功
         public let status: Int64
-        
+
         /// 返回数据
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case status = "Status"
@@ -98,25 +98,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Web托管攻击事件
     @inlinable
-    public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesAttackEventsResponse > {
+    public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesAttackEventsResponse> {
         self.client.execute(action: "DescribeWebManagedRulesAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Web托管攻击事件
     @inlinable
     public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesAttackEventsResponse {
         try await self.client.execute(action: "DescribeWebManagedRulesAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Web托管攻击事件
     @inlinable
-    public func describeWebManagedRulesAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesAttackEventsResponse > {
+    public func describeWebManagedRulesAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesAttackEventsResponse> {
         self.describeWebManagedRulesAttackEvents(DescribeWebManagedRulesAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, domains: domains, isShowDetail: isShowDetail), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Web托管攻击事件
     @inlinable
     public func describeWebManagedRulesAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesAttackEventsResponse {

@@ -19,48 +19,48 @@ extension Cdc {
     public struct DescribeDedicatedClusterHostStatisticsRequest: TCRequestModel {
         /// 查询的专用集群id
         public let dedicatedClusterId: String
-        
-        public init (dedicatedClusterId: String) {
+
+        public init(dedicatedClusterId: String) {
             self.dedicatedClusterId = dedicatedClusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dedicatedClusterId = "DedicatedClusterId"
         }
     }
-    
+
     /// DescribeDedicatedClusterHostStatistics返回参数结构体
     public struct DescribeDedicatedClusterHostStatisticsResponse: TCResponseModel {
         /// 该集群内宿主机的统计信息列表
         public let hostStatisticSet: [HostStatistic]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case hostStatisticSet = "HostStatisticSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterHostStatisticsResponse > {
+    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
         self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专用集群内宿主机的统计信息
     @inlinable
     public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
         try await self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterHostStatisticsResponse > {
+    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
         self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询专用集群内宿主机的统计信息
     @inlinable
     public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {

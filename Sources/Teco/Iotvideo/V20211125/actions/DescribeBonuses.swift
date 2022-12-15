@@ -19,57 +19,57 @@ extension Iotvideo {
     public struct DescribeBonusesRequest: TCRequestModel {
         /// 分页拉取偏移
         public let offset: UInt64
-        
+
         /// 分页拉取数量
         public let limit: UInt64
-        
-        public init (offset: UInt64, limit: UInt64) {
+
+        public init(offset: UInt64, limit: UInt64) {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeBonuses返回参数结构体
     public struct DescribeBonusesResponse: TCResponseModel {
         /// 资源包总数
         public let totalCount: UInt64
-        
+
         /// 资源包信息
         public let bonuses: [BonusInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case bonuses = "Bonuses"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看运营活动资源包列表
     @inlinable
-    public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBonusesResponse > {
+    public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBonusesResponse> {
         self.client.execute(action: "DescribeBonuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看运营活动资源包列表
     @inlinable
     public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBonusesResponse {
         try await self.client.execute(action: "DescribeBonuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看运营活动资源包列表
     @inlinable
-    public func describeBonuses(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBonusesResponse > {
+    public func describeBonuses(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBonusesResponse> {
         self.describeBonuses(DescribeBonusesRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看运营活动资源包列表
     @inlinable
     public func describeBonuses(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBonusesResponse {

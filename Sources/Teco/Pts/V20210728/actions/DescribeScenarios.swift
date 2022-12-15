@@ -19,32 +19,32 @@ extension Pts {
     public struct DescribeScenariosRequest: TCRequestModel {
         /// 场景ID数组
         public let scenarioIds: [String]?
-        
+
         /// 场景名
         public let scenarioName: String?
-        
+
         /// 场景状态数组
         public let scenarioStatus: [Int64]?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大为100
         public let limit: Int64?
-        
+
         /// 排序的列
         public let orderBy: String?
-        
+
         /// 是否正序
         public let ascend: Bool?
-        
+
         /// 项目ID数组
         public let projectIds: [String]?
-        
+
         /// 场景类型
         public let scenarioType: String?
-        
-        public init (scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil) {
+
+        public init(scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil) {
             self.scenarioIds = scenarioIds
             self.scenarioName = scenarioName
             self.scenarioStatus = scenarioStatus
@@ -55,7 +55,7 @@ extension Pts {
             self.projectIds = projectIds
             self.scenarioType = scenarioType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioIds = "ScenarioIds"
             case scenarioName = "ScenarioName"
@@ -68,44 +68,44 @@ extension Pts {
             case scenarioType = "ScenarioType"
         }
     }
-    
+
     /// DescribeScenarios返回参数结构体
     public struct DescribeScenariosResponse: TCResponseModel {
         /// 场景列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioSet: [Scenario]?
-        
+
         /// 场景总数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioSet = "ScenarioSet"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询场景列表
     @inlinable
-    public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenariosResponse > {
+    public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenariosResponse> {
         self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询场景列表
     @inlinable
     public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenariosResponse {
         try await self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询场景列表
     @inlinable
-    public func describeScenarios(scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenariosResponse > {
+    public func describeScenarios(scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenariosResponse> {
         self.describeScenarios(DescribeScenariosRequest(scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, offset: offset, limit: limit, orderBy: orderBy, ascend: ascend, projectIds: projectIds, scenarioType: scenarioType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询场景列表
     @inlinable
     public func describeScenarios(scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenariosResponse {

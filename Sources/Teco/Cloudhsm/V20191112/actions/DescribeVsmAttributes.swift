@@ -19,102 +19,102 @@ extension Cloudhsm {
     public struct DescribeVsmAttributesRequest: TCRequestModel {
         /// 资源Id
         public let resourceId: String
-        
-        public init (resourceId: String) {
+
+        public init(resourceId: String) {
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// DescribeVsmAttributes返回参数结构体
     public struct DescribeVsmAttributesResponse: TCResponseModel {
         /// 资源Id
         public let resourceId: String
-        
+
         /// 资源名称
         public let resourceName: String
-        
+
         /// 资源状态，1表示资源为正常，2表示资源处于隔离状态
         public let status: Int64
-        
+
         /// 资源IP
         public let vip: String
-        
+
         /// 资源所属Vpc
         public let vpcId: String
-        
+
         /// 资源所属子网
         public let subnetId: String
-        
+
         /// 资源所属HSM的规格
         public let model: String
-        
+
         /// 资源类型，17表示EVSM，33表示GVSM，49表示SVSM
         public let vsmType: Int64
-        
+
         /// 地域Id，返回腾讯云地域代码，如广州为1，北京为8
         public let regionId: Int64
-        
+
         /// 区域Id，返回腾讯云每个地域的可用区代码
         public let zoneId: Int64
-        
+
         /// 资源过期时间，以时间戳形式展示。
         public let expireTime: Int64
-        
+
         /// 安全组详情信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sgList: [UsgRuleDetail]?
-        
+
         /// 子网名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetName: String?
-        
+
         /// 地域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionName: String?
-        
+
         /// 区域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneName: String?
-        
+
         /// 实例是否已经过期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expired: Bool?
-        
+
         /// 为正数表示实例距离过期时间剩余秒数，为负数表示实例已经过期多少秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remainSeconds: Int64?
-        
+
         /// 私有虚拟网络名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcName: String?
-        
+
         /// VPC的IPv4 CIDR
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcCidrBlock: String?
-        
+
         /// 子网的CIDR
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetCidrBlock: String?
-        
+
         /// 资源所关联的Tag
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 资源续费标识，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: Int64?
-        
+
         /// 厂商
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manufacturer: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resourceName = "ResourceName"
@@ -142,25 +142,25 @@ extension Cloudhsm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取VSM属性
     @inlinable
-    public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVsmAttributesResponse > {
+    public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmAttributesResponse> {
         self.client.execute(action: "DescribeVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取VSM属性
     @inlinable
     public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmAttributesResponse {
         try await self.client.execute(action: "DescribeVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取VSM属性
     @inlinable
-    public func describeVsmAttributes(resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVsmAttributesResponse > {
+    public func describeVsmAttributes(resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmAttributesResponse> {
         self.describeVsmAttributes(DescribeVsmAttributesRequest(resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取VSM属性
     @inlinable
     public func describeVsmAttributes(resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmAttributesResponse {

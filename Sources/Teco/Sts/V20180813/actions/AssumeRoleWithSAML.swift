@@ -19,27 +19,27 @@ extension Sts {
     public struct AssumeRoleWithSAMLRequest: TCRequestModel {
         /// base64 编码的 SAML 断言信息
         public let samlAssertion: String
-        
+
         /// 扮演者访问描述名
         public let principalArn: String
-        
+
         /// 角色访问描述名
         public let roleArn: String
-        
+
         /// 会话名称
         public let roleSessionName: String
-        
+
         /// 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         public let durationSeconds: UInt64?
-        
-        public init (samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil) {
+
+        public init(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil) {
             self.samlAssertion = samlAssertion
             self.principalArn = principalArn
             self.roleArn = roleArn
             self.roleSessionName = roleSessionName
             self.durationSeconds = durationSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case samlAssertion = "SAMLAssertion"
             case principalArn = "PrincipalArn"
@@ -48,21 +48,21 @@ extension Sts {
             case durationSeconds = "DurationSeconds"
         }
     }
-    
+
     /// AssumeRoleWithSAML返回参数结构体
     public struct AssumeRoleWithSAMLResponse: TCResponseModel {
         /// 对象里面包含 Token，TmpSecretId，TmpSecretKey 三元组
         public let credentials: Credentials
-        
+
         /// 证书无效的时间，返回 Unix 时间戳，精确到秒
         public let expiredTime: UInt64
-        
+
         /// 证书无效的时间，以 ISO8601 格式的 UTC 时间表示
         public let expiration: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case credentials = "Credentials"
             case expiredTime = "ExpiredTime"
@@ -70,15 +70,15 @@ extension Sts {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据 SAML 断言申请角色临时凭证
     ///
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
     @inlinable
-    public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithSAMLResponse > {
+    public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithSAMLResponse> {
         self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据 SAML 断言申请角色临时凭证
     ///
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
@@ -86,15 +86,15 @@ extension Sts {
     public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
         try await self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据 SAML 断言申请角色临时凭证
     ///
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
     @inlinable
-    public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithSAMLResponse > {
+    public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithSAMLResponse> {
         self.assumeRoleWithSAML(AssumeRoleWithSAMLRequest(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据 SAML 断言申请角色临时凭证
     ///
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。

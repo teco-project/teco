@@ -19,38 +19,38 @@ extension TCCdsError {
         enum Code: String {
             case noPermission = "UnauthorizedOperation.NoPermission"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无操作权限。
         public static var noPermission: UnauthorizedOperation {
             UnauthorizedOperation(.noPermission)
         }
-        
+
         public func asCdsError() -> TCCdsError {
             let code: TCCdsError.Code
             switch self.error {
-            case .noPermission: 
+            case .noPermission:
                 code = .unauthorizedOperation_NoPermission
             }
             return TCCdsError(code, context: self.context)

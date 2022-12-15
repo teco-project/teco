@@ -19,23 +19,23 @@ extension Iotexplorer {
     public struct DirectBindDeviceInFamilyRequest: TCRequestModel {
         /// 小程序appid
         public let iotAppID: String
-        
+
         /// 用户ID
         public let userID: String
-        
+
         /// 家庭ID
         public let familyId: String
-        
+
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名
         public let deviceName: String
-        
+
         /// 房间ID
         public let roomId: String?
-        
-        public init (iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil) {
+
+        public init(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil) {
             self.iotAppID = iotAppID
             self.userID = userID
             self.familyId = familyId
@@ -43,7 +43,7 @@ extension Iotexplorer {
             self.deviceName = deviceName
             self.roomId = roomId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case iotAppID = "IotAppID"
             case userID = "UserID"
@@ -53,39 +53,39 @@ extension Iotexplorer {
             case roomId = "RoomId"
         }
     }
-    
+
     /// DirectBindDeviceInFamily返回参数结构体
     public struct DirectBindDeviceInFamilyResponse: TCResponseModel {
         /// 返回设备信息
         public let appDeviceInfo: AppDeviceInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appDeviceInfo = "AppDeviceInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直接绑定设备和家庭
     @inlinable
-    public func directBindDeviceInFamily(_ input: DirectBindDeviceInFamilyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DirectBindDeviceInFamilyResponse > {
+    public func directBindDeviceInFamily(_ input: DirectBindDeviceInFamilyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DirectBindDeviceInFamilyResponse> {
         self.client.execute(action: "DirectBindDeviceInFamily", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直接绑定设备和家庭
     @inlinable
     public func directBindDeviceInFamily(_ input: DirectBindDeviceInFamilyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DirectBindDeviceInFamilyResponse {
         try await self.client.execute(action: "DirectBindDeviceInFamily", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直接绑定设备和家庭
     @inlinable
-    public func directBindDeviceInFamily(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DirectBindDeviceInFamilyResponse > {
+    public func directBindDeviceInFamily(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DirectBindDeviceInFamilyResponse> {
         self.directBindDeviceInFamily(DirectBindDeviceInFamilyRequest(iotAppID: iotAppID, userID: userID, familyId: familyId, productId: productId, deviceName: deviceName, roomId: roomId), logger: logger, on: eventLoop)
     }
-    
+
     /// 直接绑定设备和家庭
     @inlinable
     public func directBindDeviceInFamily(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DirectBindDeviceInFamilyResponse {

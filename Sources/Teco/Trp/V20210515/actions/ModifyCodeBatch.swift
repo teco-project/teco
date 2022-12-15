@@ -19,26 +19,26 @@ extension Trp {
     public struct ModifyCodeBatchRequest: TCRequestModel {
         /// 批次ID
         public let batchId: String
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 状态 0: 未激活 1: 已激活 -1: 已冻结
         public let status: Int64?
-        
+
         /// 模版ID，或者活动ID
         public let mpTpl: String?
-        
+
         /// 商户ID
         public let merchantId: String?
-        
+
         /// 商品ID
         public let productId: String?
-        
+
         /// 备注
         public let remark: String?
-        
-        public init (batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil) {
+
+        public init(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil) {
             self.batchId = batchId
             self.corpId = corpId
             self.status = status
@@ -47,7 +47,7 @@ extension Trp {
             self.productId = productId
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case corpId = "CorpId"
@@ -58,39 +58,39 @@ extension Trp {
             case remark = "Remark"
         }
     }
-    
+
     /// ModifyCodeBatch返回参数结构体
     public struct ModifyCodeBatchResponse: TCResponseModel {
         /// 批次ID
         public let batchId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改批次
     @inlinable
-    public func modifyCodeBatch(_ input: ModifyCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCodeBatchResponse > {
+    public func modifyCodeBatch(_ input: ModifyCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCodeBatchResponse> {
         self.client.execute(action: "ModifyCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改批次
     @inlinable
     public func modifyCodeBatch(_ input: ModifyCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCodeBatchResponse {
         try await self.client.execute(action: "ModifyCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改批次
     @inlinable
-    public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCodeBatchResponse > {
+    public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCodeBatchResponse> {
         self.modifyCodeBatch(ModifyCodeBatchRequest(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改批次
     @inlinable
     public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCodeBatchResponse {

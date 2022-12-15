@@ -22,24 +22,24 @@ extension Cat {
         /// <li> 2 = LastMile </li>
         /// <li> 3 = Mobile </li>
         public let nodeType: Int64?
-        
+
         /// 节点区域
         /// <li> 1 = 中国大陆 </li>
         /// <li> 2 = 港澳台 </li>
         /// <li> 3 = 境外</li>
         public let location: Int64?
-        
+
         /// 是否IPv6
         public let isIPv6: Bool?
-        
+
         /// 名字模糊搜索
         public let nodeName: String?
-        
+
         /// 付费模式
         /// <li>1 = 试用版本</li>
         /// <li> 2 = 付费版本 </li>
         public let payMode: Int64?
-        
+
         /// 任务类型
         /// <li>1 = 页面性能</li>
         /// <li>2 = 文件上传</li>
@@ -48,8 +48,8 @@ extension Cat {
         /// <li>5 = 网络质量</li>
         /// <li>6 = 音视频体验</li>
         public let taskType: Int64?
-        
-        public init (nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil) {
+
+        public init(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil) {
             self.nodeType = nodeType
             self.location = location
             self.isIPv6 = isIPv6
@@ -57,7 +57,7 @@ extension Cat {
             self.payMode = payMode
             self.taskType = taskType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeType = "NodeType"
             case location = "Location"
@@ -67,40 +67,40 @@ extension Cat {
             case taskType = "TaskType"
         }
     }
-    
+
     /// DescribeNodes返回参数结构体
     public struct DescribeNodesResponse: TCResponseModel {
         /// 节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeSet: [NodeDefineExt]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeSet = "NodeSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取拨测节点
     @inlinable
-    public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodesResponse > {
+    public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodesResponse> {
         self.client.execute(action: "DescribeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取拨测节点
     @inlinable
     public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodesResponse {
         try await self.client.execute(action: "DescribeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取拨测节点
     @inlinable
-    public func describeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodesResponse > {
+    public func describeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodesResponse> {
         self.describeNodes(DescribeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode, taskType: taskType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取拨测节点
     @inlinable
     public func describeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodesResponse {

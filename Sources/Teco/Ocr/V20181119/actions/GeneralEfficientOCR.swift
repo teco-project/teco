@@ -21,41 +21,41 @@ extension Ocr {
         /// 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
-        
+
         /// 图片的 Url 地址。
         /// 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
         /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
-        
-        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
         }
     }
-    
+
     /// GeneralEfficientOCR返回参数结构体
     public struct GeneralEfficientOCRResponse: TCResponseModel {
         /// 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
         public let textDetections: [TextDetection]
-        
+
         /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         public let angel: Float
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case textDetections = "TextDetections"
             case angel = "Angel"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
@@ -93,13 +93,13 @@ extension Ocr {
     ///         <tr>
     ///           <td>支持的语言</td>
     ///           <td>中文、英文、中英文</td>
-    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
     ///           <td>中文、英文、中英文</td>
     ///         </tr>
     ///         <tr>
     ///           <td>自动语言检测</td>
     ///           <td>支持</td>
-    ///           <td>支持</td>  
+    ///           <td>支持</td>
     ///           <td>支持</td>
     ///         </tr>
     ///         <tr>
@@ -118,10 +118,10 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralEfficientOCRResponse > {
+    public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
         self.client.execute(action: "GeneralEfficientOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
@@ -159,13 +159,13 @@ extension Ocr {
     ///         <tr>
     ///           <td>支持的语言</td>
     ///           <td>中文、英文、中英文</td>
-    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
     ///           <td>中文、英文、中英文</td>
     ///         </tr>
     ///         <tr>
     ///           <td>自动语言检测</td>
     ///           <td>支持</td>
-    ///           <td>支持</td>  
+    ///           <td>支持</td>
     ///           <td>支持</td>
     ///         </tr>
     ///         <tr>
@@ -187,7 +187,7 @@ extension Ocr {
     public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralEfficientOCRResponse {
         try await self.client.execute(action: "GeneralEfficientOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
@@ -225,13 +225,13 @@ extension Ocr {
     ///         <tr>
     ///           <td>支持的语言</td>
     ///           <td>中文、英文、中英文</td>
-    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
     ///           <td>中文、英文、中英文</td>
     ///         </tr>
     ///         <tr>
     ///           <td>自动语言检测</td>
     ///           <td>支持</td>
-    ///           <td>支持</td>  
+    ///           <td>支持</td>
     ///           <td>支持</td>
     ///         </tr>
     ///         <tr>
@@ -250,10 +250,10 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralEfficientOCRResponse > {
+    public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
         self.generalEfficientOCR(GeneralEfficientOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
@@ -291,13 +291,13 @@ extension Ocr {
     ///         <tr>
     ///           <td>支持的语言</td>
     ///           <td>中文、英文、中英文</td>
-    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
     ///           <td>中文、英文、中英文</td>
     ///         </tr>
     ///         <tr>
     ///           <td>自动语言检测</td>
     ///           <td>支持</td>
-    ///           <td>支持</td>  
+    ///           <td>支持</td>
     ///           <td>支持</td>
     ///         </tr>
     ///         <tr>

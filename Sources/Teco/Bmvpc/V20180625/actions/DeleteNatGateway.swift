@@ -19,53 +19,53 @@ extension Bmvpc {
     public struct DeleteNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
         public let natId: String
-        
+
         /// 私有网络ID，例如：vpc-kd7d06of
         public let vpcId: String
-        
-        public init (natId: String, vpcId: String) {
+
+        public init(natId: String, vpcId: String) {
             self.natId = natId
             self.vpcId = vpcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natId = "NatId"
             case vpcId = "VpcId"
         }
     }
-    
+
     /// DeleteNatGateway返回参数结构体
     public struct DeleteNatGatewayResponse: TCResponseModel {
         /// 任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除NAT网关
     @inlinable
-    public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayResponse > {
+    public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewayResponse> {
         self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除NAT网关
     @inlinable
     public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
         try await self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除NAT网关
     @inlinable
-    public func deleteNatGateway(natId: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayResponse > {
+    public func deleteNatGateway(natId: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewayResponse> {
         self.deleteNatGateway(DeleteNatGatewayRequest(natId: natId, vpcId: vpcId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除NAT网关
     @inlinable
     public func deleteNatGateway(natId: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {

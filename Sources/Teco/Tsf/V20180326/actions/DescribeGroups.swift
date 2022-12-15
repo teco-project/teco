@@ -19,38 +19,38 @@ extension Tsf {
     public struct DescribeGroupsRequest: TCRequestModel {
         /// 搜索字段
         public let searchWord: String?
-        
+
         /// 应用ID
         public let applicationId: String?
-        
+
         /// 排序字段
         public let orderBy: String?
-        
+
         /// 排序方式
         public let orderType: Int64?
-        
+
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 分页个数
         public let limit: Int64?
-        
+
         /// 命名空间ID
         public let namespaceId: String?
-        
+
         /// 集群ID
         public let clusterId: String?
-        
+
         /// 部署组资源类型列表
         public let groupResourceTypeList: [String]?
-        
+
         /// 部署组状态过滤字段
         public let status: String?
-        
+
         /// 无
         public let groupIdList: [String]?
-        
-        public init (searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil) {
+
+        public init(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil) {
             self.searchWord = searchWord
             self.applicationId = applicationId
             self.orderBy = orderBy
@@ -63,7 +63,7 @@ extension Tsf {
             self.status = status
             self.groupIdList = groupIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case searchWord = "SearchWord"
             case applicationId = "ApplicationId"
@@ -78,40 +78,40 @@ extension Tsf {
             case groupIdList = "GroupIdList"
         }
     }
-    
+
     /// DescribeGroups返回参数结构体
     public struct DescribeGroupsResponse: TCResponseModel {
         /// 虚拟机部署组分页信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageVmGroup?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取虚拟机部署组列表
     @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
         self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取虚拟机部署组列表
     @inlinable
     public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
         try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取虚拟机部署组列表
     @inlinable
-    public func describeGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+    public func describeGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
         self.describeGroups(DescribeGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, groupResourceTypeList: groupResourceTypeList, status: status, groupIdList: groupIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取虚拟机部署组列表
     @inlinable
     public func describeGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {

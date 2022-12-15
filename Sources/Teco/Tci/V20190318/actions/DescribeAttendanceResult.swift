@@ -19,36 +19,36 @@ extension Tci {
     public struct DescribeAttendanceResultRequest: TCRequestModel {
         /// 任务唯一标识符
         public let jobId: Int64
-        
-        public init (jobId: Int64) {
+
+        public init(jobId: Int64) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// DescribeAttendanceResult返回参数结构体
     public struct DescribeAttendanceResultResponse: TCResponseModel {
         /// 缺失人员的ID列表(只针对请求中的libids字段)
         public let absenceSetInLibs: [AbsenceInfo]
-        
+
         /// 确定出勤人员列表
         public let attendanceSet: [AttendanceInfo]
-        
+
         /// 疑似出勤人员列表
         public let suspectedSet: [SuspectedInfo]
-        
+
         /// 缺失人员的ID列表(只针对请求中的personids字段)
         public let absenceSet: [String]
-        
+
         /// 请求处理进度
         public let progress: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case absenceSetInLibs = "AbsenceSetInLibs"
             case attendanceSet = "AttendanceSet"
@@ -58,25 +58,25 @@ extension Tci {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 人脸考勤查询结果
     @inlinable
-    public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttendanceResultResponse > {
+    public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttendanceResultResponse> {
         self.client.execute(action: "DescribeAttendanceResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 人脸考勤查询结果
     @inlinable
     public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttendanceResultResponse {
         try await self.client.execute(action: "DescribeAttendanceResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 人脸考勤查询结果
     @inlinable
-    public func describeAttendanceResult(jobId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttendanceResultResponse > {
+    public func describeAttendanceResult(jobId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttendanceResultResponse> {
         self.describeAttendanceResult(DescribeAttendanceResultRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 人脸考勤查询结果
     @inlinable
     public func describeAttendanceResult(jobId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttendanceResultResponse {

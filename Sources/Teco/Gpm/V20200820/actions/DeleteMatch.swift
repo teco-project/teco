@@ -19,35 +19,35 @@ extension Gpm {
     public struct DeleteMatchRequest: TCRequestModel {
         /// 匹配code
         public let matchCode: String
-        
-        public init (matchCode: String) {
+
+        public init(matchCode: String) {
             self.matchCode = matchCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case matchCode = "MatchCode"
         }
     }
-    
+
     /// DeleteMatch返回参数结构体
     public struct DeleteMatchResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除匹配
     @inlinable
-    public func deleteMatch(_ input: DeleteMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMatchResponse > {
+    public func deleteMatch(_ input: DeleteMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
         self.client.execute(action: "DeleteMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
@@ -56,16 +56,16 @@ extension Gpm {
     public func deleteMatch(_ input: DeleteMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
         try await self.client.execute(action: "DeleteMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除匹配
     @inlinable
-    public func deleteMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMatchResponse > {
+    public func deleteMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
         self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持

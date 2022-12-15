@@ -24,71 +24,71 @@ extension TCEbError {
             case resourceImmutable = "OperationDenied.ResourceImmutable"
             case unsupportedOperation = "OperationDenied.UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 投递目标创建失败，检测到当前账号不存在，请确认您的账号状态。
         public static var accountNotExists: OperationDenied {
             OperationDenied(.accountNotExists)
         }
-        
+
         /// 不允许在自定义事件集上创建基于EB默认日志集的CLS事件目标。
         public static var defaultCLSResourceUnsupported: OperationDenied {
             OperationDenied(.defaultCLSResourceUnsupported)
         }
-        
+
         public static var esVersionUnsupported: OperationDenied {
             OperationDenied(.esVersionUnsupported)
         }
-        
+
         public static var eventBusResourceIsLocked: OperationDenied {
             OperationDenied(.eventBusResourceIsLocked)
         }
-        
+
         /// 操作失败，该资源不可修改或删除。
         public static var resourceImmutable: OperationDenied {
             OperationDenied(.resourceImmutable)
         }
-        
+
         /// 当前用户账号类型暂不支持操作，请提交工单处理。
         public static var unsupportedOperation: OperationDenied {
             OperationDenied(.unsupportedOperation)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
-            case .accountNotExists: 
+            case .accountNotExists:
                 code = .operationDenied_AccountNotExists
-            case .defaultCLSResourceUnsupported: 
+            case .defaultCLSResourceUnsupported:
                 code = .operationDenied_DefaultCLSResourceUnsupported
-            case .esVersionUnsupported: 
+            case .esVersionUnsupported:
                 code = .operationDenied_ESVersionUnsupported
-            case .eventBusResourceIsLocked: 
+            case .eventBusResourceIsLocked:
                 code = .operationDenied_EventBusResourceIsLocked
-            case .resourceImmutable: 
+            case .resourceImmutable:
                 code = .operationDenied_ResourceImmutable
-            case .unsupportedOperation: 
+            case .unsupportedOperation:
                 code = .operationDenied_UnsupportedOperation
             }
             return TCEbError(code, context: self.context)

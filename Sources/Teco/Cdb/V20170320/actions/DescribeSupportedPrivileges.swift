@@ -19,33 +19,33 @@ extension Cdb {
     public struct DescribeSupportedPrivilegesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeSupportedPrivileges返回参数结构体
     public struct DescribeSupportedPrivilegesResponse: TCResponseModel {
         /// 实例支持的全局权限。
         public let globalSupportedPrivileges: [String]
-        
+
         /// 实例支持的数据库权限。
         public let databaseSupportedPrivileges: [String]
-        
+
         /// 实例支持的数据库表权限。
         public let tableSupportedPrivileges: [String]
-        
+
         /// 实例支持的数据库列权限。
         public let columnSupportedPrivileges: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case globalSupportedPrivileges = "GlobalSupportedPrivileges"
             case databaseSupportedPrivileges = "DatabaseSupportedPrivileges"
@@ -54,15 +54,15 @@ extension Cdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云数据库实例支持的权限信息
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
     @inlinable
-    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedPrivilegesResponse > {
+    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedPrivilegesResponse> {
         self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库实例支持的权限信息
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
@@ -70,15 +70,15 @@ extension Cdb {
     public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedPrivilegesResponse {
         try await self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云数据库实例支持的权限信息
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
     @inlinable
-    public func describeSupportedPrivileges(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedPrivilegesResponse > {
+    public func describeSupportedPrivileges(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedPrivilegesResponse> {
         self.describeSupportedPrivileges(DescribeSupportedPrivilegesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库实例支持的权限信息
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。

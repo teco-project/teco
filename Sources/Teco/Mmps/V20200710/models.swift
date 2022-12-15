@@ -19,38 +19,38 @@ extension Mmps {
     public struct AppInfoItem: TCOutputModel {
         /// 小程序apiiid
         public let appPackage: String
-        
+
         /// 小程序应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appName: String?
-        
+
         /// 小程序应用版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appVersion: String?
-        
+
         /// 应用平台, 0:android, 1:ios, 2:小程序
         public let platform: Int64
-        
+
         /// 小程序隐私诊断报告下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportUrl: String?
-        
+
         /// 小程序隐私诊断报告名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportTitle: String?
-        
+
         /// 小程序隐私诊断堆栈报告下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let behaviorUrl: String?
-        
+
         /// 小程序隐私诊断堆栈报告名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let behaviorTitle: String?
-        
+
         /// 诊断风险项数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let highRiskCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case appPackage = "AppPackage"
             case appName = "AppName"
@@ -63,34 +63,34 @@ extension Mmps {
             case highRiskCount = "HighRiskCount"
         }
     }
-    
+
     /// 应用隐私合规诊断任务数据
     public struct AppTaskData: TCOutputModel {
         /// 任务id
         public let taskID: String
-        
+
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
         public let taskType: Int64
-        
+
         /// 0:默认值(待检测/待咨询), 1.检测中, 2:待评估, 3:评估中, 4:任务完成/咨询完成, 5:任务失败, 6:咨询中;
         public let taskStatus: Int64
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskErrMsg: String?
-        
+
         /// 任务来源,0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         public let source: Int64
-        
+
         /// 应用信息
         public let appInfo: AppInfoItem
-        
+
         /// 任务启动时间
         public let startTime: String
-        
+
         /// 任务完成时间(更新时间)
         public let endTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case taskType = "TaskType"
@@ -102,39 +102,39 @@ extension Mmps {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 翼扬诊断小程序报告数据
     public struct FlySecMiniAppReportData: TCOutputModel {
         /// 任务id
         public let taskID: String
-        
+
         /// 小程序appid
         public let miniAppID: String
-        
+
         /// 小程序名称
         public let miniAppName: String
-        
+
         /// 小程序版本
         public let miniAppVersion: String
-        
+
         /// 诊断模式 1:基础诊断，2:深度诊断
         public let mode: Int64
-        
+
         /// 诊断状态, 0:排队中, 1:成功, 2:失败, 3:进行中
         public let status: Int64
-        
+
         /// 诊断时间
         public let createTime: Int64
-        
+
         /// 诊断得分
         public let riskScore: String
-        
+
         /// 诊断风险等级 1:高风险 2:中风险 3:低风险
         public let riskLevel: Int64
-        
+
         /// 诊断8大维度得分情况(每项总分100分)
         public let riskItems: FlySecMiniAppRiskItems
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case miniAppID = "MiniAppID"
@@ -148,33 +148,33 @@ extension Mmps {
             case riskItems = "RiskItems"
         }
     }
-    
+
     /// 翼扬诊断小程序的诊断报告风险数据
     public struct FlySecMiniAppRiskItems: TCOutputModel {
         /// 代码防护(基础诊断)
         public let riskItem1Score: Int64
-        
+
         /// 开发测试信息泄露(基础诊断)
         public let riskItem2Score: Int64
-        
+
         /// 编码规范(基础诊断)
         public let riskItem3Score: Int64
-        
+
         /// 配置风险(基础诊断)
         public let riskItem4Score: Int64
-        
+
         /// 账号安全(基础诊断)
         public let riskItem5Score: Int64
-        
+
         /// 用户信息安全(基础诊断)
         public let riskItem6Score: Int64
-        
+
         /// 内部信息泄露(基础诊断)
         public let riskItem7Score: Int64
-        
+
         /// 其他安全(基础诊断)
         public let riskItem8Score: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case riskItem1Score = "RiskItem1Score"
             case riskItem2Score = "RiskItem2Score"
@@ -186,33 +186,33 @@ extension Mmps {
             case riskItem8Score = "RiskItem8Score"
         }
     }
-    
+
     /// 翼扬诊断小程序任务数据
     public struct FlySecMiniAppTaskData: TCOutputModel {
         /// 任务id
         public let taskID: String
-        
+
         /// 小程序appid
         public let miniAppID: String
-        
+
         /// 小程序名称
         public let miniAppName: String
-        
+
         /// 小程序版本
         public let miniAppVersion: String
-        
+
         /// 诊断模式 1:基础诊断，2:深度诊断
         public let mode: Int64
-        
+
         /// 诊断时间
         public let createTime: Int64
-        
+
         /// 诊断状态, 0:排队中, 1:成功, 2:失败, 3:进行中
         public let status: Int64
-        
+
         /// 诊断失败错误码
         public let error: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case miniAppID = "MiniAppID"
@@ -224,49 +224,49 @@ extension Mmps {
             case error = "Error"
         }
     }
-    
+
     /// 翼扬安全资源使用情况
     public struct ResourceUsageInfoData: TCOutputModel {
         /// 资源名称, 具体名称请查看产品配置
         public let resourceName: String
-        
+
         /// 资源总数
         public let total: Int64
-        
+
         /// 资源未使用次数
         public let unusedCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceName = "ResourceName"
             case total = "Total"
             case unusedCount = "UnusedCount"
         }
     }
-    
+
     /// 任务流步骤详情
     public struct TaskFlowStepsInfo: TCOutputModel {
         /// 流程编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowNo: String?
-        
+
         /// 流程名称
         public let flowName: String
-        
+
         /// 流程状态, 其他值:进行中, 2:成功, 3:失败
         public let flowStatus: Int64
-        
+
         /// 流程状态描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowStateDesc: String?
-        
+
         /// 流程启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 流程完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case flowNo = "FlowNo"
             case flowName = "FlowName"

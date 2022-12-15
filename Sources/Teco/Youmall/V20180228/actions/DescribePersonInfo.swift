@@ -19,26 +19,26 @@ extension Youmall {
     public struct DescribePersonInfoRequest: TCRequestModel {
         /// 公司ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 起始ID，第一次拉取时StartPersonId传0，后续送入的值为上一页最后一条数据项的PersonId
         public let startPersonId: UInt64
-        
+
         /// 偏移量：分页控制参数，第一页传0，第n页Offset=(n-1)*Limit
         public let offset: UInt64
-        
+
         /// Limit:每页的数据项，最大100，超过100会被强制指定为100
         public let limit: UInt64
-        
+
         /// 图片url过期时间：在当前时间+PictureExpires秒后，图片url无法继续正常访问；单位s；默认值1*24*60*60（1天）
         public let pictureExpires: UInt64?
-        
+
         /// 身份类型(0表示普通顾客，1 白名单，2 表示黑名单）
         public let personType: UInt64?
-        
-        public init (companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil) {
+
+        public init(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil) {
             self.companyId = companyId
             self.shopId = shopId
             self.startPersonId = startPersonId
@@ -47,7 +47,7 @@ extension Youmall {
             self.pictureExpires = pictureExpires
             self.personType = personType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -58,24 +58,24 @@ extension Youmall {
             case personType = "PersonType"
         }
     }
-    
+
     /// DescribePersonInfo返回参数结构体
     public struct DescribePersonInfoResponse: TCResponseModel {
         /// 公司ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 用户信息
         public let personInfoSet: [PersonInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -84,15 +84,15 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
-    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoResponse > {
+    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoResponse> {
         self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
@@ -100,15 +100,15 @@ extension Youmall {
     public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
         try await self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
-    public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoResponse > {
+    public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoResponse> {
         self.describePersonInfo(DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别

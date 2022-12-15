@@ -19,26 +19,26 @@ extension Monitor {
     public struct DescribeRecordingRulesRequest: TCRequestModel {
         /// Prometheus 实例 ID
         public let instanceId: String
-        
+
         /// 返回数量，默认为 20，最大值为 100
         public let limit: Int64?
-        
+
         /// 偏移量，默认为 0
         public let offset: Int64?
-        
+
         /// 规则 ID
         public let ruleId: String?
-        
+
         /// 规则状态码，取值如下：
         /// <li>1=RuleDeleted</li>
         /// <li>2=RuleEnabled</li>
         /// <li>3=RuleDisabled</li>
         public let ruleState: Int64?
-        
+
         /// 规则名称
         public let name: String?
-        
-        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, name: String? = nil) {
+
+        public init(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, name: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -46,7 +46,7 @@ extension Monitor {
             self.ruleState = ruleState
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
@@ -56,34 +56,34 @@ extension Monitor {
             case name = "Name"
         }
     }
-    
+
     /// DescribeRecordingRules返回参数结构体
     public struct DescribeRecordingRulesResponse: TCResponseModel {
         /// 规则组数量
         public let totalCount: Int64
-        
+
         /// 规则组详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordingRuleSet: [RecordingRuleSet]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case recordingRuleSet = "RecordingRuleSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询预聚合规则
     ///
     /// 根据条件查询 Prometheus 预聚合规则
     @inlinable
-    public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingRulesResponse > {
+    public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingRulesResponse> {
         self.client.execute(action: "DescribeRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询预聚合规则
     ///
     /// 根据条件查询 Prometheus 预聚合规则
@@ -91,15 +91,15 @@ extension Monitor {
     public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingRulesResponse {
         try await self.client.execute(action: "DescribeRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询预聚合规则
     ///
     /// 根据条件查询 Prometheus 预聚合规则
     @inlinable
-    public func describeRecordingRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingRulesResponse > {
+    public func describeRecordingRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingRulesResponse> {
         self.describeRecordingRules(DescribeRecordingRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询预聚合规则
     ///
     /// 根据条件查询 Prometheus 预聚合规则

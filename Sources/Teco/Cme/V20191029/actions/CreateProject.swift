@@ -19,14 +19,14 @@ extension Cme {
     public struct CreateProjectRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
-        
+
         /// 项目名称，不可超过30个字符。
         public let name: String
-        
+
         /// 项目归属者，即项目的所有者，后续操作只有该所有者有权限操作。
         /// 注：目前所有项目只能设置归属个人，暂不支持团队项目。
         public let owner: Entity
-        
+
         /// 项目类别，取值有：
         /// <li>VIDEO_EDIT：视频编辑。</li>
         /// <li>SWITCHER：导播台。</li>
@@ -34,40 +34,40 @@ extension Cme {
         /// <li>STREAM_CONNECT：云转推。</li>
         /// <li>RECORD_REPLAY：录制回放。</li>
         public let category: String
-        
+
         /// 项目模式，一个项目可以有多种模式并相互切换。
         /// 当 Category 为 VIDEO_EDIT 时，可选模式有：
         /// <li>Default：默认模式，即普通视频编辑项目。</li>
         /// <li>VideoEditTemplate：剪辑模板制作模式，用于制作剪辑模板。</li>
         /// 注：不填则为默认模式。
         public let mode: String?
-        
+
         /// 画布宽高比。
         /// 该字段已经废弃，请使用具体项目输入中的 AspectRatio 字段。
         public let aspectRatio: String?
-        
+
         /// 项目描述信息。
         public let description: String?
-        
+
         /// 导播台项目输入信息，仅当项目类型为 SWITCHER 时必填。
         public let switcherProjectInput: SwitcherProjectInput?
-        
+
         /// 直播剪辑项目输入信息，暂未开放，请勿使用。
         public let liveStreamClipProjectInput: LiveStreamClipProjectInput?
-        
+
         /// 视频编辑项目输入信息，仅当项目类型为 VIDEO_EDIT 时必填。
         public let videoEditProjectInput: VideoEditProjectInput?
-        
+
         /// 视频拆条项目输入信息，仅当项目类型为 VIDEO_SEGMENTATION  时必填。
         public let videoSegmentationProjectInput: VideoSegmentationProjectInput?
-        
+
         /// 云转推项目输入信息，仅当项目类型为 STREAM_CONNECT 时必填。
         public let streamConnectProjectInput: StreamConnectProjectInput?
-        
+
         /// 录制回放项目输入信息，仅当项目类型为 RECORD_REPLAY 时必填。
         public let recordReplayProjectInput: RecordReplayProjectInput?
-        
-        public init (platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil) {
+
+        public init(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil) {
             self.platform = platform
             self.name = name
             self.owner = owner
@@ -82,7 +82,7 @@ extension Cme {
             self.streamConnectProjectInput = streamConnectProjectInput
             self.recordReplayProjectInput = recordReplayProjectInput
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case name = "Name"
@@ -99,25 +99,25 @@ extension Cme {
             case recordReplayProjectInput = "RecordReplayProjectInput"
         }
     }
-    
+
     /// CreateProject返回参数结构体
     public struct CreateProjectResponse: TCResponseModel {
         /// 项目 Id。
         public let projectId: String
-        
+
         /// <li> 当 Catagory 为 STREAM_CONNECT 时，数组返回长度为2 ，第0个代表主输入源推流信息，第1个代表备输入源推流信息。只有当各自输入源类型为推流时才有有效内容。</li>
         public let rtmpPushInputInfoSet: [RtmpPushInputInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case rtmpPushInputInfoSet = "RtmpPushInputInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建项目
     ///
     /// 创建多媒体创作引擎项目，目前支持的项目类型有：
@@ -128,10 +128,10 @@ extension Cme {
     /// <li>录制回放项目：用于直播录制回放；</li>
     /// <li>云转推项目：用于直播云转推。</li>
     @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
         self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建项目
     ///
     /// 创建多媒体创作引擎项目，目前支持的项目类型有：
@@ -145,7 +145,7 @@ extension Cme {
     public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建项目
     ///
     /// 创建多媒体创作引擎项目，目前支持的项目类型有：
@@ -156,10 +156,10 @@ extension Cme {
     /// <li>录制回放项目：用于直播录制回放；</li>
     /// <li>云转推项目：用于直播云转推。</li>
     @inlinable
-    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
         self.createProject(CreateProjectRequest(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建项目
     ///
     /// 创建多媒体创作引擎项目，目前支持的项目类型有：

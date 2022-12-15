@@ -17,46 +17,46 @@
 extension Tcss {
     /// DescribeInspectionReport请求参数结构体
     public struct DescribeInspectionReportRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeInspectionReport返回参数结构体
     public struct DescribeInspectionReportResponse: TCResponseModel {
         /// 报告名称
         public let reportName: String
-        
+
         /// 下载链接
         public let reportUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case reportName = "ReportName"
             case reportUrl = "ReportUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询检查报告
     @inlinable
-    public func describeInspectionReport(_ input: DescribeInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInspectionReportResponse > {
+    public func describeInspectionReport(_ input: DescribeInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInspectionReportResponse> {
         self.client.execute(action: "DescribeInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询检查报告
     @inlinable
     public func describeInspectionReport(_ input: DescribeInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
         try await self.client.execute(action: "DescribeInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询检查报告
     @inlinable
-    public func describeInspectionReport(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInspectionReportResponse > {
+    public func describeInspectionReport(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInspectionReportResponse> {
         self.describeInspectionReport(DescribeInspectionReportRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询检查报告
     @inlinable
     public func describeInspectionReport(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {

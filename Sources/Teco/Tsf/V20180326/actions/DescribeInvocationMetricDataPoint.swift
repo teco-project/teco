@@ -19,27 +19,27 @@ extension Tsf {
     public struct DescribeInvocationMetricDataPointRequest: TCRequestModel {
         /// 开始时间
         public let startTime: String
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// 维度
         public let metricDimensionValues: [MetricDimensionValue]
-        
+
         /// 指标
         public let metrics: [Metric]
-        
+
         /// 调用视角。可选值：SERVER, CLIENT。默认为SERVER
         public let kind: String?
-        
-        public init (startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil) {
+
+        public init(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricDimensionValues = metricDimensionValues
             self.metrics = metrics
             self.kind = kind
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -48,40 +48,40 @@ extension Tsf {
             case kind = "Kind"
         }
     }
-    
+
     /// DescribeInvocationMetricDataPoint返回参数结构体
     public struct DescribeInvocationMetricDataPointResponse: TCResponseModel {
         /// 单值指标列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [MetricDataSingleValue]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询单值指标维度
     @inlinable
-    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataPointResponse > {
+    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataPointResponse> {
         self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单值指标维度
     @inlinable
     public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
         try await self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询单值指标维度
     @inlinable
-    public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataPointResponse > {
+    public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataPointResponse> {
         self.describeInvocationMetricDataPoint(DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单值指标维度
     @inlinable
     public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {

@@ -22,114 +22,114 @@ extension Ocr {
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
-        
+
         /// 图片的 Url 地址。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
-        
-        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
         }
     }
-    
+
     /// ResidenceBookletOCR返回参数结构体
     public struct ResidenceBookletOCRResponse: TCResponseModel {
         /// 户号
         public let householdNumber: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 性别
         public let sex: String
-        
+
         /// 出生地
         public let birthPlace: String
-        
+
         /// 民族
         public let nation: String
-        
+
         /// 籍贯
         public let nativePlace: String
-        
+
         /// 出生日期
         public let birthDate: String
-        
+
         /// 公民身份证件编号
         public let idCardNumber: String
-        
+
         /// 文化程度
         public let educationDegree: String
-        
+
         /// 服务处所
         public let servicePlace: String
-        
+
         /// 户别
         public let household: String
-        
+
         /// 住址
         public let address: String
-        
+
         /// 承办人签章文字
         public let signature: String
-        
+
         /// 签发日期
         public let issueDate: String
-        
+
         /// 户主页编号
         public let homePageNumber: String
-        
+
         /// 户主姓名
         public let householderName: String
-        
+
         /// 户主或与户主关系
         public let relationship: String
-        
+
         /// 本市（县）其他住址
         public let otherAddresses: String
-        
+
         /// 宗教信仰
         public let religiousBelief: String
-        
+
         /// 身高
         public let height: String
-        
+
         /// 血型
         public let bloodType: String
-        
+
         /// 婚姻状况
         public let maritalStatus: String
-        
+
         /// 兵役状况
         public let veteranStatus: String
-        
+
         /// 职业
         public let profession: String
-        
+
         /// 何时由何地迁来本市(县)
         public let moveToCityInformation: String
-        
+
         /// 何时由何地迁来本址
         public let moveToSiteInformation: String
-        
+
         /// 登记日期
         public let registrationDate: String
-        
+
         /// 曾用名
         public let formerName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case householdNumber = "HouseholdNumber"
             case name = "Name"
@@ -162,15 +162,15 @@ extension Ocr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
     @inlinable
-    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResidenceBookletOCRResponse > {
+    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
         self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
@@ -178,15 +178,15 @@ extension Ocr {
     public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
         try await self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
     @inlinable
-    public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResidenceBookletOCRResponse > {
+    public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
         self.residenceBookletOCR(ResidenceBookletOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。

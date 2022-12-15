@@ -26,87 +26,87 @@ extension TCVpcError {
             case vpgHaGroupNotFound = "InvalidParameter.VpgHaGroupNotFound"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数不支持同时指定。
         public static var coexist: InvalidParameter {
             InvalidParameter(.coexist)
         }
-        
+
         /// 指定过滤条件不存在。
         public static var filterInvalidKey: InvalidParameter {
             InvalidParameter(.filterInvalidKey)
         }
-        
+
         /// 指定过滤条件不是键值对。
         public static var filterNotDict: InvalidParameter {
             InvalidParameter(.filterNotDict)
         }
-        
+
         /// 指定过滤选项值不是列表。
         public static var filterValuesNotList: InvalidParameter {
             InvalidParameter(.filterValuesNotList)
         }
-        
+
         /// 该过滤规则不合法。
         public static var invalidFilter: InvalidParameter {
             InvalidParameter(.invalidFilter)
         }
-        
+
         /// 下一跳类型与下一跳网关不匹配。
         public static var nextHopMismatch: InvalidParameter {
             InvalidParameter(.nextHopMismatch)
         }
-        
+
         /// 专线网关跨可用区容灾组不存在。
         public static var vpgHaGroupNotFound: InvalidParameter {
             InvalidParameter(.vpgHaGroupNotFound)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
-            case .coexist: 
+            case .coexist:
                 code = .invalidParameter_Coexist
-            case .filterInvalidKey: 
+            case .filterInvalidKey:
                 code = .invalidParameter_FilterInvalidKey
-            case .filterNotDict: 
+            case .filterNotDict:
                 code = .invalidParameter_FilterNotDict
-            case .filterValuesNotList: 
+            case .filterValuesNotList:
                 code = .invalidParameter_FilterValuesNotList
-            case .invalidFilter: 
+            case .invalidFilter:
                 code = .invalidParameter_InvalidFilter
-            case .nextHopMismatch: 
+            case .nextHopMismatch:
                 code = .invalidParameter_NextHopMismatch
-            case .vpgHaGroupNotFound: 
+            case .vpgHaGroupNotFound:
                 code = .invalidParameter_VpgHaGroupNotFound
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCVpcError(code, context: self.context)

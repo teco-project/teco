@@ -22,13 +22,13 @@ extension Msp {
     public struct RegisterMigrationTaskRequest: TCRequestModel {
         /// 任务类型，取值database（数据库迁移）、file（文件迁移）、host（主机迁移）
         public let taskType: String
-        
+
         /// 任务名称
         public let taskName: String
-        
+
         /// 服务提供商名称
         public let serviceSupplier: String
-        
+
         /// 迁移任务创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -36,7 +36,7 @@ extension Msp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 迁移任务更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -44,29 +44,29 @@ extension Msp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date
-        
+
         /// 迁移类别，如数据库迁移中mysql:mysql代表从mysql迁移到mysql，文件迁移中oss:cos代表从阿里云oss迁移到腾讯云cos
         public let migrateClass: String
-        
+
         /// 迁移任务源信息
         public let srcInfo: SrcInfo?
-        
+
         /// 迁移任务目的信息
         public let dstInfo: DstInfo?
-        
+
         /// 源实例接入类型，数据库迁移时填写值为：extranet(外网),cvm(cvm自建实例),dcg(专线接入的实例),vpncloud(云vpn接入的实例),vpnselfbuild(自建vpn接入的实例)，cdb(云上cdb实例)
         public let srcAccessType: String?
-        
+
         /// 源实例数据库类型，数据库迁移时填写，取值为mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb 之一
         public let srcDatabaseType: String?
-        
+
         /// 目标实例接入类型，数据库迁移时填写值为：extranet(外网),cvm(cvm自建实例),dcg(专线接入的实例),vpncloud(云vpn接入的实例),vpnselfbuild(自建vpn接入的实例)，cdb(云上cdb实例)
         public let dstAccessType: String?
-        
+
         /// 目标实例数据库类型,数据库迁移时填写，取值为mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb 之一
         public let dstDatabaseType: String?
-        
-        public init (taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil) {
+
+        public init(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil) {
             self.taskType = taskType
             self.taskName = taskName
             self.serviceSupplier = serviceSupplier
@@ -80,7 +80,7 @@ extension Msp {
             self.dstAccessType = dstAccessType
             self.dstDatabaseType = dstDatabaseType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case taskName = "TaskName"
@@ -96,39 +96,39 @@ extension Msp {
             case dstDatabaseType = "DstDatabaseType"
         }
     }
-    
+
     /// RegisterMigrationTask返回参数结构体
     public struct RegisterMigrationTaskResponse: TCResponseModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 注册迁移任务
     @inlinable
-    public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterMigrationTaskResponse > {
+    public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterMigrationTaskResponse> {
         self.client.execute(action: "RegisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 注册迁移任务
     @inlinable
     public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {
         try await self.client.execute(action: "RegisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 注册迁移任务
     @inlinable
-    public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterMigrationTaskResponse > {
+    public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterMigrationTaskResponse> {
         self.registerMigrationTask(RegisterMigrationTaskRequest(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType), logger: logger, on: eventLoop)
     }
-    
+
     /// 注册迁移任务
     @inlinable
     public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {

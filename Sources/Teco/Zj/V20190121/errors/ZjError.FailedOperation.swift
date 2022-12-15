@@ -22,59 +22,59 @@ extension TCZjError {
             case templateAmountIsOverLimit = "FailedOperation.TemplateAmountIsOverLimit"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 签名创建失败。
         public static var smsSignCreate: FailedOperation {
             FailedOperation(.smsSignCreate)
         }
-        
+
         /// 短信模板已存在,请勿重复创建。
         public static var smsTemplateExists: FailedOperation {
             FailedOperation(.smsTemplateExists)
         }
-        
+
         /// 模板创建上限提醒。
         public static var templateAmountIsOverLimit: FailedOperation {
             FailedOperation(.templateAmountIsOverLimit)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asZjError() -> TCZjError {
             let code: TCZjError.Code
             switch self.error {
-            case .smsSignCreate: 
+            case .smsSignCreate:
                 code = .failedOperation_SmsSignCreate
-            case .smsTemplateExists: 
+            case .smsTemplateExists:
                 code = .failedOperation_SmsTemplateExists
-            case .templateAmountIsOverLimit: 
+            case .templateAmountIsOverLimit:
                 code = .failedOperation_TemplateAmountIsOverLimit
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCZjError(code, context: self.context)

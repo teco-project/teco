@@ -19,23 +19,23 @@ extension Waf {
     public struct ModifyDomainWhiteRuleRequest: TCRequestModel {
         /// 需要更改的规则的域名
         public let domain: String
-        
+
         /// 白名单id
         public let id: UInt64
-        
+
         /// 规则的id列表
         public let rules: [UInt64]
-        
+
         /// 规则匹配路径
         public let url: String
-        
+
         /// 规则匹配方法
         public let function: String
-        
+
         /// 规则的开关状态
         public let status: UInt64
-        
-        public init (domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64) {
+
+        public init(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64) {
             self.domain = domain
             self.id = id
             self.rules = rules
@@ -43,7 +43,7 @@ extension Waf {
             self.function = function
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case id = "Id"
@@ -53,35 +53,35 @@ extension Waf {
             case status = "Status"
         }
     }
-    
+
     /// ModifyDomainWhiteRule返回参数结构体
     public struct ModifyDomainWhiteRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更改某一条规则
     @inlinable
-    public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainWhiteRuleResponse > {
+    public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainWhiteRuleResponse> {
         self.client.execute(action: "ModifyDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更改某一条规则
     @inlinable
     public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {
         try await self.client.execute(action: "ModifyDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更改某一条规则
     @inlinable
-    public func modifyDomainWhiteRule(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainWhiteRuleResponse > {
+    public func modifyDomainWhiteRule(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainWhiteRuleResponse> {
         self.modifyDomainWhiteRule(ModifyDomainWhiteRuleRequest(domain: domain, id: id, rules: rules, url: url, function: function, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 更改某一条规则
     @inlinable
     public func modifyDomainWhiteRule(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {

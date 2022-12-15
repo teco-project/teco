@@ -19,38 +19,38 @@ extension Captcha {
     public struct DescribeCaptchaMiniRiskResultRequest: TCRequestModel {
         /// 固定填值：9（滑块验证码）
         public let captchaType: UInt64
-        
+
         /// 验证码返回给用户的票据
         public let ticket: String
-        
+
         /// 业务侧获取到的验证码使用者的外网IP
         public let userIp: String
-        
+
         /// 验证码应用APPID
         public let captchaAppId: UInt64
-        
+
         /// 用于服务器端校验验证码票据的验证密钥，请妥善保密，请勿泄露给第三方
         public let appSecretKey: String
-        
+
         /// 业务 ID，网站或应用在多个业务中使用此服务，通过此 ID 区分统计数据
         public let businessId: UInt64?
-        
+
         /// 场景 ID，网站或应用的业务下有多个场景使用此服务，通过此 ID 区分统计数据
         public let sceneId: UInt64?
-        
+
         /// mac 地址或设备唯一标识
         public let macAddress: String?
-        
+
         /// 手机设备号
         public let imei: String?
-        
+
         /// 验证场景：1 活动防刷场景，2 登录保护场景，3 注册保护场景。根据需求选择场景参数。
         public let sceneCode: Int64?
-        
+
         /// 用户操作来源的微信开放账号
         public let weChatOpenId: String?
-        
-        public init (captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil) {
+
+        public init(captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil) {
             self.captchaType = captchaType
             self.ticket = ticket
             self.userIp = userIp
@@ -63,7 +63,7 @@ extension Captcha {
             self.sceneCode = sceneCode
             self.weChatOpenId = weChatOpenId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case captchaType = "CaptchaType"
             case ticket = "Ticket"
@@ -78,7 +78,7 @@ extension Captcha {
             case weChatOpenId = "WeChatOpenId"
         }
     }
-    
+
     /// DescribeCaptchaMiniRiskResult返回参数结构体
     public struct DescribeCaptchaMiniRiskResultResponse: TCResponseModel {
         /// 1 ticket verification succeeded 票据验证成功
@@ -92,20 +92,20 @@ extension Captcha {
         /// 26 system internal error 系统内部错误
         /// 100 param err 参数校验错误
         public let captchaCode: Int64
-        
+
         /// 状态描述及验证错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let captchaMsg: String?
-        
+
         /// 拦截策略返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manageMarketingRiskValue: OutputManageMarketingRiskValue?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case captchaCode = "CaptchaCode"
             case captchaMsg = "CaptchaMsg"
@@ -113,25 +113,25 @@ extension Captcha {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 核查验证码小程序插件票据接入风控结果(Beta)
     @inlinable
-    public func describeCaptchaMiniRiskResult(_ input: DescribeCaptchaMiniRiskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaMiniRiskResultResponse > {
+    public func describeCaptchaMiniRiskResult(_ input: DescribeCaptchaMiniRiskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniRiskResultResponse> {
         self.client.execute(action: "DescribeCaptchaMiniRiskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 核查验证码小程序插件票据接入风控结果(Beta)
     @inlinable
     public func describeCaptchaMiniRiskResult(_ input: DescribeCaptchaMiniRiskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniRiskResultResponse {
         try await self.client.execute(action: "DescribeCaptchaMiniRiskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 核查验证码小程序插件票据接入风控结果(Beta)
     @inlinable
-    public func describeCaptchaMiniRiskResult(captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaMiniRiskResultResponse > {
+    public func describeCaptchaMiniRiskResult(captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniRiskResultResponse> {
         self.describeCaptchaMiniRiskResult(DescribeCaptchaMiniRiskResultRequest(captchaType: captchaType, ticket: ticket, userIp: userIp, captchaAppId: captchaAppId, appSecretKey: appSecretKey, businessId: businessId, sceneId: sceneId, macAddress: macAddress, imei: imei, sceneCode: sceneCode, weChatOpenId: weChatOpenId), logger: logger, on: eventLoop)
     }
-    
+
     /// 核查验证码小程序插件票据接入风控结果(Beta)
     @inlinable
     public func describeCaptchaMiniRiskResult(captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniRiskResultResponse {

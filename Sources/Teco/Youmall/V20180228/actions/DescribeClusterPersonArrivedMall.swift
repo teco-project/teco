@@ -22,10 +22,10 @@ extension Youmall {
     public struct DescribeClusterPersonArrivedMallRequest: TCRequestModel {
         /// 卖场编码
         public let mallId: String
-        
+
         /// 客户编码
         public let personId: String
-        
+
         /// 查询开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,7 +33,7 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,14 +41,14 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
-        public init (mallId: String, personId: String, startTime: Date, endTime: Date) {
+
+        public init(mallId: String, personId: String, startTime: Date, endTime: Date) {
             self.mallId = mallId
             self.personId = personId
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mallId = "MallId"
             case personId = "PersonId"
@@ -56,24 +56,24 @@ extension Youmall {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeClusterPersonArrivedMall返回参数结构体
     public struct DescribeClusterPersonArrivedMallResponse: TCResponseModel {
         /// 卖场系统编码
         public let mallId: String
-        
+
         /// 卖场客户编码
         public let mallCode: String
-        
+
         /// 客户编码
         public let personId: String
-        
+
         /// 到场信息
         public let arrivedMallSet: [ArrivedMallInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mallId = "MallId"
             case mallCode = "MallCode"
@@ -82,15 +82,15 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询客户到场信息（按天聚合）
     ///
     /// 输出开始时间到结束时间段内的进出场数据。按天聚合的情况下，每天多次进出场算一次，以最初进场时间为进场时间，最后离场时间为离场时间。停留时间为多次进出场的停留时间之和。
     @inlinable
-    public func describeClusterPersonArrivedMall(_ input: DescribeClusterPersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterPersonArrivedMallResponse > {
+    public func describeClusterPersonArrivedMall(_ input: DescribeClusterPersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterPersonArrivedMallResponse> {
         self.client.execute(action: "DescribeClusterPersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户到场信息（按天聚合）
     ///
     /// 输出开始时间到结束时间段内的进出场数据。按天聚合的情况下，每天多次进出场算一次，以最初进场时间为进场时间，最后离场时间为离场时间。停留时间为多次进出场的停留时间之和。
@@ -98,15 +98,15 @@ extension Youmall {
     public func describeClusterPersonArrivedMall(_ input: DescribeClusterPersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterPersonArrivedMallResponse {
         try await self.client.execute(action: "DescribeClusterPersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询客户到场信息（按天聚合）
     ///
     /// 输出开始时间到结束时间段内的进出场数据。按天聚合的情况下，每天多次进出场算一次，以最初进场时间为进场时间，最后离场时间为离场时间。停留时间为多次进出场的停留时间之和。
     @inlinable
-    public func describeClusterPersonArrivedMall(mallId: String, personId: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterPersonArrivedMallResponse > {
+    public func describeClusterPersonArrivedMall(mallId: String, personId: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterPersonArrivedMallResponse> {
         self.describeClusterPersonArrivedMall(DescribeClusterPersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户到场信息（按天聚合）
     ///
     /// 输出开始时间到结束时间段内的进出场数据。按天聚合的情况下，每天多次进出场算一次，以最初进场时间为进场时间，最后离场时间为离场时间。停留时间为多次进出场的停留时间之和。

@@ -19,27 +19,27 @@ extension Cdc {
     public struct ModifyDedicatedClusterInfoRequest: TCRequestModel {
         /// 本地专用集群ID
         public let dedicatedClusterId: String
-        
+
         /// 集群的新名称
         public let name: String?
-        
+
         /// 集群的新可用区
         public let zone: String?
-        
+
         /// 集群的新描述信息
         public let description: String?
-        
+
         /// 集群所在站点
         public let siteId: String?
-        
-        public init (dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil) {
+
+        public init(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil) {
             self.dedicatedClusterId = dedicatedClusterId
             self.name = name
             self.zone = zone
             self.description = description
             self.siteId = siteId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dedicatedClusterId = "DedicatedClusterId"
             case name = "Name"
@@ -48,35 +48,35 @@ extension Cdc {
             case siteId = "SiteId"
         }
     }
-    
+
     /// ModifyDedicatedClusterInfo返回参数结构体
     public struct ModifyDedicatedClusterInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改本地专用集群信息
     @inlinable
-    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDedicatedClusterInfoResponse > {
+    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDedicatedClusterInfoResponse> {
         self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改本地专用集群信息
     @inlinable
     public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
         try await self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改本地专用集群信息
     @inlinable
-    public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDedicatedClusterInfoResponse > {
+    public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDedicatedClusterInfoResponse> {
         self.modifyDedicatedClusterInfo(ModifyDedicatedClusterInfoRequest(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改本地专用集群信息
     @inlinable
     public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {

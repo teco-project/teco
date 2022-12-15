@@ -19,49 +19,49 @@ extension Tsf {
     public struct EnableUnitRouteRequest: TCRequestModel {
         /// 网关实体ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// EnableUnitRoute返回参数结构体
     public struct EnableUnitRouteResponse: TCResponseModel {
         /// 返回结果，成功失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用单元化路由
     @inlinable
-    public func enableUnitRoute(_ input: EnableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableUnitRouteResponse > {
+    public func enableUnitRoute(_ input: EnableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRouteResponse> {
         self.client.execute(action: "EnableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用单元化路由
     @inlinable
     public func enableUnitRoute(_ input: EnableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {
         try await self.client.execute(action: "EnableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用单元化路由
     @inlinable
-    public func enableUnitRoute(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableUnitRouteResponse > {
+    public func enableUnitRoute(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRouteResponse> {
         self.enableUnitRoute(EnableUnitRouteRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用单元化路由
     @inlinable
     public func enableUnitRoute(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {

@@ -19,23 +19,23 @@ extension Tdmq {
     public struct DeleteSubscriptionsRequest: TCRequestModel {
         /// 订阅关系集合，每次最多删除20个。
         public let subscriptionTopicSets: [SubscriptionTopic]
-        
+
         /// pulsar集群Id。
         public let clusterId: String?
-        
+
         /// 环境（命名空间）名称。
         public let environmentId: String?
-        
+
         /// 是否强制删除，默认为false
         public let force: Bool?
-        
-        public init (subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil) {
+
+        public init(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil) {
             self.subscriptionTopicSets = subscriptionTopicSets
             self.clusterId = clusterId
             self.environmentId = environmentId
             self.force = force
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subscriptionTopicSets = "SubscriptionTopicSets"
             case clusterId = "ClusterId"
@@ -43,39 +43,39 @@ extension Tdmq {
             case force = "Force"
         }
     }
-    
+
     /// DeleteSubscriptions返回参数结构体
     public struct DeleteSubscriptionsResponse: TCResponseModel {
         /// 成功删除的订阅关系数组。
         public let subscriptionTopicSets: [SubscriptionTopic]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subscriptionTopicSets = "SubscriptionTopicSets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除订阅关系
     @inlinable
-    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubscriptionsResponse > {
+    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscriptionsResponse> {
         self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除订阅关系
     @inlinable
     public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
         try await self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除订阅关系
     @inlinable
-    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubscriptionsResponse > {
+    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscriptionsResponse> {
         self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除订阅关系
     @inlinable
     public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {

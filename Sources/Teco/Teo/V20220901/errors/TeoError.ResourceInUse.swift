@@ -33,123 +33,123 @@ extension TCTeoError {
             case zone = "ResourceInUse.Zone"
             case other = "ResourceInUse"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var aliasDomain: ResourceInUse {
             ResourceInUse(.aliasDomain)
         }
-        
+
         public static var cname: ResourceInUse {
             ResourceInUse(.cname)
         }
-        
+
         public static var dns: ResourceInUse {
             ResourceInUse(.dns)
         }
-        
+
         public static var duplicateName: ResourceInUse {
             ResourceInUse(.duplicateName)
         }
-        
+
         public static var genericHost: ResourceInUse {
             ResourceInUse(.genericHost)
         }
-        
+
         public static var host: ResourceInUse {
             ResourceInUse(.host)
         }
-        
+
         public static var ns: ResourceInUse {
             ResourceInUse(.ns)
         }
-        
+
         /// 资源被其他用户接入。
         public static var others: ResourceInUse {
             ResourceInUse(.others)
         }
-        
+
         public static var othersAliasDomain: ResourceInUse {
             ResourceInUse(.othersAliasDomain)
         }
-        
+
         public static var othersCname: ResourceInUse {
             ResourceInUse(.othersCname)
         }
-        
+
         public static var othersHost: ResourceInUse {
             ResourceInUse(.othersHost)
         }
-        
+
         public static var othersNS: ResourceInUse {
             ResourceInUse(.othersNS)
         }
-        
+
         public static var selfAndOthersCname: ResourceInUse {
             ResourceInUse(.selfAndOthersCname)
         }
-        
+
         public static var zone: ResourceInUse {
             ResourceInUse(.zone)
         }
-        
+
         /// 资源被占用。
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
-            case .aliasDomain: 
+            case .aliasDomain:
                 code = .resourceInUse_AliasDomain
-            case .cname: 
+            case .cname:
                 code = .resourceInUse_Cname
-            case .dns: 
+            case .dns:
                 code = .resourceInUse_Dns
-            case .duplicateName: 
+            case .duplicateName:
                 code = .resourceInUse_DuplicateName
-            case .genericHost: 
+            case .genericHost:
                 code = .resourceInUse_GenericHost
-            case .host: 
+            case .host:
                 code = .resourceInUse_Host
-            case .ns: 
+            case .ns:
                 code = .resourceInUse_NS
-            case .others: 
+            case .others:
                 code = .resourceInUse_Others
-            case .othersAliasDomain: 
+            case .othersAliasDomain:
                 code = .resourceInUse_OthersAliasDomain
-            case .othersCname: 
+            case .othersCname:
                 code = .resourceInUse_OthersCname
-            case .othersHost: 
+            case .othersHost:
                 code = .resourceInUse_OthersHost
-            case .othersNS: 
+            case .othersNS:
                 code = .resourceInUse_OthersNS
-            case .selfAndOthersCname: 
+            case .selfAndOthersCname:
                 code = .resourceInUse_SelfAndOthersCname
-            case .zone: 
+            case .zone:
                 code = .resourceInUse_Zone
-            case .other: 
+            case .other:
                 code = .resourceInUse
             }
             return TCTeoError(code, context: self.context)

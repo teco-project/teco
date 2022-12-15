@@ -20,45 +20,45 @@ extension TCGsError {
             case notRunning = "UnsupportedOperation.NotRunning"
             case stopping = "UnsupportedOperation.Stopping"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 机器未运行。
         public static var notRunning: UnsupportedOperation {
             UnsupportedOperation(.notRunning)
         }
-        
+
         /// 退出游戏中。
         public static var stopping: UnsupportedOperation {
             UnsupportedOperation(.stopping)
         }
-        
+
         public func asGsError() -> TCGsError {
             let code: TCGsError.Code
             switch self.error {
-            case .notRunning: 
+            case .notRunning:
                 code = .unsupportedOperation_NotRunning
-            case .stopping: 
+            case .stopping:
                 code = .unsupportedOperation_Stopping
             }
             return TCGsError(code, context: self.context)

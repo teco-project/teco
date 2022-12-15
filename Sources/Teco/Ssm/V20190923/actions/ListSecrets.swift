@@ -19,13 +19,13 @@ extension Ssm {
     public struct ListSecretsRequest: TCRequestModel {
         /// 查询列表的起始位置，以0开始，不设置默认为0。
         public let offset: UInt64?
-        
+
         /// 单次查询返回的最大数量，0或不设置则使用默认值 20。
         public let limit: UInt64?
-        
+
         /// 根据创建时间的排序方式，0或者不设置则使用降序排序， 1 表示升序排序。
         public let orderType: UInt64?
-        
+
         /// 根据凭据状态进行过滤。
         /// 默认为0表示查询全部。
         /// 1 --  表示查询Enabled 凭据列表。
@@ -35,27 +35,27 @@ extension Ssm {
         /// 5 --  表示CreateFailed。
         /// 其中状态PendingCreate和CreateFailed只有在SecretType为云产品凭据时生效
         public let state: UInt64?
-        
+
         /// 根据凭据名称进行过滤，为空表示不过滤。
         public let searchSecretName: String?
-        
+
         /// 标签过滤条件。
         public let tagFilters: [TagFilter]?
-        
+
         /// 0  -- 表示用户自定义凭据，默认为0。
         /// 1  -- 表示用户云产品凭据。
         /// 2 -- 表示SSH密钥对凭据。
         /// 3 -- 表示云API密钥对凭据。
         public let secretType: UInt64?
-        
+
         /// 此参数仅在SecretType参数值为1时生效，
         /// 当SecretType值为1时：
         /// 如果ProductName值为空，则表示查询所有类型的云产品凭据
         /// 如果ProductName值为Mysql，则表示查询Mysql数据库凭据
         /// 如果ProductName值为Tdsql-mysql，则表示查询Tdsql（Mysql版本）的凭据
         public let productName: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, orderType: UInt64? = nil, state: UInt64? = nil, searchSecretName: String? = nil, tagFilters: [TagFilter]? = nil, secretType: UInt64? = nil, productName: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, orderType: UInt64? = nil, state: UInt64? = nil, searchSecretName: String? = nil, tagFilters: [TagFilter]? = nil, secretType: UInt64? = nil, productName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderType = orderType
@@ -65,7 +65,7 @@ extension Ssm {
             self.secretType = secretType
             self.productName = productName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -77,33 +77,33 @@ extension Ssm {
             case productName = "ProductName"
         }
     }
-    
+
     /// ListSecrets返回参数结构体
     public struct ListSecretsResponse: TCResponseModel {
         /// 根据State和SearchSecretName 筛选的凭据总数。
         public let totalCount: UInt64
-        
+
         /// 返回凭据信息列表。
         public let secretMetadatas: [SecretMetadata]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case secretMetadatas = "SecretMetadatas"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取凭据的详细信息列表
     ///
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
     @inlinable
-    public func listSecrets(_ input: ListSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretsResponse > {
+    public func listSecrets(_ input: ListSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretsResponse> {
         self.client.execute(action: "ListSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取凭据的详细信息列表
     ///
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
@@ -111,15 +111,15 @@ extension Ssm {
     public func listSecrets(_ input: ListSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretsResponse {
         try await self.client.execute(action: "ListSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取凭据的详细信息列表
     ///
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
     @inlinable
-    public func listSecrets(offset: UInt64? = nil, limit: UInt64? = nil, orderType: UInt64? = nil, state: UInt64? = nil, searchSecretName: String? = nil, tagFilters: [TagFilter]? = nil, secretType: UInt64? = nil, productName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretsResponse > {
+    public func listSecrets(offset: UInt64? = nil, limit: UInt64? = nil, orderType: UInt64? = nil, state: UInt64? = nil, searchSecretName: String? = nil, tagFilters: [TagFilter]? = nil, secretType: UInt64? = nil, productName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretsResponse> {
         self.listSecrets(ListSecretsRequest(offset: offset, limit: limit, orderType: orderType, state: state, searchSecretName: searchSecretName, tagFilters: tagFilters, secretType: secretType, productName: productName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取凭据的详细信息列表
     ///
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。

@@ -19,91 +19,91 @@ extension Postgres {
     public struct CreateInstancesRequest: TCRequestModel {
         /// 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
         public let specCode: String
-        
+
         /// 实例容量大小，单位：GB。
         public let storage: UInt64
-        
+
         /// 一次性购买的实例数量。取值1-10。
         public let instanceCount: UInt64
-        
+
         /// 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
         public let period: UInt64
-        
+
         /// 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
         public let zone: String
-        
+
         /// 实例字符集，目前只支持：UTF8、LATIN1。
         public let charset: String
-        
+
         /// 实例根账号用户名。
         public let adminName: String
-        
+
         /// 实例根账号用户名对应的密码。
         public let adminPassword: String
-        
+
         /// 项目ID。
         public let projectId: Int64?
-        
+
         /// PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBMajorVersion、DBKernelVersion至少需要传递一个。
         public let dbVersion: String?
-        
+
         /// 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
         public let instanceChargeType: String?
-        
+
         /// 是否自动使用代金券。1（是），0（否），默认不使用。
         public let autoVoucher: UInt64?
-        
+
         /// 代金券ID列表，目前仅支持指定一张代金券。
         public let voucherIds: [String]?
-        
+
         /// 私有网络ID。
         public let vpcId: String?
-        
+
         /// 已配置的私有网络中的子网ID。
         public let subnetId: String?
-        
+
         /// 续费标记：0-正常续费（默认）；1-自动续费。
         public let autoRenewFlag: Int64?
-        
+
         /// 活动ID。
         public let activityId: Int64?
-        
+
         /// 实例名。
         public let name: String?
-        
+
         /// 是否需要支持Ipv6，1：是，0：否（默认）。
         public let needSupportIpv6: UInt64?
-        
+
         /// 实例需要绑定的Tag信息，默认为空。
         public let tagList: [Tag]?
-        
+
         /// 安全组ID。
         public let securityGroupIds: [String]?
-        
+
         /// PostgreSQL主要版本。目前支持10，11，12，13这几个版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBVersion、DBKernelVersion至少需要传递一个。
         public let dbMajorVersion: String?
-        
+
         /// PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例。该参数和DBVersion、DBMajorVersion至少需要传递一个。
         public let dbKernelVersion: String?
-        
+
         /// 实例节点信息，购买跨可用区实例时填写。
         public let dbNodeSet: [DBNode]?
-        
+
         /// 是否需要支持数据透明加密，1：是，0：否（默认）。
         public let needSupportTDE: UInt64?
-        
+
         /// 自定义密钥的KeyId，若选择自定义密匙加密，则需要传入自定义密匙的KeyId，KeyId是CMK的唯一标识。
         public let kmsKeyId: String?
-        
+
         /// 使用KMS服务的地域，KMSRegion为空默认使用本地域的KMS，本地域不支持的情况下需自选其他KMS支持的地域。
         public let kmsRegion: String?
-        
+
         /// 数据库引擎，支持：
         /// 1、postgresql（云数据库PostgreSQL）；
         /// 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
         /// 如不指定默认使用postgresql。
         public let dbEngine: String?
-        
+
         /// 数据库引擎的配置信息，配置格式如下：
         /// {"$key1":"$value1", "$key2":"$value2"}
         /// 各引擎支持如下：
@@ -114,8 +114,8 @@ extension Postgres {
         /// serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下：
         /// "bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。
         public let dbEngineConfig: String?
-        
-        public init (specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil) {
+
+        public init(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil) {
             self.specCode = specCode
             self.storage = storage
             self.instanceCount = instanceCount
@@ -146,7 +146,7 @@ extension Postgres {
             self.dbEngine = dbEngine
             self.dbEngineConfig = dbEngineConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case specCode = "SpecCode"
             case storage = "Storage"
@@ -179,21 +179,21 @@ extension Postgres {
             case dbEngineConfig = "DBEngineConfig"
         }
     }
-    
+
     /// CreateInstances返回参数结构体
     public struct CreateInstancesResponse: TCResponseModel {
         /// 订单号列表。每个实例对应一个订单号。
         public let dealNames: [String]
-        
+
         /// 冻结流水号。
         public let billId: String
-        
+
         /// 创建成功的实例ID集合，只在后付费情景下有返回值。
         public let dbInstanceIdSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealNames = "DealNames"
             case billId = "BillId"
@@ -201,15 +201,15 @@ extension Postgres {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建实例(新)
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
     @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
+    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
         self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建实例(新)
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
@@ -217,15 +217,15 @@ extension Postgres {
     public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
         try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建实例(新)
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
     @inlinable
-    public func createInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
+    public func createInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
         self.createInstances(CreateInstancesRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, charset: charset, adminName: adminName, adminPassword: adminPassword, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion, dbNodeSet: dbNodeSet, needSupportTDE: needSupportTDE, kmsKeyId: kmsKeyId, kmsRegion: kmsRegion, dbEngine: dbEngine, dbEngineConfig: dbEngineConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建实例(新)
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。

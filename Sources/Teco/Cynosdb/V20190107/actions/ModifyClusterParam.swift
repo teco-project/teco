@@ -19,58 +19,58 @@ extension Cynosdb {
     public struct ModifyClusterParamRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 要修改的参数列表。每一个元素是ParamName、CurrentValue和OldValue的组合。ParamName是参数名称，CurrentValue是当前值，OldValue是之前值且不做校验
         public let paramList: [ParamItem]
-        
+
         /// 维护期间执行-yes,立即执行-no
         public let isInMaintainPeriod: String?
-        
-        public init (clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil) {
+
+        public init(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil) {
             self.clusterId = clusterId
             self.paramList = paramList
             self.isInMaintainPeriod = isInMaintainPeriod
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case paramList = "ParamList"
             case isInMaintainPeriod = "IsInMaintainPeriod"
         }
     }
-    
+
     /// ModifyClusterParam返回参数结构体
     public struct ModifyClusterParamResponse: TCResponseModel {
         /// 异步请求Id，用于查询结果
         public let asyncRequestId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改集群参数
     @inlinable
-    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterParamResponse > {
+    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterParamResponse> {
         self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群参数
     @inlinable
     public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
         try await self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改集群参数
     @inlinable
-    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterParamResponse > {
+    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterParamResponse> {
         self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群参数
     @inlinable
     public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {

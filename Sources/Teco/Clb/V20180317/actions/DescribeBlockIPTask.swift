@@ -19,38 +19,38 @@ extension Clb {
     public struct DescribeBlockIPTaskRequest: TCRequestModel {
         /// ModifyBlockIPList 接口返回的异步任务的ID。
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeBlockIPTask返回参数结构体
     public struct DescribeBlockIPTaskResponse: TCResponseModel {
         /// 1 running，2 fail，6 succ
         public let status: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询封禁IP（黑名单）异步任务的执行状态
     ///
     /// 根据 ModifyBlockIPList 接口返回的异步任务的ID，查询封禁IP（黑名单）异步任务的执行状态。（接口灰度中，如需使用请提工单）
     @inlinable
-    public func describeBlockIPTask(_ input: DescribeBlockIPTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockIPTaskResponse > {
+    public func describeBlockIPTask(_ input: DescribeBlockIPTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockIPTaskResponse> {
         self.client.execute(action: "DescribeBlockIPTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询封禁IP（黑名单）异步任务的执行状态
     ///
     /// 根据 ModifyBlockIPList 接口返回的异步任务的ID，查询封禁IP（黑名单）异步任务的执行状态。（接口灰度中，如需使用请提工单）
@@ -58,15 +58,15 @@ extension Clb {
     public func describeBlockIPTask(_ input: DescribeBlockIPTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockIPTaskResponse {
         try await self.client.execute(action: "DescribeBlockIPTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询封禁IP（黑名单）异步任务的执行状态
     ///
     /// 根据 ModifyBlockIPList 接口返回的异步任务的ID，查询封禁IP（黑名单）异步任务的执行状态。（接口灰度中，如需使用请提工单）
     @inlinable
-    public func describeBlockIPTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockIPTaskResponse > {
+    public func describeBlockIPTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockIPTaskResponse> {
         self.describeBlockIPTask(DescribeBlockIPTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询封禁IP（黑名单）异步任务的执行状态
     ///
     /// 根据 ModifyBlockIPList 接口返回的异步任务的ID，查询封禁IP（黑名单）异步任务的执行状态。（接口灰度中，如需使用请提工单）

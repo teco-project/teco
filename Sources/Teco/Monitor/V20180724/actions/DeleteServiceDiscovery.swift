@@ -19,31 +19,31 @@ extension Monitor {
     public struct DeleteServiceDiscoveryRequest: TCRequestModel {
         /// Prometheus 实例 ID，例如：prom-sdfk2342a
         public let instanceId: String
-        
+
         /// <li>类型是 TKE，为对应的腾讯云容器服务集群 ID</li>
         public let kubeClusterId: String
-        
+
         /// 用户 Kubernetes 集群类型：
         /// <li> 1 = 容器服务集群(TKE) </li>
         public let kubeType: Int64
-        
+
         /// 服务发现类型，取值如下：
         /// <li> 1 = ServiceMonitor</li>
         /// <li> 2 = PodMonitor</li>
         /// <li> 3 = PodMonitor</li>
         public let type: Int64
-        
+
         /// 服务发现配置信息
         public let yaml: String
-        
-        public init (instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String) {
+
+        public init(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String) {
             self.instanceId = instanceId
             self.kubeClusterId = kubeClusterId
             self.kubeType = kubeType
             self.type = type
             self.yaml = yaml
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case kubeClusterId = "KubeClusterId"
@@ -52,27 +52,27 @@ extension Monitor {
             case yaml = "Yaml"
         }
     }
-    
+
     /// DeleteServiceDiscovery返回参数结构体
     public struct DeleteServiceDiscoveryResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除服务发现
     ///
     /// 删除在腾讯云容器服务下创建的 Prometheus 服务发现。
     /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
     /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
     @inlinable
-    public func deleteServiceDiscovery(_ input: DeleteServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceDiscoveryResponse > {
+    public func deleteServiceDiscovery(_ input: DeleteServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceDiscoveryResponse> {
         self.client.execute(action: "DeleteServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除服务发现
     ///
     /// 删除在腾讯云容器服务下创建的 Prometheus 服务发现。
@@ -82,17 +82,17 @@ extension Monitor {
     public func deleteServiceDiscovery(_ input: DeleteServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceDiscoveryResponse {
         try await self.client.execute(action: "DeleteServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除服务发现
     ///
     /// 删除在腾讯云容器服务下创建的 Prometheus 服务发现。
     /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
     /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
     @inlinable
-    public func deleteServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceDiscoveryResponse > {
+    public func deleteServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceDiscoveryResponse> {
         self.deleteServiceDiscovery(DeleteServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除服务发现
     ///
     /// 删除在腾讯云容器服务下创建的 Prometheus 服务发现。

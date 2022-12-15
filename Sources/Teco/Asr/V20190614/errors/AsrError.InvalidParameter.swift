@@ -25,80 +25,80 @@ extension TCAsrError {
             case modelState = "InvalidParameter.ModelState"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请求数据长度无效。
         public static var errorContentlength: InvalidParameter {
             InvalidParameter(.errorContentlength)
         }
-        
+
         /// 参数不全。
         public static var errorParamsMissing: InvalidParameter {
             InvalidParameter(.errorParamsMissing)
         }
-        
+
         /// 解析请求数据失败。
         public static var errorParsequest: InvalidParameter {
             InvalidParameter(.errorParsequest)
         }
-        
+
         /// 文件编码错误。
         public static var fileEncode: InvalidParameter {
             InvalidParameter(.fileEncode)
         }
-        
+
         /// 非法的词表状态。
         public static var invalidVocabState: InvalidParameter {
             InvalidParameter(.invalidVocabState)
         }
-        
+
         /// 该模型状态不允许删除。
         public static var modelState: InvalidParameter {
             InvalidParameter(.modelState)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asAsrError() -> TCAsrError {
             let code: TCAsrError.Code
             switch self.error {
-            case .errorContentlength: 
+            case .errorContentlength:
                 code = .invalidParameter_ErrorContentlength
-            case .errorParamsMissing: 
+            case .errorParamsMissing:
                 code = .invalidParameter_ErrorParamsMissing
-            case .errorParsequest: 
+            case .errorParsequest:
                 code = .invalidParameter_ErrorParsequest
-            case .fileEncode: 
+            case .fileEncode:
                 code = .invalidParameter_FileEncode
-            case .invalidVocabState: 
+            case .invalidVocabState:
                 code = .invalidParameter_InvalidVocabState
-            case .modelState: 
+            case .modelState:
                 code = .invalidParameter_ModelState
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCAsrError(code, context: self.context)

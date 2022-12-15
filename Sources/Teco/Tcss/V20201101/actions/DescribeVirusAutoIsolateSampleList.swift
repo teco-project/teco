@@ -19,30 +19,30 @@ extension Tcss {
     public struct DescribeVirusAutoIsolateSampleListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>MD5- String - 是否必填：否 - md5 </li>
         /// <li>AutoIsolateSwitch- String - 是否必填：否 - 自动隔离开关 </li>
         /// <li>VirusName- String - 是否必填：否 - 病毒名 </li>
         public let filters: [RunTimeFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式
         public let order: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -51,43 +51,43 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeVirusAutoIsolateSampleList返回参数结构体
     public struct DescribeVirusAutoIsolateSampleListResponse: TCResponseModel {
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 木马自动隔离样本列表
         public let list: [VirusAutoIsolateSampleInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询木马自动隔离样本列表
     @inlinable
-    public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleListResponse > {
+    public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSampleListResponse> {
         self.client.execute(action: "DescribeVirusAutoIsolateSampleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询木马自动隔离样本列表
     @inlinable
     public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleListResponse {
         try await self.client.execute(action: "DescribeVirusAutoIsolateSampleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询木马自动隔离样本列表
     @inlinable
-    public func describeVirusAutoIsolateSampleList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleListResponse > {
+    public func describeVirusAutoIsolateSampleList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSampleListResponse> {
         self.describeVirusAutoIsolateSampleList(DescribeVirusAutoIsolateSampleListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询木马自动隔离样本列表
     @inlinable
     public func describeVirusAutoIsolateSampleList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleListResponse {

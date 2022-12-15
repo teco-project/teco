@@ -19,48 +19,48 @@ extension Postgres {
     public struct ModifyDBInstanceReadOnlyGroupRequest: TCRequestModel {
         /// 实例ID
         public let dbInstanceId: String
-        
+
         /// 当前实例所在只读组ID
         public let readOnlyGroupId: String
-        
+
         /// 实例修改的目标只读组ID
         public let newReadOnlyGroupId: String
-        
-        public init (dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String) {
+
+        public init(dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String) {
             self.dbInstanceId = dbInstanceId
             self.readOnlyGroupId = readOnlyGroupId
             self.newReadOnlyGroupId = newReadOnlyGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case readOnlyGroupId = "ReadOnlyGroupId"
             case newReadOnlyGroupId = "NewReadOnlyGroupId"
         }
     }
-    
+
     /// ModifyDBInstanceReadOnlyGroup返回参数结构体
     public struct ModifyDBInstanceReadOnlyGroupResponse: TCResponseModel {
         /// 流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例所属的只读组
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
     @inlinable
-    public func modifyDBInstanceReadOnlyGroup(_ input: ModifyDBInstanceReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceReadOnlyGroupResponse > {
+    public func modifyDBInstanceReadOnlyGroup(_ input: ModifyDBInstanceReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceReadOnlyGroupResponse> {
         self.client.execute(action: "ModifyDBInstanceReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属的只读组
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
@@ -68,15 +68,15 @@ extension Postgres {
     public func modifyDBInstanceReadOnlyGroup(_ input: ModifyDBInstanceReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceReadOnlyGroupResponse {
         try await self.client.execute(action: "ModifyDBInstanceReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例所属的只读组
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
     @inlinable
-    public func modifyDBInstanceReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceReadOnlyGroupResponse > {
+    public func modifyDBInstanceReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceReadOnlyGroupResponse> {
         self.modifyDBInstanceReadOnlyGroup(ModifyDBInstanceReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId, newReadOnlyGroupId: newReadOnlyGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属的只读组
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组

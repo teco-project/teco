@@ -22,61 +22,61 @@ extension TCTatError {
             case invocationNotFound = "ResourceNotFound.InvocationNotFound"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 命令不存在。
         public static var commandNotFound: ResourceNotFound {
             ResourceNotFound(.commandNotFound)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
         }
-        
+
         /// 执行活动未找到。
         ///
         /// 检查参数InvocationId
         public static var invocationNotFound: ResourceNotFound {
             ResourceNotFound(.invocationNotFound)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asTatError() -> TCTatError {
             let code: TCTatError.Code
             switch self.error {
-            case .commandNotFound: 
+            case .commandNotFound:
                 code = .resourceNotFound_CommandNotFound
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .resourceNotFound_InstanceNotFound
-            case .invocationNotFound: 
+            case .invocationNotFound:
                 code = .resourceNotFound_InvocationNotFound
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCTatError(code, context: self.context)

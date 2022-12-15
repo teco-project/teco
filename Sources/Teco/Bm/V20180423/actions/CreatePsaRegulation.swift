@@ -19,23 +19,23 @@ extension Bm {
     public struct CreatePsaRegulationRequest: TCRequestModel {
         /// 规则别名
         public let psaName: String
-        
+
         /// 关联的故障类型ID列表
         public let taskTypeIds: [UInt64]
-        
+
         /// 维修实例上限，默认为5
         public let repairLimit: UInt64?
-        
+
         /// 规则备注
         public let psaDescription: String?
-        
-        public init (psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil) {
+
+        public init(psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil) {
             self.psaName = psaName
             self.taskTypeIds = taskTypeIds
             self.repairLimit = repairLimit
             self.psaDescription = psaDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case psaName = "PsaName"
             case taskTypeIds = "TaskTypeIds"
@@ -43,39 +43,39 @@ extension Bm {
             case psaDescription = "PsaDescription"
         }
     }
-    
+
     /// CreatePsaRegulation返回参数结构体
     public struct CreatePsaRegulationResponse: TCResponseModel {
         /// 创建的预授权规则ID
         public let psaId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case psaId = "PsaId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建预授权规则
     @inlinable
-    public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePsaRegulationResponse > {
+    public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePsaRegulationResponse> {
         self.client.execute(action: "CreatePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建预授权规则
     @inlinable
     public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePsaRegulationResponse {
         try await self.client.execute(action: "CreatePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建预授权规则
     @inlinable
-    public func createPsaRegulation(psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePsaRegulationResponse > {
+    public func createPsaRegulation(psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePsaRegulationResponse> {
         self.createPsaRegulation(CreatePsaRegulationRequest(psaName: psaName, taskTypeIds: taskTypeIds, repairLimit: repairLimit, psaDescription: psaDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建预授权规则
     @inlinable
     public func createPsaRegulation(psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePsaRegulationResponse {

@@ -49,250 +49,250 @@ extension TCSesError {
             case wrongContentJson = "FailedOperation.WrongContentJson"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 附件太大，请参考单个附件以及附件总量大小限制。
         public static var attachContentToolarge: FailedOperation {
             FailedOperation(.attachContentToolarge)
         }
-        
+
         /// 邮件地址在黑名单中。
         public static var emailAddrInBlacklist: FailedOperation {
             FailedOperation(.emailAddrInBlacklist)
         }
-        
+
         /// 邮件内容太大，请减少发送邮件内容。
         public static var emailContentToolarge: FailedOperation {
             FailedOperation(.emailContentToolarge)
         }
-        
+
         /// 超出当日总量发送限制。
         public static var exceedSendLimit: FailedOperation {
             FailedOperation(.exceedSendLimit)
         }
-        
+
         /// 超出最大模板数量限制。
         public static var exceedTemplateLimit: FailedOperation {
             FailedOperation(.exceedTemplateLimit)
         }
-        
+
         /// 触发频率控制，短时间内对同一地址发送过多邮件。
         public static var frequencyLimit: FailedOperation {
             FailedOperation(.frequencyLimit)
         }
-        
+
         /// 拒信率过高，被临时block。
         public static var highRejectionRate: FailedOperation {
             FailedOperation(.highRejectionRate)
         }
-        
+
         /// 邮箱地址错误。
         public static var incorrectEmail: FailedOperation {
             FailedOperation(.incorrectEmail)
         }
-        
+
         /// 发件人格式不正确。请参考文档示例填写。
         public static var incorrectSender: FailedOperation {
             FailedOperation(.incorrectSender)
         }
-        
+
         /// 余额不足，账号欠费等。
         public static var insufficientBalance: FailedOperation {
             FailedOperation(.insufficientBalance)
         }
-        
+
         /// 套餐包额度不足。
         public static var insufficientQuota: FailedOperation {
             FailedOperation(.insufficientQuota)
         }
-        
+
         /// 不支持的附件名称，请检查附件名称是否含有特殊字符，详情请参考附录附件说明。
         public static var invalidAttachName: FailedOperation {
             FailedOperation(.invalidAttachName)
         }
-        
+
         /// 超过查询限制，Limit最大支持100。
         public static var invalidLimit: FailedOperation {
             FailedOperation(.invalidLimit)
         }
-        
+
         /// 模板ID无效或者不可用。
         public static var invalidTemplateID: FailedOperation {
             FailedOperation(.invalidTemplateID)
         }
-        
+
         /// 缺少发信内容（TemplateData和Simple不能同时为空)。
         public static var missingEmailContent: FailedOperation {
             FailedOperation(.missingEmailContent)
         }
-        
+
         /// 没有附件发送权限，请检查。
         public static var noAttachPermission: FailedOperation {
             FailedOperation(.noAttachPermission)
         }
-        
+
         /// 发件sender没有经过认证，无法发送。
         public static var notAuthenticatedSender: FailedOperation {
             FailedOperation(.notAuthenticatedSender)
         }
-        
+
         /// 不支持查询该日期邮件记录，仅支持查询90天之内的数据。
         public static var notSupportDate: FailedOperation {
             FailedOperation(.notSupportDate)
         }
-        
+
         /// 协议检查错误，请检查协议是否正确。
         public static var protocolCheckErr: FailedOperation {
             FailedOperation(.protocolCheckErr)
         }
-        
+
         /// 收件人已退订。
         ///
         /// 收件人已经退订当前发送者的邮件。
         public static var receiverHasUnsubscribed: FailedOperation {
             FailedOperation(.receiverHasUnsubscribed)
         }
-        
+
         /// 邮件被收信人拒绝。
         public static var rejectedByRecipients: FailedOperation {
             FailedOperation(.rejectedByRecipients)
         }
-        
+
         /// 您的发送遇到问题，请联系腾讯云提交工单沟通原因并解决。
         public static var sendEmailErr: FailedOperation {
             FailedOperation(.sendEmailErr)
         }
-        
+
         /// 临时性错误，请求未生效，请重试。
         public static var serviceNotAvailable: FailedOperation {
             FailedOperation(.serviceNotAvailable)
         }
-        
+
         /// 模板内容太大，请减少模板内容。
         public static var templateContentToolarge: FailedOperation {
             FailedOperation(.templateContentToolarge)
         }
-        
+
         /// 因触发了某些规则导致临时Block。
         public static var temporaryBlocked: FailedOperation {
             FailedOperation(.temporaryBlocked)
         }
-        
+
         /// 附件数量太多，单封邮件最多支持10个附件。
         public static var tooManyAttachments: FailedOperation {
             FailedOperation(.tooManyAttachments)
         }
-        
+
         /// 收件人数太多，最多支持同时发送50人。
         public static var tooManyRecipients: FailedOperation {
             FailedOperation(.tooManyRecipients)
         }
-        
+
         /// 不支持的邮箱类型。
         public static var unsupportMailType: FailedOperation {
             FailedOperation(.unsupportMailType)
         }
-        
+
         /// 仅支持使用模板发送邮件。
         public static var withOutPermission: FailedOperation {
             FailedOperation(.withOutPermission)
         }
-        
+
         /// TemplateData字段格式不正确，请保持为json格式。
         public static var wrongContentJson: FailedOperation {
             FailedOperation(.wrongContentJson)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asSesError() -> TCSesError {
             let code: TCSesError.Code
             switch self.error {
-            case .attachContentToolarge: 
+            case .attachContentToolarge:
                 code = .failedOperation_AttachContentToolarge
-            case .emailAddrInBlacklist: 
+            case .emailAddrInBlacklist:
                 code = .failedOperation_EmailAddrInBlacklist
-            case .emailContentToolarge: 
+            case .emailContentToolarge:
                 code = .failedOperation_EmailContentToolarge
-            case .exceedSendLimit: 
+            case .exceedSendLimit:
                 code = .failedOperation_ExceedSendLimit
-            case .exceedTemplateLimit: 
+            case .exceedTemplateLimit:
                 code = .failedOperation_ExceedTemplateLimit
-            case .frequencyLimit: 
+            case .frequencyLimit:
                 code = .failedOperation_FrequencyLimit
-            case .highRejectionRate: 
+            case .highRejectionRate:
                 code = .failedOperation_HighRejectionRate
-            case .incorrectEmail: 
+            case .incorrectEmail:
                 code = .failedOperation_IncorrectEmail
-            case .incorrectSender: 
+            case .incorrectSender:
                 code = .failedOperation_IncorrectSender
-            case .insufficientBalance: 
+            case .insufficientBalance:
                 code = .failedOperation_InsufficientBalance
-            case .insufficientQuota: 
+            case .insufficientQuota:
                 code = .failedOperation_InsufficientQuota
-            case .invalidAttachName: 
+            case .invalidAttachName:
                 code = .failedOperation_InvalidAttachName
-            case .invalidLimit: 
+            case .invalidLimit:
                 code = .failedOperation_InvalidLimit
-            case .invalidTemplateID: 
+            case .invalidTemplateID:
                 code = .failedOperation_InvalidTemplateID
-            case .missingEmailContent: 
+            case .missingEmailContent:
                 code = .failedOperation_MissingEmailContent
-            case .noAttachPermission: 
+            case .noAttachPermission:
                 code = .failedOperation_NoAttachPermission
-            case .notAuthenticatedSender: 
+            case .notAuthenticatedSender:
                 code = .failedOperation_NotAuthenticatedSender
-            case .notSupportDate: 
+            case .notSupportDate:
                 code = .failedOperation_NotSupportDate
-            case .protocolCheckErr: 
+            case .protocolCheckErr:
                 code = .failedOperation_ProtocolCheckErr
-            case .receiverHasUnsubscribed: 
+            case .receiverHasUnsubscribed:
                 code = .failedOperation_ReceiverHasUnsubscribed
-            case .rejectedByRecipients: 
+            case .rejectedByRecipients:
                 code = .failedOperation_RejectedByRecipients
-            case .sendEmailErr: 
+            case .sendEmailErr:
                 code = .failedOperation_SendEmailErr
-            case .serviceNotAvailable: 
+            case .serviceNotAvailable:
                 code = .failedOperation_ServiceNotAvailable
-            case .templateContentToolarge: 
+            case .templateContentToolarge:
                 code = .failedOperation_TemplateContentToolarge
-            case .temporaryBlocked: 
+            case .temporaryBlocked:
                 code = .failedOperation_TemporaryBlocked
-            case .tooManyAttachments: 
+            case .tooManyAttachments:
                 code = .failedOperation_TooManyAttachments
-            case .tooManyRecipients: 
+            case .tooManyRecipients:
                 code = .failedOperation_TooManyRecipients
-            case .unsupportMailType: 
+            case .unsupportMailType:
                 code = .failedOperation_UnsupportMailType
-            case .withOutPermission: 
+            case .withOutPermission:
                 code = .failedOperation_WithOutPermission
-            case .wrongContentJson: 
+            case .wrongContentJson:
                 code = .failedOperation_WrongContentJson
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCSesError(code, context: self.context)

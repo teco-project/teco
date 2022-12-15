@@ -19,27 +19,27 @@ extension Tcss {
     public struct DescribeImageSimpleListRequest: TCRequestModel {
         /// IsAuthorized 是否已经授权, 0:否 1:是 无:全部
         public let filters: [RunTimeFilters]?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 排序方式
         public let order: String?
-        
+
         /// 排序字段
         public let by: String?
-        
-        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
@@ -48,33 +48,33 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeImageSimpleList返回参数结构体
     public struct DescribeImageSimpleListResponse: TCResponseModel {
         /// 镜像列表
         public let imageList: [ImageSimpleInfo]
-        
+
         /// 镜像数
         public let imageCnt: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageList = "ImageList"
             case imageCnt = "ImageCnt"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询全部镜像列表
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
-    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSimpleListResponse > {
+    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSimpleListResponse> {
         self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询全部镜像列表
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
@@ -82,15 +82,15 @@ extension Tcss {
     public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
         try await self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询全部镜像列表
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
-    public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSimpleListResponse > {
+    public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSimpleListResponse> {
         self.describeImageSimpleList(DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询全部镜像列表
     ///
     /// DescribeImageSimpleList 查询全部镜像列表

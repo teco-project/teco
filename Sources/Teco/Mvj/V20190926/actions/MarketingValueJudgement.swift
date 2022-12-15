@@ -19,23 +19,23 @@ extension Mvj {
     public struct MarketingValueJudgementRequest: TCRequestModel {
         /// 手机账号类型填写4
         public let accountType: UInt64
-        
+
         /// 填写手机号码，如15317537488
         public let uid: String
-        
+
         /// 用户请求时的客户端外网IP
         public let userIp: String
-        
+
         /// 用户操作时间戳，单位秒（格林威治时间精确到秒，如1501590972）
         public let postTime: UInt64
-        
+
         /// 用户设备号imei/idfa(建议填写)
         public let imei: String?
-        
+
         /// 活动链接(建议填写)
         public let referer: String?
-        
-        public init (accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil) {
+
+        public init(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil) {
             self.accountType = accountType
             self.uid = uid
             self.userIp = userIp
@@ -43,7 +43,7 @@ extension Mvj {
             self.imei = imei
             self.referer = referer
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountType = "AccountType"
             case uid = "Uid"
@@ -53,30 +53,30 @@ extension Mvj {
             case referer = "Referer"
         }
     }
-    
+
     /// MarketingValueJudgement返回参数结构体
     public struct MarketingValueJudgementResponse: TCResponseModel {
         /// 返回数据
         public let data: Data
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
-    public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MarketingValueJudgementResponse > {
+    public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
         self.client.execute(action: "MarketingValueJudgement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
@@ -85,16 +85,16 @@ extension Mvj {
     public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {
         try await self.client.execute(action: "MarketingValueJudgement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
-    public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MarketingValueJudgementResponse > {
+    public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
         self.marketingValueJudgement(MarketingValueJudgementRequest(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer), logger: logger, on: eventLoop)
     }
-    
+
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。

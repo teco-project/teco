@@ -19,43 +19,43 @@ extension Gaap {
     public struct DescribeProxiesStatusRequest: TCRequestModel {
         /// （旧参数，请切换到ProxyIds）通道ID列表。
         public let instanceIds: [String]?
-        
+
         /// （新参数）通道ID列表。
         public let proxyIds: [String]?
-        
-        public init (instanceIds: [String]? = nil, proxyIds: [String]? = nil) {
+
+        public init(instanceIds: [String]? = nil, proxyIds: [String]? = nil) {
             self.instanceIds = instanceIds
             self.proxyIds = proxyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case proxyIds = "ProxyIds"
         }
     }
-    
+
     /// DescribeProxiesStatus返回参数结构体
     public struct DescribeProxiesStatusResponse: TCResponseModel {
         /// 通道状态列表。
         public let instanceStatusSet: [ProxyStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceStatusSet = "InstanceStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询通道状态列表
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
-    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxiesStatusResponse > {
+    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesStatusResponse> {
         self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道状态列表
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
@@ -63,15 +63,15 @@ extension Gaap {
     public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
         try await self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询通道状态列表
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
-    public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxiesStatusResponse > {
+    public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesStatusResponse> {
         self.describeProxiesStatus(DescribeProxiesStatusRequest(instanceIds: instanceIds, proxyIds: proxyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道状态列表
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。

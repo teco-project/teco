@@ -19,34 +19,34 @@ extension Live {
     public struct ForbidLiveDomainRequest: TCRequestModel {
         /// 待停用的直播域名。
         public let domainName: String
-        
-        public init (domainName: String) {
+
+        public init(domainName: String) {
             self.domainName = domainName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
         }
     }
-    
+
     /// ForbidLiveDomain返回参数结构体
     public struct ForbidLiveDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
     @inlinable
-    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidLiveDomainResponse > {
+    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
         self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
@@ -54,15 +54,15 @@ extension Live {
     public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
         try await self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
     @inlinable
-    public func forbidLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidLiveDomainResponse > {
+    public func forbidLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
         self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。

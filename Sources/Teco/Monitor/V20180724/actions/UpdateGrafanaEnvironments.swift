@@ -19,49 +19,49 @@ extension Monitor {
     public struct UpdateGrafanaEnvironmentsRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// 环境变量字符串
         public let envs: String
-        
-        public init (instanceId: String, envs: String) {
+
+        public init(instanceId: String, envs: String) {
             self.instanceId = instanceId
             self.envs = envs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case envs = "Envs"
         }
     }
-    
+
     /// UpdateGrafanaEnvironments返回参数结构体
     public struct UpdateGrafanaEnvironmentsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新 Grafana 环境变量
     @inlinable
-    public func updateGrafanaEnvironments(_ input: UpdateGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaEnvironmentsResponse > {
+    public func updateGrafanaEnvironments(_ input: UpdateGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaEnvironmentsResponse> {
         self.client.execute(action: "UpdateGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新 Grafana 环境变量
     @inlinable
     public func updateGrafanaEnvironments(_ input: UpdateGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaEnvironmentsResponse {
         try await self.client.execute(action: "UpdateGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新 Grafana 环境变量
     @inlinable
-    public func updateGrafanaEnvironments(instanceId: String, envs: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaEnvironmentsResponse > {
+    public func updateGrafanaEnvironments(instanceId: String, envs: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaEnvironmentsResponse> {
         self.updateGrafanaEnvironments(UpdateGrafanaEnvironmentsRequest(instanceId: instanceId, envs: envs), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新 Grafana 环境变量
     @inlinable
     public func updateGrafanaEnvironments(instanceId: String, envs: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaEnvironmentsResponse {

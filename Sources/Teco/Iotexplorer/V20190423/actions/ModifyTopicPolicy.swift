@@ -19,23 +19,23 @@ extension Iotexplorer {
     public struct ModifyTopicPolicyRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 更新前Topic名
         public let topicName: String
-        
+
         /// 更新后Topic名
         public let newTopicName: String
-        
+
         /// Topic权限
         public let privilege: UInt64
-        
-        public init (productId: String, topicName: String, newTopicName: String, privilege: UInt64) {
+
+        public init(productId: String, topicName: String, newTopicName: String, privilege: UInt64) {
             self.productId = productId
             self.topicName = topicName
             self.newTopicName = newTopicName
             self.privilege = privilege
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case topicName = "TopicName"
@@ -43,44 +43,44 @@ extension Iotexplorer {
             case privilege = "Privilege"
         }
     }
-    
+
     /// ModifyTopicPolicy返回参数结构体
     public struct ModifyTopicPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新Topic
     ///
-    /// 本接口（UpdateTopicPolicy）用于更新Topic信息 
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func modifyTopicPolicy(_ input: ModifyTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicPolicyResponse > {
+    public func modifyTopicPolicy(_ input: ModifyTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicPolicyResponse> {
         self.client.execute(action: "ModifyTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Topic
     ///
-    /// 本接口（UpdateTopicPolicy）用于更新Topic信息 
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
     public func modifyTopicPolicy(_ input: ModifyTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicPolicyResponse {
         try await self.client.execute(action: "ModifyTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新Topic
     ///
-    /// 本接口（UpdateTopicPolicy）用于更新Topic信息 
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func modifyTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicPolicyResponse > {
+    public func modifyTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicPolicyResponse> {
         self.modifyTopicPolicy(ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Topic
     ///
-    /// 本接口（UpdateTopicPolicy）用于更新Topic信息 
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
     public func modifyTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicPolicyResponse {
         try await self.modifyTopicPolicy(ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege), logger: logger, on: eventLoop)

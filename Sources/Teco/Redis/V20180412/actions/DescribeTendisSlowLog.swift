@@ -19,23 +19,23 @@ extension Redis {
     public struct DescribeTendisSlowLogRequest: TCRequestModel {
         /// 实例Id：crs-ngvou0i1
         public let instanceId: String
-        
+
         /// 开始时间：2019-09-08 12:12:41
         public let beginTime: String
-        
+
         /// 结束时间：2019-09-09 12:12:41
         public let endTime: String
-        
+
         /// 慢查询阈值（毫秒）
         public let minQueryTime: Int64?
-        
+
         /// 页面大小：默认20
         public let limit: Int64?
-        
+
         /// 偏移量，取Limit整数倍
         public let offset: Int64?
-        
-        public init (instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.beginTime = beginTime
             self.endTime = endTime
@@ -43,7 +43,7 @@ extension Redis {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case beginTime = "BeginTime"
@@ -53,43 +53,43 @@ extension Redis {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeTendisSlowLog返回参数结构体
     public struct DescribeTendisSlowLogResponse: TCResponseModel {
         /// 慢查询总数
         public let totalCount: Int64
-        
+
         /// 慢查询详情
         public let tendisSlowLogDetail: [TendisSlowLogDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tendisSlowLogDetail = "TendisSlowLogDetail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Tendis慢查询
     @inlinable
-    public func describeTendisSlowLog(_ input: DescribeTendisSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTendisSlowLogResponse > {
+    public func describeTendisSlowLog(_ input: DescribeTendisSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTendisSlowLogResponse> {
         self.client.execute(action: "DescribeTendisSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Tendis慢查询
     @inlinable
     public func describeTendisSlowLog(_ input: DescribeTendisSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTendisSlowLogResponse {
         try await self.client.execute(action: "DescribeTendisSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Tendis慢查询
     @inlinable
-    public func describeTendisSlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTendisSlowLogResponse > {
+    public func describeTendisSlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTendisSlowLogResponse> {
         self.describeTendisSlowLog(DescribeTendisSlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Tendis慢查询
     @inlinable
     public func describeTendisSlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTendisSlowLogResponse {

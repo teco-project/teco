@@ -20,34 +20,34 @@ extension Tag {
         /// 标签列表。
         /// N取值范围：0~9
         public let tags: [Tag]
-        
-        public init (tags: [Tag]) {
+
+        public init(tags: [Tag]) {
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tags = "Tags"
         }
     }
-    
+
     /// DeleteTags返回参数结构体
     public struct DeleteTagsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除标签
     ///
     /// 本接口用于批量删除标签键和标签值。
     @inlinable
-    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagsResponse> {
         self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除标签
     ///
     /// 本接口用于批量删除标签键和标签值。
@@ -55,15 +55,15 @@ extension Tag {
     public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
         try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除标签
     ///
     /// 本接口用于批量删除标签键和标签值。
     @inlinable
-    public func deleteTags(tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+    public func deleteTags(tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagsResponse> {
         self.deleteTags(DeleteTagsRequest(tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除标签
     ///
     /// 本接口用于批量删除标签键和标签值。

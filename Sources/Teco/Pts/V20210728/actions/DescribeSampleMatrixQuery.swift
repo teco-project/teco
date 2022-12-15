@@ -19,26 +19,26 @@ extension Pts {
     public struct DescribeSampleMatrixQueryRequest: TCRequestModel {
         /// 任务ID
         public let jobId: String
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// 场景ID
         public let scenarioId: String
-        
+
         /// 指标名字
         public let metric: String
-        
+
         /// 聚合函数
         public let aggregation: String
-        
+
         /// 指标过滤
         public let filters: [Filter]?
-        
+
         /// 分组
         public let groupBy: [String]?
-        
-        public init (jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil) {
+
+        public init(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil) {
             self.jobId = jobId
             self.projectId = projectId
             self.scenarioId = scenarioId
@@ -47,7 +47,7 @@ extension Pts {
             self.filters = filters
             self.groupBy = groupBy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case projectId = "ProjectId"
@@ -58,40 +58,40 @@ extension Pts {
             case groupBy = "GroupBy"
         }
     }
-    
+
     /// DescribeSampleMatrixQuery返回参数结构体
     public struct DescribeSampleMatrixQueryResponse: TCResponseModel {
         /// 指标矩阵
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricSampleMatrix: CustomSampleMatrix?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metricSampleMatrix = "MetricSampleMatrix"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询指标矩阵
     @inlinable
-    public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleMatrixQueryResponse > {
+    public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixQueryResponse> {
         self.client.execute(action: "DescribeSampleMatrixQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询指标矩阵
     @inlinable
     public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
         try await self.client.execute(action: "DescribeSampleMatrixQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询指标矩阵
     @inlinable
-    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleMatrixQueryResponse > {
+    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixQueryResponse> {
         self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询指标矩阵
     @inlinable
     public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {

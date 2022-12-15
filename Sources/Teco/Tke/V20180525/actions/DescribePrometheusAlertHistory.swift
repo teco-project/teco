@@ -19,26 +19,26 @@ extension Tke {
     public struct DescribePrometheusAlertHistoryRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 告警名称
         public let ruleName: String?
-        
+
         /// 开始时间
         public let startTime: String?
-        
+
         /// 结束时间
         public let endTime: String?
-        
+
         /// label集合
         public let labels: String?
-        
+
         /// 分片
         public let offset: UInt64?
-        
+
         /// 分片
         public let limit: UInt64?
-        
-        public init (instanceId: String, ruleName: String? = nil, startTime: String? = nil, endTime: String? = nil, labels: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(instanceId: String, ruleName: String? = nil, startTime: String? = nil, endTime: String? = nil, labels: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.ruleName = ruleName
             self.startTime = startTime
@@ -47,7 +47,7 @@ extension Tke {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case ruleName = "RuleName"
@@ -58,43 +58,43 @@ extension Tke {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribePrometheusAlertHistory返回参数结构体
     public struct DescribePrometheusAlertHistoryResponse: TCResponseModel {
         /// 告警历史
         public let items: [PrometheusAlertHistoryItem]
-        
+
         /// 总数
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取告警历史
     @inlinable
-    public func describePrometheusAlertHistory(_ input: DescribePrometheusAlertHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAlertHistoryResponse > {
+    public func describePrometheusAlertHistory(_ input: DescribePrometheusAlertHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAlertHistoryResponse> {
         self.client.execute(action: "DescribePrometheusAlertHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取告警历史
     @inlinable
     public func describePrometheusAlertHistory(_ input: DescribePrometheusAlertHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertHistoryResponse {
         try await self.client.execute(action: "DescribePrometheusAlertHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取告警历史
     @inlinable
-    public func describePrometheusAlertHistory(instanceId: String, ruleName: String? = nil, startTime: String? = nil, endTime: String? = nil, labels: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAlertHistoryResponse > {
+    public func describePrometheusAlertHistory(instanceId: String, ruleName: String? = nil, startTime: String? = nil, endTime: String? = nil, labels: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAlertHistoryResponse> {
         self.describePrometheusAlertHistory(DescribePrometheusAlertHistoryRequest(instanceId: instanceId, ruleName: ruleName, startTime: startTime, endTime: endTime, labels: labels, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取告警历史
     @inlinable
     public func describePrometheusAlertHistory(instanceId: String, ruleName: String? = nil, startTime: String? = nil, endTime: String? = nil, labels: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertHistoryResponse {

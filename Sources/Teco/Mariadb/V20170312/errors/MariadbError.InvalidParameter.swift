@@ -40,185 +40,185 @@ extension TCMariadbError {
             case zoneIdIllegal = "InvalidParameter.ZoneIdIllegal"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 接口没有找到。
         public static var actionNotFound: InvalidParameter {
             InvalidParameter(.actionNotFound)
         }
-        
+
         /// 密码包含了非法字符。
         public static var characterError: InvalidParameter {
             InvalidParameter(.characterError)
         }
-        
+
         /// 入参校验失败。
         public static var checkParamNotPass: InvalidParameter {
             InvalidParameter(.checkParamNotPass)
         }
-        
+
         /// 未指定需要查询的订单ID。
         public static var dealNameNotGiven: InvalidParameter {
             InvalidParameter(.dealNameNotGiven)
         }
-        
+
         /// 找不到指定的流程信息。
         public static var flowNotFound: InvalidParameter {
             InvalidParameter(.flowNotFound)
         }
-        
+
         /// 参数合法性校验错误。
         public static var genericParameterError: InvalidParameter {
             InvalidParameter(.genericParameterError)
         }
-        
+
         /// 非法参数。
         public static var illegalParameterError: InvalidParameter {
             InvalidParameter(.illegalParameterError)
         }
-        
+
         /// 错误的时间参数。
         public static var illegalTime: InvalidParameter {
             InvalidParameter(.illegalTime)
         }
-        
+
         /// 未找到请求的实例。
         public static var instanceNotFound: InvalidParameter {
             InvalidParameter(.instanceNotFound)
         }
-        
+
         /// 不支持此计费类型调用当前接口。
         public static var notSupportedPayMode: InvalidParameter {
             InvalidParameter(.notSupportedPayMode)
         }
-        
+
         /// 没有权限操作该接口或资源。
         public static var permissionDenied: InvalidParameter {
             InvalidParameter(.permissionDenied)
         }
-        
+
         /// 安全组合法性校验不通过。
         public static var sgCheckFail: InvalidParameter {
             InvalidParameter(.sgCheckFail)
         }
-        
+
         /// 实例分片不存在。
         public static var shardResourceIdNotFound: InvalidParameter {
             InvalidParameter(.shardResourceIdNotFound)
         }
-        
+
         /// 找不到对应的售卖规格。
         public static var specNotFound: InvalidParameter {
             InvalidParameter(.specNotFound)
         }
-        
+
         /// 找不到指定的虚拟私有网络子网。
         public static var subnetNotFound: InvalidParameter {
             InvalidParameter(.subnetNotFound)
         }
-        
+
         /// snat子网不支持申请IP。
         public static var subnetUnavailable: InvalidParameter {
             InvalidParameter(.subnetUnavailable)
         }
-        
+
         /// Vip不在子网内。
         public static var vipNotInSubnet: InvalidParameter {
             InvalidParameter(.vipNotInSubnet)
         }
-        
+
         /// Vip被占用。
         public static var vipUsed: InvalidParameter {
             InvalidParameter(.vipUsed)
         }
-        
+
         /// 找不到指定的虚拟私有网络。
         public static var vpcNotFound: InvalidParameter {
             InvalidParameter(.vpcNotFound)
         }
-        
+
         /// Vport被占用。
         public static var vportUsed: InvalidParameter {
             InvalidParameter(.vportUsed)
         }
-        
+
         /// 可用区信息错误。
         public static var zoneIdIllegal: InvalidParameter {
             InvalidParameter(.zoneIdIllegal)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asMariadbError() -> TCMariadbError {
             let code: TCMariadbError.Code
             switch self.error {
-            case .actionNotFound: 
+            case .actionNotFound:
                 code = .invalidParameter_ActionNotFound
-            case .characterError: 
+            case .characterError:
                 code = .invalidParameter_CharacterError
-            case .checkParamNotPass: 
+            case .checkParamNotPass:
                 code = .invalidParameter_CheckParamNotPass
-            case .dealNameNotGiven: 
+            case .dealNameNotGiven:
                 code = .invalidParameter_DealNameNotGiven
-            case .flowNotFound: 
+            case .flowNotFound:
                 code = .invalidParameter_FlowNotFound
-            case .genericParameterError: 
+            case .genericParameterError:
                 code = .invalidParameter_GenericParameterError
-            case .illegalParameterError: 
+            case .illegalParameterError:
                 code = .invalidParameter_IllegalParameterError
-            case .illegalTime: 
+            case .illegalTime:
                 code = .invalidParameter_IllegalTime
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .invalidParameter_InstanceNotFound
-            case .notSupportedPayMode: 
+            case .notSupportedPayMode:
                 code = .invalidParameter_NotSupportedPayMode
-            case .permissionDenied: 
+            case .permissionDenied:
                 code = .invalidParameter_PermissionDenied
-            case .sgCheckFail: 
+            case .sgCheckFail:
                 code = .invalidParameter_SGCheckFail
-            case .shardResourceIdNotFound: 
+            case .shardResourceIdNotFound:
                 code = .invalidParameter_ShardResourceIdNotFound
-            case .specNotFound: 
+            case .specNotFound:
                 code = .invalidParameter_SpecNotFound
-            case .subnetNotFound: 
+            case .subnetNotFound:
                 code = .invalidParameter_SubnetNotFound
-            case .subnetUnavailable: 
+            case .subnetUnavailable:
                 code = .invalidParameter_SubnetUnavailable
-            case .vipNotInSubnet: 
+            case .vipNotInSubnet:
                 code = .invalidParameter_VipNotInSubnet
-            case .vipUsed: 
+            case .vipUsed:
                 code = .invalidParameter_VipUsed
-            case .vpcNotFound: 
+            case .vpcNotFound:
                 code = .invalidParameter_VpcNotFound
-            case .vportUsed: 
+            case .vportUsed:
                 code = .invalidParameter_VportUsed
-            case .zoneIdIllegal: 
+            case .zoneIdIllegal:
                 code = .invalidParameter_ZoneIdIllegal
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCMariadbError(code, context: self.context)

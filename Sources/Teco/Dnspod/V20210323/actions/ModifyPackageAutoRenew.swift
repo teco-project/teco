@@ -19,39 +19,39 @@ extension Dnspod {
     public struct ModifyPackageAutoRenewRequest: TCRequestModel {
         /// 资源ID。可以在控制台查看所有的资源
         public let resourceId: String
-        
+
         /// enable 开启自动续费；disable 关闭自动续费
         public let status: String
-        
-        public init (resourceId: String, status: String) {
+
+        public init(resourceId: String, status: String) {
             self.resourceId = resourceId
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case status = "Status"
         }
     }
-    
+
     /// ModifyPackageAutoRenew返回参数结构体
     public struct ModifyPackageAutoRenewResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// DNS 解析套餐自动续费设置
     ///
     ///  DNS 解析套餐自动续费设置
     @inlinable
-    public func modifyPackageAutoRenew(_ input: ModifyPackageAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPackageAutoRenewResponse > {
+    public func modifyPackageAutoRenew(_ input: ModifyPackageAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPackageAutoRenewResponse> {
         self.client.execute(action: "ModifyPackageAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DNS 解析套餐自动续费设置
     ///
     ///  DNS 解析套餐自动续费设置
@@ -59,15 +59,15 @@ extension Dnspod {
     public func modifyPackageAutoRenew(_ input: ModifyPackageAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPackageAutoRenewResponse {
         try await self.client.execute(action: "ModifyPackageAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DNS 解析套餐自动续费设置
     ///
     ///  DNS 解析套餐自动续费设置
     @inlinable
-    public func modifyPackageAutoRenew(resourceId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPackageAutoRenewResponse > {
+    public func modifyPackageAutoRenew(resourceId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPackageAutoRenewResponse> {
         self.modifyPackageAutoRenew(ModifyPackageAutoRenewRequest(resourceId: resourceId, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// DNS 解析套餐自动续费设置
     ///
     ///  DNS 解析套餐自动续费设置

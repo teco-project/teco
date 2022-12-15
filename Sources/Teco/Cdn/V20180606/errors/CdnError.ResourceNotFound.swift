@@ -28,101 +28,101 @@ extension TCCdnError {
             case ecdnDomainNotExists = "ResourceNotFound.EcdnDomainNotExists"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 标签键不存在。
         public static var camTagKeyNotExist: ResourceNotFound {
             ResourceNotFound(.camTagKeyNotExist)
         }
-        
+
         /// 未查询到该域名，请确认域名是否正确。
         public static var cdnHostNotExists: ResourceNotFound {
             ResourceNotFound(.cdnHostNotExists)
         }
-        
+
         /// 项目不存在，请确认后重试。
         public static var cdnProjectNotExists: ResourceNotFound {
             ResourceNotFound(.cdnProjectNotExists)
         }
-        
+
         /// 未开通CDN服务，请开通后使用此接口。
         public static var cdnUserNotExists: ResourceNotFound {
             ResourceNotFound(.cdnUserNotExists)
         }
-        
+
         /// 用户域名数量已达上限，请联系腾讯云工程师处理。
         public static var cdnUserTooManyHosts: ResourceNotFound {
             ResourceNotFound(.cdnUserTooManyHosts)
         }
-        
+
         /// 索引不存在。
         public static var clsIndexNotExist: ResourceNotFound {
             ResourceNotFound(.clsIndexNotExist)
         }
-        
+
         /// 日志集不存在。
         public static var clsLogsetNotExist: ResourceNotFound {
             ResourceNotFound(.clsLogsetNotExist)
         }
-        
+
         /// 主题不存在。
         public static var clsTopicNotExist: ResourceNotFound {
             ResourceNotFound(.clsTopicNotExist)
         }
-        
+
         /// 域名不存在，请确认后重试。
         public static var ecdnDomainNotExists: ResourceNotFound {
             ResourceNotFound(.ecdnDomainNotExists)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asCdnError() -> TCCdnError {
             let code: TCCdnError.Code
             switch self.error {
-            case .camTagKeyNotExist: 
+            case .camTagKeyNotExist:
                 code = .resourceNotFound_CamTagKeyNotExist
-            case .cdnHostNotExists: 
+            case .cdnHostNotExists:
                 code = .resourceNotFound_CdnHostNotExists
-            case .cdnProjectNotExists: 
+            case .cdnProjectNotExists:
                 code = .resourceNotFound_CdnProjectNotExists
-            case .cdnUserNotExists: 
+            case .cdnUserNotExists:
                 code = .resourceNotFound_CdnUserNotExists
-            case .cdnUserTooManyHosts: 
+            case .cdnUserTooManyHosts:
                 code = .resourceNotFound_CdnUserTooManyHosts
-            case .clsIndexNotExist: 
+            case .clsIndexNotExist:
                 code = .resourceNotFound_ClsIndexNotExist
-            case .clsLogsetNotExist: 
+            case .clsLogsetNotExist:
                 code = .resourceNotFound_ClsLogsetNotExist
-            case .clsTopicNotExist: 
+            case .clsTopicNotExist:
                 code = .resourceNotFound_ClsTopicNotExist
-            case .ecdnDomainNotExists: 
+            case .ecdnDomainNotExists:
                 code = .resourceNotFound_EcdnDomainNotExists
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCCdnError(code, context: self.context)

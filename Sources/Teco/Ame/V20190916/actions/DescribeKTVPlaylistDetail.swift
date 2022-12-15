@@ -19,52 +19,52 @@ extension Ame {
     public struct DescribeKTVPlaylistDetailRequest: TCRequestModel {
         /// 歌单Id
         public let playlistId: String
-        
+
         /// 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
         public let offset: Int64?
-        
+
         /// 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
         public let limit: Int64?
-        
-        public init (playlistId: String, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(playlistId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.playlistId = playlistId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case playlistId = "PlaylistId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeKTVPlaylistDetail返回参数结构体
     public struct DescribeKTVPlaylistDetailResponse: TCResponseModel {
         /// 歌曲基础信息列表
         public let ktvMusicInfoSet: [KTVMusicBaseInfo]
-        
+
         /// 歌单基础信息
         public let playlistBaseInfo: KTVPlaylistBaseInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ktvMusicInfoSet = "KTVMusicInfoSet"
             case playlistBaseInfo = "PlaylistBaseInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取直播互动曲库推荐歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
     @inlinable
-    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistDetailResponse > {
+    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
         self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取直播互动曲库推荐歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
@@ -72,15 +72,15 @@ extension Ame {
     public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
         try await self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取直播互动曲库推荐歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
     @inlinable
-    public func describeKTVPlaylistDetail(playlistId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistDetailResponse > {
+    public func describeKTVPlaylistDetail(playlistId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
         self.describeKTVPlaylistDetail(DescribeKTVPlaylistDetailRequest(playlistId: playlistId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取直播互动曲库推荐歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。

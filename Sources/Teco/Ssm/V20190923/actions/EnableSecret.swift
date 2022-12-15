@@ -19,38 +19,38 @@ extension Ssm {
     public struct EnableSecretRequest: TCRequestModel {
         /// 指定启用凭据的名称。
         public let secretName: String
-        
-        public init (secretName: String) {
+
+        public init(secretName: String) {
             self.secretName = secretName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
         }
     }
-    
+
     /// EnableSecret返回参数结构体
     public struct EnableSecretResponse: TCResponseModel {
         /// 启用的凭据名称。
         public let secretName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用凭据
     ///
     /// 该接口用于开启凭据，状态为Enabled。可以通过 GetSecretValue 接口获取凭据明文。处于PendingDelete状态的凭据不能直接开启，需要通过RestoreSecret 恢复后再开启使用。
     @inlinable
-    public func enableSecret(_ input: EnableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSecretResponse > {
+    public func enableSecret(_ input: EnableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableSecretResponse> {
         self.client.execute(action: "EnableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用凭据
     ///
     /// 该接口用于开启凭据，状态为Enabled。可以通过 GetSecretValue 接口获取凭据明文。处于PendingDelete状态的凭据不能直接开启，需要通过RestoreSecret 恢复后再开启使用。
@@ -58,15 +58,15 @@ extension Ssm {
     public func enableSecret(_ input: EnableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSecretResponse {
         try await self.client.execute(action: "EnableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用凭据
     ///
     /// 该接口用于开启凭据，状态为Enabled。可以通过 GetSecretValue 接口获取凭据明文。处于PendingDelete状态的凭据不能直接开启，需要通过RestoreSecret 恢复后再开启使用。
     @inlinable
-    public func enableSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSecretResponse > {
+    public func enableSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableSecretResponse> {
         self.enableSecret(EnableSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用凭据
     ///
     /// 该接口用于开启凭据，状态为Enabled。可以通过 GetSecretValue 接口获取凭据明文。处于PendingDelete状态的凭据不能直接开启，需要通过RestoreSecret 恢复后再开启使用。

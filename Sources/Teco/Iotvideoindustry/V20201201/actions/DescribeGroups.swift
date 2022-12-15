@@ -19,39 +19,39 @@ extension Iotvideoindustry {
     public struct DescribeGroupsRequest: TCRequestModel {
         /// 分组ID列表
         public let groupIds: [String]?
-        
-        public init (groupIds: [String]? = nil) {
+
+        public init(groupIds: [String]? = nil) {
             self.groupIds = groupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupIds = "GroupIds"
         }
     }
-    
+
     /// DescribeGroups返回参数结构体
     public struct DescribeGroupsResponse: TCResponseModel {
         /// 分组详细信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groups: [GroupInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groups = "Groups"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量查询分组信息
     ///
     /// 本接口(DescribeGroups)用于批量查询分组信息。
     @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
         self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量查询分组信息
     ///
     /// 本接口(DescribeGroups)用于批量查询分组信息。
@@ -59,15 +59,15 @@ extension Iotvideoindustry {
     public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
         try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量查询分组信息
     ///
     /// 本接口(DescribeGroups)用于批量查询分组信息。
     @inlinable
-    public func describeGroups(groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+    public func describeGroups(groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
         self.describeGroups(DescribeGroupsRequest(groupIds: groupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量查询分组信息
     ///
     /// 本接口(DescribeGroups)用于批量查询分组信息。

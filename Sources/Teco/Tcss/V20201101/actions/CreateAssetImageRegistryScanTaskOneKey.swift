@@ -19,23 +19,23 @@ extension Tcss {
     public struct CreateAssetImageRegistryScanTaskOneKeyRequest: TCRequestModel {
         /// 是否扫描全部镜像
         public let all: Bool?
-        
+
         /// 扫描的镜像列表
         public let images: [ImageInfo]?
-        
+
         /// 扫描类型数组
         public let scanType: [String]?
-        
+
         /// 扫描的镜像列表Id
         public let id: [UInt64]?
-        
-        public init (all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil) {
+
+        public init(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil) {
             self.all = all
             self.images = images
             self.scanType = scanType
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case all = "All"
             case images = "Images"
@@ -43,35 +43,35 @@ extension Tcss {
             case id = "Id"
         }
     }
-    
+
     /// CreateAssetImageRegistryScanTaskOneKey返回参数结构体
     public struct CreateAssetImageRegistryScanTaskOneKeyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 镜像仓库创建镜像一键扫描任务
     @inlinable
-    public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageRegistryScanTaskOneKeyResponse > {
+    public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskOneKeyResponse> {
         self.client.execute(action: "CreateAssetImageRegistryScanTaskOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像仓库创建镜像一键扫描任务
     @inlinable
     public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
         try await self.client.execute(action: "CreateAssetImageRegistryScanTaskOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 镜像仓库创建镜像一键扫描任务
     @inlinable
-    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageRegistryScanTaskOneKeyResponse > {
+    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskOneKeyResponse> {
         self.createAssetImageRegistryScanTaskOneKey(CreateAssetImageRegistryScanTaskOneKeyRequest(all: all, images: images, scanType: scanType, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像仓库创建镜像一键扫描任务
     @inlinable
     public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {

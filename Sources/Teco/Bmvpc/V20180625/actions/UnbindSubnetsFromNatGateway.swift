@@ -19,48 +19,48 @@ extension Bmvpc {
     public struct UnbindSubnetsFromNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
         public let natId: String
-        
+
         /// 私有网络ID，例如：vpc-kd7d06of
         public let vpcId: String
-        
+
         /// 子网ID列表，子网不区分加入NAT网关的转发方式
         public let subnetIds: [String]
-        
-        public init (natId: String, vpcId: String, subnetIds: [String]) {
+
+        public init(natId: String, vpcId: String, subnetIds: [String]) {
             self.natId = natId
             self.vpcId = vpcId
             self.subnetIds = subnetIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natId = "NatId"
             case vpcId = "VpcId"
             case subnetIds = "SubnetIds"
         }
     }
-    
+
     /// UnbindSubnetsFromNatGateway返回参数结构体
     public struct UnbindSubnetsFromNatGatewayResponse: TCResponseModel {
         /// 任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// NAT网关解绑子网
     ///
     /// NAT网关解绑子网接口，可将子网解绑NAT网关
     @inlinable
-    public func unbindSubnetsFromNatGateway(_ input: UnbindSubnetsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindSubnetsFromNatGatewayResponse > {
+    public func unbindSubnetsFromNatGateway(_ input: UnbindSubnetsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindSubnetsFromNatGatewayResponse> {
         self.client.execute(action: "UnbindSubnetsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// NAT网关解绑子网
     ///
     /// NAT网关解绑子网接口，可将子网解绑NAT网关
@@ -68,15 +68,15 @@ extension Bmvpc {
     public func unbindSubnetsFromNatGateway(_ input: UnbindSubnetsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindSubnetsFromNatGatewayResponse {
         try await self.client.execute(action: "UnbindSubnetsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// NAT网关解绑子网
     ///
     /// NAT网关解绑子网接口，可将子网解绑NAT网关
     @inlinable
-    public func unbindSubnetsFromNatGateway(natId: String, vpcId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindSubnetsFromNatGatewayResponse > {
+    public func unbindSubnetsFromNatGateway(natId: String, vpcId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindSubnetsFromNatGatewayResponse> {
         self.unbindSubnetsFromNatGateway(UnbindSubnetsFromNatGatewayRequest(natId: natId, vpcId: vpcId, subnetIds: subnetIds), logger: logger, on: eventLoop)
     }
-    
+
     /// NAT网关解绑子网
     ///
     /// NAT网关解绑子网接口，可将子网解绑NAT网关

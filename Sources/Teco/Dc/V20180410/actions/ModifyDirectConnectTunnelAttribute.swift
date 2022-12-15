@@ -19,29 +19,29 @@ extension Dc {
     public struct ModifyDirectConnectTunnelAttributeRequest: TCRequestModel {
         /// 专用通道ID
         public let directConnectTunnelId: String
-        
+
         /// 专用通道名称
         public let directConnectTunnelName: String?
-        
+
         /// 用户侧BGP，包括Asn，AuthKey
         public let bgpPeer: BgpPeer?
-        
+
         /// 用户侧网段地址
         public let routeFilterPrefixes: [RouteFilterPrefix]?
-        
+
         /// 腾讯侧互联IP
         public let tencentAddress: String?
-        
+
         /// 用户侧互联IP
         public let customerAddress: String?
-        
+
         /// 专用通道带宽值，单位为M。
         public let bandwidth: Int64?
-        
+
         /// 腾讯侧备用互联IP
         public let tencentBackupAddress: String?
-        
-        public init (directConnectTunnelId: String, directConnectTunnelName: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, tencentBackupAddress: String? = nil) {
+
+        public init(directConnectTunnelId: String, directConnectTunnelName: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, tencentBackupAddress: String? = nil) {
             self.directConnectTunnelId = directConnectTunnelId
             self.directConnectTunnelName = directConnectTunnelName
             self.bgpPeer = bgpPeer
@@ -51,7 +51,7 @@ extension Dc {
             self.bandwidth = bandwidth
             self.tencentBackupAddress = tencentBackupAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectTunnelId = "DirectConnectTunnelId"
             case directConnectTunnelName = "DirectConnectTunnelName"
@@ -63,35 +63,35 @@ extension Dc {
             case tencentBackupAddress = "TencentBackupAddress"
         }
     }
-    
+
     /// ModifyDirectConnectTunnelAttribute返回参数结构体
     public struct ModifyDirectConnectTunnelAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改专用通道属性
     @inlinable
-    public func modifyDirectConnectTunnelAttribute(_ input: ModifyDirectConnectTunnelAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectTunnelAttributeResponse > {
+    public func modifyDirectConnectTunnelAttribute(_ input: ModifyDirectConnectTunnelAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelAttributeResponse> {
         self.client.execute(action: "ModifyDirectConnectTunnelAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改专用通道属性
     @inlinable
     public func modifyDirectConnectTunnelAttribute(_ input: ModifyDirectConnectTunnelAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelAttributeResponse {
         try await self.client.execute(action: "ModifyDirectConnectTunnelAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改专用通道属性
     @inlinable
-    public func modifyDirectConnectTunnelAttribute(directConnectTunnelId: String, directConnectTunnelName: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, tencentBackupAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectTunnelAttributeResponse > {
+    public func modifyDirectConnectTunnelAttribute(directConnectTunnelId: String, directConnectTunnelName: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, tencentBackupAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelAttributeResponse> {
         self.modifyDirectConnectTunnelAttribute(ModifyDirectConnectTunnelAttributeRequest(directConnectTunnelId: directConnectTunnelId, directConnectTunnelName: directConnectTunnelName, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, customerAddress: customerAddress, bandwidth: bandwidth, tencentBackupAddress: tencentBackupAddress), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改专用通道属性
     @inlinable
     public func modifyDirectConnectTunnelAttribute(directConnectTunnelId: String, directConnectTunnelName: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, tencentBackupAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelAttributeResponse {

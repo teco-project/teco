@@ -17,36 +17,36 @@
 extension Dts {
     /// DescribeRegionConf请求参数结构体
     public struct DescribeRegionConfRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeRegionConf返回参数结构体
     public struct DescribeRegionConfResponse: TCResponseModel {
         /// 可售卖地域的数量
         public let totalCount: Int64
-        
+
         /// 可售卖地域详情
         public let items: [SubscribeRegionConf]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询可售卖订阅地域
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
-    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionConfResponse > {
+    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionConfResponse> {
         self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询可售卖订阅地域
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
@@ -54,15 +54,15 @@ extension Dts {
     public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
         try await self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询可售卖订阅地域
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
-    public func describeRegionConf(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionConfResponse > {
+    public func describeRegionConf(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionConfResponse> {
         self.describeRegionConf(DescribeRegionConfRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询可售卖订阅地域
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域

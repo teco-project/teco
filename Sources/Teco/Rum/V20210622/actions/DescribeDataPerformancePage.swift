@@ -19,74 +19,74 @@ extension Rum {
     public struct DescribeDataPerformancePageRequest: TCRequestModel {
         /// 项目ID
         public let id: Int64
-        
+
         /// 开始时间
         public let startTime: Int64
-        
+
         /// 结束时间
         public let endTime: Int64
-        
+
         /// pagepv：性能视图，allcount：性能视图，falls：页面加载瀑布图，samp：首屏时间，day：14天数据，nettype：网络/平台视图，performance：页面性能TOP视图，version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：ISP视图/地区视图/浏览器视图等
         public let type: String
-        
+
         /// 日志等级
         public let level: String?
-        
+
         /// 运营商
         public let isp: String?
-        
+
         /// 地区
         public let area: String?
-        
+
         /// 网络类型
         public let netType: String?
-        
+
         /// 平台
         public let platform: String?
-        
+
         /// 机型
         public let device: String?
-        
+
         /// 版本
         public let versionNum: String?
-        
+
         /// 自定义1
         public let extFirst: String?
-        
+
         /// 自定义2
         public let extSecond: String?
-        
+
         /// 自定义3
         public let extThird: String?
-        
+
         /// 是否海外
         public let isAbroad: String?
-        
+
         /// 浏览器
         public let browser: String?
-        
+
         /// 操作系统
         public let os: String?
-        
+
         /// 浏览器引擎
         public let engine: String?
-        
+
         /// 品牌
         public let brand: String?
-        
+
         /// 来源页面
         public let from: String?
-        
+
         /// 耗时计算方式
         public let costType: String?
-        
+
         /// 环境变量
         public let env: String?
-        
+
         /// 网络状态
         public let netStatus: String?
-        
-        public init (id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil) {
+
+        public init(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil) {
             self.id = id
             self.startTime = startTime
             self.endTime = endTime
@@ -111,7 +111,7 @@ extension Rum {
             self.env = env
             self.netStatus = netStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case startTime = "StartTime"
@@ -138,39 +138,39 @@ extension Rum {
             case netStatus = "NetStatus"
         }
     }
-    
+
     /// DescribeDataPerformancePage返回参数结构体
     public struct DescribeDataPerformancePageResponse: TCResponseModel {
         /// 返回值
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取PerformancePage信息
     @inlinable
-    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataPerformancePageResponse > {
+    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataPerformancePageResponse> {
         self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取PerformancePage信息
     @inlinable
     public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {
         try await self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取PerformancePage信息
     @inlinable
-    public func describeDataPerformancePage(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataPerformancePageResponse > {
+    public func describeDataPerformancePage(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataPerformancePageResponse> {
         self.describeDataPerformancePage(DescribeDataPerformancePageRequest(id: id, startTime: startTime, endTime: endTime, type: type, level: level, isp: isp, area: area, netType: netType, platform: platform, device: device, versionNum: versionNum, extFirst: extFirst, extSecond: extSecond, extThird: extThird, isAbroad: isAbroad, browser: browser, os: os, engine: engine, brand: brand, from: from, costType: costType, env: env, netStatus: netStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取PerformancePage信息
     @inlinable
     public func describeDataPerformancePage(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {

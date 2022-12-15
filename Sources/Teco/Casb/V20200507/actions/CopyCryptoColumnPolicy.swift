@@ -19,23 +19,23 @@ extension Casb {
     public struct CopyCryptoColumnPolicyRequest: TCRequestModel {
         /// 实例Id
         public let casbId: String
-        
+
         /// 元数据id
         public let metaDataId: String
-        
+
         /// 目标实例Id 如果和实例Id相同则为同CasbId下的策略复制
         public let dstCasbId: String
-        
+
         /// 目标实例Id 如果和[元数据id]相同则为同元数据下的策略复制
         public let dstMetaDataId: String
-        
+
         /// 筛选来源数据库的表
         public let srcTableFilter: [CryptoCopyColumnPolicyTableFilter]?
-        
+
         /// 复制同元数据下的策略，需要填写目标数据库名
         public let dstDatabaseName: String?
-        
-        public init (casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil) {
+
+        public init(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil) {
             self.casbId = casbId
             self.metaDataId = metaDataId
             self.dstCasbId = dstCasbId
@@ -43,7 +43,7 @@ extension Casb {
             self.srcTableFilter = srcTableFilter
             self.dstDatabaseName = dstDatabaseName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case casbId = "CasbId"
             case metaDataId = "MetaDataId"
@@ -53,17 +53,17 @@ extension Casb {
             case dstDatabaseName = "DstDatabaseName"
         }
     }
-    
+
     /// CopyCryptoColumnPolicy返回参数结构体
     public struct CopyCryptoColumnPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 复制字段策略
     ///
     /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。
@@ -74,10 +74,10 @@ extension Casb {
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
     @inlinable
-    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyCryptoColumnPolicyResponse > {
+    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
         self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 复制字段策略
     ///
     /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。
@@ -91,7 +91,7 @@ extension Casb {
     public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
         try await self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 复制字段策略
     ///
     /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。
@@ -102,10 +102,10 @@ extension Casb {
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
     @inlinable
-    public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyCryptoColumnPolicyResponse > {
+    public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
         self.copyCryptoColumnPolicy(CopyCryptoColumnPolicyRequest(casbId: casbId, metaDataId: metaDataId, dstCasbId: dstCasbId, dstMetaDataId: dstMetaDataId, srcTableFilter: srcTableFilter, dstDatabaseName: dstDatabaseName), logger: logger, on: eventLoop)
     }
-    
+
     /// 复制字段策略
     ///
     /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。

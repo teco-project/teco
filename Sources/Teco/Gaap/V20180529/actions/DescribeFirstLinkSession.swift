@@ -19,16 +19,16 @@ extension Gaap {
     public struct DescribeFirstLinkSessionRequest: TCRequestModel {
         /// 单次加速唯一会话Id
         public let sessionId: String
-        
-        public init (sessionId: String) {
+
+        public init(sessionId: String) {
             self.sessionId = sessionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionId = "SessionId"
         }
     }
-    
+
     /// DescribeFirstLinkSession返回参数结构体
     public struct DescribeFirstLinkSessionResponse: TCResponseModel {
         /// 会话状态，具体如下：
@@ -36,11 +36,11 @@ extension Gaap {
         /// 0： 非加速中。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 剩余加速时间，单位秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Int64?
-        
+
         /// 加速套餐类型。
         /// 套餐说明如下：
         /// T100K：上/下行保障100kbps；
@@ -48,18 +48,18 @@ extension Gaap {
         /// BU4M：上行带宽保障4Mbps。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suiteType: String?
-        
+
         /// 加速终端的公网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srcPublicIpv4: String?
-        
+
         /// 加速目标ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destIpv4: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case duration = "Duration"
@@ -69,15 +69,15 @@ extension Gaap {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询接入段加速会话信息
     ///
     /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
     @inlinable
-    public func describeFirstLinkSession(_ input: DescribeFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirstLinkSessionResponse > {
+    public func describeFirstLinkSession(_ input: DescribeFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirstLinkSessionResponse> {
         self.client.execute(action: "DescribeFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询接入段加速会话信息
     ///
     /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
@@ -85,15 +85,15 @@ extension Gaap {
     public func describeFirstLinkSession(_ input: DescribeFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirstLinkSessionResponse {
         try await self.client.execute(action: "DescribeFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询接入段加速会话信息
     ///
     /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
     @inlinable
-    public func describeFirstLinkSession(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirstLinkSessionResponse > {
+    public func describeFirstLinkSession(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirstLinkSessionResponse> {
         self.describeFirstLinkSession(DescribeFirstLinkSessionRequest(sessionId: sessionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询接入段加速会话信息
     ///
     /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。

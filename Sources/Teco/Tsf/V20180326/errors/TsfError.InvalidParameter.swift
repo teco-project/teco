@@ -58,311 +58,311 @@ extension TCTsfError {
             case upperDeleteLimit = "InvalidParameter.UpperDeleteLimit"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// [%s]模块接口[%s]请求不正确（400 BAD REQUEST）。。
         public static var badRequest: InvalidParameter {
             InvalidParameter(.badRequest)
         }
-        
+
         /// TSF MASTER 实例状态异常。
         public static var cvmCaeMasterUnknownInstanceStatus: InvalidParameter {
             InvalidParameter(.cvmCaeMasterUnknownInstanceStatus)
         }
-        
+
         /// 未找到 TCR 实例或命名空间。
         public static var imagerepoTcrNamespaceNotFound: InvalidParameter {
             InvalidParameter(.imagerepoTcrNamespaceNotFound)
         }
-        
+
         /// 参数错误。
         public static var kubernetesParamError: InvalidParameter {
             InvalidParameter(.kubernetesParamError)
         }
-        
+
         /// 已经绑定灰度规则，无法删除。
         public static var laneInfoAlreadyUsed: InvalidParameter {
             InvalidParameter(.laneInfoAlreadyUsed)
         }
-        
+
         /// 存在同名的泳道。
         public static var laneInfoNameAlreadyUsed: InvalidParameter {
             InvalidParameter(.laneInfoNameAlreadyUsed)
         }
-        
+
         /// 泳道名称格式有误。
         public static var laneInfoNameInvalid: InvalidParameter {
             InvalidParameter(.laneInfoNameInvalid)
         }
-        
+
         /// 泳道名称不能为空。
         public static var laneInfoNameNotEmpty: InvalidParameter {
             InvalidParameter(.laneInfoNameNotEmpty)
         }
-        
+
         /// 泳道名称不能超过60个字符。
         public static var laneInfoNameTooLong: InvalidParameter {
             InvalidParameter(.laneInfoNameTooLong)
         }
-        
+
         /// 泳道不存在。
         public static var laneInfoNotExist: InvalidParameter {
             InvalidParameter(.laneInfoNotExist)
         }
-        
+
         /// 泳道没有设置任何入口应用。
         public static var laneInfoNotExistEntrance: InvalidParameter {
             InvalidParameter(.laneInfoNotExistEntrance)
         }
-        
+
         /// 泳道备注不能超过200个字符。
         public static var laneInfoRemarkTooLong: InvalidParameter {
             InvalidParameter(.laneInfoRemarkTooLong)
         }
-        
+
         /// 泳道规则中的泳道不存在。
         public static var laneRuleInfoNotExist: InvalidParameter {
             InvalidParameter(.laneRuleInfoNotExist)
         }
-        
+
         /// 存在同名的泳道规则名称。
         public static var laneRuleNameAlreadyUsed: InvalidParameter {
             InvalidParameter(.laneRuleNameAlreadyUsed)
         }
-        
+
         /// 泳道规则名称格式有误。
         public static var laneRuleNameInvalid: InvalidParameter {
             InvalidParameter(.laneRuleNameInvalid)
         }
-        
+
         /// 泳道规则名称不能为空。
         public static var laneRuleNameNotEmpty: InvalidParameter {
             InvalidParameter(.laneRuleNameNotEmpty)
         }
-        
+
         /// 泳道规则名称不能超过60个字符。
         public static var laneRuleNameTooLong: InvalidParameter {
             InvalidParameter(.laneRuleNameTooLong)
         }
-        
+
         /// 泳道规则不存在。
         public static var laneRuleNotExist: InvalidParameter {
             InvalidParameter(.laneRuleNotExist)
         }
-        
+
         /// 泳道规则备注不能超过200个字符。
         public static var laneRuleRemarkTooLong: InvalidParameter {
             InvalidParameter(.laneRuleRemarkTooLong)
         }
-        
+
         /// 泳道规则标签名不能为空。
         public static var laneRuleTagNameNotEmpty: InvalidParameter {
             InvalidParameter(.laneRuleTagNameNotEmpty)
         }
-        
+
         /// 泳道规则标签名不能超过32个字符。
         public static var laneRuleTagNameTooLong: InvalidParameter {
             InvalidParameter(.laneRuleTagNameTooLong)
         }
-        
+
         /// 泳道规则必须设置至少一个标签。
         public static var laneRuleTagNotEmpty: InvalidParameter {
             InvalidParameter(.laneRuleTagNotEmpty)
         }
-        
+
         /// 泳道规则标签值不能超过128个字符。
         public static var laneRuleTagValueTooLong: InvalidParameter {
             InvalidParameter(.laneRuleTagValueTooLong)
         }
-        
+
         /// 泳道规则总标签值不能超过200个字符。
         public static var laneRuleTagValueTotalTooLong: InvalidParameter {
             InvalidParameter(.laneRuleTagValueTotalTooLong)
         }
-        
+
         /// 包正在被使用，请先解除占用。
         public static var packageInUse: InvalidParameter {
             InvalidParameter(.packageInUse)
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         /// 请求参数有误。
         public static var repoPackageParamError: InvalidParameter {
             InvalidParameter(.repoPackageParamError)
         }
-        
+
         /// 仓库中存在软件包，请先删除软件包。
         public static var repositoryNotEmpty: InvalidParameter {
             InvalidParameter(.repositoryNotEmpty)
         }
-        
+
         /// TSF应用性能管理业务日志应用标识参数错误。
         public static var tsfApmBusiLogCfgAppParamError: InvalidParameter {
             InvalidParameter(.tsfApmBusiLogCfgAppParamError)
         }
-        
+
         /// TSF应用性能管理业务日志配置与应用关联参数错误。
         public static var tsfApmBusiLogCfgAppRelationParamError: InvalidParameter {
             InvalidParameter(.tsfApmBusiLogCfgAppRelationParamError)
         }
-        
+
         /// TSF应用性能管理业务日志配置云账户参数错误。
         public static var tsfApmBusiLogCfgCloudParamError: InvalidParameter {
             InvalidParameter(.tsfApmBusiLogCfgCloudParamError)
         }
-        
+
         /// TSF应用性能管理业务日志配置标识参数错误。
         public static var tsfApmBusiLogCfgIdParamError: InvalidParameter {
             InvalidParameter(.tsfApmBusiLogCfgIdParamError)
         }
-        
+
         /// TSF应用性能管理业务日志配置数目参数错误。
         public static var tsfApmBusiLogCfgLimitParamError: InvalidParameter {
             InvalidParameter(.tsfApmBusiLogCfgLimitParamError)
         }
-        
+
         /// TSF应用性能管理业务日志搜索请求参数错误。
         public static var tsfApmBusiLogSearchRequestParamError: InvalidParameter {
             InvalidParameter(.tsfApmBusiLogSearchRequestParamError)
         }
-        
+
         /// TSF应用性能管理运行状态统计查询请求参数错误。
         public static var tsfApmStatsSearchRequestParamError: InvalidParameter {
             InvalidParameter(.tsfApmStatsSearchRequestParamError)
         }
-        
+
         /// TSF应用性能管理标准输出日志搜索请求参数错误。
         public static var tsfApmStdoutSearchRequestParamError: InvalidParameter {
             InvalidParameter(.tsfApmStdoutSearchRequestParamError)
         }
-        
+
         /// TSF应用性能管理调用链搜索请求参数错误。
         public static var tsfApmTraceSearchRequestParamError: InvalidParameter {
             InvalidParameter(.tsfApmTraceSearchRequestParamError)
         }
-        
+
         /// TSF监控统计请求参数[%s]非法。
         public static var tsfMonitorRequestParamIllegal: InvalidParameter {
             InvalidParameter(.tsfMonitorRequestParamIllegal)
         }
-        
+
         /// 仓库批量删除包数量超过单次允许上限。
         public static var upperDeleteLimit: InvalidParameter {
             InvalidParameter(.upperDeleteLimit)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
-            case .badRequest: 
+            case .badRequest:
                 code = .invalidParameter_BadRequest
-            case .cvmCaeMasterUnknownInstanceStatus: 
+            case .cvmCaeMasterUnknownInstanceStatus:
                 code = .invalidParameter_CvmCaeMasterUnknownInstanceStatus
-            case .imagerepoTcrNamespaceNotFound: 
+            case .imagerepoTcrNamespaceNotFound:
                 code = .invalidParameter_ImagerepoTcrNamespaceNotFound
-            case .kubernetesParamError: 
+            case .kubernetesParamError:
                 code = .invalidParameter_KubernetesParamError
-            case .laneInfoAlreadyUsed: 
+            case .laneInfoAlreadyUsed:
                 code = .invalidParameter_LaneInfoAlreadyUsed
-            case .laneInfoNameAlreadyUsed: 
+            case .laneInfoNameAlreadyUsed:
                 code = .invalidParameter_LaneInfoNameAlreadyUsed
-            case .laneInfoNameInvalid: 
+            case .laneInfoNameInvalid:
                 code = .invalidParameter_LaneInfoNameInvalid
-            case .laneInfoNameNotEmpty: 
+            case .laneInfoNameNotEmpty:
                 code = .invalidParameter_LaneInfoNameNotEmpty
-            case .laneInfoNameTooLong: 
+            case .laneInfoNameTooLong:
                 code = .invalidParameter_LaneInfoNameTooLong
-            case .laneInfoNotExist: 
+            case .laneInfoNotExist:
                 code = .invalidParameter_LaneInfoNotExist
-            case .laneInfoNotExistEntrance: 
+            case .laneInfoNotExistEntrance:
                 code = .invalidParameter_LaneInfoNotExistEntrance
-            case .laneInfoRemarkTooLong: 
+            case .laneInfoRemarkTooLong:
                 code = .invalidParameter_LaneInfoRemarkTooLong
-            case .laneRuleInfoNotExist: 
+            case .laneRuleInfoNotExist:
                 code = .invalidParameter_LaneRuleInfoNotExist
-            case .laneRuleNameAlreadyUsed: 
+            case .laneRuleNameAlreadyUsed:
                 code = .invalidParameter_LaneRuleNameAlreadyUsed
-            case .laneRuleNameInvalid: 
+            case .laneRuleNameInvalid:
                 code = .invalidParameter_LaneRuleNameInvalid
-            case .laneRuleNameNotEmpty: 
+            case .laneRuleNameNotEmpty:
                 code = .invalidParameter_LaneRuleNameNotEmpty
-            case .laneRuleNameTooLong: 
+            case .laneRuleNameTooLong:
                 code = .invalidParameter_LaneRuleNameTooLong
-            case .laneRuleNotExist: 
+            case .laneRuleNotExist:
                 code = .invalidParameter_LaneRuleNotExist
-            case .laneRuleRemarkTooLong: 
+            case .laneRuleRemarkTooLong:
                 code = .invalidParameter_LaneRuleRemarkTooLong
-            case .laneRuleTagNameNotEmpty: 
+            case .laneRuleTagNameNotEmpty:
                 code = .invalidParameter_LaneRuleTagNameNotEmpty
-            case .laneRuleTagNameTooLong: 
+            case .laneRuleTagNameTooLong:
                 code = .invalidParameter_LaneRuleTagNameTooLong
-            case .laneRuleTagNotEmpty: 
+            case .laneRuleTagNotEmpty:
                 code = .invalidParameter_LaneRuleTagNotEmpty
-            case .laneRuleTagValueTooLong: 
+            case .laneRuleTagValueTooLong:
                 code = .invalidParameter_LaneRuleTagValueTooLong
-            case .laneRuleTagValueTotalTooLong: 
+            case .laneRuleTagValueTotalTooLong:
                 code = .invalidParameter_LaneRuleTagValueTotalTooLong
-            case .packageInUse: 
+            case .packageInUse:
                 code = .invalidParameter_PackageInUse
-            case .paramError: 
+            case .paramError:
                 code = .invalidParameter_ParamError
-            case .repoPackageParamError: 
+            case .repoPackageParamError:
                 code = .invalidParameter_RepoPackageParamError
-            case .repositoryNotEmpty: 
+            case .repositoryNotEmpty:
                 code = .invalidParameter_RepositoryNotEmpty
-            case .tsfApmBusiLogCfgAppParamError: 
+            case .tsfApmBusiLogCfgAppParamError:
                 code = .invalidParameter_TsfApmBusiLogCfgAppParamError
-            case .tsfApmBusiLogCfgAppRelationParamError: 
+            case .tsfApmBusiLogCfgAppRelationParamError:
                 code = .invalidParameter_TsfApmBusiLogCfgAppRelationParamError
-            case .tsfApmBusiLogCfgCloudParamError: 
+            case .tsfApmBusiLogCfgCloudParamError:
                 code = .invalidParameter_TsfApmBusiLogCfgCloudParamError
-            case .tsfApmBusiLogCfgIdParamError: 
+            case .tsfApmBusiLogCfgIdParamError:
                 code = .invalidParameter_TsfApmBusiLogCfgIdParamError
-            case .tsfApmBusiLogCfgLimitParamError: 
+            case .tsfApmBusiLogCfgLimitParamError:
                 code = .invalidParameter_TsfApmBusiLogCfgLimitParamError
-            case .tsfApmBusiLogSearchRequestParamError: 
+            case .tsfApmBusiLogSearchRequestParamError:
                 code = .invalidParameter_TsfApmBusiLogSearchRequestParamError
-            case .tsfApmStatsSearchRequestParamError: 
+            case .tsfApmStatsSearchRequestParamError:
                 code = .invalidParameter_TsfApmStatsSearchRequestParamError
-            case .tsfApmStdoutSearchRequestParamError: 
+            case .tsfApmStdoutSearchRequestParamError:
                 code = .invalidParameter_TsfApmStdoutSearchRequestParamError
-            case .tsfApmTraceSearchRequestParamError: 
+            case .tsfApmTraceSearchRequestParamError:
                 code = .invalidParameter_TsfApmTraceSearchRequestParamError
-            case .tsfMonitorRequestParamIllegal: 
+            case .tsfMonitorRequestParamIllegal:
                 code = .invalidParameter_TsfMonitorRequestParamIllegal
-            case .upperDeleteLimit: 
+            case .upperDeleteLimit:
                 code = .invalidParameter_UpperDeleteLimit
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCTsfError(code, context: self.context)

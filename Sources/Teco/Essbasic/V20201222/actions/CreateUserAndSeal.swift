@@ -19,38 +19,38 @@ extension Essbasic {
     public struct CreateUserAndSealRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 第三方平台唯一标识，要求应用内OpenId唯一
         public let openId: String
-        
+
         /// 用户姓名
         public let name: String
-        
+
         /// 用户证件类型：
         /// 1. ID_CARD - 居民身份证
         /// 5. HOUSEHOLD_REGISTER - 户口本
         /// 6. TEMP_ID_CARD - 临时居民身份证
         public let idCardType: String
-        
+
         /// 用户证件号
         public let idCardNumber: String
-        
+
         /// 请求生成个人印章的客户端IP
         public let sourceIp: String
-        
+
         /// 用户手机号码，不要求唯一
         public let mobile: String?
-        
+
         /// 用户邮箱，不要求唯一
         public let email: String?
-        
+
         /// 默认印章名称
         public let sealName: String?
-        
+
         /// 是否以OpenId作为UserId (为true时将直接以OpenId生成腾讯电子签平台的UserId)
         public let useOpenId: Bool?
-        
-        public init (caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil) {
+
+        public init(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil) {
             self.caller = caller
             self.openId = openId
             self.name = name
@@ -62,7 +62,7 @@ extension Essbasic {
             self.sealName = sealName
             self.useOpenId = useOpenId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case openId = "OpenId"
@@ -76,25 +76,25 @@ extension Essbasic {
             case useOpenId = "UseOpenId"
         }
     }
-    
+
     /// CreateUserAndSeal返回参数结构体
     public struct CreateUserAndSealResponse: TCResponseModel {
         /// 用户唯一标识，按应用号隔离
         public let userId: String
-        
+
         /// 默认印章ID
         public let sealId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case sealId = "SealId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 注册实名个人用户并生成签名
     ///
     /// 第三方应用可通过此接口（CreateUserAndSeal）注册腾讯电子签实名个人用户，同时系统将为该用户自动生成一个默认电子签名图片。
@@ -102,10 +102,10 @@ extension Essbasic {
     /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的签名图片进行签署。
     /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
-    public func createUserAndSeal(_ input: CreateUserAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserAndSealResponse > {
+    public func createUserAndSeal(_ input: CreateUserAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAndSealResponse> {
         self.client.execute(action: "CreateUserAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 注册实名个人用户并生成签名
     ///
     /// 第三方应用可通过此接口（CreateUserAndSeal）注册腾讯电子签实名个人用户，同时系统将为该用户自动生成一个默认电子签名图片。
@@ -116,7 +116,7 @@ extension Essbasic {
     public func createUserAndSeal(_ input: CreateUserAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAndSealResponse {
         try await self.client.execute(action: "CreateUserAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 注册实名个人用户并生成签名
     ///
     /// 第三方应用可通过此接口（CreateUserAndSeal）注册腾讯电子签实名个人用户，同时系统将为该用户自动生成一个默认电子签名图片。
@@ -124,10 +124,10 @@ extension Essbasic {
     /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的签名图片进行签署。
     /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
-    public func createUserAndSeal(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserAndSealResponse > {
+    public func createUserAndSeal(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAndSealResponse> {
         self.createUserAndSeal(CreateUserAndSealRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, sourceIp: sourceIp, mobile: mobile, email: email, sealName: sealName, useOpenId: useOpenId), logger: logger, on: eventLoop)
     }
-    
+
     /// 注册实名个人用户并生成签名
     ///
     /// 第三方应用可通过此接口（CreateUserAndSeal）注册腾讯电子签实名个人用户，同时系统将为该用户自动生成一个默认电子签名图片。

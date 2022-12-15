@@ -19,29 +19,29 @@ extension Postgres {
     public struct CreateServerlessDBInstanceRequest: TCRequestModel {
         /// 可用区ID。公测阶段仅支持ap-shanghai-2、ap-beijing-1,ap-guangzhou-2.
         public let zone: String
-        
+
         /// DB实例名称，同一个账号下该值必须唯一。
         public let dbInstanceName: String
-        
+
         /// PostgreSQL内核版本，目前只支持：10.4。
         public let dbVersion: String
-        
+
         /// PostgreSQL数据库字符集，目前支持UTF8。
         public let dbCharset: String
-        
+
         /// 项目ID。
         public let projectId: UInt64?
-        
+
         /// 私有网络ID。
         public let vpcId: String?
-        
+
         /// 私有网络子网ID。
         public let subnetId: String?
-        
+
         /// 实例需要绑定的标签数组信息
         public let tagList: [Tag]?
-        
-        public init (zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil) {
+
+        public init(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil) {
             self.zone = zone
             self.dbInstanceName = dbInstanceName
             self.dbVersion = dbVersion
@@ -51,7 +51,7 @@ extension Postgres {
             self.subnetId = subnetId
             self.tagList = tagList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case dbInstanceName = "DBInstanceName"
@@ -63,29 +63,29 @@ extension Postgres {
             case tagList = "TagList"
         }
     }
-    
+
     /// CreateServerlessDBInstance返回参数结构体
     public struct CreateServerlessDBInstanceResponse: TCResponseModel {
         /// 实例ID，该ID全局唯一，如：postgres-xxxxx
         public let dbInstanceId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceId = "DBInstanceId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建ServerlessDB实例
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
-    public func createServerlessDBInstance(_ input: CreateServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerlessDBInstanceResponse > {
+    public func createServerlessDBInstance(_ input: CreateServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerlessDBInstanceResponse> {
         self.client.execute(action: "CreateServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建ServerlessDB实例
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
@@ -93,15 +93,15 @@ extension Postgres {
     public func createServerlessDBInstance(_ input: CreateServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerlessDBInstanceResponse {
         try await self.client.execute(action: "CreateServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建ServerlessDB实例
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
-    public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerlessDBInstanceResponse > {
+    public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerlessDBInstanceResponse> {
         self.createServerlessDBInstance(CreateServerlessDBInstanceRequest(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建ServerlessDB实例
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。

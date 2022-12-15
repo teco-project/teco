@@ -19,23 +19,23 @@ extension Sqlserver {
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 分页返回，每页返回的数目，取值为1-100，默认值为20
         public let limit: UInt64?
-        
+
         /// 分页返回，页编号，默认值为第0页
         public let offset: UInt64?
-        
+
         /// 账号名称
         public let name: String?
-        
+
         /// createTime,updateTime,passTime" note:"排序字段，默认按照账号创建时间倒序
         public let orderBy: String?
-        
+
         /// 排序规则（desc-降序，asc-升序），默认desc
         public let orderByType: String?
-        
-        public init (instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil) {
+
+        public init(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -43,7 +43,7 @@ extension Sqlserver {
             self.orderBy = orderBy
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
@@ -53,21 +53,21 @@ extension Sqlserver {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeAccounts返回参数结构体
     public struct DescribeAccountsResponse: TCResponseModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 账户信息列表
         public let accounts: [AccountDetail]
-        
+
         /// 总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case accounts = "Accounts"
@@ -75,15 +75,15 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取实例账户列表
     ///
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。
     @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取实例账户列表
     ///
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。
@@ -91,15 +91,15 @@ extension Sqlserver {
     public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取实例账户列表
     ///
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。
     @inlinable
-    public func describeAccounts(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+    public func describeAccounts(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.describeAccounts(DescribeAccountsRequest(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取实例账户列表
     ///
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。

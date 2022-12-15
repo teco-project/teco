@@ -19,23 +19,23 @@ extension Tiems {
     public struct CreateServiceConfigRequest: TCRequestModel {
         /// 配置名称
         public let name: String
-        
+
         /// 运行环境
         public let runtime: String
-        
+
         /// 模型地址，支持cos路径，格式为 cos://bucket名-appid.cos.region名.myqcloud.com/模型文件夹路径。为模型文件的上一层文件夹地址。
         public let modelUri: String
-        
+
         /// 配置描述
         public let description: String?
-        
-        public init (name: String, runtime: String, modelUri: String, description: String? = nil) {
+
+        public init(name: String, runtime: String, modelUri: String, description: String? = nil) {
             self.name = name
             self.runtime = runtime
             self.modelUri = modelUri
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case runtime = "Runtime"
@@ -43,30 +43,30 @@ extension Tiems {
             case description = "Description"
         }
     }
-    
+
     /// CreateServiceConfig返回参数结构体
     public struct CreateServiceConfigResponse: TCResponseModel {
         /// 服务配置
         public let serviceConfig: Config
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceConfig = "ServiceConfig"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建服务配置
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 创建服务配置
     @inlinable
-    public func createServiceConfig(_ input: CreateServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceConfigResponse > {
+    public func createServiceConfig(_ input: CreateServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceConfigResponse> {
         self.client.execute(action: "CreateServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建服务配置
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
@@ -75,16 +75,16 @@ extension Tiems {
     public func createServiceConfig(_ input: CreateServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceConfigResponse {
         try await self.client.execute(action: "CreateServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建服务配置
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 创建服务配置
     @inlinable
-    public func createServiceConfig(name: String, runtime: String, modelUri: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceConfigResponse > {
+    public func createServiceConfig(name: String, runtime: String, modelUri: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceConfigResponse> {
         self.createServiceConfig(CreateServiceConfigRequest(name: name, runtime: runtime, modelUri: modelUri, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建服务配置
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。

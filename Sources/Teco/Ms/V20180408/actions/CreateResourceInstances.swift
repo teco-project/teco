@@ -19,23 +19,23 @@ extension Ms {
     public struct CreateResourceInstancesRequest: TCRequestModel {
         /// 资源类型id。13624：加固专业版。
         public let pid: UInt64
-        
+
         /// 时间单位，取值为d，m，y，分别表示天，月，年。
         public let timeUnit: String
-        
+
         /// 时间数量。
         public let timeSpan: UInt64
-        
+
         /// 资源数量。
         public let resourceNum: UInt64
-        
-        public init (pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64) {
+
+        public init(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64) {
             self.pid = pid
             self.timeUnit = timeUnit
             self.timeSpan = timeSpan
             self.resourceNum = resourceNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pid = "Pid"
             case timeUnit = "TimeUnit"
@@ -43,29 +43,29 @@ extension Ms {
             case resourceNum = "ResourceNum"
         }
     }
-    
+
     /// CreateResourceInstances返回参数结构体
     public struct CreateResourceInstancesResponse: TCResponseModel {
         /// 新创建的资源列表。
         public let resourceSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceSet = "ResourceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建资源
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
-    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceInstancesResponse > {
+    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceInstancesResponse> {
         self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建资源
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户
@@ -73,15 +73,15 @@ extension Ms {
     public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
         try await self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建资源
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
-    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceInstancesResponse > {
+    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceInstancesResponse> {
         self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建资源
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户

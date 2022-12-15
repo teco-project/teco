@@ -19,52 +19,52 @@ extension Iotexplorer {
     public struct SearchTopicRuleRequest: TCRequestModel {
         /// 规则名
         public let ruleName: String
-        
-        public init (ruleName: String) {
+
+        public init(ruleName: String) {
             self.ruleName = ruleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
         }
     }
-    
+
     /// SearchTopicRule返回参数结构体
     public struct SearchTopicRuleResponse: TCResponseModel {
         /// 搜索到的规则总数
         public let totalCnt: Int64
-        
+
         /// 规则信息列表
         public let rules: [TopicRuleInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCnt = "TotalCnt"
             case rules = "Rules"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 搜索规则
     @inlinable
-    public func searchTopicRule(_ input: SearchTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchTopicRuleResponse > {
+    public func searchTopicRule(_ input: SearchTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTopicRuleResponse> {
         self.client.execute(action: "SearchTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索规则
     @inlinable
     public func searchTopicRule(_ input: SearchTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTopicRuleResponse {
         try await self.client.execute(action: "SearchTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 搜索规则
     @inlinable
-    public func searchTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchTopicRuleResponse > {
+    public func searchTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTopicRuleResponse> {
         self.searchTopicRule(SearchTopicRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索规则
     @inlinable
     public func searchTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTopicRuleResponse {

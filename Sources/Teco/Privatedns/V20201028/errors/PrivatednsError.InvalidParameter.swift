@@ -44,219 +44,219 @@ extension TCPrivatednsError {
             case zoneNotExists = "InvalidParameter.ZoneNotExists"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 已经存在绑定的账号。
         ///
         /// 数据已经存在，无需重复操作。
         public static var accountExist: InvalidParameter {
             InvalidParameter(.accountExist)
         }
-        
+
         /// 非法CIDR。
         public static var illegalCidr: InvalidParameter {
             InvalidParameter(.illegalCidr)
         }
-        
+
         /// 域名不正确。
         public static var illegalDomain: InvalidParameter {
             InvalidParameter(.illegalDomain)
         }
-        
+
         /// 顶级域名不正确。
         public static var illegalDomainTld: InvalidParameter {
             InvalidParameter(.illegalDomainTld)
         }
-        
+
         /// PTR记录非法。
         public static var illegalPTRRecord: InvalidParameter {
             InvalidParameter(.illegalPTRRecord)
         }
-        
+
         /// 记录不合法。
         public static var illegalRecord: InvalidParameter {
             InvalidParameter(.illegalRecord)
         }
-        
+
         /// 无效的记录值。
         public static var illegalRecordValue: InvalidParameter {
             InvalidParameter(.illegalRecordValue)
         }
-        
+
         /// VPC非法。
         public static var illegalVpcInfo: InvalidParameter {
             InvalidParameter(.illegalVpcInfo)
         }
-        
+
         /// MX 必须为5-50之间且为5的倍数。
         public static var invalidMX: InvalidParameter {
             InvalidParameter(.invalidMX)
         }
-        
+
         /// AAAA记录负载均衡数量超过50。
         public static var recordAAAACountExceed: InvalidParameter {
             InvalidParameter(.recordAAAACountExceed)
         }
-        
+
         /// A记录负载均衡数量超过50。
         public static var recordACountExceed: InvalidParameter {
             InvalidParameter(.recordACountExceed)
         }
-        
+
         /// CNAME记录负载均衡数量超过50。
         public static var recordCNAMECountExceed: InvalidParameter {
             InvalidParameter(.recordCNAMECountExceed)
         }
-        
+
         /// 记录冲突。
         public static var recordConflict: InvalidParameter {
             InvalidParameter(.recordConflict)
         }
-        
+
         /// 记录数量超过限制。
         public static var recordCountExceed: InvalidParameter {
             InvalidParameter(.recordCountExceed)
         }
-        
+
         /// 记录已经存在。
         public static var recordExist: InvalidParameter {
             InvalidParameter(.recordExist)
         }
-        
+
         /// 记录层级超过限制。
         public static var recordLevelExceed: InvalidParameter {
             InvalidParameter(.recordLevelExceed)
         }
-        
+
         /// MX记录负载均衡数量超过50。
         public static var recordMXCountExceed: InvalidParameter {
             InvalidParameter(.recordMXCountExceed)
         }
-        
+
         /// 记录不存在。
         public static var recordNotExist: InvalidParameter {
             InvalidParameter(.recordNotExist)
         }
-        
+
         /// 记录负载均衡数量超过限制。
         public static var recordRolllimitCountExceed: InvalidParameter {
             InvalidParameter(.recordRolllimitCountExceed)
         }
-        
+
         /// TXT记录负载均衡数量超过10。
         public static var recordTXTCountExceed: InvalidParameter {
             InvalidParameter(.recordTXTCountExceed)
         }
-        
+
         /// 当前记录类型不支持权重。
         public static var recordUnsupportWeight: InvalidParameter {
             InvalidParameter(.recordUnsupportWeight)
         }
-        
+
         /// VPC已绑定其它解析域。
         public static var vpcBinded: InvalidParameter {
             InvalidParameter(.vpcBinded)
         }
-        
+
         /// 当前VPC已关联相同主域名。
         ///
         /// 检查解析记录+私有域名是否绑定了相同的VPC
         public static var vpcBindedMainDomain: InvalidParameter {
             InvalidParameter(.vpcBindedMainDomain)
         }
-        
+
         /// VPC关联反解析域超过限制。
         ///
         /// 确认vpc关联的反解析域数量
         public static var vpcPtrZoneBindExceed: InvalidParameter {
             InvalidParameter(.vpcPtrZoneBindExceed)
         }
-        
+
         /// 解析域不存在。
         public static var zoneNotExists: InvalidParameter {
             InvalidParameter(.zoneNotExists)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asPrivatednsError() -> TCPrivatednsError {
             let code: TCPrivatednsError.Code
             switch self.error {
-            case .accountExist: 
+            case .accountExist:
                 code = .invalidParameter_AccountExist
-            case .illegalCidr: 
+            case .illegalCidr:
                 code = .invalidParameter_IllegalCidr
-            case .illegalDomain: 
+            case .illegalDomain:
                 code = .invalidParameter_IllegalDomain
-            case .illegalDomainTld: 
+            case .illegalDomainTld:
                 code = .invalidParameter_IllegalDomainTld
-            case .illegalPTRRecord: 
+            case .illegalPTRRecord:
                 code = .invalidParameter_IllegalPTRRecord
-            case .illegalRecord: 
+            case .illegalRecord:
                 code = .invalidParameter_IllegalRecord
-            case .illegalRecordValue: 
+            case .illegalRecordValue:
                 code = .invalidParameter_IllegalRecordValue
-            case .illegalVpcInfo: 
+            case .illegalVpcInfo:
                 code = .invalidParameter_IllegalVpcInfo
-            case .invalidMX: 
+            case .invalidMX:
                 code = .invalidParameter_InvalidMX
-            case .recordAAAACountExceed: 
+            case .recordAAAACountExceed:
                 code = .invalidParameter_RecordAAAACountExceed
-            case .recordACountExceed: 
+            case .recordACountExceed:
                 code = .invalidParameter_RecordACountExceed
-            case .recordCNAMECountExceed: 
+            case .recordCNAMECountExceed:
                 code = .invalidParameter_RecordCNAMECountExceed
-            case .recordConflict: 
+            case .recordConflict:
                 code = .invalidParameter_RecordConflict
-            case .recordCountExceed: 
+            case .recordCountExceed:
                 code = .invalidParameter_RecordCountExceed
-            case .recordExist: 
+            case .recordExist:
                 code = .invalidParameter_RecordExist
-            case .recordLevelExceed: 
+            case .recordLevelExceed:
                 code = .invalidParameter_RecordLevelExceed
-            case .recordMXCountExceed: 
+            case .recordMXCountExceed:
                 code = .invalidParameter_RecordMXCountExceed
-            case .recordNotExist: 
+            case .recordNotExist:
                 code = .invalidParameter_RecordNotExist
-            case .recordRolllimitCountExceed: 
+            case .recordRolllimitCountExceed:
                 code = .invalidParameter_RecordRolllimitCountExceed
-            case .recordTXTCountExceed: 
+            case .recordTXTCountExceed:
                 code = .invalidParameter_RecordTXTCountExceed
-            case .recordUnsupportWeight: 
+            case .recordUnsupportWeight:
                 code = .invalidParameter_RecordUnsupportWeight
-            case .vpcBinded: 
+            case .vpcBinded:
                 code = .invalidParameter_VpcBinded
-            case .vpcBindedMainDomain: 
+            case .vpcBindedMainDomain:
                 code = .invalidParameter_VpcBindedMainDomain
-            case .vpcPtrZoneBindExceed: 
+            case .vpcPtrZoneBindExceed:
                 code = .invalidParameter_VpcPtrZoneBindExceed
-            case .zoneNotExists: 
+            case .zoneNotExists:
                 code = .invalidParameter_ZoneNotExists
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCPrivatednsError(code, context: self.context)

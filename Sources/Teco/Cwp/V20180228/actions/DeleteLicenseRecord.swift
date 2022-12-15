@@ -19,44 +19,44 @@ extension Cwp {
     public struct DeleteLicenseRecordRequest: TCRequestModel {
         /// 授权ID ,可以用授权订单列表获取.
         public let licenseId: UInt64
-        
+
         /// 授权类型
         public let licenseType: UInt64
-        
+
         /// 资源ID
         public let resourceId: String
-        
-        public init (licenseId: UInt64, licenseType: UInt64, resourceId: String) {
+
+        public init(licenseId: UInt64, licenseType: UInt64, resourceId: String) {
             self.licenseId = licenseId
             self.licenseType = licenseType
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case licenseId = "LicenseId"
             case licenseType = "LicenseType"
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// DeleteLicenseRecord返回参数结构体
     public struct DeleteLicenseRecordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
     @inlinable
-    public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLicenseRecordResponse > {
+    public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLicenseRecordResponse> {
         self.client.execute(action: "DeleteLicenseRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
@@ -64,15 +64,15 @@ extension Cwp {
     public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLicenseRecordResponse {
         try await self.client.execute(action: "DeleteLicenseRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
     @inlinable
-    public func deleteLicenseRecord(licenseId: UInt64, licenseType: UInt64, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLicenseRecordResponse > {
+    public func deleteLicenseRecord(licenseId: UInt64, licenseType: UInt64, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLicenseRecordResponse> {
         self.deleteLicenseRecord(DeleteLicenseRecordRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)

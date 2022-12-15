@@ -23,65 +23,65 @@ extension TCThpcError {
             case launchConfigurationId = "ResourceNotFound.LaunchConfigurationId"
             case nodeId = "ResourceNotFound.NodeId"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无法找到弹性伸缩组ID。
         public static var autoScalingGroupId: ResourceNotFound {
             ResourceNotFound(.autoScalingGroupId)
         }
-        
+
         /// 集群不存在。
         public static var clusterId: ResourceNotFound {
             ResourceNotFound(.clusterId)
         }
-        
+
         public static var imageId: ResourceNotFound {
             ResourceNotFound(.imageId)
         }
-        
+
         /// 无法找到ID对应的弹性伸缩启动配置。
         public static var launchConfigurationId: ResourceNotFound {
             ResourceNotFound(.launchConfigurationId)
         }
-        
+
         /// 无法找到ID对应节点。
         public static var nodeId: ResourceNotFound {
             ResourceNotFound(.nodeId)
         }
-        
+
         public func asThpcError() -> TCThpcError {
             let code: TCThpcError.Code
             switch self.error {
-            case .autoScalingGroupId: 
+            case .autoScalingGroupId:
                 code = .resourceNotFound_AutoScalingGroupId
-            case .clusterId: 
+            case .clusterId:
                 code = .resourceNotFound_ClusterId
-            case .imageId: 
+            case .imageId:
                 code = .resourceNotFound_ImageId
-            case .launchConfigurationId: 
+            case .launchConfigurationId:
                 code = .resourceNotFound_LaunchConfigurationId
-            case .nodeId: 
+            case .nodeId:
                 code = .resourceNotFound_NodeId
             }
             return TCThpcError(code, context: self.context)

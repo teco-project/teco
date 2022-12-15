@@ -19,55 +19,55 @@ extension Tsf {
     public struct ModifyMicroserviceRequest: TCRequestModel {
         /// 微服务 ID
         public let microserviceId: String
-        
+
         /// 微服务备注信息
         public let microserviceDesc: String
-        
-        public init (microserviceId: String, microserviceDesc: String) {
+
+        public init(microserviceId: String, microserviceDesc: String) {
             self.microserviceId = microserviceId
             self.microserviceDesc = microserviceDesc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case microserviceId = "MicroserviceId"
             case microserviceDesc = "MicroserviceDesc"
         }
     }
-    
+
     /// ModifyMicroservice返回参数结构体
     public struct ModifyMicroserviceResponse: TCResponseModel {
         /// 修改微服务详情是否成功。
         /// true：操作成功。
         /// false：操作失败。
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改微服务详情
     @inlinable
-    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMicroserviceResponse > {
+    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMicroserviceResponse> {
         self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改微服务详情
     @inlinable
     public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
         try await self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改微服务详情
     @inlinable
-    public func modifyMicroservice(microserviceId: String, microserviceDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMicroserviceResponse > {
+    public func modifyMicroservice(microserviceId: String, microserviceDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMicroserviceResponse> {
         self.modifyMicroservice(ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改微服务详情
     @inlinable
     public func modifyMicroservice(microserviceId: String, microserviceDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {

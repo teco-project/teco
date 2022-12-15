@@ -28,7 +28,7 @@ extension Ecdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询结束时间，如：2019-12-13 23:59:59。
         /// 起止时间不超过90天。
         ///
@@ -37,34 +37,34 @@ extension Ecdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 统计指标名称:
         /// flux：流量，单位为 byte
         /// bandwidth：带宽，单位为 bps
         /// request：请求数，单位为 次
         public let metrics: [String]
-        
+
         /// 指定查询域名列表
         public let domains: [String]?
-        
+
         /// 指定要查询的项目 ID，[前往查看项目 ID](https://console.cloud.tencent.com/project)
         /// 未填充域名情况下，指定项目查询，若填充了具体域名信息，以域名为主
         public let projects: [Int64]?
-        
+
         /// 列表分页起始地址，默认0。
         public let offset: Int64?
-        
+
         /// 列表分页记录条数，默认1000，最大3000。
         public let limit: Int64?
-        
+
         /// 统计区域:
         /// mainland: 境内
         /// oversea: 境外
         /// global: 全部
         /// 默认 global
         public let area: String?
-        
-        public init (startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metrics = metrics
@@ -74,7 +74,7 @@ extension Ecdn {
             self.limit = limit
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -86,34 +86,34 @@ extension Ecdn {
             case area = "Area"
         }
     }
-    
+
     /// DescribeEcdnDomainStatistics返回参数结构体
     public struct DescribeEcdnDomainStatisticsResponse: TCResponseModel {
         /// 域名数据
         public let data: [DomainData]
-        
+
         /// 数量
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 域名统计指标查询
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEcdnDomainStatisticsResponse > {
+    public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnDomainStatisticsResponse> {
         self.client.execute(action: "DescribeEcdnDomainStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 域名统计指标查询
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
@@ -122,16 +122,16 @@ extension Ecdn {
     public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainStatisticsResponse {
         try await self.client.execute(action: "DescribeEcdnDomainStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 域名统计指标查询
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func describeEcdnDomainStatistics(startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEcdnDomainStatisticsResponse > {
+    public func describeEcdnDomainStatistics(startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnDomainStatisticsResponse> {
         self.describeEcdnDomainStatistics(DescribeEcdnDomainStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, domains: domains, projects: projects, offset: offset, limit: limit, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 域名统计指标查询
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。

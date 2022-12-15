@@ -19,52 +19,52 @@ extension Cloudhsm {
     public struct DescribeHSMByVpcIdRequest: TCRequestModel {
         /// VPC标识符
         public let vpcId: String
-        
-        public init (vpcId: String) {
+
+        public init(vpcId: String) {
             self.vpcId = vpcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
         }
     }
-    
+
     /// DescribeHSMByVpcId返回参数结构体
     public struct DescribeHSMByVpcIdResponse: TCResponseModel {
         /// HSM数量
         public let totalCount: Int64
-        
+
         /// 作为查询条件的VpcId
         public let vpcId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case vpcId = "VpcId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通过VpcId获取Hsm资源数
     @inlinable
-    public func describeHSMByVpcId(_ input: DescribeHSMByVpcIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMByVpcIdResponse > {
+    public func describeHSMByVpcId(_ input: DescribeHSMByVpcIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMByVpcIdResponse> {
         self.client.execute(action: "DescribeHSMByVpcId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通过VpcId获取Hsm资源数
     @inlinable
     public func describeHSMByVpcId(_ input: DescribeHSMByVpcIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMByVpcIdResponse {
         try await self.client.execute(action: "DescribeHSMByVpcId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通过VpcId获取Hsm资源数
     @inlinable
-    public func describeHSMByVpcId(vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMByVpcIdResponse > {
+    public func describeHSMByVpcId(vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMByVpcIdResponse> {
         self.describeHSMByVpcId(DescribeHSMByVpcIdRequest(vpcId: vpcId), logger: logger, on: eventLoop)
     }
-    
+
     /// 通过VpcId获取Hsm资源数
     @inlinable
     public func describeHSMByVpcId(vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMByVpcIdResponse {

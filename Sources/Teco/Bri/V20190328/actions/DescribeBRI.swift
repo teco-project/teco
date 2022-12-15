@@ -19,35 +19,35 @@ extension Bri {
     public struct DescribeBRIRequest: TCRequestModel {
         /// 业务风险情报请求体
         public let requestData: BRIRequest
-        
+
         /// 客户用于计费的资源ID
         public let resourceId: String
-        
-        public init (requestData: BRIRequest, resourceId: String) {
+
+        public init(requestData: BRIRequest, resourceId: String) {
             self.requestData = requestData
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case requestData = "RequestData"
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// DescribeBRI返回参数结构体
     public struct DescribeBRIResponse: TCResponseModel {
         /// 业务风险情报响应体
         public let responseData: BRIResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取业务风险情报
     ///
     /// 输入业务名 (bri_num, bri_dev, bri_ip, bri_apk, bri_url, bri_social 六种之一)  及其 相应字段, 获取业务风险分数和标签。
@@ -58,10 +58,10 @@ extension Bri {
     /// 当业务名为bri_url时，必须填Url字段.
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
-    public func describeBRI(_ input: DescribeBRIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBRIResponse > {
+    public func describeBRI(_ input: DescribeBRIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBRIResponse> {
         self.client.execute(action: "DescribeBRI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取业务风险情报
     ///
     /// 输入业务名 (bri_num, bri_dev, bri_ip, bri_apk, bri_url, bri_social 六种之一)  及其 相应字段, 获取业务风险分数和标签。
@@ -75,7 +75,7 @@ extension Bri {
     public func describeBRI(_ input: DescribeBRIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBRIResponse {
         try await self.client.execute(action: "DescribeBRI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取业务风险情报
     ///
     /// 输入业务名 (bri_num, bri_dev, bri_ip, bri_apk, bri_url, bri_social 六种之一)  及其 相应字段, 获取业务风险分数和标签。
@@ -86,10 +86,10 @@ extension Bri {
     /// 当业务名为bri_url时，必须填Url字段.
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
-    public func describeBRI(requestData: BRIRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBRIResponse > {
+    public func describeBRI(requestData: BRIRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBRIResponse> {
         self.describeBRI(DescribeBRIRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取业务风险情报
     ///
     /// 输入业务名 (bri_num, bri_dev, bri_ip, bri_apk, bri_url, bri_social 六种之一)  及其 相应字段, 获取业务风险分数和标签。

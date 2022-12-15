@@ -19,23 +19,23 @@ extension Gse {
     public struct UpdateGameServerSessionQueueRequest: TCRequestModel {
         /// 游戏服务器会话队列名字，长度1~128
         public let name: String
-        
+
         /// 目的服务器舰队（可为别名）列表
         public let destinations: [GameServerSessionQueueDestination]?
-        
+
         /// 延迟策略集合
         public let playerLatencyPolicies: [PlayerLatencyPolicy]?
-        
+
         /// 超时时间
         public let timeoutInSeconds: UInt64?
-        
-        public init (name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil) {
+
+        public init(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil) {
             self.name = name
             self.destinations = destinations
             self.playerLatencyPolicies = playerLatencyPolicies
             self.timeoutInSeconds = timeoutInSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case destinations = "Destinations"
@@ -43,30 +43,30 @@ extension Gse {
             case timeoutInSeconds = "TimeoutInSeconds"
         }
     }
-    
+
     /// UpdateGameServerSessionQueue返回参数结构体
     public struct UpdateGameServerSessionQueueResponse: TCResponseModel {
         /// 部署服务组对象
         public let gameServerSessionQueue: GameServerSessionQueue
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSessionQueue = "GameServerSessionQueue"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateGameServerSessionQueue）用于修改游戏服务器会话队列。
     @inlinable
-    public func updateGameServerSessionQueue(_ input: UpdateGameServerSessionQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGameServerSessionQueueResponse > {
+    public func updateGameServerSessionQueue(_ input: UpdateGameServerSessionQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionQueueResponse> {
         self.client.execute(action: "UpdateGameServerSessionQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -75,16 +75,16 @@ extension Gse {
     public func updateGameServerSessionQueue(_ input: UpdateGameServerSessionQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionQueueResponse {
         try await self.client.execute(action: "UpdateGameServerSessionQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateGameServerSessionQueue）用于修改游戏服务器会话队列。
     @inlinable
-    public func updateGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGameServerSessionQueueResponse > {
+    public func updateGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionQueueResponse> {
         self.updateGameServerSessionQueue(UpdateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

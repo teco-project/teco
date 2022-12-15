@@ -19,50 +19,50 @@ extension Tsf {
     public struct DeleteMicroserviceRequest: TCRequestModel {
         /// 微服务ID
         public let microserviceId: String
-        
-        public init (microserviceId: String) {
+
+        public init(microserviceId: String) {
             self.microserviceId = microserviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case microserviceId = "MicroserviceId"
         }
     }
-    
+
     /// DeleteMicroservice返回参数结构体
     public struct DeleteMicroserviceResponse: TCResponseModel {
         /// 删除微服务是否成功。
         /// true：操作成功。
         /// false：操作失败。
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除微服务
     @inlinable
-    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMicroserviceResponse > {
+    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMicroserviceResponse> {
         self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除微服务
     @inlinable
     public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
         try await self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除微服务
     @inlinable
-    public func deleteMicroservice(microserviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMicroserviceResponse > {
+    public func deleteMicroservice(microserviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMicroserviceResponse> {
         self.deleteMicroservice(DeleteMicroserviceRequest(microserviceId: microserviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除微服务
     @inlinable
     public func deleteMicroservice(microserviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {

@@ -19,23 +19,23 @@ extension Es {
     public struct UpdatePluginsRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 需要安装的插件名列表
         public let installPluginList: [String]?
-        
+
         /// 需要卸载的插件名列表
         public let removePluginList: [String]?
-        
+
         /// 是否强制重启，默认值false
         public let forceRestart: Bool?
-        
+
         /// 是否重新安装，默认值false
         public let forceUpdate: Bool?
-        
+
         /// 0：系统插件
         public let pluginType: UInt64?
-        
-        public init (instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil) {
+
+        public init(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil) {
             self.instanceId = instanceId
             self.installPluginList = installPluginList
             self.removePluginList = removePluginList
@@ -43,7 +43,7 @@ extension Es {
             self.forceUpdate = forceUpdate
             self.pluginType = pluginType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case installPluginList = "InstallPluginList"
@@ -53,35 +53,35 @@ extension Es {
             case pluginType = "PluginType"
         }
     }
-    
+
     /// UpdatePlugins返回参数结构体
     public struct UpdatePluginsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 变更插件列表
     @inlinable
-    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePluginsResponse > {
+    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePluginsResponse> {
         self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 变更插件列表
     @inlinable
     public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
         try await self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 变更插件列表
     @inlinable
-    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePluginsResponse > {
+    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePluginsResponse> {
         self.updatePlugins(UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), logger: logger, on: eventLoop)
     }
-    
+
     /// 变更插件列表
     @inlinable
     public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {

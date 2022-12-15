@@ -19,7 +19,7 @@ extension Cvm {
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 按照一个或者多个实例ID查询。实例ID形如：`ins-xxxxxxxx`。（此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的`ids.N`一节）。每次请求的实例的上限为100。参数不支持同时指定`InstanceIds`和`Filters`。
         public let instanceIds: [String]?
-        
+
         /// <li><strong>zone</strong></li>
         /// <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
         /// <li><strong>project-id</strong></li>
@@ -58,20 +58,20 @@ extension Cvm {
         /// <p style="padding-left: 30px;">按照【<strong>标签键值对</strong>】进行过滤。tag-key使用具体的标签键进行替换。使用请参考示例2。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`InstanceIds`和`Filters`。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
-        
-        public init (instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceIds = instanceIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case filters = "Filters"
@@ -79,25 +79,25 @@ extension Cvm {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeInstances返回参数结构体
     public struct DescribeInstancesResponse: TCResponseModel {
         /// 符合条件的实例数量。
         public let totalCount: Int64
-        
+
         /// 实例详细信息列表。
         public let instanceSet: [Instance]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口 (DescribeInstances) 用于查询一个或多个实例的详细信息。
@@ -105,10 +105,10 @@ extension Cvm {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     /// * 支持查询实例的最新操作（LatestOperation）以及最新操作状态(LatestOperationState)。
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口 (DescribeInstances) 用于查询一个或多个实例的详细信息。
@@ -119,7 +119,7 @@ extension Cvm {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口 (DescribeInstances) 用于查询一个或多个实例的详细信息。
@@ -127,10 +127,10 @@ extension Cvm {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     /// * 支持查询实例的最新操作（LatestOperation）以及最新操作状态(LatestOperationState)。
     @inlinable
-    public func describeInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(DescribeInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看实例列表
     ///
     /// 本接口 (DescribeInstances) 用于查询一个或多个实例的详细信息。

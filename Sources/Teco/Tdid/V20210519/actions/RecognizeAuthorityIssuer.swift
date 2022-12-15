@@ -19,44 +19,44 @@ extension Tdid {
     public struct RecognizeAuthorityIssuerRequest: TCRequestModel {
         /// did具体信息
         public let did: String
-        
-        public init (did: String) {
+
+        public init(did: String) {
             self.did = did
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
         }
     }
-    
+
     /// RecognizeAuthorityIssuer返回参数结构体
     public struct RecognizeAuthorityIssuerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 认证权威机构
     @inlinable
-    public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeAuthorityIssuerResponse > {
+    public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeAuthorityIssuerResponse> {
         self.client.execute(action: "RecognizeAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 认证权威机构
     @inlinable
     public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
         try await self.client.execute(action: "RecognizeAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 认证权威机构
     @inlinable
-    public func recognizeAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeAuthorityIssuerResponse > {
+    public func recognizeAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeAuthorityIssuerResponse> {
         self.recognizeAuthorityIssuer(RecognizeAuthorityIssuerRequest(did: did), logger: logger, on: eventLoop)
     }
-    
+
     /// 认证权威机构
     @inlinable
     public func recognizeAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {

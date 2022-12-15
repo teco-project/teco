@@ -24,72 +24,72 @@ extension TCThpcError {
             case tooSmall = "InvalidParameterValue.TooSmall"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不支持该参数值。
         public static var notSupported: InvalidParameterValue {
             InvalidParameterValue(.notSupported)
         }
-        
+
         public static var parametersNotSupported: InvalidParameterValue {
             InvalidParameterValue(.parametersNotSupported)
         }
-        
+
         /// 参数值过大。
         public static var tooLarge: InvalidParameterValue {
             InvalidParameterValue(.tooLarge)
         }
-        
+
         /// 参数长度过长。
         public static var tooLong: InvalidParameterValue {
             InvalidParameterValue(.tooLong)
         }
-        
+
         /// 参数值过小。
         public static var tooSmall: InvalidParameterValue {
             InvalidParameterValue(.tooSmall)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asThpcError() -> TCThpcError {
             let code: TCThpcError.Code
             switch self.error {
-            case .notSupported: 
+            case .notSupported:
                 code = .invalidParameterValue_NotSupported
-            case .parametersNotSupported: 
+            case .parametersNotSupported:
                 code = .invalidParameterValue_ParametersNotSupported
-            case .tooLarge: 
+            case .tooLarge:
                 code = .invalidParameterValue_TooLarge
-            case .tooLong: 
+            case .tooLong:
                 code = .invalidParameterValue_TooLong
-            case .tooSmall: 
+            case .tooSmall:
                 code = .invalidParameterValue_TooSmall
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCThpcError(code, context: self.context)

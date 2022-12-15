@@ -17,32 +17,32 @@
 extension Yunjing {
     /// ExportBruteAttacks请求参数结构体
     public struct ExportBruteAttacksRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ExportBruteAttacks返回参数结构体
     public struct ExportBruteAttacksResponse: TCResponseModel {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBruteAttacksResponse > {
+    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
         self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
@@ -50,15 +50,15 @@ extension Yunjing {
     public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
         try await self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBruteAttacksResponse > {
+    public func exportBruteAttacks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
         self.exportBruteAttacks(ExportBruteAttacksRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。

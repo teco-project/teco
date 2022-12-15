@@ -19,30 +19,30 @@ extension Ses {
     public struct GetEmailTemplateRequest: TCRequestModel {
         /// 模板ID
         public let templateID: UInt64
-        
-        public init (templateID: UInt64) {
+
+        public init(templateID: UInt64) {
             self.templateID = templateID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateID = "TemplateID"
         }
     }
-    
+
     /// GetEmailTemplate返回参数结构体
     public struct GetEmailTemplateResponse: TCResponseModel {
         /// 模板内容数据
         public let templateContent: TemplateContent
-        
+
         /// 模板状态 0-审核通过 1-待审核 2-审核拒绝
         public let templateStatus: UInt64
-        
+
         /// 模板名称
         public let templateName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templateContent = "TemplateContent"
             case templateStatus = "TemplateStatus"
@@ -50,15 +50,15 @@ extension Ses {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取模板详情
     ///
     /// 根据模板ID获取模板详情
     @inlinable
-    public func getEmailTemplate(_ input: GetEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEmailTemplateResponse > {
+    public func getEmailTemplate(_ input: GetEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailTemplateResponse> {
         self.client.execute(action: "GetEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取模板详情
     ///
     /// 根据模板ID获取模板详情
@@ -66,15 +66,15 @@ extension Ses {
     public func getEmailTemplate(_ input: GetEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailTemplateResponse {
         try await self.client.execute(action: "GetEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取模板详情
     ///
     /// 根据模板ID获取模板详情
     @inlinable
-    public func getEmailTemplate(templateID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEmailTemplateResponse > {
+    public func getEmailTemplate(templateID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailTemplateResponse> {
         self.getEmailTemplate(GetEmailTemplateRequest(templateID: templateID), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取模板详情
     ///
     /// 根据模板ID获取模板详情

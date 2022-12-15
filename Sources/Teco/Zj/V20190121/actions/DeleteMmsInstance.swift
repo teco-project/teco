@@ -19,53 +19,53 @@ extension Zj {
     public struct DeleteMmsInstanceRequest: TCRequestModel {
         /// 商户证书
         public let license: String
-        
+
         /// 超级短信样例id
         public let instanceId: UInt64
-        
-        public init (license: String, instanceId: UInt64) {
+
+        public init(license: String, instanceId: UInt64) {
             self.license = license
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case license = "License"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DeleteMmsInstance返回参数结构体
     public struct DeleteMmsInstanceResponse: TCResponseModel {
         /// 删除信息返回
         public let data: DelMmsInstanceData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除超级短信样例
     @inlinable
-    public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMmsInstanceResponse > {
+    public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMmsInstanceResponse> {
         self.client.execute(action: "DeleteMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除超级短信样例
     @inlinable
     public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMmsInstanceResponse {
         try await self.client.execute(action: "DeleteMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除超级短信样例
     @inlinable
-    public func deleteMmsInstance(license: String, instanceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMmsInstanceResponse > {
+    public func deleteMmsInstance(license: String, instanceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMmsInstanceResponse> {
         self.deleteMmsInstance(DeleteMmsInstanceRequest(license: license, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除超级短信样例
     @inlinable
     public func deleteMmsInstance(license: String, instanceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMmsInstanceResponse {

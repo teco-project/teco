@@ -19,53 +19,53 @@ extension Tcr {
     public struct DescribeInternalEndpointsRequest: TCRequestModel {
         /// 实例Id
         public let registryId: String
-        
-        public init (registryId: String) {
+
+        public init(registryId: String) {
             self.registryId = registryId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
         }
     }
-    
+
     /// DescribeInternalEndpoints返回参数结构体
     public struct DescribeInternalEndpointsResponse: TCResponseModel {
         /// 内网接入信息的列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessVpcSet: [AccessVpc]?
-        
+
         /// 内网接入总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accessVpcSet = "AccessVpcSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例内网访问VPC链接
     @inlinable
-    public func describeInternalEndpoints(_ input: DescribeInternalEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternalEndpointsResponse > {
+    public func describeInternalEndpoints(_ input: DescribeInternalEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointsResponse> {
         self.client.execute(action: "DescribeInternalEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例内网访问VPC链接
     @inlinable
     public func describeInternalEndpoints(_ input: DescribeInternalEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointsResponse {
         try await self.client.execute(action: "DescribeInternalEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例内网访问VPC链接
     @inlinable
-    public func describeInternalEndpoints(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternalEndpointsResponse > {
+    public func describeInternalEndpoints(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointsResponse> {
         self.describeInternalEndpoints(DescribeInternalEndpointsRequest(registryId: registryId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例内网访问VPC链接
     @inlinable
     public func describeInternalEndpoints(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointsResponse {

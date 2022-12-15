@@ -31,64 +31,64 @@ public struct TCBaError: TCBaErrorType {
         case resourceNotFound = "ResourceNotFound"
         case resourceUnavailable = "ResourceUnavailable"
     }
-    
+
     /// Error domains affliated to ``TCBaError``.
     public static var domains: [TCErrorType.Type] {
         [InternalError.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 内部错误。
     public static var internalError: TCBaError {
         TCBaError(.internalError)
     }
-    
+
     /// 资源未找到。
     public static var internalError_ResourceNotFound: TCBaError {
         TCBaError(.internalError_ResourceNotFound)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCBaError {
         TCBaError(.invalidParameter)
     }
-    
+
     /// 参数取值错误。
     public static var invalidParameterValue: TCBaError {
         TCBaError(.invalidParameterValue)
     }
-    
+
     /// 资源不存在。
     public static var resourceNotFound: TCBaError {
         TCBaError(.resourceNotFound)
     }
-    
+
     /// 资源不可用。
     public static var resourceUnavailable: TCBaError {
         TCBaError(.resourceUnavailable)
     }
-    
+
     public func asBaError() -> TCBaError {
         return self
     }

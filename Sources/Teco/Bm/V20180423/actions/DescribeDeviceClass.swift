@@ -19,43 +19,43 @@ extension Bm {
     public struct DescribeDeviceClassRequest: TCRequestModel {
         /// 是否仅查询在售标准机型配置信息。取值0：查询所有机型；1：查询在售机型。默认为1
         public let onSale: UInt64?
-        
+
         /// 是否返回价格信息。取值0：不返回价格信息，接口返回速度更快；1：返回价格信息。默认为1
         public let needPriceInfo: UInt64?
-        
-        public init (onSale: UInt64? = nil, needPriceInfo: UInt64? = nil) {
+
+        public init(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil) {
             self.onSale = onSale
             self.needPriceInfo = needPriceInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case onSale = "OnSale"
             case needPriceInfo = "NeedPriceInfo"
         }
     }
-    
+
     /// DescribeDeviceClass返回参数结构体
     public struct DescribeDeviceClassResponse: TCResponseModel {
         /// 物理机设备类型列表
         public let deviceClassSet: [DeviceClass]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceClassSet = "DeviceClassSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备型号
     ///
     /// 获取设备类型
     @inlinable
-    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassResponse > {
+    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassResponse> {
         self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备型号
     ///
     /// 获取设备类型
@@ -63,15 +63,15 @@ extension Bm {
     public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
         try await self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备型号
     ///
     /// 获取设备类型
     @inlinable
-    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassResponse > {
+    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassResponse> {
         self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备型号
     ///
     /// 获取设备类型

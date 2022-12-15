@@ -27,7 +27,7 @@ extension Apigateway {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 日志结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,25 +35,25 @@ extension Apigateway {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 服务id
         public let serviceId: String
-        
+
         /// 保留字段
         public let filters: [Filter]?
-        
+
         /// 单次要返回的日志条数，单次返回的最大条数为100
         public let limit: UInt64?
-        
+
         /// 根据上次返回的ConText，获取后续的内容，最多可获取10000条
         public let conText: String?
-        
+
         /// 按时间排序 asc（升序）或者 desc（降序），默认为 desc
         public let sort: String?
-        
+
         /// 保留字段
         public let query: String?
-        
+
         /// 检索条件,支持的检索条件如下：
         /// req_id：“=”
         /// api_id：“=”
@@ -65,8 +65,8 @@ extension Apigateway {
         /// 说明：
         /// “:”表示包含，“!=”表示不等于，字段含义见输出参数的LogSet说明
         public let logQuerys: [LogQuery]?
-        
-        public init (startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil) {
+
+        public init(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.serviceId = serviceId
@@ -77,7 +77,7 @@ extension Apigateway {
             self.query = query
             self.logQuerys = logQuerys
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -90,12 +90,12 @@ extension Apigateway {
             case logQuerys = "LogQuerys"
         }
     }
-    
+
     /// DescribeLogSearch返回参数结构体
     public struct DescribeLogSearchResponse: TCResponseModel {
         /// 获取更多检索结果的游标，值为""表示无后续结果
         public let conText: String
-        
+
         /// 由0或多条日志组成，每条日志格式如下：
         /// '[$app_id][$env_name][$service_id][$http_host][$api_id][$uri][$scheme][rsp_st:$status][ups_st:$upstream_status]'
         /// '[cip:$remote_addr][uip:$upstream_addr][vip:$server_addr][rsp_len:$bytes_sent][req_len:$request_length]'
@@ -124,13 +124,13 @@ extension Apigateway {
         /// tcp_rtt： 客户端 TCP 连接信息，RTT（Round Trip Time）由三部分组成：链路的传播时间（propagation delay）、末端系统的处理时间、路由器缓存中的排队和处理时间（queuing delay）。
         /// req_id：请求id。
         public let logSet: [String]
-        
+
         /// 单次搜索返回的日志条数，TotalCount <= Limit
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case conText = "ConText"
             case logSet = "LogSet"
@@ -138,15 +138,15 @@ extension Apigateway {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
-    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSearchResponse > {
+    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
         self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志
@@ -154,15 +154,15 @@ extension Apigateway {
     public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
         try await self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
-    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSearchResponse > {
+    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
         self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), logger: logger, on: eventLoop)
     }
-    
+
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志

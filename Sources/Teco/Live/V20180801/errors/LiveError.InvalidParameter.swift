@@ -62,339 +62,339 @@ extension TCLiveError {
             case urlNotSafe = "InvalidParameter.UrlNotSafe"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 错误的模板名。
         public static var argsNotMatch: InvalidParameter {
             InvalidParameter(.argsNotMatch)
         }
-        
+
         /// 取消不存在的会话。
         public static var cancelSessionNotExist: InvalidParameter {
             InvalidParameter(.cancelSessionNotExist)
         }
-        
+
         /// 腾讯云证书托管 ID 错误。
         public static var cloudCrtIdError: InvalidParameter {
             InvalidParameter(.cloudCrtIdError)
         }
-        
+
         /// 赠送的腾讯云域名已过期。
         public static var cloudDomainIsStop: InvalidParameter {
             InvalidParameter(.cloudDomainIsStop)
         }
-        
+
         /// Cos自定义文件名错误。
         public static var cosCustomFileNameError: InvalidParameter {
             InvalidParameter(.cosCustomFileNameError)
         }
-        
+
         /// 证书使用中。
         public static var crtDateInUsing: InvalidParameter {
             InvalidParameter(.crtDateInUsing)
         }
-        
+
         /// 证书不存在。
         public static var crtDateNotFound: InvalidParameter {
             InvalidParameter(.crtDateNotFound)
         }
-        
+
         /// 证书内容不合法。
         public static var crtDateNotLegal: InvalidParameter {
             InvalidParameter(.crtDateNotLegal)
         }
-        
+
         /// 证书过期。
         public static var crtDateOverdue: InvalidParameter {
             InvalidParameter(.crtDateOverdue)
         }
-        
+
         /// 证书没有相关域名。
         public static var crtDomainNotFound: InvalidParameter {
             InvalidParameter(.crtDomainNotFound)
         }
-        
+
         /// 证书 Key 不匹配。
         public static var crtKeyNotMatch: InvalidParameter {
             InvalidParameter(.crtKeyNotMatch)
         }
-        
+
         /// 证书内容或者私钥未提供。
         public static var crtOrKeyNotExist: InvalidParameter {
             InvalidParameter(.crtOrKeyNotExist)
         }
-        
+
         /// 域名已经存在。
         public static var domainAlreadyExist: InvalidParameter {
             InvalidParameter(.domainAlreadyExist)
         }
-        
+
         /// 域名格式错误，请输入合法格式域名。
         public static var domainFormatError: InvalidParameter {
             InvalidParameter(.domainFormatError)
         }
-        
+
         /// 当前域名在黑名单中。
         ///
         /// 重新其他填写域名。
         public static var domainHitBlackList: InvalidParameter {
             InvalidParameter(.domainHitBlackList)
         }
-        
+
         /// 使用黑名单域名。
         public static var domainIsFamous: InvalidParameter {
             InvalidParameter(.domainIsFamous)
         }
-        
+
         /// 域名受限，请提交工单，申请解除限制。
         public static var domainIsLimited: InvalidParameter {
             InvalidParameter(.domainIsLimited)
         }
-        
+
         /// 域名长度超过限制。
         public static var domainTooLong: InvalidParameter {
             InvalidParameter(.domainTooLong)
         }
-        
+
         public static var gopMustEqualAndExists: InvalidParameter {
             InvalidParameter(.gopMustEqualAndExists)
         }
-        
+
         /// 输入数目超出限制。
         public static var inputNumLimitExceeded: InvalidParameter {
             InvalidParameter(.inputNumLimitExceeded)
         }
-        
+
         /// 非法的背景长宽。
         public static var invalidBackgroudResolution: InvalidParameter {
             InvalidParameter(.invalidBackgroudResolution)
         }
-        
+
         /// 非法的输出码率。
         public static var invalidBitrate: InvalidParameter {
             InvalidParameter(.invalidBitrate)
         }
-        
+
         /// 回调地址不规范。
         public static var invalidCallbackUrl: InvalidParameter {
             InvalidParameter(.invalidCallbackUrl)
         }
-        
+
         /// 裁剪区域溢出原始图片。
         public static var invalidCropParam: InvalidParameter {
             InvalidParameter(.invalidCropParam)
         }
-        
+
         /// 图层参数错误。
         public static var invalidLayerParam: InvalidParameter {
             InvalidParameter(.invalidLayerParam)
         }
-        
+
         /// 输出流 ID 被占用。
         public static var invalidOutputStreamID: InvalidParameter {
             InvalidParameter(.invalidOutputStreamID)
         }
-        
+
         /// 非法输出类型，检查 OutputPram-StreamId 与 OutputType 是否匹配。
         public static var invalidOutputType: InvalidParameter {
             InvalidParameter(.invalidOutputType)
         }
-        
+
         /// 水印 ID 未设置。
         public static var invalidPictureID: InvalidParameter {
             InvalidParameter(.invalidPictureID)
         }
-        
+
         /// 非法的圆角矩形圆角半径。
         public static var invalidRoundRectRadius: InvalidParameter {
             InvalidParameter(.invalidRoundRectRadius)
         }
-        
+
         /// 源地址不规范。
         public static var invalidSourceUrl: InvalidParameter {
             InvalidParameter(.invalidSourceUrl)
         }
-        
+
         /// 任务时间超出限制。
         public static var invalidTaskTime: InvalidParameter {
             InvalidParameter(.invalidTaskTime)
         }
-        
+
         /// 目标地址不规范。
         public static var invalidToUrl: InvalidParameter {
             InvalidParameter(.invalidToUrl)
         }
-        
+
         /// 错误的VodFileName。
         public static var invalidVodFileName: InvalidParameter {
             InvalidParameter(.invalidVodFileName)
         }
-        
+
         public static var invalidWatermark: InvalidParameter {
             InvalidParameter(.invalidWatermark)
         }
-        
+
         /// 当月不允许添加已删除的小程序域名。
         public static var mpHostDelete: InvalidParameter {
             InvalidParameter(.mpHostDelete)
         }
-        
+
         /// 小程序插件没有授权。
         public static var mpPluginNoUse: InvalidParameter {
             InvalidParameter(.mpPluginNoUse)
         }
-        
+
         /// 其他错误。
         public static var otherError: InvalidParameter {
             InvalidParameter(.otherError)
         }
-        
+
         /// 同一会话输出流发生变化。
         public static var sessionOutputStreamChanged: InvalidParameter {
             InvalidParameter(.sessionOutputStreamChanged)
         }
-        
+
         /// 任务不存在。
         public static var taskNotExist: InvalidParameter {
             InvalidParameter(.taskNotExist)
         }
-        
+
         /// 任务数超过限制。
         public static var taskNumMoreThanLimit: InvalidParameter {
             InvalidParameter(.taskNumMoreThanLimit)
         }
-        
+
         /// 模板与输入流条数不匹配。
         public static var templateNotMatchInputNum: InvalidParameter {
             InvalidParameter(.templateNotMatchInputNum)
         }
-        
+
         /// 外部地址无权限。
         public static var toUrlNoPermission: InvalidParameter {
             InvalidParameter(.toUrlNoPermission)
         }
-        
+
         /// 域名解析不正确。
         public static var urlNotSafe: InvalidParameter {
             InvalidParameter(.urlNotSafe)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asLiveError() -> TCLiveError {
             let code: TCLiveError.Code
             switch self.error {
-            case .argsNotMatch: 
+            case .argsNotMatch:
                 code = .invalidParameter_ArgsNotMatch
-            case .cancelSessionNotExist: 
+            case .cancelSessionNotExist:
                 code = .invalidParameter_CancelSessionNotExist
-            case .cloudCrtIdError: 
+            case .cloudCrtIdError:
                 code = .invalidParameter_CloudCrtIdError
-            case .cloudDomainIsStop: 
+            case .cloudDomainIsStop:
                 code = .invalidParameter_CloudDomainIsStop
-            case .cosCustomFileNameError: 
+            case .cosCustomFileNameError:
                 code = .invalidParameter_COSCustomFileNameError
-            case .crtDateInUsing: 
+            case .crtDateInUsing:
                 code = .invalidParameter_CrtDateInUsing
-            case .crtDateNotFound: 
+            case .crtDateNotFound:
                 code = .invalidParameter_CrtDateNotFound
-            case .crtDateNotLegal: 
+            case .crtDateNotLegal:
                 code = .invalidParameter_CrtDateNotLegal
-            case .crtDateOverdue: 
+            case .crtDateOverdue:
                 code = .invalidParameter_CrtDateOverdue
-            case .crtDomainNotFound: 
+            case .crtDomainNotFound:
                 code = .invalidParameter_CrtDomainNotFound
-            case .crtKeyNotMatch: 
+            case .crtKeyNotMatch:
                 code = .invalidParameter_CrtKeyNotMatch
-            case .crtOrKeyNotExist: 
+            case .crtOrKeyNotExist:
                 code = .invalidParameter_CrtOrKeyNotExist
-            case .domainAlreadyExist: 
+            case .domainAlreadyExist:
                 code = .invalidParameter_DomainAlreadyExist
-            case .domainFormatError: 
+            case .domainFormatError:
                 code = .invalidParameter_DomainFormatError
-            case .domainHitBlackList: 
+            case .domainHitBlackList:
                 code = .invalidParameter_DomainHitBlackList
-            case .domainIsFamous: 
+            case .domainIsFamous:
                 code = .invalidParameter_DomainIsFamous
-            case .domainIsLimited: 
+            case .domainIsLimited:
                 code = .invalidParameter_DomainIsLimited
-            case .domainTooLong: 
+            case .domainTooLong:
                 code = .invalidParameter_DomainTooLong
-            case .gopMustEqualAndExists: 
+            case .gopMustEqualAndExists:
                 code = .invalidParameter_GopMustEqualAndExists
-            case .inputNumLimitExceeded: 
+            case .inputNumLimitExceeded:
                 code = .invalidParameter_InputNumLimitExceeded
-            case .invalidBackgroudResolution: 
+            case .invalidBackgroudResolution:
                 code = .invalidParameter_InvalidBackgroudResolution
-            case .invalidBitrate: 
+            case .invalidBitrate:
                 code = .invalidParameter_InvalidBitrate
-            case .invalidCallbackUrl: 
+            case .invalidCallbackUrl:
                 code = .invalidParameter_InvalidCallbackUrl
-            case .invalidCropParam: 
+            case .invalidCropParam:
                 code = .invalidParameter_InvalidCropParam
-            case .invalidLayerParam: 
+            case .invalidLayerParam:
                 code = .invalidParameter_InvalidLayerParam
-            case .invalidOutputStreamID: 
+            case .invalidOutputStreamID:
                 code = .invalidParameter_InvalidOutputStreamID
-            case .invalidOutputType: 
+            case .invalidOutputType:
                 code = .invalidParameter_InvalidOutputType
-            case .invalidPictureID: 
+            case .invalidPictureID:
                 code = .invalidParameter_InvalidPictureID
-            case .invalidRoundRectRadius: 
+            case .invalidRoundRectRadius:
                 code = .invalidParameter_InvalidRoundRectRadius
-            case .invalidSourceUrl: 
+            case .invalidSourceUrl:
                 code = .invalidParameter_InvalidSourceUrl
-            case .invalidTaskTime: 
+            case .invalidTaskTime:
                 code = .invalidParameter_InvalidTaskTime
-            case .invalidToUrl: 
+            case .invalidToUrl:
                 code = .invalidParameter_InvalidToUrl
-            case .invalidVodFileName: 
+            case .invalidVodFileName:
                 code = .invalidParameter_InvalidVodFileName
-            case .invalidWatermark: 
+            case .invalidWatermark:
                 code = .invalidParameter_InvalidWatermark
-            case .mpHostDelete: 
+            case .mpHostDelete:
                 code = .invalidParameter_MpHostDelete
-            case .mpPluginNoUse: 
+            case .mpPluginNoUse:
                 code = .invalidParameter_MpPluginNoUse
-            case .otherError: 
+            case .otherError:
                 code = .invalidParameter_OtherError
-            case .sessionOutputStreamChanged: 
+            case .sessionOutputStreamChanged:
                 code = .invalidParameter_SessionOutputStreamChanged
-            case .taskNotExist: 
+            case .taskNotExist:
                 code = .invalidParameter_TaskNotExist
-            case .taskNumMoreThanLimit: 
+            case .taskNumMoreThanLimit:
                 code = .invalidParameter_TaskNumMoreThanLimit
-            case .templateNotMatchInputNum: 
+            case .templateNotMatchInputNum:
                 code = .invalidParameter_TemplateNotMatchInputNum
-            case .toUrlNoPermission: 
+            case .toUrlNoPermission:
                 code = .invalidParameter_ToUrlNoPermission
-            case .urlNotSafe: 
+            case .urlNotSafe:
                 code = .invalidParameter_UrlNotSafe
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCLiveError(code, context: self.context)

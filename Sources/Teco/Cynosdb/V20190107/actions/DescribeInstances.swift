@@ -19,26 +19,26 @@ extension Cynosdb {
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 返回数量，默认为 20，最大值为 100
         public let limit: Int64?
-        
+
         /// 记录偏移量，默认值为0
         public let offset: Int64?
-        
+
         /// 排序字段，取值范围：
         /// <li> CREATETIME：创建时间</li>
         /// <li> PERIODENDTIME：过期时间</li>
         public let orderBy: String?
-        
+
         /// 排序类型，取值范围：
         /// <li> ASC：升序排序 </li>
         /// <li> DESC：降序排序 </li>
         public let orderByType: String?
-        
+
         /// 搜索条件，若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
         public let filters: [QueryFilter]?
-        
+
         /// 引擎类型：目前支持“MYSQL”， “POSTGRESQL”
         public let dbType: String?
-        
+
         /// 实例状态, 可选值:
         /// creating 创建中
         /// running 运行中
@@ -48,11 +48,11 @@ extension Cynosdb {
         /// offlining 下线中
         /// offlined 已下线
         public let status: String?
-        
+
         /// 实例id列表
         public let instanceIds: [String]?
-        
-        public init (limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil) {
+
+        public init(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.orderBy = orderBy
@@ -62,7 +62,7 @@ extension Cynosdb {
             self.status = status
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -74,33 +74,33 @@ extension Cynosdb {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// DescribeInstances返回参数结构体
     public struct DescribeInstancesResponse: TCResponseModel {
         /// 实例个数
         public let totalCount: Int64
-        
+
         /// 实例列表
         public let instanceSet: [CynosdbInstance]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
@@ -108,15 +108,15 @@ extension Cynosdb {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
-    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。

@@ -19,23 +19,23 @@ extension Tdmq {
     public struct ResetRocketMQConsumerOffSetRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 命名空间名称
         public let namespaceId: String
-        
+
         /// 消费组名称
         public let groupId: String
-        
+
         /// 主题名称
         public let topic: String
-        
+
         /// 重置方式，0表示从最新位点开始，1表示从指定时间点开始
         public let type: UInt64
-        
+
         /// 重置指定的时间戳，仅在 Type 为1是生效，以毫秒为单位
         public let resetTimestamp: UInt64?
-        
-        public init (clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil) {
+
+        public init(clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.groupId = groupId
@@ -43,7 +43,7 @@ extension Tdmq {
             self.type = type
             self.resetTimestamp = resetTimestamp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case namespaceId = "NamespaceId"
@@ -53,25 +53,25 @@ extension Tdmq {
             case resetTimestamp = "ResetTimestamp"
         }
     }
-    
+
     /// ResetRocketMQConsumerOffSet返回参数结构体
     public struct ResetRocketMQConsumerOffSetResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置RocketMQ消费位点
     ///
     /// 重置指定Group的消费位点到指定时间戳
     @inlinable
-    public func resetRocketMQConsumerOffSet(_ input: ResetRocketMQConsumerOffSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetRocketMQConsumerOffSetResponse > {
+    public func resetRocketMQConsumerOffSet(_ input: ResetRocketMQConsumerOffSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRocketMQConsumerOffSetResponse> {
         self.client.execute(action: "ResetRocketMQConsumerOffSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置RocketMQ消费位点
     ///
     /// 重置指定Group的消费位点到指定时间戳
@@ -79,15 +79,15 @@ extension Tdmq {
     public func resetRocketMQConsumerOffSet(_ input: ResetRocketMQConsumerOffSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRocketMQConsumerOffSetResponse {
         try await self.client.execute(action: "ResetRocketMQConsumerOffSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置RocketMQ消费位点
     ///
     /// 重置指定Group的消费位点到指定时间戳
     @inlinable
-    public func resetRocketMQConsumerOffSet(clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetRocketMQConsumerOffSetResponse > {
+    public func resetRocketMQConsumerOffSet(clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRocketMQConsumerOffSetResponse> {
         self.resetRocketMQConsumerOffSet(ResetRocketMQConsumerOffSetRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, topic: topic, type: type, resetTimestamp: resetTimestamp), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置RocketMQ消费位点
     ///
     /// 重置指定Group的消费位点到指定时间戳

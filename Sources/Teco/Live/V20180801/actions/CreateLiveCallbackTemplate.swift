@@ -21,40 +21,40 @@ extension Live {
         /// 长度上限：255字节。
         /// 仅支持中文、英文、数字、_、-。
         public let templateName: String
-        
+
         /// 描述信息。
         /// 长度上限：1024字节。
         /// 仅支持中文、英文、数字、_、-。
         public let description: String?
-        
+
         /// 开播回调 URL，
         /// 相关协议文档：[事件消息通知](/document/product/267/32744)。
         public let streamBeginNotifyUrl: String?
-        
+
         /// 断流回调 URL，
         /// 相关协议文档：[事件消息通知](/document/product/267/32744)。
         public let streamEndNotifyUrl: String?
-        
+
         /// 录制回调 URL，
         /// 相关协议文档：[事件消息通知](/document/product/267/32744)。
         public let recordNotifyUrl: String?
-        
+
         /// 截图回调 URL，
         /// 相关协议文档：[事件消息通知](/document/product/267/32744)。
         public let snapshotNotifyUrl: String?
-        
+
         /// 鉴黄回调 URL，
         /// 相关协议文档：[事件消息通知](/document/product/267/32741)。
         public let pornCensorshipNotifyUrl: String?
-        
+
         /// 回调 Key，回调 URL 公用，回调签名详见事件消息通知文档。
         /// [事件消息通知](/document/product/267/32744)。
         public let callbackKey: String?
-        
+
         /// 参数已弃用。
         public let streamMixNotifyUrl: String?
-        
-        public init (templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil) {
+
+        public init(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil) {
             self.templateName = templateName
             self.description = description
             self.streamBeginNotifyUrl = streamBeginNotifyUrl
@@ -65,7 +65,7 @@ extension Live {
             self.callbackKey = callbackKey
             self.streamMixNotifyUrl = streamMixNotifyUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateName = "TemplateName"
             case description = "Description"
@@ -78,31 +78,31 @@ extension Live {
             case streamMixNotifyUrl = "StreamMixNotifyUrl"
         }
     }
-    
+
     /// CreateLiveCallbackTemplate返回参数结构体
     public struct CreateLiveCallbackTemplateResponse: TCResponseModel {
         /// 模板ID。
         public let templateId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建回调模板
     ///
     /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveCallbackTemplateResponse > {
+    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
         self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建回调模板
     ///
     /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
@@ -112,17 +112,17 @@ extension Live {
     public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
         try await self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建回调模板
     ///
     /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveCallbackTemplateResponse > {
+    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
         self.createLiveCallbackTemplate(CreateLiveCallbackTemplateRequest(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建回调模板
     ///
     /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。

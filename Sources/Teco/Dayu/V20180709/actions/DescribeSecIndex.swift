@@ -20,10 +20,10 @@ import TecoDateHelpers
 extension Dayu {
     /// DescribeSecIndex请求参数结构体
     public struct DescribeSecIndexRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeSecIndex返回参数结构体
     public struct DescribeSecIndexResponse: TCResponseModel {
         /// 字段值，如下：
@@ -33,7 +33,7 @@ extension Dayu {
         /// MaxMbps：攻击峰值Mbps
         /// IpNum：统计的IP数据
         public let data: [KeyValue]
-        
+
         /// 本月开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -41,7 +41,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var beginDate: Date
-        
+
         /// 本月结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -49,10 +49,10 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endDate: Date
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case beginDate = "BeginDate"
@@ -60,15 +60,15 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取安全统计
     ///
     /// 获取本月安全统计
     @inlinable
-    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecIndexResponse > {
+    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecIndexResponse> {
         self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全统计
     ///
     /// 获取本月安全统计
@@ -76,15 +76,15 @@ extension Dayu {
     public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
         try await self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取安全统计
     ///
     /// 获取本月安全统计
     @inlinable
-    public func describeSecIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecIndexResponse > {
+    public func describeSecIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecIndexResponse> {
         self.describeSecIndex(DescribeSecIndexRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全统计
     ///
     /// 获取本月安全统计

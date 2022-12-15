@@ -19,23 +19,23 @@ extension Organization {
     public struct ListOrganizationIdentityRequest: TCRequestModel {
         /// 偏移量。
         public let offset: UInt64
-        
+
         /// 限制数目。最大50
         public let limit: UInt64
-        
+
         /// 名称搜索关键字。
         public let searchKey: String?
-        
+
         /// 身份ID搜索。
         public let identityId: UInt64?
-        
-        public init (offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil) {
+
+        public init(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchKey = searchKey
             self.identityId = identityId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -43,45 +43,45 @@ extension Organization {
             case identityId = "IdentityId"
         }
     }
-    
+
     /// ListOrganizationIdentity返回参数结构体
     public struct ListOrganizationIdentityResponse: TCResponseModel {
         /// 总数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 条目详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [OrgIdentity]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取组织成员访问身份列表
     @inlinable
-    public func listOrganizationIdentity(_ input: ListOrganizationIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationIdentityResponse > {
+    public func listOrganizationIdentity(_ input: ListOrganizationIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationIdentityResponse> {
         self.client.execute(action: "ListOrganizationIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取组织成员访问身份列表
     @inlinable
     public func listOrganizationIdentity(_ input: ListOrganizationIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationIdentityResponse {
         try await self.client.execute(action: "ListOrganizationIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取组织成员访问身份列表
     @inlinable
-    public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationIdentityResponse > {
+    public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationIdentityResponse> {
         self.listOrganizationIdentity(ListOrganizationIdentityRequest(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取组织成员访问身份列表
     @inlinable
     public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationIdentityResponse {

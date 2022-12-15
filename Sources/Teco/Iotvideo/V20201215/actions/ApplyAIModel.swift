@@ -19,49 +19,49 @@ extension Iotvideo {
     public struct ApplyAIModelRequest: TCRequestModel {
         /// AI模型ID
         public let modelId: String
-        
+
         /// 产品ID
         public let productId: String
-        
-        public init (modelId: String, productId: String) {
+
+        public init(modelId: String, productId: String) {
             self.modelId = modelId
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case productId = "ProductId"
         }
     }
-    
+
     /// ApplyAIModel返回参数结构体
     public struct ApplyAIModelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 申请AI模型
     @inlinable
-    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyAIModelResponse > {
+    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyAIModelResponse> {
         self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 申请AI模型
     @inlinable
     public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
         try await self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 申请AI模型
     @inlinable
-    public func applyAIModel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyAIModelResponse > {
+    public func applyAIModel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyAIModelResponse> {
         self.applyAIModel(ApplyAIModelRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 申请AI模型
     @inlinable
     public func applyAIModel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {

@@ -19,49 +19,49 @@ extension Tsf {
     public struct DescribeReleasedConfigRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DescribeReleasedConfig返回参数结构体
     public struct DescribeReleasedConfigResponse: TCResponseModel {
         /// 已发布的配置内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询group发布的配置
     @inlinable
-    public func describeReleasedConfig(_ input: DescribeReleasedConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleasedConfigResponse > {
+    public func describeReleasedConfig(_ input: DescribeReleasedConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleasedConfigResponse> {
         self.client.execute(action: "DescribeReleasedConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询group发布的配置
     @inlinable
     public func describeReleasedConfig(_ input: DescribeReleasedConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleasedConfigResponse {
         try await self.client.execute(action: "DescribeReleasedConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询group发布的配置
     @inlinable
-    public func describeReleasedConfig(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleasedConfigResponse > {
+    public func describeReleasedConfig(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleasedConfigResponse> {
         self.describeReleasedConfig(DescribeReleasedConfigRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询group发布的配置
     @inlinable
     public func describeReleasedConfig(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleasedConfigResponse {

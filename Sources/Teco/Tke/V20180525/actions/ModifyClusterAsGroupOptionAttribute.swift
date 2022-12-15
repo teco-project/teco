@@ -19,49 +19,49 @@ extension Tke {
     public struct ModifyClusterAsGroupOptionAttributeRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 集群弹性伸缩属性
         public let clusterAsGroupOption: ClusterAsGroupOption
-        
-        public init (clusterId: String, clusterAsGroupOption: ClusterAsGroupOption) {
+
+        public init(clusterId: String, clusterAsGroupOption: ClusterAsGroupOption) {
             self.clusterId = clusterId
             self.clusterAsGroupOption = clusterAsGroupOption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterAsGroupOption = "ClusterAsGroupOption"
         }
     }
-    
+
     /// ModifyClusterAsGroupOptionAttribute返回参数结构体
     public struct ModifyClusterAsGroupOptionAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改集群弹性伸缩属性
     @inlinable
-    public func modifyClusterAsGroupOptionAttribute(_ input: ModifyClusterAsGroupOptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAsGroupOptionAttributeResponse > {
+    public func modifyClusterAsGroupOptionAttribute(_ input: ModifyClusterAsGroupOptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAsGroupOptionAttributeResponse> {
         self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群弹性伸缩属性
     @inlinable
     public func modifyClusterAsGroupOptionAttribute(_ input: ModifyClusterAsGroupOptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupOptionAttributeResponse {
         try await self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改集群弹性伸缩属性
     @inlinable
-    public func modifyClusterAsGroupOptionAttribute(clusterId: String, clusterAsGroupOption: ClusterAsGroupOption, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAsGroupOptionAttributeResponse > {
+    public func modifyClusterAsGroupOptionAttribute(clusterId: String, clusterAsGroupOption: ClusterAsGroupOption, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAsGroupOptionAttributeResponse> {
         self.modifyClusterAsGroupOptionAttribute(ModifyClusterAsGroupOptionAttributeRequest(clusterId: clusterId, clusterAsGroupOption: clusterAsGroupOption), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改集群弹性伸缩属性
     @inlinable
     public func modifyClusterAsGroupOptionAttribute(clusterId: String, clusterAsGroupOption: ClusterAsGroupOption, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupOptionAttributeResponse {

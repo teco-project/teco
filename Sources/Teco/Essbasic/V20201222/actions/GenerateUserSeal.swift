@@ -19,27 +19,27 @@ extension Essbasic {
     public struct GenerateUserSealRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 用户ID
         public let userId: String
-        
+
         /// 请求生成个人印章的客户端IP
         public let sourceIp: String
-        
+
         /// 电子印章名称
         public let sealName: String?
-        
+
         /// 是否是默认印章 true：是，false：否
         public let isDefault: Bool?
-        
-        public init (caller: Caller, userId: String, sourceIp: String, sealName: String? = nil, isDefault: Bool? = nil) {
+
+        public init(caller: Caller, userId: String, sourceIp: String, sealName: String? = nil, isDefault: Bool? = nil) {
             self.caller = caller
             self.userId = userId
             self.sourceIp = sourceIp
             self.sealName = sealName
             self.isDefault = isDefault
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case userId = "UserId"
@@ -48,21 +48,21 @@ extension Essbasic {
             case isDefault = "IsDefault"
         }
     }
-    
+
     /// GenerateUserSeal返回参数结构体
     public struct GenerateUserSealResponse: TCResponseModel {
         /// 电子印章Id
         public let sealId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sealId = "SealId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 生成个人电子签名
     ///
     /// 此接口（GenerateUserSeal）用于生成个人签名图片。
@@ -70,10 +70,10 @@ extension Essbasic {
     /// 1. 个人签名由用户注册时预留的姓名信息生成，不支持自定义签名内容。
     /// 2. 个人用户仅支持拥有一个系统生成的电子签名。
     @inlinable
-    public func generateUserSeal(_ input: GenerateUserSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateUserSealResponse > {
+    public func generateUserSeal(_ input: GenerateUserSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateUserSealResponse> {
         self.client.execute(action: "GenerateUserSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 生成个人电子签名
     ///
     /// 此接口（GenerateUserSeal）用于生成个人签名图片。
@@ -84,7 +84,7 @@ extension Essbasic {
     public func generateUserSeal(_ input: GenerateUserSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateUserSealResponse {
         try await self.client.execute(action: "GenerateUserSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 生成个人电子签名
     ///
     /// 此接口（GenerateUserSeal）用于生成个人签名图片。
@@ -92,10 +92,10 @@ extension Essbasic {
     /// 1. 个人签名由用户注册时预留的姓名信息生成，不支持自定义签名内容。
     /// 2. 个人用户仅支持拥有一个系统生成的电子签名。
     @inlinable
-    public func generateUserSeal(caller: Caller, userId: String, sourceIp: String, sealName: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateUserSealResponse > {
+    public func generateUserSeal(caller: Caller, userId: String, sourceIp: String, sealName: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateUserSealResponse> {
         self.generateUserSeal(GenerateUserSealRequest(caller: caller, userId: userId, sourceIp: sourceIp, sealName: sealName, isDefault: isDefault), logger: logger, on: eventLoop)
     }
-    
+
     /// 生成个人电子签名
     ///
     /// 此接口（GenerateUserSeal）用于生成个人签名图片。

@@ -22,59 +22,59 @@ extension TCAfError {
             case versionError = "InvalidParameter.VersionError"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         /// URL错误。
         public static var urlError: InvalidParameter {
             InvalidParameter(.urlError)
         }
-        
+
         /// 版本错误。
         public static var versionError: InvalidParameter {
             InvalidParameter(.versionError)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asAfError() -> TCAfError {
             let code: TCAfError.Code
             switch self.error {
-            case .paramError: 
+            case .paramError:
                 code = .invalidParameter_ParamError
-            case .urlError: 
+            case .urlError:
                 code = .invalidParameter_UrlError
-            case .versionError: 
+            case .versionError:
                 code = .invalidParameter_VersionError
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCAfError(code, context: self.context)

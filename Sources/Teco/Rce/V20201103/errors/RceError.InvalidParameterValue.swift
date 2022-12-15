@@ -28,101 +28,101 @@ extension TCRceError {
             case invalidStride = "InvalidParameterValue.InvalidStride"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// BadBody。
         public static var badBody: InvalidParameterValue {
             InvalidParameterValue(.badBody)
         }
-        
+
         /// 请求包过大。
         public static var bodyTooLarge: InvalidParameterValue {
             InvalidParameterValue(.bodyTooLarge)
         }
-        
+
         /// 验证码不匹配。
         public static var capMisMatch: InvalidParameterValue {
             InvalidParameterValue(.capMisMatch)
         }
-        
+
         /// HTTP方法错误。
         public static var httpMethodError: InvalidParameterValue {
             InvalidParameterValue(.httpMethodError)
         }
-        
+
         /// 日期取值错误。
         public static var invalidDate: InvalidParameterValue {
             InvalidParameterValue(.invalidDate)
         }
-        
+
         /// PageLimit取值错误。
         public static var invalidLimit: InvalidParameterValue {
             InvalidParameterValue(.invalidLimit)
         }
-        
+
         /// PageNum取值错误。
         public static var invalidNum: InvalidParameterValue {
             InvalidParameterValue(.invalidNum)
         }
-        
+
         /// SrvId取值错误。
         public static var invalidSrvId: InvalidParameterValue {
             InvalidParameterValue(.invalidSrvId)
         }
-        
+
         /// Stride取值错误。
         public static var invalidStride: InvalidParameterValue {
             InvalidParameterValue(.invalidStride)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asRceError() -> TCRceError {
             let code: TCRceError.Code
             switch self.error {
-            case .badBody: 
+            case .badBody:
                 code = .invalidParameterValue_BadBody
-            case .bodyTooLarge: 
+            case .bodyTooLarge:
                 code = .invalidParameterValue_BodyTooLarge
-            case .capMisMatch: 
+            case .capMisMatch:
                 code = .invalidParameterValue_CapMisMatch
-            case .httpMethodError: 
+            case .httpMethodError:
                 code = .invalidParameterValue_HttpMethodError
-            case .invalidDate: 
+            case .invalidDate:
                 code = .invalidParameterValue_InvalidDate
-            case .invalidLimit: 
+            case .invalidLimit:
                 code = .invalidParameterValue_InvalidLimit
-            case .invalidNum: 
+            case .invalidNum:
                 code = .invalidParameterValue_InvalidNum
-            case .invalidSrvId: 
+            case .invalidSrvId:
                 code = .invalidParameterValue_InvalidSrvId
-            case .invalidStride: 
+            case .invalidStride:
                 code = .invalidParameterValue_InvalidStride
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCRceError(code, context: self.context)

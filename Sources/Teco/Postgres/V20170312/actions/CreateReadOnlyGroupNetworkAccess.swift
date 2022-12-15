@@ -19,27 +19,27 @@ extension Postgres {
     public struct CreateReadOnlyGroupNetworkAccessRequest: TCRequestModel {
         /// RO组ID，形如：pgro-4t9c6g7k。
         public let readOnlyGroupId: String
-        
+
         /// 私有网络统一 ID。
         public let vpcId: String
-        
+
         /// 子网ID。
         public let subnetId: String
-        
+
         /// 是否指定分配vip true-指定分配  false-自动分配。
         public let isAssignVip: Bool
-        
+
         /// 目标VIP地址。
         public let vip: String?
-        
-        public init (readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil) {
+
+        public init(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil) {
             self.readOnlyGroupId = readOnlyGroupId
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.isAssignVip = isAssignVip
             self.vip = vip
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case readOnlyGroupId = "ReadOnlyGroupId"
             case vpcId = "VpcId"
@@ -48,30 +48,30 @@ extension Postgres {
             case vip = "Vip"
         }
     }
-    
+
     /// CreateReadOnlyGroupNetworkAccess返回参数结构体
     public struct CreateReadOnlyGroupNetworkAccessResponse: TCResponseModel {
         /// 流程ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加RO组网络
     ///
     /// 可对RO组进行网络的添加操作。
     @inlinable
-    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyGroupNetworkAccessResponse > {
+    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
         self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加RO组网络
     ///
     /// 可对RO组进行网络的添加操作。
@@ -79,15 +79,15 @@ extension Postgres {
     public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
         try await self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加RO组网络
     ///
     /// 可对RO组进行网络的添加操作。
     @inlinable
-    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyGroupNetworkAccessResponse > {
+    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
         self.createReadOnlyGroupNetworkAccess(CreateReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加RO组网络
     ///
     /// 可对RO组进行网络的添加操作。

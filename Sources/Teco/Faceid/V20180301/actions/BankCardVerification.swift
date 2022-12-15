@@ -19,28 +19,28 @@ extension Faceid {
     public struct BankCardVerificationRequest: TCRequestModel {
         /// 开户证件号，与CertType参数的证件类型一致，如：身份证，则传入身份证号。
         public let idCard: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 银行卡
         public let bankCard: String
-        
+
         /// 证件类型，请确认该证件为开户时使用的证件类型，未用于开户的证件信息不支持验证。
         /// 目前默认：0 身份证，其他证件类型需求可以添加[腾讯云人脸核身小助手](https://cloud.tencent.com/document/product/1007/56130)进行确认。
         public let certType: Int64?
-        
+
         /// 敏感数据加密信息。对传入信息（姓名、身份证号、银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         public let encryption: Encryption?
-        
-        public init (idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil) {
+
+        public init(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil) {
             self.idCard = idCard
             self.name = name
             self.bankCard = bankCard
             self.certType = certType
             self.encryption = encryption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idCard = "IdCard"
             case name = "Name"
@@ -49,7 +49,7 @@ extension Faceid {
             case encryption = "Encryption"
         }
     }
-    
+
     /// BankCardVerification返回参数结构体
     public struct BankCardVerificationResponse: TCResponseModel {
         /// 认证结果码
@@ -74,28 +74,28 @@ extension Faceid {
         /// '-4': '银行卡号码有误'
         /// '-17': '验证中心服务繁忙'
         public let result: String
-        
+
         /// 业务结果描述。
         public let description: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case description = "Description"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 银行卡三要素核验
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
-    public func bankCardVerification(_ input: BankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCardVerificationResponse > {
+    public func bankCardVerification(_ input: BankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardVerificationResponse> {
         self.client.execute(action: "BankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 银行卡三要素核验
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
@@ -103,15 +103,15 @@ extension Faceid {
     public func bankCardVerification(_ input: BankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
         try await self.client.execute(action: "BankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 银行卡三要素核验
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
-    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCardVerificationResponse > {
+    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardVerificationResponse> {
         self.bankCardVerification(BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), logger: logger, on: eventLoop)
     }
-    
+
     /// 银行卡三要素核验
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。

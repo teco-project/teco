@@ -19,38 +19,38 @@ extension TCCarError {
         enum Code: String {
             case stopping = "UnsupportedOperation.Stopping"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 销毁会话中。
         public static var stopping: UnsupportedOperation {
             UnsupportedOperation(.stopping)
         }
-        
+
         public func asCarError() -> TCCarError {
             let code: TCCarError.Code
             switch self.error {
-            case .stopping: 
+            case .stopping:
                 code = .unsupportedOperation_Stopping
             }
             return TCCarError(code, context: self.context)

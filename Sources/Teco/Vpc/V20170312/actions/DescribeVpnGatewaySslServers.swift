@@ -19,13 +19,13 @@ extension Vpc {
     public struct DescribeVpnGatewaySslServersRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 请求对象个数
         public let limit: UInt64?
-        
+
         /// SSL-VPN-SERVER实例ID。形如：vpngwSslServer-12345678。每次请求的实例的上限为100。参数不支持同时指定SslVpnServerIds和Filters。
         public let sslVpnServerIds: [String]?
-        
+
         /// 过滤条件，参数不支持同时指定SslVpnServerIds和Filters。
         /// <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
         /// <li>vpn-gateway-id - String - （过滤条件）VPN实例ID形如：vpngw-5aluhh9t。</li>
@@ -33,18 +33,18 @@ extension Vpc {
         /// <li>ssl-vpn-server-name - String - （过滤条件）SSL-VPN-SERVER实例名称。</li>
         /// <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpngwSslServer-123456。</li>
         public let filters: [FilterObject]?
-        
+
         /// vpn门户使用。 默认Flase
         public let isVpnPortal: Bool?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil) {
             self.offset = offset
             self.limit = limit
             self.sslVpnServerIds = sslVpnServerIds
             self.filters = filters
             self.isVpnPortal = isVpnPortal
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -53,33 +53,33 @@ extension Vpc {
             case isVpnPortal = "IsVpnPortal"
         }
     }
-    
+
     /// DescribeVpnGatewaySslServers返回参数结构体
     public struct DescribeVpnGatewaySslServersResponse: TCResponseModel {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
-        
+
         /// SSL-VPN-SERVER 实例详细信息列表。
         public let sslVpnSeverSet: [SslVpnSever]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case sslVpnSeverSet = "SslVpnSeverSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息
     @inlinable
-    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaySslServersResponse > {
+    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
         self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息
@@ -87,15 +87,15 @@ extension Vpc {
     public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
         try await self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息
     @inlinable
-    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaySslServersResponse > {
+    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
         self.describeVpnGatewaySslServers(DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息

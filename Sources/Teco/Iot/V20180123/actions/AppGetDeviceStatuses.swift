@@ -19,43 +19,43 @@ extension Iot {
     public struct AppGetDeviceStatusesRequest: TCRequestModel {
         /// 访问Token
         public let accessToken: String
-        
+
         /// 设备Id列表（单次限制1000个设备）
         public let deviceIds: [String]
-        
-        public init (accessToken: String, deviceIds: [String]) {
+
+        public init(accessToken: String, deviceIds: [String]) {
             self.accessToken = accessToken
             self.deviceIds = deviceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessToken = "AccessToken"
             case deviceIds = "DeviceIds"
         }
     }
-    
+
     /// AppGetDeviceStatuses返回参数结构体
     public struct AppGetDeviceStatusesResponse: TCResponseModel {
         /// 设备状态
         public let deviceStatuses: [DeviceStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceStatuses = "DeviceStatuses"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取绑定设备状态
     ///
     /// 获取绑定设备的上下线状态
     @inlinable
-    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetDeviceStatusesResponse > {
+    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceStatusesResponse> {
         self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取绑定设备状态
     ///
     /// 获取绑定设备的上下线状态
@@ -63,15 +63,15 @@ extension Iot {
     public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
         try await self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取绑定设备状态
     ///
     /// 获取绑定设备的上下线状态
     @inlinable
-    public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetDeviceStatusesResponse > {
+    public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceStatusesResponse> {
         self.appGetDeviceStatuses(AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取绑定设备状态
     ///
     /// 获取绑定设备的上下线状态

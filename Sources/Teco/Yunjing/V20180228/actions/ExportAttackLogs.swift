@@ -17,46 +17,46 @@
 extension Yunjing {
     /// ExportAttackLogs请求参数结构体
     public struct ExportAttackLogsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ExportAttackLogs返回参数结构体
     public struct ExportAttackLogsResponse: TCResponseModel {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
-        
+
         /// 导出任务ID
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出网络攻击日志
     @inlinable
-    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAttackLogsResponse > {
+    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAttackLogsResponse> {
         self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出网络攻击日志
     @inlinable
     public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
         try await self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出网络攻击日志
     @inlinable
-    public func exportAttackLogs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAttackLogsResponse > {
+    public func exportAttackLogs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAttackLogsResponse> {
         self.exportAttackLogs(ExportAttackLogsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出网络攻击日志
     @inlinable
     public func exportAttackLogs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {

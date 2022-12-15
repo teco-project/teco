@@ -19,44 +19,44 @@ extension Ckafka {
     public struct InquireCkafkaPriceRequest: TCRequestModel {
         /// 国内站标准版填写standards2, 专业版填写profession
         public let instanceType: String
-        
+
         /// 购买/续费付费类型(购买时不填的话, 默认获取购买包年包月一个月的费用)
         public let instanceChargeParam: InstanceChargeParam?
-        
+
         /// 购买/续费时购买的实例数量(不填时, 默认为1个)
         public let instanceNum: Int64?
-        
+
         /// 实例内网带宽大小, 单位MB/s (购买时必填)
         public let bandwidth: Int64?
-        
+
         /// 实例的硬盘购买类型以及大小 (购买时必填)
         public let inquiryDiskParam: InquiryDiskParam?
-        
+
         /// 实例消息保留时间大小, 单位小时 (购买时必填)
         public let messageRetention: Int64?
-        
+
         /// 购买实例topic数, 单位个 (购买时必填)
         public let topic: Int64?
-        
+
         /// 购买实例分区数, 单位个 (购买时必填)
         public let partition: Int64?
-        
+
         /// 购买地域, 可通过查看DescribeCkafkaZone这个接口获取ZoneId
         public let zoneIds: [Int64]?
-        
+
         /// 标记操作, 新购填写purchase, 续费填写renew, (不填时, 默认为purchase)
         public let categoryAction: String?
-        
+
         /// 国内站购买的版本, sv_ckafka_instance_s2_1(入门型), sv_ckafka_instance_s2_2(标准版), sv_ckafka_instance_s2_3(进阶型), 如果instanceType为standards2, 但该参数为空, 则默认值为sv_ckafka_instance_s2_1
         public let billType: String?
-        
+
         /// 公网带宽计费模式, 目前只有专业版支持公网带宽 (购买公网带宽时必填)
         public let publicNetworkParam: InquiryPublicNetworkParam?
-        
+
         /// 续费时的实例id, 续费时填写
         public let instanceId: String?
-        
-        public init (instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil) {
+
+        public init(instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil) {
             self.instanceType = instanceType
             self.instanceChargeParam = instanceChargeParam
             self.instanceNum = instanceNum
@@ -71,7 +71,7 @@ extension Ckafka {
             self.publicNetworkParam = publicNetworkParam
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceType = "InstanceType"
             case instanceChargeParam = "InstanceChargeParam"
@@ -88,29 +88,29 @@ extension Ckafka {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// InquireCkafkaPrice返回参数结构体
     public struct InquireCkafkaPriceResponse: TCResponseModel {
         /// 出参
         public let result: InquireCkafkaPriceResp
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// Ckafka询价
     ///
     /// Ckafka实例购买/续费询价
     @inlinable
-    public func inquireCkafkaPrice(_ input: InquireCkafkaPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireCkafkaPriceResponse > {
+    public func inquireCkafkaPrice(_ input: InquireCkafkaPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireCkafkaPriceResponse> {
         self.client.execute(action: "InquireCkafkaPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// Ckafka询价
     ///
     /// Ckafka实例购买/续费询价
@@ -118,15 +118,15 @@ extension Ckafka {
     public func inquireCkafkaPrice(_ input: InquireCkafkaPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireCkafkaPriceResponse {
         try await self.client.execute(action: "InquireCkafkaPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// Ckafka询价
     ///
     /// Ckafka实例购买/续费询价
     @inlinable
-    public func inquireCkafkaPrice(instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireCkafkaPriceResponse > {
+    public func inquireCkafkaPrice(instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireCkafkaPriceResponse> {
         self.inquireCkafkaPrice(InquireCkafkaPriceRequest(instanceType: instanceType, instanceChargeParam: instanceChargeParam, instanceNum: instanceNum, bandwidth: bandwidth, inquiryDiskParam: inquiryDiskParam, messageRetention: messageRetention, topic: topic, partition: partition, zoneIds: zoneIds, categoryAction: categoryAction, billType: billType, publicNetworkParam: publicNetworkParam, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// Ckafka询价
     ///
     /// Ckafka实例购买/续费询价

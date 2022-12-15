@@ -19,50 +19,50 @@ extension Billing {
     public struct DescribeVoucherInfoRequest: TCRequestModel {
         /// 一页多少条数据，默认是20条，最大不超过1000
         public let limit: Int64
-        
+
         /// 第多少页，默认是1
         public let offset: Int64
-        
+
         /// 券状态：待使用：unUsed，已使用： used，已发货：delivered，已作废： cancel，已过期：overdue
         public let status: String?
-        
+
         /// 代金券id
         public let voucherId: String?
-        
+
         /// 代金券订单id
         public let codeId: String?
-        
+
         /// 商品码
         public let productCode: String?
-        
+
         /// 活动id
         public let activityId: String?
-        
+
         /// 代金券名称
         public let voucherName: String?
-        
+
         /// 发放开始时间
         public let timeFrom: String?
-        
+
         /// 发放结束时间
         public let timeTo: String?
-        
+
         /// 指定排序字段：BeginTime开始时间、EndTime到期时间、CreateTime创建时间
         public let sortField: String?
-        
+
         /// 指定升序降序：desc、asc
         public let sortOrder: String?
-        
+
         /// 付费模式，postPay后付费/prePay预付费/riPay预留实例/""或者"*"表示全部模式，如果payMode为""或"*"，那么productCode与subProductCode必须传空
         public let payMode: String?
-        
+
         /// 付费场景PayMode=postPay时：spotpay-竞价实例,"settle account"-普通后付费PayMode=prePay时：purchase-包年包月新购，renew-包年包月续费（自动续费），modify-包年包月配置变更(变配）PayMode=riPay时：oneOffFee-预留实例预付，hourlyFee-预留实例每小时扣费，*-支持全部付费场景
         public let payScene: String?
-        
+
         /// 操作人，默认就是用户uin
         public let `operator`: String?
-        
-        public init (limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, operator: String? = nil) {
+
+        public init(limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, operator: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.status = status
@@ -79,7 +79,7 @@ extension Billing {
             self.payScene = payScene
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -98,22 +98,22 @@ extension Billing {
             case `operator` = "Operator"
         }
     }
-    
+
     /// DescribeVoucherInfo返回参数结构体
     public struct DescribeVoucherInfoResponse: TCResponseModel {
         /// 券总数
         public let totalCount: Int64
-        
+
         /// 总余额（微分）
         public let totalBalance: Int64
-        
+
         /// 代金券相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let voucherInfos: [VoucherInfos]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case totalBalance = "TotalBalance"
@@ -121,25 +121,25 @@ extension Billing {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取代金券相关信息
     @inlinable
-    public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVoucherInfoResponse > {
+    public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherInfoResponse> {
         self.client.execute(action: "DescribeVoucherInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取代金券相关信息
     @inlinable
     public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherInfoResponse {
         try await self.client.execute(action: "DescribeVoucherInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取代金券相关信息
     @inlinable
-    public func describeVoucherInfo(limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVoucherInfoResponse > {
+    public func describeVoucherInfo(limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherInfoResponse> {
         self.describeVoucherInfo(DescribeVoucherInfoRequest(limit: limit, offset: offset, status: status, voucherId: voucherId, codeId: codeId, productCode: productCode, activityId: activityId, voucherName: voucherName, timeFrom: timeFrom, timeTo: timeTo, sortField: sortField, sortOrder: sortOrder, payMode: payMode, payScene: payScene, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取代金券相关信息
     @inlinable
     public func describeVoucherInfo(limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherInfoResponse {

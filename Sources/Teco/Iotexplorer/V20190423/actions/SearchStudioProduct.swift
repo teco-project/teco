@@ -19,23 +19,23 @@ extension Iotexplorer {
     public struct SearchStudioProductRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String?
-        
+
         /// 产品名称
         public let productName: String?
-        
+
         /// 列表Limit
         public let limit: UInt64?
-        
+
         /// 列表Offset
         public let offset: UInt64?
-        
+
         /// 产品Status
         public let devStatus: String?
-        
+
         /// 产品ID
         public let productId: String?
-        
-        public init (projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil) {
+
+        public init(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil) {
             self.projectId = projectId
             self.productName = productName
             self.limit = limit
@@ -43,7 +43,7 @@ extension Iotexplorer {
             self.devStatus = devStatus
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case productName = "ProductName"
@@ -53,33 +53,33 @@ extension Iotexplorer {
             case productId = "ProductId"
         }
     }
-    
+
     /// SearchStudioProduct返回参数结构体
     public struct SearchStudioProductResponse: TCResponseModel {
         /// 产品列表
         public let products: [ProductEntry]
-        
+
         /// 产品数量
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case products = "Products"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力
     @inlinable
-    public func searchStudioProduct(_ input: SearchStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchStudioProductResponse > {
+    public func searchStudioProduct(_ input: SearchStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStudioProductResponse> {
         self.client.execute(action: "SearchStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力
@@ -87,15 +87,15 @@ extension Iotexplorer {
     public func searchStudioProduct(_ input: SearchStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStudioProductResponse {
         try await self.client.execute(action: "SearchStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力
     @inlinable
-    public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchStudioProductResponse > {
+    public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStudioProductResponse> {
         self.searchStudioProduct(SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力

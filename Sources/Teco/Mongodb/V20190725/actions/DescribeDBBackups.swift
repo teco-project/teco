@@ -19,23 +19,23 @@ extension Mongodb {
     public struct DescribeDBBackupsRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
-        
+
         /// 备份方式，当前支持：0-逻辑备份，1-物理备份，2-所有备份。默认为逻辑备份。
         public let backupMethod: Int64?
-        
+
         /// 分页大小，最大值为100，不设置默认查询所有。
         public let limit: UInt64?
-        
+
         /// 分页偏移量，最小值为0，默认值为0。
         public let offset: UInt64?
-        
-        public init (instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceId = instanceId
             self.backupMethod = backupMethod
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case backupMethod = "BackupMethod"
@@ -43,33 +43,33 @@ extension Mongodb {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeDBBackups返回参数结构体
     public struct DescribeDBBackupsResponse: TCResponseModel {
         /// 备份列表
         public let backupList: [BackupInfo]
-        
+
         /// 备份总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case backupList = "BackupList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
-    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBBackupsResponse > {
+    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
         self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
@@ -77,15 +77,15 @@ extension Mongodb {
     public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
         try await self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
-    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBBackupsResponse > {
+    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
         self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。

@@ -19,53 +19,53 @@ extension Wedata {
     public struct DescribeInstanceLastLogRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 数据时间
         public let curRunDate: String
-        
-        public init (taskId: String, curRunDate: String) {
+
+        public init(taskId: String, curRunDate: String) {
             self.taskId = taskId
             self.curRunDate = curRunDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case curRunDate = "CurRunDate"
         }
     }
-    
+
     /// DescribeInstanceLastLog返回参数结构体
     public struct DescribeInstanceLastLogResponse: TCResponseModel {
         /// 日志
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 日志获取详情页面
     @inlinable
-    public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLastLogResponse > {
+    public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLastLogResponse> {
         self.client.execute(action: "DescribeInstanceLastLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLastLogResponse {
         try await self.client.execute(action: "DescribeInstanceLastLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 日志获取详情页面
     @inlinable
-    public func describeInstanceLastLog(taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLastLogResponse > {
+    public func describeInstanceLastLog(taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLastLogResponse> {
         self.describeInstanceLastLog(DescribeInstanceLastLogRequest(taskId: taskId, curRunDate: curRunDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLastLogResponse {

@@ -30,115 +30,115 @@ extension TCIotcloudError {
             case productNotSupportPSK = "UnauthorizedOperation.ProductNotSupportPSK"
             case userNotAuthenticaed = "UnauthorizedOperation.UserNotAuthenticaed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该产品已存在TID申请，禁止删除。
         public static var deleteTidFail: UnauthorizedOperation {
             UnauthorizedOperation(.deleteTidFail)
         }
-        
+
         /// 该设备绑定了网关设备，无法删除。
         public static var deviceHasAlreadyBindGateway: UnauthorizedOperation {
             UnauthorizedOperation(.deviceHasAlreadyBindGateway)
         }
-        
+
         /// 设备未启用。
         public static var deviceIsNotEnabled: UnauthorizedOperation {
             UnauthorizedOperation(.deviceIsNotEnabled)
         }
-        
+
         /// 删除的产品下还包括未删除的设备。
         public static var devicesExistUnderProduct: UnauthorizedOperation {
             UnauthorizedOperation(.devicesExistUnderProduct)
         }
-        
+
         /// 该设备下仍有绑定的设备。
         public static var gatewayHasBindedDevices: UnauthorizedOperation {
             UnauthorizedOperation(.gatewayHasBindedDevices)
         }
-        
+
         /// 没有权限。
         public static var permissionDenied: UnauthorizedOperation {
             UnauthorizedOperation(.permissionDenied)
         }
-        
+
         /// 该产品类型不能创建LoRa设备。
         public static var productCantHaveLoRaDevice: UnauthorizedOperation {
             UnauthorizedOperation(.productCantHaveLoRaDevice)
         }
-        
+
         /// NB-IoT产品不允许创建普通设备。
         public static var productCantHaveNormalDevice: UnauthorizedOperation {
             UnauthorizedOperation(.productCantHaveNormalDevice)
         }
-        
+
         /// 该产品类型只能创建LoRa设备。
         public static var productCantHaveNotLoRaDevice: UnauthorizedOperation {
             UnauthorizedOperation(.productCantHaveNotLoRaDevice)
         }
-        
+
         /// 产品禁用了该功能。
         public static var productIsForbidden: UnauthorizedOperation {
             UnauthorizedOperation(.productIsForbidden)
         }
-        
+
         /// 产品不支持密钥认证。
         public static var productNotSupportPSK: UnauthorizedOperation {
             UnauthorizedOperation(.productNotSupportPSK)
         }
-        
+
         /// 用户未通过实名认证。
         public static var userNotAuthenticaed: UnauthorizedOperation {
             UnauthorizedOperation(.userNotAuthenticaed)
         }
-        
+
         public func asIotcloudError() -> TCIotcloudError {
             let code: TCIotcloudError.Code
             switch self.error {
-            case .deleteTidFail: 
+            case .deleteTidFail:
                 code = .unauthorizedOperation_DeleteTidFail
-            case .deviceHasAlreadyBindGateway: 
+            case .deviceHasAlreadyBindGateway:
                 code = .unauthorizedOperation_DeviceHasAlreadyBindGateway
-            case .deviceIsNotEnabled: 
+            case .deviceIsNotEnabled:
                 code = .unauthorizedOperation_DeviceIsNotEnabled
-            case .devicesExistUnderProduct: 
+            case .devicesExistUnderProduct:
                 code = .unauthorizedOperation_DevicesExistUnderProduct
-            case .gatewayHasBindedDevices: 
+            case .gatewayHasBindedDevices:
                 code = .unauthorizedOperation_GatewayHasBindedDevices
-            case .permissionDenied: 
+            case .permissionDenied:
                 code = .unauthorizedOperation_PermissionDenied
-            case .productCantHaveLoRaDevice: 
+            case .productCantHaveLoRaDevice:
                 code = .unauthorizedOperation_ProductCantHaveLoRaDevice
-            case .productCantHaveNormalDevice: 
+            case .productCantHaveNormalDevice:
                 code = .unauthorizedOperation_ProductCantHaveNormalDevice
-            case .productCantHaveNotLoRaDevice: 
+            case .productCantHaveNotLoRaDevice:
                 code = .unauthorizedOperation_ProductCantHaveNotLoRaDevice
-            case .productIsForbidden: 
+            case .productIsForbidden:
                 code = .unauthorizedOperation_ProductIsForbidden
-            case .productNotSupportPSK: 
+            case .productNotSupportPSK:
                 code = .unauthorizedOperation_ProductNotSupportPSK
-            case .userNotAuthenticaed: 
+            case .userNotAuthenticaed:
                 code = .unauthorizedOperation_UserNotAuthenticaed
             }
             return TCIotcloudError(code, context: self.context)

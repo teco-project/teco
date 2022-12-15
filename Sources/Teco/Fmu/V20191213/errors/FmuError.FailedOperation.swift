@@ -46,227 +46,227 @@ extension TCFmuError {
             case unknown = "FailedOperation.Unknown"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 图片美颜失败，请更换图片。
         public static var beautifyFailed: FailedOperation {
             FailedOperation(.beautifyFailed)
         }
-        
+
         /// 撤销任务无法被成功执行, 请重试。
         public static var cancelJobFailure: FailedOperation {
             FailedOperation(.cancelJobFailure)
         }
-        
+
         /// 未检测到人脸。
         public static var detectNoFace: FailedOperation {
             FailedOperation(.detectNoFace)
         }
-        
+
         /// 操作太频繁，触发频控。
         public static var effectFreqCtrl: FailedOperation {
             FailedOperation(.effectFreqCtrl)
         }
-        
+
         /// 特效服务内部错误。
         public static var effectInnerError: FailedOperation {
             FailedOperation(.effectInnerError)
         }
-        
+
         /// 人脸因太小被过滤，建议人脸分辨率不小于34*34。
         public static var faceSizeTooSmall: FailedOperation {
             FailedOperation(.faceSizeTooSmall)
         }
-        
+
         /// 操作太频繁，触发频控，请稍后重试。
         public static var freqCtrl: FailedOperation {
             FailedOperation(.freqCtrl)
         }
-        
+
         /// 图片解码失败。
         public static var imageDecodeFailed: FailedOperation {
             FailedOperation(.imageDecodeFailed)
         }
-        
+
         /// 图片下载失败。
         public static var imageDownloadError: FailedOperation {
             FailedOperation(.imageDownloadError)
         }
-        
+
         /// 不支持灰色图。
         public static var imageGrayNotSupport: FailedOperation {
             FailedOperation(.imageGrayNotSupport)
         }
-        
+
         /// 不支持的图片文件。
         public static var imageNotSupported: FailedOperation {
             FailedOperation(.imageNotSupported)
         }
-        
+
         /// 图片分辨率过大。
         public static var imageResolutionExceed: FailedOperation {
             FailedOperation(.imageResolutionExceed)
         }
-        
+
         /// 图片短边分辨率小于64。
         public static var imageResolutionTooSmall: FailedOperation {
             FailedOperation(.imageResolutionTooSmall)
         }
-        
+
         /// 图片数据太大。
         public static var imageSizeExceed: FailedOperation {
             FailedOperation(.imageSizeExceed)
         }
-        
+
         /// 图片上传失败。
         public static var imageUploadFailed: FailedOperation {
             FailedOperation(.imageUploadFailed)
         }
-        
+
         /// 服务内部错误，请重试。
         public static var innerError: FailedOperation {
             FailedOperation(.innerError)
         }
-        
+
         /// 内部错误。
         public static var internalError: FailedOperation {
             FailedOperation(.internalError)
         }
-        
+
         /// 任务冲突。
         public static var jobConflict: FailedOperation {
             FailedOperation(.jobConflict)
         }
-        
+
         /// 任务已撤销，请重新提交任务。
         public static var jobHasBeenCanceled: FailedOperation {
             FailedOperation(.jobHasBeenCanceled)
         }
-        
+
         /// 任务已停止处理，请重新提交任务。
         public static var jobStopProcessing: FailedOperation {
             FailedOperation(.jobStopProcessing)
         }
-        
+
         /// 素材超过数量限制。
         public static var modelValueExceed: FailedOperation {
             FailedOperation(.modelValueExceed)
         }
-        
+
         /// 参数错误。
         public static var parameterValueError: FailedOperation {
             FailedOperation(.parameterValueError)
         }
-        
+
         /// 请求包体太大，建议在6M内（通常是参数中包括大的图片）。
         public static var requestEntityTooLarge: FailedOperation {
             FailedOperation(.requestEntityTooLarge)
         }
-        
+
         /// 后端服务超时，请重试。
         public static var requestTimeout: FailedOperation {
             FailedOperation(.requestTimeout)
         }
-        
+
         /// RPC请求失败，一般为算法微服务故障。
         public static var rpcFail: FailedOperation {
             FailedOperation(.rpcFail)
         }
-        
+
         /// 系统内部错误。
         public static var serverError: FailedOperation {
             FailedOperation(.serverError)
         }
-        
+
         /// 未知错误。
         public static var unknown: FailedOperation {
             FailedOperation(.unknown)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asFmuError() -> TCFmuError {
             let code: TCFmuError.Code
             switch self.error {
-            case .beautifyFailed: 
+            case .beautifyFailed:
                 code = .failedOperation_BeautifyFailed
-            case .cancelJobFailure: 
+            case .cancelJobFailure:
                 code = .failedOperation_CancelJobFailure
-            case .detectNoFace: 
+            case .detectNoFace:
                 code = .failedOperation_DetectNoFace
-            case .effectFreqCtrl: 
+            case .effectFreqCtrl:
                 code = .failedOperation_EffectFreqCtrl
-            case .effectInnerError: 
+            case .effectInnerError:
                 code = .failedOperation_EffectInnerError
-            case .faceSizeTooSmall: 
+            case .faceSizeTooSmall:
                 code = .failedOperation_FaceSizeTooSmall
-            case .freqCtrl: 
+            case .freqCtrl:
                 code = .failedOperation_FreqCtrl
-            case .imageDecodeFailed: 
+            case .imageDecodeFailed:
                 code = .failedOperation_ImageDecodeFailed
-            case .imageDownloadError: 
+            case .imageDownloadError:
                 code = .failedOperation_ImageDownloadError
-            case .imageGrayNotSupport: 
+            case .imageGrayNotSupport:
                 code = .failedOperation_ImageGrayNotSupport
-            case .imageNotSupported: 
+            case .imageNotSupported:
                 code = .failedOperation_ImageNotSupported
-            case .imageResolutionExceed: 
+            case .imageResolutionExceed:
                 code = .failedOperation_ImageResolutionExceed
-            case .imageResolutionTooSmall: 
+            case .imageResolutionTooSmall:
                 code = .failedOperation_ImageResolutionTooSmall
-            case .imageSizeExceed: 
+            case .imageSizeExceed:
                 code = .failedOperation_ImageSizeExceed
-            case .imageUploadFailed: 
+            case .imageUploadFailed:
                 code = .failedOperation_ImageUploadFailed
-            case .innerError: 
+            case .innerError:
                 code = .failedOperation_InnerError
-            case .internalError: 
+            case .internalError:
                 code = .failedOperation_InternalError
-            case .jobConflict: 
+            case .jobConflict:
                 code = .failedOperation_JobConflict
-            case .jobHasBeenCanceled: 
+            case .jobHasBeenCanceled:
                 code = .failedOperation_JobHasBeenCanceled
-            case .jobStopProcessing: 
+            case .jobStopProcessing:
                 code = .failedOperation_JobStopProcessing
-            case .modelValueExceed: 
+            case .modelValueExceed:
                 code = .failedOperation_ModelValueExceed
-            case .parameterValueError: 
+            case .parameterValueError:
                 code = .failedOperation_ParameterValueError
-            case .requestEntityTooLarge: 
+            case .requestEntityTooLarge:
                 code = .failedOperation_RequestEntityTooLarge
-            case .requestTimeout: 
+            case .requestTimeout:
                 code = .failedOperation_RequestTimeout
-            case .rpcFail: 
+            case .rpcFail:
                 code = .failedOperation_RpcFail
-            case .serverError: 
+            case .serverError:
                 code = .failedOperation_ServerError
-            case .unknown: 
+            case .unknown:
                 code = .failedOperation_Unknown
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCFmuError(code, context: self.context)

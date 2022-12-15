@@ -20,46 +20,46 @@ extension TCCdcError {
             case cdcBindVpcFail = "FailedOperation.CdcBindVpcFail"
             case failDeleteSite = "FailedOperation.FailDeleteSite"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var cdcBindVpcFail: FailedOperation {
             FailedOperation(.cdcBindVpcFail)
         }
-        
+
         /// 删除site失败。
         ///
         /// site删除失败，因为还存在某些其它的cluster。
         public static var failDeleteSite: FailedOperation {
             FailedOperation(.failDeleteSite)
         }
-        
+
         public func asCdcError() -> TCCdcError {
             let code: TCCdcError.Code
             switch self.error {
-            case .cdcBindVpcFail: 
+            case .cdcBindVpcFail:
                 code = .failedOperation_CdcBindVpcFail
-            case .failDeleteSite: 
+            case .failDeleteSite:
                 code = .failedOperation_FailDeleteSite
             }
             return TCCdcError(code, context: self.context)

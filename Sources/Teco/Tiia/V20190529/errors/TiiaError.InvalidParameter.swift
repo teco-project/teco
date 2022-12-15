@@ -20,44 +20,44 @@ extension TCTiiaError {
             case imageFormatNotSupport = "InvalidParameter.ImageFormatNotSupport"
             case invalidParameter = "InvalidParameter.InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var imageFormatNotSupport: InvalidParameter {
             InvalidParameter(.imageFormatNotSupport)
         }
-        
+
         /// 参数取值错误。
         public static var invalidParameter: InvalidParameter {
             InvalidParameter(.invalidParameter)
         }
-        
+
         public func asTiiaError() -> TCTiiaError {
             let code: TCTiiaError.Code
             switch self.error {
-            case .imageFormatNotSupport: 
+            case .imageFormatNotSupport:
                 code = .invalidParameter_ImageFormatNotSupport
-            case .invalidParameter: 
+            case .invalidParameter:
                 code = .invalidParameter_InvalidParameter
             }
             return TCTiiaError(code, context: self.context)

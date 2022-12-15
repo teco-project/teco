@@ -19,39 +19,39 @@ extension Teo {
     public struct CreateSpeedTestingRequest: TCRequestModel {
         /// 站点 ID。
         public let zoneId: String
-        
+
         /// 拨测子域名。
         public let host: String?
-        
-        public init (zoneId: String, host: String? = nil) {
+
+        public init(zoneId: String, host: String? = nil) {
             self.zoneId = zoneId
             self.host = host
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case host = "Host"
         }
     }
-    
+
     /// CreateSpeedTesting返回参数结构体
     public struct CreateSpeedTestingResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建站点拨测任务
     ///
     /// 对用户指定的域名进行一次站点拨测
     @inlinable
-    public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSpeedTestingResponse > {
+    public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSpeedTestingResponse> {
         self.client.execute(action: "CreateSpeedTesting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建站点拨测任务
     ///
     /// 对用户指定的域名进行一次站点拨测
@@ -59,15 +59,15 @@ extension Teo {
     public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpeedTestingResponse {
         try await self.client.execute(action: "CreateSpeedTesting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建站点拨测任务
     ///
     /// 对用户指定的域名进行一次站点拨测
     @inlinable
-    public func createSpeedTesting(zoneId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSpeedTestingResponse > {
+    public func createSpeedTesting(zoneId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSpeedTestingResponse> {
         self.createSpeedTesting(CreateSpeedTestingRequest(zoneId: zoneId, host: host), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建站点拨测任务
     ///
     /// 对用户指定的域名进行一次站点拨测

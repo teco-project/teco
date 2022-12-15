@@ -19,38 +19,38 @@ extension Mongodb {
     public struct DescribeSpecInfoRequest: TCRequestModel {
         /// 待查询可用区
         public let zone: String?
-        
-        public init (zone: String? = nil) {
+
+        public init(zone: String? = nil) {
             self.zone = zone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
         }
     }
-    
+
     /// DescribeSpecInfo返回参数结构体
     public struct DescribeSpecInfoResponse: TCResponseModel {
         /// 实例售卖规格信息列表
         public let specInfoList: [SpecificationInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case specInfoList = "SpecInfoList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云数据库的售卖规格
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
-    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecInfoResponse > {
+    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecInfoResponse> {
         self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库的售卖规格
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
@@ -58,15 +58,15 @@ extension Mongodb {
     public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
         try await self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云数据库的售卖规格
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
-    public func describeSpecInfo(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecInfoResponse > {
+    public func describeSpecInfo(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecInfoResponse> {
         self.describeSpecInfo(DescribeSpecInfoRequest(zone: zone), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库的售卖规格
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。

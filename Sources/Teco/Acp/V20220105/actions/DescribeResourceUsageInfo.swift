@@ -19,23 +19,23 @@ extension Acp {
     public struct DescribeResourceUsageInfoRequest: TCRequestModel {
         /// 资源计费项名称(为空时，则根据Source，TaskType和Platform进行查询)
         public let priceName: String?
-        
+
         /// 任务类型, 0:基础版, 1:专家版
         public let taskType: Int64?
-        
+
         /// 应用平台, 0:android
         public let platform: Int64?
-        
+
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         public let source: Int64?
-        
-        public init (priceName: String? = nil, taskType: Int64? = nil, platform: Int64? = nil, source: Int64? = nil) {
+
+        public init(priceName: String? = nil, taskType: Int64? = nil, platform: Int64? = nil, source: Int64? = nil) {
             self.priceName = priceName
             self.taskType = taskType
             self.platform = platform
             self.source = source
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case priceName = "PriceName"
             case taskType = "TaskType"
@@ -43,33 +43,33 @@ extension Acp {
             case source = "Source"
         }
     }
-    
+
     /// DescribeResourceUsageInfo返回参数结构体
     public struct DescribeResourceUsageInfoResponse: TCResponseModel {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义，暂时未定
         public let result: Int64
-        
+
         /// 资源使用信息
         public let data: ResourceUsageInfoData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询应用合规资源使用情况
     ///
     /// 查询应用合规平台用户资源的使用情况
     @inlinable
-    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageInfoResponse > {
+    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageInfoResponse> {
         self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询应用合规资源使用情况
     ///
     /// 查询应用合规平台用户资源的使用情况
@@ -77,15 +77,15 @@ extension Acp {
     public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageInfoResponse {
         try await self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询应用合规资源使用情况
     ///
     /// 查询应用合规平台用户资源的使用情况
     @inlinable
-    public func describeResourceUsageInfo(priceName: String? = nil, taskType: Int64? = nil, platform: Int64? = nil, source: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageInfoResponse > {
+    public func describeResourceUsageInfo(priceName: String? = nil, taskType: Int64? = nil, platform: Int64? = nil, source: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageInfoResponse> {
         self.describeResourceUsageInfo(DescribeResourceUsageInfoRequest(priceName: priceName, taskType: taskType, platform: platform, source: source), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询应用合规资源使用情况
     ///
     /// 查询应用合规平台用户资源的使用情况

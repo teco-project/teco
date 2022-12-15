@@ -27,7 +27,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,24 +35,24 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// mainland 大陆地区 overseas境外地区
         public let area: String
-        
+
         /// 取值："2min"或者"hour"，表示查询2分钟或者1小时粒度的数据，如果查询时间范围>1天，则强制返回1小时粒度数据
         public let interval: String?
-        
+
         /// 域名数组，多选域名时，使用此参数,不填写表示查询所有域名的数据（AppID维度数据）
         public let domains: [String]?
-        
-        public init (startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil) {
+
+        public init(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.area = area
             self.interval = interval
             self.domains = domains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -61,43 +61,43 @@ extension Cdn {
             case domains = "Domains"
         }
     }
-    
+
     /// DescribeScdnBotData返回参数结构体
     public struct DescribeScdnBotDataResponse: TCResponseModel {
         /// 统计信息详细数据
         public let data: [BotStats]
-        
+
         /// 当前返回数据的粒度，取值："2min"或者"hour"，分别表示2分钟或者1小时粒度
         public let interval: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case interval = "Interval"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取BOT统计数据列表
     @inlinable
-    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotDataResponse > {
+    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotDataResponse> {
         self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取BOT统计数据列表
     @inlinable
     public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
         try await self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取BOT统计数据列表
     @inlinable
-    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotDataResponse > {
+    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotDataResponse> {
         self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取BOT统计数据列表
     @inlinable
     public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {

@@ -20,45 +20,45 @@ extension TCCynosdbError {
             case notRealNameAccount = "UnauthorizedOperation.NotRealNameAccount"
             case permissionDenied = "UnauthorizedOperation.PermissionDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 非实名用户禁止购买。
         public static var notRealNameAccount: UnauthorizedOperation {
             UnauthorizedOperation(.notRealNameAccount)
         }
-        
+
         /// CAM鉴权不通过。
         public static var permissionDenied: UnauthorizedOperation {
             UnauthorizedOperation(.permissionDenied)
         }
-        
+
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
-            case .notRealNameAccount: 
+            case .notRealNameAccount:
                 code = .unauthorizedOperation_NotRealNameAccount
-            case .permissionDenied: 
+            case .permissionDenied:
                 code = .unauthorizedOperation_PermissionDenied
             }
             return TCCynosdbError(code, context: self.context)

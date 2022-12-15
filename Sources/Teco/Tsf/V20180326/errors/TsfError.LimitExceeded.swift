@@ -21,52 +21,52 @@ extension TCTsfError {
             case errRepoMaxLimit = "LimitExceeded.ErrRepoMaxLimit"
             case tkeClusterNumberExceedLimit = "LimitExceeded.TkeClusterNumberExceedLimit"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 命名空间数达到上限。
         public static var errNamespaceMaxLimit: LimitExceeded {
             LimitExceeded(.errNamespaceMaxLimit)
         }
-        
+
         /// 仓库达到上限。
         public static var errRepoMaxLimit: LimitExceeded {
             LimitExceeded(.errRepoMaxLimit)
         }
-        
+
         /// 最多支持创建五个容器集群，当前已经超过使用上限。
         public static var tkeClusterNumberExceedLimit: LimitExceeded {
             LimitExceeded(.tkeClusterNumberExceedLimit)
         }
-        
+
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
-            case .errNamespaceMaxLimit: 
+            case .errNamespaceMaxLimit:
                 code = .limitExceeded_ErrNamespaceMaxLimit
-            case .errRepoMaxLimit: 
+            case .errRepoMaxLimit:
                 code = .limitExceeded_ErrRepoMaxLimit
-            case .tkeClusterNumberExceedLimit: 
+            case .tkeClusterNumberExceedLimit:
                 code = .limitExceeded_TkeClusterNumberExceedLimit
             }
             return TCTsfError(code, context: self.context)

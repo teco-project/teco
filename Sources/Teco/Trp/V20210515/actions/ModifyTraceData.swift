@@ -19,56 +19,56 @@ extension Trp {
     public struct ModifyTraceDataRequest: TCRequestModel {
         /// 溯源ID
         public let traceId: String?
-        
+
         /// 批次ID
         public let batchId: String?
-        
+
         /// 生产溯源任务ID
         public let taskId: String?
-        
+
         /// 溯源信息
         public let traceItems: [TraceItem]?
-        
+
         /// 溯源阶段名称
         public let phaseName: String?
-        
+
         /// [无效] 类型
         public let type: UInt64?
-        
+
         /// [无效] 溯源码
         public let code: String?
-        
+
         /// [无效] 排序
         public let rank: UInt64?
-        
+
         /// [无效] 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
         public let phase: UInt64?
-        
+
         /// [无效] 溯源时间
         public let traceTime: String?
-        
+
         /// [无效] 创建时间
         public let createTime: String?
-        
+
         /// [无效] 上链状态
         public let chainStatus: UInt64?
-        
+
         /// [无效] 上链时间
         public let chainTime: String?
-        
+
         /// [无效] 上链数据
         public let chainData: ChainData?
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 溯源状态 0: 无效, 1: 有效
         public let status: UInt64?
-        
+
         /// 环节数据
         public let phaseData: PhaseData?
-        
-        public init (traceId: String? = nil, batchId: String? = nil, taskId: String? = nil, traceItems: [TraceItem]? = nil, phaseName: String? = nil, type: UInt64? = nil, code: String? = nil, rank: UInt64? = nil, phase: UInt64? = nil, traceTime: String? = nil, createTime: String? = nil, chainStatus: UInt64? = nil, chainTime: String? = nil, chainData: ChainData? = nil, corpId: UInt64? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil) {
+
+        public init(traceId: String? = nil, batchId: String? = nil, taskId: String? = nil, traceItems: [TraceItem]? = nil, phaseName: String? = nil, type: UInt64? = nil, code: String? = nil, rank: UInt64? = nil, phase: UInt64? = nil, traceTime: String? = nil, createTime: String? = nil, chainStatus: UInt64? = nil, chainTime: String? = nil, chainData: ChainData? = nil, corpId: UInt64? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil) {
             self.traceId = traceId
             self.batchId = batchId
             self.taskId = taskId
@@ -87,7 +87,7 @@ extension Trp {
             self.status = status
             self.phaseData = phaseData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case traceId = "TraceId"
             case batchId = "BatchId"
@@ -108,39 +108,39 @@ extension Trp {
             case phaseData = "PhaseData"
         }
     }
-    
+
     /// ModifyTraceData返回参数结构体
     public struct ModifyTraceDataResponse: TCResponseModel {
         /// 溯源ID
         public let traceId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case traceId = "TraceId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改溯源信息
     @inlinable
-    public func modifyTraceData(_ input: ModifyTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataResponse > {
+    public func modifyTraceData(_ input: ModifyTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataResponse> {
         self.client.execute(action: "ModifyTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改溯源信息
     @inlinable
     public func modifyTraceData(_ input: ModifyTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataResponse {
         try await self.client.execute(action: "ModifyTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改溯源信息
     @inlinable
-    public func modifyTraceData(traceId: String? = nil, batchId: String? = nil, taskId: String? = nil, traceItems: [TraceItem]? = nil, phaseName: String? = nil, type: UInt64? = nil, code: String? = nil, rank: UInt64? = nil, phase: UInt64? = nil, traceTime: String? = nil, createTime: String? = nil, chainStatus: UInt64? = nil, chainTime: String? = nil, chainData: ChainData? = nil, corpId: UInt64? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataResponse > {
+    public func modifyTraceData(traceId: String? = nil, batchId: String? = nil, taskId: String? = nil, traceItems: [TraceItem]? = nil, phaseName: String? = nil, type: UInt64? = nil, code: String? = nil, rank: UInt64? = nil, phase: UInt64? = nil, traceTime: String? = nil, createTime: String? = nil, chainStatus: UInt64? = nil, chainTime: String? = nil, chainData: ChainData? = nil, corpId: UInt64? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataResponse> {
         self.modifyTraceData(ModifyTraceDataRequest(traceId: traceId, batchId: batchId, taskId: taskId, traceItems: traceItems, phaseName: phaseName, type: type, code: code, rank: rank, phase: phase, traceTime: traceTime, createTime: createTime, chainStatus: chainStatus, chainTime: chainTime, chainData: chainData, corpId: corpId, status: status, phaseData: phaseData), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改溯源信息
     @inlinable
     public func modifyTraceData(traceId: String? = nil, batchId: String? = nil, taskId: String? = nil, traceItems: [TraceItem]? = nil, phaseName: String? = nil, type: UInt64? = nil, code: String? = nil, rank: UInt64? = nil, phase: UInt64? = nil, traceTime: String? = nil, createTime: String? = nil, chainStatus: UInt64? = nil, chainTime: String? = nil, chainData: ChainData? = nil, corpId: UInt64? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataResponse {

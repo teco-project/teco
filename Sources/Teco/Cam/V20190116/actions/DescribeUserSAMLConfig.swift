@@ -17,46 +17,46 @@
 extension Cam {
     /// DescribeUserSAMLConfig请求参数结构体
     public struct DescribeUserSAMLConfigRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeUserSAMLConfig返回参数结构体
     public struct DescribeUserSAMLConfigResponse: TCResponseModel {
         /// SAML元数据文档
         public let samlMetadata: String
-        
+
         /// 状态：0:未设置，1:已开启，2:已禁用
         public let status: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case samlMetadata = "SAMLMetadata"
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户SAML配置
     @inlinable
-    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSAMLConfigResponse > {
+    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSAMLConfigResponse> {
         self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户SAML配置
     @inlinable
     public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
         try await self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户SAML配置
     @inlinable
-    public func describeUserSAMLConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSAMLConfigResponse > {
+    public func describeUserSAMLConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSAMLConfigResponse> {
         self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户SAML配置
     @inlinable
     public func describeUserSAMLConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {

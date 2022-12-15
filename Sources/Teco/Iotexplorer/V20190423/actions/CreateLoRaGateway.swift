@@ -19,29 +19,29 @@ extension Iotexplorer {
     public struct CreateLoRaGatewayRequest: TCRequestModel {
         /// LoRa 网关Id
         public let gatewayId: String
-        
+
         /// 网关名称
         public let name: String
-        
+
         /// 详情描述
         public let description: String
-        
+
         /// 位置坐标
         public let location: LoRaGatewayLocation
-        
+
         /// 位置信息
         public let position: String?
-        
+
         /// 位置详情
         public let positionDetails: String?
-        
+
         /// 是否公开
         public let isPublic: Bool?
-        
+
         /// 频点ID
         public let frequencyId: String?
-        
-        public init (gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil) {
+
+        public init(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil) {
             self.gatewayId = gatewayId
             self.name = name
             self.description = description
@@ -51,7 +51,7 @@ extension Iotexplorer {
             self.isPublic = isPublic
             self.frequencyId = frequencyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayId = "GatewayId"
             case name = "Name"
@@ -63,29 +63,29 @@ extension Iotexplorer {
             case frequencyId = "FrequencyId"
         }
     }
-    
+
     /// CreateLoRaGateway返回参数结构体
     public struct CreateLoRaGatewayResponse: TCResponseModel {
         /// LoRa 网关信息
         public let gateway: LoRaGatewayItem
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case gateway = "Gateway"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建 LoRa 网关设备
     ///
     /// 创建新 LoRa 网关设备接口
     @inlinable
-    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoRaGatewayResponse > {
+    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaGatewayResponse> {
         self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建 LoRa 网关设备
     ///
     /// 创建新 LoRa 网关设备接口
@@ -93,15 +93,15 @@ extension Iotexplorer {
     public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
         try await self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建 LoRa 网关设备
     ///
     /// 创建新 LoRa 网关设备接口
     @inlinable
-    public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoRaGatewayResponse > {
+    public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaGatewayResponse> {
         self.createLoRaGateway(CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建 LoRa 网关设备
     ///
     /// 创建新 LoRa 网关设备接口

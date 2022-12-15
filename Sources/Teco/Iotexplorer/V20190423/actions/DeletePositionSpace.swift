@@ -19,44 +19,44 @@ extension Iotexplorer {
     public struct DeletePositionSpaceRequest: TCRequestModel {
         /// 位置空间Id
         public let spaceId: String
-        
-        public init (spaceId: String) {
+
+        public init(spaceId: String) {
             self.spaceId = spaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case spaceId = "SpaceId"
         }
     }
-    
+
     /// DeletePositionSpace返回参数结构体
     public struct DeletePositionSpaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除位置空间
     @inlinable
-    public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionSpaceResponse > {
+    public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePositionSpaceResponse> {
         self.client.execute(action: "DeletePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除位置空间
     @inlinable
     public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionSpaceResponse {
         try await self.client.execute(action: "DeletePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除位置空间
     @inlinable
-    public func deletePositionSpace(spaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionSpaceResponse > {
+    public func deletePositionSpace(spaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePositionSpaceResponse> {
         self.deletePositionSpace(DeletePositionSpaceRequest(spaceId: spaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除位置空间
     @inlinable
     public func deletePositionSpace(spaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionSpaceResponse {

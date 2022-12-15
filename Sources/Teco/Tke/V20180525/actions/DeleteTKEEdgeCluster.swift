@@ -19,44 +19,44 @@ extension Tke {
     public struct DeleteTKEEdgeClusterRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DeleteTKEEdgeCluster返回参数结构体
     public struct DeleteTKEEdgeClusterResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除边缘计算集群
     @inlinable
-    public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTKEEdgeClusterResponse > {
+    public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTKEEdgeClusterResponse> {
         self.client.execute(action: "DeleteTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘计算集群
     @inlinable
     public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTKEEdgeClusterResponse {
         try await self.client.execute(action: "DeleteTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除边缘计算集群
     @inlinable
-    public func deleteTKEEdgeCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTKEEdgeClusterResponse > {
+    public func deleteTKEEdgeCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTKEEdgeClusterResponse> {
         self.deleteTKEEdgeCluster(DeleteTKEEdgeClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘计算集群
     @inlinable
     public func deleteTKEEdgeCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTKEEdgeClusterResponse {

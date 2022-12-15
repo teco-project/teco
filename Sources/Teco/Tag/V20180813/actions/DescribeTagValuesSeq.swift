@@ -19,23 +19,23 @@ extension Tag {
     public struct DescribeTagValuesSeqRequest: TCRequestModel {
         /// 标签键列表
         public let tagKeys: [String]
-        
+
         /// 创建者用户 Uin，不传或为空只将 Uin 作为条件查询
         public let createUin: UInt64?
-        
+
         /// 数据偏移量，默认为 0, 必须为Limit参数的整数倍
         public let offset: UInt64?
-        
+
         /// 每页大小，默认为 15
         public let limit: UInt64?
-        
-        public init (tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.tagKeys = tagKeys
             self.createUin = createUin
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKeys = "TagKeys"
             case createUin = "CreateUin"
@@ -43,24 +43,24 @@ extension Tag {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeTagValuesSeq返回参数结构体
     public struct DescribeTagValuesSeqResponse: TCResponseModel {
         /// 结果总数
         public let totalCount: UInt64
-        
+
         /// 数据位移偏量
         public let offset: UInt64
-        
+
         /// 每页大小
         public let limit: UInt64
-        
+
         /// 标签列表
         public let tags: [Tag]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case offset = "Offset"
@@ -69,15 +69,15 @@ extension Tag {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 按顺序查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagValuesSeqResponse > {
+    public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesSeqResponse> {
         self.client.execute(action: "DescribeTagValuesSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 按顺序查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。
@@ -85,15 +85,15 @@ extension Tag {
     public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesSeqResponse {
         try await self.client.execute(action: "DescribeTagValuesSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 按顺序查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValuesSeq(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagValuesSeqResponse > {
+    public func describeTagValuesSeq(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesSeqResponse> {
         self.describeTagValuesSeq(DescribeTagValuesSeqRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 按顺序查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。

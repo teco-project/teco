@@ -19,26 +19,26 @@ extension Tke {
     public struct ForwardTKEEdgeApplicationRequestV3Request: TCRequestModel {
         /// 请求集群addon的访问
         public let method: String
-        
+
         /// 请求集群addon的路径
         public let path: String
-        
+
         /// 请求集群addon后允许接收的数据格式
         public let accept: String?
-        
+
         /// 请求集群addon的数据格式
         public let contentType: String?
-        
+
         /// 请求集群addon的数据
         public let requestBody: String?
-        
+
         /// 集群名称，例如cls-1234abcd
         public let clusterName: String?
-        
+
         /// 是否编码请求内容
         public let encodedBody: String?
-        
-        public init (method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil) {
+
+        public init(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil) {
             self.method = method
             self.path = path
             self.accept = accept
@@ -47,7 +47,7 @@ extension Tke {
             self.clusterName = clusterName
             self.encodedBody = encodedBody
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case method = "Method"
             case path = "Path"
@@ -58,39 +58,39 @@ extension Tke {
             case encodedBody = "EncodedBody"
         }
     }
-    
+
     /// ForwardTKEEdgeApplicationRequestV3返回参数结构体
     public struct ForwardTKEEdgeApplicationRequestV3Response: TCResponseModel {
         /// 请求集群addon后返回的数据
         public let responseBody: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case responseBody = "ResponseBody"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 操作TKEEdge集群的addon
     @inlinable
-    public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForwardTKEEdgeApplicationRequestV3Response > {
+    public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardTKEEdgeApplicationRequestV3Response> {
         self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 操作TKEEdge集群的addon
     @inlinable
     public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {
         try await self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 操作TKEEdge集群的addon
     @inlinable
-    public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForwardTKEEdgeApplicationRequestV3Response > {
+    public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardTKEEdgeApplicationRequestV3Response> {
         self.forwardTKEEdgeApplicationRequestV3(ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), logger: logger, on: eventLoop)
     }
-    
+
     /// 操作TKEEdge集群的addon
     @inlinable
     public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {

@@ -21,56 +21,56 @@ extension TCWedataError {
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未登陆或登陆已过期。
         ///
         /// 用户未登陆或者登陆已过期，请重新登陆。
         public static var signatureExpire: AuthFailure {
             AuthFailure(.signatureExpire)
         }
-        
+
         /// CAM未授权，请联系主账号到CAM中授权QcloudWeDataFullAccess策略给该账户。
         ///
         /// 请联系主账号到CAM中授权QcloudWeDataFullAccess策略给该账户
         public static var unauthorizedOperation: AuthFailure {
             AuthFailure(.unauthorizedOperation)
         }
-        
+
         /// CAM签名/鉴权错误。
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-        
+
         public func asWedataError() -> TCWedataError {
             let code: TCWedataError.Code
             switch self.error {
-            case .signatureExpire: 
+            case .signatureExpire:
                 code = .authFailure_SignatureExpire
-            case .unauthorizedOperation: 
+            case .unauthorizedOperation:
                 code = .authFailure_UnauthorizedOperation
-            case .other: 
+            case .other:
                 code = .authFailure
             }
             return TCWedataError(code, context: self.context)

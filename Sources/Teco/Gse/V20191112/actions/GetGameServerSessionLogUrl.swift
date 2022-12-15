@@ -19,40 +19,40 @@ extension Gse {
     public struct GetGameServerSessionLogUrlRequest: TCRequestModel {
         /// 游戏服务器会话ID，最小长度不小于1个ASCII字符，最大长度不超过48个ASCII字符
         public let gameServerSessionId: String
-        
-        public init (gameServerSessionId: String) {
+
+        public init(gameServerSessionId: String) {
             self.gameServerSessionId = gameServerSessionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSessionId = "GameServerSessionId"
         }
     }
-    
+
     /// GetGameServerSessionLogUrl返回参数结构体
     public struct GetGameServerSessionLogUrlResponse: TCResponseModel {
         /// 日志下载URL，最小长度不小于1个ASCII字符，最大长度不超过1024个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preSignedUrl: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case preSignedUrl = "PreSignedUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取游戏服务器会话的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
     @inlinable
-    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGameServerSessionLogUrlResponse > {
+    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
         self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取游戏服务器会话的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -61,16 +61,16 @@ extension Gse {
     public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
         try await self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取游戏服务器会话的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
     @inlinable
-    public func getGameServerSessionLogUrl(gameServerSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGameServerSessionLogUrlResponse > {
+    public func getGameServerSessionLogUrl(gameServerSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
         self.getGameServerSessionLogUrl(GetGameServerSessionLogUrlRequest(gameServerSessionId: gameServerSessionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取游戏服务器会话的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

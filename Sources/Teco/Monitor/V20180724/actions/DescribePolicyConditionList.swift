@@ -19,48 +19,48 @@ extension Monitor {
     public struct DescribePolicyConditionListRequest: TCRequestModel {
         /// 固定值，为"monitor"
         public let module: String
-        
-        public init (module: String) {
+
+        public init(module: String) {
             self.module = module
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
         }
     }
-    
+
     /// DescribePolicyConditionList返回参数结构体
     public struct DescribePolicyConditionListResponse: TCResponseModel {
         /// 告警策略条件列表
         public let conditions: [DescribePolicyConditionListCondition]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case conditions = "Conditions"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取基础告警策略条件
     @inlinable
-    public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyConditionListResponse > {
+    public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyConditionListResponse> {
         self.client.execute(action: "DescribePolicyConditionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取基础告警策略条件
     @inlinable
     public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {
         try await self.client.execute(action: "DescribePolicyConditionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取基础告警策略条件
     @inlinable
-    public func describePolicyConditionList(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyConditionListResponse > {
+    public func describePolicyConditionList(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyConditionListResponse> {
         self.describePolicyConditionList(DescribePolicyConditionListRequest(module: module), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取基础告警策略条件
     @inlinable
     public func describePolicyConditionList(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {

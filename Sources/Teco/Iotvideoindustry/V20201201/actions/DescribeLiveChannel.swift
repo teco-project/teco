@@ -19,49 +19,49 @@ extension Iotvideoindustry {
     public struct DescribeLiveChannelRequest: TCRequestModel {
         /// 频道ID
         public let liveChannelId: String
-        
-        public init (liveChannelId: String) {
+
+        public init(liveChannelId: String) {
             self.liveChannelId = liveChannelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case liveChannelId = "LiveChannelId"
         }
     }
-    
+
     /// DescribeLiveChannel返回参数结构体
     public struct DescribeLiveChannelResponse: TCResponseModel {
         /// 频道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveChannelId: String?
-        
+
         /// 频道名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveChannelName: String?
-        
+
         /// 直播频道类型 1：固定直播；2：移动直播
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveChannelType: Int64?
-        
+
         /// 通道直播状态：1: 未推流，2: 推流中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveStatus: Int64?
-        
+
         /// 推流地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pushStreamAddress: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: [String]?
-        
+
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case liveChannelId = "LiveChannelId"
             case liveChannelName = "LiveChannelName"
@@ -73,25 +73,25 @@ extension Iotvideoindustry {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播详情接口
     @inlinable
-    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveChannelResponse > {
+    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelResponse> {
         self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播详情接口
     @inlinable
     public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
         try await self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播详情接口
     @inlinable
-    public func describeLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveChannelResponse > {
+    public func describeLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelResponse> {
         self.describeLiveChannel(DescribeLiveChannelRequest(liveChannelId: liveChannelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播详情接口
     @inlinable
     public func describeLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {

@@ -25,80 +25,80 @@ extension TCTsfError {
             case noLicense = "UnauthorizedOperation.NoLicense"
             case noPrivilege = "UnauthorizedOperation.NoPrivilege"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 访问 CAM 系统出错，%s。
         public static var camGeneralError: UnauthorizedOperation {
             UnauthorizedOperation(.camGeneralError)
         }
-        
+
         /// 协作者身份未授权，需要主账号授予协作者权限，参考 TSF 官网文档「快速入门/准备工作」。
         public static var camTsfRoleNoPermission: UnauthorizedOperation {
             UnauthorizedOperation(.camTsfRoleNoPermission)
         }
-        
+
         /// 当前主账号未创建TSF_QCSRole或未对子账号授予预设策略QcloudCamSubaccountsAuthorizeRoleFullAccess。请参考产品文档主账号协作者使用说明。。
         public static var camTsfRoleNotExist: UnauthorizedOperation {
             UnauthorizedOperation(.camTsfRoleNotExist)
         }
-        
+
         /// License未激活。。
         public static var licenseInactive: UnauthorizedOperation {
             UnauthorizedOperation(.licenseInactive)
         }
-        
+
         /// 您所购买的服务不支持该操作。
         public static var licenseUnauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.licenseUnauthorized)
         }
-        
+
         /// 缺少License。。
         public static var noLicense: UnauthorizedOperation {
             UnauthorizedOperation(.noLicense)
         }
-        
+
         /// 用户无权限访问该接口。。
         public static var noPrivilege: UnauthorizedOperation {
             UnauthorizedOperation(.noPrivilege)
         }
-        
+
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
-            case .camGeneralError: 
+            case .camGeneralError:
                 code = .unauthorizedOperation_CamGeneralError
-            case .camTsfRoleNoPermission: 
+            case .camTsfRoleNoPermission:
                 code = .unauthorizedOperation_CamTsfRoleNoPermission
-            case .camTsfRoleNotExist: 
+            case .camTsfRoleNotExist:
                 code = .unauthorizedOperation_CamTsfRoleNotExist
-            case .licenseInactive: 
+            case .licenseInactive:
                 code = .unauthorizedOperation_LicenseInactive
-            case .licenseUnauthorized: 
+            case .licenseUnauthorized:
                 code = .unauthorizedOperation_LicenseUnauthorized
-            case .noLicense: 
+            case .noLicense:
                 code = .unauthorizedOperation_NoLicense
-            case .noPrivilege: 
+            case .noPrivilege:
                 code = .unauthorizedOperation_NoPrivilege
             }
             return TCTsfError(code, context: self.context)

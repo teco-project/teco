@@ -126,774 +126,774 @@ extension TCVpcError {
             case zoneMismatch = "UnsupportedOperation.ZoneMismatch"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 接口不存在。
         public static var actionNotFound: UnsupportedOperation {
             UnsupportedOperation(.actionNotFound)
         }
-        
+
         /// 欠费状态不支持该操作。
         public static var addressIpInArrear: UnsupportedOperation {
             UnsupportedOperation(.addressIpInArrear)
         }
-        
+
         /// 此付费模式的IP地址不支持该操作。
         public static var addressIpInternetChargeTypeNotPermit: UnsupportedOperation {
             UnsupportedOperation(.addressIpInternetChargeTypeNotPermit)
         }
-        
+
         /// 绑定此实例的IP地址不支持该操作。
         public static var addressIpNotSupportInstance: UnsupportedOperation {
             UnsupportedOperation(.addressIpNotSupportInstance)
         }
-        
+
         /// 此IP地址状态不支持该操作。
         public static var addressIpStatusNotPermit: UnsupportedOperation {
             UnsupportedOperation(.addressIpStatusNotPermit)
         }
-        
+
         /// 该地址状态不支持此操作。
         public static var addressStatusNotPermit: UnsupportedOperation {
             UnsupportedOperation(.addressStatusNotPermit)
         }
-        
+
         /// 资源不在指定的AppId下。
         public static var appIdMismatch: UnsupportedOperation {
             UnsupportedOperation(.appIdMismatch)
         }
-        
+
         /// APPId不存在。
         public static var appIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.appIdNotFound)
         }
-        
+
         /// 绑定关系已存在。
         public static var attachmentAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.attachmentAlreadyExists)
         }
-        
+
         /// 绑定关系不存在。
         public static var attachmentNotFound: UnsupportedOperation {
             UnsupportedOperation(.attachmentNotFound)
         }
-        
+
         /// 当前云联网还有预付费带宽未到期，不支持主动删除。
         public static var bandwidthNotExpired: UnsupportedOperation {
             UnsupportedOperation(.bandwidthNotExpired)
         }
-        
+
         /// 该带宽包不支持此操作。
         public static var bandwidthPackageIdNotSupported: UnsupportedOperation {
             UnsupportedOperation(.bandwidthPackageIdNotSupported)
         }
-        
+
         /// 已绑定EIP。
         public static var bindEIP: UnsupportedOperation {
             UnsupportedOperation(.bindEIP)
         }
-        
+
         /// 实例已关联CCN。
         public static var ccnAttached: UnsupportedOperation {
             UnsupportedOperation(.ccnAttached)
         }
-        
+
         /// 当前云联网有流日志，不支持删除。
         public static var ccnHasFlowLog: UnsupportedOperation {
             UnsupportedOperation(.ccnHasFlowLog)
         }
-        
+
         public static var ccnInstanceAccountNotApprovedByUnicom: UnsupportedOperation {
             UnsupportedOperation(.ccnInstanceAccountNotApprovedByUnicom)
         }
-        
+
         /// 实例未关联CCN。
         public static var ccnNotAttached: UnsupportedOperation {
             UnsupportedOperation(.ccnNotAttached)
         }
-        
+
         /// 跨账号场景下不支持自驾云账号实例 关联普通账号云联网。
         public static var ccnOrdinaryAccountRefuseAttach: UnsupportedOperation {
             UnsupportedOperation(.ccnOrdinaryAccountRefuseAttach)
         }
-        
+
         /// 指定的路由表不存在。
         public static var ccnRouteTableNotExist: UnsupportedOperation {
             UnsupportedOperation(.ccnRouteTableNotExist)
         }
-        
+
         /// CDC子网不支持创建非本地网关类型的路由。
         public static var cdcSubnetNotSupportUnLocalGateway: UnsupportedOperation {
             UnsupportedOperation(.cdcSubnetNotSupportUnLocalGateway)
         }
-        
+
         /// 指定VPC CIDR范围不支持私有网络和基础网络设备互通。
         public static var cidrUnSupportedClassicLink: UnsupportedOperation {
             UnsupportedOperation(.cidrUnSupportedClassicLink)
         }
-        
+
         /// 实例已经和VPC绑定。
         public static var classicInstanceIdAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.classicInstanceIdAlreadyExists)
         }
-        
+
         /// 公网Clb不支持该规则。
         public static var clbPolicyLimit: UnsupportedOperation {
             UnsupportedOperation(.clbPolicyLimit)
         }
-        
+
         /// 与该VPC下的TKE容器的网段重叠。
         public static var conflictWithDockerRoute: UnsupportedOperation {
             UnsupportedOperation(.conflictWithDockerRoute)
         }
-        
+
         public static var currentAccountIsNotUnicomAccount: UnsupportedOperation {
             UnsupportedOperation(.currentAccountIsNotUnicomAccount)
         }
-        
+
         public static var currentQueryRegionIsNotCrossBorder: UnsupportedOperation {
             UnsupportedOperation(.currentQueryRegionIsNotCrossBorder)
         }
-        
+
         public static var dcGatewayNatRuleExists: UnsupportedOperation {
             UnsupportedOperation(.dcGatewayNatRuleExists)
         }
-        
+
         /// 指定的VPC未发现专线网关。
         public static var dcGatewaysNotFoundInVpc: UnsupportedOperation {
             UnsupportedOperation(.dcGatewaysNotFoundInVpc)
         }
-        
+
         /// 禁止删除默认路由表。
         public static var delDefaultRoute: UnsupportedOperation {
             UnsupportedOperation(.delDefaultRoute)
         }
-        
+
         /// 禁止删除已关联子网的路由表。
         public static var delRouteWithSubnet: UnsupportedOperation {
             UnsupportedOperation(.delRouteWithSubnet)
         }
-        
+
         /// 专线网关正在更新BGP Community属性。
         public static var directConnectGatewayIsUpdatingCommunity: UnsupportedOperation {
             UnsupportedOperation(.directConnectGatewayIsUpdatingCommunity)
         }
-        
+
         /// 指定的路由策略已发布至云联网，请先撤销。
         public static var disabledNotifyCcn: UnsupportedOperation {
             UnsupportedOperation(.disabledNotifyCcn)
         }
-        
+
         /// 安全组规则重复。
         public static var duplicatePolicy: UnsupportedOperation {
             UnsupportedOperation(.duplicatePolicy)
         }
-        
+
         /// 不支持ECMP。
         public static var ecmp: UnsupportedOperation {
             UnsupportedOperation(.ecmp)
         }
-        
+
         /// 和云联网的路由形成ECMP。
         public static var ecmpWithCcnRoute: UnsupportedOperation {
             UnsupportedOperation(.ecmpWithCcnRoute)
         }
-        
+
         /// 和用户自定义的路由形成ECMP。
         public static var ecmpWithUserRoute: UnsupportedOperation {
             UnsupportedOperation(.ecmpWithUserRoute)
         }
-        
+
         /// 终端节点服务本身不能是终端节点。
         public static var endPointService: UnsupportedOperation {
             UnsupportedOperation(.endPointService)
         }
-        
+
         /// 不支持创建流日志：当前弹性网卡绑定的是KO机型。
         public static var flowLogsNotSupportKoInstanceEni: UnsupportedOperation {
             UnsupportedOperation(.flowLogsNotSupportKoInstanceEni)
         }
-        
+
         /// 不支持创建流日志：当前弹性网卡未绑定实例。
         public static var flowLogsNotSupportNullInstanceEni: UnsupportedOperation {
             UnsupportedOperation(.flowLogsNotSupportNullInstanceEni)
         }
-        
+
         /// 该种类型地址不支持此操作。
         public static var incorrectAddressResourceType: UnsupportedOperation {
             UnsupportedOperation(.incorrectAddressResourceType)
         }
-        
+
         /// 用户配置的实例和路由表不匹配。
         public static var instanceAndRtbNotMatch: UnsupportedOperation {
             UnsupportedOperation(.instanceAndRtbNotMatch)
         }
-        
+
         public static var instanceMismatch: UnsupportedOperation {
             UnsupportedOperation(.instanceMismatch)
         }
-        
+
         /// 跨账号场景下不支持普通账号实例关联自驾云账号云联网。
         public static var instanceOrdinaryAccountRefuseAttach: UnsupportedOperation {
             UnsupportedOperation(.instanceOrdinaryAccountRefuseAttach)
         }
-        
+
         /// 该地址绑定的实例状态不支持此操作。
         public static var instanceStateNotSupported: UnsupportedOperation {
             UnsupportedOperation(.instanceStateNotSupported)
         }
-        
+
         /// 账户余额不足。
         public static var insufficientFunds: UnsupportedOperation {
             UnsupportedOperation(.insufficientFunds)
         }
-        
+
         /// 不支持该操作。
         public static var invalidAction: UnsupportedOperation {
             UnsupportedOperation(.invalidAction)
         }
-        
+
         /// 该地址的网络付费方式不支持此操作。
         public static var invalidAddressInternetChargeType: UnsupportedOperation {
             UnsupportedOperation(.invalidAddressInternetChargeType)
         }
-        
+
         /// 该地址状态不支持此操作。
         public static var invalidAddressState: UnsupportedOperation {
             UnsupportedOperation(.invalidAddressState)
         }
-        
+
         /// 无效的实例状态。
         ///
         /// 请确保实例状态正常，再进行操作。
         public static var invalidInstanceState: UnsupportedOperation {
             UnsupportedOperation(.invalidInstanceState)
         }
-        
+
         /// 该计费方式不支持此操作。
         public static var invalidResourceInternetChargeType: UnsupportedOperation {
             UnsupportedOperation(.invalidResourceInternetChargeType)
         }
-        
+
         /// 不支持加入此协议的带宽包。
         public static var invalidResourceProtocol: UnsupportedOperation {
             UnsupportedOperation(.invalidResourceProtocol)
         }
-        
+
         /// 资源状态不合法。
         public static var invalidState: UnsupportedOperation {
             UnsupportedOperation(.invalidState)
         }
-        
+
         /// 当前状态不支持发布至云联网，请重试。
         public static var invalidStatusNotifyCcn: UnsupportedOperation {
             UnsupportedOperation(.invalidStatusNotifyCcn)
         }
-        
+
         /// 关联当前云联网的实例的账号存在不是金融云账号。
         public static var isNotFinanceAccount: UnsupportedOperation {
             UnsupportedOperation(.isNotFinanceAccount)
         }
-        
+
         /// 该ISP不支持此操作。
         public static var ispNotSupported: UnsupportedOperation {
             UnsupportedOperation(.ispNotSupported)
         }
-        
+
         /// 指定的CDC已存在本地网关。
         public static var localGatewayAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.localGatewayAlreadyExists)
         }
-        
+
         public static var modifyAddressAttribute: UnsupportedOperation {
             UnsupportedOperation(.modifyAddressAttribute)
         }
-        
+
         /// 资源互斥操作任务正在执行。
         public static var mutexOperationTaskRunning: UnsupportedOperation {
             UnsupportedOperation(.mutexOperationTaskRunning)
         }
-        
+
         /// NAT网关的公网IP不存在。
         public static var natGatewayEipNotExists: UnsupportedOperation {
             UnsupportedOperation(.natGatewayEipNotExists)
         }
-        
+
         /// SNAT/DNAT转换规则所指定的内网IP已绑定了其他的规则，无法重复绑定。
         public static var natGatewayRulePipExists: UnsupportedOperation {
             UnsupportedOperation(.natGatewayRulePipExists)
         }
-        
+
         /// SNAT转换规则的内网IP需为虚拟机上网卡所用的IP。
         public static var natGatewaySnatPipNeedVm: UnsupportedOperation {
             UnsupportedOperation(.natGatewaySnatPipNeedVm)
         }
-        
+
         /// NAT网关类型不支持SNAT规则。
         public static var natGatewayTypeNotSupportSNAT: UnsupportedOperation {
             UnsupportedOperation(.natGatewayTypeNotSupportSNAT)
         }
-        
+
         /// NAT实例不支持该操作。
         public static var natNotSupported: UnsupportedOperation {
             UnsupportedOperation(.natNotSupported)
         }
-        
+
         /// 指定的子网不支持创建本地网关类型的路由。
         public static var normalSubnetNotSupportLocalGateway: UnsupportedOperation {
             UnsupportedOperation(.normalSubnetNotSupportLocalGateway)
         }
-        
+
         /// 当前实例已被封禁，无法进行此操作。
         public static var notLockedInstanceOperation: UnsupportedOperation {
             UnsupportedOperation(.notLockedInstanceOperation)
         }
-        
+
         /// 当前云联网实例未处于申请中状态，无法进行操作。
         public static var notPendingCcnInstance: UnsupportedOperation {
             UnsupportedOperation(.notPendingCcnInstance)
         }
-        
+
         /// 当前云联网为非后付费类型，无法进行此操作。
         public static var notPostpaidCcnOperation: UnsupportedOperation {
             UnsupportedOperation(.notPostpaidCcnOperation)
         }
-        
+
         public static var notSupportAttachEdgeAndCrossBorderInstance: UnsupportedOperation {
             UnsupportedOperation(.notSupportAttachEdgeAndCrossBorderInstance)
         }
-        
+
         public static var notSupportDeleteDefaultRouteTable: UnsupportedOperation {
             UnsupportedOperation(.notSupportDeleteDefaultRouteTable)
         }
-        
+
         /// 确认云联网是否开启了路由重叠选项。
         public static var notSupportedUpdateCcnRoutePublish: UnsupportedOperation {
             UnsupportedOperation(.notSupportedUpdateCcnRoutePublish)
         }
-        
+
         /// 指定的路由策略不支持发布或撤销至云联网。
         public static var notifyCcn: UnsupportedOperation {
             UnsupportedOperation(.notifyCcn)
         }
-        
+
         /// 此产品计费方式已下线，请尝试其他计费方式。
         public static var offlineChargeType: UnsupportedOperation {
             UnsupportedOperation(.offlineChargeType)
         }
-        
+
         /// 仅支持专业版Ckafka。
         public static var onlySupportProfessionKafka: UnsupportedOperation {
             UnsupportedOperation(.onlySupportProfessionKafka)
         }
-        
+
         /// 预付费云联网只支持地域间限速。
         public static var prepaidCcnOnlySupportInterRegionLimit: UnsupportedOperation {
             UnsupportedOperation(.prepaidCcnOnlySupportInterRegionLimit)
         }
-        
+
         /// 指定的值是主IP。
         public static var primaryIp: UnsupportedOperation {
             UnsupportedOperation(.primaryIp)
         }
-        
+
         /// Nat网关至少存在一个弹性IP，弹性IP不能解绑。
         public static var publicIpAddressDisassociate: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressDisassociate)
         }
-        
+
         /// 绑定NAT网关的弹性IP不是BGP性质的IP。
         public static var publicIpAddressIsNotBGPIp: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressIsNotBGPIp)
         }
-        
+
         /// 绑定NAT网关的弹性IP不存在。
         public static var publicIpAddressIsNotExisted: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressIsNotExisted)
         }
-        
+
         /// 绑定NAT网关的弹性IP不是按流量计费的。
         public static var publicIpAddressNotBilledByTraffic: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressNotBilledByTraffic)
         }
-        
+
         /// 当前账号不能在该地域使用产品。
         public static var purchaseLimit: UnsupportedOperation {
             UnsupportedOperation(.purchaseLimit)
         }
-        
+
         public static var recordExists: UnsupportedOperation {
             UnsupportedOperation(.recordExists)
         }
-        
+
         public static var recordNotExists: UnsupportedOperation {
             UnsupportedOperation(.recordNotExists)
         }
-        
+
         /// 输入的资源ID与IP绑定的资源不匹配，请检查。
         public static var resourceMismatch: UnsupportedOperation {
             UnsupportedOperation(.resourceMismatch)
         }
-        
+
         /// 未找到相关角色，请确认角色是否授权。
         ///
         /// 进行角色授权
         public static var roleNotFound: UnsupportedOperation {
             UnsupportedOperation(.roleNotFound)
         }
-        
+
         /// 请解除该路由表和子网的绑定后重试。
         public static var routeTableHasSubnetRule: UnsupportedOperation {
             UnsupportedOperation(.routeTableHasSubnetRule)
         }
-        
+
         public static var snatSubnet: UnsupportedOperation {
             UnsupportedOperation(.snatSubnet)
         }
-        
+
         /// 指定的终端节点服务所创建的终端节点不支持绑定安全组。
         public static var specialEndPointService: UnsupportedOperation {
             UnsupportedOperation(.specialEndPointService)
         }
-        
+
         public static var sslVpnClientIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.sslVpnClientIdNotFound)
         }
-        
+
         /// 中继网卡不支持该操作。
         public static var subEniNotSupportTrunking: UnsupportedOperation {
             UnsupportedOperation(.subEniNotSupportTrunking)
         }
-        
+
         /// 系统路由，禁止操作。
         public static var systemRoute: UnsupportedOperation {
             UnsupportedOperation(.systemRoute)
         }
-        
+
         public static var tagAllocate: UnsupportedOperation {
             UnsupportedOperation(.tagAllocate)
         }
-        
+
         public static var tagFree: UnsupportedOperation {
             UnsupportedOperation(.tagFree)
         }
-        
+
         public static var tagNotPermit: UnsupportedOperation {
             UnsupportedOperation(.tagNotPermit)
         }
-        
+
         public static var tagSystemReservedTagKey: UnsupportedOperation {
             UnsupportedOperation(.tagSystemReservedTagKey)
         }
-        
+
         /// 账号ID不存在。
         public static var uinNotFound: UnsupportedOperation {
             UnsupportedOperation(.uinNotFound)
         }
-        
+
         /// 不支持跨境。
         public static var unableCrossBorder: UnsupportedOperation {
             UnsupportedOperation(.unableCrossBorder)
         }
-        
+
         /// 当前云联网无法关联金融云实例。
         public static var unableCrossFinance: UnsupportedOperation {
             UnsupportedOperation(.unableCrossFinance)
         }
-        
+
         /// 未分配IPv6网段。
         public static var unassignCidrBlock: UnsupportedOperation {
             UnsupportedOperation(.unassignCidrBlock)
         }
-        
+
         /// 未绑定EIP。
         public static var unbindEIP: UnsupportedOperation {
             UnsupportedOperation(.unbindEIP)
         }
-        
+
         /// 账户还有未支付订单，请先完成付款。
         public static var unpaidOrderAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.unpaidOrderAlreadyExists)
         }
-        
+
         public static var unsupportedBindLocalZoneEIP: UnsupportedOperation {
             UnsupportedOperation(.unsupportedBindLocalZoneEIP)
         }
-        
+
         /// 指定机型不支持弹性网卡。
         public static var unsupportedInstanceFamily: UnsupportedOperation {
             UnsupportedOperation(.unsupportedInstanceFamily)
         }
-        
+
         /// 暂无法在此国家/地区提供该服务。
         public static var unsupportedRegion: UnsupportedOperation {
             UnsupportedOperation(.unsupportedRegion)
         }
-        
+
         /// 当前用户付费类型不支持创建所选付费类型的云联网。
         public static var userAndCcnChargeTypeNotMatch: UnsupportedOperation {
             UnsupportedOperation(.userAndCcnChargeTypeNotMatch)
         }
-        
+
         /// 指定安全组规则版本号和当前最新版本不一致。
         public static var versionMismatch: UnsupportedOperation {
             UnsupportedOperation(.versionMismatch)
         }
-        
+
         /// 资源不属于同一个VPC。
         public static var vpcMismatch: UnsupportedOperation {
             UnsupportedOperation(.vpcMismatch)
         }
-        
+
         /// 指定资源在不同的可用区。
         public static var zoneMismatch: UnsupportedOperation {
             UnsupportedOperation(.zoneMismatch)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
-            case .actionNotFound: 
+            case .actionNotFound:
                 code = .unsupportedOperation_ActionNotFound
-            case .addressIpInArrear: 
+            case .addressIpInArrear:
                 code = .unsupportedOperation_AddressIpInArrear
-            case .addressIpInternetChargeTypeNotPermit: 
+            case .addressIpInternetChargeTypeNotPermit:
                 code = .unsupportedOperation_AddressIpInternetChargeTypeNotPermit
-            case .addressIpNotSupportInstance: 
+            case .addressIpNotSupportInstance:
                 code = .unsupportedOperation_AddressIpNotSupportInstance
-            case .addressIpStatusNotPermit: 
+            case .addressIpStatusNotPermit:
                 code = .unsupportedOperation_AddressIpStatusNotPermit
-            case .addressStatusNotPermit: 
+            case .addressStatusNotPermit:
                 code = .unsupportedOperation_AddressStatusNotPermit
-            case .appIdMismatch: 
+            case .appIdMismatch:
                 code = .unsupportedOperation_AppIdMismatch
-            case .appIdNotFound: 
+            case .appIdNotFound:
                 code = .unsupportedOperation_AppIdNotFound
-            case .attachmentAlreadyExists: 
+            case .attachmentAlreadyExists:
                 code = .unsupportedOperation_AttachmentAlreadyExists
-            case .attachmentNotFound: 
+            case .attachmentNotFound:
                 code = .unsupportedOperation_AttachmentNotFound
-            case .bandwidthNotExpired: 
+            case .bandwidthNotExpired:
                 code = .unsupportedOperation_BandwidthNotExpired
-            case .bandwidthPackageIdNotSupported: 
+            case .bandwidthPackageIdNotSupported:
                 code = .unsupportedOperation_BandwidthPackageIdNotSupported
-            case .bindEIP: 
+            case .bindEIP:
                 code = .unsupportedOperation_BindEIP
-            case .ccnAttached: 
+            case .ccnAttached:
                 code = .unsupportedOperation_CcnAttached
-            case .ccnHasFlowLog: 
+            case .ccnHasFlowLog:
                 code = .unsupportedOperation_CcnHasFlowLog
-            case .ccnInstanceAccountNotApprovedByUnicom: 
+            case .ccnInstanceAccountNotApprovedByUnicom:
                 code = .unsupportedOperation_CcnInstanceAccountNotApprovedByUnicom
-            case .ccnNotAttached: 
+            case .ccnNotAttached:
                 code = .unsupportedOperation_CcnNotAttached
-            case .ccnOrdinaryAccountRefuseAttach: 
+            case .ccnOrdinaryAccountRefuseAttach:
                 code = .unsupportedOperation_CcnOrdinaryAccountRefuseAttach
-            case .ccnRouteTableNotExist: 
+            case .ccnRouteTableNotExist:
                 code = .unsupportedOperation_CcnRouteTableNotExist
-            case .cdcSubnetNotSupportUnLocalGateway: 
+            case .cdcSubnetNotSupportUnLocalGateway:
                 code = .unsupportedOperation_CdcSubnetNotSupportUnLocalGateway
-            case .cidrUnSupportedClassicLink: 
+            case .cidrUnSupportedClassicLink:
                 code = .unsupportedOperation_CIDRUnSupportedClassicLink
-            case .classicInstanceIdAlreadyExists: 
+            case .classicInstanceIdAlreadyExists:
                 code = .unsupportedOperation_ClassicInstanceIdAlreadyExists
-            case .clbPolicyLimit: 
+            case .clbPolicyLimit:
                 code = .unsupportedOperation_ClbPolicyLimit
-            case .conflictWithDockerRoute: 
+            case .conflictWithDockerRoute:
                 code = .unsupportedOperation_ConflictWithDockerRoute
-            case .currentAccountIsNotUnicomAccount: 
+            case .currentAccountIsNotUnicomAccount:
                 code = .unsupportedOperation_CurrentAccountIsNotUnicomAccount
-            case .currentQueryRegionIsNotCrossBorder: 
+            case .currentQueryRegionIsNotCrossBorder:
                 code = .unsupportedOperation_CurrentQueryRegionIsNotCrossBorder
-            case .dcGatewayNatRuleExists: 
+            case .dcGatewayNatRuleExists:
                 code = .unsupportedOperation_DCGatewayNatRuleExists
-            case .dcGatewaysNotFoundInVpc: 
+            case .dcGatewaysNotFoundInVpc:
                 code = .unsupportedOperation_DcGatewaysNotFoundInVpc
-            case .delDefaultRoute: 
+            case .delDefaultRoute:
                 code = .unsupportedOperation_DelDefaultRoute
-            case .delRouteWithSubnet: 
+            case .delRouteWithSubnet:
                 code = .unsupportedOperation_DelRouteWithSubnet
-            case .directConnectGatewayIsUpdatingCommunity: 
+            case .directConnectGatewayIsUpdatingCommunity:
                 code = .unsupportedOperation_DirectConnectGatewayIsUpdatingCommunity
-            case .disabledNotifyCcn: 
+            case .disabledNotifyCcn:
                 code = .unsupportedOperation_DisabledNotifyCcn
-            case .duplicatePolicy: 
+            case .duplicatePolicy:
                 code = .unsupportedOperation_DuplicatePolicy
-            case .ecmp: 
+            case .ecmp:
                 code = .unsupportedOperation_Ecmp
-            case .ecmpWithCcnRoute: 
+            case .ecmpWithCcnRoute:
                 code = .unsupportedOperation_EcmpWithCcnRoute
-            case .ecmpWithUserRoute: 
+            case .ecmpWithUserRoute:
                 code = .unsupportedOperation_EcmpWithUserRoute
-            case .endPointService: 
+            case .endPointService:
                 code = .unsupportedOperation_EndPointService
-            case .flowLogsNotSupportKoInstanceEni: 
+            case .flowLogsNotSupportKoInstanceEni:
                 code = .unsupportedOperation_FlowLogsNotSupportKoInstanceEni
-            case .flowLogsNotSupportNullInstanceEni: 
+            case .flowLogsNotSupportNullInstanceEni:
                 code = .unsupportedOperation_FlowLogsNotSupportNullInstanceEni
-            case .incorrectAddressResourceType: 
+            case .incorrectAddressResourceType:
                 code = .unsupportedOperation_IncorrectAddressResourceType
-            case .instanceAndRtbNotMatch: 
+            case .instanceAndRtbNotMatch:
                 code = .unsupportedOperation_InstanceAndRtbNotMatch
-            case .instanceMismatch: 
+            case .instanceMismatch:
                 code = .unsupportedOperation_InstanceMismatch
-            case .instanceOrdinaryAccountRefuseAttach: 
+            case .instanceOrdinaryAccountRefuseAttach:
                 code = .unsupportedOperation_InstanceOrdinaryAccountRefuseAttach
-            case .instanceStateNotSupported: 
+            case .instanceStateNotSupported:
                 code = .unsupportedOperation_InstanceStateNotSupported
-            case .insufficientFunds: 
+            case .insufficientFunds:
                 code = .unsupportedOperation_InsufficientFunds
-            case .invalidAction: 
+            case .invalidAction:
                 code = .unsupportedOperation_InvalidAction
-            case .invalidAddressInternetChargeType: 
+            case .invalidAddressInternetChargeType:
                 code = .unsupportedOperation_InvalidAddressInternetChargeType
-            case .invalidAddressState: 
+            case .invalidAddressState:
                 code = .unsupportedOperation_InvalidAddressState
-            case .invalidInstanceState: 
+            case .invalidInstanceState:
                 code = .unsupportedOperation_InvalidInstanceState
-            case .invalidResourceInternetChargeType: 
+            case .invalidResourceInternetChargeType:
                 code = .unsupportedOperation_InvalidResourceInternetChargeType
-            case .invalidResourceProtocol: 
+            case .invalidResourceProtocol:
                 code = .unsupportedOperation_InvalidResourceProtocol
-            case .invalidState: 
+            case .invalidState:
                 code = .unsupportedOperation_InvalidState
-            case .invalidStatusNotifyCcn: 
+            case .invalidStatusNotifyCcn:
                 code = .unsupportedOperation_InvalidStatusNotifyCcn
-            case .isNotFinanceAccount: 
+            case .isNotFinanceAccount:
                 code = .unsupportedOperation_IsNotFinanceAccount
-            case .ispNotSupported: 
+            case .ispNotSupported:
                 code = .unsupportedOperation_IspNotSupported
-            case .localGatewayAlreadyExists: 
+            case .localGatewayAlreadyExists:
                 code = .unsupportedOperation_LocalGatewayAlreadyExists
-            case .modifyAddressAttribute: 
+            case .modifyAddressAttribute:
                 code = .unsupportedOperation_ModifyAddressAttribute
-            case .mutexOperationTaskRunning: 
+            case .mutexOperationTaskRunning:
                 code = .unsupportedOperation_MutexOperationTaskRunning
-            case .natGatewayEipNotExists: 
+            case .natGatewayEipNotExists:
                 code = .unsupportedOperation_NatGatewayEipNotExists
-            case .natGatewayRulePipExists: 
+            case .natGatewayRulePipExists:
                 code = .unsupportedOperation_NatGatewayRulePipExists
-            case .natGatewaySnatPipNeedVm: 
+            case .natGatewaySnatPipNeedVm:
                 code = .unsupportedOperation_NatGatewaySnatPipNeedVm
-            case .natGatewayTypeNotSupportSNAT: 
+            case .natGatewayTypeNotSupportSNAT:
                 code = .unsupportedOperation_NatGatewayTypeNotSupportSNAT
-            case .natNotSupported: 
+            case .natNotSupported:
                 code = .unsupportedOperation_NatNotSupported
-            case .normalSubnetNotSupportLocalGateway: 
+            case .normalSubnetNotSupportLocalGateway:
                 code = .unsupportedOperation_NormalSubnetNotSupportLocalGateway
-            case .notLockedInstanceOperation: 
+            case .notLockedInstanceOperation:
                 code = .unsupportedOperation_NotLockedInstanceOperation
-            case .notPendingCcnInstance: 
+            case .notPendingCcnInstance:
                 code = .unsupportedOperation_NotPendingCcnInstance
-            case .notPostpaidCcnOperation: 
+            case .notPostpaidCcnOperation:
                 code = .unsupportedOperation_NotPostpaidCcnOperation
-            case .notSupportAttachEdgeAndCrossBorderInstance: 
+            case .notSupportAttachEdgeAndCrossBorderInstance:
                 code = .unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance
-            case .notSupportDeleteDefaultRouteTable: 
+            case .notSupportDeleteDefaultRouteTable:
                 code = .unsupportedOperation_NotSupportDeleteDefaultRouteTable
-            case .notSupportedUpdateCcnRoutePublish: 
+            case .notSupportedUpdateCcnRoutePublish:
                 code = .unsupportedOperation_NotSupportedUpdateCcnRoutePublish
-            case .notifyCcn: 
+            case .notifyCcn:
                 code = .unsupportedOperation_NotifyCcn
-            case .offlineChargeType: 
+            case .offlineChargeType:
                 code = .unsupportedOperation_OfflineChargeType
-            case .onlySupportProfessionKafka: 
+            case .onlySupportProfessionKafka:
                 code = .unsupportedOperation_OnlySupportProfessionKafka
-            case .prepaidCcnOnlySupportInterRegionLimit: 
+            case .prepaidCcnOnlySupportInterRegionLimit:
                 code = .unsupportedOperation_PrepaidCcnOnlySupportInterRegionLimit
-            case .primaryIp: 
+            case .primaryIp:
                 code = .unsupportedOperation_PrimaryIp
-            case .publicIpAddressDisassociate: 
+            case .publicIpAddressDisassociate:
                 code = .unsupportedOperation_PublicIpAddressDisassociate
-            case .publicIpAddressIsNotBGPIp: 
+            case .publicIpAddressIsNotBGPIp:
                 code = .unsupportedOperation_PublicIpAddressIsNotBGPIp
-            case .publicIpAddressIsNotExisted: 
+            case .publicIpAddressIsNotExisted:
                 code = .unsupportedOperation_PublicIpAddressIsNotExisted
-            case .publicIpAddressNotBilledByTraffic: 
+            case .publicIpAddressNotBilledByTraffic:
                 code = .unsupportedOperation_PublicIpAddressNotBilledByTraffic
-            case .purchaseLimit: 
+            case .purchaseLimit:
                 code = .unsupportedOperation_PurchaseLimit
-            case .recordExists: 
+            case .recordExists:
                 code = .unsupportedOperation_RecordExists
-            case .recordNotExists: 
+            case .recordNotExists:
                 code = .unsupportedOperation_RecordNotExists
-            case .resourceMismatch: 
+            case .resourceMismatch:
                 code = .unsupportedOperation_ResourceMismatch
-            case .roleNotFound: 
+            case .roleNotFound:
                 code = .unsupportedOperation_RoleNotFound
-            case .routeTableHasSubnetRule: 
+            case .routeTableHasSubnetRule:
                 code = .unsupportedOperation_RouteTableHasSubnetRule
-            case .snatSubnet: 
+            case .snatSubnet:
                 code = .unsupportedOperation_SnatSubnet
-            case .specialEndPointService: 
+            case .specialEndPointService:
                 code = .unsupportedOperation_SpecialEndPointService
-            case .sslVpnClientIdNotFound: 
+            case .sslVpnClientIdNotFound:
                 code = .unsupportedOperation_SslVpnClientIdNotFound
-            case .subEniNotSupportTrunking: 
+            case .subEniNotSupportTrunking:
                 code = .unsupportedOperation_SubEniNotSupportTrunking
-            case .systemRoute: 
+            case .systemRoute:
                 code = .unsupportedOperation_SystemRoute
-            case .tagAllocate: 
+            case .tagAllocate:
                 code = .unsupportedOperation_TagAllocate
-            case .tagFree: 
+            case .tagFree:
                 code = .unsupportedOperation_TagFree
-            case .tagNotPermit: 
+            case .tagNotPermit:
                 code = .unsupportedOperation_TagNotPermit
-            case .tagSystemReservedTagKey: 
+            case .tagSystemReservedTagKey:
                 code = .unsupportedOperation_TagSystemReservedTagKey
-            case .uinNotFound: 
+            case .uinNotFound:
                 code = .unsupportedOperation_UinNotFound
-            case .unableCrossBorder: 
+            case .unableCrossBorder:
                 code = .unsupportedOperation_UnableCrossBorder
-            case .unableCrossFinance: 
+            case .unableCrossFinance:
                 code = .unsupportedOperation_UnableCrossFinance
-            case .unassignCidrBlock: 
+            case .unassignCidrBlock:
                 code = .unsupportedOperation_UnassignCidrBlock
-            case .unbindEIP: 
+            case .unbindEIP:
                 code = .unsupportedOperation_UnbindEIP
-            case .unpaidOrderAlreadyExists: 
+            case .unpaidOrderAlreadyExists:
                 code = .unsupportedOperation_UnpaidOrderAlreadyExists
-            case .unsupportedBindLocalZoneEIP: 
+            case .unsupportedBindLocalZoneEIP:
                 code = .unsupportedOperation_UnsupportedBindLocalZoneEIP
-            case .unsupportedInstanceFamily: 
+            case .unsupportedInstanceFamily:
                 code = .unsupportedOperation_UnsupportedInstanceFamily
-            case .unsupportedRegion: 
+            case .unsupportedRegion:
                 code = .unsupportedOperation_UnsupportedRegion
-            case .userAndCcnChargeTypeNotMatch: 
+            case .userAndCcnChargeTypeNotMatch:
                 code = .unsupportedOperation_UserAndCcnChargeTypeNotMatch
-            case .versionMismatch: 
+            case .versionMismatch:
                 code = .unsupportedOperation_VersionMismatch
-            case .vpcMismatch: 
+            case .vpcMismatch:
                 code = .unsupportedOperation_VpcMismatch
-            case .zoneMismatch: 
+            case .zoneMismatch:
                 code = .unsupportedOperation_ZoneMismatch
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCVpcError(code, context: self.context)

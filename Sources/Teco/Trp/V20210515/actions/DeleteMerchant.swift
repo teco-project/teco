@@ -19,54 +19,54 @@ extension Trp {
     public struct DeleteMerchantRequest: TCRequestModel {
         /// 商户标识码
         public let merchantId: String
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
-        public init (merchantId: String, corpId: UInt64? = nil) {
+
+        public init(merchantId: String, corpId: UInt64? = nil) {
             self.merchantId = merchantId
             self.corpId = corpId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case corpId = "CorpId"
         }
     }
-    
+
     /// DeleteMerchant返回参数结构体
     public struct DeleteMerchantResponse: TCResponseModel {
         /// 商户标识码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除商户
     @inlinable
-    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMerchantResponse > {
+    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMerchantResponse> {
         self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除商户
     @inlinable
     public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
         try await self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除商户
     @inlinable
-    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMerchantResponse > {
+    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMerchantResponse> {
         self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除商户
     @inlinable
     public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {

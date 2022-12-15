@@ -19,44 +19,44 @@ extension Cpdp {
     public struct DeleteAgentTaxPaymentInfosRequest: TCRequestModel {
         /// 批次号
         public let batchNum: Int64
-        
-        public init (batchNum: Int64) {
+
+        public init(batchNum: Int64) {
             self.batchNum = batchNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchNum = "BatchNum"
         }
     }
-    
+
     /// DeleteAgentTaxPaymentInfos返回参数结构体
     public struct DeleteAgentTaxPaymentInfosResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播平台-删除代理商完税信息
     @inlinable
-    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAgentTaxPaymentInfosResponse > {
+    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfosResponse> {
         self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播平台-删除代理商完税信息
     @inlinable
     public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {
         try await self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播平台-删除代理商完税信息
     @inlinable
-    public func deleteAgentTaxPaymentInfos(batchNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAgentTaxPaymentInfosResponse > {
+    public func deleteAgentTaxPaymentInfos(batchNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfosResponse> {
         self.deleteAgentTaxPaymentInfos(DeleteAgentTaxPaymentInfosRequest(batchNum: batchNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播平台-删除代理商完税信息
     @inlinable
     public func deleteAgentTaxPaymentInfos(batchNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {

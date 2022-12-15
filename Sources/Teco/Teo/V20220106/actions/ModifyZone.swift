@@ -22,53 +22,53 @@ extension Teo {
     public struct ModifyZoneRequest: TCRequestModel {
         /// 站点 ID，用于唯一标识站点信息
         public let id: String
-        
+
         /// 站点接入方式
         /// - full NS 接入
         /// - partial CNAME 接入
         public let type: String?
-        
+
         /// 自定义站点信息
         public let vanityNameServers: VanityNameServers?
-        
-        public init (id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil) {
+
+        public init(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil) {
             self.id = id
             self.type = type
             self.vanityNameServers = vanityNameServers
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case type = "Type"
             case vanityNameServers = "VanityNameServers"
         }
     }
-    
+
     /// ModifyZone返回参数结构体
     public struct ModifyZoneResponse: TCResponseModel {
         /// 站点 ID
         public let id: String
-        
+
         /// 站点名称
         public let name: String
-        
+
         /// 站点当前使用的 NS
         public let originalNameServers: [String]
-        
+
         /// 站点状态
         /// - pending 未接入 NS
         /// - active 已接入 NS
         /// - moved NS 已切走
         public let status: String
-        
+
         /// 站点接入方式
         /// - full NS 接入
         /// - partial CNAME 接入
         public let type: String
-        
+
         /// 腾讯云分配的 NS 列表
         public let nameServers: [String]
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -76,7 +76,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdOn: Date
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -84,16 +84,16 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modifiedOn: Date
-        
+
         /// cname 接入状态
         /// - finished 站点验证完成
         /// - pending 站点验证中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cnameStatus: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -107,15 +107,15 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改站点
     ///
     /// 用该站点信息
     @inlinable
-    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneResponse > {
+    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
         self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改站点
     ///
     /// 用该站点信息
@@ -123,15 +123,15 @@ extension Teo {
     public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
         try await self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改站点
     ///
     /// 用该站点信息
     @inlinable
-    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneResponse > {
+    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
         self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改站点
     ///
     /// 用该站点信息

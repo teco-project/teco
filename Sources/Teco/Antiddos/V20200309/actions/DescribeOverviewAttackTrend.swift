@@ -19,27 +19,27 @@ extension Antiddos {
     public struct DescribeOverviewAttackTrendRequest: TCRequestModel {
         /// 攻击类型，取值ddos， cc
         public let type: String
-        
+
         /// 纬度，当前仅支持attackcount
         public let dimension: String
-        
+
         /// 周期，当前仅支持86400
         public let period: UInt64
-        
+
         /// 防护概览攻击趋势开始时间
         public let startTime: String
-        
+
         /// 防护概览攻击趋势结束时间
         public let endTime: String
-        
-        public init (type: String, dimension: String, period: UInt64, startTime: String, endTime: String) {
+
+        public init(type: String, dimension: String, period: UInt64, startTime: String, endTime: String) {
             self.type = type
             self.dimension = dimension
             self.period = period
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case dimension = "Dimension"
@@ -48,30 +48,30 @@ extension Antiddos {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeOverviewAttackTrend返回参数结构体
     public struct DescribeOverviewAttackTrendResponse: TCResponseModel {
         /// 攻击类型
         public let type: String
-        
+
         /// 防护概览攻击趋势起始时间
         public let startTime: String
-        
+
         /// 防护概览攻击趋势结束时间
         public let endTime: String
-        
+
         /// 周期
         public let period: UInt64
-        
+
         /// 每个周期点的攻击次数
         public let data: [UInt64]
-        
+
         /// 包含的周期点数
         public let count: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case startTime = "StartTime"
@@ -82,25 +82,25 @@ extension Antiddos {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取防护概览攻击趋势
     @inlinable
-    public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewAttackTrendResponse > {
+    public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewAttackTrendResponse> {
         self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取防护概览攻击趋势
     @inlinable
     public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewAttackTrendResponse {
         try await self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取防护概览攻击趋势
     @inlinable
-    public func describeOverviewAttackTrend(type: String, dimension: String, period: UInt64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewAttackTrendResponse > {
+    public func describeOverviewAttackTrend(type: String, dimension: String, period: UInt64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewAttackTrendResponse> {
         self.describeOverviewAttackTrend(DescribeOverviewAttackTrendRequest(type: type, dimension: dimension, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取防护概览攻击趋势
     @inlinable
     public func describeOverviewAttackTrend(type: String, dimension: String, period: UInt64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewAttackTrendResponse {

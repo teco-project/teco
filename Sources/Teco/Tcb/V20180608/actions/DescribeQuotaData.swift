@@ -19,7 +19,7 @@ extension Tcb {
     public struct DescribeQuotaDataRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// <li> 指标名: </li>
         /// <li> StorageSizepkg: 当月存储空间容量, 单位MB </li>
         /// <li> StorageReadpkg: 当月存储读请求次数 </li>
@@ -49,38 +49,38 @@ extension Tcb {
         /// <li> CodingBuildTimePkgDay: 当天容器托管构建时间使用量，单位毫秒 </li>
         /// <li> TkeHttpServiceNatPkgDay: 当天容器托管流量使用量，单位B </li>
         public let metricName: String
-        
+
         /// 资源ID, 目前仅对云函数、容器托管相关的指标有意义。云函数(FunctionInvocationpkg, FunctionGBspkg, FunctionFluxpkg)、容器托管（服务名称）。如果想查询某个云函数的指标则在ResourceId中传入函数名; 如果只想查询整个namespace的指标, 则留空或不传。
         public let resourceID: String?
-        
-        public init (envId: String, metricName: String, resourceID: String? = nil) {
+
+        public init(envId: String, metricName: String, resourceID: String? = nil) {
             self.envId = envId
             self.metricName = metricName
             self.resourceID = resourceID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case metricName = "MetricName"
             case resourceID = "ResourceID"
         }
     }
-    
+
     /// DescribeQuotaData返回参数结构体
     public struct DescribeQuotaDataResponse: TCResponseModel {
         /// 指标名
         public let metricName: String
-        
+
         /// 指标的值
         public let value: Int64
-        
+
         /// 指标的附加值信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subValue: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case value = "Value"
@@ -88,15 +88,15 @@ extension Tcb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询环境的配额使用量
     ///
     /// 查询指定指标的配额使用量
     @inlinable
-    public func describeQuotaData(_ input: DescribeQuotaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaDataResponse > {
+    public func describeQuotaData(_ input: DescribeQuotaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaDataResponse> {
         self.client.execute(action: "DescribeQuotaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询环境的配额使用量
     ///
     /// 查询指定指标的配额使用量
@@ -104,15 +104,15 @@ extension Tcb {
     public func describeQuotaData(_ input: DescribeQuotaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
         try await self.client.execute(action: "DescribeQuotaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询环境的配额使用量
     ///
     /// 查询指定指标的配额使用量
     @inlinable
-    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaDataResponse > {
+    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaDataResponse> {
         self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询环境的配额使用量
     ///
     /// 查询指定指标的配额使用量

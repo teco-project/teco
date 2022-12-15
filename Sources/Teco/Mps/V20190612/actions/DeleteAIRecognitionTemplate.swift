@@ -19,34 +19,34 @@ extension Mps {
     public struct DeleteAIRecognitionTemplateRequest: TCRequestModel {
         /// 视频内容识别模板唯一标识。
         public let definition: Int64
-        
-        public init (definition: Int64) {
+
+        public init(definition: Int64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// DeleteAIRecognitionTemplate返回参数结构体
     public struct DeleteAIRecognitionTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除内容识别模板
     ///
     /// 删除用户自定义内容识别模板。
     @inlinable
-    public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIRecognitionTemplateResponse > {
+    public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIRecognitionTemplateResponse> {
         self.client.execute(action: "DeleteAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除内容识别模板
     ///
     /// 删除用户自定义内容识别模板。
@@ -54,15 +54,15 @@ extension Mps {
     public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIRecognitionTemplateResponse {
         try await self.client.execute(action: "DeleteAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除内容识别模板
     ///
     /// 删除用户自定义内容识别模板。
     @inlinable
-    public func deleteAIRecognitionTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIRecognitionTemplateResponse > {
+    public func deleteAIRecognitionTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIRecognitionTemplateResponse> {
         self.deleteAIRecognitionTemplate(DeleteAIRecognitionTemplateRequest(definition: definition), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除内容识别模板
     ///
     /// 删除用户自定义内容识别模板。

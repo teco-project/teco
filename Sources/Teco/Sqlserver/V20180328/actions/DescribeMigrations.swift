@@ -19,23 +19,23 @@ extension Sqlserver {
     public struct DescribeMigrationsRequest: TCRequestModel {
         /// 状态集合。只要符合集合中某一状态的迁移任务，就会查出来
         public let statusSet: [Int64]?
-        
+
         /// 迁移任务的名称，模糊匹配
         public let migrateName: String?
-        
+
         /// 分页返回，每页返回的数目，取值为1-100，默认值为100
         public let limit: Int64?
-        
+
         /// 分页返回，页编号，默认值为第0页
         public let offset: Int64?
-        
+
         /// 查询结果按照关键字排序，可选值为name、createTime、startTime，endTime，status
         public let orderBy: String?
-        
+
         /// 排序方式，可选值为desc、asc
         public let orderByType: String?
-        
-        public init (statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
+
+        public init(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.statusSet = statusSet
             self.migrateName = migrateName
             self.limit = limit
@@ -43,7 +43,7 @@ extension Sqlserver {
             self.orderBy = orderBy
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case statusSet = "StatusSet"
             case migrateName = "MigrateName"
@@ -53,33 +53,33 @@ extension Sqlserver {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeMigrations返回参数结构体
     public struct DescribeMigrationsResponse: TCResponseModel {
         /// 查询结果的总数
         public let totalCount: Int64
-        
+
         /// 查询结果的列表
         public let migrateTaskSet: [MigrateTask]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case migrateTaskSet = "MigrateTaskSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
-    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationsResponse > {
+    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationsResponse> {
         self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
@@ -87,15 +87,15 @@ extension Sqlserver {
     public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
         try await self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
-    public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationsResponse > {
+    public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationsResponse> {
         self.describeMigrations(DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表

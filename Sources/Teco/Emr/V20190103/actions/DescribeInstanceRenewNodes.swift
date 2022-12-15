@@ -19,32 +19,32 @@ extension Emr {
     public struct DescribeInstanceRenewNodesRequest: TCRequestModel {
         /// 集群实例ID,实例ID形如: emr-xxxxxxxx
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeInstanceRenewNodes返回参数结构体
     public struct DescribeInstanceRenewNodesResponse: TCResponseModel {
         /// 查询到的节点总数
         public let totalCnt: Int64
-        
+
         /// 节点详细信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeList: [RenewInstancesInfo]?
-        
+
         /// 用户所有的标签键列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaInfo: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCnt = "TotalCnt"
             case nodeList = "NodeList"
@@ -52,25 +52,25 @@ extension Emr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询待续费节点信息
     @inlinable
-    public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceRenewNodesResponse > {
+    public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceRenewNodesResponse> {
         self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待续费节点信息
     @inlinable
     public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceRenewNodesResponse {
         try await self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询待续费节点信息
     @inlinable
-    public func describeInstanceRenewNodes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceRenewNodesResponse > {
+    public func describeInstanceRenewNodes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceRenewNodesResponse> {
         self.describeInstanceRenewNodes(DescribeInstanceRenewNodesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待续费节点信息
     @inlinable
     public func describeInstanceRenewNodes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceRenewNodesResponse {

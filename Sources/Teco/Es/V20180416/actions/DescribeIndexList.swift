@@ -19,35 +19,35 @@ extension Es {
     public struct DescribeIndexListRequest: TCRequestModel {
         /// 索引类型。auto：自治索引；normal：普通索引
         public let indexType: String
-        
+
         /// ES集群ID
         public let instanceId: String?
-        
+
         /// 索引名，若填空则获取所有索引
         public let indexName: String?
-        
+
         /// 集群访问用户名
         public let username: String?
-        
+
         /// 集群访问密码
         public let password: String?
-        
+
         /// 分页起始位置
         public let offset: Int64?
-        
+
         /// 一页展示数量
         public let limit: Int64?
-        
+
         /// 排序字段，支持索引名：IndexName、索引存储量：IndexStorage、索引创建时间：IndexCreateTime
         public let orderBy: String?
-        
+
         /// 过滤索引状态
         public let indexStatusList: [String]?
-        
+
         /// 排序顺序，支持asc、desc
         public let order: String?
-        
-        public init (indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil) {
+
+        public init(indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil) {
             self.indexType = indexType
             self.instanceId = instanceId
             self.indexName = indexName
@@ -59,7 +59,7 @@ extension Es {
             self.indexStatusList = indexStatusList
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case indexType = "IndexType"
             case instanceId = "InstanceId"
@@ -73,45 +73,45 @@ extension Es {
             case order = "Order"
         }
     }
-    
+
     /// DescribeIndexList返回参数结构体
     public struct DescribeIndexListResponse: TCResponseModel {
         /// 索引元数据字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let indexMetaFields: [IndexMetaField]?
-        
+
         /// 查询总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case indexMetaFields = "IndexMetaFields"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取索引列表
     @inlinable
-    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
+    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexListResponse> {
         self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取索引列表
     @inlinable
     public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
         try await self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取索引列表
     @inlinable
-    public func describeIndexList(indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
+    public func describeIndexList(indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexListResponse> {
         self.describeIndexList(DescribeIndexListRequest(indexType: indexType, instanceId: instanceId, indexName: indexName, username: username, password: password, offset: offset, limit: limit, orderBy: orderBy, indexStatusList: indexStatusList, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取索引列表
     @inlinable
     public func describeIndexList(indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {

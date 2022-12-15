@@ -19,47 +19,47 @@ extension Cws {
     public struct CreateSitesRequest: TCRequestModel {
         /// 站点的url列表
         public let urls: [String]
-        
+
         /// 访问网站的客户端标识
         public let userAgent: String?
-        
-        public init (urls: [String], userAgent: String? = nil) {
+
+        public init(urls: [String], userAgent: String? = nil) {
             self.urls = urls
             self.userAgent = userAgent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case urls = "Urls"
             case userAgent = "UserAgent"
         }
     }
-    
+
     /// CreateSites返回参数结构体
     public struct CreateSitesResponse: TCResponseModel {
         /// 新增站点数。
         public let number: UInt64
-        
+
         /// 站点数组
         public let sites: [MiniSite]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case number = "Number"
             case sites = "Sites"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增站点
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。
     @inlinable
-    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesResponse > {
+    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesResponse> {
         self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增站点
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。
@@ -67,15 +67,15 @@ extension Cws {
     public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
         try await self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增站点
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。
     @inlinable
-    public func createSites(urls: [String], userAgent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesResponse > {
+    public func createSites(urls: [String], userAgent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesResponse> {
         self.createSites(CreateSitesRequest(urls: urls, userAgent: userAgent), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增站点
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。

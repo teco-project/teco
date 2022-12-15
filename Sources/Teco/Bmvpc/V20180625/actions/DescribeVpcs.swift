@@ -19,7 +19,7 @@ extension Bmvpc {
     public struct DescribeVpcsRequest: TCRequestModel {
         /// VPC实例ID。形如：vpc-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpcIds和Filters。
         public let vpcIds: [String]?
-        
+
         /// 过滤条件，参数不支持同时指定VpcIds和Filters。
         /// vpc-name - String - （过滤条件）VPC实例名称。
         /// vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。
@@ -27,20 +27,20 @@ extension Bmvpc {
         /// state - String - （过滤条件）VPC状态。(pending | available).
         /// zone -  String - （过滤条件）VPC的可用区。
         public let filters: [Filter]?
-        
+
         /// 初始行的偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 每页行数，默认为20。
         public let limit: UInt64?
-        
-        public init (vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.vpcIds = vpcIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcIds = "VpcIds"
             case filters = "Filters"
@@ -48,30 +48,30 @@ extension Bmvpc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeVpcs返回参数结构体
     public struct DescribeVpcsResponse: TCResponseModel {
         /// VPC列表
         public let vpcSet: [VpcInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcSet = "VpcSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询VPC列表
     ///
     /// 本接口（DescribeVpcs）用于查询私有网络列表。
     /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
     @inlinable
-    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
+    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcsResponse> {
         self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询VPC列表
     ///
     /// 本接口（DescribeVpcs）用于查询私有网络列表。
@@ -80,16 +80,16 @@ extension Bmvpc {
     public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
         try await self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询VPC列表
     ///
     /// 本接口（DescribeVpcs）用于查询私有网络列表。
     /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
     @inlinable
-    public func describeVpcs(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
+    public func describeVpcs(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcsResponse> {
         self.describeVpcs(DescribeVpcsRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询VPC列表
     ///
     /// 本接口（DescribeVpcs）用于查询私有网络列表。

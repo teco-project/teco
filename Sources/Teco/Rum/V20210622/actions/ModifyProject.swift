@@ -19,32 +19,32 @@ extension Rum {
     public struct ModifyProjectRequest: TCRequestModel {
         /// 项目 id
         public let id: UInt64
-        
+
         /// 项目名(可选，不为空且最长为 200)
         public let name: String?
-        
+
         /// 项目网页地址(可选，最长为 256)
         public let url: String?
-        
+
         /// 项目仓库地址(可选，最长为 256)
         public let repo: String?
-        
+
         /// 项目需要转移到的实例 id(可选)
         public let instanceID: String?
-        
+
         /// 项目采样率(可选)
         public let rate: String?
-        
+
         /// 是否开启聚类(可选)
         public let enableURLGroup: UInt64?
-        
+
         /// 项目类型(可接受值为 "web", "mp", "android", "ios", "node", "hippy", "weex", "viola", "rn")
         public let type: String?
-        
+
         /// 项目描述(可选，最长为 1000)
         public let desc: String?
-        
-        public init (id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil) {
+
+        public init(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil) {
             self.id = id
             self.name = name
             self.url = url
@@ -55,7 +55,7 @@ extension Rum {
             self.type = type
             self.desc = desc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case name = "Name"
@@ -68,33 +68,33 @@ extension Rum {
             case desc = "Desc"
         }
     }
-    
+
     /// ModifyProject返回参数结构体
     public struct ModifyProjectResponse: TCResponseModel {
         /// 操作信息
         public let msg: String
-        
+
         /// 项目id
         public let id: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case id = "ID"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改项目
     ///
     /// 修改 rum 项目信息
     @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
         self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改项目
     ///
     /// 修改 rum 项目信息
@@ -102,15 +102,15 @@ extension Rum {
     public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改项目
     ///
     /// 修改 rum 项目信息
     @inlinable
-    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
         self.modifyProject(ModifyProjectRequest(id: id, name: name, url: url, repo: repo, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, desc: desc), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改项目
     ///
     /// 修改 rum 项目信息

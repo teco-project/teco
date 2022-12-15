@@ -19,23 +19,23 @@ extension Sslpod {
     public struct CreateDomainRequest: TCRequestModel {
         /// 监控的服务器类型（0：web，1：smtp，2：imap，3：pops）
         public let serverType: Int64
-        
+
         /// 添加的域名
         public let domain: String
-        
+
         /// 添加的端口
         public let port: String
-        
+
         /// 指定域名的IP
         public let ip: String?
-        
+
         /// 是否开启通知告警；true：开启通知告警，false：关闭通知告警
         public let notice: Bool?
-        
+
         /// 给域名添加标签，多个以逗号隔开
         public let tags: String?
-        
-        public init (serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil) {
+
+        public init(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil) {
             self.serverType = serverType
             self.domain = domain
             self.port = port
@@ -43,7 +43,7 @@ extension Sslpod {
             self.notice = notice
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serverType = "ServerType"
             case domain = "Domain"
@@ -53,25 +53,25 @@ extension Sslpod {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateDomain返回参数结构体
     public struct CreateDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加域名
     ///
     /// 通过域名端口添加监控
     @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
+    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
         self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加域名
     ///
     /// 通过域名端口添加监控
@@ -79,15 +79,15 @@ extension Sslpod {
     public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
         try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加域名
     ///
     /// 通过域名端口添加监控
     @inlinable
-    public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
+    public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
         self.createDomain(CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加域名
     ///
     /// 通过域名端口添加监控

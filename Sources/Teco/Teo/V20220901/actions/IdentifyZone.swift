@@ -19,42 +19,42 @@ extension Teo {
     public struct IdentifyZoneRequest: TCRequestModel {
         /// 站点名称。
         public let zoneName: String
-        
-        public init (zoneName: String) {
+
+        public init(zoneName: String) {
             self.zoneName = zoneName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneName = "ZoneName"
         }
     }
-    
+
     /// IdentifyZone返回参数结构体
     public struct IdentifyZoneResponse: TCResponseModel {
         /// 站点归属校验：Dns校验信息。
         public let ascription: AscriptionInfo
-        
+
         /// 站点归属权校验：文件校验信息。
         public let fileAscription: FileAscriptionInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ascription = "Ascription"
             case fileAscription = "FileAscription"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 认证站点
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdentifyZoneResponse > {
+    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
         self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 认证站点
     ///
     /// 用于验证站点所有权。
@@ -62,15 +62,15 @@ extension Teo {
     public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
         try await self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 认证站点
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdentifyZoneResponse > {
+    public func identifyZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
         self.identifyZone(IdentifyZoneRequest(zoneName: zoneName), logger: logger, on: eventLoop)
     }
-    
+
     /// 认证站点
     ///
     /// 用于验证站点所有权。

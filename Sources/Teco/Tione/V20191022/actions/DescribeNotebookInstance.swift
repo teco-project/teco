@@ -23,49 +23,49 @@ extension Tione {
         /// Notebook实例名称
         /// 规则：“^\[a-zA-Z0-9\](-\*\[a-zA-Z0-9\])\*$”
         public let notebookInstanceName: String
-        
-        public init (notebookInstanceName: String) {
+
+        public init(notebookInstanceName: String) {
             self.notebookInstanceName = notebookInstanceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case notebookInstanceName = "NotebookInstanceName"
         }
     }
-    
+
     /// DescribeNotebookInstance返回参数结构体
     public struct DescribeNotebookInstanceResponse: TCResponseModel {
         /// Notebook实例名称
         public let notebookInstanceName: String
-        
+
         /// Notebook算力资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
-        
+
         /// 角色的资源描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleArn: String?
-        
+
         /// 外网访问权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let directInternetAccess: String?
-        
+
         /// Root用户权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rootAccess: String?
-        
+
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 数据卷大小(GB)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeSizeInGB: UInt64?
-        
+
         /// 创建失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureReason: String?
-        
+
         /// Notebook实例创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -74,7 +74,7 @@ extension Tione {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var creationTime: Date?
-        
+
         /// Notebook实例最近修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -83,11 +83,11 @@ extension Tione {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastModifiedTime: Date?
-        
+
         /// Notebook实例日志链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logUrl: String?
-        
+
         /// Notebook实例状态
         /// Pending: 创建中
         /// Inservice: 运行中
@@ -96,33 +96,33 @@ extension Tione {
         /// Failed: 失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notebookInstanceStatus: String?
-        
+
         /// Notebook实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// notebook生命周期脚本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lifecycleScriptsName: String?
-        
+
         /// 默认存储库名称
         /// 可以是已创建的存储库名称或者已https://开头的公共git库
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defaultCodeRepository: String?
-        
+
         /// 其他存储库列表
         /// 每个元素可以是已创建的存储库名称或者已https://开头的公共git库
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let additionalCodeRepositories: [String]?
-        
+
         /// 是否开启CLS日志服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clsAccess: String?
-        
+
         /// 是否预付费实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prepay: Bool?
-        
+
         /// 实例运行截止时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -131,18 +131,18 @@ extension Tione {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var deadline: Date?
-        
+
         /// 自动停止配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stoppingCondition: StoppingCondition?
-        
+
         /// Cls配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clsConfig: ClsConfig?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case notebookInstanceName = "NotebookInstanceName"
             case instanceType = "InstanceType"
@@ -168,15 +168,15 @@ extension Tione {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询Notebook实例
     ///
     /// 查询Notebook实例详情
     @inlinable
-    public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookInstanceResponse > {
+    public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstanceResponse> {
         self.client.execute(action: "DescribeNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Notebook实例
     ///
     /// 查询Notebook实例详情
@@ -184,15 +184,15 @@ extension Tione {
     public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
         try await self.client.execute(action: "DescribeNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询Notebook实例
     ///
     /// 查询Notebook实例详情
     @inlinable
-    public func describeNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookInstanceResponse > {
+    public func describeNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstanceResponse> {
         self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询Notebook实例
     ///
     /// 查询Notebook实例详情

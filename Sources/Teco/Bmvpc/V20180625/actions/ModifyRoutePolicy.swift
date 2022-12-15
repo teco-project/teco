@@ -19,53 +19,53 @@ extension Bmvpc {
     public struct ModifyRoutePolicyRequest: TCRequestModel {
         /// 路由表ID
         public let routeTableId: String
-        
+
         /// 修改的路由
         public let routePolicy: RoutePolicy
-        
-        public init (routeTableId: String, routePolicy: RoutePolicy) {
+
+        public init(routeTableId: String, routePolicy: RoutePolicy) {
             self.routeTableId = routeTableId
             self.routePolicy = routePolicy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case routeTableId = "RouteTableId"
             case routePolicy = "RoutePolicy"
         }
     }
-    
+
     /// ModifyRoutePolicy返回参数结构体
     public struct ModifyRoutePolicyResponse: TCResponseModel {
         /// 异步任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改自定义路由
     @inlinable
-    public func modifyRoutePolicy(_ input: ModifyRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoutePolicyResponse > {
+    public func modifyRoutePolicy(_ input: ModifyRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoutePolicyResponse> {
         self.client.execute(action: "ModifyRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义路由
     @inlinable
     public func modifyRoutePolicy(_ input: ModifyRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoutePolicyResponse {
         try await self.client.execute(action: "ModifyRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改自定义路由
     @inlinable
-    public func modifyRoutePolicy(routeTableId: String, routePolicy: RoutePolicy, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoutePolicyResponse > {
+    public func modifyRoutePolicy(routeTableId: String, routePolicy: RoutePolicy, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoutePolicyResponse> {
         self.modifyRoutePolicy(ModifyRoutePolicyRequest(routeTableId: routeTableId, routePolicy: routePolicy), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义路由
     @inlinable
     public func modifyRoutePolicy(routeTableId: String, routePolicy: RoutePolicy, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoutePolicyResponse {

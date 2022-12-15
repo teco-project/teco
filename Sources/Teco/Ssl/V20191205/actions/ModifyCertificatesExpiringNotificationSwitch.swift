@@ -19,43 +19,43 @@ extension Ssl {
     public struct ModifyCertificatesExpiringNotificationSwitchRequest: TCRequestModel {
         /// 证书ID列表。最多50个
         public let certificateIds: [String]
-        
+
         /// 0:不忽略通知。1:忽略通知
         public let switchStatus: UInt64
-        
-        public init (certificateIds: [String], switchStatus: UInt64) {
+
+        public init(certificateIds: [String], switchStatus: UInt64) {
             self.certificateIds = certificateIds
             self.switchStatus = switchStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateIds = "CertificateIds"
             case switchStatus = "SwitchStatus"
         }
     }
-    
+
     /// ModifyCertificatesExpiringNotificationSwitch返回参数结构体
     public struct ModifyCertificatesExpiringNotificationSwitchResponse: TCResponseModel {
         /// 证书ID列表
         public let certificateIds: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateIds = "CertificateIds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改是否忽略证书到期通知
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificatesExpiringNotificationSwitchResponse > {
+    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificatesExpiringNotificationSwitchResponse> {
         self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改是否忽略证书到期通知
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
@@ -63,15 +63,15 @@ extension Ssl {
     public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
         try await self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改是否忽略证书到期通知
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificatesExpiringNotificationSwitchResponse > {
+    public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificatesExpiringNotificationSwitchResponse> {
         self.modifyCertificatesExpiringNotificationSwitch(ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改是否忽略证书到期通知
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。

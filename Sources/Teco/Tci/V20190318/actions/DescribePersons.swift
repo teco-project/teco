@@ -19,62 +19,62 @@ extension Tci {
     public struct DescribePersonsRequest: TCRequestModel {
         /// 人员库唯一标识符
         public let libraryId: String
-        
+
         /// 限制数目
         public let limit: UInt64?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
-        public init (libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.libraryId = libraryId
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case libraryId = "LibraryId"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribePersons返回参数结构体
     public struct DescribePersonsResponse: TCResponseModel {
         /// 人员列表
         public let personSet: [Person]
-        
+
         /// 人员总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case personSet = "PersonSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取人员列表
     @inlinable
-    public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonsResponse > {
+    public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonsResponse> {
         self.client.execute(action: "DescribePersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取人员列表
     @inlinable
     public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonsResponse {
         try await self.client.execute(action: "DescribePersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取人员列表
     @inlinable
-    public func describePersons(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonsResponse > {
+    public func describePersons(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonsResponse> {
         self.describePersons(DescribePersonsRequest(libraryId: libraryId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取人员列表
     @inlinable
     public func describePersons(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonsResponse {

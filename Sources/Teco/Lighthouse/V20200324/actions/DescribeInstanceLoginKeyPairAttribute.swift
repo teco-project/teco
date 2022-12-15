@@ -19,38 +19,38 @@ extension Lighthouse {
     public struct DescribeInstanceLoginKeyPairAttributeRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeInstanceLoginKeyPairAttribute返回参数结构体
     public struct DescribeInstanceLoginKeyPairAttributeResponse: TCResponseModel {
         /// 是否允许使用默认密钥对登录，YES：允许登录 NO：禁止登录。
         public let permitLogin: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case permitLogin = "PermitLogin"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例默认登录密钥属性
     ///
     /// 本接口用于查询实例默认登录密钥属性。
     @inlinable
-    public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLoginKeyPairAttributeResponse > {
+    public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLoginKeyPairAttributeResponse> {
         self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例默认登录密钥属性
     ///
     /// 本接口用于查询实例默认登录密钥属性。
@@ -58,15 +58,15 @@ extension Lighthouse {
     public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLoginKeyPairAttributeResponse {
         try await self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例默认登录密钥属性
     ///
     /// 本接口用于查询实例默认登录密钥属性。
     @inlinable
-    public func describeInstanceLoginKeyPairAttribute(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLoginKeyPairAttributeResponse > {
+    public func describeInstanceLoginKeyPairAttribute(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLoginKeyPairAttributeResponse> {
         self.describeInstanceLoginKeyPairAttribute(DescribeInstanceLoginKeyPairAttributeRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例默认登录密钥属性
     ///
     /// 本接口用于查询实例默认登录密钥属性。

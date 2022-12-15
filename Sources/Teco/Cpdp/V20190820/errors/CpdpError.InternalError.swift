@@ -38,173 +38,173 @@ extension TCCpdpError {
             case unkownError = "InternalError.UnkownError"
             case other = "InternalError."
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 内部连接后端错误。
         public static var backendConnectionError: InternalError {
             InternalError(.backendConnectionError)
         }
-        
+
         /// 后端服务访问错误。
         public static var backendError: InternalError {
             InternalError(.backendError)
         }
-        
+
         /// 服务内部错误。
         public static var backendInternalError: InternalError {
             InternalError(.backendInternalError)
         }
-        
+
         /// 内部调用后端网络错误。
         public static var backendNetworkError: InternalError {
             InternalError(.backendNetworkError)
         }
-        
+
         /// 内部调用路由错误。
         public static var backendRouterError: InternalError {
             InternalError(.backendRouterError)
         }
-        
+
         /// 内部调用后端超时。
         public static var backendTimeOut: InternalError {
             InternalError(.backendTimeOut)
         }
-        
+
         /// 数据库访问错误。
         public static var dbAccessError: InternalError {
             InternalError(.dbAccessError)
         }
-        
+
         /// 数据删除失败。
         public static var deleteDBError: InternalError {
             InternalError(.deleteDBError)
         }
-        
+
         /// 数据重复插入错误。
         public static var duplicateKeyError: InternalError {
             InternalError(.duplicateKeyError)
         }
-        
+
         /// 资金汇总账号不一致错误。
         public static var fundSummaryAcctNoInconsistentError: InternalError {
             InternalError(.fundSummaryAcctNoInconsistentError)
         }
-        
+
         /// 发票已开具。
         public static var invoiceExist: InternalError {
             InternalError(.invoiceExist)
         }
-        
+
         /// 聚鑫内部系统未知错误。
         ///
         /// 请联系我们
         public static var midas: InternalError {
             InternalError(.midas)
         }
-        
+
         /// 参数错误。
         public static var parameterError: InternalError {
             InternalError(.parameterError)
         }
-        
+
         /// 沙箱环境访问错误。
         public static var sandBoxAccessError: InternalError {
             InternalError(.sandBoxAccessError)
         }
-        
+
         /// 数据保存失败。
         public static var saveDBError: InternalError {
             InternalError(.saveDBError)
         }
-        
+
         /// 生成签名失败。
         public static var sigGenError: InternalError {
             InternalError(.sigGenError)
         }
-        
+
         /// 子账户不存在错误。
         public static var subAccountNotFoundError: InternalError {
             InternalError(.subAccountNotFoundError)
         }
-        
+
         /// 内部错误。
         public static var unknown: InternalError {
             InternalError(.unknown)
         }
-        
+
         /// 未知错误。
         public static var unkownError: InternalError {
             InternalError(.unkownError)
         }
-        
+
         /// 系统错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asCpdpError() -> TCCpdpError {
             let code: TCCpdpError.Code
             switch self.error {
-            case .backendConnectionError: 
+            case .backendConnectionError:
                 code = .internalError_BackendConnectionError
-            case .backendError: 
+            case .backendError:
                 code = .internalError_BackendError
-            case .backendInternalError: 
+            case .backendInternalError:
                 code = .internalError_BackendInternalError
-            case .backendNetworkError: 
+            case .backendNetworkError:
                 code = .internalError_BackendNetworkError
-            case .backendRouterError: 
+            case .backendRouterError:
                 code = .internalError_BackendRouterError
-            case .backendTimeOut: 
+            case .backendTimeOut:
                 code = .internalError_BackendTimeOut
-            case .dbAccessError: 
+            case .dbAccessError:
                 code = .internalError_DBAccessError
-            case .deleteDBError: 
+            case .deleteDBError:
                 code = .internalError_DeleteDBError
-            case .duplicateKeyError: 
+            case .duplicateKeyError:
                 code = .internalError_DuplicateKeyError
-            case .fundSummaryAcctNoInconsistentError: 
+            case .fundSummaryAcctNoInconsistentError:
                 code = .internalError_FundSummaryAcctNoInconsistentError
-            case .invoiceExist: 
+            case .invoiceExist:
                 code = .internalError_InvoiceExist
-            case .midas: 
+            case .midas:
                 code = .internalError_Midas
-            case .parameterError: 
+            case .parameterError:
                 code = .internalError_ParameterError
-            case .sandBoxAccessError: 
+            case .sandBoxAccessError:
                 code = .internalError_SandBoxAccessError
-            case .saveDBError: 
+            case .saveDBError:
                 code = .internalError_SaveDBError
-            case .sigGenError: 
+            case .sigGenError:
                 code = .internalError_SigGenError
-            case .subAccountNotFoundError: 
+            case .subAccountNotFoundError:
                 code = .internalError_SubAccountNotFoundError
-            case .unknown: 
+            case .unknown:
                 code = .internalError_Unknown
-            case .unkownError: 
+            case .unkownError:
                 code = .internalError_UnkownError
-            case .other: 
+            case .other:
                 code = .internalError_
             }
             return TCCpdpError(code, context: self.context)

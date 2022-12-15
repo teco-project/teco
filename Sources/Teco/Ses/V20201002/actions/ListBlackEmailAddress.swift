@@ -27,7 +27,7 @@ extension Ses {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date
-        
+
         /// 结束日期，格式为YYYY-MM-DD
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,20 +35,20 @@ extension Ses {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
+
         /// 规范，配合Offset使用
         public let limit: UInt64
-        
+
         /// 规范，配合Limit使用，Limit最大取值为100
         public let offset: UInt64
-        
+
         /// 可以指定邮箱进行查询
         public let emailAddress: String?
-        
+
         /// 可以指定任务ID进行查询
         public let taskID: String?
-        
-        public init (startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil) {
+
+        public init(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil) {
             self.startDate = startDate
             self.endDate = endDate
             self.limit = limit
@@ -56,7 +56,7 @@ extension Ses {
             self.emailAddress = emailAddress
             self.taskID = taskID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startDate = "StartDate"
             case endDate = "EndDate"
@@ -66,33 +66,33 @@ extension Ses {
             case taskID = "TaskID"
         }
     }
-    
+
     /// ListBlackEmailAddress返回参数结构体
     public struct ListBlackEmailAddressResponse: TCResponseModel {
         /// 黑名单列表
         public let blackList: [BlackEmailAddress]
-        
+
         /// 黑名单总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case blackList = "BlackList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取黑名单邮箱地址
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
-    public func listBlackEmailAddress(_ input: ListBlackEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListBlackEmailAddressResponse > {
+    public func listBlackEmailAddress(_ input: ListBlackEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListBlackEmailAddressResponse> {
         self.client.execute(action: "ListBlackEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑名单邮箱地址
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
@@ -100,15 +100,15 @@ extension Ses {
     public func listBlackEmailAddress(_ input: ListBlackEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListBlackEmailAddressResponse {
         try await self.client.execute(action: "ListBlackEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取黑名单邮箱地址
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
-    public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListBlackEmailAddressResponse > {
+    public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListBlackEmailAddressResponse> {
         self.listBlackEmailAddress(ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑名单邮箱地址
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。

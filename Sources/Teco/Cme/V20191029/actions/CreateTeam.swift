@@ -19,27 +19,27 @@ extension Cme {
     public struct CreateTeamRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
         public let platform: String
-        
+
         /// 团队名称，限30个字符。
         public let name: String
-        
+
         /// 团队所有者，指定用户 ID。
         public let ownerId: String
-        
+
         /// 团队所有者的备注，限30个字符。
         public let ownerRemark: String?
-        
+
         /// 自定义团队 ID。创建后不可修改，限20个英文字符及"-"。同时不能以 cmetid_开头。不填会生成默认团队 ID。
         public let teamId: String?
-        
-        public init (platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil) {
+
+        public init(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil) {
             self.platform = platform
             self.name = name
             self.ownerId = ownerId
             self.ownerRemark = ownerRemark
             self.teamId = teamId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case name = "Name"
@@ -48,29 +48,29 @@ extension Cme {
             case teamId = "TeamId"
         }
     }
-    
+
     /// CreateTeam返回参数结构体
     public struct CreateTeamResponse: TCResponseModel {
         /// 创建的团队 ID。
         public let teamId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case teamId = "TeamId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建团队
     ///
     /// 创建一个团队。
     @inlinable
-    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTeamResponse > {
+    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTeamResponse> {
         self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建团队
     ///
     /// 创建一个团队。
@@ -78,15 +78,15 @@ extension Cme {
     public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
         try await self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建团队
     ///
     /// 创建一个团队。
     @inlinable
-    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTeamResponse > {
+    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTeamResponse> {
         self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建团队
     ///
     /// 创建一个团队。

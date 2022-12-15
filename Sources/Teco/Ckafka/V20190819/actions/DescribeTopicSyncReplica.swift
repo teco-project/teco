@@ -19,27 +19,27 @@ extension Ckafka {
     public struct DescribeTopicSyncReplicaRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 主题名称
         public let topicName: String
-        
+
         /// 偏移量，不填默认为0
         public let offset: UInt64?
-        
+
         /// 返回数量，不填则默认10，最大值20。
         public let limit: Int64?
-        
+
         /// 仅筛选未同步副本
         public let outOfSyncReplicaOnly: Bool?
-        
-        public init (instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil) {
+
+        public init(instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil) {
             self.instanceId = instanceId
             self.topicName = topicName
             self.offset = offset
             self.limit = limit
             self.outOfSyncReplicaOnly = outOfSyncReplicaOnly
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case topicName = "TopicName"
@@ -48,29 +48,29 @@ extension Ckafka {
             case outOfSyncReplicaOnly = "OutOfSyncReplicaOnly"
         }
     }
-    
+
     /// DescribeTopicSyncReplica返回参数结构体
     public struct DescribeTopicSyncReplicaResponse: TCResponseModel {
         /// 返回topic 副本详情
         public let result: TopicInSyncReplicaResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取Topic 同步副本信息
     ///
     /// 获取Topic 副本详情信息
     @inlinable
-    public func describeTopicSyncReplica(_ input: DescribeTopicSyncReplicaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicSyncReplicaResponse > {
+    public func describeTopicSyncReplica(_ input: DescribeTopicSyncReplicaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSyncReplicaResponse> {
         self.client.execute(action: "DescribeTopicSyncReplica", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Topic 同步副本信息
     ///
     /// 获取Topic 副本详情信息
@@ -78,15 +78,15 @@ extension Ckafka {
     public func describeTopicSyncReplica(_ input: DescribeTopicSyncReplicaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSyncReplicaResponse {
         try await self.client.execute(action: "DescribeTopicSyncReplica", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取Topic 同步副本信息
     ///
     /// 获取Topic 副本详情信息
     @inlinable
-    public func describeTopicSyncReplica(instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicSyncReplicaResponse > {
+    public func describeTopicSyncReplica(instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSyncReplicaResponse> {
         self.describeTopicSyncReplica(DescribeTopicSyncReplicaRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit, outOfSyncReplicaOnly: outOfSyncReplicaOnly), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Topic 同步副本信息
     ///
     /// 获取Topic 副本详情信息

@@ -38,173 +38,173 @@ extension TCRedisError {
             case weekDaysIsInvalid = "InvalidParameterValue.WeekDaysIsInvalid"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 备份不存在。
         public static var backupNotExists: InvalidParameterValue {
             InvalidParameterValue(.backupNotExists)
         }
-        
+
         /// 不是vpc网络下实例。
         public static var baseNetWorkAccessDeny: InvalidParameterValue {
             InvalidParameterValue(.baseNetWorkAccessDeny)
         }
-        
+
         /// 业务校验不通过。
         public static var checkNotPass: InvalidParameterValue {
             InvalidParameterValue(.checkNotPass)
         }
-        
+
         /// 重命名，命名规则错误。
         public static var instanceNameRuleError: InvalidParameterValue {
             InvalidParameterValue(.instanceNameRuleError)
         }
-        
+
         /// 请求购买的实例类型错误（TypeId 1:集群版；2:主从版,即原主从版)。
         public static var invalidInstanceTypeId: InvalidParameterValue {
             InvalidParameterValue(.invalidInstanceTypeId)
         }
-        
+
         /// vpc网络下，vpcid 子网id 非法。
         public static var invalidSubnetId: InvalidParameterValue {
             InvalidParameterValue(.invalidSubnetId)
         }
-        
+
         /// 请求的容量不在售卖容量范围内。
         public static var memSizeNotInRange: InvalidParameterValue {
             InvalidParameterValue(.memSizeNotInRange)
         }
-        
+
         /// 实例不能重复绑定。
         public static var notRepeatBind: InvalidParameterValue {
             InvalidParameterValue(.notRepeatBind)
         }
-        
+
         /// 密码为空。
         public static var passwordEmpty: InvalidParameterValue {
             InvalidParameterValue(.passwordEmpty)
         }
-        
+
         /// 密码校验出错，密码错误。
         public static var passwordError: InvalidParameterValue {
             InvalidParameterValue(.passwordError)
         }
-        
+
         /// 腾讯集团内部账号禁止使用免密实例。
         ///
         /// 请选择非免密实例，并按照规范设置实例密码。
         public static var passwordFreeDenied: InvalidParameterValue {
             InvalidParameterValue(.passwordFreeDenied)
         }
-        
+
         /// 设置密码时，MC 传入的 old password 与先前设定密码不同。
         public static var passwordRuleError: InvalidParameterValue {
             InvalidParameterValue(.passwordRuleError)
         }
-        
+
         /// 请求容量偏小，不支持缩容。
         public static var reduceCapacityNotAllowed: InvalidParameterValue {
             InvalidParameterValue(.reduceCapacityNotAllowed)
         }
-        
+
         /// 复制组不存在。
         public static var replicationGroupNotExists: InvalidParameterValue {
             InvalidParameterValue(.replicationGroupNotExists)
         }
-        
+
         /// 请求参数错误，安全组id错误。
         public static var securityGroupIdsNotExists: InvalidParameterValue {
             InvalidParameterValue(.securityGroupIdsNotExists)
         }
-        
+
         /// 实例规格不存在。
         public static var specNotExist: InvalidParameterValue {
             InvalidParameterValue(.specNotExist)
         }
-        
+
         /// 实例类型不支持。
         public static var unSupportedType: InvalidParameterValue {
             InvalidParameterValue(.unSupportedType)
         }
-        
+
         /// vpc网络下，uniqVpcId 子网id 非法。
         public static var unVpcIdNotExists: InvalidParameterValue {
             InvalidParameterValue(.unVpcIdNotExists)
         }
-        
+
         /// weekday输入无效数据。
         public static var weekDaysIsInvalid: InvalidParameterValue {
             InvalidParameterValue(.weekDaysIsInvalid)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {
-            case .backupNotExists: 
+            case .backupNotExists:
                 code = .invalidParameterValue_BackupNotExists
-            case .baseNetWorkAccessDeny: 
+            case .baseNetWorkAccessDeny:
                 code = .invalidParameterValue_BaseNetWorkAccessDeny
-            case .checkNotPass: 
+            case .checkNotPass:
                 code = .invalidParameterValue_CheckNotPass
-            case .instanceNameRuleError: 
+            case .instanceNameRuleError:
                 code = .invalidParameterValue_InstanceNameRuleError
-            case .invalidInstanceTypeId: 
+            case .invalidInstanceTypeId:
                 code = .invalidParameterValue_InvalidInstanceTypeId
-            case .invalidSubnetId: 
+            case .invalidSubnetId:
                 code = .invalidParameterValue_InvalidSubnetId
-            case .memSizeNotInRange: 
+            case .memSizeNotInRange:
                 code = .invalidParameterValue_MemSizeNotInRange
-            case .notRepeatBind: 
+            case .notRepeatBind:
                 code = .invalidParameterValue_NotRepeatBind
-            case .passwordEmpty: 
+            case .passwordEmpty:
                 code = .invalidParameterValue_PasswordEmpty
-            case .passwordError: 
+            case .passwordError:
                 code = .invalidParameterValue_PasswordError
-            case .passwordFreeDenied: 
+            case .passwordFreeDenied:
                 code = .invalidParameterValue_PasswordFreeDenied
-            case .passwordRuleError: 
+            case .passwordRuleError:
                 code = .invalidParameterValue_PasswordRuleError
-            case .reduceCapacityNotAllowed: 
+            case .reduceCapacityNotAllowed:
                 code = .invalidParameterValue_ReduceCapacityNotAllowed
-            case .replicationGroupNotExists: 
+            case .replicationGroupNotExists:
                 code = .invalidParameterValue_ReplicationGroupNotExists
-            case .securityGroupIdsNotExists: 
+            case .securityGroupIdsNotExists:
                 code = .invalidParameterValue_SecurityGroupIdsNotExists
-            case .specNotExist: 
+            case .specNotExist:
                 code = .invalidParameterValue_SpecNotExist
-            case .unSupportedType: 
+            case .unSupportedType:
                 code = .invalidParameterValue_UnSupportedType
-            case .unVpcIdNotExists: 
+            case .unVpcIdNotExists:
                 code = .invalidParameterValue_UnVpcIdNotExists
-            case .weekDaysIsInvalid: 
+            case .weekDaysIsInvalid:
                 code = .invalidParameterValue_WeekDaysIsInvalid
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCRedisError(code, context: self.context)

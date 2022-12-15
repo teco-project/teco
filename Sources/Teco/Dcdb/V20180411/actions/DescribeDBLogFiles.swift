@@ -19,52 +19,52 @@ extension Dcdb {
     public struct DescribeDBLogFilesRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
         public let instanceId: String
-        
+
         /// 分片 ID，形如：shard-7noic7tv
         public let shardId: String
-        
+
         /// 请求日志类型，取值只能为1、2、3或者4。1-binlog，2-冷备，3-errlog，4-slowlog。
         public let type: Int64
-        
-        public init (instanceId: String, shardId: String, type: Int64) {
+
+        public init(instanceId: String, shardId: String, type: Int64) {
             self.instanceId = instanceId
             self.shardId = shardId
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case shardId = "ShardId"
             case type = "Type"
         }
     }
-    
+
     /// DescribeDBLogFiles返回参数结构体
     public struct DescribeDBLogFilesResponse: TCResponseModel {
         /// 实例 ID，形如：dcdbt-ow728lmc。
         public let instanceId: String
-        
+
         /// 请求日志类型。1-binlog，2-冷备，3-errlog，4-slowlog。
         public let type: UInt64
-        
+
         /// 请求日志总数
         public let total: UInt64
-        
+
         /// 日志文件列表
         public let files: [LogFileInfo]
-        
+
         /// 如果是VPC网络的实例，做用本前缀加上URI为下载地址
         public let vpcPrefix: String
-        
+
         /// 如果是普通网络的实例，做用本前缀加上URI为下载地址
         public let normalPrefix: String
-        
+
         /// 分片 ID，形如：shard-7noic7tv
         public let shardId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case type = "Type"
@@ -76,15 +76,15 @@ extension Dcdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取日志列表
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
-    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBLogFilesResponse > {
+    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
         self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取日志列表
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
@@ -92,15 +92,15 @@ extension Dcdb {
     public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
         try await self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取日志列表
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
-    public func describeDBLogFiles(instanceId: String, shardId: String, type: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBLogFilesResponse > {
+    public func describeDBLogFiles(instanceId: String, shardId: String, type: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
         self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, shardId: shardId, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取日志列表
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。

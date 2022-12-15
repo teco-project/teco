@@ -19,49 +19,49 @@ extension Antiddos {
     public struct DeleteDDoSSpeedLimitConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
+
         /// 访问限速配置，填写参数时配置ID不能为空
         public let dDoSSpeedLimitConfig: DDoSSpeedLimitConfig
-        
-        public init (instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig) {
+
+        public init(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig) {
             self.instanceId = instanceId
             self.dDoSSpeedLimitConfig = dDoSSpeedLimitConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case dDoSSpeedLimitConfig = "DDoSSpeedLimitConfig"
         }
     }
-    
+
     /// DeleteDDoSSpeedLimitConfig返回参数结构体
     public struct DeleteDDoSSpeedLimitConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除DDoS防护的访问限速配置
     @inlinable
-    public func deleteDDoSSpeedLimitConfig(_ input: DeleteDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSSpeedLimitConfigResponse > {
+    public func deleteDDoSSpeedLimitConfig(_ input: DeleteDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSSpeedLimitConfigResponse> {
         self.client.execute(action: "DeleteDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DDoS防护的访问限速配置
     @inlinable
     public func deleteDDoSSpeedLimitConfig(_ input: DeleteDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSSpeedLimitConfigResponse {
         try await self.client.execute(action: "DeleteDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除DDoS防护的访问限速配置
     @inlinable
-    public func deleteDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSSpeedLimitConfigResponse > {
+    public func deleteDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSSpeedLimitConfigResponse> {
         self.deleteDDoSSpeedLimitConfig(DeleteDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DDoS防护的访问限速配置
     @inlinable
     public func deleteDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSSpeedLimitConfigResponse {

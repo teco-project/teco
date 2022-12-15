@@ -19,44 +19,44 @@ extension Scf {
     public struct GetReservedConcurrencyConfigRequest: TCRequestModel {
         /// 需要获取最大独占配额详情的函数名称。
         public let functionName: String
-        
+
         /// 函数所在的命名空间，默认为default。
         public let namespace: String?
-        
-        public init (functionName: String, namespace: String? = nil) {
+
+        public init(functionName: String, namespace: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case namespace = "Namespace"
         }
     }
-    
+
     /// GetReservedConcurrencyConfig返回参数结构体
     public struct GetReservedConcurrencyConfigResponse: TCResponseModel {
         /// 该函数的最大独占配额。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMem: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case reservedMem = "ReservedMem"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取函数最大独占配额详情
     ///
     /// 获取函数的最大独占配额详情。
     @inlinable
-    public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetReservedConcurrencyConfigResponse > {
+    public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetReservedConcurrencyConfigResponse> {
         self.client.execute(action: "GetReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数最大独占配额详情
     ///
     /// 获取函数的最大独占配额详情。
@@ -64,15 +64,15 @@ extension Scf {
     public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetReservedConcurrencyConfigResponse {
         try await self.client.execute(action: "GetReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取函数最大独占配额详情
     ///
     /// 获取函数的最大独占配额详情。
     @inlinable
-    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetReservedConcurrencyConfigResponse > {
+    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetReservedConcurrencyConfigResponse> {
         self.getReservedConcurrencyConfig(GetReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数最大独占配额详情
     ///
     /// 获取函数的最大独占配额详情。

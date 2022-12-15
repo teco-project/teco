@@ -19,39 +19,39 @@ extension Monitor {
     public struct DeleteAlarmNoticesRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
         public let module: String
-        
+
         /// 告警通知模板id列表
         public let noticeIds: [String]
-        
-        public init (module: String, noticeIds: [String]) {
+
+        public init(module: String, noticeIds: [String]) {
             self.module = module
             self.noticeIds = noticeIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case noticeIds = "NoticeIds"
         }
     }
-    
+
     /// DeleteAlarmNotices返回参数结构体
     public struct DeleteAlarmNoticesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
     @inlinable
-    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmNoticesResponse > {
+    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
         self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
@@ -59,15 +59,15 @@ extension Monitor {
     public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
         try await self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
     @inlinable
-    public func deleteAlarmNotices(module: String, noticeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmNoticesResponse > {
+    public func deleteAlarmNotices(module: String, noticeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
         self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板

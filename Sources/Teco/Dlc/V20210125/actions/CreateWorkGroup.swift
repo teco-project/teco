@@ -19,23 +19,23 @@ extension Dlc {
     public struct CreateWorkGroupRequest: TCRequestModel {
         /// 工作组名称
         public let workGroupName: String
-        
+
         /// 工作组描述
         public let workGroupDescription: String?
-        
+
         /// 工作组绑定的鉴权策略集合
         public let policySet: [Policy]?
-        
+
         /// 需要绑定到工作组的用户Id集合
         public let userIds: [String]?
-        
-        public init (workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil) {
+
+        public init(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil) {
             self.workGroupName = workGroupName
             self.workGroupDescription = workGroupDescription
             self.policySet = policySet
             self.userIds = userIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupName = "WorkGroupName"
             case workGroupDescription = "WorkGroupDescription"
@@ -43,39 +43,39 @@ extension Dlc {
             case userIds = "UserIds"
         }
     }
-    
+
     /// CreateWorkGroup返回参数结构体
     public struct CreateWorkGroupResponse: TCResponseModel {
         /// 工作组Id，全局唯一
         public let workGroupId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupId = "WorkGroupId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建工作组
     @inlinable
-    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkGroupResponse > {
+    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkGroupResponse> {
         self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建工作组
     @inlinable
     public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
         try await self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建工作组
     @inlinable
-    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkGroupResponse > {
+    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkGroupResponse> {
         self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建工作组
     @inlinable
     public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {

@@ -19,54 +19,54 @@ extension Iotvideoindustry {
     public struct ModifyBindPlanLiveChannelRequest: TCRequestModel {
         /// 直播录制计划ID
         public let planId: String
-        
+
         /// 1: 绑定 2: 解绑
         public let type: Int64
-        
+
         /// 直播频道ID列表
         public let liveChannelIds: [String]
-        
-        public init (planId: String, type: Int64, liveChannelIds: [String]) {
+
+        public init(planId: String, type: Int64, liveChannelIds: [String]) {
             self.planId = planId
             self.type = type
             self.liveChannelIds = liveChannelIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case planId = "PlanId"
             case type = "Type"
             case liveChannelIds = "LiveChannelIds"
         }
     }
-    
+
     /// ModifyBindPlanLiveChannel返回参数结构体
     public struct ModifyBindPlanLiveChannelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播录制计划绑定解绑直播频道
     @inlinable
-    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindPlanLiveChannelResponse > {
+    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindPlanLiveChannelResponse> {
         self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播录制计划绑定解绑直播频道
     @inlinable
     public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
         try await self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播录制计划绑定解绑直播频道
     @inlinable
-    public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindPlanLiveChannelResponse > {
+    public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindPlanLiveChannelResponse> {
         self.modifyBindPlanLiveChannel(ModifyBindPlanLiveChannelRequest(planId: planId, type: type, liveChannelIds: liveChannelIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播录制计划绑定解绑直播频道
     @inlinable
     public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {

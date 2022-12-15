@@ -19,23 +19,23 @@ extension Iotcloud {
     public struct PublishAsDeviceRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// LoRa 设备端口
         public let port: UInt64
-        
+
         /// 消息内容
         public let payload: String
-        
-        public init (productId: String, deviceName: String, port: UInt64, payload: String) {
+
+        public init(productId: String, deviceName: String, port: UInt64, payload: String) {
             self.productId = productId
             self.deviceName = deviceName
             self.port = port
             self.payload = payload
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
@@ -43,25 +43,25 @@ extension Iotcloud {
             case payload = "Payload"
         }
     }
-    
+
     /// PublishAsDevice返回参数结构体
     public struct PublishAsDeviceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 模拟lora设备发送消息
     ///
     /// 模拟lora类型的设备端向服务器端发送消息
     @inlinable
-    public func publishAsDevice(_ input: PublishAsDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishAsDeviceResponse > {
+    public func publishAsDevice(_ input: PublishAsDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishAsDeviceResponse> {
         self.client.execute(action: "PublishAsDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 模拟lora设备发送消息
     ///
     /// 模拟lora类型的设备端向服务器端发送消息
@@ -69,15 +69,15 @@ extension Iotcloud {
     public func publishAsDevice(_ input: PublishAsDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishAsDeviceResponse {
         try await self.client.execute(action: "PublishAsDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 模拟lora设备发送消息
     ///
     /// 模拟lora类型的设备端向服务器端发送消息
     @inlinable
-    public func publishAsDevice(productId: String, deviceName: String, port: UInt64, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishAsDeviceResponse > {
+    public func publishAsDevice(productId: String, deviceName: String, port: UInt64, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishAsDeviceResponse> {
         self.publishAsDevice(PublishAsDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), logger: logger, on: eventLoop)
     }
-    
+
     /// 模拟lora设备发送消息
     ///
     /// 模拟lora类型的设备端向服务器端发送消息

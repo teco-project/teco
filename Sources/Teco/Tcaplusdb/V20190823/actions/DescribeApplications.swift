@@ -19,29 +19,29 @@ extension Tcaplusdb {
     public struct DescribeApplicationsRequest: TCRequestModel {
         /// 集群ID，用于获取指定集群的单据
         public let clusterId: String?
-        
+
         /// 分页，限制当前返回多少条记录，大于等于10
         public let limit: UInt64?
-        
+
         /// 分页，从多少条数据开始返回
         public let offset: UInt64?
-        
+
         /// 申请单状态，用于过滤，0-待审核 1-已经审核并提交任务 2-已驳回
         public let censorStatus: Int64?
-        
+
         /// 表格组id，用于过滤
         public let tableGroupId: String?
-        
+
         /// 表格名，用于过滤
         public let tableName: String?
-        
+
         /// 申请人uin，用于过滤
         public let applicant: String?
-        
+
         /// 申请类型，用于过滤，0加表 1删除表 2清理表 3修改表 4表重建 5存储层扩缩容 6接入层扩缩容 7复制表数据 8key回档
         public let applyType: Int64?
-        
-        public init (clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil) {
+
+        public init(clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -51,7 +51,7 @@ extension Tcaplusdb {
             self.applicant = applicant
             self.applyType = applyType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case limit = "Limit"
@@ -63,43 +63,43 @@ extension Tcaplusdb {
             case applyType = "ApplyType"
         }
     }
-    
+
     /// DescribeApplications返回参数结构体
     public struct DescribeApplicationsResponse: TCResponseModel {
         /// 申请单列表
         public let applications: [Application]
-        
+
         /// 申请单个数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case applications = "Applications"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取审批管理的申请单
     @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
         self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取审批管理的申请单
     @inlinable
     public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
         try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取审批管理的申请单
     @inlinable
-    public func describeApplications(clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+    public func describeApplications(clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
         self.describeApplications(DescribeApplicationsRequest(clusterId: clusterId, limit: limit, offset: offset, censorStatus: censorStatus, tableGroupId: tableGroupId, tableName: tableName, applicant: applicant, applyType: applyType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取审批管理的申请单
     @inlinable
     public func describeApplications(clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {

@@ -19,34 +19,34 @@ extension Kms {
     public struct DeleteWhiteBoxKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// DeleteWhiteBoxKey返回参数结构体
     public struct DeleteWhiteBoxKeyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
     @inlinable
-    public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhiteBoxKeyResponse > {
+    public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhiteBoxKeyResponse> {
         self.client.execute(action: "DeleteWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
@@ -54,15 +54,15 @@ extension Kms {
     public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
         try await self.client.execute(action: "DeleteWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
     @inlinable
-    public func deleteWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhiteBoxKeyResponse > {
+    public func deleteWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhiteBoxKeyResponse> {
         self.deleteWhiteBoxKey(DeleteWhiteBoxKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。

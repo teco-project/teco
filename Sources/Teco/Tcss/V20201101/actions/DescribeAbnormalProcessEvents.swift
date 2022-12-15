@@ -19,27 +19,27 @@ extension Tcss {
     public struct DescribeAbnormalProcessEventsRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
         public let filters: [RunTimeFilters]?
-        
+
         /// 升序降序,asc desc
         public let order: String?
-        
+
         /// 排序字段
         public let by: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -48,33 +48,33 @@ extension Tcss {
             case by = "By"
         }
     }
-    
+
     /// DescribeAbnormalProcessEvents返回参数结构体
     public struct DescribeAbnormalProcessEventsResponse: TCResponseModel {
         /// 事件总数量
         public let totalCount: UInt64
-        
+
         /// 异常进程数组
         public let eventSet: [AbnormalProcessEventInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case eventSet = "EventSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时异常进程列表
     ///
     /// 查询运行时异常进程事件列表信息
     @inlinable
-    public func describeAbnormalProcessEvents(_ input: DescribeAbnormalProcessEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventsResponse > {
+    public func describeAbnormalProcessEvents(_ input: DescribeAbnormalProcessEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventsResponse> {
         self.client.execute(action: "DescribeAbnormalProcessEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时异常进程列表
     ///
     /// 查询运行时异常进程事件列表信息
@@ -82,15 +82,15 @@ extension Tcss {
     public func describeAbnormalProcessEvents(_ input: DescribeAbnormalProcessEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventsResponse {
         try await self.client.execute(action: "DescribeAbnormalProcessEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时异常进程列表
     ///
     /// 查询运行时异常进程事件列表信息
     @inlinable
-    public func describeAbnormalProcessEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventsResponse > {
+    public func describeAbnormalProcessEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventsResponse> {
         self.describeAbnormalProcessEvents(DescribeAbnormalProcessEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时异常进程列表
     ///
     /// 查询运行时异常进程事件列表信息

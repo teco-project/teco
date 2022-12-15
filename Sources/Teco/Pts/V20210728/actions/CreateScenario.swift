@@ -19,56 +19,56 @@ extension Pts {
     public struct CreateScenarioRequest: TCRequestModel {
         /// 场景名
         public let name: String
-        
+
         /// 压测引擎类型
         public let type: String
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// 场景描述
         public let description: String?
-        
+
         /// 施压配置
         public let load: Load?
-        
+
         /// deprecated
         public let configs: [String]?
-        
+
         /// 测试数据集
         public let datasets: [TestData]?
-        
+
         /// deprecated
         public let extensions: [String]?
-        
+
         /// deprecated
         public let slaId: String?
-        
+
         /// cron job ID
         public let cronId: String?
-        
+
         /// deprecated
         public let scripts: [String]?
-        
+
         /// 测试脚本文件信息
         public let testScripts: [ScriptInfo]?
-        
+
         /// 协议文件路径
         public let protocols: [ProtocolInfo]?
-        
+
         /// 请求文件路径
         public let requestFiles: [FileInfo]?
-        
+
         /// SLA 策略
         public let slaPolicy: SLAPolicy?
-        
+
         /// 拓展包文件路径
         public let plugins: [FileInfo]?
-        
+
         /// 域名解析配置
         public let domainNameConfig: DomainNameConfig?
-        
-        public init (name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil) {
+
+        public init(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil) {
             self.name = name
             self.type = type
             self.projectId = projectId
@@ -87,7 +87,7 @@ extension Pts {
             self.plugins = plugins
             self.domainNameConfig = domainNameConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -108,39 +108,39 @@ extension Pts {
             case domainNameConfig = "DomainNameConfig"
         }
     }
-    
+
     /// CreateScenario返回参数结构体
     public struct CreateScenarioResponse: TCResponseModel {
         /// 场景ID
         public let scenarioId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioId = "ScenarioId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建场景
     @inlinable
-    public func createScenario(_ input: CreateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScenarioResponse > {
+    public func createScenario(_ input: CreateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
         self.client.execute(action: "CreateScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建场景
     @inlinable
     public func createScenario(_ input: CreateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {
         try await self.client.execute(action: "CreateScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建场景
     @inlinable
-    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScenarioResponse > {
+    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
         self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建场景
     @inlinable
     public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {

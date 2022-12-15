@@ -19,62 +19,62 @@ extension Ccc {
     public struct DescribeAutoCalloutTasksRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: UInt64
-        
+
         /// 分页大小
         public let pageSize: UInt64
-        
+
         /// 页数
         public let pageNumber: UInt64
-        
-        public init (sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64) {
+
+        public init(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64) {
             self.sdkAppId = sdkAppId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case pageSize = "PageSize"
             case pageNumber = "PageNumber"
         }
     }
-    
+
     /// DescribeAutoCalloutTasks返回参数结构体
     public struct DescribeAutoCalloutTasksResponse: TCResponseModel {
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 任务列表
         public let tasks: [AutoCalloutTaskInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量查询自动任务外呼
     @inlinable
-    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoCalloutTasksResponse > {
+    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoCalloutTasksResponse> {
         self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量查询自动任务外呼
     @inlinable
     public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
         try await self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量查询自动任务外呼
     @inlinable
-    public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoCalloutTasksResponse > {
+    public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoCalloutTasksResponse> {
         self.describeAutoCalloutTasks(DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量查询自动任务外呼
     @inlinable
     public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {

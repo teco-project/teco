@@ -19,39 +19,39 @@ extension Bda {
     public struct ModifyPersonInfoRequest: TCRequestModel {
         /// 人员ID。
         public let personId: String
-        
+
         /// 人员名称。
         public let personName: String?
-        
-        public init (personId: String, personName: String? = nil) {
+
+        public init(personId: String, personName: String? = nil) {
             self.personId = personId
             self.personName = personName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case personName = "PersonName"
         }
     }
-    
+
     /// ModifyPersonInfo返回参数结构体
     public struct ModifyPersonInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改人员信息
     ///
     /// 修改人员信息。
     @inlinable
-    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonInfoResponse > {
+    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
         self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改人员信息
     ///
     /// 修改人员信息。
@@ -59,15 +59,15 @@ extension Bda {
     public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
         try await self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改人员信息
     ///
     /// 修改人员信息。
     @inlinable
-    public func modifyPersonInfo(personId: String, personName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonInfoResponse > {
+    public func modifyPersonInfo(personId: String, personName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
         self.modifyPersonInfo(ModifyPersonInfoRequest(personId: personId, personName: personName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改人员信息
     ///
     /// 修改人员信息。

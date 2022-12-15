@@ -19,48 +19,48 @@ extension Tcss {
     public struct DescribeNetworkFirewallClusterRefreshStatusRequest: TCRequestModel {
         /// 任务ID
         public let taskId: UInt64
-        
-        public init (taskId: UInt64) {
+
+        public init(taskId: UInt64) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeNetworkFirewallClusterRefreshStatus返回参数结构体
     public struct DescribeNetworkFirewallClusterRefreshStatusResponse: TCResponseModel {
         /// 任务状态，可能为：Task_Running,Task_Succ,Task_Error,Task_NoExist
         public let taskStatus: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 容器网络查询资产任务进度
     @inlinable
-    public func describeNetworkFirewallClusterRefreshStatus(_ input: DescribeNetworkFirewallClusterRefreshStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallClusterRefreshStatusResponse > {
+    public func describeNetworkFirewallClusterRefreshStatus(_ input: DescribeNetworkFirewallClusterRefreshStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallClusterRefreshStatusResponse> {
         self.client.execute(action: "DescribeNetworkFirewallClusterRefreshStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络查询资产任务进度
     @inlinable
     public func describeNetworkFirewallClusterRefreshStatus(_ input: DescribeNetworkFirewallClusterRefreshStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallClusterRefreshStatusResponse {
         try await self.client.execute(action: "DescribeNetworkFirewallClusterRefreshStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 容器网络查询资产任务进度
     @inlinable
-    public func describeNetworkFirewallClusterRefreshStatus(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallClusterRefreshStatusResponse > {
+    public func describeNetworkFirewallClusterRefreshStatus(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallClusterRefreshStatusResponse> {
         self.describeNetworkFirewallClusterRefreshStatus(DescribeNetworkFirewallClusterRefreshStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络查询资产任务进度
     @inlinable
     public func describeNetworkFirewallClusterRefreshStatus(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallClusterRefreshStatusResponse {

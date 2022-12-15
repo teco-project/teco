@@ -19,23 +19,23 @@ extension Monitor {
     public struct UpdateGrafanaIntegrationRequest: TCRequestModel {
         /// 集成 ID
         public let integrationId: String
-        
+
         /// 实例 ID
         public let instanceId: String
-        
+
         /// 集成类型
         public let kind: String
-        
+
         /// 集成内容
         public let content: String
-        
-        public init (integrationId: String, instanceId: String, kind: String, content: String) {
+
+        public init(integrationId: String, instanceId: String, kind: String, content: String) {
             self.integrationId = integrationId
             self.instanceId = instanceId
             self.kind = kind
             self.content = content
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case integrationId = "IntegrationId"
             case instanceId = "InstanceId"
@@ -43,35 +43,35 @@ extension Monitor {
             case content = "Content"
         }
     }
-    
+
     /// UpdateGrafanaIntegration返回参数结构体
     public struct UpdateGrafanaIntegrationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新 Grafana 集成配置
     @inlinable
-    public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaIntegrationResponse > {
+    public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaIntegrationResponse> {
         self.client.execute(action: "UpdateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新 Grafana 集成配置
     @inlinable
     public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaIntegrationResponse {
         try await self.client.execute(action: "UpdateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新 Grafana 集成配置
     @inlinable
-    public func updateGrafanaIntegration(integrationId: String, instanceId: String, kind: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaIntegrationResponse > {
+    public func updateGrafanaIntegration(integrationId: String, instanceId: String, kind: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaIntegrationResponse> {
         self.updateGrafanaIntegration(UpdateGrafanaIntegrationRequest(integrationId: integrationId, instanceId: instanceId, kind: kind, content: content), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新 Grafana 集成配置
     @inlinable
     public func updateGrafanaIntegration(integrationId: String, instanceId: String, kind: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaIntegrationResponse {

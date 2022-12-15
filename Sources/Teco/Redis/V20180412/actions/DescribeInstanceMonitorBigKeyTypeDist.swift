@@ -19,53 +19,53 @@ extension Redis {
     public struct DescribeInstanceMonitorBigKeyTypeDistRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 时间；例如："20190219"
         public let date: String
-        
-        public init (instanceId: String, date: String) {
+
+        public init(instanceId: String, date: String) {
             self.instanceId = instanceId
             self.date = date
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case date = "Date"
         }
     }
-    
+
     /// DescribeInstanceMonitorBigKeyTypeDist返回参数结构体
     public struct DescribeInstanceMonitorBigKeyTypeDistResponse: TCResponseModel {
         /// 大Key类型分布详细信息
         public let data: [BigKeyTypeInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例大Key类型分布
     @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyTypeDistResponse > {
+    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyTypeDistResponse> {
         self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例大Key类型分布
     @inlinable
     public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例大Key类型分布
     @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyTypeDistResponse > {
+    public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyTypeDistResponse> {
         self.describeInstanceMonitorBigKeyTypeDist(DescribeInstanceMonitorBigKeyTypeDistRequest(instanceId: instanceId, date: date), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例大Key类型分布
     @inlinable
     public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {

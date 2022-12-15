@@ -19,27 +19,27 @@ extension Wedata {
     public struct CommitRuleGroupTaskRequest: TCRequestModel {
         /// 规则组ID
         public let ruleGroupId: UInt64?
-        
+
         /// 触发类型 1.手动触发 2.调度事中触发 3.周期调度触发
         public let triggerType: UInt64?
-        
+
         /// 规则配置列表
         public let execRuleConfig: [RuleConfig]?
-        
+
         /// 执行配置
         public let execConfig: RuleExecConfig?
-        
+
         /// 项目ID
         public let projectId: String?
-        
-        public init (ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil) {
+
+        public init(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.triggerType = triggerType
             self.execRuleConfig = execRuleConfig
             self.execConfig = execConfig
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleGroupId = "RuleGroupId"
             case triggerType = "TriggerType"
@@ -48,40 +48,40 @@ extension Wedata {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// CommitRuleGroupTask返回参数结构体
     public struct CommitRuleGroupTaskResponse: TCResponseModel {
         /// 规则组执行id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: RuleGroupExecResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitRuleGroupTaskResponse > {
+    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
         self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 提交规则组运行任务接口
     @inlinable
     public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
         try await self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitRuleGroupTaskResponse > {
+    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
         self.commitRuleGroupTask(CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 提交规则组运行任务接口
     @inlinable
     public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {

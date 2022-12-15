@@ -22,13 +22,13 @@ extension Sqlserver {
     public struct RollbackInstanceRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 回档类型，0-回档的数据库覆盖原库；1-回档的数据库以重命名的形式生成，不覆盖原库
         public let type: UInt64
-        
+
         /// 需要回档的数据库
         public let dBs: [String]
-        
+
         /// 回档目标时间点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -36,14 +36,14 @@ extension Sqlserver {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date
-        
+
         /// 备份恢复到的同一个APPID下的实例ID，不填则恢复到原实例ID
         public let targetInstanceId: String?
-        
+
         /// 按照ReNameRestoreDatabase中的库进行重命名，仅在Type = 1重命名回档方式有效；不填则按照默认方式命名库，DBs参数确定要恢复的库
         public let renameRestore: [RenameRestoreDatabase]?
-        
-        public init (instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil) {
+
+        public init(instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil) {
             self.instanceId = instanceId
             self.type = type
             self.dBs = dBs
@@ -51,7 +51,7 @@ extension Sqlserver {
             self.targetInstanceId = targetInstanceId
             self.renameRestore = renameRestore
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case type = "Type"
@@ -61,29 +61,29 @@ extension Sqlserver {
             case renameRestore = "RenameRestore"
         }
     }
-    
+
     /// RollbackInstance返回参数结构体
     public struct RollbackInstanceResponse: TCResponseModel {
         /// 异步任务ID
         public let flowId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 回档实例
     ///
     /// 本接口（RollbackInstance）用于回档实例
     @inlinable
-    public func rollbackInstance(_ input: RollbackInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackInstanceResponse > {
+    public func rollbackInstance(_ input: RollbackInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackInstanceResponse> {
         self.client.execute(action: "RollbackInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 回档实例
     ///
     /// 本接口（RollbackInstance）用于回档实例
@@ -91,15 +91,15 @@ extension Sqlserver {
     public func rollbackInstance(_ input: RollbackInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackInstanceResponse {
         try await self.client.execute(action: "RollbackInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 回档实例
     ///
     /// 本接口（RollbackInstance）用于回档实例
     @inlinable
-    public func rollbackInstance(instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackInstanceResponse > {
+    public func rollbackInstance(instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackInstanceResponse> {
         self.rollbackInstance(RollbackInstanceRequest(instanceId: instanceId, type: type, dBs: dBs, time: time, targetInstanceId: targetInstanceId, renameRestore: renameRestore), logger: logger, on: eventLoop)
     }
-    
+
     /// 回档实例
     ///
     /// 本接口（RollbackInstance）用于回档实例

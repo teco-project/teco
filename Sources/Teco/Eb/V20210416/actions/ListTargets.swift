@@ -19,23 +19,23 @@ extension Eb {
     public struct ListTargetsRequest: TCRequestModel {
         /// 事件集ID
         public let eventBusId: String
-        
+
         /// 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）
         public let orderBy: String?
-        
+
         /// 事件规则ID
         public let ruleId: String?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
-        
+
         /// 分页偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
         public let order: String?
-        
-        public init (eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil) {
+
+        public init(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil) {
             self.eventBusId = eventBusId
             self.orderBy = orderBy
             self.ruleId = ruleId
@@ -43,7 +43,7 @@ extension Eb {
             self.offset = offset
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventBusId = "EventBusId"
             case orderBy = "OrderBy"
@@ -53,43 +53,43 @@ extension Eb {
             case order = "Order"
         }
     }
-    
+
     /// ListTargets返回参数结构体
     public struct ListTargetsResponse: TCResponseModel {
         /// 目标总数
         public let totalCount: Int64
-        
+
         /// 目标信息
         public let targets: [Target]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case targets = "Targets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取事件目标列表
     @inlinable
-    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTargetsResponse > {
+    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTargetsResponse> {
         self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取事件目标列表
     @inlinable
     public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
         try await self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取事件目标列表
     @inlinable
-    public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTargetsResponse > {
+    public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTargetsResponse> {
         self.listTargets(ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取事件目标列表
     @inlinable
     public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {

@@ -19,10 +19,10 @@ extension Iotvideoindustry {
     public struct DescribeStatisticDetailsRequest: TCRequestModel {
         /// 开始日期，格式【YYYY-MM-DD】
         public let startDate: String
-        
+
         /// 结束日期，格式【YYYY-MM-DD】
         public let endDate: String
-        
+
         /// 统计项。取值范围：
         /// 1.录制设备数：RecordingDevice
         /// 2.非录制设备数：NonRecordingDevice
@@ -32,43 +32,43 @@ extension Iotvideoindustry {
         /// 6. X-P2P峰值带宽: P2PPeakValue
         /// 7. RTMP推流路数(直播推流): LivePushTotal
         public let statisticField: String
-        
-        public init (startDate: String, endDate: String, statisticField: String) {
+
+        public init(startDate: String, endDate: String, statisticField: String) {
             self.startDate = startDate
             self.endDate = endDate
             self.statisticField = statisticField
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startDate = "StartDate"
             case endDate = "EndDate"
             case statisticField = "StatisticField"
         }
     }
-    
+
     /// DescribeStatisticDetails返回参数结构体
     public struct DescribeStatisticDetailsResponse: TCResponseModel {
         /// 统计详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [StatisticItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询指定统计项详情
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
-    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDetailsResponse > {
+    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticDetailsResponse> {
         self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询指定统计项详情
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
@@ -76,15 +76,15 @@ extension Iotvideoindustry {
     public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
         try await self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询指定统计项详情
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
-    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDetailsResponse > {
+    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticDetailsResponse> {
         self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询指定统计项详情
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。

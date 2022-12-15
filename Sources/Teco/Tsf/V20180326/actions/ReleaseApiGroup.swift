@@ -19,48 +19,48 @@ extension Tsf {
     public struct ReleaseApiGroupRequest: TCRequestModel {
         /// Api 分组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// ReleaseApiGroup返回参数结构体
     public struct ReleaseApiGroupResponse: TCResponseModel {
         /// 成功/失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发布Api分组
     @inlinable
-    public func releaseApiGroup(_ input: ReleaseApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseApiGroupResponse > {
+    public func releaseApiGroup(_ input: ReleaseApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseApiGroupResponse> {
         self.client.execute(action: "ReleaseApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发布Api分组
     @inlinable
     public func releaseApiGroup(_ input: ReleaseApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseApiGroupResponse {
         try await self.client.execute(action: "ReleaseApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发布Api分组
     @inlinable
-    public func releaseApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseApiGroupResponse > {
+    public func releaseApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseApiGroupResponse> {
         self.releaseApiGroup(ReleaseApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 发布Api分组
     @inlinable
     public func releaseApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseApiGroupResponse {

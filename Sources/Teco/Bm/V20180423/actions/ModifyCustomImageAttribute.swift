@@ -19,44 +19,44 @@ extension Bm {
     public struct ModifyCustomImageAttributeRequest: TCRequestModel {
         /// 镜像ID
         public let imageId: String
-        
+
         /// 设置新的镜像名
         public let imageName: String?
-        
+
         /// 设置新的镜像描述
         public let imageDescription: String?
-        
-        public init (imageId: String, imageName: String? = nil, imageDescription: String? = nil) {
+
+        public init(imageId: String, imageName: String? = nil, imageDescription: String? = nil) {
             self.imageId = imageId
             self.imageName = imageName
             self.imageDescription = imageDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageId = "ImageId"
             case imageName = "ImageName"
             case imageDescription = "ImageDescription"
         }
     }
-    
+
     /// ModifyCustomImageAttribute返回参数结构体
     public struct ModifyCustomImageAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
     @inlinable
-    public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomImageAttributeResponse > {
+    public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
         self.client.execute(action: "ModifyCustomImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
@@ -64,15 +64,15 @@ extension Bm {
     public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
         try await self.client.execute(action: "ModifyCustomImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
     @inlinable
-    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomImageAttributeResponse > {
+    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
         self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述

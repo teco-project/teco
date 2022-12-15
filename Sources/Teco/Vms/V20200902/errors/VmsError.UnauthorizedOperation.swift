@@ -21,52 +21,52 @@ extension TCVmsError {
             case serviceSuspendDueToArrears = "UnauthorizedOperation.ServiceSuspendDueToArrears"
             case voiceSdkAppidVerifyFail = "UnauthorizedOperation.VoiceSdkAppidVerifyFail"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// SDK AppID 禁用发送语音消息，如有需要请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
         public static var sdkAppidIsDisabled: UnauthorizedOperation {
             UnauthorizedOperation(.sdkAppidIsDisabled)
         }
-        
+
         /// 因腾讯云账号欠费被停止服务，请及时为您的腾讯云账号<a href="https://cloud.tencent.com/document/product/555/7425">充值</a>缴清欠款。
         public static var serviceSuspendDueToArrears: UnauthorizedOperation {
             UnauthorizedOperation(.serviceSuspendDueToArrears)
         }
-        
+
         /// VoiceSdkAppid 校验失败。
         public static var voiceSdkAppidVerifyFail: UnauthorizedOperation {
             UnauthorizedOperation(.voiceSdkAppidVerifyFail)
         }
-        
+
         public func asVmsError() -> TCVmsError {
             let code: TCVmsError.Code
             switch self.error {
-            case .sdkAppidIsDisabled: 
+            case .sdkAppidIsDisabled:
                 code = .unauthorizedOperation_SdkAppidIsDisabled
-            case .serviceSuspendDueToArrears: 
+            case .serviceSuspendDueToArrears:
                 code = .unauthorizedOperation_ServiceSuspendDueToArrears
-            case .voiceSdkAppidVerifyFail: 
+            case .voiceSdkAppidVerifyFail:
                 code = .unauthorizedOperation_VoiceSdkAppidVerifyFail
             }
             return TCVmsError(code, context: self.context)

@@ -19,39 +19,39 @@ extension Iotvideo {
     public struct ImportModelDefinitionRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 数据模板定义
         public let modelSchema: String
-        
-        public init (productId: String, modelSchema: String) {
+
+        public init(productId: String, modelSchema: String) {
             self.productId = productId
             self.modelSchema = modelSchema
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case modelSchema = "ModelSchema"
         }
     }
-    
+
     /// ImportModelDefinition返回参数结构体
     public struct ImportModelDefinitionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
     @inlinable
-    public func importModelDefinition(_ input: ImportModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportModelDefinitionResponse > {
+    public func importModelDefinition(_ input: ImportModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportModelDefinitionResponse> {
         self.client.execute(action: "ImportModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
@@ -59,15 +59,15 @@ extension Iotvideo {
     public func importModelDefinition(_ input: ImportModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportModelDefinitionResponse {
         try await self.client.execute(action: "ImportModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
     @inlinable
-    public func importModelDefinition(productId: String, modelSchema: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportModelDefinitionResponse > {
+    public func importModelDefinition(productId: String, modelSchema: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportModelDefinitionResponse> {
         self.importModelDefinition(ImportModelDefinitionRequest(productId: productId, modelSchema: modelSchema), logger: logger, on: eventLoop)
     }
-    
+
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息

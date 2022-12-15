@@ -19,23 +19,23 @@ extension Tdid {
     public struct GetAuthoritiesListRequest: TCRequestModel {
         /// 页码，从1开始
         public let pageNumber: Int64
-        
+
         /// 每页大小
         public let pageSize: Int64
-        
+
         /// Did信息
         public let did: String?
-        
+
         /// 权威认证 1:已认证，2:未认证
         public let status: Int64?
-        
-        public init (pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil) {
+
+        public init(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.did = did
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
             case pageSize = "PageSize"
@@ -43,43 +43,43 @@ extension Tdid {
             case status = "Status"
         }
     }
-    
+
     /// GetAuthoritiesList返回参数结构体
     public struct GetAuthoritiesListResponse: TCResponseModel {
         /// 数据集合
         public let resultList: [Authority]
-        
+
         /// 总数
         public let allCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resultList = "ResultList"
             case allCount = "AllCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 权威机构列表
     @inlinable
-    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAuthoritiesListResponse > {
+    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
         self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 权威机构列表
     @inlinable
     public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
         try await self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 权威机构列表
     @inlinable
-    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAuthoritiesListResponse > {
+    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
         self.getAuthoritiesList(GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 权威机构列表
     @inlinable
     public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {

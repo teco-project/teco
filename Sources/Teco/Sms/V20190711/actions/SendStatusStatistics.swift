@@ -19,30 +19,30 @@ extension Sms {
     public struct SendStatusStatisticsRequest: TCRequestModel {
         /// 拉取起始时间，yyyymmddhh 需要拉取的起始时间，精确到小时。
         public let startDateTime: UInt64
-        
+
         /// 结束时间，yyyymmddhh 需要拉取的截止时间，精确到小时
         /// 注：EndDataTime 必须大于 StartDateTime。
         public let endDataTime: UInt64
-        
+
         /// 短信SdkAppid在 [短信控制台](https://console.cloud.tencent.com/smsv2) 添加应用后生成的实际SdkAppid，示例如1400006666。
         public let smsSdkAppid: String
-        
+
         /// 最大上限。
         /// 注：目前固定设置为0。
         public let limit: UInt64
-        
+
         /// 偏移量。
         /// 注：目前固定设置为0。
         public let offset: UInt64
-        
-        public init (startDateTime: UInt64, endDataTime: UInt64, smsSdkAppid: String, limit: UInt64, offset: UInt64) {
+
+        public init(startDateTime: UInt64, endDataTime: UInt64, smsSdkAppid: String, limit: UInt64, offset: UInt64) {
             self.startDateTime = startDateTime
             self.endDataTime = endDataTime
             self.smsSdkAppid = smsSdkAppid
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startDateTime = "StartDateTime"
             case endDataTime = "EndDataTime"
@@ -51,31 +51,31 @@ extension Sms {
             case offset = "Offset"
         }
     }
-    
+
     /// SendStatusStatistics返回参数结构体
     public struct SendStatusStatisticsResponse: TCResponseModel {
         /// 发送数据统计响应包体。
         public let sendStatusStatistics: SendStatusStatistics
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sendStatusStatistics = "SendStatusStatistics"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发送短信数据统计
     ///
     /// 统计用户发送短信的数据。
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func sendStatusStatistics(_ input: SendStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendStatusStatisticsResponse > {
+    public func sendStatusStatistics(_ input: SendStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendStatusStatisticsResponse> {
         self.client.execute(action: "SendStatusStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发送短信数据统计
     ///
     /// 统计用户发送短信的数据。
@@ -85,17 +85,17 @@ extension Sms {
     public func sendStatusStatistics(_ input: SendStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendStatusStatisticsResponse {
         try await self.client.execute(action: "SendStatusStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发送短信数据统计
     ///
     /// 统计用户发送短信的数据。
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func sendStatusStatistics(startDateTime: UInt64, endDataTime: UInt64, smsSdkAppid: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendStatusStatisticsResponse > {
+    public func sendStatusStatistics(startDateTime: UInt64, endDataTime: UInt64, smsSdkAppid: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendStatusStatisticsResponse> {
         self.sendStatusStatistics(SendStatusStatisticsRequest(startDateTime: startDateTime, endDataTime: endDataTime, smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 发送短信数据统计
     ///
     /// 统计用户发送短信的数据。

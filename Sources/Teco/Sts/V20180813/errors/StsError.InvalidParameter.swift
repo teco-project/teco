@@ -31,122 +31,122 @@ extension TCStsError {
             case tempCodeNotAvaliable = "InvalidParameter.TempCodeNotAvaliable"
             case webIdentityTokenError = "InvalidParameter.WebIdentityTokenError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不支持该类型密钥。
         public static var accessKeyNotSupport: InvalidParameter {
             InvalidParameter(.accessKeyNotSupport)
         }
-        
+
         /// 账号不存在或不可用。
         public static var accountNotAvaliable: InvalidParameter {
             InvalidParameter(.accountNotAvaliable)
         }
-        
+
         /// 扩展策略过大。
         public static var extendStrategyOverSize: InvalidParameter {
             InvalidParameter(.extendStrategyOverSize)
         }
-        
+
         /// 越权访问资源。
         public static var grantOtherResource: InvalidParameter {
             InvalidParameter(.grantOtherResource)
         }
-        
+
         /// 超过频率限制。
         public static var overLimit: InvalidParameter {
             InvalidParameter(.overLimit)
         }
-        
+
         /// 过期时间超过阈值。
         public static var overTimeError: InvalidParameter {
             InvalidParameter(.overTimeError)
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         /// 策略过长。
         public static var policyTooLong: InvalidParameter {
             InvalidParameter(.policyTooLong)
         }
-        
+
         /// 策略资源六段式错误。
         public static var resouceError: InvalidParameter {
             InvalidParameter(.resouceError)
         }
-        
+
         /// 策略语法错误。
         public static var strategyFormatError: InvalidParameter {
             InvalidParameter(.strategyFormatError)
         }
-        
+
         /// 非法策略。
         public static var strategyInvalid: InvalidParameter {
             InvalidParameter(.strategyInvalid)
         }
-        
+
         /// 临时Code无效。
         public static var tempCodeNotAvaliable: InvalidParameter {
             InvalidParameter(.tempCodeNotAvaliable)
         }
-        
+
         /// WebIdentityToken参数错误。
         public static var webIdentityTokenError: InvalidParameter {
             InvalidParameter(.webIdentityTokenError)
         }
-        
+
         public func asStsError() -> TCStsError {
             let code: TCStsError.Code
             switch self.error {
-            case .accessKeyNotSupport: 
+            case .accessKeyNotSupport:
                 code = .invalidParameter_AccessKeyNotSupport
-            case .accountNotAvaliable: 
+            case .accountNotAvaliable:
                 code = .invalidParameter_AccountNotAvaliable
-            case .extendStrategyOverSize: 
+            case .extendStrategyOverSize:
                 code = .invalidParameter_ExtendStrategyOverSize
-            case .grantOtherResource: 
+            case .grantOtherResource:
                 code = .invalidParameter_GrantOtherResource
-            case .overLimit: 
+            case .overLimit:
                 code = .invalidParameter_OverLimit
-            case .overTimeError: 
+            case .overTimeError:
                 code = .invalidParameter_OverTimeError
-            case .paramError: 
+            case .paramError:
                 code = .invalidParameter_ParamError
-            case .policyTooLong: 
+            case .policyTooLong:
                 code = .invalidParameter_PolicyTooLong
-            case .resouceError: 
+            case .resouceError:
                 code = .invalidParameter_ResouceError
-            case .strategyFormatError: 
+            case .strategyFormatError:
                 code = .invalidParameter_StrategyFormatError
-            case .strategyInvalid: 
+            case .strategyInvalid:
                 code = .invalidParameter_StrategyInvalid
-            case .tempCodeNotAvaliable: 
+            case .tempCodeNotAvaliable:
                 code = .invalidParameter_TempCodeNotAvaliable
-            case .webIdentityTokenError: 
+            case .webIdentityTokenError:
                 code = .invalidParameter_WebIdentityTokenError
             }
             return TCStsError(code, context: self.context)

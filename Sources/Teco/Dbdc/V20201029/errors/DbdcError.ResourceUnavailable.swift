@@ -19,38 +19,38 @@ extension TCDbdcError {
         enum Code: String {
             case resourceStatusAbnormalError = "ResourceUnavailable.ResourceStatusAbnormalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源状态异常。
         public static var resourceStatusAbnormalError: ResourceUnavailable {
             ResourceUnavailable(.resourceStatusAbnormalError)
         }
-        
+
         public func asDbdcError() -> TCDbdcError {
             let code: TCDbdcError.Code
             switch self.error {
-            case .resourceStatusAbnormalError: 
+            case .resourceStatusAbnormalError:
                 code = .resourceUnavailable_ResourceStatusAbnormalError
             }
             return TCDbdcError(code, context: self.context)

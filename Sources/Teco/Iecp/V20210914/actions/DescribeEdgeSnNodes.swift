@@ -19,23 +19,23 @@ extension Iecp {
     public struct DescribeEdgeSnNodesRequest: TCRequestModel {
         /// 边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 根据节点名称模糊匹配
         public let namePattern: String?
-        
+
         /// 根据设备SN模糊匹配
         public let snPattern: String?
-        
+
         /// 根据备注批次信息模糊匹配
         public let remarkPattern: String?
-        
+
         /// 默认0
         public let offset: UInt64?
-        
+
         /// 默认20
         public let limit: UInt64?
-        
-        public init (edgeUnitId: UInt64, namePattern: String? = nil, snPattern: String? = nil, remarkPattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(edgeUnitId: UInt64, namePattern: String? = nil, snPattern: String? = nil, remarkPattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.edgeUnitId = edgeUnitId
             self.namePattern = namePattern
             self.snPattern = snPattern
@@ -43,7 +43,7 @@ extension Iecp {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case namePattern = "NamePattern"
@@ -53,45 +53,45 @@ extension Iecp {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeEdgeSnNodes返回参数结构体
     public struct DescribeEdgeSnNodesResponse: TCResponseModel {
         /// 满足条件的总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 节点详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeSet: [EdgeDracoNodeInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case nodeSet = "NodeSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询预注册节点列表
     @inlinable
-    public func describeEdgeSnNodes(_ input: DescribeEdgeSnNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeSnNodesResponse > {
+    public func describeEdgeSnNodes(_ input: DescribeEdgeSnNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeSnNodesResponse> {
         self.client.execute(action: "DescribeEdgeSnNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询预注册节点列表
     @inlinable
     public func describeEdgeSnNodes(_ input: DescribeEdgeSnNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeSnNodesResponse {
         try await self.client.execute(action: "DescribeEdgeSnNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询预注册节点列表
     @inlinable
-    public func describeEdgeSnNodes(edgeUnitId: UInt64, namePattern: String? = nil, snPattern: String? = nil, remarkPattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeSnNodesResponse > {
+    public func describeEdgeSnNodes(edgeUnitId: UInt64, namePattern: String? = nil, snPattern: String? = nil, remarkPattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeSnNodesResponse> {
         self.describeEdgeSnNodes(DescribeEdgeSnNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, snPattern: snPattern, remarkPattern: remarkPattern, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询预注册节点列表
     @inlinable
     public func describeEdgeSnNodes(edgeUnitId: UInt64, namePattern: String? = nil, snPattern: String? = nil, remarkPattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeSnNodesResponse {

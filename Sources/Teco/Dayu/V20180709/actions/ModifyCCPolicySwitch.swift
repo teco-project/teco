@@ -19,23 +19,23 @@ extension Dayu {
     public struct ModifyCCPolicySwitchRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 策略ID
         public let setId: String
-        
+
         /// 开关状态
         public let `switch`: UInt64
-        
-        public init (business: String, id: String, setId: String, switch: UInt64) {
+
+        public init(business: String, id: String, setId: String, switch: UInt64) {
             self.business = business
             self.id = id
             self.setId = setId
             self.`switch` = `switch`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -43,39 +43,39 @@ extension Dayu {
             case `switch` = "Switch"
         }
     }
-    
+
     /// ModifyCCPolicySwitch返回参数结构体
     public struct ModifyCCPolicySwitchResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改CC自定义策略开关
     @inlinable
-    public func modifyCCPolicySwitch(_ input: ModifyCCPolicySwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCPolicySwitchResponse > {
+    public func modifyCCPolicySwitch(_ input: ModifyCCPolicySwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPolicySwitchResponse> {
         self.client.execute(action: "ModifyCCPolicySwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改CC自定义策略开关
     @inlinable
     public func modifyCCPolicySwitch(_ input: ModifyCCPolicySwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPolicySwitchResponse {
         try await self.client.execute(action: "ModifyCCPolicySwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改CC自定义策略开关
     @inlinable
-    public func modifyCCPolicySwitch(business: String, id: String, setId: String, switch: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCPolicySwitchResponse > {
+    public func modifyCCPolicySwitch(business: String, id: String, setId: String, switch: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPolicySwitchResponse> {
         self.modifyCCPolicySwitch(ModifyCCPolicySwitchRequest(business: business, id: id, setId: setId, switch: `switch`), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改CC自定义策略开关
     @inlinable
     public func modifyCCPolicySwitch(business: String, id: String, setId: String, switch: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPolicySwitchResponse {

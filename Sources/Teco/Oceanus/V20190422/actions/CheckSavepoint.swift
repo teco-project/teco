@@ -19,27 +19,27 @@ extension Oceanus {
     public struct CheckSavepointRequest: TCRequestModel {
         /// 作业 id
         public let jobId: String
-        
+
         /// 快照资源 id
         public let serialId: String
-        
+
         /// 快照类型 1: savepoint；2: checkpoint；3: cancelWithSavepoint
         public let recordType: Int64
-        
+
         /// 快照路径，目前只支持 cos 路径
         public let savepointPath: String
-        
+
         /// 工作空间 id
         public let workSpaceId: String
-        
-        public init (jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String) {
+
+        public init(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String) {
             self.jobId = jobId
             self.serialId = serialId
             self.recordType = recordType
             self.savepointPath = savepointPath
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case serialId = "SerialId"
@@ -48,43 +48,43 @@ extension Oceanus {
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// CheckSavepoint返回参数结构体
     public struct CheckSavepointResponse: TCResponseModel {
         /// 资源 id
         public let serialId: String
-        
+
         /// 1=可用，2=不可用
         public let savepointStatus: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serialId = "SerialId"
             case savepointStatus = "SavepointStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 检查快照是否可用
     @inlinable
-    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckSavepointResponse > {
+    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSavepointResponse> {
         self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 检查快照是否可用
     @inlinable
     public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
         try await self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 检查快照是否可用
     @inlinable
-    public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckSavepointResponse > {
+    public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSavepointResponse> {
         self.checkSavepoint(CheckSavepointRequest(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 检查快照是否可用
     @inlinable
     public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {

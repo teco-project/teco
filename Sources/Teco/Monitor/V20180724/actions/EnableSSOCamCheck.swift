@@ -19,39 +19,39 @@ extension Monitor {
     public struct EnableSSOCamCheckRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
-        
+
         /// 是否开启 cam 鉴权，true为开启，false 为不开启
         public let enableSSOCamCheck: Bool
-        
-        public init (instanceId: String, enableSSOCamCheck: Bool) {
+
+        public init(instanceId: String, enableSSOCamCheck: Bool) {
             self.instanceId = instanceId
             self.enableSSOCamCheck = enableSSOCamCheck
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case enableSSOCamCheck = "EnableSSOCamCheck"
         }
     }
-    
+
     /// EnableSSOCamCheck返回参数结构体
     public struct EnableSSOCamCheckResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权
     @inlinable
-    public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSSOCamCheckResponse > {
+    public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableSSOCamCheckResponse> {
         self.client.execute(action: "EnableSSOCamCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权
@@ -59,15 +59,15 @@ extension Monitor {
     public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
         try await self.client.execute(action: "EnableSSOCamCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权
     @inlinable
-    public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSSOCamCheckResponse > {
+    public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableSSOCamCheckResponse> {
         self.enableSSOCamCheck(EnableSSOCamCheckRequest(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权

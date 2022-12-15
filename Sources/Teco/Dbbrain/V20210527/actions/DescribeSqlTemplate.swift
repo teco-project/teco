@@ -19,23 +19,23 @@ extension Dbbrain {
     public struct DescribeSqlTemplateRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 数据库名。
         public let schema: String
-        
+
         /// SQL语句。
         public let sqlText: String
-        
+
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, schema: String, sqlText: String, product: String? = nil) {
+
+        public init(instanceId: String, schema: String, sqlText: String, product: String? = nil) {
             self.instanceId = instanceId
             self.schema = schema
             self.sqlText = sqlText
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case schema = "Schema"
@@ -43,27 +43,27 @@ extension Dbbrain {
             case product = "Product"
         }
     }
-    
+
     /// DescribeSqlTemplate返回参数结构体
     public struct DescribeSqlTemplateResponse: TCResponseModel {
         /// 数据库名。
         public let schema: String
-        
+
         /// SQL语句。
         public let sqlText: String
-        
+
         /// SQL类型。
         public let sqlType: String
-        
+
         /// SQL模版内容。
         public let sqlTemplate: String
-        
+
         /// SQL模版ID。
         public let sqlId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case schema = "Schema"
             case sqlText = "SqlText"
@@ -73,15 +73,15 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询SQL模板
     ///
     /// 查询SQL模板。
     @inlinable
-    public func describeSqlTemplate(_ input: DescribeSqlTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlTemplateResponse > {
+    public func describeSqlTemplate(_ input: DescribeSqlTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlTemplateResponse> {
         self.client.execute(action: "DescribeSqlTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SQL模板
     ///
     /// 查询SQL模板。
@@ -89,15 +89,15 @@ extension Dbbrain {
     public func describeSqlTemplate(_ input: DescribeSqlTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlTemplateResponse {
         try await self.client.execute(action: "DescribeSqlTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询SQL模板
     ///
     /// 查询SQL模板。
     @inlinable
-    public func describeSqlTemplate(instanceId: String, schema: String, sqlText: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlTemplateResponse > {
+    public func describeSqlTemplate(instanceId: String, schema: String, sqlText: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlTemplateResponse> {
         self.describeSqlTemplate(DescribeSqlTemplateRequest(instanceId: instanceId, schema: schema, sqlText: sqlText, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SQL模板
     ///
     /// 查询SQL模板。

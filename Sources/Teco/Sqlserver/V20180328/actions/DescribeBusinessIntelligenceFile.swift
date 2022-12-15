@@ -19,29 +19,29 @@ extension Sqlserver {
     public struct DescribeBusinessIntelligenceFileRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 文件名称
         public let fileName: String?
-        
+
         /// 迁移任务状态集合,1-初始化待部署 2-部署中 3-部署成功 4-部署失败
         public let statusSet: [Int64]?
-        
+
         /// 文件类型 FLAT-平面文件，SSIS商业智能服务项目文件
         public let fileType: String?
-        
+
         /// 分页，页大小，范围1-100
         public let limit: Int64?
-        
+
         /// 分页,页数，默认0
         public let offset: Int64?
-        
+
         /// 排序字段，可选值file_name,create_time,start_time
         public let orderBy: String?
-        
+
         /// 排序方式，desc,asc
         public let orderByType: String?
-        
-        public init (instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
+
+        public init(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.fileName = fileName
             self.statusSet = statusSet
@@ -51,7 +51,7 @@ extension Sqlserver {
             self.orderBy = orderBy
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case fileName = "FileName"
@@ -63,33 +63,33 @@ extension Sqlserver {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeBusinessIntelligenceFile返回参数结构体
     public struct DescribeBusinessIntelligenceFileResponse: TCResponseModel {
         /// 文件部署任务总数
         public let totalCount: Int64
-        
+
         /// 文件部署任务集合
         public let backupMigrationSet: [BusinessIntelligenceFile]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case backupMigrationSet = "BackupMigrationSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询商业智能服务需要的文件
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     @inlinable
-    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBusinessIntelligenceFileResponse > {
+    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessIntelligenceFileResponse> {
         self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询商业智能服务需要的文件
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
@@ -97,15 +97,15 @@ extension Sqlserver {
     public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
         try await self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询商业智能服务需要的文件
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     @inlinable
-    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBusinessIntelligenceFileResponse > {
+    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessIntelligenceFileResponse> {
         self.describeBusinessIntelligenceFile(DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询商业智能服务需要的文件
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。

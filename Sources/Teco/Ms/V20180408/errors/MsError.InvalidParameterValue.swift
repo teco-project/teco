@@ -26,87 +26,87 @@ extension TCMsError {
             case invalidOrderField = "InvalidParameterValue.InvalidOrderField"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不能同时指定ItemIds和Filters。
         public static var invalidCoexistItemIdsFilters: InvalidParameterValue {
             InvalidParameterValue(.invalidCoexistItemIdsFilters)
         }
-        
+
         /// 无效的过滤器。
         public static var invalidFilter: InvalidParameterValue {
             InvalidParameterValue(.invalidFilter)
         }
-        
+
         /// ItemIds不合法。
         public static var invalidItemIds: InvalidParameterValue {
             InvalidParameterValue(.invalidItemIds)
         }
-        
+
         /// Limit不是有效的数字。
         public static var invalidLimit: InvalidParameterValue {
             InvalidParameterValue(.invalidLimit)
         }
-        
+
         /// Offset不是有效的数字。
         public static var invalidOffset: InvalidParameterValue {
             InvalidParameterValue(.invalidOffset)
         }
-        
+
         /// OrderDirection参数。
         public static var invalidOrderDirection: InvalidParameterValue {
             InvalidParameterValue(.invalidOrderDirection)
         }
-        
+
         /// OrderField取值不合法。
         public static var invalidOrderField: InvalidParameterValue {
             InvalidParameterValue(.invalidOrderField)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {
-            case .invalidCoexistItemIdsFilters: 
+            case .invalidCoexistItemIdsFilters:
                 code = .invalidParameterValue_InvalidCoexistItemIdsFilters
-            case .invalidFilter: 
+            case .invalidFilter:
                 code = .invalidParameterValue_InvalidFilter
-            case .invalidItemIds: 
+            case .invalidItemIds:
                 code = .invalidParameterValue_InvalidItemIds
-            case .invalidLimit: 
+            case .invalidLimit:
                 code = .invalidParameterValue_InvalidLimit
-            case .invalidOffset: 
+            case .invalidOffset:
                 code = .invalidParameterValue_InvalidOffset
-            case .invalidOrderDirection: 
+            case .invalidOrderDirection:
                 code = .invalidParameterValue_InvalidOrderDirection
-            case .invalidOrderField: 
+            case .invalidOrderField:
                 code = .invalidParameterValue_InvalidOrderField
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCMsError(code, context: self.context)

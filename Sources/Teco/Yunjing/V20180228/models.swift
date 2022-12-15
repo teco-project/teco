@@ -22,27 +22,27 @@ extension Yunjing {
     public struct Account: TCOutputModel {
         /// 唯一ID。
         public let id: UInt64
-        
+
         /// 云镜客户端唯一Uuid
         public let uuid: String
-        
+
         /// 主机内网IP。
         public let machineIp: String
-        
+
         /// 主机名称。
         public let machineName: String
-        
+
         /// 帐号名。
         public let username: String
-        
+
         /// 帐号所属组。
         public let groups: String
-        
+
         /// 帐号类型。
         /// <li>ORDINARY：普通帐号</li>
         /// <li>SUPPER：超级管理员帐号</li>
         public let privilege: String
-        
+
         /// 帐号创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -50,7 +50,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var accountCreateTime: Date
-        
+
         /// 帐号最后登录时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -58,7 +58,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastLoginTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -71,39 +71,39 @@ extension Yunjing {
             case lastLoginTime = "LastLoginTime"
         }
     }
-    
+
     /// 帐号统计数据。
     public struct AccountStatistics: TCOutputModel {
         /// 用户名。
         public let username: String
-        
+
         /// 主机数量。
         public let machineNum: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case username = "Username"
             case machineNum = "MachineNum"
         }
     }
-    
+
     /// 主机漏洞信息
     public struct AgentVul: TCOutputModel {
         /// 漏洞ID。
         public let id: UInt64
-        
+
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 漏洞名称。
         public let vulName: String
-        
+
         /// 漏洞危害等级。
         /// <li>HIGH：高危</li>
         /// <li>MIDDLE：中危</li>
         /// <li>LOW：低危</li>
         /// <li>NOTICE：提示</li>
         public let vulLevel: String
-        
+
         /// 最后扫描时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -111,18 +111,18 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastScanTime: Date
-        
+
         /// 漏洞描述。
         public let description: String
-        
+
         /// 漏洞种类ID。
         public let vulId: UInt64
-        
+
         /// 漏洞状态。
         /// <li>UN_OPERATED : 待处理</li>
         /// <li>FIXED : 已修复</li>
         public let vulStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case machineIp = "MachineIp"
@@ -134,48 +134,48 @@ extension Yunjing {
             case vulStatus = "VulStatus"
         }
     }
-    
+
     /// 高危命令数据
     public struct BashEvent: TCOutputModel {
         /// ID
         public let id: UInt64
-        
+
         /// 云镜ID
         public let uuid: String
-        
+
         /// 主机ID
         public let quuid: String
-        
+
         /// 主机内网IP
         public let hostip: String
-        
+
         /// 执行用户名
         public let user: String
-        
+
         /// 平台类型
         public let platform: UInt64
-        
+
         /// 执行命令
         public let bashCmd: String
-        
+
         /// 规则ID
         public let ruleId: UInt64
-        
+
         /// 规则名称
         public let ruleName: String
-        
+
         /// 规则等级
         public let ruleLevel: UInt64
-        
+
         /// 处理状态
         public let status: UInt64
-        
+
         /// 发生时间
         public let createTime: String
-        
+
         /// 主机名
         public let machineName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -192,45 +192,45 @@ extension Yunjing {
             case machineName = "MachineName"
         }
     }
-    
+
     /// 高危命令规则
     public struct BashRule: TCOutputModel {
         /// 规则ID
         public let id: UInt64
-        
+
         /// 客户端ID
         public let uuid: String
-        
+
         /// 规则名称
         public let name: String
-        
+
         /// 危险等级(1: 高危 2:中危 3: 低危)
         public let level: UInt64
-        
+
         /// 正则表达式
         public let rule: String
-        
+
         /// 规则描述
         public let decription: String
-        
+
         /// 操作人
         public let `operator`: String
-        
+
         /// 是否全局规则
         public let isGlobal: UInt64
-        
+
         /// 状态 (0: 有效 1: 无效)
         public let status: UInt64
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 修改时间
         public let modifyTime: String
-        
+
         /// 主机IP
         public let hostip: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -246,39 +246,39 @@ extension Yunjing {
             case hostip = "Hostip"
         }
     }
-    
+
     /// 暴力破解列表
     public struct BruteAttack: TCOutputModel {
         /// 事件ID。
         public let id: UInt64
-        
+
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 破解事件状态
         /// <li>BRUTEATTACK_FAIL_ACCOUNT： 暴力破解事件-失败(存在帐号)  </li>
         /// <li>BRUTEATTACK_FAIL_NOACCOUNT：暴力破解事件-失败(帐号不存在)</li>
         /// <li>BRUTEATTACK_SUCCESS：暴力破解事件-成功</li>
         public let status: String
-        
+
         /// 用户名称。
         public let userName: String
-        
+
         /// 城市ID。
         public let city: UInt64
-        
+
         /// 国家ID。
         public let country: UInt64
-        
+
         /// 省份ID。
         public let province: UInt64
-        
+
         /// 来源IP。
         public let srcIp: String
-        
+
         /// 尝试破解次数。
         public let count: UInt64
-        
+
         /// 发生时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -286,22 +286,22 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 主机名称。
         public let machineName: String
-        
+
         /// 云镜客户端唯一标识UUID。
         public let uuid: String
-        
+
         /// 是否专业版。
         public let isProVersion: Bool
-        
+
         /// 阻断状态。
         public let banStatus: String
-        
+
         /// 机器UUID
         public let quuid: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case machineIp = "MachineIp"
@@ -320,55 +320,55 @@ extension Yunjing {
             case quuid = "Quuid"
         }
     }
-    
+
     /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
     public struct ChargePrepaid: TCInputModel {
         /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
         public let period: UInt64
-        
+
         /// 自动续费标识。取值范围：
         /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
         /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li>
         /// <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
-        
-        public init (period: UInt64, renewFlag: String? = nil) {
+
+        public init(period: UInt64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case renewFlag = "RenewFlag"
         }
     }
-    
+
     /// 组件列表数据。
     public struct Component: TCOutputModel {
         /// 唯一ID。
         public let id: UInt64
-        
+
         /// 云镜客户端唯一Uuid。
         public let uuid: String
-        
+
         /// 主机内网IP。
         public let machineIp: String
-        
+
         /// 主机名。
         public let machineName: String
-        
+
         /// 组件版本号。
         public let componentVersion: String
-        
+
         /// 组件类型。
         /// <li>SYSTEM：系统组件</li>
         /// <li>WEB：Web组件</li>
         public let componentType: String
-        
+
         /// 组件名称。
         public let componentName: String
-        
+
         /// 组件检测更新时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -376,7 +376,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -388,26 +388,26 @@ extension Yunjing {
             case modifyTime = "ModifyTime"
         }
     }
-    
+
     /// 组件统计数据。
     public struct ComponentStatistics: TCOutputModel {
         /// 组件ID。
         public let id: UInt64
-        
+
         /// 主机数量。
         public let machineNum: UInt64
-        
+
         /// 组件名称。
         public let componentName: String
-        
+
         /// 组件类型。
         /// <li>WEB：Web组件</li>
         /// <li>SYSTEM：系统组件</li>
         public let componentType: String
-        
+
         /// 组件描述。
         public let description: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case machineNum = "MachineNum"
@@ -416,51 +416,51 @@ extension Yunjing {
             case description = "Description"
         }
     }
-    
+
     /// 网络攻击日志
     public struct DefendAttackLog: TCOutputModel {
         /// 日志ID
         public let id: UInt64
-        
+
         /// 客户端ID
         public let uuid: String
-        
+
         /// 来源IP
         public let srcIp: String
-        
+
         /// 来源端口
         public let srcPort: UInt64
-        
+
         /// 攻击方式
         public let httpMethod: String
-        
+
         /// 攻击描述
         public let httpCgi: String
-        
+
         /// 攻击参数
         public let httpParam: String
-        
+
         /// 威胁类型
         public let vulType: String
-        
+
         /// 攻击时间
         public let createdAt: String
-        
+
         /// 目标服务器IP
         public let machineIp: String
-        
+
         /// 目标服务器名称
         public let machineName: String
-        
+
         /// 目标IP
         public let dstIp: String
-        
+
         /// 目标端口
         public let dstPort: UInt64
-        
+
         /// 攻击内容
         public let httpContent: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -478,7 +478,7 @@ extension Yunjing {
             case httpContent = "HttpContent"
         }
     }
-    
+
     /// 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
     /// 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
     /// 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
@@ -487,44 +487,44 @@ extension Yunjing {
     public struct Filter: TCInputModel {
         /// 过滤键的名称。
         public let name: String
-        
+
         /// 一个或者多个过滤值。
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 账号变更历史数据。
     public struct HistoryAccount: TCOutputModel {
         /// 唯一ID。
         public let id: UInt64
-        
+
         /// 云镜客户端唯一Uuid。
         public let uuid: String
-        
+
         /// 主机内网IP。
         public let machineIp: String
-        
+
         /// 主机名。
         public let machineName: String
-        
+
         /// 帐号名。
         public let username: String
-        
+
         /// 帐号变更类型。
         /// <li>CREATE：表示新增帐号</li>
         /// <li>MODIFY：表示修改帐号</li>
         /// <li>DELETE：表示删除帐号</li>
         public let modifyType: String
-        
+
         /// 变更时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -532,7 +532,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -543,18 +543,18 @@ extension Yunjing {
             case modifyTime = "ModifyTime"
         }
     }
-    
+
     /// 受影响主机信息
     public struct ImpactedHost: TCOutputModel {
         /// 漏洞ID。
         public let id: UInt64
-        
+
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 主机名称。
         public let machineName: String
-        
+
         /// 最后检测时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -562,25 +562,25 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastScanTime: Date
-        
+
         /// 漏洞状态。
         /// <li>UN_OPERATED ：待处理</li>
         /// <li>SCANING : 扫描中</li>
         /// <li>FIXED : 已修复</li>
         public let vulStatus: String
-        
+
         /// 云镜客户端唯一标识UUID。
         public let uuid: String
-        
+
         /// 漏洞描述。
         public let description: String
-        
+
         /// 漏洞种类ID。
         public let vulId: UInt64
-        
+
         /// 是否为专业版。
         public let isProVersion: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case machineIp = "MachineIp"
@@ -593,27 +593,27 @@ extension Yunjing {
             case isProVersion = "IsProVersion"
         }
     }
-    
+
     /// 异地登录白名单
     public struct LoginWhiteLists: TCOutputModel {
         /// 记录ID
         public let id: UInt64
-        
+
         /// 云镜客户端ID
         public let uuid: String
-        
+
         /// 白名单地域
         public let places: [Place]
-        
+
         /// 白名单用户（多个用户逗号隔开）
         public let userName: String
-        
+
         /// 白名单IP（多个IP逗号隔开）
         public let srcIp: String
-        
+
         /// 是否为全局规则
         public let isGlobal: Bool
-        
+
         /// 创建白名单时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -621,7 +621,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 修改白名单时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -629,19 +629,19 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date
-        
+
         /// 机器名
         public let machineName: String
-        
+
         /// 机器IP
         public let hostIp: String
-        
+
         /// 起始时间
         public let startTime: String
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -657,34 +657,34 @@ extension Yunjing {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 白名单规则
     public struct LoginWhiteListsRule: TCInputModel {
         /// 加白地域
         public let places: [Place]
-        
+
         /// 加白源IP，支持网段，多个IP以逗号隔开
         public let srcIp: String
-        
+
         /// 加白用户名，多个用户名以逗号隔开
         public let userName: String
-        
+
         /// 是否对全局生效
         public let isGlobal: Bool
-        
+
         /// 白名单生效的机器
         public let hostIp: String
-        
+
         /// 规则ID，用于更新规则
         public let id: UInt64?
-        
+
         /// 起始时间
         public let startTime: String?
-        
+
         /// 结束时间
         public let endTime: String?
-        
-        public init (places: [Place], srcIp: String, userName: String, isGlobal: Bool, hostIp: String, id: UInt64? = nil, startTime: String? = nil, endTime: String? = nil) {
+
+        public init(places: [Place], srcIp: String, userName: String, isGlobal: Bool, hostIp: String, id: UInt64? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.places = places
             self.srcIp = srcIp
             self.userName = userName
@@ -694,7 +694,7 @@ extension Yunjing {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case places = "Places"
             case srcIp = "SrcIp"
@@ -706,70 +706,70 @@ extension Yunjing {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 主机列表
     public struct Machine: TCOutputModel {
         /// 主机名称。
         public let machineName: String
-        
+
         /// 主机系统。
         public let machineOs: String
-        
+
         /// 主机状态。
         /// <li>OFFLINE: 离线  </li>
         /// <li>ONLINE: 在线</li>
         /// <li>MACHINE_STOPPED: 已关机</li>
         public let machineStatus: String
-        
+
         /// 云镜客户端唯一Uuid，若客户端长时间不在线将返回空字符。
         public let uuid: String
-        
+
         /// CVM或BM机器唯一Uuid。
         public let quuid: String
-        
+
         /// 漏洞数。
         public let vulNum: Int64
-        
+
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 是否是专业版。
         /// <li>true： 是</li>
         /// <li>false：否</li>
         public let isProVersion: Bool
-        
+
         /// 主机外网IP。
         public let machineWanIp: String
-        
+
         /// 主机状态。
         /// <li>POSTPAY: 表示后付费，即按量计费  </li>
         /// <li>PREPAY: 表示预付费，即包年包月</li>
         public let payMode: String
-        
+
         /// 木马数。
         public let malwareNum: Int64
-        
+
         /// 标签信息
         public let tag: [MachineTag]
-        
+
         /// 基线风险数。
         public let baselineNum: Int64
-        
+
         /// 网络风险数。
         public let cyberAttackNum: Int64
-        
+
         /// 风险状态。
         /// <li>SAFE：安全</li>
         /// <li>RISK：风险</li>
         /// <li>UNKNOWN：未知</li>
         public let securityStatus: String
-        
+
         /// 入侵事件数
         public let invasionNum: Int64
-        
+
         /// 地域信息
         public let regionInfo: RegionInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case machineName = "MachineName"
             case machineOs = "MachineOs"
@@ -790,60 +790,60 @@ extension Yunjing {
             case regionInfo = "RegionInfo"
         }
     }
-    
+
     /// 服务器标签信息
     public struct MachineTag: TCOutputModel {
         /// 关联标签ID
         public let rid: Int64
-        
+
         /// 标签名
         public let name: String
-        
+
         /// 标签ID
         public let tagId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case rid = "Rid"
             case name = "Name"
             case tagId = "TagId"
         }
     }
-    
+
     /// 恶意请求数据。
     public struct MaliciousRequest: TCOutputModel {
         /// 记录ID。
         public let id: UInt64
-        
+
         /// 云镜客户端UUID。
         public let uuid: String
-        
+
         /// 主机内网IP。
         public let machineIp: String
-        
+
         /// 主机名。
         public let machineName: String
-        
+
         /// 恶意请求域名。
         public let domain: String
-        
+
         /// 恶意请求数。
         public let count: UInt64
-        
+
         /// 进程名。
         public let processName: String
-        
+
         /// 记录状态。
         /// <li>UN_OPERATED：待处理</li>
         /// <li>TRUSTED：已信任</li>
         /// <li>UN_TRUSTED：已取消信任</li>
         public let status: String
-        
+
         /// 恶意请求域名描述。
         public let description: String
-        
+
         /// 参考地址。
         public let reference: String
-        
+
         /// 发现时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -851,7 +851,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 记录合并时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -859,17 +859,17 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var mergeTime: Date
-        
+
         /// 进程MD5
         /// 值。
         public let processMd5: String
-        
+
         /// 执行命令行。
         public let cmdLine: String
-        
+
         /// 进程PID。
         public let pid: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -888,29 +888,29 @@ extension Yunjing {
             case pid = "Pid"
         }
     }
-    
+
     /// 木马相关信息
     public struct Malware: TCOutputModel {
         /// 事件ID。
         public let id: UInt64
-        
+
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 当前木马状态。
         /// <li>UN_OPERATED：未处理</li><li>SEGREGATED：已隔离</li><li>TRUSTED：已信任</li>
         /// <li>SEPARATING：隔离中</li><li>RECOVERING：恢复中</li>
         public let status: String
-        
+
         /// 木马所在的路径。
         public let filePath: String
-        
+
         /// 木马描述。
         public let description: String
-        
+
         /// 主机名称。
         public let machineName: String
-        
+
         /// 木马文件创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -918,7 +918,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var fileCreateTime: Date
-        
+
         /// 木马文件修改时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -926,10 +926,10 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modifyTime: Date
-        
+
         /// 云镜客户端唯一标识UUID。
         public let uuid: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case machineIp = "MachineIp"
@@ -942,38 +942,38 @@ extension Yunjing {
             case uuid = "Uuid"
         }
     }
-    
+
     /// 异地登录
     public struct NonLocalLoginPlace: TCOutputModel {
         /// 事件ID。
         public let id: UInt64
-        
+
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 登录状态
         /// <li>NON_LOCAL_LOGIN：异地登录</li>
         /// <li>NORMAL_LOGIN：正常登录</li>
         public let status: String
-        
+
         /// 用户名。
         public let userName: String
-        
+
         /// 城市ID。
         public let city: UInt64
-        
+
         /// 国家ID。
         public let country: UInt64
-        
+
         /// 省份ID。
         public let province: UInt64
-        
+
         /// 登录IP。
         public let srcIp: String
-        
+
         /// 机器名称。
         public let machineName: String
-        
+
         /// 登录时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -981,10 +981,10 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var loginTime: Date
-        
+
         /// 云镜客户端唯一标识Uuid。
         public let uuid: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case machineIp = "MachineIp"
@@ -999,30 +999,30 @@ extension Yunjing {
             case uuid = "Uuid"
         }
     }
-    
+
     /// 端口列表
     public struct OpenPort: TCOutputModel {
         /// 唯一ID。
         public let id: UInt64
-        
+
         /// 云镜客户端唯一UUID。
         public let uuid: String
-        
+
         /// 开放端口号。
         public let port: UInt64
-        
+
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 主机名。
         public let machineName: String
-        
+
         /// 端口对应进程名。
         public let processName: String
-        
+
         /// 端口对应进程Pid。
         public let pid: UInt64
-        
+
         /// 记录创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1030,7 +1030,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 记录更新时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1038,7 +1038,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -1051,101 +1051,101 @@ extension Yunjing {
             case modifyTime = "ModifyTime"
         }
     }
-    
+
     /// 端口统计列表
     public struct OpenPortStatistics: TCOutputModel {
         /// 端口号
         public let port: UInt64
-        
+
         /// 主机数量
         public let machineNum: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case machineNum = "MachineNum"
         }
     }
-    
+
     /// 登录地信息
     public struct Place: TCInputModel {
         /// 城市 ID。
         public let cityId: UInt64
-        
+
         /// 省份 ID。
         public let provinceId: UInt64
-        
+
         /// 国家ID，暂只支持国内：1。
         public let countryId: UInt64
-        
-        public init (cityId: UInt64, provinceId: UInt64, countryId: UInt64) {
+
+        public init(cityId: UInt64, provinceId: UInt64, countryId: UInt64) {
             self.cityId = cityId
             self.provinceId = provinceId
             self.countryId = countryId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cityId = "CityId"
             case provinceId = "ProvinceId"
             case countryId = "CountryId"
         }
     }
-    
+
     /// 本地提权数据
     public struct PrivilegeEscalationProcess: TCOutputModel {
         /// 数据ID
         public let id: UInt64
-        
+
         /// 云镜ID
         public let uuid: String
-        
+
         /// 主机ID
         public let quuid: String
-        
+
         /// 主机内网IP
         public let hostip: String
-        
+
         /// 进程名
         public let processName: String
-        
+
         /// 进程路径
         public let fullPath: String
-        
+
         /// 执行命令
         public let cmdLine: String
-        
+
         /// 用户名
         public let userName: String
-        
+
         /// 用户组
         public let userGroup: String
-        
+
         /// 进程文件权限
         public let procFilePrivilege: String
-        
+
         /// 父进程名
         public let parentProcName: String
-        
+
         /// 父进程用户名
         public let parentProcUser: String
-        
+
         /// 父进程用户组
         public let parentProcGroup: String
-        
+
         /// 父进程路径
         public let parentProcPath: String
-        
+
         /// 进程树
         public let procTree: String
-        
+
         /// 处理状态
         public let status: UInt64
-        
+
         /// 发生时间
         public let createTime: String
-        
+
         /// 机器名
         public let machineName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -1167,39 +1167,39 @@ extension Yunjing {
             case machineName = "MachineName"
         }
     }
-    
+
     /// 本地提权规则
     public struct PrivilegeRule: TCOutputModel {
         /// 规则ID
         public let id: UInt64
-        
+
         /// 客户端ID
         public let uuid: String
-        
+
         /// 进程名
         public let processName: String
-        
+
         /// 是否S权限
         public let sMode: UInt64
-        
+
         /// 操作人
         public let `operator`: String
-        
+
         /// 是否全局规则
         public let isGlobal: UInt64
-        
+
         /// 状态(0: 有效 1: 无效)
         public let status: UInt64
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 修改时间
         public let modifyTime: String
-        
+
         /// 主机IP
         public let hostip: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -1213,71 +1213,71 @@ extension Yunjing {
             case hostip = "Hostip"
         }
     }
-    
+
     /// 需要开通专业版机器信息。
     public struct ProVersionMachine: TCInputModel {
         /// 主机类型。
         /// <li>CVM: 虚拟主机</li>
         /// <li>BM: 黑石物理机</li>
         public let machineType: String
-        
+
         /// 主机所在地域。
         /// 如：ap-guangzhou、ap-beijing
         public let machineRegion: String
-        
+
         /// 主机唯一标识Uuid。
         /// 黑石的InstanceId，CVM的Uuid
         public let quuid: String
-        
-        public init (machineType: String, machineRegion: String, quuid: String) {
+
+        public init(machineType: String, machineRegion: String, quuid: String) {
             self.machineType = machineType
             self.machineRegion = machineRegion
             self.quuid = quuid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case machineType = "MachineType"
             case machineRegion = "MachineRegion"
             case quuid = "Quuid"
         }
     }
-    
+
     /// 进程信息数据。
     public struct Process: TCOutputModel {
         /// 唯一ID。
         public let id: UInt64
-        
+
         /// 云镜客户端唯一UUID。
         public let uuid: String
-        
+
         /// 主机内网IP。
         public let machineIp: String
-        
+
         /// 主机名。
         public let machineName: String
-        
+
         /// 进程Pid。
         public let pid: UInt64
-        
+
         /// 进程Ppid。
         public let ppid: UInt64
-        
+
         /// 进程名。
         public let processName: String
-        
+
         /// 进程用户名。
         public let username: String
-        
+
         /// 所属平台。
         /// <li>WIN32：windows32位</li>
         /// <li>WIN64：windows64位</li>
         /// <li>LINUX32：Linux32位</li>
         /// <li>LINUX64：Linux64位</li>
         public let platform: String
-        
+
         /// 进程路径。
         public let fullPath: String
-        
+
         /// 创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1285,7 +1285,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -1300,35 +1300,35 @@ extension Yunjing {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 进程数据统计数据。
     public struct ProcessStatistics: TCOutputModel {
         /// 进程名。
         public let processName: String
-        
+
         /// 主机数量。
         public let machineNum: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case processName = "ProcessName"
             case machineNum = "MachineNum"
         }
     }
-    
+
     /// 地域信息
     public struct RegionInfo: TCOutputModel {
         /// 地域标志，如 ap-guangzhou，ap-shanghai，ap-beijing
         public let region: String
-        
+
         /// 地域中文名，如华南地区（广州），华东地区（上海金融），华北地区（北京）
         public let regionName: String
-        
+
         /// 地域ID
         public let regionId: UInt64
-        
+
         /// 地域代码，如 gz，sh，bj
         public let regionCode: String
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionName = "RegionName"
@@ -1336,66 +1336,66 @@ extension Yunjing {
             case regionCode = "RegionCode"
         }
     }
-    
+
     /// 反弹Shell数据
     public struct ReverseShell: TCOutputModel {
         /// ID
         public let id: UInt64
-        
+
         /// 云镜UUID
         public let uuid: String
-        
+
         /// 主机ID
         public let quuid: String
-        
+
         /// 主机内网IP
         public let hostip: String
-        
+
         /// 目标IP
         public let dstIp: String
-        
+
         /// 目标端口
         public let dstPort: UInt64
-        
+
         /// 进程名
         public let processName: String
-        
+
         /// 进程路径
         public let fullPath: String
-        
+
         /// 命令详情
         public let cmdLine: String
-        
+
         /// 执行用户
         public let userName: String
-        
+
         /// 执行用户组
         public let userGroup: String
-        
+
         /// 父进程名
         public let parentProcName: String
-        
+
         /// 父进程用户
         public let parentProcUser: String
-        
+
         /// 父进程用户组
         public let parentProcGroup: String
-        
+
         /// 父进程路径
         public let parentProcPath: String
-        
+
         /// 处理状态
         public let status: UInt64
-        
+
         /// 产生时间
         public let createTime: String
-        
+
         /// 主机名
         public let machineName: String
-        
+
         /// 进程树
         public let procTree: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -1418,42 +1418,42 @@ extension Yunjing {
             case procTree = "ProcTree"
         }
     }
-    
+
     /// 反弹Shell规则
     public struct ReverseShellRule: TCOutputModel {
         /// 规则ID
         public let id: UInt64
-        
+
         /// 客户端ID
         public let uuid: String
-        
+
         /// 进程名称
         public let processName: String
-        
+
         /// 目标IP
         public let destIp: String
-        
+
         /// 目标端口
         public let destPort: String
-        
+
         /// 操作人
         public let `operator`: String
-        
+
         /// 是否全局规则
         public let isGlobal: UInt64
-        
+
         /// 状态 (0: 有效 1: 无效)
         public let status: UInt64
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 修改时间
         public let modifyTime: String
-        
+
         /// 主机IP
         public let hostip: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -1468,12 +1468,12 @@ extension Yunjing {
             case hostip = "Hostip"
         }
     }
-    
+
     /// 安全事件消息数据。
     public struct SecurityDynamic: TCOutputModel {
         /// 云镜客户端UUID。
         public let uuid: String
-        
+
         /// 安全事件发生事件。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1481,7 +1481,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var eventTime: Date
-        
+
         /// 安全事件类型。
         /// <li>MALWARE：木马事件</li>
         /// <li>NON_LOCAL_LOGIN：异地登录</li>
@@ -1489,17 +1489,17 @@ extension Yunjing {
         /// <li>VUL：漏洞</li>
         /// <li>BASELINE：安全基线</li>
         public let eventType: String
-        
+
         /// 安全事件消息。
         public let message: String
-        
+
         /// 安全事件等级。
         /// <li>RISK: 严重</li>
         /// <li>HIGH: 高危</li>
         /// <li>NORMAL: 中危</li>
         /// <li>LOW: 低危</li>
         public let securityLevel: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
             case eventTime = "EventTime"
@@ -1508,7 +1508,7 @@ extension Yunjing {
             case securityLevel = "SecurityLevel"
         }
     }
-    
+
     /// 安全趋势统计数据。
     public struct SecurityTrend: TCOutputModel {
         /// 事件时间。
@@ -1518,57 +1518,57 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 事件数量。
         public let eventNum: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case eventNum = "EventNum"
         }
     }
-    
+
     /// 标签信息
     public struct Tag: TCOutputModel {
         /// 标签ID
         public let id: UInt64
-        
+
         /// 标签名
         public let name: String
-        
+
         /// 服务器数
         public let count: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case count = "Count"
         }
     }
-    
+
     /// 标签相关服务器信息
     public struct TagMachine: TCOutputModel {
         /// ID
         public let id: String
-        
+
         /// 主机ID
         public let quuid: String
-        
+
         /// 主机名称
         public let machineName: String
-        
+
         /// 主机内网IP
         public let machineIp: String
-        
+
         /// 主机外网IP
         public let machineWanIp: String
-        
+
         /// 主机区域
         public let machineRegion: String
-        
+
         /// 主机区域类型
         public let machineType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case quuid = "Quuid"
@@ -1579,24 +1579,24 @@ extension Yunjing {
             case machineType = "MachineType"
         }
     }
-    
+
     /// 常用登录地
     public struct UsualPlace: TCOutputModel {
         /// ID。
         public let id: UInt64
-        
+
         /// 云镜客户端唯一标识UUID。
         public let uuid: String
-        
+
         /// 国家 ID。
         public let countryId: UInt64
-        
+
         /// 省份 ID。
         public let provinceId: UInt64
-        
+
         /// 城市 ID。
         public let cityId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -1605,22 +1605,22 @@ extension Yunjing {
             case cityId = "CityId"
         }
     }
-    
+
     /// 漏洞列表数据
     public struct Vul: TCOutputModel {
         /// 漏洞种类ID
         public let vulId: UInt64
-        
+
         /// 漏洞名称
         public let vulName: String
-        
+
         /// 漏洞危害等级:
         /// HIGH：高危
         /// MIDDLE：中危
         /// LOW：低危
         /// NOTICE：提示
         public let vulLevel: String
-        
+
         /// 最后扫描时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1628,15 +1628,15 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastScanTime: Date
-        
+
         /// 受影响机器数量
         public let impactedHostNum: UInt64
-        
+
         /// 漏洞状态
         /// * UN_OPERATED : 待处理
         /// * FIXED : 已修复
         public let vulStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vulId = "VulId"
             case vulName = "VulName"
@@ -1646,7 +1646,7 @@ extension Yunjing {
             case vulStatus = "VulStatus"
         }
     }
-    
+
     /// 周报列表。
     public struct WeeklyReport: TCOutputModel {
         /// 周报开始时间。
@@ -1656,7 +1656,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
+
         /// 周报结束时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1664,27 +1664,27 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case beginDate = "BeginDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// 专业周报密码破解数据。
     public struct WeeklyReportBruteAttack: TCOutputModel {
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 被破解用户名。
         public let username: String
-        
+
         /// 源IP。
         public let srcIp: String
-        
+
         /// 尝试次数。
         public let count: UInt64
-        
+
         /// 攻击时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1692,7 +1692,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var attackTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case machineIp = "MachineIp"
             case username = "Username"
@@ -1701,18 +1701,18 @@ extension Yunjing {
             case attackTime = "AttackTime"
         }
     }
-    
+
     /// 专业周报木马数据。
     public struct WeeklyReportMalware: TCOutputModel {
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 木马文件路径。
         public let filePath: String
-        
+
         /// 木马文件MD5值。
         public let md5: String
-        
+
         /// 木马发现时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1720,7 +1720,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var findTime: Date
-        
+
         /// 当前木马状态。
         /// <li>UN_OPERATED：未处理</li>
         /// <li>SEGREGATED：已隔离</li>
@@ -1728,7 +1728,7 @@ extension Yunjing {
         /// <li>SEPARATING：隔离中</li>
         /// <li>RECOVERING：恢复中</li>
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case machineIp = "MachineIp"
             case filePath = "FilePath"
@@ -1737,27 +1737,27 @@ extension Yunjing {
             case status = "Status"
         }
     }
-    
+
     /// 专业周报异地登录数据。
     public struct WeeklyReportNonlocalLoginPlace: TCOutputModel {
         /// 主机IP。
         public let machineIp: String
-        
+
         /// 用户名。
         public let username: String
-        
+
         /// 源IP。
         public let srcIp: String
-        
+
         /// 国家ID。
         public let country: UInt64
-        
+
         /// 省份ID。
         public let province: UInt64
-        
+
         /// 城市ID。
         public let city: UInt64
-        
+
         /// 登录时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1765,7 +1765,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var loginTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case machineIp = "MachineIp"
             case username = "Username"
@@ -1776,30 +1776,30 @@ extension Yunjing {
             case loginTime = "LoginTime"
         }
     }
-    
+
     /// 专业版周报漏洞数据。
     public struct WeeklyReportVul: TCOutputModel {
         /// 主机内网IP。
         public let machineIp: String
-        
+
         /// 漏洞名称。
         public let vulName: String
-        
+
         /// 漏洞类型。
         /// <li> WEB : Web漏洞</li>
         /// <li> SYSTEM :系统组件漏洞</li>
         /// <li> BASELINE : 安全基线</li>
         public let vulType: String
-        
+
         /// 漏洞描述。
         public let description: String
-        
+
         /// 漏洞状态。
         /// <li> UN_OPERATED : 待处理</li>
         /// <li> SCANING : 扫描中</li>
         /// <li> FIXED : 已修复</li>
         public let vulStatus: String
-        
+
         /// 最后扫描时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1807,7 +1807,7 @@ extension Yunjing {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastScanTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case machineIp = "MachineIp"
             case vulName = "VulName"

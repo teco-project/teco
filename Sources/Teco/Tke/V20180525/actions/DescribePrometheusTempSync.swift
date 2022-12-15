@@ -19,39 +19,39 @@ extension Tke {
     public struct DescribePrometheusTempSyncRequest: TCRequestModel {
         /// 模板ID
         public let templateId: String
-        
-        public init (templateId: String) {
+
+        public init(templateId: String) {
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DescribePrometheusTempSync返回参数结构体
     public struct DescribePrometheusTempSyncResponse: TCResponseModel {
         /// 同步目标详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targets: [PrometheusTemplateSyncTarget]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case targets = "Targets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取模板关联实例信息
     ///
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
-    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTempSyncResponse > {
+    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempSyncResponse> {
         self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取模板关联实例信息
     ///
     /// 获取模板关联实例信息，针对V2版本实例
@@ -59,15 +59,15 @@ extension Tke {
     public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
         try await self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取模板关联实例信息
     ///
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
-    public func describePrometheusTempSync(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTempSyncResponse > {
+    public func describePrometheusTempSync(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempSyncResponse> {
         self.describePrometheusTempSync(DescribePrometheusTempSyncRequest(templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取模板关联实例信息
     ///
     /// 获取模板关联实例信息，针对V2版本实例

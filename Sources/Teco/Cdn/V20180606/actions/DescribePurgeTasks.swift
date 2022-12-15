@@ -24,7 +24,7 @@ extension Cdn {
         /// url：url 刷新记录
         /// path：目录刷新记录
         public let purgeType: String?
-        
+
         /// 根据时间区间查询时，填充开始时间，如 2018-08-08 00:00:00
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -32,7 +32,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date?
-        
+
         /// 根据时间区间查询时，填充结束时间，如 2018-08-08 23:59:59
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -40,33 +40,33 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date?
-        
+
         /// 根据任务 ID 查询时，填充任务 ID
         /// 查询时任务 ID 与起始时间必须填充一项
         public let taskId: String?
-        
+
         /// 分页查询偏移量，默认为 0
         public let offset: Int64?
-        
+
         /// 分页查询限制数目，默认为 20
         public let limit: Int64?
-        
+
         /// 支持域名过滤，或 http(s):// 开头完整 URL 过滤
         public let keyword: String?
-        
+
         /// 指定任务状态查询
         /// fail：刷新失败
         /// done：刷新成功
         /// process：刷新中
         public let status: String?
-        
+
         /// 指定刷新地域查询
         /// mainland：境内
         /// overseas：境外
         /// global：全球
         public let area: String?
-        
-        public init (purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, area: String? = nil) {
+
+        public init(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, area: String? = nil) {
             self.purgeType = purgeType
             self.startTime = startTime
             self.endTime = endTime
@@ -77,7 +77,7 @@ extension Cdn {
             self.status = status
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case purgeType = "PurgeType"
             case startTime = "StartTime"
@@ -90,35 +90,35 @@ extension Cdn {
             case area = "Area"
         }
     }
-    
+
     /// DescribePurgeTasks返回参数结构体
     public struct DescribePurgeTasksResponse: TCResponseModel {
         /// 详细刷新记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let purgeLogs: [PurgeTask]?
-        
+
         /// 任务总数，用于分页
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case purgeLogs = "PurgeLogs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
     @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
@@ -126,15 +126,15 @@ extension Cdn {
     public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
         try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
     @inlinable
-    public func describePurgeTasks(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+    public func describePurgeTasks(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.describePurgeTasks(DescribePurgeTasksRequest(purgeType: purgeType, startTime: startTime, endTime: endTime, taskId: taskId, offset: offset, limit: limit, keyword: keyword, status: status, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。

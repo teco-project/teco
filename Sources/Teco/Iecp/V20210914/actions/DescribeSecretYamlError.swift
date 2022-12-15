@@ -19,33 +19,33 @@ extension Iecp {
     public struct DescribeSecretYamlErrorRequest: TCRequestModel {
         /// yaml文件
         public let yaml: String
-        
-        public init (yaml: String) {
+
+        public init(yaml: String) {
             self.yaml = yaml
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case yaml = "Yaml"
         }
     }
-    
+
     /// DescribeSecretYamlError返回参数结构体
     public struct DescribeSecretYamlErrorResponse: TCResponseModel {
         /// 校验是通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkPass: Bool?
-        
+
         /// 错误类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errType: UInt64?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errInfo: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case checkPass = "CheckPass"
             case errType = "ErrType"
@@ -53,25 +53,25 @@ extension Iecp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 校验Secret的Yaml语法
     @inlinable
-    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretYamlErrorResponse > {
+    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretYamlErrorResponse> {
         self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 校验Secret的Yaml语法
     @inlinable
     public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
         try await self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 校验Secret的Yaml语法
     @inlinable
-    public func describeSecretYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretYamlErrorResponse > {
+    public func describeSecretYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretYamlErrorResponse> {
         self.describeSecretYamlError(DescribeSecretYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
     }
-    
+
     /// 校验Secret的Yaml语法
     @inlinable
     public func describeSecretYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {

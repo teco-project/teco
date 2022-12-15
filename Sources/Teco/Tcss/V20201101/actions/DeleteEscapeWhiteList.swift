@@ -19,44 +19,44 @@ extension Tcss {
     public struct DeleteEscapeWhiteListRequest: TCRequestModel {
         /// 白名单记录ID数组
         public let idSet: [Int64]
-        
-        public init (idSet: [Int64]) {
+
+        public init(idSet: [Int64]) {
             self.idSet = idSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idSet = "IDSet"
         }
     }
-    
+
     /// DeleteEscapeWhiteList返回参数结构体
     public struct DeleteEscapeWhiteListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除逃逸白名单
     @inlinable
-    public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEscapeWhiteListResponse > {
+    public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEscapeWhiteListResponse> {
         self.client.execute(action: "DeleteEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除逃逸白名单
     @inlinable
     public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
         try await self.client.execute(action: "DeleteEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除逃逸白名单
     @inlinable
-    public func deleteEscapeWhiteList(idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEscapeWhiteListResponse > {
+    public func deleteEscapeWhiteList(idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEscapeWhiteListResponse> {
         self.deleteEscapeWhiteList(DeleteEscapeWhiteListRequest(idSet: idSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除逃逸白名单
     @inlinable
     public func deleteEscapeWhiteList(idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {

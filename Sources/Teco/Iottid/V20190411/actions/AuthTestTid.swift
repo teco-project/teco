@@ -19,57 +19,57 @@ extension Iottid {
     public struct AuthTestTidRequest: TCRequestModel {
         /// 设备端SDK填入测试TID参数后生成的加密数据串
         public let data: String
-        
-        public init (data: String) {
+
+        public init(data: String) {
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
         }
     }
-    
+
     /// AuthTestTid返回参数结构体
     public struct AuthTestTidResponse: TCResponseModel {
         /// 认证结果
         public let pass: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pass = "Pass"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 单向认证测试TID
     ///
-    /// 单向认证测试TID 
+    /// 单向认证测试TID
     @inlinable
-    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthTestTidResponse > {
+    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
         self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 单向认证测试TID
     ///
-    /// 单向认证测试TID 
+    /// 单向认证测试TID
     @inlinable
     public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
         try await self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 单向认证测试TID
     ///
-    /// 单向认证测试TID 
+    /// 单向认证测试TID
     @inlinable
-    public func authTestTid(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthTestTidResponse > {
+    public func authTestTid(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
         self.authTestTid(AuthTestTidRequest(data: data), logger: logger, on: eventLoop)
     }
-    
+
     /// 单向认证测试TID
     ///
-    /// 单向认证测试TID 
+    /// 单向认证测试TID
     @inlinable
     public func authTestTid(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
         try await self.authTestTid(AuthTestTidRequest(data: data), logger: logger, on: eventLoop)

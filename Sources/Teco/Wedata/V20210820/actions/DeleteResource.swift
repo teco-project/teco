@@ -19,44 +19,44 @@ extension Wedata {
     public struct DeleteResourceRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String?
-        
+
         /// 资源ID
         public let resourceId: String?
-        
-        public init (projectId: String? = nil, resourceId: String? = nil) {
+
+        public init(projectId: String? = nil, resourceId: String? = nil) {
             self.projectId = projectId
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// DeleteResource返回参数结构体
     public struct DeleteResourceResponse: TCResponseModel {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除资源
     ///
     /// 资源管理删除资源
     @inlinable
-    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceResponse > {
+    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceResponse> {
         self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资源
     ///
     /// 资源管理删除资源
@@ -64,15 +64,15 @@ extension Wedata {
     public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
         try await self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除资源
     ///
     /// 资源管理删除资源
     @inlinable
-    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceResponse > {
+    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceResponse> {
         self.deleteResource(DeleteResourceRequest(projectId: projectId, resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资源
     ///
     /// 资源管理删除资源

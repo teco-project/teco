@@ -19,23 +19,23 @@ extension Cloudhsm {
     public struct DescribeSubnetRequest: TCRequestModel {
         /// 返回数量。Limit需要在[1, 100]之间。
         public let limit: Int64
-        
+
         /// 偏移量。偏移量最小为0。
         public let offset: Int64
-        
+
         /// 查询指定VpcId下的子网信息。
         public let vpcId: String
-        
+
         /// 查找关键字
         public let searchWord: String?
-        
-        public init (limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil) {
+
+        public init(limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.vpcId = vpcId
             self.searchWord = searchWord
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -43,44 +43,44 @@ extension Cloudhsm {
             case searchWord = "SearchWord"
         }
     }
-    
+
     /// DescribeSubnet返回参数结构体
     public struct DescribeSubnetResponse: TCResponseModel {
         /// 返回的子网数量。
         public let totalCount: Int64
-        
+
         /// 返回的子网实例列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetList: [Subnet]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case subnetList = "SubnetList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询子网列表
     @inlinable
-    public func describeSubnet(_ input: DescribeSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetResponse > {
+    public func describeSubnet(_ input: DescribeSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetResponse> {
         self.client.execute(action: "DescribeSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询子网列表
     @inlinable
     public func describeSubnet(_ input: DescribeSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetResponse {
         try await self.client.execute(action: "DescribeSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询子网列表
     @inlinable
-    public func describeSubnet(limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetResponse > {
+    public func describeSubnet(limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetResponse> {
         self.describeSubnet(DescribeSubnetRequest(limit: limit, offset: offset, vpcId: vpcId, searchWord: searchWord), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询子网列表
     @inlinable
     public func describeSubnet(limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetResponse {

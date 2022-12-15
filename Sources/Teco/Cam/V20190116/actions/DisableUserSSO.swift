@@ -17,38 +17,38 @@
 extension Cam {
     /// DisableUserSSO请求参数结构体
     public struct DisableUserSSORequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DisableUserSSO返回参数结构体
     public struct DisableUserSSOResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 禁用用户SSO
     @inlinable
-    public func disableUserSSO(_ input: DisableUserSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUserSSOResponse > {
+    public func disableUserSSO(_ input: DisableUserSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUserSSOResponse> {
         self.client.execute(action: "DisableUserSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用用户SSO
     @inlinable
     public func disableUserSSO(_ input: DisableUserSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUserSSOResponse {
         try await self.client.execute(action: "DisableUserSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 禁用用户SSO
     @inlinable
-    public func disableUserSSO(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUserSSOResponse > {
+    public func disableUserSSO(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUserSSOResponse> {
         self.disableUserSSO(DisableUserSSORequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用用户SSO
     @inlinable
     public func disableUserSSO(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUserSSOResponse {

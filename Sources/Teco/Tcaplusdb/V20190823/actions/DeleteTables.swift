@@ -19,47 +19,47 @@ extension Tcaplusdb {
     public struct DeleteTablesRequest: TCRequestModel {
         /// 待删除表所在集群ID
         public let clusterId: String
-        
+
         /// 待删除表信息列表
         public let selectedTables: [SelectedTableInfoNew]
-        
-        public init (clusterId: String, selectedTables: [SelectedTableInfoNew]) {
+
+        public init(clusterId: String, selectedTables: [SelectedTableInfoNew]) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case selectedTables = "SelectedTables"
         }
     }
-    
+
     /// DeleteTables返回参数结构体
     public struct DeleteTablesResponse: TCResponseModel {
         /// 删除表结果数量
         public let totalCount: UInt64
-        
+
         /// 删除表结果详情列表
         public let tableResults: [TableResultNew]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除表
     ///
     /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
     @inlinable
-    public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTablesResponse > {
+    public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTablesResponse> {
         self.client.execute(action: "DeleteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除表
     ///
     /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
@@ -67,15 +67,15 @@ extension Tcaplusdb {
     public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTablesResponse {
         try await self.client.execute(action: "DeleteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除表
     ///
     /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
     @inlinable
-    public func deleteTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTablesResponse > {
+    public func deleteTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTablesResponse> {
         self.deleteTables(DeleteTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除表
     ///
     /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。

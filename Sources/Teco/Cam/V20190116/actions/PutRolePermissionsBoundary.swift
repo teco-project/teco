@@ -19,54 +19,54 @@ extension Cam {
     public struct PutRolePermissionsBoundaryRequest: TCRequestModel {
         /// 策略ID
         public let policyId: Int64
-        
+
         /// 角色ID（与角色名至少填一个）
         public let roleId: String?
-        
+
         /// 角色名（与角色ID至少填一个）
         public let roleName: String?
-        
-        public init (policyId: Int64, roleId: String? = nil, roleName: String? = nil) {
+
+        public init(policyId: Int64, roleId: String? = nil, roleName: String? = nil) {
             self.policyId = policyId
             self.roleId = roleId
             self.roleName = roleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case roleId = "RoleId"
             case roleName = "RoleName"
         }
     }
-    
+
     /// PutRolePermissionsBoundary返回参数结构体
     public struct PutRolePermissionsBoundaryResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置角色权限边界
     @inlinable
-    public func putRolePermissionsBoundary(_ input: PutRolePermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutRolePermissionsBoundaryResponse > {
+    public func putRolePermissionsBoundary(_ input: PutRolePermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutRolePermissionsBoundaryResponse> {
         self.client.execute(action: "PutRolePermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置角色权限边界
     @inlinable
     public func putRolePermissionsBoundary(_ input: PutRolePermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutRolePermissionsBoundaryResponse {
         try await self.client.execute(action: "PutRolePermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置角色权限边界
     @inlinable
-    public func putRolePermissionsBoundary(policyId: Int64, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutRolePermissionsBoundaryResponse > {
+    public func putRolePermissionsBoundary(policyId: Int64, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutRolePermissionsBoundaryResponse> {
         self.putRolePermissionsBoundary(PutRolePermissionsBoundaryRequest(policyId: policyId, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置角色权限边界
     @inlinable
     public func putRolePermissionsBoundary(policyId: Int64, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutRolePermissionsBoundaryResponse {

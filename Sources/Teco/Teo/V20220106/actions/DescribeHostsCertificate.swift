@@ -19,27 +19,27 @@ extension Teo {
     public struct DescribeHostsCertificateRequest: TCRequestModel {
         /// Zone ID
         public let zoneId: String
-        
+
         /// 分页查询偏移量，默认为 0
         public let offset: Int64?
-        
+
         /// 分页查询限制数目，默认为 100，最大可设置为 1000
         public let limit: Int64?
-        
+
         /// 查询条件过滤器
         public let filters: [CertFilter]?
-        
+
         /// 排序方式
         public let sort: CertSort?
-        
-        public init (zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil) {
+
+        public init(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil) {
             self.zoneId = zoneId
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.sort = sort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case offset = "Offset"
@@ -48,34 +48,34 @@ extension Teo {
             case sort = "Sort"
         }
     }
-    
+
     /// DescribeHostsCertificate返回参数结构体
     public struct DescribeHostsCertificateResponse: TCResponseModel {
         /// 总数，用于分页查询
         public let totalCount: Int64
-        
+
         /// 域名证书配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hosts: [HostCertSetting]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case hosts = "Hosts"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsCertificateResponse > {
+    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsCertificateResponse> {
         self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
@@ -83,15 +83,15 @@ extension Teo {
     public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
         try await self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsCertificateResponse > {
+    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsCertificateResponse> {
         self.describeHostsCertificate(DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。

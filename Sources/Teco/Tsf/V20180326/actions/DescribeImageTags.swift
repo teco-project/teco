@@ -19,26 +19,26 @@ extension Tsf {
     public struct DescribeImageTagsRequest: TCRequestModel {
         /// 应用Id
         public let applicationId: String
-        
+
         /// 偏移量，取值从0开始
         public let offset: Int64?
-        
+
         /// 分页个数，默认为20， 取值应为1~100
         public let limit: Int64?
-        
+
         /// 不填和0:查询 1:不查询
         public let queryImageIdFlag: Int64?
-        
+
         /// 可用于搜索的 tag 名字
         public let searchWord: String?
-        
+
         /// 企业: tcr ；个人: personal或者不填
         public let repoType: String?
-        
+
         /// TcrRepoInfo值
         public let tcrRepoInfo: TcrRepoInfo?
-        
-        public init (applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil) {
+
+        public init(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil) {
             self.applicationId = applicationId
             self.offset = offset
             self.limit = limit
@@ -47,7 +47,7 @@ extension Tsf {
             self.repoType = repoType
             self.tcrRepoInfo = tcrRepoInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case offset = "Offset"
@@ -58,39 +58,39 @@ extension Tsf {
             case tcrRepoInfo = "TcrRepoInfo"
         }
     }
-    
+
     /// DescribeImageTags返回参数结构体
     public struct DescribeImageTagsResponse: TCResponseModel {
         /// 查询的权限数据对象
         public let result: ImageTagsResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 镜像版本列表
     @inlinable
-    public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTagsResponse > {
+    public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTagsResponse> {
         self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像版本列表
     @inlinable
     public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {
         try await self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 镜像版本列表
     @inlinable
-    public func describeImageTags(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTagsResponse > {
+    public func describeImageTags(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTagsResponse> {
         self.describeImageTags(DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像版本列表
     @inlinable
     public func describeImageTags(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {

@@ -19,26 +19,26 @@ extension Bizlive {
     public struct CreateSessionRequest: TCRequestModel {
         /// 客户端session信息，从JSSDK请求中获得
         public let clientSession: String
-        
+
         /// 游戏ID
         public let gameId: String
-        
+
         /// 游戏用户ID
         public let userId: String
-        
+
         /// 游戏参数
         public let gameParas: String?
-        
+
         /// 游戏区域
         public let gameRegion: String?
-        
+
         /// 背景图url
         public let imageUrl: String?
-        
+
         /// 分辨率
         public let resolution: String?
-        
-        public init (clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil) {
+
+        public init(clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil) {
             self.clientSession = clientSession
             self.gameId = gameId
             self.userId = userId
@@ -47,7 +47,7 @@ extension Bizlive {
             self.imageUrl = imageUrl
             self.resolution = resolution
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clientSession = "ClientSession"
             case gameId = "GameId"
@@ -58,39 +58,39 @@ extension Bizlive {
             case resolution = "Resolution"
         }
     }
-    
+
     /// CreateSession返回参数结构体
     public struct CreateSessionResponse: TCResponseModel {
         /// 服务端session信息，返回给JSSDK
         public let serverSession: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serverSession = "ServerSession"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建会话
     @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
+    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
         self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建会话
     @inlinable
     public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
         try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建会话
     @inlinable
-    public func createSession(clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
+    public func createSession(clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
         self.createSession(CreateSessionRequest(clientSession: clientSession, gameId: gameId, userId: userId, gameParas: gameParas, gameRegion: gameRegion, imageUrl: imageUrl, resolution: resolution), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建会话
     @inlinable
     public func createSession(clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {

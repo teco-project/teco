@@ -31,123 +31,123 @@ extension TCClsError {
             case topicConflict = "InvalidParameter.TopicConflict"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 告警策略已经存在。
         public static var alarmConflict: InvalidParameter {
             InvalidParameter(.alarmConflict)
         }
-        
+
         /// 告警策略通知模板已经存在。
         public static var alarmNoticeConflict: InvalidParameter {
             InvalidParameter(.alarmNoticeConflict)
         }
-        
+
         /// 相同的采集配置规则已经存在。
         public static var configConflict: InvalidParameter {
             InvalidParameter(.configConflict)
         }
-        
+
         /// 无效的Content。
         public static var content: InvalidParameter {
             InvalidParameter(.content)
         }
-        
+
         /// 数据库唯一键冲突。
         ///
         /// 数据已经存在，检查参数是否填写有误。
         public static var dbDuplication: InvalidParameter {
             InvalidParameter(.dbDuplication)
         }
-        
+
         public static var exportConflict: InvalidParameter {
             InvalidParameter(.exportConflict)
         }
-        
+
         /// 低频不支持配置kv和tag索引。
         public static var inValidIndexRuleForSearchLow: InvalidParameter {
             InvalidParameter(.inValidIndexRuleForSearchLow)
         }
-        
+
         /// 指定日志主题已经存在索引规则。
         public static var indexConflict: InvalidParameter {
             InvalidParameter(.indexConflict)
         }
-        
+
         /// 相同的日志集已存在。
         public static var logsetConflict: InvalidParameter {
             InvalidParameter(.logsetConflict)
         }
-        
+
         /// 同名机器组已经存在。
         public static var machineGroupConflict: InvalidParameter {
             InvalidParameter(.machineGroupConflict)
         }
-        
+
         /// 投递规则命名冲突。
         public static var shipperConflict: InvalidParameter {
             InvalidParameter(.shipperConflict)
         }
-        
+
         /// 指定日志集下已经有同名的日志主题。
         public static var topicConflict: InvalidParameter {
             InvalidParameter(.topicConflict)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asClsError() -> TCClsError {
             let code: TCClsError.Code
             switch self.error {
-            case .alarmConflict: 
+            case .alarmConflict:
                 code = .invalidParameter_AlarmConflict
-            case .alarmNoticeConflict: 
+            case .alarmNoticeConflict:
                 code = .invalidParameter_AlarmNoticeConflict
-            case .configConflict: 
+            case .configConflict:
                 code = .invalidParameter_ConfigConflict
-            case .content: 
+            case .content:
                 code = .invalidParameter_Content
-            case .dbDuplication: 
+            case .dbDuplication:
                 code = .invalidParameter_DbDuplication
-            case .exportConflict: 
+            case .exportConflict:
                 code = .invalidParameter_ExportConflict
-            case .inValidIndexRuleForSearchLow: 
+            case .inValidIndexRuleForSearchLow:
                 code = .invalidParameter_InValidIndexRuleForSearchLow
-            case .indexConflict: 
+            case .indexConflict:
                 code = .invalidParameter_IndexConflict
-            case .logsetConflict: 
+            case .logsetConflict:
                 code = .invalidParameter_LogsetConflict
-            case .machineGroupConflict: 
+            case .machineGroupConflict:
                 code = .invalidParameter_MachineGroupConflict
-            case .shipperConflict: 
+            case .shipperConflict:
                 code = .invalidParameter_ShipperConflict
-            case .topicConflict: 
+            case .topicConflict:
                 code = .invalidParameter_TopicConflict
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCClsError(code, context: self.context)

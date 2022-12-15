@@ -19,48 +19,48 @@ extension Redis {
     public struct CreateReplicationGroupRequest: TCRequestModel {
         /// 指定复制组中的主实例ID。
         public let instanceId: String
-        
+
         /// 复制组名称。
         public let groupName: String?
-        
+
         /// 备注信息。
         public let remark: String?
-        
-        public init (instanceId: String, groupName: String? = nil, remark: String? = nil) {
+
+        public init(instanceId: String, groupName: String? = nil, remark: String? = nil) {
             self.instanceId = instanceId
             self.groupName = groupName
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case groupName = "GroupName"
             case remark = "Remark"
         }
     }
-    
+
     /// CreateReplicationGroup返回参数结构体
     public struct CreateReplicationGroupResponse: TCResponseModel {
         /// 异步流程ID。
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建复制组接口
     ///
     /// 创建复制组
     @inlinable
-    public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationGroupResponse > {
+    public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationGroupResponse> {
         self.client.execute(action: "CreateReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建复制组接口
     ///
     /// 创建复制组
@@ -68,15 +68,15 @@ extension Redis {
     public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
         try await self.client.execute(action: "CreateReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建复制组接口
     ///
     /// 创建复制组
     @inlinable
-    public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationGroupResponse > {
+    public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationGroupResponse> {
         self.createReplicationGroup(CreateReplicationGroupRequest(instanceId: instanceId, groupName: groupName, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建复制组接口
     ///
     /// 创建复制组

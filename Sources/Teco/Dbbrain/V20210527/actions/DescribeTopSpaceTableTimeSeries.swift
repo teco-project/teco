@@ -22,13 +22,13 @@ extension Dbbrain {
     public struct DescribeTopSpaceTableTimeSeriesRequest: TCRequestModel {
         /// 实例 ID 。
         public let instanceId: String
-        
+
         /// 返回的Top表数量，最大值为100，默认为20。
         public let limit: Int64?
-        
+
         /// 筛选Top表所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize，默认为 PhysicalFileSize。
         public let sortBy: String?
-        
+
         /// 开始日期，如“2021-01-01”，最早为当日的前第29天，默认为截止日期的前第6天。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -36,7 +36,7 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date?
-        
+
         /// 截止日期，如“2021-01-01”，最早为当日的前第29天，默认为当日。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -44,11 +44,11 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date?
-        
+
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
-        
-        public init (instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil) {
+
+        public init(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.sortBy = sortBy
@@ -56,7 +56,7 @@ extension Dbbrain {
             self.endDate = endDate
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
@@ -66,29 +66,29 @@ extension Dbbrain {
             case product = "Product"
         }
     }
-    
+
     /// DescribeTopSpaceTableTimeSeries返回参数结构体
     public struct DescribeTopSpaceTableTimeSeriesResponse: TCResponseModel {
         /// 返回的Top表空间统计信息的时序数据列表。
         public let topSpaceTableTimeSeries: [TableSpaceTimeSeries]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case topSpaceTableTimeSeries = "TopSpaceTableTimeSeries"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取Top表在指定时间段内的每日空间统计信息
     ///
     /// 获取实例占用空间最大的前几张表在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
     @inlinable
-    public func describeTopSpaceTableTimeSeries(_ input: DescribeTopSpaceTableTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceTableTimeSeriesResponse > {
+    public func describeTopSpaceTableTimeSeries(_ input: DescribeTopSpaceTableTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceTableTimeSeriesResponse> {
         self.client.execute(action: "DescribeTopSpaceTableTimeSeries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Top表在指定时间段内的每日空间统计信息
     ///
     /// 获取实例占用空间最大的前几张表在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
@@ -96,15 +96,15 @@ extension Dbbrain {
     public func describeTopSpaceTableTimeSeries(_ input: DescribeTopSpaceTableTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceTableTimeSeriesResponse {
         try await self.client.execute(action: "DescribeTopSpaceTableTimeSeries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取Top表在指定时间段内的每日空间统计信息
     ///
     /// 获取实例占用空间最大的前几张表在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
     @inlinable
-    public func describeTopSpaceTableTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceTableTimeSeriesResponse > {
+    public func describeTopSpaceTableTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceTableTimeSeriesResponse> {
         self.describeTopSpaceTableTimeSeries(DescribeTopSpaceTableTimeSeriesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取Top表在指定时间段内的每日空间统计信息
     ///
     /// 获取实例占用空间最大的前几张表在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。

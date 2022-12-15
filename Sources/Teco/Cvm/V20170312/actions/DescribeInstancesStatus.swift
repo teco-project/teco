@@ -19,54 +19,54 @@ extension Cvm {
     public struct DescribeInstancesStatusRequest: TCRequestModel {
         /// 按照一个或者多个实例ID查询。实例ID形如：`ins-11112222`。此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的`ids.N`一节）。每次请求的实例的上限为100。
         public let instanceIds: [String]?
-        
+
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
-        
-        public init (instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceIds = instanceIds
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeInstancesStatus返回参数结构体
     public struct DescribeInstancesStatusResponse: TCResponseModel {
         /// 符合条件的实例状态数量。
         public let totalCount: Int64
-        
+
         /// [实例状态](https://cloud.tencent.com/document/api/213/15753#InstanceStatus) 列表。
         public let instanceStatusSet: [InstanceStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case instanceStatusSet = "InstanceStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看实例状态列表
     ///
     /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
     /// * 可以根据实例`ID`来查询实例的状态。
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
     @inlinable
-    public func describeInstancesStatus(_ input: DescribeInstancesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesStatusResponse > {
+    public func describeInstancesStatus(_ input: DescribeInstancesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesStatusResponse> {
         self.client.execute(action: "DescribeInstancesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看实例状态列表
     ///
     /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
@@ -76,17 +76,17 @@ extension Cvm {
     public func describeInstancesStatus(_ input: DescribeInstancesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesStatusResponse {
         try await self.client.execute(action: "DescribeInstancesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看实例状态列表
     ///
     /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
     /// * 可以根据实例`ID`来查询实例的状态。
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
     @inlinable
-    public func describeInstancesStatus(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesStatusResponse > {
+    public func describeInstancesStatus(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesStatusResponse> {
         self.describeInstancesStatus(DescribeInstancesStatusRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看实例状态列表
     ///
     /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。

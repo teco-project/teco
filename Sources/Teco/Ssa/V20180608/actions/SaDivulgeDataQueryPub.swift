@@ -19,41 +19,41 @@ extension Ssa {
     public struct SaDivulgeDataQueryPubRequest: TCRequestModel {
         /// 模糊查询字段(针对appid或者uin)
         public let queryKey: String
-        
+
         /// 安全事件名称
         public let eventName: String
-        
+
         /// 监控源  0:全部 1:GitHub 2:暗网 默认值1
         public let divulgeSoure: String
-        
+
         /// 受影响资产
         public let asset: String
-        
+
         /// 命中主题集下的规则topic名称
         public let ruleName: String
-        
+
         /// 命中主题集下的规则topic唯一id
         public let ruleId: String
-        
+
         /// 风险等级 -1:未知 1:低危 2:中危 3:高危 4:严重
         public let level: String
-        
+
         /// 安全事件处理状态 -1:未知 1:待处理 2:已处理 3:误报 4:已忽略 5:已知晓 6:已信任
         public let status: String
-        
+
         /// 起始时间
         public let startTime: String
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// 查询起始地址
         public let offset: String
-        
+
         /// 查询个数
         public let limit: String
-        
-        public init (queryKey: String, eventName: String, divulgeSoure: String, asset: String, ruleName: String, ruleId: String, level: String, status: String, startTime: String, endTime: String, offset: String, limit: String) {
+
+        public init(queryKey: String, eventName: String, divulgeSoure: String, asset: String, ruleName: String, ruleId: String, level: String, status: String, startTime: String, endTime: String, offset: String, limit: String) {
             self.queryKey = queryKey
             self.eventName = eventName
             self.divulgeSoure = divulgeSoure
@@ -67,7 +67,7 @@ extension Ssa {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case queryKey = "QueryKey"
             case eventName = "EventName"
@@ -83,39 +83,39 @@ extension Ssa {
             case limit = "Limit"
         }
     }
-    
+
     /// SaDivulgeDataQueryPub返回参数结构体
     public struct SaDivulgeDataQueryPubResponse: TCResponseModel {
         /// 自定义泄露事件列表
         public let data: SaDivulgeDataQueryPubList
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询【通用字段】【泄露监测数据列表】
     @inlinable
-    public func saDivulgeDataQueryPub(_ input: SaDivulgeDataQueryPubRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaDivulgeDataQueryPubResponse > {
+    public func saDivulgeDataQueryPub(_ input: SaDivulgeDataQueryPubRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaDivulgeDataQueryPubResponse> {
         self.client.execute(action: "SaDivulgeDataQueryPub", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询【通用字段】【泄露监测数据列表】
     @inlinable
     public func saDivulgeDataQueryPub(_ input: SaDivulgeDataQueryPubRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaDivulgeDataQueryPubResponse {
         try await self.client.execute(action: "SaDivulgeDataQueryPub", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询【通用字段】【泄露监测数据列表】
     @inlinable
-    public func saDivulgeDataQueryPub(queryKey: String, eventName: String, divulgeSoure: String, asset: String, ruleName: String, ruleId: String, level: String, status: String, startTime: String, endTime: String, offset: String, limit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaDivulgeDataQueryPubResponse > {
+    public func saDivulgeDataQueryPub(queryKey: String, eventName: String, divulgeSoure: String, asset: String, ruleName: String, ruleId: String, level: String, status: String, startTime: String, endTime: String, offset: String, limit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaDivulgeDataQueryPubResponse> {
         self.saDivulgeDataQueryPub(SaDivulgeDataQueryPubRequest(queryKey: queryKey, eventName: eventName, divulgeSoure: divulgeSoure, asset: asset, ruleName: ruleName, ruleId: ruleId, level: level, status: status, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询【通用字段】【泄露监测数据列表】
     @inlinable
     public func saDivulgeDataQueryPub(queryKey: String, eventName: String, divulgeSoure: String, asset: String, ruleName: String, ruleId: String, level: String, status: String, startTime: String, endTime: String, offset: String, limit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaDivulgeDataQueryPubResponse {

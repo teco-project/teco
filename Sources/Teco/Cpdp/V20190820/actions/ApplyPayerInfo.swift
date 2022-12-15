@@ -19,35 +19,35 @@ extension Cpdp {
     public struct ApplyPayerInfoRequest: TCRequestModel {
         /// 付款人ID
         public let payerId: String
-        
+
         /// 付款人类型 (个人: INDIVIDUAL, 企业: CORPORATE)
         public let payerType: String
-        
+
         /// 付款人姓名
         public let payerName: String
-        
+
         /// 付款人证件类型 (身份证: ID_CARD, 统一社会信用代码: UNIFIED_CREDIT_CODE)
         public let payerIdType: String
-        
+
         /// 付款人证件号
         public let payerIdNo: String
-        
+
         /// 付款人常驻国家或地区编码 (见常见问题-国家/地区编码)
         public let payerCountryCode: String
-        
+
         /// 付款人联系人名称
         public let payerContactName: String?
-        
+
         /// 付款人联系电话
         public let payerContactNumber: String?
-        
+
         /// 付款人联系邮箱
         public let payerEmailAddress: String?
-        
+
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
-        
-        public init (payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil) {
+
+        public init(payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil) {
             self.payerId = payerId
             self.payerType = payerType
             self.payerName = payerName
@@ -59,7 +59,7 @@ extension Cpdp {
             self.payerEmailAddress = payerEmailAddress
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payerId = "PayerId"
             case payerType = "PayerType"
@@ -73,29 +73,29 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// ApplyPayerInfo返回参数结构体
     public struct ApplyPayerInfoResponse: TCResponseModel {
         /// 付款人申请结果
         public let result: ApplyPayerinfoResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 跨境-付款人申请
     ///
     /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
     @inlinable
-    public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyPayerInfoResponse > {
+    public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyPayerInfoResponse> {
         self.client.execute(action: "ApplyPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 跨境-付款人申请
     ///
     /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
@@ -103,15 +103,15 @@ extension Cpdp {
     public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyPayerInfoResponse {
         try await self.client.execute(action: "ApplyPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 跨境-付款人申请
     ///
     /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
     @inlinable
-    public func applyPayerInfo(payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyPayerInfoResponse > {
+    public func applyPayerInfo(payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyPayerInfoResponse> {
         self.applyPayerInfo(ApplyPayerInfoRequest(payerId: payerId, payerType: payerType, payerName: payerName, payerIdType: payerIdType, payerIdNo: payerIdNo, payerCountryCode: payerCountryCode, payerContactName: payerContactName, payerContactNumber: payerContactNumber, payerEmailAddress: payerEmailAddress, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 跨境-付款人申请
     ///
     /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。

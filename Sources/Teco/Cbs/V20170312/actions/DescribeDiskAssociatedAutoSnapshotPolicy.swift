@@ -19,42 +19,42 @@ extension Cbs {
     public struct DescribeDiskAssociatedAutoSnapshotPolicyRequest: TCRequestModel {
         /// 要查询的云硬盘ID。
         public let diskId: String
-        
-        public init (diskId: String) {
+
+        public init(diskId: String) {
             self.diskId = diskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskId = "DiskId"
         }
     }
-    
+
     /// DescribeDiskAssociatedAutoSnapshotPolicy返回参数结构体
     public struct DescribeDiskAssociatedAutoSnapshotPolicyResponse: TCResponseModel {
         /// 云盘绑定的定期快照数量。
         public let totalCount: UInt64
-        
+
         /// 云盘绑定的定期快照列表。
         public let autoSnapshotPolicySet: [AutoSnapshotPolicy]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case autoSnapshotPolicySet = "AutoSnapshotPolicySet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云硬盘关联定期快照策略
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
     @inlinable
-    public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskAssociatedAutoSnapshotPolicyResponse > {
+    public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskAssociatedAutoSnapshotPolicyResponse> {
         self.client.execute(action: "DescribeDiskAssociatedAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘关联定期快照策略
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
@@ -62,15 +62,15 @@ extension Cbs {
     public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskAssociatedAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "DescribeDiskAssociatedAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云硬盘关联定期快照策略
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
     @inlinable
-    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskAssociatedAutoSnapshotPolicyResponse > {
+    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskAssociatedAutoSnapshotPolicyResponse> {
         self.describeDiskAssociatedAutoSnapshotPolicy(DescribeDiskAssociatedAutoSnapshotPolicyRequest(diskId: diskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘关联定期快照策略
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。

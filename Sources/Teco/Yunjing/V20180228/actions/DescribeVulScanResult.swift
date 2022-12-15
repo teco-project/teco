@@ -17,30 +17,30 @@
 extension Yunjing {
     /// DescribeVulScanResult请求参数结构体
     public struct DescribeVulScanResultRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVulScanResult返回参数结构体
     public struct DescribeVulScanResultResponse: TCResponseModel {
         /// 漏洞数量。
         public let vulNum: UInt64
-        
+
         /// 专业版机器数。
         public let proVersionNum: UInt64
-        
+
         /// 受影响的专业版主机数。
         public let impactedHostNum: UInt64
-        
+
         /// 主机总数。
         public let hostNum: UInt64
-        
+
         /// 基础版机器数。
         public let basicVersionNum: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vulNum = "VulNum"
             case proVersionNum = "ProVersionNum"
@@ -50,15 +50,15 @@ extension Yunjing {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取漏洞检测结果
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
-    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanResultResponse > {
+    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanResultResponse> {
         self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取漏洞检测结果
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
@@ -66,15 +66,15 @@ extension Yunjing {
     public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
         try await self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取漏洞检测结果
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
-    public func describeVulScanResult(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanResultResponse > {
+    public func describeVulScanResult(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanResultResponse> {
         self.describeVulScanResult(DescribeVulScanResultRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取漏洞检测结果
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。

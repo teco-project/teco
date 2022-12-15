@@ -21,52 +21,52 @@ extension TCCmsError {
             case errTextTimeOut = "ResourceUnavailable.ErrTextTimeOut"
             case imageDownloadError = "ResourceUnavailable.ImageDownloadError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 图片识别服务超时
         public static var errImageTimeOut: ResourceUnavailable {
             ResourceUnavailable(.errImageTimeOut)
         }
-        
+
         /// 文本识别服务超时
         public static var errTextTimeOut: ResourceUnavailable {
             ResourceUnavailable(.errTextTimeOut)
         }
-        
+
         /// 图片文件下载失败。
         public static var imageDownloadError: ResourceUnavailable {
             ResourceUnavailable(.imageDownloadError)
         }
-        
+
         public func asCmsError() -> TCCmsError {
             let code: TCCmsError.Code
             switch self.error {
-            case .errImageTimeOut: 
+            case .errImageTimeOut:
                 code = .resourceUnavailable_ErrImageTimeOut
-            case .errTextTimeOut: 
+            case .errTextTimeOut:
                 code = .resourceUnavailable_ErrTextTimeOut
-            case .imageDownloadError: 
+            case .imageDownloadError:
                 code = .resourceUnavailable_ImageDownloadError
             }
             return TCCmsError(code, context: self.context)

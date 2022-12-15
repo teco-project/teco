@@ -17,32 +17,32 @@
 extension Batch {
     /// DescribeInstanceCategories请求参数结构体
     public struct DescribeInstanceCategoriesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeInstanceCategories返回参数结构体
     public struct DescribeInstanceCategoriesResponse: TCResponseModel {
         /// CVM实例分类列表
         public let instanceCategorySet: [InstanceCategoryItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceCategorySet = "InstanceCategorySet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例分类信息
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
-    public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceCategoriesResponse > {
+    public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceCategoriesResponse> {
         self.client.execute(action: "DescribeInstanceCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例分类信息
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
@@ -50,15 +50,15 @@ extension Batch {
     public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
         try await self.client.execute(action: "DescribeInstanceCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例分类信息
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
-    public func describeInstanceCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceCategoriesResponse > {
+    public func describeInstanceCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceCategoriesResponse> {
         self.describeInstanceCategories(DescribeInstanceCategoriesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例分类信息
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。

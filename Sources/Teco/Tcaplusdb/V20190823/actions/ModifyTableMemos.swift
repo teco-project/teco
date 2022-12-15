@@ -19,57 +19,57 @@ extension Tcaplusdb {
     public struct ModifyTableMemosRequest: TCRequestModel {
         /// 表所属集群实例ID
         public let clusterId: String
-        
+
         /// 选定表详情列表
         public let tableMemos: [SelectedTableInfoNew]
-        
-        public init (clusterId: String, tableMemos: [SelectedTableInfoNew]) {
+
+        public init(clusterId: String, tableMemos: [SelectedTableInfoNew]) {
             self.clusterId = clusterId
             self.tableMemos = tableMemos
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case tableMemos = "TableMemos"
         }
     }
-    
+
     /// ModifyTableMemos返回参数结构体
     public struct ModifyTableMemosResponse: TCResponseModel {
         /// 表备注修改结果数量
         public let totalCount: UInt64
-        
+
         /// 表备注修改结果列表
         public let tableResults: [TableResultNew]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改表备注信息
     @inlinable
-    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableMemosResponse > {
+    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableMemosResponse> {
         self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改表备注信息
     @inlinable
     public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
         try await self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改表备注信息
     @inlinable
-    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableMemosResponse > {
+    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableMemosResponse> {
         self.modifyTableMemos(ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改表备注信息
     @inlinable
     public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {

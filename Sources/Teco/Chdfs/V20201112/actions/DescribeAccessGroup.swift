@@ -19,38 +19,38 @@ extension Chdfs {
     public struct DescribeAccessGroupRequest: TCRequestModel {
         /// 权限组ID
         public let accessGroupId: String
-        
-        public init (accessGroupId: String) {
+
+        public init(accessGroupId: String) {
             self.accessGroupId = accessGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessGroupId = "AccessGroupId"
         }
     }
-    
+
     /// DescribeAccessGroup返回参数结构体
     public struct DescribeAccessGroupResponse: TCResponseModel {
         /// 权限组
         public let accessGroup: AccessGroup
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accessGroup = "AccessGroup"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看权限组详细信息
     ///
     /// 查看权限组详细信息。
     @inlinable
-    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessGroupResponse > {
+    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessGroupResponse> {
         self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看权限组详细信息
     ///
     /// 查看权限组详细信息。
@@ -58,15 +58,15 @@ extension Chdfs {
     public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupResponse {
         try await self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看权限组详细信息
     ///
     /// 查看权限组详细信息。
     @inlinable
-    public func describeAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessGroupResponse > {
+    public func describeAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessGroupResponse> {
         self.describeAccessGroup(DescribeAccessGroupRequest(accessGroupId: accessGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看权限组详细信息
     ///
     /// 查看权限组详细信息。

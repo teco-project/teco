@@ -19,25 +19,25 @@ extension Mna {
     public struct GetStatisticDataRequest: TCRequestModel {
         /// 设备ID，设备ID="-1"获取所有设备流量统计
         public let deviceId: String
-        
+
         /// 统计开始时间，单位：s
         public let beginTime: Int64
-        
+
         /// 统计结束时间，单位：s
         public let endTime: Int64
-        
+
         /// 聚合粒度：
         /// 1:按小时统计
         /// 2:按天统计
         public let timeGranularity: Int64
-        
-        public init (deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64) {
+
+        public init(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64) {
             self.deviceId = deviceId
             self.beginTime = beginTime
             self.endTime = endTime
             self.timeGranularity = timeGranularity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case beginTime = "BeginTime"
@@ -45,29 +45,29 @@ extension Mna {
             case timeGranularity = "TimeGranularity"
         }
     }
-    
+
     /// GetStatisticData返回参数结构体
     public struct GetStatisticDataResponse: TCResponseModel {
         /// 文件地址url
         public let filePath: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case filePath = "FilePath"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 下载用量统计数据
     ///
     /// 在用量统计页面下载流量数据
     @inlinable
-    public func getStatisticData(_ input: GetStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStatisticDataResponse > {
+    public func getStatisticData(_ input: GetStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticDataResponse> {
         self.client.execute(action: "GetStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 下载用量统计数据
     ///
     /// 在用量统计页面下载流量数据
@@ -75,15 +75,15 @@ extension Mna {
     public func getStatisticData(_ input: GetStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticDataResponse {
         try await self.client.execute(action: "GetStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 下载用量统计数据
     ///
     /// 在用量统计页面下载流量数据
     @inlinable
-    public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStatisticDataResponse > {
+    public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticDataResponse> {
         self.getStatisticData(GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity), logger: logger, on: eventLoop)
     }
-    
+
     /// 下载用量统计数据
     ///
     /// 在用量统计页面下载流量数据

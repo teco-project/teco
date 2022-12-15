@@ -19,53 +19,53 @@ extension Cpdp {
     public struct QueryOutwardOrderRequest: TCRequestModel {
         /// 对接方汇出指令编号
         public let transactionId: String
-        
+
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
-        
-        public init (transactionId: String, profile: String? = nil) {
+
+        public init(transactionId: String, profile: String? = nil) {
             self.transactionId = transactionId
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case transactionId = "TransactionId"
             case profile = "Profile"
         }
     }
-    
+
     /// QueryOutwardOrder返回参数结构体
     public struct QueryOutwardOrderResponse: TCResponseModel {
         /// 查询汇出结果
         public let result: QueryOutwardOrderResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 跨境-查询汇出结果
     @inlinable
-    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOutwardOrderResponse > {
+    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOutwardOrderResponse> {
         self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 跨境-查询汇出结果
     @inlinable
     public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
         try await self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 跨境-查询汇出结果
     @inlinable
-    public func queryOutwardOrder(transactionId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOutwardOrderResponse > {
+    public func queryOutwardOrder(transactionId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOutwardOrderResponse> {
         self.queryOutwardOrder(QueryOutwardOrderRequest(transactionId: transactionId, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 跨境-查询汇出结果
     @inlinable
     public func queryOutwardOrder(transactionId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {

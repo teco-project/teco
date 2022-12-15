@@ -22,34 +22,34 @@ extension Vpc {
         /// Nat网关实例ID，形如，`nat-ltjahce6`；
         /// VPN网关实例ID，形如，`vpn-ltjahce6`。
         public let gatewayId: String
-        
-        public init (gatewayId: String) {
+
+        public init(gatewayId: String) {
             self.gatewayId = gatewayId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayId = "GatewayId"
         }
     }
-    
+
     /// DisableGatewayFlowMonitor返回参数结构体
     public struct DisableGatewayFlowMonitorResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
     @inlinable
-    public func disableGatewayFlowMonitor(_ input: DisableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGatewayFlowMonitorResponse > {
+    public func disableGatewayFlowMonitor(_ input: DisableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGatewayFlowMonitorResponse> {
         self.client.execute(action: "DisableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
@@ -57,15 +57,15 @@ extension Vpc {
     public func disableGatewayFlowMonitor(_ input: DisableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGatewayFlowMonitorResponse {
         try await self.client.execute(action: "DisableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
     @inlinable
-    public func disableGatewayFlowMonitor(gatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGatewayFlowMonitorResponse > {
+    public func disableGatewayFlowMonitor(gatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGatewayFlowMonitorResponse> {
         self.disableGatewayFlowMonitor(DisableGatewayFlowMonitorRequest(gatewayId: gatewayId), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。

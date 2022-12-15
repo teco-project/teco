@@ -19,44 +19,44 @@ extension Organization {
     public struct DeleteOrganizationNodesRequest: TCRequestModel {
         /// 节点ID列表。
         public let nodeId: [Int64]
-        
-        public init (nodeId: [Int64]) {
+
+        public init(nodeId: [Int64]) {
             self.nodeId = nodeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
         }
     }
-    
+
     /// DeleteOrganizationNodes返回参数结构体
     public struct DeleteOrganizationNodesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除企业组织节点
     @inlinable
-    public func deleteOrganizationNodes(_ input: DeleteOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationNodesResponse > {
+    public func deleteOrganizationNodes(_ input: DeleteOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationNodesResponse> {
         self.client.execute(action: "DeleteOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除企业组织节点
     @inlinable
     public func deleteOrganizationNodes(_ input: DeleteOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationNodesResponse {
         try await self.client.execute(action: "DeleteOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除企业组织节点
     @inlinable
-    public func deleteOrganizationNodes(nodeId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationNodesResponse > {
+    public func deleteOrganizationNodes(nodeId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationNodesResponse> {
         self.deleteOrganizationNodes(DeleteOrganizationNodesRequest(nodeId: nodeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除企业组织节点
     @inlinable
     public func deleteOrganizationNodes(nodeId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationNodesResponse {

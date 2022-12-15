@@ -19,21 +19,21 @@ extension Cfw {
     public struct AddAcRuleRequest: TCRequestModel {
         /// -1表示优先级最低，1表示优先级最高
         public let orderIndex: String
-        
+
         /// 访问控制策略中设置的流量通过云防火墙的方式。取值：
         /// accept：放行
         /// drop：拒绝
         /// log：观察
         public let ruleAction: String
-        
+
         /// 访问控制策略的流量方向。取值：
         /// in：外对内流量访问控制
         /// out：内对外流量访问控制
         public let direction: String
-        
+
         /// 访问控制策略的描述信息
         public let description: String
-        
+
         /// 访问控制策略中的源地址类型。取值：
         /// net：源IP或网段（IP或者CIDR）
         /// location：源区域
@@ -41,7 +41,7 @@ extension Cfw {
         /// instance：实例id
         /// vendor：云厂商
         public let sourceType: String
-        
+
         /// 访问控制策略中的源地址。取值：
         /// 当SourceType为net时，SourceContent为源IP地址或者CIDR地址。
         /// 例如：1.1.1.0/24
@@ -53,7 +53,7 @@ extension Cfw {
         /// 当SourceType为vendor时，SourceContent为所选择厂商的公网ip列表。
         /// 例如：aws,huawei,tencent,aliyun,azure,all代表以上五个
         public let sourceContent: String
-        
+
         /// 访问控制策略中的目的地址类型。取值：
         /// net：目的IP或者网段（IP或者CIDR）
         /// location：源区域
@@ -62,7 +62,7 @@ extension Cfw {
         /// vendor：云厂商
         /// domain: 域名或者ip
         public let destType: String
-        
+
         /// 访问控制策略中的目的地址。取值：
         /// 当DestType为net时，DestContent为源IP地址或者CIDR地址。
         /// 例如：1.1.1.0/24
@@ -76,25 +76,25 @@ extension Cfw {
         /// 当DestType为vendor时，DestContent为所选择厂商的公网ip列表。
         /// 例如：aws,huawei,tencent,aliyun,azure,all代表以上五个
         public let destContent: String
-        
+
         /// 访问控制策略的端口。取值：
         /// -1/-1：全部端口
         /// 80,443：80或者443
         public let port: String
-        
+
         /// 访问控制策略中流量访问的协议类型。取值：TCP，目前互联网边界规则只能支持TCP，不传参数默认就是TCP
         public let `protocol`: String?
-        
+
         /// 七层协议，取值：
         /// HTTP/HTTPS
         /// TLS/SSL
         public let applicationName: String?
-        
+
         /// 是否启用规则，默认为启用，取值：
         /// true为启用，false为不启用
         public let enable: String?
-        
-        public init (orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, protocol: String? = nil, applicationName: String? = nil, enable: String? = nil) {
+
+        public init(orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, protocol: String? = nil, applicationName: String? = nil, enable: String? = nil) {
             self.orderIndex = orderIndex
             self.ruleAction = ruleAction
             self.direction = direction
@@ -108,7 +108,7 @@ extension Cfw {
             self.applicationName = applicationName
             self.enable = enable
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case orderIndex = "OrderIndex"
             case ruleAction = "RuleAction"
@@ -124,21 +124,21 @@ extension Cfw {
             case enable = "Enable"
         }
     }
-    
+
     /// AddAcRule返回参数结构体
     public struct AddAcRuleResponse: TCResponseModel {
         /// 创建成功后返回新策略的uuid
         public let ruleUuid: Int64
-        
+
         /// 0代表成功，-1代表失败
         public let returnCode: Int64
-        
+
         /// success代表成功，failed代表失败
         public let returnMsg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleUuid = "RuleUuid"
             case returnCode = "ReturnCode"
@@ -146,25 +146,25 @@ extension Cfw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加互联网边界规则
     @inlinable
-    public func addAcRule(_ input: AddAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAcRuleResponse > {
+    public func addAcRule(_ input: AddAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAcRuleResponse> {
         self.client.execute(action: "AddAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加互联网边界规则
     @inlinable
     public func addAcRule(_ input: AddAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAcRuleResponse {
         try await self.client.execute(action: "AddAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加互联网边界规则
     @inlinable
-    public func addAcRule(orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, protocol: String? = nil, applicationName: String? = nil, enable: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAcRuleResponse > {
+    public func addAcRule(orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, protocol: String? = nil, applicationName: String? = nil, enable: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAcRuleResponse> {
         self.addAcRule(AddAcRuleRequest(orderIndex: orderIndex, ruleAction: ruleAction, direction: direction, description: description, sourceType: sourceType, sourceContent: sourceContent, destType: destType, destContent: destContent, port: port, protocol: `protocol`, applicationName: applicationName, enable: enable), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加互联网边界规则
     @inlinable
     public func addAcRule(orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, protocol: String? = nil, applicationName: String? = nil, enable: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAcRuleResponse {

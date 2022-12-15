@@ -22,59 +22,59 @@ extension TCEcmError {
             case ipQuotaNotEnough = "ResourceInsufficient.IPQuotaNotEnough"
             case other = "ResourceInsufficient"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例资源不足。
         public static var instanceQuotaNotEnough: ResourceInsufficient {
             ResourceInsufficient(.instanceQuotaNotEnough)
         }
-        
+
         /// 私有镜像数量超出限制。
         public static var invaildPrivateImageNum: ResourceInsufficient {
             ResourceInsufficient(.invaildPrivateImageNum)
         }
-        
+
         /// IP资源不足。
         public static var ipQuotaNotEnough: ResourceInsufficient {
             ResourceInsufficient(.ipQuotaNotEnough)
         }
-        
+
         /// 资源不足。
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-        
+
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
-            case .instanceQuotaNotEnough: 
+            case .instanceQuotaNotEnough:
                 code = .resourceInsufficient_InstanceQuotaNotEnough
-            case .invaildPrivateImageNum: 
+            case .invaildPrivateImageNum:
                 code = .resourceInsufficient_InvaildPrivateImageNum
-            case .ipQuotaNotEnough: 
+            case .ipQuotaNotEnough:
                 code = .resourceInsufficient_IPQuotaNotEnough
-            case .other: 
+            case .other:
                 code = .resourceInsufficient
             }
             return TCEcmError(code, context: self.context)

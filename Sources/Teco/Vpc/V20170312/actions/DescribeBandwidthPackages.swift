@@ -19,7 +19,7 @@ extension Vpc {
     public struct DescribeBandwidthPackagesRequest: TCRequestModel {
         /// 带宽包唯一ID列表
         public let bandwidthPackageIds: [String]?
-        
+
         /// 每次请求的`Filters`的上限为10。参数不支持同时指定`BandwidthPackageIds`和`Filters`。详细的过滤条件如下：
         /// <li> bandwidth-package_id - String - 是否必填：否 - （过滤条件）按照带宽包的唯一标识ID过滤。</li>
         /// <li> bandwidth-package-name - String - 是否必填：否 - （过滤条件）按照 带宽包名称过滤。不支持模糊过滤。</li>
@@ -32,20 +32,20 @@ extension Vpc {
         /// <li> tag-value - String - 是否必填：否 - （过滤条件）按照标签值进行过滤。</li>
         /// <li> tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。tag-key使用具体的标签键进行替换。</li>
         public let filters: [Filter]?
-        
+
         /// 查询带宽包偏移量
         public let offset: UInt64?
-        
+
         /// 查询带宽包数量限制
         public let limit: UInt64?
-        
-        public init (bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.bandwidthPackageIds = bandwidthPackageIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bandwidthPackageIds = "BandwidthPackageIds"
             case filters = "Filters"
@@ -53,33 +53,33 @@ extension Vpc {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeBandwidthPackages返回参数结构体
     public struct DescribeBandwidthPackagesResponse: TCResponseModel {
         /// 符合条件的带宽包数量
         public let totalCount: UInt64
-        
+
         /// 描述带宽包详细信息
         public let bandwidthPackageSet: [BandwidthPackage]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case bandwidthPackageSet = "BandwidthPackageSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询带宽包资源
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
     @inlinable
-    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackagesResponse > {
+    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackagesResponse> {
         self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询带宽包资源
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
@@ -87,15 +87,15 @@ extension Vpc {
     public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackagesResponse {
         try await self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询带宽包资源
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
     @inlinable
-    public func describeBandwidthPackages(bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackagesResponse > {
+    public func describeBandwidthPackages(bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackagesResponse> {
         self.describeBandwidthPackages(DescribeBandwidthPackagesRequest(bandwidthPackageIds: bandwidthPackageIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询带宽包资源
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等

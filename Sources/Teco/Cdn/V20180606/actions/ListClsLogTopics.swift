@@ -19,32 +19,32 @@ extension Cdn {
     public struct ListClsLogTopicsRequest: TCRequestModel {
         /// 接入渠道，cdn或者ecdn，默认值为cdn
         public let channel: String?
-        
-        public init (channel: String? = nil) {
+
+        public init(channel: String? = nil) {
             self.channel = channel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channel = "Channel"
         }
     }
-    
+
     /// ListClsLogTopics返回参数结构体
     public struct ListClsLogTopicsResponse: TCResponseModel {
         /// 上海区域日志集信息
         public let logset: LogSetInfo
-        
+
         /// 上海区域日志主题信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topics: [TopicInfo]?
-        
+
         /// 其他区域日志集信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraLogset: [ExtraLogset]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case logset = "Logset"
             case topics = "Topics"
@@ -52,15 +52,15 @@ extension Cdn {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 显示日志主题列表
     ///
     /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
     @inlinable
-    public func listClsLogTopics(_ input: ListClsLogTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsLogTopicsResponse > {
+    public func listClsLogTopics(_ input: ListClsLogTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsLogTopicsResponse> {
         self.client.execute(action: "ListClsLogTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 显示日志主题列表
     ///
     /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
@@ -68,15 +68,15 @@ extension Cdn {
     public func listClsLogTopics(_ input: ListClsLogTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsLogTopicsResponse {
         try await self.client.execute(action: "ListClsLogTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 显示日志主题列表
     ///
     /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
     @inlinable
-    public func listClsLogTopics(channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsLogTopicsResponse > {
+    public func listClsLogTopics(channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsLogTopicsResponse> {
         self.listClsLogTopics(ListClsLogTopicsRequest(channel: channel), logger: logger, on: eventLoop)
     }
-    
+
     /// 显示日志主题列表
     ///
     /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。

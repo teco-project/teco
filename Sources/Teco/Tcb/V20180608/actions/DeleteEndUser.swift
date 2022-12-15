@@ -19,49 +19,49 @@ extension Tcb {
     public struct DeleteEndUserRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// 用户列表，每一项都是uuid
         public let userList: [String]
-        
-        public init (envId: String, userList: [String]) {
+
+        public init(envId: String, userList: [String]) {
             self.envId = envId
             self.userList = userList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case userList = "UserList"
         }
     }
-    
+
     /// DeleteEndUser返回参数结构体
     public struct DeleteEndUserResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除终端用户
     @inlinable
-    public func deleteEndUser(_ input: DeleteEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEndUserResponse > {
+    public func deleteEndUser(_ input: DeleteEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEndUserResponse> {
         self.client.execute(action: "DeleteEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除终端用户
     @inlinable
     public func deleteEndUser(_ input: DeleteEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEndUserResponse {
         try await self.client.execute(action: "DeleteEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除终端用户
     @inlinable
-    public func deleteEndUser(envId: String, userList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEndUserResponse > {
+    public func deleteEndUser(envId: String, userList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEndUserResponse> {
         self.deleteEndUser(DeleteEndUserRequest(envId: envId, userList: userList), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除终端用户
     @inlinable
     public func deleteEndUser(envId: String, userList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEndUserResponse {

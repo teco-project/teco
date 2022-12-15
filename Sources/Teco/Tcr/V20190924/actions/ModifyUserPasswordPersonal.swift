@@ -19,44 +19,44 @@ extension Tcr {
     public struct ModifyUserPasswordPersonalRequest: TCRequestModel {
         /// 更新后的密码
         public let password: String
-        
-        public init (password: String) {
+
+        public init(password: String) {
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case password = "Password"
         }
     }
-    
+
     /// ModifyUserPasswordPersonal返回参数结构体
     public struct ModifyUserPasswordPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改个人用户登录密码
     @inlinable
-    public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserPasswordPersonalResponse > {
+    public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserPasswordPersonalResponse> {
         self.client.execute(action: "ModifyUserPasswordPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改个人用户登录密码
     @inlinable
     public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserPasswordPersonalResponse {
         try await self.client.execute(action: "ModifyUserPasswordPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改个人用户登录密码
     @inlinable
-    public func modifyUserPasswordPersonal(password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserPasswordPersonalResponse > {
+    public func modifyUserPasswordPersonal(password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserPasswordPersonalResponse> {
         self.modifyUserPasswordPersonal(ModifyUserPasswordPersonalRequest(password: password), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改个人用户登录密码
     @inlinable
     public func modifyUserPasswordPersonal(password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserPasswordPersonalResponse {

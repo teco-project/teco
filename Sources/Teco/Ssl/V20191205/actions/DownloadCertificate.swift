@@ -19,44 +19,44 @@ extension Ssl {
     public struct DownloadCertificateRequest: TCRequestModel {
         /// 证书 ID。
         public let certificateId: String
-        
-        public init (certificateId: String) {
+
+        public init(certificateId: String) {
             self.certificateId = certificateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
         }
     }
-    
+
     /// DownloadCertificate返回参数结构体
     public struct DownloadCertificateResponse: TCResponseModel {
         /// ZIP base64 编码内容，base64 解码后可保存为 ZIP 文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         /// MIME 类型：application/zip = ZIP 压缩文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentType: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
             case contentType = "ContentType"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 下载证书
     ///
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
-    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadCertificateResponse > {
+    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCertificateResponse> {
         self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 下载证书
     ///
     /// 本接口（DownloadCertificate）用于下载证书。
@@ -64,15 +64,15 @@ extension Ssl {
     public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
         try await self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 下载证书
     ///
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
-    public func downloadCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadCertificateResponse > {
+    public func downloadCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCertificateResponse> {
         self.downloadCertificate(DownloadCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 下载证书
     ///
     /// 本接口（DownloadCertificate）用于下载证书。

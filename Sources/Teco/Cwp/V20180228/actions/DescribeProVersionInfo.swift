@@ -17,24 +17,24 @@
 extension Cwp {
     /// DescribeProVersionInfo请求参数结构体
     public struct DescribeProVersionInfoRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeProVersionInfo返回参数结构体
     public struct DescribeProVersionInfoResponse: TCResponseModel {
         /// 后付费昨日扣费
         public let postPayCost: UInt64
-        
+
         /// 新增主机是否自动开通专业版
         public let isAutoOpenProVersion: Bool
-        
+
         /// 开通专业版主机数
         public let proVersionNum: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case postPayCost = "PostPayCost"
             case isAutoOpenProVersion = "IsAutoOpenProVersion"
@@ -42,15 +42,15 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取专业版概览信息
     ///
     /// 用于获取专业版概览信息。
     @inlinable
-    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionInfoResponse > {
+    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionInfoResponse> {
         self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业版概览信息
     ///
     /// 用于获取专业版概览信息。
@@ -58,15 +58,15 @@ extension Cwp {
     public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
         try await self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取专业版概览信息
     ///
     /// 用于获取专业版概览信息。
     @inlinable
-    public func describeProVersionInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionInfoResponse > {
+    public func describeProVersionInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionInfoResponse> {
         self.describeProVersionInfo(DescribeProVersionInfoRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业版概览信息
     ///
     /// 用于获取专业版概览信息。

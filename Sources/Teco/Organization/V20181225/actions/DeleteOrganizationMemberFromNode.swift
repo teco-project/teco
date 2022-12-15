@@ -19,49 +19,49 @@ extension Organization {
     public struct DeleteOrganizationMemberFromNodeRequest: TCRequestModel {
         /// 被删除成员UIN
         public let memberUin: UInt64
-        
+
         /// 组织单元ID
         public let nodeId: UInt64
-        
-        public init (memberUin: UInt64, nodeId: UInt64) {
+
+        public init(memberUin: UInt64, nodeId: UInt64) {
             self.memberUin = memberUin
             self.nodeId = nodeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case memberUin = "MemberUin"
             case nodeId = "NodeId"
         }
     }
-    
+
     /// DeleteOrganizationMemberFromNode返回参数结构体
     public struct DeleteOrganizationMemberFromNodeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除企业组织成员
     @inlinable
-    public func deleteOrganizationMemberFromNode(_ input: DeleteOrganizationMemberFromNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationMemberFromNodeResponse > {
+    public func deleteOrganizationMemberFromNode(_ input: DeleteOrganizationMemberFromNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationMemberFromNodeResponse> {
         self.client.execute(action: "DeleteOrganizationMemberFromNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除企业组织成员
     @inlinable
     public func deleteOrganizationMemberFromNode(_ input: DeleteOrganizationMemberFromNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMemberFromNodeResponse {
         try await self.client.execute(action: "DeleteOrganizationMemberFromNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除企业组织成员
     @inlinable
-    public func deleteOrganizationMemberFromNode(memberUin: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationMemberFromNodeResponse > {
+    public func deleteOrganizationMemberFromNode(memberUin: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationMemberFromNodeResponse> {
         self.deleteOrganizationMemberFromNode(DeleteOrganizationMemberFromNodeRequest(memberUin: memberUin, nodeId: nodeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除企业组织成员
     @inlinable
     public func deleteOrganizationMemberFromNode(memberUin: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMemberFromNodeResponse {

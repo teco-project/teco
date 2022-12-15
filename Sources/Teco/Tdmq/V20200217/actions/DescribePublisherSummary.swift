@@ -19,47 +19,47 @@ extension Tdmq {
     public struct DescribePublisherSummaryRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 命名空间名称
         public let namespace: String
-        
+
         /// 主题名称
         public let topic: String
-        
-        public init (clusterId: String, namespace: String, topic: String) {
+
+        public init(clusterId: String, namespace: String, topic: String) {
             self.clusterId = clusterId
             self.namespace = namespace
             self.topic = topic
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case namespace = "Namespace"
             case topic = "Topic"
         }
     }
-    
+
     /// DescribePublisherSummary返回参数结构体
     public struct DescribePublisherSummaryResponse: TCResponseModel {
         /// 生产速率（条/秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msgRateIn: Float?
-        
+
         /// 生产速率（字节/秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msgThroughputIn: Float?
-        
+
         /// 生产者数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publisherCount: Int64?
-        
+
         /// 消息存储大小，以字节为单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageSize: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msgRateIn = "MsgRateIn"
             case msgThroughputIn = "MsgThroughputIn"
@@ -68,15 +68,15 @@ extension Tdmq {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取消息生产概览
     ///
     /// 获取消息生产概览信息
     @inlinable
-    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublisherSummaryResponse > {
+    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublisherSummaryResponse> {
         self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取消息生产概览
     ///
     /// 获取消息生产概览信息
@@ -84,15 +84,15 @@ extension Tdmq {
     public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
         try await self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取消息生产概览
     ///
     /// 获取消息生产概览信息
     @inlinable
-    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublisherSummaryResponse > {
+    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublisherSummaryResponse> {
         self.describePublisherSummary(DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取消息生产概览
     ///
     /// 获取消息生产概览信息

@@ -19,40 +19,40 @@ extension Cat {
     public struct CreateProbeTasksRequest: TCRequestModel {
         /// 批量任务名-地址
         public let batchTasks: [ProbeTaskBasicConfiguration]
-        
+
         /// 任务类型
         public let taskType: Int64
-        
+
         /// 拨测节点
         public let nodes: [String]
-        
+
         /// 拨测间隔
         public let interval: Int64
-        
+
         /// 拨测参数
         public let parameters: String
-        
+
         /// 任务分类
         /// <li>1 = PC</li>
         /// <li> 2 = Mobile </li>
         public let taskCategory: Int64
-        
+
         /// 定时任务cron表达式
         public let cron: String?
-        
+
         /// 资源标签值
         public let tag: [Tag]?
-        
+
         /// 测试类型，包含定时测试与即时测试
         public let probeType: UInt64?
-        
+
         /// 插件类型
         public let pluginSource: String?
-        
+
         /// 客户端ID
         public let clientNum: String?
-        
-        public init (batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil) {
+
+        public init(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil) {
             self.batchTasks = batchTasks
             self.taskType = taskType
             self.nodes = nodes
@@ -65,7 +65,7 @@ extension Cat {
             self.pluginSource = pluginSource
             self.clientNum = clientNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchTasks = "BatchTasks"
             case taskType = "TaskType"
@@ -80,39 +80,39 @@ extension Cat {
             case clientNum = "ClientNum"
         }
     }
-    
+
     /// CreateProbeTasks返回参数结构体
     public struct CreateProbeTasksResponse: TCResponseModel {
         /// 任务ID列表
         public let taskIDs: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskIDs = "TaskIDs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量创建拨测任务
     @inlinable
-    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProbeTasksResponse > {
+    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProbeTasksResponse> {
         self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建拨测任务
     @inlinable
     public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
         try await self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量创建拨测任务
     @inlinable
-    public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProbeTasksResponse > {
+    public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProbeTasksResponse> {
         self.createProbeTasks(CreateProbeTasksRequest(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建拨测任务
     @inlinable
     public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {

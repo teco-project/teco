@@ -19,34 +19,34 @@ extension Live {
     public struct DeleteLiveRecordTemplateRequest: TCRequestModel {
         /// DescribeRecordTemplates接口获取到的模板 ID。
         public let templateId: Int64
-        
-        public init (templateId: Int64) {
+
+        public init(templateId: Int64) {
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DeleteLiveRecordTemplate返回参数结构体
     public struct DeleteLiveRecordTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除录制模板
     ///
     /// 删除录制模板。
     @inlinable
-    public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordTemplateResponse > {
+    public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordTemplateResponse> {
         self.client.execute(action: "DeleteLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录制模板
     ///
     /// 删除录制模板。
@@ -54,15 +54,15 @@ extension Live {
     public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordTemplateResponse {
         try await self.client.execute(action: "DeleteLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除录制模板
     ///
     /// 删除录制模板。
     @inlinable
-    public func deleteLiveRecordTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordTemplateResponse > {
+    public func deleteLiveRecordTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordTemplateResponse> {
         self.deleteLiveRecordTemplate(DeleteLiveRecordTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录制模板
     ///
     /// 删除录制模板。

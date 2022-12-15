@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeRuleTemplatesRequest: TCRequestModel {
         /// 模版类型 1.系统模版 2.自定义模版
         public let type: UInt64?
-        
+
         /// 1.常量 2.离线表级 2.离线字段级
         public let sourceObjectType: UInt64?
-        
+
         /// 项目Id
         public let projectId: String?
-        
+
         /// 源端对应的引擎类型
         public let sourceEngineTypes: [UInt64]?
-        
-        public init (type: UInt64? = nil, sourceObjectType: UInt64? = nil, projectId: String? = nil, sourceEngineTypes: [UInt64]? = nil) {
+
+        public init(type: UInt64? = nil, sourceObjectType: UInt64? = nil, projectId: String? = nil, sourceEngineTypes: [UInt64]? = nil) {
             self.type = type
             self.sourceObjectType = sourceObjectType
             self.projectId = projectId
             self.sourceEngineTypes = sourceEngineTypes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case sourceObjectType = "SourceObjectType"
@@ -43,40 +43,40 @@ extension Wedata {
             case sourceEngineTypes = "SourceEngineTypes"
         }
     }
-    
+
     /// DescribeRuleTemplates返回参数结构体
     public struct DescribeRuleTemplatesResponse: TCResponseModel {
         /// 规则模版列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [RuleTemplate]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询规则模版列表
     @inlinable
-    public func describeRuleTemplates(_ input: DescribeRuleTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplatesResponse > {
+    public func describeRuleTemplates(_ input: DescribeRuleTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesResponse> {
         self.client.execute(action: "DescribeRuleTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则模版列表
     @inlinable
     public func describeRuleTemplates(_ input: DescribeRuleTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesResponse {
         try await self.client.execute(action: "DescribeRuleTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询规则模版列表
     @inlinable
-    public func describeRuleTemplates(type: UInt64? = nil, sourceObjectType: UInt64? = nil, projectId: String? = nil, sourceEngineTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplatesResponse > {
+    public func describeRuleTemplates(type: UInt64? = nil, sourceObjectType: UInt64? = nil, projectId: String? = nil, sourceEngineTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesResponse> {
         self.describeRuleTemplates(DescribeRuleTemplatesRequest(type: type, sourceObjectType: sourceObjectType, projectId: projectId, sourceEngineTypes: sourceEngineTypes), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则模版列表
     @inlinable
     public func describeRuleTemplates(type: UInt64? = nil, sourceObjectType: UInt64? = nil, projectId: String? = nil, sourceEngineTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesResponse {

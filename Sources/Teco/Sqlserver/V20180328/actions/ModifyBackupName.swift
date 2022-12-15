@@ -19,24 +19,24 @@ extension Sqlserver {
     public struct ModifyBackupNameRequest: TCRequestModel {
         /// 实例ID，格式如：mssql-3l3fgqn7
         public let instanceId: String
-        
+
         /// 修改的备份名称
         public let backupName: String
-        
+
         /// 要修改名称的备份ID，可通过 [DescribeBackups](https://cloud.tencent.com/document/product/238/19943)  接口获取。
         public let backupId: UInt64?
-        
+
         /// 备份任务组ID，在单库备份文件模式下，可通过[DescribeBackups](https://cloud.tencent.com/document/product/238/19943) 接口获得。
         ///  BackupId 和 GroupId 同时存在，按照BackupId进行修改。
         public let groupId: String?
-        
-        public init (instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil) {
+
+        public init(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil) {
             self.instanceId = instanceId
             self.backupName = backupName
             self.backupId = backupId
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case backupName = "BackupName"
@@ -44,25 +44,25 @@ extension Sqlserver {
             case groupId = "GroupId"
         }
     }
-    
+
     /// ModifyBackupName返回参数结构体
     public struct ModifyBackupNameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
     @inlinable
-    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupNameResponse > {
+    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
@@ -70,15 +70,15 @@ extension Sqlserver {
     public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
         try await self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
     @inlinable
-    public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupNameResponse > {
+    public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.modifyBackupName(ModifyBackupNameRequest(instanceId: instanceId, backupName: backupName, backupId: backupId, groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。

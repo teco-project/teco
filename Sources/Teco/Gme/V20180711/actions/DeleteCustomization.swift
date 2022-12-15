@@ -19,43 +19,43 @@ extension Gme {
     public struct DeleteCustomizationRequest: TCRequestModel {
         /// 要删除的模型ID
         public let modelId: String
-        
+
         /// 应用 ID，登录控制台创建应用得到的AppID
         public let bizId: Int64
-        
-        public init (modelId: String, bizId: Int64) {
+
+        public init(modelId: String, bizId: Int64) {
             self.modelId = modelId
             self.bizId = bizId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case bizId = "BizId"
         }
     }
-    
+
     /// DeleteCustomization返回参数结构体
     public struct DeleteCustomizationResponse: TCResponseModel {
         /// 返回值。0为成功，非0为失败。
         public let errorCode: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errorCode = "ErrorCode"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除语音消息转文本自学习模型
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型
     @inlinable
-    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizationResponse > {
+    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
         self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除语音消息转文本自学习模型
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型
@@ -63,15 +63,15 @@ extension Gme {
     public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
         try await self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除语音消息转文本自学习模型
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型
     @inlinable
-    public func deleteCustomization(modelId: String, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizationResponse > {
+    public func deleteCustomization(modelId: String, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
         self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除语音消息转文本自学习模型
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型

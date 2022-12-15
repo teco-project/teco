@@ -19,49 +19,49 @@ extension Monitor {
     public struct DeleteAlarmPolicyRequest: TCRequestModel {
         /// 模块名，固定值 monitor
         public let module: String
-        
+
         /// 告警策略 ID 列表
         public let policyIds: [String]
-        
-        public init (module: String, policyIds: [String]) {
+
+        public init(module: String, policyIds: [String]) {
             self.module = module
             self.policyIds = policyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case policyIds = "PolicyIds"
         }
     }
-    
+
     /// DeleteAlarmPolicy返回参数结构体
     public struct DeleteAlarmPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除告警策略
     @inlinable
-    public func deleteAlarmPolicy(_ input: DeleteAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmPolicyResponse > {
+    public func deleteAlarmPolicy(_ input: DeleteAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmPolicyResponse> {
         self.client.execute(action: "DeleteAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除告警策略
     @inlinable
     public func deleteAlarmPolicy(_ input: DeleteAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmPolicyResponse {
         try await self.client.execute(action: "DeleteAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除告警策略
     @inlinable
-    public func deleteAlarmPolicy(module: String, policyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmPolicyResponse > {
+    public func deleteAlarmPolicy(module: String, policyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmPolicyResponse> {
         self.deleteAlarmPolicy(DeleteAlarmPolicyRequest(module: module, policyIds: policyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除告警策略
     @inlinable
     public func deleteAlarmPolicy(module: String, policyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmPolicyResponse {

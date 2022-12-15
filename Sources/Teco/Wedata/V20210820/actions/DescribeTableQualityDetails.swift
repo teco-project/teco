@@ -19,26 +19,26 @@ extension Wedata {
     public struct DescribeTableQualityDetailsRequest: TCRequestModel {
         /// 统计日期
         public let statisticsDate: Int64
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 分页序号
         public let pageNumber: Int64
-        
+
         /// 分页大小
         public let pageSize: Int64
-        
+
         /// 过滤参数TableName、DatabaseId 、DatabaseName、OwnerUserName
         public let filters: [Filter]?
-        
+
         /// 排序参数 排序方式 DESC 或者 ASC，表得分排序 TableScore
         public let orderFields: [OrderField]?
-        
+
         /// 数据来源id
         public let datasourceId: String?
-        
-        public init (statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil) {
+
+        public init(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil) {
             self.statisticsDate = statisticsDate
             self.projectId = projectId
             self.pageNumber = pageNumber
@@ -47,7 +47,7 @@ extension Wedata {
             self.orderFields = orderFields
             self.datasourceId = datasourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case statisticsDate = "StatisticsDate"
             case projectId = "ProjectId"
@@ -58,30 +58,30 @@ extension Wedata {
             case datasourceId = "DatasourceId"
         }
     }
-    
+
     /// DescribeTableQualityDetails返回参数结构体
     public struct DescribeTableQualityDetailsResponse: TCResponseModel {
         /// 表质量分详情结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: TableQualityDetailPage?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询表质量详情
     ///
     /// 质量报告-查询表质量详情
     @inlinable
-    public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableQualityDetailsResponse > {
+    public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableQualityDetailsResponse> {
         self.client.execute(action: "DescribeTableQualityDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询表质量详情
     ///
     /// 质量报告-查询表质量详情
@@ -89,15 +89,15 @@ extension Wedata {
     public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
         try await self.client.execute(action: "DescribeTableQualityDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询表质量详情
     ///
     /// 质量报告-查询表质量详情
     @inlinable
-    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableQualityDetailsResponse > {
+    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableQualityDetailsResponse> {
         self.describeTableQualityDetails(DescribeTableQualityDetailsRequest(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询表质量详情
     ///
     /// 质量报告-查询表质量详情

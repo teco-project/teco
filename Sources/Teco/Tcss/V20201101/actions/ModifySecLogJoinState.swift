@@ -22,49 +22,49 @@ extension Tcss {
         /// 容器启动: container_launch
         /// k8sApi: k8s_api
         public let logType: String
-        
+
         /// 状态(true:开 false:关)
         public let state: Bool
-        
-        public init (logType: String, state: Bool) {
+
+        public init(logType: String, state: Bool) {
             self.logType = logType
             self.state = state
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case logType = "LogType"
             case state = "State"
         }
     }
-    
+
     /// ModifySecLogJoinState返回参数结构体
     public struct ModifySecLogJoinStateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改安全日志接入状态
     @inlinable
-    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinStateResponse > {
+    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinStateResponse> {
         self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志接入状态
     @inlinable
     public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
         try await self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改安全日志接入状态
     @inlinable
-    public func modifySecLogJoinState(logType: String, state: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinStateResponse > {
+    public func modifySecLogJoinState(logType: String, state: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinStateResponse> {
         self.modifySecLogJoinState(ModifySecLogJoinStateRequest(logType: logType, state: state), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改安全日志接入状态
     @inlinable
     public func modifySecLogJoinState(logType: String, state: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {

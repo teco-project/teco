@@ -19,39 +19,39 @@ extension Cme {
     public struct DeleteLoginStatusRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
         public let platform: String
-        
+
         /// 用户 Id 列表，N 从 0 开始取值，最大 19。
         public let userIds: [String]
-        
-        public init (platform: String, userIds: [String]) {
+
+        public init(platform: String, userIds: [String]) {
             self.platform = platform
             self.userIds = userIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platform = "Platform"
             case userIds = "UserIds"
         }
     }
-    
+
     /// DeleteLoginStatus返回参数结构体
     public struct DeleteLoginStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除登录态
     ///
     /// 删除用户登录态，使用户登出多媒体创作引擎平台。
     @inlinable
-    public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginStatusResponse > {
+    public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginStatusResponse> {
         self.client.execute(action: "DeleteLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除登录态
     ///
     /// 删除用户登录态，使用户登出多媒体创作引擎平台。
@@ -59,15 +59,15 @@ extension Cme {
     public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginStatusResponse {
         try await self.client.execute(action: "DeleteLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除登录态
     ///
     /// 删除用户登录态，使用户登出多媒体创作引擎平台。
     @inlinable
-    public func deleteLoginStatus(platform: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginStatusResponse > {
+    public func deleteLoginStatus(platform: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginStatusResponse> {
         self.deleteLoginStatus(DeleteLoginStatusRequest(platform: platform, userIds: userIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除登录态
     ///
     /// 删除用户登录态，使用户登出多媒体创作引擎平台。

@@ -19,32 +19,32 @@ extension Rum {
     public struct DescribeTawInstancesRequest: TCRequestModel {
         /// 计费状态
         public let chargeStatuses: [Int64]?
-        
+
         /// 计费类型
         public let chargeTypes: [Int64]?
-        
+
         /// 分页Limit
         public let limit: Int64?
-        
+
         /// 分页Offset
         public let offset: Int64?
-        
+
         /// 片区Id
         public let areaIds: [Int64]?
-        
+
         /// 实例状态(1=创建中，2=运行中，3=异常，4=重启中，5=停止中，6=已停止，7=销毁中，8=已销毁), 该参数已废弃，请在Filters内注明
         public let instanceStatuses: [Int64]?
-        
+
         /// 实例Id, 该参数已废弃，请在Filters内注明
         public let instanceIds: [String]?
-        
+
         /// 过滤参数；demo模式传{"Name": "IsDemo", "Values":["1"]}
         public let filters: [Filter]?
-        
+
         /// 该参数已废弃，demo模式请在Filters内注明
         public let isDemo: Int64?
-        
-        public init (chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil) {
+
+        public init(chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil) {
             self.chargeStatuses = chargeStatuses
             self.chargeTypes = chargeTypes
             self.limit = limit
@@ -55,7 +55,7 @@ extension Rum {
             self.filters = filters
             self.isDemo = isDemo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case chargeStatuses = "ChargeStatuses"
             case chargeTypes = "ChargeTypes"
@@ -68,43 +68,43 @@ extension Rum {
             case isDemo = "IsDemo"
         }
     }
-    
+
     /// DescribeTawInstances返回参数结构体
     public struct DescribeTawInstancesResponse: TCResponseModel {
         /// 实例列表
         public let instanceSet: [RumInstanceInfo]
-        
+
         /// 实例总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceSet = "InstanceSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例信息
     @inlinable
-    public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTawInstancesResponse > {
+    public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTawInstancesResponse> {
         self.client.execute(action: "DescribeTawInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例信息
     @inlinable
     public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawInstancesResponse {
         try await self.client.execute(action: "DescribeTawInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例信息
     @inlinable
-    public func describeTawInstances(chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTawInstancesResponse > {
+    public func describeTawInstances(chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTawInstancesResponse> {
         self.describeTawInstances(DescribeTawInstancesRequest(chargeStatuses: chargeStatuses, chargeTypes: chargeTypes, limit: limit, offset: offset, areaIds: areaIds, instanceStatuses: instanceStatuses, instanceIds: instanceIds, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例信息
     @inlinable
     public func describeTawInstances(chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawInstancesResponse {

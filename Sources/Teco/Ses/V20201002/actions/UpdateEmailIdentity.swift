@@ -19,30 +19,30 @@ extension Ses {
     public struct UpdateEmailIdentityRequest: TCRequestModel {
         /// 请求验证的域名
         public let emailIdentity: String
-        
-        public init (emailIdentity: String) {
+
+        public init(emailIdentity: String) {
             self.emailIdentity = emailIdentity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case emailIdentity = "EmailIdentity"
         }
     }
-    
+
     /// UpdateEmailIdentity返回参数结构体
     public struct UpdateEmailIdentityResponse: TCResponseModel {
         /// 验证类型。固定值：DOMAIN
         public let identityType: String
-        
+
         /// 是否已通过验证
         public let verifiedForSendingStatus: Bool
-        
+
         /// 需要配置的DNS信息
         public let attributes: [DNSAttributes]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case identityType = "IdentityType"
             case verifiedForSendingStatus = "VerifiedForSendingStatus"
@@ -50,15 +50,15 @@ extension Ses {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 请求验证
     ///
     /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
     @inlinable
-    public func updateEmailIdentity(_ input: UpdateEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEmailIdentityResponse > {
+    public func updateEmailIdentity(_ input: UpdateEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailIdentityResponse> {
         self.client.execute(action: "UpdateEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 请求验证
     ///
     /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
@@ -66,15 +66,15 @@ extension Ses {
     public func updateEmailIdentity(_ input: UpdateEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailIdentityResponse {
         try await self.client.execute(action: "UpdateEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 请求验证
     ///
     /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
     @inlinable
-    public func updateEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEmailIdentityResponse > {
+    public func updateEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailIdentityResponse> {
         self.updateEmailIdentity(UpdateEmailIdentityRequest(emailIdentity: emailIdentity), logger: logger, on: eventLoop)
     }
-    
+
     /// 请求验证
     ///
     /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确

@@ -19,26 +19,26 @@ extension Tbaas {
     public struct GetPeerLogForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：peer_mng
         public let module: String
-        
+
         /// 操作名，本接口取值：peer_log_for_user
         public let operation: String
-        
+
         /// 区块链网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
-        
+
         /// 调用合约的组织名称
         public let groupName: String
-        
+
         /// 节点名称
         public let peerName: String
-        
+
         /// 日志开始时间，如"2020-11-24 19:49:25"
         public let beginTime: String
-        
+
         /// 返回日志行数的最大值，系统设定该参数最大为1000，且一行日志的最大字节数是500，即最大返回50万个字节数的日志数据
         public let rowNum: Int64
-        
-        public init (module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64) {
+
+        public init(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -47,7 +47,7 @@ extension Tbaas {
             self.beginTime = beginTime
             self.rowNum = rowNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -58,43 +58,43 @@ extension Tbaas {
             case rowNum = "RowNum"
         }
     }
-    
+
     /// GetPeerLogForUser返回参数结构体
     public struct GetPeerLogForUserResponse: TCResponseModel {
         /// 返回日志总行数，不会超过入参的RowNum
         public let totalCount: UInt64
-        
+
         /// 日志列表
         public let peerLogList: [LogDetailForUser]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case peerLogList = "PeerLogList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取节点日志
     @inlinable
-    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPeerLogForUserResponse > {
+    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPeerLogForUserResponse> {
         self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取节点日志
     @inlinable
     public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
         try await self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取节点日志
     @inlinable
-    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPeerLogForUserResponse > {
+    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPeerLogForUserResponse> {
         self.getPeerLogForUser(GetPeerLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, beginTime: beginTime, rowNum: rowNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取节点日志
     @inlinable
     public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {

@@ -19,10 +19,10 @@ extension Tcss {
     public struct DescribeAssetContainerListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>ContainerName - String - 是否必填：否 - 容器名称模糊搜索</li>
         /// <li>Status - String - 是否必填：否 - 容器运行状态筛选，0："created",1："running", 2："paused", 3："restarting", 4："removing", 5："exited", 6："dead" </li>
@@ -32,21 +32,21 @@ extension Tcss {
         /// <li>OrderBy - String 是否必填：否 -排序字段，支持：cpu_usage, mem_usage的动态排序 ["cpu_usage","+"]  '+'升序、'-'降序</li>
         /// <li>NetStatus - String -是否必填: 否 -  容器网络状态筛选 normal isolated isolating isolate_failed restoring restore_failed</li>
         public let filters: [AssetFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式 asc,desc
         public let order: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -55,33 +55,33 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeAssetContainerList返回参数结构体
     public struct DescribeAssetContainerListResponse: TCResponseModel {
         /// 容器列表
         public let list: [ContainerInfo]
-        
+
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器列表
     ///
     /// 搜索查询容器列表
     @inlinable
-    public func describeAssetContainerList(_ input: DescribeAssetContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerListResponse > {
+    public func describeAssetContainerList(_ input: DescribeAssetContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerListResponse> {
         self.client.execute(action: "DescribeAssetContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器列表
     ///
     /// 搜索查询容器列表
@@ -89,15 +89,15 @@ extension Tcss {
     public func describeAssetContainerList(_ input: DescribeAssetContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerListResponse {
         try await self.client.execute(action: "DescribeAssetContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器列表
     ///
     /// 搜索查询容器列表
     @inlinable
-    public func describeAssetContainerList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerListResponse > {
+    public func describeAssetContainerList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerListResponse> {
         self.describeAssetContainerList(DescribeAssetContainerListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器列表
     ///
     /// 搜索查询容器列表

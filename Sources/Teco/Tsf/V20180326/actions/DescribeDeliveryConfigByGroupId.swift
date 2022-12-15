@@ -19,48 +19,48 @@ extension Tsf {
     public struct DescribeDeliveryConfigByGroupIdRequest: TCRequestModel {
         /// 部署组id
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DescribeDeliveryConfigByGroupId返回参数结构体
     public struct DescribeDeliveryConfigByGroupIdResponse: TCResponseModel {
         /// 投递kafak配置项
         public let result: SimpleKafkaDeliveryConfig
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 用部署组id获取绑定信息
     @inlinable
-    public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigByGroupIdResponse > {
+    public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigByGroupIdResponse> {
         self.client.execute(action: "DescribeDeliveryConfigByGroupId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 用部署组id获取绑定信息
     @inlinable
     public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigByGroupIdResponse {
         try await self.client.execute(action: "DescribeDeliveryConfigByGroupId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 用部署组id获取绑定信息
     @inlinable
-    public func describeDeliveryConfigByGroupId(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigByGroupIdResponse > {
+    public func describeDeliveryConfigByGroupId(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigByGroupIdResponse> {
         self.describeDeliveryConfigByGroupId(DescribeDeliveryConfigByGroupIdRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 用部署组id获取绑定信息
     @inlinable
     public func describeDeliveryConfigByGroupId(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigByGroupIdResponse {

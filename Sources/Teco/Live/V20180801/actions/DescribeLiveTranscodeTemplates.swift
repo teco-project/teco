@@ -17,32 +17,32 @@
 extension Live {
     /// DescribeLiveTranscodeTemplates请求参数结构体
     public struct DescribeLiveTranscodeTemplatesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeLiveTranscodeTemplates返回参数结构体
     public struct DescribeLiveTranscodeTemplatesResponse: TCResponseModel {
         /// 转码模板列表。
         public let templates: [TemplateInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templates = "Templates"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取转码模板列表
     ///
     /// 获取转码模板列表。
     @inlinable
-    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTemplatesResponse > {
+    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTemplatesResponse> {
         self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转码模板列表
     ///
     /// 获取转码模板列表。
@@ -50,15 +50,15 @@ extension Live {
     public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplatesResponse {
         try await self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取转码模板列表
     ///
     /// 获取转码模板列表。
     @inlinable
-    public func describeLiveTranscodeTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTemplatesResponse > {
+    public func describeLiveTranscodeTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTemplatesResponse> {
         self.describeLiveTranscodeTemplates(DescribeLiveTranscodeTemplatesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转码模板列表
     ///
     /// 获取转码模板列表。

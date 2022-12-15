@@ -19,23 +19,23 @@ extension Tsf {
     public struct CreateUnitRuleRequest: TCRequestModel {
         /// 网关实体ID
         public let gatewayInstanceId: String
-        
+
         /// 规则名称
         public let name: String
-        
+
         /// 规则描述
         public let description: String?
-        
+
         /// 规则项列表
         public let unitRuleItemList: [UnitRuleItem]?
-        
-        public init (gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
+
+        public init(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
             self.gatewayInstanceId = gatewayInstanceId
             self.name = name
             self.description = description
             self.unitRuleItemList = unitRuleItemList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayInstanceId = "GatewayInstanceId"
             case name = "Name"
@@ -43,40 +43,40 @@ extension Tsf {
             case unitRuleItemList = "UnitRuleItemList"
         }
     }
-    
+
     /// CreateUnitRule返回参数结构体
     public struct CreateUnitRuleResponse: TCResponseModel {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建单元化规则
     @inlinable
-    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUnitRuleResponse > {
+    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnitRuleResponse> {
         self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建单元化规则
     @inlinable
     public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
         try await self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建单元化规则
     @inlinable
-    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUnitRuleResponse > {
+    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnitRuleResponse> {
         self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建单元化规则
     @inlinable
     public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {

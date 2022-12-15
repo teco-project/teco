@@ -19,46 +19,46 @@ extension Rum {
     public struct DeleteLogExportRequest: TCRequestModel {
         /// 项目ID
         public let id: Int64
-        
+
         /// 日志导出ID
         public let exportID: String
-        
-        public init (id: Int64, exportID: String) {
+
+        public init(id: Int64, exportID: String) {
             self.id = id
             self.exportID = exportID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case exportID = "ExportID"
         }
     }
-    
+
     /// DeleteLogExport返回参数结构体
     public struct DeleteLogExportResponse: TCResponseModel {
         /// 是否成功，成功则为success；失败则直接返回Error，不返回该参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
     /// 本接口用于删除日志下载任务
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func deleteLogExport(_ input: DeleteLogExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogExportResponse > {
+    public func deleteLogExport(_ input: DeleteLogExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
         self.client.execute(action: "DeleteLogExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
@@ -68,17 +68,17 @@ extension Rum {
     public func deleteLogExport(_ input: DeleteLogExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
         try await self.client.execute(action: "DeleteLogExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
     /// 本接口用于删除日志下载任务
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func deleteLogExport(id: Int64, exportID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogExportResponse > {
+    public func deleteLogExport(id: Int64, exportID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
         self.deleteLogExport(DeleteLogExportRequest(id: id, exportID: exportID), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。

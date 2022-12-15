@@ -19,49 +19,49 @@ extension Bma {
     public struct CreateCRDesktopCodeRequest: TCRequestModel {
         /// xxx
         public let tortId: Int64
-        
+
         /// xxx
         public let desktopCode: String
-        
-        public init (tortId: Int64, desktopCode: String) {
+
+        public init(tortId: Int64, desktopCode: String) {
             self.tortId = tortId
             self.desktopCode = desktopCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tortId = "TortId"
             case desktopCode = "DesktopCode"
         }
     }
-    
+
     /// CreateCRDesktopCode返回参数结构体
     public struct CreateCRDesktopCodeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建过程取证码
     @inlinable
-    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRDesktopCodeResponse > {
+    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRDesktopCodeResponse> {
         self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建过程取证码
     @inlinable
     public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
         try await self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建过程取证码
     @inlinable
-    public func createCRDesktopCode(tortId: Int64, desktopCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRDesktopCodeResponse > {
+    public func createCRDesktopCode(tortId: Int64, desktopCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRDesktopCodeResponse> {
         self.createCRDesktopCode(CreateCRDesktopCodeRequest(tortId: tortId, desktopCode: desktopCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建过程取证码
     @inlinable
     public func createCRDesktopCode(tortId: Int64, desktopCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {

@@ -20,45 +20,45 @@ extension TCTagError {
             case tagDuplicate = "ResourceInUse.TagDuplicate"
             case tagKeyAttached = "ResourceInUse.TagKeyAttached"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 标签已存在。
         public static var tagDuplicate: ResourceInUse {
             ResourceInUse(.tagDuplicate)
         }
-        
+
         /// 对应的标签键和资源已关联。
         public static var tagKeyAttached: ResourceInUse {
             ResourceInUse(.tagKeyAttached)
         }
-        
+
         public func asTagError() -> TCTagError {
             let code: TCTagError.Code
             switch self.error {
-            case .tagDuplicate: 
+            case .tagDuplicate:
                 code = .resourceInUse_TagDuplicate
-            case .tagKeyAttached: 
+            case .tagKeyAttached:
                 code = .resourceInUse_TagKeyAttached
             }
             return TCTagError(code, context: self.context)

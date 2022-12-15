@@ -34,140 +34,140 @@ extension TCEbError {
             case version = "ResourceNotFound.Version"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未找到指定的Connection，请创建后再试。
         public static var connection: ResourceNotFound {
             ResourceNotFound(.connection)
         }
-        
+
         /// 未找到指定事件集，请创建后再试。
         public static var eventBus: ResourceNotFound {
             ResourceNotFound(.eventBus)
         }
-        
+
         /// 事件集不存在或未配置规则，请检查后再试。
         public static var eventBusNotFound: ResourceNotFound {
             ResourceNotFound(.eventBusNotFound)
         }
-        
+
         /// 未找到指定的Function，请创建后再试。
         public static var function: ResourceNotFound {
             ResourceNotFound(.function)
         }
-        
+
         /// 连接器删除失败，未找到指定 API 。
         public static var invalidApi: ResourceNotFound {
             ResourceNotFound(.invalidApi)
         }
-        
+
         /// 连接器操作失败，未找到指定 API 网关服务。
         public static var invalidService: ResourceNotFound {
             ResourceNotFound(.invalidService)
         }
-        
+
         /// 投递目标创建失败，未找到指定的命名空间，请创建后再试。
         public static var namespace: ResourceNotFound {
             ResourceNotFound(.namespace)
         }
-        
+
         public static var netAssociation: ResourceNotFound {
             ResourceNotFound(.netAssociation)
         }
-        
+
         public static var privateLinkResource: ResourceNotFound {
             ResourceNotFound(.privateLinkResource)
         }
-        
+
         /// 未找到指定的服务角色，请创建后再试。
         public static var role: ResourceNotFound {
             ResourceNotFound(.role)
         }
-        
+
         /// 未找到指定的Rule，请创建后再试。
         public static var rule: ResourceNotFound {
             ResourceNotFound(.rule)
         }
-        
+
         public static var tag: ResourceNotFound {
             ResourceNotFound(.tag)
         }
-        
+
         /// 未找到指定的Target，请创建后再试。
         public static var target: ResourceNotFound {
             ResourceNotFound(.target)
         }
-        
+
         /// 未找到指定的转换任务，请创建后再试。
         public static var transformation: ResourceNotFound {
             ResourceNotFound(.transformation)
         }
-        
+
         /// 投递目标创建失败，未找到指定的服务版本，请创建后再试。
         public static var version: ResourceNotFound {
             ResourceNotFound(.version)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
-            case .connection: 
+            case .connection:
                 code = .resourceNotFound_Connection
-            case .eventBus: 
+            case .eventBus:
                 code = .resourceNotFound_EventBus
-            case .eventBusNotFound: 
+            case .eventBusNotFound:
                 code = .resourceNotFound_EventBusNotFound
-            case .function: 
+            case .function:
                 code = .resourceNotFound_Function
-            case .invalidApi: 
+            case .invalidApi:
                 code = .resourceNotFound_InvalidApi
-            case .invalidService: 
+            case .invalidService:
                 code = .resourceNotFound_InvalidService
-            case .namespace: 
+            case .namespace:
                 code = .resourceNotFound_Namespace
-            case .netAssociation: 
+            case .netAssociation:
                 code = .resourceNotFound_NetAssociation
-            case .privateLinkResource: 
+            case .privateLinkResource:
                 code = .resourceNotFound_PrivateLinkResource
-            case .role: 
+            case .role:
                 code = .resourceNotFound_Role
-            case .rule: 
+            case .rule:
                 code = .resourceNotFound_Rule
-            case .tag: 
+            case .tag:
                 code = .resourceNotFound_Tag
-            case .target: 
+            case .target:
                 code = .resourceNotFound_Target
-            case .transformation: 
+            case .transformation:
                 code = .resourceNotFound_Transformation
-            case .version: 
+            case .version:
                 code = .resourceNotFound_Version
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCEbError(code, context: self.context)

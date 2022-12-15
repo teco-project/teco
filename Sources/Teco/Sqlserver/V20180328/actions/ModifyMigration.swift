@@ -19,26 +19,26 @@ extension Sqlserver {
     public struct ModifyMigrationRequest: TCRequestModel {
         /// 迁移任务ID
         public let migrateId: UInt64
-        
+
         /// 新的迁移任务的名称，若不填则不修改
         public let migrateName: String?
-        
+
         /// 新的迁移类型（1:结构迁移 2:数据迁移 3:增量同步），若不填则不修改
         public let migrateType: UInt64?
-        
+
         /// 迁移源的类型 1:TencentDB for SQLServer 2:云服务器自建SQLServer数据库 4:SQLServer备份还原 5:SQLServer备份还原（COS方式），若不填则不修改
         public let sourceType: UInt64?
-        
+
         /// 迁移源，若不填则不修改
         public let source: MigrateSource?
-        
+
         /// 迁移目标，若不填则不修改
         public let target: MigrateTarget?
-        
+
         /// 迁移DB对象 ，离线迁移（SourceType=4或SourceType=5）不使用，若不填则不修改
         public let migrateDBSet: [MigrateDB]?
-        
-        public init (migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil) {
+
+        public init(migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil) {
             self.migrateId = migrateId
             self.migrateName = migrateName
             self.migrateType = migrateType
@@ -47,7 +47,7 @@ extension Sqlserver {
             self.target = target
             self.migrateDBSet = migrateDBSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case migrateId = "MigrateId"
             case migrateName = "MigrateName"
@@ -58,29 +58,29 @@ extension Sqlserver {
             case migrateDBSet = "MigrateDBSet"
         }
     }
-    
+
     /// ModifyMigration返回参数结构体
     public struct ModifyMigrationResponse: TCResponseModel {
         /// 迁移任务ID
         public let migrateId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case migrateId = "MigrateId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改迁移任务
     ///
     /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
     @inlinable
-    public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationResponse > {
+    public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationResponse> {
         self.client.execute(action: "ModifyMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改迁移任务
     ///
     /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
@@ -88,15 +88,15 @@ extension Sqlserver {
     public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationResponse {
         try await self.client.execute(action: "ModifyMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改迁移任务
     ///
     /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
     @inlinable
-    public func modifyMigration(migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationResponse > {
+    public func modifyMigration(migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationResponse> {
         self.modifyMigration(ModifyMigrationRequest(migrateId: migrateId, migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改迁移任务
     ///
     /// 本接口（ModifyMigration）可以修改已有的迁移任务信息

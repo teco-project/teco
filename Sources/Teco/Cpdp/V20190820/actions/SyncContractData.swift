@@ -19,52 +19,52 @@ extension Cpdp {
     public struct SyncContractDataRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 用户ID，长度不小于5位，仅支持字母和数字的组合
         public let userId: String
-        
+
         /// 签约使用的渠道
         public let channel: String
-        
+
         /// 业务签约合同协议号
         public let outContractCode: String
-        
+
         /// 签约状态，枚举值
         /// CONTRACT_STATUS_INVALID=无效状态
         /// CONTRACT_STATUS_SIGNED=已签约
         /// CONTRACT_STATUS_TERMINATED=已解约
         /// CONTRACT_STATUS_PENDING=签约进行中
         public let contractStatus: String
-        
+
         /// 签约同步信息
         public let contractSyncInfo: ContractSyncInfo
-        
+
         /// 按照聚鑫安全密钥计算的签名
         public let midasSignature: String
-        
+
         /// 聚鑫分配的安全ID
         public let midasSecretId: String
-        
+
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String?
-        
+
         /// 用户类型，枚举值
         /// USER_ID: 用户ID
         /// ANONYMOUS: 匿名类型 USER_ID
         /// 默认值为 USER_ID
         public let userType: String?
-        
+
         /// 场景信息
         public let sceneInfo: SceneInfo?
-        
+
         /// 环境名:
         /// release: 现网环境
         /// sandbox: 沙箱环境
         /// development: 开发环境
         /// 缺省: release
         public let midasEnvironment: String?
-        
-        public init (midasAppId: String, userId: String, channel: String, outContractCode: String, contractStatus: String, contractSyncInfo: ContractSyncInfo, midasSignature: String, midasSecretId: String, subAppId: String? = nil, userType: String? = nil, sceneInfo: SceneInfo? = nil, midasEnvironment: String? = nil) {
+
+        public init(midasAppId: String, userId: String, channel: String, outContractCode: String, contractStatus: String, contractSyncInfo: ContractSyncInfo, midasSignature: String, midasSecretId: String, subAppId: String? = nil, userType: String? = nil, sceneInfo: SceneInfo? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.channel = channel
@@ -78,7 +78,7 @@ extension Cpdp {
             self.sceneInfo = sceneInfo
             self.midasEnvironment = midasEnvironment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case midasAppId = "MidasAppId"
             case userId = "UserId"
@@ -94,29 +94,29 @@ extension Cpdp {
             case midasEnvironment = "MidasEnvironment"
         }
     }
-    
+
     /// SyncContractData返回参数结构体
     public struct SyncContractDataResponse: TCResponseModel {
         /// 请求处理信息
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 签约状态同步接口
     ///
     /// 对于存量的签约关系导入或者部分场景下米大师无法收到签约通知的场景，需要由调用方主动将签约状态同步至米大师
     @inlinable
-    public func syncContractData(_ input: SyncContractDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncContractDataResponse > {
+    public func syncContractData(_ input: SyncContractDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncContractDataResponse> {
         self.client.execute(action: "SyncContractData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 签约状态同步接口
     ///
     /// 对于存量的签约关系导入或者部分场景下米大师无法收到签约通知的场景，需要由调用方主动将签约状态同步至米大师
@@ -124,15 +124,15 @@ extension Cpdp {
     public func syncContractData(_ input: SyncContractDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncContractDataResponse {
         try await self.client.execute(action: "SyncContractData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 签约状态同步接口
     ///
     /// 对于存量的签约关系导入或者部分场景下米大师无法收到签约通知的场景，需要由调用方主动将签约状态同步至米大师
     @inlinable
-    public func syncContractData(midasAppId: String, userId: String, channel: String, outContractCode: String, contractStatus: String, contractSyncInfo: ContractSyncInfo, midasSignature: String, midasSecretId: String, subAppId: String? = nil, userType: String? = nil, sceneInfo: SceneInfo? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncContractDataResponse > {
+    public func syncContractData(midasAppId: String, userId: String, channel: String, outContractCode: String, contractStatus: String, contractSyncInfo: ContractSyncInfo, midasSignature: String, midasSecretId: String, subAppId: String? = nil, userType: String? = nil, sceneInfo: SceneInfo? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncContractDataResponse> {
         self.syncContractData(SyncContractDataRequest(midasAppId: midasAppId, userId: userId, channel: channel, outContractCode: outContractCode, contractStatus: contractStatus, contractSyncInfo: contractSyncInfo, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, userType: userType, sceneInfo: sceneInfo, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
     }
-    
+
     /// 签约状态同步接口
     ///
     /// 对于存量的签约关系导入或者部分场景下米大师无法收到签约通知的场景，需要由调用方主动将签约状态同步至米大师

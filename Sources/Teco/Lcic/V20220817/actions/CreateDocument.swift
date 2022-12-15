@@ -19,35 +19,35 @@ extension Lcic {
     public struct CreateDocumentRequest: TCRequestModel {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
-        
+
         /// 文档地址。
         public let documentUrl: String
-        
+
         /// 文档名称。
         public let documentName: String
-        
+
         /// 文档所有者的Id
         public let owner: String
-        
+
         /// 转码类型，可以有如下取值：
         /// 0 无需转码（默认）
         /// 1 需要转码的文档，ppt，pptx，pdf，doc，docx
         /// 2 需要转码的视频，mp4，3pg，mpeg，avi，flv，wmv，rm，h264等
         /// 2 需要转码的音频，mp3，wav，wma，aac，flac，opus
         public let transcodeType: UInt64?
-        
+
         /// 权限，可以有如下取值：
         /// 0 私有文档（默认）
         /// 1 公共文档
         public let permission: UInt64?
-        
+
         /// 文档后缀名。
         public let documentType: String?
-        
+
         /// 文档大小，单位 字节
         public let documentSize: UInt64?
-        
-        public init (sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil) {
+
+        public init(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil) {
             self.sdkAppId = sdkAppId
             self.documentUrl = documentUrl
             self.documentName = documentName
@@ -57,7 +57,7 @@ extension Lcic {
             self.documentType = documentType
             self.documentSize = documentSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case documentUrl = "DocumentUrl"
@@ -69,29 +69,29 @@ extension Lcic {
             case documentSize = "DocumentSize"
         }
     }
-    
+
     /// CreateDocument返回参数结构体
     public struct CreateDocumentResponse: TCResponseModel {
         /// 文档ID。
         public let documentId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case documentId = "DocumentId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建文档
     ///
     /// 创建房间内可以使用的文档。
     @inlinable
-    public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDocumentResponse > {
+    public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
         self.client.execute(action: "CreateDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文档
     ///
     /// 创建房间内可以使用的文档。
@@ -99,15 +99,15 @@ extension Lcic {
     public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
         try await self.client.execute(action: "CreateDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建文档
     ///
     /// 创建房间内可以使用的文档。
     @inlinable
-    public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDocumentResponse > {
+    public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
         self.createDocument(CreateDocumentRequest(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文档
     ///
     /// 创建房间内可以使用的文档。

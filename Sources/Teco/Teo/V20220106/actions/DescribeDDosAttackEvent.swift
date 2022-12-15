@@ -27,7 +27,7 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 结束时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,36 +35,36 @@ extension Teo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 分页拉取的最大返回结果数。最大值：1000。
         public let pageSize: Int64
-        
+
         /// 分页拉取的起始页号。最小值：1。
         public let pageNo: Int64
-        
+
         /// ddos策略组id列表，不填默认选择全部策略Id。
         public let policyIds: [Int64]?
-        
+
         /// 站点id列表，不填默认选择全部站点。
         public let zoneIds: [String]?
-        
+
         /// 协议类型，取值有：
         /// <li>tcp ；</li>
         /// <li>udp ；</li>
         /// <li>all 。</li>
         public let protocolType: String?
-        
+
         /// 是否展示详情，取值有：
         /// <li>Y ：展示 ；</li>
         /// <li>N ：不展示 。</li>默认为Y。
         public let isShowDetail: String?
-        
+
         /// 数据归属地区，取值有：
         /// <li>overseas ：全球（除中国大陆地区）数据 ；</li>
         /// <li>mainland ：中国大陆地区数据 。</li>不填默认查询overseas。
         public let area: String?
-        
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, isShowDetail: String? = nil, area: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, isShowDetail: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -75,7 +75,7 @@ extension Teo {
             self.isShowDetail = isShowDetail
             self.area = area
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -88,23 +88,23 @@ extension Teo {
             case area = "Area"
         }
     }
-    
+
     /// DescribeDDosAttackEvent返回参数结构体
     public struct DescribeDDosAttackEventResponse: TCResponseModel {
         /// DDos攻击事件数据。
         public let data: DDosAttackEventData
-        
+
         /// 请求响应状态，取值有：
         /// <li>1 ：失败 ；</li>
         /// <li>0 ：成功 。</li>
         public let status: Int64
-        
+
         /// 请求响应信息。
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case status = "Status"
@@ -112,25 +112,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询DDos攻击事件
     @inlinable
-    public func describeDDosAttackEvent(_ input: DescribeDDosAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackEventResponse > {
+    public func describeDDosAttackEvent(_ input: DescribeDDosAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosAttackEventResponse> {
         self.client.execute(action: "DescribeDDosAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDos攻击事件
     @inlinable
     public func describeDDosAttackEvent(_ input: DescribeDDosAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackEventResponse {
         try await self.client.execute(action: "DescribeDDosAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询DDos攻击事件
     @inlinable
-    public func describeDDosAttackEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, isShowDetail: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackEventResponse > {
+    public func describeDDosAttackEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, isShowDetail: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDosAttackEventResponse> {
         self.describeDDosAttackEvent(DescribeDDosAttackEventRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, protocolType: protocolType, isShowDetail: isShowDetail, area: area), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDos攻击事件
     @inlinable
     public func describeDDosAttackEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, isShowDetail: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackEventResponse {

@@ -19,49 +19,49 @@ extension Cam {
     public struct CreatePolicyVersionRequest: TCRequestModel {
         /// 策略ID
         public let policyId: UInt64
-        
+
         /// 策略文本信息
         public let policyDocument: String
-        
+
         /// 是否设置为当前策略的版本
         public let setAsDefault: Bool
-        
-        public init (policyId: UInt64, policyDocument: String, setAsDefault: Bool) {
+
+        public init(policyId: UInt64, policyDocument: String, setAsDefault: Bool) {
             self.policyId = policyId
             self.policyDocument = policyDocument
             self.setAsDefault = setAsDefault
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case policyDocument = "PolicyDocument"
             case setAsDefault = "SetAsDefault"
         }
     }
-    
+
     /// CreatePolicyVersion返回参数结构体
     public struct CreatePolicyVersionResponse: TCResponseModel {
         /// 策略版本号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionId: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case versionId = "VersionId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增策略版本接口
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
-    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyVersionResponse > {
+    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyVersionResponse> {
         self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增策略版本接口
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
@@ -69,15 +69,15 @@ extension Cam {
     public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
         try await self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增策略版本接口
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
-    public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyVersionResponse > {
+    public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyVersionResponse> {
         self.createPolicyVersion(CreatePolicyVersionRequest(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增策略版本接口
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。

@@ -19,38 +19,38 @@ extension Iot {
     public struct GetProductRequest: TCRequestModel {
         /// 产品Id
         public let productId: String
-        
-        public init (productId: String) {
+
+        public init(productId: String) {
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
         }
     }
-    
+
     /// GetProduct返回参数结构体
     public struct GetProductResponse: TCResponseModel {
         /// 产品信息
         public let product: Product
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case product = "Product"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取产品信息
     ///
     /// 获取产品定义的详细信息，包括产品名称、产品描述，鉴权模式等信息。
     @inlinable
-    public func getProduct(_ input: GetProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProductResponse > {
+    public func getProduct(_ input: GetProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProductResponse> {
         self.client.execute(action: "GetProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品信息
     ///
     /// 获取产品定义的详细信息，包括产品名称、产品描述，鉴权模式等信息。
@@ -58,15 +58,15 @@ extension Iot {
     public func getProduct(_ input: GetProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductResponse {
         try await self.client.execute(action: "GetProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取产品信息
     ///
     /// 获取产品定义的详细信息，包括产品名称、产品描述，鉴权模式等信息。
     @inlinable
-    public func getProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProductResponse > {
+    public func getProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProductResponse> {
         self.getProduct(GetProductRequest(productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品信息
     ///
     /// 获取产品定义的详细信息，包括产品名称、产品描述，鉴权模式等信息。

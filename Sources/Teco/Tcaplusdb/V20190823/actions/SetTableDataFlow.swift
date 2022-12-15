@@ -19,57 +19,57 @@ extension Tcaplusdb {
     public struct SetTableDataFlowRequest: TCRequestModel {
         /// 表所属集群实例ID
         public let clusterId: String
-        
+
         /// 待创建分布式索引表格列表
         public let selectedTables: [SelectedTableWithField]
-        
-        public init (clusterId: String, selectedTables: [SelectedTableWithField]) {
+
+        public init(clusterId: String, selectedTables: [SelectedTableWithField]) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case selectedTables = "SelectedTables"
         }
     }
-    
+
     /// SetTableDataFlow返回参数结构体
     public struct SetTableDataFlowResponse: TCResponseModel {
         /// 表格数据订阅创建结果数量
         public let totalCount: UInt64
-        
+
         /// 表格数据订阅创建结果列表
         public let tableResults: [TableResultNew]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增、修改表格数据订阅
     @inlinable
-    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableDataFlowResponse > {
+    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableDataFlowResponse> {
         self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增、修改表格数据订阅
     @inlinable
     public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
         try await self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增、修改表格数据订阅
     @inlinable
-    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableDataFlowResponse > {
+    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableDataFlowResponse> {
         self.setTableDataFlow(SetTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增、修改表格数据订阅
     @inlinable
     public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {

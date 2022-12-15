@@ -19,38 +19,38 @@ extension Sqlserver {
     public struct RecycleDBInstanceRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// RecycleDBInstance返回参数结构体
     public struct RecycleDBInstanceResponse: TCResponseModel {
         /// 流程id
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 主动回收实例
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
     @inlinable
-    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecycleDBInstanceResponse > {
+    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecycleDBInstanceResponse> {
         self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 主动回收实例
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
@@ -58,15 +58,15 @@ extension Sqlserver {
     public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
         try await self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 主动回收实例
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
     @inlinable
-    public func recycleDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecycleDBInstanceResponse > {
+    public func recycleDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecycleDBInstanceResponse> {
         self.recycleDBInstance(RecycleDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 主动回收实例
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例

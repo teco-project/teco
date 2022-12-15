@@ -19,23 +19,23 @@ extension Tbaas {
     public struct GetBcosTransListRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
-        
+
         /// 群组编号，可在群组列表中获取
         public let groupId: Int64
-        
+
         /// 当前页数，默认是1
         public let pageNumber: Int64?
-        
+
         /// 每页记录数，默认为10
         public let pageSize: Int64?
-        
+
         /// 区块高度，可以从InvokeBcosTrans接口的返回值中解析获取
         public let blockNumber: Int64?
-        
+
         /// 交易哈希，可以从InvokeBcosTrans接口的返回值中解析获取
         public let transHash: String?
-        
-        public init (clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, transHash: String? = nil) {
+
+        public init(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, transHash: String? = nil) {
             self.clusterId = clusterId
             self.groupId = groupId
             self.pageNumber = pageNumber
@@ -43,7 +43,7 @@ extension Tbaas {
             self.blockNumber = blockNumber
             self.transHash = transHash
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case groupId = "GroupId"
@@ -53,33 +53,33 @@ extension Tbaas {
             case transHash = "TransHash"
         }
     }
-    
+
     /// GetBcosTransList返回参数结构体
     public struct GetBcosTransListResponse: TCResponseModel {
         /// 总记录数
         public let totalCount: Int64
-        
+
         /// 返回数据列表
         public let list: [BcosTransInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 分页查询Bcos交易列表
     ///
     /// Bcos分页查询当前群组的交易信息列表
     @inlinable
-    public func getBcosTransList(_ input: GetBcosTransListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosTransListResponse > {
+    public func getBcosTransList(_ input: GetBcosTransListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransListResponse> {
         self.client.execute(action: "GetBcosTransList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 分页查询Bcos交易列表
     ///
     /// Bcos分页查询当前群组的交易信息列表
@@ -87,15 +87,15 @@ extension Tbaas {
     public func getBcosTransList(_ input: GetBcosTransListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransListResponse {
         try await self.client.execute(action: "GetBcosTransList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 分页查询Bcos交易列表
     ///
     /// Bcos分页查询当前群组的交易信息列表
     @inlinable
-    public func getBcosTransList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, transHash: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosTransListResponse > {
+    public func getBcosTransList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, transHash: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransListResponse> {
         self.getBcosTransList(GetBcosTransListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, transHash: transHash), logger: logger, on: eventLoop)
     }
-    
+
     /// 分页查询Bcos交易列表
     ///
     /// Bcos分页查询当前群组的交易信息列表

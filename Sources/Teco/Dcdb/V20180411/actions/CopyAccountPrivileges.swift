@@ -19,26 +19,26 @@ extension Dcdb {
     public struct CopyAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow728lmc。
         public let instanceId: String
-        
+
         /// 源用户名
         public let srcUserName: String
-        
+
         /// 源用户允许的访问 host
         public let srcHost: String
-        
+
         /// 目的用户名
         public let dstUserName: String
-        
+
         /// 目的用户允许的访问 host
         public let dstHost: String
-        
+
         /// 源账号的 ReadOnly 属性
         public let srcReadOnly: String?
-        
+
         /// 目的账号的 ReadOnly 属性
         public let dstReadOnly: String?
-        
-        public init (instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil) {
+
+        public init(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil) {
             self.instanceId = instanceId
             self.srcUserName = srcUserName
             self.srcHost = srcHost
@@ -47,7 +47,7 @@ extension Dcdb {
             self.srcReadOnly = srcReadOnly
             self.dstReadOnly = dstReadOnly
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case srcUserName = "SrcUserName"
@@ -58,26 +58,26 @@ extension Dcdb {
             case dstReadOnly = "DstReadOnly"
         }
     }
-    
+
     /// CopyAccountPrivileges返回参数结构体
     public struct CopyAccountPrivilegesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 复制账号权限
     ///
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable
-    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyAccountPrivilegesResponse > {
+    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyAccountPrivilegesResponse> {
         self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 复制账号权限
     ///
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
@@ -86,16 +86,16 @@ extension Dcdb {
     public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
         try await self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 复制账号权限
     ///
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable
-    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyAccountPrivilegesResponse > {
+    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyAccountPrivilegesResponse> {
         self.copyAccountPrivileges(CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), logger: logger, on: eventLoop)
     }
-    
+
     /// 复制账号权限
     ///
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。

@@ -19,43 +19,43 @@ extension Cfw {
     public struct DescribeResourceGroupRequest: TCRequestModel {
         /// 查询类型 网络结构 vpc，业务识别- resource ，资源标签-tag
         public let queryType: String
-        
+
         /// 资产组id  全部传0
         public let groupId: String?
-        
-        public init (queryType: String, groupId: String? = nil) {
+
+        public init(queryType: String, groupId: String? = nil) {
             self.queryType = queryType
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case queryType = "QueryType"
             case groupId = "GroupId"
         }
     }
-    
+
     /// DescribeResourceGroup返回参数结构体
     public struct DescribeResourceGroupResponse: TCResponseModel {
         /// 返回树形结构
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资产中心资产树信息查询
     ///
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
-    public func describeResourceGroup(_ input: DescribeResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupResponse > {
+    public func describeResourceGroup(_ input: DescribeResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupResponse> {
         self.client.execute(action: "DescribeResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资产中心资产树信息查询
     ///
     /// DescribeResourceGroup资产中心资产树信息
@@ -63,15 +63,15 @@ extension Cfw {
     public func describeResourceGroup(_ input: DescribeResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
         try await self.client.execute(action: "DescribeResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资产中心资产树信息查询
     ///
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
-    public func describeResourceGroup(queryType: String, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupResponse > {
+    public func describeResourceGroup(queryType: String, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupResponse> {
         self.describeResourceGroup(DescribeResourceGroupRequest(queryType: queryType, groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 资产中心资产树信息查询
     ///
     /// DescribeResourceGroup资产中心资产树信息

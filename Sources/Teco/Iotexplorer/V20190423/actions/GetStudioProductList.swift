@@ -19,23 +19,23 @@ extension Iotexplorer {
     public struct GetStudioProductListRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String?
-        
+
         /// 产品DevStatus
         public let devStatus: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 数量限制
         public let limit: UInt64?
-        
-        public init (projectId: String? = nil, devStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(projectId: String? = nil, devStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.projectId = projectId
             self.devStatus = devStatus
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case devStatus = "DevStatus"
@@ -43,33 +43,33 @@ extension Iotexplorer {
             case limit = "Limit"
         }
     }
-    
+
     /// GetStudioProductList返回参数结构体
     public struct GetStudioProductListResponse: TCResponseModel {
         /// 产品列表
         public let products: [ProductEntry]
-        
+
         /// 产品数量
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case products = "Products"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取产品列表
     ///
     /// 提供查询某个项目下所有产品信息的能力。
     @inlinable
-    public func getStudioProductList(_ input: GetStudioProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStudioProductListResponse > {
+    public func getStudioProductList(_ input: GetStudioProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStudioProductListResponse> {
         self.client.execute(action: "GetStudioProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品列表
     ///
     /// 提供查询某个项目下所有产品信息的能力。
@@ -77,15 +77,15 @@ extension Iotexplorer {
     public func getStudioProductList(_ input: GetStudioProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStudioProductListResponse {
         try await self.client.execute(action: "GetStudioProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取产品列表
     ///
     /// 提供查询某个项目下所有产品信息的能力。
     @inlinable
-    public func getStudioProductList(projectId: String? = nil, devStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStudioProductListResponse > {
+    public func getStudioProductList(projectId: String? = nil, devStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStudioProductListResponse> {
         self.getStudioProductList(GetStudioProductListRequest(projectId: projectId, devStatus: devStatus, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取产品列表
     ///
     /// 提供查询某个项目下所有产品信息的能力。

@@ -19,39 +19,39 @@ extension Tcr {
     public struct ModifyRepositoryInfoPersonalRequest: TCRequestModel {
         /// 仓库名称
         public let repoName: String
-        
+
         /// 仓库描述
         public let description: String
-        
-        public init (repoName: String, description: String) {
+
+        public init(repoName: String, description: String) {
             self.repoName = repoName
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
             case description = "Description"
         }
     }
-    
+
     /// ModifyRepositoryInfoPersonal返回参数结构体
     public struct ModifyRepositoryInfoPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述
     @inlinable
-    public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryInfoPersonalResponse > {
+    public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryInfoPersonalResponse> {
         self.client.execute(action: "ModifyRepositoryInfoPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述
@@ -59,15 +59,15 @@ extension Tcr {
     public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryInfoPersonalResponse {
         try await self.client.execute(action: "ModifyRepositoryInfoPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述
     @inlinable
-    public func modifyRepositoryInfoPersonal(repoName: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryInfoPersonalResponse > {
+    public func modifyRepositoryInfoPersonal(repoName: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryInfoPersonalResponse> {
         self.modifyRepositoryInfoPersonal(ModifyRepositoryInfoPersonalRequest(repoName: repoName, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述

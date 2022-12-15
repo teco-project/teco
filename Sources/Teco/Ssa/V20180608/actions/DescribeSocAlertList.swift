@@ -19,23 +19,23 @@ extension Ssa {
     public struct DescribeSocAlertListRequest: TCRequestModel {
         /// 页大小
         public let pageSize: Int64
-        
+
         /// 页码
         public let pageIndex: Int64
-        
+
         /// 1:急需关注 2.重保监控 3.全量告警
         public let scenes: Int64
-        
+
         /// 查询参数
         public let filter: [QueryFilter]?
-        
+
         /// 排序参数
         public let sorter: [QuerySort]?
-        
+
         /// 是否导出
         public let exportFlag: Bool?
-        
-        public init (pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil) {
+
+        public init(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil) {
             self.pageSize = pageSize
             self.pageIndex = pageIndex
             self.scenes = scenes
@@ -43,7 +43,7 @@ extension Ssa {
             self.sorter = sorter
             self.exportFlag = exportFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageSize = "PageSize"
             case pageIndex = "PageIndex"
@@ -53,29 +53,29 @@ extension Ssa {
             case exportFlag = "ExportFlag"
         }
     }
-    
+
     /// DescribeSocAlertList返回参数结构体
     public struct DescribeSocAlertListResponse: TCResponseModel {
         /// 业务数据
         public let data: AlertListData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 告警列表
     ///
     /// 拉取告警列表
     @inlinable
-    public func describeSocAlertList(_ input: DescribeSocAlertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocAlertListResponse > {
+    public func describeSocAlertList(_ input: DescribeSocAlertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocAlertListResponse> {
         self.client.execute(action: "DescribeSocAlertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 告警列表
     ///
     /// 拉取告警列表
@@ -83,15 +83,15 @@ extension Ssa {
     public func describeSocAlertList(_ input: DescribeSocAlertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertListResponse {
         try await self.client.execute(action: "DescribeSocAlertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 告警列表
     ///
     /// 拉取告警列表
     @inlinable
-    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocAlertListResponse > {
+    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocAlertListResponse> {
         self.describeSocAlertList(DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag), logger: logger, on: eventLoop)
     }
-    
+
     /// 告警列表
     ///
     /// 拉取告警列表

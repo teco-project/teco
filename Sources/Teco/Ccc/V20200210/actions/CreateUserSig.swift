@@ -19,23 +19,23 @@ extension Ccc {
     public struct CreateUserSigRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 用户 ID
         public let uid: String
-        
+
         /// 有效期，单位秒，不超过 1 小时
         public let expiredTime: Int64
-        
+
         /// 用户签名数据
         public let clientData: String?
-        
-        public init (sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil) {
+
+        public init(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil) {
             self.sdkAppId = sdkAppId
             self.uid = uid
             self.expiredTime = expiredTime
             self.clientData = clientData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case uid = "Uid"
@@ -43,39 +43,39 @@ extension Ccc {
             case clientData = "ClientData"
         }
     }
-    
+
     /// CreateUserSig返回参数结构体
     public struct CreateUserSigResponse: TCResponseModel {
         /// 签名结果
         public let userSig: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userSig = "UserSig"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建用户数据签名
     @inlinable
-    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSigResponse > {
+    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSigResponse> {
         self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建用户数据签名
     @inlinable
     public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
         try await self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建用户数据签名
     @inlinable
-    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSigResponse > {
+    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSigResponse> {
         self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建用户数据签名
     @inlinable
     public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {

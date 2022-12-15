@@ -19,48 +19,48 @@ extension Apigateway {
     public struct DescribeAPIDocDetailRequest: TCRequestModel {
         /// API文档ID
         public let apiDocId: String
-        
-        public init (apiDocId: String) {
+
+        public init(apiDocId: String) {
             self.apiDocId = apiDocId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case apiDocId = "ApiDocId"
         }
     }
-    
+
     /// DescribeAPIDocDetail返回参数结构体
     public struct DescribeAPIDocDetailResponse: TCResponseModel {
         /// API文档详细信息
         public let result: APIDocInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询 API 文档详情
     @inlinable
-    public func describeAPIDocDetail(_ input: DescribeAPIDocDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAPIDocDetailResponse > {
+    public func describeAPIDocDetail(_ input: DescribeAPIDocDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIDocDetailResponse> {
         self.client.execute(action: "DescribeAPIDocDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 API 文档详情
     @inlinable
     public func describeAPIDocDetail(_ input: DescribeAPIDocDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocDetailResponse {
         try await self.client.execute(action: "DescribeAPIDocDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询 API 文档详情
     @inlinable
-    public func describeAPIDocDetail(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAPIDocDetailResponse > {
+    public func describeAPIDocDetail(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIDocDetailResponse> {
         self.describeAPIDocDetail(DescribeAPIDocDetailRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 API 文档详情
     @inlinable
     public func describeAPIDocDetail(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocDetailResponse {

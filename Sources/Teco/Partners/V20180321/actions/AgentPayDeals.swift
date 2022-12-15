@@ -19,44 +19,44 @@ extension Partners {
     public struct AgentPayDealsRequest: TCRequestModel {
         /// 订单所有者uin
         public let ownerUin: String
-        
+
         /// 代付标志，1：代付；0：自付
         public let agentPay: UInt64
-        
+
         /// 订单号数组
         public let dealNames: [String]
-        
-        public init (ownerUin: String, agentPay: UInt64, dealNames: [String]) {
+
+        public init(ownerUin: String, agentPay: UInt64, dealNames: [String]) {
             self.ownerUin = ownerUin
             self.agentPay = agentPay
             self.dealNames = dealNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ownerUin = "OwnerUin"
             case agentPay = "AgentPay"
             case dealNames = "DealNames"
         }
     }
-    
+
     /// AgentPayDeals返回参数结构体
     public struct AgentPayDealsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
     @inlinable
-    public func agentPayDeals(_ input: AgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AgentPayDealsResponse > {
+    public func agentPayDeals(_ input: AgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
         self.client.execute(action: "AgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
@@ -64,15 +64,15 @@ extension Partners {
     public func agentPayDeals(_ input: AgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
         try await self.client.execute(action: "AgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
     @inlinable
-    public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AgentPayDealsResponse > {
+    public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
         self.agentPayDeals(AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付

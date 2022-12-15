@@ -22,16 +22,16 @@ extension Eb {
     public struct GetEventBusRequest: TCRequestModel {
         /// 事件集ID
         public let eventBusId: String
-        
-        public init (eventBusId: String) {
+
+        public init(eventBusId: String) {
             self.eventBusId = eventBusId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventBusId = "EventBusId"
         }
     }
-    
+
     /// GetEventBus返回参数结构体
     public struct GetEventBusResponse: TCResponseModel {
         /// 更新时间
@@ -41,13 +41,13 @@ extension Eb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modTime: Date
-        
+
         /// 事件集描述
         public let description: String
-        
+
         /// 日志主题ID
         public let clsTopicId: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -55,22 +55,22 @@ extension Eb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var addTime: Date
-        
+
         /// 日志集ID
         public let clsLogsetId: String
-        
+
         /// 事件集名称
         public let eventBusName: String
-        
+
         /// 事件集ID
         public let eventBusId: String
-        
+
         /// （已废弃）事件集类型
         public let type: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case modTime = "ModTime"
             case description = "Description"
@@ -83,25 +83,25 @@ extension Eb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取事件集详情
     @inlinable
-    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEventBusResponse > {
+    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEventBusResponse> {
         self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取事件集详情
     @inlinable
     public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
         try await self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取事件集详情
     @inlinable
-    public func getEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEventBusResponse > {
+    public func getEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEventBusResponse> {
         self.getEventBus(GetEventBusRequest(eventBusId: eventBusId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取事件集详情
     @inlinable
     public func getEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {

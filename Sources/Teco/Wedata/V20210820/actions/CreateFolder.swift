@@ -19,50 +19,50 @@ extension Wedata {
     public struct CreateFolderRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String
-        
+
         /// 文件夹名称
         public let folderName: String
-        
+
         /// 父文件夹ID
         public let parentsFolderId: String?
-        
-        public init (projectId: String, folderName: String, parentsFolderId: String? = nil) {
+
+        public init(projectId: String, folderName: String, parentsFolderId: String? = nil) {
             self.projectId = projectId
             self.folderName = folderName
             self.parentsFolderId = parentsFolderId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case folderName = "FolderName"
             case parentsFolderId = "ParentsFolderId"
         }
     }
-    
+
     /// CreateFolder返回参数结构体
     public struct CreateFolderResponse: TCResponseModel {
         /// 文件夹Id，null则创建失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CommonId?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建文件夹【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建文件夹
     @inlinable
-    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFolderResponse > {
+    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
         self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件夹【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
@@ -71,16 +71,16 @@ extension Wedata {
     public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
         try await self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建文件夹【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建文件夹
     @inlinable
-    public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFolderResponse > {
+    public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
         self.createFolder(CreateFolderRequest(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建文件夹【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>

@@ -19,54 +19,54 @@ extension Iotvideo {
     public struct ModifyDeviceRequest: TCRequestModel {
         /// 设备ID
         public let tid: String
-        
+
         /// 用户ID
         public let accessId: String
-        
+
         /// 设备昵称，最多不超过64个字符
         public let nick: String
-        
-        public init (tid: String, accessId: String, nick: String) {
+
+        public init(tid: String, accessId: String, nick: String) {
             self.tid = tid
             self.accessId = accessId
             self.nick = nick
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tid = "Tid"
             case accessId = "AccessId"
             case nick = "Nick"
         }
     }
-    
+
     /// ModifyDevice返回参数结构体
     public struct ModifyDeviceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改设备信息
     @inlinable
-    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceResponse > {
+    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceResponse> {
         self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备信息
     @inlinable
     public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {
         try await self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改设备信息
     @inlinable
-    public func modifyDevice(tid: String, accessId: String, nick: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceResponse > {
+    public func modifyDevice(tid: String, accessId: String, nick: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceResponse> {
         self.modifyDevice(ModifyDeviceRequest(tid: tid, accessId: accessId, nick: nick), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备信息
     @inlinable
     public func modifyDevice(tid: String, accessId: String, nick: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {

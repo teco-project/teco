@@ -19,57 +19,57 @@ extension Ciam {
     public struct UpdateUserStatusRequest: TCRequestModel {
         /// 用户目录ID
         public let userStoreId: String
-        
+
         /// 用户ID
         public let userId: String
-        
+
         /// 用户状态
         /// <li> **NORMAL** </li>	  正常
         /// <li> **LOCK** </li>  锁定
         /// <li> **FREEZE** </li>	  冻结
         public let status: String
-        
-        public init (userStoreId: String, userId: String, status: String) {
+
+        public init(userStoreId: String, userId: String, status: String) {
             self.userStoreId = userStoreId
             self.userId = userId
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userStoreId = "UserStoreId"
             case userId = "UserId"
             case status = "Status"
         }
     }
-    
+
     /// UpdateUserStatus返回参数结构体
     public struct UpdateUserStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新用户状态
     @inlinable
-    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserStatusResponse > {
+    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserStatusResponse> {
         self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新用户状态
     @inlinable
     public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
         try await self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新用户状态
     @inlinable
-    public func updateUserStatus(userStoreId: String, userId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserStatusResponse > {
+    public func updateUserStatus(userStoreId: String, userId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserStatusResponse> {
         self.updateUserStatus(UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新用户状态
     @inlinable
     public func updateUserStatus(userStoreId: String, userId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {

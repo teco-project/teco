@@ -19,53 +19,53 @@ extension Wedata {
     public struct LockIntegrationTaskRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 项目id
         public let projectId: String
-        
-        public init (taskId: String, projectId: String) {
+
+        public init(taskId: String, projectId: String) {
             self.taskId = taskId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// LockIntegrationTask返回参数结构体
     public struct LockIntegrationTaskResponse: TCResponseModel {
         /// 操作成功与否标识
         public let data: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 锁定集成任务
     @inlinable
-    public func lockIntegrationTask(_ input: LockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockIntegrationTaskResponse > {
+    public func lockIntegrationTask(_ input: LockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockIntegrationTaskResponse> {
         self.client.execute(action: "LockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 锁定集成任务
     @inlinable
     public func lockIntegrationTask(_ input: LockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockIntegrationTaskResponse {
         try await self.client.execute(action: "LockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 锁定集成任务
     @inlinable
-    public func lockIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockIntegrationTaskResponse > {
+    public func lockIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockIntegrationTaskResponse> {
         self.lockIntegrationTask(LockIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 锁定集成任务
     @inlinable
     public func lockIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockIntegrationTaskResponse {

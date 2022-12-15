@@ -19,54 +19,54 @@ extension Tke {
     public struct EnableClusterAuditRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// CLS日志集ID
         public let logsetId: String?
-        
+
         /// CLS日志主题ID
         public let topicId: String?
-        
-        public init (clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
+
+        public init(clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
             self.clusterId = clusterId
             self.logsetId = logsetId
             self.topicId = topicId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case logsetId = "LogsetId"
             case topicId = "TopicId"
         }
     }
-    
+
     /// EnableClusterAudit返回参数结构体
     public struct EnableClusterAuditResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启集群审计
     @inlinable
-    public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterAuditResponse > {
+    public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClusterAuditResponse> {
         self.client.execute(action: "EnableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启集群审计
     @inlinable
     public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
         try await self.client.execute(action: "EnableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启集群审计
     @inlinable
-    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterAuditResponse > {
+    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClusterAuditResponse> {
         self.enableClusterAudit(EnableClusterAuditRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启集群审计
     @inlinable
     public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {

@@ -19,57 +19,57 @@ extension Tcaplusdb {
     public struct SetTableIndexRequest: TCRequestModel {
         /// 表所属集群实例ID
         public let clusterId: String
-        
+
         /// 待创建分布式索引表格列表
         public let selectedTables: [SelectedTableWithField]
-        
-        public init (clusterId: String, selectedTables: [SelectedTableWithField]) {
+
+        public init(clusterId: String, selectedTables: [SelectedTableWithField]) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case selectedTables = "SelectedTables"
         }
     }
-    
+
     /// SetTableIndex返回参数结构体
     public struct SetTableIndexResponse: TCResponseModel {
         /// 表格分布式索引创建结果数量
         public let totalCount: UInt64
-        
+
         /// 表格分布式索引创建结果列表
         public let tableResults: [TableResultNew]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置表格分布式索引
     @inlinable
-    public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableIndexResponse > {
+    public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableIndexResponse> {
         self.client.execute(action: "SetTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置表格分布式索引
     @inlinable
     public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableIndexResponse {
         try await self.client.execute(action: "SetTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置表格分布式索引
     @inlinable
-    public func setTableIndex(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableIndexResponse > {
+    public func setTableIndex(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableIndexResponse> {
         self.setTableIndex(SetTableIndexRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置表格分布式索引
     @inlinable
     public func setTableIndex(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableIndexResponse {

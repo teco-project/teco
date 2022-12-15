@@ -19,48 +19,48 @@ extension Ecm {
     public struct DescribeSecurityGroupPoliciesRequest: TCRequestModel {
         /// 安全组实例ID，例如：esg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/1108/47697)获取。
         public let securityGroupId: String
-        
-        public init (securityGroupId: String) {
+
+        public init(securityGroupId: String) {
             self.securityGroupId = securityGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupId = "SecurityGroupId"
         }
     }
-    
+
     /// DescribeSecurityGroupPolicies返回参数结构体
     public struct DescribeSecurityGroupPoliciesResponse: TCResponseModel {
         /// 安全组规则集合。
         public let securityGroupPolicySet: SecurityGroupPolicySet
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupPolicySet = "SecurityGroupPolicySet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全组规则
     @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
         self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全组规则
     @inlinable
     public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全组规则
     @inlinable
-    public func describeSecurityGroupPolicies(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
+    public func describeSecurityGroupPolicies(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
         self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全组规则
     @inlinable
     public func describeSecurityGroupPolicies(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {

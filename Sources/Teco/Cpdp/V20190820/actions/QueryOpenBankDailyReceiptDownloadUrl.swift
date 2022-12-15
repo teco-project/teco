@@ -19,34 +19,34 @@ extension Cpdp {
     public struct QueryOpenBankDailyReceiptDownloadUrlRequest: TCRequestModel {
         /// 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
         public let channelMerchantId: String
-        
+
         /// 云企付渠道子商户号。入驻在渠道商户下的子商户ID，如付款方的商户ID，对应创建支付订单中接口参数中的PayerInfo中的payerId。
         public let channelSubMerchantId: String
-        
+
         /// 渠道名称。
         /// __TENPAY__: 商企付
         /// __WECHAT__: 微信支付
         /// __ALIPAY__: 支付宝
         public let channelName: String
-        
+
         /// 付款方式。如
         /// __EBANK_PAYMENT__:ebank付款
         /// __OPENBANK_PAYMENT__: openbank付款
         public let paymentMethod: String
-        
+
         /// 绑卡序列号，银行卡唯一标记，资金账户ID，用于区分商户绑定多卡或多账户场景
         public let bindSerialNo: String
-        
+
         /// 查询日期，D日查询D-1日的回单文件
         public let queryDate: String
-        
+
         /// 环境类型
         /// release:生产环境
         /// sandbox:沙箱环境
         /// 缺省默认为生产环境
         public let environment: String?
-        
-        public init (channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, queryDate: String, environment: String? = nil) {
+
+        public init(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, queryDate: String, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
             self.channelName = channelName
@@ -55,7 +55,7 @@ extension Cpdp {
             self.queryDate = queryDate
             self.environment = environment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelMerchantId = "ChannelMerchantId"
             case channelSubMerchantId = "ChannelSubMerchantId"
@@ -66,23 +66,23 @@ extension Cpdp {
             case environment = "Environment"
         }
     }
-    
+
     /// QueryOpenBankDailyReceiptDownloadUrl返回参数结构体
     public struct QueryOpenBankDailyReceiptDownloadUrlResponse: TCResponseModel {
         /// 业务系统返回码，SUCCESS表示成功，其他表示失败。
         public let errCode: String
-        
+
         /// 业务系统返回消息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 按日期查询回单下载地址响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: QueryOpenBankDailyReceiptDownloadUrlResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -90,25 +90,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云企付-按日期批量查询回单下载地址
     @inlinable
-    public func queryOpenBankDailyReceiptDownloadUrl(_ input: QueryOpenBankDailyReceiptDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankDailyReceiptDownloadUrlResponse > {
+    public func queryOpenBankDailyReceiptDownloadUrl(_ input: QueryOpenBankDailyReceiptDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankDailyReceiptDownloadUrlResponse> {
         self.client.execute(action: "QueryOpenBankDailyReceiptDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-按日期批量查询回单下载地址
     @inlinable
     public func queryOpenBankDailyReceiptDownloadUrl(_ input: QueryOpenBankDailyReceiptDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDailyReceiptDownloadUrlResponse {
         try await self.client.execute(action: "QueryOpenBankDailyReceiptDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云企付-按日期批量查询回单下载地址
     @inlinable
-    public func queryOpenBankDailyReceiptDownloadUrl(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, queryDate: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankDailyReceiptDownloadUrlResponse > {
+    public func queryOpenBankDailyReceiptDownloadUrl(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, queryDate: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankDailyReceiptDownloadUrlResponse> {
         self.queryOpenBankDailyReceiptDownloadUrl(QueryOpenBankDailyReceiptDownloadUrlRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, queryDate: queryDate, environment: environment), logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-按日期批量查询回单下载地址
     @inlinable
     public func queryOpenBankDailyReceiptDownloadUrl(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, queryDate: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDailyReceiptDownloadUrlResponse {

@@ -17,42 +17,42 @@
 extension Live {
     /// DescribeLiveRecordRules请求参数结构体
     public struct DescribeLiveRecordRulesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeLiveRecordRules返回参数结构体
     public struct DescribeLiveRecordRulesResponse: TCResponseModel {
         /// 规则列表。
         public let rules: [RuleInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取录制规则列表
     @inlinable
-    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordRulesResponse > {
+    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordRulesResponse> {
         self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取录制规则列表
     @inlinable
     public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
         try await self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取录制规则列表
     @inlinable
-    public func describeLiveRecordRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordRulesResponse > {
+    public func describeLiveRecordRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordRulesResponse> {
         self.describeLiveRecordRules(DescribeLiveRecordRulesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取录制规则列表
     @inlinable
     public func describeLiveRecordRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {

@@ -26,87 +26,87 @@ extension TCMonitorError {
             case taskResultFormat = "InternalError.TaskResultFormat"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 回调出错。
         public static var callbackFail: InternalError {
             InternalError(.callbackFail)
         }
-        
+
         /// 依赖的其他api出错。
         public static var dependsApi: InternalError {
             InternalError(.dependsApi)
         }
-        
+
         /// 依赖的db出错。
         public static var dependsDb: InternalError {
             InternalError(.dependsDb)
         }
-        
+
         /// 依赖的mq出错。
         public static var dependsMq: InternalError {
             InternalError(.dependsMq)
         }
-        
+
         /// 执行超时。
         public static var exeTimeout: InternalError {
             InternalError(.exeTimeout)
         }
-        
+
         /// 系统错误。
         public static var system: InternalError {
             InternalError(.system)
         }
-        
+
         /// 任务结果解析错误。
         public static var taskResultFormat: InternalError {
             InternalError(.taskResultFormat)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asMonitorError() -> TCMonitorError {
             let code: TCMonitorError.Code
             switch self.error {
-            case .callbackFail: 
+            case .callbackFail:
                 code = .internalError_CallbackFail
-            case .dependsApi: 
+            case .dependsApi:
                 code = .internalError_DependsApi
-            case .dependsDb: 
+            case .dependsDb:
                 code = .internalError_DependsDb
-            case .dependsMq: 
+            case .dependsMq:
                 code = .internalError_DependsMq
-            case .exeTimeout: 
+            case .exeTimeout:
                 code = .internalError_ExeTimeout
-            case .system: 
+            case .system:
                 code = .internalError_System
-            case .taskResultFormat: 
+            case .taskResultFormat:
                 code = .internalError_TaskResultFormat
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCMonitorError(code, context: self.context)

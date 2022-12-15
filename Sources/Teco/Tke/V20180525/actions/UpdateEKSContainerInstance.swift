@@ -19,26 +19,26 @@ extension Tke {
     public struct UpdateEKSContainerInstanceRequest: TCRequestModel {
         /// 容器实例 ID
         public let eksCiId: String
-        
+
         /// 实例重启策略： Always(总是重启)、Never(从不重启)、OnFailure(失败时重启)
         public let restartPolicy: String?
-        
+
         /// 数据卷，包含NfsVolume数组和CbsVolume数组
         public let eksCiVolume: EksCiVolume?
-        
+
         /// 容器组
         public let containers: [Container]?
-        
+
         /// Init 容器组
         public let initContainers: [Container]?
-        
+
         /// 容器实例名称
         public let name: String?
-        
+
         /// 镜像仓库凭证数组
         public let imageRegistryCredentials: [ImageRegistryCredential]?
-        
-        public init (eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil) {
+
+        public init(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil) {
             self.eksCiId = eksCiId
             self.restartPolicy = restartPolicy
             self.eksCiVolume = eksCiVolume
@@ -47,7 +47,7 @@ extension Tke {
             self.name = name
             self.imageRegistryCredentials = imageRegistryCredentials
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eksCiId = "EksCiId"
             case restartPolicy = "RestartPolicy"
@@ -58,40 +58,40 @@ extension Tke {
             case imageRegistryCredentials = "ImageRegistryCredentials"
         }
     }
-    
+
     /// UpdateEKSContainerInstance返回参数结构体
     public struct UpdateEKSContainerInstanceResponse: TCResponseModel {
         /// 容器实例 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eksCiId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eksCiId = "EksCiId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新容器实例
     @inlinable
-    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEKSContainerInstanceResponse > {
+    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSContainerInstanceResponse> {
         self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新容器实例
     @inlinable
     public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
         try await self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新容器实例
     @inlinable
-    public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEKSContainerInstanceResponse > {
+    public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSContainerInstanceResponse> {
         self.updateEKSContainerInstance(UpdateEKSContainerInstanceRequest(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新容器实例
     @inlinable
     public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {

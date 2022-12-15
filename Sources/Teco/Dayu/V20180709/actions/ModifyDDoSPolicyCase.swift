@@ -19,77 +19,77 @@ extension Dayu {
     public struct ModifyDDoSPolicyCaseRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 策略场景ID
         public let sceneId: String
-        
+
         /// 开发平台，取值[PC（PC客户端）， MOBILE（移动端）， TV（电视端）， SERVER（主机）]
         public let platformTypes: [String]?
-        
+
         /// 细分品类，取值[WEB（网站）， GAME（游戏）， APP（应用）， OTHER（其他）]
         public let appType: String?
-        
+
         /// 应用协议，取值[tcp（TCP协议），udp（UDP协议），icmp（ICMP协议），all（其他协议）]
         public let appProtocols: [String]?
-        
+
         /// TCP业务起始端口，取值(0, 65535]
         public let tcpSportStart: String?
-        
+
         /// TCP业务结束端口，取值(0, 65535]，必须大于等于TCP业务起始端口
         public let tcpSportEnd: String?
-        
+
         /// UDP业务起始端口，取值范围(0, 65535]
         public let udpSportStart: String?
-        
+
         /// UDP业务结束端口，取值范围(0, 65535)，必须大于等于UDP业务起始端口
         public let udpSportEnd: String?
-        
+
         /// 是否有海外客户，取值[no（没有）, yes（有）]
         public let hasAbroad: String?
-        
+
         /// 是否会主动对外发起TCP请求，取值[no（不会）, yes（会）]
         public let hasInitiateTcp: String?
-        
+
         /// 是否会主动对外发起UDP业务请求，取值[no（不会）, yes（会）]
         public let hasInitiateUdp: String?
-        
+
         /// 主动发起TCP请求的端口，取值范围(0, 65535]
         public let peerTcpPort: String?
-        
+
         /// 主动发起UDP请求的端口，取值范围(0, 65535]
         public let peerUdpPort: String?
-        
+
         /// TCP载荷的固定特征码，字符串长度小于512
         public let tcpFootprint: String?
-        
+
         /// UDP载荷的固定特征码，字符串长度小于512
         public let udpFootprint: String?
-        
+
         /// Web业务的API的URL
         public let webApiUrl: [String]?
-        
+
         /// TCP业务报文长度最小值，取值范围(0, 1500)
         public let minTcpPackageLen: String?
-        
+
         /// TCP业务报文长度最大值，取值范围(0, 1500)，必须大于等于TCP业务报文长度最小值
         public let maxTcpPackageLen: String?
-        
+
         /// UDP业务报文长度最小值，取值范围(0, 1500)
         public let minUdpPackageLen: String?
-        
+
         /// UDP业务报文长度最大值，取值范围(0, 1500)，必须大于等于UDP业务报文长度最小值
         public let maxUdpPackageLen: String?
-        
+
         /// 是否有VPN业务，取值[no（没有）, yes（有）]
         public let hasVPN: String?
-        
+
         /// TCP业务端口列表，同时支持单个端口和端口段，字符串格式，例如：80,443,700-800,53,1000-3000
         public let tcpPortList: String?
-        
+
         /// UDP业务端口列表，同时支持单个端口和端口段，字符串格式，例如：80,443,700-800,53,1000-3000
         public let udpPortList: String?
-        
-        public init (business: String, sceneId: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil) {
+
+        public init(business: String, sceneId: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil) {
             self.business = business
             self.sceneId = sceneId
             self.platformTypes = platformTypes
@@ -115,7 +115,7 @@ extension Dayu {
             self.tcpPortList = tcpPortList
             self.udpPortList = udpPortList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case sceneId = "SceneId"
@@ -143,39 +143,39 @@ extension Dayu {
             case udpPortList = "UdpPortList"
         }
     }
-    
+
     /// ModifyDDoSPolicyCase返回参数结构体
     public struct ModifyDDoSPolicyCaseResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改策略场景
     @inlinable
-    public func modifyDDoSPolicyCase(_ input: ModifyDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyCaseResponse > {
+    public func modifyDDoSPolicyCase(_ input: ModifyDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyCaseResponse> {
         self.client.execute(action: "ModifyDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改策略场景
     @inlinable
     public func modifyDDoSPolicyCase(_ input: ModifyDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyCaseResponse {
         try await self.client.execute(action: "ModifyDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改策略场景
     @inlinable
-    public func modifyDDoSPolicyCase(business: String, sceneId: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyCaseResponse > {
+    public func modifyDDoSPolicyCase(business: String, sceneId: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyCaseResponse> {
         self.modifyDDoSPolicyCase(ModifyDDoSPolicyCaseRequest(business: business, sceneId: sceneId, platformTypes: platformTypes, appType: appType, appProtocols: appProtocols, tcpSportStart: tcpSportStart, tcpSportEnd: tcpSportEnd, udpSportStart: udpSportStart, udpSportEnd: udpSportEnd, hasAbroad: hasAbroad, hasInitiateTcp: hasInitiateTcp, hasInitiateUdp: hasInitiateUdp, peerTcpPort: peerTcpPort, peerUdpPort: peerUdpPort, tcpFootprint: tcpFootprint, udpFootprint: udpFootprint, webApiUrl: webApiUrl, minTcpPackageLen: minTcpPackageLen, maxTcpPackageLen: maxTcpPackageLen, minUdpPackageLen: minUdpPackageLen, maxUdpPackageLen: maxUdpPackageLen, hasVPN: hasVPN, tcpPortList: tcpPortList, udpPortList: udpPortList), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改策略场景
     @inlinable
     public func modifyDDoSPolicyCase(business: String, sceneId: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyCaseResponse {

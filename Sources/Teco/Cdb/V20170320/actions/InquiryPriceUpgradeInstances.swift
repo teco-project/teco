@@ -19,26 +19,26 @@ extension Cdb {
     public struct InquiryPriceUpgradeInstancesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
-        
+
         /// 升级后的内存大小，单位：MB，为保证传入 Memory 值有效，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口获取可升级的内存规格。
         public let memory: UInt64
-        
+
         /// 升级后的硬盘大小，单位：GB，为保证传入 Volume 值有效，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口获取可升级的硬盘范围。
         public let volume: UInt64
-        
+
         /// 升级后的核心数目，单位：核，为保证传入 CPU 值有效，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口获取可升级的核心数目，当未指定该值时，将按照 Memory 大小补全一个默认值。
         public let cpu: UInt64?
-        
+
         /// 数据复制方式，支持值包括：0 - 异步复制，1 - 半同步复制，2 - 强同步复制，升级主实例时可指定该参数，升级只读实例或者灾备实例时指定该参数无意义。
         public let protectMode: UInt64?
-        
+
         /// 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。 不指定则默认为通用型实例。
         public let deviceType: String?
-        
+
         /// 实例节点数。对于 RO 和 基础版实例， 该值默认为1。 如果需要询价三节点实例， 请将该值设置为3。其余主实例该值默认为2。
         public let instanceNodes: Int64?
-        
-        public init (instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil) {
+
+        public init(instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -47,7 +47,7 @@ extension Cdb {
             self.deviceType = deviceType
             self.instanceNodes = instanceNodes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case memory = "Memory"
@@ -58,33 +58,33 @@ extension Cdb {
             case instanceNodes = "InstanceNodes"
         }
     }
-    
+
     /// InquiryPriceUpgradeInstances返回参数结构体
     public struct InquiryPriceUpgradeInstancesResponse: TCResponseModel {
         /// 实例价格，单位：分（人民币）。
         public let price: Int64
-        
+
         /// 实例原价，单位：分（人民币）。
         public let originalPrice: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case price = "Price"
             case originalPrice = "OriginalPrice"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询数据库升级价格
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeInstancesResponse > {
+    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstancesResponse> {
         self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库升级价格
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
@@ -92,15 +92,15 @@ extension Cdb {
     public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstancesResponse {
         try await self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询数据库升级价格
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func inquiryPriceUpgradeInstances(instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeInstancesResponse > {
+    public func inquiryPriceUpgradeInstances(instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstancesResponse> {
         self.inquiryPriceUpgradeInstances(InquiryPriceUpgradeInstancesRequest(instanceId: instanceId, memory: memory, volume: volume, cpu: cpu, protectMode: protectMode, deviceType: deviceType, instanceNodes: instanceNodes), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库升级价格
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。

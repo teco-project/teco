@@ -19,38 +19,38 @@ extension Chdfs {
     public struct DescribeRestoreTasksRequest: TCRequestModel {
         /// 文件系统ID
         public let fileSystemId: String
-        
-        public init (fileSystemId: String) {
+
+        public init(fileSystemId: String) {
             self.fileSystemId = fileSystemId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
         }
     }
-    
+
     /// DescribeRestoreTasks返回参数结构体
     public struct DescribeRestoreTasksResponse: TCResponseModel {
         /// 回热任务列表
         public let restoreTasks: [RestoreTask]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case restoreTasks = "RestoreTasks"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看回热任务列表
     ///
     /// 通过文件系统ID查看回热任务列表。
     @inlinable
-    public func describeRestoreTasks(_ input: DescribeRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRestoreTasksResponse > {
+    public func describeRestoreTasks(_ input: DescribeRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRestoreTasksResponse> {
         self.client.execute(action: "DescribeRestoreTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看回热任务列表
     ///
     /// 通过文件系统ID查看回热任务列表。
@@ -58,15 +58,15 @@ extension Chdfs {
     public func describeRestoreTasks(_ input: DescribeRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRestoreTasksResponse {
         try await self.client.execute(action: "DescribeRestoreTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看回热任务列表
     ///
     /// 通过文件系统ID查看回热任务列表。
     @inlinable
-    public func describeRestoreTasks(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRestoreTasksResponse > {
+    public func describeRestoreTasks(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRestoreTasksResponse> {
         self.describeRestoreTasks(DescribeRestoreTasksRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看回热任务列表
     ///
     /// 通过文件系统ID查看回热任务列表。

@@ -19,26 +19,26 @@ extension Iecp {
     public struct DescribeEdgeUnitNodeUnitTemplatesRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 命名空间，默认为default
         public let namespace: String?
-        
+
         /// 分页查询offset，默认为0
         public let offset: UInt64?
-        
+
         /// 分页查询limit，默认为20
         public let limit: UInt64?
-        
+
         /// 模糊匹配，精确匹配时失效
         public let nameFilter: String?
-        
+
         /// 精确匹配
         public let nameMatched: String?
-        
+
         /// 按时间排序顺序，默认为DESC
         public let order: String?
-        
-        public init (edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil) {
+
+        public init(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.namespace = namespace
             self.offset = offset
@@ -47,7 +47,7 @@ extension Iecp {
             self.nameMatched = nameMatched
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case namespace = "Namespace"
@@ -58,44 +58,44 @@ extension Iecp {
             case order = "Order"
         }
     }
-    
+
     /// DescribeEdgeUnitNodeUnitTemplates返回参数结构体
     public struct DescribeEdgeUnitNodeUnitTemplatesResponse: TCResponseModel {
         /// 符合查询条件的记录总数
         public let total: UInt64
-        
+
         /// NodeUnit模板列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeUnitTemplates: [NodeUnitTemplate]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case nodeUnitTemplates = "NodeUnitTemplates"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitNodeUnitTemplatesResponse > {
+    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeUnitTemplatesResponse> {
         self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
     public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {
         try await self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitNodeUnitTemplatesResponse > {
+    public func describeEdgeUnitNodeUnitTemplates(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeUnitTemplatesResponse> {
         self.describeEdgeUnitNodeUnitTemplates(DescribeEdgeUnitNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
     public func describeEdgeUnitNodeUnitTemplates(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {

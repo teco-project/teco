@@ -19,49 +19,49 @@ extension Cwp {
     public struct DescribeStrategyExistRequest: TCRequestModel {
         /// 策略名
         public let strategyName: String
-        
-        public init (strategyName: String) {
+
+        public init(strategyName: String) {
             self.strategyName = strategyName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case strategyName = "StrategyName"
         }
     }
-    
+
     /// DescribeStrategyExist返回参数结构体
     public struct DescribeStrategyExistResponse: TCResponseModel {
         /// 策略是否存在, 1是 0否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ifExist: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ifExist = "IfExist"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据策略名查询策略是否存在
     @inlinable
-    public func describeStrategyExist(_ input: DescribeStrategyExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategyExistResponse > {
+    public func describeStrategyExist(_ input: DescribeStrategyExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategyExistResponse> {
         self.client.execute(action: "DescribeStrategyExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据策略名查询策略是否存在
     @inlinable
     public func describeStrategyExist(_ input: DescribeStrategyExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategyExistResponse {
         try await self.client.execute(action: "DescribeStrategyExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据策略名查询策略是否存在
     @inlinable
-    public func describeStrategyExist(strategyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategyExistResponse > {
+    public func describeStrategyExist(strategyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategyExistResponse> {
         self.describeStrategyExist(DescribeStrategyExistRequest(strategyName: strategyName), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据策略名查询策略是否存在
     @inlinable
     public func describeStrategyExist(strategyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategyExistResponse {

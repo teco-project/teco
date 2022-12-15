@@ -19,43 +19,43 @@ extension Yinsuda {
     public struct DescribeKTVTagsRequest: TCRequestModel {
         /// 应用名称。
         public let appName: String
-        
+
         /// 用户标识。
         public let userId: String
-        
-        public init (appName: String, userId: String) {
+
+        public init(appName: String, userId: String) {
             self.appName = appName
             self.userId = userId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
             case userId = "UserId"
         }
     }
-    
+
     /// DescribeKTVTags返回参数结构体
     public struct DescribeKTVTagsResponse: TCResponseModel {
         /// 标签分组列表。
         public let tagGroupInfoSet: [KTVTagGroupInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tagGroupInfoSet = "TagGroupInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取标签列表
     ///
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
-    public func describeKTVTags(_ input: DescribeKTVTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVTagsResponse > {
+    public func describeKTVTags(_ input: DescribeKTVTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTagsResponse> {
         self.client.execute(action: "DescribeKTVTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取标签列表
     ///
     /// 获取标签分组及分组下的标签列表信息。
@@ -63,15 +63,15 @@ extension Yinsuda {
     public func describeKTVTags(_ input: DescribeKTVTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
         try await self.client.execute(action: "DescribeKTVTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取标签列表
     ///
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
-    public func describeKTVTags(appName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVTagsResponse > {
+    public func describeKTVTags(appName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTagsResponse> {
         self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取标签列表
     ///
     /// 获取标签分组及分组下的标签列表信息。

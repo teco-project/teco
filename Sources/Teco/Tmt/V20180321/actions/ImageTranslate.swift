@@ -19,16 +19,16 @@ extension Tmt {
     public struct ImageTranslateRequest: TCRequestModel {
         /// 唯一id，返回时原样返回
         public let sessionUuid: String
-        
+
         /// doc:文档扫描
         public let scene: String
-        
+
         /// 图片数据的Base64字符串，图片大小上限为4M，建议对源图片进行一定程度压缩
         public let data: String
-        
+
         /// 源语言，支持语言列表：<li> auto：自动识别（识别为一种语言）</li> <li>zh：简体中文</li> <li>zh-TW：繁体中文</li> <li>en：英语</li> <li>ja：日语</li> <li>ko：韩语</li> <li>ru：俄语</li> <li>fr：法语</li> <li>de：德语</li> <li>it：意大利语</li> <li>es：西班牙语</li> <li>pt：葡萄牙语</li> <li>ms：马来西亚语</li> <li>th：泰语</li><li>vi：越南语</li>
         public let source: String
-        
+
         /// 目标语言，各源语言的目标语言支持列表如下：
         /// <li>zh（简体中文）：en（英语）、ja（日语）、ko（韩语）、ru（俄语）、fr（法语）、de（德语）、it（意大利语）、es（西班牙语）、pt（葡萄牙语）、ms（马来语）、th（泰语）、vi（越南语）</li>
         /// <li>zh-TW（繁体中文）：en（英语）、ja（日语）、ko（韩语）、ru（俄语）、fr（法语）、de（德语）、it（意大利语）、es（西班牙语）、pt（葡萄牙语）、ms（马来语）、th（泰语）、vi（越南语）</li>
@@ -45,11 +45,11 @@ extension Tmt {
         /// <li>th：泰语：zh（中文）、en（英语）</li>
         /// <li>vi：越南语：zh（中文）、en（英语）</li>
         public let target: String
-        
+
         /// 项目ID，可以根据控制台-账号中心-项目管理中的配置填写，如无配置请填写默认项目ID:0
         public let projectId: Int64
-        
-        public init (sessionUuid: String, scene: String, data: String, source: String, target: String, projectId: Int64) {
+
+        public init(sessionUuid: String, scene: String, data: String, source: String, target: String, projectId: Int64) {
             self.sessionUuid = sessionUuid
             self.scene = scene
             self.data = data
@@ -57,7 +57,7 @@ extension Tmt {
             self.target = target
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionUuid = "SessionUuid"
             case scene = "Scene"
@@ -67,24 +67,24 @@ extension Tmt {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// ImageTranslate返回参数结构体
     public struct ImageTranslateResponse: TCResponseModel {
         /// 请求的SessionUuid返回
         public let sessionUuid: String
-        
+
         /// 源语言
         public let source: String
-        
+
         /// 目标语言
         public let target: String
-        
+
         /// 图片翻译结果，翻译结果按识别的文本每一行独立翻译，后续会推出按段落划分并翻译的版本
         public let imageRecord: ImageRecord
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionUuid = "SessionUuid"
             case source = "Source"
@@ -93,16 +93,16 @@ extension Tmt {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 图片翻译
     ///
     /// 提供13种语言的图片翻译服务，可自动识别图片中的文本内容并翻译成目标语言，识别后的文本按行翻译，后续会提供可按段落翻译的版本。<br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
-    public func imageTranslate(_ input: ImageTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageTranslateResponse > {
+    public func imageTranslate(_ input: ImageTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageTranslateResponse> {
         self.client.execute(action: "ImageTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 图片翻译
     ///
     /// 提供13种语言的图片翻译服务，可自动识别图片中的文本内容并翻译成目标语言，识别后的文本按行翻译，后续会提供可按段落翻译的版本。<br />
@@ -111,16 +111,16 @@ extension Tmt {
     public func imageTranslate(_ input: ImageTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageTranslateResponse {
         try await self.client.execute(action: "ImageTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 图片翻译
     ///
     /// 提供13种语言的图片翻译服务，可自动识别图片中的文本内容并翻译成目标语言，识别后的文本按行翻译，后续会提供可按段落翻译的版本。<br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
-    public func imageTranslate(sessionUuid: String, scene: String, data: String, source: String, target: String, projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageTranslateResponse > {
+    public func imageTranslate(sessionUuid: String, scene: String, data: String, source: String, target: String, projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageTranslateResponse> {
         self.imageTranslate(ImageTranslateRequest(sessionUuid: sessionUuid, scene: scene, data: data, source: source, target: target, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 图片翻译
     ///
     /// 提供13种语言的图片翻译服务，可自动识别图片中的文本内容并翻译成目标语言，识别后的文本按行翻译，后续会提供可按段落翻译的版本。<br />

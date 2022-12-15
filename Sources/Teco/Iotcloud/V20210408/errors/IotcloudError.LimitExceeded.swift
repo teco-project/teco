@@ -28,101 +28,101 @@ extension TCIotcloudError {
             case productExceedLimit = "LimitExceeded.ProductExceedLimit"
             case topicPolicyExceedLimit = "LimitExceeded.TopicPolicyExceedLimit"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CA证书已经绑定了产品，无法操作。
         public static var caAlreadyBindProduct: LimitExceeded {
             LimitExceeded(.caAlreadyBindProduct)
         }
-        
+
         /// CA证书名称重复。
         public static var caCertNameRepeat: LimitExceeded {
             LimitExceeded(.caCertNameRepeat)
         }
-        
+
         /// 不支持私有证书操作。
         public static var caCertNotSupport: LimitExceeded {
             LimitExceeded(.caCertNotSupport)
         }
-        
+
         /// CA证书重复。
         public static var caRepeat: LimitExceeded {
             LimitExceeded(.caRepeat)
         }
-        
+
         /// 设备数量超过限制。
         public static var deviceExceedLimit: LimitExceeded {
             LimitExceeded(.deviceExceedLimit)
         }
-        
+
         /// 固件数量超出限制。
         public static var firmwareExceedLimit: LimitExceeded {
             LimitExceeded(.firmwareExceedLimit)
         }
-        
+
         /// 消息已经保存到离线队列。
         public static var messageSaved: LimitExceeded {
             LimitExceeded(.messageSaved)
         }
-        
+
         /// qos为1的离线消息超过数量限制。
         public static var offlineMessageExceedLimit: LimitExceeded {
             LimitExceeded(.offlineMessageExceedLimit)
         }
-        
+
         /// 超过产品数量限制。
         public static var productExceedLimit: LimitExceeded {
             LimitExceeded(.productExceedLimit)
         }
-        
+
         /// Topic数量超出限制。
         public static var topicPolicyExceedLimit: LimitExceeded {
             LimitExceeded(.topicPolicyExceedLimit)
         }
-        
+
         public func asIotcloudError() -> TCIotcloudError {
             let code: TCIotcloudError.Code
             switch self.error {
-            case .caAlreadyBindProduct: 
+            case .caAlreadyBindProduct:
                 code = .limitExceeded_CAAlreadyBindProduct
-            case .caCertNameRepeat: 
+            case .caCertNameRepeat:
                 code = .limitExceeded_CACertNameRepeat
-            case .caCertNotSupport: 
+            case .caCertNotSupport:
                 code = .limitExceeded_CACertNotSupport
-            case .caRepeat: 
+            case .caRepeat:
                 code = .limitExceeded_CARepeat
-            case .deviceExceedLimit: 
+            case .deviceExceedLimit:
                 code = .limitExceeded_DeviceExceedLimit
-            case .firmwareExceedLimit: 
+            case .firmwareExceedLimit:
                 code = .limitExceeded_FirmwareExceedLimit
-            case .messageSaved: 
+            case .messageSaved:
                 code = .limitExceeded_MessageSaved
-            case .offlineMessageExceedLimit: 
+            case .offlineMessageExceedLimit:
                 code = .limitExceeded_OfflineMessageExceedLimit
-            case .productExceedLimit: 
+            case .productExceedLimit:
                 code = .limitExceeded_ProductExceedLimit
-            case .topicPolicyExceedLimit: 
+            case .topicPolicyExceedLimit:
                 code = .limitExceeded_TopicPolicyExceedLimit
             }
             return TCIotcloudError(code, context: self.context)

@@ -19,53 +19,53 @@ extension Bm {
     public struct CreateCustomImageRequest: TCRequestModel {
         /// 用于制作镜像的物理机ID
         public let instanceId: String
-        
+
         /// 镜像别名
         public let imageName: String
-        
+
         /// 镜像描述
         public let imageDescription: String?
-        
-        public init (instanceId: String, imageName: String, imageDescription: String? = nil) {
+
+        public init(instanceId: String, imageName: String, imageDescription: String? = nil) {
             self.instanceId = instanceId
             self.imageName = imageName
             self.imageDescription = imageDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case imageName = "ImageName"
             case imageDescription = "ImageDescription"
         }
     }
-    
+
     /// CreateCustomImage返回参数结构体
     public struct CreateCustomImageResponse: TCResponseModel {
         /// 黑石异步任务ID
         public let taskId: UInt64
-        
+
         /// 镜像ID
         public let imageId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case imageId = "ImageId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建自定义镜像
     ///
     /// 创建自定义镜像<br>
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
-    public func createCustomImage(_ input: CreateCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomImageResponse > {
+    public func createCustomImage(_ input: CreateCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomImageResponse> {
         self.client.execute(action: "CreateCustomImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义镜像
     ///
     /// 创建自定义镜像<br>
@@ -74,16 +74,16 @@ extension Bm {
     public func createCustomImage(_ input: CreateCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomImageResponse {
         try await self.client.execute(action: "CreateCustomImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建自定义镜像
     ///
     /// 创建自定义镜像<br>
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
-    public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomImageResponse > {
+    public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomImageResponse> {
         self.createCustomImage(CreateCustomImageRequest(instanceId: instanceId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义镜像
     ///
     /// 创建自定义镜像<br>

@@ -19,39 +19,39 @@ extension Vpc {
     public struct ResetVpnConnectionRequest: TCRequestModel {
         /// VPN网关实例ID。
         public let vpnGatewayId: String
-        
+
         /// VPN通道实例ID。形如：vpnx-f49l6u0z。
         public let vpnConnectionId: String
-        
-        public init (vpnGatewayId: String, vpnConnectionId: String) {
+
+        public init(vpnGatewayId: String, vpnConnectionId: String) {
             self.vpnGatewayId = vpnGatewayId
             self.vpnConnectionId = vpnConnectionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpnGatewayId = "VpnGatewayId"
             case vpnConnectionId = "VpnConnectionId"
         }
     }
-    
+
     /// ResetVpnConnection返回参数结构体
     public struct ResetVpnConnectionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
     @inlinable
-    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetVpnConnectionResponse > {
+    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
         self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
@@ -59,15 +59,15 @@ extension Vpc {
     public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
         try await self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
     @inlinable
-    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetVpnConnectionResponse > {
+    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
         self.resetVpnConnection(ResetVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。

@@ -19,53 +19,53 @@ extension Cpdp {
     public struct GetPayRollAuthResultRequest: TCRequestModel {
         /// 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
         public let authNumber: String
-        
+
         /// 微信服务商下特约商户的商户号，由微信支付生成并下发
         public let subMerchantId: String
-        
-        public init (authNumber: String, subMerchantId: String) {
+
+        public init(authNumber: String, subMerchantId: String) {
             self.authNumber = authNumber
             self.subMerchantId = subMerchantId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case authNumber = "AuthNumber"
             case subMerchantId = "SubMerchantId"
         }
     }
-    
+
     /// GetPayRollAuthResult返回参数结构体
     public struct GetPayRollAuthResultResponse: TCResponseModel {
         /// 核身结果
         public let result: PayRollAuthResult
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 务工卡-获取核身结果
     @inlinable
-    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthResultResponse > {
+    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthResultResponse> {
         self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 务工卡-获取核身结果
     @inlinable
     public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
         try await self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 务工卡-获取核身结果
     @inlinable
-    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthResultResponse > {
+    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthResultResponse> {
         self.getPayRollAuthResult(GetPayRollAuthResultRequest(authNumber: authNumber, subMerchantId: subMerchantId), logger: logger, on: eventLoop)
     }
-    
+
     /// 务工卡-获取核身结果
     @inlinable
     public func getPayRollAuthResult(authNumber: String, subMerchantId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {

@@ -19,34 +19,34 @@ extension Vpc {
     public struct DeleteVpnGatewayRequest: TCRequestModel {
         /// VPN网关实例ID。
         public let vpnGatewayId: String
-        
-        public init (vpnGatewayId: String) {
+
+        public init(vpnGatewayId: String) {
             self.vpnGatewayId = vpnGatewayId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpnGatewayId = "VpnGatewayId"
         }
     }
-    
+
     /// DeleteVpnGateway返回参数结构体
     public struct DeleteVpnGatewayResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
     @inlinable
-    public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayResponse > {
+    public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewayResponse> {
         self.client.execute(action: "DeleteVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
@@ -54,15 +54,15 @@ extension Vpc {
     public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
         try await self.client.execute(action: "DeleteVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
     @inlinable
-    public func deleteVpnGateway(vpnGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayResponse > {
+    public func deleteVpnGateway(vpnGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewayResponse> {
         self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。

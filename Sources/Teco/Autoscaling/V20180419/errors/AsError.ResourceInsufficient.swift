@@ -22,59 +22,59 @@ extension TCAsError {
             case inServiceInstanceAboveMaxSize = "ResourceInsufficient.InServiceInstanceAboveMaxSize"
             case inServiceInstanceBelowMinSize = "ResourceInsufficient.InServiceInstanceBelowMinSize"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 超过伸缩组最大实例数。
         public static var autoScalingGroupAboveMaxSize: ResourceInsufficient {
             ResourceInsufficient(.autoScalingGroupAboveMaxSize)
         }
-        
+
         /// 少于伸缩组最小实例数。
         public static var autoScalingGroupBelowMinSize: ResourceInsufficient {
             ResourceInsufficient(.autoScalingGroupBelowMinSize)
         }
-        
+
         /// 伸缩组内实例数超过最大实例数。
         public static var inServiceInstanceAboveMaxSize: ResourceInsufficient {
             ResourceInsufficient(.inServiceInstanceAboveMaxSize)
         }
-        
+
         /// 伸缩组内实例数低于最小实例数。
         public static var inServiceInstanceBelowMinSize: ResourceInsufficient {
             ResourceInsufficient(.inServiceInstanceBelowMinSize)
         }
-        
+
         public func asAsError() -> TCAsError {
             let code: TCAsError.Code
             switch self.error {
-            case .autoScalingGroupAboveMaxSize: 
+            case .autoScalingGroupAboveMaxSize:
                 code = .resourceInsufficient_AutoScalingGroupAboveMaxSize
-            case .autoScalingGroupBelowMinSize: 
+            case .autoScalingGroupBelowMinSize:
                 code = .resourceInsufficient_AutoScalingGroupBelowMinSize
-            case .inServiceInstanceAboveMaxSize: 
+            case .inServiceInstanceAboveMaxSize:
                 code = .resourceInsufficient_InServiceInstanceAboveMaxSize
-            case .inServiceInstanceBelowMinSize: 
+            case .inServiceInstanceBelowMinSize:
                 code = .resourceInsufficient_InServiceInstanceBelowMinSize
             }
             return TCAsError(code, context: self.context)

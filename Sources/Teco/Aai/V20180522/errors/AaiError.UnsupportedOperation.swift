@@ -23,65 +23,65 @@ extension TCAaiError {
             case serverStopped = "UnsupportedOperation.ServerStopped"
             case textTooLong = "UnsupportedOperation.TextTooLong"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号欠费。
         public static var accountArrears: UnsupportedOperation {
             UnsupportedOperation(.accountArrears)
         }
-        
+
         /// 免费用量耗尽。
         public static var noFreeAccount: UnsupportedOperation {
             UnsupportedOperation(.noFreeAccount)
         }
-        
+
         /// 服务未开通。
         public static var serverNotOpen: UnsupportedOperation {
             UnsupportedOperation(.serverNotOpen)
         }
-        
+
         public static var serverStopped: UnsupportedOperation {
             UnsupportedOperation(.serverStopped)
         }
-        
+
         /// 文本过长，请参考请求参数Text的说明。
         public static var textTooLong: UnsupportedOperation {
             UnsupportedOperation(.textTooLong)
         }
-        
+
         public func asAaiError() -> TCAaiError {
             let code: TCAaiError.Code
             switch self.error {
-            case .accountArrears: 
+            case .accountArrears:
                 code = .unsupportedOperation_AccountArrears
-            case .noFreeAccount: 
+            case .noFreeAccount:
                 code = .unsupportedOperation_NoFreeAccount
-            case .serverNotOpen: 
+            case .serverNotOpen:
                 code = .unsupportedOperation_ServerNotOpen
-            case .serverStopped: 
+            case .serverStopped:
                 code = .unsupportedOperation_ServerStopped
-            case .textTooLong: 
+            case .textTooLong:
                 code = .unsupportedOperation_TextTooLong
             }
             return TCAaiError(code, context: self.context)

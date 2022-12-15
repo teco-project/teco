@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeDataObjectsRequest: TCRequestModel {
         /// 数据来源ID
         public let datasourceId: String?
-        
+
         /// 数据表ID
         public let tableId: String?
-        
+
         /// 质量规则组ID
         public let ruleGroupId: UInt64?
-        
+
         /// 项目ID
         public let projectId: String?
-        
-        public init (datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil) {
+
+        public init(datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil) {
             self.datasourceId = datasourceId
             self.tableId = tableId
             self.ruleGroupId = ruleGroupId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case datasourceId = "DatasourceId"
             case tableId = "TableId"
@@ -43,40 +43,40 @@ extension Wedata {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeDataObjects返回参数结构体
     public struct DescribeDataObjectsResponse: TCResponseModel {
         /// 数据对象列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [SourceObject]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询规则组数据对象列表
     @inlinable
-    public func describeDataObjects(_ input: DescribeDataObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataObjectsResponse > {
+    public func describeDataObjects(_ input: DescribeDataObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataObjectsResponse> {
         self.client.execute(action: "DescribeDataObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则组数据对象列表
     @inlinable
     public func describeDataObjects(_ input: DescribeDataObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataObjectsResponse {
         try await self.client.execute(action: "DescribeDataObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询规则组数据对象列表
     @inlinable
-    public func describeDataObjects(datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataObjectsResponse > {
+    public func describeDataObjects(datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataObjectsResponse> {
         self.describeDataObjects(DescribeDataObjectsRequest(datasourceId: datasourceId, tableId: tableId, ruleGroupId: ruleGroupId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则组数据对象列表
     @inlinable
     public func describeDataObjects(datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataObjectsResponse {

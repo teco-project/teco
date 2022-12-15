@@ -19,23 +19,23 @@ extension Tav {
     public struct ScanFileHashRequest: TCRequestModel {
         /// 购买服务后获得的授权信息，用于保证请求有效性
         public let key: String
-        
+
         /// 需要查询的md5值（支持单个和多个，多个md5间用逗号分格）
         public let md5s: String
-        
+
         /// 保留字段默认填0
         public let withCategory: String
-        
+
         /// 松严规则控制字段默认填10（5-松、10-标准、15-严）
         public let sensitiveLevel: String
-        
-        public init (key: String, md5s: String, withCategory: String, sensitiveLevel: String) {
+
+        public init(key: String, md5s: String, withCategory: String, sensitiveLevel: String) {
             self.key = key
             self.md5s = md5s
             self.withCategory = withCategory
             self.sensitiveLevel = sensitiveLevel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case md5s = "Md5s"
@@ -43,23 +43,23 @@ extension Tav {
             case sensitiveLevel = "SensitiveLevel"
         }
     }
-    
+
     /// ScanFileHash返回参数结构体
     public struct ScanFileHashResponse: TCResponseModel {
         /// 接口调用状态，成功返回200，失败返回400
         public let status: UInt64
-        
+
         /// 接口调用描述信息，成功返回"scan success"，失败返回"scan error"
         public let info: String
-        
-        /// 云查实际结果信息，包括md5、return_state、virus_state、virus_name字符逗号间隔；        
+
+        /// 云查实际结果信息，包括md5、return_state、virus_state、virus_name字符逗号间隔；
         /// return_state查询状态：-1/0代表失败、1/2代表成功；
         /// virus_state文状件态：0文件不存在、1白、2黑、3未知、4感染性、5低可信白；
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case info = "Info"
@@ -67,15 +67,15 @@ extension Tav {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 公有云查
     ///
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
-    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanFileHashResponse > {
+    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileHashResponse> {
         self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 公有云查
     ///
     /// 通过文件哈希值获取文件黑白属性
@@ -83,15 +83,15 @@ extension Tav {
     public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
         try await self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 公有云查
     ///
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
-    public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanFileHashResponse > {
+    public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileHashResponse> {
         self.scanFileHash(ScanFileHashRequest(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel), logger: logger, on: eventLoop)
     }
-    
+
     /// 公有云查
     ///
     /// 通过文件哈希值获取文件黑白属性

@@ -19,27 +19,27 @@ extension Iotcloud {
     public struct UpdateTopicPolicyRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
+
         /// 更新前Topic名
         public let topicName: String
-        
+
         /// 更新后Topic名
         public let newTopicName: String
-        
+
         /// Topic权限
         public let privilege: UInt64
-        
+
         /// 代理订阅信息
         public let brokerSubscribe: BrokerSubscribe?
-        
-        public init (productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil) {
+
+        public init(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil) {
             self.productID = productID
             self.topicName = topicName
             self.newTopicName = newTopicName
             self.privilege = privilege
             self.brokerSubscribe = brokerSubscribe
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
             case topicName = "TopicName"
@@ -48,25 +48,25 @@ extension Iotcloud {
             case brokerSubscribe = "BrokerSubscribe"
         }
     }
-    
+
     /// UpdateTopicPolicy返回参数结构体
     public struct UpdateTopicPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTopicPolicyResponse > {
+    public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
         self.client.execute(action: "UpdateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
@@ -74,15 +74,15 @@ extension Iotcloud {
     public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
         try await self.client.execute(action: "UpdateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTopicPolicyResponse > {
+    public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
         self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息

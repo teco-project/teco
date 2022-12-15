@@ -19,23 +19,23 @@ extension Vpc {
     public struct CreateSecurityGroupWithPoliciesRequest: TCRequestModel {
         /// 安全组名称，可任意命名，但不得超过60个字符。
         public let groupName: String
-        
+
         /// 安全组备注，最多100个字符。
         public let groupDescription: String
-        
+
         /// 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
         public let projectId: String?
-        
+
         /// 安全组规则集合。
         public let securityGroupPolicySet: SecurityGroupPolicySet?
-        
-        public init (groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil) {
+
+        public init(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil) {
             self.groupName = groupName
             self.groupDescription = groupDescription
             self.projectId = projectId
             self.securityGroupPolicySet = securityGroupPolicySet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupName = "GroupName"
             case groupDescription = "GroupDescription"
@@ -43,21 +43,21 @@ extension Vpc {
             case securityGroupPolicySet = "SecurityGroupPolicySet"
         }
     }
-    
+
     /// CreateSecurityGroupWithPolicies返回参数结构体
     public struct CreateSecurityGroupWithPoliciesResponse: TCResponseModel {
         /// 安全组对象。
         public let securityGroup: SecurityGroup
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroup = "SecurityGroup"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。
@@ -74,10 +74,10 @@ extension Vpc {
     /// * CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate四者是排他关系，不允许同时输入，Protocol + Port和ServiceTemplate二者是排他关系，不允许同时输入。
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
-    public func createSecurityGroupWithPolicies(_ input: CreateSecurityGroupWithPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupWithPoliciesResponse > {
+    public func createSecurityGroupWithPolicies(_ input: CreateSecurityGroupWithPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupWithPoliciesResponse> {
         self.client.execute(action: "CreateSecurityGroupWithPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。
@@ -97,7 +97,7 @@ extension Vpc {
     public func createSecurityGroupWithPolicies(_ input: CreateSecurityGroupWithPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupWithPoliciesResponse {
         try await self.client.execute(action: "CreateSecurityGroupWithPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。
@@ -114,10 +114,10 @@ extension Vpc {
     /// * CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate四者是排他关系，不允许同时输入，Protocol + Port和ServiceTemplate二者是排他关系，不允许同时输入。
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
-    public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupWithPoliciesResponse > {
+    public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupWithPoliciesResponse> {
         self.createSecurityGroupWithPolicies(CreateSecurityGroupWithPoliciesRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。

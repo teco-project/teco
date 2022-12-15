@@ -19,112 +19,112 @@ extension Es {
     public struct CreateInstanceRequest: TCRequestModel {
         /// 可用区
         public let zone: String
-        
+
         /// 实例版本（支持"5.6.4"、"6.4.3"、"6.8.2"、"7.5.1"、"7.10.1"）
         public let esVersion: String
-        
+
         /// 私有网络ID
         public let vpcId: String
-        
+
         /// 子网ID
         public let subnetId: String
-        
+
         /// 访问密码（密码需8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&^*+=_:;,.?]的特殊符号）
         public let password: String
-        
+
         /// 实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）
         public let instanceName: String?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 节点数量（2-50个）
         public let nodeNum: UInt64?
-        
+
         /// 计费类型<li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li>默认值POSTPAID_BY_HOUR
         public let chargeType: String?
-        
+
         /// 包年包月购买时长（单位由参数TimeUnit决定）
         public let chargePeriod: UInt64?
-        
+
         /// 自动续费标识<li>RENEW_FLAG_AUTO：自动续费</li><li>RENEW_FLAG_MANUAL：不自动续费，用户手动续费</li>ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费
         public let renewFlag: String?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
         public let nodeType: String?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高硬能云硬盘</li>默认值CLOUD_SSD
         public let diskType: String?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 节点磁盘容量（单位GB）
         public let diskSize: UInt64?
-        
+
         /// 计费时长单位（ChargeType为PREPAID时需要设置，默认值为“m”，表示月，当前只支持“m”）
         public let timeUnit: String?
-        
+
         /// 是否自动使用代金券<li>0：不自动使用</li><li>1：自动使用</li>默认值0
         public let autoVoucher: Int64?
-        
+
         /// 代金券ID列表（目前仅支持指定一张代金券）
         public let voucherIds: [String]?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 是否创建专用主节点<li>true：开启专用主节点</li><li>false：不开启专用主节点</li>默认值false
         public let enableDedicatedMaster: Bool?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 专用主节点个数（只支持3个和5个，EnableDedicatedMaster为true时该值必传）
         public let masterNodeNum: UInt64?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 专用主节点类型（EnableDedicatedMaster为true时必传）<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
         public let masterNodeType: String?
-        
+
         /// 已废弃请使用NodeInfoList
         /// 专用主节点磁盘大小（单位GB，非必传，若传递则必须为50，暂不支持自定义）
         public let masterNodeDiskSize: UInt64?
-        
+
         /// 集群配置文件中的ClusterName（系统默认配置为实例ID，暂不支持自定义）
         public let clusterNameInConf: String?
-        
+
         /// 集群部署方式<li>0：单可用区部署</li><li>1：多可用区部署</li>默认为0
         public let deployMode: UInt64?
-        
+
         /// 多可用区部署时可用区的详细信息(DeployMode为1时必传)
         public let multiZoneInfo: [ZoneDetail]?
-        
+
         /// License类型<li>oss：开源版</li><li>basic：基础版</li><li>platinum：白金版</li>默认值platinum
         public let licenseType: String?
-        
+
         /// 节点信息列表， 用于描述集群各类节点的规格信息如节点类型，节点个数，节点规格，磁盘类型，磁盘大小等
         public let nodeInfoList: [NodeInfo]?
-        
+
         /// 节点标签信息列表
         public let tagList: [TagInfo]?
-        
+
         /// 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
         public let basicSecurityType: UInt64?
-        
+
         /// 场景化模板类型 0：不启用 1：通用 2：日志 3：搜索
         public let sceneType: Int64?
-        
+
         /// 可视化节点配置
         public let webNodeTypeInfo: WebNodeTypeInfo?
-        
+
         /// 创建https集群，默认是http
         public let `protocol`: String?
-        
+
         /// 可维护时间段
         public let operationDuration: OperationDuration?
-        
+
         /// 是否开启存算分离
         public let enableHybridStorage: Bool?
-        
+
         /// 是否开启essd 增强型云盘
         public let diskEnhance: UInt64?
-        
-        public init (zone: String, esVersion: String, vpcId: String, subnetId: String, password: String, instanceName: String? = nil, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, enableDedicatedMaster: Bool? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, clusterNameInConf: String? = nil, deployMode: UInt64? = nil, multiZoneInfo: [ZoneDetail]? = nil, licenseType: String? = nil, nodeInfoList: [NodeInfo]? = nil, tagList: [TagInfo]? = nil, basicSecurityType: UInt64? = nil, sceneType: Int64? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, protocol: String? = nil, operationDuration: OperationDuration? = nil, enableHybridStorage: Bool? = nil, diskEnhance: UInt64? = nil) {
+
+        public init(zone: String, esVersion: String, vpcId: String, subnetId: String, password: String, instanceName: String? = nil, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, enableDedicatedMaster: Bool? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, clusterNameInConf: String? = nil, deployMode: UInt64? = nil, multiZoneInfo: [ZoneDetail]? = nil, licenseType: String? = nil, nodeInfoList: [NodeInfo]? = nil, tagList: [TagInfo]? = nil, basicSecurityType: UInt64? = nil, sceneType: Int64? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, protocol: String? = nil, operationDuration: OperationDuration? = nil, enableHybridStorage: Bool? = nil, diskEnhance: UInt64? = nil) {
             self.zone = zone
             self.esVersion = esVersion
             self.vpcId = vpcId
@@ -159,7 +159,7 @@ extension Es {
             self.enableHybridStorage = enableHybridStorage
             self.diskEnhance = diskEnhance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case esVersion = "EsVersion"
@@ -196,34 +196,34 @@ extension Es {
             case diskEnhance = "DiskEnhance"
         }
     }
-    
+
     /// CreateInstance返回参数结构体
     public struct CreateInstanceResponse: TCResponseModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealName: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case dealName = "DealName"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建ES集群实例
     ///
     /// 创建指定规格的ES集群实例
     @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
         self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建ES集群实例
     ///
     /// 创建指定规格的ES集群实例
@@ -231,15 +231,15 @@ extension Es {
     public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
         try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建ES集群实例
     ///
     /// 创建指定规格的ES集群实例
     @inlinable
-    public func createInstance(zone: String, esVersion: String, vpcId: String, subnetId: String, password: String, instanceName: String? = nil, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, enableDedicatedMaster: Bool? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, clusterNameInConf: String? = nil, deployMode: UInt64? = nil, multiZoneInfo: [ZoneDetail]? = nil, licenseType: String? = nil, nodeInfoList: [NodeInfo]? = nil, tagList: [TagInfo]? = nil, basicSecurityType: UInt64? = nil, sceneType: Int64? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, protocol: String? = nil, operationDuration: OperationDuration? = nil, enableHybridStorage: Bool? = nil, diskEnhance: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
+    public func createInstance(zone: String, esVersion: String, vpcId: String, subnetId: String, password: String, instanceName: String? = nil, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, enableDedicatedMaster: Bool? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, clusterNameInConf: String? = nil, deployMode: UInt64? = nil, multiZoneInfo: [ZoneDetail]? = nil, licenseType: String? = nil, nodeInfoList: [NodeInfo]? = nil, tagList: [TagInfo]? = nil, basicSecurityType: UInt64? = nil, sceneType: Int64? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, protocol: String? = nil, operationDuration: OperationDuration? = nil, enableHybridStorage: Bool? = nil, diskEnhance: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
         self.createInstance(CreateInstanceRequest(zone: zone, esVersion: esVersion, vpcId: vpcId, subnetId: subnetId, password: password, instanceName: instanceName, nodeNum: nodeNum, chargeType: chargeType, chargePeriod: chargePeriod, renewFlag: renewFlag, nodeType: nodeType, diskType: diskType, diskSize: diskSize, timeUnit: timeUnit, autoVoucher: autoVoucher, voucherIds: voucherIds, enableDedicatedMaster: enableDedicatedMaster, masterNodeNum: masterNodeNum, masterNodeType: masterNodeType, masterNodeDiskSize: masterNodeDiskSize, clusterNameInConf: clusterNameInConf, deployMode: deployMode, multiZoneInfo: multiZoneInfo, licenseType: licenseType, nodeInfoList: nodeInfoList, tagList: tagList, basicSecurityType: basicSecurityType, sceneType: sceneType, webNodeTypeInfo: webNodeTypeInfo, protocol: `protocol`, operationDuration: operationDuration, enableHybridStorage: enableHybridStorage, diskEnhance: diskEnhance), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建ES集群实例
     ///
     /// 创建指定规格的ES集群实例

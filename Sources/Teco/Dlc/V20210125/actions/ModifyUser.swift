@@ -19,49 +19,49 @@ extension Dlc {
     public struct ModifyUserRequest: TCRequestModel {
         /// 用户Id，和CAM侧Uin匹配
         public let userId: String
-        
+
         /// 用户描述
         public let userDescription: String
-        
-        public init (userId: String, userDescription: String) {
+
+        public init(userId: String, userDescription: String) {
             self.userId = userId
             self.userDescription = userDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case userDescription = "UserDescription"
         }
     }
-    
+
     /// ModifyUser返回参数结构体
     public struct ModifyUserResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改用户信息
     @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
         self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改用户信息
     @inlinable
     public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
         try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改用户信息
     @inlinable
-    public func modifyUser(userId: String, userDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+    public func modifyUser(userId: String, userDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
         self.modifyUser(ModifyUserRequest(userId: userId, userDescription: userDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改用户信息
     @inlinable
     public func modifyUser(userId: String, userDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {

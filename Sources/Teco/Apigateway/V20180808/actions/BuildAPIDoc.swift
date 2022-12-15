@@ -19,48 +19,48 @@ extension Apigateway {
     public struct BuildAPIDocRequest: TCRequestModel {
         /// API文档ID
         public let apiDocId: String
-        
-        public init (apiDocId: String) {
+
+        public init(apiDocId: String) {
             self.apiDocId = apiDocId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case apiDocId = "ApiDocId"
         }
     }
-    
+
     /// BuildAPIDoc返回参数结构体
     public struct BuildAPIDocResponse: TCResponseModel {
         /// 操作是否成功
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 构建 API 文档
     @inlinable
-    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuildAPIDocResponse > {
+    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildAPIDocResponse> {
         self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 构建 API 文档
     @inlinable
     public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
         try await self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 构建 API 文档
     @inlinable
-    public func buildAPIDoc(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuildAPIDocResponse > {
+    public func buildAPIDoc(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildAPIDocResponse> {
         self.buildAPIDoc(BuildAPIDocRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
     }
-    
+
     /// 构建 API 文档
     @inlinable
     public func buildAPIDoc(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {

@@ -19,44 +19,44 @@ extension Tci {
     public struct CreateVocabLibRequest: TCRequestModel {
         /// 词汇库名称
         public let vocabLibName: String
-        
-        public init (vocabLibName: String) {
+
+        public init(vocabLibName: String) {
             self.vocabLibName = vocabLibName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vocabLibName = "VocabLibName"
         }
     }
-    
+
     /// CreateVocabLib返回参数结构体
     public struct CreateVocabLibResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 建立词汇库
     @inlinable
-    public func createVocabLib(_ input: CreateVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVocabLibResponse > {
+    public func createVocabLib(_ input: CreateVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabLibResponse> {
         self.client.execute(action: "CreateVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 建立词汇库
     @inlinable
     public func createVocabLib(_ input: CreateVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabLibResponse {
         try await self.client.execute(action: "CreateVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 建立词汇库
     @inlinable
-    public func createVocabLib(vocabLibName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVocabLibResponse > {
+    public func createVocabLib(vocabLibName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabLibResponse> {
         self.createVocabLib(CreateVocabLibRequest(vocabLibName: vocabLibName), logger: logger, on: eventLoop)
     }
-    
+
     /// 建立词汇库
     @inlinable
     public func createVocabLib(vocabLibName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabLibResponse {

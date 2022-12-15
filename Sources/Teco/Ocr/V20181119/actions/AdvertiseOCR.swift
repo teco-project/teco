@@ -21,46 +21,46 @@ extension Ocr {
         /// 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
-        
+
         /// 图片的 Url 地址。
         /// 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
         /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
-        
-        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
         }
     }
-    
+
     /// AdvertiseOCR返回参数结构体
     public struct AdvertiseOCRResponse: TCResponseModel {
         /// 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
         public let textDetections: [AdvertiseTextDetection]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case textDetections = "TextDetections"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
     /// 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
     @inlinable
-    public func advertiseOCR(_ input: AdvertiseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdvertiseOCRResponse > {
+    public func advertiseOCR(_ input: AdvertiseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AdvertiseOCRResponse> {
         self.client.execute(action: "AdvertiseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
@@ -69,16 +69,16 @@ extension Ocr {
     public func advertiseOCR(_ input: AdvertiseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdvertiseOCRResponse {
         try await self.client.execute(action: "AdvertiseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
     /// 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
     @inlinable
-    public func advertiseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdvertiseOCRResponse > {
+    public func advertiseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AdvertiseOCRResponse> {
         self.advertiseOCR(AdvertiseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。

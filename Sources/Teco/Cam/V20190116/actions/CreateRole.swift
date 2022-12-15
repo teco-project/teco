@@ -19,23 +19,23 @@ extension Cam {
     public struct CreateRoleRequest: TCRequestModel {
         /// 角色名称
         public let roleName: String
-        
+
         /// 策略文档，示例：{"version":"2.0","statement":[{"action":"name/sts:AssumeRole","effect":"allow","principal":{"service":["cloudaudit.cloud.tencent.com","cls.cloud.tencent.com"]}}]}，principal用于指定角色的授权对象。获取该参数可参阅 获取角色详情（https://cloud.tencent.com/document/product/598/36221） 输出参数RoleInfo
         public let policyDocument: String
-        
+
         /// 角色描述
         public let description: String?
-        
+
         /// 是否允许登录 1 为允许 0 为不允许
         public let consoleLogin: UInt64?
-        
+
         /// 申请角色临时密钥的最长有效期限制(范围：0~43200)
         public let sessionDuration: UInt64?
-        
+
         /// 角色绑定标签
         public let tags: [RoleTags]?
-        
-        public init (roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil) {
+
+        public init(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil) {
             self.roleName = roleName
             self.policyDocument = policyDocument
             self.description = description
@@ -43,7 +43,7 @@ extension Cam {
             self.sessionDuration = sessionDuration
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case roleName = "RoleName"
             case policyDocument = "PolicyDocument"
@@ -53,30 +53,30 @@ extension Cam {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateRole返回参数结构体
     public struct CreateRoleResponse: TCResponseModel {
         /// 角色ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case roleId = "RoleId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建角色
     ///
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
-    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoleResponse > {
+    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoleResponse> {
         self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建角色
     ///
     /// 本接口（CreateRole）用于创建角色。
@@ -84,15 +84,15 @@ extension Cam {
     public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
         try await self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建角色
     ///
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
-    public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoleResponse > {
+    public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoleResponse> {
         self.createRole(CreateRoleRequest(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建角色
     ///
     /// 本接口（CreateRole）用于创建角色。

@@ -19,48 +19,48 @@ extension Rum {
     public struct DescribeDataLogUrlInfoRequest: TCRequestModel {
         /// 项目ID
         public let id: Int64
-        
+
         /// 时间戳
         public let startTime: Int64
-        
+
         /// 时间戳
         public let endTime: Int64
-        
-        public init (id: Int64, startTime: Int64, endTime: Int64) {
+
+        public init(id: Int64, startTime: Int64, endTime: Int64) {
             self.id = id
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeDataLogUrlInfo返回参数结构体
     public struct DescribeDataLogUrlInfoResponse: TCResponseModel {
         /// 返回字符串
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取dataloginfo信息
     ///
     /// 获取loginfo信息
     @inlinable
-    public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataLogUrlInfoResponse > {
+    public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataLogUrlInfoResponse> {
         self.client.execute(action: "DescribeDataLogUrlInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取dataloginfo信息
     ///
     /// 获取loginfo信息
@@ -68,15 +68,15 @@ extension Rum {
     public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataLogUrlInfoResponse {
         try await self.client.execute(action: "DescribeDataLogUrlInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取dataloginfo信息
     ///
     /// 获取loginfo信息
     @inlinable
-    public func describeDataLogUrlInfo(id: Int64, startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataLogUrlInfoResponse > {
+    public func describeDataLogUrlInfo(id: Int64, startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataLogUrlInfoResponse> {
         self.describeDataLogUrlInfo(DescribeDataLogUrlInfoRequest(id: id, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取dataloginfo信息
     ///
     /// 获取loginfo信息

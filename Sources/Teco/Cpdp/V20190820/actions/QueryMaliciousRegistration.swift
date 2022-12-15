@@ -19,41 +19,41 @@ extension Cpdp {
     public struct QueryMaliciousRegistrationRequest: TCRequestModel {
         /// 商户ID，调用方使用的商户号信息，与商户主体一一对应
         public let merchantId: String
-        
+
         /// 商户名称
         public let merchantName: String
-        
+
         /// 企业工商注册标准名称
         public let companyName: String
-        
+
         /// 注册地址
         public let regAddress: String
-        
+
         /// 商户进件Unix时间，单位秒（非企业注册工商时间)
         public let regTime: UInt64
-        
+
         /// 统一社会信用代码
         public let usci: String?
-        
+
         /// 工商注册码，匹配优先级为Usci>RegNumber>CompanyName
         public let regNumber: String?
-        
+
         /// 手机号码32位MD5加密结果，全大写，格式为0086-13812345678
         public let encryptedPhoneNumber: String?
-        
+
         /// 邮箱32位MD5加密结果，全大写
         public let encryptedEmailAddress: String?
-        
+
         /// 身份证MD5加密结果，最后一位x大写
         public let encryptedPersonId: String?
-        
+
         /// 填写信息设备的IP地址
         public let ip: String?
-        
+
         /// 进件渠道号，客户自行编码即可
         public let channel: String?
-        
-        public init (merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil) {
+
+        public init(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil) {
             self.merchantId = merchantId
             self.merchantName = merchantName
             self.companyName = companyName
@@ -67,7 +67,7 @@ extension Cpdp {
             self.ip = ip
             self.channel = channel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case merchantName = "MerchantName"
@@ -83,22 +83,22 @@ extension Cpdp {
             case channel = "Channel"
         }
     }
-    
+
     /// QueryMaliciousRegistration返回参数结构体
     public struct QueryMaliciousRegistrationResponse: TCResponseModel {
         /// 错误码
         public let errCode: String
-        
+
         /// 错误消息
         public let errMsg: String
-        
+
         /// 商户风险信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: MerchantRiskInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMsg = "ErrMsg"
@@ -106,25 +106,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 商户恶意注册接口
     @inlinable
-    public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaliciousRegistrationResponse > {
+    public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMaliciousRegistrationResponse> {
         self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 商户恶意注册接口
     @inlinable
     public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {
         try await self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 商户恶意注册接口
     @inlinable
-    public func queryMaliciousRegistration(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaliciousRegistrationResponse > {
+    public func queryMaliciousRegistration(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMaliciousRegistrationResponse> {
         self.queryMaliciousRegistration(QueryMaliciousRegistrationRequest(merchantId: merchantId, merchantName: merchantName, companyName: companyName, regAddress: regAddress, regTime: regTime, usci: usci, regNumber: regNumber, encryptedPhoneNumber: encryptedPhoneNumber, encryptedEmailAddress: encryptedEmailAddress, encryptedPersonId: encryptedPersonId, ip: ip, channel: channel), logger: logger, on: eventLoop)
     }
-    
+
     /// 商户恶意注册接口
     @inlinable
     public func queryMaliciousRegistration(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {

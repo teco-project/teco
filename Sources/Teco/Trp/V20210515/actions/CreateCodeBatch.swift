@@ -19,29 +19,29 @@ extension Trp {
     public struct CreateCodeBatchRequest: TCRequestModel {
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 商户ID
         public let merchantId: String?
-        
+
         /// 产品ID
         public let productId: String?
-        
+
         /// 批次类型 0:溯源 1:营销
         public let batchType: UInt64?
-        
+
         /// 批次ID，系统自动生成
         public let batchId: String?
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 模版ID，或者活动ID
         public let mpTpl: String?
-        
+
         /// 克隆批次ID，同时会复制溯源信息
         public let cloneId: String?
-        
-        public init (corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil) {
+
+        public init(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil) {
             self.corpId = corpId
             self.merchantId = merchantId
             self.productId = productId
@@ -51,7 +51,7 @@ extension Trp {
             self.mpTpl = mpTpl
             self.cloneId = cloneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
             case merchantId = "MerchantId"
@@ -63,39 +63,39 @@ extension Trp {
             case cloneId = "CloneId"
         }
     }
-    
+
     /// CreateCodeBatch返回参数结构体
     public struct CreateCodeBatchResponse: TCResponseModel {
         /// 批次ID
         public let batchId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增批次
     @inlinable
-    public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeBatchResponse > {
+    public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodeBatchResponse> {
         self.client.execute(action: "CreateCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增批次
     @inlinable
     public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
         try await self.client.execute(action: "CreateCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增批次
     @inlinable
-    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeBatchResponse > {
+    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodeBatchResponse> {
         self.createCodeBatch(CreateCodeBatchRequest(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增批次
     @inlinable
     public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {

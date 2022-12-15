@@ -19,49 +19,49 @@ extension Antiddos {
     public struct CreatePortAclConfigListRequest: TCRequestModel {
         /// 资源实例ID列表
         public let instanceIdList: [String]
-        
+
         /// 端口acl策略
         public let aclConfig: AclConfig
-        
-        public init (instanceIdList: [String], aclConfig: AclConfig) {
+
+        public init(instanceIdList: [String], aclConfig: AclConfig) {
             self.instanceIdList = instanceIdList
             self.aclConfig = aclConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIdList = "InstanceIdList"
             case aclConfig = "AclConfig"
         }
     }
-    
+
     /// CreatePortAclConfigList返回参数结构体
     public struct CreatePortAclConfigListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量添加DDoS防护的端口acl策略
     @inlinable
-    public func createPortAclConfigList(_ input: CreatePortAclConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePortAclConfigListResponse > {
+    public func createPortAclConfigList(_ input: CreatePortAclConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePortAclConfigListResponse> {
         self.client.execute(action: "CreatePortAclConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量添加DDoS防护的端口acl策略
     @inlinable
     public func createPortAclConfigList(_ input: CreatePortAclConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigListResponse {
         try await self.client.execute(action: "CreatePortAclConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量添加DDoS防护的端口acl策略
     @inlinable
-    public func createPortAclConfigList(instanceIdList: [String], aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePortAclConfigListResponse > {
+    public func createPortAclConfigList(instanceIdList: [String], aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePortAclConfigListResponse> {
         self.createPortAclConfigList(CreatePortAclConfigListRequest(instanceIdList: instanceIdList, aclConfig: aclConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量添加DDoS防护的端口acl策略
     @inlinable
     public func createPortAclConfigList(instanceIdList: [String], aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigListResponse {

@@ -19,27 +19,27 @@ extension Cmq {
     public struct DescribeTopicDetailRequest: TCRequestModel {
         /// 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0。
         public let offset: UInt64?
-        
+
         /// 分页时本页获取队列的个数，如果不传递该参数，则该参数默认为20，最大值为50。
         public let limit: UInt64?
-        
+
         /// 目前只支持过滤TopicName ， 且只能填一个过滤值。
         public let filters: [Filter]?
-        
+
         /// 标签匹配。
         public let tagKey: String?
-        
+
         /// 精确匹配TopicName。
         public let topicName: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.tagKey = tagKey
             self.topicName = topicName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -48,52 +48,52 @@ extension Cmq {
             case topicName = "TopicName"
         }
     }
-    
+
     /// DescribeTopicDetail返回参数结构体
     public struct DescribeTopicDetailResponse: TCResponseModel {
         /// 主题列表总数。
         public let totalCount: UInt64
-        
+
         /// 主题详情列表。
         public let topicSet: [TopicSet]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case topicSet = "TopicSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询主题详情
     ///
-    /// 查询主题详情 
+    /// 查询主题详情
     @inlinable
-    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicDetailResponse > {
+    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicDetailResponse> {
         self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主题详情
     ///
-    /// 查询主题详情 
+    /// 查询主题详情
     @inlinable
     public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
         try await self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询主题详情
     ///
-    /// 查询主题详情 
+    /// 查询主题详情
     @inlinable
-    public func describeTopicDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicDetailResponse > {
+    public func describeTopicDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicDetailResponse> {
         self.describeTopicDetail(DescribeTopicDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, topicName: topicName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主题详情
     ///
-    /// 查询主题详情 
+    /// 查询主题详情
     @inlinable
     public func describeTopicDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
         try await self.describeTopicDetail(DescribeTopicDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, topicName: topicName), logger: logger, on: eventLoop)

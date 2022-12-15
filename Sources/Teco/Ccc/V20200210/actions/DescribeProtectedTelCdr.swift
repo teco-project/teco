@@ -19,27 +19,27 @@ extension Ccc {
     public struct DescribeProtectedTelCdrRequest: TCRequestModel {
         /// 起始时间戳，Unix 秒级时间戳
         public let startTimeStamp: Int64
-        
+
         /// 结束时间戳，Unix 秒级时间戳
         public let endTimeStamp: Int64
-        
+
         /// 应用 ID，可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: UInt64
-        
+
         /// 分页尺寸，上限 100
         public let pageSize: UInt64
-        
+
         /// 分页页码，从 0 开始
         public let pageNumber: UInt64
-        
-        public init (startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64) {
+
+        public init(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64) {
             self.startTimeStamp = startTimeStamp
             self.endTimeStamp = endTimeStamp
             self.sdkAppId = sdkAppId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimeStamp = "StartTimeStamp"
             case endTimeStamp = "EndTimeStamp"
@@ -48,43 +48,43 @@ extension Ccc {
             case pageNumber = "PageNumber"
         }
     }
-    
+
     /// DescribeProtectedTelCdr返回参数结构体
     public struct DescribeProtectedTelCdrResponse: TCResponseModel {
         /// 话单记录总数
         public let totalCount: UInt64
-        
+
         /// 话单记录
         public let telCdrs: [TelCdrInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case telCdrs = "TelCdrs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
-    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectedTelCdrResponse > {
+    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectedTelCdrResponse> {
         self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
     public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
         try await self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
-    public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectedTelCdrResponse > {
+    public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectedTelCdrResponse> {
         self.describeProtectedTelCdr(DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
     public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {

@@ -19,39 +19,39 @@ extension Lighthouse {
     public struct ModifyInstancesLoginKeyPairAttributeRequest: TCRequestModel {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。
         public let instanceIds: [String]
-        
+
         /// 是否允许使用默认密钥对登录，YES：允许登录；NO：禁止登录
         public let permitLogin: String?
-        
-        public init (instanceIds: [String], permitLogin: String? = nil) {
+
+        public init(instanceIds: [String], permitLogin: String? = nil) {
             self.instanceIds = instanceIds
             self.permitLogin = permitLogin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case permitLogin = "PermitLogin"
         }
     }
-    
+
     /// ModifyInstancesLoginKeyPairAttribute返回参数结构体
     public struct ModifyInstancesLoginKeyPairAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例默认登录密钥对属性
     ///
     /// 本接口用于设置实例默认登录密钥对属性。
     @inlinable
-    public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesLoginKeyPairAttributeResponse > {
+    public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesLoginKeyPairAttributeResponse> {
         self.client.execute(action: "ModifyInstancesLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例默认登录密钥对属性
     ///
     /// 本接口用于设置实例默认登录密钥对属性。
@@ -59,15 +59,15 @@ extension Lighthouse {
     public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesLoginKeyPairAttributeResponse {
         try await self.client.execute(action: "ModifyInstancesLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例默认登录密钥对属性
     ///
     /// 本接口用于设置实例默认登录密钥对属性。
     @inlinable
-    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesLoginKeyPairAttributeResponse > {
+    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesLoginKeyPairAttributeResponse> {
         self.modifyInstancesLoginKeyPairAttribute(ModifyInstancesLoginKeyPairAttributeRequest(instanceIds: instanceIds, permitLogin: permitLogin), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例默认登录密钥对属性
     ///
     /// 本接口用于设置实例默认登录密钥对属性。

@@ -19,10 +19,10 @@ extension Tdcpg {
     public struct DescribeClustersRequest: TCRequestModel {
         /// 页码，取值范围为[1,INF)，默认值为1
         public let pageNumber: UInt64?
-        
+
         /// 每页条数，取值范围为默认为[1,100]，默认值为20
         public let pageSize: UInt64?
-        
+
         /// 目前支持查询条件包括：
         ///  - ClusterId : 集群ID
         ///  - ClusterName : 集群名
@@ -30,25 +30,25 @@ extension Tdcpg {
         ///  - Status : 集群状态
         ///  - PayMode : 付费模式
         public let filters: [Filter]?
-        
+
         /// 排序字段，可选字段：
         ///  - CreateTime : 集群创建时间(默认值)
         ///  - PayPeriodEndTime : 集群过期时间
         public let orderBy: String?
-        
+
         /// 排序方式，可选字段：
         ///  - DESC : 降序(默认值)
         ///  - ASC : 升序
         public let orderByType: String?
-        
-        public init (pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil) {
+
+        public init(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.filters = filters
             self.orderBy = orderBy
             self.orderByType = orderByType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
             case pageSize = "PageSize"
@@ -57,43 +57,43 @@ extension Tdcpg {
             case orderByType = "OrderByType"
         }
     }
-    
+
     /// DescribeClusters返回参数结构体
     public struct DescribeClustersResponse: TCResponseModel {
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 集群列表信息
         public let clusterSet: [Cluster]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case clusterSet = "ClusterSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群
     @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
         self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群
     @inlinable
     public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
         try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群
     @inlinable
-    public func describeClusters(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+    public func describeClusters(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
         self.describeClusters(DescribeClustersRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群
     @inlinable
     public func describeClusters(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {

@@ -19,62 +19,62 @@ extension Oceanus {
     public struct CreateJobConfigRequest: TCRequestModel {
         /// 作业Id
         public let jobId: String
-        
+
         /// 主类
         public let entrypointClass: String?
-        
+
         /// 主类入参
         public let programArgs: String?
-        
+
         /// 备注
         public let remark: String?
-        
+
         /// 资源引用数组
         public let resourceRefs: [ResourceRef]?
-        
+
         /// 作业默认并行度
         public let defaultParallelism: UInt64?
-        
+
         /// 系统参数
         public let properties: [Property]?
-        
+
         /// 1: 作业配置达到上限之后，自动删除可删除的最早版本
         public let autoDelete: Int64?
-        
+
         /// 作业使用的 COS 存储桶名
         public let cosBucket: String?
-        
+
         /// 是否采集作业日志
         public let logCollect: Bool?
-        
+
         /// JobManager规格
         public let jobManagerSpec: Float?
-        
+
         /// TaskManager规格
         public let taskManagerSpec: Float?
-        
+
         /// CLS日志集ID
         public let clsLogsetId: String?
-        
+
         /// CLS日志主题ID
         public let clsTopicId: String?
-        
+
         /// 日志采集类型 2：CLS；3：COS
         public let logCollectType: Int64?
-        
+
         /// pyflink作业运行时使用的python版本
         public let pythonVersion: String?
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
+
         /// 日志级别
         public let logLevel: String?
-        
+
         /// Oceanus 平台恢复作业开关 1:开启 -1: 关闭
         public let autoRecover: Int64?
-        
-        public init (jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil) {
+
+        public init(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil) {
             self.jobId = jobId
             self.entrypointClass = entrypointClass
             self.programArgs = programArgs
@@ -95,7 +95,7 @@ extension Oceanus {
             self.logLevel = logLevel
             self.autoRecover = autoRecover
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case entrypointClass = "EntrypointClass"
@@ -118,29 +118,29 @@ extension Oceanus {
             case autoRecover = "AutoRecover"
         }
     }
-    
+
     /// CreateJobConfig返回参数结构体
     public struct CreateJobConfigResponse: TCResponseModel {
         /// 作业配置版本号
         public let version: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case version = "Version"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobConfigResponse > {
+    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
         self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
@@ -148,15 +148,15 @@ extension Oceanus {
     public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
         try await self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobConfigResponse > {
+    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
         self.createJobConfig(CreateJobConfigRequest(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本

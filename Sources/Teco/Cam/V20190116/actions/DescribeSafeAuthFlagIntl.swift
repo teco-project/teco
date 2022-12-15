@@ -17,24 +17,24 @@
 extension Cam {
     /// DescribeSafeAuthFlagIntl请求参数结构体
     public struct DescribeSafeAuthFlagIntlRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeSafeAuthFlagIntl返回参数结构体
     public struct DescribeSafeAuthFlagIntlResponse: TCResponseModel {
         /// 登录保护设置
         public let loginFlag: LoginActionFlagIntl
-        
+
         /// 敏感操作保护设置
         public let actionFlag: LoginActionFlagIntl
-        
+
         /// 异地登录保护设置
         public let offsiteFlag: OffsiteFlag
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case loginFlag = "LoginFlag"
             case actionFlag = "ActionFlag"
@@ -42,25 +42,25 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全设置(国际站)
     @inlinable
-    public func describeSafeAuthFlagIntl(_ input: DescribeSafeAuthFlagIntlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagIntlResponse > {
+    public func describeSafeAuthFlagIntl(_ input: DescribeSafeAuthFlagIntlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagIntlResponse> {
         self.client.execute(action: "DescribeSafeAuthFlagIntl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全设置(国际站)
     @inlinable
     public func describeSafeAuthFlagIntl(_ input: DescribeSafeAuthFlagIntlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagIntlResponse {
         try await self.client.execute(action: "DescribeSafeAuthFlagIntl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全设置(国际站)
     @inlinable
-    public func describeSafeAuthFlagIntl(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagIntlResponse > {
+    public func describeSafeAuthFlagIntl(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagIntlResponse> {
         self.describeSafeAuthFlagIntl(DescribeSafeAuthFlagIntlRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全设置(国际站)
     @inlinable
     public func describeSafeAuthFlagIntl(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagIntlResponse {

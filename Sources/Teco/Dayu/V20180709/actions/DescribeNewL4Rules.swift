@@ -19,27 +19,27 @@ extension Dayu {
     public struct DescribeNewL4RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
         public let business: String
-        
+
         /// 指定IP查询
         public let ip: String?
-        
+
         /// 指定高防IP端口查询
         public let virtualPort: UInt64?
-        
+
         /// 一页条数，填0表示不分页
         public let limit: UInt64?
-        
+
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
-        
-        public init (business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.ip = ip
             self.virtualPort = virtualPort
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case ip = "Ip"
@@ -48,21 +48,21 @@ extension Dayu {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeNewL4Rules返回参数结构体
     public struct DescribeNewL4RulesResponse: TCResponseModel {
         /// 转发规则列表
         public let rules: [NewL4RuleEntry]
-        
+
         /// 总规则数
         public let total: UInt64
-        
+
         /// 四层健康检查配置列表
         public let healths: [L4RuleHealth]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
             case total = "Total"
@@ -70,15 +70,15 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取四层转发规则
     ///
     /// 获取L4转发规则
     @inlinable
-    public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL4RulesResponse > {
+    public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesResponse> {
         self.client.execute(action: "DescribeNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取四层转发规则
     ///
     /// 获取L4转发规则
@@ -86,15 +86,15 @@ extension Dayu {
     public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesResponse {
         try await self.client.execute(action: "DescribeNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取四层转发规则
     ///
     /// 获取L4转发规则
     @inlinable
-    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL4RulesResponse > {
+    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesResponse> {
         self.describeNewL4Rules(DescribeNewL4RulesRequest(business: business, ip: ip, virtualPort: virtualPort, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取四层转发规则
     ///
     /// 获取L4转发规则

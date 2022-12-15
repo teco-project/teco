@@ -19,59 +19,59 @@ extension Wedata {
     public struct CheckDuplicateTemplateNameRequest: TCRequestModel {
         /// 规则模板ID
         public let templateId: UInt64?
-        
+
         /// 模板名称
         public let name: String?
-        
+
         /// 项目Id
         public let projectId: String?
-        
-        public init (templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil) {
+
+        public init(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil) {
             self.templateId = templateId
             self.name = name
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case name = "Name"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// CheckDuplicateTemplateName返回参数结构体
     public struct CheckDuplicateTemplateNameResponse: TCResponseModel {
         /// 是否重名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 检查规则模板名称是否重复
     @inlinable
-    public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDuplicateTemplateNameResponse > {
+    public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateTemplateNameResponse> {
         self.client.execute(action: "CheckDuplicateTemplateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 检查规则模板名称是否重复
     @inlinable
     public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
         try await self.client.execute(action: "CheckDuplicateTemplateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 检查规则模板名称是否重复
     @inlinable
-    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDuplicateTemplateNameResponse > {
+    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateTemplateNameResponse> {
         self.checkDuplicateTemplateName(CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 检查规则模板名称是否重复
     @inlinable
     public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {

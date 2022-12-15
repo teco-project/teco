@@ -17,32 +17,32 @@
 extension Faceid {
     /// GetLiveCode请求参数结构体
     public struct GetLiveCodeRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetLiveCode返回参数结构体
     public struct GetLiveCodeResponse: TCResponseModel {
         /// 数字验证码，如：1234
         public let liveCode: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case liveCode = "LiveCode"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取数字验证码
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
-    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLiveCodeResponse > {
+    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLiveCodeResponse> {
         self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数字验证码
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
@@ -50,15 +50,15 @@ extension Faceid {
     public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
         try await self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取数字验证码
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
-    public func getLiveCode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLiveCodeResponse > {
+    public func getLiveCode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLiveCodeResponse> {
         self.getLiveCode(GetLiveCodeRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数字验证码
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。

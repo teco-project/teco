@@ -19,49 +19,49 @@ extension Chdfs {
     public struct DescribeAccessRulesRequest: TCRequestModel {
         /// 权限组ID
         public let accessGroupId: String
-        
+
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为所有
         public let limit: UInt64?
-        
-        public init (accessGroupId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(accessGroupId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.accessGroupId = accessGroupId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessGroupId = "AccessGroupId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAccessRules返回参数结构体
     public struct DescribeAccessRulesResponse: TCResponseModel {
         /// 权限规则列表
         public let accessRules: [AccessRule]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accessRules = "AccessRules"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看权限规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过权限组ID查看权限规则列表。
     @inlinable
-    public func describeAccessRules(_ input: DescribeAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessRulesResponse > {
+    public func describeAccessRules(_ input: DescribeAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessRulesResponse> {
         self.client.execute(action: "DescribeAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看权限规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
@@ -70,16 +70,16 @@ extension Chdfs {
     public func describeAccessRules(_ input: DescribeAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessRulesResponse {
         try await self.client.execute(action: "DescribeAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看权限规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过权限组ID查看权限规则列表。
     @inlinable
-    public func describeAccessRules(accessGroupId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessRulesResponse > {
+    public func describeAccessRules(accessGroupId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessRulesResponse> {
         self.describeAccessRules(DescribeAccessRulesRequest(accessGroupId: accessGroupId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看权限规则列表
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。

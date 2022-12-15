@@ -19,49 +19,49 @@ extension Cpdp {
     public struct UnifiedCloudOrderRequest: TCRequestModel {
         /// 米大师分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 用户ID
         /// 长度不小于5位，仅支持字母和数字的组合，长度限制以具体接入渠道为准
         public let userId: String
-        
+
         /// 开发者主订单号
         /// 支付订单号，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合，长度供参考，部分渠道存在长度更短的情况接入时请联系开发咨询
         public let outTradeNo: String
-        
+
         /// 货币类型
         /// ISO货币代码，CNY
         public let currencyType: String
-        
+
         /// 商品ID
         /// 业务自定义的商品id，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合。
         public let productId: String
-        
+
         /// 商品名称
         /// 业务自定义的商品名称，无需URL编码，长度限制以具体所接入渠道为准。
         public let productName: String
-        
+
         /// 商品详情
         /// 业务自定义的商品详情，无需URL编码，长度限制以具体所接入渠道为准。
         public let productDetail: String
-        
+
         /// 原始金额
         /// 单位：分，需要注意的是，OriginalAmt>=TotalAmt
         public let originalAmt: Int64
-        
+
         /// 支付金额
         /// 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome。
         public let totalAmt: Int64
-        
+
         /// 环境类型
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// _不填默认为生产环境_
         public let midasEnvironment: String?
-        
+
         /// 支付SubAppId
         /// 米大师计费SubAppId，代表子商户。指定使用该商户的商户号下单时必传。
         public let subAppId: String?
-        
+
         /// 顶层支付渠道
         /// 银行收单:
         /// openbank_ccb: 建设银行
@@ -71,7 +71,7 @@ extension Cpdp {
         /// openbank_icbc_jft：工商银行聚付通
         /// 非银行收单，可以为空
         public let realChannel: String?
-        
+
         /// 支付渠道
         /// wechat：微信支付
         /// wechat_ecommerce: 微信电商收付通
@@ -84,125 +84,125 @@ extension Cpdp {
         /// icbc_jft_epay: 工行聚付通-e支付
         /// 指定渠道下单时必传
         public let channel: String?
-        
+
         /// 透传字段
         /// 支付成功回调透传给应用，用于开发者透传自定义内容。
         public let metadata: String?
-        
+
         /// 数量
         /// 购买数量,不传默认为1。
         public let quantity: Int64?
-        
+
         /// Web端回调地址
         /// Web端网页回调地址，仅当Web端SDK使用页面跳转方式时有效。
         public let callbackUrl: String?
-        
+
         /// 支付取消地址
         public let cancelUrl: String?
-        
+
         /// 微信AppId
         /// wechat渠道或wchat_ecommerce渠道可以指定下单时的wxappid。
         public let wxAppId: String?
-        
+
         /// 微信SubAppId
         /// wechat渠道可以指定下单时的sub_appid。
         public let wxSubAppId: String?
-        
+
         /// 微信公众号/小程序OpenId
         /// 微信公众号/小程序支付时为必选，需要传微信下的openid。
         public let wxOpenId: String?
-        
+
         /// 微信公众号/小程序SubOpenId
         /// 在服务商模式下，微信公众号/小程序支付时wx_sub_openid和wx_openid二选一。
         public let wxSubOpenId: String?
-        
+
         /// 平台应收金额
         /// 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
         public let totalPlatformIncome: Int64?
-        
+
         /// 结算应收金额
         /// 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
         public let totalMchIncome: Int64?
-        
+
         /// 子订单列表
         /// 格式：子订单号、子应用Id、金额。压缩后最长不可超过32K字节(去除空格，换行，制表符等无意义字符)。
         public let subOrderList: [CloudSubOrder]?
-        
+
         /// 结算信息
         /// 例如是否需要分账、是否需要支付确认等，
         /// 注意：如果子单列表中传入了SettleInfo，在主单中不可再传入SettleInfo字段。
         public let settleInfo: CloudSettleInfo?
-        
+
         /// 附加项信息列表
         /// 例如溢价信息、抵扣信息、积分信息、补贴信息
         /// 通过该字段可以实现渠道方的优惠抵扣补贴等营销功能
         /// 注意：当传SubOrderList时，请在子单信息中传附加项信息，不要在主单中传该字段。
         public let attachmentInfoList: [CloudAttachmentInfo]?
-        
+
         /// 支付通知地址
         /// 调用方可通过该字段传入自定义支付通知地址。
         public let paymentNotifyUrl: String?
-        
+
         /// 支付场景
         /// 需要结合 RealChannel和Channel字段使用可选值:
         /// wechat-app 微信APP支付方式
         /// wechat-mini 微信小程序支付，示例：当 RealChannel=wechat Channel=wechat PayScene=wechat-mini时，内部会直接以小程序方式调用微信统一下单接口。
         public let payScene: String?
-        
+
         /// 语言代码
         /// 取值请参考[ISO 639-1代码表](https://zh.wikipedia.org/zh-cn/ISO_639-1%E4%BB%A3%E7%A0%81%E8%A1%A8)
         public let localeCode: String?
-        
+
         /// 地区代码
         /// 取值请参考[ISO 3166-1二位字母代码表](https://zh.wikipedia.org/zh-cn/ISO_3166-1%E4%BA%8C%E4%BD%8D%E5%AD%97%E6%AF%8D%E4%BB%A3%E7%A0%81#%E6%AD%A3%E5%BC%8F%E5%88%86%E9%85%8D%E4%BB%A3%E7%A0%81)
         public let regionCode: String?
-        
+
         /// 用户IP
         /// 请求用户的IP地址，特定的渠道或特定的支付方式，此字段为必填
         /// wechat_ecommerce渠道 - h5支付方式，此字段必填。
         public let userClientIp: String?
-        
+
         /// 渠道订单号生成模式
         /// 枚举值。决定请求渠道方时的订单号的生成模式，详情请联系米大师沟通。不指定时默认为由米大师自行生成。
         public let channelOrderIdMode: String?
-        
+
         /// 全局支付时间信息
         public let globalPayTimeInfo: CloudGlobalPayTimeInfo?
-        
+
         /// 渠道应用ID取用方式
         /// USE_APPID 使用渠道应用Id;
         /// USE_SUB_APPID 使用子渠道应用Id;
         /// USE_APPID_AND_SUB_APPID 既使用渠道应用Id也使用子渠道应用ID。
         public let channelAppIdPolicy: String?
-        
+
         /// 门店信息
         /// 特定的渠道或特定的支付方式，此字段为必填
         /// wechat_ecommerce渠道 - h5支付方式，此字段必填
         public let storeInfo: CloudStoreInfo?
-        
+
         /// 客户端信息
         /// 特定的渠道或特定的支付方式，此字段为必填
         /// wechat_ecommerce渠道 - h5支付方式，此字段必填
         public let clientInfo: CloudClientInfo?
-        
+
         /// 渠道扩展促销列表
         /// 可将各个渠道的促销信息放于该列表。
         public let externalPromptGroupList: [CloudExternalPromptGroup]?
-        
+
         /// 收单模式
         /// ORDER_RECEIVE_MODE_COMMON - 普通支付
         /// ORDER_RECEIVE_MODE_COMBINE - 合单支付
         /// ORDER_RECEIVE_MODE_V_COMBINE - 虚拟合单支付
         /// 若不传入该字段，则会根据是否传入子单来判断是 普通支付 还是 合单支付
         public let orderReceiveMode: String?
-        
+
         /// 渠道方用户信息列表
         public let externalUserInfoList: [CloudExternalUserInfo]?
-        
+
         /// 渠道透传数据列表
         public let externalAttachmentDataList: [CloudExternalAttachmentData]?
-        
-        public init (midasAppId: String, userId: String, outTradeNo: String, currencyType: String, productId: String, productName: String, productDetail: String, originalAmt: Int64, totalAmt: Int64, midasEnvironment: String? = nil, subAppId: String? = nil, realChannel: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, callbackUrl: String? = nil, cancelUrl: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, totalPlatformIncome: Int64? = nil, totalMchIncome: Int64? = nil, subOrderList: [CloudSubOrder]? = nil, settleInfo: CloudSettleInfo? = nil, attachmentInfoList: [CloudAttachmentInfo]? = nil, paymentNotifyUrl: String? = nil, payScene: String? = nil, localeCode: String? = nil, regionCode: String? = nil, userClientIp: String? = nil, channelOrderIdMode: String? = nil, globalPayTimeInfo: CloudGlobalPayTimeInfo? = nil, channelAppIdPolicy: String? = nil, storeInfo: CloudStoreInfo? = nil, clientInfo: CloudClientInfo? = nil, externalPromptGroupList: [CloudExternalPromptGroup]? = nil, orderReceiveMode: String? = nil, externalUserInfoList: [CloudExternalUserInfo]? = nil, externalAttachmentDataList: [CloudExternalAttachmentData]? = nil) {
+
+        public init(midasAppId: String, userId: String, outTradeNo: String, currencyType: String, productId: String, productName: String, productDetail: String, originalAmt: Int64, totalAmt: Int64, midasEnvironment: String? = nil, subAppId: String? = nil, realChannel: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, callbackUrl: String? = nil, cancelUrl: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, totalPlatformIncome: Int64? = nil, totalMchIncome: Int64? = nil, subOrderList: [CloudSubOrder]? = nil, settleInfo: CloudSettleInfo? = nil, attachmentInfoList: [CloudAttachmentInfo]? = nil, paymentNotifyUrl: String? = nil, payScene: String? = nil, localeCode: String? = nil, regionCode: String? = nil, userClientIp: String? = nil, channelOrderIdMode: String? = nil, globalPayTimeInfo: CloudGlobalPayTimeInfo? = nil, channelAppIdPolicy: String? = nil, storeInfo: CloudStoreInfo? = nil, clientInfo: CloudClientInfo? = nil, externalPromptGroupList: [CloudExternalPromptGroup]? = nil, orderReceiveMode: String? = nil, externalUserInfoList: [CloudExternalUserInfo]? = nil, externalAttachmentDataList: [CloudExternalAttachmentData]? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.outTradeNo = outTradeNo
@@ -244,7 +244,7 @@ extension Cpdp {
             self.externalUserInfoList = externalUserInfoList
             self.externalAttachmentDataList = externalAttachmentDataList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case midasAppId = "MidasAppId"
             case userId = "UserId"
@@ -288,34 +288,34 @@ extension Cpdp {
             case externalAttachmentDataList = "ExternalAttachmentDataList"
         }
     }
-    
+
     /// UnifiedCloudOrder返回参数结构体
     public struct UnifiedCloudOrderResponse: TCResponseModel {
         /// 米大师的交易订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionId: String?
-        
+
         /// 开发者的支付订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outTradeNo: String?
-        
+
         /// SDK的支付参数。
         /// 支付参数透传给米大师SDK（原文透传给SDK即可，不需要解码）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payInfo: String?
-        
+
         /// 支付金额，单位：分。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalAmt: Int64?
-        
+
         /// 渠道信息，用于拉起渠道支付。j
         /// son字符串，注意此字段仅会在传入正确的PayScene入参时才会有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelInfo: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case transactionId = "TransactionId"
             case outTradeNo = "OutTradeNo"
@@ -325,15 +325,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫V2-统一下单
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
     @inlinable
-    public func unifiedCloudOrder(_ input: UnifiedCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnifiedCloudOrderResponse > {
+    public func unifiedCloudOrder(_ input: UnifiedCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedCloudOrderResponse> {
         self.client.execute(action: "UnifiedCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫V2-统一下单
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
@@ -341,15 +341,15 @@ extension Cpdp {
     public func unifiedCloudOrder(_ input: UnifiedCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedCloudOrderResponse {
         try await self.client.execute(action: "UnifiedCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫V2-统一下单
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
     @inlinable
-    public func unifiedCloudOrder(midasAppId: String, userId: String, outTradeNo: String, currencyType: String, productId: String, productName: String, productDetail: String, originalAmt: Int64, totalAmt: Int64, midasEnvironment: String? = nil, subAppId: String? = nil, realChannel: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, callbackUrl: String? = nil, cancelUrl: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, totalPlatformIncome: Int64? = nil, totalMchIncome: Int64? = nil, subOrderList: [CloudSubOrder]? = nil, settleInfo: CloudSettleInfo? = nil, attachmentInfoList: [CloudAttachmentInfo]? = nil, paymentNotifyUrl: String? = nil, payScene: String? = nil, localeCode: String? = nil, regionCode: String? = nil, userClientIp: String? = nil, channelOrderIdMode: String? = nil, globalPayTimeInfo: CloudGlobalPayTimeInfo? = nil, channelAppIdPolicy: String? = nil, storeInfo: CloudStoreInfo? = nil, clientInfo: CloudClientInfo? = nil, externalPromptGroupList: [CloudExternalPromptGroup]? = nil, orderReceiveMode: String? = nil, externalUserInfoList: [CloudExternalUserInfo]? = nil, externalAttachmentDataList: [CloudExternalAttachmentData]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnifiedCloudOrderResponse > {
+    public func unifiedCloudOrder(midasAppId: String, userId: String, outTradeNo: String, currencyType: String, productId: String, productName: String, productDetail: String, originalAmt: Int64, totalAmt: Int64, midasEnvironment: String? = nil, subAppId: String? = nil, realChannel: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, callbackUrl: String? = nil, cancelUrl: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, totalPlatformIncome: Int64? = nil, totalMchIncome: Int64? = nil, subOrderList: [CloudSubOrder]? = nil, settleInfo: CloudSettleInfo? = nil, attachmentInfoList: [CloudAttachmentInfo]? = nil, paymentNotifyUrl: String? = nil, payScene: String? = nil, localeCode: String? = nil, regionCode: String? = nil, userClientIp: String? = nil, channelOrderIdMode: String? = nil, globalPayTimeInfo: CloudGlobalPayTimeInfo? = nil, channelAppIdPolicy: String? = nil, storeInfo: CloudStoreInfo? = nil, clientInfo: CloudClientInfo? = nil, externalPromptGroupList: [CloudExternalPromptGroup]? = nil, orderReceiveMode: String? = nil, externalUserInfoList: [CloudExternalUserInfo]? = nil, externalAttachmentDataList: [CloudExternalAttachmentData]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedCloudOrderResponse> {
         self.unifiedCloudOrder(UnifiedCloudOrderRequest(midasAppId: midasAppId, userId: userId, outTradeNo: outTradeNo, currencyType: currencyType, productId: productId, productName: productName, productDetail: productDetail, originalAmt: originalAmt, totalAmt: totalAmt, midasEnvironment: midasEnvironment, subAppId: subAppId, realChannel: realChannel, channel: channel, metadata: metadata, quantity: quantity, callbackUrl: callbackUrl, cancelUrl: cancelUrl, wxAppId: wxAppId, wxSubAppId: wxSubAppId, wxOpenId: wxOpenId, wxSubOpenId: wxSubOpenId, totalPlatformIncome: totalPlatformIncome, totalMchIncome: totalMchIncome, subOrderList: subOrderList, settleInfo: settleInfo, attachmentInfoList: attachmentInfoList, paymentNotifyUrl: paymentNotifyUrl, payScene: payScene, localeCode: localeCode, regionCode: regionCode, userClientIp: userClientIp, channelOrderIdMode: channelOrderIdMode, globalPayTimeInfo: globalPayTimeInfo, channelAppIdPolicy: channelAppIdPolicy, storeInfo: storeInfo, clientInfo: clientInfo, externalPromptGroupList: externalPromptGroupList, orderReceiveMode: orderReceiveMode, externalUserInfoList: externalUserInfoList, externalAttachmentDataList: externalAttachmentDataList), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫V2-统一下单
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。

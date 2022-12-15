@@ -19,53 +19,53 @@ extension Redis {
     public struct DescribeInstanceMonitorTopNCmdRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 时间范围：1——实时，2——近30分钟，3——近6小时，4——近24小时
         public let spanType: Int64
-        
-        public init (instanceId: String, spanType: Int64) {
+
+        public init(instanceId: String, spanType: Int64) {
             self.instanceId = instanceId
             self.spanType = spanType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case spanType = "SpanType"
         }
     }
-    
+
     /// DescribeInstanceMonitorTopNCmd返回参数结构体
     public struct DescribeInstanceMonitorTopNCmdResponse: TCResponseModel {
         /// 访问命令信息
         public let data: [SourceCommand]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例访问命令
     @inlinable
-    public func describeInstanceMonitorTopNCmd(_ input: DescribeInstanceMonitorTopNCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTopNCmdResponse > {
+    public func describeInstanceMonitorTopNCmd(_ input: DescribeInstanceMonitorTopNCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTopNCmdResponse> {
         self.client.execute(action: "DescribeInstanceMonitorTopNCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例访问命令
     @inlinable
     public func describeInstanceMonitorTopNCmd(_ input: DescribeInstanceMonitorTopNCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorTopNCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例访问命令
     @inlinable
-    public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTopNCmdResponse > {
+    public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTopNCmdResponse> {
         self.describeInstanceMonitorTopNCmd(DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例访问命令
     @inlinable
     public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdResponse {

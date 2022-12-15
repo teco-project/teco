@@ -19,10 +19,10 @@ extension Tcss {
     public struct DescribeAssetHostListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li>
         /// <li>HostName - String - 是否必填：否 - 主机名筛选</li>
@@ -35,21 +35,21 @@ extension Tcss {
         /// <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li>
         /// <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li>
         public let filters: [AssetFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式 asc,desc
         public let order: String?
-        
-        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -58,33 +58,33 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeAssetHostList返回参数结构体
     public struct DescribeAssetHostListResponse: TCResponseModel {
         /// 主机列表
         public let list: [HostInfo]
-        
+
         /// 总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询主机列表
     ///
     /// 容器安全搜索查询主机列表
     @inlinable
-    public func describeAssetHostList(_ input: DescribeAssetHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostListResponse > {
+    public func describeAssetHostList(_ input: DescribeAssetHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostListResponse> {
         self.client.execute(action: "DescribeAssetHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主机列表
     ///
     /// 容器安全搜索查询主机列表
@@ -92,15 +92,15 @@ extension Tcss {
     public func describeAssetHostList(_ input: DescribeAssetHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostListResponse {
         try await self.client.execute(action: "DescribeAssetHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询主机列表
     ///
     /// 容器安全搜索查询主机列表
     @inlinable
-    public func describeAssetHostList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostListResponse > {
+    public func describeAssetHostList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostListResponse> {
         self.describeAssetHostList(DescribeAssetHostListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主机列表
     ///
     /// 容器安全搜索查询主机列表

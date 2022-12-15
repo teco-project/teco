@@ -19,48 +19,48 @@ extension Ckafka {
     public struct CreatePartitionRequest: TCRequestModel {
         /// 实例Id
         public let instanceId: String
-        
+
         /// 主题名称
         public let topicName: String
-        
+
         /// 主题分区个数
         public let partitionNum: Int64
-        
-        public init (instanceId: String, topicName: String, partitionNum: Int64) {
+
+        public init(instanceId: String, topicName: String, partitionNum: Int64) {
             self.instanceId = instanceId
             self.topicName = topicName
             self.partitionNum = partitionNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case topicName = "TopicName"
             case partitionNum = "PartitionNum"
         }
     }
-    
+
     /// CreatePartition返回参数结构体
     public struct CreatePartitionResponse: TCResponseModel {
         /// 返回的结果集
         public let result: JgwOperateResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 增加主题分区
     ///
     /// 本接口用于增加主题中的分区
     @inlinable
-    public func createPartition(_ input: CreatePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePartitionResponse > {
+    public func createPartition(_ input: CreatePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePartitionResponse> {
         self.client.execute(action: "CreatePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 增加主题分区
     ///
     /// 本接口用于增加主题中的分区
@@ -68,15 +68,15 @@ extension Ckafka {
     public func createPartition(_ input: CreatePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePartitionResponse {
         try await self.client.execute(action: "CreatePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 增加主题分区
     ///
     /// 本接口用于增加主题中的分区
     @inlinable
-    public func createPartition(instanceId: String, topicName: String, partitionNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePartitionResponse > {
+    public func createPartition(instanceId: String, topicName: String, partitionNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePartitionResponse> {
         self.createPartition(CreatePartitionRequest(instanceId: instanceId, topicName: topicName, partitionNum: partitionNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 增加主题分区
     ///
     /// 本接口用于增加主题中的分区

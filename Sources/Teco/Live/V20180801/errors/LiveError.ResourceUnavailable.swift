@@ -21,52 +21,52 @@ extension TCLiveError {
             case streamNotExist = "ResourceUnavailable.StreamNotExist"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 点播未开服。
         public static var invalidVodStatus: ResourceUnavailable {
             ResourceUnavailable(.invalidVodStatus)
         }
-        
+
         /// 推流不存在。
         public static var streamNotExist: ResourceUnavailable {
             ResourceUnavailable(.streamNotExist)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asLiveError() -> TCLiveError {
             let code: TCLiveError.Code
             switch self.error {
-            case .invalidVodStatus: 
+            case .invalidVodStatus:
                 code = .resourceUnavailable_InvalidVodStatus
-            case .streamNotExist: 
+            case .streamNotExist:
                 code = .resourceUnavailable_StreamNotExist
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCLiveError(code, context: self.context)

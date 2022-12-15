@@ -19,30 +19,30 @@ extension Vod {
     public struct DescribeStorageRegionsRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
-        public init (subAppId: UInt64? = nil) {
+
+        public init(subAppId: UInt64? = nil) {
             self.subAppId = subAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subAppId = "SubAppId"
         }
     }
-    
+
     /// DescribeStorageRegions返回参数结构体
     public struct DescribeStorageRegionsResponse: TCResponseModel {
         /// 存储地域信息列表。
         public let storageRegionInfos: [StorageRegionInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case storageRegionInfos = "StorageRegionInfos"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询存储地域列表
     ///
     /// 该接口用于：
@@ -50,10 +50,10 @@ extension Vod {
     ///   2. 查询已经开通的园区列表。
     ///   3. 查询默认使用的存储园区。
     @inlinable
-    public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageRegionsResponse > {
+    public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageRegionsResponse> {
         self.client.execute(action: "DescribeStorageRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询存储地域列表
     ///
     /// 该接口用于：
@@ -64,7 +64,7 @@ extension Vod {
     public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageRegionsResponse {
         try await self.client.execute(action: "DescribeStorageRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询存储地域列表
     ///
     /// 该接口用于：
@@ -72,10 +72,10 @@ extension Vod {
     ///   2. 查询已经开通的园区列表。
     ///   3. 查询默认使用的存储园区。
     @inlinable
-    public func describeStorageRegions(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageRegionsResponse > {
+    public func describeStorageRegions(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageRegionsResponse> {
         self.describeStorageRegions(DescribeStorageRegionsRequest(subAppId: subAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询存储地域列表
     ///
     /// 该接口用于：

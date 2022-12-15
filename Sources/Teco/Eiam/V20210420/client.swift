@@ -24,16 +24,16 @@
 /// | OrgNode |OrgNode|机构节点| EIAM产品下创建的机构。 |
 /// | UserGroup |User Group| 用户组|EIAM产品下创建的用户组。
 /// | User |User |用户|EIAM产品下创建的用户。
-/// 	
-/// 	
-/// 	
-/// 	
-/// 	
-/// 	
+///
+///
+///
+///
+///
+///
 /// 	- Limit 和 Offset
 /// >用来控制分页的参数：Limit 为单次返回的最多条目数量；Offset 为偏移量。当相应结果是列表形式时，如果数量超过了 Limit 所限定的值，那么只返回 Limit 个值。
 /// 举例来说，参数 Offset=0&amp;Limit=20 返回第 0 到 19 项，Offset=20&amp;Limit=20 返回第 20 到 39 项，Offset=40&amp;Limit=20 返回第 40 到 59 项；以此类推。
-/// 	
+///
 /// 	- Ids.N
 /// >同时输入多个参数的格式。当遇到形如这样的格式时，那么该输入参数可以同时传多个。例如：
 /// GET 请求或者 POST x-www-form-urlencoded 请求：Ids.0=example-8e5c15b6&amp;Ids.1=example-709dd13f&amp;Ids.2=example-ead6be46
@@ -42,10 +42,10 @@
 public struct Eiam: TCService {
     /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
-    
+
     /// Service context details.
     public let config: TCServiceConfig
-    
+
     /// Initialize the ``Eiam`` client.
     ///
     /// - Parameters:
@@ -54,24 +54,24 @@ public struct Eiam: TCService {
     ///    - language: Preferred language for API response.
     ///    - endpoint: Custom endpoint URL for API request.
     ///    - timeout: Timeout value for HTTP requests.
-    public init (
-    client: TCClient, 
-    region: TCRegion? = nil, 
-    language: TCServiceConfig.Language? = nil, 
-    endpoint: TCServiceConfig.Endpoint = .global, 
-    timeout: TimeAmount? = nil, 
-    byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
+    public init(
+        client: TCClient,
+        region: TCRegion? = nil,
+        language: TCServiceConfig.Language? = nil,
+        endpoint: TCServiceConfig.Endpoint = .global,
+        timeout: TimeAmount? = nil,
+        byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
         self.client = client
         self.config = TCServiceConfig(
-        region: region, 
-        service: "eiam", 
-        apiVersion: "2021-04-20", 
-        language: language, 
-        endpoint: endpoint, 
-        errorType: TCEiamError.self, 
-        timeout: timeout, 
-        byteBufferAllocator: byteBufferAllocator
+            region: region,
+            service: "eiam",
+            apiVersion: "2021-04-20",
+            language: language,
+            endpoint: endpoint,
+            errorType: TCEiamError.self,
+            timeout: timeout,
+            byteBufferAllocator: byteBufferAllocator
         )
     }
 }
@@ -81,7 +81,7 @@ extension Eiam {
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
     /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
-    public init (from service: Self, patch: TCServiceConfig.Patch) {
+    public init(from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)
     }

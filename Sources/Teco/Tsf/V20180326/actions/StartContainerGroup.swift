@@ -19,50 +19,50 @@ extension Tsf {
     public struct StartContainerGroupRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// StartContainerGroup返回参数结构体
     public struct StartContainerGroupResponse: TCResponseModel {
         /// 启动操作是否成功。
         /// true：启动成功
         /// false：启动失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动容器部署组
     @inlinable
-    public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartContainerGroupResponse > {
+    public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartContainerGroupResponse> {
         self.client.execute(action: "StartContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动容器部署组
     @inlinable
     public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartContainerGroupResponse {
         try await self.client.execute(action: "StartContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动容器部署组
     @inlinable
-    public func startContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartContainerGroupResponse > {
+    public func startContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartContainerGroupResponse> {
         self.startContainerGroup(StartContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动容器部署组
     @inlinable
     public func startContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartContainerGroupResponse {

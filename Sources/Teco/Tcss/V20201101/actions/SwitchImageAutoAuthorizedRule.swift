@@ -19,49 +19,49 @@ extension Tcss {
     public struct SwitchImageAutoAuthorizedRuleRequest: TCRequestModel {
         /// 规则是否生效，0:不生效，1:已生效
         public let isEnabled: Int64
-        
+
         /// 规则id
         public let ruleId: Int64
-        
-        public init (isEnabled: Int64, ruleId: Int64) {
+
+        public init(isEnabled: Int64, ruleId: Int64) {
             self.isEnabled = isEnabled
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case isEnabled = "IsEnabled"
             case ruleId = "RuleId"
         }
     }
-    
+
     /// SwitchImageAutoAuthorizedRule返回参数结构体
     public struct SwitchImageAutoAuthorizedRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 编辑本地镜像自动授权开关
     @inlinable
-    public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchImageAutoAuthorizedRuleResponse > {
+    public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchImageAutoAuthorizedRuleResponse> {
         self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑本地镜像自动授权开关
     @inlinable
     public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchImageAutoAuthorizedRuleResponse {
         try await self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 编辑本地镜像自动授权开关
     @inlinable
-    public func switchImageAutoAuthorizedRule(isEnabled: Int64, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchImageAutoAuthorizedRuleResponse > {
+    public func switchImageAutoAuthorizedRule(isEnabled: Int64, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchImageAutoAuthorizedRuleResponse> {
         self.switchImageAutoAuthorizedRule(SwitchImageAutoAuthorizedRuleRequest(isEnabled: isEnabled, ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑本地镜像自动授权开关
     @inlinable
     public func switchImageAutoAuthorizedRule(isEnabled: Int64, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchImageAutoAuthorizedRuleResponse {

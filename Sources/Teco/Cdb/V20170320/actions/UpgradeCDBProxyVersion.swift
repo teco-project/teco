@@ -19,27 +19,27 @@ extension Cdb {
     public struct UpgradeCDBProxyVersionRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 数据库代理ID
         public let proxyGroupId: String
-        
+
         /// 数据库代理当前版本
         public let srcProxyVersion: String
-        
+
         /// 数据库代理升级版本
         public let dstProxyVersion: String
-        
+
         /// 升级时间 ：nowTime（升级完成时）timeWindow（实例维护时间）
         public let upgradeTime: String
-        
-        public init (instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String) {
+
+        public init(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String) {
             self.instanceId = instanceId
             self.proxyGroupId = proxyGroupId
             self.srcProxyVersion = srcProxyVersion
             self.dstProxyVersion = dstProxyVersion
             self.upgradeTime = upgradeTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case proxyGroupId = "ProxyGroupId"
@@ -48,40 +48,40 @@ extension Cdb {
             case upgradeTime = "UpgradeTime"
         }
     }
-    
+
     /// UpgradeCDBProxyVersion返回参数结构体
     public struct UpgradeCDBProxyVersionResponse: TCResponseModel {
         /// 异步处理ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 升级数据库代理版本
     @inlinable
-    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyVersionResponse > {
+    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyVersionResponse> {
         self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 升级数据库代理版本
     @inlinable
     public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
         try await self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 升级数据库代理版本
     @inlinable
-    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyVersionResponse > {
+    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyVersionResponse> {
         self.upgradeCDBProxyVersion(UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 升级数据库代理版本
     @inlinable
     public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {

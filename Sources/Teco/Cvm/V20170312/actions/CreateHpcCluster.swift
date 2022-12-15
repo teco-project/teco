@@ -19,59 +19,59 @@ extension Cvm {
     public struct CreateHpcClusterRequest: TCRequestModel {
         /// 可用区。
         public let zone: String
-        
+
         /// 高性能计算集群名称。
         public let name: String
-        
+
         /// 高性能计算集群备注。
         public let remark: String?
-        
-        public init (zone: String, name: String, remark: String? = nil) {
+
+        public init(zone: String, name: String, remark: String? = nil) {
             self.zone = zone
             self.name = name
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case name = "Name"
             case remark = "Remark"
         }
     }
-    
+
     /// CreateHpcCluster返回参数结构体
     public struct CreateHpcClusterResponse: TCResponseModel {
         /// 高性能计算集群信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hpcClusterSet: [HpcClusterInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case hpcClusterSet = "HpcClusterSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建高性能计算集群
     @inlinable
-    public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHpcClusterResponse > {
+    public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHpcClusterResponse> {
         self.client.execute(action: "CreateHpcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建高性能计算集群
     @inlinable
     public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHpcClusterResponse {
         try await self.client.execute(action: "CreateHpcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建高性能计算集群
     @inlinable
-    public func createHpcCluster(zone: String, name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHpcClusterResponse > {
+    public func createHpcCluster(zone: String, name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHpcClusterResponse> {
         self.createHpcCluster(CreateHpcClusterRequest(zone: zone, name: name, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建高性能计算集群
     @inlinable
     public func createHpcCluster(zone: String, name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHpcClusterResponse {

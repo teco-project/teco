@@ -19,49 +19,49 @@ extension Ccc {
     public struct CreateStaffRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
-        
+
         /// 客服信息，个数不超过 10
         public let staffs: [SeatUserInfo]
-        
+
         /// 是否发送密码邮件，默认true
         public let sendPassword: Bool?
-        
-        public init (sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil) {
+
+        public init(sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.staffs = staffs
             self.sendPassword = sendPassword
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case staffs = "Staffs"
             case sendPassword = "SendPassword"
         }
     }
-    
+
     /// CreateStaff返回参数结构体
     public struct CreateStaffResponse: TCResponseModel {
         /// 错误坐席列表及错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorStaffList: [ErrStaffItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errorStaffList = "ErrorStaffList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建客服账号
     ///
     /// 创建客服账号。
     @inlinable
-    public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStaffResponse > {
+    public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStaffResponse> {
         self.client.execute(action: "CreateStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建客服账号
     ///
     /// 创建客服账号。
@@ -69,15 +69,15 @@ extension Ccc {
     public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaffResponse {
         try await self.client.execute(action: "CreateStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建客服账号
     ///
     /// 创建客服账号。
     @inlinable
-    public func createStaff(sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStaffResponse > {
+    public func createStaff(sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStaffResponse> {
         self.createStaff(CreateStaffRequest(sdkAppId: sdkAppId, staffs: staffs, sendPassword: sendPassword), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建客服账号
     ///
     /// 创建客服账号。

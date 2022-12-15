@@ -19,49 +19,49 @@ extension Monitor {
     public struct DescribePrometheusZonesRequest: TCRequestModel {
         /// 地域 ID
         public let regionId: Int64
-        
-        public init (regionId: Int64) {
+
+        public init(regionId: Int64) {
             self.regionId = regionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
         }
     }
-    
+
     /// DescribePrometheusZones返回参数结构体
     public struct DescribePrometheusZonesResponse: TCResponseModel {
         /// 区域列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneSet: [PrometheusZoneItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneSet = "ZoneSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出 Prometheus 服务可用区
     @inlinable
-    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusZonesResponse > {
+    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusZonesResponse> {
         self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Prometheus 服务可用区
     @inlinable
     public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
         try await self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出 Prometheus 服务可用区
     @inlinable
-    public func describePrometheusZones(regionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusZonesResponse > {
+    public func describePrometheusZones(regionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusZonesResponse> {
         self.describePrometheusZones(DescribePrometheusZonesRequest(regionId: regionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Prometheus 服务可用区
     @inlinable
     public func describePrometheusZones(regionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {

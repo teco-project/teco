@@ -19,30 +19,30 @@ extension Cam {
     public struct DescribeSafeAuthFlagCollRequest: TCRequestModel {
         /// 子账号
         public let subUin: UInt64
-        
-        public init (subUin: UInt64) {
+
+        public init(subUin: UInt64) {
             self.subUin = subUin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subUin = "SubUin"
         }
     }
-    
+
     /// DescribeSafeAuthFlagColl返回参数结构体
     public struct DescribeSafeAuthFlagCollResponse: TCResponseModel {
         /// 登录保护设置
         public let loginFlag: LoginActionFlag
-        
+
         /// 敏感操作保护设置
         public let actionFlag: LoginActionFlag
-        
+
         /// 异地登录保护设置
         public let offsiteFlag: OffsiteFlag
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case loginFlag = "LoginFlag"
             case actionFlag = "ActionFlag"
@@ -50,25 +50,25 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全设置
     @inlinable
-    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagCollResponse > {
+    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
         self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全设置
     @inlinable
     public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
         try await self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全设置
     @inlinable
-    public func describeSafeAuthFlagColl(subUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagCollResponse > {
+    public func describeSafeAuthFlagColl(subUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
         self.describeSafeAuthFlagColl(DescribeSafeAuthFlagCollRequest(subUin: subUin), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全设置
     @inlinable
     public func describeSafeAuthFlagColl(subUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {

@@ -19,54 +19,54 @@ extension Cdn {
     public struct ListScdnDomainsRequest: TCRequestModel {
         /// 分页起始地址
         public let offset: Int64?
-        
+
         /// 列表分页记录条数，最大1000
         public let limit: Int64?
-        
+
         /// 域名信息
         public let domain: String?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case domain = "Domain"
         }
     }
-    
+
     /// ListScdnDomains返回参数结构体
     public struct ListScdnDomainsResponse: TCResponseModel {
         /// 域名列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainList: [ScdnDomain]?
-        
+
         /// 域名的总条数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainList = "DomainList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询SCDN域名列表
     ///
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
     @inlinable
-    public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnDomainsResponse > {
+    public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnDomainsResponse> {
         self.client.execute(action: "ListScdnDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SCDN域名列表
     ///
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
@@ -74,15 +74,15 @@ extension Cdn {
     public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnDomainsResponse {
         try await self.client.execute(action: "ListScdnDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询SCDN域名列表
     ///
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
     @inlinable
-    public func listScdnDomains(offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnDomainsResponse > {
+    public func listScdnDomains(offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnDomainsResponse> {
         self.listScdnDomains(ListScdnDomainsRequest(offset: offset, limit: limit, domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SCDN域名列表
     ///
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息

@@ -19,49 +19,49 @@ extension Dasb {
     public struct BindDeviceResourceRequest: TCRequestModel {
         /// 资产ID集合
         public let deviceIdSet: [UInt64]
-        
+
         /// 堡垒机服务ID
         public let resourceId: String
-        
-        public init (deviceIdSet: [UInt64], resourceId: String) {
+
+        public init(deviceIdSet: [UInt64], resourceId: String) {
             self.deviceIdSet = deviceIdSet
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceIdSet = "DeviceIdSet"
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// BindDeviceResource返回参数结构体
     public struct BindDeviceResourceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改资产绑定的堡垒机服务
     @inlinable
-    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDeviceResourceResponse > {
+    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDeviceResourceResponse> {
         self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改资产绑定的堡垒机服务
     @inlinable
     public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
         try await self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改资产绑定的堡垒机服务
     @inlinable
-    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDeviceResourceResponse > {
+    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDeviceResourceResponse> {
         self.bindDeviceResource(BindDeviceResourceRequest(deviceIdSet: deviceIdSet, resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改资产绑定的堡垒机服务
     @inlinable
     public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {

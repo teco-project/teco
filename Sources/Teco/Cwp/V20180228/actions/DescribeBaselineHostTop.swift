@@ -19,44 +19,44 @@ extension Cwp {
     public struct DescribeBaselineHostTopRequest: TCRequestModel {
         /// 动态top值
         public let top: UInt64
-        
+
         /// 策略id
         public let strategyId: UInt64
-        
-        public init (top: UInt64, strategyId: UInt64) {
+
+        public init(top: UInt64, strategyId: UInt64) {
             self.top = top
             self.strategyId = strategyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case top = "Top"
             case strategyId = "StrategyId"
         }
     }
-    
+
     /// DescribeBaselineHostTop返回参数结构体
     public struct DescribeBaselineHostTopResponse: TCResponseModel {
         /// 主机基线策略事件Top
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baselineHostTopList: [BaselineHostTopList]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case baselineHostTopList = "BaselineHostTopList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 服务器风险top接口
     ///
     /// 接口返回TopN的风险服务器
     @inlinable
-    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineHostTopResponse > {
+    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostTopResponse> {
         self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 服务器风险top接口
     ///
     /// 接口返回TopN的风险服务器
@@ -64,15 +64,15 @@ extension Cwp {
     public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
         try await self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 服务器风险top接口
     ///
     /// 接口返回TopN的风险服务器
     @inlinable
-    public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineHostTopResponse > {
+    public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostTopResponse> {
         self.describeBaselineHostTop(DescribeBaselineHostTopRequest(top: top, strategyId: strategyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 服务器风险top接口
     ///
     /// 接口返回TopN的风险服务器

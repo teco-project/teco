@@ -19,23 +19,23 @@ extension Eb {
     public struct UpdateTargetRequest: TCRequestModel {
         /// 事件集ID
         public let eventBusId: String
-        
+
         /// 事件规则ID
         public let ruleId: String
-        
+
         /// 事件目标ID
         public let targetId: String
-        
+
         /// 开启批量投递使能
         public let enableBatchDelivery: Bool?
-        
+
         /// 批量投递最长等待时间
         public let batchTimeout: Int64?
-        
+
         /// 批量投递最大事件条数
         public let batchEventCount: Int64?
-        
-        public init (eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil) {
+
+        public init(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil) {
             self.eventBusId = eventBusId
             self.ruleId = ruleId
             self.targetId = targetId
@@ -43,7 +43,7 @@ extension Eb {
             self.batchTimeout = batchTimeout
             self.batchEventCount = batchEventCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventBusId = "EventBusId"
             case ruleId = "RuleId"
@@ -53,35 +53,35 @@ extension Eb {
             case batchEventCount = "BatchEventCount"
         }
     }
-    
+
     /// UpdateTarget返回参数结构体
     public struct UpdateTargetResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新事件目标
     @inlinable
-    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTargetResponse > {
+    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTargetResponse> {
         self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新事件目标
     @inlinable
     public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
         try await self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新事件目标
     @inlinable
-    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTargetResponse > {
+    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTargetResponse> {
         self.updateTarget(UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新事件目标
     @inlinable
     public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {

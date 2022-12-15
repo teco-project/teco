@@ -29,130 +29,130 @@ extension TCIvldError {
             case userNotFound = "AuthFailure.UserNotFound"
             case userStopArrear = "AuthFailure.UserStopArrear"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// SecredId失效。
         ///
         /// 检查SecretId是否有效
         public static var invalidSecretId: AuthFailure {
             AuthFailure(.invalidSecretId)
         }
-        
+
         /// MFA失败。
         ///
         /// 使用正确的MFA验证
         public static var mfaFailure: AuthFailure {
             AuthFailure(.mfaFailure)
         }
-        
+
         /// SecretId不存在。
         ///
         /// 检查SecretId是否存在
         public static var secretIdNotFound: AuthFailure {
             AuthFailure(.secretIdNotFound)
         }
-        
+
         /// 签名已过期。
         ///
         /// 使用正确的有效签名
         public static var signatureExpire: AuthFailure {
             AuthFailure(.signatureExpire)
         }
-        
+
         /// 签名校验失败。
         ///
         /// 使用正确的有效签名
         public static var signatureFailure: AuthFailure {
             AuthFailure(.signatureFailure)
         }
-        
+
         /// 任务已完成。
         ///
         /// 已完成任务无法进行停止操作
         public static var taskFinished: AuthFailure {
             AuthFailure(.taskFinished)
         }
-        
+
         /// 令牌失败。
         ///
         /// 使用正确的有效令牌
         public static var tokenFailure: AuthFailure {
             AuthFailure(.tokenFailure)
         }
-        
+
         /// 用户已激活。
         ///
         /// 已激活用户无需再次激活
         public static var userActivated: AuthFailure {
             AuthFailure(.userActivated)
         }
-        
+
         /// 用户状态异常。
         ///
         /// 请检查用户状态
         public static var userInvalidStatus: AuthFailure {
             AuthFailure(.userInvalidStatus)
         }
-        
+
         /// 用户无权限。
         ///
         /// 检查用户是否正确
         public static var userNotFound: AuthFailure {
             AuthFailure(.userNotFound)
         }
-        
+
         /// 用户已欠费停服。
         ///
         /// 请充值
         public static var userStopArrear: AuthFailure {
             AuthFailure(.userStopArrear)
         }
-        
+
         public func asIvldError() -> TCIvldError {
             let code: TCIvldError.Code
             switch self.error {
-            case .invalidSecretId: 
+            case .invalidSecretId:
                 code = .authFailure_InvalidSecretId
-            case .mfaFailure: 
+            case .mfaFailure:
                 code = .authFailure_MFAFailure
-            case .secretIdNotFound: 
+            case .secretIdNotFound:
                 code = .authFailure_SecretIdNotFound
-            case .signatureExpire: 
+            case .signatureExpire:
                 code = .authFailure_SignatureExpire
-            case .signatureFailure: 
+            case .signatureFailure:
                 code = .authFailure_SignatureFailure
-            case .taskFinished: 
+            case .taskFinished:
                 code = .authFailure_TaskFinished
-            case .tokenFailure: 
+            case .tokenFailure:
                 code = .authFailure_TokenFailure
-            case .userActivated: 
+            case .userActivated:
                 code = .authFailure_UserActivated
-            case .userInvalidStatus: 
+            case .userInvalidStatus:
                 code = .authFailure_UserInvalidStatus
-            case .userNotFound: 
+            case .userNotFound:
                 code = .authFailure_UserNotFound
-            case .userStopArrear: 
+            case .userStopArrear:
                 code = .authFailure_UserStopArrear
             }
             return TCIvldError(code, context: self.context)

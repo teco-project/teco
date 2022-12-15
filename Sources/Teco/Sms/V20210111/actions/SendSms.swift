@@ -21,32 +21,32 @@ extension Sms {
         /// 例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
         /// 注：发送国内短信格式还支持0086、86或无任何国家或地区码的11位手机号码，前缀默认为+86。
         public let phoneNumberSet: [String]
-        
+
         /// 短信 SdkAppId，在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         public let smsSdkAppId: String
-        
+
         /// 模板 ID，必须填写已审核通过的模板 ID。模板 ID 可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-template) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-template) 的正文模板管理查看，若向境外手机号发送短信，仅支持使用国际/港澳台短信模板。
         public let templateId: String
-        
+
         /// 短信签名内容，使用 UTF-8 编码，必须填写已审核通过的签名，例如：腾讯云，签名信息可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-sign) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-sign) 的签名管理查看。
         /// <dx-alert infotype="notice" title="注意">发送国内短信该参数必填。</dx-alert>
         public let signName: String?
-        
+
         /// 模板参数，若无模板参数，则设置为空。
         /// <dx-alert infotype="notice" title="注意">模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致。</dx-alert>
         public let templateParamSet: [String]?
-        
+
         /// 短信码号扩展号，默认未开通，如需开通请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public let extendCode: String?
-        
+
         /// 用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。
         public let sessionContext: String?
-        
+
         /// 国内短信无需填写该项；国际/港澳台短信已申请独立 SenderId 需要填写该字段，默认使用公共 SenderId，无需填写该字段。
         /// 注：月度使用量达到指定量级可申请独立 SenderId 使用，详情请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public let senderId: String?
-        
-        public init (phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil) {
+
+        public init(phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil) {
             self.phoneNumberSet = phoneNumberSet
             self.smsSdkAppId = smsSdkAppId
             self.templateId = templateId
@@ -56,7 +56,7 @@ extension Sms {
             self.sessionContext = sessionContext
             self.senderId = senderId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case phoneNumberSet = "PhoneNumberSet"
             case smsSdkAppId = "SmsSdkAppId"
@@ -68,21 +68,21 @@ extension Sms {
             case senderId = "SenderId"
         }
     }
-    
+
     /// SendSms返回参数结构体
     public struct SendSmsResponse: TCResponseModel {
         /// 短信发送状态。
         public let sendStatusSet: [SendStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sendStatusSet = "SendStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发送短信
     ///
     /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。
@@ -90,10 +90,10 @@ extension Sms {
     /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
     @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
+    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
         self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发送短信
     ///
     /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。
@@ -104,7 +104,7 @@ extension Sms {
     public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
         try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发送短信
     ///
     /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。
@@ -112,10 +112,10 @@ extension Sms {
     /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
     @inlinable
-    public func sendSms(phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
+    public func sendSms(phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
         self.sendSms(SendSmsRequest(phoneNumberSet: phoneNumberSet, smsSdkAppId: smsSdkAppId, templateId: templateId, signName: signName, templateParamSet: templateParamSet, extendCode: extendCode, sessionContext: sessionContext, senderId: senderId), logger: logger, on: eventLoop)
     }
-    
+
     /// 发送短信
     ///
     /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。

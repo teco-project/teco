@@ -19,23 +19,23 @@ extension Cynosdb {
     public struct ModifyBackupConfigRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         public let backupTimeBeg: UInt64
-        
+
         /// 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         public let backupTimeEnd: UInt64
-        
+
         /// 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
         public let reserveDuration: UInt64
-        
+
         /// 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
         public let backupFreq: [String]?
-        
+
         /// 该参数目前不支持修改，无需填写。备份方式，logic-逻辑备份，snapshot-快照备份
         public let backupType: String?
-        
-        public init (clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil) {
+
+        public init(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil) {
             self.clusterId = clusterId
             self.backupTimeBeg = backupTimeBeg
             self.backupTimeEnd = backupTimeEnd
@@ -43,7 +43,7 @@ extension Cynosdb {
             self.backupFreq = backupFreq
             self.backupType = backupType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case backupTimeBeg = "BackupTimeBeg"
@@ -53,25 +53,25 @@ extension Cynosdb {
             case backupType = "BackupType"
         }
     }
-    
+
     /// ModifyBackupConfig返回参数结构体
     public struct ModifyBackupConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
     @inlinable
-    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupConfigResponse > {
+    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
         self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
@@ -79,15 +79,15 @@ extension Cynosdb {
     public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
         try await self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
     @inlinable
-    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupConfigResponse > {
+    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
         self.modifyBackupConfig(ModifyBackupConfigRequest(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置

@@ -19,44 +19,44 @@ extension Cpdp {
     public struct ModifyMerchantRequest: TCRequestModel {
         /// 进件成功后返给商户的AppId
         public let merchantAppId: String
-        
+
         /// 收款商户名称
         public let merchantName: String
-        
+
         /// B2B 支付标志。是否开通 B2B支付， 1:开通 0:不开通。
         public let businessPayFlag: String
-        
-        public init (merchantAppId: String, merchantName: String, businessPayFlag: String) {
+
+        public init(merchantAppId: String, merchantName: String, businessPayFlag: String) {
             self.merchantAppId = merchantAppId
             self.merchantName = merchantName
             self.businessPayFlag = businessPayFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantAppId = "MerchantAppId"
             case merchantName = "MerchantName"
             case businessPayFlag = "BusinessPayFlag"
         }
     }
-    
+
     /// ModifyMerchant返回参数结构体
     public struct ModifyMerchantResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云鉴-商户信息修改接口
     ///
     /// 云鉴-商户信息修改的接口
     @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMerchantResponse > {
+    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
         self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-商户信息修改接口
     ///
     /// 云鉴-商户信息修改的接口
@@ -64,15 +64,15 @@ extension Cpdp {
     public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
         try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云鉴-商户信息修改接口
     ///
     /// 云鉴-商户信息修改的接口
     @inlinable
-    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMerchantResponse > {
+    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
         self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), logger: logger, on: eventLoop)
     }
-    
+
     /// 云鉴-商户信息修改接口
     ///
     /// 云鉴-商户信息修改的接口

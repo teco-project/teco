@@ -19,38 +19,38 @@ extension TCCarError {
         enum Code: String {
             case jsonParseError = "InvalidParameter.JsonParseError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Json 解析失败。
         public static var jsonParseError: InvalidParameter {
             InvalidParameter(.jsonParseError)
         }
-        
+
         public func asCarError() -> TCCarError {
             let code: TCCarError.Code
             switch self.error {
-            case .jsonParseError: 
+            case .jsonParseError:
                 code = .invalidParameter_JsonParseError
             }
             return TCCarError(code, context: self.context)

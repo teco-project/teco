@@ -19,54 +19,54 @@ extension Cfw {
     public struct ExpandCfwVerticalRequest: TCRequestModel {
         /// nat：nat防火墙，ew：东西向防火墙
         public let fwType: String
-        
+
         /// 带宽值
         public let width: UInt64
-        
+
         /// 防火墙实例id
         public let cfwInstance: String?
-        
-        public init (fwType: String, width: UInt64, cfwInstance: String? = nil) {
+
+        public init(fwType: String, width: UInt64, cfwInstance: String? = nil) {
             self.fwType = fwType
             self.width = width
             self.cfwInstance = cfwInstance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fwType = "FwType"
             case width = "Width"
             case cfwInstance = "CfwInstance"
         }
     }
-    
+
     /// ExpandCfwVertical返回参数结构体
     public struct ExpandCfwVerticalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 防火墙垂直扩容
     @inlinable
-    public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandCfwVerticalResponse > {
+    public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandCfwVerticalResponse> {
         self.client.execute(action: "ExpandCfwVertical", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 防火墙垂直扩容
     @inlinable
     public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandCfwVerticalResponse {
         try await self.client.execute(action: "ExpandCfwVertical", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 防火墙垂直扩容
     @inlinable
-    public func expandCfwVertical(fwType: String, width: UInt64, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandCfwVerticalResponse > {
+    public func expandCfwVertical(fwType: String, width: UInt64, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandCfwVerticalResponse> {
         self.expandCfwVertical(ExpandCfwVerticalRequest(fwType: fwType, width: width, cfwInstance: cfwInstance), logger: logger, on: eventLoop)
     }
-    
+
     /// 防火墙垂直扩容
     @inlinable
     public func expandCfwVertical(fwType: String, width: UInt64, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandCfwVerticalResponse {

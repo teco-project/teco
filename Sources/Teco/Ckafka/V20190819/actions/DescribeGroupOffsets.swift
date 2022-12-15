@@ -19,23 +19,23 @@ extension Ckafka {
     public struct DescribeGroupOffsetsRequest: TCRequestModel {
         /// （过滤条件）按照实例 ID 过滤
         public let instanceId: String
-        
+
         /// Kafka 消费分组
         public let group: String
-        
+
         /// group 订阅的主题名称数组，如果没有该数组，则表示指定的 group 下所有 topic 信息
         public let topics: [String]?
-        
+
         /// 模糊匹配 topicName
         public let searchWord: String?
-        
+
         /// 本次查询的偏移位置，默认为0
         public let offset: Int64?
-        
+
         /// 本次返回结果的最大个数，默认为50，最大值为50
         public let limit: Int64?
-        
-        public init (instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.group = group
             self.topics = topics
@@ -43,7 +43,7 @@ extension Ckafka {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case group = "Group"
@@ -53,39 +53,39 @@ extension Ckafka {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeGroupOffsets返回参数结构体
     public struct DescribeGroupOffsetsResponse: TCResponseModel {
         /// 返回的结果对象
         public let result: GroupOffsetResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取消费分组offset
     @inlinable
-    public func describeGroupOffsets(_ input: DescribeGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupOffsetsResponse > {
+    public func describeGroupOffsets(_ input: DescribeGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupOffsetsResponse> {
         self.client.execute(action: "DescribeGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取消费分组offset
     @inlinable
     public func describeGroupOffsets(_ input: DescribeGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupOffsetsResponse {
         try await self.client.execute(action: "DescribeGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取消费分组offset
     @inlinable
-    public func describeGroupOffsets(instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupOffsetsResponse > {
+    public func describeGroupOffsets(instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupOffsetsResponse> {
         self.describeGroupOffsets(DescribeGroupOffsetsRequest(instanceId: instanceId, group: group, topics: topics, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取消费分组offset
     @inlinable
     public func describeGroupOffsets(instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupOffsetsResponse {

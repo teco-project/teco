@@ -19,27 +19,27 @@ extension Tdmq {
     public struct CreateRocketMQNamespaceRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
         public let namespaceId: String
-        
+
         /// 未消费消息的保留时间，以毫秒为单位，60秒-15天
         public let ttl: UInt64
-        
+
         /// 消息持久化后保留的时间，以毫秒为单位
         public let retentionTime: UInt64
-        
+
         /// 说明，最大128个字符
         public let remark: String?
-        
-        public init (clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil) {
+
+        public init(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.ttl = ttl
             self.retentionTime = retentionTime
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case namespaceId = "NamespaceId"
@@ -48,35 +48,35 @@ extension Tdmq {
             case remark = "Remark"
         }
     }
-    
+
     /// CreateRocketMQNamespace返回参数结构体
     public struct CreateRocketMQNamespaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建RocketMQ命名空间
     @inlinable
-    public func createRocketMQNamespace(_ input: CreateRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQNamespaceResponse > {
+    public func createRocketMQNamespace(_ input: CreateRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQNamespaceResponse> {
         self.client.execute(action: "CreateRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建RocketMQ命名空间
     @inlinable
     public func createRocketMQNamespace(_ input: CreateRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQNamespaceResponse {
         try await self.client.execute(action: "CreateRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建RocketMQ命名空间
     @inlinable
-    public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQNamespaceResponse > {
+    public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQNamespaceResponse> {
         self.createRocketMQNamespace(CreateRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建RocketMQ命名空间
     @inlinable
     public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQNamespaceResponse {

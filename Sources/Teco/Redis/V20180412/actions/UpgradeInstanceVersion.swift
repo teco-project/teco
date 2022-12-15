@@ -19,48 +19,48 @@ extension Redis {
     public struct UpgradeInstanceVersionRequest: TCRequestModel {
         /// 目标实例类型，同 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的Type，即实例要变更的目标类型
         public let targetInstanceType: String
-        
+
         /// 切换模式：1-维护时间窗切换，2-立即切换
         public let switchOption: Int64
-        
+
         /// 实例ID
         public let instanceId: String
-        
-        public init (targetInstanceType: String, switchOption: Int64, instanceId: String) {
+
+        public init(targetInstanceType: String, switchOption: Int64, instanceId: String) {
             self.targetInstanceType = targetInstanceType
             self.switchOption = switchOption
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetInstanceType = "TargetInstanceType"
             case switchOption = "SwitchOption"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// UpgradeInstanceVersion返回参数结构体
     public struct UpgradeInstanceVersionResponse: TCResponseModel {
         /// 订单ID
         public let dealId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 升级实例版本或者结构
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
-    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceVersionResponse > {
+    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
         self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 升级实例版本或者结构
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
@@ -68,15 +68,15 @@ extension Redis {
     public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
         try await self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 升级实例版本或者结构
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
-    public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceVersionResponse > {
+    public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
         self.upgradeInstanceVersion(UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 升级实例版本或者结构
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例

@@ -19,23 +19,23 @@ extension Oceanus {
     public struct DescribeJobSavepointRequest: TCRequestModel {
         /// 作业 SerialId
         public let jobId: String
-        
+
         /// 分页参数，单页总数
         public let limit: Int64
-        
+
         /// 分页参数，偏移量
         public let offset: Int64
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil) {
+
+        public init(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil) {
             self.jobId = jobId
             self.limit = limit
             self.offset = offset
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case limit = "Limit"
@@ -43,28 +43,28 @@ extension Oceanus {
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// DescribeJobSavepoint返回参数结构体
     public struct DescribeJobSavepointResponse: TCResponseModel {
         /// 快照列表总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalNumber: Int64?
-        
+
         /// 快照列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let savepoint: [Savepoint]?
-        
+
         /// 进行中的快照列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runningSavepoint: [Savepoint]?
-        
+
         /// 进行中的快照列表总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runningTotalNumber: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalNumber = "TotalNumber"
             case savepoint = "Savepoint"
@@ -73,25 +73,25 @@ extension Oceanus {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查找Savepoint列表
     @inlinable
-    public func describeJobSavepoint(_ input: DescribeJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobSavepointResponse > {
+    public func describeJobSavepoint(_ input: DescribeJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSavepointResponse> {
         self.client.execute(action: "DescribeJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查找Savepoint列表
     @inlinable
     public func describeJobSavepoint(_ input: DescribeJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSavepointResponse {
         try await self.client.execute(action: "DescribeJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查找Savepoint列表
     @inlinable
-    public func describeJobSavepoint(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobSavepointResponse > {
+    public func describeJobSavepoint(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSavepointResponse> {
         self.describeJobSavepoint(DescribeJobSavepointRequest(jobId: jobId, limit: limit, offset: offset, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查找Savepoint列表
     @inlinable
     public func describeJobSavepoint(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSavepointResponse {

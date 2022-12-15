@@ -22,26 +22,26 @@ extension Cr {
     public struct ApplyCreditAuditRequest: TCRequestModel {
         /// 模块名，本接口取值：Credit
         public let module: String
-        
+
         /// 操作名，本接口取值：Apply
         public let operation: String
-        
+
         /// 实例ID
         public let instId: String
-        
+
         /// 产品ID，形如P******。
         public let productId: String
-        
+
         /// 信审任务ID，同一天内，同一InstId下，同一CaseId只能调用一次。
         public let caseId: String
-        
+
         /// 回调地址
         public let callbackUrl: String
-        
+
         /// JSON格式的业务字段。
         public let data: String
-        
-        public init (module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String) {
+
+        public init(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String) {
             self.module = module
             self.operation = operation
             self.instId = instId
@@ -50,7 +50,7 @@ extension Cr {
             self.callbackUrl = callbackUrl
             self.data = data
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -61,7 +61,7 @@ extension Cr {
             case data = "Data"
         }
     }
-    
+
     /// ApplyCreditAudit返回参数结构体
     public struct ApplyCreditAuditResponse: TCResponseModel {
         /// 请求日期
@@ -71,24 +71,24 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var requestDate: Date
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestDate = "RequestDate"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 提交信审申请
     ///
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
-    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyCreditAuditResponse > {
+    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCreditAuditResponse> {
         self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 提交信审申请
     ///
     /// 提交信审外呼申请，返回当次请求日期。
@@ -96,15 +96,15 @@ extension Cr {
     public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
         try await self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 提交信审申请
     ///
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
-    public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyCreditAuditResponse > {
+    public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCreditAuditResponse> {
         self.applyCreditAudit(ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data), logger: logger, on: eventLoop)
     }
-    
+
     /// 提交信审申请
     ///
     /// 提交信审外呼申请，返回当次请求日期。

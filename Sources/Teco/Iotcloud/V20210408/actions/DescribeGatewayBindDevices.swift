@@ -19,27 +19,27 @@ extension Iotcloud {
     public struct DescribeGatewayBindDevicesRequest: TCRequestModel {
         /// 网关设备的产品ID
         public let gatewayProductId: String
-        
+
         /// 网关设备的设备名
         public let gatewayDeviceName: String
-        
+
         /// 偏移量，Offset从0开始
         public let offset: UInt64
-        
+
         /// 分页的页大小
         public let limit: UInt64
-        
+
         /// LoRa产品的ID
         public let productId: String?
-        
-        public init (gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil) {
+
+        public init(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil) {
             self.gatewayProductId = gatewayProductId
             self.gatewayDeviceName = gatewayDeviceName
             self.offset = offset
             self.limit = limit
             self.productId = productId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayProductId = "GatewayProductId"
             case gatewayDeviceName = "GatewayDeviceName"
@@ -48,21 +48,21 @@ extension Iotcloud {
             case productId = "ProductId"
         }
     }
-    
+
     /// DescribeGatewayBindDevices返回参数结构体
     public struct DescribeGatewayBindDevicesResponse: TCResponseModel {
         /// 子设备总数
         public let totalCount: UInt64
-        
+
         /// 子设备信息
         public let devices: [BindDeviceInfo]
-        
+
         /// 子设备所属的产品名
         public let productName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case devices = "Devices"
@@ -70,34 +70,34 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取网关绑定的子设备列表
     ///
-    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
-    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayBindDevicesResponse > {
+    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
         self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取网关绑定的子设备列表
     ///
-    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
     public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
         try await self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取网关绑定的子设备列表
     ///
-    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
-    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayBindDevicesResponse > {
+    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
         self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取网关绑定的子设备列表
     ///
-    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
     public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
         try await self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), logger: logger, on: eventLoop)

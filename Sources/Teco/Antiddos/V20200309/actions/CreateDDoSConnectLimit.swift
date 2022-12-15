@@ -19,49 +19,49 @@ extension Antiddos {
     public struct CreateDDoSConnectLimitRequest: TCRequestModel {
         /// 资源实例Id
         public let instanceId: String
-        
+
         /// 连接抑制配置
         public let connectLimitConfig: ConnectLimitConfig
-        
-        public init (instanceId: String, connectLimitConfig: ConnectLimitConfig) {
+
+        public init(instanceId: String, connectLimitConfig: ConnectLimitConfig) {
             self.instanceId = instanceId
             self.connectLimitConfig = connectLimitConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case connectLimitConfig = "ConnectLimitConfig"
         }
     }
-    
+
     /// CreateDDoSConnectLimit返回参数结构体
     public struct CreateDDoSConnectLimitResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 配置DDoS连接抑制选项
     @inlinable
-    public func createDDoSConnectLimit(_ input: CreateDDoSConnectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSConnectLimitResponse > {
+    public func createDDoSConnectLimit(_ input: CreateDDoSConnectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSConnectLimitResponse> {
         self.client.execute(action: "CreateDDoSConnectLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 配置DDoS连接抑制选项
     @inlinable
     public func createDDoSConnectLimit(_ input: CreateDDoSConnectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSConnectLimitResponse {
         try await self.client.execute(action: "CreateDDoSConnectLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 配置DDoS连接抑制选项
     @inlinable
-    public func createDDoSConnectLimit(instanceId: String, connectLimitConfig: ConnectLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSConnectLimitResponse > {
+    public func createDDoSConnectLimit(instanceId: String, connectLimitConfig: ConnectLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSConnectLimitResponse> {
         self.createDDoSConnectLimit(CreateDDoSConnectLimitRequest(instanceId: instanceId, connectLimitConfig: connectLimitConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 配置DDoS连接抑制选项
     @inlinable
     public func createDDoSConnectLimit(instanceId: String, connectLimitConfig: ConnectLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSConnectLimitResponse {

@@ -19,36 +19,36 @@ extension Cpdp {
     public struct QueryAcctInfoListRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 查询开始时间(以开户时间为准)
         public let queryAcctBeginTime: String
-        
+
         /// 查询结束时间(以开户时间为准)
         public let queryAcctEndTime: String
-        
+
         /// 分页号,  起始值为1，每次最多返回20条记录，第二页返回的记录数为第21至40条记录，第三页为41至60条记录，顺序均按照开户时间的先后
         public let pageOffset: String
-        
+
         /// 由平台客服提供的计费密钥Id
         public let midasSecretId: String
-        
+
         /// 计费签名
         public let midasSignature: String
-        
+
         /// 敏感信息加密类型:
         /// RSA: rsa非对称加密，使用RSA-PKCS1-v1_5
         /// AES: aes对称加密，使用AES256-CBC-PCKS7padding
         /// 缺省: RSA
         public let encryptType: String?
-        
+
         /// 环境名:
         /// release: 现网环境
         /// sandbox: 沙箱环境
         /// development: 开发环境
         /// 缺省: release
         public let midasEnvironment: String?
-        
-        public init (midasAppId: String, queryAcctBeginTime: String, queryAcctEndTime: String, pageOffset: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil) {
+
+        public init(midasAppId: String, queryAcctBeginTime: String, queryAcctEndTime: String, pageOffset: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.queryAcctBeginTime = queryAcctBeginTime
             self.queryAcctEndTime = queryAcctEndTime
@@ -58,7 +58,7 @@ extension Cpdp {
             self.encryptType = encryptType
             self.midasEnvironment = midasEnvironment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case midasAppId = "MidasAppId"
             case queryAcctBeginTime = "QueryAcctBeginTime"
@@ -70,21 +70,21 @@ extension Cpdp {
             case midasEnvironment = "MidasEnvironment"
         }
     }
-    
+
     /// QueryAcctInfoList返回参数结构体
     public struct QueryAcctInfoListResponse: TCResponseModel {
         /// 本次交易返回查询结果记录数
         public let resultCount: Int64
-        
+
         /// 符合业务查询条件的记录总数
         public let totalCount: Int64
-        
+
         /// 查询结果项 [object,object]
         public let queryAcctItems: [QueryAcctItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resultCount = "ResultCount"
             case totalCount = "TotalCount"
@@ -92,15 +92,15 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫-开户列表查询
     ///
     /// 聚鑫-开户信息列表查询, 查询某一段时间的开户信息
     @inlinable
-    public func queryAcctInfoList(_ input: QueryAcctInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctInfoListResponse > {
+    public func queryAcctInfoList(_ input: QueryAcctInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAcctInfoListResponse> {
         self.client.execute(action: "QueryAcctInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-开户列表查询
     ///
     /// 聚鑫-开户信息列表查询, 查询某一段时间的开户信息
@@ -108,15 +108,15 @@ extension Cpdp {
     public func queryAcctInfoList(_ input: QueryAcctInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoListResponse {
         try await self.client.execute(action: "QueryAcctInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫-开户列表查询
     ///
     /// 聚鑫-开户信息列表查询, 查询某一段时间的开户信息
     @inlinable
-    public func queryAcctInfoList(midasAppId: String, queryAcctBeginTime: String, queryAcctEndTime: String, pageOffset: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctInfoListResponse > {
+    public func queryAcctInfoList(midasAppId: String, queryAcctBeginTime: String, queryAcctEndTime: String, pageOffset: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAcctInfoListResponse> {
         self.queryAcctInfoList(QueryAcctInfoListRequest(midasAppId: midasAppId, queryAcctBeginTime: queryAcctBeginTime, queryAcctEndTime: queryAcctEndTime, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-开户列表查询
     ///
     /// 聚鑫-开户信息列表查询, 查询某一段时间的开户信息

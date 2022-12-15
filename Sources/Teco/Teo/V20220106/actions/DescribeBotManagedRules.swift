@@ -19,27 +19,27 @@ extension Teo {
     public struct DescribeBotManagedRulesRequest: TCRequestModel {
         /// 一级域名
         public let zoneId: String
-        
+
         /// 子域名/应用名
         public let entity: String
-        
+
         /// 页数
         public let page: Int64
-        
+
         /// 每页数量
         public let perPage: Int64
-        
+
         /// idcid/sipbot/uabot规则类型，空代表拉取全部
         public let ruleType: String?
-        
-        public init (zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil) {
+
+        public init(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
             self.page = page
             self.perPage = perPage
             self.ruleType = ruleType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case entity = "Entity"
@@ -48,21 +48,21 @@ extension Teo {
             case ruleType = "RuleType"
         }
     }
-    
+
     /// DescribeBotManagedRules返回参数结构体
     public struct DescribeBotManagedRulesResponse: TCResponseModel {
         /// 本次返回的规则数
         public let count: Int64
-        
+
         /// Bot规则
         public let rules: [BotManagedRuleDetail]
-        
+
         /// 总规则数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case rules = "Rules"
@@ -70,25 +70,25 @@ extension Teo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 分页查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
         self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 分页查询Bot托管规则
     @inlinable
     public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
         try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 分页查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
         self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), logger: logger, on: eventLoop)
     }
-    
+
     /// 分页查询Bot托管规则
     @inlinable
     public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {

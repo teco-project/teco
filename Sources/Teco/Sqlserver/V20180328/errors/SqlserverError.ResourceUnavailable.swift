@@ -27,94 +27,94 @@ extension TCSqlserverError {
             case notSupportRoInstance = "ResourceUnavailable.NotSupportRoInstance"
             case vpcNotExist = "ResourceUnavailable.VpcNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号状态无效。
         public static var accountInvalidStatus: ResourceUnavailable {
             ResourceUnavailable(.accountInvalidStatus)
         }
-        
+
         /// 恢复类型不支持增量备份导入。
         public static var backupMigrationRecoveryTypeErr: ResourceUnavailable {
             ResourceUnavailable(.backupMigrationRecoveryTypeErr)
         }
-        
+
         /// 离线恢复任务状态错误。
         public static var cosStatusErr: ResourceUnavailable {
             ResourceUnavailable(.cosStatusErr)
         }
-        
+
         /// 数据库状态无效。
         public static var dbInvalidStatus: ResourceUnavailable {
             ResourceUnavailable(.dbInvalidStatus)
         }
-        
+
         /// 实例迁移地域非法。
         public static var instanceMigrateRegionIllegal: ResourceUnavailable {
             ResourceUnavailable(.instanceMigrateRegionIllegal)
         }
-        
+
         /// 实例迁移状态无效。
         public static var instanceMigrateStatusInvalid: ResourceUnavailable {
             ResourceUnavailable(.instanceMigrateStatusInvalid)
         }
-        
+
         /// 实例状态无效。
         public static var instanceStatusInvalid: ResourceUnavailable {
             ResourceUnavailable(.instanceStatusInvalid)
         }
-        
+
         /// 不支持只读实例。
         public static var notSupportRoInstance: ResourceUnavailable {
             ResourceUnavailable(.notSupportRoInstance)
         }
-        
+
         /// VPC不存在。
         public static var vpcNotExist: ResourceUnavailable {
             ResourceUnavailable(.vpcNotExist)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {
-            case .accountInvalidStatus: 
+            case .accountInvalidStatus:
                 code = .resourceUnavailable_AccountInvalidStatus
-            case .backupMigrationRecoveryTypeErr: 
+            case .backupMigrationRecoveryTypeErr:
                 code = .resourceUnavailable_BackupMigrationRecoveryTypeErr
-            case .cosStatusErr: 
+            case .cosStatusErr:
                 code = .resourceUnavailable_CosStatusErr
-            case .dbInvalidStatus: 
+            case .dbInvalidStatus:
                 code = .resourceUnavailable_DBInvalidStatus
-            case .instanceMigrateRegionIllegal: 
+            case .instanceMigrateRegionIllegal:
                 code = .resourceUnavailable_InstanceMigrateRegionIllegal
-            case .instanceMigrateStatusInvalid: 
+            case .instanceMigrateStatusInvalid:
                 code = .resourceUnavailable_InstanceMigrateStatusInvalid
-            case .instanceStatusInvalid: 
+            case .instanceStatusInvalid:
                 code = .resourceUnavailable_InstanceStatusInvalid
-            case .notSupportRoInstance: 
+            case .notSupportRoInstance:
                 code = .resourceUnavailable_NotSupportRoInstance
-            case .vpcNotExist: 
+            case .vpcNotExist:
                 code = .resourceUnavailable_VpcNotExist
             }
             return TCSqlserverError(code, context: self.context)

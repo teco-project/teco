@@ -19,49 +19,49 @@ extension Wedata {
     public struct DescribeKafkaTopicInfoRequest: TCRequestModel {
         /// 数据源id
         public let datasourceId: String
-        
+
         /// 数据源类型
         public let type: String
-        
-        public init (datasourceId: String, type: String) {
+
+        public init(datasourceId: String, type: String) {
             self.datasourceId = datasourceId
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case datasourceId = "DatasourceId"
             case type = "Type"
         }
     }
-    
+
     /// DescribeKafkaTopicInfo返回参数结构体
     public struct DescribeKafkaTopicInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取kafka的topic信息
     @inlinable
-    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKafkaTopicInfoResponse > {
+    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
         self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取kafka的topic信息
     @inlinable
     public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
         try await self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取kafka的topic信息
     @inlinable
-    public func describeKafkaTopicInfo(datasourceId: String, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKafkaTopicInfoResponse > {
+    public func describeKafkaTopicInfo(datasourceId: String, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
         self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取kafka的topic信息
     @inlinable
     public func describeKafkaTopicInfo(datasourceId: String, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {

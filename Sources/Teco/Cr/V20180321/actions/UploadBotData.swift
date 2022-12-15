@@ -19,27 +19,27 @@ extension Cr {
     public struct UploadBotDataRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
-        
+
         /// 操作名。默认值（固定）：UploadData
         public let operation: String
-        
+
         /// 任务数据。JSON格式
         public let data: String
-        
+
         /// 任务ID，二者必填一个
         public let botId: String?
-        
+
         /// 任务名称，二者必填一个
         public let botName: String?
-        
-        public init (module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil) {
+
+        public init(module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.data = data
             self.botId = botId
             self.botName = botName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -48,35 +48,35 @@ extension Cr {
             case botName = "BotName"
         }
     }
-    
+
     /// UploadBotData返回参数结构体
     public struct UploadBotDataResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传机器人任务数据
     @inlinable
-    public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotDataResponse > {
+    public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotDataResponse> {
         self.client.execute(action: "UploadBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传机器人任务数据
     @inlinable
     public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotDataResponse {
         try await self.client.execute(action: "UploadBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传机器人任务数据
     @inlinable
-    public func uploadBotData(module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotDataResponse > {
+    public func uploadBotData(module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotDataResponse> {
         self.uploadBotData(UploadBotDataRequest(module: module, operation: operation, data: data, botId: botId, botName: botName), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传机器人任务数据
     @inlinable
     public func uploadBotData(module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotDataResponse {

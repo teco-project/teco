@@ -21,27 +21,27 @@ extension Cwp {
         /// <li>Keyword- String - 是否必填：否 - 关键词过滤，</li>
         /// <li>Uuids - String - 是否必填：否 - 主机id过滤</li>
         public let filters: [Filters]?
-        
+
         /// 需要返回的数量，最大值为100
         public let limit: UInt64?
-        
+
         /// 排序步长
         public let offset: UInt64?
-        
+
         /// 排序方法
         public let order: String?
-        
+
         /// 排序字段 StartTime，EndTime
         public let by: String?
-        
-        public init (filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case limit = "Limit"
@@ -50,33 +50,33 @@ extension Cwp {
             case by = "By"
         }
     }
-    
+
     /// DescribeEmergencyResponseList返回参数结构体
     public struct DescribeEmergencyResponseListResponse: TCResponseModel {
         /// 总条数
         public let totalCount: UInt64
-        
+
         /// 应急响应列表
         public let list: [EmergencyResponseInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 应急响应列表
     ///
     /// 专家服务-应急响应列表
     @inlinable
-    public func describeEmergencyResponseList(_ input: DescribeEmergencyResponseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmergencyResponseListResponse > {
+    public func describeEmergencyResponseList(_ input: DescribeEmergencyResponseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyResponseListResponse> {
         self.client.execute(action: "DescribeEmergencyResponseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 应急响应列表
     ///
     /// 专家服务-应急响应列表
@@ -84,15 +84,15 @@ extension Cwp {
     public func describeEmergencyResponseList(_ input: DescribeEmergencyResponseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyResponseListResponse {
         try await self.client.execute(action: "DescribeEmergencyResponseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 应急响应列表
     ///
     /// 专家服务-应急响应列表
     @inlinable
-    public func describeEmergencyResponseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmergencyResponseListResponse > {
+    public func describeEmergencyResponseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyResponseListResponse> {
         self.describeEmergencyResponseList(DescribeEmergencyResponseListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 应急响应列表
     ///
     /// 专家服务-应急响应列表

@@ -19,28 +19,28 @@ extension Essbasic {
     public struct CreateSignUrlRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 签署人ID
         public let userId: String
-        
+
         /// 文件签署截止时间戳
         public let deadline: Int64
-        
+
         /// 目录ID。当 SignUrlType 为 CATALOG 时必填
         public let catalogId: String?
-        
+
         /// 流程ID。当 SignUrlType 为 FLOW 时必填
         public let flowId: String?
-        
+
         /// 签署链接类型：
-        /// 1. FLOW - 单流程签署 (默认) 
+        /// 1. FLOW - 单流程签署 (默认)
         /// 2. CATALOG - 目录签署
         public let signUrlType: String?
-        
+
         /// 发送流程或目录时生成的签署任务ID
         public let signId: String?
-        
-        public init (caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil) {
+
+        public init(caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil) {
             self.caller = caller
             self.userId = userId
             self.deadline = deadline
@@ -49,7 +49,7 @@ extension Essbasic {
             self.signUrlType = signUrlType
             self.signId = signId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case userId = "UserId"
@@ -60,30 +60,30 @@ extension Essbasic {
             case signId = "SignId"
         }
     }
-    
+
     /// CreateSignUrl返回参数结构体
     public struct CreateSignUrlResponse: TCResponseModel {
         /// 合同签署链接
         public let signUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case signUrl = "SignUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 生成签署URL
     ///
     /// 此接口（CreateSignUrl）用于生成指定用户的签署URL。
     /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
     @inlinable
-    public func createSignUrl(_ input: CreateSignUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignUrlResponse > {
+    public func createSignUrl(_ input: CreateSignUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlResponse> {
         self.client.execute(action: "CreateSignUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 生成签署URL
     ///
     /// 此接口（CreateSignUrl）用于生成指定用户的签署URL。
@@ -92,16 +92,16 @@ extension Essbasic {
     public func createSignUrl(_ input: CreateSignUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlResponse {
         try await self.client.execute(action: "CreateSignUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 生成签署URL
     ///
     /// 此接口（CreateSignUrl）用于生成指定用户的签署URL。
     /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
     @inlinable
-    public func createSignUrl(caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignUrlResponse > {
+    public func createSignUrl(caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlResponse> {
         self.createSignUrl(CreateSignUrlRequest(caller: caller, userId: userId, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType, signId: signId), logger: logger, on: eventLoop)
     }
-    
+
     /// 生成签署URL
     ///
     /// 此接口（CreateSignUrl）用于生成指定用户的签署URL。

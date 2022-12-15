@@ -29,108 +29,108 @@ extension TCSqlserverError {
             case vpcError = "InternalError.VPCError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM鉴权请求失败。
         public static var camAuthFailed: InternalError {
             InternalError(.camAuthFailed)
         }
-        
+
         /// COS接口错误。
         public static var cosError: InternalError {
             InternalError(.cosError)
         }
-        
+
         /// 流程创建失败。
         public static var createFlowFailed: InternalError {
             InternalError(.createFlowFailed)
         }
-        
+
         /// 数据库连接错误。
         public static var dbConnectError: InternalError {
             InternalError(.dbConnectError)
         }
-        
+
         /// 数据库错误。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// GCS接口错误。
         public static var gcsError: InternalError {
             InternalError(.gcsError)
         }
-        
+
         /// 获取临时密钥错误。
         public static var stsError: InternalError {
             InternalError(.stsError)
         }
-        
+
         /// 系统错误。
         public static var systemError: InternalError {
             InternalError(.systemError)
         }
-        
+
         /// 未知错误。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-        
+
         /// VPC错误。
         public static var vpcError: InternalError {
             InternalError(.vpcError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {
-            case .camAuthFailed: 
+            case .camAuthFailed:
                 code = .internalError_CamAuthFailed
-            case .cosError: 
+            case .cosError:
                 code = .internalError_CosError
-            case .createFlowFailed: 
+            case .createFlowFailed:
                 code = .internalError_CreateFlowFailed
-            case .dbConnectError: 
+            case .dbConnectError:
                 code = .internalError_DBConnectError
-            case .dbError: 
+            case .dbError:
                 code = .internalError_DBError
-            case .gcsError: 
+            case .gcsError:
                 code = .internalError_GcsError
-            case .stsError: 
+            case .stsError:
                 code = .internalError_StsError
-            case .systemError: 
+            case .systemError:
                 code = .internalError_SystemError
-            case .unknownError: 
+            case .unknownError:
                 code = .internalError_UnknownError
-            case .vpcError: 
+            case .vpcError:
                 code = .internalError_VPCError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCSqlserverError(code, context: self.context)

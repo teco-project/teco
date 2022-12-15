@@ -19,48 +19,48 @@ extension Live {
     public struct DescribeLiveForbidStreamListRequest: TCRequestModel {
         /// 取得第几页，默认1。
         public let pageNum: Int64?
-        
-        /// 每页大小，最大100。 
+
+        /// 每页大小，最大100。
         /// 取值：1~100之前的任意整数。
         /// 默认值：10。
         public let pageSize: Int64?
-        
+
         /// 按流名称查询。
         public let streamName: String?
-        
-        public init (pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil) {
+
+        public init(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil) {
             self.pageNum = pageNum
             self.pageSize = pageSize
             self.streamName = streamName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNum = "PageNum"
             case pageSize = "PageSize"
             case streamName = "StreamName"
         }
     }
-    
+
     /// DescribeLiveForbidStreamList返回参数结构体
     public struct DescribeLiveForbidStreamListResponse: TCResponseModel {
         /// 符合条件的总个数。
         public let totalNum: Int64
-        
+
         /// 总页数。
         public let totalPage: Int64
-        
+
         /// 分页的页码。
         public let pageNum: Int64
-        
+
         /// 每页显示的条数。
         public let pageSize: Int64
-        
+
         /// 禁推流列表。
         public let forbidStreamList: [ForbidStreamInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalNum = "TotalNum"
             case totalPage = "TotalPage"
@@ -70,16 +70,16 @@ extension Live {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
-    public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveForbidStreamListResponse > {
+    public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
         self.client.execute(action: "DescribeLiveForbidStreamList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。
@@ -88,16 +88,16 @@ extension Live {
     public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveForbidStreamListResponse {
         try await self.client.execute(action: "DescribeLiveForbidStreamList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
-    public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveForbidStreamListResponse > {
+    public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
         self.describeLiveForbidStreamList(DescribeLiveForbidStreamListRequest(pageNum: pageNum, pageSize: pageSize, streamName: streamName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。

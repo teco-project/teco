@@ -29,108 +29,108 @@ extension TCKmsError {
             case notPurchased = "ResourceUnavailable.NotPurchased"
             case tokenExpired = "ResourceUnavailable.TokenExpired"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// cmk和云资源的绑定关系不存在。
         public static var cloudResourceBindingNotFound: ResourceUnavailable {
             ResourceUnavailable(.cloudResourceBindingNotFound)
         }
-        
+
         /// CMK已存档。
         public static var cmkArchived: ResourceUnavailable {
             ResourceUnavailable(.cmkArchived)
         }
-        
+
         /// CMK已被禁用。
         public static var cmkDisabled: ResourceUnavailable {
             ResourceUnavailable(.cmkDisabled)
         }
-        
+
         /// CMK不存在。
         public static var cmkNotFound: ResourceUnavailable {
             ResourceUnavailable(.cmkNotFound)
         }
-        
+
         /// CMK不是计划删除状态不能被执行取消计划删除。
         public static var cmkNotPendingDelete: ResourceUnavailable {
             ResourceUnavailable(.cmkNotPendingDelete)
         }
-        
+
         /// 未被禁用的CMK不能被计划删除。
         public static var cmkShouldBeDisabled: ResourceUnavailable {
             ResourceUnavailable(.cmkShouldBeDisabled)
         }
-        
+
         /// CMK 状态不支持该操作。
         public static var cmkStateNotSupport: ResourceUnavailable {
             ResourceUnavailable(.cmkStateNotSupport)
         }
-        
+
         /// 密钥已被禁用。
         public static var keyDisabled: ResourceUnavailable {
             ResourceUnavailable(.keyDisabled)
         }
-        
+
         /// 不可用密钥：密钥待删除。
         public static var keyPendingDelete: ResourceUnavailable {
             ResourceUnavailable(.keyPendingDelete)
         }
-        
+
         /// 白盒密钥服务尚未开通。
         public static var notPurchased: ResourceUnavailable {
             ResourceUnavailable(.notPurchased)
         }
-        
+
         /// Token已过期。
         public static var tokenExpired: ResourceUnavailable {
             ResourceUnavailable(.tokenExpired)
         }
-        
+
         public func asKmsError() -> TCKmsError {
             let code: TCKmsError.Code
             switch self.error {
-            case .cloudResourceBindingNotFound: 
+            case .cloudResourceBindingNotFound:
                 code = .resourceUnavailable_CloudResourceBindingNotFound
-            case .cmkArchived: 
+            case .cmkArchived:
                 code = .resourceUnavailable_CmkArchived
-            case .cmkDisabled: 
+            case .cmkDisabled:
                 code = .resourceUnavailable_CmkDisabled
-            case .cmkNotFound: 
+            case .cmkNotFound:
                 code = .resourceUnavailable_CmkNotFound
-            case .cmkNotPendingDelete: 
+            case .cmkNotPendingDelete:
                 code = .resourceUnavailable_CmkNotPendingDelete
-            case .cmkShouldBeDisabled: 
+            case .cmkShouldBeDisabled:
                 code = .resourceUnavailable_CmkShouldBeDisabled
-            case .cmkStateNotSupport: 
+            case .cmkStateNotSupport:
                 code = .resourceUnavailable_CmkStateNotSupport
-            case .keyDisabled: 
+            case .keyDisabled:
                 code = .resourceUnavailable_KeyDisabled
-            case .keyPendingDelete: 
+            case .keyPendingDelete:
                 code = .resourceUnavailable_KeyPendingDelete
-            case .notPurchased: 
+            case .notPurchased:
                 code = .resourceUnavailable_NotPurchased
-            case .tokenExpired: 
+            case .tokenExpired:
                 code = .resourceUnavailable_TokenExpired
             }
             return TCKmsError(code, context: self.context)

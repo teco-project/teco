@@ -20,47 +20,47 @@ extension TCTcrError {
             case errorInstanceNotRunning = "ResourceInsufficient.ErrorInstanceNotRunning"
             case errorVpcDnsStatus = "ResourceInsufficient.ErrorVpcDnsStatus"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例状态异常。
         public static var errorInstanceNotRunning: ResourceInsufficient {
             ResourceInsufficient(.errorInstanceNotRunning)
         }
-        
+
         /// Vpc dsn解析状态异常或未删除。
         ///
         /// 请先检查vpc dns解析
         public static var errorVpcDnsStatus: ResourceInsufficient {
             ResourceInsufficient(.errorVpcDnsStatus)
         }
-        
+
         public func asTcrError() -> TCTcrError {
             let code: TCTcrError.Code
             switch self.error {
-            case .errorInstanceNotRunning: 
+            case .errorInstanceNotRunning:
                 code = .resourceInsufficient_ErrorInstanceNotRunning
-            case .errorVpcDnsStatus: 
+            case .errorVpcDnsStatus:
                 code = .resourceInsufficient_ErrorVpcDnsStatus
             }
             return TCTcrError(code, context: self.context)

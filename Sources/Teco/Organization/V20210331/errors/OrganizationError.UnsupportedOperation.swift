@@ -34,142 +34,142 @@ extension TCOrganizationError {
             case payerExistAccountLevelDiscountInherit = "UnsupportedOperation.PayerExistAccountLevelDiscountInherit"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 不允许添加代付关系。
         public static var addDelegatePayerNotAllow: UnsupportedOperation {
             UnsupportedOperation(.addDelegatePayerNotAllow)
         }
-        
+
         /// 不允许添加优惠继承关系。
         public static var addDiscountInheritNotAllow: UnsupportedOperation {
             UnsupportedOperation(.addDiscountInheritNotAllow)
         }
-        
+
         /// 创建的成员不允许删除。
         public static var createMemberNotAllowDelete: UnsupportedOperation {
             UnsupportedOperation(.createMemberNotAllowDelete)
         }
-        
+
         /// 用户类型不一致。
         public static var inconsistentUserTypes: UnsupportedOperation {
             UnsupportedOperation(.inconsistentUserTypes)
         }
-        
+
         /// 调用经管系统报错。
         public static var managementSystemError: UnsupportedOperation {
             UnsupportedOperation(.managementSystemError)
         }
-        
+
         /// 成员账户欠费。
         public static var memberAccountArrears: UnsupportedOperation {
             UnsupportedOperation(.memberAccountArrears)
         }
-        
+
         /// 成员存在优惠继承。
         public static var memberDiscountInheritExisted: UnsupportedOperation {
             UnsupportedOperation(.memberDiscountInheritExisted)
         }
-        
+
         /// 成员存在账户级优惠。
         public static var memberExistAccountLevelDiscountInherit: UnsupportedOperation {
             UnsupportedOperation(.memberExistAccountLevelDiscountInherit)
         }
-        
+
         public static var memberExistOperateProcessNotAllowDelete: UnsupportedOperation {
             UnsupportedOperation(.memberExistOperateProcessNotAllowDelete)
         }
-        
+
         /// 组织成员被委派集团服务，不允许退出。
         public static var memberExistServiceNotAllowDelete: UnsupportedOperation {
             UnsupportedOperation(.memberExistServiceNotAllowDelete)
         }
-        
+
         /// 成员是代理商或代客。
         public static var memberIsAgent: UnsupportedOperation {
             UnsupportedOperation(.memberIsAgent)
         }
-        
+
         /// 存在在途订单。
         public static var orderInProgressExisted: UnsupportedOperation {
             UnsupportedOperation(.orderInProgressExisted)
         }
-        
+
         /// 管理员存在优惠继承。
         public static var ownerDiscountInheritExisted: UnsupportedOperation {
             UnsupportedOperation(.ownerDiscountInheritExisted)
         }
-        
+
         /// 代付者欠费且未开通信用账户。
         public static var payerArrearsAndNoCreditAccount: UnsupportedOperation {
             UnsupportedOperation(.payerArrearsAndNoCreditAccount)
         }
-        
+
         /// 代付者存在账户级优惠。
         public static var payerExistAccountLevelDiscountInherit: UnsupportedOperation {
             UnsupportedOperation(.payerExistAccountLevelDiscountInherit)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asOrganizationError() -> TCOrganizationError {
             let code: TCOrganizationError.Code
             switch self.error {
-            case .addDelegatePayerNotAllow: 
+            case .addDelegatePayerNotAllow:
                 code = .unsupportedOperation_AddDelegatePayerNotAllow
-            case .addDiscountInheritNotAllow: 
+            case .addDiscountInheritNotAllow:
                 code = .unsupportedOperation_AddDiscountInheritNotAllow
-            case .createMemberNotAllowDelete: 
+            case .createMemberNotAllowDelete:
                 code = .unsupportedOperation_CreateMemberNotAllowDelete
-            case .inconsistentUserTypes: 
+            case .inconsistentUserTypes:
                 code = .unsupportedOperation_InconsistentUserTypes
-            case .managementSystemError: 
+            case .managementSystemError:
                 code = .unsupportedOperation_ManagementSystemError
-            case .memberAccountArrears: 
+            case .memberAccountArrears:
                 code = .unsupportedOperation_MemberAccountArrears
-            case .memberDiscountInheritExisted: 
+            case .memberDiscountInheritExisted:
                 code = .unsupportedOperation_MemberDiscountInheritExisted
-            case .memberExistAccountLevelDiscountInherit: 
+            case .memberExistAccountLevelDiscountInherit:
                 code = .unsupportedOperation_MemberExistAccountLevelDiscountInherit
-            case .memberExistOperateProcessNotAllowDelete: 
+            case .memberExistOperateProcessNotAllowDelete:
                 code = .unsupportedOperation_MemberExistOperateProcessNotAllowDelete
-            case .memberExistServiceNotAllowDelete: 
+            case .memberExistServiceNotAllowDelete:
                 code = .unsupportedOperation_MemberExistServiceNotAllowDelete
-            case .memberIsAgent: 
+            case .memberIsAgent:
                 code = .unsupportedOperation_MemberIsAgent
-            case .orderInProgressExisted: 
+            case .orderInProgressExisted:
                 code = .unsupportedOperation_OrderInProgressExisted
-            case .ownerDiscountInheritExisted: 
+            case .ownerDiscountInheritExisted:
                 code = .unsupportedOperation_OwnerDiscountInheritExisted
-            case .payerArrearsAndNoCreditAccount: 
+            case .payerArrearsAndNoCreditAccount:
                 code = .unsupportedOperation_PayerArrearsAndNoCreditAccount
-            case .payerExistAccountLevelDiscountInherit: 
+            case .payerExistAccountLevelDiscountInherit:
                 code = .unsupportedOperation_PayerExistAccountLevelDiscountInherit
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCOrganizationError(code, context: self.context)

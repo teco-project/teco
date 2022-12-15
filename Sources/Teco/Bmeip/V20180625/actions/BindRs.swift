@@ -19,53 +19,53 @@ extension Bmeip {
     public struct BindRsRequest: TCRequestModel {
         /// Eip实例ID
         public let eipId: String
-        
+
         /// 物理服务器实例ID
         public let instanceId: String
-        
-        public init (eipId: String, instanceId: String) {
+
+        public init(eipId: String, instanceId: String) {
             self.eipId = eipId
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eipId = "EipId"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// BindRs返回参数结构体
     public struct BindRsResponse: TCResponseModel {
         /// 绑定黑石物理机异步任务ID，可以通过DescribeEipTask查询任务状态
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定黑石EIP
     @inlinable
-    public func bindRs(_ input: BindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRsResponse > {
+    public func bindRs(_ input: BindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRsResponse> {
         self.client.execute(action: "BindRs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定黑石EIP
     @inlinable
     public func bindRs(_ input: BindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRsResponse {
         try await self.client.execute(action: "BindRs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定黑石EIP
     @inlinable
-    public func bindRs(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRsResponse > {
+    public func bindRs(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRsResponse> {
         self.bindRs(BindRsRequest(eipId: eipId, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定黑石EIP
     @inlinable
     public func bindRs(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRsResponse {

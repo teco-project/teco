@@ -17,42 +17,42 @@
 extension Cwp {
     /// DescribeAttackVulTypeList请求参数结构体
     public struct DescribeAttackVulTypeListRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeAttackVulTypeList返回参数结构体
     public struct DescribeAttackVulTypeListResponse: TCResponseModel {
         /// 威胁类型列表
         public let list: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取网络攻击威胁类型列表
     @inlinable
-    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackVulTypeListResponse > {
+    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackVulTypeListResponse> {
         self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取网络攻击威胁类型列表
     @inlinable
     public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
         try await self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取网络攻击威胁类型列表
     @inlinable
-    public func describeAttackVulTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackVulTypeListResponse > {
+    public func describeAttackVulTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackVulTypeListResponse> {
         self.describeAttackVulTypeList(DescribeAttackVulTypeListRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取网络攻击威胁类型列表
     @inlinable
     public func describeAttackVulTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {

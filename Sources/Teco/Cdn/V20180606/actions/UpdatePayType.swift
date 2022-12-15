@@ -19,39 +19,39 @@ extension Cdn {
     public struct UpdatePayTypeRequest: TCRequestModel {
         /// 计费区域，mainland或overseas。
         public let area: String
-        
+
         /// 计费类型，flux或bandwidth。
         public let payType: String
-        
-        public init (area: String, payType: String) {
+
+        public init(area: String, payType: String) {
             self.area = area
             self.payType = payType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case area = "Area"
             case payType = "PayType"
         }
     }
-    
+
     /// UpdatePayType返回参数结构体
     public struct UpdatePayTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
     @inlinable
-    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePayTypeResponse > {
+    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
         self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
@@ -59,15 +59,15 @@ extension Cdn {
     public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
         try await self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
     @inlinable
-    public func updatePayType(area: String, payType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePayTypeResponse > {
+    public func updatePayType(area: String, payType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
         self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。

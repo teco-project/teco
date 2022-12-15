@@ -19,25 +19,25 @@ extension Ecm {
     public struct ResetInstancesPasswordRequest: TCRequestModel {
         /// 待重置密码的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
         public let instanceIdSet: [String]
-        
+
         /// 新密码，Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9]和[( ) ~ ~ ! @ # $ % ^ & * - + = _ | { } [ ] : ; ' < > , . ? /]中的符号。密码不允许以/符号开头。
         /// Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9]和[( ) ~ ~ ! @ # $ % ^ & * - + = _ | { } [ ] : ; ' < > , . ? /]中的符号。密码不允许以/符号开头。
         /// 如果实例即包含Linux实例又包含Windows实例，则密码复杂度限制按照Windows实例的限制。
         public let password: String
-        
+
         /// 是否强制关机，默认为false。
         public let forceStop: Bool?
-        
+
         /// 待重置密码的实例的用户名，不得超过64个字符。若未指定用户名，则对于Linux而言，默认重置root用户的密码，对于Windows而言，默认重置administrator的密码。
         public let userName: String?
-        
-        public init (instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil) {
+
+        public init(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil) {
             self.instanceIdSet = instanceIdSet
             self.password = password
             self.forceStop = forceStop
             self.userName = userName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIdSet = "InstanceIdSet"
             case password = "Password"
@@ -45,25 +45,25 @@ extension Ecm {
             case userName = "UserName"
         }
     }
-    
+
     /// ResetInstancesPassword返回参数结构体
     public struct ResetInstancesPasswordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
     @inlinable
-    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesPasswordResponse > {
+    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
         self.client.execute(action: "ResetInstancesPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
@@ -71,15 +71,15 @@ extension Ecm {
     public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
         try await self.client.execute(action: "ResetInstancesPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
     @inlinable
-    public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesPasswordResponse > {
+    public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
         self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIdSet: instanceIdSet, password: password, forceStop: forceStop, userName: userName), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。

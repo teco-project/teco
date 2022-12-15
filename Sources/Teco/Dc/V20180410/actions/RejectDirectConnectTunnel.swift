@@ -19,44 +19,44 @@ extension Dc {
     public struct RejectDirectConnectTunnelRequest: TCRequestModel {
         /// 无
         public let directConnectTunnelId: String
-        
-        public init (directConnectTunnelId: String) {
+
+        public init(directConnectTunnelId: String) {
             self.directConnectTunnelId = directConnectTunnelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case directConnectTunnelId = "DirectConnectTunnelId"
         }
     }
-    
+
     /// RejectDirectConnectTunnel返回参数结构体
     public struct RejectDirectConnectTunnelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拒绝专用通道申请
     @inlinable
-    public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectDirectConnectTunnelResponse > {
+    public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectDirectConnectTunnelResponse> {
         self.client.execute(action: "RejectDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拒绝专用通道申请
     @inlinable
     public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {
         try await self.client.execute(action: "RejectDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拒绝专用通道申请
     @inlinable
-    public func rejectDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectDirectConnectTunnelResponse > {
+    public func rejectDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectDirectConnectTunnelResponse> {
         self.rejectDirectConnectTunnel(RejectDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 拒绝专用通道申请
     @inlinable
     public func rejectDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {

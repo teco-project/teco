@@ -19,48 +19,48 @@ extension Ess {
     public struct DescribeThirdPartyAuthCodeRequest: TCRequestModel {
         /// 电子签小程序跳转客户小程序时携带的授权查看码
         public let authCode: String
-        
-        public init (authCode: String) {
+
+        public init(authCode: String) {
             self.authCode = authCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case authCode = "AuthCode"
         }
     }
-    
+
     /// DescribeThirdPartyAuthCode返回参数结构体
     public struct DescribeThirdPartyAuthCodeResponse: TCResponseModel {
         /// 用户是否实名，VERIFIED 为实名，UNVERIFIED 未实名
         public let verifyStatus: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case verifyStatus = "VerifyStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通过AuthCode查询用户是否实名
     @inlinable
-    public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThirdPartyAuthCodeResponse > {
+    public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeThirdPartyAuthCodeResponse> {
         self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通过AuthCode查询用户是否实名
     @inlinable
     public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {
         try await self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通过AuthCode查询用户是否实名
     @inlinable
-    public func describeThirdPartyAuthCode(authCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThirdPartyAuthCodeResponse > {
+    public func describeThirdPartyAuthCode(authCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeThirdPartyAuthCodeResponse> {
         self.describeThirdPartyAuthCode(DescribeThirdPartyAuthCodeRequest(authCode: authCode), logger: logger, on: eventLoop)
     }
-    
+
     /// 通过AuthCode查询用户是否实名
     @inlinable
     public func describeThirdPartyAuthCode(authCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {

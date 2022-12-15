@@ -19,26 +19,26 @@ extension Ckafka {
     public struct DescribeInstancesRequest: TCRequestModel {
         /// （过滤条件）按照实例ID过滤
         public let instanceId: String?
-        
+
         /// （过滤条件）按照实例名称过滤，支持模糊查询
         public let searchWord: String?
-        
+
         /// （过滤条件）实例的状态。0：创建中，1：运行中，2：删除中，不填默认返回全部
         public let status: [Int64]?
-        
+
         /// 偏移量，不填默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，不填则默认10，最大值100
         public let limit: Int64?
-        
+
         /// 已废弃。匹配标签key值。
         public let tagKey: String?
-        
+
         /// 私有网络Id
         public let vpcId: String?
-        
-        public init (instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, vpcId: String? = nil) {
+
+        public init(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, vpcId: String? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.status = status
@@ -47,7 +47,7 @@ extension Ckafka {
             self.tagKey = tagKey
             self.vpcId = vpcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case searchWord = "SearchWord"
@@ -58,29 +58,29 @@ extension Ckafka {
             case vpcId = "VpcId"
         }
     }
-    
+
     /// DescribeInstances返回参数结构体
     public struct DescribeInstancesResponse: TCResponseModel {
         /// 返回的结果
         public let result: InstanceResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例列表信息
     ///
     /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例列表信息
     ///
     /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
@@ -88,15 +88,15 @@ extension Ckafka {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例列表信息
     ///
     /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
     @inlinable
-    public func describeInstances(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(DescribeInstancesRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, vpcId: vpcId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例列表信息
     ///
     /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表

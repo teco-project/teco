@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeTableScoreTrendRequest: TCRequestModel {
         /// 项目id
         public let projectId: String
-        
+
         /// 开始时间 秒级时间戳
         public let statisticsStartDate: Int64
-        
+
         /// 结束时间 秒级时间戳
         public let statisticsEndDate: Int64
-        
+
         /// 表id
         public let tableId: String
-        
-        public init (projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String) {
+
+        public init(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String) {
             self.projectId = projectId
             self.statisticsStartDate = statisticsStartDate
             self.statisticsEndDate = statisticsEndDate
             self.tableId = tableId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case statisticsStartDate = "StatisticsStartDate"
@@ -43,40 +43,40 @@ extension Wedata {
             case tableId = "TableId"
         }
     }
-    
+
     /// DescribeTableScoreTrend返回参数结构体
     public struct DescribeTableScoreTrendResponse: TCResponseModel {
         /// 表得分趋势
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: QualityScoreTrend?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableScoreTrendResponse > {
+    public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
         self.client.execute(action: "DescribeTableScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询表得分趋势
     @inlinable
     public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
         try await self.client.execute(action: "DescribeTableScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableScoreTrendResponse > {
+    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
         self.describeTableScoreTrend(DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询表得分趋势
     @inlinable
     public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {

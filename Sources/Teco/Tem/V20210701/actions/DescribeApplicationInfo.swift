@@ -19,58 +19,58 @@ extension Tem {
     public struct DescribeApplicationInfoRequest: TCRequestModel {
         /// 服务版本ID
         public let applicationId: String
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 环境ID
         public let environmentId: String?
-        
-        public init (applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil) {
+
+        public init(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil) {
             self.applicationId = applicationId
             self.sourceChannel = sourceChannel
             self.environmentId = environmentId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case sourceChannel = "SourceChannel"
             case environmentId = "EnvironmentId"
         }
     }
-    
+
     /// DescribeApplicationInfo返回参数结构体
     public struct DescribeApplicationInfoResponse: TCResponseModel {
         /// 返回结果
         public let result: TemServiceVersionInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 服务基本信息查看
     @inlinable
-    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationInfoResponse > {
+    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationInfoResponse> {
         self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 服务基本信息查看
     @inlinable
     public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
         try await self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 服务基本信息查看
     @inlinable
-    public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationInfoResponse > {
+    public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationInfoResponse> {
         self.describeApplicationInfo(DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), logger: logger, on: eventLoop)
     }
-    
+
     /// 服务基本信息查看
     @inlinable
     public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {

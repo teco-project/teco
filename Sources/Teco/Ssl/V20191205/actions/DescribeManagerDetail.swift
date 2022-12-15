@@ -19,87 +19,87 @@ extension Ssl {
     public struct DescribeManagerDetailRequest: TCRequestModel {
         /// 管理人ID
         public let managerId: Int64
-        
+
         /// 分页每页数量
         public let limit: Int64?
-        
+
         /// 分页偏移量
         public let offset: Int64?
-        
-        public init (managerId: Int64, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(managerId: Int64, limit: Int64? = nil, offset: Int64? = nil) {
             self.managerId = managerId
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case managerId = "ManagerId"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeManagerDetail返回参数结构体
     public struct DescribeManagerDetailResponse: TCResponseModel {
         /// 状态: audit: 审核中 ok: 审核通过 invalid: 失效 expiring: 即将过期 expired: 已过期
         public let status: String
-        
+
         /// 管理人姓名
         public let managerFirstName: String
-        
+
         /// 管理人邮箱
         public let managerMail: String
-        
+
         /// 联系人姓名
         public let contactFirstName: String
-        
+
         /// 管理人姓名
         public let managerLastName: String
-        
+
         /// 联系人职位
         public let contactPosition: String
-        
+
         /// 管理人职位
         public let managerPosition: String
-        
+
         /// 核验通过时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifyTime: String?
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 核验过期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTime: String?
-        
+
         /// 联系人姓名
         public let contactLastName: String
-        
+
         /// 管理人电话
         public let managerPhone: String
-        
+
         /// 联系人电话
         public let contactPhone: String
-        
+
         /// 联系人邮箱
         public let contactMail: String
-        
+
         /// 管理人所属部门
         public let managerDepartment: String
-        
+
         /// 管理人所属公司信息
         public let companyInfo: CompanyInfo
-        
+
         /// 管理人公司ID
         public let companyId: Int64
-        
+
         /// 管理人ID
         public let managerId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case managerFirstName = "ManagerFirstName"
@@ -122,25 +122,25 @@ extension Ssl {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询管理人详情
     @inlinable
-    public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagerDetailResponse > {
+    public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeManagerDetailResponse> {
         self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询管理人详情
     @inlinable
     public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagerDetailResponse {
         try await self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询管理人详情
     @inlinable
-    public func describeManagerDetail(managerId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagerDetailResponse > {
+    public func describeManagerDetail(managerId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeManagerDetailResponse> {
         self.describeManagerDetail(DescribeManagerDetailRequest(managerId: managerId, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询管理人详情
     @inlinable
     public func describeManagerDetail(managerId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagerDetailResponse {

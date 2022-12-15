@@ -19,26 +19,26 @@ extension Cynosdb {
     public struct RollBackClusterRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 回档策略 timeRollback-按时间点回档 snapRollback-按备份文件回档
         public let rollbackStrategy: String
-        
+
         /// 回档ID
         public let rollbackId: UInt64
-        
+
         /// 期望回档时间
         public let expectTime: String?
-        
+
         /// 期望阈值（已废弃）
         public let expectTimeThresh: UInt64?
-        
+
         /// 回档数据库列表
         public let rollbackDatabases: [RollbackDatabase]?
-        
+
         /// 回档数据库表列表
         public let rollbackTables: [RollbackTable]?
-        
-        public init (clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil) {
+
+        public init(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil) {
             self.clusterId = clusterId
             self.rollbackStrategy = rollbackStrategy
             self.rollbackId = rollbackId
@@ -47,7 +47,7 @@ extension Cynosdb {
             self.rollbackDatabases = rollbackDatabases
             self.rollbackTables = rollbackTables
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case rollbackStrategy = "RollbackStrategy"
@@ -58,29 +58,29 @@ extension Cynosdb {
             case rollbackTables = "RollbackTables"
         }
     }
-    
+
     /// RollBackCluster返回参数结构体
     public struct RollBackClusterResponse: TCResponseModel {
         /// 任务流ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 回档集群
     ///
     /// 本接口（RollBackCluster）用于回档集群
     @inlinable
-    public func rollBackCluster(_ input: RollBackClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollBackClusterResponse > {
+    public func rollBackCluster(_ input: RollBackClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollBackClusterResponse> {
         self.client.execute(action: "RollBackCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 回档集群
     ///
     /// 本接口（RollBackCluster）用于回档集群
@@ -88,15 +88,15 @@ extension Cynosdb {
     public func rollBackCluster(_ input: RollBackClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollBackClusterResponse {
         try await self.client.execute(action: "RollBackCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 回档集群
     ///
     /// 本接口（RollBackCluster）用于回档集群
     @inlinable
-    public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollBackClusterResponse > {
+    public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollBackClusterResponse> {
         self.rollBackCluster(RollBackClusterRequest(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables), logger: logger, on: eventLoop)
     }
-    
+
     /// 回档集群
     ///
     /// 本接口（RollBackCluster）用于回档集群

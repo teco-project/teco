@@ -19,40 +19,40 @@ extension Trp {
     public struct CreateTraceCodesRequest: TCRequestModel {
         /// 批次ID
         public let batchId: String
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 码
         public let codes: [CodeItem]?
-        
-        public init (batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil) {
+
+        public init(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil) {
             self.batchId = batchId
             self.corpId = corpId
             self.codes = codes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case corpId = "CorpId"
             case codes = "Codes"
         }
     }
-    
+
     /// CreateTraceCodes返回参数结构体
     public struct CreateTraceCodesResponse: TCResponseModel {
         /// 批次ID
         public let batchId: String
-        
+
         /// 导入成功码数量
         public let activeCnt: UInt64
-        
+
         /// 批次码数量
         public let codeCnt: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case activeCnt = "ActiveCnt"
@@ -60,15 +60,15 @@ extension Trp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量导入二维码
     ///
     /// 批量导入二维码，只支持平台发的码
     @inlinable
-    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceCodesResponse > {
+    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
         self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量导入二维码
     ///
     /// 批量导入二维码，只支持平台发的码
@@ -76,15 +76,15 @@ extension Trp {
     public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
         try await self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量导入二维码
     ///
     /// 批量导入二维码，只支持平台发的码
     @inlinable
-    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceCodesResponse > {
+    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
         self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量导入二维码
     ///
     /// 批量导入二维码，只支持平台发的码

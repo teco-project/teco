@@ -44,130 +44,130 @@ public struct TCVmError: TCVmErrorType {
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
     }
-    
+
     /// Error domains affliated to ``TCVmError``.
     public static var domains: [TCErrorType.Type] {
         [UnauthorizedOperation.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// CAM签名/鉴权错误。
     public static var authFailure: TCVmError {
         TCVmError(.authFailure)
     }
-    
+
     /// DryRun 操作，代表请求将会是成功的，只是多传了 DryRun 参数。
     public static var dryRunOperation: TCVmError {
         TCVmError(.dryRunOperation)
     }
-    
+
     /// 操作失败。
     public static var failedOperation: TCVmError {
         TCVmError(.failedOperation)
     }
-    
+
     /// 内部错误。
     public static var internalError: TCVmError {
         TCVmError(.internalError)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCVmError {
         TCVmError(.invalidParameter)
     }
-    
+
     /// 参数取值错误。
     ///
     /// 参数值错误
     public static var invalidParameterValue: TCVmError {
         TCVmError(.invalidParameterValue)
     }
-    
+
     /// 超过配额限制。
     public static var limitExceeded: TCVmError {
         TCVmError(.limitExceeded)
     }
-    
+
     /// 缺少参数错误。
     public static var missingParameter: TCVmError {
         TCVmError(.missingParameter)
     }
-    
+
     /// 操作被拒绝。
     public static var operationDenied: TCVmError {
         TCVmError(.operationDenied)
     }
-    
+
     /// 请求的次数超过了频率限制。
     public static var requestLimitExceeded: TCVmError {
         TCVmError(.requestLimitExceeded)
     }
-    
+
     /// 资源被占用。
     public static var resourceInUse: TCVmError {
         TCVmError(.resourceInUse)
     }
-    
+
     /// 资源不足。
     public static var resourceInsufficient: TCVmError {
         TCVmError(.resourceInsufficient)
     }
-    
+
     /// 资源不存在。
     public static var resourceNotFound: TCVmError {
         TCVmError(.resourceNotFound)
     }
-    
+
     /// 资源不可用。
     public static var resourceUnavailable: TCVmError {
         TCVmError(.resourceUnavailable)
     }
-    
+
     /// 资源售罄。
     public static var resourcesSoldOut: TCVmError {
         TCVmError(.resourcesSoldOut)
     }
-    
+
     /// 未授权操作。
     public static var unauthorizedOperation: TCVmError {
         TCVmError(.unauthorizedOperation)
     }
-    
+
     public static var unauthorizedOperation_Unauthorized: TCVmError {
         TCVmError(.unauthorizedOperation_Unauthorized)
     }
-    
+
     /// 未知参数错误。
     public static var unknownParameter: TCVmError {
         TCVmError(.unknownParameter)
     }
-    
+
     /// 操作不支持。
     public static var unsupportedOperation: TCVmError {
         TCVmError(.unsupportedOperation)
     }
-    
+
     public func asVmError() -> TCVmError {
         return self
     }

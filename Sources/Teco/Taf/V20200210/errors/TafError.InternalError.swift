@@ -30,115 +30,115 @@ extension TCTafError {
             case updateTaskFail = "InternalError.UpdateTaskFail"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建任务失败。
         public static var addTaskFail: InternalError {
             InternalError(.addTaskFail)
         }
-        
+
         /// 业务系统逻辑错误。
         public static var backendLogicError: InternalError {
             InternalError(.backendLogicError)
         }
-        
+
         /// 连接数据库超时。
         public static var connectDBTimeout: InternalError {
             InternalError(.connectDBTimeout)
         }
-        
+
         /// 视频检测失败。
         public static var detectFail: InternalError {
             InternalError(.detectFail)
         }
-        
+
         /// 视频链接下载失败。
         public static var downloadFail: InternalError {
             InternalError(.downloadFail)
         }
-        
+
         /// 参数校验失败。
         public static var paramError: InternalError {
             InternalError(.paramError)
         }
-        
+
         /// 查询失败。
         public static var queryTaskFail: InternalError {
             InternalError(.queryTaskFail)
         }
-        
+
         /// Sign后端错误。
         public static var signBackendError: InternalError {
             InternalError(.signBackendError)
         }
-        
+
         /// 签名失败。
         public static var signatureFail: InternalError {
             InternalError(.signatureFail)
         }
-        
+
         /// TaskId不存在。
         public static var taskIdNotFound: InternalError {
             InternalError(.taskIdNotFound)
         }
-        
+
         /// 更新任务失败。
         public static var updateTaskFail: InternalError {
             InternalError(.updateTaskFail)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTafError() -> TCTafError {
             let code: TCTafError.Code
             switch self.error {
-            case .addTaskFail: 
+            case .addTaskFail:
                 code = .internalError_AddTaskFail
-            case .backendLogicError: 
+            case .backendLogicError:
                 code = .internalError_BackendLogicError
-            case .connectDBTimeout: 
+            case .connectDBTimeout:
                 code = .internalError_ConnectDBTimeout
-            case .detectFail: 
+            case .detectFail:
                 code = .internalError_DetectFail
-            case .downloadFail: 
+            case .downloadFail:
                 code = .internalError_DownloadFail
-            case .paramError: 
+            case .paramError:
                 code = .internalError_ParamError
-            case .queryTaskFail: 
+            case .queryTaskFail:
                 code = .internalError_QueryTaskFail
-            case .signBackendError: 
+            case .signBackendError:
                 code = .internalError_SignBackendError
-            case .signatureFail: 
+            case .signatureFail:
                 code = .internalError_SignatureFail
-            case .taskIdNotFound: 
+            case .taskIdNotFound:
                 code = .internalError_TaskIdNotFound
-            case .updateTaskFail: 
+            case .updateTaskFail:
                 code = .internalError_UpdateTaskFail
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCTafError(code, context: self.context)

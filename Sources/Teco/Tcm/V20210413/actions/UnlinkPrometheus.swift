@@ -19,44 +19,44 @@ extension Tcm {
     public struct UnlinkPrometheusRequest: TCRequestModel {
         /// 网格ID
         public let meshID: String
-        
-        public init (meshID: String) {
+
+        public init(meshID: String) {
             self.meshID = meshID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case meshID = "MeshID"
         }
     }
-    
+
     /// UnlinkPrometheus返回参数结构体
     public struct UnlinkPrometheusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解除关联Prometheus
     @inlinable
-    public func unlinkPrometheus(_ input: UnlinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnlinkPrometheusResponse > {
+    public func unlinkPrometheus(_ input: UnlinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkPrometheusResponse> {
         self.client.execute(action: "UnlinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解除关联Prometheus
     @inlinable
     public func unlinkPrometheus(_ input: UnlinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkPrometheusResponse {
         try await self.client.execute(action: "UnlinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解除关联Prometheus
     @inlinable
-    public func unlinkPrometheus(meshID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnlinkPrometheusResponse > {
+    public func unlinkPrometheus(meshID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkPrometheusResponse> {
         self.unlinkPrometheus(UnlinkPrometheusRequest(meshID: meshID), logger: logger, on: eventLoop)
     }
-    
+
     /// 解除关联Prometheus
     @inlinable
     public func unlinkPrometheus(meshID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkPrometheusResponse {

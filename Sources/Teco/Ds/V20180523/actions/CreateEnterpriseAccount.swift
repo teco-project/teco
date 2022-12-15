@@ -19,38 +19,38 @@ extension Ds {
     public struct CreateEnterpriseAccountRequest: TCRequestModel {
         /// 模块名AccountMng
         public let module: String
-        
+
         /// 操作名CreateEnterpriseAccount
         public let operation: String
-        
+
         /// 企业用户名称
         public let name: String
-        
+
         /// 企业用户证件类型，8代表营业执照，详情请见常见问题
         public let identType: Int64
-        
+
         /// 企业用户营业执照号码
         public let identNo: String
-        
+
         /// 企业联系人手机号
         public let mobilePhone: String
-        
+
         /// 经办人姓名
         public let transactorName: String
-        
+
         /// 经办人证件类型，0代表身份证
         public let transactorIdentType: Int64
-        
+
         /// 经办人证件号码
         public let transactorIdentNo: String
-        
+
         /// 经办人手机号
         public let transactorPhone: String
-        
+
         /// 企业联系人邮箱
         public let email: String?
-        
-        public init (module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, transactorName: String, transactorIdentType: Int64, transactorIdentNo: String, transactorPhone: String, email: String? = nil) {
+
+        public init(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, transactorName: String, transactorIdentType: Int64, transactorIdentNo: String, transactorPhone: String, email: String? = nil) {
             self.module = module
             self.operation = operation
             self.name = name
@@ -63,7 +63,7 @@ extension Ds {
             self.transactorPhone = transactorPhone
             self.email = email
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -78,29 +78,29 @@ extension Ds {
             case email = "Email"
         }
     }
-    
+
     /// CreateEnterpriseAccount返回参数结构体
     public struct CreateEnterpriseAccountResponse: TCResponseModel {
         /// 帐号ID
         public let accountResId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accountResId = "AccountResId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 企业开户
     ///
     /// 为企业电子合同平台的最终企业用户进行开户。在企业电子合同平台进行操作的企业用户，企业电子合同平台向腾讯云发送企业用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的企业用户生成一张数字证书。
     @inlinable
-    public func createEnterpriseAccount(_ input: CreateEnterpriseAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnterpriseAccountResponse > {
+    public func createEnterpriseAccount(_ input: CreateEnterpriseAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnterpriseAccountResponse> {
         self.client.execute(action: "CreateEnterpriseAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 企业开户
     ///
     /// 为企业电子合同平台的最终企业用户进行开户。在企业电子合同平台进行操作的企业用户，企业电子合同平台向腾讯云发送企业用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的企业用户生成一张数字证书。
@@ -108,15 +108,15 @@ extension Ds {
     public func createEnterpriseAccount(_ input: CreateEnterpriseAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnterpriseAccountResponse {
         try await self.client.execute(action: "CreateEnterpriseAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 企业开户
     ///
     /// 为企业电子合同平台的最终企业用户进行开户。在企业电子合同平台进行操作的企业用户，企业电子合同平台向腾讯云发送企业用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的企业用户生成一张数字证书。
     @inlinable
-    public func createEnterpriseAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, transactorName: String, transactorIdentType: Int64, transactorIdentNo: String, transactorPhone: String, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnterpriseAccountResponse > {
+    public func createEnterpriseAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, transactorName: String, transactorIdentType: Int64, transactorIdentNo: String, transactorPhone: String, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnterpriseAccountResponse> {
         self.createEnterpriseAccount(CreateEnterpriseAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone, transactorName: transactorName, transactorIdentType: transactorIdentType, transactorIdentNo: transactorIdentNo, transactorPhone: transactorPhone, email: email), logger: logger, on: eventLoop)
     }
-    
+
     /// 企业开户
     ///
     /// 为企业电子合同平台的最终企业用户进行开户。在企业电子合同平台进行操作的企业用户，企业电子合同平台向腾讯云发送企业用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的企业用户生成一张数字证书。

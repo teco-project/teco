@@ -19,10 +19,10 @@ extension Vod {
     public struct ModifyWordSampleRequest: TCRequestModel {
         /// 关键词，长度限制：128 个字符。
         public let keyword: String
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
+
         /// <b>关键词应用场景，可选值：</b>
         /// 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
         /// 2. Recognition.Asr：通过音频识别技术，进行内容识别；
@@ -33,17 +33,17 @@ extension Vod {
         /// 6. Review：通过光学字符识别技术、音频识别技术，进行不适宜的内容识别，等价于 3+4；
         /// 7. All：包含以上全部，等价于 1+2+3+4。
         public let usages: [String]?
-        
+
         /// 标签操作信息。
         public let tagOperationInfo: AiSampleTagOperation?
-        
-        public init (keyword: String, subAppId: UInt64? = nil, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil) {
+
+        public init(keyword: String, subAppId: UInt64? = nil, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil) {
             self.keyword = keyword
             self.subAppId = subAppId
             self.usages = usages
             self.tagOperationInfo = tagOperationInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case subAppId = "SubAppId"
@@ -51,25 +51,25 @@ extension Vod {
             case tagOperationInfo = "TagOperationInfo"
         }
     }
-    
+
     /// ModifyWordSample返回参数结构体
     public struct ModifyWordSampleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable
-    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWordSampleResponse > {
+    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
         self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
@@ -77,15 +77,15 @@ extension Vod {
     public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
         try await self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable
-    public func modifyWordSample(keyword: String, subAppId: UInt64? = nil, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWordSampleResponse > {
+    public func modifyWordSample(keyword: String, subAppId: UInt64? = nil, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
         self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, subAppId: subAppId, usages: usages, tagOperationInfo: tagOperationInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。

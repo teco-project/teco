@@ -33,138 +33,138 @@ extension TCClsError {
             case topic = "LimitExceeded.Topic"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 采集规则配置超过最大值限制。
         public static var config: LimitExceeded {
             LimitExceeded(.config)
         }
-        
+
         /// 日志导出数量超出限制。
         public static var export: LimitExceeded {
             LimitExceeded(.export)
         }
-        
+
         /// 并发查询超过限制，单topic并发最大值15。
         public static var logSearch: LimitExceeded {
             LimitExceeded(.logSearch)
         }
-        
+
         /// 日志大小超过限制。
         public static var logSize: LimitExceeded {
             LimitExceeded(.logSize)
         }
-        
+
         /// 日志集数量超出限制。
         public static var logset: LimitExceeded {
             LimitExceeded(.logset)
         }
-        
+
         /// 机器组超过限制。
         public static var machineGroup: LimitExceeded {
             LimitExceeded(.machineGroup)
         }
-        
+
         /// 机器组IP超过限制。
         public static var machineGroupIp: LimitExceeded {
             LimitExceeded(.machineGroupIp)
         }
-        
+
         /// 机器组Label超过限制。
         public static var machineGroupIpLabels: LimitExceeded {
             LimitExceeded(.machineGroupIpLabels)
         }
-        
+
         /// 分区超过限制。
         public static var partition: LimitExceeded {
             LimitExceeded(.partition)
         }
-        
+
         /// 修改检索语句，减少查询范围。
         public static var searchResources: LimitExceeded {
             LimitExceeded(.searchResources)
         }
-        
+
         /// 检索接口返回的日志量太大， 超过20MB限制。
         ///
         /// 可以把limit参数降低一点
         public static var searchResultTooLarge: LimitExceeded {
             LimitExceeded(.searchResultTooLarge)
         }
-        
+
         /// 投递规则超出限制。
         public static var shipper: LimitExceeded {
             LimitExceeded(.shipper)
         }
-        
+
         /// tag超过限制。
         public static var tag: LimitExceeded {
             LimitExceeded(.tag)
         }
-        
+
         /// 日志主题数目超过限制。
         public static var topic: LimitExceeded {
             LimitExceeded(.topic)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asClsError() -> TCClsError {
             let code: TCClsError.Code
             switch self.error {
-            case .config: 
+            case .config:
                 code = .limitExceeded_Config
-            case .export: 
+            case .export:
                 code = .limitExceeded_Export
-            case .logSearch: 
+            case .logSearch:
                 code = .limitExceeded_LogSearch
-            case .logSize: 
+            case .logSize:
                 code = .limitExceeded_LogSize
-            case .logset: 
+            case .logset:
                 code = .limitExceeded_Logset
-            case .machineGroup: 
+            case .machineGroup:
                 code = .limitExceeded_MachineGroup
-            case .machineGroupIp: 
+            case .machineGroupIp:
                 code = .limitExceeded_MachineGroupIp
-            case .machineGroupIpLabels: 
+            case .machineGroupIpLabels:
                 code = .limitExceeded_MachineGroupIpLabels
-            case .partition: 
+            case .partition:
                 code = .limitExceeded_Partition
-            case .searchResources: 
+            case .searchResources:
                 code = .limitExceeded_SearchResources
-            case .searchResultTooLarge: 
+            case .searchResultTooLarge:
                 code = .limitExceeded_SearchResultTooLarge
-            case .shipper: 
+            case .shipper:
                 code = .limitExceeded_Shipper
-            case .tag: 
+            case .tag:
                 code = .limitExceeded_Tag
-            case .topic: 
+            case .topic:
                 code = .limitExceeded_Topic
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCClsError(code, context: self.context)

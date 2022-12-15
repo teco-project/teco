@@ -19,44 +19,44 @@ extension Ecm {
     public struct DeleteModuleRequest: TCRequestModel {
         /// 模块ID。如：em-qn46snq8
         public let moduleId: String
-        
-        public init (moduleId: String) {
+
+        public init(moduleId: String) {
             self.moduleId = moduleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case moduleId = "ModuleId"
         }
     }
-    
+
     /// DeleteModule返回参数结构体
     public struct DeleteModuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除业务模块
     @inlinable
-    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModuleResponse > {
+    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModuleResponse> {
         self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除业务模块
     @inlinable
     public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
         try await self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除业务模块
     @inlinable
-    public func deleteModule(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModuleResponse > {
+    public func deleteModule(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModuleResponse> {
         self.deleteModule(DeleteModuleRequest(moduleId: moduleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除业务模块
     @inlinable
     public func deleteModule(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {

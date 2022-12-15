@@ -19,32 +19,32 @@ extension Ckafka {
     public struct ModifyInstanceAttributesRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 实例日志的最长保留时间，单位分钟，最大30天，0代表不开启日志保留时间回收策略
         public let msgRetentionTime: Int64?
-        
+
         /// 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         public let instanceName: String?
-        
+
         /// 实例配置
         public let config: ModifyInstanceAttributesConfig?
-        
+
         /// 动态消息保留策略配置
         public let dynamicRetentionConfig: DynamicRetentionTime?
-        
+
         /// 修改升配置rebalance时间
         public let rebalanceTime: Int64?
-        
+
         /// 时间戳
         public let publicNetwork: Int64?
-        
+
         /// 动态硬盘扩容策略配置
         public let dynamicDiskConfig: DynamicDiskConfig?
-        
+
         /// 实例级别单条消息大小（单位byte)
         public let maxMessageByte: UInt64?
-        
-        public init (instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil) {
+
+        public init(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil) {
             self.instanceId = instanceId
             self.msgRetentionTime = msgRetentionTime
             self.instanceName = instanceName
@@ -55,7 +55,7 @@ extension Ckafka {
             self.dynamicDiskConfig = dynamicDiskConfig
             self.maxMessageByte = maxMessageByte
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case msgRetentionTime = "MsgRetentionTime"
@@ -68,39 +68,39 @@ extension Ckafka {
             case maxMessageByte = "MaxMessageByte"
         }
     }
-    
+
     /// ModifyInstanceAttributes返回参数结构体
     public struct ModifyInstanceAttributesResponse: TCResponseModel {
         /// 返回结果
         public let result: JgwOperateResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置实例属性
     @inlinable
-    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAttributesResponse > {
+    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAttributesResponse> {
         self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置实例属性
     @inlinable
     public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
         try await self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置实例属性
     @inlinable
-    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAttributesResponse > {
+    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAttributesResponse> {
         self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置实例属性
     @inlinable
     public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {

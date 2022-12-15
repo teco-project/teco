@@ -17,46 +17,46 @@
 extension Tcss {
     /// OpenTcssTrial请求参数结构体
     public struct OpenTcssTrialRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// OpenTcssTrial返回参数结构体
     public struct OpenTcssTrialResponse: TCResponseModel {
         /// 试用开通结束时间
         public let endTime: String
-        
+
         /// 试用开通开始时间
         public let startTime: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case endTime = "EndTime"
             case startTime = "StartTime"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通容器安全服务试用
     @inlinable
-    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenTcssTrialResponse > {
+    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenTcssTrialResponse> {
         self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通容器安全服务试用
     @inlinable
     public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
         try await self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通容器安全服务试用
     @inlinable
-    public func openTcssTrial(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenTcssTrialResponse > {
+    public func openTcssTrial(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenTcssTrialResponse> {
         self.openTcssTrial(OpenTcssTrialRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通容器安全服务试用
     @inlinable
     public func openTcssTrial(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {

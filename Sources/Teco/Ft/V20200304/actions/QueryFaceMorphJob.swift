@@ -19,32 +19,32 @@ extension Ft {
     public struct QueryFaceMorphJobRequest: TCRequestModel {
         /// 人像渐变任务Job id
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// QueryFaceMorphJob返回参数结构体
     public struct QueryFaceMorphJobResponse: TCResponseModel {
         /// 当前任务状态：排队中、处理中、处理失败或者处理完成
         public let jobStatus: String
-        
+
         /// 人像渐变输出的结果信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let faceMorphOutput: FaceMorphOutput?
-        
+
         /// 当前任务状态码：1：排队中、3: 处理中、5: 处理失败、7:处理完成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobStatusCode: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobStatus = "JobStatus"
             case faceMorphOutput = "FaceMorphOutput"
@@ -52,15 +52,15 @@ extension Ft {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询人像渐变任务
     ///
     /// 查询人像渐变处理进度
     @inlinable
-    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFaceMorphJobResponse > {
+    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFaceMorphJobResponse> {
         self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询人像渐变任务
     ///
     /// 查询人像渐变处理进度
@@ -68,15 +68,15 @@ extension Ft {
     public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
         try await self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询人像渐变任务
     ///
     /// 查询人像渐变处理进度
     @inlinable
-    public func queryFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFaceMorphJobResponse > {
+    public func queryFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFaceMorphJobResponse> {
         self.queryFaceMorphJob(QueryFaceMorphJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询人像渐变任务
     ///
     /// 查询人像渐变处理进度

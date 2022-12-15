@@ -19,27 +19,27 @@ extension Tke {
     public struct EnableVpcCniNetworkTypeRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 开启vpc-cni的模式，tke-route-eni开启的是策略路由模式，tke-direct-eni开启的是独立网卡模式
         public let vpcCniType: String
-        
+
         /// 是否开启固定IP模式
         public let enableStaticIp: Bool
-        
+
         /// 使用的容器子网
         public let subnets: [String]
-        
+
         /// 在固定IP模式下，Pod销毁后退还IP的时间，传参必须大于300；不传默认IP永不销毁。
         public let expiredSeconds: UInt64?
-        
-        public init (clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil) {
+
+        public init(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil) {
             self.clusterId = clusterId
             self.vpcCniType = vpcCniType
             self.enableStaticIp = enableStaticIp
             self.subnets = subnets
             self.expiredSeconds = expiredSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case vpcCniType = "VpcCniType"
@@ -48,25 +48,25 @@ extension Tke {
             case expiredSeconds = "ExpiredSeconds"
         }
     }
-    
+
     /// EnableVpcCniNetworkType返回参数结构体
     public struct EnableVpcCniNetworkTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable
-    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableVpcCniNetworkTypeResponse > {
+    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
         self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
@@ -74,15 +74,15 @@ extension Tke {
     public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
         try await self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable
-    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableVpcCniNetworkTypeResponse > {
+    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
         self.enableVpcCniNetworkType(EnableVpcCniNetworkTypeRequest(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力

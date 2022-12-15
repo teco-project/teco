@@ -19,34 +19,34 @@ extension Sqlserver {
     public struct RenewPostpaidDBInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：mssql-3l3fgqn7 或 mssqlro-3l3fgqn7
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// RenewPostpaidDBInstance返回参数结构体
     public struct RenewPostpaidDBInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
     @inlinable
-    public func renewPostpaidDBInstance(_ input: RenewPostpaidDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewPostpaidDBInstanceResponse > {
+    public func renewPostpaidDBInstance(_ input: RenewPostpaidDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewPostpaidDBInstanceResponse> {
         self.client.execute(action: "RenewPostpaidDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
@@ -54,15 +54,15 @@ extension Sqlserver {
     public func renewPostpaidDBInstance(_ input: RenewPostpaidDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewPostpaidDBInstanceResponse {
         try await self.client.execute(action: "RenewPostpaidDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
     @inlinable
-    public func renewPostpaidDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewPostpaidDBInstanceResponse > {
+    public func renewPostpaidDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewPostpaidDBInstanceResponse> {
         self.renewPostpaidDBInstance(RenewPostpaidDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。

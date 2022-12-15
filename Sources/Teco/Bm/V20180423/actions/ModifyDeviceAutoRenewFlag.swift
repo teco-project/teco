@@ -19,49 +19,49 @@ extension Bm {
     public struct ModifyDeviceAutoRenewFlagRequest: TCRequestModel {
         /// 自动续费标志位。0: 不自动续费; 1: 自动续费
         public let autoRenewFlag: UInt64
-        
+
         /// 需要修改的设备ID列表
         public let instanceIds: [String]
-        
-        public init (autoRenewFlag: UInt64, instanceIds: [String]) {
+
+        public init(autoRenewFlag: UInt64, instanceIds: [String]) {
             self.autoRenewFlag = autoRenewFlag
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoRenewFlag = "AutoRenewFlag"
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// ModifyDeviceAutoRenewFlag返回参数结构体
     public struct ModifyDeviceAutoRenewFlagResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改物理机服务器自动续费标志
     @inlinable
-    public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAutoRenewFlagResponse > {
+    public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAutoRenewFlagResponse> {
         self.client.execute(action: "ModifyDeviceAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改物理机服务器自动续费标志
     @inlinable
     public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAutoRenewFlagResponse {
         try await self.client.execute(action: "ModifyDeviceAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改物理机服务器自动续费标志
     @inlinable
-    public func modifyDeviceAutoRenewFlag(autoRenewFlag: UInt64, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAutoRenewFlagResponse > {
+    public func modifyDeviceAutoRenewFlag(autoRenewFlag: UInt64, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAutoRenewFlagResponse> {
         self.modifyDeviceAutoRenewFlag(ModifyDeviceAutoRenewFlagRequest(autoRenewFlag: autoRenewFlag, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改物理机服务器自动续费标志
     @inlinable
     public func modifyDeviceAutoRenewFlag(autoRenewFlag: UInt64, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAutoRenewFlagResponse {

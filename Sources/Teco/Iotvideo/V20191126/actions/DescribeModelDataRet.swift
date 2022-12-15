@@ -19,39 +19,39 @@ extension Iotvideo {
     public struct DescribeModelDataRetRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeModelDataRet返回参数结构体
     public struct DescribeModelDataRetResponse: TCResponseModel {
         /// 设备响应结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取物模型操作结果
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
     @inlinable
-    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelDataRetResponse > {
+    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDataRetResponse> {
         self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取物模型操作结果
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
@@ -59,15 +59,15 @@ extension Iotvideo {
     public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
         try await self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取物模型操作结果
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
     @inlinable
-    public func describeModelDataRet(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelDataRetResponse > {
+    public func describeModelDataRet(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDataRetResponse> {
         self.describeModelDataRet(DescribeModelDataRetRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取物模型操作结果
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。

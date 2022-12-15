@@ -22,10 +22,10 @@ extension Cr {
     public struct DownloadRecordListRequest: TCRequestModel {
         /// 模块名，本接口取值：Record
         public let module: String
-        
+
         /// 操作名，本接口取值：DownloadList
         public let operation: String
-        
+
         /// 录音日期，格式为YYYY-MM-DD
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,17 +33,17 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var bizDate: Date
-        
+
         /// 实例ID
         public let instId: String
-        
-        public init (module: String, operation: String, bizDate: Date, instId: String) {
+
+        public init(module: String, operation: String, bizDate: Date, instId: String) {
             self.module = module
             self.operation = operation
             self.bizDate = bizDate
             self.instId = instId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -51,30 +51,30 @@ extension Cr {
             case instId = "InstId"
         }
     }
-    
+
     /// DownloadRecordList返回参数结构体
     public struct DownloadRecordListResponse: TCResponseModel {
         /// 录音列表下载地址
         public let recordListUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case recordListUrl = "RecordListUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 录音查询（文件）
     ///
     /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>
     /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
     @inlinable
-    public func downloadRecordList(_ input: DownloadRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadRecordListResponse > {
+    public func downloadRecordList(_ input: DownloadRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadRecordListResponse> {
         self.client.execute(action: "DownloadRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 录音查询（文件）
     ///
     /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>
@@ -83,16 +83,16 @@ extension Cr {
     public func downloadRecordList(_ input: DownloadRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadRecordListResponse {
         try await self.client.execute(action: "DownloadRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 录音查询（文件）
     ///
     /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>
     /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
     @inlinable
-    public func downloadRecordList(module: String, operation: String, bizDate: Date, instId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadRecordListResponse > {
+    public func downloadRecordList(module: String, operation: String, bizDate: Date, instId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadRecordListResponse> {
         self.downloadRecordList(DownloadRecordListRequest(module: module, operation: operation, bizDate: bizDate, instId: instId), logger: logger, on: eventLoop)
     }
-    
+
     /// 录音查询（文件）
     ///
     /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>

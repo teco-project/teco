@@ -19,39 +19,39 @@ extension Thpc {
     public struct DeleteNodesRequest: TCRequestModel {
         /// 集群ID。
         public let clusterId: String
-        
+
         /// 节点ID。
         public let nodeIds: [String]
-        
-        public init (clusterId: String, nodeIds: [String]) {
+
+        public init(clusterId: String, nodeIds: [String]) {
             self.clusterId = clusterId
             self.nodeIds = nodeIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case nodeIds = "NodeIds"
         }
     }
-    
+
     /// DeleteNodes返回参数结构体
     public struct DeleteNodesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
     @inlinable
-    public func deleteNodes(_ input: DeleteNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNodesResponse > {
+    public func deleteNodes(_ input: DeleteNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNodesResponse> {
         self.client.execute(action: "DeleteNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
@@ -59,15 +59,15 @@ extension Thpc {
     public func deleteNodes(_ input: DeleteNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodesResponse {
         try await self.client.execute(action: "DeleteNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
     @inlinable
-    public func deleteNodes(clusterId: String, nodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNodesResponse > {
+    public func deleteNodes(clusterId: String, nodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNodesResponse> {
         self.deleteNodes(DeleteNodesRequest(clusterId: clusterId, nodeIds: nodeIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。

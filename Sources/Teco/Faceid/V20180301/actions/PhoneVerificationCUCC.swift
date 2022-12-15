@@ -19,23 +19,23 @@ extension Faceid {
     public struct PhoneVerificationCUCCRequest: TCRequestModel {
         /// 身份证号
         public let idCard: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 手机号
         public let phone: String
-        
+
         /// 敏感数据加密信息。对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         public let encryption: Encryption?
-        
-        public init (idCard: String, name: String, phone: String, encryption: Encryption? = nil) {
+
+        public init(idCard: String, name: String, phone: String, encryption: Encryption? = nil) {
             self.idCard = idCard
             self.name = name
             self.phone = phone
             self.encryption = encryption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idCard = "IdCard"
             case name = "Name"
@@ -43,7 +43,7 @@ extension Faceid {
             case encryption = "Encryption"
         }
     }
-    
+
     /// PhoneVerificationCUCC返回参数结构体
     public struct PhoneVerificationCUCCResponse: TCResponseModel {
         /// 认证结果码，收费情况如下。
@@ -58,17 +58,17 @@ extension Faceid {
         /// -10: 认证未通过
         /// -11: 验证中心服务繁忙
         public let result: String
-        
+
         /// 运营商名称。
         /// 取值范围为["移动","联通","电信",""]
         public let isp: String
-        
+
         /// 业务结果描述。
         public let description: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case isp = "Isp"
@@ -76,15 +76,15 @@ extension Faceid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 手机号三要素核验（联通）
     ///
     /// 本接口用于校验中国联通手机号、姓名和身份证号的真实性和一致性。中国联通支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerificationCUCC(_ input: PhoneVerificationCUCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PhoneVerificationCUCCResponse > {
+    public func phoneVerificationCUCC(_ input: PhoneVerificationCUCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationCUCCResponse> {
         self.client.execute(action: "PhoneVerificationCUCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 手机号三要素核验（联通）
     ///
     /// 本接口用于校验中国联通手机号、姓名和身份证号的真实性和一致性。中国联通支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
@@ -92,15 +92,15 @@ extension Faceid {
     public func phoneVerificationCUCC(_ input: PhoneVerificationCUCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCUCCResponse {
         try await self.client.execute(action: "PhoneVerificationCUCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 手机号三要素核验（联通）
     ///
     /// 本接口用于校验中国联通手机号、姓名和身份证号的真实性和一致性。中国联通支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerificationCUCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PhoneVerificationCUCCResponse > {
+    public func phoneVerificationCUCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationCUCCResponse> {
         self.phoneVerificationCUCC(PhoneVerificationCUCCRequest(idCard: idCard, name: name, phone: phone, encryption: encryption), logger: logger, on: eventLoop)
     }
-    
+
     /// 手机号三要素核验（联通）
     ///
     /// 本接口用于校验中国联通手机号、姓名和身份证号的真实性和一致性。中国联通支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。

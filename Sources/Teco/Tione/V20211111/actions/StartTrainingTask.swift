@@ -19,44 +19,44 @@ extension Tione {
     public struct StartTrainingTaskRequest: TCRequestModel {
         /// 训练任务ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// StartTrainingTask返回参数结构体
     public struct StartTrainingTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动模型训练任务
     @inlinable
-    public func startTrainingTask(_ input: StartTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartTrainingTaskResponse > {
+    public func startTrainingTask(_ input: StartTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartTrainingTaskResponse> {
         self.client.execute(action: "StartTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动模型训练任务
     @inlinable
     public func startTrainingTask(_ input: StartTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartTrainingTaskResponse {
         try await self.client.execute(action: "StartTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动模型训练任务
     @inlinable
-    public func startTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartTrainingTaskResponse > {
+    public func startTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartTrainingTaskResponse> {
         self.startTrainingTask(StartTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动模型训练任务
     @inlinable
     public func startTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartTrainingTaskResponse {

@@ -19,34 +19,34 @@ extension Cdb {
     public struct ResetRootAccountRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// ResetRootAccount返回参数结构体
     public struct ResetRootAccountResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置ROOT账号
     ///
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable
-    public func resetRootAccount(_ input: ResetRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetRootAccountResponse > {
+    public func resetRootAccount(_ input: ResetRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRootAccountResponse> {
         self.client.execute(action: "ResetRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置ROOT账号
     ///
     /// 重置实例ROOT账号，初始化账号权限
@@ -54,15 +54,15 @@ extension Cdb {
     public func resetRootAccount(_ input: ResetRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRootAccountResponse {
         try await self.client.execute(action: "ResetRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置ROOT账号
     ///
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable
-    public func resetRootAccount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetRootAccountResponse > {
+    public func resetRootAccount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRootAccountResponse> {
         self.resetRootAccount(ResetRootAccountRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置ROOT账号
     ///
     /// 重置实例ROOT账号，初始化账号权限

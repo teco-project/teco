@@ -19,23 +19,23 @@ extension Dlc {
     public struct CreateDMSDatabaseRequest: TCRequestModel {
         /// 基础元数据对象
         public let asset: Asset?
-        
+
         /// Schema目录
         public let schemaName: String?
-        
+
         /// Db存储路径
         public let location: String?
-        
+
         /// 数据库名称
         public let name: String?
-        
-        public init (asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil) {
+
+        public init(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil) {
             self.asset = asset
             self.schemaName = schemaName
             self.location = location
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case asset = "Asset"
             case schemaName = "SchemaName"
@@ -43,35 +43,35 @@ extension Dlc {
             case name = "Name"
         }
     }
-    
+
     /// CreateDMSDatabase返回参数结构体
     public struct CreateDMSDatabaseResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// DMS元数据创建库
     @inlinable
-    public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDMSDatabaseResponse > {
+    public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDMSDatabaseResponse> {
         self.client.execute(action: "CreateDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据创建库
     @inlinable
     public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSDatabaseResponse {
         try await self.client.execute(action: "CreateDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DMS元数据创建库
     @inlinable
-    public func createDMSDatabase(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDMSDatabaseResponse > {
+    public func createDMSDatabase(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDMSDatabaseResponse> {
         self.createDMSDatabase(CreateDMSDatabaseRequest(asset: asset, schemaName: schemaName, location: location, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据创建库
     @inlinable
     public func createDMSDatabase(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSDatabaseResponse {

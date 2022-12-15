@@ -19,23 +19,23 @@ extension Tat {
     public struct DescribeAutomationAgentStatusRequest: TCRequestModel {
         /// 待查询的实例ID列表。
         public let instanceIds: [String]?
-        
+
         /// 过滤条件。<br> <li> agent-status - String - 是否必填：否 -（过滤条件）按照agent状态过滤，取值：Online 在线，Offline 离线。<br> <li> environment - String - 是否必填：否 -（过滤条件）按照agent运行环境查询，取值：Linux。<br> <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。 <br>每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `InstanceIds` 和 `Filters` 。
         public let filters: [Filter]?
-        
+
         /// 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
-        
-        public init (instanceIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(instanceIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceIds = instanceIds
             self.filters = filters
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case filters = "Filters"
@@ -43,33 +43,33 @@ extension Tat {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeAutomationAgentStatus返回参数结构体
     public struct DescribeAutomationAgentStatusResponse: TCResponseModel {
         /// Agent 信息列表。
         public let automationAgentSet: [AutomationAgentInfo]
-        
+
         /// 符合条件的 Agent 总数。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case automationAgentSet = "AutomationAgentSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询客户端状态
     ///
     /// 此接口用于查询自动化助手客户端的状态。
     @inlinable
-    public func describeAutomationAgentStatus(_ input: DescribeAutomationAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutomationAgentStatusResponse > {
+    public func describeAutomationAgentStatus(_ input: DescribeAutomationAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutomationAgentStatusResponse> {
         self.client.execute(action: "DescribeAutomationAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户端状态
     ///
     /// 此接口用于查询自动化助手客户端的状态。
@@ -77,15 +77,15 @@ extension Tat {
     public func describeAutomationAgentStatus(_ input: DescribeAutomationAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutomationAgentStatusResponse {
         try await self.client.execute(action: "DescribeAutomationAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询客户端状态
     ///
     /// 此接口用于查询自动化助手客户端的状态。
     @inlinable
-    public func describeAutomationAgentStatus(instanceIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutomationAgentStatusResponse > {
+    public func describeAutomationAgentStatus(instanceIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutomationAgentStatusResponse> {
         self.describeAutomationAgentStatus(DescribeAutomationAgentStatusRequest(instanceIds: instanceIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询客户端状态
     ///
     /// 此接口用于查询自动化助手客户端的状态。

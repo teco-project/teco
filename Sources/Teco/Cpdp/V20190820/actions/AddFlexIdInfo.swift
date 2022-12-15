@@ -21,31 +21,31 @@ extension Cpdp {
         /// 0:身份证
         /// 1:社会信用代码
         public let idType: Int64
-        
+
         /// 证件号
         public let idNo: String
-        
+
         /// 收款用户ID
         public let payeeId: String
-        
+
         /// 环境类型
         /// __release__:生产环境
         /// __sandbox__:沙箱环境
         /// __test__:测试环境
         /// 缺省默认为生产环境
         public let environment: String?
-        
+
         /// 姓名
         public let name: String?
-        
-        public init (idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil) {
+
+        public init(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil) {
             self.idType = idType
             self.idNo = idNo
             self.payeeId = payeeId
             self.environment = environment
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idType = "IdType"
             case idNo = "IdNo"
@@ -54,22 +54,22 @@ extension Cpdp {
             case name = "Name"
         }
     }
-    
+
     /// AddFlexIdInfo返回参数结构体
     public struct AddFlexIdInfoResponse: TCResponseModel {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
-        
+
         /// 错误消息
         public let errMessage: String
-        
+
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -77,25 +77,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 灵云V2-补充证件信息
     @inlinable
-    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexIdInfoResponse > {
+    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexIdInfoResponse> {
         self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云V2-补充证件信息
     @inlinable
     public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
         try await self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 灵云V2-补充证件信息
     @inlinable
-    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexIdInfoResponse > {
+    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexIdInfoResponse> {
         self.addFlexIdInfo(AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 灵云V2-补充证件信息
     @inlinable
     public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {

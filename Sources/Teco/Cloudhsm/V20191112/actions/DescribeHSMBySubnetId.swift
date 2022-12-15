@@ -19,52 +19,52 @@ extension Cloudhsm {
     public struct DescribeHSMBySubnetIdRequest: TCRequestModel {
         /// Subnet标识符
         public let subnetId: String
-        
-        public init (subnetId: String) {
+
+        public init(subnetId: String) {
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// DescribeHSMBySubnetId返回参数结构体
     public struct DescribeHSMBySubnetIdResponse: TCResponseModel {
         /// HSM数量
         public let totalCount: Int64
-        
+
         /// 作为查询条件的SubnetId
         public let subnetId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case subnetId = "SubnetId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通过SubnetId获取Hsm资源数
     @inlinable
-    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMBySubnetIdResponse > {
+    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMBySubnetIdResponse> {
         self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通过SubnetId获取Hsm资源数
     @inlinable
     public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
         try await self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通过SubnetId获取Hsm资源数
     @inlinable
-    public func describeHSMBySubnetId(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMBySubnetIdResponse > {
+    public func describeHSMBySubnetId(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMBySubnetIdResponse> {
         self.describeHSMBySubnetId(DescribeHSMBySubnetIdRequest(subnetId: subnetId), logger: logger, on: eventLoop)
     }
-    
+
     /// 通过SubnetId获取Hsm资源数
     @inlinable
     public func describeHSMBySubnetId(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {

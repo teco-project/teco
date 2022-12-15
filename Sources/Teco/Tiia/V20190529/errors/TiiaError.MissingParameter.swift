@@ -19,38 +19,38 @@ extension TCTiiaError {
         enum Code: String {
             case errorParameterEmpty = "MissingParameter.ErrorParameterEmpty"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 必选参数为空。
         public static var errorParameterEmpty: MissingParameter {
             MissingParameter(.errorParameterEmpty)
         }
-        
+
         public func asTiiaError() -> TCTiiaError {
             let code: TCTiiaError.Code
             switch self.error {
-            case .errorParameterEmpty: 
+            case .errorParameterEmpty:
                 code = .missingParameter_ErrorParameterEmpty
             }
             return TCTiiaError(code, context: self.context)

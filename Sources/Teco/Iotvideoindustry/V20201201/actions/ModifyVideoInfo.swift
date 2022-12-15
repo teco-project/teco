@@ -19,49 +19,49 @@ extension Iotvideoindustry {
     public struct ModifyVideoInfoRequest: TCRequestModel {
         /// 视频ID列表长度限制100内
         public let initIDs: [Int64]
-        
+
         /// 过期时间 时间戳 -1: 永不过期 0: 无效值
         public let expireTime: Int64
-        
-        public init (initIDs: [Int64], expireTime: Int64) {
+
+        public init(initIDs: [Int64], expireTime: Int64) {
             self.initIDs = initIDs
             self.expireTime = expireTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case initIDs = "InitIDs"
             case expireTime = "ExpireTime"
         }
     }
-    
+
     /// ModifyVideoInfo返回参数结构体
     public struct ModifyVideoInfoResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改录像存储列表
     @inlinable
-    public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVideoInfoResponse > {
+    public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoInfoResponse> {
         self.client.execute(action: "ModifyVideoInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改录像存储列表
     @inlinable
     public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {
         try await self.client.execute(action: "ModifyVideoInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改录像存储列表
     @inlinable
-    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVideoInfoResponse > {
+    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoInfoResponse> {
         self.modifyVideoInfo(ModifyVideoInfoRequest(initIDs: initIDs, expireTime: expireTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改录像存储列表
     @inlinable
     public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {

@@ -22,25 +22,25 @@ extension Pts {
     public struct CreateCronJobRequest: TCRequestModel {
         /// 定时任务名字
         public let name: String
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// 场景ID
         public let scenarioId: String
-        
+
         /// 场景名称
         public let scenarioName: String
-        
+
         /// 执行频率类型，1:只执行一次; 2:日粒度; 3:周粒度; 4:高级
         public let frequencyType: Int64
-        
+
         /// cron表达式
         public let cronExpression: String
-        
+
         /// 任务发起人
         public let jobOwner: String
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -48,14 +48,14 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date?
-        
+
         /// Notice ID
         public let noticeId: String?
-        
+
         /// 备注
         public let note: String?
-        
-        public init (name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil) {
+
+        public init(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil) {
             self.name = name
             self.projectId = projectId
             self.scenarioId = scenarioId
@@ -67,7 +67,7 @@ extension Pts {
             self.noticeId = noticeId
             self.note = note
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case projectId = "ProjectId"
@@ -81,39 +81,39 @@ extension Pts {
             case note = "Note"
         }
     }
-    
+
     /// CreateCronJob返回参数结构体
     public struct CreateCronJobResponse: TCResponseModel {
         /// 定时任务ID
         public let cronJobId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cronJobId = "CronJobId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建定时任务
     @inlinable
-    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCronJobResponse > {
+    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCronJobResponse> {
         self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建定时任务
     @inlinable
     public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
         try await self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建定时任务
     @inlinable
-    public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCronJobResponse > {
+    public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCronJobResponse> {
         self.createCronJob(CreateCronJobRequest(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建定时任务
     @inlinable
     public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {

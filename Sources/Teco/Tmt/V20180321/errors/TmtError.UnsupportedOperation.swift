@@ -24,73 +24,73 @@ extension TCTmtError {
             case unsupportedSourceLanguage = "UnsupportedOperation.UnsupportedSourceLanguage"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 音频分片长度超过限制，请保证分片长度小于8s。
         public static var audioDurationExceed: UnsupportedOperation {
             UnsupportedOperation(.audioDurationExceed)
         }
-        
+
         /// 单次请求text超过长度限制，请保证单次请求⻓度低于2000。
         public static var textTooLong: UnsupportedOperation {
             UnsupportedOperation(.textTooLong)
         }
-        
+
         /// 不支持的目标语言，请参照语言列表。
         public static var unSupportedTargetLanguage: UnsupportedOperation {
             UnsupportedOperation(.unSupportedTargetLanguage)
         }
-        
+
         /// 不支持的语言，请参照语言列表。
         public static var unsupportedLanguage: UnsupportedOperation {
             UnsupportedOperation(.unsupportedLanguage)
         }
-        
+
         /// 不支持的源语言，请参照语言列表。
         public static var unsupportedSourceLanguage: UnsupportedOperation {
             UnsupportedOperation(.unsupportedSourceLanguage)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asTmtError() -> TCTmtError {
             let code: TCTmtError.Code
             switch self.error {
-            case .audioDurationExceed: 
+            case .audioDurationExceed:
                 code = .unsupportedOperation_AudioDurationExceed
-            case .textTooLong: 
+            case .textTooLong:
                 code = .unsupportedOperation_TextTooLong
-            case .unSupportedTargetLanguage: 
+            case .unSupportedTargetLanguage:
                 code = .unsupportedOperation_UnSupportedTargetLanguage
-            case .unsupportedLanguage: 
+            case .unsupportedLanguage:
                 code = .unsupportedOperation_UnsupportedLanguage
-            case .unsupportedSourceLanguage: 
+            case .unsupportedSourceLanguage:
                 code = .unsupportedOperation_UnsupportedSourceLanguage
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCTmtError(code, context: self.context)

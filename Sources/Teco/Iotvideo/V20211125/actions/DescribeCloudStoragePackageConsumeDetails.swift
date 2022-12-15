@@ -27,7 +27,7 @@ extension Iotvideo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date
-        
+
         /// 结束日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,46 +35,46 @@ extension Iotvideo {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
-        public init (startDate: Date, endDate: Date) {
+
+        public init(startDate: Date, endDate: Date) {
             self.startDate = startDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startDate = "StartDate"
             case endDate = "EndDate"
         }
     }
-    
+
     /// DescribeCloudStoragePackageConsumeDetails返回参数结构体
     public struct DescribeCloudStoragePackageConsumeDetailsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取云存套餐包消耗详细记录
     @inlinable
-    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStoragePackageConsumeDetailsResponse > {
+    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
         self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取云存套餐包消耗详细记录
     @inlinable
     public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
         try await self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取云存套餐包消耗详细记录
     @inlinable
-    public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStoragePackageConsumeDetailsResponse > {
+    public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
         self.describeCloudStoragePackageConsumeDetails(DescribeCloudStoragePackageConsumeDetailsRequest(startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取云存套餐包消耗详细记录
     @inlinable
     public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {

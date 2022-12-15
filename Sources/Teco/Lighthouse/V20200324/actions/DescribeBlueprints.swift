@@ -19,13 +19,13 @@ extension Lighthouse {
     public struct DescribeBlueprintsRequest: TCRequestModel {
         /// 镜像 ID 列表。
         public let blueprintIds: [String]?
-        
+
         /// 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         public let limit: Int64?
-        
+
         /// 过滤器列表。
         /// <li>blueprint-id</li>按照【镜像 ID】进行过滤。
         /// 类型：String
@@ -49,14 +49,14 @@ extension Lighthouse {
         /// 必选：否
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 BlueprintIds 和 Filters 。
         public let filters: [Filter]?
-        
-        public init (blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
+
+        public init(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.blueprintIds = blueprintIds
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case blueprintIds = "BlueprintIds"
             case offset = "Offset"
@@ -64,33 +64,33 @@ extension Lighthouse {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeBlueprints返回参数结构体
     public struct DescribeBlueprintsResponse: TCResponseModel {
         /// 符合条件的镜像数量。
         public let totalCount: Int64
-        
+
         /// 镜像详细信息列表。
         public let blueprintSet: [Blueprint]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case blueprintSet = "BlueprintSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询镜像信息
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
-    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlueprintsResponse > {
+    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintsResponse> {
         self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像信息
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
@@ -98,15 +98,15 @@ extension Lighthouse {
     public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
         try await self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询镜像信息
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
-    public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlueprintsResponse > {
+    public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintsResponse> {
         self.describeBlueprints(DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询镜像信息
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。

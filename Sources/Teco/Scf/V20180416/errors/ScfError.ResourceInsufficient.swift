@@ -19,38 +19,38 @@ extension TCScfError {
         enum Code: String {
             case cos = "ResourceInsufficient.COS"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// COS资源不足。
         public static var cos: ResourceInsufficient {
             ResourceInsufficient(.cos)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
-            case .cos: 
+            case .cos:
                 code = .resourceInsufficient_COS
             }
             return TCScfError(code, context: self.context)

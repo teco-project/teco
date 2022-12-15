@@ -19,33 +19,33 @@ extension Eiam {
     public struct DescribeUserGroupRequest: TCRequestModel {
         /// 用户组ID，是用户组的全局唯一标识。
         public let userGroupId: String
-        
-        public init (userGroupId: String) {
+
+        public init(userGroupId: String) {
             self.userGroupId = userGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userGroupId = "UserGroupId"
         }
     }
-    
+
     /// DescribeUserGroup返回参数结构体
     public struct DescribeUserGroupResponse: TCResponseModel {
         /// 用户组昵称，长度限制：64个字符。 DisplayName不唯一。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let displayName: String?
-        
+
         /// 用户组备注，长度限制：512个字符。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 用户组ID，是用户组的全局唯一标识。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userGroupId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
             case description = "Description"
@@ -53,25 +53,25 @@ extension Eiam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户组信息
     @inlinable
-    public func describeUserGroup(_ input: DescribeUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupResponse > {
+    public func describeUserGroup(_ input: DescribeUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupResponse> {
         self.client.execute(action: "DescribeUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户组信息
     @inlinable
     public func describeUserGroup(_ input: DescribeUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResponse {
         try await self.client.execute(action: "DescribeUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户组信息
     @inlinable
-    public func describeUserGroup(userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupResponse > {
+    public func describeUserGroup(userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupResponse> {
         self.describeUserGroup(DescribeUserGroupRequest(userGroupId: userGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户组信息
     @inlinable
     public func describeUserGroup(userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResponse {

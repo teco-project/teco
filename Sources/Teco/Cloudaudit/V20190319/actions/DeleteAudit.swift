@@ -19,48 +19,48 @@ extension Cloudaudit {
     public struct DeleteAuditRequest: TCRequestModel {
         /// 跟踪集名称
         public let auditName: String
-        
-        public init (auditName: String) {
+
+        public init(auditName: String) {
             self.auditName = auditName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case auditName = "AuditName"
         }
     }
-    
+
     /// DeleteAudit返回参数结构体
     public struct DeleteAuditResponse: TCResponseModel {
         /// 是否删除成功
         public let isSuccess: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除跟踪集
     @inlinable
-    public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditResponse > {
+    public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditResponse> {
         self.client.execute(action: "DeleteAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除跟踪集
     @inlinable
     public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {
         try await self.client.execute(action: "DeleteAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除跟踪集
     @inlinable
-    public func deleteAudit(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditResponse > {
+    public func deleteAudit(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditResponse> {
         self.deleteAudit(DeleteAuditRequest(auditName: auditName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除跟踪集
     @inlinable
     public func deleteAudit(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {

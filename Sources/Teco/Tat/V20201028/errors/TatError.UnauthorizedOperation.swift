@@ -22,59 +22,59 @@ extension TCTatError {
             case mfaExpired = "UnauthorizedOperation.MFAExpired"
             case mfaNotFound = "UnauthorizedOperation.MFANotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM鉴权失败。
         public static var camAuthFailed: UnauthorizedOperation {
             UnauthorizedOperation(.camAuthFailed)
         }
-        
+
         /// Token 无效。
         public static var invalidToken: UnauthorizedOperation {
             UnauthorizedOperation(.invalidToken)
         }
-        
+
         /// Multi-Factor Authentication(MFA) 过期。
         public static var mfaExpired: UnauthorizedOperation {
             UnauthorizedOperation(.mfaExpired)
         }
-        
+
         /// Multi-Factor Authentication(MFA) 不存在。
         public static var mfaNotFound: UnauthorizedOperation {
             UnauthorizedOperation(.mfaNotFound)
         }
-        
+
         public func asTatError() -> TCTatError {
             let code: TCTatError.Code
             switch self.error {
-            case .camAuthFailed: 
+            case .camAuthFailed:
                 code = .unauthorizedOperation_CamAuthFailed
-            case .invalidToken: 
+            case .invalidToken:
                 code = .unauthorizedOperation_InvalidToken
-            case .mfaExpired: 
+            case .mfaExpired:
                 code = .unauthorizedOperation_MFAExpired
-            case .mfaNotFound: 
+            case .mfaNotFound:
                 code = .unauthorizedOperation_MFANotFound
             }
             return TCTatError(code, context: self.context)

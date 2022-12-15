@@ -19,16 +19,16 @@ extension Yunjing {
     public struct DescribeProcessTaskStatusRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。
         public let uuid: String
-        
-        public init (uuid: String) {
+
+        public init(uuid: String) {
             self.uuid = uuid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
         }
     }
-    
+
     /// DescribeProcessTaskStatus返回参数结构体
     public struct DescribeProcessTaskStatusResponse: TCResponseModel {
         /// 任务状态。
@@ -37,24 +37,24 @@ extension Yunjing {
         /// <li>COLLECTING：进程获取中</li>
         /// <li>FAILED：进程获取失败</li>
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实时拉取进程任务状态
     ///
     /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
     @inlinable
-    public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessTaskStatusResponse > {
+    public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProcessTaskStatusResponse> {
         self.client.execute(action: "DescribeProcessTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实时拉取进程任务状态
     ///
     /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
@@ -62,15 +62,15 @@ extension Yunjing {
     public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessTaskStatusResponse {
         try await self.client.execute(action: "DescribeProcessTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实时拉取进程任务状态
     ///
     /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
     @inlinable
-    public func describeProcessTaskStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessTaskStatusResponse > {
+    public func describeProcessTaskStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProcessTaskStatusResponse> {
         self.describeProcessTaskStatus(DescribeProcessTaskStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实时拉取进程任务状态
     ///
     /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。

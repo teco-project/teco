@@ -19,44 +19,44 @@ extension Iecp {
     public struct CreateEdgeUnitApplicationVisualizationRequest: TCRequestModel {
         /// 基本信息
         public let basicInfo: ApplicationBasicInfo
-        
+
         /// 基本配置
         public let basicConfig: ApplicationBasicConfig
-        
+
         /// 单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 卷列表
         public let volumes: [Volume]?
-        
+
         /// 服务配置
         public let service: Service?
-        
+
         /// 模版ID
         public let templateID: UInt64?
-        
+
         /// Job配置
         public let job: Job?
-        
+
         /// CronJob配置
         public let cronJob: CronJob?
-        
+
         /// 重新运行策略
         public let restartPolicy: String?
-        
+
         /// 镜像拉取密钥
         public let imagePullSecrets: [String]?
-        
+
         /// HPA配置
         public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
-        
+
         /// 初始化容器列表
         public let initContainers: [Container]?
-        
+
         /// 容器列表
         public let containers: [Container]?
-        
-        public init (basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil) {
+
+        public init(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil) {
             self.basicInfo = basicInfo
             self.basicConfig = basicConfig
             self.edgeUnitId = edgeUnitId
@@ -71,7 +71,7 @@ extension Iecp {
             self.initContainers = initContainers
             self.containers = containers
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case basicInfo = "BasicInfo"
             case basicConfig = "BasicConfig"
@@ -88,40 +88,40 @@ extension Iecp {
             case containers = "Containers"
         }
     }
-    
+
     /// CreateEdgeUnitApplicationVisualization返回参数结构体
     public struct CreateEdgeUnitApplicationVisualizationResponse: TCResponseModel {
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 可视化创建应用
     @inlinable
-    public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitApplicationVisualizationResponse > {
+    public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitApplicationVisualizationResponse> {
         self.client.execute(action: "CreateEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 可视化创建应用
     @inlinable
     public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationVisualizationResponse {
         try await self.client.execute(action: "CreateEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 可视化创建应用
     @inlinable
-    public func createEdgeUnitApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitApplicationVisualizationResponse > {
+    public func createEdgeUnitApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitApplicationVisualizationResponse> {
         self.createEdgeUnitApplicationVisualization(CreateEdgeUnitApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, edgeUnitId: edgeUnitId, volumes: volumes, service: service, templateID: templateID, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), logger: logger, on: eventLoop)
     }
-    
+
     /// 可视化创建应用
     @inlinable
     public func createEdgeUnitApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationVisualizationResponse {

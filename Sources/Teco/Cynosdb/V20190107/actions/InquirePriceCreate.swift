@@ -19,35 +19,35 @@ extension Cynosdb {
     public struct InquirePriceCreateRequest: TCRequestModel {
         /// 可用区,每个地域提供最佳实践
         public let zone: String
-        
+
         /// 购买计算节点个数
         public let goodsNum: Int64
-        
+
         /// 实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS
         public let instancePayMode: String
-        
+
         /// 存储购买类型，可选值为：PREPAID, POSTPAID
         public let storagePayMode: String
-        
+
         /// CPU核数，PREPAID与POSTPAID实例类型必传
         public let cpu: Int64?
-        
+
         /// 内存大小，单位G，PREPAID与POSTPAID实例类型必传
         public let memory: Int64?
-        
+
         /// Ccu大小，serverless类型必传
         public let ccu: Float?
-        
+
         /// 存储大小，PREPAID存储类型必传
         public let storageLimit: Int64?
-        
+
         /// 购买时长，PREPAID购买类型必传
         public let timeSpan: Int64?
-        
+
         /// 时长单位，可选值为：m,d。PREPAID购买类型必传
         public let timeUnit: String?
-        
-        public init (zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil) {
+
+        public init(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil) {
             self.zone = zone
             self.goodsNum = goodsNum
             self.instancePayMode = instancePayMode
@@ -59,7 +59,7 @@ extension Cynosdb {
             self.timeSpan = timeSpan
             self.timeUnit = timeUnit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case goodsNum = "GoodsNum"
@@ -73,33 +73,33 @@ extension Cynosdb {
             case timeUnit = "TimeUnit"
         }
     }
-    
+
     /// InquirePriceCreate返回参数结构体
     public struct InquirePriceCreateResponse: TCResponseModel {
         /// 实例价格
         public let instancePrice: TradePrice
-        
+
         /// 存储价格
         public let storagePrice: TradePrice
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instancePrice = "InstancePrice"
             case storagePrice = "StoragePrice"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新购集群询价
     ///
     /// 查询新购集群价格
     @inlinable
-    public func inquirePriceCreate(_ input: InquirePriceCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateResponse > {
+    public func inquirePriceCreate(_ input: InquirePriceCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateResponse> {
         self.client.execute(action: "InquirePriceCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新购集群询价
     ///
     /// 查询新购集群价格
@@ -107,15 +107,15 @@ extension Cynosdb {
     public func inquirePriceCreate(_ input: InquirePriceCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
         try await self.client.execute(action: "InquirePriceCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新购集群询价
     ///
     /// 查询新购集群价格
     @inlinable
-    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateResponse > {
+    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateResponse> {
         self.inquirePriceCreate(InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
     }
-    
+
     /// 新购集群询价
     ///
     /// 查询新购集群价格

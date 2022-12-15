@@ -19,23 +19,23 @@ extension Iotvideoindustry {
     public struct DescribeDeviceEventRequest: TCRequestModel {
         /// 开始时间，秒级时间戳
         public let startTime: Int64
-        
+
         /// 结束时间，秒级时间戳
         public let endTime: Int64
-        
+
         /// 设备Id
         public let deviceId: String?
-        
+
         /// 默认为全部 事件类型 1:注册 2:心跳 4:录制异常 5:播放异常 6:流中断
         public let eventTypes: [Int64]?
-        
+
         /// 偏移值
         public let offset: Int64?
-        
+
         /// limit限制值
         public let limit: Int64?
-        
-        public init (startTime: Int64, endTime: Int64, deviceId: String? = nil, eventTypes: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(startTime: Int64, endTime: Int64, deviceId: String? = nil, eventTypes: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.deviceId = deviceId
@@ -43,7 +43,7 @@ extension Iotvideoindustry {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -53,45 +53,45 @@ extension Iotvideoindustry {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeDeviceEvent返回参数结构体
     public struct DescribeDeviceEventResponse: TCResponseModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 事件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let events: [Events]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case events = "Events"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备事件
     @inlinable
-    public func describeDeviceEvent(_ input: DescribeDeviceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceEventResponse > {
+    public func describeDeviceEvent(_ input: DescribeDeviceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceEventResponse> {
         self.client.execute(action: "DescribeDeviceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备事件
     @inlinable
     public func describeDeviceEvent(_ input: DescribeDeviceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventResponse {
         try await self.client.execute(action: "DescribeDeviceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备事件
     @inlinable
-    public func describeDeviceEvent(startTime: Int64, endTime: Int64, deviceId: String? = nil, eventTypes: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceEventResponse > {
+    public func describeDeviceEvent(startTime: Int64, endTime: Int64, deviceId: String? = nil, eventTypes: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceEventResponse> {
         self.describeDeviceEvent(DescribeDeviceEventRequest(startTime: startTime, endTime: endTime, deviceId: deviceId, eventTypes: eventTypes, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备事件
     @inlinable
     public func describeDeviceEvent(startTime: Int64, endTime: Int64, deviceId: String? = nil, eventTypes: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventResponse {

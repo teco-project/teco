@@ -19,34 +19,34 @@ extension Tcr {
     public struct DeleteApplicationTriggerPersonalRequest: TCRequestModel {
         /// 触发器名称
         public let triggerName: String
-        
-        public init (triggerName: String) {
+
+        public init(triggerName: String) {
             self.triggerName = triggerName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case triggerName = "TriggerName"
         }
     }
-    
+
     /// DeleteApplicationTriggerPersonal返回参数结构体
     public struct DeleteApplicationTriggerPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
     @inlinable
-    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationTriggerPersonalResponse > {
+    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
         self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
@@ -54,15 +54,15 @@ extension Tcr {
     public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
         try await self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
     @inlinable
-    public func deleteApplicationTriggerPersonal(triggerName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationTriggerPersonalResponse > {
+    public func deleteApplicationTriggerPersonal(triggerName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
         self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器

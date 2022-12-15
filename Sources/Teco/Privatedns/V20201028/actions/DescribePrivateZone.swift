@@ -19,48 +19,48 @@ extension Privatedns {
     public struct DescribePrivateZoneRequest: TCRequestModel {
         /// 域名，格式必须是标准的TLD
         public let zoneId: String
-        
-        public init (zoneId: String) {
+
+        public init(zoneId: String) {
             self.zoneId = zoneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
         }
     }
-    
+
     /// DescribePrivateZone返回参数结构体
     public struct DescribePrivateZoneResponse: TCResponseModel {
         /// 私有域详情
         public let privateZone: PrivateZone
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case privateZone = "PrivateZone"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取私有域信息
     @inlinable
-    public func describePrivateZone(_ input: DescribePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneResponse > {
+    public func describePrivateZone(_ input: DescribePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateZoneResponse> {
         self.client.execute(action: "DescribePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有域信息
     @inlinable
     public func describePrivateZone(_ input: DescribePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneResponse {
         try await self.client.execute(action: "DescribePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取私有域信息
     @inlinable
-    public func describePrivateZone(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneResponse > {
+    public func describePrivateZone(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateZoneResponse> {
         self.describePrivateZone(DescribePrivateZoneRequest(zoneId: zoneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有域信息
     @inlinable
     public func describePrivateZone(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneResponse {

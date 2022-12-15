@@ -19,25 +19,25 @@ extension Tcss {
     public struct DescribeAssetImageRegistryVulListExportRequest: TCRequestModel {
         /// 导出字段
         public let exportField: [String]
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>Level- String - 是否必填：否 - 漏洞级别筛选，</li>
         /// <li>Name - String - 是否必填：否 - 漏洞名称</li>
         public let filters: [AssetFilters]?
-        
+
         /// 镜像信息
         public let imageInfo: ImageInfo?
-        
+
         /// 镜像标识Id
         public let id: UInt64?
-        
-        public init (exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil) {
+
+        public init(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil) {
             self.exportField = exportField
             self.limit = limit
             self.offset = offset
@@ -45,7 +45,7 @@ extension Tcss {
             self.imageInfo = imageInfo
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case exportField = "ExportField"
             case limit = "Limit"
@@ -55,40 +55,40 @@ extension Tcss {
             case id = "Id"
         }
     }
-    
+
     /// DescribeAssetImageRegistryVulListExport返回参数结构体
     public struct DescribeAssetImageRegistryVulListExportResponse: TCResponseModel {
         /// excel文件下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 镜像仓库漏洞列表导出
     @inlinable
-    public func describeAssetImageRegistryVulListExport(_ input: DescribeAssetImageRegistryVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryVulListExportResponse > {
+    public func describeAssetImageRegistryVulListExport(_ input: DescribeAssetImageRegistryVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVulListExportResponse> {
         self.client.execute(action: "DescribeAssetImageRegistryVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像仓库漏洞列表导出
     @inlinable
     public func describeAssetImageRegistryVulListExport(_ input: DescribeAssetImageRegistryVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVulListExportResponse {
         try await self.client.execute(action: "DescribeAssetImageRegistryVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 镜像仓库漏洞列表导出
     @inlinable
-    public func describeAssetImageRegistryVulListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryVulListExportResponse > {
+    public func describeAssetImageRegistryVulListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVulListExportResponse> {
         self.describeAssetImageRegistryVulListExport(DescribeAssetImageRegistryVulListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 镜像仓库漏洞列表导出
     @inlinable
     public func describeAssetImageRegistryVulListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVulListExportResponse {

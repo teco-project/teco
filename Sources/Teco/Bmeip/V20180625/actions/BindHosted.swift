@@ -19,43 +19,43 @@ extension Bmeip {
     public struct BindHostedRequest: TCRequestModel {
         /// Eip实例ID，可通过DescribeBmEip 接口返回字段中的 eipId获取。Eip和EipId参数必须要填写一个。
         public let eipId: String
-        
+
         /// 托管机器实例ID
         public let instanceId: String
-        
-        public init (eipId: String, instanceId: String) {
+
+        public init(eipId: String, instanceId: String) {
             self.eipId = eipId
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eipId = "EipId"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// BindHosted返回参数结构体
     public struct BindHostedResponse: TCResponseModel {
         /// 异步任务ID，可以通过EipBmQueryTask查询任务状态
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 黑石托管机器绑定EIP
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
-    public func bindHosted(_ input: BindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindHostedResponse > {
+    public func bindHosted(_ input: BindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindHostedResponse> {
         self.client.execute(action: "BindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 黑石托管机器绑定EIP
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
@@ -63,15 +63,15 @@ extension Bmeip {
     public func bindHosted(_ input: BindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindHostedResponse {
         try await self.client.execute(action: "BindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 黑石托管机器绑定EIP
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
-    public func bindHosted(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindHostedResponse > {
+    public func bindHosted(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindHostedResponse> {
         self.bindHosted(BindHostedRequest(eipId: eipId, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 黑石托管机器绑定EIP
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上

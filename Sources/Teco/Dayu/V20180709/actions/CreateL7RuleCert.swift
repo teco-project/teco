@@ -19,26 +19,26 @@ extension Dayu {
     public struct CreateL7RuleCertRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源实例ID，例如高防IP实例的ID，高防IP专业版实例的ID
         public let id: String
-        
+
         /// 规则ID
         public let ruleId: String
-        
+
         /// 证书类型，当为协议为HTTPS协议时必须填，取值[2(腾讯云托管证书)]
         public let certType: UInt64
-        
+
         /// 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
         public let sslId: String?
-        
+
         /// 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
         public let cert: String?
-        
+
         /// 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
         public let privateKey: String?
-        
-        public init (business: String, id: String, ruleId: String, certType: UInt64, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil) {
+
+        public init(business: String, id: String, ruleId: String, certType: UInt64, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil) {
             self.business = business
             self.id = id
             self.ruleId = ruleId
@@ -47,7 +47,7 @@ extension Dayu {
             self.cert = cert
             self.privateKey = privateKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -58,29 +58,29 @@ extension Dayu {
             case privateKey = "PrivateKey"
         }
     }
-    
+
     /// CreateL7RuleCert返回参数结构体
     public struct CreateL7RuleCertResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 配置L7转发规则的证书
     ///
     /// 配置7层转发规则的证书
     @inlinable
-    public func createL7RuleCert(_ input: CreateL7RuleCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RuleCertResponse > {
+    public func createL7RuleCert(_ input: CreateL7RuleCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertResponse> {
         self.client.execute(action: "CreateL7RuleCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 配置L7转发规则的证书
     ///
     /// 配置7层转发规则的证书
@@ -88,15 +88,15 @@ extension Dayu {
     public func createL7RuleCert(_ input: CreateL7RuleCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertResponse {
         try await self.client.execute(action: "CreateL7RuleCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 配置L7转发规则的证书
     ///
     /// 配置7层转发规则的证书
     @inlinable
-    public func createL7RuleCert(business: String, id: String, ruleId: String, certType: UInt64, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RuleCertResponse > {
+    public func createL7RuleCert(business: String, id: String, ruleId: String, certType: UInt64, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertResponse> {
         self.createL7RuleCert(CreateL7RuleCertRequest(business: business, id: id, ruleId: ruleId, certType: certType, sslId: sslId, cert: cert, privateKey: privateKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 配置L7转发规则的证书
     ///
     /// 配置7层转发规则的证书

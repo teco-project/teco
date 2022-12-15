@@ -24,10 +24,10 @@ extension Cwp {
         /// <li>LH:  表示轻量应用服务器</li>
         /// <li>Other:  表示混合云服务器</li>
         public let machineType: String?
-        
+
         /// 机器所属地域。如：ap-guangzhou
         public let machineRegion: String?
-        
+
         /// 过滤条件。
         /// <li>Keywords - String - 是否必填：否 - 查询关键字(机器名称/机器IP </li>
         /// <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装 | SHUTDOWN 已关机）</li>
@@ -36,52 +36,52 @@ extension Cwp {
         /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         public let filters: [Filters]?
-        
-        public init (machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil) {
+
+        public init(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case machineType = "MachineType"
             case machineRegion = "MachineRegion"
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeTags返回参数结构体
     public struct DescribeTagsResponse: TCResponseModel {
         /// 列表信息
         public let list: [Tag]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取所有主机标签
     @inlinable
-    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
+    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsResponse> {
         self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取所有主机标签
     @inlinable
     public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
         try await self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取所有主机标签
     @inlinable
-    public func describeTags(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
+    public func describeTags(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsResponse> {
         self.describeTags(DescribeTagsRequest(machineType: machineType, machineRegion: machineRegion, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取所有主机标签
     @inlinable
     public func describeTags(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {

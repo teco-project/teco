@@ -19,44 +19,44 @@ extension Gaap {
     public struct DeleteRuleRequest: TCRequestModel {
         /// 7层监听器ID
         public let listenerId: String
-        
+
         /// 转发规则ID
         public let ruleId: String
-        
+
         /// 是否可以强制删除已绑定源站的转发规则，0非强制，1强制
         public let force: UInt64
-        
-        public init (listenerId: String, ruleId: String, force: UInt64) {
+
+        public init(listenerId: String, ruleId: String, force: UInt64) {
             self.listenerId = listenerId
             self.ruleId = ruleId
             self.force = force
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case ruleId = "RuleId"
             case force = "Force"
         }
     }
-    
+
     /// DeleteRule返回参数结构体
     public struct DeleteRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
     @inlinable
-    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
@@ -64,15 +64,15 @@ extension Gaap {
     public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
     @inlinable
-    public func deleteRule(listenerId: String, ruleId: String, force: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+    public func deleteRule(listenerId: String, ruleId: String, force: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.deleteRule(DeleteRuleRequest(listenerId: listenerId, ruleId: ruleId, force: force), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。

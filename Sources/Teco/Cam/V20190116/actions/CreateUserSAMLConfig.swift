@@ -19,44 +19,44 @@ extension Cam {
     public struct CreateUserSAMLConfigRequest: TCRequestModel {
         /// SAML元数据文档，需要base64 encode
         public let samlMetadataDocument: String
-        
-        public init (samlMetadataDocument: String) {
+
+        public init(samlMetadataDocument: String) {
             self.samlMetadataDocument = samlMetadataDocument
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case samlMetadataDocument = "SAMLMetadataDocument"
         }
     }
-    
+
     /// CreateUserSAMLConfig返回参数结构体
     public struct CreateUserSAMLConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建用户SAML配置
     @inlinable
-    public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSAMLConfigResponse > {
+    public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSAMLConfigResponse> {
         self.client.execute(action: "CreateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建用户SAML配置
     @inlinable
     public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {
         try await self.client.execute(action: "CreateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建用户SAML配置
     @inlinable
-    public func createUserSAMLConfig(samlMetadataDocument: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSAMLConfigResponse > {
+    public func createUserSAMLConfig(samlMetadataDocument: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSAMLConfigResponse> {
         self.createUserSAMLConfig(CreateUserSAMLConfigRequest(samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建用户SAML配置
     @inlinable
     public func createUserSAMLConfig(samlMetadataDocument: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {

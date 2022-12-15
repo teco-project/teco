@@ -19,31 +19,31 @@ extension Ecm {
     public struct DescribeHaVipsRequest: TCRequestModel {
         /// HAVIP数组，HAVIP唯一ID，形如：havip-9o233uri。
         public let haVipIds: [String]?
-        
+
         /// 过滤条件，参数不支持同时指定HaVipIds和Filters。
         /// havip-id - String - HAVIP唯一ID，形如：havip-9o233uri。
         /// havip-name - String - HAVIP名称。
         /// vpc-id - String - HAVIP所在私有网络ID。
         /// subnet-id - String - HAVIP所在子网ID。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认值是0。
         public let offset: Int64?
-        
+
         /// 返回数量，默认值是20，最大是100。
         public let limit: Int64?
-        
+
         /// Ecm 区域，不填代表全部区域。
         public let ecmRegion: String?
-        
-        public init (haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ecmRegion: String? = nil) {
+
+        public init(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ecmRegion: String? = nil) {
             self.haVipIds = haVipIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
             self.ecmRegion = ecmRegion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case haVipIds = "HaVipIds"
             case filters = "Filters"
@@ -52,34 +52,34 @@ extension Ecm {
             case ecmRegion = "EcmRegion"
         }
     }
-    
+
     /// DescribeHaVips返回参数结构体
     public struct DescribeHaVipsResponse: TCResponseModel {
         /// 符合条件的对象数。
         public let totalCount: Int64
-        
+
         /// HAVIP对象数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let haVipSet: [HaVip]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case haVipSet = "HaVipSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 用于查询高可用虚拟IP（HAVIP）列表。
     @inlinable
-    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHaVipsResponse > {
+    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHaVipsResponse> {
         self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 用于查询高可用虚拟IP（HAVIP）列表。
@@ -87,15 +87,15 @@ extension Ecm {
     public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHaVipsResponse {
         try await self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 用于查询高可用虚拟IP（HAVIP）列表。
     @inlinable
-    public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ecmRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHaVipsResponse > {
+    public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ecmRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHaVipsResponse> {
         self.describeHaVips(DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询HAVIP列表
     ///
     /// 用于查询高可用虚拟IP（HAVIP）列表。

@@ -19,54 +19,54 @@ extension Tsf {
     public struct DisassociateKafkaConfigRequest: TCRequestModel {
         /// 配置项id
         public let configId: String
-        
+
         /// 部署组id
         public let groupIds: [String]?
-        
-        public init (configId: String, groupIds: [String]? = nil) {
+
+        public init(configId: String, groupIds: [String]? = nil) {
             self.configId = configId
             self.groupIds = groupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case groupIds = "GroupIds"
         }
     }
-    
+
     /// DisassociateKafkaConfig返回参数结构体
     public struct DisassociateKafkaConfigResponse: TCResponseModel {
         /// 解除绑定是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消关联投递信息和部署组
     @inlinable
-    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateKafkaConfigResponse > {
+    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateKafkaConfigResponse> {
         self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消关联投递信息和部署组
     @inlinable
     public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
         try await self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消关联投递信息和部署组
     @inlinable
-    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateKafkaConfigResponse > {
+    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateKafkaConfigResponse> {
         self.disassociateKafkaConfig(DisassociateKafkaConfigRequest(configId: configId, groupIds: groupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消关联投递信息和部署组
     @inlinable
     public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {

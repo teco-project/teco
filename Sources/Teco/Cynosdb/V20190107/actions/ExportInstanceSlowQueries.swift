@@ -19,32 +19,32 @@ extension Cynosdb {
     public struct ExportInstanceSlowQueriesRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 事务开始最早时间
         public let startTime: String?
-        
+
         /// 事务开始最晚时间
         public let endTime: String?
-        
+
         /// 限制条数
         public let limit: Int64?
-        
+
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 用户名
         public let username: String?
-        
+
         /// 客户端host
         public let host: String?
-        
+
         /// 数据库名
         public let database: String?
-        
+
         /// 文件类型，可选值：csv, original
         public let fileType: String?
-        
-        public init (instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil) {
+
+        public init(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -55,7 +55,7 @@ extension Cynosdb {
             self.database = database
             self.fileType = fileType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
@@ -68,29 +68,29 @@ extension Cynosdb {
             case fileType = "FileType"
         }
     }
-    
+
     /// ExportInstanceSlowQueries返回参数结构体
     public struct ExportInstanceSlowQueriesResponse: TCResponseModel {
         /// 慢查询导出内容
         public let fileContent: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fileContent = "FileContent"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出实例慢日志
     ///
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
     @inlinable
-    public func exportInstanceSlowQueries(_ input: ExportInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportInstanceSlowQueriesResponse > {
+    public func exportInstanceSlowQueries(_ input: ExportInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportInstanceSlowQueriesResponse> {
         self.client.execute(action: "ExportInstanceSlowQueries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出实例慢日志
     ///
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
@@ -98,15 +98,15 @@ extension Cynosdb {
     public func exportInstanceSlowQueries(_ input: ExportInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportInstanceSlowQueriesResponse {
         try await self.client.execute(action: "ExportInstanceSlowQueries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出实例慢日志
     ///
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
     @inlinable
-    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportInstanceSlowQueriesResponse > {
+    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportInstanceSlowQueriesResponse> {
         self.exportInstanceSlowQueries(ExportInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出实例慢日志
     ///
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。

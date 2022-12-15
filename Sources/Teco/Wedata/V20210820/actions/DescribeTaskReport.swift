@@ -22,7 +22,7 @@ extension Wedata {
     public struct DescribeTaskReportRequest: TCRequestModel {
         /// 任务Id
         public let taskId: String
-        
+
         /// 统计周期的开始日期，格式为 yyyy-MM-dd
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Wedata {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginDate: Date
-        
+
         /// 统计周期的结束日期，格式为 yyyy-MM-dd
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,17 +38,17 @@ extension Wedata {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date
-        
+
         /// WeData项目id
         public let projectId: String
-        
-        public init (taskId: String, beginDate: Date, endDate: Date, projectId: String) {
+
+        public init(taskId: String, beginDate: Date, endDate: Date, projectId: String) {
             self.taskId = taskId
             self.beginDate = beginDate
             self.endDate = endDate
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case beginDate = "BeginDate"
@@ -56,27 +56,27 @@ extension Wedata {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeTaskReport返回参数结构体
     public struct DescribeTaskReportResponse: TCResponseModel {
         /// 总读取条数
         public let totalReadRecords: UInt64
-        
+
         /// 总读取字节数，单位为Byte
         public let totalReadBytes: UInt64
-        
+
         /// 总写入条数
         public let totalWriteRecords: UInt64
-        
+
         /// 总写入字节数，单位为Byte
         public let totalWriteBytes: UInt64
-        
+
         /// 总脏数据条数
         public let totalErrorRecords: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalReadRecords = "TotalReadRecords"
             case totalReadBytes = "TotalReadBytes"
@@ -86,15 +86,15 @@ extension Wedata {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 离线任务周期统计总览
     ///
     /// 按起止日期统计离线任务的所有实例的运行指标总和
     @inlinable
-    public func describeTaskReport(_ input: DescribeTaskReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskReportResponse > {
+    public func describeTaskReport(_ input: DescribeTaskReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskReportResponse> {
         self.client.execute(action: "DescribeTaskReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 离线任务周期统计总览
     ///
     /// 按起止日期统计离线任务的所有实例的运行指标总和
@@ -102,15 +102,15 @@ extension Wedata {
     public func describeTaskReport(_ input: DescribeTaskReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskReportResponse {
         try await self.client.execute(action: "DescribeTaskReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 离线任务周期统计总览
     ///
     /// 按起止日期统计离线任务的所有实例的运行指标总和
     @inlinable
-    public func describeTaskReport(taskId: String, beginDate: Date, endDate: Date, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskReportResponse > {
+    public func describeTaskReport(taskId: String, beginDate: Date, endDate: Date, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskReportResponse> {
         self.describeTaskReport(DescribeTaskReportRequest(taskId: taskId, beginDate: beginDate, endDate: endDate, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 离线任务周期统计总览
     ///
     /// 按起止日期统计离线任务的所有实例的运行指标总和

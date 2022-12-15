@@ -17,48 +17,48 @@
 extension Cam {
     /// DescribeUserOIDCConfig请求参数结构体
     public struct DescribeUserOIDCConfigRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeUserOIDCConfig返回参数结构体
     public struct DescribeUserOIDCConfigResponse: TCResponseModel {
         /// 身份提供商类型。 12：用户OIDC身份提供商
         public let providerType: UInt64
-        
+
         /// 身份提供商URL
         public let identityUrl: String
-        
+
         /// 签名公钥
         public let identityKey: String
-        
+
         /// 客户端id
         public let clientId: String
-        
+
         /// 状态：0:未设置，11:已开启，2:已禁用
         public let status: UInt64
-        
+
         /// 授权请求Endpoint
         public let authorizationEndpoint: String
-        
+
         /// 授权请求Scope
         public let scope: [String]
-        
+
         /// 授权请求Response type
         public let responseType: String
-        
+
         /// 授权请求Response mode
         public let responseMode: String
-        
+
         /// 映射字段名称
         public let mappingFiled: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case providerType = "ProviderType"
             case identityUrl = "IdentityUrl"
@@ -74,25 +74,25 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户OIDC配置
     @inlinable
-    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserOIDCConfigResponse > {
+    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserOIDCConfigResponse> {
         self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户OIDC配置
     @inlinable
     public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {
         try await self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户OIDC配置
     @inlinable
-    public func describeUserOIDCConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserOIDCConfigResponse > {
+    public func describeUserOIDCConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserOIDCConfigResponse> {
         self.describeUserOIDCConfig(DescribeUserOIDCConfigRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户OIDC配置
     @inlinable
     public func describeUserOIDCConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {

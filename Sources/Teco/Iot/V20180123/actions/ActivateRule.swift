@@ -19,44 +19,44 @@ extension Iot {
     public struct ActivateRuleRequest: TCRequestModel {
         /// 规则Id
         public let ruleId: String
-        
-        public init (ruleId: String) {
+
+        public init(ruleId: String) {
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// ActivateRule返回参数结构体
     public struct ActivateRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用规则
     @inlinable
-    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateRuleResponse > {
+    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
         self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用规则
     @inlinable
     public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
         try await self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用规则
     @inlinable
-    public func activateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateRuleResponse > {
+    public func activateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
         self.activateRule(ActivateRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用规则
     @inlinable
     public func activateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {

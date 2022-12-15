@@ -19,23 +19,23 @@ extension Iotvideoindustry {
     public struct DescribeChannelsRequest: TCRequestModel {
         /// 设备Id
         public let deviceId: String
-        
+
         /// 限制，默认0
         public let limit: UInt64?
-        
+
         /// 偏移量，默认0
         public let offset: UInt64?
-        
+
         /// 通道类型  0: 未知类型 1: 视频通道 2:  音频通道 3: 告警通道
         public let channelTypes: [UInt64]?
-        
+
         /// 录制计划ID， 当为"null"值时未绑定录制计划
         public let planId: String?
-        
+
         /// 告警联动场景ID， 当为 -1 值时未绑定场景
         public let sceneId: Int64?
-        
-        public init (deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil) {
+
+        public init(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil) {
             self.deviceId = deviceId
             self.limit = limit
             self.offset = offset
@@ -43,7 +43,7 @@ extension Iotvideoindustry {
             self.planId = planId
             self.sceneId = sceneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case limit = "Limit"
@@ -53,35 +53,35 @@ extension Iotvideoindustry {
             case sceneId = "SceneId"
         }
     }
-    
+
     /// DescribeChannels返回参数结构体
     public struct DescribeChannelsResponse: TCResponseModel {
         /// 通道总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 通道详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channels: [ChannelDetail]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case channels = "Channels"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
-    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsResponse > {
+    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsResponse> {
         self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
@@ -89,15 +89,15 @@ extension Iotvideoindustry {
     public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
         try await self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
-    public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsResponse > {
+    public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsResponse> {
         self.describeChannels(DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表

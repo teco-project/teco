@@ -29,110 +29,110 @@ extension TCClbError {
             case someRewriteNotFound = "InvalidParameter.SomeRewriteNotFound"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数格式错误。
         public static var formatError: InvalidParameter {
             InvalidParameter(.formatError)
         }
-        
+
         /// 查询参数错误。
         ///
         /// 按文档接口说明传参。
         public static var invalidFilter: InvalidParameter {
             InvalidParameter(.invalidFilter)
         }
-        
+
         /// 负载均衡实例ID错误。
         public static var lbIdNotFound: InvalidParameter {
             InvalidParameter(.lbIdNotFound)
         }
-        
+
         /// 监听器ID错误。
         public static var listenerIdNotFound: InvalidParameter {
             InvalidParameter(.listenerIdNotFound)
         }
-        
+
         /// 查找不到符合条件的转发规则。
         public static var locationNotFound: InvalidParameter {
             InvalidParameter(.locationNotFound)
         }
-        
+
         /// 监听器端口检查失败，比如端口冲突。
         public static var portCheckFailed: InvalidParameter {
             InvalidParameter(.portCheckFailed)
         }
-        
+
         /// 监听器协议检查失败，比如相关协议不支持对应操作。
         public static var protocolCheckFailed: InvalidParameter {
             InvalidParameter(.protocolCheckFailed)
         }
-        
+
         /// 地域无效。
         public static var regionNotFound: InvalidParameter {
             InvalidParameter(.regionNotFound)
         }
-        
+
         /// 转发规则已绑定重定向关系。
         public static var rewriteAlreadyExist: InvalidParameter {
             InvalidParameter(.rewriteAlreadyExist)
         }
-        
+
         /// 一些重定向规则不存在。
         public static var someRewriteNotFound: InvalidParameter {
             InvalidParameter(.someRewriteNotFound)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asClbError() -> TCClbError {
             let code: TCClbError.Code
             switch self.error {
-            case .formatError: 
+            case .formatError:
                 code = .invalidParameter_FormatError
-            case .invalidFilter: 
+            case .invalidFilter:
                 code = .invalidParameter_InvalidFilter
-            case .lbIdNotFound: 
+            case .lbIdNotFound:
                 code = .invalidParameter_LBIdNotFound
-            case .listenerIdNotFound: 
+            case .listenerIdNotFound:
                 code = .invalidParameter_ListenerIdNotFound
-            case .locationNotFound: 
+            case .locationNotFound:
                 code = .invalidParameter_LocationNotFound
-            case .portCheckFailed: 
+            case .portCheckFailed:
                 code = .invalidParameter_PortCheckFailed
-            case .protocolCheckFailed: 
+            case .protocolCheckFailed:
                 code = .invalidParameter_ProtocolCheckFailed
-            case .regionNotFound: 
+            case .regionNotFound:
                 code = .invalidParameter_RegionNotFound
-            case .rewriteAlreadyExist: 
+            case .rewriteAlreadyExist:
                 code = .invalidParameter_RewriteAlreadyExist
-            case .someRewriteNotFound: 
+            case .someRewriteNotFound:
                 code = .invalidParameter_SomeRewriteNotFound
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCClbError(code, context: self.context)

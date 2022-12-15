@@ -27,102 +27,102 @@ extension TCSoeError {
             case withoutRealName = "InvalidParameter.WithoutRealName"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 服务未开通或已欠费。
         public static var authorizeError: InvalidParameter {
             InvalidParameter(.authorizeError)
         }
-        
+
         /// 请求参数RefText的音素Json解码失败，请参考API文档使用标准的Json格式。
         ///
         /// 请参考API文档检查参数RefText的Json格式。https://cloud.tencent.com/document/product/884/19310
         public static var errorPhoneme: InvalidParameter {
             InvalidParameter(.errorPhoneme)
         }
-        
+
         /// 初始化参数错误。
         public static var initialParameterError: InvalidParameter {
             InvalidParameter(.initialParameterError)
         }
-        
+
         /// 请求参数Action不合法，请参考API文档检查参数Action的有效性。
         ///
         /// 请参考API文档检查参数Action的有效性。https://cloud.tencent.com/document/product/884/19310
         public static var invalidAction: InvalidParameter {
             InvalidParameter(.invalidAction)
         }
-        
+
         /// 请求参数不合法，请参考API文档检查参数的有效性。
         ///
         /// 请参考API文档检查参数的有效性。https://cloud.tencent.com/document/product/884/19310
         public static var invalidParameter: InvalidParameter {
             InvalidParameter(.invalidParameter)
         }
-        
+
         /// 请求参数SeqId超过最大值限制，请参考API文档检查参数SeqId是否小于3000。
         ///
         /// 请参考API文档检查参数SeqId是否小于3000上限。https://cloud.tencent.com/document/product/884/19310
         public static var seqIdLimitExceeded: InvalidParameter {
             InvalidParameter(.seqIdLimitExceeded)
         }
-        
+
         /// 语音数据大于1MB。
         public static var voiceMsgOversized: InvalidParameter {
             InvalidParameter(.voiceMsgOversized)
         }
-        
+
         /// 用户未实名制认证。
         public static var withoutRealName: InvalidParameter {
             InvalidParameter(.withoutRealName)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asSoeError() -> TCSoeError {
             let code: TCSoeError.Code
             switch self.error {
-            case .authorizeError: 
+            case .authorizeError:
                 code = .invalidParameter_AuthorizeError
-            case .errorPhoneme: 
+            case .errorPhoneme:
                 code = .invalidParameter_ErrorPhoneme
-            case .initialParameterError: 
+            case .initialParameterError:
                 code = .invalidParameter_InitialParameterError
-            case .invalidAction: 
+            case .invalidAction:
                 code = .invalidParameter_InvalidAction
-            case .invalidParameter: 
+            case .invalidParameter:
                 code = .invalidParameter_InvalidParameter
-            case .seqIdLimitExceeded: 
+            case .seqIdLimitExceeded:
                 code = .invalidParameter_SeqIdLimitExceeded
-            case .voiceMsgOversized: 
+            case .voiceMsgOversized:
                 code = .invalidParameter_VoiceMsgOversized
-            case .withoutRealName: 
+            case .withoutRealName:
                 code = .invalidParameter_WithoutRealName
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCSoeError(code, context: self.context)

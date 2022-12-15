@@ -19,48 +19,48 @@ extension Tsw {
     public struct DescribeTokenRequest: TCRequestModel {
         /// 命名空间
         public let namespace: String
-        
-        public init (namespace: String) {
+
+        public init(namespace: String) {
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
         }
     }
-    
+
     /// DescribeToken返回参数结构体
     public struct DescribeTokenResponse: TCResponseModel {
         /// token
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询token
     @inlinable
-    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTokenResponse > {
+    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
         self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询token
     @inlinable
     public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
         try await self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询token
     @inlinable
-    public func describeToken(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTokenResponse > {
+    public func describeToken(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
         self.describeToken(DescribeTokenRequest(namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询token
     @inlinable
     public func describeToken(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {

@@ -19,54 +19,54 @@ extension Yunjing {
     public struct EditTagsRequest: TCRequestModel {
         /// 标签名
         public let name: String
-        
+
         /// 标签ID
         public let id: UInt64?
-        
+
         /// CVM主机ID
         public let quuids: [String]?
-        
-        public init (name: String, id: UInt64? = nil, quuids: [String]? = nil) {
+
+        public init(name: String, id: UInt64? = nil, quuids: [String]? = nil) {
             self.name = name
             self.id = id
             self.quuids = quuids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case id = "Id"
             case quuids = "Quuids"
         }
     }
-    
+
     /// EditTags返回参数结构体
     public struct EditTagsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增或编辑标签
     @inlinable
-    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditTagsResponse > {
+    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditTagsResponse> {
         self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增或编辑标签
     @inlinable
     public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
         try await self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增或编辑标签
     @inlinable
-    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditTagsResponse > {
+    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditTagsResponse> {
         self.editTags(EditTagsRequest(name: name, id: id, quuids: quuids), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增或编辑标签
     @inlinable
     public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {

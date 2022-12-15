@@ -19,48 +19,48 @@ extension Vpc {
     public struct CreateAddressTemplateRequest: TCRequestModel {
         /// IP地址模板名称。
         public let addressTemplateName: String
-        
+
         /// 地址信息，支持 IP、CIDR、IP 范围。Addresses与AddressesExtra必填其一。
         public let addresses: [String]?
-        
+
         /// 地址信息，支持携带备注，支持 IP、CIDR、IP 范围。Addresses与AddressesExtra必填其一。
         public let addressesExtra: [AddressInfo]?
-        
-        public init (addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil) {
+
+        public init(addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil) {
             self.addressTemplateName = addressTemplateName
             self.addresses = addresses
             self.addressesExtra = addressesExtra
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addressTemplateName = "AddressTemplateName"
             case addresses = "Addresses"
             case addressesExtra = "AddressesExtra"
         }
     }
-    
+
     /// CreateAddressTemplate返回参数结构体
     public struct CreateAddressTemplateResponse: TCResponseModel {
         /// IP地址模板对象。
         public let addressTemplate: AddressTemplate
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case addressTemplate = "AddressTemplate"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建IP地址模板
     ///
     /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
     @inlinable
-    public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateResponse > {
+    public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateResponse> {
         self.client.execute(action: "CreateAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建IP地址模板
     ///
     /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
@@ -68,15 +68,15 @@ extension Vpc {
     public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateResponse {
         try await self.client.execute(action: "CreateAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建IP地址模板
     ///
     /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
     @inlinable
-    public func createAddressTemplate(addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateResponse > {
+    public func createAddressTemplate(addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateResponse> {
         self.createAddressTemplate(CreateAddressTemplateRequest(addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建IP地址模板
     ///
     /// 本接口（CreateAddressTemplate）用于创建IP地址模板。

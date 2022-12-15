@@ -19,49 +19,49 @@ extension Gaap {
     public struct DeleteSecurityRulesRequest: TCRequestModel {
         /// 安全策略ID
         public let policyId: String
-        
+
         /// 访问规则ID列表
         public let ruleIdList: [String]
-        
-        public init (policyId: String, ruleIdList: [String]) {
+
+        public init(policyId: String, ruleIdList: [String]) {
             self.policyId = policyId
             self.ruleIdList = ruleIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case ruleIdList = "RuleIdList"
         }
     }
-    
+
     /// DeleteSecurityRules返回参数结构体
     public struct DeleteSecurityRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除安全策略规则
     @inlinable
-    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityRulesResponse > {
+    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityRulesResponse> {
         self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全策略规则
     @inlinable
     public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
         try await self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除安全策略规则
     @inlinable
-    public func deleteSecurityRules(policyId: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityRulesResponse > {
+    public func deleteSecurityRules(policyId: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityRulesResponse> {
         self.deleteSecurityRules(DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全策略规则
     @inlinable
     public func deleteSecurityRules(policyId: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {

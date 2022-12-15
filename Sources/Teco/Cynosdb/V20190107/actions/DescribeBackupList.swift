@@ -19,42 +19,42 @@ extension Cynosdb {
     public struct DescribeBackupListRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 备份文件列表大小，取值范围(0,100]
         public let limit: Int64?
-        
+
         /// 备份文件列表偏移，取值范围[0,INF)
         public let offset: Int64?
-        
-        /// 数据库类型，取值范围: 
+
+        /// 数据库类型，取值范围:
         /// <li> MYSQL </li>
         public let dbType: String?
-        
+
         /// 备份ID
         public let backupIds: [Int64]?
-        
+
         /// 备份类型，可选值：snapshot，快照备份； logic，逻辑备份
         public let backupType: String?
-        
+
         /// 备份方式，可选值：auto，自动备份；manual，手动备
         public let backupMethod: String?
-        
+
         /// 快照类型，可选值：full，全量；increment，增量
         public let snapShotType: String?
-        
+
         /// 备份开始时间
         public let startTime: String?
-        
+
         /// 备份结束时间
         public let endTime: String?
-        
+
         /// 备份文件名，模糊查询
         public let fileNames: [String]?
-        
+
         /// 备份备注名，模糊查询
         public let backupNames: [String]?
-        
-        public init (clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil) {
+
+        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -68,7 +68,7 @@ extension Cynosdb {
             self.fileNames = fileNames
             self.backupNames = backupNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case limit = "Limit"
@@ -84,43 +84,43 @@ extension Cynosdb {
             case backupNames = "BackupNames"
         }
     }
-    
+
     /// DescribeBackupList返回参数结构体
     public struct DescribeBackupListResponse: TCResponseModel {
         /// 总共备份文件个数
         public let totalCount: Int64
-        
+
         /// 备份文件列表
         public let backupList: [BackupFileInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case backupList = "BackupList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询备份文件列表
     @inlinable
-    public func describeBackupList(_ input: DescribeBackupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupListResponse > {
+    public func describeBackupList(_ input: DescribeBackupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupListResponse> {
         self.client.execute(action: "DescribeBackupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份文件列表
     @inlinable
     public func describeBackupList(_ input: DescribeBackupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {
         try await self.client.execute(action: "DescribeBackupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询备份文件列表
     @inlinable
-    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupListResponse > {
+    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupListResponse> {
         self.describeBackupList(DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询备份文件列表
     @inlinable
     public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {

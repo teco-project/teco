@@ -19,65 +19,65 @@ extension Clb {
     public struct CloneLoadBalancerRequest: TCRequestModel {
         /// 负载均衡ID。
         public let loadBalancerId: String
-        
+
         /// 克隆出负载均衡实例的名称，规则：1-60 个英文、汉字、数字、连接线“-”或下划线“_”。
         /// 注意：如果名称与系统中已有负载均衡实例的名称相同，则系统将会自动生成此次创建的负载均衡实例的名称。
         public let loadBalancerName: String?
-        
+
         /// 负载均衡实例所属的项目 ID，可以通过 [DescribeProject](https://cloud.tencent.com/document/product/378/4400) 接口获取。不传此参数则视为默认项目。
         public let projectId: Int64?
-        
+
         /// 仅适用于公网负载均衡。设置跨可用区容灾时的主可用区ID，例如 100001 或 ap-guangzhou-1
         /// 注：主可用区是需要承载流量的可用区，备可用区默认不承载流量，主可用区不可用时才使用备可用区，平台将为您自动选择最佳备可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主可用区的列表。
         public let masterZoneId: String?
-        
+
         /// 仅适用于公网负载均衡。设置跨可用区容灾时的备可用区ID，例如 100001 或 ap-guangzhou-1
         /// 注：备可用区是主可用区故障后，需要承载流量的可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主/备可用区的列表。
         public let slaveZoneId: String?
-        
+
         /// 仅适用于公网负载均衡。可用区ID，指定可用区以创建负载均衡实例。如：ap-guangzhou-1。
         public let zoneId: String?
-        
+
         /// 仅适用于公网负载均衡。负载均衡的网络计费模式。
         public let internetAccessible: InternetAccessible?
-        
+
         /// 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 DescribeSingleIsp 接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。
         public let vipIsp: String?
-        
+
         /// 指定Vip申请负载均衡。
         public let vip: String?
-        
+
         /// 购买负载均衡同时，给负载均衡打上标签。
         public let tags: [TagInfo]?
-        
+
         /// 独占集群信息。
         public let exclusiveCluster: ExclusiveCluster?
-        
+
         /// 带宽包ID，指定此参数时，网络计费方式（InternetAccessible.InternetChargeType）只支持按带宽包计费（BANDWIDTH_PACKAGE）。
         public let bandwidthPackageId: String?
-        
+
         /// 是否支持绑定跨地域/跨Vpc绑定IP的功能。
         public let snatPro: Bool?
-        
+
         /// 开启绑定跨地域/跨Vpc绑定IP的功能后，创建SnatIp。
         public let snatIps: [SnatIp]?
-        
+
         /// 公网独占集群ID或者CDCId。
         public let clusterIds: [String]?
-        
+
         /// 性能保障规格。
         public let slaType: String?
-        
+
         /// Stgw独占集群的标签。
         public let clusterTag: String?
-        
+
         /// 仅适用于私有网络内网负载均衡。内网就近接入时，选择可用区下发。
         public let zones: [String]?
-        
+
         /// EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
         public let eipAddressId: String?
-        
-        public init (loadBalancerId: String, loadBalancerName: String? = nil, projectId: Int64? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, vip: String? = nil, tags: [TagInfo]? = nil, exclusiveCluster: ExclusiveCluster? = nil, bandwidthPackageId: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterIds: [String]? = nil, slaType: String? = nil, clusterTag: String? = nil, zones: [String]? = nil, eipAddressId: String? = nil) {
+
+        public init(loadBalancerId: String, loadBalancerName: String? = nil, projectId: Int64? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, vip: String? = nil, tags: [TagInfo]? = nil, exclusiveCluster: ExclusiveCluster? = nil, bandwidthPackageId: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterIds: [String]? = nil, slaType: String? = nil, clusterTag: String? = nil, zones: [String]? = nil, eipAddressId: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.projectId = projectId
@@ -98,7 +98,7 @@ extension Clb {
             self.zones = zones
             self.eipAddressId = eipAddressId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case loadBalancerName = "LoadBalancerName"
@@ -121,17 +121,17 @@ extension Clb {
             case eipAddressId = "EipAddressId"
         }
     }
-    
+
     /// CloneLoadBalancer返回参数结构体
     public struct CloneLoadBalancerResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 克隆负载均衡实例
     ///
     /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。
@@ -146,10 +146,10 @@ extension Clb {
     /// 独占集群克隆必须传对应的参数，否则按共享型创建
     /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
     @inlinable
-    public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneLoadBalancerResponse > {
+    public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneLoadBalancerResponse> {
         self.client.execute(action: "CloneLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 克隆负载均衡实例
     ///
     /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。
@@ -167,7 +167,7 @@ extension Clb {
     public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneLoadBalancerResponse {
         try await self.client.execute(action: "CloneLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 克隆负载均衡实例
     ///
     /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。
@@ -182,10 +182,10 @@ extension Clb {
     /// 独占集群克隆必须传对应的参数，否则按共享型创建
     /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
     @inlinable
-    public func cloneLoadBalancer(loadBalancerId: String, loadBalancerName: String? = nil, projectId: Int64? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, vip: String? = nil, tags: [TagInfo]? = nil, exclusiveCluster: ExclusiveCluster? = nil, bandwidthPackageId: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterIds: [String]? = nil, slaType: String? = nil, clusterTag: String? = nil, zones: [String]? = nil, eipAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneLoadBalancerResponse > {
+    public func cloneLoadBalancer(loadBalancerId: String, loadBalancerName: String? = nil, projectId: Int64? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, vip: String? = nil, tags: [TagInfo]? = nil, exclusiveCluster: ExclusiveCluster? = nil, bandwidthPackageId: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterIds: [String]? = nil, slaType: String? = nil, clusterTag: String? = nil, zones: [String]? = nil, eipAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneLoadBalancerResponse> {
         self.cloneLoadBalancer(CloneLoadBalancerRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, projectId: projectId, masterZoneId: masterZoneId, slaveZoneId: slaveZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, vip: vip, tags: tags, exclusiveCluster: exclusiveCluster, bandwidthPackageId: bandwidthPackageId, snatPro: snatPro, snatIps: snatIps, clusterIds: clusterIds, slaType: slaType, clusterTag: clusterTag, zones: zones, eipAddressId: eipAddressId), logger: logger, on: eventLoop)
     }
-    
+
     /// 克隆负载均衡实例
     ///
     /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。

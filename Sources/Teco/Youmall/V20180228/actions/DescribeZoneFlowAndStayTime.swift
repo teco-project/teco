@@ -19,23 +19,23 @@ extension Youmall {
     public struct DescribeZoneFlowAndStayTimeRequest: TCRequestModel {
         /// 集团ID
         public let companyId: String
-        
+
         /// 店铺ID
         public let shopId: Int64
-        
+
         /// 开始日期，格式yyyy-MM-dd
         public let startDate: String
-        
+
         /// 结束日期，格式yyyy-MM-dd
         public let endDate: String
-        
-        public init (companyId: String, shopId: Int64, startDate: String, endDate: String) {
+
+        public init(companyId: String, shopId: Int64, startDate: String, endDate: String) {
             self.companyId = companyId
             self.shopId = shopId
             self.startDate = startDate
             self.endDate = endDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -43,21 +43,21 @@ extension Youmall {
             case endDate = "EndDate"
         }
     }
-    
+
     /// DescribeZoneFlowAndStayTime返回参数结构体
     public struct DescribeZoneFlowAndStayTimeResponse: TCResponseModel {
         /// 集团id
         public let companyId: String
-        
+
         /// 店铺id
         public let shopId: Int64
-        
+
         /// 各区域人流数目和停留时长
         public let data: [ZoneFlowAndAvrStayTime]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -65,25 +65,25 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取区域人流和停留时间
     @inlinable
-    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAndStayTimeResponse > {
+    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowAndStayTimeResponse> {
         self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取区域人流和停留时间
     @inlinable
     public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
         try await self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取区域人流和停留时间
     @inlinable
-    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAndStayTimeResponse > {
+    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowAndStayTimeResponse> {
         self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取区域人流和停留时间
     @inlinable
     public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {

@@ -19,26 +19,26 @@ extension Antiddos {
     public struct DescribeListIPAlarmConfigRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: Int64
-        
+
         /// 一页条数，当Limit=0时，默认一页条数为100;最大取值为100
         public let limit: Int64
-        
+
         /// 资源实例ID搜索, 支持资源实例前缀通配搜索，例如bgp-*表示获取高防包类型的资源实例
         public let filterInstanceId: String
-        
+
         /// 告警阈值类型搜索，取值[
         /// 1(入流量告警阈值)
         /// 2(攻击清洗流量告警阈值)
         /// ]
         public let filterAlarmType: Int64
-        
+
         /// IP搜索
         public let filterIp: String?
-        
+
         /// 高防IP实例资源的cname
         public let filterCname: String?
-        
-        public init (offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil) {
+
+        public init(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterInstanceId = filterInstanceId
@@ -46,7 +46,7 @@ extension Antiddos {
             self.filterIp = filterIp
             self.filterCname = filterCname
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -56,43 +56,43 @@ extension Antiddos {
             case filterCname = "FilterCname"
         }
     }
-    
+
     /// DescribeListIPAlarmConfig返回参数结构体
     public struct DescribeListIPAlarmConfigResponse: TCResponseModel {
         /// 总数
         public let total: Int64
-        
+
         /// IP告警阈值配置列表
         public let configList: [IPAlarmThresholdRelation]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case configList = "ConfigList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单IP告警阈值配置列表
     @inlinable
-    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListIPAlarmConfigResponse > {
+    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListIPAlarmConfigResponse> {
         self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单IP告警阈值配置列表
     @inlinable
     public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
         try await self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单IP告警阈值配置列表
     @inlinable
-    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListIPAlarmConfigResponse > {
+    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListIPAlarmConfigResponse> {
         self.describeListIPAlarmConfig(DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单IP告警阈值配置列表
     @inlinable
     public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {

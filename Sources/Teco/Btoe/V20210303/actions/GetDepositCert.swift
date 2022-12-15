@@ -19,43 +19,43 @@ extension Btoe {
     public struct GetDepositCertRequest: TCRequestModel {
         /// 存证编码
         public let evidenceId: String
-        
-        public init (evidenceId: String) {
+
+        public init(evidenceId: String) {
             self.evidenceId = evidenceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case evidenceId = "EvidenceId"
         }
     }
-    
+
     /// GetDepositCert返回参数结构体
     public struct GetDepositCertResponse: TCResponseModel {
         /// 存证编码
         public let evidenceId: String
-        
+
         /// 存证证书文件临时链接
         public let evidenceCert: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case evidenceId = "EvidenceId"
             case evidenceCert = "EvidenceCert"
             case requestId = "RequestId"
         }
     }
-    
+
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
-    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositCertResponse > {
+    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
         self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
@@ -64,16 +64,16 @@ extension Btoe {
     public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
         try await self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
-    public func getDepositCert(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositCertResponse > {
+    public func getDepositCert(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
         self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
     }
-    
+
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14

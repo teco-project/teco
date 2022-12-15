@@ -19,49 +19,49 @@ extension Tiw {
     public struct StopOnlineRecordRequest: TCRequestModel {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
-        
+
         /// 需要停止录制的任务 Id
         public let taskId: String
-        
-        public init (sdkAppId: Int64, taskId: String) {
+
+        public init(sdkAppId: Int64, taskId: String) {
             self.sdkAppId = sdkAppId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// StopOnlineRecord返回参数结构体
     public struct StopOnlineRecordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止实时录制
     @inlinable
-    public func stopOnlineRecord(_ input: StopOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopOnlineRecordResponse > {
+    public func stopOnlineRecord(_ input: StopOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopOnlineRecordResponse> {
         self.client.execute(action: "StopOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止实时录制
     @inlinable
     public func stopOnlineRecord(_ input: StopOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopOnlineRecordResponse {
         try await self.client.execute(action: "StopOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止实时录制
     @inlinable
-    public func stopOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopOnlineRecordResponse > {
+    public func stopOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopOnlineRecordResponse> {
         self.stopOnlineRecord(StopOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止实时录制
     @inlinable
     public func stopOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopOnlineRecordResponse {

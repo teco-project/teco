@@ -19,24 +19,24 @@ extension Tione {
     public struct DescribeModelServicesRequest: TCRequestModel {
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为20
         public let limit: Int64?
-        
+
         /// 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列
         public let order: String?
-        
+
         /// 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
         public let orderField: String?
-        
+
         /// 分页参数，支持的分页过滤Name包括：
         /// ["ClusterId", "ServiceId", "ServiceGroupName", "ServiceGroupId","Status","CreatedBy","ModelId"]
         public let filters: [Filter]?
-        
+
         /// 标签过滤参数
         public let tagFilters: [TagFilter]?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.order = order
@@ -44,7 +44,7 @@ extension Tione {
             self.filters = filters
             self.tagFilters = tagFilters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -54,45 +54,45 @@ extension Tione {
             case tagFilters = "TagFilters"
         }
     }
-    
+
     /// DescribeModelServices返回参数结构体
     public struct DescribeModelServicesResponse: TCResponseModel {
         /// 服务数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let services: [Service]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case services = "Services"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询多个服务
     @inlinable
-    public func describeModelServices(_ input: DescribeModelServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServicesResponse > {
+    public func describeModelServices(_ input: DescribeModelServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServicesResponse> {
         self.client.execute(action: "DescribeModelServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询多个服务
     @inlinable
     public func describeModelServices(_ input: DescribeModelServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServicesResponse {
         try await self.client.execute(action: "DescribeModelServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询多个服务
     @inlinable
-    public func describeModelServices(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServicesResponse > {
+    public func describeModelServices(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServicesResponse> {
         self.describeModelServices(DescribeModelServicesRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询多个服务
     @inlinable
     public func describeModelServices(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServicesResponse {

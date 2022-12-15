@@ -19,23 +19,23 @@ extension Monitor {
     public struct UpdateGrafanaNotificationChannelRequest: TCRequestModel {
         /// 通道 ID，例如：nchannel-abcd1234
         public let channelId: String
-        
+
         /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
-        
+
         /// 告警通道名称，例如：test
         public let channelName: String
-        
+
         /// 接受告警通道 ID 数组
         public let receivers: [String]
-        
+
         /// 已废弃，请使用 OrganizationIds
         public let extraOrgIds: [String]?
-        
+
         /// 生效的组织 ID 数组
         public let organizationIds: [String]?
-        
-        public init (channelId: String, instanceId: String, channelName: String, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil) {
+
+        public init(channelId: String, instanceId: String, channelName: String, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil) {
             self.channelId = channelId
             self.instanceId = instanceId
             self.channelName = channelName
@@ -43,7 +43,7 @@ extension Monitor {
             self.extraOrgIds = extraOrgIds
             self.organizationIds = organizationIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelId = "ChannelId"
             case instanceId = "InstanceId"
@@ -53,35 +53,35 @@ extension Monitor {
             case organizationIds = "OrganizationIds"
         }
     }
-    
+
     /// UpdateGrafanaNotificationChannel返回参数结构体
     public struct UpdateGrafanaNotificationChannelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新 Grafana 告警通道
     @inlinable
-    public func updateGrafanaNotificationChannel(_ input: UpdateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaNotificationChannelResponse > {
+    public func updateGrafanaNotificationChannel(_ input: UpdateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaNotificationChannelResponse> {
         self.client.execute(action: "UpdateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新 Grafana 告警通道
     @inlinable
     public func updateGrafanaNotificationChannel(_ input: UpdateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaNotificationChannelResponse {
         try await self.client.execute(action: "UpdateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新 Grafana 告警通道
     @inlinable
-    public func updateGrafanaNotificationChannel(channelId: String, instanceId: String, channelName: String, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaNotificationChannelResponse > {
+    public func updateGrafanaNotificationChannel(channelId: String, instanceId: String, channelName: String, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaNotificationChannelResponse> {
         self.updateGrafanaNotificationChannel(UpdateGrafanaNotificationChannelRequest(channelId: channelId, instanceId: instanceId, channelName: channelName, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新 Grafana 告警通道
     @inlinable
     public func updateGrafanaNotificationChannel(channelId: String, instanceId: String, channelName: String, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaNotificationChannelResponse {

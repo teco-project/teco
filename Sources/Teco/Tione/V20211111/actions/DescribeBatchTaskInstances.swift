@@ -19,39 +19,39 @@ extension Tione {
     public struct DescribeBatchTaskInstancesRequest: TCRequestModel {
         /// 跑批任务id
         public let batchTaskId: String
-        
-        public init (batchTaskId: String) {
+
+        public init(batchTaskId: String) {
             self.batchTaskId = batchTaskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case batchTaskId = "BatchTaskId"
         }
     }
-    
+
     /// DescribeBatchTaskInstances返回参数结构体
     public struct DescribeBatchTaskInstancesResponse: TCResponseModel {
         /// 实例集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchInstances: [BatchTaskInstance]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchInstances = "BatchInstances"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 跑批实例列表
     ///
     /// 查询跑批实例列表
     @inlinable
-    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskInstancesResponse > {
+    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskInstancesResponse> {
         self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 跑批实例列表
     ///
     /// 查询跑批实例列表
@@ -59,15 +59,15 @@ extension Tione {
     public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
         try await self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 跑批实例列表
     ///
     /// 查询跑批实例列表
     @inlinable
-    public func describeBatchTaskInstances(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskInstancesResponse > {
+    public func describeBatchTaskInstances(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskInstancesResponse> {
         self.describeBatchTaskInstances(DescribeBatchTaskInstancesRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 跑批实例列表
     ///
     /// 查询跑批实例列表

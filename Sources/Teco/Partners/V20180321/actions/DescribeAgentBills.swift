@@ -19,26 +19,26 @@ extension Partners {
     public struct DescribeAgentBillsRequest: TCRequestModel {
         /// 支付月份，如2018-02
         public let settleMonth: String
-        
+
         /// 客户账号ID
         public let clientUin: String?
-        
+
         /// 支付方式，prepay/postpay
         public let payMode: String?
-        
+
         /// 预付费订单号
         public let orderId: String?
-        
+
         /// 客户备注名称
         public let clientRemark: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 限制数目
         public let limit: UInt64?
-        
-        public init (settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.settleMonth = settleMonth
             self.clientUin = clientUin
             self.payMode = payMode
@@ -47,7 +47,7 @@ extension Partners {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case settleMonth = "SettleMonth"
             case clientUin = "ClientUin"
@@ -58,33 +58,33 @@ extension Partners {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAgentBills返回参数结构体
     public struct DescribeAgentBillsResponse: TCResponseModel {
         /// 符合查询条件列表总数量
         public let totalCount: UInt64
-        
+
         /// 业务明细列表
         public let agentBillSet: [AgentBillElem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case agentBillSet = "AgentBillSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
-    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentBillsResponse > {
+    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentBillsResponse> {
         self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细
@@ -92,15 +92,15 @@ extension Partners {
     public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
         try await self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
-    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentBillsResponse > {
+    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentBillsResponse> {
         self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细

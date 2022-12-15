@@ -19,42 +19,42 @@ extension Sqlserver {
     public struct DescribeInstanceParamsRequest: TCRequestModel {
         /// 实例 ID，格式如：mssql-dj5i29c5n，与云数据库控制台页面中显示的实例 ID 相同，可使用 DescribeDBInstances 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeInstanceParams返回参数结构体
     public struct DescribeInstanceParamsResponse: TCResponseModel {
         /// 实例的参数总数
         public let totalCount: Int64
-        
+
         /// 参数详情
         public let items: [ParameterDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例的可设置参数列表
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
     @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例的可设置参数列表
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
@@ -62,15 +62,15 @@ extension Sqlserver {
     public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
         try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例的可设置参数列表
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
     @inlinable
-    public func describeInstanceParams(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
+    public func describeInstanceParams(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.describeInstanceParams(DescribeInstanceParamsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例的可设置参数列表
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。

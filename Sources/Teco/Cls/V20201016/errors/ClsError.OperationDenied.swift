@@ -31,127 +31,127 @@ extension TCClsError {
             case topicHasScheduleSqlTask = "OperationDenied.TopicHasScheduleSqlTask"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账户已销毁。
         public static var accountDestroy: OperationDenied {
             OperationDenied(.accountDestroy)
         }
-        
+
         /// 账户欠费。
         public static var accountIsolate: OperationDenied {
             OperationDenied(.accountIsolate)
         }
-        
+
         /// 账户不存在。
         ///
         /// 需要开通cls服务
         public static var accountNotExists: OperationDenied {
             OperationDenied(.accountNotExists)
         }
-        
+
         /// ACL校验失败。
         public static var aclFailed: OperationDenied {
             OperationDenied(.aclFailed)
         }
-        
+
         /// 低频不支持告警。
         public static var alarmNotSupportForSearchLow: OperationDenied {
             OperationDenied(.alarmNotSupportForSearchLow)
         }
-        
+
         /// 字段没有开启分析功能。
         ///
         /// 开启即可
         public static var analysisSwitchClose: OperationDenied {
             OperationDenied(.analysisSwitchClose)
         }
-        
+
         /// 该资源暂不支持新语法，联系helper处理。
         public static var newSyntaxNotSupported: OperationDenied {
             OperationDenied(.newSyntaxNotSupported)
         }
-        
+
         /// 通知模板已绑定告警，无法删除。
         public static var noticeHasAlarm: OperationDenied {
             OperationDenied(.noticeHasAlarm)
         }
-        
+
         /// 操作低频检索不支持。
         public static var operationNotSupportInSearchLow: OperationDenied {
             OperationDenied(.operationNotSupportInSearchLow)
         }
-        
+
         /// topic绑定了数据加工。
         public static var topicHasDataFormTask: OperationDenied {
             OperationDenied(.topicHasDataFormTask)
         }
-        
+
         /// topic绑定了函数投递。
         ///
         /// 需要删除函数投递之后， 才能删除topic
         public static var topicHasDeliverFunction: OperationDenied {
             OperationDenied(.topicHasDeliverFunction)
         }
-        
+
         public static var topicHasScheduleSqlTask: OperationDenied {
             OperationDenied(.topicHasScheduleSqlTask)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asClsError() -> TCClsError {
             let code: TCClsError.Code
             switch self.error {
-            case .accountDestroy: 
+            case .accountDestroy:
                 code = .operationDenied_AccountDestroy
-            case .accountIsolate: 
+            case .accountIsolate:
                 code = .operationDenied_AccountIsolate
-            case .accountNotExists: 
+            case .accountNotExists:
                 code = .operationDenied_AccountNotExists
-            case .aclFailed: 
+            case .aclFailed:
                 code = .operationDenied_ACLFailed
-            case .alarmNotSupportForSearchLow: 
+            case .alarmNotSupportForSearchLow:
                 code = .operationDenied_AlarmNotSupportForSearchLow
-            case .analysisSwitchClose: 
+            case .analysisSwitchClose:
                 code = .operationDenied_AnalysisSwitchClose
-            case .newSyntaxNotSupported: 
+            case .newSyntaxNotSupported:
                 code = .operationDenied_NewSyntaxNotSupported
-            case .noticeHasAlarm: 
+            case .noticeHasAlarm:
                 code = .operationDenied_NoticeHasAlarm
-            case .operationNotSupportInSearchLow: 
+            case .operationNotSupportInSearchLow:
                 code = .operationDenied_OperationNotSupportInSearchLow
-            case .topicHasDataFormTask: 
+            case .topicHasDataFormTask:
                 code = .operationDenied_TopicHasDataFormTask
-            case .topicHasDeliverFunction: 
+            case .topicHasDeliverFunction:
                 code = .operationDenied_TopicHasDeliverFunction
-            case .topicHasScheduleSqlTask: 
+            case .topicHasScheduleSqlTask:
                 code = .operationDenied_TopicHasScheduleSqlTask
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCClsError(code, context: self.context)

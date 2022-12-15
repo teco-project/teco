@@ -17,28 +17,28 @@
 extension Cdwch {
     /// ModifyUserNewPrivilege请求参数结构体
     public struct ModifyUserNewPrivilegeRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ModifyUserNewPrivilege返回参数结构体
     public struct ModifyUserNewPrivilegeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
     @inlinable
-    public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserNewPrivilegeResponse > {
+    public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
         self.client.execute(action: "ModifyUserNewPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
@@ -46,15 +46,15 @@ extension Cdwch {
     public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
         try await self.client.execute(action: "ModifyUserNewPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
     @inlinable
-    public func modifyUserNewPrivilege(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserNewPrivilegeResponse > {
+    public func modifyUserNewPrivilege(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
         self.modifyUserNewPrivilege(ModifyUserNewPrivilegeRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）

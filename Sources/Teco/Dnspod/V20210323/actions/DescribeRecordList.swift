@@ -19,41 +19,41 @@ extension Dnspod {
     public struct DescribeRecordListRequest: TCRequestModel {
         /// 要获取的解析记录所属的域名
         public let domain: String
-        
+
         /// 要获取的解析记录所属的域名Id，如果传了DomainId，系统将会忽略Domain参数。 可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
-        
+
         /// 解析记录的主机头，如果传了此参数，则只会返回此主机头对应的解析记录
         public let subdomain: String?
-        
+
         /// 获取某种类型的解析记录，如 A，CNAME，NS，AAAA，显性URL，隐性URL，CAA，SPF等
         public let recordType: String?
-        
+
         /// 获取某条线路名称的解析记录。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息
         public let recordLine: String?
-        
+
         /// 获取某个线路Id对应的解析记录，如果传RecordLineId，系统会忽略RecordLine参数。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息
         public let recordLineId: String?
-        
+
         /// 获取某个分组下的解析记录时，传这个分组Id。
         public let groupId: UInt64?
-        
+
         /// 通过关键字搜索解析记录，当前支持搜索主机头和记录值
         public let keyword: String?
-        
+
         /// 排序字段，支持 name,line,type,value,weight,mx,ttl,updated_on 几个字段。
         public let sortField: String?
-        
+
         /// 排序方式，正序：ASC，逆序：DESC。默认值为ASC。
         public let sortType: String?
-        
+
         /// 偏移量，默认值为0。
         public let offset: UInt64?
-        
+
         /// 限制数量，当前Limit最大支持3000。默认值为100。
         public let limit: UInt64?
-        
-        public init (domain: String, domainId: UInt64? = nil, subdomain: String? = nil, recordType: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, groupId: UInt64? = nil, keyword: String? = nil, sortField: String? = nil, sortType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(domain: String, domainId: UInt64? = nil, subdomain: String? = nil, recordType: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, groupId: UInt64? = nil, keyword: String? = nil, sortField: String? = nil, sortType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.subdomain = subdomain
@@ -67,7 +67,7 @@ extension Dnspod {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
@@ -83,33 +83,33 @@ extension Dnspod {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeRecordList返回参数结构体
     public struct DescribeRecordListResponse: TCResponseModel {
         /// 记录的数量统计信息
         public let recordCountInfo: RecordCountInfo
-        
+
         /// 获取的记录列表
         public let recordList: [RecordListItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case recordCountInfo = "RecordCountInfo"
             case recordList = "RecordList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名的解析记录列表
     ///
     /// 获取某个域名下的解析记录列表
     @inlinable
-    public func describeRecordList(_ input: DescribeRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordListResponse > {
+    public func describeRecordList(_ input: DescribeRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordListResponse> {
         self.client.execute(action: "DescribeRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名的解析记录列表
     ///
     /// 获取某个域名下的解析记录列表
@@ -117,15 +117,15 @@ extension Dnspod {
     public func describeRecordList(_ input: DescribeRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordListResponse {
         try await self.client.execute(action: "DescribeRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名的解析记录列表
     ///
     /// 获取某个域名下的解析记录列表
     @inlinable
-    public func describeRecordList(domain: String, domainId: UInt64? = nil, subdomain: String? = nil, recordType: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, groupId: UInt64? = nil, keyword: String? = nil, sortField: String? = nil, sortType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordListResponse > {
+    public func describeRecordList(domain: String, domainId: UInt64? = nil, subdomain: String? = nil, recordType: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, groupId: UInt64? = nil, keyword: String? = nil, sortField: String? = nil, sortType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordListResponse> {
         self.describeRecordList(DescribeRecordListRequest(domain: domain, domainId: domainId, subdomain: subdomain, recordType: recordType, recordLine: recordLine, recordLineId: recordLineId, groupId: groupId, keyword: keyword, sortField: sortField, sortType: sortType, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名的解析记录列表
     ///
     /// 获取某个域名下的解析记录列表

@@ -19,37 +19,37 @@ extension Tics {
     public struct DescribeThreatInfoRequest: TCRequestModel {
         /// 查询对象，域名或IP
         public let key: String
-        
+
         /// 查询类型，当前取值为domain或ip
         public let type: String
-        
+
         /// 附加字段，是否返回上下文。当为0时不返回上下文，当为1时返回上下文。
         public let option: UInt64?
-        
-        public init (key: String, type: String, option: UInt64? = nil) {
+
+        public init(key: String, type: String, option: UInt64? = nil) {
             self.key = key
             self.type = type
             self.option = option
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case type = "Type"
             case option = "Option"
         }
     }
-    
+
     /// DescribeThreatInfo返回参数结构体
     public struct DescribeThreatInfoResponse: TCResponseModel {
         /// 是否有数据，0代表有数据，1代表没有数据
         public let returnCode: UInt64
-        
+
         /// 判定结果，如：black、white、grey
         public let result: String
-        
+
         /// 置信度，取值0-100
         public let confidence: UInt64
-        
+
         /// 威胁类型。
         /// botnet = 僵尸网络
         /// trojan = 木马
@@ -68,10 +68,10 @@ extension Tics {
         /// malware IP = 恶意IP
         /// 等等
         public let threatTypes: [String]
-        
+
         /// 恶意标签，对应的团伙，家族等信息。
         public let tags: [String]
-        
+
         /// 当前状态
         /// active = 活跃
         /// sinkholed = sinkholed
@@ -79,14 +79,14 @@ extension Tics {
         /// unknown = 未知
         /// expired = 过期
         public let status: String
-        
+
         /// 情报相关的上下文，参数option=1 的时候提供
         /// 每个数据默认为3 条
         public let context: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case returnCode = "ReturnCode"
             case result = "Result"
@@ -98,15 +98,15 @@ extension Tics {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询威胁情报
     ///
     /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
     @inlinable
-    public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThreatInfoResponse > {
+    public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeThreatInfoResponse> {
         self.client.execute(action: "DescribeThreatInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询威胁情报
     ///
     /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
@@ -114,15 +114,15 @@ extension Tics {
     public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThreatInfoResponse {
         try await self.client.execute(action: "DescribeThreatInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询威胁情报
     ///
     /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
     @inlinable
-    public func describeThreatInfo(key: String, type: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThreatInfoResponse > {
+    public func describeThreatInfo(key: String, type: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeThreatInfoResponse> {
         self.describeThreatInfo(DescribeThreatInfoRequest(key: key, type: type, option: option), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询威胁情报
     ///
     /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。

@@ -19,49 +19,49 @@ extension Cls {
     public struct RetryShipperTaskRequest: TCRequestModel {
         /// 投递规则ID
         public let shipperId: String
-        
+
         /// 投递任务ID
         public let taskId: String
-        
-        public init (shipperId: String, taskId: String) {
+
+        public init(shipperId: String, taskId: String) {
             self.shipperId = shipperId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case shipperId = "ShipperId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// RetryShipperTask返回参数结构体
     public struct RetryShipperTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重试失败的投递任务
     @inlinable
-    public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryShipperTaskResponse > {
+    public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryShipperTaskResponse> {
         self.client.execute(action: "RetryShipperTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重试失败的投递任务
     @inlinable
     public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryShipperTaskResponse {
         try await self.client.execute(action: "RetryShipperTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重试失败的投递任务
     @inlinable
-    public func retryShipperTask(shipperId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryShipperTaskResponse > {
+    public func retryShipperTask(shipperId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryShipperTaskResponse> {
         self.retryShipperTask(RetryShipperTaskRequest(shipperId: shipperId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重试失败的投递任务
     @inlinable
     public func retryShipperTask(shipperId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryShipperTaskResponse {

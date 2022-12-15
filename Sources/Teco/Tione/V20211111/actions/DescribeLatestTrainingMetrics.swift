@@ -19,54 +19,54 @@ extension Tione {
     public struct DescribeLatestTrainingMetricsRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeLatestTrainingMetrics返回参数结构体
     public struct DescribeLatestTrainingMetricsResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 最近一次上报的训练指标.每个Metric中只有一个点的数据, 即len(Values) = len(Timestamps) = 1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metrics: [TrainingMetric]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case metrics = "Metrics"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询最近上报的训练自定义指标
     @inlinable
-    public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLatestTrainingMetricsResponse > {
+    public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLatestTrainingMetricsResponse> {
         self.client.execute(action: "DescribeLatestTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询最近上报的训练自定义指标
     @inlinable
     public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLatestTrainingMetricsResponse {
         try await self.client.execute(action: "DescribeLatestTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询最近上报的训练自定义指标
     @inlinable
-    public func describeLatestTrainingMetrics(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLatestTrainingMetricsResponse > {
+    public func describeLatestTrainingMetrics(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLatestTrainingMetricsResponse> {
         self.describeLatestTrainingMetrics(DescribeLatestTrainingMetricsRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询最近上报的训练自定义指标
     @inlinable
     public func describeLatestTrainingMetrics(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLatestTrainingMetricsResponse {

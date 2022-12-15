@@ -19,53 +19,53 @@ extension Monitor {
     public struct DescribeAlarmNoticeRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
         public let module: String
-        
+
         /// 告警通知模板 id
         public let noticeId: String
-        
-        public init (module: String, noticeId: String) {
+
+        public init(module: String, noticeId: String) {
             self.module = module
             self.noticeId = noticeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case noticeId = "NoticeId"
         }
     }
-    
+
     /// DescribeAlarmNotice返回参数结构体
     public struct DescribeAlarmNoticeResponse: TCResponseModel {
         /// 告警通知模板详细信息
         public let notice: AlarmNotice
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case notice = "Notice"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询单个通知模板的详情
     @inlinable
-    public func describeAlarmNotice(_ input: DescribeAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticeResponse > {
+    public func describeAlarmNotice(_ input: DescribeAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeResponse> {
         self.client.execute(action: "DescribeAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单个通知模板的详情
     @inlinable
     public func describeAlarmNotice(_ input: DescribeAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeResponse {
         try await self.client.execute(action: "DescribeAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询单个通知模板的详情
     @inlinable
-    public func describeAlarmNotice(module: String, noticeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticeResponse > {
+    public func describeAlarmNotice(module: String, noticeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeResponse> {
         self.describeAlarmNotice(DescribeAlarmNoticeRequest(module: module, noticeId: noticeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询单个通知模板的详情
     @inlinable
     public func describeAlarmNotice(module: String, noticeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeResponse {

@@ -19,23 +19,23 @@ extension Bmvpc {
     public struct CreateVpcPeerConnectionRequest: TCRequestModel {
         /// 本端VPC唯一ID
         public let vpcId: String
-        
+
         /// 对端VPC唯一ID
         public let peerVpcId: String
-        
+
         /// 对端地域，取值范围为gz,sh,bj,hk,cd,de,sh_bm,gz_bm,bj_bm,cq_bm等
         public let peerRegion: String
-        
+
         /// 对等连接名称
         public let vpcPeerConnectionName: String
-        
+
         /// 对端账户OwnerUin（默认值为本端账户）
         public let peerUin: String?
-        
+
         /// 跨地域必传，带宽上限值
         public let bandwidth: UInt64?
-        
-        public init (vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil) {
+
+        public init(vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil) {
             self.vpcId = vpcId
             self.peerVpcId = peerVpcId
             self.peerRegion = peerRegion
@@ -43,7 +43,7 @@ extension Bmvpc {
             self.peerUin = peerUin
             self.bandwidth = bandwidth
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case peerVpcId = "PeerVpcId"
@@ -53,39 +53,39 @@ extension Bmvpc {
             case bandwidth = "Bandwidth"
         }
     }
-    
+
     /// CreateVpcPeerConnection返回参数结构体
     public struct CreateVpcPeerConnectionResponse: TCResponseModel {
         /// 任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建对等连接
     @inlinable
-    public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcPeerConnectionResponse > {
+    public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcPeerConnectionResponse> {
         self.client.execute(action: "CreateVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建对等连接
     @inlinable
     public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeerConnectionResponse {
         try await self.client.execute(action: "CreateVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建对等连接
     @inlinable
-    public func createVpcPeerConnection(vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcPeerConnectionResponse > {
+    public func createVpcPeerConnection(vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcPeerConnectionResponse> {
         self.createVpcPeerConnection(CreateVpcPeerConnectionRequest(vpcId: vpcId, peerVpcId: peerVpcId, peerRegion: peerRegion, vpcPeerConnectionName: vpcPeerConnectionName, peerUin: peerUin, bandwidth: bandwidth), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建对等连接
     @inlinable
     public func createVpcPeerConnection(vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeerConnectionResponse {

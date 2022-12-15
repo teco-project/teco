@@ -19,56 +19,56 @@ extension Tsf {
     public struct ModifyTaskRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 任务名称
         public let taskName: String?
-        
+
         /// 任务类型
         public let taskType: String?
-        
+
         /// 任务内容
         public let taskContent: String?
-        
+
         /// 任务执行类型
         public let executeType: String?
-        
+
         /// 触发规则
         public let taskRule: TaskRule?
-        
+
         /// 超时时间，单位 ms
         public let timeOut: UInt64?
-        
+
         /// 分组ID
         public let groupId: String?
-        
+
         /// 分片数量
         public let shardCount: Int64?
-        
+
         /// 分片参数
         public let shardArguments: [ShardArgument]?
-        
+
         /// 高级设置
         public let advanceSettings: AdvanceSettings?
-        
+
         /// 判断任务成功的操作符 GT/GTE
         public let successOperator: String?
-        
+
         /// 判断任务成功率的阈值
         public let successRatio: Int64?
-        
+
         /// 重试次数
         public let retryCount: UInt64?
-        
+
         /// 重试间隔
         public let retryInterval: UInt64?
-        
+
         /// 任务参数，长度限制10000个字符
         public let taskArgument: String?
-        
+
         /// 无
         public let programIdList: [String]?
-        
-        public init (taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil) {
+
+        public init(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil) {
             self.taskId = taskId
             self.taskName = taskName
             self.taskType = taskType
@@ -87,7 +87,7 @@ extension Tsf {
             self.taskArgument = taskArgument
             self.programIdList = programIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
@@ -108,40 +108,40 @@ extension Tsf {
             case programIdList = "ProgramIdList"
         }
     }
-    
+
     /// ModifyTask返回参数结构体
     public struct ModifyTaskResponse: TCResponseModel {
         /// 更新是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改任务
     @inlinable
-    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskResponse > {
+    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskResponse> {
         self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改任务
     @inlinable
     public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {
         try await self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改任务
     @inlinable
-    public func modifyTask(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskResponse > {
+    public func modifyTask(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskResponse> {
         self.modifyTask(ModifyTaskRequest(taskId: taskId, taskName: taskName, taskType: taskType, taskContent: taskContent, executeType: executeType, taskRule: taskRule, timeOut: timeOut, groupId: groupId, shardCount: shardCount, shardArguments: shardArguments, advanceSettings: advanceSettings, successOperator: successOperator, successRatio: successRatio, retryCount: retryCount, retryInterval: retryInterval, taskArgument: taskArgument, programIdList: programIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改任务
     @inlinable
     public func modifyTask(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {

@@ -19,50 +19,50 @@ extension Wedata {
     public struct DescribeTaskInstancesRequest: TCRequestModel {
         /// 项目id
         public let projectId: String
-        
+
         /// 页号，默认为1
         public let pageNumber: Int64?
-        
+
         /// 页大小，默认为10，最大不超过200
         public let pageSize: Int64?
-        
+
         /// 工作流id列表
         public let workflowIdList: [String]?
-        
+
         /// 工作流名称列表，支持模糊搜索
         public let workflowNameList: [String]?
-        
+
         /// 起始数据时间，格式yyyy-MM-dd HH:mm:ss
         public let dateFrom: String?
-        
+
         /// 结束数据时间，格式yyyy-MM-dd HH:mm:ss
         public let dateTo: String?
-        
+
         /// 任务id列表
         public let taskIdList: [String]?
-        
+
         /// 任务名称列表，支持模糊搜索
         public let taskNameList: [String]?
-        
+
         /// 责任人名称列表
         public let inChargeList: [String]?
-        
+
         /// 任务类型码列表，26离线同步，30Python，31PySpark，32DLC，33Impala，34Hive SQL，35Shell，36Spark SQL，39Spark，40CDW PG，92MapReduce
         public let taskTypeIdList: [Int64]?
-        
+
         /// 实例状态列表，0等待事件，1等待上游，2等待运行，3运行中，4正在终止，5失败重试，6失败，7成功
         public let stateList: [String]?
-        
+
         /// 周期类型列表，I分钟，H小时，D天，W周，M月，Y年，O一次性，C crontab
         public let taskCycleUnitList: [String]?
-        
+
         /// 实例类型，0补录实例，1周期实例，2非周期实例
         public let instanceType: Int64?
-        
+
         /// 排序字段信息列表，ScheduleDateTime / CostTime / StartTime / EndTime
         public let orderFields: [OrderField]?
-        
-        public init (projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil) {
+
+        public init(projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil) {
             self.projectId = projectId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -79,7 +79,7 @@ extension Wedata {
             self.instanceType = instanceType
             self.orderFields = orderFields
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case pageNumber = "PageNumber"
@@ -98,39 +98,39 @@ extension Wedata {
             case orderFields = "OrderFields"
         }
     }
-    
+
     /// DescribeTaskInstances返回参数结构体
     public struct DescribeTaskInstancesResponse: TCResponseModel {
         /// 无
         public let data: DescribeTaskInstancesData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询任务实例列表
     @inlinable
-    public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstancesResponse > {
+    public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstancesResponse> {
         self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务实例列表
     @inlinable
     public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstancesResponse {
         try await self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询任务实例列表
     @inlinable
-    public func describeTaskInstances(projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstancesResponse > {
+    public func describeTaskInstances(projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstancesResponse> {
         self.describeTaskInstances(DescribeTaskInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, workflowIdList: workflowIdList, workflowNameList: workflowNameList, dateFrom: dateFrom, dateTo: dateTo, taskIdList: taskIdList, taskNameList: taskNameList, inChargeList: inChargeList, taskTypeIdList: taskTypeIdList, stateList: stateList, taskCycleUnitList: taskCycleUnitList, instanceType: instanceType, orderFields: orderFields), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务实例列表
     @inlinable
     public func describeTaskInstances(projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstancesResponse {

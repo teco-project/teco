@@ -19,49 +19,49 @@ extension Irp {
     public struct ReportMaterialRequest: TCRequestModel {
         /// 业务id
         public let bid: String
-        
+
         /// 上报的信息流数组，一次数量不超过50
         public let docItemList: [DocItem]
-        
-        public init (bid: String, docItemList: [DocItem]) {
+
+        public init(bid: String, docItemList: [DocItem]) {
             self.bid = bid
             self.docItemList = docItemList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bid = "Bid"
             case docItemList = "DocItemList"
         }
     }
-    
+
     /// ReportMaterial返回参数结构体
     public struct ReportMaterialResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上报物料
     @inlinable
-    public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportMaterialResponse > {
+    public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportMaterialResponse> {
         self.client.execute(action: "ReportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上报物料
     @inlinable
     public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {
         try await self.client.execute(action: "ReportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上报物料
     @inlinable
-    public func reportMaterial(bid: String, docItemList: [DocItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportMaterialResponse > {
+    public func reportMaterial(bid: String, docItemList: [DocItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportMaterialResponse> {
         self.reportMaterial(ReportMaterialRequest(bid: bid, docItemList: docItemList), logger: logger, on: eventLoop)
     }
-    
+
     /// 上报物料
     @inlinable
     public func reportMaterial(bid: String, docItemList: [DocItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {

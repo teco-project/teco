@@ -17,49 +17,49 @@
 extension Tcss {
     /// DescribeVirusScanSetting请求参数结构体
     public struct DescribeVirusScanSettingRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVirusScanSetting返回参数结构体
     public struct DescribeVirusScanSettingResponse: TCResponseModel {
         /// 是否开启定期扫描
         public let enableScan: Bool
-        
+
         /// 检测周期每隔多少天
         public let cycle: UInt64
-        
+
         /// 扫描开始时间
         public let beginScanAt: String
-        
+
         /// 扫描全部路径
         public let scanPathAll: Bool
-        
+
         /// 当ScanPathAll为true 生效 0扫描以下路径 1、扫描除以下路径
         public let scanPathType: UInt64
-        
+
         /// 超时时长，单位小时
         public let timeout: UInt64
-        
+
         /// 扫描范围0容器1主机节点
         public let scanRangeType: UInt64
-        
+
         /// true 全选，false 自选
         public let scanRangeAll: Bool
-        
+
         /// 自选扫描范围的容器id或者主机id 根据ScanRangeType决定
         public let scanIds: [String]
-        
+
         /// 自选排除或扫描的地址
         public let scanPath: [String]
-        
+
         /// 一键检测的超时设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clickTimeout: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case enableScan = "EnableScan"
             case cycle = "Cycle"
@@ -75,25 +75,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时查询文件查杀设置
     @inlinable
-    public func describeVirusScanSetting(_ input: DescribeVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanSettingResponse > {
+    public func describeVirusScanSetting(_ input: DescribeVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanSettingResponse> {
         self.client.execute(action: "DescribeVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时查询文件查杀设置
     @inlinable
     public func describeVirusScanSetting(_ input: DescribeVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanSettingResponse {
         try await self.client.execute(action: "DescribeVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时查询文件查杀设置
     @inlinable
-    public func describeVirusScanSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanSettingResponse > {
+    public func describeVirusScanSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanSettingResponse> {
         self.describeVirusScanSetting(DescribeVirusScanSettingRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时查询文件查杀设置
     @inlinable
     public func describeVirusScanSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanSettingResponse {

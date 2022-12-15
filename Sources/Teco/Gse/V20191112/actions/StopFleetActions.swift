@@ -19,45 +19,45 @@ extension Gse {
     public struct StopFleetActionsRequest: TCRequestModel {
         /// 服务器舰队 Id
         public let fleetId: String
-        
+
         /// 服务器舰队扩展策略，值为["AUTO_SCALING"]
         public let actions: [String]?
-        
-        public init (fleetId: String, actions: [String]? = nil) {
+
+        public init(fleetId: String, actions: [String]? = nil) {
             self.fleetId = fleetId
             self.actions = actions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case actions = "Actions"
         }
     }
-    
+
     /// StopFleetActions返回参数结构体
     public struct StopFleetActionsResponse: TCResponseModel {
         /// 服务器舰队 Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StopFleetActions）用于停止服务器舰队自动扩缩容，改为手动扩缩容。
     @inlinable
-    public func stopFleetActions(_ input: StopFleetActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopFleetActionsResponse > {
+    public func stopFleetActions(_ input: StopFleetActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopFleetActionsResponse> {
         self.client.execute(action: "StopFleetActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -66,16 +66,16 @@ extension Gse {
     public func stopFleetActions(_ input: StopFleetActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopFleetActionsResponse {
         try await self.client.execute(action: "StopFleetActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StopFleetActions）用于停止服务器舰队自动扩缩容，改为手动扩缩容。
     @inlinable
-    public func stopFleetActions(fleetId: String, actions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopFleetActionsResponse > {
+    public func stopFleetActions(fleetId: String, actions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopFleetActionsResponse> {
         self.stopFleetActions(StopFleetActionsRequest(fleetId: fleetId, actions: actions), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

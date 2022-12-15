@@ -19,29 +19,29 @@ extension Dayu {
     public struct DescribeL4RulesErrHealthRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
-        public init (business: String, id: String) {
+
+        public init(business: String, id: String) {
             self.business = business
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
         }
     }
-    
+
     /// DescribeL4RulesErrHealth返回参数结构体
     public struct DescribeL4RulesErrHealthResponse: TCResponseModel {
         /// 异常规则的总数
         public let total: UInt64
-        
+
         /// 异常规则列表，返回值说明: Key值为规则ID，Value值为异常IP，多个IP用","分割
         public let errHealths: [KeyValue]
-        
+
         /// 异常规则列表(提供更多的错误相关信息)，返回值说明:
         /// Key值为RuleId时，Value值为规则ID；
         /// Key值为Protocol时，Value值为规则的转发协议；
@@ -50,10 +50,10 @@ extension Dayu {
         /// 健康检查异常信息的格式为"SourceIp:1.1.1.1|SourcePort:1234|AbnormalStatTime:1570689065|AbnormalReason:connection time out|Interval:20|CheckNum:6|FailNum:6" 多个源IP的错误信息用，分割,
         /// SourceIp表示源站IP，SourcePort表示源站端口，AbnormalStatTime表示异常时间，AbnormalReason表示异常原因，Interval表示检查周期，CheckNum表示检查次数，FailNum表示失败次数；
         public let extErrHealths: [KeyValueRecord]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case errHealths = "ErrHealths"
@@ -61,25 +61,25 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取L4转发规则健康检查异常结果
     @inlinable
-    public func describeL4RulesErrHealth(_ input: DescribeL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4RulesErrHealthResponse > {
+    public func describeL4RulesErrHealth(_ input: DescribeL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4RulesErrHealthResponse> {
         self.client.execute(action: "DescribeL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取L4转发规则健康检查异常结果
     @inlinable
     public func describeL4RulesErrHealth(_ input: DescribeL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4RulesErrHealthResponse {
         try await self.client.execute(action: "DescribeL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取L4转发规则健康检查异常结果
     @inlinable
-    public func describeL4RulesErrHealth(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4RulesErrHealthResponse > {
+    public func describeL4RulesErrHealth(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4RulesErrHealthResponse> {
         self.describeL4RulesErrHealth(DescribeL4RulesErrHealthRequest(business: business, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取L4转发规则健康检查异常结果
     @inlinable
     public func describeL4RulesErrHealth(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4RulesErrHealthResponse {

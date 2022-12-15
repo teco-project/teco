@@ -22,36 +22,36 @@ extension Bmlb {
     public struct DescribeCertDetailRequest: TCRequestModel {
         /// 证书ID。
         public let certId: String
-        
-        public init (certId: String) {
+
+        public init(certId: String) {
             self.certId = certId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certId = "CertId"
         }
     }
-    
+
     /// DescribeCertDetail返回参数结构体
     public struct DescribeCertDetailResponse: TCResponseModel {
         /// 证书ID。
         public let certId: String
-        
+
         /// 证书名称。
         public let certName: String
-        
+
         /// 证书类型（SVR=服务器证书，CA=客户端证书）。
         public let certType: String
-        
+
         /// 证书内容。
         public let certContent: String
-        
+
         /// 证书主域名。
         public let certDomain: String
-        
+
         /// 证书子域名列表。
         public let certSubjectDomain: [String]
-        
+
         /// 证书上传时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -59,7 +59,7 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var certUploadTime: Date
-        
+
         /// 证书生效时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -67,7 +67,7 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var certBeginTime: Date
-        
+
         /// 证书失效时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -75,13 +75,13 @@ extension Bmlb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var certEndTime: Date
-        
+
         /// 该证书关联的黑石负载均衡对象列表。
         public let certLoadBalancerSet: [CertDetailLoadBalancer]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certId = "CertId"
             case certName = "CertName"
@@ -96,15 +96,15 @@ extension Bmlb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取黑石负载均衡证书详情
     ///
     /// 获取黑石负载均衡证书详情。
     @inlinable
-    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDetailResponse > {
+    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDetailResponse> {
         self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑石负载均衡证书详情
     ///
     /// 获取黑石负载均衡证书详情。
@@ -112,15 +112,15 @@ extension Bmlb {
     public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
         try await self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取黑石负载均衡证书详情
     ///
     /// 获取黑石负载均衡证书详情。
     @inlinable
-    public func describeCertDetail(certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDetailResponse > {
+    public func describeCertDetail(certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDetailResponse> {
         self.describeCertDetail(DescribeCertDetailRequest(certId: certId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取黑石负载均衡证书详情
     ///
     /// 获取黑石负载均衡证书详情。

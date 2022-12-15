@@ -22,32 +22,32 @@ extension Tci {
     public struct ASRStat: TCInputModel {
         /// 当前音频的平均语速
         public let avgSpeed: Float?
-        
+
         /// Vad的平均音量
         public let avgVolume: Float?
-        
+
         /// Vad的最大音量
         public let maxVolume: Float?
-        
+
         /// Vad的最小音量
         public let minVolume: Float?
-        
+
         /// 当前音频的非发音时长
         public let muteDuration: Int64?
-        
+
         /// 当前音频的发音时长
         public let soundDuration: Int64?
-        
+
         /// 当前音频的总时长
         public let totalDuration: Int64?
-        
+
         /// 当前音频的句子总数
         public let vadNum: Int64?
-        
+
         /// 当前音频的单词总数
         public let wordNum: Int64?
-        
-        public init (avgSpeed: Float? = nil, avgVolume: Float? = nil, maxVolume: Float? = nil, minVolume: Float? = nil, muteDuration: Int64? = nil, soundDuration: Int64? = nil, totalDuration: Int64? = nil, vadNum: Int64? = nil, wordNum: Int64? = nil) {
+
+        public init(avgSpeed: Float? = nil, avgVolume: Float? = nil, maxVolume: Float? = nil, minVolume: Float? = nil, muteDuration: Int64? = nil, soundDuration: Int64? = nil, totalDuration: Int64? = nil, vadNum: Int64? = nil, wordNum: Int64? = nil) {
             self.avgSpeed = avgSpeed
             self.avgVolume = avgVolume
             self.maxVolume = maxVolume
@@ -58,7 +58,7 @@ extension Tci {
             self.vadNum = vadNum
             self.wordNum = wordNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case avgSpeed = "AvgSpeed"
             case avgVolume = "AvgVolume"
@@ -71,110 +71,110 @@ extension Tci {
             case wordNum = "WordNum"
         }
     }
-    
+
     /// 缺勤人员信息
     public struct AbsenceInfo: TCInputModel {
         /// 识别到的人员所在的库id
         public let libraryIds: String?
-        
+
         /// 识别到的人员id
         public let personId: String?
-        
-        public init (libraryIds: String? = nil, personId: String? = nil) {
+
+        public init(libraryIds: String? = nil, personId: String? = nil) {
             self.libraryIds = libraryIds
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case libraryIds = "LibraryIds"
             case personId = "PersonId"
         }
     }
-    
+
     /// 数量统计结果
     public struct ActionCountStatistic: TCInputModel {
         /// 数量
         public let count: Int64
-        
+
         /// 名称
         public let name: String
-        
-        public init (count: Int64, name: String) {
+
+        public init(count: Int64, name: String) {
             self.count = count
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case name = "Name"
         }
     }
-    
+
     /// 时长占比统计结果
     public struct ActionDurationRatioStatistic: TCInputModel {
         /// 名称
         public let name: String
-        
+
         /// 比例
         public let ratio: Float
-        
-        public init (name: String, ratio: Float) {
+
+        public init(name: String, ratio: Float) {
             self.name = name
             self.ratio = ratio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case ratio = "Ratio"
         }
     }
-    
+
     /// 时长统计结果
     public struct ActionDurationStatistic: TCInputModel {
         /// 时长
         public let duration: Int64
-        
+
         /// 名称
         public let name: String
-        
-        public init (duration: Int64, name: String) {
+
+        public init(duration: Int64, name: String) {
             self.duration = duration
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case duration = "Duration"
             case name = "Name"
         }
     }
-    
+
     /// 大教室场景肢体动作识别信息
     public struct ActionInfo: TCInputModel {
         /// 躯体动作识别结果，包含坐着（sit）、站立（stand）和趴睡（sleep）
         public let bodyPosture: ActionType?
-        
+
         /// 举手识别结果，包含举手（hand）和未检测到举手（nothand）
         public let handup: ActionType?
-        
+
         /// 是否低头识别结果，包含抬头（lookingahead）和未检测到抬头（notlookingahead）
         public let lookHead: ActionType?
-        
+
         /// 是否写字识别结果，包含写字（write）和未检测到写字（notlookingahead）
         public let writing: ActionType?
-        
+
         /// 动作图像高度
         public let height: Int64?
-        
+
         /// 动作出现图像的左侧起始坐标位置
         public let left: Int64?
-        
+
         /// 动作出现图像的上侧起始侧坐标位置
         public let top: Int64?
-        
+
         /// 动作图像宽度
         public let width: Int64?
-        
-        public init (bodyPosture: ActionType? = nil, handup: ActionType? = nil, lookHead: ActionType? = nil, writing: ActionType? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
+
+        public init(bodyPosture: ActionType? = nil, handup: ActionType? = nil, lookHead: ActionType? = nil, writing: ActionType? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.bodyPosture = bodyPosture
             self.handup = handup
             self.lookHead = lookHead
@@ -184,7 +184,7 @@ extension Tci {
             self.top = top
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bodyPosture = "BodyPosture"
             case handup = "Handup"
@@ -196,118 +196,118 @@ extension Tci {
             case width = "Width"
         }
     }
-    
+
     /// 统计结果
     public struct ActionStatistic: TCInputModel {
         /// 数量统计
         public let actionCount: [ActionCountStatistic]?
-        
+
         /// 时长统计
         public let actionDuration: [ActionDurationStatistic]?
-        
+
         /// 时长比例统计
         public let actionDurationRatio: [ActionDurationRatioStatistic]?
-        
-        public init (actionCount: [ActionCountStatistic]? = nil, actionDuration: [ActionDurationStatistic]? = nil, actionDurationRatio: [ActionDurationRatioStatistic]? = nil) {
+
+        public init(actionCount: [ActionCountStatistic]? = nil, actionDuration: [ActionDurationStatistic]? = nil, actionDurationRatio: [ActionDurationRatioStatistic]? = nil) {
             self.actionCount = actionCount
             self.actionDuration = actionDuration
             self.actionDurationRatio = actionDurationRatio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case actionCount = "ActionCount"
             case actionDuration = "ActionDuration"
             case actionDurationRatio = "ActionDurationRatio"
         }
     }
-    
+
     /// 动作行为子类型
     public struct ActionType: TCInputModel {
         /// 置信度
         public let confidence: Float?
-        
+
         /// 动作类别
         public let type: String?
-        
-        public init (confidence: Float? = nil, type: String? = nil) {
+
+        public init(confidence: Float? = nil, type: String? = nil) {
             self.confidence = confidence
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case type = "Type"
         }
     }
-    
+
     /// 如果请求中开启了静音检测开关，则会返回所有的静音片段（静音时长超过阈值的片段）。
     public struct AllMuteSlice: TCInputModel {
         /// 所有静音片段。
         public let muteSlice: [MuteSlice]?
-        
+
         /// 静音时长占比。
         public let muteRatio: Float?
-        
+
         /// 静音总时长。
         public let totalMuteDuration: Int64?
-        
-        public init (muteSlice: [MuteSlice]? = nil, muteRatio: Float? = nil, totalMuteDuration: Int64? = nil) {
+
+        public init(muteSlice: [MuteSlice]? = nil, muteRatio: Float? = nil, totalMuteDuration: Int64? = nil) {
             self.muteSlice = muteSlice
             self.muteRatio = muteRatio
             self.totalMuteDuration = totalMuteDuration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case muteSlice = "MuteSlice"
             case muteRatio = "MuteRatio"
             case totalMuteDuration = "TotalMuteDuration"
         }
     }
-    
+
     /// 识别到的人员信息
     public struct AttendanceInfo: TCInputModel {
         /// 识别到的人员信息
         public let face: FrameInfo?
-        
+
         /// 识别到的人员id
         public let personId: String?
-        
-        public init (face: FrameInfo? = nil, personId: String? = nil) {
+
+        public init(face: FrameInfo? = nil, personId: String? = nil) {
             self.face = face
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case face = "Face"
             case personId = "PersonId"
         }
     }
-    
+
     /// 老师肢体动作识别结果
     public struct BodyMovementResult: TCInputModel {
         /// 置信度
         public let confidence: Float?
-        
+
         /// 识别结果高度
         public let height: Int64?
-        
+
         /// 识别结果左坐标
         public let left: Int64?
-        
+
         /// 老师动作识别结果，包含
         /// 1、teach_on_positive_attitude 正面讲解
         /// 2、point_to_the_blackboard 指黑板
         /// 3、writing_blackboard 写板书
         /// 4、other 其他
         public let movements: String?
-        
+
         /// 识别结果顶坐标
         public let top: Int64?
-        
+
         /// 识别结果宽度
         public let width: Int64?
-        
-        public init (confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, movements: String? = nil, top: Int64? = nil, width: Int64? = nil) {
+
+        public init(confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, movements: String? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.confidence = confidence
             self.height = height
             self.left = left
@@ -315,7 +315,7 @@ extension Tci {
             self.top = top
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case height = "Height"
@@ -325,61 +325,61 @@ extension Tci {
             case width = "Width"
         }
     }
-    
+
     /// 单词出现的那个句子的起始时间和结束时间信息
     public struct DetailInfo: TCInputModel {
         /// 单词出现在该音频中的那个句子的时间戳，出现了几次， 就返回对应次数的起始和结束时间戳
         public let value: [WordTimePair]?
-        
+
         /// 词汇库中的单词
         public let keyword: String?
-        
-        public init (value: [WordTimePair]? = nil, keyword: String? = nil) {
+
+        public init(value: [WordTimePair]? = nil, keyword: String? = nil) {
             self.value = value
             self.keyword = keyword
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case value = "Value"
             case keyword = "Keyword"
         }
     }
-    
+
     /// 双路混流视频集锦开关项
     public struct DoubleVideoFunction: TCInputModel {
         /// 片头片尾增加图片开关
         public let enableCoverPictures: Bool?
-        
-        public init (enableCoverPictures: Bool? = nil) {
+
+        public init(enableCoverPictures: Bool? = nil) {
             self.enableCoverPictures = enableCoverPictures
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enableCoverPictures = "EnableCoverPictures"
         }
     }
-    
+
     /// 表情比例统计
     public struct ExpressRatioStatistic: TCInputModel {
         /// 出现次数
         public let count: Int64?
-        
+
         /// 表情
         public let express: String?
-        
+
         /// 该表情时长占所有表情时长的比例
         public let ratio: Float?
-        
+
         /// 该表情时长占视频总时长的比例
         public let ratioUseDuration: Float?
-        
-        public init (count: Int64? = nil, express: String? = nil, ratio: Float? = nil, ratioUseDuration: Float? = nil) {
+
+        public init(count: Int64? = nil, express: String? = nil, ratio: Float? = nil, ratioUseDuration: Float? = nil) {
             self.count = count
             self.express = express
             self.ratio = ratio
             self.ratioUseDuration = ratioUseDuration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case express = "Express"
@@ -387,77 +387,77 @@ extension Tci {
             case ratioUseDuration = "RatioUseDuration"
         }
     }
-    
+
     /// 人脸描述
     public struct Face: TCInputModel {
         /// 人脸唯一标识符
         public let faceId: String
-        
+
         /// 人脸图片 URL
         public let faceUrl: String
-        
+
         /// 人员唯一标识符
         public let personId: String
-        
-        public init (faceId: String, faceUrl: String, personId: String) {
+
+        public init(faceId: String, faceUrl: String, personId: String) {
             self.faceId = faceId
             self.faceUrl = faceUrl
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceId = "FaceId"
             case faceUrl = "FaceUrl"
             case personId = "PersonId"
         }
     }
-    
+
     /// FaceAttrResult
     public struct FaceAttrResult: TCInputModel {
         /// 年龄
         public let age: Int64?
-        
+
         /// 性别
         public let sex: String?
-        
-        public init (age: Int64? = nil, sex: String? = nil) {
+
+        public init(age: Int64? = nil, sex: String? = nil) {
             self.age = age
             self.sex = sex
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case age = "Age"
             case sex = "Sex"
         }
     }
-    
+
     /// 人脸监测统计信息
     public struct FaceDetectStatistic: TCInputModel {
         /// 人脸大小占画面平均占比
         public let faceSizeRatio: Float?
-        
+
         /// 检测到正脸次数
         public let frontalFaceCount: Int64?
-        
+
         /// 正脸时长占比
         public let frontalFaceRatio: Float?
-        
+
         /// 正脸时长在总出现时常占比
         public let frontalFaceRealRatio: Float?
-        
+
         /// 人员唯一标识符
         public let personId: String?
-        
+
         /// 检测到侧脸次数
         public let sideFaceCount: Int64?
-        
+
         /// 侧脸时长占比
         public let sideFaceRatio: Float?
-        
+
         /// 侧脸时长在总出现时常占比
         public let sideFaceRealRatio: Float?
-        
-        public init (faceSizeRatio: Float? = nil, frontalFaceCount: Int64? = nil, frontalFaceRatio: Float? = nil, frontalFaceRealRatio: Float? = nil, personId: String? = nil, sideFaceCount: Int64? = nil, sideFaceRatio: Float? = nil, sideFaceRealRatio: Float? = nil) {
+
+        public init(faceSizeRatio: Float? = nil, frontalFaceCount: Int64? = nil, frontalFaceRatio: Float? = nil, frontalFaceRealRatio: Float? = nil, personId: String? = nil, sideFaceCount: Int64? = nil, sideFaceRatio: Float? = nil, sideFaceRealRatio: Float? = nil) {
             self.faceSizeRatio = faceSizeRatio
             self.frontalFaceCount = frontalFaceCount
             self.frontalFaceRatio = frontalFaceRatio
@@ -467,7 +467,7 @@ extension Tci {
             self.sideFaceRatio = sideFaceRatio
             self.sideFaceRealRatio = sideFaceRealRatio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceSizeRatio = "FaceSizeRatio"
             case frontalFaceCount = "FrontalFaceCount"
@@ -479,66 +479,66 @@ extension Tci {
             case sideFaceRealRatio = "SideFaceRealRatio"
         }
     }
-    
+
     /// 人脸表情统计结果
     public struct FaceExpressStatistic: TCInputModel {
         /// 人员唯一标识符
         public let personId: String
-        
+
         /// 表情统计结果
         public let expressRatio: [ExpressRatioStatistic]?
-        
-        public init (personId: String, expressRatio: [ExpressRatioStatistic]? = nil) {
+
+        public init(personId: String, expressRatio: [ExpressRatioStatistic]? = nil) {
             self.personId = personId
             self.expressRatio = expressRatio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case expressRatio = "ExpressRatio"
         }
     }
-    
+
     /// FaceExpressionResult
     public struct FaceExpressionResult: TCInputModel {
         /// 表情置信度
         public let confidence: Float?
-        
+
         /// 表情识别结果，包括"neutral":中性,"happiness":开心，"angry":"生气"，"disgust":厌恶，"fear":"恐惧"，"sadness":"悲伤"，"surprise":"惊讶"，"contempt":"蔑视"
         public let expression: String?
-        
-        public init (confidence: Float? = nil, expression: String? = nil) {
+
+        public init(confidence: Float? = nil, expression: String? = nil) {
             self.confidence = confidence
             self.expression = expression
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case expression = "Expression"
         }
     }
-    
+
     /// FaceIdentifyResult
     public struct FaceIdentifyResult: TCInputModel {
         /// 人脸标识符
         public let faceId: String
-        
+
         /// 人员库标识符
         public let libraryId: String
-        
+
         /// 人员标识符
         public let personId: String
-        
+
         /// 相似度
         public let similarity: Float
-        
-        public init (faceId: String, libraryId: String, personId: String, similarity: Float) {
+
+        public init(faceId: String, libraryId: String, personId: String, similarity: Float) {
             self.faceId = faceId
             self.libraryId = libraryId
             self.personId = personId
             self.similarity = similarity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceId = "FaceId"
             case libraryId = "LibraryId"
@@ -546,32 +546,32 @@ extension Tci {
             case similarity = "Similarity"
         }
     }
-    
+
     /// 人员检索统计结果
     public struct FaceIdentifyStatistic: TCInputModel {
         /// 持续时间
         public let duration: Int64?
-        
+
         /// 结束时间
         public let endTs: Int64?
-        
+
         /// 人员唯一标识符
         public let personId: String?
-        
+
         /// 相似度
         public let similarity: Float?
-        
+
         /// 开始时间
         public let startTs: Int64?
-        
-        public init (duration: Int64? = nil, endTs: Int64? = nil, personId: String? = nil, similarity: Float? = nil, startTs: Int64? = nil) {
+
+        public init(duration: Int64? = nil, endTs: Int64? = nil, personId: String? = nil, similarity: Float? = nil, startTs: Int64? = nil) {
             self.duration = duration
             self.endTs = endTs
             self.personId = personId
             self.similarity = similarity
             self.startTs = startTs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case duration = "Duration"
             case endTs = "EndTs"
@@ -580,32 +580,32 @@ extension Tci {
             case startTs = "StartTs"
         }
     }
-    
+
     /// 人脸操作信息
     public struct FaceInfo: TCInputModel {
         /// 人脸操作错误码
         public let errorCode: String?
-        
+
         /// 人脸操作结果信息
         public let errorMsg: String?
-        
+
         /// 人脸唯一标识符
         public let faceId: String?
-        
+
         /// 人脸保存地址
         public let faceUrl: String?
-        
+
         /// 人员唯一标识
         public let personId: String?
-        
-        public init (errorCode: String? = nil, errorMsg: String? = nil, faceId: String? = nil, faceUrl: String? = nil, personId: String? = nil) {
+
+        public init(errorCode: String? = nil, errorMsg: String? = nil, faceId: String? = nil, faceUrl: String? = nil, personId: String? = nil) {
             self.errorCode = errorCode
             self.errorMsg = errorMsg
             self.faceId = faceId
             self.faceUrl = faceUrl
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case errorCode = "ErrorCode"
             case errorMsg = "ErrorMsg"
@@ -614,31 +614,31 @@ extension Tci {
             case personId = "PersonId"
         }
     }
-    
+
     /// FaceInfoResult
     public struct FaceInfoResult: TCInputModel {
         /// 人脸尺寸的占比
         public let faceRatio: Float?
-        
+
         /// 帧高度
         public let frameHeight: Int64?
-        
+
         /// 帧宽度
         public let frameWidth: Int64?
-        
+
         /// 人脸高度
         public let height: Int64?
-        
+
         /// 人脸左坐标
         public let left: Int64?
-        
+
         /// 人脸顶坐标
         public let top: Int64?
-        
+
         /// 人脸宽度
         public let width: Int64?
-        
-        public init (faceRatio: Float? = nil, frameHeight: Int64? = nil, frameWidth: Int64? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
+
+        public init(faceRatio: Float? = nil, frameHeight: Int64? = nil, frameWidth: Int64? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.faceRatio = faceRatio
             self.frameHeight = frameHeight
             self.frameWidth = frameWidth
@@ -647,7 +647,7 @@ extension Tci {
             self.top = top
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceRatio = "FaceRatio"
             case frameHeight = "FrameHeight"
@@ -658,28 +658,28 @@ extension Tci {
             case width = "Width"
         }
     }
-    
+
     /// FacePoseResult
     public struct FacePoseResult: TCInputModel {
         /// 正脸或侧脸的消息
         public let direction: String?
-        
+
         /// 围绕Z轴旋转角度，俯仰角
         public let pitch: Float?
-        
+
         /// 围绕X轴旋转角度，翻滚角
         public let roll: Float?
-        
+
         /// 围绕Y轴旋转角度，偏航角
         public let yaw: Float?
-        
-        public init (direction: String? = nil, pitch: Float? = nil, roll: Float? = nil, yaw: Float? = nil) {
+
+        public init(direction: String? = nil, pitch: Float? = nil, roll: Float? = nil, yaw: Float? = nil) {
             self.direction = direction
             self.pitch = pitch
             self.roll = roll
             self.yaw = yaw
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case direction = "Direction"
             case pitch = "Pitch"
@@ -687,56 +687,56 @@ extension Tci {
             case yaw = "Yaw"
         }
     }
-    
+
     /// 人员信息
     public struct FrameInfo: TCInputModel {
         /// 相似度
         public let similarity: Float?
-        
+
         /// 截图的存储地址
         public let snapshotUrl: String?
-        
+
         /// 相对于视频起始时间的时间戳，单位秒
         public let ts: Int64?
-        
-        public init (similarity: Float? = nil, snapshotUrl: String? = nil, ts: Int64? = nil) {
+
+        public init(similarity: Float? = nil, snapshotUrl: String? = nil, ts: Int64? = nil) {
             self.similarity = similarity
             self.snapshotUrl = snapshotUrl
             self.ts = ts
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case similarity = "Similarity"
             case snapshotUrl = "SnapshotUrl"
             case ts = "Ts"
         }
     }
-    
+
     /// 功能开关列表，表示是否需要打开相应的功能，返回相应的信息
     public struct Function: TCInputModel {
         /// 输出全部文本标识，当该值设置为true时，会输出当前音频的全部文本
         public let enableAllText: Bool?
-        
+
         /// 输出关键词信息标识，当该值设置为true时，会输出当前音频的关键词信息。
         public let enableKeyword: Bool?
-        
+
         /// 静音检测标识，当设置为 true 时，需要设置静音时间阈值字段mute_threshold，统计结果中会返回静音片段。
         public let enableMuteDetect: Bool?
-        
+
         /// 输出音频统计信息标识，当设置为 true 时，任务查询结果会输出音频的统计信息（AsrStat）
         public let enableVadInfo: Bool?
-        
+
         /// 输出音频音量信息标识，当设置为 true 时，会输出当前音频音量信息。
         public let enableVolume: Bool?
-        
-        public init (enableAllText: Bool? = nil, enableKeyword: Bool? = nil, enableMuteDetect: Bool? = nil, enableVadInfo: Bool? = nil, enableVolume: Bool? = nil) {
+
+        public init(enableAllText: Bool? = nil, enableKeyword: Bool? = nil, enableMuteDetect: Bool? = nil, enableVadInfo: Bool? = nil, enableVolume: Bool? = nil) {
             self.enableAllText = enableAllText
             self.enableKeyword = enableKeyword
             self.enableMuteDetect = enableMuteDetect
             self.enableVadInfo = enableVadInfo
             self.enableVolume = enableVolume
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enableAllText = "EnableAllText"
             case enableKeyword = "EnableKeyword"
@@ -745,28 +745,28 @@ extension Tci {
             case enableVolume = "EnableVolume"
         }
     }
-    
+
     /// GestureResult
     public struct GestureResult: TCInputModel {
         /// 识别结果，包含"USPEAK":听你说，"LISTEN":听我说，"GOOD":GOOD，"TOOLS":拿教具，"OTHERS":其他
         public let `class`: String?
-        
+
         /// 置信度
         public let confidence: Float?
-        
+
         /// 识别结果高度
         public let height: Int64?
-        
+
         /// 识别结果左坐标
         public let left: Int64?
-        
+
         /// 识别结果顶坐标
         public let top: Int64?
-        
+
         /// 识别结果宽度
         public let width: Int64?
-        
-        public init (class: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
+
+        public init(class: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.`class` = `class`
             self.confidence = confidence
             self.height = height
@@ -774,7 +774,7 @@ extension Tci {
             self.top = top
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `class` = "Class"
             case confidence = "Confidence"
@@ -784,32 +784,32 @@ extension Tci {
             case width = "Width"
         }
     }
-    
+
     /// 检索配置开关项
     public struct HLFunction: TCInputModel {
         /// 是否开启人脸检测
         public let enableFaceDetect: Bool?
-        
+
         /// 是否开启表情识别
         public let enableFaceExpression: Bool?
-        
+
         /// 是否开启人脸检索
         public let enableFaceIdent: Bool?
-        
+
         /// 是否开启视频集锦-老师关键字识别
         public let enableKeywordWonderfulTime: Bool?
-        
+
         /// 是否开启视频集锦-微笑识别
         public let enableSmileWonderfulTime: Bool?
-        
-        public init (enableFaceDetect: Bool? = nil, enableFaceExpression: Bool? = nil, enableFaceIdent: Bool? = nil, enableKeywordWonderfulTime: Bool? = nil, enableSmileWonderfulTime: Bool? = nil) {
+
+        public init(enableFaceDetect: Bool? = nil, enableFaceExpression: Bool? = nil, enableFaceIdent: Bool? = nil, enableKeywordWonderfulTime: Bool? = nil, enableSmileWonderfulTime: Bool? = nil) {
             self.enableFaceDetect = enableFaceDetect
             self.enableFaceExpression = enableFaceExpression
             self.enableFaceIdent = enableFaceIdent
             self.enableKeywordWonderfulTime = enableKeywordWonderfulTime
             self.enableSmileWonderfulTime = enableSmileWonderfulTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enableFaceDetect = "EnableFaceDetect"
             case enableFaceExpression = "EnableFaceExpression"
@@ -818,28 +818,28 @@ extension Tci {
             case enableSmileWonderfulTime = "EnableSmileWonderfulTime"
         }
     }
-    
+
     /// HandTrackingResult
     public struct HandTrackingResult: TCInputModel {
         /// 识别结果
         public let `class`: String?
-        
+
         /// 置信度
         public let confidence: Float?
-        
+
         /// 识别结果高度
         public let height: Int64?
-        
+
         /// 识别结果左坐标
         public let left: Int64?
-        
+
         /// 识别结果顶坐标
         public let top: Int64?
-        
+
         /// 识别结果宽度
         public let width: Int64?
-        
-        public init (class: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
+
+        public init(class: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.`class` = `class`
             self.confidence = confidence
             self.height = height
@@ -847,7 +847,7 @@ extension Tci {
             self.top = top
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `class` = "Class"
             case confidence = "Confidence"
@@ -857,28 +857,28 @@ extension Tci {
             case width = "Width"
         }
     }
-    
+
     /// 精彩集锦信息
     public struct HighlightsInfomation: TCInputModel {
         /// 专注的起始与终止时间信息。
         public let concentration: [TimeType]?
-        
+
         /// 微笑的起始与终止时间信息。
         public let smile: [TimeType]?
-        
+
         /// 高光集锦视频地址，保存剪辑好的视频地址。
         public let highlightsUrl: String?
-        
+
         /// 片段中识别出来的人脸ID。
         public let personId: String?
-        
-        public init (concentration: [TimeType]? = nil, smile: [TimeType]? = nil, highlightsUrl: String? = nil, personId: String? = nil) {
+
+        public init(concentration: [TimeType]? = nil, smile: [TimeType]? = nil, highlightsUrl: String? = nil, personId: String? = nil) {
             self.concentration = concentration
             self.smile = smile
             self.highlightsUrl = highlightsUrl
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case concentration = "Concentration"
             case smile = "Smile"
@@ -886,40 +886,40 @@ extension Tci {
             case personId = "PersonId"
         }
     }
-    
+
     /// 图像任务控制选项
     public struct ImageTaskFunction: TCInputModel {
         /// 大教室场景学生肢体动作识别选项
         public let enableActionClass: Bool?
-        
+
         /// 人脸检测选项（默认为true，目前不可编辑）
         public let enableFaceDetect: Bool?
-        
+
         /// 人脸表情识别选项
         public let enableFaceExpression: Bool?
-        
+
         /// 人脸检索选项（默认为true，目前不可编辑）
         public let enableFaceIdentify: Bool?
-        
+
         /// 手势选项
         public let enableGesture: Bool?
-        
+
         /// 优图手势选项（该功能尚未支持）
         public let enableHandTracking: Bool?
-        
+
         /// 光照选项
         public let enableLightJudge: Bool?
-        
+
         /// 小班课场景学生肢体动作识别选项
         public let enableStudentBodyMovements: Bool?
-        
+
         /// 教师动作选项（该功能尚未支持）
         public let enableTeacherBodyMovements: Bool?
-        
+
         /// 判断老师是否在屏幕中（该功能尚未支持）
         public let enableTeacherOutScreen: Bool?
-        
-        public init (enableActionClass: Bool? = nil, enableFaceDetect: Bool? = nil, enableFaceExpression: Bool? = nil, enableFaceIdentify: Bool? = nil, enableGesture: Bool? = nil, enableHandTracking: Bool? = nil, enableLightJudge: Bool? = nil, enableStudentBodyMovements: Bool? = nil, enableTeacherBodyMovements: Bool? = nil, enableTeacherOutScreen: Bool? = nil) {
+
+        public init(enableActionClass: Bool? = nil, enableFaceDetect: Bool? = nil, enableFaceExpression: Bool? = nil, enableFaceIdentify: Bool? = nil, enableGesture: Bool? = nil, enableHandTracking: Bool? = nil, enableLightJudge: Bool? = nil, enableStudentBodyMovements: Bool? = nil, enableTeacherBodyMovements: Bool? = nil, enableTeacherOutScreen: Bool? = nil) {
             self.enableActionClass = enableActionClass
             self.enableFaceDetect = enableFaceDetect
             self.enableFaceExpression = enableFaceExpression
@@ -931,7 +931,7 @@ extension Tci {
             self.enableTeacherBodyMovements = enableTeacherBodyMovements
             self.enableTeacherOutScreen = enableTeacherOutScreen
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enableActionClass = "EnableActionClass"
             case enableFaceDetect = "EnableFaceDetect"
@@ -945,49 +945,49 @@ extension Tci {
             case enableTeacherOutScreen = "EnableTeacherOutScreen"
         }
     }
-    
+
     /// 图像任务结果
     public struct ImageTaskResult: TCInputModel {
         /// 大教室场景学生肢体动作识别信息
         public let actionInfo: ActionInfo?
-        
+
         /// 属性识别结果
         public let faceAttr: FaceAttrResult?
-        
+
         /// 表情识别结果
         public let faceExpression: FaceExpressionResult?
-        
+
         /// 人脸检索结果
         public let faceIdentify: FaceIdentifyResult?
-        
+
         /// 人脸检测结果
         public let faceInfo: FaceInfoResult?
-        
+
         /// 姿势识别结果
         public let facePose: FacePoseResult?
-        
+
         /// 动作分类结果
         public let gesture: GestureResult?
-        
+
         /// 手势分类结果
         public let handTracking: HandTrackingResult?
-        
+
         /// 光照识别结果
         public let light: LightResult?
-        
+
         /// 学生肢体动作识别结果
         public let studentBodyMovement: StudentBodyMovementResult?
-        
+
         /// 老师肢体动作识别结果
         public let teacherBodyMovement: BodyMovementResult?
-        
+
         /// 教师是否在屏幕内判断结果
         public let teacherOutScreen: TeacherOutScreenResult?
-        
+
         /// 时间统计结果
         public let timeInfo: TimeInfoResult?
-        
-        public init (actionInfo: ActionInfo? = nil, faceAttr: FaceAttrResult? = nil, faceExpression: FaceExpressionResult? = nil, faceIdentify: FaceIdentifyResult? = nil, faceInfo: FaceInfoResult? = nil, facePose: FacePoseResult? = nil, gesture: GestureResult? = nil, handTracking: HandTrackingResult? = nil, light: LightResult? = nil, studentBodyMovement: StudentBodyMovementResult? = nil, teacherBodyMovement: BodyMovementResult? = nil, teacherOutScreen: TeacherOutScreenResult? = nil, timeInfo: TimeInfoResult? = nil) {
+
+        public init(actionInfo: ActionInfo? = nil, faceAttr: FaceAttrResult? = nil, faceExpression: FaceExpressionResult? = nil, faceIdentify: FaceIdentifyResult? = nil, faceInfo: FaceInfoResult? = nil, facePose: FacePoseResult? = nil, gesture: GestureResult? = nil, handTracking: HandTrackingResult? = nil, light: LightResult? = nil, studentBodyMovement: StudentBodyMovementResult? = nil, teacherBodyMovement: BodyMovementResult? = nil, teacherOutScreen: TeacherOutScreenResult? = nil, timeInfo: TimeInfoResult? = nil) {
             self.actionInfo = actionInfo
             self.faceAttr = faceAttr
             self.faceExpression = faceExpression
@@ -1002,7 +1002,7 @@ extension Tci {
             self.teacherOutScreen = teacherOutScreen
             self.timeInfo = timeInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case actionInfo = "ActionInfo"
             case faceAttr = "FaceAttr"
@@ -1019,34 +1019,34 @@ extension Tci {
             case timeInfo = "TimeInfo"
         }
     }
-    
+
     /// 图像任务统计结果
     public struct ImageTaskStatistic: TCInputModel {
         /// 人员检测统计信息
         public let faceDetect: [FaceDetectStatistic]?
-        
+
         /// 人脸表情统计信息
         public let faceExpression: [FaceExpressStatistic]?
-        
+
         /// 人脸检索统计信息
         public let faceIdentify: [FaceIdentifyStatistic]?
-        
+
         /// 姿势识别统计信息
         public let gesture: ActionStatistic?
-        
+
         /// 手势识别统计信息
         public let handtracking: ActionStatistic?
-        
+
         /// 光照统计信息
         public let light: LightStatistic?
-        
+
         /// 学生动作统计信息
         public let studentMovement: ActionStatistic?
-        
+
         /// 教师动作统计信息
         public let teacherMovement: ActionStatistic?
-        
-        public init (faceDetect: [FaceDetectStatistic]? = nil, faceExpression: [FaceExpressStatistic]? = nil, faceIdentify: [FaceIdentifyStatistic]? = nil, gesture: ActionStatistic? = nil, handtracking: ActionStatistic? = nil, light: LightStatistic? = nil, studentMovement: ActionStatistic? = nil, teacherMovement: ActionStatistic? = nil) {
+
+        public init(faceDetect: [FaceDetectStatistic]? = nil, faceExpression: [FaceExpressStatistic]? = nil, faceIdentify: [FaceIdentifyStatistic]? = nil, gesture: ActionStatistic? = nil, handtracking: ActionStatistic? = nil, light: LightStatistic? = nil, studentMovement: ActionStatistic? = nil, teacherMovement: ActionStatistic? = nil) {
             self.faceDetect = faceDetect
             self.faceExpression = faceExpression
             self.faceIdentify = faceIdentify
@@ -1056,7 +1056,7 @@ extension Tci {
             self.studentMovement = studentMovement
             self.teacherMovement = teacherMovement
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceDetect = "FaceDetect"
             case faceExpression = "FaceExpression"
@@ -1068,7 +1068,7 @@ extension Tci {
             case teacherMovement = "TeacherMovement"
         }
     }
-    
+
     /// 人员库描述
     public struct Library: TCInputModel {
         /// 人员库创建时间
@@ -1078,16 +1078,16 @@ extension Tci {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createTime: Date
-        
+
         /// 人员库唯一标识符
         public let libraryId: String
-        
+
         /// 人员库名称
         public let libraryName: String
-        
+
         /// 人员库人员数量
         public let personCount: Int64?
-        
+
         /// 人员库修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1095,15 +1095,15 @@ extension Tci {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updateTime: Date?
-        
-        public init (createTime: Date, libraryId: String, libraryName: String, personCount: Int64? = nil, updateTime: Date? = nil) {
+
+        public init(createTime: Date, libraryId: String, libraryName: String, personCount: Int64? = nil, updateTime: Date? = nil) {
             self.createTime = createTime
             self.libraryId = libraryId
             self.libraryName = libraryName
             self.personCount = personCount
             self.updateTime = updateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case createTime = "CreateTime"
             case libraryId = "LibraryId"
@@ -1112,64 +1112,64 @@ extension Tci {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 光照强度统计结果
     public struct LightDistributionStatistic: TCInputModel {
         /// 时间点
         public let time: Int64
-        
+
         /// 光线值
         public let value: Int64
-        
-        public init (time: Int64, value: Int64) {
+
+        public init(time: Int64, value: Int64) {
             self.time = time
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case value = "Value"
         }
     }
-    
+
     /// 光照强度比例统计结果
     public struct LightLevelRatioStatistic: TCInputModel {
         /// 名称
         public let level: String
-        
+
         /// 比例
         public let ratio: Float
-        
-        public init (level: String, ratio: Float) {
+
+        public init(level: String, ratio: Float) {
             self.level = level
             self.ratio = ratio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case level = "Level"
             case ratio = "Ratio"
         }
     }
-    
+
     /// LightResult
     public struct LightResult: TCInputModel {
         /// 光照程度，参考提交任务时的LightStandard指定的Name参数
         public let lightLevel: String?
-        
+
         /// 光照亮度
         public let lightValue: Float?
-        
-        public init (lightLevel: String? = nil, lightValue: Float? = nil) {
+
+        public init(lightLevel: String? = nil, lightValue: Float? = nil) {
             self.lightLevel = lightLevel
             self.lightValue = lightValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case lightLevel = "LightLevel"
             case lightValue = "LightValue"
         }
     }
-    
+
     /// 光照标准，结构的相关示例为：
     /// {
     ///     "Name":"dark"，
@@ -1179,70 +1179,70 @@ extension Tci {
     public struct LightStandard: TCInputModel {
         /// 光照名称
         public let name: String
-        
+
         /// 范围
         public let range: [Float]
-        
-        public init (name: String, range: [Float]) {
+
+        public init(name: String, range: [Float]) {
             self.name = name
             self.range = range
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case range = "Range"
         }
     }
-    
+
     /// 光照统计结果
     public struct LightStatistic: TCInputModel {
         /// 各个时间点的光线值
         public let lightDistribution: [LightDistributionStatistic]?
-        
+
         /// 光照程度比例统计结果
         public let lightLevelRatio: [LightLevelRatioStatistic]?
-        
-        public init (lightDistribution: [LightDistributionStatistic]? = nil, lightLevelRatio: [LightLevelRatioStatistic]? = nil) {
+
+        public init(lightDistribution: [LightDistributionStatistic]? = nil, lightLevelRatio: [LightLevelRatioStatistic]? = nil) {
             self.lightDistribution = lightDistribution
             self.lightLevelRatio = lightLevelRatio
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case lightDistribution = "LightDistribution"
             case lightLevelRatio = "LightLevelRatio"
         }
     }
-    
+
     /// 所有静音片段。
     public struct MuteSlice: TCInputModel {
         /// 起始时间。
         public let muteBtm: Int64?
-        
+
         /// 终止时间。
         public let muteEtm: Int64?
-        
-        public init (muteBtm: Int64? = nil, muteEtm: Int64? = nil) {
+
+        public init(muteBtm: Int64? = nil, muteEtm: Int64? = nil) {
             self.muteBtm = muteBtm
             self.muteEtm = muteEtm
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case muteBtm = "MuteBtm"
             case muteEtm = "MuteEtm"
         }
     }
-    
+
     /// 人员描述
     public struct Person: TCInputModel {
         /// 人员库唯一标识符
         public let libraryId: String
-        
+
         /// 人员唯一标识符
         public let personId: String
-        
+
         /// 人员名称
         public let personName: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1250,22 +1250,22 @@ extension Tci {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createTime: Date?
-        
+
         /// 工作号码
         public let jobNumber: String?
-        
+
         /// 邮箱
         public let mail: String?
-        
+
         /// 性别
         public let male: Int64?
-        
+
         /// 电话号码
         public let phoneNumber: String?
-        
+
         /// 学生号码
         public let studentNumber: String?
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1273,8 +1273,8 @@ extension Tci {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updateTime: Date?
-        
-        public init (libraryId: String, personId: String, personName: String, createTime: Date? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, updateTime: Date? = nil) {
+
+        public init(libraryId: String, personId: String, personName: String, createTime: Date? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, updateTime: Date? = nil) {
             self.libraryId = libraryId
             self.personId = personId
             self.personName = personName
@@ -1286,7 +1286,7 @@ extension Tci {
             self.studentNumber = studentNumber
             self.updateTime = updateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case libraryId = "LibraryId"
             case personId = "PersonId"
@@ -1300,55 +1300,55 @@ extension Tci {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 人员信息
     public struct PersonInfo: TCInputModel {
         /// 需要匹配的人员的ID列表。
         public let personId: String
-        
+
         /// 视频集锦开始封面照片。
         public let coverBeginUrl: String?
-        
+
         /// 视频集锦结束封面照片。
         public let coverEndUrl: String?
-        
-        public init (personId: String, coverBeginUrl: String? = nil, coverEndUrl: String? = nil) {
+
+        public init(personId: String, coverBeginUrl: String? = nil, coverEndUrl: String? = nil) {
             self.personId = personId
             self.coverBeginUrl = coverBeginUrl
             self.coverEndUrl = coverEndUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case coverBeginUrl = "CoverBeginUrl"
             case coverEndUrl = "CoverEndUrl"
         }
     }
-    
+
     /// 标准化接口图像分析结果
     public struct StandardAudioResult: TCInputModel {
         /// 返回的当前音频的统计信息。当进度为100时返回。
         public let asrStat: ASRStat?
-        
+
         /// 返回当前音频流的详细信息，如果是流模式，返回的是对应流的详细信息，如果是 URL模式，返回的是查询的那一段seq对应的音频的详细信息。
         public let texts: [WholeTextItem]?
-        
+
         /// 返回词汇库中的单词出现的详细时间信息。
         public let vocabAnalysisDetailInfo: [VocabDetailInfomation]?
-        
+
         /// 返回词汇库中的单词出现的次数信息。
         public let vocabAnalysisStatInfo: [VocabStatInfomation]?
-        
+
         /// 状态描述
         public let message: String?
-        
+
         /// 任务状态
         public let status: String?
-        
+
         /// 结果数量
         public let totalCount: Int64?
-        
-        public init (asrStat: ASRStat? = nil, texts: [WholeTextItem]? = nil, vocabAnalysisDetailInfo: [VocabDetailInfomation]? = nil, vocabAnalysisStatInfo: [VocabStatInfomation]? = nil, message: String? = nil, status: String? = nil, totalCount: Int64? = nil) {
+
+        public init(asrStat: ASRStat? = nil, texts: [WholeTextItem]? = nil, vocabAnalysisDetailInfo: [VocabDetailInfomation]? = nil, vocabAnalysisStatInfo: [VocabStatInfomation]? = nil, message: String? = nil, status: String? = nil, totalCount: Int64? = nil) {
             self.asrStat = asrStat
             self.texts = texts
             self.vocabAnalysisDetailInfo = vocabAnalysisDetailInfo
@@ -1357,7 +1357,7 @@ extension Tci {
             self.status = status
             self.totalCount = totalCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case asrStat = "AsrStat"
             case texts = "Texts"
@@ -1368,32 +1368,32 @@ extension Tci {
             case totalCount = "TotalCount"
         }
     }
-    
+
     /// 标准化接口图像分析结果
     public struct StandardImageResult: TCInputModel {
         /// 详细结果
         public let resultSet: [ImageTaskResult]?
-        
+
         /// 分析完成后的统计结果
         public let statistic: ImageTaskStatistic?
-        
+
         /// 状态描述
         public let message: String?
-        
+
         /// 任务状态
         public let status: String?
-        
+
         /// 结果总数
         public let totalCount: Int64?
-        
-        public init (resultSet: [ImageTaskResult]? = nil, statistic: ImageTaskStatistic? = nil, message: String? = nil, status: String? = nil, totalCount: Int64? = nil) {
+
+        public init(resultSet: [ImageTaskResult]? = nil, statistic: ImageTaskStatistic? = nil, message: String? = nil, status: String? = nil, totalCount: Int64? = nil) {
             self.resultSet = resultSet
             self.statistic = statistic
             self.message = message
             self.status = status
             self.totalCount = totalCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resultSet = "ResultSet"
             case statistic = "Statistic"
@@ -1402,83 +1402,83 @@ extension Tci {
             case totalCount = "TotalCount"
         }
     }
-    
+
     /// 标准化接口图像分析结果
     public struct StandardVideoResult: TCInputModel {
         /// 分析完成后的统计结果
         public let highlightsInfo: [HighlightsInfomation]?
-        
+
         /// 状态描述
         public let message: String?
-        
+
         /// 任务状态
         public let status: String?
-        
-        public init (highlightsInfo: [HighlightsInfomation]? = nil, message: String? = nil, status: String? = nil) {
+
+        public init(highlightsInfo: [HighlightsInfomation]? = nil, message: String? = nil, status: String? = nil) {
             self.highlightsInfo = highlightsInfo
             self.message = message
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case highlightsInfo = "HighlightsInfo"
             case message = "Message"
             case status = "Status"
         }
     }
-    
+
     /// 单词出现的次数信息
     public struct StatInfo: TCInputModel {
         /// 词汇库中的单词
         public let keyword: String?
-        
+
         /// 单词出现在该音频中总次数
         public let value: Int64?
-        
-        public init (keyword: String? = nil, value: Int64? = nil) {
+
+        public init(keyword: String? = nil, value: Int64? = nil) {
             self.keyword = keyword
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case value = "Value"
         }
     }
-    
+
     /// 学生肢体动作结果
     public struct StudentBodyMovementResult: TCInputModel {
         /// 置信度（已废弃）
         public let confidence: Float?
-        
+
         /// 举手识别结果置信度
         public let handupConfidence: Float?
-        
+
         /// 举手识别结果，包含举手（handup）和未举手（nothandup）
         public let handupStatus: String?
-        
+
         /// 识别结果高度
         public let height: Int64?
-        
+
         /// 识别结果左坐标
         public let left: Int64?
-        
+
         /// 动作识别结果（已废弃）
         public let movements: String?
-        
+
         /// 站立识别结果置信度
         public let standConfidence: Float?
-        
+
         /// 站立识别结果，包含站立（stand）和坐着（sit）
         public let standStatus: String?
-        
+
         /// 识别结果顶坐标
         public let top: Int64?
-        
+
         /// 识别结果宽度
         public let width: Int64?
-        
-        public init (confidence: Float? = nil, handupConfidence: Float? = nil, handupStatus: String? = nil, height: Int64? = nil, left: Int64? = nil, movements: String? = nil, standConfidence: Float? = nil, standStatus: String? = nil, top: Int64? = nil, width: Int64? = nil) {
+
+        public init(confidence: Float? = nil, handupConfidence: Float? = nil, handupStatus: String? = nil, height: Int64? = nil, left: Int64? = nil, movements: String? = nil, standConfidence: Float? = nil, standStatus: String? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.confidence = confidence
             self.handupConfidence = handupConfidence
             self.handupStatus = handupStatus
@@ -1490,7 +1490,7 @@ extension Tci {
             self.top = top
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case handupConfidence = "HandupConfidence"
@@ -1504,52 +1504,52 @@ extension Tci {
             case width = "Width"
         }
     }
-    
+
     /// 疑似出席人员
     public struct SuspectedInfo: TCInputModel {
         /// TopN匹配信息列表
         public let faceSet: [FrameInfo]?
-        
+
         /// 识别到的人员id
         public let personId: String?
-        
-        public init (faceSet: [FrameInfo]? = nil, personId: String? = nil) {
+
+        public init(faceSet: [FrameInfo]? = nil, personId: String? = nil) {
             self.faceSet = faceSet
             self.personId = personId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case faceSet = "FaceSet"
             case personId = "PersonId"
         }
     }
-    
+
     /// 教师是否在屏幕内判断结果
     public struct TeacherOutScreenResult: TCInputModel {
         /// 动作识别结果，InScreen：在屏幕内
         /// OutScreen：不在屏幕内
         public let `class`: String?
-        
+
         /// 识别结果高度
         public let height: Int64?
-        
+
         /// 识别结果左坐标
         public let left: Int64?
-        
+
         /// 识别结果顶坐标
         public let top: Int64?
-        
+
         /// 识别结果宽度
         public let width: Int64?
-        
-        public init (class: String? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
+
+        public init(class: String? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.`class` = `class`
             self.height = height
             self.left = left
             self.top = top
             self.width = width
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `class` = "Class"
             case height = "Height"
@@ -1558,31 +1558,31 @@ extension Tci {
             case width = "Width"
         }
     }
-    
+
     /// 当前句子的信息
     public struct TextItem: TCInputModel {
         /// 当前句子包含的所有单词信息
         public let words: [Word]?
-        
+
         /// 当前句子的置信度
         public let confidence: Float?
-        
+
         /// 当前句子语音的起始时间点，单位为ms
         public let mbtm: Int64?
-        
+
         /// 当前句子语音的终止时间点，单位为ms
         public let metm: Int64?
-        
+
         /// 保留参数，暂无意义
         public let tag: Int64?
-        
+
         /// 当前句子
         public let text: String?
-        
+
         /// 当前句子的字节数
         public let textSize: Int64?
-        
-        public init (words: [Word]? = nil, confidence: Float? = nil, mbtm: Int64? = nil, metm: Int64? = nil, tag: Int64? = nil, text: String? = nil, textSize: Int64? = nil) {
+
+        public init(words: [Word]? = nil, confidence: Float? = nil, mbtm: Int64? = nil, metm: Int64? = nil, tag: Int64? = nil, text: String? = nil, textSize: Int64? = nil) {
             self.words = words
             self.confidence = confidence
             self.mbtm = mbtm
@@ -1591,7 +1591,7 @@ extension Tci {
             self.text = text
             self.textSize = textSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case words = "Words"
             case confidence = "Confidence"
@@ -1602,113 +1602,113 @@ extension Tci {
             case textSize = "TextSize"
         }
     }
-    
+
     /// TimeInfoResult
     public struct TimeInfoResult: TCInputModel {
         /// 持续时间，单位毫秒
         public let duration: Int64?
-        
+
         /// 结束时间戳，单位毫秒
         public let endTs: Int64?
-        
+
         /// 开始时间戳，单位毫秒
         public let startTs: Int64?
-        
-        public init (duration: Int64? = nil, endTs: Int64? = nil, startTs: Int64? = nil) {
+
+        public init(duration: Int64? = nil, endTs: Int64? = nil, startTs: Int64? = nil) {
             self.duration = duration
             self.endTs = endTs
             self.startTs = startTs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case duration = "Duration"
             case endTs = "EndTs"
             case startTs = "StartTs"
         }
     }
-    
+
     /// 起止时间
     public struct TimeType: TCInputModel {
         /// 结束时间戳
         public let endTime: Int64?
-        
+
         /// 起始时间戳
         public let startTime: Int64?
-        
-        public init (endTime: Int64? = nil, startTime: Int64? = nil) {
+
+        public init(endTime: Int64? = nil, startTime: Int64? = nil) {
             self.endTime = endTime
             self.startTime = startTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case endTime = "EndTime"
             case startTime = "StartTime"
         }
     }
-    
+
     /// 词汇库中的单词出现在音频中的那个句子的起始时间和结束时间信息
     public struct VocabDetailInfomation: TCInputModel {
         /// 词汇库中的单词出现在该音频中的那个句子的时间戳，出现了几次，就返回对应次数的起始和结束时间戳
         public let vocabDetailInfo: [DetailInfo]?
-        
+
         /// 词汇库名
         public let vocabLibName: String?
-        
-        public init (vocabDetailInfo: [DetailInfo]? = nil, vocabLibName: String? = nil) {
+
+        public init(vocabDetailInfo: [DetailInfo]? = nil, vocabLibName: String? = nil) {
             self.vocabDetailInfo = vocabDetailInfo
             self.vocabLibName = vocabLibName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vocabDetailInfo = "VocabDetailInfo"
             case vocabLibName = "VocabLibName"
         }
     }
-    
+
     /// 词汇库中的单词出现在音频中的总次数信息
     public struct VocabStatInfomation: TCInputModel {
         /// 单词出现在该音频中总次数
         public let vocabDetailInfo: [StatInfo]?
-        
+
         /// 词汇库名称
         public let vocabLibName: String?
-        
-        public init (vocabDetailInfo: [StatInfo]? = nil, vocabLibName: String? = nil) {
+
+        public init(vocabDetailInfo: [StatInfo]? = nil, vocabLibName: String? = nil) {
             self.vocabDetailInfo = vocabDetailInfo
             self.vocabLibName = vocabLibName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vocabDetailInfo = "VocabDetailInfo"
             case vocabLibName = "VocabLibName"
         }
     }
-    
+
     /// 含有语速的句子信息
     public struct WholeTextItem: TCInputModel {
         /// 当前句子的信息
         public let textItem: TextItem?
-        
+
         /// Vad的平均音量
         public let avgVolume: Float?
-        
+
         /// Vad的最大音量
         public let maxVolume: Float?
-        
+
         /// Vad的最小音量
         public let minVolume: Float?
-        
+
         /// 当前句子的语速
         public let speed: Float?
-        
-        public init (textItem: TextItem? = nil, avgVolume: Float? = nil, maxVolume: Float? = nil, minVolume: Float? = nil, speed: Float? = nil) {
+
+        public init(textItem: TextItem? = nil, avgVolume: Float? = nil, maxVolume: Float? = nil, minVolume: Float? = nil, speed: Float? = nil) {
             self.textItem = textItem
             self.avgVolume = avgVolume
             self.maxVolume = maxVolume
             self.minVolume = minVolume
             self.speed = speed
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case textItem = "TextItem"
             case avgVolume = "AvgVolume"
@@ -1717,32 +1717,32 @@ extension Tci {
             case speed = "Speed"
         }
     }
-    
+
     /// 当前句子包含的所有单词信息
     public struct Word: TCInputModel {
         /// 当前词的置信度
         public let confidence: Float?
-        
+
         /// 当前单词语音的起始时间点，单位为ms
         public let mbtm: Int64?
-        
+
         /// 当前单词语音的终止时间点，单位为ms
         public let metm: Int64?
-        
+
         /// 当前词
         public let text: String?
-        
+
         /// 当前词的字节数
         public let wsize: Int64?
-        
-        public init (confidence: Float? = nil, mbtm: Int64? = nil, metm: Int64? = nil, text: String? = nil, wsize: Int64? = nil) {
+
+        public init(confidence: Float? = nil, mbtm: Int64? = nil, metm: Int64? = nil, text: String? = nil, wsize: Int64? = nil) {
             self.confidence = confidence
             self.mbtm = mbtm
             self.metm = metm
             self.text = text
             self.wsize = wsize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case confidence = "Confidence"
             case mbtm = "Mbtm"
@@ -1751,20 +1751,20 @@ extension Tci {
             case wsize = "Wsize"
         }
     }
-    
+
     /// 单词出现的那个句子的起始时间和结束时间信息
     public struct WordTimePair: TCInputModel {
         /// 单词出现的那个句子的起始时间
         public let mbtm: Int64?
-        
+
         /// 	单词出现的那个句子的结束时间
         public let metm: Int64?
-        
-        public init (mbtm: Int64? = nil, metm: Int64? = nil) {
+
+        public init(mbtm: Int64? = nil, metm: Int64? = nil) {
             self.mbtm = mbtm
             self.metm = metm
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mbtm = "Mbtm"
             case metm = "Metm"

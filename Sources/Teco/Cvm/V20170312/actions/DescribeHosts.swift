@@ -29,52 +29,52 @@ extension Cvm {
         /// <p style="padding-left: 30px;">按照【<strong>CDH实例状态</strong>】进行过滤。（PENDING：创建中 | LAUNCH_FAILURE：创建失败 | RUNNING：运行中 | EXPIRED：已过期）</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
-        
-        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeHosts返回参数结构体
     public struct DescribeHostsResponse: TCResponseModel {
         /// 符合查询条件的cdh实例总数
         public let totalCount: UInt64
-        
+
         /// cdh实例详细信息列表
         public let hostSet: [HostItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case hostSet = "HostSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看CDH实例列表
     ///
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
     @inlinable
-    public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsResponse > {
+    public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsResponse> {
         self.client.execute(action: "DescribeHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看CDH实例列表
     ///
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
@@ -82,15 +82,15 @@ extension Cvm {
     public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsResponse {
         try await self.client.execute(action: "DescribeHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看CDH实例列表
     ///
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
     @inlinable
-    public func describeHosts(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsResponse > {
+    public func describeHosts(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsResponse> {
         self.describeHosts(DescribeHostsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看CDH实例列表
     ///
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。

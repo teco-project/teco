@@ -19,38 +19,38 @@ extension Bm {
     public struct DescribeDeviceInventoryRequest: TCRequestModel {
         /// 可用区
         public let zone: String
-        
+
         /// 设备型号
         public let deviceClassCode: String?
-        
+
         /// 私有网络ID
         public let vpcId: String?
-        
+
         /// 子网ID
         public let subnetId: String?
-        
+
         /// CPU型号ID，查询自定义机型时必填
         public let cpuId: UInt64?
-        
+
         /// 内存大小，单位为G，查询自定义机型时必填
         public let memSize: UInt64?
-        
+
         /// 是否有RAID卡，取值：1(有) 0(无)，查询自定义机型时必填
         public let containRaidCard: UInt64?
-        
+
         /// 系统盘类型ID，查询自定义机型时必填
         public let systemDiskTypeId: UInt64?
-        
+
         /// 系统盘数量，查询自定义机型时必填
         public let systemDiskCount: UInt64?
-        
+
         /// 数据盘类型ID，查询自定义机型时可填
         public let dataDiskTypeId: UInt64?
-        
+
         /// 数据盘数量，查询自定义机型时可填
         public let dataDiskCount: UInt64?
-        
-        public init (zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil) {
+
+        public init(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil) {
             self.zone = zone
             self.deviceClassCode = deviceClassCode
             self.vpcId = vpcId
@@ -63,7 +63,7 @@ extension Bm {
             self.dataDiskTypeId = dataDiskTypeId
             self.dataDiskCount = dataDiskCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case deviceClassCode = "DeviceClassCode"
@@ -78,39 +78,39 @@ extension Bm {
             case dataDiskCount = "DataDiskCount"
         }
     }
-    
+
     /// DescribeDeviceInventory返回参数结构体
     public struct DescribeDeviceInventoryResponse: TCResponseModel {
         /// 库存设备数量
         public let deviceCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceCount = "DeviceCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备库存
     @inlinable
-    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceInventoryResponse > {
+    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceInventoryResponse> {
         self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备库存
     @inlinable
     public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
         try await self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备库存
     @inlinable
-    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceInventoryResponse > {
+    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceInventoryResponse> {
         self.describeDeviceInventory(DescribeDeviceInventoryRequest(zone: zone, deviceClassCode: deviceClassCode, vpcId: vpcId, subnetId: subnetId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备库存
     @inlinable
     public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {

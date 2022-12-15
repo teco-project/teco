@@ -95,605 +95,605 @@ extension TCCvmError {
             case zoneNotSupported = "InvalidParameterValue.ZoneNotSupported"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 入参数目不相等。
         public static var amountNotEqual: InvalidParameterValue {
             InvalidParameterValue(.amountNotEqual)
         }
-        
+
         /// 共享带宽包ID不合要求，请提供规范的共享带宽包ID，类似bwp-xxxxxxxx，字母x代表小写字符或者数字。
         public static var bandwidthPackageIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.bandwidthPackageIdMalformed)
         }
-        
+
         /// 请确认指定的带宽包是否存在。
         public static var bandwidthPackageIdNotFound: InvalidParameterValue {
             InvalidParameterValue(.bandwidthPackageIdNotFound)
         }
-        
+
         /// 实例为基础网络实例，目标实例规格仅支持私有网络，不支持调整。
         public static var basicNetworkInstanceFamily: InvalidParameterValue {
             InvalidParameterValue(.basicNetworkInstanceFamily)
         }
-        
+
         /// 请确认存储桶是否存在。
         public static var bucketNotFound: InvalidParameterValue {
             InvalidParameterValue(.bucketNotFound)
         }
-        
+
         /// CamRoleName不合要求，只允许包含英文字母、数字或者 +=,.@_- 字符。
         public static var camRoleNameMalformed: InvalidParameterValue {
             InvalidParameterValue(.camRoleNameMalformed)
         }
-        
+
         /// 找不到对应的CHC物理服务器。
         public static var chcHostsNotFound: InvalidParameterValue {
             InvalidParameterValue(.chcHostsNotFound)
         }
-        
+
         /// 该CHC未配置任何网络。
         public static var chcNetworkEmpty: InvalidParameterValue {
             InvalidParameterValue(.chcNetworkEmpty)
         }
-        
+
         /// SSD云硬盘为数据盘时，购买大小不得小于100GB
         ///
         /// 无
         public static var cloudSsdDataDiskSizeTooSmall: InvalidParameterValue {
             InvalidParameterValue(.cloudSsdDataDiskSizeTooSmall)
         }
-        
+
         /// 核心计数不合法。
         public static var coreCountValue: InvalidParameterValue {
             InvalidParameterValue(.coreCountValue)
         }
-        
+
         /// 已经存在部署VPC。
         public static var deployVpcAlreadyExists: InvalidParameterValue {
             InvalidParameterValue(.deployVpcAlreadyExists)
         }
-        
+
         /// 置放群组ID格式错误。
         public static var disasterRecoverGroupIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.disasterRecoverGroupIdMalformed)
         }
-        
+
         /// 参数值重复。
         public static var duplicate: InvalidParameterValue {
             InvalidParameterValue(.duplicate)
         }
-        
+
         /// 入参中包含重复的标签信息，请删除重复的标签信息后重试。
         public static var duplicateTags: InvalidParameterValue {
             InvalidParameterValue(.duplicateTags)
         }
-        
+
         /// 非GPU实例不允许转为GPU实例。
         public static var gpuInstanceFamily: InvalidParameterValue {
             InvalidParameterValue(.gpuInstanceFamily)
         }
-        
+
         /// ipv6地址无效
         public static var iPv6AddressMalformed: InvalidParameterValue {
             InvalidParameterValue(.iPv6AddressMalformed)
         }
-        
+
         /// HostName参数值不合法
         ///
         /// 无
         public static var illegalHostName: InvalidParameterValue {
             InvalidParameterValue(.illegalHostName)
         }
-        
+
         /// 传参格式不对。
         public static var incorrectFormat: InvalidParameterValue {
             InvalidParameterValue(.incorrectFormat)
         }
-        
+
         public static var instanceIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.instanceIdMalformed)
         }
-        
+
         /// 不支持操作不同计费方式的实例。
         public static var instanceNotSupportedMixPricingModel: InvalidParameterValue {
             InvalidParameterValue(.instanceNotSupportedMixPricingModel)
         }
-        
+
         /// 指定机型不存在
         ///
         /// 无
         public static var instanceTypeNotFound: InvalidParameterValue {
             InvalidParameterValue(.instanceTypeNotFound)
         }
-        
+
         /// 实例类型不可加入高性能计算集群。
         public static var instanceTypeNotSupportHpcCluster: InvalidParameterValue {
             InvalidParameterValue(.instanceTypeNotSupportHpcCluster)
         }
-        
+
         /// 高性能计算实例需指定对应的高性能计算集群。
         public static var instanceTypeRequiredHpcCluster: InvalidParameterValue {
             InvalidParameterValue(.instanceTypeRequiredHpcCluster)
         }
-        
+
         /// 竞价数量不足。
         public static var insufficientOffering: InvalidParameterValue {
             InvalidParameterValue(.insufficientOffering)
         }
-        
+
         /// 竞价失败。
         public static var insufficientPrice: InvalidParameterValue {
             InvalidParameterValue(.insufficientPrice)
         }
-        
+
         /// 无效的appid。
         public static var invalidAppIdFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidAppIdFormat)
         }
-        
+
         /// 请检查存储桶的写入权限是否已放通。
         public static var invalidBucketPermissionForExport: InvalidParameterValue {
             InvalidParameterValue(.invalidBucketPermissionForExport)
         }
-        
+
         /// 参数 FileNamePrefixList 的长度与 ImageIds 或 SnapshotIds 不匹配。
         public static var invalidFileNamePrefixList: InvalidParameterValue {
             InvalidParameterValue(.invalidFileNamePrefixList)
         }
-        
+
         /// 不支持转为非GPU或其他类型GPU实例。
         public static var invalidGPUFamilyChange: InvalidParameterValue {
             InvalidParameterValue(.invalidGPUFamilyChange)
         }
-        
+
         /// 镜像ID不支持指定的实例机型。
         public static var invalidImageForGivenInstanceType: InvalidParameterValue {
             InvalidParameterValue(.invalidImageForGivenInstanceType)
         }
-        
+
         /// 当前镜像为RAW格式，无法创建CVM，建议您选择其他镜像。
         public static var invalidImageFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidImageFormat)
         }
-        
+
         /// 镜像不允许执行该操作
         ///
         /// 无
         public static var invalidImageId: InvalidParameterValue {
             InvalidParameterValue(.invalidImageId)
         }
-        
+
         /// 镜像无法用于重装当前实例。
         public static var invalidImageIdForRetsetInstance: InvalidParameterValue {
             InvalidParameterValue(.invalidImageIdForRetsetInstance)
         }
-        
+
         /// 当前地域不支持指定镜像所包含的操作系统。
         public static var invalidImageOsName: InvalidParameterValue {
             InvalidParameterValue(.invalidImageOsName)
         }
-        
+
         /// 镜像被其他操作占用，请检查，并稍后重试。
         ///
         /// 无
         public static var invalidImageState: InvalidParameterValue {
             InvalidParameterValue(.invalidImageState)
         }
-        
+
         /// 该实例配置来自免费升配活动，暂不支持3个月内进行降配。
         public static var invalidInstanceSource: InvalidParameterValue {
             InvalidParameterValue(.invalidInstanceSource)
         }
-        
+
         /// IP地址不符合规范
         ///
         /// 无
         public static var invalidIpFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidIpFormat)
         }
-        
+
         /// 实例启动模板描述格式错误。
         public static var invalidLaunchTemplateDescription: InvalidParameterValue {
             InvalidParameterValue(.invalidLaunchTemplateDescription)
         }
-        
+
         /// 实例启动模板名称格式错误。
         public static var invalidLaunchTemplateName: InvalidParameterValue {
             InvalidParameterValue(.invalidLaunchTemplateName)
         }
-        
+
         /// 实例启动模板描述格式错误。
         public static var invalidLaunchTemplateVersionDescription: InvalidParameterValue {
             InvalidParameterValue(.invalidLaunchTemplateVersionDescription)
         }
-        
+
         /// 许可证类型不可用。
         public static var invalidLicenseType: InvalidParameterValue {
             InvalidParameterValue(.invalidLicenseType)
         }
-        
+
         /// 参数值错误。
         public static var invalidParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueLimit)
         }
-        
+
         /// 无效密码。指定的密码不符合密码复杂度限制。例如密码长度不符合限制等。
         public static var invalidPassword: InvalidParameterValue {
             InvalidParameterValue(.invalidPassword)
         }
-        
+
         /// Region ID不可用。
         public static var invalidRegion: InvalidParameterValue {
             InvalidParameterValue(.invalidRegion)
         }
-        
+
         /// 时间格式不合法。
         ///
         /// 暂无
         public static var invalidTimeFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidTimeFormat)
         }
-        
+
         /// UserData格式错误, 需要base64编码格式
         ///
         /// 无
         public static var invalidUserDataFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidUserDataFormat)
         }
-        
+
         /// 无效的模糊查询字符串。
         ///
         /// 请使用非空的模糊查询串，比如“myIns”
         public static var invalidVagueName: InvalidParameterValue {
             InvalidParameterValue(.invalidVagueName)
         }
-        
+
         /// IP格式非法。
         public static var ipAddressMalformed: InvalidParameterValue {
             InvalidParameterValue(.ipAddressMalformed)
         }
-        
+
         /// 请确认密钥是否存在。
         public static var keyPairNotFound: InvalidParameterValue {
             InvalidParameterValue(.keyPairNotFound)
         }
-        
+
         /// 指定的密钥不支持当前操作。
         public static var keyPairNotSupported: InvalidParameterValue {
             InvalidParameterValue(.keyPairNotSupported)
         }
-        
+
         /// 不支持删除默认启动模板版本。
         ///
         /// 暂无
         public static var launchTemplateDefaultVersion: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateDefaultVersion)
         }
-        
+
         /// 实例启动模板ID格式错误。
         public static var launchTemplateIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateIdMalformed)
         }
-        
+
         /// 实例启动模板ID不存在。
         public static var launchTemplateIdNotExisted: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateIdNotExisted)
         }
-        
+
         /// 实例启动模板和版本ID组合不存在。
         public static var launchTemplateIdVerNotExisted: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateIdVerNotExisted)
         }
-        
+
         /// 指定的实例启动模板id不存在。
         ///
         /// 暂无
         public static var launchTemplateIdVerSetAlready: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateIdVerSetAlready)
         }
-        
+
         /// 实例启动模板未找到。
         public static var launchTemplateNotFound: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateNotFound)
         }
-        
+
         /// 无效的实例启动模板版本号。
         public static var launchTemplateVersion: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateVersion)
         }
-        
+
         /// 参数值数量超过限制。
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
         }
-        
+
         /// 本地盘的限制范围。
         public static var localDiskSizeRange: InvalidParameterValue {
             InvalidParameterValue(.localDiskSizeRange)
         }
-        
+
         /// 参数值必须为开启DHCP的VPC
         ///
         /// 无
         public static var mustDhcpEnabledVpc: InvalidParameterValue {
             InvalidParameterValue(.mustDhcpEnabledVpc)
         }
-        
+
         /// 子网不属于该cdc集群。
         public static var notCdcSubnet: InvalidParameterValue {
             InvalidParameterValue(.notCdcSubnet)
         }
-        
+
         /// 不支持的操作。
         public static var notSupported: InvalidParameterValue {
             InvalidParameterValue(.notSupported)
         }
-        
+
         /// 无效参数值。参数值取值范围不合法。
         public static var range: InvalidParameterValue {
             InvalidParameterValue(.range)
         }
-        
+
         /// 快照ID不合要求，请提供规范的快照ID，类似snap-xxxxxxxx，字母x代表小写字符或者数字
         ///
         /// 无
         public static var snapshotIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.snapshotIdMalformed)
         }
-        
+
         /// 子网ID不合要求，请提供规范的子网ID，类似subnet-xxxxxxxx，字母x代表小写字符或者数字
         ///
         /// 无
         public static var subnetIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.subnetIdMalformed)
         }
-        
+
         /// 创建失败，您指定的子网不存在，请您重新指定
         ///
         /// 无
         public static var subnetNotExist: InvalidParameterValue {
             InvalidParameterValue(.subnetNotExist)
         }
-        
+
         /// 指定的标签不存在。
         public static var tagKeyNotFound: InvalidParameterValue {
             InvalidParameterValue(.tagKeyNotFound)
         }
-        
+
         /// 输入的标签信息绑定的资源将超过标签配额上线，请降低CVM购买数量或在标签控制台提高标签配额。
         public static var tagQuotaLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.tagQuotaLimitExceeded)
         }
-        
+
         /// 每核心线程数不合法。
         public static var threadPerCoreValue: InvalidParameterValue {
             InvalidParameterValue(.threadPerCoreValue)
         }
-        
+
         /// 参数值超过最大限制。
         public static var tooLarge: InvalidParameterValue {
             InvalidParameterValue(.tooLarge)
         }
-        
+
         /// 无效参数值。参数值太长。
         public static var tooLong: InvalidParameterValue {
             InvalidParameterValue(.tooLong)
         }
-        
+
         /// VPC ID<code>xxx</code>不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
         ///
         /// 无
         public static var vpcIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.vpcIdMalformed)
         }
-        
+
         /// 指定的VpcId不存在。
         public static var vpcIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.vpcIdNotExist)
         }
-        
+
         /// VPC网络与实例不在同一可用区
         ///
         /// 无
         public static var vpcIdZoneIdNotMatch: InvalidParameterValue {
             InvalidParameterValue(.vpcIdZoneIdNotMatch)
         }
-        
+
         /// 该VPC不支持ipv6。
         public static var vpcNotSupportIpv6Address: InvalidParameterValue {
             InvalidParameterValue(.vpcNotSupportIpv6Address)
         }
-        
+
         /// 请求不支持该可用区
         ///
         /// 无
         public static var zoneNotSupported: InvalidParameterValue {
             InvalidParameterValue(.zoneNotSupported)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
-            case .amountNotEqual: 
+            case .amountNotEqual:
                 code = .invalidParameterValue_AmountNotEqual
-            case .bandwidthPackageIdMalformed: 
+            case .bandwidthPackageIdMalformed:
                 code = .invalidParameterValue_BandwidthPackageIdMalformed
-            case .bandwidthPackageIdNotFound: 
+            case .bandwidthPackageIdNotFound:
                 code = .invalidParameterValue_BandwidthPackageIdNotFound
-            case .basicNetworkInstanceFamily: 
+            case .basicNetworkInstanceFamily:
                 code = .invalidParameterValue_BasicNetworkInstanceFamily
-            case .bucketNotFound: 
+            case .bucketNotFound:
                 code = .invalidParameterValue_BucketNotFound
-            case .camRoleNameMalformed: 
+            case .camRoleNameMalformed:
                 code = .invalidParameterValue_CamRoleNameMalformed
-            case .chcHostsNotFound: 
+            case .chcHostsNotFound:
                 code = .invalidParameterValue_ChcHostsNotFound
-            case .chcNetworkEmpty: 
+            case .chcNetworkEmpty:
                 code = .invalidParameterValue_ChcNetworkEmpty
-            case .cloudSsdDataDiskSizeTooSmall: 
+            case .cloudSsdDataDiskSizeTooSmall:
                 code = .invalidParameterValue_CloudSsdDataDiskSizeTooSmall
-            case .coreCountValue: 
+            case .coreCountValue:
                 code = .invalidParameterValue_CoreCountValue
-            case .deployVpcAlreadyExists: 
+            case .deployVpcAlreadyExists:
                 code = .invalidParameterValue_DeployVpcAlreadyExists
-            case .disasterRecoverGroupIdMalformed: 
+            case .disasterRecoverGroupIdMalformed:
                 code = .invalidParameterValue_DisasterRecoverGroupIdMalformed
-            case .duplicate: 
+            case .duplicate:
                 code = .invalidParameterValue_Duplicate
-            case .duplicateTags: 
+            case .duplicateTags:
                 code = .invalidParameterValue_DuplicateTags
-            case .gpuInstanceFamily: 
+            case .gpuInstanceFamily:
                 code = .invalidParameterValue_GPUInstanceFamily
-            case .iPv6AddressMalformed: 
+            case .iPv6AddressMalformed:
                 code = .invalidParameterValue_IPv6AddressMalformed
-            case .illegalHostName: 
+            case .illegalHostName:
                 code = .invalidParameterValue_IllegalHostName
-            case .incorrectFormat: 
+            case .incorrectFormat:
                 code = .invalidParameterValue_IncorrectFormat
-            case .instanceIdMalformed: 
+            case .instanceIdMalformed:
                 code = .invalidParameterValue_InstanceIdMalformed
-            case .instanceNotSupportedMixPricingModel: 
+            case .instanceNotSupportedMixPricingModel:
                 code = .invalidParameterValue_InstanceNotSupportedMixPricingModel
-            case .instanceTypeNotFound: 
+            case .instanceTypeNotFound:
                 code = .invalidParameterValue_InstanceTypeNotFound
-            case .instanceTypeNotSupportHpcCluster: 
+            case .instanceTypeNotSupportHpcCluster:
                 code = .invalidParameterValue_InstanceTypeNotSupportHpcCluster
-            case .instanceTypeRequiredHpcCluster: 
+            case .instanceTypeRequiredHpcCluster:
                 code = .invalidParameterValue_InstanceTypeRequiredHpcCluster
-            case .insufficientOffering: 
+            case .insufficientOffering:
                 code = .invalidParameterValue_InsufficientOffering
-            case .insufficientPrice: 
+            case .insufficientPrice:
                 code = .invalidParameterValue_InsufficientPrice
-            case .invalidAppIdFormat: 
+            case .invalidAppIdFormat:
                 code = .invalidParameterValue_InvalidAppIdFormat
-            case .invalidBucketPermissionForExport: 
+            case .invalidBucketPermissionForExport:
                 code = .invalidParameterValue_InvalidBucketPermissionForExport
-            case .invalidFileNamePrefixList: 
+            case .invalidFileNamePrefixList:
                 code = .invalidParameterValue_InvalidFileNamePrefixList
-            case .invalidGPUFamilyChange: 
+            case .invalidGPUFamilyChange:
                 code = .invalidParameterValue_InvalidGPUFamilyChange
-            case .invalidImageForGivenInstanceType: 
+            case .invalidImageForGivenInstanceType:
                 code = .invalidParameterValue_InvalidImageForGivenInstanceType
-            case .invalidImageFormat: 
+            case .invalidImageFormat:
                 code = .invalidParameterValue_InvalidImageFormat
-            case .invalidImageId: 
+            case .invalidImageId:
                 code = .invalidParameterValue_InvalidImageId
-            case .invalidImageIdForRetsetInstance: 
+            case .invalidImageIdForRetsetInstance:
                 code = .invalidParameterValue_InvalidImageIdForRetsetInstance
-            case .invalidImageOsName: 
+            case .invalidImageOsName:
                 code = .invalidParameterValue_InvalidImageOsName
-            case .invalidImageState: 
+            case .invalidImageState:
                 code = .invalidParameterValue_InvalidImageState
-            case .invalidInstanceSource: 
+            case .invalidInstanceSource:
                 code = .invalidParameterValue_InvalidInstanceSource
-            case .invalidIpFormat: 
+            case .invalidIpFormat:
                 code = .invalidParameterValue_InvalidIpFormat
-            case .invalidLaunchTemplateDescription: 
+            case .invalidLaunchTemplateDescription:
                 code = .invalidParameterValue_InvalidLaunchTemplateDescription
-            case .invalidLaunchTemplateName: 
+            case .invalidLaunchTemplateName:
                 code = .invalidParameterValue_InvalidLaunchTemplateName
-            case .invalidLaunchTemplateVersionDescription: 
+            case .invalidLaunchTemplateVersionDescription:
                 code = .invalidParameterValue_InvalidLaunchTemplateVersionDescription
-            case .invalidLicenseType: 
+            case .invalidLicenseType:
                 code = .invalidParameterValue_InvalidLicenseType
-            case .invalidParameterValueLimit: 
+            case .invalidParameterValueLimit:
                 code = .invalidParameterValue_InvalidParameterValueLimit
-            case .invalidPassword: 
+            case .invalidPassword:
                 code = .invalidParameterValue_InvalidPassword
-            case .invalidRegion: 
+            case .invalidRegion:
                 code = .invalidParameterValue_InvalidRegion
-            case .invalidTimeFormat: 
+            case .invalidTimeFormat:
                 code = .invalidParameterValue_InvalidTimeFormat
-            case .invalidUserDataFormat: 
+            case .invalidUserDataFormat:
                 code = .invalidParameterValue_InvalidUserDataFormat
-            case .invalidVagueName: 
+            case .invalidVagueName:
                 code = .invalidParameterValue_InvalidVagueName
-            case .ipAddressMalformed: 
+            case .ipAddressMalformed:
                 code = .invalidParameterValue_IPAddressMalformed
-            case .keyPairNotFound: 
+            case .keyPairNotFound:
                 code = .invalidParameterValue_KeyPairNotFound
-            case .keyPairNotSupported: 
+            case .keyPairNotSupported:
                 code = .invalidParameterValue_KeyPairNotSupported
-            case .launchTemplateDefaultVersion: 
+            case .launchTemplateDefaultVersion:
                 code = .invalidParameterValue_LaunchTemplateDefaultVersion
-            case .launchTemplateIdMalformed: 
+            case .launchTemplateIdMalformed:
                 code = .invalidParameterValue_LaunchTemplateIdMalformed
-            case .launchTemplateIdNotExisted: 
+            case .launchTemplateIdNotExisted:
                 code = .invalidParameterValue_LaunchTemplateIdNotExisted
-            case .launchTemplateIdVerNotExisted: 
+            case .launchTemplateIdVerNotExisted:
                 code = .invalidParameterValue_LaunchTemplateIdVerNotExisted
-            case .launchTemplateIdVerSetAlready: 
+            case .launchTemplateIdVerSetAlready:
                 code = .invalidParameterValue_LaunchTemplateIdVerSetAlready
-            case .launchTemplateNotFound: 
+            case .launchTemplateNotFound:
                 code = .invalidParameterValue_LaunchTemplateNotFound
-            case .launchTemplateVersion: 
+            case .launchTemplateVersion:
                 code = .invalidParameterValue_LaunchTemplateVersion
-            case .limitExceeded: 
+            case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
-            case .localDiskSizeRange: 
+            case .localDiskSizeRange:
                 code = .invalidParameterValue_LocalDiskSizeRange
-            case .mustDhcpEnabledVpc: 
+            case .mustDhcpEnabledVpc:
                 code = .invalidParameterValue_MustDhcpEnabledVpc
-            case .notCdcSubnet: 
+            case .notCdcSubnet:
                 code = .invalidParameterValue_NotCdcSubnet
-            case .notSupported: 
+            case .notSupported:
                 code = .invalidParameterValue_NotSupported
-            case .range: 
+            case .range:
                 code = .invalidParameterValue_Range
-            case .snapshotIdMalformed: 
+            case .snapshotIdMalformed:
                 code = .invalidParameterValue_SnapshotIdMalformed
-            case .subnetIdMalformed: 
+            case .subnetIdMalformed:
                 code = .invalidParameterValue_SubnetIdMalformed
-            case .subnetNotExist: 
+            case .subnetNotExist:
                 code = .invalidParameterValue_SubnetNotExist
-            case .tagKeyNotFound: 
+            case .tagKeyNotFound:
                 code = .invalidParameterValue_TagKeyNotFound
-            case .tagQuotaLimitExceeded: 
+            case .tagQuotaLimitExceeded:
                 code = .invalidParameterValue_TagQuotaLimitExceeded
-            case .threadPerCoreValue: 
+            case .threadPerCoreValue:
                 code = .invalidParameterValue_ThreadPerCoreValue
-            case .tooLarge: 
+            case .tooLarge:
                 code = .invalidParameterValue_TooLarge
-            case .tooLong: 
+            case .tooLong:
                 code = .invalidParameterValue_TooLong
-            case .vpcIdMalformed: 
+            case .vpcIdMalformed:
                 code = .invalidParameterValue_VpcIdMalformed
-            case .vpcIdNotExist: 
+            case .vpcIdNotExist:
                 code = .invalidParameterValue_VpcIdNotExist
-            case .vpcIdZoneIdNotMatch: 
+            case .vpcIdZoneIdNotMatch:
                 code = .invalidParameterValue_VpcIdZoneIdNotMatch
-            case .vpcNotSupportIpv6Address: 
+            case .vpcNotSupportIpv6Address:
                 code = .invalidParameterValue_VpcNotSupportIpv6Address
-            case .zoneNotSupported: 
+            case .zoneNotSupported:
                 code = .invalidParameterValue_ZoneNotSupported
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCCvmError(code, context: self.context)

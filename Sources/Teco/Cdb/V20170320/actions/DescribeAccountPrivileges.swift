@@ -19,43 +19,43 @@ extension Cdb {
     public struct DescribeAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
+
         /// 数据库的账号名称。
         public let user: String
-        
+
         /// 数据库的账号域名。
         public let host: String
-        
-        public init (instanceId: String, user: String, host: String) {
+
+        public init(instanceId: String, user: String, host: String) {
             self.instanceId = instanceId
             self.user = user
             self.host = host
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case user = "User"
             case host = "Host"
         }
     }
-    
+
     /// DescribeAccountPrivileges返回参数结构体
     public struct DescribeAccountPrivilegesResponse: TCResponseModel {
         /// 全局权限数组。
         public let globalPrivileges: [String]
-        
+
         /// 数据库权限数组。
         public let databasePrivileges: [DatabasePrivilege]
-        
+
         /// 数据库中的表权限数组。
         public let tablePrivileges: [TablePrivilege]
-        
+
         /// 数据库表中的列权限数组。
         public let columnPrivileges: [ColumnPrivilege]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case globalPrivileges = "GlobalPrivileges"
             case databasePrivileges = "DatabasePrivileges"
@@ -64,15 +64,15 @@ extension Cdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云数据库账户的权限信息
     ///
     /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
     @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
         self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库账户的权限信息
     ///
     /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
@@ -80,15 +80,15 @@ extension Cdb {
     public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
         try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云数据库账户的权限信息
     ///
     /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
     @inlinable
-    public func describeAccountPrivileges(instanceId: String, user: String, host: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
+    public func describeAccountPrivileges(instanceId: String, user: String, host: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
         self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, user: user, host: host), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库账户的权限信息
     ///
     /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。

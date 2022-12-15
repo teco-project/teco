@@ -24,73 +24,73 @@ extension TCMpsError {
             case word = "ResourceNotFound.Word"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源不存在：Cos bucket 名称无效。
         public static var cosBucketNameInvalid: ResourceNotFound {
             ResourceNotFound(.cosBucketNameInvalid)
         }
-        
+
         /// 资源不存在：Cos bucket 不存在。
         public static var cosBucketNotExist: ResourceNotFound {
             ResourceNotFound(.cosBucketNotExist)
         }
-        
+
         /// 资源不存在：人物。
         public static var person: ResourceNotFound {
             ResourceNotFound(.person)
         }
-        
+
         /// 资源不存在：模板不存在。
         public static var templateNotExist: ResourceNotFound {
             ResourceNotFound(.templateNotExist)
         }
-        
+
         /// 资源不存在：关键词。
         public static var word: ResourceNotFound {
             ResourceNotFound(.word)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asMpsError() -> TCMpsError {
             let code: TCMpsError.Code
             switch self.error {
-            case .cosBucketNameInvalid: 
+            case .cosBucketNameInvalid:
                 code = .resourceNotFound_CosBucketNameInvalid
-            case .cosBucketNotExist: 
+            case .cosBucketNotExist:
                 code = .resourceNotFound_CosBucketNotExist
-            case .person: 
+            case .person:
                 code = .resourceNotFound_Person
-            case .templateNotExist: 
+            case .templateNotExist:
                 code = .resourceNotFound_TemplateNotExist
-            case .word: 
+            case .word:
                 code = .resourceNotFound_Word
-            case .other: 
+            case .other:
                 code = .resourceNotFound
             }
             return TCMpsError(code, context: self.context)

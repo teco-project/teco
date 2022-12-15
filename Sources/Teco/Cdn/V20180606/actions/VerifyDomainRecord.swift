@@ -19,45 +19,45 @@ extension Cdn {
     public struct VerifyDomainRecordRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 验证方式
         /// dns: DNS 解析验证（默认值）
         /// file: 文件验证
         public let verifyType: String?
-        
-        public init (domain: String, verifyType: String? = nil) {
+
+        public init(domain: String, verifyType: String? = nil) {
             self.domain = domain
             self.verifyType = verifyType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case verifyType = "VerifyType"
         }
     }
-    
+
     /// VerifyDomainRecord返回参数结构体
     public struct VerifyDomainRecordResponse: TCResponseModel {
         /// 是否验证成功
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 验证域名解析
     ///
     /// 验证域名解析值
     @inlinable
-    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyDomainRecordResponse > {
+    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyDomainRecordResponse> {
         self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 验证域名解析
     ///
     /// 验证域名解析值
@@ -65,15 +65,15 @@ extension Cdn {
     public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
         try await self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 验证域名解析
     ///
     /// 验证域名解析值
     @inlinable
-    public func verifyDomainRecord(domain: String, verifyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyDomainRecordResponse > {
+    public func verifyDomainRecord(domain: String, verifyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyDomainRecordResponse> {
         self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), logger: logger, on: eventLoop)
     }
-    
+
     /// 验证域名解析
     ///
     /// 验证域名解析值

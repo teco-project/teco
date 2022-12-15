@@ -19,44 +19,44 @@ extension Ecm {
     public struct BatchDeregisterTargetsRequest: TCRequestModel {
         /// 负载均衡ID
         public let loadBalancerId: String
-        
+
         /// 解绑目标
         public let targets: [BatchTarget]
-        
-        public init (loadBalancerId: String, targets: [BatchTarget]) {
+
+        public init(loadBalancerId: String, targets: [BatchTarget]) {
             self.loadBalancerId = loadBalancerId
             self.targets = targets
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case targets = "Targets"
         }
     }
-    
+
     /// BatchDeregisterTargets返回参数结构体
     public struct BatchDeregisterTargetsResponse: TCResponseModel {
         /// 解绑失败的监听器ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failListenerIdSet: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case failListenerIdSet = "FailListenerIdSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量解绑后端服务
     ///
     /// 批量解绑后端服务。
     @inlinable
-    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeregisterTargetsResponse > {
+    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeregisterTargetsResponse> {
         self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量解绑后端服务
     ///
     /// 批量解绑后端服务。
@@ -64,15 +64,15 @@ extension Ecm {
     public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
         try await self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量解绑后端服务
     ///
     /// 批量解绑后端服务。
     @inlinable
-    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeregisterTargetsResponse > {
+    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeregisterTargetsResponse> {
         self.batchDeregisterTargets(BatchDeregisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量解绑后端服务
     ///
     /// 批量解绑后端服务。

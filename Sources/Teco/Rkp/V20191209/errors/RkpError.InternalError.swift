@@ -22,59 +22,59 @@ extension TCRkpError {
             case signBackendError = "InternalError.SignBackendError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 业务后端逻辑错误。
         public static var backendLogicError: InternalError {
             InternalError(.backendLogicError)
         }
-        
+
         /// 后端错误。
         public static var serverError: InternalError {
             InternalError(.serverError)
         }
-        
+
         /// 关键词后端错误。
         public static var signBackendError: InternalError {
             InternalError(.signBackendError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asRkpError() -> TCRkpError {
             let code: TCRkpError.Code
             switch self.error {
-            case .backendLogicError: 
+            case .backendLogicError:
                 code = .internalError_BackendLogicError
-            case .serverError: 
+            case .serverError:
                 code = .internalError_ServerError
-            case .signBackendError: 
+            case .signBackendError:
                 code = .internalError_SignBackendError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCRkpError(code, context: self.context)

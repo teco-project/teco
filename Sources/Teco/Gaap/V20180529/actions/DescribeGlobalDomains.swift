@@ -19,28 +19,28 @@ extension Gaap {
     public struct DescribeGlobalDomainsRequest: TCRequestModel {
         /// 项目ID
         public let projectId: Int64
-        
+
         /// 分页偏移量
         public let offset: UInt64
-        
+
         /// 分页数量限制
         public let limit: UInt64
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
+
         /// 标签列表，当存在该字段时，拉取对应标签下的资源列表。
         /// 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，域名会被拉取出来。
         public let tagSet: [TagPair]?
-        
-        public init (projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil) {
+
+        public init(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil) {
             self.projectId = projectId
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.tagSet = tagSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case offset = "Offset"
@@ -49,43 +49,43 @@ extension Gaap {
             case tagSet = "TagSet"
         }
     }
-    
+
     /// DescribeGlobalDomains返回参数结构体
     public struct DescribeGlobalDomainsResponse: TCResponseModel {
         /// 域名信息列表
         public let domains: [Domain]
-        
+
         /// 总记录数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domains = "Domains"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询域名列表
     @inlinable
-    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGlobalDomainsResponse > {
+    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainsResponse> {
         self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询域名列表
     @inlinable
     public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
         try await self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询域名列表
     @inlinable
-    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGlobalDomainsResponse > {
+    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainsResponse> {
         self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询域名列表
     @inlinable
     public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {

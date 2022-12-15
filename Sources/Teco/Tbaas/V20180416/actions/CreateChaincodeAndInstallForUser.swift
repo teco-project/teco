@@ -19,36 +19,36 @@ extension Tbaas {
     public struct CreateChaincodeAndInstallForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：chaincode_mng
         public let module: String
-        
+
         /// 操作名，本接口取值：chaincode_create_and_install_for_user
         public let operation: String
-        
+
         /// 区块链网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
-        
+
         /// 调用合约的组织名称，可以在组织管理列表中获取当前组织的名称
         public let groupName: String
-        
+
         /// 合约安装节点名称，可以在通道详情中获取该通道上的节点名称
         public let peerName: String
-        
+
         /// 智能合约名称，格式说明：以小写字母开头，由2-12位数字或小写字母组成
         public let chaincodeName: String
-        
+
         /// 智能合约版本，格式说明：由1-12位数字、小写字母、特殊符号(“.”)组成，如v1.0
         public let chaincodeVersion: String
-        
+
         /// 智能合约代码文件类型，支持类型：
         /// 1. "go"：.go合约文件
         /// 2. "gozip"：go合约工程zip包，要求压缩目录为代码根目录
         /// 3. "javazip"：java合约工程zip包，要求压缩目录为代码根目录
         /// 4. "nodezip"：nodejs合约工程zip包，要求压缩目录为代码根目录
         public let chaincodeFileType: String
-        
+
         /// 合约内容，合约文件或压缩包内容的base64编码，大小要求小于等于5M
         public let chaincode: String
-        
-        public init (module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String) {
+
+        public init(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -59,7 +59,7 @@ extension Tbaas {
             self.chaincodeFileType = chaincodeFileType
             self.chaincode = chaincode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -72,35 +72,35 @@ extension Tbaas {
             case chaincode = "Chaincode"
         }
     }
-    
+
     /// CreateChaincodeAndInstallForUser返回参数结构体
     public struct CreateChaincodeAndInstallForUserResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建并安装合约
     @inlinable
-    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChaincodeAndInstallForUserResponse > {
+    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChaincodeAndInstallForUserResponse> {
         self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建并安装合约
     @inlinable
     public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
         try await self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建并安装合约
     @inlinable
-    public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChaincodeAndInstallForUserResponse > {
+    public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChaincodeAndInstallForUserResponse> {
         self.createChaincodeAndInstallForUser(CreateChaincodeAndInstallForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建并安装合约
     @inlinable
     public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {

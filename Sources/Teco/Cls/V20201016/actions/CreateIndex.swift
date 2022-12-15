@@ -19,27 +19,27 @@ extension Cls {
     public struct CreateIndexRequest: TCRequestModel {
         /// 日志主题ID
         public let topicId: String
-        
+
         /// 索引规则
         public let rule: RuleInfo
-        
+
         /// 是否生效，默认为true
         public let status: Bool?
-        
+
         /// 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
         public let includeInternalFields: Bool?
-        
+
         /// 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
         public let metadataFlag: UInt64?
-        
-        public init (topicId: String, rule: RuleInfo, status: Bool? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil) {
+
+        public init(topicId: String, rule: RuleInfo, status: Bool? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil) {
             self.topicId = topicId
             self.rule = rule
             self.status = status
             self.includeInternalFields = includeInternalFields
             self.metadataFlag = metadataFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case rule = "Rule"
@@ -48,25 +48,25 @@ extension Cls {
             case metadataFlag = "MetadataFlag"
         }
     }
-    
+
     /// CreateIndex返回参数结构体
     public struct CreateIndexResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建索引
     ///
     /// 本接口用于创建索引
     @inlinable
-    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
+    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIndexResponse> {
         self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建索引
     ///
     /// 本接口用于创建索引
@@ -74,15 +74,15 @@ extension Cls {
     public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
         try await self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建索引
     ///
     /// 本接口用于创建索引
     @inlinable
-    public func createIndex(topicId: String, rule: RuleInfo, status: Bool? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
+    public func createIndex(topicId: String, rule: RuleInfo, status: Bool? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIndexResponse> {
         self.createIndex(CreateIndexRequest(topicId: topicId, rule: rule, status: status, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建索引
     ///
     /// 本接口用于创建索引

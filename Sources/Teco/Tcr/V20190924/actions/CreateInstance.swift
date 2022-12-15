@@ -19,27 +19,27 @@ extension Tcr {
     public struct CreateInstanceRequest: TCRequestModel {
         /// 企业版实例名称
         public let registryName: String
-        
+
         /// 企业版实例类型（basic 基础版；standard 标准版；premium 高级版）
         public let registryType: String
-        
+
         /// 云标签描述
         public let tagSpecification: TagSpecification?
-        
+
         /// 实例计费类型，0表示按量计费，1表示预付费，默认为按量计费
         public let registryChargeType: Int64?
-        
+
         /// 是否同步TCR云标签至生成的COS Bucket
         public let syncTag: Bool?
-        
-        public init (registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil) {
+
+        public init(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil) {
             self.registryName = registryName
             self.registryType = registryType
             self.tagSpecification = tagSpecification
             self.registryChargeType = registryChargeType
             self.syncTag = syncTag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryName = "RegistryName"
             case registryType = "RegistryType"
@@ -48,39 +48,39 @@ extension Tcr {
             case syncTag = "SyncTag"
         }
     }
-    
+
     /// CreateInstance返回参数结构体
     public struct CreateInstanceResponse: TCResponseModel {
         /// 企业版实例Id
         public let registryId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建实例
     @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
         self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建实例
     @inlinable
     public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
         try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建实例
     @inlinable
-    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
+    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
         self.createInstance(CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, syncTag: syncTag), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建实例
     @inlinable
     public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {

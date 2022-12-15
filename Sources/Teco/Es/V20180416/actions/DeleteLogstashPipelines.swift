@@ -19,39 +19,39 @@ extension Es {
     public struct DeleteLogstashPipelinesRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 管道ID列表
         public let pipelineIds: [String]?
-        
-        public init (instanceId: String, pipelineIds: [String]? = nil) {
+
+        public init(instanceId: String, pipelineIds: [String]? = nil) {
             self.instanceId = instanceId
             self.pipelineIds = pipelineIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case pipelineIds = "PipelineIds"
         }
     }
-    
+
     /// DeleteLogstashPipelines返回参数结构体
     public struct DeleteLogstashPipelinesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Logstash管道
     ///
     /// 用于批量删除Logstash管道
     @inlinable
-    public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogstashPipelinesResponse > {
+    public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashPipelinesResponse> {
         self.client.execute(action: "DeleteLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Logstash管道
     ///
     /// 用于批量删除Logstash管道
@@ -59,15 +59,15 @@ extension Es {
     public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashPipelinesResponse {
         try await self.client.execute(action: "DeleteLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Logstash管道
     ///
     /// 用于批量删除Logstash管道
     @inlinable
-    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogstashPipelinesResponse > {
+    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashPipelinesResponse> {
         self.deleteLogstashPipelines(DeleteLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Logstash管道
     ///
     /// 用于批量删除Logstash管道

@@ -19,58 +19,58 @@ extension Teo {
     public struct ModifyDDoSPolicyRequest: TCRequestModel {
         /// 策略id。
         public let policyId: Int64
-        
+
         /// 站点id。
         public let zoneId: String
-        
+
         /// DDoS防护配置详情。
         public let ddosRule: DdosRule?
-        
-        public init (policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil) {
+
+        public init(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil) {
             self.policyId = policyId
             self.zoneId = zoneId
             self.ddosRule = ddosRule
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case zoneId = "ZoneId"
             case ddosRule = "DdosRule"
         }
     }
-    
+
     /// ModifyDDoSPolicy返回参数结构体
     public struct ModifyDDoSPolicyResponse: TCResponseModel {
         /// 策略id。
         public let policyId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改DDoS防护分区配置
     @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
         self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护分区配置
     @inlinable
     public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
         try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改DDoS防护分区配置
     @inlinable
-    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
         self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护分区配置
     @inlinable
     public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {

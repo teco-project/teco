@@ -19,24 +19,24 @@ extension Cdn {
     public struct ListTopDDoSDataRequest: TCRequestModel {
         /// 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
         public let startTime: String
-        
+
         /// 查询Top数据的结束时间，格式为：2020-01-01 23:59:59
         /// 支持 90 天内数据查询，时间跨度要小于等于7天
         public let endTime: String
-        
+
         /// 查询Top的数量，不填默认值为10
         public let topCount: UInt64?
-        
+
         /// AttackIP表示查询攻击ip的top排行，AttackType表示攻击类型的top排行，为空默认为AttackType
         public let metric: String?
-        
-        public init (startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil) {
+
+        public init(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.topCount = topCount
             self.metric = metric
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -44,43 +44,43 @@ extension Cdn {
             case metric = "Metric"
         }
     }
-    
+
     /// ListTopDDoSData返回参数结构体
     public struct ListTopDDoSDataResponse: TCResponseModel {
         /// DDoS 攻击类型的top数据，当Metric=AttackType的时候返回攻击类型的统计数据，IPData为空
         public let data: [DDoSTopData]
-        
+
         /// ddos攻击ip的top数据，Metric=AttackIP的时候返回IPData，Data为空
         public let ipData: [DDoSAttackIPTopData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case ipData = "IPData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取DDoS攻击Top数据
     @inlinable
-    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopDDoSDataResponse > {
+    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDDoSDataResponse> {
         self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS攻击Top数据
     @inlinable
     public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
         try await self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取DDoS攻击Top数据
     @inlinable
-    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopDDoSDataResponse > {
+    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDDoSDataResponse> {
         self.listTopDDoSData(ListTopDDoSDataRequest(startTime: startTime, endTime: endTime, topCount: topCount, metric: metric), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoS攻击Top数据
     @inlinable
     public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {

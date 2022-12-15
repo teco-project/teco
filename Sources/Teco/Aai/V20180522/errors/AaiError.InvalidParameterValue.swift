@@ -40,188 +40,188 @@ extension TCAaiError {
             case volume = "InvalidParameterValue.Volume"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// appid未注册。
         public static var appIdNotRegistered: InvalidParameterValue {
             InvalidParameterValue(.appIdNotRegistered)
         }
-        
+
         /// AppId无效。
         public static var errorInvalidAppid: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidAppid)
         }
-        
+
         /// ClientIp无效。
         public static var errorInvalidClientip: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidClientip)
         }
-        
+
         /// EngSerViceType无效。
         public static var errorInvalidEngservice: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidEngservice)
         }
-        
+
         /// 是否进行翻译。
         public static var errorInvalidOpenTranslate: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidOpenTranslate)
         }
-        
+
         /// ProjectId无效。
         public static var errorInvalidProjectid: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidProjectid)
         }
-        
+
         /// RequestId无效。
         public static var errorInvalidRequestid: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidRequestid)
         }
-        
+
         /// 翻译的源语言类型不支持。
         public static var errorInvalidSourceLanguage: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidSourceLanguage)
         }
-        
+
         /// SourceType无效。
         public static var errorInvalidSourcetype: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidSourcetype)
         }
-        
+
         /// SubserviceType无效。
         public static var errorInvalidSubservicetype: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidSubservicetype)
         }
-        
+
         /// 翻译的目标语言类型不支持。
         public static var errorInvalidTargetLanguage: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidTargetLanguage)
         }
-        
+
         /// Url无效。
         public static var errorInvalidUrl: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidUrl)
         }
-        
+
         /// UsrAudioKey无效。
         public static var errorInvalidUseraudiokey: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidUseraudiokey)
         }
-        
+
         /// 音频编码格式不支持。
         public static var errorInvalidVoiceFormat: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidVoiceFormat)
         }
-        
+
         /// 音频数据无效。
         public static var errorInvalidVoicedata: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidVoicedata)
         }
-        
+
         /// 数据过长。
         public static var errorVoicedataTooLong: InvalidParameterValue {
             InvalidParameterValue(.errorVoicedataTooLong)
         }
-        
+
         /// PrimaryLanguage非法。
         public static var primaryLanguage: InvalidParameterValue {
             InvalidParameterValue(.primaryLanguage)
         }
-        
+
         public static var sampleRate: InvalidParameterValue {
             InvalidParameterValue(.sampleRate)
         }
-        
+
         /// Speed参数非法。
         ///
         /// 请参考官网文档设置
         public static var speed: InvalidParameterValue {
             InvalidParameterValue(.speed)
         }
-        
+
         /// 声音类型错误。
         public static var voiceType: InvalidParameterValue {
             InvalidParameterValue(.voiceType)
         }
-        
+
         /// Volume参数非法。
         ///
         /// 请参考官网文档设置
         public static var volume: InvalidParameterValue {
             InvalidParameterValue(.volume)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asAaiError() -> TCAaiError {
             let code: TCAaiError.Code
             switch self.error {
-            case .appIdNotRegistered: 
+            case .appIdNotRegistered:
                 code = .invalidParameterValue_AppIdNotRegistered
-            case .errorInvalidAppid: 
+            case .errorInvalidAppid:
                 code = .invalidParameterValue_ErrorInvalidAppid
-            case .errorInvalidClientip: 
+            case .errorInvalidClientip:
                 code = .invalidParameterValue_ErrorInvalidClientip
-            case .errorInvalidEngservice: 
+            case .errorInvalidEngservice:
                 code = .invalidParameterValue_ErrorInvalidEngservice
-            case .errorInvalidOpenTranslate: 
+            case .errorInvalidOpenTranslate:
                 code = .invalidParameterValue_ErrorInvalidOpenTranslate
-            case .errorInvalidProjectid: 
+            case .errorInvalidProjectid:
                 code = .invalidParameterValue_ErrorInvalidProjectid
-            case .errorInvalidRequestid: 
+            case .errorInvalidRequestid:
                 code = .invalidParameterValue_ErrorInvalidRequestid
-            case .errorInvalidSourceLanguage: 
+            case .errorInvalidSourceLanguage:
                 code = .invalidParameterValue_ErrorInvalidSourceLanguage
-            case .errorInvalidSourcetype: 
+            case .errorInvalidSourcetype:
                 code = .invalidParameterValue_ErrorInvalidSourcetype
-            case .errorInvalidSubservicetype: 
+            case .errorInvalidSubservicetype:
                 code = .invalidParameterValue_ErrorInvalidSubservicetype
-            case .errorInvalidTargetLanguage: 
+            case .errorInvalidTargetLanguage:
                 code = .invalidParameterValue_ErrorInvalidTargetLanguage
-            case .errorInvalidUrl: 
+            case .errorInvalidUrl:
                 code = .invalidParameterValue_ErrorInvalidUrl
-            case .errorInvalidUseraudiokey: 
+            case .errorInvalidUseraudiokey:
                 code = .invalidParameterValue_ErrorInvalidUseraudiokey
-            case .errorInvalidVoiceFormat: 
+            case .errorInvalidVoiceFormat:
                 code = .invalidParameterValue_ErrorInvalidVoiceFormat
-            case .errorInvalidVoicedata: 
+            case .errorInvalidVoicedata:
                 code = .invalidParameterValue_ErrorInvalidVoicedata
-            case .errorVoicedataTooLong: 
+            case .errorVoicedataTooLong:
                 code = .invalidParameterValue_ErrorVoicedataTooLong
-            case .primaryLanguage: 
+            case .primaryLanguage:
                 code = .invalidParameterValue_PrimaryLanguage
-            case .sampleRate: 
+            case .sampleRate:
                 code = .invalidParameterValue_SampleRate
-            case .speed: 
+            case .speed:
                 code = .invalidParameterValue_Speed
-            case .voiceType: 
+            case .voiceType:
                 code = .invalidParameterValue_VoiceType
-            case .volume: 
+            case .volume:
                 code = .invalidParameterValue_Volume
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCAaiError(code, context: self.context)

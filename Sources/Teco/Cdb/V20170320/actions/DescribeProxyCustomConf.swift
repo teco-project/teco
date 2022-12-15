@@ -19,43 +19,43 @@ extension Cdb {
     public struct DescribeProxyCustomConfRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 分页
         public let offset: UInt64?
-        
+
         /// 限制
         public let limit: UInt64?
-        
-        public init (instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeProxyCustomConf返回参数结构体
     public struct DescribeProxyCustomConfResponse: TCResponseModel {
         /// 代理配置数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: UInt64?
-        
+
         /// 代理配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customConf: CustomConfig?
-        
+
         /// 权重限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weightRule: Rule?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case customConf = "CustomConf"
@@ -63,25 +63,25 @@ extension Cdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询代理规格配置
     @inlinable
-    public func describeProxyCustomConf(_ input: DescribeProxyCustomConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyCustomConfResponse > {
+    public func describeProxyCustomConf(_ input: DescribeProxyCustomConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyCustomConfResponse> {
         self.client.execute(action: "DescribeProxyCustomConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询代理规格配置
     @inlinable
     public func describeProxyCustomConf(_ input: DescribeProxyCustomConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyCustomConfResponse {
         try await self.client.execute(action: "DescribeProxyCustomConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询代理规格配置
     @inlinable
-    public func describeProxyCustomConf(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyCustomConfResponse > {
+    public func describeProxyCustomConf(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyCustomConfResponse> {
         self.describeProxyCustomConf(DescribeProxyCustomConfRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询代理规格配置
     @inlinable
     public func describeProxyCustomConf(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyCustomConfResponse {

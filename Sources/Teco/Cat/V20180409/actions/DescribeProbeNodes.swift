@@ -22,32 +22,32 @@ extension Cat {
         /// <li> 2 = LastMile </li>
         /// <li> 3 = Mobile </li>
         public let nodeType: Int64?
-        
+
         /// 节点区域
         /// <li> 1 = 中国大陆 </li>
         /// <li> 2 = 港澳台 </li>
         /// <li> 3 = 海外 </li>
         public let location: Int64?
-        
+
         /// 是否IPv6
         public let isIPv6: Bool?
-        
+
         /// 名字模糊搜索
         public let nodeName: String?
-        
+
         /// 付费模式
         /// <li>1 = 试用版本</li>
         /// <li> 2 = 付费版本 </li>
         public let payMode: Int64?
-        
-        public init (nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil) {
+
+        public init(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil) {
             self.nodeType = nodeType
             self.location = location
             self.isIPv6 = isIPv6
             self.nodeName = nodeName
             self.payMode = payMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeType = "NodeType"
             case location = "Location"
@@ -56,40 +56,40 @@ extension Cat {
             case payMode = "PayMode"
         }
     }
-    
+
     /// DescribeProbeNodes返回参数结构体
     public struct DescribeProbeNodesResponse: TCResponseModel {
         /// 节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeSet: [NodeDefine]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeSet = "NodeSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询拨测节点
     @inlinable
-    public func describeProbeNodes(_ input: DescribeProbeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeNodesResponse > {
+    public func describeProbeNodes(_ input: DescribeProbeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeNodesResponse> {
         self.client.execute(action: "DescribeProbeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询拨测节点
     @inlinable
     public func describeProbeNodes(_ input: DescribeProbeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeNodesResponse {
         try await self.client.execute(action: "DescribeProbeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询拨测节点
     @inlinable
-    public func describeProbeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeNodesResponse > {
+    public func describeProbeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeNodesResponse> {
         self.describeProbeNodes(DescribeProbeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询拨测节点
     @inlinable
     public func describeProbeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeNodesResponse {

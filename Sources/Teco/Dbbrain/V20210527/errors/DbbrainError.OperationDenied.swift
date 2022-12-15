@@ -20,47 +20,47 @@ extension TCDbbrainError {
             case userHasNoStrategy = "OperationDenied.UserHasNoStrategy"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM鉴权错误。
         ///
         /// 请对该账号进行CAM授权。
         public static var userHasNoStrategy: OperationDenied {
             OperationDenied(.userHasNoStrategy)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asDbbrainError() -> TCDbbrainError {
             let code: TCDbbrainError.Code
             switch self.error {
-            case .userHasNoStrategy: 
+            case .userHasNoStrategy:
                 code = .operationDenied_UserHasNoStrategy
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCDbbrainError(code, context: self.context)

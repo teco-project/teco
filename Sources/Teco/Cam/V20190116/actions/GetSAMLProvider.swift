@@ -22,24 +22,24 @@ extension Cam {
     public struct GetSAMLProviderRequest: TCRequestModel {
         /// SAML身份提供商名称
         public let name: String
-        
-        public init (name: String) {
+
+        public init(name: String) {
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
         }
     }
-    
+
     /// GetSAMLProvider返回参数结构体
     public struct GetSAMLProviderResponse: TCResponseModel {
         /// SAML身份提供商名称
         public let name: String
-        
+
         /// SAML身份提供商描述
         public let description: String
-        
+
         /// SAML身份提供商创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,7 +47,7 @@ extension Cam {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// SAML身份提供商上次修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -55,13 +55,13 @@ extension Cam {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date
-        
+
         /// SAML身份提供商元数据文档
         public let samlMetadata: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"
@@ -71,25 +71,25 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询SAML身份提供商详情
     @inlinable
-    public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSAMLProviderResponse > {
+    public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSAMLProviderResponse> {
         self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SAML身份提供商详情
     @inlinable
     public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {
         try await self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询SAML身份提供商详情
     @inlinable
-    public func getSAMLProvider(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSAMLProviderResponse > {
+    public func getSAMLProvider(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSAMLProviderResponse> {
         self.getSAMLProvider(GetSAMLProviderRequest(name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询SAML身份提供商详情
     @inlinable
     public func getSAMLProvider(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {

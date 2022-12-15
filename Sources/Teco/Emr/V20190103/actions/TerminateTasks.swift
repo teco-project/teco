@@ -19,49 +19,49 @@ extension Emr {
     public struct TerminateTasksRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 待销毁节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr/static/hardware)查询。
         public let resourceIds: [String]
-        
-        public init (instanceId: String, resourceIds: [String]) {
+
+        public init(instanceId: String, resourceIds: [String]) {
             self.instanceId = instanceId
             self.resourceIds = resourceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case resourceIds = "ResourceIds"
         }
     }
-    
+
     /// TerminateTasks返回参数结构体
     public struct TerminateTasksResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 缩容Task节点
     @inlinable
-    public func terminateTasks(_ input: TerminateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTasksResponse > {
+    public func terminateTasks(_ input: TerminateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTasksResponse> {
         self.client.execute(action: "TerminateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 缩容Task节点
     @inlinable
     public func terminateTasks(_ input: TerminateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTasksResponse {
         try await self.client.execute(action: "TerminateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 缩容Task节点
     @inlinable
-    public func terminateTasks(instanceId: String, resourceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTasksResponse > {
+    public func terminateTasks(instanceId: String, resourceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTasksResponse> {
         self.terminateTasks(TerminateTasksRequest(instanceId: instanceId, resourceIds: resourceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 缩容Task节点
     @inlinable
     public func terminateTasks(instanceId: String, resourceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTasksResponse {

@@ -21,52 +21,52 @@ extension TCEbError {
             case system = "InternalError.System"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 服务处理出错，请稍后重试。若无法解决，请联系智能客服或提交工单。
         public static var ossException: InternalError {
             InternalError(.ossException)
         }
-        
+
         /// 服务处理出错，请稍后重试。若无法解决，请联系智能客服或提交工单。
         public static var system: InternalError {
             InternalError(.system)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
-            case .ossException: 
+            case .ossException:
                 code = .internalError_OssException
-            case .system: 
+            case .system:
                 code = .internalError_System
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCEbError(code, context: self.context)

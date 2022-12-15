@@ -19,35 +19,35 @@ extension Dbdc {
     public struct DescribeInstanceListRequest: TCRequestModel {
         /// 分页返回数量
         public let limit: Int64?
-        
+
         /// 分页偏移量
         public let offset: Int64?
-        
+
         /// 排序字段，createTime,instancename两者之一
         public let orderBy: String?
-        
+
         /// 排序规则，desc,asc两者之一
         public let sortBy: String?
-        
+
         /// 按产品过滤，0:CDB, 1:TDSQL
         public let productId: [Int64]?
-        
+
         /// 按实例ID过滤
         public let instanceId: [String]?
-        
+
         /// 按实例名称过滤
         public let instanceName: [String]?
-        
+
         /// 按金融围笼ID过滤
         public let fenceId: [String]?
-        
+
         /// 按实例状态过滤, -1:已隔离, 0:创建中, 1:运行中, 2:扩容中, 3:删除中
         public let status: [Int64]?
-        
+
         /// 按所属集群ID过滤
         public let clusterId: [String]?
-        
-        public init (limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, sortBy: String? = nil, productId: [Int64]? = nil, instanceId: [String]? = nil, instanceName: [String]? = nil, fenceId: [String]? = nil, status: [Int64]? = nil, clusterId: [String]? = nil) {
+
+        public init(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, sortBy: String? = nil, productId: [Int64]? = nil, instanceId: [String]? = nil, instanceName: [String]? = nil, fenceId: [String]? = nil, status: [Int64]? = nil, clusterId: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.orderBy = orderBy
@@ -59,7 +59,7 @@ extension Dbdc {
             self.status = status
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -73,33 +73,33 @@ extension Dbdc {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DescribeInstanceList返回参数结构体
     public struct DescribeInstanceListResponse: TCResponseModel {
         /// 独享集群列表
         public let instances: [DescribeInstanceDetail]
-        
+
         /// 独享集群实例总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instances = "Instances"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询独享集群实例列表
     ///
     /// 本接口用于查询独享集群实例列表
     @inlinable
-    public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceListResponse > {
+    public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceListResponse> {
         self.client.execute(action: "DescribeInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询独享集群实例列表
     ///
     /// 本接口用于查询独享集群实例列表
@@ -107,15 +107,15 @@ extension Dbdc {
     public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceListResponse {
         try await self.client.execute(action: "DescribeInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询独享集群实例列表
     ///
     /// 本接口用于查询独享集群实例列表
     @inlinable
-    public func describeInstanceList(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, sortBy: String? = nil, productId: [Int64]? = nil, instanceId: [String]? = nil, instanceName: [String]? = nil, fenceId: [String]? = nil, status: [Int64]? = nil, clusterId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceListResponse > {
+    public func describeInstanceList(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, sortBy: String? = nil, productId: [Int64]? = nil, instanceId: [String]? = nil, instanceName: [String]? = nil, fenceId: [String]? = nil, status: [Int64]? = nil, clusterId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceListResponse> {
         self.describeInstanceList(DescribeInstanceListRequest(limit: limit, offset: offset, orderBy: orderBy, sortBy: sortBy, productId: productId, instanceId: instanceId, instanceName: instanceName, fenceId: fenceId, status: status, clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询独享集群实例列表
     ///
     /// 本接口用于查询独享集群实例列表

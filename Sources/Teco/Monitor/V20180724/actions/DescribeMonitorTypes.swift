@@ -19,42 +19,42 @@ extension Monitor {
     public struct DescribeMonitorTypesRequest: TCRequestModel {
         /// 模块名，固定值 monitor
         public let module: String
-        
-        public init (module: String) {
+
+        public init(module: String) {
             self.module = module
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
         }
     }
-    
+
     /// DescribeMonitorTypes返回参数结构体
     public struct DescribeMonitorTypesResponse: TCResponseModel {
         /// 监控类型，云产品监控为 MT_QCE
         public let monitorTypes: [String]
-        
+
         /// 监控类型详情
         public let monitorTypeInfos: [MonitorTypeInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case monitorTypes = "MonitorTypes"
             case monitorTypeInfos = "MonitorTypeInfos"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询监控类型
     ///
     /// 云监控支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
-    public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorTypesResponse > {
+    public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorTypesResponse> {
         self.client.execute(action: "DescribeMonitorTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询监控类型
     ///
     /// 云监控支持多种类型的监控，此接口列出支持的所有类型
@@ -62,15 +62,15 @@ extension Monitor {
     public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorTypesResponse {
         try await self.client.execute(action: "DescribeMonitorTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询监控类型
     ///
     /// 云监控支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
-    public func describeMonitorTypes(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorTypesResponse > {
+    public func describeMonitorTypes(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorTypesResponse> {
         self.describeMonitorTypes(DescribeMonitorTypesRequest(module: module), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询监控类型
     ///
     /// 云监控支持多种类型的监控，此接口列出支持的所有类型

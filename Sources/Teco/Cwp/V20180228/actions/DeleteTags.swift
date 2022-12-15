@@ -19,44 +19,44 @@ extension Cwp {
     public struct DeleteTagsRequest: TCRequestModel {
         /// 标签ID (最大100 条)
         public let ids: [UInt64]
-        
-        public init (ids: [UInt64]) {
+
+        public init(ids: [UInt64]) {
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
         }
     }
-    
+
     /// DeleteTags返回参数结构体
     public struct DeleteTagsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除标签
     @inlinable
-    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagsResponse> {
         self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除标签
     @inlinable
     public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
         try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除标签
     @inlinable
-    public func deleteTags(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+    public func deleteTags(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagsResponse> {
         self.deleteTags(DeleteTagsRequest(ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除标签
     @inlinable
     public func deleteTags(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {

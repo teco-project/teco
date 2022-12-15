@@ -19,45 +19,45 @@ extension Gse {
     public struct UpdateAssetRequest: TCRequestModel {
         /// 生成包ID
         public let assetId: String
-        
+
         /// 生成包名字，最小长度为1，最大长度为64
         public let assetName: String
-        
+
         /// 生成包版本，最小长度为1，最大长度为64
         public let assetVersion: String
-        
-        public init (assetId: String, assetName: String, assetVersion: String) {
+
+        public init(assetId: String, assetName: String, assetVersion: String) {
             self.assetId = assetId
             self.assetName = assetName
             self.assetVersion = assetVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case assetId = "AssetId"
             case assetName = "AssetName"
             case assetVersion = "AssetVersion"
         }
     }
-    
+
     /// UpdateAsset返回参数结构体
     public struct UpdateAssetResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateAsset）用于修改生成包信息。
     @inlinable
-    public func updateAsset(_ input: UpdateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAssetResponse > {
+    public func updateAsset(_ input: UpdateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetResponse> {
         self.client.execute(action: "UpdateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -66,16 +66,16 @@ extension Gse {
     public func updateAsset(_ input: UpdateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetResponse {
         try await self.client.execute(action: "UpdateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateAsset）用于修改生成包信息。
     @inlinable
-    public func updateAsset(assetId: String, assetName: String, assetVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAssetResponse > {
+    public func updateAsset(assetId: String, assetName: String, assetVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetResponse> {
         self.updateAsset(UpdateAssetRequest(assetId: assetId, assetName: assetName, assetVersion: assetVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

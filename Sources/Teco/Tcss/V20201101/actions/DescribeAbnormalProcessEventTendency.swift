@@ -27,7 +27,7 @@ extension Tcss {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,50 +35,50 @@ extension Tcss {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endTime: Date
-        
-        public init (startTime: Date, endTime: Date) {
+
+        public init(startTime: Date, endTime: Date) {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeAbnormalProcessEventTendency返回参数结构体
     public struct DescribeAbnormalProcessEventTendencyResponse: TCResponseModel {
         /// 待处理异常进程事件趋势
         public let list: [AbnormalProcessEventTendencyInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询待处理异常进程事件趋势
     @inlinable
-    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventTendencyResponse > {
+    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventTendencyResponse> {
         self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待处理异常进程事件趋势
     @inlinable
     public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
         try await self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询待处理异常进程事件趋势
     @inlinable
-    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventTendencyResponse > {
+    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventTendencyResponse> {
         self.describeAbnormalProcessEventTendency(DescribeAbnormalProcessEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待处理异常进程事件趋势
     @inlinable
     public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {

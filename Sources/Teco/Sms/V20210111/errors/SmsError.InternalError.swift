@@ -28,101 +28,101 @@ extension TCSmsError {
             case timeout = "InternalError.Timeout"
             case unknownError = "InternalError.UnknownError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 解析用户参数失败，可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var jsonParseFail: InternalError {
             InternalError(.jsonParseFail)
         }
-        
+
         /// 其他错误，请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a> 并提供失败手机号。
         public static var otherError: InternalError {
             InternalError(.otherError)
         }
-        
+
         /// 解析运营商包体失败，可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">sms helper</a> 。
         public static var parseBackendResponseFail: InternalError {
             InternalError(.parseBackendResponseFail)
         }
-        
+
         /// 请求发起时间不正常，通常是由于您的服务器时间与腾讯云服务器时间差异超过10分钟导致的，请核对服务器时间及 API 接口中的时间字段是否正常。
         public static var requestTimeException: InternalError {
             InternalError(.requestTimeException)
         }
-        
+
         /// 不存在该 RESTAPI 接口，请核查 REST API 接口说明。
         public static var restApiInterfaceNotExist: InternalError {
             InternalError(.restApiInterfaceNotExist)
         }
-        
+
         /// 接口超时或短信收发包超时，请检查您的网络是否有波动，或联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a> 解决。
         public static var sendAndRecvFail: InternalError {
             InternalError(.sendAndRecvFail)
         }
-        
+
         /// 后端包体中请求包体没有 Sig 字段或 Sig 为空。
         public static var sigFieldMissing: InternalError {
             InternalError(.sigFieldMissing)
         }
-        
+
         /// 后端校验 Sig 失败。
         public static var sigVerificationFail: InternalError {
             InternalError(.sigVerificationFail)
         }
-        
+
         /// 请求下发短信超时，请参考 <a href="https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E60008.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F">60008错误详解</a>。
         public static var timeout: InternalError {
             InternalError(.timeout)
         }
-        
+
         /// 未知错误类型。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-        
+
         public func asSmsError() -> TCSmsError {
             let code: TCSmsError.Code
             switch self.error {
-            case .jsonParseFail: 
+            case .jsonParseFail:
                 code = .internalError_JsonParseFail
-            case .otherError: 
+            case .otherError:
                 code = .internalError_OtherError
-            case .parseBackendResponseFail: 
+            case .parseBackendResponseFail:
                 code = .internalError_ParseBackendResponseFail
-            case .requestTimeException: 
+            case .requestTimeException:
                 code = .internalError_RequestTimeException
-            case .restApiInterfaceNotExist: 
+            case .restApiInterfaceNotExist:
                 code = .internalError_RestApiInterfaceNotExist
-            case .sendAndRecvFail: 
+            case .sendAndRecvFail:
                 code = .internalError_SendAndRecvFail
-            case .sigFieldMissing: 
+            case .sigFieldMissing:
                 code = .internalError_SigFieldMissing
-            case .sigVerificationFail: 
+            case .sigVerificationFail:
                 code = .internalError_SigVerificationFail
-            case .timeout: 
+            case .timeout:
                 code = .internalError_Timeout
-            case .unknownError: 
+            case .unknownError:
                 code = .internalError_UnknownError
             }
             return TCSmsError(code, context: self.context)

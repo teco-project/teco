@@ -19,34 +19,34 @@ extension Tcss {
     public struct ModifyEscapeRuleRequest: TCRequestModel {
         /// 需要修改的数组
         public let ruleSet: [EscapeRuleEnabled]
-        
-        public init (ruleSet: [EscapeRuleEnabled]) {
+
+        public init(ruleSet: [EscapeRuleEnabled]) {
             self.ruleSet = ruleSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleSet = "RuleSet"
         }
     }
-    
+
     /// ModifyEscapeRule返回参数结构体
     public struct ModifyEscapeRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable
-    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeRuleResponse > {
+    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
         self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
@@ -54,15 +54,15 @@ extension Tcss {
     public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
         try await self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable
-    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeRuleResponse > {
+    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
         self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息

@@ -19,26 +19,26 @@ extension Gaap {
     public struct DescribeRealServerStatisticsRequest: TCRequestModel {
         /// 源站ID
         public let realServerId: String
-        
+
         /// 监听器ID
         public let listenerId: String?
-        
+
         /// L7层规则ID
         public let ruleId: String?
-        
+
         /// 统计时长，单位：小时。仅支持最近1,3,6,12,24小时的统计查询
         public let withinTime: UInt64?
-        
+
         /// 统计开始时间(2020-08-19 00:00:00)
         public let startTime: String?
-        
+
         /// 统计结束时间(2020-08-19 23:59:59)
         public let endTime: String?
-        
+
         /// 统计的数据粒度，单位：秒，仅支持1分钟-60和5分钟-300粒度
         public let granularity: UInt64?
-        
-        public init (realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil) {
+
+        public init(realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil) {
             self.realServerId = realServerId
             self.listenerId = listenerId
             self.ruleId = ruleId
@@ -47,7 +47,7 @@ extension Gaap {
             self.endTime = endTime
             self.granularity = granularity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case realServerId = "RealServerId"
             case listenerId = "ListenerId"
@@ -58,33 +58,33 @@ extension Gaap {
             case granularity = "Granularity"
         }
     }
-    
+
     /// DescribeRealServerStatistics返回参数结构体
     public struct DescribeRealServerStatisticsResponse: TCResponseModel {
         /// 指定监听器的源站状态统计数据
         public let statisticsData: [StatisticsDataInfo]
-        
+
         /// 多个源站状态统计数据
         public let rsStatisticsData: [MetricStatisticsInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case statisticsData = "StatisticsData"
             case rsStatisticsData = "RsStatisticsData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询已绑定源站健康检查统计数据(废弃)
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
     @inlinable
-    public func describeRealServerStatistics(_ input: DescribeRealServerStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealServerStatisticsResponse > {
+    public func describeRealServerStatistics(_ input: DescribeRealServerStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServerStatisticsResponse> {
         self.client.execute(action: "DescribeRealServerStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询已绑定源站健康检查统计数据(废弃)
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
@@ -92,15 +92,15 @@ extension Gaap {
     public func describeRealServerStatistics(_ input: DescribeRealServerStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServerStatisticsResponse {
         try await self.client.execute(action: "DescribeRealServerStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询已绑定源站健康检查统计数据(废弃)
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
     @inlinable
-    public func describeRealServerStatistics(realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealServerStatisticsResponse > {
+    public func describeRealServerStatistics(realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServerStatisticsResponse> {
         self.describeRealServerStatistics(DescribeRealServerStatisticsRequest(realServerId: realServerId, listenerId: listenerId, ruleId: ruleId, withinTime: withinTime, startTime: startTime, endTime: endTime, granularity: granularity), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询已绑定源站健康检查统计数据(废弃)
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。

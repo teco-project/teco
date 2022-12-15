@@ -19,48 +19,48 @@ extension Bm {
     public struct StartDevicesRequest: TCRequestModel {
         /// 需要开机的设备ID列表
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// StartDevices返回参数结构体
     public struct StartDevicesResponse: TCResponseModel {
         /// 异步任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启服务器
     @inlinable
-    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartDevicesResponse > {
+    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartDevicesResponse> {
         self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启服务器
     @inlinable
     public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
         try await self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启服务器
     @inlinable
-    public func startDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartDevicesResponse > {
+    public func startDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartDevicesResponse> {
         self.startDevices(StartDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启服务器
     @inlinable
     public func startDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {

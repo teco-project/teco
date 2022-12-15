@@ -19,34 +19,34 @@ extension Cwp {
     public struct DeletePrivilegeEventsRequest: TCRequestModel {
         /// ID数组. (最大100条)
         public let ids: [UInt64]
-        
-        public init (ids: [UInt64]) {
+
+        public init(ids: [UInt64]) {
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
         }
     }
-    
+
     /// DeletePrivilegeEvents返回参数结构体
     public struct DeletePrivilegeEventsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
     @inlinable
-    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeEventsResponse > {
+    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
         self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
@@ -54,15 +54,15 @@ extension Cwp {
     public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
         try await self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
     @inlinable
-    public func deletePrivilegeEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeEventsResponse > {
+    public func deletePrivilegeEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
         self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权

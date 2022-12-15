@@ -19,23 +19,23 @@ extension Dayu {
     public struct DescribeCCSelfDefinePolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgp高防包；bgp-multip共享包）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 拉取的条数
         public let limit: UInt64?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
-        public init (business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.id = id
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -43,43 +43,43 @@ extension Dayu {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeCCSelfDefinePolicy返回参数结构体
     public struct DescribeCCSelfDefinePolicyResponse: TCResponseModel {
         /// 自定义规则总数
         public let total: UInt64
-        
+
         /// 策略列表
         public let policys: [CCPolicy]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case policys = "Policys"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取CC自定义策略
     @inlinable
-    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCSelfDefinePolicyResponse > {
+    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCSelfDefinePolicyResponse> {
         self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取CC自定义策略
     @inlinable
     public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {
         try await self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取CC自定义策略
     @inlinable
-    public func describeCCSelfDefinePolicy(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCSelfDefinePolicyResponse > {
+    public func describeCCSelfDefinePolicy(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCSelfDefinePolicyResponse> {
         self.describeCCSelfDefinePolicy(DescribeCCSelfDefinePolicyRequest(business: business, id: id, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取CC自定义策略
     @inlinable
     public func describeCCSelfDefinePolicy(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {

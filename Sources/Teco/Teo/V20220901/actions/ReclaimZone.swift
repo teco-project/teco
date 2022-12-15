@@ -19,34 +19,34 @@ extension Teo {
     public struct ReclaimZoneRequest: TCRequestModel {
         /// 站点名称。
         public let zoneName: String
-        
-        public init (zoneName: String) {
+
+        public init(zoneName: String) {
             self.zoneName = zoneName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneName = "ZoneName"
         }
     }
-    
+
     /// ReclaimZone返回参数结构体
     public struct ReclaimZoneResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 找回站点
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点。
     @inlinable
-    public func reclaimZone(_ input: ReclaimZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReclaimZoneResponse > {
+    public func reclaimZone(_ input: ReclaimZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimZoneResponse> {
         self.client.execute(action: "ReclaimZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 找回站点
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点。
@@ -54,15 +54,15 @@ extension Teo {
     public func reclaimZone(_ input: ReclaimZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
         try await self.client.execute(action: "ReclaimZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 找回站点
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点。
     @inlinable
-    public func reclaimZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReclaimZoneResponse > {
+    public func reclaimZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimZoneResponse> {
         self.reclaimZone(ReclaimZoneRequest(zoneName: zoneName), logger: logger, on: eventLoop)
     }
-    
+
     /// 找回站点
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点。

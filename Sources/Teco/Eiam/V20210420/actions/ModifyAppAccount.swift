@@ -19,23 +19,23 @@ extension Eiam {
     public struct ModifyAppAccountRequest: TCRequestModel {
         /// 账号ID。
         public let accountId: String
-        
+
         /// 账号名称。未传入该参数时，表示不进行修改。
         public let accountName: String?
-        
+
         /// 账号密码。未传入该参数时，表示不进行修改。
         public let password: String?
-        
+
         /// 描述，未传入该参数时，表示不进行修改。
         public let description: String?
-        
-        public init (accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil) {
+
+        public init(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil) {
             self.accountId = accountId
             self.accountName = accountName
             self.password = password
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case accountName = "AccountName"
@@ -43,35 +43,35 @@ extension Eiam {
             case description = "Description"
         }
     }
-    
+
     /// ModifyAppAccount返回参数结构体
     public struct ModifyAppAccountResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改应用账号
     @inlinable
-    public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppAccountResponse > {
+    public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppAccountResponse> {
         self.client.execute(action: "ModifyAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用账号
     @inlinable
     public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {
         try await self.client.execute(action: "ModifyAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改应用账号
     @inlinable
-    public func modifyAppAccount(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppAccountResponse > {
+    public func modifyAppAccount(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppAccountResponse> {
         self.modifyAppAccount(ModifyAppAccountRequest(accountId: accountId, accountName: accountName, password: password, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改应用账号
     @inlinable
     public func modifyAppAccount(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {

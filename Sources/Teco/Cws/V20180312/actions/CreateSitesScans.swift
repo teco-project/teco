@@ -19,44 +19,44 @@ extension Cws {
     public struct CreateSitesScansRequest: TCRequestModel {
         /// 站点的ID列表
         public let siteIds: [UInt64]
-        
+
         /// 扫描模式，normal-正常扫描；deep-深度扫描
         public let scannerType: String
-        
+
         /// 扫描速率限制，每秒发送X个HTTP请求
         public let rateLimit: UInt64
-        
-        public init (siteIds: [UInt64], scannerType: String, rateLimit: UInt64) {
+
+        public init(siteIds: [UInt64], scannerType: String, rateLimit: UInt64) {
             self.siteIds = siteIds
             self.scannerType = scannerType
             self.rateLimit = rateLimit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case siteIds = "SiteIds"
             case scannerType = "ScannerType"
             case rateLimit = "RateLimit"
         }
     }
-    
+
     /// CreateSitesScans返回参数结构体
     public struct CreateSitesScansResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增站点扫描任务
     ///
     /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。
     @inlinable
-    public func createSitesScans(_ input: CreateSitesScansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesScansResponse > {
+    public func createSitesScans(_ input: CreateSitesScansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesScansResponse> {
         self.client.execute(action: "CreateSitesScans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增站点扫描任务
     ///
     /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。
@@ -64,15 +64,15 @@ extension Cws {
     public func createSitesScans(_ input: CreateSitesScansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesScansResponse {
         try await self.client.execute(action: "CreateSitesScans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增站点扫描任务
     ///
     /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。
     @inlinable
-    public func createSitesScans(siteIds: [UInt64], scannerType: String, rateLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesScansResponse > {
+    public func createSitesScans(siteIds: [UInt64], scannerType: String, rateLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesScansResponse> {
         self.createSitesScans(CreateSitesScansRequest(siteIds: siteIds, scannerType: scannerType, rateLimit: rateLimit), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增站点扫描任务
     ///
     /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。

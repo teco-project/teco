@@ -19,38 +19,38 @@ extension Vpc {
     public struct DescribeVpcResourceDashboardRequest: TCRequestModel {
         /// Vpc实例ID，例如：vpc-f1xjkw1b。
         public let vpcIds: [String]
-        
-        public init (vpcIds: [String]) {
+
+        public init(vpcIds: [String]) {
             self.vpcIds = vpcIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcIds = "VpcIds"
         }
     }
-    
+
     /// DescribeVpcResourceDashboard返回参数结构体
     public struct DescribeVpcResourceDashboardResponse: TCResponseModel {
         /// 资源对象列表。
         public let resourceDashboardSet: [ResourceDashboard]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceDashboardSet = "ResourceDashboardSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看VPC资源信息
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
     @inlinable
-    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceDashboardResponse > {
+    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcResourceDashboardResponse> {
         self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看VPC资源信息
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
@@ -58,15 +58,15 @@ extension Vpc {
     public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
         try await self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看VPC资源信息
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
     @inlinable
-    public func describeVpcResourceDashboard(vpcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceDashboardResponse > {
+    public func describeVpcResourceDashboard(vpcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcResourceDashboardResponse> {
         self.describeVpcResourceDashboard(DescribeVpcResourceDashboardRequest(vpcIds: vpcIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看VPC资源信息
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。

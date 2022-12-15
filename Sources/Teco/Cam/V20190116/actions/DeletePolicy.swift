@@ -19,34 +19,34 @@ extension Cam {
     public struct DeletePolicyRequest: TCRequestModel {
         /// 数组，数组成员是策略 id，支持批量删除策略
         public let policyId: [UInt64]
-        
-        public init (policyId: [UInt64]) {
+
+        public init(policyId: [UInt64]) {
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
         }
     }
-    
+
     /// DeletePolicy返回参数结构体
     public struct DeletePolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除策略
     ///
     /// 本接口（DeletePolicy）可用于删除策略。
     @inlinable
-    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyResponse > {
+    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyResponse> {
         self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除策略
     ///
     /// 本接口（DeletePolicy）可用于删除策略。
@@ -54,15 +54,15 @@ extension Cam {
     public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
         try await self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除策略
     ///
     /// 本接口（DeletePolicy）可用于删除策略。
     @inlinable
-    public func deletePolicy(policyId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyResponse > {
+    public func deletePolicy(policyId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyResponse> {
         self.deletePolicy(DeletePolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除策略
     ///
     /// 本接口（DeletePolicy）可用于删除策略。

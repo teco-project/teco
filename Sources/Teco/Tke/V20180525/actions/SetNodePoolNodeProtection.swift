@@ -19,23 +19,23 @@ extension Tke {
     public struct SetNodePoolNodeProtectionRequest: TCRequestModel {
         /// 集群id
         public let clusterId: String
-        
+
         /// 节点池id
         public let nodePoolId: String
-        
+
         /// 节点id
         public let instanceIds: [String]
-        
+
         /// 节点是否需要移出保护
         public let protectedFromScaleIn: Bool
-        
-        public init (clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool) {
+
+        public init(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool) {
             self.clusterId = clusterId
             self.nodePoolId = nodePoolId
             self.instanceIds = instanceIds
             self.protectedFromScaleIn = protectedFromScaleIn
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case nodePoolId = "NodePoolId"
@@ -43,35 +43,35 @@ extension Tke {
             case protectedFromScaleIn = "ProtectedFromScaleIn"
         }
     }
-    
+
     /// SetNodePoolNodeProtection返回参数结构体
     public struct SetNodePoolNodeProtectionResponse: TCResponseModel {
         /// 成功设置的节点id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let succeedInstanceIds: [String]?
-        
+
         /// 没有成功设置的节点id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedInstanceIds: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case succeedInstanceIds = "SucceedInstanceIds"
             case failedInstanceIds = "FailedInstanceIds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 节点池节点设置移出保护
     ///
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
-    public func setNodePoolNodeProtection(_ input: SetNodePoolNodeProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetNodePoolNodeProtectionResponse > {
+    public func setNodePoolNodeProtection(_ input: SetNodePoolNodeProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNodePoolNodeProtectionResponse> {
         self.client.execute(action: "SetNodePoolNodeProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 节点池节点设置移出保护
     ///
     /// 仅能设置节点池中处于伸缩组的节点
@@ -79,15 +79,15 @@ extension Tke {
     public func setNodePoolNodeProtection(_ input: SetNodePoolNodeProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNodePoolNodeProtectionResponse {
         try await self.client.execute(action: "SetNodePoolNodeProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 节点池节点设置移出保护
     ///
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
-    public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetNodePoolNodeProtectionResponse > {
+    public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNodePoolNodeProtectionResponse> {
         self.setNodePoolNodeProtection(SetNodePoolNodeProtectionRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), logger: logger, on: eventLoop)
     }
-    
+
     /// 节点池节点设置移出保护
     ///
     /// 仅能设置节点池中处于伸缩组的节点

@@ -22,59 +22,59 @@ extension TCTcbError {
             case timeout = "InternalError.Timeout"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 数据库错误。
         public static var database: InternalError {
             InternalError(.database)
         }
-        
+
         /// 系统失败。
         public static var systemFail: InternalError {
             InternalError(.systemFail)
         }
-        
+
         /// 服务超时。
         public static var timeout: InternalError {
             InternalError(.timeout)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTcbError() -> TCTcbError {
             let code: TCTcbError.Code
             switch self.error {
-            case .database: 
+            case .database:
                 code = .internalError_Database
-            case .systemFail: 
+            case .systemFail:
                 code = .internalError_SystemFail
-            case .timeout: 
+            case .timeout:
                 code = .internalError_Timeout
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCTcbError(code, context: self.context)

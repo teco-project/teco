@@ -19,23 +19,23 @@ extension Gse {
     public struct CreateAliasRequest: TCRequestModel {
         /// 名字，长度不小于1字符不超过1024字符
         public let name: String
-        
+
         /// 别名的路由配置
         public let routingStrategy: RoutingStrategy
-        
+
         /// 别名的可读说明，长度不小于1字符不超过1024字符
         public let description: String?
-        
+
         /// 标签列表，最大长度50组
         public let tags: [Tag]?
-        
-        public init (name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil) {
+
+        public init(name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil) {
             self.name = name
             self.routingStrategy = routingStrategy
             self.description = description
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case routingStrategy = "RoutingStrategy"
@@ -43,30 +43,30 @@ extension Gse {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateAlias返回参数结构体
     public struct CreateAliasResponse: TCResponseModel {
         /// 别名对象
         public let alias: Alias
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case alias = "Alias"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建别名
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateAlias）用于创建别名。
     @inlinable
-    public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasResponse > {
+    public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasResponse> {
         self.client.execute(action: "CreateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建别名
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -75,16 +75,16 @@ extension Gse {
     public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
         try await self.client.execute(action: "CreateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建别名
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateAlias）用于创建别名。
     @inlinable
-    public func createAlias(name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasResponse > {
+    public func createAlias(name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasResponse> {
         self.createAlias(CreateAliasRequest(name: name, routingStrategy: routingStrategy, description: description, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建别名
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

@@ -19,52 +19,52 @@ extension Tdid {
     public struct GetPublicKeyRequest: TCRequestModel {
         /// did的具体号码
         public let did: String
-        
-        public init (did: String) {
+
+        public init(did: String) {
             self.did = did
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
         }
     }
-    
+
     /// GetPublicKey返回参数结构体
     public struct GetPublicKeyResponse: TCResponseModel {
         /// DID的具体信息
         public let did: String
-        
+
         /// 公钥
         public let publicKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case did = "Did"
             case publicKey = "PublicKey"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看公钥
     @inlinable
-    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
+    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
         self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看公钥
     @inlinable
     public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
         try await self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看公钥
     @inlinable
-    public func getPublicKey(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
+    public func getPublicKey(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
         self.getPublicKey(GetPublicKeyRequest(did: did), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看公钥
     @inlinable
     public func getPublicKey(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {

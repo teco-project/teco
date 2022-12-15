@@ -19,42 +19,42 @@ extension Billing {
     public struct DescribeBillListRequest: TCRequestModel {
         /// 查询范围的起始时间（包含）
         public let startTime: String
-        
+
         /// 查询范围的结束时间（包含）
         public let endTime: String
-        
+
         /// 翻页偏移量，初始值为0
         public let offset: UInt64
-        
+
         /// 每页的限制数量
         public let limit: UInt64
-        
+
         /// 交易类型： all所有交易类型，recharge充值，return退款，unblock解冻，agentin资金转入，advanced垫付，cash提现，deduct扣费，block冻结，agentout资金转出，repay垫付回款，repayment还款(仅国际信用账户)，adj_refund调增(仅国际信用账户)，adj_deduct调减(仅国际信用账户)
         public let payType: [String]?
-        
+
         /// 扣费模式，
-        /// 当所选的交易类型为扣费deduct时： 
+        /// 当所选的交易类型为扣费deduct时：
         /// all所有扣费类型;trade预付费支付;hour_h按量小时结;hour_d按量日结;hour_m按量月结;decompensate调账扣费;other第三方扣费;panshi 线下项目扣费;offline 线下产品扣费;
-        /// 当所选的交易类型为扣费recharge时： 
+        /// 当所选的交易类型为扣费recharge时：
         /// online 在线充值;bank-enterprice 银企直连;offline 线下充值;transfer 分成充值
-        /// 当所选的交易类型为扣费cash时： 
+        /// 当所选的交易类型为扣费cash时：
         /// online 线上提现;offline 线下提现;panshi 赠送金清零
-        /// 当所选的交易类型为扣费advanced时： 
+        /// 当所选的交易类型为扣费advanced时：
         /// advanced 垫付充值
-        /// 当所选的交易类型为扣费repay时： 
+        /// 当所选的交易类型为扣费repay时：
         /// panshi 垫付回款
-        /// 当所选的交易类型为扣费block时： 
+        /// 当所选的交易类型为扣费block时：
         /// other 第三方冻结;hour 按量冻结;month按月冻结
-        /// 当所选的交易类型为扣费return时： 
+        /// 当所选的交易类型为扣费return时：
         /// compensate 调账补偿;trade 预付费退款
         /// 当所选的交易类型为扣费unblock时：
         /// other 第三方解冻;hour 按量解冻;month 按月解冻
         public let subPayType: [String]?
-        
+
         /// 是否返回0元交易金额的交易项，取值：0-不返回，1-返回。不传该参数则不返回
         public let withZeroAmount: UInt64?
-        
-        public init (startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil) {
+
+        public init(startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.offset = offset
@@ -63,7 +63,7 @@ extension Billing {
             self.subPayType = subPayType
             self.withZeroAmount = withZeroAmount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -74,48 +74,48 @@ extension Billing {
             case withZeroAmount = "WithZeroAmount"
         }
     }
-    
+
     /// DescribeBillList返回参数结构体
     public struct DescribeBillListResponse: TCResponseModel {
         /// 收支明细列表
         public let transactionList: [BillTransactionInfo]
-        
+
         /// 总条数
         public let total: Int64
-        
+
         /// 退费总额，单位（分）
         public let returnAmount: Float
-        
+
         /// 充值总额，单位（分）
         public let rechargeAmount: Float
-        
+
         /// 冻结总额，单位（分）
         public let blockAmount: Float
-        
+
         /// 解冻总额，单位（分）
         public let unblockAmount: Float
-        
+
         /// 扣费总额，单位（分）
         public let deductAmount: Float
-        
+
         /// 资金转入总额，单位（分）
         public let agentInAmount: Float
-        
+
         /// 垫付充值总额，单位（分）
         public let advanceRechargeAmount: Float
-        
+
         /// 提现扣减总额，单位（分）
         public let withdrawAmount: Float
-        
+
         /// 资金转出总额，单位（分）
         public let agentOutAmount: Float
-        
+
         /// 还垫付总额，单位（分）
         public let advancePayAmount: Float
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case transactionList = "TransactionList"
             case total = "Total"
@@ -132,15 +132,15 @@ extension Billing {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取收支明细列表
     ///
     /// 获取收支明细列表，支持翻页和参数过滤
     @inlinable
-    public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillListResponse > {
+    public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillListResponse> {
         self.client.execute(action: "DescribeBillList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取收支明细列表
     ///
     /// 获取收支明细列表，支持翻页和参数过滤
@@ -148,15 +148,15 @@ extension Billing {
     public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillListResponse {
         try await self.client.execute(action: "DescribeBillList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取收支明细列表
     ///
     /// 获取收支明细列表，支持翻页和参数过滤
     @inlinable
-    public func describeBillList(startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillListResponse > {
+    public func describeBillList(startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillListResponse> {
         self.describeBillList(DescribeBillListRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取收支明细列表
     ///
     /// 获取收支明细列表，支持翻页和参数过滤

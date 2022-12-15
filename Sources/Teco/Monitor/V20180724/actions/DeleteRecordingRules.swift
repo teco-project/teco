@@ -19,39 +19,39 @@ extension Monitor {
     public struct DeleteRecordingRulesRequest: TCRequestModel {
         /// 规则 ID 列表
         public let ruleIds: [String]
-        
+
         /// Prometheus 实例 ID
         public let instanceId: String
-        
-        public init (ruleIds: [String], instanceId: String) {
+
+        public init(ruleIds: [String], instanceId: String) {
             self.ruleIds = ruleIds
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleIds = "RuleIds"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DeleteRecordingRules返回参数结构体
     public struct DeleteRecordingRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除预聚合规则
     ///
     /// 批量删除 Prometheus 预聚合规则
     @inlinable
-    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordingRulesResponse > {
+    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingRulesResponse> {
         self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除预聚合规则
     ///
     /// 批量删除 Prometheus 预聚合规则
@@ -59,15 +59,15 @@ extension Monitor {
     public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
         try await self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除预聚合规则
     ///
     /// 批量删除 Prometheus 预聚合规则
     @inlinable
-    public func deleteRecordingRules(ruleIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordingRulesResponse > {
+    public func deleteRecordingRules(ruleIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingRulesResponse> {
         self.deleteRecordingRules(DeleteRecordingRulesRequest(ruleIds: ruleIds, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除预聚合规则
     ///
     /// 批量删除 Prometheus 预聚合规则

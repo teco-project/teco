@@ -19,58 +19,58 @@ extension Ic {
     public struct PayForExtendDataRequest: TCRequestModel {
         /// 卡片ICCID
         public let iccid: String
-        
+
         /// 套外流量,单位MB
         public let extentData: UInt64
-        
+
         /// 应用ID
         public let sdkappid: UInt64
-        
-        public init (iccid: String, extentData: UInt64, sdkappid: UInt64) {
+
+        public init(iccid: String, extentData: UInt64, sdkappid: UInt64) {
             self.iccid = iccid
             self.extentData = extentData
             self.sdkappid = sdkappid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case iccid = "Iccid"
             case extentData = "ExtentData"
             case sdkappid = "Sdkappid"
         }
     }
-    
+
     /// PayForExtendData返回参数结构体
     public struct PayForExtendDataResponse: TCResponseModel {
         /// 订单号
         public let data: ResOrderIds
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 购买套外流量包
     @inlinable
-    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayForExtendDataResponse > {
+    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayForExtendDataResponse> {
         self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 购买套外流量包
     @inlinable
     public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
         try await self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 购买套外流量包
     @inlinable
-    public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayForExtendDataResponse > {
+    public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayForExtendDataResponse> {
         self.payForExtendData(PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid), logger: logger, on: eventLoop)
     }
-    
+
     /// 购买套外流量包
     @inlinable
     public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {

@@ -19,26 +19,26 @@ extension Tdmq {
     public struct ReceiveMessageRequest: TCRequestModel {
         /// 接收消息的topic的名字, 这里尽量需要使用topic的全路径，如果不指定，即：tenant/namespace/topic。默认使用的是：public/default
         public let topic: String
-        
+
         /// 订阅者的名字
         public let subscriptionName: String
-        
+
         /// 默认值为1000，consumer接收的消息会首先存储到receiverQueueSize这个队列中，用作调优接收消息的速率
         public let receiverQueueSize: Int64?
-        
+
         /// 默认值为：Earliest。用作判定consumer初始接收消息的位置，可选参数为：Earliest, Latest
         public let subInitialPosition: String?
-        
+
         /// 用于设置BatchReceivePolicy，指在一次batch中最多接收多少条消息，默认是 0。即不开启BatchReceivePolicy
         public let maxNumMessages: Int64?
-        
+
         /// 用于设置BatchReceivePolicy，指在一次batch中最多接收的消息体有多大，单位是 bytes。默认是 0，即不开启BatchReceivePolicy
         public let maxNumBytes: Int64?
-        
+
         /// 用于设置BatchReceivePolicy，指在一次batch消息的接收z中最多等待的超时时间，单位是毫秒。默认是 0，即不开启BatchReceivePolicy
         public let timeout: Int64?
-        
-        public init (topic: String, subscriptionName: String, receiverQueueSize: Int64? = nil, subInitialPosition: String? = nil, maxNumMessages: Int64? = nil, maxNumBytes: Int64? = nil, timeout: Int64? = nil) {
+
+        public init(topic: String, subscriptionName: String, receiverQueueSize: Int64? = nil, subInitialPosition: String? = nil, maxNumMessages: Int64? = nil, maxNumBytes: Int64? = nil, timeout: Int64? = nil) {
             self.topic = topic
             self.subscriptionName = subscriptionName
             self.receiverQueueSize = receiverQueueSize
@@ -47,7 +47,7 @@ extension Tdmq {
             self.maxNumBytes = maxNumBytes
             self.timeout = timeout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topic = "Topic"
             case subscriptionName = "SubscriptionName"
@@ -58,37 +58,37 @@ extension Tdmq {
             case timeout = "Timeout"
         }
     }
-    
+
     /// ReceiveMessage返回参数结构体
     public struct ReceiveMessageResponse: TCResponseModel {
         /// 用作标识消息的唯一主键
         public let messageID: String
-        
+
         /// 接收消息的内容
         public let messagePayload: String
-        
+
         /// 提供给 Ack 接口，用来Ack哪一个topic中的消息
         public let ackTopic: String
-        
+
         /// 返回的错误信息，如果为空，说明没有错误
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?
-        
+
         /// 返回订阅者的名字，用来创建 ack consumer时使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subName: String?
-        
+
         /// BatchReceivePolicy 一次性返回的多条消息的 MessageID，用 ‘###’ 来区分不同的 MessageID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let messageIDList: String?
-        
+
         /// BatchReceivePolicy 一次性返回的多条消息的消息内容，用 ‘###’ 来区分不同的消息内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let messagesPayload: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case messageID = "MessageID"
             case messagePayload = "MessagePayload"
@@ -100,7 +100,7 @@ extension Tdmq {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 接收消息
     ///
     /// 当前 ReceiveMessage 接口只支持 Partitioned 类型的 Topic。该接口用于接收发送到指定 Partitioned Topic 中的消息，当 Partitioned Topic 中没有消息但还去尝试调用该接口时，会抛出 ReceiveTimeout 的异常。
@@ -115,10 +115,10 @@ extension Tdmq {
     /// 1. 多条消息的内容之间使用特殊字符 '###' 来进行分割，业务侧接收到消息之后，可以利用不同语言提供的 Split 工具分割不同的消息。
     /// 2. 多条消息的 MessageID 之间使用特殊字符 '###' 来进行分割，业务侧接收到消息之后，可以利用不同语言提供的 Split 工具分割不同的消息。（用于在调用 AcknowledgeMessage 接口中填入所需要的 MessageID 字段信息）
     @inlinable
-    public func receiveMessage(_ input: ReceiveMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReceiveMessageResponse > {
+    public func receiveMessage(_ input: ReceiveMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReceiveMessageResponse> {
         self.client.execute(action: "ReceiveMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 接收消息
     ///
     /// 当前 ReceiveMessage 接口只支持 Partitioned 类型的 Topic。该接口用于接收发送到指定 Partitioned Topic 中的消息，当 Partitioned Topic 中没有消息但还去尝试调用该接口时，会抛出 ReceiveTimeout 的异常。
@@ -136,7 +136,7 @@ extension Tdmq {
     public func receiveMessage(_ input: ReceiveMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReceiveMessageResponse {
         try await self.client.execute(action: "ReceiveMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 接收消息
     ///
     /// 当前 ReceiveMessage 接口只支持 Partitioned 类型的 Topic。该接口用于接收发送到指定 Partitioned Topic 中的消息，当 Partitioned Topic 中没有消息但还去尝试调用该接口时，会抛出 ReceiveTimeout 的异常。
@@ -151,10 +151,10 @@ extension Tdmq {
     /// 1. 多条消息的内容之间使用特殊字符 '###' 来进行分割，业务侧接收到消息之后，可以利用不同语言提供的 Split 工具分割不同的消息。
     /// 2. 多条消息的 MessageID 之间使用特殊字符 '###' 来进行分割，业务侧接收到消息之后，可以利用不同语言提供的 Split 工具分割不同的消息。（用于在调用 AcknowledgeMessage 接口中填入所需要的 MessageID 字段信息）
     @inlinable
-    public func receiveMessage(topic: String, subscriptionName: String, receiverQueueSize: Int64? = nil, subInitialPosition: String? = nil, maxNumMessages: Int64? = nil, maxNumBytes: Int64? = nil, timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReceiveMessageResponse > {
+    public func receiveMessage(topic: String, subscriptionName: String, receiverQueueSize: Int64? = nil, subInitialPosition: String? = nil, maxNumMessages: Int64? = nil, maxNumBytes: Int64? = nil, timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReceiveMessageResponse> {
         self.receiveMessage(ReceiveMessageRequest(topic: topic, subscriptionName: subscriptionName, receiverQueueSize: receiverQueueSize, subInitialPosition: subInitialPosition, maxNumMessages: maxNumMessages, maxNumBytes: maxNumBytes, timeout: timeout), logger: logger, on: eventLoop)
     }
-    
+
     /// 接收消息
     ///
     /// 当前 ReceiveMessage 接口只支持 Partitioned 类型的 Topic。该接口用于接收发送到指定 Partitioned Topic 中的消息，当 Partitioned Topic 中没有消息但还去尝试调用该接口时，会抛出 ReceiveTimeout 的异常。

@@ -19,39 +19,39 @@ extension Iotvideoindustry {
     public struct GetRecordPlanByDevRequest: TCRequestModel {
         /// 设备唯一标识
         public let deviceId: String
-        
-        public init (deviceId: String) {
+
+        public init(deviceId: String) {
             self.deviceId = deviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
         }
     }
-    
+
     /// GetRecordPlanByDev返回参数结构体
     public struct GetRecordPlanByDevResponse: TCResponseModel {
         /// 录制计划详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let plan: RecordPlanItem?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case plan = "Plan"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备绑定的录制计划
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
-    public func getRecordPlanByDev(_ input: GetRecordPlanByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordPlanByDevResponse > {
+    public func getRecordPlanByDev(_ input: GetRecordPlanByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByDevResponse> {
         self.client.execute(action: "GetRecordPlanByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备绑定的录制计划
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
@@ -59,15 +59,15 @@ extension Iotvideoindustry {
     public func getRecordPlanByDev(_ input: GetRecordPlanByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlanByDevResponse {
         try await self.client.execute(action: "GetRecordPlanByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备绑定的录制计划
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
-    public func getRecordPlanByDev(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordPlanByDevResponse > {
+    public func getRecordPlanByDev(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByDevResponse> {
         self.getRecordPlanByDev(GetRecordPlanByDevRequest(deviceId: deviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备绑定的录制计划
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.

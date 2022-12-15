@@ -19,42 +19,42 @@ extension Gaap {
     public struct CloseProxyGroupRequest: TCRequestModel {
         /// 通道组的实例 ID。
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// CloseProxyGroup返回参数结构体
     public struct CloseProxyGroupResponse: TCResponseModel {
         /// 非运行状态下的通道实例ID列表，不可开启。
         public let invalidStatusInstanceSet: [String]
-        
+
         /// 开启操作失败的通道实例ID列表。
         public let operationFailedInstanceSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case invalidStatusInstanceSet = "InvalidStatusInstanceSet"
             case operationFailedInstanceSet = "OperationFailedInstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭通道组
     ///
     /// 本接口（CloseProxyGroup）用于关闭通道组。通道组关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
     @inlinable
-    public func closeProxyGroup(_ input: CloseProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseProxyGroupResponse > {
+    public func closeProxyGroup(_ input: CloseProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProxyGroupResponse> {
         self.client.execute(action: "CloseProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭通道组
     ///
     /// 本接口（CloseProxyGroup）用于关闭通道组。通道组关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
@@ -62,15 +62,15 @@ extension Gaap {
     public func closeProxyGroup(_ input: CloseProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProxyGroupResponse {
         try await self.client.execute(action: "CloseProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭通道组
     ///
     /// 本接口（CloseProxyGroup）用于关闭通道组。通道组关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
     @inlinable
-    public func closeProxyGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseProxyGroupResponse > {
+    public func closeProxyGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProxyGroupResponse> {
         self.closeProxyGroup(CloseProxyGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭通道组
     ///
     /// 本接口（CloseProxyGroup）用于关闭通道组。通道组关闭后，不再产生流量，但每天仍然收取通道基础配置费用。

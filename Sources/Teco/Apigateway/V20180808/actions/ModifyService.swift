@@ -19,27 +19,27 @@ extension Apigateway {
     public struct ModifyServiceRequest: TCRequestModel {
         /// 待修改服务的唯一 Id。
         public let serviceId: String
-        
+
         /// 修改后的服务名称。
         public let serviceName: String?
-        
+
         /// 修改后的服务描述。
         public let serviceDesc: String?
-        
+
         /// 修改后的服务前端请求类型，如 http、https和 http&https。
         public let `protocol`: String?
-        
+
         /// 网络类型列表，用于指定支持的访问类型，INNER为内网访问，OUTER为外网访问。默认为OUTER。
         public let netTypes: [String]?
-        
-        public init (serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil) {
+
+        public init(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil) {
             self.serviceId = serviceId
             self.serviceName = serviceName
             self.serviceDesc = serviceDesc
             self.`protocol` = `protocol`
             self.netTypes = netTypes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case serviceName = "ServiceName"
@@ -48,25 +48,25 @@ extension Apigateway {
             case netTypes = "NetTypes"
         }
     }
-    
+
     /// ModifyService返回参数结构体
     public struct ModifyServiceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable
-    public func modifyService(_ input: ModifyServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceResponse > {
+    public func modifyService(_ input: ModifyServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
         self.client.execute(action: "ModifyService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
@@ -74,15 +74,15 @@ extension Apigateway {
     public func modifyService(_ input: ModifyServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
         try await self.client.execute(action: "ModifyService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable
-    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceResponse > {
+    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
         self.modifyService(ModifyServiceRequest(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。

@@ -19,48 +19,48 @@ extension Tdmq {
     public struct DescribeCmqTopicDetailRequest: TCRequestModel {
         /// 精确匹配TopicName。
         public let topicName: String?
-        
-        public init (topicName: String? = nil) {
+
+        public init(topicName: String? = nil) {
             self.topicName = topicName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicName = "TopicName"
         }
     }
-    
+
     /// DescribeCmqTopicDetail返回参数结构体
     public struct DescribeCmqTopicDetailResponse: TCResponseModel {
         /// 主题详情
         public let topicDescribe: CmqTopic
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case topicDescribe = "TopicDescribe"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询cmq主题详情
     @inlinable
-    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicDetailResponse > {
+    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicDetailResponse> {
         self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询cmq主题详情
     @inlinable
     public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
         try await self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询cmq主题详情
     @inlinable
-    public func describeCmqTopicDetail(topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicDetailResponse > {
+    public func describeCmqTopicDetail(topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicDetailResponse> {
         self.describeCmqTopicDetail(DescribeCmqTopicDetailRequest(topicName: topicName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询cmq主题详情
     @inlinable
     public func describeCmqTopicDetail(topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {

@@ -19,7 +19,7 @@ extension Monitor {
     public struct UpgradeGrafanaDashboardRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// Prometheus 集成项 Code，升级对应的 Dashboard，取值如下：
         /// <li>spring_mvc</li>
         /// <li>mysql</li>
@@ -39,46 +39,46 @@ extension Monitor {
         /// <li>istio</li>
         /// <li>etcd</li>
         public let integrationCodes: [String]?
-        
-        public init (instanceId: String, integrationCodes: [String]? = nil) {
+
+        public init(instanceId: String, integrationCodes: [String]? = nil) {
             self.instanceId = instanceId
             self.integrationCodes = integrationCodes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case integrationCodes = "IntegrationCodes"
         }
     }
-    
+
     /// UpgradeGrafanaDashboard返回参数结构体
     public struct UpgradeGrafanaDashboardResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 升级 Grafana Dashboard
     @inlinable
-    public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGrafanaDashboardResponse > {
+    public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaDashboardResponse> {
         self.client.execute(action: "UpgradeGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 升级 Grafana Dashboard
     @inlinable
     public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaDashboardResponse {
         try await self.client.execute(action: "UpgradeGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 升级 Grafana Dashboard
     @inlinable
-    public func upgradeGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGrafanaDashboardResponse > {
+    public func upgradeGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaDashboardResponse> {
         self.upgradeGrafanaDashboard(UpgradeGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), logger: logger, on: eventLoop)
     }
-    
+
     /// 升级 Grafana Dashboard
     @inlinable
     public func upgradeGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaDashboardResponse {

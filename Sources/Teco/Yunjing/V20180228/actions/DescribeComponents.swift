@@ -19,29 +19,29 @@ extension Yunjing {
     public struct DescribeComponentsRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。Uuid和ComponentId必填其一，使用Uuid表示，查询该主机列表信息。
         public let uuid: String?
-        
+
         /// 组件ID。Uuid和ComponentId必填其一，使用ComponentId表示，查询该组件列表信息。
         public let componentId: UInt64?
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 过滤条件。
         /// <li>ComponentVersion - String - 是否必填：否 - 组件版本号</li>
         /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
         public let filters: [Filter]?
-        
-        public init (uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.uuid = uuid
             self.componentId = componentId
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
             case componentId = "ComponentId"
@@ -50,33 +50,33 @@ extension Yunjing {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeComponents返回参数结构体
     public struct DescribeComponentsResponse: TCResponseModel {
         /// 组件列表记录总数。
         public let totalCount: UInt64
-        
+
         /// 组件列表数据。
         public let components: [Component]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case components = "Components"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取组件列表
     ///
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
     @inlinable
-    public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentsResponse > {
+    public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentsResponse> {
         self.client.execute(action: "DescribeComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取组件列表
     ///
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
@@ -84,15 +84,15 @@ extension Yunjing {
     public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentsResponse {
         try await self.client.execute(action: "DescribeComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取组件列表
     ///
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
     @inlinable
-    public func describeComponents(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentsResponse > {
+    public func describeComponents(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentsResponse> {
         self.describeComponents(DescribeComponentsRequest(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取组件列表
     ///
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。

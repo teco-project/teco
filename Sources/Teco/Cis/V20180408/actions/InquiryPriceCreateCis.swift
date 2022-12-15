@@ -19,48 +19,48 @@ extension Cis {
     public struct InquiryPriceCreateCisRequest: TCRequestModel {
         /// 可用区
         public let zone: String
-        
+
         /// CPU，单位：核
         public let cpu: Float
-        
+
         /// 内存，单位：Gi
         public let memory: Float
-        
-        public init (zone: String, cpu: Float, memory: Float) {
+
+        public init(zone: String, cpu: Float, memory: Float) {
             self.zone = zone
             self.cpu = cpu
             self.memory = memory
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case cpu = "Cpu"
             case memory = "Memory"
         }
     }
-    
+
     /// InquiryPriceCreateCis返回参数结构体
     public struct InquiryPriceCreateCisResponse: TCResponseModel {
         /// 价格
         public let price: Price
-        
+
         /// 唯一请求ID，每次请求都会返回。定位问题时需要提供该次请求的RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case price = "Price"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建容器实例询价
     ///
     /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格
     @inlinable
-    public func inquiryPriceCreateCis(_ input: InquiryPriceCreateCisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateCisResponse > {
+    public func inquiryPriceCreateCis(_ input: InquiryPriceCreateCisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateCisResponse> {
         self.client.execute(action: "InquiryPriceCreateCis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建容器实例询价
     ///
     /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格
@@ -68,15 +68,15 @@ extension Cis {
     public func inquiryPriceCreateCis(_ input: InquiryPriceCreateCisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateCisResponse {
         try await self.client.execute(action: "InquiryPriceCreateCis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建容器实例询价
     ///
     /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格
     @inlinable
-    public func inquiryPriceCreateCis(zone: String, cpu: Float, memory: Float, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateCisResponse > {
+    public func inquiryPriceCreateCis(zone: String, cpu: Float, memory: Float, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateCisResponse> {
         self.inquiryPriceCreateCis(InquiryPriceCreateCisRequest(zone: zone, cpu: cpu, memory: memory), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建容器实例询价
     ///
     /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格

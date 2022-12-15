@@ -19,34 +19,34 @@ extension Cwp {
     public struct DescribeProVersionStatusRequest: TCRequestModel {
         /// 云镜客户端UUID、填写"all"表示所有主机。
         public let uuid: String
-        
-        public init (uuid: String) {
+
+        public init(uuid: String) {
             self.uuid = uuid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
         }
     }
-    
+
     /// DescribeProVersionStatus返回参数结构体
     public struct DescribeProVersionStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取专业版状态
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable
-    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionStatusResponse > {
+    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionStatusResponse> {
         self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业版状态
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。
@@ -54,15 +54,15 @@ extension Cwp {
     public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
         try await self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取专业版状态
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable
-    public func describeProVersionStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionStatusResponse > {
+    public func describeProVersionStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionStatusResponse> {
         self.describeProVersionStatus(DescribeProVersionStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专业版状态
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。

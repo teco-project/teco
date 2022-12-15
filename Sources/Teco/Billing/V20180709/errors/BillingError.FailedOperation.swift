@@ -31,124 +31,124 @@ extension TCBillingError {
             case tagKeyNotExist = "FailedOperation.TagKeyNotExist"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 代理支付设备不能降配。
         public static var agentPayDealCannotDown: FailedOperation {
             FailedOperation(.agentPayDealCannotDown)
         }
-        
+
         /// 账户余额不足。
         public static var balanceInsufficient: FailedOperation {
             FailedOperation(.balanceInsufficient)
         }
-        
+
         /// appId不符。
         public static var invalidAppId: FailedOperation {
             FailedOperation(.invalidAppId)
         }
-        
+
         /// 订单状态错误，只有未支付订单才能支付。
         public static var invalidDeal: FailedOperation {
             FailedOperation(.invalidDeal)
         }
-        
+
         /// 代金券不可用。
         public static var invalidVoucher: FailedOperation {
             FailedOperation(.invalidVoucher)
         }
-        
+
         /// 一起购买的订单必须同时支付。
         public static var needPayTogeter: FailedOperation {
             FailedOperation(.needPayTogeter)
         }
-        
+
         /// 套餐订单需一起购买。
         public static var needPayTogether: FailedOperation {
             FailedOperation(.needPayTogether)
         }
-        
+
         /// 支付失败，请联系腾讯云工作人员处理。
         public static var payPriceError: FailedOperation {
             FailedOperation(.payPriceError)
         }
-        
+
         /// 支付成功但发货失败，请联系腾讯云工作人员处理。
         public static var paySuccDeliverFailed: FailedOperation {
             FailedOperation(.paySuccDeliverFailed)
         }
-        
+
         /// 获取数据条数失败。
         ///
         /// 尝试将NeedRecordNum设置为默认值或0。
         public static var queryCountFailed: FailedOperation {
             FailedOperation(.queryCountFailed)
         }
-        
+
         /// 汇总数据正在构建中，请稍后再试。
         public static var summaryDataNotReady: FailedOperation {
             FailedOperation(.summaryDataNotReady)
         }
-        
+
         /// 不存在该分账标签键。
         public static var tagKeyNotExist: FailedOperation {
             FailedOperation(.tagKeyNotExist)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asBillingError() -> TCBillingError {
             let code: TCBillingError.Code
             switch self.error {
-            case .agentPayDealCannotDown: 
+            case .agentPayDealCannotDown:
                 code = .failedOperation_AgentPayDealCannotDown
-            case .balanceInsufficient: 
+            case .balanceInsufficient:
                 code = .failedOperation_BalanceInsufficient
-            case .invalidAppId: 
+            case .invalidAppId:
                 code = .failedOperation_InvalidAppId
-            case .invalidDeal: 
+            case .invalidDeal:
                 code = .failedOperation_InvalidDeal
-            case .invalidVoucher: 
+            case .invalidVoucher:
                 code = .failedOperation_InvalidVoucher
-            case .needPayTogeter: 
+            case .needPayTogeter:
                 code = .failedOperation_NeedPayTogeter
-            case .needPayTogether: 
+            case .needPayTogether:
                 code = .failedOperation_NeedPayTogether
-            case .payPriceError: 
+            case .payPriceError:
                 code = .failedOperation_PayPriceError
-            case .paySuccDeliverFailed: 
+            case .paySuccDeliverFailed:
                 code = .failedOperation_PaySuccDeliverFailed
-            case .queryCountFailed: 
+            case .queryCountFailed:
                 code = .failedOperation_QueryCountFailed
-            case .summaryDataNotReady: 
+            case .summaryDataNotReady:
                 code = .failedOperation_SummaryDataNotReady
-            case .tagKeyNotExist: 
+            case .tagKeyNotExist:
                 code = .failedOperation_TagKeyNotExist
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCBillingError(code, context: self.context)

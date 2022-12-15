@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 项目id
         public let projectId: String?
-        
+
         /// 页数
         public let pageNumber: UInt64?
-        
+
         /// 分页大小
         public let pageSize: UInt64?
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
-        public init (projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil) {
             self.projectId = projectId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case pageNumber = "PageNumber"
@@ -43,30 +43,30 @@ extension Wedata {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeInstances返回参数结构体
     public struct DescribeInstancesResponse: TCResponseModel {
         /// Json 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 数据质量-查询实例列表
     ///
     /// 数据质量，查询调度任务的实例列表
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 数据质量-查询实例列表
     ///
     /// 数据质量，查询调度任务的实例列表
@@ -74,15 +74,15 @@ extension Wedata {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 数据质量-查询实例列表
     ///
     /// 数据质量，查询调度任务的实例列表
     @inlinable
-    public func describeInstances(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+    public func describeInstances(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(DescribeInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 数据质量-查询实例列表
     ///
     /// 数据质量，查询调度任务的实例列表

@@ -19,34 +19,34 @@ extension Kms {
     public struct EnableKeyRequest: TCRequestModel {
         /// CMK唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// EnableKey返回参数结构体
     public struct EnableKeyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用主密钥
     ///
     /// 用于启用一个指定的CMK。
     @inlinable
-    public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeyResponse > {
+    public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeyResponse> {
         self.client.execute(action: "EnableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用主密钥
     ///
     /// 用于启用一个指定的CMK。
@@ -54,15 +54,15 @@ extension Kms {
     public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyResponse {
         try await self.client.execute(action: "EnableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用主密钥
     ///
     /// 用于启用一个指定的CMK。
     @inlinable
-    public func enableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeyResponse > {
+    public func enableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeyResponse> {
         self.enableKey(EnableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用主密钥
     ///
     /// 用于启用一个指定的CMK。

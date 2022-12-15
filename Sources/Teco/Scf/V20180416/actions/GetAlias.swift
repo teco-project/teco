@@ -22,41 +22,41 @@ extension Scf {
     public struct GetAliasRequest: TCRequestModel {
         /// 函数名称
         public let functionName: String
-        
+
         /// 别名的名称
         public let name: String
-        
+
         /// 函数所在的命名空间
         public let namespace: String?
-        
-        public init (functionName: String, name: String, namespace: String? = nil) {
+
+        public init(functionName: String, name: String, namespace: String? = nil) {
             self.functionName = functionName
             self.name = name
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case name = "Name"
             case namespace = "Namespace"
         }
     }
-    
+
     /// GetAlias返回参数结构体
     public struct GetAliasResponse: TCResponseModel {
         /// 别名指向的主版本
         public let functionVersion: String
-        
+
         /// 别名的名称
         public let name: String
-        
+
         /// 别名的路由信息
         public let routingConfig: RoutingConfig
-        
+
         /// 别名的描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -65,7 +65,7 @@ extension Scf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var addTime: Date?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -74,10 +74,10 @@ extension Scf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modTime: Date?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case functionVersion = "FunctionVersion"
             case name = "Name"
@@ -88,15 +88,15 @@ extension Scf {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取别名详细信息
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
-    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAliasResponse > {
+    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAliasResponse> {
         self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取别名详细信息
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
@@ -104,15 +104,15 @@ extension Scf {
     public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
         try await self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取别名详细信息
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
-    public func getAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAliasResponse > {
+    public func getAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAliasResponse> {
         self.getAlias(GetAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取别名详细信息
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。

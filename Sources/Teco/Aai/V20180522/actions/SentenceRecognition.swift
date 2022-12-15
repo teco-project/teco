@@ -19,32 +19,32 @@ extension Aai {
     public struct SentenceRecognitionRequest: TCRequestModel {
         /// 腾讯云项目 ID，可填 0，总长度不超过 1024 字节。
         public let projectId: UInt64
-        
+
         /// 子服务类型。2，一句话识别。
         public let subServiceType: UInt64
-        
+
         /// 引擎类型。8k：电话 8k 通用模型；16k：16k 通用模型。只支持单声道音频识别。
         public let engSerViceType: String
-        
+
         /// 语音数据来源。0：语音 URL；1：语音数据（post body）。
         public let sourceType: UInt64
-        
+
         /// 识别音频的音频格式（支持mp3,wav）。
         public let voiceFormat: String
-        
+
         /// 用户端对此任务的唯一标识，用户自助生成，用于用户查找识别结果。
         public let usrAudioKey: String
-        
+
         /// 语音 URL，公网可下载。当 SourceType 值为 0 时须填写该字段，为 1 时不填；URL 的长度大于 0，小于 2048，需进行urlencode编码。音频时间长度要小于60s。
         public let url: String?
-        
+
         /// 语音数据，当SourceType 值为1时必须填写，为0可不写。要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。音频数据要小于600kB。
         public let data: String?
-        
+
         /// 数据长度，当 SourceType 值为1时必须填写，为0可不写（此数据长度为数据未进行base64编码时的数据长度）。
         public let dataLen: Int64?
-        
-        public init (projectId: UInt64, subServiceType: UInt64, engSerViceType: String, sourceType: UInt64, voiceFormat: String, usrAudioKey: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil) {
+
+        public init(projectId: UInt64, subServiceType: UInt64, engSerViceType: String, sourceType: UInt64, voiceFormat: String, usrAudioKey: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil) {
             self.projectId = projectId
             self.subServiceType = subServiceType
             self.engSerViceType = engSerViceType
@@ -55,7 +55,7 @@ extension Aai {
             self.data = data
             self.dataLen = dataLen
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case subServiceType = "SubServiceType"
@@ -68,29 +68,29 @@ extension Aai {
             case dataLen = "DataLen"
         }
     }
-    
+
     /// SentenceRecognition返回参数结构体
     public struct SentenceRecognitionResponse: TCResponseModel {
         /// 识别结果。
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 一句话识别
     ///
     /// 识别60s内的短语音，当音频放在请求body中传输时整个请求大小不能超过600KB，当音频以url方式传输时，音频时长不可超过60s。所有请求参数放在post的body中采用x-www-form-urlencoded（数据转换成一个字符串（name1=value1&name2=value2…）进行urlencode后）编码传输。现暂只支持中文普通话识别，支持识别8k(16k)的16bit的mp3或者wav音频。
     @inlinable
-    public func sentenceRecognition(_ input: SentenceRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SentenceRecognitionResponse > {
+    public func sentenceRecognition(_ input: SentenceRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceRecognitionResponse> {
         self.client.execute(action: "SentenceRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 一句话识别
     ///
     /// 识别60s内的短语音，当音频放在请求body中传输时整个请求大小不能超过600KB，当音频以url方式传输时，音频时长不可超过60s。所有请求参数放在post的body中采用x-www-form-urlencoded（数据转换成一个字符串（name1=value1&name2=value2…）进行urlencode后）编码传输。现暂只支持中文普通话识别，支持识别8k(16k)的16bit的mp3或者wav音频。
@@ -98,15 +98,15 @@ extension Aai {
     public func sentenceRecognition(_ input: SentenceRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceRecognitionResponse {
         try await self.client.execute(action: "SentenceRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 一句话识别
     ///
     /// 识别60s内的短语音，当音频放在请求body中传输时整个请求大小不能超过600KB，当音频以url方式传输时，音频时长不可超过60s。所有请求参数放在post的body中采用x-www-form-urlencoded（数据转换成一个字符串（name1=value1&name2=value2…）进行urlencode后）编码传输。现暂只支持中文普通话识别，支持识别8k(16k)的16bit的mp3或者wav音频。
     @inlinable
-    public func sentenceRecognition(projectId: UInt64, subServiceType: UInt64, engSerViceType: String, sourceType: UInt64, voiceFormat: String, usrAudioKey: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SentenceRecognitionResponse > {
+    public func sentenceRecognition(projectId: UInt64, subServiceType: UInt64, engSerViceType: String, sourceType: UInt64, voiceFormat: String, usrAudioKey: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceRecognitionResponse> {
         self.sentenceRecognition(SentenceRecognitionRequest(projectId: projectId, subServiceType: subServiceType, engSerViceType: engSerViceType, sourceType: sourceType, voiceFormat: voiceFormat, usrAudioKey: usrAudioKey, url: url, data: data, dataLen: dataLen), logger: logger, on: eventLoop)
     }
-    
+
     /// 一句话识别
     ///
     /// 识别60s内的短语音，当音频放在请求body中传输时整个请求大小不能超过600KB，当音频以url方式传输时，音频时长不可超过60s。所有请求参数放在post的body中采用x-www-form-urlencoded（数据转换成一个字符串（name1=value1&name2=value2…）进行urlencode后）编码传输。现暂只支持中文普通话识别，支持识别8k(16k)的16bit的mp3或者wav音频。

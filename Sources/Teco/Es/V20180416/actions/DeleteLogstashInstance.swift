@@ -19,34 +19,34 @@ extension Es {
     public struct DeleteLogstashInstanceRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DeleteLogstashInstance返回参数结构体
     public struct DeleteLogstashInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
     @inlinable
-    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogstashInstanceResponse > {
+    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
         self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
@@ -54,15 +54,15 @@ extension Es {
     public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
         try await self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
     @inlinable
-    public func deleteLogstashInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogstashInstanceResponse > {
+    public func deleteLogstashInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
         self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例

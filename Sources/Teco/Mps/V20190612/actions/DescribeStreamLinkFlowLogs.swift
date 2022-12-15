@@ -19,31 +19,31 @@ extension Mps {
     public struct DescribeStreamLinkFlowLogsRequest: TCRequestModel {
         /// 传输流Id。
         public let flowId: String
-        
+
         /// 统计的开始时间，默认为前一小时，最多支持查询近7天。
         /// UTC时间，如'2020-01-01T12:00:00Z'。
         public let startTime: String
-        
+
         /// 统计的结束时间，默认为StartTime后一小时，最多支持查询24小时的数据。
         /// UTC时间，如'2020-01-01T12:00:00Z'。
         public let endTime: String
-        
+
         /// 输入或输出类型，可选[input|output]。
         public let type: [String]
-        
+
         /// 主通道或备通道，可选[0|1]。
         public let pipeline: [String]
-        
+
         /// 每页大小，默认100，范围为[1, 1000]。
         public let pageSize: Int64
-        
+
         /// 按Timestamp升序或降序排序，默认降序，可选[desc|asc]。
         public let sortType: String?
-        
+
         /// 页码，默认1，范围为[1, 1000]。
         public let pageNum: Int64?
-        
-        public init (flowId: String, startTime: String, endTime: String, type: [String], pipeline: [String], pageSize: Int64, sortType: String? = nil, pageNum: Int64? = nil) {
+
+        public init(flowId: String, startTime: String, endTime: String, type: [String], pipeline: [String], pageSize: Int64, sortType: String? = nil, pageNum: Int64? = nil) {
             self.flowId = flowId
             self.startTime = startTime
             self.endTime = endTime
@@ -53,7 +53,7 @@ extension Mps {
             self.sortType = sortType
             self.pageNum = pageNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case startTime = "StartTime"
@@ -65,27 +65,27 @@ extension Mps {
             case pageNum = "PageNum"
         }
     }
-    
+
     /// DescribeStreamLinkFlowLogs返回参数结构体
     public struct DescribeStreamLinkFlowLogsResponse: TCResponseModel {
         /// 日志信息列表。
         public let infos: [FlowLogInfo]
-        
+
         /// 当前页码。
         public let pageNum: Int64
-        
+
         /// 每页大小。
         public let pageSize: Int64
-        
+
         /// 总数量。
         public let totalNum: Int64
-        
+
         /// 总页数。
         public let totalPage: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case infos = "Infos"
             case pageNum = "PageNum"
@@ -95,15 +95,15 @@ extension Mps {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询传输流的日志
     ///
     /// 查询媒体传输流的日志信息。
     @inlinable
-    public func describeStreamLinkFlowLogs(_ input: DescribeStreamLinkFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowLogsResponse > {
+    public func describeStreamLinkFlowLogs(_ input: DescribeStreamLinkFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowLogsResponse> {
         self.client.execute(action: "DescribeStreamLinkFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询传输流的日志
     ///
     /// 查询媒体传输流的日志信息。
@@ -111,15 +111,15 @@ extension Mps {
     public func describeStreamLinkFlowLogs(_ input: DescribeStreamLinkFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowLogsResponse {
         try await self.client.execute(action: "DescribeStreamLinkFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询传输流的日志
     ///
     /// 查询媒体传输流的日志信息。
     @inlinable
-    public func describeStreamLinkFlowLogs(flowId: String, startTime: String, endTime: String, type: [String], pipeline: [String], pageSize: Int64, sortType: String? = nil, pageNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowLogsResponse > {
+    public func describeStreamLinkFlowLogs(flowId: String, startTime: String, endTime: String, type: [String], pipeline: [String], pageSize: Int64, sortType: String? = nil, pageNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowLogsResponse> {
         self.describeStreamLinkFlowLogs(DescribeStreamLinkFlowLogsRequest(flowId: flowId, startTime: startTime, endTime: endTime, type: type, pipeline: pipeline, pageSize: pageSize, sortType: sortType, pageNum: pageNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询传输流的日志
     ///
     /// 查询媒体传输流的日志信息。

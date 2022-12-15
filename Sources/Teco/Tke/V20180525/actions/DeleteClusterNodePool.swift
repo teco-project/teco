@@ -19,54 +19,54 @@ extension Tke {
     public struct DeleteClusterNodePoolRequest: TCRequestModel {
         /// 节点池对应的 ClusterId
         public let clusterId: String
-        
+
         /// 需要删除的节点池 Id 列表
         public let nodePoolIds: [String]
-        
+
         /// 删除节点池时是否保留节点池内节点(节点仍然会被移出集群，但对应的实例不会被销毁)
         public let keepInstance: Bool
-        
-        public init (clusterId: String, nodePoolIds: [String], keepInstance: Bool) {
+
+        public init(clusterId: String, nodePoolIds: [String], keepInstance: Bool) {
             self.clusterId = clusterId
             self.nodePoolIds = nodePoolIds
             self.keepInstance = keepInstance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case nodePoolIds = "NodePoolIds"
             case keepInstance = "KeepInstance"
         }
     }
-    
+
     /// DeleteClusterNodePool返回参数结构体
     public struct DeleteClusterNodePoolResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除节点池
     @inlinable
-    public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterNodePoolResponse > {
+    public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterNodePoolResponse> {
         self.client.execute(action: "DeleteClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除节点池
     @inlinable
     public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterNodePoolResponse {
         try await self.client.execute(action: "DeleteClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除节点池
     @inlinable
-    public func deleteClusterNodePool(clusterId: String, nodePoolIds: [String], keepInstance: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterNodePoolResponse > {
+    public func deleteClusterNodePool(clusterId: String, nodePoolIds: [String], keepInstance: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterNodePoolResponse> {
         self.deleteClusterNodePool(DeleteClusterNodePoolRequest(clusterId: clusterId, nodePoolIds: nodePoolIds, keepInstance: keepInstance), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除节点池
     @inlinable
     public func deleteClusterNodePool(clusterId: String, nodePoolIds: [String], keepInstance: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterNodePoolResponse {

@@ -19,41 +19,41 @@ extension Iotvideo {
     public struct CheckForwardAuthRequest: TCRequestModel {
         /// 控制台Skey
         public let skey: String
-        
+
         /// 队列类型 0.CMQ  1.Ckafka
         public let queueType: UInt64
-        
-        public init (skey: String, queueType: UInt64) {
+
+        public init(skey: String, queueType: UInt64) {
             self.skey = skey
             self.queueType = queueType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case skey = "Skey"
             case queueType = "QueueType"
         }
     }
-    
+
     /// CheckForwardAuth返回参数结构体
     public struct CheckForwardAuthResponse: TCResponseModel {
         /// 腾讯云账号
         public let endpoint: String
-        
+
         /// 结果
         public let result: UInt64
-        
+
         /// 产品ID
         public let productid: String
-        
+
         /// 错误消息
         public let errMsg: String
-        
+
         /// 队列类型 0.CMQ  1.Ckafka
         public let queueType: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case endpoint = "Endpoint"
             case result = "Result"
@@ -63,25 +63,25 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 判断是否开启的转发的权限
     @inlinable
-    public func checkForwardAuth(_ input: CheckForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckForwardAuthResponse > {
+    public func checkForwardAuth(_ input: CheckForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
         self.client.execute(action: "CheckForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 判断是否开启的转发的权限
     @inlinable
     public func checkForwardAuth(_ input: CheckForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
         try await self.client.execute(action: "CheckForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 判断是否开启的转发的权限
     @inlinable
-    public func checkForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckForwardAuthResponse > {
+    public func checkForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
         self.checkForwardAuth(CheckForwardAuthRequest(skey: skey, queueType: queueType), logger: logger, on: eventLoop)
     }
-    
+
     /// 判断是否开启的转发的权限
     @inlinable
     public func checkForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {

@@ -19,23 +19,23 @@ extension Iotcloud {
     public struct PublishMessageRequest: TCRequestModel {
         /// 消息发往的主题。命名规则：${ProductId}/${DeviceName}/[a-zA-Z0-9:_-]{1,128}
         public let topic: String
-        
+
         /// 消息内容
         public let payload: String
-        
+
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// 服务质量等级，取值为0或1
         public let qos: UInt64?
-        
+
         /// Payload内容的编码格式，取值为base64或空。base64表示云端将收到的请求数据进行base64解码后下发到设备，空则直接将原始内容下发到设备
         public let payloadEncoding: String?
-        
-        public init (topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil) {
+
+        public init(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil) {
             self.topic = topic
             self.payload = payload
             self.productId = productId
@@ -43,7 +43,7 @@ extension Iotcloud {
             self.qos = qos
             self.payloadEncoding = payloadEncoding
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topic = "Topic"
             case payload = "Payload"
@@ -53,44 +53,44 @@ extension Iotcloud {
             case payloadEncoding = "PayloadEncoding"
         }
     }
-    
+
     /// PublishMessage返回参数结构体
     public struct PublishMessageResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发布消息
     ///
-    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    /// 本接口（PublishMessage）用于向某个主题发消息。
     @inlinable
-    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishMessageResponse > {
+    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
         self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发布消息
     ///
-    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    /// 本接口（PublishMessage）用于向某个主题发消息。
     @inlinable
     public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
         try await self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发布消息
     ///
-    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    /// 本接口（PublishMessage）用于向某个主题发消息。
     @inlinable
-    public func publishMessage(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishMessageResponse > {
+    public func publishMessage(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
         self.publishMessage(PublishMessageRequest(topic: topic, payload: payload, productId: productId, deviceName: deviceName, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
     }
-    
+
     /// 发布消息
     ///
-    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    /// 本接口（PublishMessage）用于向某个主题发消息。
     @inlinable
     public func publishMessage(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
         try await self.publishMessage(PublishMessageRequest(topic: topic, payload: payload, productId: productId, deviceName: deviceName, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)

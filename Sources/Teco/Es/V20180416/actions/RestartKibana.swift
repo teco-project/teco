@@ -19,53 +19,53 @@ extension Es {
     public struct RestartKibanaRequest: TCRequestModel {
         /// ES实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// RestartKibana返回参数结构体
     public struct RestartKibanaResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启Kibana
     ///
-    /// 重启Kibana 
+    /// 重启Kibana
     @inlinable
-    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartKibanaResponse > {
+    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
         self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启Kibana
     ///
-    /// 重启Kibana 
+    /// 重启Kibana
     @inlinable
     public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
         try await self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启Kibana
     ///
-    /// 重启Kibana 
+    /// 重启Kibana
     @inlinable
-    public func restartKibana(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartKibanaResponse > {
+    public func restartKibana(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
         self.restartKibana(RestartKibanaRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启Kibana
     ///
-    /// 重启Kibana 
+    /// 重启Kibana
     @inlinable
     public func restartKibana(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
         try await self.restartKibana(RestartKibanaRequest(instanceId: instanceId), logger: logger, on: eventLoop)

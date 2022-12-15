@@ -19,64 +19,64 @@ extension Iotvideoindustry {
     public struct DescribeChannelsByLiveRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
         public let planId: String
-        
+
         /// 分页偏移量
         public let offset: Int64?
-        
+
         /// 分页大小
         public let limit: Int64?
-        
-        public init (planId: String, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(planId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.planId = planId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case planId = "PlanId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeChannelsByLiveRecordPlan返回参数结构体
     public struct DescribeChannelsByLiveRecordPlanResponse: TCResponseModel {
         /// 总个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 通道详情数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveChannels: [LiveChannelItem]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case liveChannels = "LiveChannels"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据直播录制计划获取频道列表
     @inlinable
-    public func describeChannelsByLiveRecordPlan(_ input: DescribeChannelsByLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsByLiveRecordPlanResponse > {
+    public func describeChannelsByLiveRecordPlan(_ input: DescribeChannelsByLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsByLiveRecordPlanResponse> {
         self.client.execute(action: "DescribeChannelsByLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据直播录制计划获取频道列表
     @inlinable
     public func describeChannelsByLiveRecordPlan(_ input: DescribeChannelsByLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsByLiveRecordPlanResponse {
         try await self.client.execute(action: "DescribeChannelsByLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据直播录制计划获取频道列表
     @inlinable
-    public func describeChannelsByLiveRecordPlan(planId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsByLiveRecordPlanResponse > {
+    public func describeChannelsByLiveRecordPlan(planId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsByLiveRecordPlanResponse> {
         self.describeChannelsByLiveRecordPlan(DescribeChannelsByLiveRecordPlanRequest(planId: planId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据直播录制计划获取频道列表
     @inlinable
     public func describeChannelsByLiveRecordPlan(planId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsByLiveRecordPlanResponse {

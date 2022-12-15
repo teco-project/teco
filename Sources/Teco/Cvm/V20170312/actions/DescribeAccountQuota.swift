@@ -22,42 +22,42 @@ extension Cvm {
         /// <li><strong>quota-type</strong></li>
         /// <p style="padding-left: 30px;">按照【<strong>配额类型</strong>】进行过滤。配额类型形如：PostPaidQuotaSet。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet</p>
         public let filters: [Filter]?
-        
-        public init (filters: [Filter]? = nil) {
+
+        public init(filters: [Filter]? = nil) {
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeAccountQuota返回参数结构体
     public struct DescribeAccountQuotaResponse: TCResponseModel {
         /// 用户appid
         public let appId: String
-        
+
         /// 配额数据
         public let accountQuotaOverview: AccountQuotaOverview
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case accountQuotaOverview = "AccountQuotaOverview"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户配额详情
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
-    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountQuotaResponse > {
+    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountQuotaResponse> {
         self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户配额详情
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
@@ -65,15 +65,15 @@ extension Cvm {
     public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
         try await self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户配额详情
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
-    public func describeAccountQuota(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountQuotaResponse > {
+    public func describeAccountQuota(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountQuotaResponse> {
         self.describeAccountQuota(DescribeAccountQuotaRequest(filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户配额详情
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。

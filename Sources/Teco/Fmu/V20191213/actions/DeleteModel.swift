@@ -19,34 +19,34 @@ extension Fmu {
     public struct DeleteModelRequest: TCRequestModel {
         /// 素材ID。
         public let modelId: String
-        
-        public init (modelId: String) {
+
+        public init(modelId: String) {
             self.modelId = modelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
         }
     }
-    
+
     /// DeleteModel返回参数结构体
     public struct DeleteModelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除唇色素材
     ///
     /// 删除已注册的唇色素材。
     @inlinable
-    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelResponse > {
+    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
         self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除唇色素材
     ///
     /// 删除已注册的唇色素材。
@@ -54,15 +54,15 @@ extension Fmu {
     public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
         try await self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除唇色素材
     ///
     /// 删除已注册的唇色素材。
     @inlinable
-    public func deleteModel(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelResponse > {
+    public func deleteModel(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
         self.deleteModel(DeleteModelRequest(modelId: modelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除唇色素材
     ///
     /// 删除已注册的唇色素材。

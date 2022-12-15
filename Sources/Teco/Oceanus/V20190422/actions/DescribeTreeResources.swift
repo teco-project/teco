@@ -19,44 +19,44 @@ extension Oceanus {
     public struct DescribeTreeResourcesRequest: TCRequestModel {
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (workSpaceId: String? = nil) {
+
+        public init(workSpaceId: String? = nil) {
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// DescribeTreeResources返回参数结构体
     public struct DescribeTreeResourcesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询树状结构资源列表
     @inlinable
-    public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeResourcesResponse > {
+    public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeResourcesResponse> {
         self.client.execute(action: "DescribeTreeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询树状结构资源列表
     @inlinable
     public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {
         try await self.client.execute(action: "DescribeTreeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询树状结构资源列表
     @inlinable
-    public func describeTreeResources(workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeResourcesResponse > {
+    public func describeTreeResources(workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeResourcesResponse> {
         self.describeTreeResources(DescribeTreeResourcesRequest(workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询树状结构资源列表
     @inlinable
     public func describeTreeResources(workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {

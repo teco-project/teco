@@ -19,58 +19,58 @@ extension Dlc {
     public struct CreateResultDownloadRequest: TCRequestModel {
         /// 查询结果任务Id
         public let taskId: String
-        
+
         /// 下载格式
         public let format: String
-        
+
         /// 是否重新生成下载文件，仅当之前任务为 Timout | Error 时有效
         public let force: Bool?
-        
-        public init (taskId: String, format: String, force: Bool? = nil) {
+
+        public init(taskId: String, format: String, force: Bool? = nil) {
             self.taskId = taskId
             self.format = format
             self.force = force
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case format = "Format"
             case force = "Force"
         }
     }
-    
+
     /// CreateResultDownload返回参数结构体
     public struct CreateResultDownloadResponse: TCResponseModel {
         /// 下载任务Id
         public let downloadId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadId = "DownloadId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建查询结果下载任务
     @inlinable
-    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResultDownloadResponse > {
+    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResultDownloadResponse> {
         self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建查询结果下载任务
     @inlinable
     public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
         try await self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建查询结果下载任务
     @inlinable
-    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResultDownloadResponse > {
+    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResultDownloadResponse> {
         self.createResultDownload(CreateResultDownloadRequest(taskId: taskId, format: format, force: force), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建查询结果下载任务
     @inlinable
     public func createResultDownload(taskId: String, format: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {

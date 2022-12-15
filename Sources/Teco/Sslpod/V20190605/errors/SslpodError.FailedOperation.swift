@@ -21,52 +21,52 @@ extension TCSslpodError {
             case resolveDomainFailed = "FailedOperation.ResolveDomainFailed"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 重复添加。
         public static var repetitionAdd: FailedOperation {
             FailedOperation(.repetitionAdd)
         }
-        
+
         /// 解析域名失败。
         public static var resolveDomainFailed: FailedOperation {
             FailedOperation(.resolveDomainFailed)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asSslpodError() -> TCSslpodError {
             let code: TCSslpodError.Code
             switch self.error {
-            case .repetitionAdd: 
+            case .repetitionAdd:
                 code = .failedOperation_RepetitionAdd
-            case .resolveDomainFailed: 
+            case .resolveDomainFailed:
                 code = .failedOperation_ResolveDomainFailed
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCSslpodError(code, context: self.context)

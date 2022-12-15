@@ -19,49 +19,49 @@ extension Cfw {
     public struct CreateChooseVpcsRequest: TCRequestModel {
         /// vpc列表
         public let vpcList: [String]
-        
+
         /// zone列表
         public let allZoneList: [VpcZoneData]
-        
-        public init (vpcList: [String], allZoneList: [VpcZoneData]) {
+
+        public init(vpcList: [String], allZoneList: [VpcZoneData]) {
             self.vpcList = vpcList
             self.allZoneList = allZoneList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcList = "VpcList"
             case allZoneList = "AllZoneList"
         }
     }
-    
+
     /// CreateChooseVpcs返回参数结构体
     public struct CreateChooseVpcsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建、选择vpc
     @inlinable
-    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChooseVpcsResponse > {
+    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChooseVpcsResponse> {
         self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建、选择vpc
     @inlinable
     public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
         try await self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建、选择vpc
     @inlinable
-    public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChooseVpcsResponse > {
+    public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChooseVpcsResponse> {
         self.createChooseVpcs(CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建、选择vpc
     @inlinable
     public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {

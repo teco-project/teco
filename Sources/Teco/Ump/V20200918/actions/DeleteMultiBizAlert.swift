@@ -19,26 +19,26 @@ extension Ump {
     public struct DeleteMultiBizAlertRequest: TCRequestModel {
         /// 集团编码
         public let groupCode: String
-        
+
         /// 广场ID
         public let mallId: UInt64
-        
+
         /// 点位ID
         public let zoneId: UInt64
-        
+
         /// 摄像头ID
         public let cameraId: UInt64
-        
+
         /// 消警动作:
         /// 1: 误报
         /// 2: 正报合规
         /// 3: 正报不合规，整改完成
         public let actionType: Int64
-        
+
         /// 图片base64字符串
         public let image: String?
-        
-        public init (groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, actionType: Int64, image: String? = nil) {
+
+        public init(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, actionType: Int64, image: String? = nil) {
             self.groupCode = groupCode
             self.mallId = mallId
             self.zoneId = zoneId
@@ -46,7 +46,7 @@ extension Ump {
             self.actionType = actionType
             self.image = image
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupCode = "GroupCode"
             case mallId = "MallId"
@@ -56,25 +56,25 @@ extension Ump {
             case image = "Image"
         }
     }
-    
+
     /// DeleteMultiBizAlert返回参数结构体
     public struct DeleteMultiBizAlertResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 多经点位消警
     ///
     /// 集团广场的多经点位消警
     @inlinable
-    public func deleteMultiBizAlert(_ input: DeleteMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMultiBizAlertResponse > {
+    public func deleteMultiBizAlert(_ input: DeleteMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultiBizAlertResponse> {
         self.client.execute(action: "DeleteMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 多经点位消警
     ///
     /// 集团广场的多经点位消警
@@ -82,15 +82,15 @@ extension Ump {
     public func deleteMultiBizAlert(_ input: DeleteMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultiBizAlertResponse {
         try await self.client.execute(action: "DeleteMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 多经点位消警
     ///
     /// 集团广场的多经点位消警
     @inlinable
-    public func deleteMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, actionType: Int64, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMultiBizAlertResponse > {
+    public func deleteMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, actionType: Int64, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultiBizAlertResponse> {
         self.deleteMultiBizAlert(DeleteMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, actionType: actionType, image: image), logger: logger, on: eventLoop)
     }
-    
+
     /// 多经点位消警
     ///
     /// 集团广场的多经点位消警

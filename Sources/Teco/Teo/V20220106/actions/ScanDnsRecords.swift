@@ -19,54 +19,54 @@ extension Teo {
     public struct ScanDnsRecordsRequest: TCRequestModel {
         /// 站点 ID
         public let zoneId: String
-        
-        public init (zoneId: String) {
+
+        public init(zoneId: String) {
             self.zoneId = zoneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
         }
     }
-    
+
     /// ScanDnsRecords返回参数结构体
     public struct ScanDnsRecordsResponse: TCResponseModel {
         /// 扫描状态
         /// - doing 扫描中
         /// - done 扫描完成
         public let status: String
-        
+
         /// 扫描后添加的记录数
         public let recordsAdded: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case recordsAdded = "RecordsAdded"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 扫描站点历史解析记录
     @inlinable
-    public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanDnsRecordsResponse > {
+    public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanDnsRecordsResponse> {
         self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 扫描站点历史解析记录
     @inlinable
     public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanDnsRecordsResponse {
         try await self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 扫描站点历史解析记录
     @inlinable
-    public func scanDnsRecords(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanDnsRecordsResponse > {
+    public func scanDnsRecords(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanDnsRecordsResponse> {
         self.scanDnsRecords(ScanDnsRecordsRequest(zoneId: zoneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 扫描站点历史解析记录
     @inlinable
     public func scanDnsRecords(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanDnsRecordsResponse {

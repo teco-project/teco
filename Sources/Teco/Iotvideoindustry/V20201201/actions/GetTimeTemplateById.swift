@@ -19,39 +19,39 @@ extension Iotvideoindustry {
     public struct GetTimeTemplateByIdRequest: TCRequestModel {
         /// 时间模板ID
         public let templateId: String
-        
-        public init (templateId: String) {
+
+        public init(templateId: String) {
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// GetTimeTemplateById返回参数结构体
     public struct GetTimeTemplateByIdResponse: TCResponseModel {
         /// 时间模板详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let template: TimeTemplateItem?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case template = "Template"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据模板ID获取时间模板
     ///
     /// 本接口(GetTimeTemplateById)用于根据模板ID获取时间模板详情。
     @inlinable
-    public func getTimeTemplateById(_ input: GetTimeTemplateByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTimeTemplateByIdResponse > {
+    public func getTimeTemplateById(_ input: GetTimeTemplateByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTimeTemplateByIdResponse> {
         self.client.execute(action: "GetTimeTemplateById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据模板ID获取时间模板
     ///
     /// 本接口(GetTimeTemplateById)用于根据模板ID获取时间模板详情。
@@ -59,15 +59,15 @@ extension Iotvideoindustry {
     public func getTimeTemplateById(_ input: GetTimeTemplateByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTimeTemplateByIdResponse {
         try await self.client.execute(action: "GetTimeTemplateById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据模板ID获取时间模板
     ///
     /// 本接口(GetTimeTemplateById)用于根据模板ID获取时间模板详情。
     @inlinable
-    public func getTimeTemplateById(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTimeTemplateByIdResponse > {
+    public func getTimeTemplateById(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTimeTemplateByIdResponse> {
         self.getTimeTemplateById(GetTimeTemplateByIdRequest(templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据模板ID获取时间模板
     ///
     /// 本接口(GetTimeTemplateById)用于根据模板ID获取时间模板详情。

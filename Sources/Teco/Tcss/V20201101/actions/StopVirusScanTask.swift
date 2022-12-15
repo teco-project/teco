@@ -19,49 +19,49 @@ extension Tcss {
     public struct StopVirusScanTaskRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 需要停止的容器id 为空默认停止整个任务
         public let containerIds: [String]?
-        
-        public init (taskId: String, containerIds: [String]? = nil) {
+
+        public init(taskId: String, containerIds: [String]? = nil) {
             self.taskId = taskId
             self.containerIds = containerIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case containerIds = "ContainerIds"
         }
     }
-    
+
     /// StopVirusScanTask返回参数结构体
     public struct StopVirusScanTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时停止木马查杀任务
     @inlinable
-    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopVirusScanTaskResponse > {
+    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
         self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时停止木马查杀任务
     @inlinable
     public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
         try await self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时停止木马查杀任务
     @inlinable
-    public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopVirusScanTaskResponse > {
+    public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
         self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时停止木马查杀任务
     @inlinable
     public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {

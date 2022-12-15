@@ -19,23 +19,23 @@ extension Essbasic {
     public struct DescribeFaceIdResultsRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 慧眼业务ID
         public let wbAppId: String
-        
+
         /// 订单号(orderNo); 限制在3个或以内
         public let orderNumbers: [String]
-        
+
         /// 1:视频+照片,2:照片,3:视频,0（或其他数字）:无; 可选
         public let fileType: Int64?
-        
-        public init (caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil) {
+
+        public init(caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil) {
             self.caller = caller
             self.wbAppId = wbAppId
             self.orderNumbers = orderNumbers
             self.fileType = fileType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case wbAppId = "WbAppId"
@@ -43,29 +43,29 @@ extension Essbasic {
             case fileType = "FileType"
         }
     }
-    
+
     /// DescribeFaceIdResults返回参数结构体
     public struct DescribeFaceIdResultsResponse: TCResponseModel {
         /// 核身结果列表
         public let results: [FaceIdResult]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case results = "Results"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取慧眼人脸核身结果
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
     @inlinable
-    public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdResultsResponse > {
+    public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdResultsResponse> {
         self.client.execute(action: "DescribeFaceIdResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取慧眼人脸核身结果
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
@@ -73,15 +73,15 @@ extension Essbasic {
     public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdResultsResponse {
         try await self.client.execute(action: "DescribeFaceIdResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取慧眼人脸核身结果
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
     @inlinable
-    public func describeFaceIdResults(caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdResultsResponse > {
+    public func describeFaceIdResults(caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdResultsResponse> {
         self.describeFaceIdResults(DescribeFaceIdResultsRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers, fileType: fileType), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取慧眼人脸核身结果
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果

@@ -19,34 +19,34 @@ extension Mps {
     public struct DeleteWordSamplesRequest: TCRequestModel {
         /// 关键词，数组长度限制：100 个词。
         public let keywords: [String]
-        
-        public init (keywords: [String]) {
+
+        public init(keywords: [String]) {
             self.keywords = keywords
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keywords = "Keywords"
         }
     }
-    
+
     /// DeleteWordSamples返回参数结构体
     public struct DeleteWordSamplesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除关键词样本
     ///
     /// 该接口用于批量删除关键词样本。
     @inlinable
-    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordSamplesResponse > {
+    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordSamplesResponse> {
         self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除关键词样本
     ///
     /// 该接口用于批量删除关键词样本。
@@ -54,15 +54,15 @@ extension Mps {
     public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
         try await self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除关键词样本
     ///
     /// 该接口用于批量删除关键词样本。
     @inlinable
-    public func deleteWordSamples(keywords: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordSamplesResponse > {
+    public func deleteWordSamples(keywords: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordSamplesResponse> {
         self.deleteWordSamples(DeleteWordSamplesRequest(keywords: keywords), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除关键词样本
     ///
     /// 该接口用于批量删除关键词样本。

@@ -19,23 +19,23 @@ extension Trp {
     public struct DescribeCustomRulesRequest: TCRequestModel {
         /// 搜索关键字
         public let keyword: String?
-        
+
         /// 条数
         public let pageSize: UInt64?
-        
+
         /// 页数
         public let pageNumber: UInt64?
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 码规则状态 0:未生效 1:已生效 -1:已失效
         public let status: Int64?
-        
+
         /// 商户ID
         public let merchantId: String?
-        
-        public init (keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil) {
+
+        public init(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil) {
             self.keyword = keyword
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -43,7 +43,7 @@ extension Trp {
             self.status = status
             self.merchantId = merchantId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case pageSize = "PageSize"
@@ -53,45 +53,45 @@ extension Trp {
             case merchantId = "MerchantId"
         }
     }
-    
+
     /// DescribeCustomRules返回参数结构体
     public struct DescribeCustomRulesResponse: TCResponseModel {
         /// 码规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customRules: [CustomRule]?
-        
+
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case customRules = "CustomRules"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查自定义码规则列表
     @inlinable
-    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomRulesResponse > {
+    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRulesResponse> {
         self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查自定义码规则列表
     @inlinable
     public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
         try await self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查自定义码规则列表
     @inlinable
-    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomRulesResponse > {
+    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRulesResponse> {
         self.describeCustomRules(DescribeCustomRulesRequest(keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, status: status, merchantId: merchantId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查自定义码规则列表
     @inlinable
     public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {

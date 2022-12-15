@@ -19,48 +19,48 @@ extension Kms {
     public struct DescribeWhiteBoxDecryptKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// DescribeWhiteBoxDecryptKey返回参数结构体
     public struct DescribeWhiteBoxDecryptKeyResponse: TCResponseModel {
         /// 白盒解密密钥，base64编码
         public let decryptKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case decryptKey = "DecryptKey"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取白盒解密密钥
     @inlinable
-    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxDecryptKeyResponse > {
+    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxDecryptKeyResponse> {
         self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取白盒解密密钥
     @inlinable
     public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
         try await self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取白盒解密密钥
     @inlinable
-    public func describeWhiteBoxDecryptKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxDecryptKeyResponse > {
+    public func describeWhiteBoxDecryptKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxDecryptKeyResponse> {
         self.describeWhiteBoxDecryptKey(DescribeWhiteBoxDecryptKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取白盒解密密钥
     @inlinable
     public func describeWhiteBoxDecryptKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {

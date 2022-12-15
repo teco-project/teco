@@ -19,38 +19,38 @@ extension Sslpod {
     public struct DescribeDomainCertsRequest: TCRequestModel {
         /// 域名ID，可通过搜索域名接口获得
         public let domainId: Int64
-        
-        public init (domainId: Int64) {
+
+        public init(domainId: Int64) {
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
         }
     }
-    
+
     /// DescribeDomainCerts返回参数结构体
     public struct DescribeDomainCertsResponse: TCResponseModel {
         /// 证书信息
         public let data: [CertInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名证书
     ///
     /// 获取域名关联证书
     @inlinable
-    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainCertsResponse > {
+    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainCertsResponse> {
         self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名证书
     ///
     /// 获取域名关联证书
@@ -58,15 +58,15 @@ extension Sslpod {
     public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
         try await self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名证书
     ///
     /// 获取域名关联证书
     @inlinable
-    public func describeDomainCerts(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainCertsResponse > {
+    public func describeDomainCerts(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainCertsResponse> {
         self.describeDomainCerts(DescribeDomainCertsRequest(domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名证书
     ///
     /// 获取域名关联证书

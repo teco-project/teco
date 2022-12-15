@@ -19,34 +19,34 @@ extension Cwp {
     public struct SyncAssetScanRequest: TCRequestModel {
         /// 是否同步：true-是 false-否；默认false
         public let sync: Bool
-        
-        public init (sync: Bool) {
+
+        public init(sync: Bool) {
             self.sync = sync
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sync = "Sync"
         }
     }
-    
+
     /// SyncAssetScan返回参数结构体
     public struct SyncAssetScanResponse: TCResponseModel {
         /// 枚举值有(大写)：NOTASK（没有同步任务），SYNCING（同步中），FINISHED（同步完成）
         public let state: String
-        
+
         /// 最新开始同步时间
         public let latestStartTime: String
-        
+
         /// 最新结束同步时间
         public let latestEndTime: String
-        
+
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case state = "State"
             case latestStartTime = "LatestStartTime"
@@ -55,25 +55,25 @@ extension Cwp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 同步资产扫描信息
     @inlinable
-    public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetScanResponse > {
+    public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncAssetScanResponse> {
         self.client.execute(action: "SyncAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 同步资产扫描信息
     @inlinable
     public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetScanResponse {
         try await self.client.execute(action: "SyncAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 同步资产扫描信息
     @inlinable
-    public func syncAssetScan(sync: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetScanResponse > {
+    public func syncAssetScan(sync: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncAssetScanResponse> {
         self.syncAssetScan(SyncAssetScanRequest(sync: sync), logger: logger, on: eventLoop)
     }
-    
+
     /// 同步资产扫描信息
     @inlinable
     public func syncAssetScan(sync: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetScanResponse {

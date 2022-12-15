@@ -17,45 +17,45 @@
 extension Tcss {
     /// DescribeClusterSummary请求参数结构体
     public struct DescribeClusterSummaryRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeClusterSummary返回参数结构体
     public struct DescribeClusterSummaryResponse: TCResponseModel {
         /// 集群总数
         public let totalCount: UInt64
-        
+
         /// 有风险的集群数量
         public let riskClusterCount: UInt64
-        
+
         /// 未检查的集群数量
         public let uncheckClusterCount: UInt64
-        
+
         /// 托管集群数量
         public let managedClusterCount: UInt64
-        
+
         /// 独立集群数量
         public let independentClusterCount: UInt64
-        
+
         /// 无风险的集群数量
         public let noRiskClusterCount: UInt64
-        
+
         /// 已经检查集群数
         public let checkedClusterCount: UInt64
-        
+
         /// 自动检查集群数
         public let autoCheckClusterCount: UInt64
-        
+
         /// 手动检查集群数
         public let manualCheckClusterCount: UInt64
-        
+
         /// 检查失败集群数
         public let failedClusterCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case riskClusterCount = "RiskClusterCount"
@@ -70,25 +70,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询用户集群资产总览
     @inlinable
-    public func describeClusterSummary(_ input: DescribeClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSummaryResponse > {
+    public func describeClusterSummary(_ input: DescribeClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSummaryResponse> {
         self.client.execute(action: "DescribeClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户集群资产总览
     @inlinable
     public func describeClusterSummary(_ input: DescribeClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSummaryResponse {
         try await self.client.execute(action: "DescribeClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询用户集群资产总览
     @inlinable
-    public func describeClusterSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSummaryResponse > {
+    public func describeClusterSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSummaryResponse> {
         self.describeClusterSummary(DescribeClusterSummaryRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询用户集群资产总览
     @inlinable
     public func describeClusterSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSummaryResponse {

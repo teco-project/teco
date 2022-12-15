@@ -19,39 +19,39 @@ extension Postgres {
     public struct DeleteReadOnlyGroupRequest: TCRequestModel {
         /// 待删除只读组ID
         public let readOnlyGroupId: String
-        
-        public init (readOnlyGroupId: String) {
+
+        public init(readOnlyGroupId: String) {
             self.readOnlyGroupId = readOnlyGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case readOnlyGroupId = "ReadOnlyGroupId"
         }
     }
-    
+
     /// DeleteReadOnlyGroup返回参数结构体
     public struct DeleteReadOnlyGroupResponse: TCResponseModel {
         /// 流程ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除只读组
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
-    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReadOnlyGroupResponse > {
+    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupResponse> {
         self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除只读组
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
@@ -59,15 +59,15 @@ extension Postgres {
     public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
         try await self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除只读组
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
-    public func deleteReadOnlyGroup(readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReadOnlyGroupResponse > {
+    public func deleteReadOnlyGroup(readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupResponse> {
         self.deleteReadOnlyGroup(DeleteReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除只读组
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组

@@ -19,27 +19,27 @@ extension Essbasic {
     public struct CheckMobileVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
         public let caller: Caller
-        
+
         /// 手机号
         public let mobile: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 身份证件号码
         public let idCardNumber: String
-        
+
         /// 身份证件类型; ID_CARD
         public let idCardType: String?
-        
-        public init (caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil) {
+
+        public init(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil) {
             self.caller = caller
             self.mobile = mobile
             self.name = name
             self.idCardNumber = idCardNumber
             self.idCardType = idCardType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case mobile = "Mobile"
@@ -48,7 +48,7 @@ extension Essbasic {
             case idCardType = "IdCardType"
         }
     }
-    
+
     /// CheckMobileVerification返回参数结构体
     public struct CheckMobileVerificationResponse: TCResponseModel {
         /// 检测结果
@@ -65,28 +65,28 @@ extension Essbasic {
         ///   105: 认证未通过
         ///   106: 验证平台异常
         public let result: Int64
-        
+
         /// 结果描述; 未通过时必选
         public let description: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case description = "Description"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 手机号三要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
-    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckMobileVerificationResponse > {
+    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileVerificationResponse> {
         self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 手机号三要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素
@@ -94,15 +94,15 @@ extension Essbasic {
     public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
         try await self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 手机号三要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
-    public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckMobileVerificationResponse > {
+    public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileVerificationResponse> {
         self.checkMobileVerification(CheckMobileVerificationRequest(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType), logger: logger, on: eventLoop)
     }
-    
+
     /// 手机号三要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素

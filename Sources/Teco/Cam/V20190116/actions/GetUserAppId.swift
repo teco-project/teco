@@ -17,24 +17,24 @@
 extension Cam {
     /// GetUserAppId请求参数结构体
     public struct GetUserAppIdRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// GetUserAppId返回参数结构体
     public struct GetUserAppIdResponse: TCResponseModel {
         /// 当前账号Uin
         public let uin: String
-        
+
         /// 当前账号OwnerUin
         public let ownerUin: String
-        
+
         /// 当前账号AppId
         public let appId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
             case ownerUin = "OwnerUin"
@@ -42,25 +42,25 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户AppId
     @inlinable
-    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserAppIdResponse > {
+    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserAppIdResponse> {
         self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户AppId
     @inlinable
     public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
         try await self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户AppId
     @inlinable
-    public func getUserAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserAppIdResponse > {
+    public func getUserAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserAppIdResponse> {
         self.getUserAppId(GetUserAppIdRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户AppId
     @inlinable
     public func getUserAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {

@@ -19,57 +19,57 @@ extension Redis {
     public struct DescribeInstanceShardsRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 是否过滤掉从节信息
         public let filterSlave: Bool?
-        
-        public init (instanceId: String, filterSlave: Bool? = nil) {
+
+        public init(instanceId: String, filterSlave: Bool? = nil) {
             self.instanceId = instanceId
             self.filterSlave = filterSlave
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case filterSlave = "FilterSlave"
         }
     }
-    
+
     /// DescribeInstanceShards返回参数结构体
     public struct DescribeInstanceShardsResponse: TCResponseModel {
         /// 实例分片列表信息
         public let instanceShards: [InstanceClusterShard]
-        
+
         /// 实例分片节点总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceShards = "InstanceShards"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取集群版实例分片信息
     @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
         self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取集群版实例分片信息
     @inlinable
     public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
         try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取集群版实例分片信息
     @inlinable
-    public func describeInstanceShards(instanceId: String, filterSlave: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
+    public func describeInstanceShards(instanceId: String, filterSlave: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
         self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId, filterSlave: filterSlave), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取集群版实例分片信息
     @inlinable
     public func describeInstanceShards(instanceId: String, filterSlave: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {

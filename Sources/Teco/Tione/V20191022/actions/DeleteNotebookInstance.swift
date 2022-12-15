@@ -19,34 +19,34 @@ extension Tione {
     public struct DeleteNotebookInstanceRequest: TCRequestModel {
         /// Notebook实例名称
         public let notebookInstanceName: String
-        
-        public init (notebookInstanceName: String) {
+
+        public init(notebookInstanceName: String) {
             self.notebookInstanceName = notebookInstanceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case notebookInstanceName = "NotebookInstanceName"
         }
     }
-    
+
     /// DeleteNotebookInstance返回参数结构体
     public struct DeleteNotebookInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Notebook实例
     ///
     /// 删除notebook实例
     @inlinable
-    public func deleteNotebookInstance(_ input: DeleteNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNotebookInstanceResponse > {
+    public func deleteNotebookInstance(_ input: DeleteNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookInstanceResponse> {
         self.client.execute(action: "DeleteNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Notebook实例
     ///
     /// 删除notebook实例
@@ -54,15 +54,15 @@ extension Tione {
     public func deleteNotebookInstance(_ input: DeleteNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookInstanceResponse {
         try await self.client.execute(action: "DeleteNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Notebook实例
     ///
     /// 删除notebook实例
     @inlinable
-    public func deleteNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNotebookInstanceResponse > {
+    public func deleteNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookInstanceResponse> {
         self.deleteNotebookInstance(DeleteNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Notebook实例
     ///
     /// 删除notebook实例

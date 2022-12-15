@@ -19,107 +19,107 @@ extension Tcb {
     public struct RollUpdateCloudBaseRunServerVersionRequest: TCRequestModel {
         /// 环境ID
         public let envId: String
-        
+
         /// 要替换的版本名称，可以为latest
         public let versionName: String
-        
+
         /// 枚举（package/repository/image)
         public let uploadType: String?
-        
+
         /// repository的类型(coding/gitlab/github)
         public let repositoryType: String?
-        
+
         /// 流量占比
         public let flowRatio: Int64?
-        
+
         /// dockerfile地址
         public let dockerfilePath: String?
-        
+
         /// 构建目录
         public let buildDir: String?
-        
+
         /// Cpu的大小，单位：核
         public let cpu: String?
-        
+
         /// Mem的大小，单位：G
         public let mem: String?
-        
+
         /// 最小副本数，最小值：0
         public let minNum: String?
-        
+
         /// 最大副本数
         public let maxNum: String?
-        
+
         /// 策略类型
         public let policyType: String?
-        
+
         /// 策略阈值
         public let policyThreshold: String?
-        
+
         /// 环境变量
         public let envParams: String?
-        
+
         /// 容器端口
         public let containerPort: Int64?
-        
+
         /// 服务名称
         public let serverName: String?
-        
+
         /// repository地址
         public let repository: String?
-        
+
         /// 分支
         public let branch: String?
-        
+
         /// 版本备注
         public let versionRemark: String?
-        
+
         /// 代码包名字
         public let packageName: String?
-        
+
         /// 代码包版本
         public let packageVersion: String?
-        
+
         /// Image的详情
         public let imageInfo: CloudBaseRunImageInfo?
-        
+
         /// Github等拉取代码的详情
         public let codeDetail: CloudBaseCodeRepoDetail?
-        
+
         /// 是否回放流量
         public let isRebuild: Bool?
-        
+
         /// 延迟多长时间开始健康检查（单位s）
         public let initialDelaySeconds: Int64?
-        
+
         /// cfs挂载信息
         public let mountVolumeInfo: [CloudBaseRunVolumeMount]?
-        
+
         /// 是否回滚
         public let rollback: Bool?
-        
+
         /// 版本历史名
         public let snapshotName: String?
-        
+
         /// 自定义采集路径
         public let customLogs: String?
-        
+
         /// 是否启用统一域名
         public let enableUnion: Bool?
-        
+
         /// 操作备注
         public let operatorRemark: String?
-        
+
         /// 服务路径（只会第一次生效）
         public let serverPath: String?
-        
+
         /// 是否更新Cls
         public let isUpdateCls: Bool?
-        
+
         /// 自动扩缩容策略组
         public let policyDetail: [HpaPolicy]?
-        
-        public init (envId: String, versionName: String, uploadType: String? = nil, repositoryType: String? = nil, flowRatio: Int64? = nil, dockerfilePath: String? = nil, buildDir: String? = nil, cpu: String? = nil, mem: String? = nil, minNum: String? = nil, maxNum: String? = nil, policyType: String? = nil, policyThreshold: String? = nil, envParams: String? = nil, containerPort: Int64? = nil, serverName: String? = nil, repository: String? = nil, branch: String? = nil, versionRemark: String? = nil, packageName: String? = nil, packageVersion: String? = nil, imageInfo: CloudBaseRunImageInfo? = nil, codeDetail: CloudBaseCodeRepoDetail? = nil, isRebuild: Bool? = nil, initialDelaySeconds: Int64? = nil, mountVolumeInfo: [CloudBaseRunVolumeMount]? = nil, rollback: Bool? = nil, snapshotName: String? = nil, customLogs: String? = nil, enableUnion: Bool? = nil, operatorRemark: String? = nil, serverPath: String? = nil, isUpdateCls: Bool? = nil, policyDetail: [HpaPolicy]? = nil) {
+
+        public init(envId: String, versionName: String, uploadType: String? = nil, repositoryType: String? = nil, flowRatio: Int64? = nil, dockerfilePath: String? = nil, buildDir: String? = nil, cpu: String? = nil, mem: String? = nil, minNum: String? = nil, maxNum: String? = nil, policyType: String? = nil, policyThreshold: String? = nil, envParams: String? = nil, containerPort: Int64? = nil, serverName: String? = nil, repository: String? = nil, branch: String? = nil, versionRemark: String? = nil, packageName: String? = nil, packageVersion: String? = nil, imageInfo: CloudBaseRunImageInfo? = nil, codeDetail: CloudBaseCodeRepoDetail? = nil, isRebuild: Bool? = nil, initialDelaySeconds: Int64? = nil, mountVolumeInfo: [CloudBaseRunVolumeMount]? = nil, rollback: Bool? = nil, snapshotName: String? = nil, customLogs: String? = nil, enableUnion: Bool? = nil, operatorRemark: String? = nil, serverPath: String? = nil, isUpdateCls: Bool? = nil, policyDetail: [HpaPolicy]? = nil) {
             self.envId = envId
             self.versionName = versionName
             self.uploadType = uploadType
@@ -155,7 +155,7 @@ extension Tcb {
             self.isUpdateCls = isUpdateCls
             self.policyDetail = policyDetail
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case versionName = "VersionName"
@@ -193,23 +193,23 @@ extension Tcb {
             case policyDetail = "PolicyDetail"
         }
     }
-    
+
     /// RollUpdateCloudBaseRunServerVersion返回参数结构体
     public struct RollUpdateCloudBaseRunServerVersionResponse: TCResponseModel {
         /// succ为成功
         public let result: String
-        
+
         /// 滚动更新的VersionName
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionName: String?
-        
+
         /// 操作记录id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case versionName = "VersionName"
@@ -217,15 +217,15 @@ extension Tcb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 滚动更新服务版本
     ///
     /// 针对特定的版本，进行滚动更新
     @inlinable
-    public func rollUpdateCloudBaseRunServerVersion(_ input: RollUpdateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollUpdateCloudBaseRunServerVersionResponse > {
+    public func rollUpdateCloudBaseRunServerVersion(_ input: RollUpdateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollUpdateCloudBaseRunServerVersionResponse> {
         self.client.execute(action: "RollUpdateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 滚动更新服务版本
     ///
     /// 针对特定的版本，进行滚动更新
@@ -233,15 +233,15 @@ extension Tcb {
     public func rollUpdateCloudBaseRunServerVersion(_ input: RollUpdateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollUpdateCloudBaseRunServerVersionResponse {
         try await self.client.execute(action: "RollUpdateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 滚动更新服务版本
     ///
     /// 针对特定的版本，进行滚动更新
     @inlinable
-    public func rollUpdateCloudBaseRunServerVersion(envId: String, versionName: String, uploadType: String? = nil, repositoryType: String? = nil, flowRatio: Int64? = nil, dockerfilePath: String? = nil, buildDir: String? = nil, cpu: String? = nil, mem: String? = nil, minNum: String? = nil, maxNum: String? = nil, policyType: String? = nil, policyThreshold: String? = nil, envParams: String? = nil, containerPort: Int64? = nil, serverName: String? = nil, repository: String? = nil, branch: String? = nil, versionRemark: String? = nil, packageName: String? = nil, packageVersion: String? = nil, imageInfo: CloudBaseRunImageInfo? = nil, codeDetail: CloudBaseCodeRepoDetail? = nil, isRebuild: Bool? = nil, initialDelaySeconds: Int64? = nil, mountVolumeInfo: [CloudBaseRunVolumeMount]? = nil, rollback: Bool? = nil, snapshotName: String? = nil, customLogs: String? = nil, enableUnion: Bool? = nil, operatorRemark: String? = nil, serverPath: String? = nil, isUpdateCls: Bool? = nil, policyDetail: [HpaPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollUpdateCloudBaseRunServerVersionResponse > {
+    public func rollUpdateCloudBaseRunServerVersion(envId: String, versionName: String, uploadType: String? = nil, repositoryType: String? = nil, flowRatio: Int64? = nil, dockerfilePath: String? = nil, buildDir: String? = nil, cpu: String? = nil, mem: String? = nil, minNum: String? = nil, maxNum: String? = nil, policyType: String? = nil, policyThreshold: String? = nil, envParams: String? = nil, containerPort: Int64? = nil, serverName: String? = nil, repository: String? = nil, branch: String? = nil, versionRemark: String? = nil, packageName: String? = nil, packageVersion: String? = nil, imageInfo: CloudBaseRunImageInfo? = nil, codeDetail: CloudBaseCodeRepoDetail? = nil, isRebuild: Bool? = nil, initialDelaySeconds: Int64? = nil, mountVolumeInfo: [CloudBaseRunVolumeMount]? = nil, rollback: Bool? = nil, snapshotName: String? = nil, customLogs: String? = nil, enableUnion: Bool? = nil, operatorRemark: String? = nil, serverPath: String? = nil, isUpdateCls: Bool? = nil, policyDetail: [HpaPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollUpdateCloudBaseRunServerVersionResponse> {
         self.rollUpdateCloudBaseRunServerVersion(RollUpdateCloudBaseRunServerVersionRequest(envId: envId, versionName: versionName, uploadType: uploadType, repositoryType: repositoryType, flowRatio: flowRatio, dockerfilePath: dockerfilePath, buildDir: buildDir, cpu: cpu, mem: mem, minNum: minNum, maxNum: maxNum, policyType: policyType, policyThreshold: policyThreshold, envParams: envParams, containerPort: containerPort, serverName: serverName, repository: repository, branch: branch, versionRemark: versionRemark, packageName: packageName, packageVersion: packageVersion, imageInfo: imageInfo, codeDetail: codeDetail, isRebuild: isRebuild, initialDelaySeconds: initialDelaySeconds, mountVolumeInfo: mountVolumeInfo, rollback: rollback, snapshotName: snapshotName, customLogs: customLogs, enableUnion: enableUnion, operatorRemark: operatorRemark, serverPath: serverPath, isUpdateCls: isUpdateCls, policyDetail: policyDetail), logger: logger, on: eventLoop)
     }
-    
+
     /// 滚动更新服务版本
     ///
     /// 针对特定的版本，进行滚动更新

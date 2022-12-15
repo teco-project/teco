@@ -19,27 +19,27 @@ extension Gaap {
     public struct CreateFirstLinkSessionRequest: TCRequestModel {
         /// 模版ID
         public let templateId: String
-        
+
         /// 终端网络信息
         public let srcAddressInfo: SrcAddressInfo
-        
+
         /// 加速目标网络信息
         public let destAddressInfo: DestAddressInfo
-        
+
         /// 终端设备信息
         public let deviceInfo: DeviceInfo?
-        
+
         /// 接口扩展参数，如果是电信用户，需要填充CTCC Token字段
         public let capacity: Capacity?
-        
-        public init (templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil) {
+
+        public init(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil) {
             self.templateId = templateId
             self.srcAddressInfo = srcAddressInfo
             self.destAddressInfo = destAddressInfo
             self.deviceInfo = deviceInfo
             self.capacity = capacity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case srcAddressInfo = "SrcAddressInfo"
@@ -48,35 +48,35 @@ extension Gaap {
             case capacity = "Capacity"
         }
     }
-    
+
     /// CreateFirstLinkSession返回参数结构体
     public struct CreateFirstLinkSessionResponse: TCResponseModel {
         /// 加速成功时返回，单次加速唯一会话Id。。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionId: String?
-        
+
         /// 剩余的加速时间，单位秒。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionId = "SessionId"
             case duration = "Duration"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建接入段加速会话
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
-    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFirstLinkSessionResponse > {
+    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFirstLinkSessionResponse> {
         self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建接入段加速会话
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
@@ -84,15 +84,15 @@ extension Gaap {
     public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
         try await self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建接入段加速会话
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
-    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFirstLinkSessionResponse > {
+    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFirstLinkSessionResponse> {
         self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建接入段加速会话
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。

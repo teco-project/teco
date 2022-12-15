@@ -19,48 +19,48 @@ extension Monitor {
     public struct DescribeGrafanaWhiteListRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeGrafanaWhiteList返回参数结构体
     public struct DescribeGrafanaWhiteListResponse: TCResponseModel {
         /// 数组
         public let whiteList: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case whiteList = "WhiteList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出 Grafana 白名单
     @inlinable
-    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaWhiteListResponse > {
+    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaWhiteListResponse> {
         self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Grafana 白名单
     @inlinable
     public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
         try await self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出 Grafana 白名单
     @inlinable
-    public func describeGrafanaWhiteList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaWhiteListResponse > {
+    public func describeGrafanaWhiteList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaWhiteListResponse> {
         self.describeGrafanaWhiteList(DescribeGrafanaWhiteListRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Grafana 白名单
     @inlinable
     public func describeGrafanaWhiteList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {

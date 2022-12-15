@@ -19,39 +19,39 @@ extension Trp {
     public struct DescribeTmpTokenRequest: TCRequestModel {
         /// 企业ID
         public let corpId: UInt64?
-        
-        public init (corpId: UInt64? = nil) {
+
+        public init(corpId: UInt64? = nil) {
             self.corpId = corpId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
         }
     }
-    
+
     /// DescribeTmpToken返回参数结构体
     public struct DescribeTmpTokenResponse: TCResponseModel {
         /// 临时token
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let token: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case token = "Token"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询临时Token
     ///
     /// 查询临时Token，主要用于上传接口
     @inlinable
-    public func describeTmpToken(_ input: DescribeTmpTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTmpTokenResponse > {
+    public func describeTmpToken(_ input: DescribeTmpTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTmpTokenResponse> {
         self.client.execute(action: "DescribeTmpToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询临时Token
     ///
     /// 查询临时Token，主要用于上传接口
@@ -59,15 +59,15 @@ extension Trp {
     public func describeTmpToken(_ input: DescribeTmpTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTmpTokenResponse {
         try await self.client.execute(action: "DescribeTmpToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询临时Token
     ///
     /// 查询临时Token，主要用于上传接口
     @inlinable
-    public func describeTmpToken(corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTmpTokenResponse > {
+    public func describeTmpToken(corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTmpTokenResponse> {
         self.describeTmpToken(DescribeTmpTokenRequest(corpId: corpId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询临时Token
     ///
     /// 查询临时Token，主要用于上传接口

@@ -19,62 +19,62 @@ extension Cloudaudit {
     public struct ListKeyAliasByRegionRequest: TCRequestModel {
         /// Kms地域
         public let kmsRegion: String
-        
+
         /// 含义跟 SQL 查询的 Limit 一致，表示本次获最多获取 Limit 个元素。缺省值为10，最大值为200
         public let limit: Int64?
-        
+
         /// 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
         public let offset: Int64?
-        
-        public init (kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.kmsRegion = kmsRegion
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case kmsRegion = "KmsRegion"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// ListKeyAliasByRegion返回参数结构体
     public struct ListKeyAliasByRegionResponse: TCResponseModel {
         /// CMK的总数量
         public let totalCount: Int64
-        
+
         /// 密钥别名
         public let keyMetadatas: [KeyMetadata]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case keyMetadatas = "KeyMetadatas"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 根据地域获取KMS密钥别名
     @inlinable
-    public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyAliasByRegionResponse > {
+    public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListKeyAliasByRegionResponse> {
         self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 根据地域获取KMS密钥别名
     @inlinable
     public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyAliasByRegionResponse {
         try await self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 根据地域获取KMS密钥别名
     @inlinable
-    public func listKeyAliasByRegion(kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyAliasByRegionResponse > {
+    public func listKeyAliasByRegion(kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListKeyAliasByRegionResponse> {
         self.listKeyAliasByRegion(ListKeyAliasByRegionRequest(kmsRegion: kmsRegion, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 根据地域获取KMS密钥别名
     @inlinable
     public func listKeyAliasByRegion(kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyAliasByRegionResponse {

@@ -19,7 +19,7 @@ extension Cwp {
     public struct DescribeAssetProcessInfoListRequest: TCRequestModel {
         /// 查询指定Quuid主机的信息
         public let quuid: String?
-        
+
         /// 过滤条件。
         /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         /// <li>Name - String - 是否必填：否 - 进程名</li>
@@ -40,20 +40,20 @@ extension Cwp {
         /// <li>InstallByPackage - uint64 - 是否必填：否 - 是否包安装：0否，1是</li>
         /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         public let filters: [Filter]?
-        
+
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 排序方式，asc升序 或 desc降序
         public let order: String?
-        
+
         /// 排序方式：[FirstTime|StartTime]
         public let by: String?
-        
-        public init (quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.quuid = quuid
             self.filters = filters
             self.limit = limit
@@ -61,7 +61,7 @@ extension Cwp {
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case quuid = "Quuid"
             case filters = "Filters"
@@ -71,44 +71,44 @@ extension Cwp {
             case by = "By"
         }
     }
-    
+
     /// DescribeAssetProcessInfoList返回参数结构体
     public struct DescribeAssetProcessInfoListResponse: TCResponseModel {
         /// 记录总数
         public let total: UInt64
-        
+
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let process: [AssetProcessBaseInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case process = "Process"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取资产管理进程列表
     @inlinable
-    public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessInfoListResponse > {
+    public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessInfoListResponse> {
         self.client.execute(action: "DescribeAssetProcessInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资产管理进程列表
     @inlinable
     public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessInfoListResponse {
         try await self.client.execute(action: "DescribeAssetProcessInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取资产管理进程列表
     @inlinable
-    public func describeAssetProcessInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessInfoListResponse > {
+    public func describeAssetProcessInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessInfoListResponse> {
         self.describeAssetProcessInfoList(DescribeAssetProcessInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取资产管理进程列表
     @inlinable
     public func describeAssetProcessInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessInfoListResponse {

@@ -21,52 +21,52 @@ extension Vpc {
         /// <li>service-template-group-name - String - （过滤条件）协议端口模板集合名称。</li>
         /// <li>service-template-group-id - String - （过滤条件）协议端口模板集合实例ID，例如：ppmg-e6dy460g。</li>
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。
         public let offset: String?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
-        
-        public init (filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeServiceTemplateGroups返回参数结构体
     public struct DescribeServiceTemplateGroupsResponse: TCResponseModel {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
-        
+
         /// 协议端口模板集合。
         public let serviceTemplateGroupSet: [ServiceTemplateGroup]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case serviceTemplateGroupSet = "ServiceTemplateGroupSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询协议端口模板集合
     ///
     /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合
     @inlinable
-    public func describeServiceTemplateGroups(_ input: DescribeServiceTemplateGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceTemplateGroupsResponse > {
+    public func describeServiceTemplateGroups(_ input: DescribeServiceTemplateGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplateGroupsResponse> {
         self.client.execute(action: "DescribeServiceTemplateGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询协议端口模板集合
     ///
     /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合
@@ -74,15 +74,15 @@ extension Vpc {
     public func describeServiceTemplateGroups(_ input: DescribeServiceTemplateGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplateGroupsResponse {
         try await self.client.execute(action: "DescribeServiceTemplateGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询协议端口模板集合
     ///
     /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合
     @inlinable
-    public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceTemplateGroupsResponse > {
+    public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplateGroupsResponse> {
         self.describeServiceTemplateGroups(DescribeServiceTemplateGroupsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询协议端口模板集合
     ///
     /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合

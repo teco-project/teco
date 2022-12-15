@@ -19,29 +19,29 @@ extension Partners {
     public struct DescribeAgentClientsRequest: TCRequestModel {
         /// 客户账号ID
         public let clientUin: String?
-        
+
         /// 客户名称。由于涉及隐私，名称打码显示，故名称仅支持打码后的模糊搜索
         public let clientName: String?
-        
+
         /// 客户类型，a/b，类型定义参考代理商相关政策文档
         public let clientFlag: String?
-        
+
         /// ASC/DESC， 不区分大小写，按申请时间排序
         public let orderDirection: String?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 限制数目
         public let limit: UInt64?
-        
+
         /// 业务员ID
         public let salesUin: String?
-        
+
         /// 业务员姓名（模糊查询）
         public let salesName: String?
-        
-        public init (clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil) {
+
+        public init(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil) {
             self.clientUin = clientUin
             self.clientName = clientName
             self.clientFlag = clientFlag
@@ -51,7 +51,7 @@ extension Partners {
             self.salesUin = salesUin
             self.salesName = salesName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clientUin = "ClientUin"
             case clientName = "ClientName"
@@ -63,33 +63,33 @@ extension Partners {
             case salesName = "SalesName"
         }
     }
-    
+
     /// DescribeAgentClients返回参数结构体
     public struct DescribeAgentClientsResponse: TCResponseModel {
         /// 待审核代客列表
         public let agentClientSet: [AgentClientElem]
-        
+
         /// 符合条件的代客总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentClientSet = "AgentClientSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
-    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentClientsResponse > {
+    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientsResponse> {
         self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表
@@ -97,15 +97,15 @@ extension Partners {
     public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
         try await self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
-    public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentClientsResponse > {
+    public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientsResponse> {
         self.describeAgentClients(DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表

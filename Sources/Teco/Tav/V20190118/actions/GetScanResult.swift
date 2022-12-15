@@ -19,36 +19,36 @@ extension Tav {
     public struct GetScanResultRequest: TCRequestModel {
         /// 购买服务后获得的授权信息，用于保证请求有效性
         public let key: String
-        
+
         /// 需要获取扫描接口的md5（只允许单个md5）
         public let md5: String
-        
-        public init (key: String, md5: String) {
+
+        public init(key: String, md5: String) {
             self.key = key
             self.md5 = md5
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case md5 = "Md5"
         }
     }
-    
+
     /// GetScanResult返回参数结构体
     public struct GetScanResultResponse: TCResponseModel {
         /// 接口调用状态，成功返回200，失败返回400
         public let status: UInt64
-        
+
         /// 接口调用描述信息，成功返回"scan success"，失败返回"scan error"
         public let info: String
-        
+
         /// 实际结果信息，包括md5、scan_status、virus_name三个字段；virus_name报毒名："torjan.**":黑样本的报毒名、".":样本不报毒、"" :样本无检出信息，需上传扫描；
         /// scan_status样本状态：-1无检出信息需上传扫描、0样本扫描中、1样本扫描结束且不报毒、2样本扫描结束且报黑、3样本下载失败；
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case info = "Info"
@@ -56,15 +56,15 @@ extension Tav {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 文件上传扫描结果查询
     ///
     /// tav文件上传扫描结果查询
     @inlinable
-    public func getScanResult(_ input: GetScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetScanResultResponse > {
+    public func getScanResult(_ input: GetScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetScanResultResponse> {
         self.client.execute(action: "GetScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 文件上传扫描结果查询
     ///
     /// tav文件上传扫描结果查询
@@ -72,15 +72,15 @@ extension Tav {
     public func getScanResult(_ input: GetScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetScanResultResponse {
         try await self.client.execute(action: "GetScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 文件上传扫描结果查询
     ///
     /// tav文件上传扫描结果查询
     @inlinable
-    public func getScanResult(key: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetScanResultResponse > {
+    public func getScanResult(key: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetScanResultResponse> {
         self.getScanResult(GetScanResultRequest(key: key, md5: md5), logger: logger, on: eventLoop)
     }
-    
+
     /// 文件上传扫描结果查询
     ///
     /// tav文件上传扫描结果查询

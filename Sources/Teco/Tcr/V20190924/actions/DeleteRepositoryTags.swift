@@ -19,23 +19,23 @@ extension Tcr {
     public struct DeleteRepositoryTagsRequest: TCRequestModel {
         /// 实例ID
         public let registryId: String
-        
+
         /// 命名空间名称
         public let namespaceName: String
-        
+
         /// 仓库名称
         public let repositoryName: String
-        
+
         /// Tag列表，单次请求Tag数量最大为20
         public let tags: [String]
-        
-        public init (registryId: String, namespaceName: String, repositoryName: String, tags: [String]) {
+
+        public init(registryId: String, namespaceName: String, repositoryName: String, tags: [String]) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.repositoryName = repositoryName
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
@@ -43,25 +43,25 @@ extension Tcr {
             case tags = "Tags"
         }
     }
-    
+
     /// DeleteRepositoryTags返回参数结构体
     public struct DeleteRepositoryTagsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量删除Repository Tag
     ///
     /// 用于企业版批量删除Repository Tag
     @inlinable
-    public func deleteRepositoryTags(_ input: DeleteRepositoryTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryTagsResponse > {
+    public func deleteRepositoryTags(_ input: DeleteRepositoryTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryTagsResponse> {
         self.client.execute(action: "DeleteRepositoryTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除Repository Tag
     ///
     /// 用于企业版批量删除Repository Tag
@@ -69,15 +69,15 @@ extension Tcr {
     public func deleteRepositoryTags(_ input: DeleteRepositoryTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryTagsResponse {
         try await self.client.execute(action: "DeleteRepositoryTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量删除Repository Tag
     ///
     /// 用于企业版批量删除Repository Tag
     @inlinable
-    public func deleteRepositoryTags(registryId: String, namespaceName: String, repositoryName: String, tags: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryTagsResponse > {
+    public func deleteRepositoryTags(registryId: String, namespaceName: String, repositoryName: String, tags: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryTagsResponse> {
         self.deleteRepositoryTags(DeleteRepositoryTagsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量删除Repository Tag
     ///
     /// 用于企业版批量删除Repository Tag

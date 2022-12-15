@@ -19,25 +19,25 @@ extension Tcr {
     public struct CreateInternalEndpointDnsRequest: TCRequestModel {
         /// tcr实例id
         public let instanceId: String
-        
+
         /// 私有网络id
         public let vpcId: String
-        
+
         /// tcr内网访问链路ip
         public let eniLBIp: String
-        
+
         /// true：为默认域名，公网域名一致
         /// false: 使用vpc域名
         /// 默认为vpc域名
         public let usePublicDomain: Bool?
-        
+
         /// 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
         public let regionName: String?
-        
+
         /// 请求的地域ID，用于实例复制地域
         public let regionId: UInt64?
-        
-        public init (instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil) {
+
+        public init(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil) {
             self.instanceId = instanceId
             self.vpcId = vpcId
             self.eniLBIp = eniLBIp
@@ -45,7 +45,7 @@ extension Tcr {
             self.regionName = regionName
             self.regionId = regionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case vpcId = "VpcId"
@@ -55,25 +55,25 @@ extension Tcr {
             case regionId = "RegionId"
         }
     }
-    
+
     /// CreateInternalEndpointDns返回参数结构体
     public struct CreateInternalEndpointDnsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建私有域名解析
     ///
     /// 创建tcr内网私有域名解析
     @inlinable
-    public func createInternalEndpointDns(_ input: CreateInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInternalEndpointDnsResponse > {
+    public func createInternalEndpointDns(_ input: CreateInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInternalEndpointDnsResponse> {
         self.client.execute(action: "CreateInternalEndpointDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建私有域名解析
     ///
     /// 创建tcr内网私有域名解析
@@ -81,15 +81,15 @@ extension Tcr {
     public func createInternalEndpointDns(_ input: CreateInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInternalEndpointDnsResponse {
         try await self.client.execute(action: "CreateInternalEndpointDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建私有域名解析
     ///
     /// 创建tcr内网私有域名解析
     @inlinable
-    public func createInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInternalEndpointDnsResponse > {
+    public func createInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInternalEndpointDnsResponse> {
         self.createInternalEndpointDns(CreateInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName, regionId: regionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建私有域名解析
     ///
     /// 创建tcr内网私有域名解析

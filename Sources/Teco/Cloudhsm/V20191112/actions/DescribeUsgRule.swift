@@ -19,54 +19,54 @@ extension Cloudhsm {
     public struct DescribeUsgRuleRequest: TCRequestModel {
         /// 根据安全组Id获取安全组详情
         public let sgIds: [String]
-        
-        public init (sgIds: [String]) {
+
+        public init(sgIds: [String]) {
             self.sgIds = sgIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sgIds = "SgIds"
         }
     }
-    
+
     /// DescribeUsgRule返回参数结构体
     public struct DescribeUsgRuleResponse: TCResponseModel {
         /// 安全组详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sgRules: [UsgRuleDetail]?
-        
+
         /// 安全组详情数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sgRules = "SgRules"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取安全组详情
     @inlinable
-    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgRuleResponse > {
+    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgRuleResponse> {
         self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全组详情
     @inlinable
     public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
         try await self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取安全组详情
     @inlinable
-    public func describeUsgRule(sgIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgRuleResponse > {
+    public func describeUsgRule(sgIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgRuleResponse> {
         self.describeUsgRule(DescribeUsgRuleRequest(sgIds: sgIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全组详情
     @inlinable
     public func describeUsgRule(sgIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {

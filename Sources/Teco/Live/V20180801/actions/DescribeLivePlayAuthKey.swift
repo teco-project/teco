@@ -19,38 +19,38 @@ extension Live {
     public struct DescribeLivePlayAuthKeyRequest: TCRequestModel {
         /// 域名。
         public let domainName: String
-        
-        public init (domainName: String) {
+
+        public init(domainName: String) {
             self.domainName = domainName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
         }
     }
-    
+
     /// DescribeLivePlayAuthKey返回参数结构体
     public struct DescribeLivePlayAuthKeyResponse: TCResponseModel {
         /// 播放鉴权key信息。
         public let playAuthKeyInfo: PlayAuthKeyInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case playAuthKeyInfo = "PlayAuthKeyInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询播放鉴权key
     ///
     /// 查询播放鉴权key。
     @inlinable
-    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePlayAuthKeyResponse > {
+    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePlayAuthKeyResponse> {
         self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询播放鉴权key
     ///
     /// 查询播放鉴权key。
@@ -58,15 +58,15 @@ extension Live {
     public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
         try await self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询播放鉴权key
     ///
     /// 查询播放鉴权key。
     @inlinable
-    public func describeLivePlayAuthKey(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePlayAuthKeyResponse > {
+    public func describeLivePlayAuthKey(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePlayAuthKeyResponse> {
         self.describeLivePlayAuthKey(DescribeLivePlayAuthKeyRequest(domainName: domainName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询播放鉴权key
     ///
     /// 查询播放鉴权key。

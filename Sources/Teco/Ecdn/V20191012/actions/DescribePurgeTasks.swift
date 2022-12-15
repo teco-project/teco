@@ -22,7 +22,7 @@ extension Ecdn {
     public struct DescribePurgeTasksRequest: TCRequestModel {
         /// 查询刷新类型。url：查询 url 刷新记录；path：查询目录刷新记录。
         public let purgeType: String?
-        
+
         /// 开始时间，如2018-08-08 00:00:00。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Ecdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date?
-        
+
         /// 结束时间，如2018-08-08 23:59:59。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,23 +38,23 @@ extension Ecdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date?
-        
+
         /// 提交时返回的任务 Id，查询时 TaskId 和起始时间必须指定一项。
         public let taskId: String?
-        
+
         /// 分页查询偏移量，默认为0（从第0条开始）。
         public let offset: Int64?
-        
+
         /// 分页查询限制数目，默认为20。
         public let limit: Int64?
-        
+
         /// 查询关键字，请输入域名或 http(s):// 开头完整 URL。
         public let keyword: String?
-        
+
         /// 查询指定任务状态，fail表示失败，done表示成功，process表示刷新中。
         public let status: String?
-        
-        public init (purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil) {
+
+        public init(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil) {
             self.purgeType = purgeType
             self.startTime = startTime
             self.endTime = endTime
@@ -64,7 +64,7 @@ extension Ecdn {
             self.keyword = keyword
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case purgeType = "PurgeType"
             case startTime = "StartTime"
@@ -76,34 +76,34 @@ extension Ecdn {
             case status = "Status"
         }
     }
-    
+
     /// DescribePurgeTasks返回参数结构体
     public struct DescribePurgeTasksResponse: TCResponseModel {
         /// 刷新历史记录。
         public let purgeLogs: [PurgeTask]
-        
+
         /// 任务总数，用于分页。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case purgeLogs = "PurgeLogs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
@@ -112,16 +112,16 @@ extension Ecdn {
     public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
         try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func describePurgeTasks(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+    public func describePurgeTasks(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.describePurgeTasks(DescribePurgeTasksRequest(purgeType: purgeType, startTime: startTime, endTime: endTime, taskId: taskId, offset: offset, limit: limit, keyword: keyword, status: status), logger: logger, on: eventLoop)
     }
-    
+
     /// 刷新历史查询
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。

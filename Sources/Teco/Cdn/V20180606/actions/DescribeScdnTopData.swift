@@ -27,7 +27,7 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -35,24 +35,24 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 查询的SCDN TOP攻击数据类型：
         /// waf：Web 攻击防护TOP数据
         public let mode: String
-        
+
         /// 排序对象，支持以下几种形式：
         /// url：攻击目标 url 排序
         /// ip：攻击源 IP 排序
         /// attackType：攻击类型排序
         public let metric: String
-        
+
         /// 排序使用的指标名称：
         /// request：请求次数
         public let filter: String
-        
+
         /// 指定域名查询
         public let domain: String?
-        
+
         /// 指定攻击类型, 仅 Mode=waf 时有效
         /// 不填则查询所有攻击类型的数据总和
         /// AttackType 映射如下:
@@ -72,15 +72,15 @@ extension Cdn {
         ///   csrf = "CSRF攻击"
         ///   malicious_file_upload= '恶意文件上传'
         public let attackType: String?
-        
+
         /// 指定防御模式,仅 Mode=waf 时有效
         /// 不填则查询所有防御模式的数据总和
         /// DefenceMode 映射如下：
         ///   observe = '观察模式'
         ///   intercept = '拦截模式'
         public let defenceMode: String?
-        
-        public init (startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil) {
+
+        public init(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.mode = mode
@@ -90,7 +90,7 @@ extension Cdn {
             self.attackType = attackType
             self.defenceMode = defenceMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -102,27 +102,27 @@ extension Cdn {
             case defenceMode = "DefenceMode"
         }
     }
-    
+
     /// DescribeScdnTopData返回参数结构体
     public struct DescribeScdnTopDataResponse: TCResponseModel {
         /// WAF 攻击类型统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topTypeData: [ScdnTypeData]?
-        
+
         /// TOP 攻击源 IP 统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topIpData: [ScdnTopData]?
-        
+
         /// 查询的SCDN类型，当前仅支持 waf
         public let mode: String
-        
+
         /// TOP URL 统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topUrlData: [ScdnTopUrlData]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case topTypeData = "TopTypeData"
             case topIpData = "TopIpData"
@@ -131,25 +131,25 @@ extension Cdn {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取SCDN的Top数据
     @inlinable
-    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnTopDataResponse > {
+    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnTopDataResponse> {
         self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SCDN的Top数据
     @inlinable
     public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
         try await self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取SCDN的Top数据
     @inlinable
-    public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnTopDataResponse > {
+    public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnTopDataResponse> {
         self.describeScdnTopData(DescribeScdnTopDataRequest(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取SCDN的Top数据
     @inlinable
     public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {

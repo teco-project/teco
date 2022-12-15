@@ -19,27 +19,27 @@ extension Dlc {
     public struct LockMetaDataRequest: TCRequestModel {
         /// 加锁内容
         public let lockComponentList: [LockComponentInfo]
-        
+
         /// 数据源名称
         public let datasourceConnectionName: String?
-        
+
         /// 事务id
         public let txnId: Int64?
-        
+
         /// 客户端信息
         public let agentInfo: String?
-        
+
         /// 主机名
         public let hostname: String?
-        
-        public init (lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil) {
+
+        public init(lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil) {
             self.lockComponentList = lockComponentList
             self.datasourceConnectionName = datasourceConnectionName
             self.txnId = txnId
             self.agentInfo = agentInfo
             self.hostname = hostname
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case lockComponentList = "LockComponentList"
             case datasourceConnectionName = "DatasourceConnectionName"
@@ -48,43 +48,43 @@ extension Dlc {
             case hostname = "Hostname"
         }
     }
-    
+
     /// LockMetaData返回参数结构体
     public struct LockMetaDataResponse: TCResponseModel {
         /// 锁id
         public let lockId: Int64
-        
+
         /// 锁状态：ACQUIRED、WAITING、ABORT、NOT_ACQUIRED
         public let lockState: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case lockId = "LockId"
             case lockState = "LockState"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 元数据锁
     @inlinable
-    public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockMetaDataResponse > {
+    public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockMetaDataResponse> {
         self.client.execute(action: "LockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 元数据锁
     @inlinable
     public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockMetaDataResponse {
         try await self.client.execute(action: "LockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 元数据锁
     @inlinable
-    public func lockMetaData(lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockMetaDataResponse > {
+    public func lockMetaData(lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockMetaDataResponse> {
         self.lockMetaData(LockMetaDataRequest(lockComponentList: lockComponentList, datasourceConnectionName: datasourceConnectionName, txnId: txnId, agentInfo: agentInfo, hostname: hostname), logger: logger, on: eventLoop)
     }
-    
+
     /// 元数据锁
     @inlinable
     public func lockMetaData(lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockMetaDataResponse {

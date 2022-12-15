@@ -22,7 +22,7 @@ extension Waf {
     public struct PostAttackDownloadTaskRequest: TCRequestModel {
         /// 查询的域名，所有域名使用all
         public let domain: String
-        
+
         /// 查询起始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Waf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 查询结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,17 +38,17 @@ extension Waf {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// Lucene语法
         public let queryString: String
-        
+
         /// 任务名称
         public let taskName: String
-        
+
         /// 默认为desc，可以取值desc和asc
         public let sort: String?
-        
-        public init (domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil) {
+
+        public init(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil) {
             self.domain = domain
             self.startTime = startTime
             self.endTime = endTime
@@ -56,7 +56,7 @@ extension Waf {
             self.taskName = taskName
             self.sort = sort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case startTime = "StartTime"
@@ -66,29 +66,29 @@ extension Waf {
             case sort = "Sort"
         }
     }
-    
+
     /// PostAttackDownloadTask返回参数结构体
     public struct PostAttackDownloadTaskResponse: TCResponseModel {
         /// 任务task id
         public let flow: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flow = "Flow"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PostAttackDownloadTaskResponse > {
+    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
         self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
@@ -96,15 +96,15 @@ extension Waf {
     public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
         try await self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PostAttackDownloadTaskResponse > {
+    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
         self.postAttackDownloadTask(PostAttackDownloadTaskRequest(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口

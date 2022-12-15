@@ -19,39 +19,39 @@ extension Cwp {
     public struct CreateEmergencyVulScanRequest: TCRequestModel {
         /// 漏洞id
         public let vulId: UInt64
-        
+
         /// 自选服务器时生效，主机uuid的string数组
         public let uuids: [String]?
-        
-        public init (vulId: UInt64, uuids: [String]? = nil) {
+
+        public init(vulId: UInt64, uuids: [String]? = nil) {
             self.vulId = vulId
             self.uuids = uuids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vulId = "VulId"
             case uuids = "Uuids"
         }
     }
-    
+
     /// CreateEmergencyVulScan返回参数结构体
     public struct CreateEmergencyVulScanResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 应急漏洞扫描
     ///
     /// 创建应急漏洞扫描任务
     @inlinable
-    public func createEmergencyVulScan(_ input: CreateEmergencyVulScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmergencyVulScanResponse > {
+    public func createEmergencyVulScan(_ input: CreateEmergencyVulScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmergencyVulScanResponse> {
         self.client.execute(action: "CreateEmergencyVulScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 应急漏洞扫描
     ///
     /// 创建应急漏洞扫描任务
@@ -59,15 +59,15 @@ extension Cwp {
     public func createEmergencyVulScan(_ input: CreateEmergencyVulScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulScanResponse {
         try await self.client.execute(action: "CreateEmergencyVulScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 应急漏洞扫描
     ///
     /// 创建应急漏洞扫描任务
     @inlinable
-    public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmergencyVulScanResponse > {
+    public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmergencyVulScanResponse> {
         self.createEmergencyVulScan(CreateEmergencyVulScanRequest(vulId: vulId, uuids: uuids), logger: logger, on: eventLoop)
     }
-    
+
     /// 应急漏洞扫描
     ///
     /// 创建应急漏洞扫描任务

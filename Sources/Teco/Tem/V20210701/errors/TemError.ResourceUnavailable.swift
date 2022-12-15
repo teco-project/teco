@@ -21,50 +21,50 @@ extension TCTemError {
             case applicationStopped = "ResourceUnavailable.ApplicationStopped"
             case waitForKruise = "ResourceUnavailable.WaitForKruise"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var applicationNotDeletable: ResourceUnavailable {
             ResourceUnavailable(.applicationNotDeletable)
         }
-        
+
         public static var applicationStopped: ResourceUnavailable {
             ResourceUnavailable(.applicationStopped)
         }
-        
+
         /// 等待组件安装。
         public static var waitForKruise: ResourceUnavailable {
             ResourceUnavailable(.waitForKruise)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {
-            case .applicationNotDeletable: 
+            case .applicationNotDeletable:
                 code = .resourceUnavailable_ApplicationNotDeletable
-            case .applicationStopped: 
+            case .applicationStopped:
                 code = .resourceUnavailable_ApplicationStopped
-            case .waitForKruise: 
+            case .waitForKruise:
                 code = .resourceUnavailable_WaitForKruise
             }
             return TCTemError(code, context: self.context)

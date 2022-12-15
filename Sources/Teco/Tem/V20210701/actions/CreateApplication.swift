@@ -19,52 +19,52 @@ extension Tem {
     public struct CreateApplicationRequest: TCRequestModel {
         /// 应用名
         public let applicationName: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 是否使用默认镜像服务 1-是，0-否
         public let useDefaultImageService: Int64?
-        
+
         /// 如果是绑定仓库，绑定的仓库类型，0-个人版，1-企业版
         public let repoType: Int64?
-        
+
         /// 企业版镜像服务的实例id
         public let instanceId: String?
-        
+
         /// 绑定镜像服务器地址
         public let repoServer: String?
-        
+
         /// 绑定镜像仓库名
         public let repoName: String?
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 应用所在子网
         public let subnetList: [String]?
-        
-        /// 编程语言 
+
+        /// 编程语言
         /// - JAVA
         /// - OTHER
         public let codingLanguage: String?
-        
-        /// 部署方式 
+
+        /// 部署方式
         /// - IMAGE
         /// - JAR
         /// - WAR
         public let deployMode: String?
-        
+
         /// 是否开启 Java 应用的 APM 自动上报功能，1 表示启用；0 表示关闭
         public let enableTracing: Int64?
-        
+
         /// 使用默认镜像服务额外参数
         public let useDefaultImageServiceParameters: UseDefaultRepoParameters?
-        
+
         /// 标签
         public let tags: [Tag]?
-        
-        public init (applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil) {
+
+        public init(applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil) {
             self.applicationName = applicationName
             self.description = description
             self.useDefaultImageService = useDefaultImageService
@@ -80,7 +80,7 @@ extension Tem {
             self.useDefaultImageServiceParameters = useDefaultImageServiceParameters
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationName = "ApplicationName"
             case description = "Description"
@@ -98,39 +98,39 @@ extension Tem {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateApplication返回参数结构体
     public struct CreateApplicationResponse: TCResponseModel {
         /// 服务code
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建应用
     @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
+    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
         self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用
     @inlinable
     public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
         try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建应用
     @inlinable
-    public func createApplication(applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
+    public func createApplication(applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
         self.createApplication(CreateApplicationRequest(applicationName: applicationName, description: description, useDefaultImageService: useDefaultImageService, repoType: repoType, instanceId: instanceId, repoServer: repoServer, repoName: repoName, sourceChannel: sourceChannel, subnetList: subnetList, codingLanguage: codingLanguage, deployMode: deployMode, enableTracing: enableTracing, useDefaultImageServiceParameters: useDefaultImageServiceParameters, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用
     @inlinable
     public func createApplication(applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {

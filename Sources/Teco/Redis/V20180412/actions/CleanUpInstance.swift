@@ -19,48 +19,48 @@ extension Redis {
     public struct CleanUpInstanceRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// CleanUpInstance返回参数结构体
     public struct CleanUpInstanceResponse: TCResponseModel {
         /// 任务ID
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 回收站实例立即下线
     @inlinable
-    public func cleanUpInstance(_ input: CleanUpInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CleanUpInstanceResponse > {
+    public func cleanUpInstance(_ input: CleanUpInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CleanUpInstanceResponse> {
         self.client.execute(action: "CleanUpInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 回收站实例立即下线
     @inlinable
     public func cleanUpInstance(_ input: CleanUpInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanUpInstanceResponse {
         try await self.client.execute(action: "CleanUpInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 回收站实例立即下线
     @inlinable
-    public func cleanUpInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CleanUpInstanceResponse > {
+    public func cleanUpInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CleanUpInstanceResponse> {
         self.cleanUpInstance(CleanUpInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 回收站实例立即下线
     @inlinable
     public func cleanUpInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanUpInstanceResponse {

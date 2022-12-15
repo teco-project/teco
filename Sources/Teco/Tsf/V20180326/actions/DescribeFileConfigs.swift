@@ -19,26 +19,26 @@ extension Tsf {
     public struct DescribeFileConfigsRequest: TCRequestModel {
         /// 配置项ID
         public let configId: String?
-        
+
         /// 配置项ID列表
         public let configIdList: [String]?
-        
+
         /// 配置项名称
         public let configName: String?
-        
+
         /// 应用ID
         public let applicationId: String?
-        
+
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 每页条数
         public let limit: Int64?
-        
+
         /// 配置项版本
         public let configVersion: String?
-        
-        public init (configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil) {
+
+        public init(configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil) {
             self.configId = configId
             self.configIdList = configIdList
             self.configName = configName
@@ -47,7 +47,7 @@ extension Tsf {
             self.limit = limit
             self.configVersion = configVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configIdList = "ConfigIdList"
@@ -58,40 +58,40 @@ extension Tsf {
             case configVersion = "ConfigVersion"
         }
     }
-    
+
     /// DescribeFileConfigs返回参数结构体
     public struct DescribeFileConfigsResponse: TCResponseModel {
         /// 文件配置项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageFileConfig?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询文件配置项列表
     @inlinable
-    public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileConfigsResponse > {
+    public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileConfigsResponse> {
         self.client.execute(action: "DescribeFileConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文件配置项列表
     @inlinable
     public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileConfigsResponse {
         try await self.client.execute(action: "DescribeFileConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询文件配置项列表
     @inlinable
-    public func describeFileConfigs(configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileConfigsResponse > {
+    public func describeFileConfigs(configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileConfigsResponse> {
         self.describeFileConfigs(DescribeFileConfigsRequest(configId: configId, configIdList: configIdList, configName: configName, applicationId: applicationId, offset: offset, limit: limit, configVersion: configVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文件配置项列表
     @inlinable
     public func describeFileConfigs(configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileConfigsResponse {

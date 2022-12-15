@@ -19,54 +19,54 @@ extension Wedata {
     public struct GetIntegrationNodeColumnSchemaRequest: TCRequestModel {
         /// 字段示例（json格式）
         public let columnContent: String?
-        
+
         /// 数据源类型
         public let datasourceType: String?
-        
-        public init (columnContent: String? = nil, datasourceType: String? = nil) {
+
+        public init(columnContent: String? = nil, datasourceType: String? = nil) {
             self.columnContent = columnContent
             self.datasourceType = datasourceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case columnContent = "ColumnContent"
             case datasourceType = "DatasourceType"
         }
     }
-    
+
     /// GetIntegrationNodeColumnSchema返回参数结构体
     public struct GetIntegrationNodeColumnSchemaResponse: TCResponseModel {
         /// 字段列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemas: [IntegrationNodeSchema]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case schemas = "Schemas"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 提取数据集成节点字段Schema
     @inlinable
-    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIntegrationNodeColumnSchemaResponse > {
+    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIntegrationNodeColumnSchemaResponse> {
         self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 提取数据集成节点字段Schema
     @inlinable
     public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
         try await self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 提取数据集成节点字段Schema
     @inlinable
-    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIntegrationNodeColumnSchemaResponse > {
+    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIntegrationNodeColumnSchemaResponse> {
         self.getIntegrationNodeColumnSchema(GetIntegrationNodeColumnSchemaRequest(columnContent: columnContent, datasourceType: datasourceType), logger: logger, on: eventLoop)
     }
-    
+
     /// 提取数据集成节点字段Schema
     @inlinable
     public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {

@@ -19,58 +19,58 @@ extension Tcr {
     public struct DescribeFavorRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名称
         public let repoName: String
-        
+
         /// 分页Limit
         public let limit: Int64
-        
+
         /// Offset用于分页
         public let offset: Int64
-        
-        public init (repoName: String, limit: Int64, offset: Int64) {
+
+        public init(repoName: String, limit: Int64, offset: Int64) {
             self.repoName = repoName
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeFavorRepositoryPersonal返回参数结构体
     public struct DescribeFavorRepositoryPersonalResponse: TCResponseModel {
         /// 个人收藏仓库列表返回信息
         public let data: FavorResp
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询个人收藏仓库
     @inlinable
-    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFavorRepositoryPersonalResponse > {
+    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFavorRepositoryPersonalResponse> {
         self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询个人收藏仓库
     @inlinable
     public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
         try await self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询个人收藏仓库
     @inlinable
-    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFavorRepositoryPersonalResponse > {
+    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFavorRepositoryPersonalResponse> {
         self.describeFavorRepositoryPersonal(DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询个人收藏仓库
     @inlinable
     public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {

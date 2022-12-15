@@ -19,58 +19,58 @@ extension Teo {
     public struct CreateApplicationProxyRulesRequest: TCRequestModel {
         /// 站点ID
         public let zoneId: String
-        
+
         /// 代理ID
         public let proxyId: String
-        
+
         /// 规则列表
         public let rule: [ApplicationProxyRule]
-        
-        public init (zoneId: String, proxyId: String, rule: [ApplicationProxyRule]) {
+
+        public init(zoneId: String, proxyId: String, rule: [ApplicationProxyRule]) {
             self.zoneId = zoneId
             self.proxyId = proxyId
             self.rule = rule
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case proxyId = "ProxyId"
             case rule = "Rule"
         }
     }
-    
+
     /// CreateApplicationProxyRules返回参数结构体
     public struct CreateApplicationProxyRulesResponse: TCResponseModel {
         /// 新增的规则ID数组
         public let ruleId: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量创建应用代理规则
     @inlinable
-    public func createApplicationProxyRules(_ input: CreateApplicationProxyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationProxyRulesResponse > {
+    public func createApplicationProxyRules(_ input: CreateApplicationProxyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRulesResponse> {
         self.client.execute(action: "CreateApplicationProxyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建应用代理规则
     @inlinable
     public func createApplicationProxyRules(_ input: CreateApplicationProxyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRulesResponse {
         try await self.client.execute(action: "CreateApplicationProxyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量创建应用代理规则
     @inlinable
-    public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationProxyRulesResponse > {
+    public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRulesResponse> {
         self.createApplicationProxyRules(CreateApplicationProxyRulesRequest(zoneId: zoneId, proxyId: proxyId, rule: rule), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建应用代理规则
     @inlinable
     public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRulesResponse {

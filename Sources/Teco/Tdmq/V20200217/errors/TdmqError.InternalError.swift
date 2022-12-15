@@ -24,73 +24,73 @@ extension TCTdmqError {
             case systemError = "InternalError.SystemError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Broker服务异常。
         public static var brokerService: InternalError {
             InternalError(.brokerService)
         }
-        
+
         /// 获取属性失败。
         public static var getAttributesFailed: InternalError {
             InternalError(.getAttributesFailed)
         }
-        
+
         /// 内部错误。
         public static var illegalMessage: InternalError {
             InternalError(.illegalMessage)
         }
-        
+
         /// 重试可以成功。
         public static var retry: InternalError {
             InternalError(.retry)
         }
-        
+
         /// 系统错误。
         public static var systemError: InternalError {
             InternalError(.systemError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
-            case .brokerService: 
+            case .brokerService:
                 code = .internalError_BrokerService
-            case .getAttributesFailed: 
+            case .getAttributesFailed:
                 code = .internalError_GetAttributesFailed
-            case .illegalMessage: 
+            case .illegalMessage:
                 code = .internalError_IllegalMessage
-            case .retry: 
+            case .retry:
                 code = .internalError_Retry
-            case .systemError: 
+            case .systemError:
                 code = .internalError_SystemError
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCTdmqError(code, context: self.context)

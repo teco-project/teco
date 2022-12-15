@@ -22,16 +22,16 @@ extension Youmall {
     public struct DescribePersonVisitInfoRequest: TCRequestModel {
         /// 公司ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 偏移量：分页控制参数，第一页传0，第n页Offset=(n-1)*Limit
         public let offset: UInt64
-        
+
         /// Limit:每页的数据项，最大100，超过100会被强制指定为100
         public let limit: UInt64
-        
+
         /// 开始日期，格式yyyy-MM-dd，已废弃，请使用StartDateTime
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -39,7 +39,7 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startDate: Date?
-        
+
         /// 结束日期，格式yyyy-MM-dd，已废弃，请使用EndDateTime
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,10 +47,10 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endDate: Date?
-        
+
         /// 图片url过期时间：在当前时间+PictureExpires秒后，图片url无法继续正常访问；单位s；默认值1*24*60*60（1天）
         public let pictureExpires: UInt64?
-        
+
         /// 开始时间，格式yyyy-MM-dd HH:mm:ss
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -58,7 +58,7 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startDateTime: Date?
-        
+
         /// 结束时间，格式yyyy-MM-dd HH:mm:ss
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -66,8 +66,8 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endDateTime: Date?
-        
-        public init (companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil) {
+
+        public init(companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil) {
             self.companyId = companyId
             self.shopId = shopId
             self.offset = offset
@@ -78,7 +78,7 @@ extension Youmall {
             self.startDateTime = startDateTime
             self.endDateTime = endDateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -91,24 +91,24 @@ extension Youmall {
             case endDateTime = "EndDateTime"
         }
     }
-    
+
     /// DescribePersonVisitInfo返回参数结构体
     public struct DescribePersonVisitInfoResponse: TCResponseModel {
         /// 公司ID
         public let companyId: String
-        
+
         /// 门店ID
         public let shopId: UInt64
-        
+
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 用户到访明细
         public let personVisitInfoSet: [PersonVisitInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -117,15 +117,15 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取顾客到访信息列表
     ///
     /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonVisitInfoResponse > {
+    public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonVisitInfoResponse> {
         self.client.execute(action: "DescribePersonVisitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取顾客到访信息列表
     ///
     /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
@@ -133,15 +133,15 @@ extension Youmall {
     public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonVisitInfoResponse {
         try await self.client.execute(action: "DescribePersonVisitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取顾客到访信息列表
     ///
     /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describePersonVisitInfo(companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonVisitInfoResponse > {
+    public func describePersonVisitInfo(companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonVisitInfoResponse> {
         self.describePersonVisitInfo(DescribePersonVisitInfoRequest(companyId: companyId, shopId: shopId, offset: offset, limit: limit, startDate: startDate, endDate: endDate, pictureExpires: pictureExpires, startDateTime: startDateTime, endDateTime: endDateTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取顾客到访信息列表
     ///
     /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。

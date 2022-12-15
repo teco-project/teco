@@ -21,51 +21,51 @@ extension TCMonitorError {
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var accessCAMFail: AuthFailure {
             AuthFailure(.accessCAMFail)
         }
-        
+
         /// 请求未授权。请参考 CAM 文档对鉴权的说明。
         public static var unauthorizedOperation: AuthFailure {
             AuthFailure(.unauthorizedOperation)
         }
-        
+
         /// CAM签名/鉴权错误。
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-        
+
         public func asMonitorError() -> TCMonitorError {
             let code: TCMonitorError.Code
             switch self.error {
-            case .accessCAMFail: 
+            case .accessCAMFail:
                 code = .authFailure_AccessCAMFail
-            case .unauthorizedOperation: 
+            case .unauthorizedOperation:
                 code = .authFailure_UnauthorizedOperation
-            case .other: 
+            case .other:
                 code = .authFailure
             }
             return TCMonitorError(code, context: self.context)

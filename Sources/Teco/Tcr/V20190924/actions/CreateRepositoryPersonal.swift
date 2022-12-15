@@ -19,44 +19,44 @@ extension Tcr {
     public struct CreateRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名称
         public let repoName: String
-        
+
         /// 是否公共,1:公共,0:私有
         public let `public`: UInt64?
-        
+
         /// 仓库描述
         public let description: String?
-        
-        public init (repoName: String, public: UInt64? = nil, description: String? = nil) {
+
+        public init(repoName: String, public: UInt64? = nil, description: String? = nil) {
             self.repoName = repoName
             self.`public` = `public`
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
             case `public` = "Public"
             case description = "Description"
         }
     }
-    
+
     /// CreateRepositoryPersonal返回参数结构体
     public struct CreateRepositoryPersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
     @inlinable
-    public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryPersonalResponse > {
+    public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
         self.client.execute(action: "CreateRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
@@ -64,15 +64,15 @@ extension Tcr {
     public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryPersonalResponse {
         try await self.client.execute(action: "CreateRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
     @inlinable
-    public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryPersonalResponse > {
+    public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
         self.createRepositoryPersonal(CreateRepositoryPersonalRequest(repoName: repoName, public: `public`, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库

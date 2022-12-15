@@ -19,48 +19,48 @@ extension Cam {
     public struct DeleteServiceLinkedRoleRequest: TCRequestModel {
         /// 要删除的服务相关角色的名称。
         public let roleName: String
-        
-        public init (roleName: String) {
+
+        public init(roleName: String) {
             self.roleName = roleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case roleName = "RoleName"
         }
     }
-    
+
     /// DeleteServiceLinkedRole返回参数结构体
     public struct DeleteServiceLinkedRoleResponse: TCResponseModel {
         /// 删除任务ID，可用于检查删除服务相关角色状态。
         public let deletionTaskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case deletionTaskId = "DeletionTaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除服务相关角色
     @inlinable
-    public func deleteServiceLinkedRole(_ input: DeleteServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceLinkedRoleResponse > {
+    public func deleteServiceLinkedRole(_ input: DeleteServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceLinkedRoleResponse> {
         self.client.execute(action: "DeleteServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除服务相关角色
     @inlinable
     public func deleteServiceLinkedRole(_ input: DeleteServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceLinkedRoleResponse {
         try await self.client.execute(action: "DeleteServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除服务相关角色
     @inlinable
-    public func deleteServiceLinkedRole(roleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceLinkedRoleResponse > {
+    public func deleteServiceLinkedRole(roleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceLinkedRoleResponse> {
         self.deleteServiceLinkedRole(DeleteServiceLinkedRoleRequest(roleName: roleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除服务相关角色
     @inlinable
     public func deleteServiceLinkedRole(roleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceLinkedRoleResponse {

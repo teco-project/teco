@@ -20,34 +20,34 @@ extension Tag {
         /// 标签列表。
         /// N取值范围：0~9
         public let tags: [Tag]?
-        
-        public init (tags: [Tag]? = nil) {
+
+        public init(tags: [Tag]? = nil) {
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateTags返回参数结构体
     public struct CreateTagsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量创建标签
     ///
     /// 本接口用于创建多对标签键和标签值
     @inlinable
-    public func createTags(_ input: CreateTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagsResponse > {
+    public func createTags(_ input: CreateTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagsResponse> {
         self.client.execute(action: "CreateTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建标签
     ///
     /// 本接口用于创建多对标签键和标签值
@@ -55,15 +55,15 @@ extension Tag {
     public func createTags(_ input: CreateTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagsResponse {
         try await self.client.execute(action: "CreateTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量创建标签
     ///
     /// 本接口用于创建多对标签键和标签值
     @inlinable
-    public func createTags(tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagsResponse > {
+    public func createTags(tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagsResponse> {
         self.createTags(CreateTagsRequest(tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建标签
     ///
     /// 本接口用于创建多对标签键和标签值

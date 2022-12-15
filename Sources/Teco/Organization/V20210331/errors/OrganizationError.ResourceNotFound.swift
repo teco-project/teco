@@ -25,80 +25,80 @@ extension TCOrganizationError {
             case organizationNotExist = "ResourceNotFound.OrganizationNotExist"
             case organizationServiceNotExist = "ResourceNotFound.OrganizationServiceNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 成员可授权身份不存在。
         public static var memberIdentityNotExist: ResourceNotFound {
             ResourceNotFound(.memberIdentityNotExist)
         }
-        
+
         /// 成员不存在。
         public static var memberNotExist: ResourceNotFound {
             ResourceNotFound(.memberNotExist)
         }
-        
+
         /// 组织成员策略不存在。
         public static var memberPolicyNotExist: ResourceNotFound {
             ResourceNotFound(.memberPolicyNotExist)
         }
-        
+
         /// 组织成员不存在。
         public static var organizationMemberNotExist: ResourceNotFound {
             ResourceNotFound(.organizationMemberNotExist)
         }
-        
+
         /// 组织节点不在。
         public static var organizationNodeNotExist: ResourceNotFound {
             ResourceNotFound(.organizationNodeNotExist)
         }
-        
+
         /// 企业组织不存在。
         public static var organizationNotExist: ResourceNotFound {
             ResourceNotFound(.organizationNotExist)
         }
-        
+
         /// 集团服务不存在。
         public static var organizationServiceNotExist: ResourceNotFound {
             ResourceNotFound(.organizationServiceNotExist)
         }
-        
+
         public func asOrganizationError() -> TCOrganizationError {
             let code: TCOrganizationError.Code
             switch self.error {
-            case .memberIdentityNotExist: 
+            case .memberIdentityNotExist:
                 code = .resourceNotFound_MemberIdentityNotExist
-            case .memberNotExist: 
+            case .memberNotExist:
                 code = .resourceNotFound_MemberNotExist
-            case .memberPolicyNotExist: 
+            case .memberPolicyNotExist:
                 code = .resourceNotFound_MemberPolicyNotExist
-            case .organizationMemberNotExist: 
+            case .organizationMemberNotExist:
                 code = .resourceNotFound_OrganizationMemberNotExist
-            case .organizationNodeNotExist: 
+            case .organizationNodeNotExist:
                 code = .resourceNotFound_OrganizationNodeNotExist
-            case .organizationNotExist: 
+            case .organizationNotExist:
                 code = .resourceNotFound_OrganizationNotExist
-            case .organizationServiceNotExist: 
+            case .organizationServiceNotExist:
                 code = .resourceNotFound_OrganizationServiceNotExist
             }
             return TCOrganizationError(code, context: self.context)

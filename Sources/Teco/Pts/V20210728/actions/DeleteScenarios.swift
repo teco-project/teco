@@ -19,54 +19,54 @@ extension Pts {
     public struct DeleteScenariosRequest: TCRequestModel {
         /// 场景ID数组
         public let scenarioIds: [String]
-        
+
         /// 项目ID
         public let projectId: String
-        
+
         /// 是否删除场景相关的任务。默认为否。
         public let deleteJobs: Bool?
-        
-        public init (scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil) {
+
+        public init(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil) {
             self.scenarioIds = scenarioIds
             self.projectId = projectId
             self.deleteJobs = deleteJobs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioIds = "ScenarioIds"
             case projectId = "ProjectId"
             case deleteJobs = "DeleteJobs"
         }
     }
-    
+
     /// DeleteScenarios返回参数结构体
     public struct DeleteScenariosResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除场景
     @inlinable
-    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScenariosResponse > {
+    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScenariosResponse> {
         self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除场景
     @inlinable
     public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
         try await self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除场景
     @inlinable
-    public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScenariosResponse > {
+    public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScenariosResponse> {
         self.deleteScenarios(DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除场景
     @inlinable
     public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {

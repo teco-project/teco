@@ -19,43 +19,43 @@ extension Rum {
     public struct CreateStarProjectRequest: TCRequestModel {
         /// 实例ID：taw-123
         public let instanceID: String
-        
+
         /// 项目ID
         public let id: Int64
-        
-        public init (instanceID: String, id: Int64) {
+
+        public init(instanceID: String, id: Int64) {
             self.instanceID = instanceID
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceID = "InstanceID"
             case id = "ID"
         }
     }
-    
+
     /// CreateStarProject返回参数结构体
     public struct CreateStarProjectResponse: TCResponseModel {
         /// 接口返回信息
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加星标项目
     ///
     /// 个人用户添加星标项目
     @inlinable
-    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStarProjectResponse > {
+    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStarProjectResponse> {
         self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加星标项目
     ///
     /// 个人用户添加星标项目
@@ -63,15 +63,15 @@ extension Rum {
     public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
         try await self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加星标项目
     ///
     /// 个人用户添加星标项目
     @inlinable
-    public func createStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStarProjectResponse > {
+    public func createStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStarProjectResponse> {
         self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加星标项目
     ///
     /// 个人用户添加星标项目

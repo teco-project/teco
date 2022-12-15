@@ -19,53 +19,53 @@ extension Iotvideo {
     public struct DescribeDeviceDataRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
-        public init (productId: String, deviceName: String) {
+
+        public init(productId: String, deviceName: String) {
             self.productId = productId
             self.deviceName = deviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
         }
     }
-    
+
     /// DescribeDeviceData返回参数结构体
     public struct DescribeDeviceDataResponse: TCResponseModel {
         /// 设备数据
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备属性数据
     @inlinable
-    public func describeDeviceData(_ input: DescribeDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceDataResponse > {
+    public func describeDeviceData(_ input: DescribeDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataResponse> {
         self.client.execute(action: "DescribeDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备属性数据
     @inlinable
     public func describeDeviceData(_ input: DescribeDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataResponse {
         try await self.client.execute(action: "DescribeDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备属性数据
     @inlinable
-    public func describeDeviceData(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceDataResponse > {
+    public func describeDeviceData(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataResponse> {
         self.describeDeviceData(DescribeDeviceDataRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备属性数据
     @inlinable
     public func describeDeviceData(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataResponse {

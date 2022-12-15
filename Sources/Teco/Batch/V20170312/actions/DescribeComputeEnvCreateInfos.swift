@@ -19,27 +19,27 @@ extension Batch {
     public struct DescribeComputeEnvCreateInfosRequest: TCRequestModel {
         /// 计算环境ID列表，与Filters参数不能同时指定。
         public let envIds: [String]?
-        
+
         /// 过滤条件
         /// <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
         /// <li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li>
         /// <li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>
         /// 与EnvIds参数不能同时指定。
         public let filters: [Filter]?
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 返回数量
         public let limit: UInt64?
-        
-        public init (envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.envIds = envIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envIds = "EnvIds"
             case filters = "Filters"
@@ -47,33 +47,33 @@ extension Batch {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeComputeEnvCreateInfos返回参数结构体
     public struct DescribeComputeEnvCreateInfosResponse: TCResponseModel {
         /// 计算环境数量
         public let totalCount: Int64
-        
+
         /// 计算环境创建信息列表
         public let computeEnvCreateInfoSet: [ComputeEnvCreateInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case computeEnvCreateInfoSet = "ComputeEnvCreateInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
-    public func describeComputeEnvCreateInfos(_ input: DescribeComputeEnvCreateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvCreateInfosResponse > {
+    public func describeComputeEnvCreateInfos(_ input: DescribeComputeEnvCreateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfosResponse> {
         self.client.execute(action: "DescribeComputeEnvCreateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
@@ -81,15 +81,15 @@ extension Batch {
     public func describeComputeEnvCreateInfos(_ input: DescribeComputeEnvCreateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfosResponse {
         try await self.client.execute(action: "DescribeComputeEnvCreateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
-    public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvCreateInfosResponse > {
+    public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfosResponse> {
         self.describeComputeEnvCreateInfos(DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。

@@ -19,26 +19,26 @@ extension Tcss {
     public struct CreateVirusScanTaskRequest: TCRequestModel {
         /// 是否扫描所有路径
         public let scanPathAll: Bool
-        
+
         /// 扫描范围0容器1主机节点
         public let scanRangeType: UInt64
-        
+
         /// true 全选，false 自选
         public let scanRangeAll: Bool
-        
+
         /// 超时时长，单位小时
         public let timeout: UInt64
-        
+
         /// 当ScanPathAll为false生效 0扫描以下路径 1、扫描除以下路径
         public let scanPathType: UInt64?
-        
+
         /// 自选扫描范围的容器id或者主机id 根据ScanRangeType决定
         public let scanIds: [String]?
-        
+
         /// 自选排除或扫描的地址
         public let scanPath: [String]?
-        
-        public init (scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil) {
+
+        public init(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil) {
             self.scanPathAll = scanPathAll
             self.scanRangeType = scanRangeType
             self.scanRangeAll = scanRangeAll
@@ -47,7 +47,7 @@ extension Tcss {
             self.scanIds = scanIds
             self.scanPath = scanPath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scanPathAll = "ScanPathAll"
             case scanRangeType = "ScanRangeType"
@@ -58,39 +58,39 @@ extension Tcss {
             case scanPath = "ScanPath"
         }
     }
-    
+
     /// CreateVirusScanTask返回参数结构体
     public struct CreateVirusScanTaskResponse: TCResponseModel {
         /// 任务id
         public let taskID: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运行时文件查杀一键扫描
     @inlinable
-    public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanTaskResponse > {
+    public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanTaskResponse> {
         self.client.execute(action: "CreateVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时文件查杀一键扫描
     @inlinable
     public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
         try await self.client.execute(action: "CreateVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运行时文件查杀一键扫描
     @inlinable
-    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanTaskResponse > {
+    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanTaskResponse> {
         self.createVirusScanTask(CreateVirusScanTaskRequest(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath), logger: logger, on: eventLoop)
     }
-    
+
     /// 运行时文件查杀一键扫描
     @inlinable
     public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {

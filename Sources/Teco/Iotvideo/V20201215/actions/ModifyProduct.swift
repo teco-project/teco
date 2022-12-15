@@ -19,54 +19,54 @@ extension Iotvideo {
     public struct ModifyProductRequest: TCRequestModel {
         /// 产品id
         public let productId: String
-        
+
         /// 修改的产品名称 （支持中文、英文、数字、下划线组合，最多不超过20个字符）
         public let productName: String?
-        
+
         /// 修改的产品描述 （最多不超过128个字符）
         public let productDescription: String?
-        
-        public init (productId: String, productName: String? = nil, productDescription: String? = nil) {
+
+        public init(productId: String, productName: String? = nil, productDescription: String? = nil) {
             self.productId = productId
             self.productName = productName
             self.productDescription = productDescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case productName = "ProductName"
             case productDescription = "ProductDescription"
         }
     }
-    
+
     /// ModifyProduct返回参数结构体
     public struct ModifyProductResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改产品信息
     @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
         self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改产品信息
     @inlinable
     public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
         try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改产品信息
     @inlinable
-    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
         self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改产品信息
     @inlinable
     public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {

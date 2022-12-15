@@ -19,53 +19,53 @@ extension Gpm {
     public struct StartMatchingRequest: TCRequestModel {
         /// 匹配 Code。
         public let matchCode: String
-        
+
         /// 玩家信息 最多 200 条。
         public let players: [Player]
-        
+
         /// 匹配票据 ID 默认空字符串，为空则由 GPM 自动生成 长度 128，只能包含数字、字母、. 和 -
         public let matchTicketId: String?
-        
-        public init (matchCode: String, players: [Player], matchTicketId: String? = nil) {
+
+        public init(matchCode: String, players: [Player], matchTicketId: String? = nil) {
             self.matchCode = matchCode
             self.players = players
             self.matchTicketId = matchTicketId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case matchCode = "MatchCode"
             case players = "Players"
             case matchTicketId = "MatchTicketId"
         }
     }
-    
+
     /// StartMatching返回参数结构体
     public struct StartMatchingResponse: TCResponseModel {
         /// 错误码。
         public let errCode: UInt64
-        
+
         /// 匹配票据 ID长度 128。
         public let matchTicketId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case matchTicketId = "MatchTicketId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发起匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
     @inlinable
-    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMatchingResponse > {
+    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
         self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发起匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
@@ -74,16 +74,16 @@ extension Gpm {
     public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
         try await self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发起匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
     @inlinable
-    public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMatchingResponse > {
+    public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
         self.startMatching(StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId), logger: logger, on: eventLoop)
     }
-    
+
     /// 发起匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持

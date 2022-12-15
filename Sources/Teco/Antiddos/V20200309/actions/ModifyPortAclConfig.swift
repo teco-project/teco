@@ -19,54 +19,54 @@ extension Antiddos {
     public struct ModifyPortAclConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
+
         /// 旧端口acl策略
         public let oldAclConfig: AclConfig
-        
+
         /// 新端口acl策略
         public let newAclConfig: AclConfig
-        
-        public init (instanceId: String, oldAclConfig: AclConfig, newAclConfig: AclConfig) {
+
+        public init(instanceId: String, oldAclConfig: AclConfig, newAclConfig: AclConfig) {
             self.instanceId = instanceId
             self.oldAclConfig = oldAclConfig
             self.newAclConfig = newAclConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case oldAclConfig = "OldAclConfig"
             case newAclConfig = "NewAclConfig"
         }
     }
-    
+
     /// ModifyPortAclConfig返回参数结构体
     public struct ModifyPortAclConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改DDoS防护的端口acl策略
     @inlinable
-    public func modifyPortAclConfig(_ input: ModifyPortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPortAclConfigResponse > {
+    public func modifyPortAclConfig(_ input: ModifyPortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPortAclConfigResponse> {
         self.client.execute(action: "ModifyPortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护的端口acl策略
     @inlinable
     public func modifyPortAclConfig(_ input: ModifyPortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPortAclConfigResponse {
         try await self.client.execute(action: "ModifyPortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改DDoS防护的端口acl策略
     @inlinable
-    public func modifyPortAclConfig(instanceId: String, oldAclConfig: AclConfig, newAclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPortAclConfigResponse > {
+    public func modifyPortAclConfig(instanceId: String, oldAclConfig: AclConfig, newAclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPortAclConfigResponse> {
         self.modifyPortAclConfig(ModifyPortAclConfigRequest(instanceId: instanceId, oldAclConfig: oldAclConfig, newAclConfig: newAclConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护的端口acl策略
     @inlinable
     public func modifyPortAclConfig(instanceId: String, oldAclConfig: AclConfig, newAclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPortAclConfigResponse {

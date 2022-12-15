@@ -19,49 +19,49 @@ extension Taf {
     public struct RecognizeCustomizedAudienceRequest: TCRequestModel {
         /// 业务入参
         public let bspData: InputRecognizeTargetAudience
-        
-        public init (bspData: InputRecognizeTargetAudience) {
+
+        public init(bspData: InputRecognizeTargetAudience) {
             self.bspData = bspData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bspData = "BspData"
         }
     }
-    
+
     /// RecognizeCustomizedAudience返回参数结构体
     public struct RecognizeCustomizedAudienceResponse: TCResponseModel {
         /// 业务出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: OutputRecognizeTargetAudience?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 流量反欺诈-流量验准定制版
     @inlinable
-    public func recognizeCustomizedAudience(_ input: RecognizeCustomizedAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeCustomizedAudienceResponse > {
+    public func recognizeCustomizedAudience(_ input: RecognizeCustomizedAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCustomizedAudienceResponse> {
         self.client.execute(action: "RecognizeCustomizedAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 流量反欺诈-流量验准定制版
     @inlinable
     public func recognizeCustomizedAudience(_ input: RecognizeCustomizedAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCustomizedAudienceResponse {
         try await self.client.execute(action: "RecognizeCustomizedAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 流量反欺诈-流量验准定制版
     @inlinable
-    public func recognizeCustomizedAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeCustomizedAudienceResponse > {
+    public func recognizeCustomizedAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCustomizedAudienceResponse> {
         self.recognizeCustomizedAudience(RecognizeCustomizedAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
     }
-    
+
     /// 流量反欺诈-流量验准定制版
     @inlinable
     public func recognizeCustomizedAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCustomizedAudienceResponse {

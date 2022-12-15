@@ -19,43 +19,43 @@ extension Dcdb {
     public struct ModifyDBInstanceNameRequest: TCRequestModel {
         /// 实例ID，形如tdsql-hdaprz0v
         public let instanceId: String
-        
+
         /// 实例名称
         public let instanceName: String
-        
-        public init (instanceId: String, instanceName: String) {
+
+        public init(instanceId: String, instanceName: String) {
             self.instanceId = instanceId
             self.instanceName = instanceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
         }
     }
-    
+
     /// ModifyDBInstanceName返回参数结构体
     public struct ModifyDBInstanceNameResponse: TCResponseModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改实例名字
     @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNameResponse> {
         self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改实例名字
@@ -63,15 +63,15 @@ extension Dcdb {
     public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
         try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改实例名字
     @inlinable
-    public func modifyDBInstanceName(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+    public func modifyDBInstanceName(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNameResponse> {
         self.modifyDBInstanceName(ModifyDBInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改实例名字

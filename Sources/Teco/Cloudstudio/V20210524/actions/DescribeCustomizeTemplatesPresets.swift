@@ -19,54 +19,54 @@ extension Cloudstudio {
     public struct DescribeCustomizeTemplatesPresetsRequest: TCRequestModel {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
-        
+
         /// 空间标识
         public let spaceKey: String?
-        
-        public init (cloudStudioSessionTeam: String, spaceKey: String? = nil) {
+
+        public init(cloudStudioSessionTeam: String, spaceKey: String? = nil) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.spaceKey = spaceKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
             case spaceKey = "SpaceKey"
         }
     }
-    
+
     /// DescribeCustomizeTemplatesPresets返回参数结构体
     public struct DescribeCustomizeTemplatesPresetsResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CustomizeTemplatesPresetsInfo?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取创建模板的预置参数
     @inlinable
-    public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesPresetsResponse > {
+    public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesPresetsResponse> {
         self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取创建模板的预置参数
     @inlinable
     public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesPresetsResponse {
         try await self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取创建模板的预置参数
     @inlinable
-    public func describeCustomizeTemplatesPresets(cloudStudioSessionTeam: String, spaceKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesPresetsResponse > {
+    public func describeCustomizeTemplatesPresets(cloudStudioSessionTeam: String, spaceKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesPresetsResponse> {
         self.describeCustomizeTemplatesPresets(DescribeCustomizeTemplatesPresetsRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取创建模板的预置参数
     @inlinable
     public func describeCustomizeTemplatesPresets(cloudStudioSessionTeam: String, spaceKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesPresetsResponse {

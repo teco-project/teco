@@ -19,23 +19,23 @@ extension Cdn {
     public struct DescribeDomainsConfigRequest: TCRequestModel {
         /// 分页查询偏移量，默认为 0
         public let offset: Int64?
-        
+
         /// 分页查询限制数目，默认为 100，最大可设置为 1000
         public let limit: Int64?
-        
+
         /// 查询条件过滤器，复杂类型
         public let filters: [DomainFilter]?
-        
+
         /// 排序规则
         public let sort: Sort?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.sort = sort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -43,34 +43,34 @@ extension Cdn {
             case sort = "Sort"
         }
     }
-    
+
     /// DescribeDomainsConfig返回参数结构体
     public struct DescribeDomainsConfigResponse: TCResponseModel {
         /// 域名列表
         public let domains: [DetailDomain]
-        
+
         /// 符合查询条件的域名总数
         /// 用于分页查询
         public let totalNumber: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domains = "Domains"
             case totalNumber = "TotalNumber"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询域名详细配置
     ///
     /// DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。
     @inlinable
-    public func describeDomainsConfig(_ input: DescribeDomainsConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsConfigResponse > {
+    public func describeDomainsConfig(_ input: DescribeDomainsConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsConfigResponse> {
         self.client.execute(action: "DescribeDomainsConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询域名详细配置
     ///
     /// DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。
@@ -78,15 +78,15 @@ extension Cdn {
     public func describeDomainsConfig(_ input: DescribeDomainsConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsConfigResponse {
         try await self.client.execute(action: "DescribeDomainsConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询域名详细配置
     ///
     /// DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。
     @inlinable
-    public func describeDomainsConfig(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsConfigResponse > {
+    public func describeDomainsConfig(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsConfigResponse> {
         self.describeDomainsConfig(DescribeDomainsConfigRequest(offset: offset, limit: limit, filters: filters, sort: sort), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询域名详细配置
     ///
     /// DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。

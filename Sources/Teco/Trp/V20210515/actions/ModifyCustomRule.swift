@@ -19,27 +19,27 @@ extension Trp {
     public struct ModifyCustomRuleRequest: TCRequestModel {
         /// 码规则ID
         public let customId: String
-        
+
         /// 规则名称
         public let name: String
-        
+
         /// 码长度
         public let codeLength: UInt64
-        
+
         /// 码段配置
         public let codeParts: [CodePart]
-        
+
         /// 企业ID
         public let corpId: UInt64?
-        
-        public init (customId: String, name: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil) {
+
+        public init(customId: String, name: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil) {
             self.customId = customId
             self.name = name
             self.codeLength = codeLength
             self.codeParts = codeParts
             self.corpId = corpId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customId = "CustomId"
             case name = "Name"
@@ -48,40 +48,40 @@ extension Trp {
             case corpId = "CorpId"
         }
     }
-    
+
     /// ModifyCustomRule返回参数结构体
     public struct ModifyCustomRuleResponse: TCResponseModel {
         /// 码规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case customId = "CustomId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改自定义码规则
     @inlinable
-    public func modifyCustomRule(_ input: ModifyCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleResponse > {
+    public func modifyCustomRule(_ input: ModifyCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleResponse> {
         self.client.execute(action: "ModifyCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义码规则
     @inlinable
     public func modifyCustomRule(_ input: ModifyCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleResponse {
         try await self.client.execute(action: "ModifyCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改自定义码规则
     @inlinable
-    public func modifyCustomRule(customId: String, name: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleResponse > {
+    public func modifyCustomRule(customId: String, name: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleResponse> {
         self.modifyCustomRule(ModifyCustomRuleRequest(customId: customId, name: name, codeLength: codeLength, codeParts: codeParts, corpId: corpId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改自定义码规则
     @inlinable
     public func modifyCustomRule(customId: String, name: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleResponse {

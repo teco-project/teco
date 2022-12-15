@@ -19,23 +19,23 @@ extension Essbasic {
     public struct ChannelCreateFlowGroupByFilesRequest: TCRequestModel {
         /// 每个子合同的发起所需的信息，数量限制2-100
         public let flowFileInfos: [FlowFileInfo]
-        
+
         /// 合同组名称，长度不超过200个字符
         public let flowGroupName: String
-        
+
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent?
-        
+
         /// 操作者的信息
         public let `operator`: UserInfo?
-        
-        public init (flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil) {
+
+        public init(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil) {
             self.flowFileInfos = flowFileInfos
             self.flowGroupName = flowGroupName
             self.agent = agent
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case flowFileInfos = "FlowFileInfos"
             case flowGroupName = "FlowGroupName"
@@ -43,35 +43,35 @@ extension Essbasic {
             case `operator` = "Operator"
         }
     }
-    
+
     /// ChannelCreateFlowGroupByFiles返回参数结构体
     public struct ChannelCreateFlowGroupByFilesResponse: TCResponseModel {
         /// 合同组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowGroupId: String?
-        
+
         /// 子合同ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowIds: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowGroupId = "FlowGroupId"
             case flowIds = "FlowIds"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowGroupByFilesResponse > {
+    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
         self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
@@ -79,15 +79,15 @@ extension Essbasic {
     public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
         try await self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowGroupByFilesResponse > {
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
         self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。

@@ -19,26 +19,26 @@ extension Dayu {
     public struct ModifyDDoSPolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 策略ID
         public let policyId: String
-        
+
         /// 协议禁用，必须填写且数组长度必须为1
         public let dropOptions: [DDoSPolicyDropOption]
-        
+
         /// 端口禁用，当没有禁用端口时填空数组
         public let portLimits: [DDoSPolicyPortLimit]?
-        
+
         /// IP黑白名单，当没有IP黑白名单时填空数组
         public let ipAllowDenys: [IpBlackWhite]?
-        
+
         /// 报文过滤，当没有报文过滤时填空数组
         public let packetFilters: [DDoSPolicyPacketFilter]?
-        
+
         /// 水印策略参数，当没有启用水印功能时填空数组，最多只能传一条水印策略（即数组大小不超过1）
         public let waterPrint: [WaterPrintPolicy]?
-        
-        public init (business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil) {
+
+        public init(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil) {
             self.business = business
             self.policyId = policyId
             self.dropOptions = dropOptions
@@ -47,7 +47,7 @@ extension Dayu {
             self.packetFilters = packetFilters
             self.waterPrint = waterPrint
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case policyId = "PolicyId"
@@ -58,39 +58,39 @@ extension Dayu {
             case waterPrint = "WaterPrint"
         }
     }
-    
+
     /// ModifyDDoSPolicy返回参数结构体
     public struct ModifyDDoSPolicyResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改DDoS高级策略
     @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
         self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS高级策略
     @inlinable
     public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
         try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改DDoS高级策略
     @inlinable
-    public func modifyDDoSPolicy(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+    public func modifyDDoSPolicy(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
         self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(business: business, policyId: policyId, dropOptions: dropOptions, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS高级策略
     @inlinable
     public func modifyDDoSPolicy(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {

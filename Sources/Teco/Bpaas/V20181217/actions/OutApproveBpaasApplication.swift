@@ -19,54 +19,54 @@ extension Bpaas {
     public struct OutApproveBpaasApplicationRequest: TCRequestModel {
         /// 状态  1:通过  2:拒绝
         public let status: UInt64
-        
+
         /// 审批单id
         public let approveId: UInt64
-        
+
         /// 审批意见
         public let msg: String?
-        
-        public init (status: UInt64, approveId: UInt64, msg: String? = nil) {
+
+        public init(status: UInt64, approveId: UInt64, msg: String? = nil) {
             self.status = status
             self.approveId = approveId
             self.msg = msg
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case approveId = "ApproveId"
             case msg = "Msg"
         }
     }
-    
+
     /// OutApproveBpaasApplication返回参数结构体
     public struct OutApproveBpaasApplicationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 外部审批申请单
     @inlinable
-    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OutApproveBpaasApplicationResponse > {
+    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OutApproveBpaasApplicationResponse> {
         self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 外部审批申请单
     @inlinable
     public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
         try await self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 外部审批申请单
     @inlinable
-    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OutApproveBpaasApplicationResponse > {
+    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OutApproveBpaasApplicationResponse> {
         self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), logger: logger, on: eventLoop)
     }
-    
+
     /// 外部审批申请单
     @inlinable
     public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {

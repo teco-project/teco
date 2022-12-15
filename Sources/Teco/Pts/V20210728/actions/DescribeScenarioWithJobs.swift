@@ -19,38 +19,38 @@ extension Pts {
     public struct DescribeScenarioWithJobsRequest: TCRequestModel {
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大为100
         public let limit: Int64?
-        
+
         /// 项目ID数组
         public let projectIds: [String]?
-        
+
         /// 场景ID数组
         public let scenarioIds: [String]?
-        
+
         /// 场景名
         public let scenarioName: String?
-        
+
         /// 场景状态数组
         public let scenarioStatus: Int64?
-        
+
         /// 排序的列
         public let orderBy: String?
-        
+
         /// 是否正序
         public let ascend: Bool?
-        
+
         /// job相关参数
         public let scenarioRelatedJobsParams: ScenarioRelatedJobsParams?
-        
+
         /// 是否需要返回场景的脚本内容
         public let ignoreScript: Bool?
-        
+
         /// 是否需要返回测试数据文件信息
         public let ignoreDataset: Bool?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil) {
             self.offset = offset
             self.limit = limit
             self.projectIds = projectIds
@@ -63,7 +63,7 @@ extension Pts {
             self.ignoreScript = ignoreScript
             self.ignoreDataset = ignoreDataset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -78,34 +78,34 @@ extension Pts {
             case ignoreDataset = "IgnoreDataset"
         }
     }
-    
+
     /// DescribeScenarioWithJobs返回参数结构体
     public struct DescribeScenarioWithJobsResponse: TCResponseModel {
         /// 场景配置以及附带的job内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioWithJobsSet: [ScenarioWithJobs]?
-        
+
         /// 场景总数
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioWithJobsSet = "ScenarioWithJobsSet"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询场景及对应的任务
     ///
     /// 查询场景配置并附带已经执行的任务内容
     @inlinable
-    public func describeScenarioWithJobs(_ input: DescribeScenarioWithJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenarioWithJobsResponse > {
+    public func describeScenarioWithJobs(_ input: DescribeScenarioWithJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenarioWithJobsResponse> {
         self.client.execute(action: "DescribeScenarioWithJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询场景及对应的任务
     ///
     /// 查询场景配置并附带已经执行的任务内容
@@ -113,15 +113,15 @@ extension Pts {
     public func describeScenarioWithJobs(_ input: DescribeScenarioWithJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenarioWithJobsResponse {
         try await self.client.execute(action: "DescribeScenarioWithJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询场景及对应的任务
     ///
     /// 查询场景配置并附带已经执行的任务内容
     @inlinable
-    public func describeScenarioWithJobs(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenarioWithJobsResponse > {
+    public func describeScenarioWithJobs(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenarioWithJobsResponse> {
         self.describeScenarioWithJobs(DescribeScenarioWithJobsRequest(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询场景及对应的任务
     ///
     /// 查询场景配置并附带已经执行的任务内容

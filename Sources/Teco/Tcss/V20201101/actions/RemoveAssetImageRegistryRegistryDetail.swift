@@ -19,44 +19,44 @@ extension Tcss {
     public struct RemoveAssetImageRegistryRegistryDetailRequest: TCRequestModel {
         /// 仓库唯一id
         public let registryId: Int64
-        
-        public init (registryId: Int64) {
+
+        public init(registryId: Int64) {
             self.registryId = registryId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
         }
     }
-    
+
     /// RemoveAssetImageRegistryRegistryDetail返回参数结构体
     public struct RemoveAssetImageRegistryRegistryDetailResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除单个镜像仓库详细信息
     @inlinable
-    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAssetImageRegistryRegistryDetailResponse > {
+    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAssetImageRegistryRegistryDetailResponse> {
         self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除单个镜像仓库详细信息
     @inlinable
     public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
         try await self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除单个镜像仓库详细信息
     @inlinable
-    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAssetImageRegistryRegistryDetailResponse > {
+    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAssetImageRegistryRegistryDetailResponse> {
         self.removeAssetImageRegistryRegistryDetail(RemoveAssetImageRegistryRegistryDetailRequest(registryId: registryId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除单个镜像仓库详细信息
     @inlinable
     public func removeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {

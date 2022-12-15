@@ -19,23 +19,23 @@ extension Ckafka {
     public struct BatchModifyGroupOffsetsRequest: TCRequestModel {
         /// 消费分组名称
         public let groupName: String
-        
+
         /// 实例名称
         public let instanceId: String
-        
+
         /// partition信息
         public let partitions: [Partitions]
-        
+
         /// 指定topic，默认所有topic
         public let topicName: [String]?
-        
-        public init (groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil) {
+
+        public init(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil) {
             self.groupName = groupName
             self.instanceId = instanceId
             self.partitions = partitions
             self.topicName = topicName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupName = "GroupName"
             case instanceId = "InstanceId"
@@ -43,39 +43,39 @@ extension Ckafka {
             case topicName = "TopicName"
         }
     }
-    
+
     /// BatchModifyGroupOffsets返回参数结构体
     public struct BatchModifyGroupOffsetsResponse: TCResponseModel {
         /// 返回结果
         public let result: JgwOperateResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量修改消费组offset
     @inlinable
-    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyGroupOffsetsResponse > {
+    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyGroupOffsetsResponse> {
         self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改消费组offset
     @inlinable
     public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
         try await self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量修改消费组offset
     @inlinable
-    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyGroupOffsetsResponse > {
+    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyGroupOffsetsResponse> {
         self.batchModifyGroupOffsets(BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改消费组offset
     @inlinable
     public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {

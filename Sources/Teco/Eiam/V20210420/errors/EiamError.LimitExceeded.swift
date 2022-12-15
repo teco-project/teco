@@ -21,52 +21,52 @@ extension TCEiamError {
             case parameterLengthLimitExceeded = "LimitExceeded.ParameterLengthLimitExceeded"
             case secondaryNodeCountLimitExceeded = "LimitExceeded.SecondaryNodeCountLimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 数据条目数超出最大限制。
         public static var itemsNumberLimitExceeded: LimitExceeded {
             LimitExceeded(.itemsNumberLimitExceeded)
         }
-        
+
         /// 输入参数超出长度限制。
         public static var parameterLengthLimitExceeded: LimitExceeded {
             LimitExceeded(.parameterLengthLimitExceeded)
         }
-        
+
         /// 用户的次要机构超出数量上限。
         public static var secondaryNodeCountLimitExceeded: LimitExceeded {
             LimitExceeded(.secondaryNodeCountLimitExceeded)
         }
-        
+
         public func asEiamError() -> TCEiamError {
             let code: TCEiamError.Code
             switch self.error {
-            case .itemsNumberLimitExceeded: 
+            case .itemsNumberLimitExceeded:
                 code = .limitExceeded_ItemsNumberLimitExceeded
-            case .parameterLengthLimitExceeded: 
+            case .parameterLengthLimitExceeded:
                 code = .limitExceeded_ParameterLengthLimitExceeded
-            case .secondaryNodeCountLimitExceeded: 
+            case .secondaryNodeCountLimitExceeded:
                 code = .limitExceeded_SecondaryNodeCountLimitExceeded
             }
             return TCEiamError(code, context: self.context)

@@ -20,18 +20,18 @@ import TecoDateHelpers
 extension Cws {
     /// DescribeConfig请求参数结构体
     public struct DescribeConfigRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeConfig返回参数结构体
     public struct DescribeConfigResponse: TCResponseModel {
         /// 漏洞告警通知等级，4位分别代表：高危、中危、低危、提示。
         public let noticeLevel: String
-        
+
         /// 配置ID。
         public let id: UInt64
-        
+
         /// 记录创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -39,7 +39,7 @@ extension Cws {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date
-        
+
         /// 记录更新新建。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,16 +47,16 @@ extension Cws {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date
-        
+
         /// 云用户appid。
         public let appid: UInt64
-        
+
         /// 内容检测通知等级-1:通知,0-不通知
         public let contentLevel: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case noticeLevel = "NoticeLevel"
             case id = "Id"
@@ -67,15 +67,15 @@ extension Cws {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看用户配置列表
     ///
     /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
     @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
         self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看用户配置列表
     ///
     /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
@@ -83,15 +83,15 @@ extension Cws {
     public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
         try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看用户配置列表
     ///
     /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
     @inlinable
-    public func describeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+    public func describeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
         self.describeConfig(DescribeConfigRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看用户配置列表
     ///
     /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。

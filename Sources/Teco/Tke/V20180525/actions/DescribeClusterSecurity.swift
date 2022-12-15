@@ -19,51 +19,51 @@ extension Tke {
     public struct DescribeClusterSecurityRequest: TCRequestModel {
         /// 集群 ID，请填写 查询集群列表 接口中返回的 clusterId 字段
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// DescribeClusterSecurity返回参数结构体
     public struct DescribeClusterSecurityResponse: TCResponseModel {
         /// 集群的账号名称
         public let userName: String
-        
+
         /// 集群的访问密码
         public let password: String
-        
+
         /// 集群访问CA证书
         public let certificationAuthority: String
-        
+
         /// 集群访问的地址
         public let clusterExternalEndpoint: String
-        
+
         /// 集群访问的域名
         public let domain: String
-        
+
         /// 集群Endpoint地址
         public let pgwEndpoint: String
-        
+
         /// 集群访问策略组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityPolicy: [String]?
-        
+
         /// 集群Kubeconfig文件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeconfig: String?
-        
+
         /// 集群JnsGw的访问地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jnsGwEndpoint: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userName = "UserName"
             case password = "Password"
@@ -77,25 +77,25 @@ extension Tke {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 集群的密钥信息
     @inlinable
-    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSecurityResponse > {
+    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSecurityResponse> {
         self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 集群的密钥信息
     @inlinable
     public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
         try await self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 集群的密钥信息
     @inlinable
-    public func describeClusterSecurity(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSecurityResponse > {
+    public func describeClusterSecurity(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSecurityResponse> {
         self.describeClusterSecurity(DescribeClusterSecurityRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 集群的密钥信息
     @inlinable
     public func describeClusterSecurity(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {

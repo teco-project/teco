@@ -19,23 +19,23 @@ extension Rum {
     public struct DescribeScoresRequest: TCRequestModel {
         /// 结束时间
         public let endTime: String
-        
+
         /// 开始时间
         public let startTime: String
-        
+
         /// 项目ID
         public let id: Int64?
-        
+
         /// 该参数已废弃
         public let isDemo: Int64?
-        
-        public init (endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil) {
+
+        public init(endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil) {
             self.endTime = endTime
             self.startTime = startTime
             self.id = id
             self.isDemo = isDemo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case endTime = "EndTime"
             case startTime = "StartTime"
@@ -43,39 +43,39 @@ extension Rum {
             case isDemo = "IsDemo"
         }
     }
-    
+
     /// DescribeScores返回参数结构体
     public struct DescribeScoresResponse: TCResponseModel {
         /// 数组
         public let scoreSet: [ScoreInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scoreSet = "ScoreSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取首页分数列表
     @inlinable
-    public func describeScores(_ input: DescribeScoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScoresResponse > {
+    public func describeScores(_ input: DescribeScoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScoresResponse> {
         self.client.execute(action: "DescribeScores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取首页分数列表
     @inlinable
     public func describeScores(_ input: DescribeScoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScoresResponse {
         try await self.client.execute(action: "DescribeScores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取首页分数列表
     @inlinable
-    public func describeScores(endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScoresResponse > {
+    public func describeScores(endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScoresResponse> {
         self.describeScores(DescribeScoresRequest(endTime: endTime, startTime: startTime, id: id, isDemo: isDemo), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取首页分数列表
     @inlinable
     public func describeScores(endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScoresResponse {

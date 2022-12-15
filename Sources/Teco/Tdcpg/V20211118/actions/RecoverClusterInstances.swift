@@ -19,37 +19,37 @@ extension Tdcpg {
     public struct RecoverClusterInstancesRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 实例ID列表
         public let instanceIdSet: [String]
-        
+
         /// 购买时长，单位：月。取值范围为[1,60]，默认值为1。
         /// 只有当PayMode为PREPAID时生效。
         public let period: UInt64?
-        
-        public init (clusterId: String, instanceIdSet: [String], period: UInt64? = nil) {
+
+        public init(clusterId: String, instanceIdSet: [String], period: UInt64? = nil) {
             self.clusterId = clusterId
             self.instanceIdSet = instanceIdSet
             self.period = period
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case instanceIdSet = "InstanceIdSet"
             case period = "Period"
         }
     }
-    
+
     /// RecoverClusterInstances返回参数结构体
     public struct RecoverClusterInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 恢复实例
     ///
     /// 恢复实例。此接口的使用场景包括：
@@ -57,10 +57,10 @@ extension Tdcpg {
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
     @inlinable
-    public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverClusterInstancesResponse > {
+    public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
         self.client.execute(action: "RecoverClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复实例
     ///
     /// 恢复实例。此接口的使用场景包括：
@@ -71,7 +71,7 @@ extension Tdcpg {
     public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterInstancesResponse {
         try await self.client.execute(action: "RecoverClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 恢复实例
     ///
     /// 恢复实例。此接口的使用场景包括：
@@ -79,10 +79,10 @@ extension Tdcpg {
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
     @inlinable
-    public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverClusterInstancesResponse > {
+    public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
         self.recoverClusterInstances(RecoverClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, period: period), logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复实例
     ///
     /// 恢复实例。此接口的使用场景包括：

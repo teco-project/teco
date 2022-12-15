@@ -19,52 +19,52 @@ extension Lighthouse {
     public struct DescribeDisksReturnableRequest: TCRequestModel {
         /// 云硬盘ID列表。
         public let diskIds: [String]?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
-        public init (diskIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(diskIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.diskIds = diskIds
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
             case limit = "Limit"
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeDisksReturnable返回参数结构体
     public struct DescribeDisksReturnableResponse: TCResponseModel {
         /// 可退还云硬盘详细信息列表。
         public let diskReturnableSet: [DiskReturnable]
-        
+
         /// 符合条件的云硬盘数量。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case diskReturnableSet = "DiskReturnableSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看云硬盘是否可退还
     ///
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
     @inlinable
-    public func describeDisksReturnable(_ input: DescribeDisksReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksReturnableResponse > {
+    public func describeDisksReturnable(_ input: DescribeDisksReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksReturnableResponse> {
         self.client.execute(action: "DescribeDisksReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看云硬盘是否可退还
     ///
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
@@ -72,15 +72,15 @@ extension Lighthouse {
     public func describeDisksReturnable(_ input: DescribeDisksReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksReturnableResponse {
         try await self.client.execute(action: "DescribeDisksReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看云硬盘是否可退还
     ///
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
     @inlinable
-    public func describeDisksReturnable(diskIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksReturnableResponse > {
+    public func describeDisksReturnable(diskIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksReturnableResponse> {
         self.describeDisksReturnable(DescribeDisksReturnableRequest(diskIds: diskIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看云硬盘是否可退还
     ///
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。

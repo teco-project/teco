@@ -22,59 +22,59 @@ extension TCCbsError {
             case diskRollbacking = "ResourceInUse.DiskRollbacking"
             case other = "ResourceInUse"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 指定快照正在复制到目标地域。
         public static var copySnapshotConflict: ResourceInUse {
             ResourceInUse(.copySnapshotConflict)
         }
-        
+
         /// 云硬盘当前已在迁移中，请稍后重试。
         public static var diskMigrating: ResourceInUse {
             ResourceInUse(.diskMigrating)
         }
-        
+
         /// 云硬盘正在执行快照回滚操作，请稍后重试。
         public static var diskRollbacking: ResourceInUse {
             ResourceInUse(.diskRollbacking)
         }
-        
+
         /// 资源被占用。
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-        
+
         public func asCbsError() -> TCCbsError {
             let code: TCCbsError.Code
             switch self.error {
-            case .copySnapshotConflict: 
+            case .copySnapshotConflict:
                 code = .resourceInUse_CopySnapshotConflict
-            case .diskMigrating: 
+            case .diskMigrating:
                 code = .resourceInUse_DiskMigrating
-            case .diskRollbacking: 
+            case .diskRollbacking:
                 code = .resourceInUse_DiskRollbacking
-            case .other: 
+            case .other:
                 code = .resourceInUse
             }
             return TCCbsError(code, context: self.context)

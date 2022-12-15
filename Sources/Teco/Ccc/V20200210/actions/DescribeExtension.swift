@@ -19,41 +19,41 @@ extension Ccc {
     public struct DescribeExtensionRequest: TCRequestModel {
         /// TCCC 实例应用 ID
         public let sdkAppId: UInt64
-        
+
         /// 分机号
         public let extensionId: String
-        
-        public init (sdkAppId: UInt64, extensionId: String) {
+
+        public init(sdkAppId: UInt64, extensionId: String) {
             self.sdkAppId = sdkAppId
             self.extensionId = extensionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case extensionId = "ExtensionId"
         }
     }
-    
+
     /// DescribeExtension返回参数结构体
     public struct DescribeExtensionResponse: TCResponseModel {
         /// 分机号
         public let extensionId: String
-        
+
         /// 域名
         public let extensionDomain: String
-        
+
         /// 注册密码
         public let password: String
-        
+
         /// 代理服务器地址
         public let outboundProxy: String
-        
+
         /// 传输协议
         public let transport: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case extensionId = "ExtensionId"
             case extensionDomain = "ExtensionDomain"
@@ -63,25 +63,25 @@ extension Ccc {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取话机信息
     @inlinable
-    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionResponse > {
+    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionResponse> {
         self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取话机信息
     @inlinable
     public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
         try await self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取话机信息
     @inlinable
-    public func describeExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionResponse > {
+    public func describeExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionResponse> {
         self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取话机信息
     @inlinable
     public func describeExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {

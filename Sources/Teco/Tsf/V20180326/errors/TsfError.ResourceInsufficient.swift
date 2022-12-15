@@ -19,38 +19,38 @@ extension TCTsfError {
         enum Code: String {
             case packageSpaceFull = "ResourceInsufficient.PackageSpaceFull"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 仓库空间达到上限。
         public static var packageSpaceFull: ResourceInsufficient {
             ResourceInsufficient(.packageSpaceFull)
         }
-        
+
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
-            case .packageSpaceFull: 
+            case .packageSpaceFull:
                 code = .resourceInsufficient_PackageSpaceFull
             }
             return TCTsfError(code, context: self.context)

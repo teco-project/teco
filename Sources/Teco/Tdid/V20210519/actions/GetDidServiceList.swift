@@ -19,48 +19,48 @@ extension Tdid {
     public struct GetDidServiceListRequest: TCRequestModel {
         /// 1: 以网络维度输出, 0: 以服务维度输出
         public let type: UInt64
-        
-        public init (type: UInt64) {
+
+        public init(type: UInt64) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// GetDidServiceList返回参数结构体
     public struct GetDidServiceListResponse: TCResponseModel {
         /// DID服务列表
         public let didServiceList: [DidServiceInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case didServiceList = "DidServiceList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取DID服务列表
     @inlinable
-    public func getDidServiceList(_ input: GetDidServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidServiceListResponse > {
+    public func getDidServiceList(_ input: GetDidServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
         self.client.execute(action: "GetDidServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DID服务列表
     @inlinable
     public func getDidServiceList(_ input: GetDidServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
         try await self.client.execute(action: "GetDidServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取DID服务列表
     @inlinable
-    public func getDidServiceList(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidServiceListResponse > {
+    public func getDidServiceList(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
         self.getDidServiceList(GetDidServiceListRequest(type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DID服务列表
     @inlinable
     public func getDidServiceList(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {

@@ -19,26 +19,26 @@ extension Oceanus {
     public struct CreateResourceRequest: TCRequestModel {
         /// 资源位置
         public let resourceLoc: ResourceLoc
-        
+
         /// 资源类型。目前只支持 JAR，取值为 1
         public let resourceType: Int64
-        
+
         /// 资源描述
         public let remark: String?
-        
+
         /// 资源名称
         public let name: String?
-        
+
         /// 资源版本描述
         public let resourceConfigRemark: String?
-        
+
         /// 目录ID
         public let folderId: String?
-        
+
         /// 工作空间 SerialId
         public let workSpaceId: String?
-        
-        public init (resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil) {
+
+        public init(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil) {
             self.resourceLoc = resourceLoc
             self.resourceType = resourceType
             self.remark = remark
@@ -47,7 +47,7 @@ extension Oceanus {
             self.folderId = folderId
             self.workSpaceId = workSpaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceLoc = "ResourceLoc"
             case resourceType = "ResourceType"
@@ -58,43 +58,43 @@ extension Oceanus {
             case workSpaceId = "WorkSpaceId"
         }
     }
-    
+
     /// CreateResource返回参数结构体
     public struct CreateResourceResponse: TCResponseModel {
         /// 资源ID
         public let resourceId: String
-        
+
         /// 资源版本
         public let version: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case version = "Version"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建资源接口
     @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceResponse > {
+    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
         self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建资源接口
     @inlinable
     public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
         try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建资源接口
     @inlinable
-    public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceResponse > {
+    public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
         self.createResource(CreateResourceRequest(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建资源接口
     @inlinable
     public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {

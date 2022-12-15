@@ -84,493 +84,493 @@ extension TCFaceidError {
             case unregisteredEid = "FailedOperation.UnregisteredEid"
             case verificationFail = "FailedOperation.VerificationFail"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未检测到闭眼动作。
         public static var actionCloseEye: FailedOperation {
             FailedOperation(.actionCloseEye)
         }
-        
+
         /// 脸离屏幕太近。
         public static var actionFaceClose: FailedOperation {
             FailedOperation(.actionFaceClose)
         }
-        
+
         /// 脸离屏幕太远。
         public static var actionFaceFar: FailedOperation {
             FailedOperation(.actionFaceFar)
         }
-        
+
         /// 脸离屏幕太左。
         public static var actionFaceLeft: FailedOperation {
             FailedOperation(.actionFaceLeft)
         }
-        
+
         /// 脸离屏幕太右。
         public static var actionFaceRight: FailedOperation {
             FailedOperation(.actionFaceRight)
         }
-        
+
         /// 未检测到动作配合。
         public static var actionFirstAction: FailedOperation {
             FailedOperation(.actionFirstAction)
         }
-        
+
         /// 光线太暗。
         public static var actionLightDark: FailedOperation {
             FailedOperation(.actionLightDark)
         }
-        
+
         /// 光线太强。
         public static var actionLightStrong: FailedOperation {
             FailedOperation(.actionLightStrong)
         }
-        
+
         /// 未能检测到完整人脸。
         public static var actionNodetectFace: FailedOperation {
             FailedOperation(.actionNodetectFace)
         }
-        
+
         /// 未检测到张嘴动作。
         public static var actionOpenMouth: FailedOperation {
             FailedOperation(.actionOpenMouth)
         }
-        
+
         /// 比对失败。
         public static var compareFail: FailedOperation {
             FailedOperation(.compareFail)
         }
-        
+
         /// 比对相似度未达到通过标准。
         public static var compareLowSimilarity: FailedOperation {
             FailedOperation(.compareLowSimilarity)
         }
-        
+
         /// 调用比对引擎接口出错。
         public static var compareSystemError: FailedOperation {
             FailedOperation(.compareSystemError)
         }
-        
+
         /// 数据库异常。
         public static var dbError: FailedOperation {
             FailedOperation(.dbError)
         }
-        
+
         /// 解密失败。
         public static var decryptSystemError: FailedOperation {
             FailedOperation(.decryptSystemError)
         }
-        
+
         /// 文件下载失败。
         public static var downLoadError: FailedOperation {
             FailedOperation(.downLoadError)
         }
-        
+
         /// 文件下载超时。
         public static var downLoadTimeoutError: FailedOperation {
             FailedOperation(.downLoadTimeoutError)
         }
-        
+
         /// 图片内容为空。
         public static var emptyImageError: FailedOperation {
             FailedOperation(.emptyImageError)
         }
-        
+
         /// 加密失败。
         public static var encryptSystemError: FailedOperation {
             FailedOperation(.encryptSystemError)
         }
-        
+
         /// 文件存储失败，请稍后重试。
         public static var fileSaveError: FailedOperation {
             FailedOperation(.fileSaveError)
         }
-        
+
         /// 输入的身份证号有误。
         public static var idFormatError: FailedOperation {
             FailedOperation(.idFormatError)
         }
-        
+
         /// 姓名和身份证号不一致，请核实后重试。
         public static var idNameMisMatch: FailedOperation {
             FailedOperation(.idNameMisMatch)
         }
-        
+
         /// 库中无此号，请到户籍所在地进行核实。
         public static var idNoExistSystem: FailedOperation {
             FailedOperation(.idNoExistSystem)
         }
-        
+
         /// 库中无此号照片，请到户籍所在地进行核实。
         public static var idPhotoNoExist: FailedOperation {
             FailedOperation(.idPhotoNoExist)
         }
-        
+
         /// 证件图片分辨率太低，请重新上传。
         public static var idPhotoPoorQuality: FailedOperation {
             FailedOperation(.idPhotoPoorQuality)
         }
-        
+
         /// 客户库自建库或认证中心返照失败，请稍后再试。
         public static var idPhotoSystemNoanswer: FailedOperation {
             FailedOperation(.idPhotoSystemNoanswer)
         }
-        
+
         /// 图片模糊。
         public static var imageBlur: FailedOperation {
             FailedOperation(.imageBlur)
         }
-        
+
         /// 图片解码失败。
         public static var imageDecodeFailed: FailedOperation {
             FailedOperation(.imageDecodeFailed)
         }
-        
+
         /// 图片中未检测到身份证。
         public static var imageNoIdCard: FailedOperation {
             FailedOperation(.imageNoIdCard)
         }
-        
+
         /// 图片尺寸过大。
         public static var imageSizeTooLarge: FailedOperation {
             FailedOperation(.imageSizeTooLarge)
         }
-        
+
         /// 检测到多张人脸。
         public static var lifePhotoDetectFaces: FailedOperation {
             FailedOperation(.lifePhotoDetectFaces)
         }
-        
+
         /// 实人比对没通过。
         public static var lifePhotoDetectFake: FailedOperation {
             FailedOperation(.lifePhotoDetectFake)
         }
-        
+
         /// 未能检测到完整人脸。
         public static var lifePhotoDetectNoFaces: FailedOperation {
             FailedOperation(.lifePhotoDetectNoFaces)
         }
-        
+
         /// 传入图片分辨率太低，请重新上传。
         public static var lifePhotoPoorQuality: FailedOperation {
             FailedOperation(.lifePhotoPoorQuality)
         }
-        
+
         /// 传入图片过大或过小。
         public static var lifePhotoSizeError: FailedOperation {
             FailedOperation(.lifePhotoSizeError)
         }
-        
+
         /// 脸部未完整露出。
         public static var lipFaceIncomplete: FailedOperation {
             FailedOperation(.lipFaceIncomplete)
         }
-        
+
         /// 嘴唇动作幅度过小。
         public static var lipMoveSmall: FailedOperation {
             FailedOperation(.lipMoveSmall)
         }
-        
+
         /// 视频拉取失败，请重试。
         public static var lipNetFailed: FailedOperation {
             FailedOperation(.lipNetFailed)
         }
-        
+
         /// 视频为空，或大小不合适，请控制录制时长在6s左右。
         public static var lipSizeError: FailedOperation {
             FailedOperation(.lipSizeError)
         }
-        
+
         /// 视频格式有误。
         public static var lipVideoInvalid: FailedOperation {
             FailedOperation(.lipVideoInvalid)
         }
-        
+
         /// 视频像素太低。
         public static var lipVideoQuaility: FailedOperation {
             FailedOperation(.lipVideoQuaility)
         }
-        
+
         /// 未检测到声音。
         public static var lipVoiceDetect: FailedOperation {
             FailedOperation(.lipVoiceDetect)
         }
-        
+
         /// 视频声音太小。
         public static var lipVoiceLow: FailedOperation {
             FailedOperation(.lipVoiceLow)
         }
-        
+
         /// 声音识别失败。
         public static var lipVoiceRecognize: FailedOperation {
             FailedOperation(.lipVoiceRecognize)
         }
-        
+
         /// 人脸检测失败，无法提取比对照。
         public static var livessBestFrameError: FailedOperation {
             FailedOperation(.livessBestFrameError)
         }
-        
+
         /// 活体检测没通过。
         public static var livessDetectFail: FailedOperation {
             FailedOperation(.livessDetectFail)
         }
-        
+
         /// 疑似非真人录制。
         public static var livessDetectFake: FailedOperation {
             FailedOperation(.livessDetectFake)
         }
-        
+
         /// 调用活体引擎接口出错。
         public static var livessSystemError: FailedOperation {
             FailedOperation(.livessSystemError)
         }
-        
+
         /// 视频实人检测没通过。
         public static var livessUnknownError: FailedOperation {
             FailedOperation(.livessUnknownError)
         }
-        
+
         /// 输入的姓名有误。
         public static var nameFormatError: FailedOperation {
             FailedOperation(.nameFormatError)
         }
-        
+
         /// Ocr识别失败。
         public static var ocrFailed: FailedOperation {
             FailedOperation(.ocrFailed)
         }
-        
+
         /// 调用次数超出限制。
         public static var requestLimitExceeded: FailedOperation {
             FailedOperation(.requestLimitExceeded)
         }
-        
+
         /// 实人检测失败。
         public static var silentDetectFail: FailedOperation {
             FailedOperation(.silentDetectFail)
         }
-        
+
         /// 眼睛检测失败。
         public static var silentEyeLiveFail: FailedOperation {
             FailedOperation(.silentEyeLiveFail)
         }
-        
+
         /// 视频未检测到人脸。
         public static var silentFaceDetectFail: FailedOperation {
             FailedOperation(.silentFaceDetectFail)
         }
-        
+
         /// 视频中人脸质量低。
         public static var silentFaceQualityFail: FailedOperation {
             FailedOperation(.silentFaceQualityFail)
         }
-        
+
         /// 检测到带口罩。
         public static var silentFaceWithMaskFail: FailedOperation {
             FailedOperation(.silentFaceWithMaskFail)
         }
-        
+
         /// 嘴巴检测失败。
         public static var silentMouthLiveFail: FailedOperation {
             FailedOperation(.silentMouthLiveFail)
         }
-        
+
         /// 视频检测中有多个人脸。
         public static var silentMultiFaceFail: FailedOperation {
             FailedOperation(.silentMultiFaceFail)
         }
-        
+
         /// 疑似翻拍。
         public static var silentPictureLiveFail: FailedOperation {
             FailedOperation(.silentPictureLiveFail)
         }
-        
+
         /// 实人检测未达到通过标准。
         public static var silentThreshold: FailedOperation {
             FailedOperation(.silentThreshold)
         }
-        
+
         /// 视频录制时间过短，请录制2秒以上的视频。
         public static var silentTooShort: FailedOperation {
             FailedOperation(.silentTooShort)
         }
-        
+
         /// STS未授权。
         public static var stsUnAuthErrError: FailedOperation {
             FailedOperation(.stsUnAuthErrError)
         }
-        
+
         /// 内部未知错误。
         public static var unKnown: FailedOperation {
             FailedOperation(.unKnown)
         }
-        
+
         /// 该用户未注册E证通，请先注册并跟权威库核验。
         public static var unregisteredEid: FailedOperation {
             FailedOperation(.unregisteredEid)
         }
-        
+
         /// 认证不通过。
         public static var verificationFail: FailedOperation {
             FailedOperation(.verificationFail)
         }
-        
+
         public func asFaceidError() -> TCFaceidError {
             let code: TCFaceidError.Code
             switch self.error {
-            case .actionCloseEye: 
+            case .actionCloseEye:
                 code = .failedOperation_ActionCloseEye
-            case .actionFaceClose: 
+            case .actionFaceClose:
                 code = .failedOperation_ActionFaceClose
-            case .actionFaceFar: 
+            case .actionFaceFar:
                 code = .failedOperation_ActionFaceFar
-            case .actionFaceLeft: 
+            case .actionFaceLeft:
                 code = .failedOperation_ActionFaceLeft
-            case .actionFaceRight: 
+            case .actionFaceRight:
                 code = .failedOperation_ActionFaceRight
-            case .actionFirstAction: 
+            case .actionFirstAction:
                 code = .failedOperation_ActionFirstAction
-            case .actionLightDark: 
+            case .actionLightDark:
                 code = .failedOperation_ActionLightDark
-            case .actionLightStrong: 
+            case .actionLightStrong:
                 code = .failedOperation_ActionLightStrong
-            case .actionNodetectFace: 
+            case .actionNodetectFace:
                 code = .failedOperation_ActionNodetectFace
-            case .actionOpenMouth: 
+            case .actionOpenMouth:
                 code = .failedOperation_ActionOpenMouth
-            case .compareFail: 
+            case .compareFail:
                 code = .failedOperation_CompareFail
-            case .compareLowSimilarity: 
+            case .compareLowSimilarity:
                 code = .failedOperation_CompareLowSimilarity
-            case .compareSystemError: 
+            case .compareSystemError:
                 code = .failedOperation_CompareSystemError
-            case .dbError: 
+            case .dbError:
                 code = .failedOperation_DbError
-            case .decryptSystemError: 
+            case .decryptSystemError:
                 code = .failedOperation_DecryptSystemError
-            case .downLoadError: 
+            case .downLoadError:
                 code = .failedOperation_DownLoadError
-            case .downLoadTimeoutError: 
+            case .downLoadTimeoutError:
                 code = .failedOperation_DownLoadTimeoutError
-            case .emptyImageError: 
+            case .emptyImageError:
                 code = .failedOperation_EmptyImageError
-            case .encryptSystemError: 
+            case .encryptSystemError:
                 code = .failedOperation_EncryptSystemError
-            case .fileSaveError: 
+            case .fileSaveError:
                 code = .failedOperation_FileSaveError
-            case .idFormatError: 
+            case .idFormatError:
                 code = .failedOperation_IdFormatError
-            case .idNameMisMatch: 
+            case .idNameMisMatch:
                 code = .failedOperation_IdNameMisMatch
-            case .idNoExistSystem: 
+            case .idNoExistSystem:
                 code = .failedOperation_IdNoExistSystem
-            case .idPhotoNoExist: 
+            case .idPhotoNoExist:
                 code = .failedOperation_IdPhotoNoExist
-            case .idPhotoPoorQuality: 
+            case .idPhotoPoorQuality:
                 code = .failedOperation_IdPhotoPoorQuality
-            case .idPhotoSystemNoanswer: 
+            case .idPhotoSystemNoanswer:
                 code = .failedOperation_IdPhotoSystemNoanswer
-            case .imageBlur: 
+            case .imageBlur:
                 code = .failedOperation_ImageBlur
-            case .imageDecodeFailed: 
+            case .imageDecodeFailed:
                 code = .failedOperation_ImageDecodeFailed
-            case .imageNoIdCard: 
+            case .imageNoIdCard:
                 code = .failedOperation_ImageNoIdCard
-            case .imageSizeTooLarge: 
+            case .imageSizeTooLarge:
                 code = .failedOperation_ImageSizeTooLarge
-            case .lifePhotoDetectFaces: 
+            case .lifePhotoDetectFaces:
                 code = .failedOperation_LifePhotoDetectFaces
-            case .lifePhotoDetectFake: 
+            case .lifePhotoDetectFake:
                 code = .failedOperation_LifePhotoDetectFake
-            case .lifePhotoDetectNoFaces: 
+            case .lifePhotoDetectNoFaces:
                 code = .failedOperation_LifePhotoDetectNoFaces
-            case .lifePhotoPoorQuality: 
+            case .lifePhotoPoorQuality:
                 code = .failedOperation_LifePhotoPoorQuality
-            case .lifePhotoSizeError: 
+            case .lifePhotoSizeError:
                 code = .failedOperation_LifePhotoSizeError
-            case .lipFaceIncomplete: 
+            case .lipFaceIncomplete:
                 code = .failedOperation_LipFaceIncomplete
-            case .lipMoveSmall: 
+            case .lipMoveSmall:
                 code = .failedOperation_LipMoveSmall
-            case .lipNetFailed: 
+            case .lipNetFailed:
                 code = .failedOperation_LipNetFailed
-            case .lipSizeError: 
+            case .lipSizeError:
                 code = .failedOperation_LipSizeError
-            case .lipVideoInvalid: 
+            case .lipVideoInvalid:
                 code = .failedOperation_LipVideoInvalid
-            case .lipVideoQuaility: 
+            case .lipVideoQuaility:
                 code = .failedOperation_LipVideoQuaility
-            case .lipVoiceDetect: 
+            case .lipVoiceDetect:
                 code = .failedOperation_LipVoiceDetect
-            case .lipVoiceLow: 
+            case .lipVoiceLow:
                 code = .failedOperation_LipVoiceLow
-            case .lipVoiceRecognize: 
+            case .lipVoiceRecognize:
                 code = .failedOperation_LipVoiceRecognize
-            case .livessBestFrameError: 
+            case .livessBestFrameError:
                 code = .failedOperation_LivessBestFrameError
-            case .livessDetectFail: 
+            case .livessDetectFail:
                 code = .failedOperation_LivessDetectFail
-            case .livessDetectFake: 
+            case .livessDetectFake:
                 code = .failedOperation_LivessDetectFake
-            case .livessSystemError: 
+            case .livessSystemError:
                 code = .failedOperation_LivessSystemError
-            case .livessUnknownError: 
+            case .livessUnknownError:
                 code = .failedOperation_LivessUnknownError
-            case .nameFormatError: 
+            case .nameFormatError:
                 code = .failedOperation_NameFormatError
-            case .ocrFailed: 
+            case .ocrFailed:
                 code = .failedOperation_OcrFailed
-            case .requestLimitExceeded: 
+            case .requestLimitExceeded:
                 code = .failedOperation_RequestLimitExceeded
-            case .silentDetectFail: 
+            case .silentDetectFail:
                 code = .failedOperation_SilentDetectFail
-            case .silentEyeLiveFail: 
+            case .silentEyeLiveFail:
                 code = .failedOperation_SilentEyeLiveFail
-            case .silentFaceDetectFail: 
+            case .silentFaceDetectFail:
                 code = .failedOperation_SilentFaceDetectFail
-            case .silentFaceQualityFail: 
+            case .silentFaceQualityFail:
                 code = .failedOperation_SilentFaceQualityFail
-            case .silentFaceWithMaskFail: 
+            case .silentFaceWithMaskFail:
                 code = .failedOperation_SilentFaceWithMaskFail
-            case .silentMouthLiveFail: 
+            case .silentMouthLiveFail:
                 code = .failedOperation_SilentMouthLiveFail
-            case .silentMultiFaceFail: 
+            case .silentMultiFaceFail:
                 code = .failedOperation_SilentMultiFaceFail
-            case .silentPictureLiveFail: 
+            case .silentPictureLiveFail:
                 code = .failedOperation_SilentPictureLiveFail
-            case .silentThreshold: 
+            case .silentThreshold:
                 code = .failedOperation_SilentThreshold
-            case .silentTooShort: 
+            case .silentTooShort:
                 code = .failedOperation_SilentTooShort
-            case .stsUnAuthErrError: 
+            case .stsUnAuthErrError:
                 code = .failedOperation_StsUnAuthErrError
-            case .unKnown: 
+            case .unKnown:
                 code = .failedOperation_UnKnown
-            case .unregisteredEid: 
+            case .unregisteredEid:
                 code = .failedOperation_UnregisteredEid
-            case .verificationFail: 
+            case .verificationFail:
                 code = .failedOperation_VerificationFail
             }
             return TCFaceidError(code, context: self.context)

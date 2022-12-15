@@ -17,24 +17,24 @@
 extension Iottid {
     /// DescribePermission请求参数结构体
     public struct DescribePermissionRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribePermission返回参数结构体
     public struct DescribePermissionResponse: TCResponseModel {
         /// 企业用户
         public let enterpriseUser: Bool
-        
+
         /// 下载控制台权限
         public let downloadPermission: String
-        
+
         /// 使用控制台权限
         public let usePermission: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case enterpriseUser = "EnterpriseUser"
             case downloadPermission = "DownloadPermission"
@@ -42,34 +42,34 @@ extension Iottid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询权限
     ///
-    /// 查询企业用户TID平台控制台权限 
+    /// 查询企业用户TID平台控制台权限
     @inlinable
-    public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePermissionResponse > {
+    public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePermissionResponse> {
         self.client.execute(action: "DescribePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询权限
     ///
-    /// 查询企业用户TID平台控制台权限 
+    /// 查询企业用户TID平台控制台权限
     @inlinable
     public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePermissionResponse {
         try await self.client.execute(action: "DescribePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询权限
     ///
-    /// 查询企业用户TID平台控制台权限 
+    /// 查询企业用户TID平台控制台权限
     @inlinable
-    public func describePermission(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePermissionResponse > {
+    public func describePermission(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePermissionResponse> {
         self.describePermission(DescribePermissionRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询权限
     ///
-    /// 查询企业用户TID平台控制台权限 
+    /// 查询企业用户TID平台控制台权限
     @inlinable
     public func describePermission(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePermissionResponse {
         try await self.describePermission(DescribePermissionRequest(), logger: logger, on: eventLoop)

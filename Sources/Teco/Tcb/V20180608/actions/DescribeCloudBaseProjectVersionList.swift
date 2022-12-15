@@ -19,23 +19,23 @@ extension Tcb {
     public struct DescribeCloudBaseProjectVersionListRequest: TCRequestModel {
         /// 环境id
         public let envId: String
-        
+
         /// 项目名称
         public let projectName: String
-        
+
         /// 页大小
         public let pageSize: UInt64?
-        
+
         /// 第几页,从0开始
         public let pageNum: UInt64?
-        
+
         /// 起始时间 2021-03-27 12:00:00
         public let startTime: String?
-        
+
         /// 终止时间 2021-03-27 12:00:00
         public let endTime: String?
-        
-        public init (envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil) {
+
+        public init(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.envId = envId
             self.projectName = projectName
             self.pageSize = pageSize
@@ -43,7 +43,7 @@ extension Tcb {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case projectName = "ProjectName"
@@ -53,35 +53,35 @@ extension Tcb {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeCloudBaseProjectVersionList返回参数结构体
     public struct DescribeCloudBaseProjectVersionListResponse: TCResponseModel {
         /// 版本列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectVersions: [CloudBaseProjectVersion]?
-        
+
         /// 总个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectVersions = "ProjectVersions"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云项目部署版本列表
     ///
     /// 云项目部署列表
     @inlinable
-    public func describeCloudBaseProjectVersionList(_ input: DescribeCloudBaseProjectVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseProjectVersionListResponse > {
+    public func describeCloudBaseProjectVersionList(_ input: DescribeCloudBaseProjectVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectVersionListResponse> {
         self.client.execute(action: "DescribeCloudBaseProjectVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云项目部署版本列表
     ///
     /// 云项目部署列表
@@ -89,15 +89,15 @@ extension Tcb {
     public func describeCloudBaseProjectVersionList(_ input: DescribeCloudBaseProjectVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectVersionListResponse {
         try await self.client.execute(action: "DescribeCloudBaseProjectVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云项目部署版本列表
     ///
     /// 云项目部署列表
     @inlinable
-    public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseProjectVersionListResponse > {
+    public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectVersionListResponse> {
         self.describeCloudBaseProjectVersionList(DescribeCloudBaseProjectVersionListRequest(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 云项目部署版本列表
     ///
     /// 云项目部署列表

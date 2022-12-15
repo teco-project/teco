@@ -19,42 +19,42 @@ extension Redis {
     public struct DescribeMaintenanceWindowRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeMaintenanceWindow返回参数结构体
     public struct DescribeMaintenanceWindowResponse: TCResponseModel {
         /// 维护时间窗起始时间，如：17:00
         public let startTime: String
-        
+
         /// 维护时间窗结束时间，如：19:00
         public let endTime: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例维护时间窗
     ///
     /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
     @inlinable
-    public func describeMaintenanceWindow(_ input: DescribeMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintenanceWindowResponse > {
+    public func describeMaintenanceWindow(_ input: DescribeMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceWindowResponse> {
         self.client.execute(action: "DescribeMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例维护时间窗
     ///
     /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
@@ -62,15 +62,15 @@ extension Redis {
     public func describeMaintenanceWindow(_ input: DescribeMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceWindowResponse {
         try await self.client.execute(action: "DescribeMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例维护时间窗
     ///
     /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
     @inlinable
-    public func describeMaintenanceWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintenanceWindowResponse > {
+    public func describeMaintenanceWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceWindowResponse> {
         self.describeMaintenanceWindow(DescribeMaintenanceWindowRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例维护时间窗
     ///
     /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换

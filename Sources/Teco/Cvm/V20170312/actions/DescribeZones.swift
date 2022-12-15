@@ -17,36 +17,36 @@
 extension Cvm {
     /// DescribeZones请求参数结构体
     public struct DescribeZonesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeZones返回参数结构体
     public struct DescribeZonesResponse: TCResponseModel {
         /// 可用区数量。
         public let totalCount: UInt64
-        
+
         /// 可用区列表信息。
         public let zoneSet: [ZoneInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case zoneSet = "ZoneSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询可用区列表
     ///
     /// 本接口(DescribeZones)用于查询可用区信息。
     @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询可用区列表
     ///
     /// 本接口(DescribeZones)用于查询可用区信息。
@@ -54,15 +54,15 @@ extension Cvm {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询可用区列表
     ///
     /// 本接口(DescribeZones)用于查询可用区信息。
     @inlinable
-    public func describeZones(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+    public func describeZones(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.describeZones(DescribeZonesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询可用区列表
     ///
     /// 本接口(DescribeZones)用于查询可用区信息。

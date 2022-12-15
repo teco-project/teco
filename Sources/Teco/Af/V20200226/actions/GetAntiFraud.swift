@@ -21,56 +21,56 @@ extension Af {
         /// 入参(二选一BusinessSecurityData 或
         /// BusinessCryptoData)。
         public let businessSecurityData: AntiFraudFilter?
-        
+
         /// 默认不传，约定用密文业务
         /// 入参(二选一
         /// BusinessSecurityData 或
         /// BusinessCryptoData)。
         public let businessCryptoData: AntiFraudCryptoFilter?
-        
-        public init (businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil) {
+
+        public init(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil) {
             self.businessSecurityData = businessSecurityData
             self.businessCryptoData = businessCryptoData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessSecurityData = "BusinessSecurityData"
             case businessCryptoData = "BusinessCryptoData"
         }
     }
-    
+
     /// GetAntiFraud返回参数结构体
     public struct GetAntiFraudResponse: TCResponseModel {
         /// 反欺诈评分接口结果
         public let data: AntiFraudRecord
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 反欺诈评分接口
     @inlinable
-    public func getAntiFraud(_ input: GetAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAntiFraudResponse > {
+    public func getAntiFraud(_ input: GetAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAntiFraudResponse> {
         self.client.execute(action: "GetAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 反欺诈评分接口
     @inlinable
     public func getAntiFraud(_ input: GetAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudResponse {
         try await self.client.execute(action: "GetAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 反欺诈评分接口
     @inlinable
-    public func getAntiFraud(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAntiFraudResponse > {
+    public func getAntiFraud(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAntiFraudResponse> {
         self.getAntiFraud(GetAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
     }
-    
+
     /// 反欺诈评分接口
     @inlinable
     public func getAntiFraud(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudResponse {

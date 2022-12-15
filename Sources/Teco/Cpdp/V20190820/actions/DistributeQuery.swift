@@ -19,26 +19,26 @@ extension Cpdp {
     public struct DistributeQueryRequest: TCRequestModel {
         /// 使用门店OpenId
         public let openId: String
-        
+
         /// 使用门店OpenKey
         public let openKey: String
-        
+
         /// 查询类型（1-全部，2-单笔）
         public let type: String
-        
+
         /// 商户分账单号，type为2时，和DistributeNo二者传其一
         public let outDistributeNo: String?
-        
+
         /// 平台分账单号，type为2时，和OutDistributeNo二者传其一
         public let distributeNo: String?
-        
+
         /// 平台交易订单号
         public let orderNo: String?
-        
+
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
-        
-        public init (openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil) {
+
+        public init(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.type = type
@@ -47,7 +47,7 @@ extension Cpdp {
             self.orderNo = orderNo
             self.profile = profile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case openId = "OpenId"
             case openKey = "OpenKey"
@@ -58,23 +58,23 @@ extension Cpdp {
             case profile = "Profile"
         }
     }
-    
+
     /// DistributeQuery返回参数结构体
     public struct DistributeQueryResponse: TCResponseModel {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?
-        
+
         /// 业务系统返回码
         public let errCode: String
-        
+
         /// 分账结果响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: DistributeQueryResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errMessage = "ErrMessage"
             case errCode = "ErrCode"
@@ -82,25 +82,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云支付-分账结果查询接口
     @inlinable
-    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryResponse > {
+    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryResponse> {
         self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-分账结果查询接口
     @inlinable
     public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
         try await self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云支付-分账结果查询接口
     @inlinable
-    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryResponse > {
+    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryResponse> {
         self.distributeQuery(DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
     }
-    
+
     /// 云支付-分账结果查询接口
     @inlinable
     public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {

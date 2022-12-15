@@ -19,23 +19,23 @@ extension Oceanus {
     public struct DescribeSystemResourcesRequest: TCRequestModel {
         /// 需要查询的资源ID数组
         public let resourceIds: [String]?
-        
+
         /// 偏移量，仅当设置 Limit 参数时有效
         public let offset: Int64?
-        
+
         /// 条数限制，默认返回 20 条
         public let limit: Int64?
-        
+
         /// 查询资源配置列表， 如果不填写，返回该 ResourceIds.N 下所有作业配置列表
         public let filters: [Filter]?
-        
+
         /// 集群ID
         public let clusterId: String?
-        
+
         /// 查询对应Flink版本的内置connector
         public let flinkVersion: String?
-        
-        public init (resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, clusterId: String? = nil, flinkVersion: String? = nil) {
+
+        public init(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, clusterId: String? = nil, flinkVersion: String? = nil) {
             self.resourceIds = resourceIds
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Oceanus {
             self.clusterId = clusterId
             self.flinkVersion = flinkVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceIds = "ResourceIds"
             case offset = "Offset"
@@ -53,43 +53,43 @@ extension Oceanus {
             case flinkVersion = "FlinkVersion"
         }
     }
-    
+
     /// DescribeSystemResources返回参数结构体
     public struct DescribeSystemResourcesResponse: TCResponseModel {
         /// 资源详细信息集合
         public let resourceSet: [SystemResourceItem]
-        
+
         /// 总数量
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceSet = "ResourceSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 描述系统资源接口
     @inlinable
-    public func describeSystemResources(_ input: DescribeSystemResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSystemResourcesResponse > {
+    public func describeSystemResources(_ input: DescribeSystemResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSystemResourcesResponse> {
         self.client.execute(action: "DescribeSystemResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 描述系统资源接口
     @inlinable
     public func describeSystemResources(_ input: DescribeSystemResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemResourcesResponse {
         try await self.client.execute(action: "DescribeSystemResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 描述系统资源接口
     @inlinable
-    public func describeSystemResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, clusterId: String? = nil, flinkVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSystemResourcesResponse > {
+    public func describeSystemResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, clusterId: String? = nil, flinkVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSystemResourcesResponse> {
         self.describeSystemResources(DescribeSystemResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, clusterId: clusterId, flinkVersion: flinkVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 描述系统资源接口
     @inlinable
     public func describeSystemResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, clusterId: String? = nil, flinkVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemResourcesResponse {

@@ -19,44 +19,44 @@ extension Dlc {
     public struct DeleteWorkGroupRequest: TCRequestModel {
         /// 要删除的工作组Id集合
         public let workGroupIds: [Int64]
-        
-        public init (workGroupIds: [Int64]) {
+
+        public init(workGroupIds: [Int64]) {
             self.workGroupIds = workGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupIds = "WorkGroupIds"
         }
     }
-    
+
     /// DeleteWorkGroup返回参数结构体
     public struct DeleteWorkGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除工作组
     @inlinable
-    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkGroupResponse > {
+    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkGroupResponse> {
         self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除工作组
     @inlinable
     public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
         try await self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除工作组
     @inlinable
-    public func deleteWorkGroup(workGroupIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkGroupResponse > {
+    public func deleteWorkGroup(workGroupIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkGroupResponse> {
         self.deleteWorkGroup(DeleteWorkGroupRequest(workGroupIds: workGroupIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除工作组
     @inlinable
     public func deleteWorkGroup(workGroupIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {

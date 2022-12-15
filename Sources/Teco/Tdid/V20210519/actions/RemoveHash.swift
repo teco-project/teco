@@ -19,44 +19,44 @@ extension Tdid {
     public struct RemoveHashRequest: TCRequestModel {
         /// 合约CNS地址
         public let hash: String
-        
-        public init (hash: String) {
+
+        public init(hash: String) {
             self.hash = hash
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hash = "Hash"
         }
     }
-    
+
     /// RemoveHash返回参数结构体
     public struct RemoveHashResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除合约
     @inlinable
-    public func removeHash(_ input: RemoveHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveHashResponse > {
+    public func removeHash(_ input: RemoveHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
         self.client.execute(action: "RemoveHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除合约
     @inlinable
     public func removeHash(_ input: RemoveHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
         try await self.client.execute(action: "RemoveHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除合约
     @inlinable
-    public func removeHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveHashResponse > {
+    public func removeHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
         self.removeHash(RemoveHashRequest(hash: hash), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除合约
     @inlinable
     public func removeHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {

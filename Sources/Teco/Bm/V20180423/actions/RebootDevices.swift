@@ -19,48 +19,48 @@ extension Bm {
     public struct RebootDevicesRequest: TCRequestModel {
         /// 需要重启的设备ID列表
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// RebootDevices返回参数结构体
     public struct RebootDevicesResponse: TCResponseModel {
         /// 异步任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启机器
     @inlinable
-    public func rebootDevices(_ input: RebootDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootDevicesResponse > {
+    public func rebootDevices(_ input: RebootDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebootDevicesResponse> {
         self.client.execute(action: "RebootDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启机器
     @inlinable
     public func rebootDevices(_ input: RebootDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootDevicesResponse {
         try await self.client.execute(action: "RebootDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启机器
     @inlinable
-    public func rebootDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootDevicesResponse > {
+    public func rebootDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebootDevicesResponse> {
         self.rebootDevices(RebootDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启机器
     @inlinable
     public func rebootDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootDevicesResponse {

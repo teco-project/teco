@@ -19,23 +19,23 @@ extension Cpdp {
     public struct QueryOpenBankProfitSharePayeeRequest: TCRequestModel {
         /// 渠道商户号。代理商/集团ID
         public let channelMerchantId: String
-        
+
         /// 渠道子商户号。商户ID
         public let channelSubMerchantId: String?
-        
+
         /// 分账方绑定添加返回的AccountId，账户号和账户ID选其一
         public let accountId: String?
-        
+
         /// 银行账户号要与绑定收款方时保持一致，账户号AccountNo和账户AccoutId选其一
         public let accountNo: String?
-        
+
         /// 使用账户号时必选
         public let currency: String?
-        
+
         /// 接入环境。沙箱环境填 sandbox。缺省默认调用生产环境
         public let environment: String?
-        
-        public init (channelMerchantId: String, channelSubMerchantId: String? = nil, accountId: String? = nil, accountNo: String? = nil, currency: String? = nil, environment: String? = nil) {
+
+        public init(channelMerchantId: String, channelSubMerchantId: String? = nil, accountId: String? = nil, accountNo: String? = nil, currency: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
             self.accountId = accountId
@@ -43,7 +43,7 @@ extension Cpdp {
             self.currency = currency
             self.environment = environment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelMerchantId = "ChannelMerchantId"
             case channelSubMerchantId = "ChannelSubMerchantId"
@@ -53,22 +53,22 @@ extension Cpdp {
             case environment = "Environment"
         }
     }
-    
+
     /// QueryOpenBankProfitSharePayee返回参数结构体
     public struct QueryOpenBankProfitSharePayeeResponse: TCResponseModel {
         /// 错误码。
         public let errCode: String
-        
+
         /// 错误信息。
         public let errMessage: String
-        
+
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: QueryOpenBankProfitSharePayeeResult?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMessage = "ErrMessage"
@@ -76,25 +76,25 @@ extension Cpdp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云企付-绑定分账收款方查询
     @inlinable
-    public func queryOpenBankProfitSharePayee(_ input: QueryOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankProfitSharePayeeResponse > {
+    public func queryOpenBankProfitSharePayee(_ input: QueryOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankProfitSharePayeeResponse> {
         self.client.execute(action: "QueryOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-绑定分账收款方查询
     @inlinable
     public func queryOpenBankProfitSharePayee(_ input: QueryOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankProfitSharePayeeResponse {
         try await self.client.execute(action: "QueryOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云企付-绑定分账收款方查询
     @inlinable
-    public func queryOpenBankProfitSharePayee(channelMerchantId: String, channelSubMerchantId: String? = nil, accountId: String? = nil, accountNo: String? = nil, currency: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankProfitSharePayeeResponse > {
+    public func queryOpenBankProfitSharePayee(channelMerchantId: String, channelSubMerchantId: String? = nil, accountId: String? = nil, accountNo: String? = nil, currency: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankProfitSharePayeeResponse> {
         self.queryOpenBankProfitSharePayee(QueryOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, accountId: accountId, accountNo: accountNo, currency: currency, environment: environment), logger: logger, on: eventLoop)
     }
-    
+
     /// 云企付-绑定分账收款方查询
     @inlinable
     public func queryOpenBankProfitSharePayee(channelMerchantId: String, channelSubMerchantId: String? = nil, accountId: String? = nil, accountNo: String? = nil, currency: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankProfitSharePayeeResponse {

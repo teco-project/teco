@@ -19,52 +19,52 @@ extension Tione {
     public struct DescribeTrainingTaskPodsRequest: TCRequestModel {
         /// 训练任务ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DescribeTrainingTaskPods返回参数结构体
     public struct DescribeTrainingTaskPodsResponse: TCResponseModel {
         /// pod名称列表
         public let podNames: [String]
-        
+
         /// 数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case podNames = "PodNames"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 训练任务pod列表
     @inlinable
-    public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskPodsResponse > {
+    public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskPodsResponse> {
         self.client.execute(action: "DescribeTrainingTaskPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 训练任务pod列表
     @inlinable
     public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskPodsResponse {
         try await self.client.execute(action: "DescribeTrainingTaskPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 训练任务pod列表
     @inlinable
-    public func describeTrainingTaskPods(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskPodsResponse > {
+    public func describeTrainingTaskPods(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskPodsResponse> {
         self.describeTrainingTaskPods(DescribeTrainingTaskPodsRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 训练任务pod列表
     @inlinable
     public func describeTrainingTaskPods(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskPodsResponse {

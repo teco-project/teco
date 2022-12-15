@@ -19,29 +19,29 @@ extension Tbaas {
     public struct GetInvokeTxRequest: TCRequestModel {
         /// 模块名，固定字段：transaction
         public let module: String
-        
+
         /// 操作名，固定字段：query_txid
         public let operation: String
-        
+
         /// 区块链网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
-        
+
         /// 业务所属通道名称，可在通道详情或列表中获取
         public let channelName: String
-        
+
         /// 执行该查询交易的节点名称，可以在通道详情中获取该通道上的节点名称极其所属组织名称
         public let peerName: String
-        
+
         /// 执行该查询交易的节点所属组织名称，可以在通道详情中获取该通道上的节点名称极其所属组织名称
         public let peerGroup: String
-        
+
         /// 交易ID
         public let txId: String
-        
+
         /// 调用合约的组织名称，可以在组织管理列表中获取当前组织的名称
         public let groupName: String
-        
-        public init (module: String, operation: String, clusterId: String, channelName: String, peerName: String, peerGroup: String, txId: String, groupName: String) {
+
+        public init(module: String, operation: String, clusterId: String, channelName: String, peerName: String, peerGroup: String, txId: String, groupName: String) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -51,7 +51,7 @@ extension Tbaas {
             self.txId = txId
             self.groupName = groupName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -63,21 +63,21 @@ extension Tbaas {
             case groupName = "GroupName"
         }
     }
-    
+
     /// GetInvokeTx返回参数结构体
     public struct GetInvokeTxResponse: TCResponseModel {
         /// 交易执行状态码
         public let txValidationCode: Int64
-        
+
         /// 交易执行消息
         public let txValidationMsg: String
-        
+
         /// 交易所在区块ID
         public let blockId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case txValidationCode = "TxValidationCode"
             case txValidationMsg = "TxValidationMsg"
@@ -85,25 +85,25 @@ extension Tbaas {
             case requestId = "RequestId"
         }
     }
-    
+
     /// Invoke异步调用结果查询
     @inlinable
-    public func getInvokeTx(_ input: GetInvokeTxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetInvokeTxResponse > {
+    public func getInvokeTx(_ input: GetInvokeTxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetInvokeTxResponse> {
         self.client.execute(action: "GetInvokeTx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// Invoke异步调用结果查询
     @inlinable
     public func getInvokeTx(_ input: GetInvokeTxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInvokeTxResponse {
         try await self.client.execute(action: "GetInvokeTx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// Invoke异步调用结果查询
     @inlinable
-    public func getInvokeTx(module: String, operation: String, clusterId: String, channelName: String, peerName: String, peerGroup: String, txId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetInvokeTxResponse > {
+    public func getInvokeTx(module: String, operation: String, clusterId: String, channelName: String, peerName: String, peerGroup: String, txId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetInvokeTxResponse> {
         self.getInvokeTx(GetInvokeTxRequest(module: module, operation: operation, clusterId: clusterId, channelName: channelName, peerName: peerName, peerGroup: peerGroup, txId: txId, groupName: groupName), logger: logger, on: eventLoop)
     }
-    
+
     /// Invoke异步调用结果查询
     @inlinable
     public func getInvokeTx(module: String, operation: String, clusterId: String, channelName: String, peerName: String, peerGroup: String, txId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInvokeTxResponse {

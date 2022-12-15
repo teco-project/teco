@@ -19,44 +19,44 @@ extension Cwp {
     public struct CancelIgnoreVulRequest: TCRequestModel {
         /// 漏洞事件id串，多个用英文逗号分隔
         public let eventIds: String
-        
-        public init (eventIds: String) {
+
+        public init(eventIds: String) {
             self.eventIds = eventIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventIds = "EventIds"
         }
     }
-    
+
     /// CancelIgnoreVul返回参数结构体
     public struct CancelIgnoreVulResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 取消漏洞忽略
     @inlinable
-    public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelIgnoreVulResponse > {
+    public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelIgnoreVulResponse> {
         self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 取消漏洞忽略
     @inlinable
     public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {
         try await self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 取消漏洞忽略
     @inlinable
-    public func cancelIgnoreVul(eventIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelIgnoreVulResponse > {
+    public func cancelIgnoreVul(eventIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelIgnoreVulResponse> {
         self.cancelIgnoreVul(CancelIgnoreVulRequest(eventIds: eventIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 取消漏洞忽略
     @inlinable
     public func cancelIgnoreVul(eventIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {

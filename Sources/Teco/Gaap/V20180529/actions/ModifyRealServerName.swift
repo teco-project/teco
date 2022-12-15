@@ -19,39 +19,39 @@ extension Gaap {
     public struct ModifyRealServerNameRequest: TCRequestModel {
         /// 源站名称
         public let realServerName: String
-        
+
         /// 源站ID
         public let realServerId: String
-        
-        public init (realServerName: String, realServerId: String) {
+
+        public init(realServerName: String, realServerId: String) {
             self.realServerName = realServerName
             self.realServerId = realServerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case realServerName = "RealServerName"
             case realServerId = "RealServerId"
         }
     }
-    
+
     /// ModifyRealServerName返回参数结构体
     public struct ModifyRealServerNameResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改源站名称
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable
-    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerNameResponse > {
+    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerNameResponse> {
         self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改源站名称
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称
@@ -59,15 +59,15 @@ extension Gaap {
     public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
         try await self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改源站名称
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable
-    public func modifyRealServerName(realServerName: String, realServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerNameResponse > {
+    public func modifyRealServerName(realServerName: String, realServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerNameResponse> {
         self.modifyRealServerName(ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改源站名称
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称

@@ -22,7 +22,7 @@ extension Dbbrain {
     public struct DescribeSlowLogUserHostStatsRequest: TCRequestModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 查询范围的开始时间，时间格式如：2019-09-10 12:13:14。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 查询范围的结束时间，时间格式如：2019-09-10 12:13:14。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,21 +38,21 @@ extension Dbbrain {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
-        
+
         /// SOL模板的MD5值
         public let md5: String?
-        
-        public init (instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil) {
+
+        public init(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
             self.product = product
             self.md5 = md5
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
@@ -61,33 +61,33 @@ extension Dbbrain {
             case md5 = "Md5"
         }
     }
-    
+
     /// DescribeSlowLogUserHostStats返回参数结构体
     public struct DescribeSlowLogUserHostStatsResponse: TCResponseModel {
         /// 来源地址数目。
         public let totalCount: Int64
-        
+
         /// 各来源地址的慢日志占比详情列表。
         public let items: [SlowLogHost]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取慢日志来源地址统计分布图
     ///
     /// 获取慢日志来源地址统计分布图。
     @inlinable
-    public func describeSlowLogUserHostStats(_ input: DescribeSlowLogUserHostStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogUserHostStatsResponse > {
+    public func describeSlowLogUserHostStats(_ input: DescribeSlowLogUserHostStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogUserHostStatsResponse> {
         self.client.execute(action: "DescribeSlowLogUserHostStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取慢日志来源地址统计分布图
     ///
     /// 获取慢日志来源地址统计分布图。
@@ -95,15 +95,15 @@ extension Dbbrain {
     public func describeSlowLogUserHostStats(_ input: DescribeSlowLogUserHostStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogUserHostStatsResponse {
         try await self.client.execute(action: "DescribeSlowLogUserHostStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取慢日志来源地址统计分布图
     ///
     /// 获取慢日志来源地址统计分布图。
     @inlinable
-    public func describeSlowLogUserHostStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogUserHostStatsResponse > {
+    public func describeSlowLogUserHostStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogUserHostStatsResponse> {
         self.describeSlowLogUserHostStats(DescribeSlowLogUserHostStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product, md5: md5), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取慢日志来源地址统计分布图
     ///
     /// 获取慢日志来源地址统计分布图。

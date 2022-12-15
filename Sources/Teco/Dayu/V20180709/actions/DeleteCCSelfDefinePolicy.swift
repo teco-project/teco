@@ -19,58 +19,58 @@ extension Dayu {
     public struct DeleteCCSelfDefinePolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 策略ID
         public let setId: String
-        
-        public init (business: String, id: String, setId: String) {
+
+        public init(business: String, id: String, setId: String) {
             self.business = business
             self.id = id
             self.setId = setId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
             case setId = "SetId"
         }
     }
-    
+
     /// DeleteCCSelfDefinePolicy返回参数结构体
     public struct DeleteCCSelfDefinePolicyResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除CC自定义策略
     @inlinable
-    public func deleteCCSelfDefinePolicy(_ input: DeleteCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCSelfDefinePolicyResponse > {
+    public func deleteCCSelfDefinePolicy(_ input: DeleteCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCSelfDefinePolicyResponse> {
         self.client.execute(action: "DeleteCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除CC自定义策略
     @inlinable
     public func deleteCCSelfDefinePolicy(_ input: DeleteCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCSelfDefinePolicyResponse {
         try await self.client.execute(action: "DeleteCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除CC自定义策略
     @inlinable
-    public func deleteCCSelfDefinePolicy(business: String, id: String, setId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCSelfDefinePolicyResponse > {
+    public func deleteCCSelfDefinePolicy(business: String, id: String, setId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCSelfDefinePolicyResponse> {
         self.deleteCCSelfDefinePolicy(DeleteCCSelfDefinePolicyRequest(business: business, id: id, setId: setId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除CC自定义策略
     @inlinable
     public func deleteCCSelfDefinePolicy(business: String, id: String, setId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCSelfDefinePolicyResponse {

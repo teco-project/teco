@@ -19,63 +19,63 @@ extension Iotcloud {
     public struct UpdateDevicePSKRequest: TCRequestModel {
         /// 产品名
         public let productId: String
-        
+
         /// 设备名
         public let deviceName: String
-        
+
         /// 设备的psk
         public let psk: String
-        
-        public init (productId: String, deviceName: String, psk: String) {
+
+        public init(productId: String, deviceName: String, psk: String) {
             self.productId = productId
             self.deviceName = deviceName
             self.psk = psk
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
             case psk = "Psk"
         }
     }
-    
+
     /// UpdateDevicePSK返回参数结构体
     public struct UpdateDevicePSKResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新设备PSK
     ///
-    /// 本接口（UpdateDevicePSK）用于更新设备的PSK 
+    /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
-    public func updateDevicePSK(_ input: UpdateDevicePSKRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicePSKResponse > {
+    public func updateDevicePSK(_ input: UpdateDevicePSKRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
         self.client.execute(action: "UpdateDevicePSK", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新设备PSK
     ///
-    /// 本接口（UpdateDevicePSK）用于更新设备的PSK 
+    /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
     public func updateDevicePSK(_ input: UpdateDevicePSKRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
         try await self.client.execute(action: "UpdateDevicePSK", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新设备PSK
     ///
-    /// 本接口（UpdateDevicePSK）用于更新设备的PSK 
+    /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
-    public func updateDevicePSK(productId: String, deviceName: String, psk: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicePSKResponse > {
+    public func updateDevicePSK(productId: String, deviceName: String, psk: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
         self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新设备PSK
     ///
-    /// 本接口（UpdateDevicePSK）用于更新设备的PSK 
+    /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
     public func updateDevicePSK(productId: String, deviceName: String, psk: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
         try await self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), logger: logger, on: eventLoop)

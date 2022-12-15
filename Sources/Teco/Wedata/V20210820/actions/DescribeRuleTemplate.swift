@@ -19,54 +19,54 @@ extension Wedata {
     public struct DescribeRuleTemplateRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String?
-        
+
         /// 规则模板Id
         public let templateId: UInt64?
-        
-        public init (projectId: String? = nil, templateId: UInt64? = nil) {
+
+        public init(projectId: String? = nil, templateId: UInt64? = nil) {
             self.projectId = projectId
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DescribeRuleTemplate返回参数结构体
     public struct DescribeRuleTemplateResponse: TCResponseModel {
         /// 模板详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: RuleTemplate?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询模板详情
     @inlinable
-    public func describeRuleTemplate(_ input: DescribeRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplateResponse > {
+    public func describeRuleTemplate(_ input: DescribeRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplateResponse> {
         self.client.execute(action: "DescribeRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询模板详情
     @inlinable
     public func describeRuleTemplate(_ input: DescribeRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplateResponse {
         try await self.client.execute(action: "DescribeRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询模板详情
     @inlinable
-    public func describeRuleTemplate(projectId: String? = nil, templateId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplateResponse > {
+    public func describeRuleTemplate(projectId: String? = nil, templateId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplateResponse> {
         self.describeRuleTemplate(DescribeRuleTemplateRequest(projectId: projectId, templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询模板详情
     @inlinable
     public func describeRuleTemplate(projectId: String? = nil, templateId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplateResponse {

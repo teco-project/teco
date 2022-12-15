@@ -19,69 +19,69 @@ extension Yunjing {
     public struct DescribeAttackLogInfoRequest: TCRequestModel {
         /// 日志ID
         public let id: UInt64
-        
-        public init (id: UInt64) {
+
+        public init(id: UInt64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DescribeAttackLogInfo返回参数结构体
     public struct DescribeAttackLogInfoResponse: TCResponseModel {
         /// 日志ID
         public let id: UInt64
-        
+
         /// 主机ID
         public let quuid: String
-        
+
         /// 攻击来源端口
         public let srcPort: UInt64
-        
+
         /// 攻击来源IP
         public let srcIp: String
-        
+
         /// 攻击目标端口
         public let dstPort: UInt64
-        
+
         /// 攻击目标IP
         public let dstIp: String
-        
+
         /// 攻击方法
         public let httpMethod: String
-        
+
         /// 攻击目标主机
         public let httpHost: String
-        
+
         /// 攻击头信息
         public let httpHead: String
-        
+
         /// 攻击者浏览器标识
         public let httpUserAgent: String
-        
+
         /// 请求源
         public let httpReferer: String
-        
+
         /// 威胁类型
         public let vulType: String
-        
+
         /// 攻击路径
         public let httpCgi: String
-        
+
         /// 攻击参数
         public let httpParam: String
-        
+
         /// 攻击时间
         public let createdAt: String
-        
+
         /// 攻击内容
         public let httpContent: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case quuid = "Quuid"
@@ -102,25 +102,25 @@ extension Yunjing {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 网络攻击日志详情
     @inlinable
-    public func describeAttackLogInfo(_ input: DescribeAttackLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackLogInfoResponse > {
+    public func describeAttackLogInfo(_ input: DescribeAttackLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogInfoResponse> {
         self.client.execute(action: "DescribeAttackLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 网络攻击日志详情
     @inlinable
     public func describeAttackLogInfo(_ input: DescribeAttackLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogInfoResponse {
         try await self.client.execute(action: "DescribeAttackLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 网络攻击日志详情
     @inlinable
-    public func describeAttackLogInfo(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackLogInfoResponse > {
+    public func describeAttackLogInfo(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogInfoResponse> {
         self.describeAttackLogInfo(DescribeAttackLogInfoRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 网络攻击日志详情
     @inlinable
     public func describeAttackLogInfo(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogInfoResponse {

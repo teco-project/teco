@@ -22,17 +22,17 @@ extension As {
     public struct Activity: TCOutputModel {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 伸缩活动ID。
         public let activityId: String
-        
+
         /// 伸缩活动类型。取值如下：<br>
         /// <li>SCALE_OUT：扩容活动<li>SCALE_IN：缩容活动<li>ATTACH_INSTANCES：添加实例<li>REMOVE_INSTANCES：销毁实例<li>DETACH_INSTANCES：移出实例<li>TERMINATE_INSTANCES_UNEXPECTEDLY：实例在CVM控制台被销毁<li>REPLACE_UNHEALTHY_INSTANCE：替换不健康实例
         /// <li>START_INSTANCES：开启实例
         /// <li>STOP_INSTANCES：关闭实例
         /// <li>INVOKE_COMMAND：执行命令
         public let activityType: String
-        
+
         /// 伸缩活动状态。取值如下：<br>
         /// <li>INIT：初始化中
         /// <li>RUNNING：运行中
@@ -41,16 +41,16 @@ extension As {
         /// <li>FAILED：活动失败
         /// <li>CANCELLED：活动取消
         public let statusCode: String
-        
+
         /// 伸缩活动状态描述。
         public let statusMessage: String
-        
+
         /// 伸缩活动起因。
         public let cause: String
-        
+
         /// 伸缩活动描述。
         public let description: String
-        
+
         /// 伸缩活动开始时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -58,7 +58,7 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 伸缩活动结束时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -66,7 +66,7 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 伸缩活动创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -74,22 +74,22 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date
-        
+
         /// 伸缩活动相关实例信息集合。
         public let activityRelatedInstanceSet: [ActivtyRelatedInstance]
-        
+
         /// 伸缩活动状态简要描述。
         public let statusMessageSimplified: String
-        
+
         /// 伸缩活动中生命周期挂钩的执行结果。
         public let lifecycleActionResultSet: [LifecycleActionResultInfo]
-        
+
         /// 伸缩活动状态详细描述。
         public let detailedStatusMessageSet: [DetailedStatusMessage]
-        
+
         /// 执行命令结果。
         public let invocationResultSet: [InvocationResult]
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case activityId = "ActivityId"
@@ -108,72 +108,72 @@ extension As {
             case invocationResultSet = "InvocationResultSet"
         }
     }
-    
+
     /// 与本次伸缩活动相关的实例信息。
     public struct ActivtyRelatedInstance: TCOutputModel {
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 实例在伸缩活动中的状态。取值如下：
         /// <li>INIT：初始化中
         /// <li>RUNNING：实例操作中
         /// <li>SUCCESSFUL：活动成功
         /// <li>FAILED：活动失败
         public let instanceStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceStatus = "InstanceStatus"
         }
     }
-    
+
     /// 伸缩配置建议。
     public struct Advice: TCOutputModel {
         /// 问题描述。
         public let problem: String
-        
+
         /// 问题详情。
         public let detail: String
-        
+
         /// 建议解决方案。
         public let solution: String
-        
+
         enum CodingKeys: String, CodingKey {
             case problem = "Problem"
             case detail = "Detail"
             case solution = "Solution"
         }
     }
-    
+
     /// 伸缩组配置建议。
     public struct AutoScalingAdvice: TCOutputModel {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 伸缩组警告级别。取值范围：<br>
         /// <li>NORMAL：正常<br>
         /// <li>WARNING：警告级别<br>
         /// <li>CRITICAL：严重级别<br>
         public let level: String
-        
+
         /// 伸缩组配置建议集合。
         public let advices: [Advice]
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case level = "Level"
             case advices = "Advices"
         }
     }
-    
+
     /// 伸缩组
     public struct AutoScalingGroup: TCOutputModel {
         /// 伸缩组ID
         public let autoScalingGroupId: String
-        
+
         /// 伸缩组名称
         public let autoScalingGroupName: String
-        
+
         /// 伸缩组当前状态。取值范围：<br>
         /// <li>NORMAL：正常<br>
         /// <li>CVM_ABNORMAL：启动配置异常<br>
@@ -186,7 +186,7 @@ extension As {
         /// <li>LB_BACKEND_REGION_NOT_MATCH：CLB实例后端地域与AS服务所在地域不匹配<br>
         /// <li>LB_BACKEND_VPC_NOT_MATCH：CLB实例VPC与伸缩组VPC不匹配
         public let autoScalingGroupStatus: String
-        
+
         /// 创建时间，采用UTC标准计时
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -194,95 +194,95 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date
-        
+
         /// 默认冷却时间，单位秒
         public let defaultCooldown: Int64
-        
+
         /// 期望实例数
         public let desiredCapacity: Int64
-        
+
         /// 启用状态，取值包括`ENABLED`和`DISABLED`
         public let enabledStatus: String
-        
+
         /// 应用型负载均衡器列表
         public let forwardLoadBalancerSet: [ForwardLoadBalancer]
-        
+
         /// 实例数量
         public let instanceCount: Int64
-        
+
         /// 状态为`IN_SERVICE`实例的数量
         public let inServiceInstanceCount: Int64
-        
+
         /// 启动配置ID
         public let launchConfigurationId: String
-        
+
         /// 启动配置名称
         public let launchConfigurationName: String
-        
+
         /// 传统型负载均衡器ID列表
         public let loadBalancerIdSet: [String]
-        
+
         /// 最大实例数
         public let maxSize: Int64
-        
+
         /// 最小实例数
         public let minSize: Int64
-        
+
         /// 项目ID
         public let projectId: Int64
-        
+
         /// 子网ID列表
         public let subnetIdSet: [String]
-        
+
         /// 销毁策略
         public let terminationPolicySet: [String]
-        
+
         /// VPC标识
         public let vpcId: String
-        
+
         /// 可用区列表
         public let zoneSet: [String]
-        
+
         /// 重试策略
         public let retryPolicy: String
-        
+
         /// 伸缩组是否处于伸缩活动中，`IN_ACTIVITY`表示处于伸缩活动中，`NOT_IN_ACTIVITY`表示不处于伸缩活动中。
         public let inActivityStatus: String
-        
+
         /// 伸缩组标签列表
         public let tags: [Tag]
-        
+
         /// 服务设置
         public let serviceSettings: ServiceSettings
-        
+
         /// 实例具有IPv6地址数量的配置
         public let ipv6AddressCount: Int64
-        
+
         /// 多可用区/子网策略。
         /// <br><li> PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。
         /// <br><li> EQUALITY：每次选择当前实例数最少的可用区/子网进行扩容，使得每个可用区/子网都有机会发生扩容，多次扩容出的实例会打散到多个可用区/子网。
         public let multiZoneSubnetPolicy: String
-        
+
         /// 伸缩组实例健康检查类型，取值如下：<br><li>CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)<br><li>CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097)
         public let healthCheckType: String
-        
+
         /// CLB健康检查宽限期
         public let loadBalancerHealthCheckGracePeriod: UInt64
-        
+
         /// 实例分配策略，取值包括 LAUNCH_CONFIGURATION 和 SPOT_MIXED。
         /// <br><li> LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。
         /// <br><li> SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。
         public let instanceAllocationPolicy: String
-        
+
         /// 竞价混合模式下，各计费类型实例的分配策略。
         /// 仅当 InstanceAllocationPolicy 取 SPOT_MIXED 时才会返回有效值。
         public let spotMixedAllocationPolicy: SpotMixedAllocationPolicy
-        
+
         /// 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
         /// <br><li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
         /// <br><li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
         public let capacityRebalance: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case autoScalingGroupName = "AutoScalingGroupName"
@@ -317,44 +317,44 @@ extension As {
             case capacityRebalance = "CapacityRebalance"
         }
     }
-    
+
     /// 伸缩组简明信息。
     public struct AutoScalingGroupAbstract: TCOutputModel {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 伸缩组名称。
         public let autoScalingGroupName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case autoScalingGroupName = "AutoScalingGroupName"
         }
     }
-    
+
     /// 弹性伸缩事件通知
     public struct AutoScalingNotification: TCOutputModel {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 用户组ID列表。
         public let notificationUserGroupIds: [String]
-        
+
         /// 通知事件列表。
         public let notificationTypes: [String]
-        
+
         /// 事件通知ID。
         public let autoScalingNotificationId: String
-        
+
         /// 通知接收端类型。
         public let targetType: String
-        
+
         /// CMQ 队列名。
         public let queueName: String
-        
+
         /// CMQ 主题名。
         public let topicName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case notificationUserGroupIds = "NotificationUserGroupIds"
@@ -365,35 +365,35 @@ extension As {
             case topicName = "TopicName"
         }
     }
-    
+
     /// 启动配置的数据盘配置信息。若不指定该参数，则默认不购买数据盘，当前仅支持购买的时候指定一个数据盘。
     public struct DataDisk: TCInputModel, TCOutputModel {
         /// 数据盘类型。数据盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><br>默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
-        
+
         /// 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[CVM实例配置](https://cloud.tencent.com/document/product/213/2177)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: UInt64?
-        
+
         /// 数据盘快照 ID，类似 `snap-l8psqwnt`。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotId: String?
-        
+
         /// 数据盘是否随子机销毁。取值范围：<br><li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘<br><li>FALSE：子机销毁时，保留数据盘
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
-        
+
         /// 数据盘是否加密。取值范围：<br><li>TRUE：加密<br><li>FALSE：不加密
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encrypt: Bool?
-        
+
         /// 云硬盘性能，单位：MB/s。使用此参数可给云硬盘购买额外的性能，功能介绍和类型限制详见：[增强型 SSD 云硬盘额外性能说明](https://cloud.tencent.com/document/product/362/51896#.E5.A2.9E.E5.BC.BA.E5.9E.8B-ssd-.E4.BA.91.E7.A1.AC.E7.9B.98.E9.A2.9D.E5.A4.96.E6.80.A7.E8.83.BD)。
         /// 当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）且 需容量 > 460GB。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let throughputPerformance: UInt64?
-        
-        public init (diskType: String? = nil, diskSize: UInt64? = nil, snapshotId: String? = nil, deleteWithInstance: Bool? = nil, encrypt: Bool? = nil, throughputPerformance: UInt64? = nil) {
+
+        public init(diskType: String? = nil, diskSize: UInt64? = nil, snapshotId: String? = nil, deleteWithInstance: Bool? = nil, encrypt: Bool? = nil, throughputPerformance: UInt64? = nil) {
             self.diskType = diskType
             self.diskSize = diskSize
             self.snapshotId = snapshotId
@@ -401,7 +401,7 @@ extension As {
             self.encrypt = encrypt
             self.throughputPerformance = throughputPerformance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
             case diskSize = "DiskSize"
@@ -411,30 +411,30 @@ extension As {
             case throughputPerformance = "ThroughputPerformance"
         }
     }
-    
+
     /// 伸缩活动状态详细描述。
     public struct DetailedStatusMessage: TCOutputModel {
         /// 错误类型。
         public let code: String
-        
+
         /// 可用区信息。
         public let zone: String
-        
+
         /// 实例ID。
         public let instanceId: String
-        
+
         /// 实例计费类型。
         public let instanceChargeType: String
-        
+
         /// 子网ID。
         public let subnetId: String
-        
+
         /// 错误描述。
         public let message: String
-        
+
         /// 实例类型。
         public let instanceType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case zone = "Zone"
@@ -445,28 +445,28 @@ extension As {
             case instanceType = "InstanceType"
         }
     }
-    
+
     /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控，自动化助手等实例 Agent。
     public struct EnhancedService: TCInputModel, TCOutputModel {
         /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
         public let securityService: RunSecurityServiceEnabled?
-        
+
         /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
         public let monitorService: RunMonitorServiceEnabled?
-        
+
         /// 该参数已废弃，查询时会返回空值，请勿使用。
         public let automationService: [RunAutomationServiceEnabled]?
-        
+
         /// 开启自动化助手服务。若不指定该参数，则默认逻辑与CVM保持一致。注意：此字段可能返回 null，表示取不到有效值。
         public let automationToolsService: RunAutomationServiceEnabled?
-        
-        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: [RunAutomationServiceEnabled]? = nil, automationToolsService: RunAutomationServiceEnabled? = nil) {
+
+        public init(securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: [RunAutomationServiceEnabled]? = nil, automationToolsService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.automationService = automationService
             self.automationToolsService = automationToolsService
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityService = "SecurityService"
             case monitorService = "MonitorService"
@@ -474,7 +474,7 @@ extension As {
             case automationToolsService = "AutomationToolsService"
         }
     }
-    
+
     /// >描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
     /// > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
     /// > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
@@ -490,46 +490,46 @@ extension As {
     public struct Filter: TCInputModel {
         /// 需要过滤的字段。
         public let name: String
-        
+
         /// 字段的过滤值。
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 应用型负载均衡器
     public struct ForwardLoadBalancer: TCInputModel, TCOutputModel {
         /// 负载均衡器ID
         public let loadBalancerId: String
-        
+
         /// 应用型负载均衡监听器 ID
         public let listenerId: String
-        
+
         /// 目标规则属性列表
         public let targetAttributes: [TargetAttribute]
-        
+
         /// 转发规则ID，注意：针对七层监听器此参数必填
         public let locationId: String?
-        
+
         /// 负载均衡实例所属地域，默认取AS服务所在地域。格式与公共参数Region相同，如："ap-guangzhou"。
         public let region: String?
-        
-        public init (loadBalancerId: String, listenerId: String, targetAttributes: [TargetAttribute], locationId: String? = nil, region: String? = nil) {
+
+        public init(loadBalancerId: String, listenerId: String, targetAttributes: [TargetAttribute], locationId: String? = nil, region: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.targetAttributes = targetAttributes
             self.locationId = locationId
             self.region = region
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case listenerId = "ListenerId"
@@ -538,31 +538,31 @@ extension As {
             case region = "Region"
         }
     }
-    
+
     /// 应用型负载均衡器标识信息
     public struct ForwardLoadBalancerIdentification: TCInputModel {
         /// 负载均衡器ID
         public let loadBalancerId: String
-        
+
         /// 应用型负载均衡监听器 ID
         public let listenerId: String
-        
+
         /// 转发规则ID，注意：针对七层监听器此参数必填
         public let locationId: String?
-        
-        public init (loadBalancerId: String, listenerId: String, locationId: String? = nil) {
+
+        public init(loadBalancerId: String, listenerId: String, locationId: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.locationId = locationId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case listenerId = "ListenerId"
             case locationId = "LocationId"
         }
     }
-    
+
     /// 云服务器主机名（HostName）的相关设置
     public struct HostNameSettings: TCInputModel, TCOutputModel {
         /// 云服务器的主机名。
@@ -571,24 +571,24 @@ extension As {
         /// <br><li> 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostName: String?
-        
+
         /// 云服务器主机名的风格，取值范围包括 ORIGINAL 和  UNIQUE，默认为 ORIGINAL。
         /// <br><li> ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。
         /// <br><li> UNIQUE，入参所填的 HostName 相当于主机名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 HostName 可以保证唯一。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostNameStyle: String?
-        
-        public init (hostName: String, hostNameStyle: String? = nil) {
+
+        public init(hostName: String, hostNameStyle: String? = nil) {
             self.hostName = hostName
             self.hostNameStyle = hostNameStyle
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hostName = "HostName"
             case hostNameStyle = "HostNameStyle"
         }
     }
-    
+
     /// 描述了启动配置创建实例的IPv6地址公网可访问性，声明了IPv6地址公网使用计费模式，最大带宽等
     public struct IPv6InternetAccessible: TCInputModel, TCOutputModel {
         /// 网络计费模式。取值包括TRAFFIC_POSTPAID_BY_HOUR、BANDWIDTH_PACKAGE，默认取值为TRAFFIC_POSTPAID_BY_HOUR。查看当前账户类型可参考[账户类型说明](https://cloud.tencent.com/document/product/1199/49090#judge)。
@@ -596,42 +596,42 @@ extension As {
         /// <br><li> IPv6对传统账户类型支持BANDWIDTH_PACKAGE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?
-        
+
         /// 公网出带宽上限，单位：Mbps。<br>默认值：0Mbps，此时不为IPv6分配公网带宽。不同机型、可用区、计费模式的带宽上限范围不一致，具体限制详见[公网带宽上限](https://cloud.tencent.com/document/product/213/12523)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetMaxBandwidthOut: UInt64?
-        
+
         /// 带宽包ID。可通过[DescribeBandwidthPackages](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthPackageId: String?
-        
-        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: UInt64? = nil, bandwidthPackageId: String? = nil) {
+
+        public init(internetChargeType: String? = nil, internetMaxBandwidthOut: UInt64? = nil, bandwidthPackageId: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.bandwidthPackageId = bandwidthPackageId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case internetChargeType = "InternetChargeType"
             case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
             case bandwidthPackageId = "BandwidthPackageId"
         }
     }
-    
+
     /// 实例信息
     public struct Instance: TCOutputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 伸缩组ID
         public let autoScalingGroupId: String
-        
+
         /// 启动配置ID
         public let launchConfigurationId: String
-        
+
         /// 启动配置名称
         public let launchConfigurationName: String
-        
+
         /// 生命周期状态，取值如下：<br>
         /// <li>IN_SERVICE：运行中
         /// <li>CREATING：创建中
@@ -647,19 +647,19 @@ extension As {
         /// <li>STOP_FAILED：关机失败
         /// <li>STOPPED：已关机
         public let lifeCycleState: String
-        
+
         /// 健康状态，取值包括HEALTHY和UNHEALTHY
         public let healthStatus: String
-        
+
         /// 是否加入缩容保护
         public let protectedFromScaleIn: Bool
-        
+
         /// 可用区
         public let zone: String
-        
+
         /// 创建类型，取值包括AUTO_CREATION, MANUAL_ATTACHING。
         public let creationType: String
-        
+
         /// 实例加入时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -667,16 +667,16 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var addTime: Date
-        
+
         /// 实例类型
         public let instanceType: String
-        
+
         /// 版本号
         public let versionNumber: Int64
-        
+
         /// 伸缩组名称
         public let autoScalingGroupName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case autoScalingGroupId = "AutoScalingGroupId"
@@ -693,113 +693,113 @@ extension As {
             case autoScalingGroupName = "AutoScalingGroupName"
         }
     }
-    
+
     /// 描述了实例的计费模式
     public struct InstanceChargePrepaid: TCInputModel {
         /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
         public let period: Int64
-        
+
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
-        
-        public init (period: Int64, renewFlag: String? = nil) {
+
+        public init(period: Int64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case renewFlag = "RenewFlag"
         }
     }
-    
+
     /// CVM竞价请求相关选项
     public struct InstanceMarketOptionsRequest: TCInputModel, TCOutputModel {
         /// 竞价相关选项
         public let spotOptions: SpotMarketOptions
-        
+
         /// 市场选项类型，当前只支持取值：spot
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let marketType: String?
-        
-        public init (spotOptions: SpotMarketOptions, marketType: String? = nil) {
+
+        public init(spotOptions: SpotMarketOptions, marketType: String? = nil) {
             self.spotOptions = spotOptions
             self.marketType = marketType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case spotOptions = "SpotOptions"
             case marketType = "MarketType"
         }
     }
-    
+
     /// 云服务器实例名称（InstanceName）的相关设置
     public struct InstanceNameSettings: TCInputModel {
         /// 云服务器的实例名。
         /// 点号（.）和短横线（-）不能作为 InstanceName 的首尾字符，不能连续使用。
         /// 字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
         public let instanceName: String
-        
+
         /// 云服务器实例名的风格，取值范围包括 ORIGINAL 和 UNIQUE，默认为 ORIGINAL。
         /// ORIGINAL，AS 直接将入参中所填的 InstanceName 传递给 CVM，CVM 可能会对 InstanceName 追加序列号，伸缩组中实例的 InstanceName 会出现冲突的情况。
         /// UNIQUE，入参所填的 InstanceName 相当于实例名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 InstanceName 可以保证唯一。
         public let instanceNameStyle: String?
-        
-        public init (instanceName: String, instanceNameStyle: String? = nil) {
+
+        public init(instanceName: String, instanceNameStyle: String? = nil) {
             self.instanceName = instanceName
             self.instanceNameStyle = instanceNameStyle
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceName = "InstanceName"
             case instanceNameStyle = "InstanceNameStyle"
         }
     }
-    
+
     /// 实例标签。通过指定该参数，可以为扩容的实例绑定标签。
     public struct InstanceTag: TCInputModel, TCOutputModel {
         /// 标签键
         public let key: String
-        
+
         /// 标签值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 描述了启动配置创建实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等
     public struct InternetAccessible: TCInputModel, TCOutputModel {
         /// 网络计费类型。取值范围：<br><li>BANDWIDTH_PREPAID：预付费按带宽结算<br><li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费<br><li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费<br><li>BANDWIDTH_PACKAGE：带宽包用户<br>默认取值：TRAFFIC_POSTPAID_BY_HOUR。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?
-        
+
         /// 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见[购买网络带宽](https://cloud.tencent.com/document/product/213/509)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetMaxBandwidthOut: UInt64?
-        
+
         /// 是否分配公网IP。取值范围：<br><li>TRUE：表示分配公网IP<br><li>FALSE：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicIpAssigned: Bool?
-        
+
         /// 带宽包ID。可通过[DescribeBandwidthPackages](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthPackageId: String?
-        
-        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: UInt64? = nil, publicIpAssigned: Bool? = nil, bandwidthPackageId: String? = nil) {
+
+        public init(internetChargeType: String? = nil, internetMaxBandwidthOut: UInt64? = nil, publicIpAssigned: Bool? = nil, bandwidthPackageId: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.publicIpAssigned = publicIpAssigned
             self.bandwidthPackageId = bandwidthPackageId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case internetChargeType = "InternetChargeType"
             case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
@@ -807,33 +807,33 @@ extension As {
             case bandwidthPackageId = "BandwidthPackageId"
         }
     }
-    
+
     /// 执行命令结果。
     public struct InvocationResult: TCOutputModel {
         /// 实例ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 执行活动ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationId: String?
-        
+
         /// 执行任务ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationTaskId: String?
-        
+
         /// 命令ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let commandId: String?
-        
+
         /// 执行任务状态。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskStatus: String?
-        
+
         /// 执行异常信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case invocationId = "InvocationId"
@@ -843,43 +843,43 @@ extension As {
             case errorMessage = "ErrorMessage"
         }
     }
-    
+
     /// 符合条件的启动配置信息的集合。
     public struct LaunchConfiguration: TCOutputModel {
         /// 实例所属项目ID。
         public let projectId: Int64
-        
+
         /// 启动配置ID。
         public let launchConfigurationId: String
-        
+
         /// 启动配置名称。
         public let launchConfigurationName: String
-        
+
         /// 实例机型。
         public let instanceType: String
-        
+
         /// 实例系统盘配置信息。
         public let systemDisk: SystemDisk
-        
+
         /// 实例数据盘配置信息。
         public let dataDisks: [DataDisk]
-        
+
         /// 实例登录设置。
         public let loginSettings: LimitedLoginSettings
-        
+
         /// 公网带宽相关信息设置。
         public let internetAccessible: InternetAccessible
-        
+
         /// 实例所属安全组。
         public let securityGroupIds: [String]
-        
+
         /// 启动配置关联的伸缩组。
         public let autoScalingGroupAbstractSet: [AutoScalingGroupAbstract]
-        
+
         /// 自定义数据。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userData: String?
-        
+
         /// 启动配置创建时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -887,38 +887,38 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date
-        
+
         /// 实例的增强服务启用情况与其设置。
         public let enhancedService: EnhancedService
-        
+
         /// 镜像ID。
         public let imageId: String
-        
+
         /// 启动配置当前状态。取值范围：<br><li>NORMAL：正常<br><li>IMAGE_ABNORMAL：启动配置镜像异常<br><li>CBS_SNAP_ABNORMAL：启动配置数据盘快照异常<br><li>SECURITY_GROUP_ABNORMAL：启动配置安全组异常<br>
         public let launchConfigurationStatus: String
-        
+
         /// 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
         /// <br><li>POSTPAID_BY_HOUR：按小时后付费
         /// <br><li>SPOTPAID：竞价付费
         public let instanceChargeType: String
-        
+
         /// 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceMarketOptions: InstanceMarketOptionsRequest?
-        
+
         /// 实例机型列表。
         public let instanceTypes: [String]
-        
+
         /// 实例标签列表。扩容出来的实例会自动带上标签，最多支持10个标签。
         public let instanceTags: [InstanceTag]
-        
+
         /// 标签列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 版本号。
         public let versionNumber: Int64
-        
+
         /// 更新时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -926,34 +926,34 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedTime: Date
-        
+
         /// CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
         public let camRoleName: String
-        
+
         /// 上次操作时，InstanceTypesCheckPolicy 取值。
         public let lastOperationInstanceTypesCheckPolicy: String
-        
+
         /// 云服务器主机名（HostName）的相关设置。
         public let hostNameSettings: HostNameSettings
-        
+
         /// 云服务器实例名（InstanceName）的相关设置。
         public let instanceNameSettings: InstanceNameSettings
-        
+
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid
-        
+
         /// 云盘类型选择策略。取值范围：
         /// <br><li>ORIGINAL：使用设置的云盘类型
         /// <br><li>AUTOMATIC：自动选择当前可用区下可用的云盘类型
         public let diskTypePolicy: String
-        
+
         /// 高性能计算集群ID。<br>
         /// 注意：此字段默认为空。
         public let hpcClusterId: String
-        
+
         /// IPv6公网带宽相关信息设置。
         public let iPv6InternetAccessible: IPv6InternetAccessible
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case launchConfigurationId = "LaunchConfigurationId"
@@ -987,33 +987,33 @@ extension As {
             case iPv6InternetAccessible = "IPv6InternetAccessible"
         }
     }
-    
+
     /// 生命周期挂钩动作的执行结果信息。
     public struct LifecycleActionResultInfo: TCOutputModel {
         /// 生命周期挂钩标识。
         public let lifecycleHookId: String
-        
+
         /// 实例标识。
         public let instanceId: String
-        
+
         /// 执行活动ID。可通过TAT的[查询执行活动](https://cloud.tencent.com/document/api/1340/52679)API查询具体的执行结果。
         public let invocationId: String
-        
+
         /// 命令调用的结果，表示执行TAT命令是否成功。<br>
         /// <li>SUCCESSFUL 命令调用成功，不代表命令执行成功，执行的具体情况可根据InvocationId进行查询</li>
         /// <li>FAILED 命令调用失败</li>
         /// <li>NONE</li>
         public let invokeCommandResult: String
-        
+
         /// 通知的结果，表示通知CMQ/TDMQ是否成功。<br>
         /// <li>SUCCESSFUL 通知成功</li>
         /// <li>FAILED 通知失败</li>
         /// <li>NONE</li>
         public let notificationResult: String
-        
+
         /// 生命周期挂钩动作的执行结果，取值包括 CONTINUE、ABANDON。
         public let lifecycleActionResult: String
-        
+
         /// 结果的原因。<br>
         /// <li>HEARTBEAT_TIMEOUT 由于心跳超时，结果根据DefaultResult设置。</li>
         /// <li>NOTIFICATION_FAILURE 由于发送通知失败，结果根据DefaultResult设置。</li>
@@ -1024,7 +1024,7 @@ extension As {
         /// <li>COMMAND_EXEC_FAILURE 由于命令执行失败，结果根据DefaultResult设置。</li>
         /// <li>COMMAND_EXEC_RESULT_CHECK_FAILURE 由于命令结果检查失败，结果根据DefaultResult设置。</li>
         public let resultReason: String
-        
+
         enum CodingKeys: String, CodingKey {
             case lifecycleHookId = "LifecycleHookId"
             case instanceId = "InstanceId"
@@ -1035,54 +1035,54 @@ extension As {
             case resultReason = "ResultReason"
         }
     }
-    
+
     /// 远程命令执行对象。
     public struct LifecycleCommand: TCInputModel, TCOutputModel {
         /// 远程命令ID。若选择执行命令，则此项必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let commandId: String?
-        
+
         /// 自定义参数。字段类型为 json encoded string。如：{"varA": "222"}。
         /// key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         /// 如果未提供该参数取值，将使用 Command 的 DefaultParameters 进行替换。
         /// 自定义参数最多20个。自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parameters: String?
-        
-        public init (commandId: String, parameters: String? = nil) {
+
+        public init(commandId: String, parameters: String? = nil) {
             self.commandId = commandId
             self.parameters = parameters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case commandId = "CommandId"
             case parameters = "Parameters"
         }
     }
-    
+
     /// 生命周期挂钩
     public struct LifecycleHook: TCOutputModel {
         /// 生命周期挂钩ID
         public let lifecycleHookId: String
-        
+
         /// 生命周期挂钩名称
         public let lifecycleHookName: String
-        
+
         /// 伸缩组ID
         public let autoScalingGroupId: String
-        
+
         /// 生命周期挂钩默认结果
         public let defaultResult: String
-        
+
         /// 生命周期挂钩等待超时时间
         public let heartbeatTimeout: Int64
-        
+
         /// 生命周期挂钩适用场景
         public let lifecycleTransition: String
-        
+
         /// 通知目标的附加信息
         public let notificationMetadata: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1090,17 +1090,17 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date
-        
+
         /// 通知目标
         public let notificationTarget: NotificationTarget
-        
+
         /// 生命周期挂钩适用场景
         public let lifecycleTransitionType: String
-        
+
         /// 远程命令执行对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lifecycleCommand: LifecycleCommand?
-        
+
         enum CodingKeys: String, CodingKey {
             case lifecycleHookId = "LifecycleHookId"
             case lifecycleHookName = "LifecycleHookName"
@@ -1115,64 +1115,64 @@ extension As {
             case lifecycleCommand = "LifecycleCommand"
         }
     }
-    
+
     /// 描述了实例登录相关配置与信息，出于安全性考虑，不会描述敏感信息。
     public struct LimitedLoginSettings: TCOutputModel {
         /// 密钥ID列表。
         public let keyIds: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
         }
     }
-    
+
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
-        
+
         /// 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口DescribeKeyPairs获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。当前仅支持购买的时候指定一个密钥。
         public let keyIds: [String]?
-        
+
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: Bool?
-        
-        public init (password: String? = nil, keyIds: [String]? = nil, keepImageLogin: Bool? = nil) {
+
+        public init(password: String? = nil, keyIds: [String]? = nil, keepImageLogin: Bool? = nil) {
             self.password = password
             self.keyIds = keyIds
             self.keepImageLogin = keepImageLogin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case password = "Password"
             case keyIds = "KeyIds"
             case keepImageLogin = "KeepImageLogin"
         }
     }
-    
+
     /// 弹性伸缩告警指标
     public struct MetricAlarm: TCInputModel, TCOutputModel {
         /// 比较运算符，可选值：<br><li>GREATER_THAN：大于</li><li>GREATER_THAN_OR_EQUAL_TO：大于或等于</li><li>LESS_THAN：小于</li><li> LESS_THAN_OR_EQUAL_TO：小于或等于</li><li> EQUAL_TO：等于</li> <li>NOT_EQUAL_TO：不等于</li>
         public let comparisonOperator: String
-        
+
         /// 指标名称，可选字段如下：<br><li>CPU_UTILIZATION：CPU利用率</li><li>MEM_UTILIZATION：内存利用率</li><li>LAN_TRAFFIC_OUT：内网出带宽</li><li>LAN_TRAFFIC_IN：内网入带宽</li><li>WAN_TRAFFIC_OUT：外网出带宽</li><li>WAN_TRAFFIC_IN：外网入带宽</li>
         public let metricName: String
-        
+
         /// 告警阈值：<br><li>CPU_UTILIZATION：[1, 100]，单位：%</li><li>MEM_UTILIZATION：[1, 100]，单位：%</li><li>LAN_TRAFFIC_OUT：>0，单位：Mbps </li><li>LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>WAN_TRAFFIC_IN：>0，单位：Mbps</li>
         public let threshold: UInt64
-        
+
         /// 时间周期，单位：秒，取值枚举值为60、300。
         public let period: UInt64
-        
+
         /// 重复次数。取值范围 [1, 10]
         public let continuousTime: UInt64
-        
+
         /// 统计类型，可选字段如下：<br><li>AVERAGE：平均值</li><li>MAXIMUM：最大值<li>MINIMUM：最小值</li><br> 默认取值：AVERAGE
         public let statistic: String?
-        
-        public init (comparisonOperator: String, metricName: String, threshold: UInt64, period: UInt64, continuousTime: UInt64, statistic: String? = nil) {
+
+        public init(comparisonOperator: String, metricName: String, threshold: UInt64, period: UInt64, continuousTime: UInt64, statistic: String? = nil) {
             self.comparisonOperator = comparisonOperator
             self.metricName = metricName
             self.threshold = threshold
@@ -1180,7 +1180,7 @@ extension As {
             self.continuousTime = continuousTime
             self.statistic = statistic
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case comparisonOperator = "ComparisonOperator"
             case metricName = "MetricName"
@@ -1190,7 +1190,7 @@ extension As {
             case statistic = "Statistic"
         }
     }
-    
+
     /// 通知目标
     public struct NotificationTarget: TCInputModel, TCOutputModel {
         /// 目标类型，取值范围包括`CMQ_QUEUE`、`CMQ_TOPIC`、`TDMQ_CMQ_QUEUE`、`TDMQ_CMQ_TOPIC`。
@@ -1199,97 +1199,97 @@ extension As {
         /// <li> TDMQ_CMQ_QUEUE，指腾讯云 TDMQ 消息队列-队列模型。</li>
         /// <li> TDMQ_CMQ_TOPIC，指腾讯云 TDMQ 消息队列-主题模型。</li>
         public let targetType: String
-        
+
         /// 队列名称，如果`TargetType`取值为`CMQ_QUEUE` 或 `TDMQ_CMQ_QUEUE`，则本字段必填。
         public let queueName: String?
-        
+
         /// 主题名称，如果`TargetType`取值为`CMQ_TOPIC` 或 `TDMQ_CMQ_TOPIC`，则本字段必填。
         public let topicName: String?
-        
-        public init (targetType: String, queueName: String? = nil, topicName: String? = nil) {
+
+        public init(targetType: String, queueName: String? = nil, topicName: String? = nil) {
             self.targetType = targetType
             self.queueName = queueName
             self.topicName = topicName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetType = "TargetType"
             case queueName = "QueueName"
             case topicName = "TopicName"
         }
     }
-    
+
     /// 描述了 “自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[自动化助手](https://cloud.tencent.com/document/product/1340)服务。取值范围：<br><li>TRUE：表示开启自动化助手服务<br><li>FALSE：表示不开启自动化助手服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 描述了 “云监控” 服务相关的信息。
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云监控](https://cloud.tencent.com/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云安全](https://cloud.tencent.com/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 告警触发策略。
     public struct ScalingPolicy: TCOutputModel {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 告警触发策略ID。
         public let autoScalingPolicyId: String
-        
+
         /// 告警触发策略名称。
         public let scalingPolicyName: String
-        
+
         /// 告警触发后，期望实例数修改方式。取值 ：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
         public let adjustmentType: String
-        
+
         /// 告警触发后，期望实例数的调整值。
         public let adjustmentValue: Int64
-        
+
         /// 冷却时间。
         public let cooldown: UInt64
-        
+
         /// 告警监控指标。
         public let metricAlarm: MetricAlarm
-        
+
         /// 通知组ID，即为用户组ID集合。
         public let notificationUserGroupIds: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case autoScalingPolicyId = "AutoScalingPolicyId"
@@ -1301,18 +1301,18 @@ extension As {
             case notificationUserGroupIds = "NotificationUserGroupIds"
         }
     }
-    
+
     /// 描述定时任务的信息
     public struct ScheduledAction: TCOutputModel {
         /// 定时任务ID。
         public let scheduledActionId: String
-        
+
         /// 定时任务名称。
         public let scheduledActionName: String
-        
+
         /// 定时任务所在伸缩组ID。
         public let autoScalingGroupId: String
-        
+
         /// 定时任务的开始时间。取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1320,10 +1320,10 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date
-        
+
         /// 定时任务的重复方式。
         public let recurrence: String
-        
+
         /// 定时任务的结束时间。取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1331,16 +1331,16 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date
-        
+
         /// 定时任务设置的最大实例数。
         public let maxSize: UInt64
-        
+
         /// 定时任务设置的期望实例数。
         public let desiredCapacity: UInt64
-        
+
         /// 定时任务设置的最小实例数。
         public let minSize: UInt64
-        
+
         /// 定时任务的创建时间。取值为`UTC`时间，按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ssZ`。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1348,10 +1348,10 @@ extension As {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdTime: Date
-        
+
         /// 定时任务的执行类型。取值范围：<br><li>CRONTAB：代表定时任务为重复执行。<br><li>ONCE：代表定时任务为单次执行。
         public let scheduledType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scheduledActionId = "ScheduledActionId"
             case scheduledActionName = "ScheduledActionName"
@@ -1366,85 +1366,85 @@ extension As {
             case scheduledType = "ScheduledType"
         }
     }
-    
+
     /// 服务设置
     public struct ServiceSettings: TCInputModel, TCOutputModel {
         /// 开启监控不健康替换服务。若开启则对于云监控标记为不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。
         public let replaceMonitorUnhealthy: Bool?
-        
-        /// 取值范围： 
-        /// CLASSIC_SCALING：经典方式，使用创建、销毁实例来实现扩缩容； 
+
+        /// 取值范围：
+        /// CLASSIC_SCALING：经典方式，使用创建、销毁实例来实现扩缩容；
         /// WAKE_UP_STOPPED_SCALING：扩容优先开机。扩容时优先对已关机的实例执行开机操作，若开机后实例数仍低于期望实例数，则创建实例，缩容仍采用销毁实例的方式。用户可以使用StopAutoScalingInstances接口来关闭伸缩组内的实例。监控告警触发的扩容仍将创建实例
         /// 默认取值：CLASSIC_SCALING
         public let scalingMode: String?
-        
+
         /// 开启负载均衡不健康替换服务。若开启则对于负载均衡健康检查判断不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。
         public let replaceLoadBalancerUnhealthy: Bool?
-        
-        public init (replaceMonitorUnhealthy: Bool? = nil, scalingMode: String? = nil, replaceLoadBalancerUnhealthy: Bool? = nil) {
+
+        public init(replaceMonitorUnhealthy: Bool? = nil, scalingMode: String? = nil, replaceLoadBalancerUnhealthy: Bool? = nil) {
             self.replaceMonitorUnhealthy = replaceMonitorUnhealthy
             self.scalingMode = scalingMode
             self.replaceLoadBalancerUnhealthy = replaceLoadBalancerUnhealthy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case replaceMonitorUnhealthy = "ReplaceMonitorUnhealthy"
             case scalingMode = "ScalingMode"
             case replaceLoadBalancerUnhealthy = "ReplaceLoadBalancerUnhealthy"
         }
     }
-    
+
     /// 竞价相关选项
     public struct SpotMarketOptions: TCInputModel, TCOutputModel {
         /// 竞价出价，例如“1.05”
         public let maxPrice: String
-        
+
         /// 竞价请求类型，当前仅支持类型：one-time，默认值为one-time
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spotInstanceType: String?
-        
-        public init (maxPrice: String, spotInstanceType: String? = nil) {
+
+        public init(maxPrice: String, spotInstanceType: String? = nil) {
             self.maxPrice = maxPrice
             self.spotInstanceType = spotInstanceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maxPrice = "MaxPrice"
             case spotInstanceType = "SpotInstanceType"
         }
     }
-    
+
     /// 竞价混合模式下，各计费类型实例的分配策略。包括按量计费实例和竞价计费实例。
     public struct SpotMixedAllocationPolicy: TCInputModel, TCOutputModel {
         /// 混合模式下，基础容量的大小，基础容量部分固定为按量计费实例。默认值 0，最大不可超过伸缩组的最大实例数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baseCapacity: UInt64?
-        
+
         /// 超出基础容量部分，按量计费实例所占的比例。取值范围 [0, 100]，0 代表超出基础容量的部分仅生产竞价实例，100 代表仅生产按量实例，默认值为 70。按百分比计算按量实例数时，向上取整。
         /// 比如，总期望实例数取 3，基础容量取 1，超基础部分按量百分比取 1，则最终按量 2 台（1 台来自基础容量，1 台按百分比向上取整得到），竞价 1台。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let onDemandPercentageAboveBaseCapacity: UInt64?
-        
+
         /// 混合模式下，竞价实例的分配策略。取值包括 COST_OPTIMIZED 和 CAPACITY_OPTIMIZED，默认取 COST_OPTIMIZED。
         /// <br><li> COST_OPTIMIZED，成本优化策略。对于启动配置内的所有机型，按照各机型在各可用区的每核单价由小到大依次尝试。优先尝试购买每核单价最便宜的，如果购买失败则尝试购买次便宜的，以此类推。
         /// <br><li> CAPACITY_OPTIMIZED，容量优化策略。对于启动配置内的所有机型，按照各机型在各可用区的库存情况由大到小依次尝试。优先尝试购买剩余库存最大的机型，这样可尽量降低竞价实例被动回收的发生概率。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spotAllocationStrategy: String?
-        
+
         /// 按量实例替补功能。取值范围：
         /// <br><li> TRUE，开启该功能，当所有竞价机型因库存不足等原因全部购买失败后，尝试购买按量实例。
         /// <br><li> FALSE，不开启该功能，伸缩组在需要扩容竞价实例时仅尝试所配置的竞价机型。
         /// 默认取值： TRUE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compensateWithBaseInstance: Bool?
-        
-        public init (baseCapacity: UInt64? = nil, onDemandPercentageAboveBaseCapacity: UInt64? = nil, spotAllocationStrategy: String? = nil, compensateWithBaseInstance: Bool? = nil) {
+
+        public init(baseCapacity: UInt64? = nil, onDemandPercentageAboveBaseCapacity: UInt64? = nil, spotAllocationStrategy: String? = nil, compensateWithBaseInstance: Bool? = nil) {
             self.baseCapacity = baseCapacity
             self.onDemandPercentageAboveBaseCapacity = onDemandPercentageAboveBaseCapacity
             self.spotAllocationStrategy = spotAllocationStrategy
             self.compensateWithBaseInstance = compensateWithBaseInstance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case baseCapacity = "BaseCapacity"
             case onDemandPercentageAboveBaseCapacity = "OnDemandPercentageAboveBaseCapacity"
@@ -1452,66 +1452,66 @@ extension As {
             case compensateWithBaseInstance = "CompensateWithBaseInstance"
         }
     }
-    
+
     /// 启动配置的系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
     public struct SystemDisk: TCInputModel, TCOutputModel {
         /// 系统盘类型。系统盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><br>默认取值：CLOUD_PREMIUM。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
-        
+
         /// 系统盘大小，单位：GB。默认值为 50
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: UInt64?
-        
-        public init (diskType: String? = nil, diskSize: UInt64? = nil) {
+
+        public init(diskType: String? = nil, diskSize: UInt64? = nil) {
             self.diskType = diskType
             self.diskSize = diskSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
             case diskSize = "DiskSize"
         }
     }
-    
+
     /// 资源类型及标签键值对
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         public let key: String
-        
+
         /// 标签值
         public let value: String
-        
+
         /// 标签绑定的资源类型，当前支持类型："auto-scaling-group
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceType: String?
-        
-        public init (key: String, value: String, resourceType: String? = nil) {
+
+        public init(key: String, value: String, resourceType: String? = nil) {
             self.key = key
             self.value = value
             self.resourceType = resourceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
             case resourceType = "ResourceType"
         }
     }
-    
+
     /// 负载均衡器目标属性
     public struct TargetAttribute: TCInputModel, TCOutputModel {
         /// 端口
         public let port: UInt64
-        
+
         /// 权重
         public let weight: UInt64
-        
-        public init (port: UInt64, weight: UInt64) {
+
+        public init(port: UInt64, weight: UInt64) {
             self.port = port
             self.weight = weight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case weight = "Weight"

@@ -19,32 +19,32 @@ extension Bmvpc {
     public struct DescribeVpnConnectionsRequest: TCRequestModel {
         /// VPN通道实例ID。形如：bmvpnx-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpnConnectionIds和Filters。
         public let vpnConnectionIds: [String]?
-        
+
         /// 过滤条件，详见下表：实例过滤条件表。每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定VpnConnectionIds和Filters。
         /// <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
         /// <li>state - String - （过滤条件 VPN状态：creating，available，createfailed，changing，changefailed，deleting，deletefailed。</li>
         /// <li>zone - String - （过滤条件）VPN所在可用区，形如：ap-guangzhou-2。</li>
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
-        
+
         /// VPN网关实例ID
         public let vpnGatewayId: String?
-        
+
         /// VPN通道名称
         public let vpnConnectionName: String?
-        
+
         /// 排序字段, 支持"CreateTime"排序
         public let orderField: String?
-        
+
         /// 排序方向, “asc”、“desc”
         public let orderDirection: String?
-        
-        public init (vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {
+
+        public init(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.vpnConnectionIds = vpnConnectionIds
             self.filters = filters
             self.offset = offset
@@ -54,7 +54,7 @@ extension Bmvpc {
             self.orderField = orderField
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpnConnectionIds = "VpnConnectionIds"
             case filters = "Filters"
@@ -66,33 +66,33 @@ extension Bmvpc {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeVpnConnections返回参数结构体
     public struct DescribeVpnConnectionsResponse: TCResponseModel {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
-        
+
         /// VPN通道实例。
         public let vpnConnectionSet: [VpnConnection]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case vpnConnectionSet = "VpnConnectionSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询VPN通道列表
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
-    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnConnectionsResponse > {
+    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
         self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询VPN通道列表
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。
@@ -100,15 +100,15 @@ extension Bmvpc {
     public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
         try await self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询VPN通道列表
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
-    public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnConnectionsResponse > {
+    public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
         self.describeVpnConnections(DescribeVpnConnectionsRequest(vpnConnectionIds: vpnConnectionIds, filters: filters, offset: offset, limit: limit, vpnGatewayId: vpnGatewayId, vpnConnectionName: vpnConnectionName, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询VPN通道列表
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。

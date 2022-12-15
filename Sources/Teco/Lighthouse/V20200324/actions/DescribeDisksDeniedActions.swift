@@ -19,38 +19,38 @@ extension Lighthouse {
     public struct DescribeDisksDeniedActionsRequest: TCRequestModel {
         /// 云硬盘ID列表。
         public let diskIds: [String]
-        
-        public init (diskIds: [String]) {
+
+        public init(diskIds: [String]) {
             self.diskIds = diskIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
         }
     }
-    
+
     /// DescribeDisksDeniedActions返回参数结构体
     public struct DescribeDisksDeniedActionsResponse: TCResponseModel {
         /// 云硬盘操作限制列表详细信息。
         public let diskDeniedActionSet: [DiskDeniedActions]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case diskDeniedActionSet = "DiskDeniedActionSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云硬盘操作限制列表信息
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
-    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksDeniedActionsResponse > {
+    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksDeniedActionsResponse> {
         self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘操作限制列表信息
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
@@ -58,15 +58,15 @@ extension Lighthouse {
     public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
         try await self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云硬盘操作限制列表信息
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
-    public func describeDisksDeniedActions(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksDeniedActionsResponse > {
+    public func describeDisksDeniedActions(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksDeniedActionsResponse> {
         self.describeDisksDeniedActions(DescribeDisksDeniedActionsRequest(diskIds: diskIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云硬盘操作限制列表信息
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。

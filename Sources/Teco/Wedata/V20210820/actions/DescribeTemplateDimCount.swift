@@ -19,54 +19,54 @@ extension Wedata {
     public struct DescribeTemplateDimCountRequest: TCRequestModel {
         /// 模版类型
         public let type: UInt64?
-        
+
         /// 项目ID
         public let projectId: String?
-        
-        public init (type: UInt64? = nil, projectId: String? = nil) {
+
+        public init(type: UInt64? = nil, projectId: String? = nil) {
             self.type = type
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeTemplateDimCount返回参数结构体
     public struct DescribeTemplateDimCountResponse: TCResponseModel {
         /// 维度统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DimensionCount]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询规则模版维度分布情况
     @inlinable
-    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateDimCountResponse > {
+    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateDimCountResponse> {
         self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则模版维度分布情况
     @inlinable
     public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
         try await self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询规则模版维度分布情况
     @inlinable
-    public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateDimCountResponse > {
+    public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateDimCountResponse> {
         self.describeTemplateDimCount(DescribeTemplateDimCountRequest(type: type, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则模版维度分布情况
     @inlinable
     public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {

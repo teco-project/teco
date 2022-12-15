@@ -19,47 +19,47 @@ extension Ssl {
     public struct UploadRevokeLetterRequest: TCRequestModel {
         /// 证书 ID。
         public let certificateId: String
-        
+
         /// base64编码后的证书确认函文件，格式应为jpg、jpeg、png、pdf，大小应在1kb与1.4M之间。
         public let revokeLetter: String
-        
-        public init (certificateId: String, revokeLetter: String) {
+
+        public init(certificateId: String, revokeLetter: String) {
             self.certificateId = certificateId
             self.revokeLetter = revokeLetter
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
             case revokeLetter = "RevokeLetter"
         }
     }
-    
+
     /// UploadRevokeLetter返回参数结构体
     public struct UploadRevokeLetterResponse: TCResponseModel {
         /// 证书 ID。
         public let certificateId: String
-        
+
         /// 是否成功。
         public let isSuccess: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传证书吊销确认函
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
     @inlinable
-    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadRevokeLetterResponse > {
+    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadRevokeLetterResponse> {
         self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传证书吊销确认函
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
@@ -67,15 +67,15 @@ extension Ssl {
     public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
         try await self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传证书吊销确认函
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
     @inlinable
-    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadRevokeLetterResponse > {
+    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadRevokeLetterResponse> {
         self.uploadRevokeLetter(UploadRevokeLetterRequest(certificateId: certificateId, revokeLetter: revokeLetter), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传证书吊销确认函
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。

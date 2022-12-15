@@ -22,46 +22,46 @@ extension Cdn {
     public struct ListClsTopicDomainsRequest: TCRequestModel {
         /// 日志集ID
         public let logsetId: String
-        
+
         /// 日志主题ID
         public let topicId: String
-        
+
         /// 接入渠道，cdn或者ecdn，默认值为cdn
         public let channel: String?
-        
-        public init (logsetId: String, topicId: String, channel: String? = nil) {
+
+        public init(logsetId: String, topicId: String, channel: String? = nil) {
             self.logsetId = logsetId
             self.topicId = topicId
             self.channel = channel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case logsetId = "LogsetId"
             case topicId = "TopicId"
             case channel = "Channel"
         }
     }
-    
+
     /// ListClsTopicDomains返回参数结构体
     public struct ListClsTopicDomainsResponse: TCResponseModel {
         /// 开发者ID
         public let appId: UInt64
-        
+
         /// 渠道
         public let channel: String
-        
+
         /// 日志集ID
         public let logsetId: String
-        
+
         /// 日志主题ID
         public let topicId: String
-        
+
         /// 域名区域配置，其中可能含有已删除的域名，如果要再传回ManageClsTopicDomains接口，需要结合ListCdnDomains接口排除掉已删除的域名
         public let domainAreaConfigs: [DomainAreaConfig]
-        
+
         /// 日志主题名称
         public let topicName: String
-        
+
         /// 日志主题最近更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -70,10 +70,10 @@ extension Cdn {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case channel = "Channel"
@@ -85,15 +85,15 @@ extension Cdn {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取日志主题下绑定的域名
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
-    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsTopicDomainsResponse > {
+    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsTopicDomainsResponse> {
         self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取日志主题下绑定的域名
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
@@ -101,15 +101,15 @@ extension Cdn {
     public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
         try await self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取日志主题下绑定的域名
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
-    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsTopicDomainsResponse > {
+    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsTopicDomainsResponse> {
         self.listClsTopicDomains(ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取日志主题下绑定的域名
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。

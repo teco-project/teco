@@ -19,23 +19,23 @@ extension Wedata {
     public struct TriggerEventRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String
-        
+
         /// 案例名称
         public let name: String
-        
+
         /// 时间格式：如果选择触发时间：2022年6月21，则设置为20220621
         public let dimension: String
-        
+
         /// 描述信息
         public let description: String?
-        
-        public init (projectId: String, name: String, dimension: String, description: String? = nil) {
+
+        public init(projectId: String, name: String, dimension: String, description: String? = nil) {
             self.projectId = projectId
             self.name = name
             self.dimension = dimension
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case name = "Name"
@@ -43,31 +43,31 @@ extension Wedata {
             case description = "Description"
         }
     }
-    
+
     /// TriggerEvent返回参数结构体
     public struct TriggerEventResponse: TCResponseModel {
         /// 成功或者失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BatchReturn?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 触发事件【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 触发事件
     @inlinable
-    public func triggerEvent(_ input: TriggerEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerEventResponse > {
+    public func triggerEvent(_ input: TriggerEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerEventResponse> {
         self.client.execute(action: "TriggerEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 触发事件【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
@@ -76,16 +76,16 @@ extension Wedata {
     public func triggerEvent(_ input: TriggerEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerEventResponse {
         try await self.client.execute(action: "TriggerEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 触发事件【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 触发事件
     @inlinable
-    public func triggerEvent(projectId: String, name: String, dimension: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerEventResponse > {
+    public func triggerEvent(projectId: String, name: String, dimension: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerEventResponse> {
         self.triggerEvent(TriggerEventRequest(projectId: projectId, name: name, dimension: dimension, description: description), logger: logger, on: eventLoop)
     }
-    
+
     /// 触发事件【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>

@@ -19,23 +19,23 @@ extension Cdb {
     public struct DescribeAuditLogFilesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
+
         /// 分页大小参数。默认值为 20，最小值为 1，最大值为 100。
         public let limit: Int64?
-        
+
         /// 分页偏移量。
         public let offset: Int64?
-        
+
         /// 审计日志文件名。
         public let fileName: String?
-        
-        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil) {
+
+        public init(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
             self.fileName = fileName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case limit = "Limit"
@@ -43,33 +43,33 @@ extension Cdb {
             case fileName = "FileName"
         }
     }
-    
+
     /// DescribeAuditLogFiles返回参数结构体
     public struct DescribeAuditLogFilesResponse: TCResponseModel {
         /// 符合条件的审计日志文件个数。
         public let totalCount: Int64
-        
+
         /// 审计日志文件详情。
         public let items: [AuditLogFile]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询审计日志文件
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
-    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogFilesResponse > {
+    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogFilesResponse> {
         self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询审计日志文件
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
@@ -77,15 +77,15 @@ extension Cdb {
     public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
         try await self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询审计日志文件
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
-    public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogFilesResponse > {
+    public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogFilesResponse> {
         self.describeAuditLogFiles(DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询审计日志文件
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。

@@ -19,29 +19,29 @@ extension Pts {
     public struct DescribeAlertRecordsRequest: TCRequestModel {
         /// 项目 ID 列表
         public let projectIds: [String]
-        
+
         /// 场景 ID 列表
         public let scenarioIds: [String]?
-        
+
         /// 任务 ID 列表
         public let jobIds: [String]?
-        
+
         /// 是否正序
         public let ascend: Bool?
-        
+
         /// 排序项
         public let orderBy: String?
-        
+
         /// 偏移量，默认为0
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为20，最大为100
         public let limit: UInt64?
-        
+
         /// 按场景名筛选
         public let scenarioNames: [String]?
-        
-        public init (projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil) {
+
+        public init(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil) {
             self.projectIds = projectIds
             self.scenarioIds = scenarioIds
             self.jobIds = jobIds
@@ -51,7 +51,7 @@ extension Pts {
             self.limit = limit
             self.scenarioNames = scenarioNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectIds = "ProjectIds"
             case scenarioIds = "ScenarioIds"
@@ -63,35 +63,35 @@ extension Pts {
             case scenarioNames = "ScenarioNames"
         }
     }
-    
+
     /// DescribeAlertRecords返回参数结构体
     public struct DescribeAlertRecordsResponse: TCResponseModel {
         /// 告警历史
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertRecordSet: [AlertRecord]?
-        
+
         /// 告警历史记录的总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case alertRecordSet = "AlertRecordSet"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询告警历史
     ///
     /// 返回告警历史项的列表
     @inlinable
-    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRecordsResponse > {
+    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRecordsResponse> {
         self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询告警历史
     ///
     /// 返回告警历史项的列表
@@ -99,15 +99,15 @@ extension Pts {
     public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
         try await self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询告警历史
     ///
     /// 返回告警历史项的列表
     @inlinable
-    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRecordsResponse > {
+    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRecordsResponse> {
         self.describeAlertRecords(DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询告警历史
     ///
     /// 返回告警历史项的列表

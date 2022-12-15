@@ -19,27 +19,27 @@ extension Cpdp {
     public struct ApplyReWithdrawalRequest: TCRequestModel {
         /// 聚鑫业务类型
         public let businessType: UInt64
-        
+
         /// 由平台客服提供的计费密钥Id
         public let midasSecretId: String
-        
+
         /// 计费签名
         public let midasSignature: String
-        
+
         /// 提现信息
         public let body: WithdrawBill
-        
+
         /// 聚鑫业务ID
         public let midasAppId: String
-        
+
         /// 环境名:
         /// release: 现网环境
         /// sandbox: 沙箱环境
         /// development: 开发环境
         /// 缺省: release
         public let midasEnvironment: String?
-        
-        public init (businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String? = nil) {
+
+        public init(businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String? = nil) {
             self.businessType = businessType
             self.midasSecretId = midasSecretId
             self.midasSignature = midasSignature
@@ -47,7 +47,7 @@ extension Cpdp {
             self.midasAppId = midasAppId
             self.midasEnvironment = midasEnvironment
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessType = "BusinessType"
             case midasSecretId = "MidasSecretId"
@@ -57,29 +57,29 @@ extension Cpdp {
             case midasEnvironment = "MidasEnvironment"
         }
     }
-    
+
     /// ApplyReWithdrawal返回参数结构体
     public struct ApplyReWithdrawalResponse: TCResponseModel {
         /// 重新提现业务订单号
         public let withdrawOrderId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case withdrawOrderId = "WithdrawOrderId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 聚鑫-重新提现接口
     ///
     /// 正常结算提现失败情况下，发起重新提现的请求接口
     @inlinable
-    public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReWithdrawalResponse > {
+    public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyReWithdrawalResponse> {
         self.client.execute(action: "ApplyReWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-重新提现接口
     ///
     /// 正常结算提现失败情况下，发起重新提现的请求接口
@@ -87,15 +87,15 @@ extension Cpdp {
     public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReWithdrawalResponse {
         try await self.client.execute(action: "ApplyReWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 聚鑫-重新提现接口
     ///
     /// 正常结算提现失败情况下，发起重新提现的请求接口
     @inlinable
-    public func applyReWithdrawal(businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReWithdrawalResponse > {
+    public func applyReWithdrawal(businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyReWithdrawalResponse> {
         self.applyReWithdrawal(ApplyReWithdrawalRequest(businessType: businessType, midasSecretId: midasSecretId, midasSignature: midasSignature, body: body, midasAppId: midasAppId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
     }
-    
+
     /// 聚鑫-重新提现接口
     ///
     /// 正常结算提现失败情况下，发起重新提现的请求接口

@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeQualityScoreTrendRequest: TCRequestModel {
         /// 统计开始日期
         public let statisticsStartDate: Int64
-        
+
         /// 统计结束日期
         public let statisticsEndDate: Int64
-        
+
         /// 项目id
         public let projectId: String
-        
+
         /// 数据来源id
         public let datasourceId: String?
-        
-        public init (statisticsStartDate: Int64, statisticsEndDate: Int64, projectId: String, datasourceId: String? = nil) {
+
+        public init(statisticsStartDate: Int64, statisticsEndDate: Int64, projectId: String, datasourceId: String? = nil) {
             self.statisticsStartDate = statisticsStartDate
             self.statisticsEndDate = statisticsEndDate
             self.projectId = projectId
             self.datasourceId = datasourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case statisticsStartDate = "StatisticsStartDate"
             case statisticsEndDate = "StatisticsEndDate"
@@ -43,30 +43,30 @@ extension Wedata {
             case datasourceId = "DatasourceId"
         }
     }
-    
+
     /// DescribeQualityScoreTrend返回参数结构体
     public struct DescribeQualityScoreTrendResponse: TCResponseModel {
         /// 质量评分趋势视图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: QualityScoreTrend?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询质量分趋势
     ///
     /// 质量报告-质量分周期趋势
     @inlinable
-    public func describeQualityScoreTrend(_ input: DescribeQualityScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityScoreTrendResponse > {
+    public func describeQualityScoreTrend(_ input: DescribeQualityScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityScoreTrendResponse> {
         self.client.execute(action: "DescribeQualityScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询质量分趋势
     ///
     /// 质量报告-质量分周期趋势
@@ -74,15 +74,15 @@ extension Wedata {
     public func describeQualityScoreTrend(_ input: DescribeQualityScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityScoreTrendResponse {
         try await self.client.execute(action: "DescribeQualityScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询质量分趋势
     ///
     /// 质量报告-质量分周期趋势
     @inlinable
-    public func describeQualityScoreTrend(statisticsStartDate: Int64, statisticsEndDate: Int64, projectId: String, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityScoreTrendResponse > {
+    public func describeQualityScoreTrend(statisticsStartDate: Int64, statisticsEndDate: Int64, projectId: String, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityScoreTrendResponse> {
         self.describeQualityScoreTrend(DescribeQualityScoreTrendRequest(statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, projectId: projectId, datasourceId: datasourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询质量分趋势
     ///
     /// 质量报告-质量分周期趋势

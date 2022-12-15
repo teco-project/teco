@@ -17,26 +17,26 @@
 extension Captcha {
     /// DescribeCaptchaUserAllAppId请求参数结构体
     public struct DescribeCaptchaUserAllAppIdRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeCaptchaUserAllAppId返回参数结构体
     public struct DescribeCaptchaUserAllAppIdResponse: TCResponseModel {
         /// 用户注册的所有Appid和应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [CaptchaUserAllAppId]?
-        
+
         /// 成功返回 0  其它失败
         public let captchaCode: Int64
-        
+
         /// 返回操作信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let captchaMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case captchaCode = "CaptchaCode"
@@ -44,25 +44,25 @@ extension Captcha {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
-    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaUserAllAppIdResponse > {
+    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaUserAllAppIdResponse> {
         self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
     public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
         try await self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
-    public func describeCaptchaUserAllAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaUserAllAppIdResponse > {
+    public func describeCaptchaUserAllAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaUserAllAppIdResponse> {
         self.describeCaptchaUserAllAppId(DescribeCaptchaUserAllAppIdRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
     public func describeCaptchaUserAllAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {

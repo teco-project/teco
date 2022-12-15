@@ -19,52 +19,52 @@ extension Ds {
     public struct DescribeTaskStatusRequest: TCRequestModel {
         /// 模块名CommonMng
         public let module: String
-        
+
         /// 操作名DescribeTaskStatus
         public let operation: String
-        
+
         /// 任务ID
         public let taskId: UInt64
-        
-        public init (module: String, operation: String, taskId: UInt64) {
+
+        public init(module: String, operation: String, taskId: UInt64) {
             self.module = module
             self.operation = operation
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeTaskStatus返回参数结构体
     public struct DescribeTaskStatusResponse: TCResponseModel {
         /// 任务结果
         public let taskResult: String
-        
+
         /// 任务类型，010代表合同上传结果，020代表合同下载结果
         public let taskType: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskResult = "TaskResult"
             case taskType = "TaskType"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取任务状态
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
         self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务状态
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
@@ -72,15 +72,15 @@ extension Ds {
     public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
         try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取任务状态
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
-    public func describeTaskStatus(module: String, operation: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
+    public func describeTaskStatus(module: String, operation: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
         self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取任务状态
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果

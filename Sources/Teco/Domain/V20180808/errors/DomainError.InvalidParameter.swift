@@ -46,231 +46,231 @@ extension TCDomainError {
             case zipCodeIsInvalid = "InvalidParameter.ZipCodeIsInvalid"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资质信息输入不正确。
         public static var certificateCodeIsInvalid: InvalidParameter {
             InvalidParameter(.certificateCodeIsInvalid)
         }
-        
+
         /// 资质照片输入不正确。
         public static var certificateImageIsInvalid: InvalidParameter {
             InvalidParameter(.certificateImageIsInvalid)
         }
-        
+
         /// 类型只能为手机或者邮箱。
         public static var codeTypeIsInvalid: InvalidParameter {
             InvalidParameter(.codeTypeIsInvalid)
         }
-        
+
         /// 无权限自定义DNS。
         public static var customDnsNotAllowed: InvalidParameter {
             InvalidParameter(.customDnsNotAllowed)
         }
-        
+
         /// 域名输入为空或者不合法。
         public static var domainNameIsInvalid: InvalidParameter {
             InvalidParameter(.domainNameIsInvalid)
         }
-        
+
         /// 存在重复域名，请检查后重新提交。
         public static var duplicateDomainExists: InvalidParameter {
             InvalidParameter(.duplicateDomainExists)
         }
-        
+
         /// 邮箱为空或者不合法。
         public static var emailIsInvalid: InvalidParameter {
             InvalidParameter(.emailIsInvalid)
         }
-        
+
         /// 仅支持已验证的电子邮箱，请先在控制台创建后使用
         ///
         /// 根据安全合规及 ICANN 政策要求，为了加强域名真实身份信息核验，请先进行验证，才可以使用。
         public static var emailIsUnverified: InvalidParameter {
             InvalidParameter(.emailIsUnverified)
         }
-        
+
         /// 不支持该格式文件，请上传 JPG、JPEG 格式图片（可使用第三方图片格式转换工具）。
         public static var imageExtInvalid: InvalidParameter {
             InvalidParameter(.imageExtInvalid)
         }
-        
+
         /// 上传的照片参数为空或者不合法。
         public static var imageFileIsInvalid: InvalidParameter {
             InvalidParameter(.imageFileIsInvalid)
         }
-        
+
         /// 非标准的 JPG、JPEG 格式图片，请使用工具转换格式后重新上传（可使用第三方图片格式转换工具）。
         public static var imageFormatIsInvalid: InvalidParameter {
             InvalidParameter(.imageFormatIsInvalid)
         }
-        
+
         /// 图片大小低于最小限制(55KB)，请重新上传。
         public static var imageSizeBelow: InvalidParameter {
             InvalidParameter(.imageSizeBelow)
         }
-        
+
         /// 图片过大，请减小后重试。
         public static var imageSizeExceed: InvalidParameter {
             InvalidParameter(.imageSizeExceed)
         }
-        
+
         /// 图片大小超过限制(1M)，请重新上传。
         public static var imageSizeLimit: InvalidParameter {
             InvalidParameter(.imageSizeLimit)
         }
-        
+
         /// 联系人为空或者不合法。
         public static var nameIsInvalid: InvalidParameter {
             InvalidParameter(.nameIsInvalid)
         }
-        
+
         /// 联系人填写有误，或因其他原因无法使用，请更换其他联系人。
         public static var nameIsKeyword: InvalidParameter {
             InvalidParameter(.nameIsKeyword)
         }
-        
+
         /// 注册人为空或者不合法。
         public static var orgIsInvalid: InvalidParameter {
             InvalidParameter(.orgIsInvalid)
         }
-        
+
         /// 域名所有者填写有误，或因其他原因无法使用，请更换其他域名所有者。
         public static var orgIsKeyword: InvalidParameter {
             InvalidParameter(.orgIsKeyword)
         }
-        
+
         /// 特惠包ID无效。
         public static var packageResourceIdInvalid: InvalidParameter {
             InvalidParameter(.packageResourceIdInvalid)
         }
-        
+
         /// 请求类型错误。
         public static var repTypeIsInvalid: InvalidParameter {
             InvalidParameter(.repTypeIsInvalid)
         }
-        
+
         /// 地址有误，请传入正确的地址。
         public static var streetIsInvalid: InvalidParameter {
             InvalidParameter(.streetIsInvalid)
         }
-        
+
         /// 电话为空或者不合法。
         public static var telephoneIsInvalid: InvalidParameter {
             InvalidParameter(.telephoneIsInvalid)
         }
-        
+
         /// 仅支持已验证的手机号码，请先在控制台创建后使用。
         ///
         /// 根据安全合规及 ICANN 政策要求，为了加强域名真实身份信息核验，请先进行验证，才可以使用。
         public static var telephoneIsUnverified: InvalidParameter {
             InvalidParameter(.telephoneIsUnverified)
         }
-        
+
         /// 域名数量不能超过4000个。
         public static var upTo4000: InvalidParameter {
             InvalidParameter(.upTo4000)
         }
-        
+
         /// 用户类型为空或者不合法。
         public static var userTypeIsInvalid: InvalidParameter {
             InvalidParameter(.userTypeIsInvalid)
         }
-        
+
         /// 验证码错误，请重新输入。
         public static var verifyCodeIsInvalid: InvalidParameter {
             InvalidParameter(.verifyCodeIsInvalid)
         }
-        
+
         /// 邮编为空或者不合法。
         public static var zipCodeIsInvalid: InvalidParameter {
             InvalidParameter(.zipCodeIsInvalid)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asDomainError() -> TCDomainError {
             let code: TCDomainError.Code
             switch self.error {
-            case .certificateCodeIsInvalid: 
+            case .certificateCodeIsInvalid:
                 code = .invalidParameter_CertificateCodeIsInvalid
-            case .certificateImageIsInvalid: 
+            case .certificateImageIsInvalid:
                 code = .invalidParameter_CertificateImageIsInvalid
-            case .codeTypeIsInvalid: 
+            case .codeTypeIsInvalid:
                 code = .invalidParameter_CodeTypeIsInvalid
-            case .customDnsNotAllowed: 
+            case .customDnsNotAllowed:
                 code = .invalidParameter_CustomDnsNotAllowed
-            case .domainNameIsInvalid: 
+            case .domainNameIsInvalid:
                 code = .invalidParameter_DomainNameIsInvalid
-            case .duplicateDomainExists: 
+            case .duplicateDomainExists:
                 code = .invalidParameter_DuplicateDomainExists
-            case .emailIsInvalid: 
+            case .emailIsInvalid:
                 code = .invalidParameter_EmailIsInvalid
-            case .emailIsUnverified: 
+            case .emailIsUnverified:
                 code = .invalidParameter_EmailIsUnverified
-            case .imageExtInvalid: 
+            case .imageExtInvalid:
                 code = .invalidParameter_ImageExtInvalid
-            case .imageFileIsInvalid: 
+            case .imageFileIsInvalid:
                 code = .invalidParameter_ImageFileIsInvalid
-            case .imageFormatIsInvalid: 
+            case .imageFormatIsInvalid:
                 code = .invalidParameter_ImageFormatIsInvalid
-            case .imageSizeBelow: 
+            case .imageSizeBelow:
                 code = .invalidParameter_ImageSizeBelow
-            case .imageSizeExceed: 
+            case .imageSizeExceed:
                 code = .invalidParameter_ImageSizeExceed
-            case .imageSizeLimit: 
+            case .imageSizeLimit:
                 code = .invalidParameter_ImageSizeLimit
-            case .nameIsInvalid: 
+            case .nameIsInvalid:
                 code = .invalidParameter_NameIsInvalid
-            case .nameIsKeyword: 
+            case .nameIsKeyword:
                 code = .invalidParameter_NameIsKeyword
-            case .orgIsInvalid: 
+            case .orgIsInvalid:
                 code = .invalidParameter_OrgIsInvalid
-            case .orgIsKeyword: 
+            case .orgIsKeyword:
                 code = .invalidParameter_OrgIsKeyword
-            case .packageResourceIdInvalid: 
+            case .packageResourceIdInvalid:
                 code = .invalidParameter_PackageResourceIdInvalid
-            case .repTypeIsInvalid: 
+            case .repTypeIsInvalid:
                 code = .invalidParameter_RepTypeIsInvalid
-            case .streetIsInvalid: 
+            case .streetIsInvalid:
                 code = .invalidParameter_StreetIsInvalid
-            case .telephoneIsInvalid: 
+            case .telephoneIsInvalid:
                 code = .invalidParameter_TelephoneIsInvalid
-            case .telephoneIsUnverified: 
+            case .telephoneIsUnverified:
                 code = .invalidParameter_TelephoneIsUnverified
-            case .upTo4000: 
+            case .upTo4000:
                 code = .invalidParameter_UpTo4000
-            case .userTypeIsInvalid: 
+            case .userTypeIsInvalid:
                 code = .invalidParameter_UserTypeIsInvalid
-            case .verifyCodeIsInvalid: 
+            case .verifyCodeIsInvalid:
                 code = .invalidParameter_VerifyCodeIsInvalid
-            case .zipCodeIsInvalid: 
+            case .zipCodeIsInvalid:
                 code = .invalidParameter_ZipCodeIsInvalid
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCDomainError(code, context: self.context)

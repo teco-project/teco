@@ -19,48 +19,48 @@ extension Iotvideoindustry {
     public struct DeleteLiveRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
         public let planId: String
-        
-        public init (planId: String) {
+
+        public init(planId: String) {
             self.planId = planId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case planId = "PlanId"
         }
     }
-    
+
     /// DeleteLiveRecordPlan返回参数结构体
     public struct DeleteLiveRecordPlanResponse: TCResponseModel {
         /// 删除状态描述
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除直播录制计划
     @inlinable
-    public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordPlanResponse > {
+    public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordPlanResponse> {
         self.client.execute(action: "DeleteLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除直播录制计划
     @inlinable
     public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {
         try await self.client.execute(action: "DeleteLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除直播录制计划
     @inlinable
-    public func deleteLiveRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordPlanResponse > {
+    public func deleteLiveRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordPlanResponse> {
         self.deleteLiveRecordPlan(DeleteLiveRecordPlanRequest(planId: planId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除直播录制计划
     @inlinable
     public func deleteLiveRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {

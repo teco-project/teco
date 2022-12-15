@@ -19,48 +19,48 @@ extension Tsf {
     public struct DeleteLaneRequest: TCRequestModel {
         /// 泳道Idl
         public let laneId: String
-        
-        public init (laneId: String) {
+
+        public init(laneId: String) {
             self.laneId = laneId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case laneId = "LaneId"
         }
     }
-    
+
     /// DeleteLane返回参数结构体
     public struct DeleteLaneResponse: TCResponseModel {
         /// true / false
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除泳道
     @inlinable
-    public func deleteLane(_ input: DeleteLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaneResponse > {
+    public func deleteLane(_ input: DeleteLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneResponse> {
         self.client.execute(action: "DeleteLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除泳道
     @inlinable
     public func deleteLane(_ input: DeleteLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneResponse {
         try await self.client.execute(action: "DeleteLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除泳道
     @inlinable
-    public func deleteLane(laneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaneResponse > {
+    public func deleteLane(laneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneResponse> {
         self.deleteLane(DeleteLaneRequest(laneId: laneId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除泳道
     @inlinable
     public func deleteLane(laneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneResponse {

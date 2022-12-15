@@ -19,39 +19,39 @@ extension Tke {
     public struct DeletePrometheusTempSyncRequest: TCRequestModel {
         /// 模板id
         public let templateId: String
-        
+
         /// 取消同步的对象列表
         public let targets: [PrometheusTemplateSyncTarget]
-        
-        public init (templateId: String, targets: [PrometheusTemplateSyncTarget]) {
+
+        public init(templateId: String, targets: [PrometheusTemplateSyncTarget]) {
             self.templateId = templateId
             self.targets = targets
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case targets = "Targets"
         }
     }
-    
+
     /// DeletePrometheusTempSync返回参数结构体
     public struct DeletePrometheusTempSyncResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解除模板同步
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable
-    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTempSyncResponse > {
+    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempSyncResponse> {
         self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解除模板同步
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
@@ -59,15 +59,15 @@ extension Tke {
     public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
         try await self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解除模板同步
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable
-    public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTempSyncResponse > {
+    public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempSyncResponse> {
         self.deletePrometheusTempSync(DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets), logger: logger, on: eventLoop)
     }
-    
+
     /// 解除模板同步
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例

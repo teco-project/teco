@@ -19,52 +19,52 @@ extension Dlc {
     public struct CreateTasksInOrderRequest: TCRequestModel {
         /// 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库。
         public let databaseName: String
-        
+
         /// SQL任务信息
         public let tasks: TasksInfo
-        
+
         /// 数据源名称，默认为COSDataCatalog
         public let datasourceConnectionName: String?
-        
-        public init (databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil) {
+
+        public init(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil) {
             self.databaseName = databaseName
             self.tasks = tasks
             self.datasourceConnectionName = datasourceConnectionName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case tasks = "Tasks"
             case datasourceConnectionName = "DatasourceConnectionName"
         }
     }
-    
+
     /// CreateTasksInOrder返回参数结构体
     public struct CreateTasksInOrderResponse: TCResponseModel {
         /// 本批次提交的任务的批次Id
         public let batchId: String
-        
+
         /// 任务Id集合，按照执行顺序排列
         public let taskIdSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case taskIdSet = "TaskIdSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 按顺序创建任务
     ///
     /// 按顺序创建任务（已经废弃，后期不再维护，请使用接口CreateTasks）
     @inlinable
-    public func createTasksInOrder(_ input: CreateTasksInOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTasksInOrderResponse > {
+    public func createTasksInOrder(_ input: CreateTasksInOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksInOrderResponse> {
         self.client.execute(action: "CreateTasksInOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 按顺序创建任务
     ///
     /// 按顺序创建任务（已经废弃，后期不再维护，请使用接口CreateTasks）
@@ -72,15 +72,15 @@ extension Dlc {
     public func createTasksInOrder(_ input: CreateTasksInOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksInOrderResponse {
         try await self.client.execute(action: "CreateTasksInOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 按顺序创建任务
     ///
     /// 按顺序创建任务（已经废弃，后期不再维护，请使用接口CreateTasks）
     @inlinable
-    public func createTasksInOrder(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTasksInOrderResponse > {
+    public func createTasksInOrder(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksInOrderResponse> {
         self.createTasksInOrder(CreateTasksInOrderRequest(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
     }
-    
+
     /// 按顺序创建任务
     ///
     /// 按顺序创建任务（已经废弃，后期不再维护，请使用接口CreateTasks）

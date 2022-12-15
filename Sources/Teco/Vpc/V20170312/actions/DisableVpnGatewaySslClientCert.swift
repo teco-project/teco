@@ -19,48 +19,48 @@ extension Vpc {
     public struct DisableVpnGatewaySslClientCertRequest: TCRequestModel {
         /// SSL-VPN-CLIENT 实例ID。
         public let sslVpnClientId: String
-        
-        public init (sslVpnClientId: String) {
+
+        public init(sslVpnClientId: String) {
             self.sslVpnClientId = sslVpnClientId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sslVpnClientId = "SslVpnClientId"
         }
     }
-    
+
     /// DisableVpnGatewaySslClientCert返回参数结构体
     public struct DisableVpnGatewaySslClientCertResponse: TCResponseModel {
         /// 异步任务实例ID。
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 禁用SSL-VPN-CLIENT 证书
     @inlinable
-    public func disableVpnGatewaySslClientCert(_ input: DisableVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableVpnGatewaySslClientCertResponse > {
+    public func disableVpnGatewaySslClientCert(_ input: DisableVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableVpnGatewaySslClientCertResponse> {
         self.client.execute(action: "DisableVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用SSL-VPN-CLIENT 证书
     @inlinable
     public func disableVpnGatewaySslClientCert(_ input: DisableVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpnGatewaySslClientCertResponse {
         try await self.client.execute(action: "DisableVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 禁用SSL-VPN-CLIENT 证书
     @inlinable
-    public func disableVpnGatewaySslClientCert(sslVpnClientId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableVpnGatewaySslClientCertResponse > {
+    public func disableVpnGatewaySslClientCert(sslVpnClientId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableVpnGatewaySslClientCertResponse> {
         self.disableVpnGatewaySslClientCert(DisableVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId), logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用SSL-VPN-CLIENT 证书
     @inlinable
     public func disableVpnGatewaySslClientCert(sslVpnClientId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpnGatewaySslClientCertResponse {

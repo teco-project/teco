@@ -22,59 +22,59 @@ extension TCIotvideoError {
             case deviceRunningOtherOtaTask = "FailedOperation.DeviceRunningOtherOtaTask"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 设备固件升级任务已经完成。
         public static var deviceFirmwareTaskAlreadDone: FailedOperation {
             FailedOperation(.deviceFirmwareTaskAlreadDone)
         }
-        
+
         /// 设备正在升级中。
         public static var deviceIsUpdating: FailedOperation {
             FailedOperation(.deviceIsUpdating)
         }
-        
+
         /// 设备已经运行其他ota升级任务。
         public static var deviceRunningOtherOtaTask: FailedOperation {
             FailedOperation(.deviceRunningOtherOtaTask)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asIotvideoError() -> TCIotvideoError {
             let code: TCIotvideoError.Code
             switch self.error {
-            case .deviceFirmwareTaskAlreadDone: 
+            case .deviceFirmwareTaskAlreadDone:
                 code = .failedOperation_DeviceFirmwareTaskAlreadDone
-            case .deviceIsUpdating: 
+            case .deviceIsUpdating:
                 code = .failedOperation_DeviceIsUpdating
-            case .deviceRunningOtherOtaTask: 
+            case .deviceRunningOtherOtaTask:
                 code = .failedOperation_DeviceRunningOtherOtaTask
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCIotvideoError(code, context: self.context)

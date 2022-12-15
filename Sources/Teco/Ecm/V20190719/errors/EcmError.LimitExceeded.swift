@@ -33,136 +33,136 @@ extension TCEcmError {
             case vcpuLimitExceeded = "LimitExceeded.VcpuLimitExceeded"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 申请数量超限。
         public static var addressQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.addressQuotaLimitExceeded)
         }
-        
+
         /// 申购次数不足，每个腾讯云账户每个地域每天申购次数为配额数*2 次。
         public static var addressQuotaLimitExceededDailyAllocate: LimitExceeded {
             LimitExceeded(.addressQuotaLimitExceededDailyAllocate)
         }
-        
+
         /// LimitExceeded.AttachedDiskLimitExceeded
         public static var attachedDiskLimitExceeded: LimitExceeded {
             LimitExceeded(.attachedDiskLimitExceeded)
         }
-        
+
         /// 分配IPv6网段数量达到上限。
         public static var cidrBlock: LimitExceeded {
             LimitExceeded(.cidrBlock)
         }
-        
+
         /// 网卡配额不足。
         public static var eniQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.eniQuotaLimitExceeded)
         }
-        
+
         /// 实例绑定的安全组超出限制。
         public static var instanceSecurityGroupLimitExceeded: LimitExceeded {
             LimitExceeded(.instanceSecurityGroupLimitExceeded)
         }
-        
+
         /// 申请的clb超过限制。
         public static var lbLimitExceeded: LimitExceeded {
             LimitExceeded(.lbLimitExceeded)
         }
-        
+
         /// 模块默认安全组数目限制。
         public static var moduleSecurityGroupLimitExceeded: LimitExceeded {
             LimitExceeded(.moduleSecurityGroupLimitExceeded)
         }
-        
+
         /// 弹性网卡或公网IP数超过CPU规定的限额。
         public static var nicOrIPLimitExceeded: LimitExceeded {
             LimitExceeded(.nicOrIPLimitExceeded)
         }
-        
+
         /// 内网IP超出限制。
         public static var privateIPQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.privateIPQuotaLimitExceeded)
         }
-        
+
         /// 安全组绑定的实例数超限。
         public static var securityGroupInstanceLimitExceeded: LimitExceeded {
             LimitExceeded(.securityGroupInstanceLimitExceeded)
         }
-        
+
         /// 安全组可关联模块数目限制。
         public static var securityGroupModuleLimitExceeded: LimitExceeded {
             LimitExceeded(.securityGroupModuleLimitExceeded)
         }
-        
+
         /// 安全组规则数量超过上限。
         public static var securityGroupPolicySet: LimitExceeded {
             LimitExceeded(.securityGroupPolicySet)
         }
-        
+
         /// 申请的cpu核数超限。
         public static var vcpuLimitExceeded: LimitExceeded {
             LimitExceeded(.vcpuLimitExceeded)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
-            case .addressQuotaLimitExceeded: 
+            case .addressQuotaLimitExceeded:
                 code = .limitExceeded_AddressQuotaLimitExceeded
-            case .addressQuotaLimitExceededDailyAllocate: 
+            case .addressQuotaLimitExceededDailyAllocate:
                 code = .limitExceeded_AddressQuotaLimitExceededDailyAllocate
-            case .attachedDiskLimitExceeded: 
+            case .attachedDiskLimitExceeded:
                 code = .limitExceeded_AttachedDiskLimitExceeded
-            case .cidrBlock: 
+            case .cidrBlock:
                 code = .limitExceeded_CidrBlock
-            case .eniQuotaLimitExceeded: 
+            case .eniQuotaLimitExceeded:
                 code = .limitExceeded_EniQuotaLimitExceeded
-            case .instanceSecurityGroupLimitExceeded: 
+            case .instanceSecurityGroupLimitExceeded:
                 code = .limitExceeded_InstanceSecurityGroupLimitExceeded
-            case .lbLimitExceeded: 
+            case .lbLimitExceeded:
                 code = .limitExceeded_LBLimitExceeded
-            case .moduleSecurityGroupLimitExceeded: 
+            case .moduleSecurityGroupLimitExceeded:
                 code = .limitExceeded_ModuleSecurityGroupLimitExceeded
-            case .nicOrIPLimitExceeded: 
+            case .nicOrIPLimitExceeded:
                 code = .limitExceeded_NicOrIPLimitExceeded
-            case .privateIPQuotaLimitExceeded: 
+            case .privateIPQuotaLimitExceeded:
                 code = .limitExceeded_PrivateIPQuotaLimitExceeded
-            case .securityGroupInstanceLimitExceeded: 
+            case .securityGroupInstanceLimitExceeded:
                 code = .limitExceeded_SecurityGroupInstanceLimitExceeded
-            case .securityGroupModuleLimitExceeded: 
+            case .securityGroupModuleLimitExceeded:
                 code = .limitExceeded_SecurityGroupModuleLimitExceeded
-            case .securityGroupPolicySet: 
+            case .securityGroupPolicySet:
                 code = .limitExceeded_SecurityGroupPolicySet
-            case .vcpuLimitExceeded: 
+            case .vcpuLimitExceeded:
                 code = .limitExceeded_VcpuLimitExceeded
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCEcmError(code, context: self.context)

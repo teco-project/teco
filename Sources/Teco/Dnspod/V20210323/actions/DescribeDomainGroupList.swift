@@ -17,42 +17,42 @@
 extension Dnspod {
     /// DescribeDomainGroupList请求参数结构体
     public struct DescribeDomainGroupListRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeDomainGroupList返回参数结构体
     public struct DescribeDomainGroupListResponse: TCResponseModel {
         /// 分组列表
         public let groupList: [GroupInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groupList = "GroupList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名分组列表
     @inlinable
-    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainGroupListResponse > {
+    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainGroupListResponse> {
         self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名分组列表
     @inlinable
     public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
         try await self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名分组列表
     @inlinable
-    public func describeDomainGroupList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainGroupListResponse > {
+    public func describeDomainGroupList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainGroupListResponse> {
         self.describeDomainGroupList(DescribeDomainGroupListRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名分组列表
     @inlinable
     public func describeDomainGroupList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {

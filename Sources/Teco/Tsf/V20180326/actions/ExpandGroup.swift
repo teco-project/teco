@@ -19,54 +19,54 @@ extension Tsf {
     public struct ExpandGroupRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String
-        
+
         /// 扩容的机器实例ID列表
         public let instanceIdList: [String]
-        
-        public init (groupId: String, instanceIdList: [String]) {
+
+        public init(groupId: String, instanceIdList: [String]) {
             self.groupId = groupId
             self.instanceIdList = instanceIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case instanceIdList = "InstanceIdList"
         }
     }
-    
+
     /// ExpandGroup返回参数结构体
     public struct ExpandGroupResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TaskId?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 虚拟机部署组添加实例
     @inlinable
-    public func expandGroup(_ input: ExpandGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandGroupResponse > {
+    public func expandGroup(_ input: ExpandGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandGroupResponse> {
         self.client.execute(action: "ExpandGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 虚拟机部署组添加实例
     @inlinable
     public func expandGroup(_ input: ExpandGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {
         try await self.client.execute(action: "ExpandGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 虚拟机部署组添加实例
     @inlinable
-    public func expandGroup(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandGroupResponse > {
+    public func expandGroup(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandGroupResponse> {
         self.expandGroup(ExpandGroupRequest(groupId: groupId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 虚拟机部署组添加实例
     @inlinable
     public func expandGroup(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {

@@ -19,44 +19,44 @@ extension Cam {
     public struct AddUserToGroupRequest: TCRequestModel {
         /// 添加的子用户 UIN/UID 和用户组 ID 关联关系
         public let info: [GroupIdOfUidInfo]
-        
-        public init (info: [GroupIdOfUidInfo]) {
+
+        public init(info: [GroupIdOfUidInfo]) {
             self.info = info
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case info = "Info"
         }
     }
-    
+
     /// AddUserToGroup返回参数结构体
     public struct AddUserToGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 用户加入到用户组
     @inlinable
-    public func addUserToGroup(_ input: AddUserToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserToGroupResponse > {
+    public func addUserToGroup(_ input: AddUserToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToGroupResponse> {
         self.client.execute(action: "AddUserToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 用户加入到用户组
     @inlinable
     public func addUserToGroup(_ input: AddUserToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToGroupResponse {
         try await self.client.execute(action: "AddUserToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 用户加入到用户组
     @inlinable
-    public func addUserToGroup(info: [GroupIdOfUidInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserToGroupResponse > {
+    public func addUserToGroup(info: [GroupIdOfUidInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToGroupResponse> {
         self.addUserToGroup(AddUserToGroupRequest(info: info), logger: logger, on: eventLoop)
     }
-    
+
     /// 用户加入到用户组
     @inlinable
     public func addUserToGroup(info: [GroupIdOfUidInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToGroupResponse {

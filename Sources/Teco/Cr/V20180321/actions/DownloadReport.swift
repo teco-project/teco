@@ -22,10 +22,10 @@ extension Cr {
     public struct DownloadReportRequest: TCRequestModel {
         /// 模块名，本接口取值：Report
         public let module: String
-        
+
         /// 操作名，本接口取值：DownloadReport
         public let operation: String
-        
+
         /// 报告日期，格式为YYYY-MM-DD
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,17 +33,17 @@ extension Cr {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var reportDate: Date
-        
+
         /// 实例ID，不传默认为系统分配的初始实例。
         public let instId: String?
-        
-        public init (module: String, operation: String, reportDate: Date, instId: String? = nil) {
+
+        public init(module: String, operation: String, reportDate: Date, instId: String? = nil) {
             self.module = module
             self.operation = operation
             self.reportDate = reportDate
             self.instId = instId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -51,36 +51,36 @@ extension Cr {
             case instId = "InstId"
         }
     }
-    
+
     /// DownloadReport返回参数结构体
     public struct DownloadReportResponse: TCResponseModel {
         /// 到期/逾期提醒日报下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dailyReportUrl: String?
-        
+
         /// 到期/逾期提醒结果下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultReportUrl: String?
-        
+
         /// 到期/逾期提醒明细下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let detailReportUrl: String?
-        
+
         /// 回访日报下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let callbackDailyReportUrl: String?
-        
+
         /// 回访结果下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let callbackResultReportUrl: String?
-        
+
         /// 回访明细下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let callbackDetailReportUrl: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dailyReportUrl = "DailyReportUrl"
             case resultReportUrl = "ResultReportUrl"
@@ -91,15 +91,15 @@ extension Cr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 报告下载
     ///
     /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。
     @inlinable
-    public func downloadReport(_ input: DownloadReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadReportResponse > {
+    public func downloadReport(_ input: DownloadReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadReportResponse> {
         self.client.execute(action: "DownloadReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 报告下载
     ///
     /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。
@@ -107,15 +107,15 @@ extension Cr {
     public func downloadReport(_ input: DownloadReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReportResponse {
         try await self.client.execute(action: "DownloadReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 报告下载
     ///
     /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。
     @inlinable
-    public func downloadReport(module: String, operation: String, reportDate: Date, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadReportResponse > {
+    public func downloadReport(module: String, operation: String, reportDate: Date, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadReportResponse> {
         self.downloadReport(DownloadReportRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), logger: logger, on: eventLoop)
     }
-    
+
     /// 报告下载
     ///
     /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。

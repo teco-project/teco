@@ -21,52 +21,52 @@ extension TCSsmError {
             case tagsNotExisted = "InvalidParameterValue.TagsNotExisted"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 标签键重复。
         public static var tagKeysDuplicated: InvalidParameterValue {
             InvalidParameterValue(.tagKeysDuplicated)
         }
-        
+
         /// 标签键或标签值不存在。
         public static var tagsNotExisted: InvalidParameterValue {
             InvalidParameterValue(.tagsNotExisted)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asSsmError() -> TCSsmError {
             let code: TCSsmError.Code
             switch self.error {
-            case .tagKeysDuplicated: 
+            case .tagKeysDuplicated:
                 code = .invalidParameterValue_TagKeysDuplicated
-            case .tagsNotExisted: 
+            case .tagsNotExisted:
                 code = .invalidParameterValue_TagsNotExisted
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCSsmError(code, context: self.context)

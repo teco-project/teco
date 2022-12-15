@@ -19,23 +19,23 @@ extension Bmlb {
     public struct UnbindL4BackendsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
         public let loadBalancerId: String
-        
+
         /// 负载均衡四层监听器ID，可通过接口DescribeL4Listeners查询。
         public let listenerId: String
-        
+
         /// 待解绑的主机信息。可以绑定多个主机端口。目前一个四层监听器下面最多允许绑定255个主机端口。
         public let backendSet: [UnbindL4Backend]
-        
+
         /// 绑定类型。0：物理机 1：虚拟机 2：半托管机器
         public let bindType: Int64
-        
-        public init (loadBalancerId: String, listenerId: String, backendSet: [UnbindL4Backend], bindType: Int64) {
+
+        public init(loadBalancerId: String, listenerId: String, backendSet: [UnbindL4Backend], bindType: Int64) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.backendSet = backendSet
             self.bindType = bindType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case listenerId = "ListenerId"
@@ -43,29 +43,29 @@ extension Bmlb {
             case bindType = "BindType"
         }
     }
-    
+
     /// UnbindL4Backends返回参数结构体
     public struct UnbindL4BackendsResponse: TCResponseModel {
         /// 任务ID。该接口为异步任务，可根据本参数调用DescribeLoadBalancerTaskResult接口来查询任务操作结果。
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑黑石负载均衡四层监听器物理服务器
     ///
     /// 解绑黑石负载均衡四层监听器物理服务器。
     @inlinable
-    public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindL4BackendsResponse > {
+    public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindL4BackendsResponse> {
         self.client.execute(action: "UnbindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑黑石负载均衡四层监听器物理服务器
     ///
     /// 解绑黑石负载均衡四层监听器物理服务器。
@@ -73,15 +73,15 @@ extension Bmlb {
     public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindL4BackendsResponse {
         try await self.client.execute(action: "UnbindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑黑石负载均衡四层监听器物理服务器
     ///
     /// 解绑黑石负载均衡四层监听器物理服务器。
     @inlinable
-    public func unbindL4Backends(loadBalancerId: String, listenerId: String, backendSet: [UnbindL4Backend], bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindL4BackendsResponse > {
+    public func unbindL4Backends(loadBalancerId: String, listenerId: String, backendSet: [UnbindL4Backend], bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindL4BackendsResponse> {
         self.unbindL4Backends(UnbindL4BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, backendSet: backendSet, bindType: bindType), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑黑石负载均衡四层监听器物理服务器
     ///
     /// 解绑黑石负载均衡四层监听器物理服务器。

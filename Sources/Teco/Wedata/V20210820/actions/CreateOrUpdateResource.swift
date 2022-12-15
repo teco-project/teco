@@ -19,26 +19,26 @@ extension Wedata {
     public struct CreateOrUpdateResourceRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String?
-        
+
         /// 文件名
         public let files: [String]?
-        
+
         /// 文件所属路径，资源管理根路径为 /datastudio/resouce
         public let filePath: String?
-        
+
         /// cos存储桶名字
         public let cosBucketName: String?
-        
+
         /// cos所属地域
         public let cosRegion: String?
-        
+
         /// 是否为新文件，新增为 true，更新为 false
         public let newFile: Bool?
-        
+
         /// 文件大小
         public let filesSize: [String]?
-        
-        public init (projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil) {
+
+        public init(projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil) {
             self.projectId = projectId
             self.files = files
             self.filePath = filePath
@@ -47,7 +47,7 @@ extension Wedata {
             self.newFile = newFile
             self.filesSize = filesSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case files = "Files"
@@ -58,30 +58,30 @@ extension Wedata {
             case filesSize = "FilesSize"
         }
     }
-    
+
     /// CreateOrUpdateResource返回参数结构体
     public struct CreateOrUpdateResourceResponse: TCResponseModel {
         /// 响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [UserFileDTO]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资源管理将cos资源绑定到wedata
     ///
     /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
     @inlinable
-    public func createOrUpdateResource(_ input: CreateOrUpdateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrUpdateResourceResponse > {
+    public func createOrUpdateResource(_ input: CreateOrUpdateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrUpdateResourceResponse> {
         self.client.execute(action: "CreateOrUpdateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资源管理将cos资源绑定到wedata
     ///
     /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
@@ -89,15 +89,15 @@ extension Wedata {
     public func createOrUpdateResource(_ input: CreateOrUpdateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrUpdateResourceResponse {
         try await self.client.execute(action: "CreateOrUpdateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资源管理将cos资源绑定到wedata
     ///
     /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
     @inlinable
-    public func createOrUpdateResource(projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrUpdateResourceResponse > {
+    public func createOrUpdateResource(projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrUpdateResourceResponse> {
         self.createOrUpdateResource(CreateOrUpdateResourceRequest(projectId: projectId, files: files, filePath: filePath, cosBucketName: cosBucketName, cosRegion: cosRegion, newFile: newFile, filesSize: filesSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 资源管理将cos资源绑定到wedata
     ///
     /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata

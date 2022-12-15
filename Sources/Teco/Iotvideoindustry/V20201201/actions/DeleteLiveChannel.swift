@@ -19,44 +19,44 @@ extension Iotvideoindustry {
     public struct DeleteLiveChannelRequest: TCRequestModel {
         /// 直播频道ID
         public let liveChannelId: String
-        
-        public init (liveChannelId: String) {
+
+        public init(liveChannelId: String) {
             self.liveChannelId = liveChannelId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case liveChannelId = "LiveChannelId"
         }
     }
-    
+
     /// DeleteLiveChannel返回参数结构体
     public struct DeleteLiveChannelResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除直播接口
     @inlinable
-    public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveChannelResponse > {
+    public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveChannelResponse> {
         self.client.execute(action: "DeleteLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除直播接口
     @inlinable
     public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {
         try await self.client.execute(action: "DeleteLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除直播接口
     @inlinable
-    public func deleteLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveChannelResponse > {
+    public func deleteLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveChannelResponse> {
         self.deleteLiveChannel(DeleteLiveChannelRequest(liveChannelId: liveChannelId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除直播接口
     @inlinable
     public func deleteLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {

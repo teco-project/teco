@@ -19,35 +19,35 @@ extension Essbasic {
     public struct DescribeTemplatesRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
-        
+
         /// 模板唯一标识，查询单个模板时使用
         public let templateId: String?
-        
+
         /// 查询内容：0-模板列表及详情（默认），1-仅模板列表
         public let contentType: Int64?
-        
+
         /// 查询个数，默认20，最大100；在查询列表的时候有效
         public let limit: UInt64?
-        
+
         /// 查询偏移位置，默认0；在查询列表的时候有效
         public let offset: UInt64?
-        
+
         /// 是否返回所有组件信息。默认false，只返回发起方控件；true，返回所有签署方控件
         public let queryAllComponents: Bool?
-        
+
         /// 模糊搜索模板名称，最大长度200
         public let templateName: String?
-        
+
         /// 操作者的信息
         public let `operator`: UserInfo?
-        
+
         /// 是否获取模板预览链接
         public let withPreviewUrl: Bool?
-        
+
         /// 是否获取模板的PDF文件链接-渠道版需要开启白名单时才能使用。
         public let withPdfUrl: Bool?
-        
-        public init (agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil) {
+
+        public init(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil) {
             self.agent = agent
             self.templateId = templateId
             self.contentType = contentType
@@ -59,7 +59,7 @@ extension Essbasic {
             self.withPreviewUrl = withPreviewUrl
             self.withPdfUrl = withPdfUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case templateId = "TemplateId"
@@ -73,24 +73,24 @@ extension Essbasic {
             case withPdfUrl = "WithPdfUrl"
         }
     }
-    
+
     /// DescribeTemplates返回参数结构体
     public struct DescribeTemplatesResponse: TCResponseModel {
         /// 模板详情
         public let templates: [TemplateInfo]
-        
+
         /// 查询总数
         public let totalCount: Int64
-        
+
         /// 查询数量
         public let limit: UInt64
-        
+
         /// 查询起始偏移
         public let offset: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case templates = "Templates"
             case totalCount = "TotalCount"
@@ -99,15 +99,15 @@ extension Essbasic {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询模板信息列表
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
     @inlinable
-    public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplatesResponse > {
+    public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplatesResponse> {
         self.client.execute(action: "DescribeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询模板信息列表
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
@@ -115,15 +115,15 @@ extension Essbasic {
     public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
         try await self.client.execute(action: "DescribeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询模板信息列表
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
     @inlinable
-    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplatesResponse > {
+    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplatesResponse> {
         self.describeTemplates(DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询模板信息列表
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板

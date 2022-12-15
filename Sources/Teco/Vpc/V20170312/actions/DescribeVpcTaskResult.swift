@@ -19,42 +19,42 @@ extension Vpc {
     public struct DescribeVpcTaskResultRequest: TCRequestModel {
         /// 异步任务请求返回的RequestId。
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeVpcTaskResult返回参数结构体
     public struct DescribeVpcTaskResultResponse: TCResponseModel {
         /// 异步任务执行结果。结果：SUCCESS、FAILED、RUNNING。3者其中之一。其中SUCCESS表示任务执行成功，FAILED表示任务执行失败，RUNNING表示任务执行中。
         public let status: String
-        
+
         /// 异步任务执行输出。
         public let output: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case output = "Output"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询VPC异步任务执行结果
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
-    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcTaskResultResponse > {
+    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcTaskResultResponse> {
         self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询VPC异步任务执行结果
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
@@ -62,15 +62,15 @@ extension Vpc {
     public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
         try await self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询VPC异步任务执行结果
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
-    public func describeVpcTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcTaskResultResponse > {
+    public func describeVpcTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcTaskResultResponse> {
         self.describeVpcTaskResult(DescribeVpcTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询VPC异步任务执行结果
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。

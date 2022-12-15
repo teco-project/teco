@@ -19,23 +19,23 @@ extension Cwp {
     public struct DescribeLicenseBindListRequest: TCRequestModel {
         /// 授权ID
         public let licenseId: UInt64
-        
+
         /// 授权类型
         public let licenseType: UInt64
-        
+
         /// 资源ID
         public let resourceId: String
-        
+
         /// <li>Keywords 机器别名/公私IP 模糊查询</li>
         public let filters: [Filters]?
-        
+
         /// 限制条数,默认10.
         public let limit: UInt64?
-        
+
         /// 偏移量,默认0.
         public let offset: UInt64?
-        
-        public init (licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+
+        public init(licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.licenseId = licenseId
             self.licenseType = licenseType
             self.resourceId = resourceId
@@ -43,7 +43,7 @@ extension Cwp {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case licenseId = "LicenseId"
             case licenseType = "LicenseType"
@@ -53,33 +53,33 @@ extension Cwp {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeLicenseBindList返回参数结构体
     public struct DescribeLicenseBindListResponse: TCResponseModel {
         /// 总条数
         public let totalCount: UInt64
-        
+
         /// 绑定机器列表信息
         public let list: [LicenseBindDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case list = "List"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
-    public func describeLicenseBindList(_ input: DescribeLicenseBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseBindListResponse > {
+    public func describeLicenseBindList(_ input: DescribeLicenseBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseBindListResponse> {
         self.client.execute(action: "DescribeLicenseBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
@@ -87,15 +87,15 @@ extension Cwp {
     public func describeLicenseBindList(_ input: DescribeLicenseBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseBindListResponse {
         try await self.client.execute(action: "DescribeLicenseBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
-    public func describeLicenseBindList(licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseBindListResponse > {
+    public func describeLicenseBindList(licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseBindListResponse> {
         self.describeLicenseBindList(DescribeLicenseBindListRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表

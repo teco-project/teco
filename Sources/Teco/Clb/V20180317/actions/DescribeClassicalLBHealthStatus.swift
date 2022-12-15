@@ -19,44 +19,44 @@ extension Clb {
     public struct DescribeClassicalLBHealthStatusRequest: TCRequestModel {
         /// 负载均衡实例ID。
         public let loadBalancerId: String
-        
+
         /// 负载均衡监听器ID。
         public let listenerId: String?
-        
-        public init (loadBalancerId: String, listenerId: String? = nil) {
+
+        public init(loadBalancerId: String, listenerId: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case listenerId = "ListenerId"
         }
     }
-    
+
     /// DescribeClassicalLBHealthStatus返回参数结构体
     public struct DescribeClassicalLBHealthStatusResponse: TCResponseModel {
         /// 后端健康状态列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthList: [ClassicalHealth]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case healthList = "HealthList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取传统型负载均衡后端的健康状态
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
-    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBHealthStatusResponse > {
+    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBHealthStatusResponse> {
         self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取传统型负载均衡后端的健康状态
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
@@ -64,15 +64,15 @@ extension Clb {
     public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
         try await self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取传统型负载均衡后端的健康状态
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
-    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBHealthStatusResponse > {
+    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBHealthStatusResponse> {
         self.describeClassicalLBHealthStatus(DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取传统型负载均衡后端的健康状态
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态

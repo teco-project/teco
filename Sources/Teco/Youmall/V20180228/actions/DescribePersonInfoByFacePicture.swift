@@ -22,43 +22,43 @@ extension Youmall {
     public struct DescribePersonInfoByFacePictureRequest: TCRequestModel {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
         public let companyId: String
-        
+
         /// 优mall店铺id，通过"指定身份标识获取客户门店列表"接口获取
         public let shopId: Int64
-        
+
         /// 人脸图片BASE编码
         public let picture: String
-        
-        public init (companyId: String, shopId: Int64, picture: String) {
+
+        public init(companyId: String, shopId: Int64, picture: String) {
             self.companyId = companyId
             self.shopId = shopId
             self.picture = picture
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
             case picture = "Picture"
         }
     }
-    
+
     /// DescribePersonInfoByFacePicture返回参数结构体
     public struct DescribePersonInfoByFacePictureResponse: TCResponseModel {
         /// 集团id
         public let companyId: String
-        
+
         /// 店铺id
         public let shopId: Int64
-        
+
         /// 顾客face id
         public let personId: Int64
-        
+
         /// 顾客底图url
         public let pictureUrl: String
-        
+
         /// 顾客类型（0表示普通顾客，1 白名单，2 表示黑名单，101表示集团白名单，102表示集团黑名单）
         public let personType: Int64
-        
+
         /// 顾客首次进店时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -66,13 +66,13 @@ extension Youmall {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var firstVisitTime: Date
-        
+
         /// 顾客历史到访次数
         public let visitTimes: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case shopId = "ShopId"
@@ -84,15 +84,15 @@ extension Youmall {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 图片检索身份接口
     ///
     /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
     @inlinable
-    public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoByFacePictureResponse > {
+    public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoByFacePictureResponse> {
         self.client.execute(action: "DescribePersonInfoByFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 图片检索身份接口
     ///
     /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
@@ -100,15 +100,15 @@ extension Youmall {
     public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoByFacePictureResponse {
         try await self.client.execute(action: "DescribePersonInfoByFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 图片检索身份接口
     ///
     /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
     @inlinable
-    public func describePersonInfoByFacePicture(companyId: String, shopId: Int64, picture: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoByFacePictureResponse > {
+    public func describePersonInfoByFacePicture(companyId: String, shopId: Int64, picture: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoByFacePictureResponse> {
         self.describePersonInfoByFacePicture(DescribePersonInfoByFacePictureRequest(companyId: companyId, shopId: shopId, picture: picture), logger: logger, on: eventLoop)
     }
-    
+
     /// 图片检索身份接口
     ///
     /// 通过上传人脸图片检索系统face id、顾客身份信息及底图

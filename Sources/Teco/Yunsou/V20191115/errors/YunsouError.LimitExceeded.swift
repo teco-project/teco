@@ -19,38 +19,38 @@ extension TCYunsouError {
         enum Code: String {
             case search = "LimitExceeded.Search"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请求的次数超过了频率限制。
         public static var search: LimitExceeded {
             LimitExceeded(.search)
         }
-        
+
         public func asYunsouError() -> TCYunsouError {
             let code: TCYunsouError.Code
             switch self.error {
-            case .search: 
+            case .search:
                 code = .limitExceeded_Search
             }
             return TCYunsouError(code, context: self.context)

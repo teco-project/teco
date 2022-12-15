@@ -19,42 +19,42 @@ extension Gaap {
     public struct DescribeRulesRequest: TCRequestModel {
         /// 7层监听器Id。
         public let listenerId: String
-        
-        public init (listenerId: String) {
+
+        public init(listenerId: String) {
             self.listenerId = listenerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
         }
     }
-    
+
     /// DescribeRules返回参数结构体
     public struct DescribeRulesResponse: TCResponseModel {
         /// 按照域名分类的规则信息列表
         public let domainRuleSet: [DomainRuleSet]
-        
+
         /// 该监听器下的域名总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainRuleSet = "DomainRuleSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询转发规则信息
     ///
     /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。
     @inlinable
-    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
+    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesResponse> {
         self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询转发规则信息
     ///
     /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。
@@ -62,15 +62,15 @@ extension Gaap {
     public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
         try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询转发规则信息
     ///
     /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。
     @inlinable
-    public func describeRules(listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
+    public func describeRules(listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesResponse> {
         self.describeRules(DescribeRulesRequest(listenerId: listenerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询转发规则信息
     ///
     /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。

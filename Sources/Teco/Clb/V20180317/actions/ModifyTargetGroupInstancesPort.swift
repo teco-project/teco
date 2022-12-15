@@ -19,40 +19,40 @@ extension Clb {
     public struct ModifyTargetGroupInstancesPortRequest: TCRequestModel {
         /// 目标组ID。
         public let targetGroupId: String
-        
+
         /// 待修改端口的服务器数组。
         public let targetGroupInstances: [TargetGroupInstance]
-        
-        public init (targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
+
+        public init(targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
             self.targetGroupId = targetGroupId
             self.targetGroupInstances = targetGroupInstances
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetGroupId = "TargetGroupId"
             case targetGroupInstances = "TargetGroupInstances"
         }
     }
-    
+
     /// ModifyTargetGroupInstancesPort返回参数结构体
     public struct ModifyTargetGroupInstancesPortResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量修改目标组服务器端口
     ///
     /// 批量修改目标组服务器端口。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyTargetGroupInstancesPort(_ input: ModifyTargetGroupInstancesPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupInstancesPortResponse > {
+    public func modifyTargetGroupInstancesPort(_ input: ModifyTargetGroupInstancesPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupInstancesPortResponse> {
         self.client.execute(action: "ModifyTargetGroupInstancesPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改目标组服务器端口
     ///
     /// 批量修改目标组服务器端口。
@@ -61,16 +61,16 @@ extension Clb {
     public func modifyTargetGroupInstancesPort(_ input: ModifyTargetGroupInstancesPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupInstancesPortResponse {
         try await self.client.execute(action: "ModifyTargetGroupInstancesPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量修改目标组服务器端口
     ///
     /// 批量修改目标组服务器端口。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyTargetGroupInstancesPort(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupInstancesPortResponse > {
+    public func modifyTargetGroupInstancesPort(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupInstancesPortResponse> {
         self.modifyTargetGroupInstancesPort(ModifyTargetGroupInstancesPortRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改目标组服务器端口
     ///
     /// 批量修改目标组服务器端口。

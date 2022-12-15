@@ -19,58 +19,58 @@ extension Cfw {
     public struct DescribeCfwEipsRequest: TCRequestModel {
         /// 1：cfw接入模式，目前仅支持接入模式实例
         public let mode: UInt64
-        
+
         /// ALL：查询所有弹性公网ip; nat-xxxxx：接入模式场景指定网关的弹性公网ip
         public let natGatewayId: String
-        
+
         /// 防火墙实例id，当前仅支持接入模式的实例
         public let cfwInstance: String?
-        
-        public init (mode: UInt64, natGatewayId: String, cfwInstance: String? = nil) {
+
+        public init(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil) {
             self.mode = mode
             self.natGatewayId = natGatewayId
             self.cfwInstance = cfwInstance
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
             case natGatewayId = "NatGatewayId"
             case cfwInstance = "CfwInstance"
         }
     }
-    
+
     /// DescribeCfwEips返回参数结构体
     public struct DescribeCfwEipsResponse: TCResponseModel {
         /// 返回值信息
         public let natFwEipList: [NatFwEipsInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case natFwEipList = "NatFwEipList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询防火墙弹性公网IP
     @inlinable
-    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfwEipsResponse > {
+    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfwEipsResponse> {
         self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询防火墙弹性公网IP
     @inlinable
     public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
         try await self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询防火墙弹性公网IP
     @inlinable
-    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfwEipsResponse > {
+    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfwEipsResponse> {
         self.describeCfwEips(DescribeCfwEipsRequest(mode: mode, natGatewayId: natGatewayId, cfwInstance: cfwInstance), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询防火墙弹性公网IP
     @inlinable
     public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {

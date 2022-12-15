@@ -19,154 +19,154 @@ extension Cdn {
     public struct UpdateDomainConfigRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 项目 ID
         public let projectId: Int64?
-        
+
         /// 源站配置
         public let origin: Origin?
-        
+
         /// IP 黑白名单配置
         public let ipFilter: IpFilter?
-        
+
         /// IP 限频配置
         public let ipFreqLimit: IpFreqLimit?
-        
+
         /// 状态码缓存配置
         public let statusCodeCache: StatusCodeCache?
-        
+
         /// 智能压缩配置
         public let compression: Compression?
-        
+
         /// 带宽封顶配置
         public let bandwidthAlert: BandwidthAlert?
-        
+
         /// Range 回源配置
         public let rangeOriginPull: RangeOriginPull?
-        
+
         /// 301/302 回源跟随配置
         public let followRedirect: FollowRedirect?
-        
+
         /// 错误码重定向配置（功能灰度中，尚未全量）
         public let errorPage: ErrorPage?
-        
+
         /// 请求头部配置
         public let requestHeader: RequestHeader?
-        
+
         /// 响应头部配置
         public let responseHeader: ResponseHeader?
-        
+
         /// 下载速度配置
         public let downstreamCapping: DownstreamCapping?
-        
+
         /// 节点缓存键配置
         public let cacheKey: CacheKey?
-        
+
         /// 头部缓存配置
         public let responseHeaderCache: ResponseHeaderCache?
-        
+
         /// 视频拖拽配置
         public let videoSeek: VideoSeek?
-        
+
         /// 缓存过期时间配置
         public let cache: Cache?
-        
+
         /// 跨国链路优化配置（已下线）
         public let originPullOptimization: OriginPullOptimization?
-        
+
         /// Https 加速配置
         public let https: Https?
-        
+
         /// 时间戳防盗链配置
         public let authentication: Authentication?
-        
+
         /// SEO 优化配置
         public let seo: Seo?
-        
+
         /// 访问协议强制跳转配置
         public let forceRedirect: ForceRedirect?
-        
+
         /// Referer 防盗链配置
         public let referer: Referer?
-        
+
         /// 浏览器缓存配置（功能灰度中，尚未全量）
         public let maxAge: MaxAge?
-        
+
         /// 地域属性特殊配置
         /// 适用于域名境内加速、境外加速配置不一致场景
         public let specificConfig: SpecificConfig?
-        
+
         /// 域名业务类型
         /// web：静态加速
         /// download：下载加速
         /// media：流媒体点播加速
         public let serviceType: String?
-        
+
         /// 域名加速区域
         /// mainland：中国境内加速
         /// overseas：中国境外加速
         /// global：全球加速
         /// 从mainland/overseas修改至global时，域名的配置将被同步至overseas/mainland。若域名含有后端特殊配置，此类配置的同步过程有一定延时，请耐心等待
         public let area: String?
-        
+
         /// 回源超时配置
         public let originPullTimeout: OriginPullTimeout?
-        
+
         /// 回源S3私有鉴权
         public let awsPrivateAccess: AwsPrivateAccess?
-        
+
         /// UA黑白名单配置
         public let userAgentFilter: UserAgentFilter?
-        
+
         /// 访问控制
         public let accessControl: AccessControl?
-        
+
         /// 访问URL重写配置
         public let urlRedirect: UrlRedirect?
-        
+
         /// 访问端口配置
         public let accessPort: [Int64]?
-        
+
         /// 时间戳防盗链高级版配置，白名单功能
         public let advancedAuthentication: AdvancedAuthentication?
-        
+
         /// 回源鉴权高级版配置，白名单功能
         public let originAuthentication: OriginAuthentication?
-        
+
         /// Ipv6 访问配置
         public let ipv6Access: Ipv6Access?
-        
+
         /// 离线缓存
         public let offlineCache: OfflineCache?
-        
+
         /// 合并回源
         public let originCombine: OriginCombine?
-        
+
         /// POST请求传输配置
         public let postMaxSize: PostSize?
-        
+
         /// Quic访问（收费服务，详见计费说明和产品文档）
         public let quic: Quic?
-        
+
         /// 回源OSS私有鉴权
         public let ossPrivateAccess: OssPrivateAccess?
-        
+
         /// WebSocket配置
         public let webSocket: WebSocket?
-        
+
         /// 远程鉴权配置
         public let remoteAuthentication: RemoteAuthentication?
-        
+
         /// 共享CNAME配置，白名单功能
         public let shareCname: ShareCname?
-        
+
         /// 华为云对象存储回源鉴权
         public let hwPrivateAccess: HwPrivateAccess?
-        
+
         /// 七牛云对象存储回源鉴权
         public let qnPrivateAccess: QnPrivateAccess?
-        
-        public init (domain: String, projectId: Int64? = nil, origin: Origin? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, statusCodeCache: StatusCodeCache? = nil, compression: Compression? = nil, bandwidthAlert: BandwidthAlert? = nil, rangeOriginPull: RangeOriginPull? = nil, followRedirect: FollowRedirect? = nil, errorPage: ErrorPage? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, downstreamCapping: DownstreamCapping? = nil, cacheKey: CacheKey? = nil, responseHeaderCache: ResponseHeaderCache? = nil, videoSeek: VideoSeek? = nil, cache: Cache? = nil, originPullOptimization: OriginPullOptimization? = nil, https: Https? = nil, authentication: Authentication? = nil, seo: Seo? = nil, forceRedirect: ForceRedirect? = nil, referer: Referer? = nil, maxAge: MaxAge? = nil, specificConfig: SpecificConfig? = nil, serviceType: String? = nil, area: String? = nil, originPullTimeout: OriginPullTimeout? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, userAgentFilter: UserAgentFilter? = nil, accessControl: AccessControl? = nil, urlRedirect: UrlRedirect? = nil, accessPort: [Int64]? = nil, advancedAuthentication: AdvancedAuthentication? = nil, originAuthentication: OriginAuthentication? = nil, ipv6Access: Ipv6Access? = nil, offlineCache: OfflineCache? = nil, originCombine: OriginCombine? = nil, postMaxSize: PostSize? = nil, quic: Quic? = nil, ossPrivateAccess: OssPrivateAccess? = nil, webSocket: WebSocket? = nil, remoteAuthentication: RemoteAuthentication? = nil, shareCname: ShareCname? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil) {
+
+        public init(domain: String, projectId: Int64? = nil, origin: Origin? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, statusCodeCache: StatusCodeCache? = nil, compression: Compression? = nil, bandwidthAlert: BandwidthAlert? = nil, rangeOriginPull: RangeOriginPull? = nil, followRedirect: FollowRedirect? = nil, errorPage: ErrorPage? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, downstreamCapping: DownstreamCapping? = nil, cacheKey: CacheKey? = nil, responseHeaderCache: ResponseHeaderCache? = nil, videoSeek: VideoSeek? = nil, cache: Cache? = nil, originPullOptimization: OriginPullOptimization? = nil, https: Https? = nil, authentication: Authentication? = nil, seo: Seo? = nil, forceRedirect: ForceRedirect? = nil, referer: Referer? = nil, maxAge: MaxAge? = nil, specificConfig: SpecificConfig? = nil, serviceType: String? = nil, area: String? = nil, originPullTimeout: OriginPullTimeout? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, userAgentFilter: UserAgentFilter? = nil, accessControl: AccessControl? = nil, urlRedirect: UrlRedirect? = nil, accessPort: [Int64]? = nil, advancedAuthentication: AdvancedAuthentication? = nil, originAuthentication: OriginAuthentication? = nil, ipv6Access: Ipv6Access? = nil, offlineCache: OfflineCache? = nil, originCombine: OriginCombine? = nil, postMaxSize: PostSize? = nil, quic: Quic? = nil, ossPrivateAccess: OssPrivateAccess? = nil, webSocket: WebSocket? = nil, remoteAuthentication: RemoteAuthentication? = nil, shareCname: ShareCname? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil) {
             self.domain = domain
             self.projectId = projectId
             self.origin = origin
@@ -215,7 +215,7 @@ extension Cdn {
             self.hwPrivateAccess = hwPrivateAccess
             self.qnPrivateAccess = qnPrivateAccess
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case projectId = "ProjectId"
@@ -266,27 +266,27 @@ extension Cdn {
             case qnPrivateAccess = "QnPrivateAccess"
         }
     }
-    
+
     /// UpdateDomainConfig返回参数结构体
     public struct UpdateDomainConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新加速域名配置
     ///
     /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息
     /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
     /// 云审计相关：接口的入参可能包含密钥等敏感信息，所以此接口的入参不会上报到云审计。
     @inlinable
-    public func updateDomainConfig(_ input: UpdateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDomainConfigResponse > {
+    public func updateDomainConfig(_ input: UpdateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDomainConfigResponse> {
         self.client.execute(action: "UpdateDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新加速域名配置
     ///
     /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息
@@ -296,17 +296,17 @@ extension Cdn {
     public func updateDomainConfig(_ input: UpdateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDomainConfigResponse {
         try await self.client.execute(action: "UpdateDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新加速域名配置
     ///
     /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息
     /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
     /// 云审计相关：接口的入参可能包含密钥等敏感信息，所以此接口的入参不会上报到云审计。
     @inlinable
-    public func updateDomainConfig(domain: String, projectId: Int64? = nil, origin: Origin? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, statusCodeCache: StatusCodeCache? = nil, compression: Compression? = nil, bandwidthAlert: BandwidthAlert? = nil, rangeOriginPull: RangeOriginPull? = nil, followRedirect: FollowRedirect? = nil, errorPage: ErrorPage? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, downstreamCapping: DownstreamCapping? = nil, cacheKey: CacheKey? = nil, responseHeaderCache: ResponseHeaderCache? = nil, videoSeek: VideoSeek? = nil, cache: Cache? = nil, originPullOptimization: OriginPullOptimization? = nil, https: Https? = nil, authentication: Authentication? = nil, seo: Seo? = nil, forceRedirect: ForceRedirect? = nil, referer: Referer? = nil, maxAge: MaxAge? = nil, specificConfig: SpecificConfig? = nil, serviceType: String? = nil, area: String? = nil, originPullTimeout: OriginPullTimeout? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, userAgentFilter: UserAgentFilter? = nil, accessControl: AccessControl? = nil, urlRedirect: UrlRedirect? = nil, accessPort: [Int64]? = nil, advancedAuthentication: AdvancedAuthentication? = nil, originAuthentication: OriginAuthentication? = nil, ipv6Access: Ipv6Access? = nil, offlineCache: OfflineCache? = nil, originCombine: OriginCombine? = nil, postMaxSize: PostSize? = nil, quic: Quic? = nil, ossPrivateAccess: OssPrivateAccess? = nil, webSocket: WebSocket? = nil, remoteAuthentication: RemoteAuthentication? = nil, shareCname: ShareCname? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDomainConfigResponse > {
+    public func updateDomainConfig(domain: String, projectId: Int64? = nil, origin: Origin? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, statusCodeCache: StatusCodeCache? = nil, compression: Compression? = nil, bandwidthAlert: BandwidthAlert? = nil, rangeOriginPull: RangeOriginPull? = nil, followRedirect: FollowRedirect? = nil, errorPage: ErrorPage? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, downstreamCapping: DownstreamCapping? = nil, cacheKey: CacheKey? = nil, responseHeaderCache: ResponseHeaderCache? = nil, videoSeek: VideoSeek? = nil, cache: Cache? = nil, originPullOptimization: OriginPullOptimization? = nil, https: Https? = nil, authentication: Authentication? = nil, seo: Seo? = nil, forceRedirect: ForceRedirect? = nil, referer: Referer? = nil, maxAge: MaxAge? = nil, specificConfig: SpecificConfig? = nil, serviceType: String? = nil, area: String? = nil, originPullTimeout: OriginPullTimeout? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, userAgentFilter: UserAgentFilter? = nil, accessControl: AccessControl? = nil, urlRedirect: UrlRedirect? = nil, accessPort: [Int64]? = nil, advancedAuthentication: AdvancedAuthentication? = nil, originAuthentication: OriginAuthentication? = nil, ipv6Access: Ipv6Access? = nil, offlineCache: OfflineCache? = nil, originCombine: OriginCombine? = nil, postMaxSize: PostSize? = nil, quic: Quic? = nil, ossPrivateAccess: OssPrivateAccess? = nil, webSocket: WebSocket? = nil, remoteAuthentication: RemoteAuthentication? = nil, shareCname: ShareCname? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDomainConfigResponse> {
         self.updateDomainConfig(UpdateDomainConfigRequest(domain: domain, projectId: projectId, origin: origin, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, statusCodeCache: statusCodeCache, compression: compression, bandwidthAlert: bandwidthAlert, rangeOriginPull: rangeOriginPull, followRedirect: followRedirect, errorPage: errorPage, requestHeader: requestHeader, responseHeader: responseHeader, downstreamCapping: downstreamCapping, cacheKey: cacheKey, responseHeaderCache: responseHeaderCache, videoSeek: videoSeek, cache: cache, originPullOptimization: originPullOptimization, https: https, authentication: authentication, seo: seo, forceRedirect: forceRedirect, referer: referer, maxAge: maxAge, specificConfig: specificConfig, serviceType: serviceType, area: area, originPullTimeout: originPullTimeout, awsPrivateAccess: awsPrivateAccess, userAgentFilter: userAgentFilter, accessControl: accessControl, urlRedirect: urlRedirect, accessPort: accessPort, advancedAuthentication: advancedAuthentication, originAuthentication: originAuthentication, ipv6Access: ipv6Access, offlineCache: offlineCache, originCombine: originCombine, postMaxSize: postMaxSize, quic: quic, ossPrivateAccess: ossPrivateAccess, webSocket: webSocket, remoteAuthentication: remoteAuthentication, shareCname: shareCname, hwPrivateAccess: hwPrivateAccess, qnPrivateAccess: qnPrivateAccess), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新加速域名配置
     ///
     /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息

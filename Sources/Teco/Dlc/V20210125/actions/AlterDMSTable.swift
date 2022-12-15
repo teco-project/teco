@@ -22,28 +22,28 @@ extension Dlc {
     public struct AlterDMSTableRequest: TCRequestModel {
         /// 当前名称
         public let currentName: String
-        
+
         /// 当前数据库名称
         public let currentDbName: String
-        
+
         /// 基础对象
         public let asset: Asset?
-        
+
         /// 表类型
         public let type: String?
-        
+
         /// 数据库名称
         public let dbName: String?
-        
+
         /// 存储大小
         public let storageSize: Int64?
-        
+
         /// 记录数量
         public let recordCount: Int64?
-        
+
         /// 生命周期
         public let lifeTime: Int64?
-        
+
         /// 数据更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -51,7 +51,7 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var dataUpdateTime: Date?
-        
+
         /// 结构更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -59,7 +59,7 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var structUpdateTime: Date?
-        
+
         /// 最后访问时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -67,29 +67,29 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var lastAccessTime: Date?
-        
+
         /// 存储对象
         public let sds: DMSSds?
-        
+
         /// 列
         public let columns: [DMSColumn]?
-        
+
         /// 分区键值
         public let partitionKeys: [DMSColumn]?
-        
+
         /// 视图文本
         public let viewOriginalText: String?
-        
+
         /// 视图文本
         public let viewExpandedText: String?
-        
+
         /// 分区
         public let partitions: [DMSPartition]?
-        
+
         /// 当前表名
         public let name: String?
-        
-        public init (currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil) {
+
+        public init(currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil) {
             self.currentName = currentName
             self.currentDbName = currentDbName
             self.asset = asset
@@ -109,7 +109,7 @@ extension Dlc {
             self.partitions = partitions
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case currentName = "CurrentName"
             case currentDbName = "CurrentDbName"
@@ -131,35 +131,35 @@ extension Dlc {
             case name = "Name"
         }
     }
-    
+
     /// AlterDMSTable返回参数结构体
     public struct AlterDMSTableResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// DMS元数据更新表
     @inlinable
-    public func alterDMSTable(_ input: AlterDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSTableResponse > {
+    public func alterDMSTable(_ input: AlterDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSTableResponse> {
         self.client.execute(action: "AlterDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据更新表
     @inlinable
     public func alterDMSTable(_ input: AlterDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSTableResponse {
         try await self.client.execute(action: "AlterDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DMS元数据更新表
     @inlinable
-    public func alterDMSTable(currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSTableResponse > {
+    public func alterDMSTable(currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSTableResponse> {
         self.alterDMSTable(AlterDMSTableRequest(currentName: currentName, currentDbName: currentDbName, asset: asset, type: type, dbName: dbName, storageSize: storageSize, recordCount: recordCount, lifeTime: lifeTime, dataUpdateTime: dataUpdateTime, structUpdateTime: structUpdateTime, lastAccessTime: lastAccessTime, sds: sds, columns: columns, partitionKeys: partitionKeys, viewOriginalText: viewOriginalText, viewExpandedText: viewExpandedText, partitions: partitions, name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据更新表
     @inlinable
     public func alterDMSTable(currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSTableResponse {

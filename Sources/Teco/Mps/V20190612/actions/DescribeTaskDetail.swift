@@ -19,16 +19,16 @@ extension Mps {
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 视频处理任务的任务 ID。
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeTaskDetail返回参数结构体
     public struct DescribeTaskDetailResponse: TCResponseModel {
         /// 任务类型，目前取值有：
@@ -37,57 +37,57 @@ extension Mps {
         /// <li>LiveStreamProcessTask：直播流处理任务。</li>
         /// <li>ScheduleTask：编排处理任务。</li>
         public let taskType: String
-        
+
         /// 任务状态，取值：
         /// <li>WAITING：等待中；</li>
         /// <li>PROCESSING：处理中；</li>
         /// <li>FINISH：已完成。</li>
         public let status: String
-        
+
         /// 任务的创建时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let createTime: String
-        
+
         /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let beginProcessTime: String
-        
+
         /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         public let finishTime: String
-        
+
         /// 视频编辑任务信息，仅当 TaskType 为 EditMediaTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let editMediaTask: EditMediaTask?
-        
+
         /// 视频处理任务信息，仅当 TaskType 为 WorkflowTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowTask: WorkflowTask?
-        
+
         /// 直播流处理任务信息，仅当 TaskType 为 LiveStreamProcessTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveStreamProcessTask: LiveStreamProcessTask?
-        
+
         /// 任务的事件通知信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskNotifyConfig: TaskNotifyConfig?
-        
+
         /// 任务流的优先级，取值范围为 [-10, 10]。
         public let tasksPriority: Int64
-        
+
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长50个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String
-        
+
         /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
         public let sessionContext: String
-        
+
         /// 扩展信息字段，仅用于特定场景。
         public let extInfo: String
-        
+
         /// 编排处理任务信息，仅当 TaskType 为 ScheduleTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheduleTask: ScheduleTask?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case status = "Status"
@@ -106,15 +106,15 @@ extension Mps {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询任务详情
     ///
     /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
     @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
         self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务详情
     ///
     /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
@@ -122,15 +122,15 @@ extension Mps {
     public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询任务详情
     ///
     /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
     @inlinable
-    public func describeTaskDetail(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+    public func describeTaskDetail(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
         self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务详情
     ///
     /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。

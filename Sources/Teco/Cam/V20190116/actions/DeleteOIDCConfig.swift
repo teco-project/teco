@@ -19,44 +19,44 @@ extension Cam {
     public struct DeleteOIDCConfigRequest: TCRequestModel {
         /// OIDC身份提供商名称
         public let name: String
-        
-        public init (name: String) {
+
+        public init(name: String) {
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
         }
     }
-    
+
     /// DeleteOIDCConfig返回参数结构体
     public struct DeleteOIDCConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除OIDC身份提供商
     @inlinable
-    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOIDCConfigResponse > {
+    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOIDCConfigResponse> {
         self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除OIDC身份提供商
     @inlinable
     public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
         try await self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除OIDC身份提供商
     @inlinable
-    public func deleteOIDCConfig(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOIDCConfigResponse > {
+    public func deleteOIDCConfig(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOIDCConfigResponse> {
         self.deleteOIDCConfig(DeleteOIDCConfigRequest(name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除OIDC身份提供商
     @inlinable
     public func deleteOIDCConfig(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {

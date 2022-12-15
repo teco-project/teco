@@ -19,27 +19,27 @@ extension Sts {
     public struct AssumeRoleWithWebIdentityRequest: TCRequestModel {
         /// 身份提供商名称
         public let providerId: String
-        
+
         /// IdP签发的OIDC令牌
         public let webIdentityToken: String
-        
+
         /// 角色访问描述名
         public let roleArn: String
-        
+
         /// 会话名称
         public let roleSessionName: String
-        
+
         /// 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         public let durationSeconds: Int64?
-        
-        public init (providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil) {
+
+        public init(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil) {
             self.providerId = providerId
             self.webIdentityToken = webIdentityToken
             self.roleArn = roleArn
             self.roleSessionName = roleSessionName
             self.durationSeconds = durationSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case providerId = "ProviderId"
             case webIdentityToken = "WebIdentityToken"
@@ -48,21 +48,21 @@ extension Sts {
             case durationSeconds = "DurationSeconds"
         }
     }
-    
+
     /// AssumeRoleWithWebIdentity返回参数结构体
     public struct AssumeRoleWithWebIdentityResponse: TCResponseModel {
         /// 临时秘钥过期时间(时间戳)
         public let expiredTime: UInt64
-        
+
         /// 临时秘钥过期时间
         public let expiration: String
-        
+
         /// 临时秘钥
         public let credentials: Credentials
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case expiredTime = "ExpiredTime"
             case expiration = "Expiration"
@@ -70,25 +70,25 @@ extension Sts {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 申请OIDC角色临时密钥
     @inlinable
-    public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithWebIdentityResponse > {
+    public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithWebIdentityResponse> {
         self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
         try await self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 申请OIDC角色临时密钥
     @inlinable
-    public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithWebIdentityResponse > {
+    public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithWebIdentityResponse> {
         self.assumeRoleWithWebIdentity(AssumeRoleWithWebIdentityRequest(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
     }
-    
+
     /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {

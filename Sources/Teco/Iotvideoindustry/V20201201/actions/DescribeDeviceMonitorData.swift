@@ -19,23 +19,23 @@ extension Iotvideoindustry {
     public struct DescribeDeviceMonitorDataRequest: TCRequestModel {
         /// 开始时间戳
         public let startTime: Int64
-        
+
         /// 结束时间戳
         public let endTime: Int64
-        
+
         /// 类型 支持 OnlineChannels/OnlineDevices/RecordingChannels
         public let type: String
-        
+
         /// 时间粒度 目前只支持 1h
         public let timesSpec: String
-        
-        public init (startTime: Int64, endTime: Int64, type: String, timesSpec: String) {
+
+        public init(startTime: Int64, endTime: Int64, type: String, timesSpec: String) {
             self.startTime = startTime
             self.endTime = endTime
             self.type = type
             self.timesSpec = timesSpec
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -43,39 +43,39 @@ extension Iotvideoindustry {
             case timesSpec = "TimesSpec"
         }
     }
-    
+
     /// DescribeDeviceMonitorData返回参数结构体
     public struct DescribeDeviceMonitorDataResponse: TCResponseModel {
         /// 查询设备统计monitor信息列表
         public let data: [DeviceMonitorValue]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询设备统计monitor信息
     @inlinable
-    public func describeDeviceMonitorData(_ input: DescribeDeviceMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceMonitorDataResponse > {
+    public func describeDeviceMonitorData(_ input: DescribeDeviceMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorDataResponse> {
         self.client.execute(action: "DescribeDeviceMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备统计monitor信息
     @inlinable
     public func describeDeviceMonitorData(_ input: DescribeDeviceMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorDataResponse {
         try await self.client.execute(action: "DescribeDeviceMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询设备统计monitor信息
     @inlinable
-    public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceMonitorDataResponse > {
+    public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorDataResponse> {
         self.describeDeviceMonitorData(DescribeDeviceMonitorDataRequest(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询设备统计monitor信息
     @inlinable
     public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorDataResponse {

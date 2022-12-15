@@ -19,27 +19,27 @@ extension Scf {
     public struct GetRequestStatusRequest: TCRequestModel {
         /// 函数名称
         public let functionName: String
-        
+
         /// 需要查询状态的请求 id
         public let functionRequestId: String
-        
+
         /// 函数的所在的命名空间
         public let namespace: String?
-        
+
         /// 查询的开始时间，例如：2017-05-16 20:00:00，不填默认为当前时间 - 15min
         public let startTime: String?
-        
+
         /// 查询的结束时间，例如：2017-05-16 20:59:59。StartTime 为空时，EndTime 默认为当前时间；StartTime 有值时，需要同时传 EndTime。EndTime 需要晚于 StartTime。
         public let endTime: String?
-        
-        public init (functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil) {
+
+        public init(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.functionName = functionName
             self.functionRequestId = functionRequestId
             self.namespace = namespace
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionName = "FunctionName"
             case functionRequestId = "FunctionRequestId"
@@ -48,35 +48,35 @@ extension Scf {
             case endTime = "EndTime"
         }
     }
-    
+
     /// GetRequestStatus返回参数结构体
     public struct GetRequestStatusResponse: TCResponseModel {
         /// 函数运行状态的总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 函数运行状态数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [RequestStatus]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取函数单个请求运行状态
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
-    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRequestStatusResponse > {
+    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestStatusResponse> {
         self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数单个请求运行状态
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
@@ -84,15 +84,15 @@ extension Scf {
     public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
         try await self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取函数单个请求运行状态
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
-    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRequestStatusResponse > {
+    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestStatusResponse> {
         self.getRequestStatus(GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取函数单个请求运行状态
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。

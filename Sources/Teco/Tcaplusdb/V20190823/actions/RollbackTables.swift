@@ -22,10 +22,10 @@ extension Tcaplusdb {
     public struct RollbackTablesRequest: TCRequestModel {
         /// 待回档表格所在集群ID
         public let clusterId: String
-        
+
         /// 待回档表格列表
         public let selectedTables: [SelectedTableInfoNew]
-        
+
         /// 待回档时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -33,17 +33,17 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var rollbackTime: Date
-        
+
         /// 回档模式，支持：`KEYS`
         public let mode: String?
-        
-        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil) {
+
+        public init(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
             self.rollbackTime = rollbackTime
             self.mode = mode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case selectedTables = "SelectedTables"
@@ -51,43 +51,43 @@ extension Tcaplusdb {
             case mode = "Mode"
         }
     }
-    
+
     /// RollbackTables返回参数结构体
     public struct RollbackTablesResponse: TCResponseModel {
         /// 表格回档任务结果数量
         public let totalCount: UInt64
-        
+
         /// 表格回档任务结果列表
         public let tableResults: [TableRollbackResultNew]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 表格数据回档
     @inlinable
-    public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackTablesResponse > {
+    public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackTablesResponse> {
         self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 表格数据回档
     @inlinable
     public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {
         try await self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 表格数据回档
     @inlinable
-    public func rollbackTables(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackTablesResponse > {
+    public func rollbackTables(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackTablesResponse> {
         self.rollbackTables(RollbackTablesRequest(clusterId: clusterId, selectedTables: selectedTables, rollbackTime: rollbackTime, mode: mode), logger: logger, on: eventLoop)
     }
-    
+
     /// 表格数据回档
     @inlinable
     public func rollbackTables(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {

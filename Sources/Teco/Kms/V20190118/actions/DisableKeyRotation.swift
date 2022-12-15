@@ -19,34 +19,34 @@ extension Kms {
     public struct DisableKeyRotationRequest: TCRequestModel {
         /// CMK唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// DisableKeyRotation返回参数结构体
     public struct DisableKeyRotationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
     @inlinable
-    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeyRotationResponse > {
+    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
         self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
@@ -54,15 +54,15 @@ extension Kms {
     public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
         try await self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
     @inlinable
-    public func disableKeyRotation(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeyRotationResponse > {
+    public func disableKeyRotation(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
         self.disableKeyRotation(DisableKeyRotationRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。

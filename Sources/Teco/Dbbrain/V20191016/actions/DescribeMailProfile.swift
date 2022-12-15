@@ -19,27 +19,27 @@ extension Dbbrain {
     public struct DescribeMailProfileRequest: TCRequestModel {
         /// 配置类型，支持值包括："dbScan_mail_configuration" - 数据库巡检邮件配置，"scheduler_mail_configuration" - 定期生成邮件配置。
         public let profileType: String
-        
+
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String
-        
+
         /// 分页偏移量。
         public let offset: Int64
-        
+
         /// 分页单位，最大支持50。
         public let limit: Int64
-        
+
         /// 根据邮件配置名称查询，定期发送的邮件配置名称遵循："scheduler_"+{instanceId}的规则。
         public let profileName: String?
-        
-        public init (profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil) {
+
+        public init(profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil) {
             self.profileType = profileType
             self.product = product
             self.offset = offset
             self.limit = limit
             self.profileName = profileName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case profileType = "ProfileType"
             case product = "Product"
@@ -48,35 +48,35 @@ extension Dbbrain {
             case profileName = "ProfileName"
         }
     }
-    
+
     /// DescribeMailProfile返回参数结构体
     public struct DescribeMailProfileResponse: TCResponseModel {
         /// 邮件配置详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let profileList: [UserProfile]?
-        
+
         /// 邮件模版总数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case profileList = "ProfileList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取邮件配置
     ///
     /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。Region统一选择广州。
     @inlinable
-    public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMailProfileResponse > {
+    public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMailProfileResponse> {
         self.client.execute(action: "DescribeMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取邮件配置
     ///
     /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。Region统一选择广州。
@@ -84,15 +84,15 @@ extension Dbbrain {
     public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMailProfileResponse {
         try await self.client.execute(action: "DescribeMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取邮件配置
     ///
     /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。Region统一选择广州。
     @inlinable
-    public func describeMailProfile(profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMailProfileResponse > {
+    public func describeMailProfile(profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMailProfileResponse> {
         self.describeMailProfile(DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取邮件配置
     ///
     /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。Region统一选择广州。

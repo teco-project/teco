@@ -19,27 +19,27 @@ extension Solar {
     public struct DescribeProjectsRequest: TCRequestModel {
         /// 页码
         public let pageNo: UInt64
-        
+
         /// 页面大小
         public let pageSize: UInt64
-        
+
         /// 过滤规则
         public let searchWord: String?
-        
+
         /// 部门范围过滤
         public let filters: Filters?
-        
+
         /// 项目状态, 0:编辑中 1:运营中 2:已下线 3:已删除 4:审批中
         public let projectStatus: Int64?
-        
-        public init (pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil) {
+
+        public init(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil) {
             self.pageNo = pageNo
             self.pageSize = pageSize
             self.searchWord = searchWord
             self.filters = filters
             self.projectStatus = projectStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNo = "PageNo"
             case pageSize = "PageSize"
@@ -48,43 +48,43 @@ extension Solar {
             case projectStatus = "ProjectStatus"
         }
     }
-    
+
     /// DescribeProjects返回参数结构体
     public struct DescribeProjectsResponse: TCResponseModel {
         /// 项目列表
         public let projectList: [ProjectInfo]
-        
+
         /// 项目数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectList = "ProjectList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 项目列表展示
     @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
         self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 项目列表展示
     @inlinable
     public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
         try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 项目列表展示
     @inlinable
-    public func describeProjects(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+    public func describeProjects(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
         self.describeProjects(DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus), logger: logger, on: eventLoop)
     }
-    
+
     /// 项目列表展示
     @inlinable
     public func describeProjects(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {

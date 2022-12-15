@@ -19,65 +19,65 @@ extension Tcss {
     public struct DescribeNetworkFirewallPolicyDetailRequest: TCRequestModel {
         /// 策略Id
         public let id: UInt64
-        
-        public init (id: UInt64) {
+
+        public init(id: UInt64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DescribeNetworkFirewallPolicyDetail返回参数结构体
     public struct DescribeNetworkFirewallPolicyDetailResponse: TCResponseModel {
         /// 集群Id
         public let clusterId: String
-        
+
         /// 策略名
         public let policyName: String
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 入站类型
         public let fromPolicyRule: Int64
-        
+
         /// 出站类型
         public let toPolicyRule: Int64
-        
+
         /// 自定义规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customPolicy: [NetworkCustomPolicy]?
-        
+
         /// pod选择器
         public let podSelector: String
-        
+
         /// 策略描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 策略创建时间
         public let policyCreateTime: String
-        
+
         /// 策略源类型，分为System和Manual，分别代表手动和系统添加
         public let policySourceType: String
-        
+
         /// 网络策略对应的网络插件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let networkPolicyPlugin: String?
-        
+
         /// 网络策略状态
         public let publishStatus: String
-        
+
         /// 网络发布结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publishResult: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case policyName = "PolicyName"
@@ -95,25 +95,25 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 容器网络集群查看策略详情
     @inlinable
-    public func describeNetworkFirewallPolicyDetail(_ input: DescribeNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyDetailResponse > {
+    public func describeNetworkFirewallPolicyDetail(_ input: DescribeNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPolicyDetailResponse> {
         self.client.execute(action: "DescribeNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络集群查看策略详情
     @inlinable
     public func describeNetworkFirewallPolicyDetail(_ input: DescribeNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyDetailResponse {
         try await self.client.execute(action: "DescribeNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 容器网络集群查看策略详情
     @inlinable
-    public func describeNetworkFirewallPolicyDetail(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyDetailResponse > {
+    public func describeNetworkFirewallPolicyDetail(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPolicyDetailResponse> {
         self.describeNetworkFirewallPolicyDetail(DescribeNetworkFirewallPolicyDetailRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 容器网络集群查看策略详情
     @inlinable
     public func describeNetworkFirewallPolicyDetail(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyDetailResponse {

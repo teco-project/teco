@@ -19,44 +19,44 @@ extension Iot {
     public struct DeactivateRuleRequest: TCRequestModel {
         /// 规则Id
         public let ruleId: String
-        
-        public init (ruleId: String) {
+
+        public init(ruleId: String) {
             self.ruleId = ruleId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
         }
     }
-    
+
     /// DeactivateRule返回参数结构体
     public struct DeactivateRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 禁用规则
     @inlinable
-    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeactivateRuleResponse > {
+    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeactivateRuleResponse> {
         self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用规则
     @inlinable
     public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {
         try await self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 禁用规则
     @inlinable
-    public func deactivateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeactivateRuleResponse > {
+    public func deactivateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeactivateRuleResponse> {
         self.deactivateRule(DeactivateRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用规则
     @inlinable
     public func deactivateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {

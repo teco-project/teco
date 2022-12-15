@@ -19,23 +19,23 @@ extension Tem {
     public struct DescribeIngressRequest: TCRequestModel {
         /// tem namespaceId
         public let namespaceId: String
-        
+
         /// eks namespace 名
         public let eksNamespace: String
-        
+
         /// ingress 规则名
         public let name: String
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
-        public init (namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil) {
+
+        public init(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil) {
             self.namespaceId = namespaceId
             self.eksNamespace = eksNamespace
             self.name = name
             self.sourceChannel = sourceChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceId = "NamespaceId"
             case eksNamespace = "EksNamespace"
@@ -43,39 +43,39 @@ extension Tem {
             case sourceChannel = "SourceChannel"
         }
     }
-    
+
     /// DescribeIngress返回参数结构体
     public struct DescribeIngressResponse: TCResponseModel {
         /// Ingress 规则配置
         public let result: IngressInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询 Ingress 规则
     @inlinable
-    public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressResponse > {
+    public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressResponse> {
         self.client.execute(action: "DescribeIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 Ingress 规则
     @inlinable
     public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressResponse {
         try await self.client.execute(action: "DescribeIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询 Ingress 规则
     @inlinable
-    public func describeIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressResponse > {
+    public func describeIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressResponse> {
         self.describeIngress(DescribeIngressRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询 Ingress 规则
     @inlinable
     public func describeIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressResponse {

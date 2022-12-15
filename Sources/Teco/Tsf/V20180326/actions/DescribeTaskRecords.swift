@@ -19,29 +19,29 @@ extension Tsf {
     public struct DescribeTaskRecordsRequest: TCRequestModel {
         /// 翻页偏移量。
         public let offset: UInt64?
-        
+
         /// 翻页查询单页数量。
         public let limit: UInt64?
-        
+
         /// 模糊查询关键字，支持任务ID和任务名称。
         public let searchWord: String?
-        
+
         /// 任务启用状态。enabled/disabled
         public let taskState: String?
-        
+
         /// 分组ID。
         public let groupId: String?
-        
+
         /// 任务类型。
         public let taskType: String?
-        
+
         /// 任务触发类型，UNICAST、BROADCAST。
         public let executeType: String?
-        
+
         /// 无
         public let ids: [String]?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchWord = searchWord
@@ -51,7 +51,7 @@ extension Tsf {
             self.executeType = executeType
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -63,30 +63,30 @@ extension Tsf {
             case ids = "Ids"
         }
     }
-    
+
     /// DescribeTaskRecords返回参数结构体
     public struct DescribeTaskRecordsResponse: TCResponseModel {
         /// 任务记录列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TaskRecordPage?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询任务列表
     ///
     /// 翻页查询任务列表
     @inlinable
-    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskRecordsResponse > {
+    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRecordsResponse> {
         self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务列表
     ///
     /// 翻页查询任务列表
@@ -94,15 +94,15 @@ extension Tsf {
     public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
         try await self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询任务列表
     ///
     /// 翻页查询任务列表
     @inlinable
-    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskRecordsResponse > {
+    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRecordsResponse> {
         self.describeTaskRecords(DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询任务列表
     ///
     /// 翻页查询任务列表

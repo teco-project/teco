@@ -19,26 +19,26 @@ extension Cvm {
     public struct ExportImagesRequest: TCRequestModel {
         /// COS存储桶名称
         public let bucketName: String
-        
+
         /// 镜像ID列表
         public let imageIds: [String]?
-        
+
         /// 镜像文件导出格式。取值范围：RAW，QCOW2，VHD，VMDK。默认为RAW
         public let exportFormat: String?
-        
+
         /// 导出文件的名称前缀列表
         public let fileNamePrefixList: [String]?
-        
+
         /// 是否只导出系统盘
         public let onlyExportRootDisk: Bool?
-        
+
         /// 检测镜像是否支持导出
         public let dryRun: Bool?
-        
+
         /// 角色名称。默认为CVM_QcsRole，发起请求前请确认是否存在该角色，以及是否已正确配置COS写入权限。
         public let roleName: String?
-        
-        public init (bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil) {
+
+        public init(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil) {
             self.bucketName = bucketName
             self.imageIds = imageIds
             self.exportFormat = exportFormat
@@ -47,7 +47,7 @@ extension Cvm {
             self.dryRun = dryRun
             self.roleName = roleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bucketName = "BucketName"
             case imageIds = "ImageIds"
@@ -58,29 +58,29 @@ extension Cvm {
             case roleName = "RoleName"
         }
     }
-    
+
     /// ExportImages返回参数结构体
     public struct ExportImagesResponse: TCResponseModel {
         /// 导出镜像任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出自定义镜像
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
-    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportImagesResponse > {
+    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportImagesResponse> {
         self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出自定义镜像
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力
@@ -88,15 +88,15 @@ extension Cvm {
     public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
         try await self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出自定义镜像
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
-    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportImagesResponse > {
+    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportImagesResponse> {
         self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出自定义镜像
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力

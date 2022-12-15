@@ -19,35 +19,35 @@ extension Cfw {
     public struct CreateNatFwInstanceWithDomainRequest: TCRequestModel {
         /// 防火墙实例名称
         public let name: String
-        
+
         /// 带宽
         public let width: Int64
-        
+
         /// 模式 1：接入模式；0：新增模式
         public let mode: Int64
-        
+
         /// 新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。
         public let newModeItems: NewModeItems?
-        
+
         /// 接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。
         public let natGwList: [String]?
-        
+
         /// 主可用区，为空则选择默认可用区
         public let zone: String?
-        
+
         /// 备可用区，为空则选择默认可用区
         public let zoneBak: String?
-        
+
         /// 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
         public let crossAZone: Int64?
-        
+
         /// 0不创建域名,1创建域名
         public let isCreateDomain: Int64?
-        
+
         /// 如果要创建域名则必填
         public let domain: String?
-        
-        public init (name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil) {
+
+        public init(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil) {
             self.name = name
             self.width = width
             self.mode = mode
@@ -59,7 +59,7 @@ extension Cfw {
             self.isCreateDomain = isCreateDomain
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case width = "Width"
@@ -73,40 +73,40 @@ extension Cfw {
             case domain = "Domain"
         }
     }
-    
+
     /// CreateNatFwInstanceWithDomain返回参数结构体
     public struct CreateNatFwInstanceWithDomainResponse: TCResponseModel {
         /// nat实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cfwInsId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cfwInsId = "CfwInsId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建防火墙实例和接入域名（Region参数必填）
     @inlinable
-    public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceWithDomainResponse > {
+    public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceWithDomainResponse> {
         self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建防火墙实例和接入域名（Region参数必填）
     @inlinable
     public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceWithDomainResponse {
         try await self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建防火墙实例和接入域名（Region参数必填）
     @inlinable
-    public func createNatFwInstanceWithDomain(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceWithDomainResponse > {
+    public func createNatFwInstanceWithDomain(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceWithDomainResponse> {
         self.createNatFwInstanceWithDomain(CreateNatFwInstanceWithDomainRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, isCreateDomain: isCreateDomain, domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建防火墙实例和接入域名（Region参数必填）
     @inlinable
     public func createNatFwInstanceWithDomain(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceWithDomainResponse {

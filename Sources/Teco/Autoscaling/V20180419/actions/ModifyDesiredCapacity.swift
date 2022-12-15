@@ -19,23 +19,23 @@ extension As {
     public struct ModifyDesiredCapacityRequest: TCRequestModel {
         /// 伸缩组ID
         public let autoScalingGroupId: String
-        
+
         /// 期望实例数
         public let desiredCapacity: UInt64
-        
+
         /// 最小实例数，取值范围为0-2000。
         public let minSize: UInt64?
-        
+
         /// 最大实例数，取值范围为0-2000。
         public let maxSize: UInt64?
-        
-        public init (autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil) {
+
+        public init(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.desiredCapacity = desiredCapacity
             self.minSize = minSize
             self.maxSize = maxSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case desiredCapacity = "DesiredCapacity"
@@ -43,25 +43,25 @@ extension As {
             case maxSize = "MaxSize"
         }
     }
-    
+
     /// ModifyDesiredCapacity返回参数结构体
     public struct ModifyDesiredCapacityResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
     @inlinable
-    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDesiredCapacityResponse > {
+    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
         self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
@@ -69,15 +69,15 @@ extension As {
     public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
         try await self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
     @inlinable
-    public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDesiredCapacityResponse > {
+    public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
         self.modifyDesiredCapacity(ModifyDesiredCapacityRequest(autoScalingGroupId: autoScalingGroupId, desiredCapacity: desiredCapacity, minSize: minSize, maxSize: maxSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数

@@ -19,50 +19,50 @@ extension Tsf {
     public struct StopContainerGroupRequest: TCRequestModel {
         /// 部署组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// StopContainerGroup返回参数结构体
     public struct StopContainerGroupResponse: TCResponseModel {
         /// 停止操作是否成功。
         /// true：停止成功
         /// false：停止失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停止容器部署组
     @inlinable
-    public func stopContainerGroup(_ input: StopContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopContainerGroupResponse > {
+    public func stopContainerGroup(_ input: StopContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopContainerGroupResponse> {
         self.client.execute(action: "StopContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停止容器部署组
     @inlinable
     public func stopContainerGroup(_ input: StopContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopContainerGroupResponse {
         try await self.client.execute(action: "StopContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停止容器部署组
     @inlinable
-    public func stopContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopContainerGroupResponse > {
+    public func stopContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopContainerGroupResponse> {
         self.stopContainerGroup(StopContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 停止容器部署组
     @inlinable
     public func stopContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopContainerGroupResponse {

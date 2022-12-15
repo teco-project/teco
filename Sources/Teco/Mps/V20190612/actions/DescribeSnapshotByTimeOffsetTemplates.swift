@@ -19,25 +19,25 @@ extension Mps {
     public struct DescribeSnapshotByTimeOffsetTemplatesRequest: TCRequestModel {
         /// 指定时间点截图模板唯一标识过滤条件，数组长度限制：100。
         public let definitions: [UInt64]?
-        
+
         /// 分页偏移量，默认值：0。
         public let offset: UInt64?
-        
+
         /// 返回记录条数，默认值：10，最大值：100。
         public let limit: UInt64?
-        
+
         /// 模板类型过滤条件，可选值：
         /// <li>Preset：系统预置模板；</li>
         /// <li>Custom：用户自定义模板。</li>
         public let type: String?
-        
-        public init (definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
+
+        public init(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
             self.definitions = definitions
             self.offset = offset
             self.limit = limit
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definitions = "Definitions"
             case offset = "Offset"
@@ -45,33 +45,33 @@ extension Mps {
             case type = "Type"
         }
     }
-    
+
     /// DescribeSnapshotByTimeOffsetTemplates返回参数结构体
     public struct DescribeSnapshotByTimeOffsetTemplatesResponse: TCResponseModel {
         /// 符合过滤条件的记录总数。
         public let totalCount: UInt64
-        
+
         /// 指定时间点截图模板详情列表。
         public let snapshotByTimeOffsetTemplateSet: [SnapshotByTimeOffsetTemplate]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case snapshotByTimeOffsetTemplateSet = "SnapshotByTimeOffsetTemplateSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotByTimeOffsetTemplatesResponse > {
+    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotByTimeOffsetTemplatesResponse> {
         self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
@@ -79,15 +79,15 @@ extension Mps {
     public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
         try await self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotByTimeOffsetTemplatesResponse > {
+    public func describeSnapshotByTimeOffsetTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotByTimeOffsetTemplatesResponse> {
         self.describeSnapshotByTimeOffsetTemplates(DescribeSnapshotByTimeOffsetTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。

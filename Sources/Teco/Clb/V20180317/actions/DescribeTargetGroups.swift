@@ -19,23 +19,23 @@ extension Clb {
     public struct DescribeTargetGroupsRequest: TCRequestModel {
         /// 目标组ID，与Filters互斥。
         public let targetGroupIds: [String]?
-        
+
         /// 显示条数限制，默认为20。
         public let limit: UInt64?
-        
+
         /// 显示的偏移起始量。
         public let offset: UInt64?
-        
+
         /// 过滤条件数组，与TargetGroupIds互斥，支持TargetGroupVpcId和TargetGroupName。
         public let filters: [Filter]?
-        
-        public init (targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.targetGroupIds = targetGroupIds
             self.limit = limit
             self.offset = offset
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetGroupIds = "TargetGroupIds"
             case limit = "Limit"
@@ -43,43 +43,43 @@ extension Clb {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeTargetGroups返回参数结构体
     public struct DescribeTargetGroupsResponse: TCResponseModel {
         /// 显示的结果数量。
         public let totalCount: UInt64
-        
+
         /// 显示的目标组信息集合。
         public let targetGroupSet: [TargetGroupInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case targetGroupSet = "TargetGroupSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询目标组信息
     @inlinable
-    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupsResponse > {
+    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetGroupsResponse> {
         self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询目标组信息
     @inlinable
     public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
         try await self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询目标组信息
     @inlinable
-    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupsResponse > {
+    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetGroupsResponse> {
         self.describeTargetGroups(DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询目标组信息
     @inlinable
     public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {

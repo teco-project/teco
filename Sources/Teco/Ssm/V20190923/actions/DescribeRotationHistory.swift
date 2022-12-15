@@ -19,43 +19,43 @@ extension Ssm {
     public struct DescribeRotationHistoryRequest: TCRequestModel {
         /// 指定需要获取凭据轮转历史的凭据名称。
         public let secretName: String
-        
-        public init (secretName: String) {
+
+        public init(secretName: String) {
             self.secretName = secretName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
         }
     }
-    
+
     /// DescribeRotationHistory返回参数结构体
     public struct DescribeRotationHistoryResponse: TCResponseModel {
         /// 版本号列表。
         public let versionIDs: [String]
-        
+
         /// 版本号个数，可以给用户展示的版本号个数上限为10个。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case versionIDs = "VersionIDs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询凭据轮转历史版本
     ///
     /// 查询凭据轮转历史版本。
     /// 本接口仅适用于云产品凭据。
     @inlinable
-    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRotationHistoryResponse > {
+    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationHistoryResponse> {
         self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询凭据轮转历史版本
     ///
     /// 查询凭据轮转历史版本。
@@ -64,16 +64,16 @@ extension Ssm {
     public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
         try await self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询凭据轮转历史版本
     ///
     /// 查询凭据轮转历史版本。
     /// 本接口仅适用于云产品凭据。
     @inlinable
-    public func describeRotationHistory(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRotationHistoryResponse > {
+    public func describeRotationHistory(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationHistoryResponse> {
         self.describeRotationHistory(DescribeRotationHistoryRequest(secretName: secretName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询凭据轮转历史版本
     ///
     /// 查询凭据轮转历史版本。

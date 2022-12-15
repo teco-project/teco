@@ -19,23 +19,23 @@ extension Rum {
     public struct DescribeUvListRequest: TCRequestModel {
         /// ID
         public let projectId: Int64
-        
+
         /// 结束时间
         public let endTime: String
-        
+
         /// 开始时间
         public let startTime: String
-        
+
         /// 获取day：d，   min:m
         public let dimension: String?
-        
-        public init (projectId: Int64, endTime: String, startTime: String, dimension: String? = nil) {
+
+        public init(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil) {
             self.projectId = projectId
             self.endTime = endTime
             self.startTime = startTime
             self.dimension = dimension
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case endTime = "EndTime"
@@ -43,29 +43,29 @@ extension Rum {
             case dimension = "Dimension"
         }
     }
-    
+
     /// DescribeUvList返回参数结构体
     public struct DescribeUvListResponse: TCResponseModel {
         /// uv列表
         public let projectUvSet: [RumUvInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectUvSet = "ProjectUvSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取UV列表
     ///
     /// 获取项目下的UV列表
     @inlinable
-    public func describeUvList(_ input: DescribeUvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUvListResponse > {
+    public func describeUvList(_ input: DescribeUvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUvListResponse> {
         self.client.execute(action: "DescribeUvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取UV列表
     ///
     /// 获取项目下的UV列表
@@ -73,15 +73,15 @@ extension Rum {
     public func describeUvList(_ input: DescribeUvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUvListResponse {
         try await self.client.execute(action: "DescribeUvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取UV列表
     ///
     /// 获取项目下的UV列表
     @inlinable
-    public func describeUvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUvListResponse > {
+    public func describeUvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUvListResponse> {
         self.describeUvList(DescribeUvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取UV列表
     ///
     /// 获取项目下的UV列表

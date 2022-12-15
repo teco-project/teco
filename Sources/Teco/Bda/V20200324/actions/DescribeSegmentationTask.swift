@@ -19,16 +19,16 @@ extension Bda {
     public struct DescribeSegmentationTaskRequest: TCRequestModel {
         /// 在提交分割任务成功时返回的任务标识ID。
         public let taskID: String
-        
-        public init (taskID: String) {
+
+        public init(taskID: String) {
             self.taskID = taskID
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
         }
     }
-    
+
     /// DescribeSegmentationTask返回参数结构体
     public struct DescribeSegmentationTaskResponse: TCResponseModel {
         /// 当前任务状态：
@@ -36,26 +36,26 @@ extension Bda {
         /// PROCESSING 处理中
         /// FINISHED 处理完成
         public let taskStatus: String
-        
+
         /// 分割后视频URL, 存储于腾讯云COS
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultVideoUrl: String?
-        
+
         /// 分割后视频MD5，用于校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultVideoMD5: String?
-        
+
         /// 视频基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoBasicInformation: VideoBasicInformation?
-        
+
         /// 分割任务错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskStatus = "TaskStatus"
             case resultVideoUrl = "ResultVideoUrl"
@@ -65,15 +65,15 @@ extension Bda {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看视频人像分割处理任务信息
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
-    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSegmentationTaskResponse > {
+    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSegmentationTaskResponse> {
         self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看视频人像分割处理任务信息
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
@@ -81,15 +81,15 @@ extension Bda {
     public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
         try await self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看视频人像分割处理任务信息
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
-    public func describeSegmentationTask(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSegmentationTaskResponse > {
+    public func describeSegmentationTask(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSegmentationTaskResponse> {
         self.describeSegmentationTask(DescribeSegmentationTaskRequest(taskID: taskID), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看视频人像分割处理任务信息
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。

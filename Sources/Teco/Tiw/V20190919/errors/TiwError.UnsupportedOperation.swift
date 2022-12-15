@@ -21,52 +21,52 @@ extension TCTiwError {
             case taskHasAlreadyStopped = "UnsupportedOperation.TaskHasAlreadyStopped"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 当前未完成的任务不能此状态下执行指定操作，例如对正在录制的任务执行恢复录制等。
         public static var invalidTaskStatus: UnsupportedOperation {
             UnsupportedOperation(.invalidTaskStatus)
         }
-        
+
         /// 任务结束，不能执行指定操作。
         public static var taskHasAlreadyStopped: UnsupportedOperation {
             UnsupportedOperation(.taskHasAlreadyStopped)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asTiwError() -> TCTiwError {
             let code: TCTiwError.Code
             switch self.error {
-            case .invalidTaskStatus: 
+            case .invalidTaskStatus:
                 code = .unsupportedOperation_InvalidTaskStatus
-            case .taskHasAlreadyStopped: 
+            case .taskHasAlreadyStopped:
                 code = .unsupportedOperation_TaskHasAlreadyStopped
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCTiwError(code, context: self.context)

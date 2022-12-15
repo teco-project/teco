@@ -19,34 +19,34 @@ extension Tcss {
     public struct DeleteAccessControlRulesRequest: TCRequestModel {
         /// 策略的ids
         public let ruleIdSet: [String]
-        
-        public init (ruleIdSet: [String]) {
+
+        public init(ruleIdSet: [String]) {
             self.ruleIdSet = ruleIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleIdSet = "RuleIdSet"
         }
     }
-    
+
     /// DeleteAccessControlRules返回参数结构体
     public struct DeleteAccessControlRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略
     @inlinable
-    public func deleteAccessControlRules(_ input: DeleteAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessControlRulesResponse > {
+    public func deleteAccessControlRules(_ input: DeleteAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessControlRulesResponse> {
         self.client.execute(action: "DeleteAccessControlRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略
@@ -54,15 +54,15 @@ extension Tcss {
     public func deleteAccessControlRules(_ input: DeleteAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessControlRulesResponse {
         try await self.client.execute(action: "DeleteAccessControlRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略
     @inlinable
-    public func deleteAccessControlRules(ruleIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessControlRulesResponse > {
+    public func deleteAccessControlRules(ruleIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessControlRulesResponse> {
         self.deleteAccessControlRules(DeleteAccessControlRulesRequest(ruleIdSet: ruleIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略

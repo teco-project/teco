@@ -19,23 +19,23 @@ extension Ie {
     public struct CreateMediaProcessTaskRequest: TCRequestModel {
         /// 编辑处理任务参数。
         public let mediaProcessInfo: MediaProcessInfo
-        
+
         /// 编辑处理任务输入源列表。
         public let sourceInfoSet: [MediaSourceInfo]?
-        
+
         /// 结果存储信息，对于涉及存储的请求必选。部子任务支持数组备份写，具体以对应任务文档为准。
         public let saveInfoSet: [SaveInfo]?
-        
+
         /// 任务结果回调地址信息。部子任务支持数组备份回调，具体以对应任务文档为准。
         public let callbackInfoSet: [CallbackInfo]?
-        
-        public init (mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil) {
+
+        public init(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil) {
             self.mediaProcessInfo = mediaProcessInfo
             self.sourceInfoSet = sourceInfoSet
             self.saveInfoSet = saveInfoSet
             self.callbackInfoSet = callbackInfoSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaProcessInfo = "MediaProcessInfo"
             case sourceInfoSet = "SourceInfoSet"
@@ -43,30 +43,30 @@ extension Ie {
             case callbackInfoSet = "CallbackInfoSet"
         }
     }
-    
+
     /// CreateMediaProcessTask返回参数结构体
     public struct CreateMediaProcessTaskResponse: TCResponseModel {
         /// 编辑任务 ID，可以通过该 ID 查询任务状态和结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建编辑处理任务
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
-    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMediaProcessTaskResponse > {
+    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaProcessTaskResponse> {
         self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建编辑处理任务
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
@@ -74,15 +74,15 @@ extension Ie {
     public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
         try await self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建编辑处理任务
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
-    public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMediaProcessTaskResponse > {
+    public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaProcessTaskResponse> {
         self.createMediaProcessTask(CreateMediaProcessTaskRequest(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建编辑处理任务
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。

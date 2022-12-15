@@ -23,41 +23,41 @@ extension Yunjing {
         /// <li>NonlocalLogin：发现异地登录行为</li>
         /// <li>CrackSuccess：被暴力破解成功</li>
         public let attribute: String
-        
+
         /// 告警项目属性。
         /// <li>CLOSE：关闭</li>
         /// <li>OPEN：打开</li>
         public let value: String
-        
-        public init (attribute: String, value: String) {
+
+        public init(attribute: String, value: String) {
             self.attribute = attribute
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case attribute = "Attribute"
             case value = "Value"
         }
     }
-    
+
     /// ModifyAlarmAttribute返回参数结构体
     public struct ModifyAlarmAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改告警设置
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable
-    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmAttributeResponse > {
+    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmAttributeResponse> {
         self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改告警设置
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
@@ -65,15 +65,15 @@ extension Yunjing {
     public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
         try await self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改告警设置
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable
-    public func modifyAlarmAttribute(attribute: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmAttributeResponse > {
+    public func modifyAlarmAttribute(attribute: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmAttributeResponse> {
         self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改告警设置
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。

@@ -19,59 +19,59 @@ extension Tsf {
     public struct DescribeUsableUnitNamespacesRequest: TCRequestModel {
         /// 根据命名空间名或ID模糊查询
         public let searchWord: String?
-        
+
         /// 翻页查询偏移量
         public let offset: Int64?
-        
+
         /// 翻页查询每页记录数
         public let limit: Int64?
-        
-        public init (searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case searchWord = "SearchWord"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeUsableUnitNamespaces返回参数结构体
     public struct DescribeUsableUnitNamespacesResponse: TCResponseModel {
         /// 单元化命名空间对象列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageUnitNamespace?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询可用于被导入的命名空间列表
     @inlinable
-    public func describeUsableUnitNamespaces(_ input: DescribeUsableUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsableUnitNamespacesResponse > {
+    public func describeUsableUnitNamespaces(_ input: DescribeUsableUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsableUnitNamespacesResponse> {
         self.client.execute(action: "DescribeUsableUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询可用于被导入的命名空间列表
     @inlinable
     public func describeUsableUnitNamespaces(_ input: DescribeUsableUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsableUnitNamespacesResponse {
         try await self.client.execute(action: "DescribeUsableUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询可用于被导入的命名空间列表
     @inlinable
-    public func describeUsableUnitNamespaces(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsableUnitNamespacesResponse > {
+    public func describeUsableUnitNamespaces(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsableUnitNamespacesResponse> {
         self.describeUsableUnitNamespaces(DescribeUsableUnitNamespacesRequest(searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询可用于被导入的命名空间列表
     @inlinable
     public func describeUsableUnitNamespaces(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsableUnitNamespacesResponse {

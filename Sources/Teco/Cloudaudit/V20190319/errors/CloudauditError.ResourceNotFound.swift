@@ -20,44 +20,44 @@ extension TCCloudauditError {
             case auditNotExist = "ResourceNotFound.AuditNotExist"
             case roleNotExist = "ResourceNotFound.RoleNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 跟踪集不存在
         public static var auditNotExist: ResourceNotFound {
             ResourceNotFound(.auditNotExist)
         }
-        
+
         public static var roleNotExist: ResourceNotFound {
             ResourceNotFound(.roleNotExist)
         }
-        
+
         public func asCloudauditError() -> TCCloudauditError {
             let code: TCCloudauditError.Code
             switch self.error {
-            case .auditNotExist: 
+            case .auditNotExist:
                 code = .resourceNotFound_AuditNotExist
-            case .roleNotExist: 
+            case .roleNotExist:
                 code = .resourceNotFound_RoleNotExist
             }
             return TCCloudauditError(code, context: self.context)

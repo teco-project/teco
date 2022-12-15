@@ -20,62 +20,62 @@ extension Dc {
         /// 接入点所在的地域。使用DescribeRegions查询
         /// 您可以通过调用 DescribeRegions接口获取地域ID。
         public let regionId: String?
-        
+
         /// 偏移量，默认为0。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
-        
-        public init (regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.regionId = regionId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAccessPoints返回参数结构体
     public struct DescribeAccessPointsResponse: TCResponseModel {
         /// 接入点信息。
         public let accessPointSet: [AccessPoint]
-        
+
         /// 符合接入点数量。
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accessPointSet = "AccessPointSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询物理专线接入点
     @inlinable
-    public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessPointsResponse > {
+    public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessPointsResponse> {
         self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询物理专线接入点
     @inlinable
     public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {
         try await self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询物理专线接入点
     @inlinable
-    public func describeAccessPoints(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessPointsResponse > {
+    public func describeAccessPoints(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessPointsResponse> {
         self.describeAccessPoints(DescribeAccessPointsRequest(regionId: regionId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询物理专线接入点
     @inlinable
     public func describeAccessPoints(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {

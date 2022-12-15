@@ -19,27 +19,27 @@ extension Domain {
     public struct DescribeTemplateListRequest: TCRequestModel {
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
-        
+
         /// 用户注册类型，默认:all , 个人：I ,企业: E
         public let type: String?
-        
+
         /// 认证状态：未实名审核:NotUpload, 实名审核中:InAudit，已实名审核:Approved，实名审核失败:Reject，更新手机邮箱:NotVerified。
         public let status: String?
-        
+
         /// 域名所有者筛选
         public let keyword: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.type = type
             self.status = status
             self.keyword = keyword
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -48,33 +48,33 @@ extension Domain {
             case keyword = "Keyword"
         }
     }
-    
+
     /// DescribeTemplateList返回参数结构体
     public struct DescribeTemplateListResponse: TCResponseModel {
         /// 模板数量。
         public let totalCount: UInt64
-        
+
         /// 模板详细信息列表。
         public let templateSet: [TemplateInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case templateSet = "TemplateSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 信息模板列表
     ///
     /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
     @inlinable
-    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateListResponse > {
+    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
         self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 信息模板列表
     ///
     /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
@@ -82,15 +82,15 @@ extension Domain {
     public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
         try await self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 信息模板列表
     ///
     /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
     @inlinable
-    public func describeTemplateList(offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateListResponse > {
+    public func describeTemplateList(offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
         self.describeTemplateList(DescribeTemplateListRequest(offset: offset, limit: limit, type: type, status: status, keyword: keyword), logger: logger, on: eventLoop)
     }
-    
+
     /// 信息模板列表
     ///
     /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。

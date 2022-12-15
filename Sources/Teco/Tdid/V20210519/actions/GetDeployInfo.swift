@@ -19,60 +19,60 @@ extension Tdid {
     public struct GetDeployInfoRequest: TCRequestModel {
         /// 合约CNS地址
         public let hash: String
-        
-        public init (hash: String) {
+
+        public init(hash: String) {
             self.hash = hash
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hash = "Hash"
         }
     }
-    
+
     /// GetDeployInfo返回参数结构体
     public struct GetDeployInfoResponse: TCResponseModel {
         /// 合约CNS地址
         public let hash: String
-        
+
         /// 合约主群组ID
         public let groupId: String
-        
+
         /// 部署机构DID
         public let deployDid: String
-        
+
         /// TDID SDK版本
         public let sdkVersion: String
-        
+
         /// TDID 合约版本
         public let contractVersion: String
-        
+
         /// 区块链节点版本
         public let blockVersion: String
-        
+
         /// 区块链节点IP
         public let blockIp: String
-        
+
         /// DID合约地址
         public let didAddress: String
-        
+
         /// CPT合约地址
         public let cptAddress: String
-        
+
         /// Authority Issuer地址
         public let authorityAddress: String
-        
+
         /// Evidence合约地址
         public let evidenceAddress: String
-        
+
         /// Specific Issuer合约地址
         public let specificAddress: String
-        
+
         /// 链ID
         public let chainId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case hash = "Hash"
             case groupId = "GroupId"
@@ -90,25 +90,25 @@ extension Tdid {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 合约部署详情
     @inlinable
-    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployInfoResponse > {
+    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
         self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 合约部署详情
     @inlinable
     public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
         try await self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 合约部署详情
     @inlinable
-    public func getDeployInfo(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployInfoResponse > {
+    public func getDeployInfo(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
         self.getDeployInfo(GetDeployInfoRequest(hash: hash), logger: logger, on: eventLoop)
     }
-    
+
     /// 合约部署详情
     @inlinable
     public func getDeployInfo(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {

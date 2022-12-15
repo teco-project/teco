@@ -19,44 +19,44 @@ extension Tione {
     public struct DeleteTrainingTaskRequest: TCRequestModel {
         /// 训练任务ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DeleteTrainingTask返回参数结构体
     public struct DeleteTrainingTaskResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除训练任务
     @inlinable
-    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrainingTaskResponse > {
+    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
         self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除训练任务
     @inlinable
     public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
         try await self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除训练任务
     @inlinable
-    public func deleteTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrainingTaskResponse > {
+    public func deleteTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
         self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除训练任务
     @inlinable
     public func deleteTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {

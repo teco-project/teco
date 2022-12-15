@@ -19,27 +19,27 @@ extension Cr {
     public struct UploadDataJsonRequest: TCRequestModel {
         /// 模块名，本接口取值：Data
         public let module: String
-        
+
         /// 操作名，本接口取值：UploadJson
         public let operation: String
-        
+
         /// 报文信息
         public let data: String
-        
+
         /// <p>上传类型，不填默认到期/逾期提醒数据，取值范围：</p><ul style="margin-bottom:0px;"><li>data：到期/逾期提醒数据</li><li>repay：到期/逾期提醒停拨数据</li></ul>
         public let uploadModel: String?
-        
+
         /// 实例ID，不传默认为系统分配的初始实例。
         public let instanceId: String?
-        
-        public init (module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil) {
+
+        public init(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil) {
             self.module = module
             self.operation = operation
             self.data = data
             self.uploadModel = uploadModel
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -48,30 +48,30 @@ extension Cr {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// UploadDataJson返回参数结构体
     public struct UploadDataJsonResponse: TCResponseModel {
         /// 响应报文信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传Json格式数据
     ///
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
-    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadDataJsonResponse > {
+    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDataJsonResponse> {
         self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传Json格式数据
     ///
     /// 上传Json格式数据，接口返回数据任务ID
@@ -79,15 +79,15 @@ extension Cr {
     public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
         try await self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传Json格式数据
     ///
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
-    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadDataJsonResponse > {
+    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDataJsonResponse> {
         self.uploadDataJson(UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传Json格式数据
     ///
     /// 上传Json格式数据，接口返回数据任务ID

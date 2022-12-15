@@ -19,31 +19,31 @@ extension Thpc {
     public struct SetAutoScalingConfigurationRequest: TCRequestModel {
         /// 集群ID。
         public let clusterId: String
-        
+
         /// 任务连续等待时间，队列的任务处于连续等待的时间。单位秒。默认值120。
         public let expansionBusyTime: Int64?
-        
+
         /// 节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。单位秒。默认值300。
         public let shrinkIdleTime: Int64?
-        
+
         /// 扩容队列配置列表。
         public let queueConfigs: [QueueConfig]?
-        
+
         /// 是否只预检此次请求。
         /// true：发送检查请求，不会绑定弹性伸缩组。检查项包括是否填写了必需参数，请求格式，业务限制。
         /// 如果检查不通过，则返回对应错误码；
         /// 如果检查通过，则返回RequestId。
         /// false（默认）：发送正常请求，通过检查后直接绑定弹性伸缩组。
         public let dryRun: Bool?
-        
-        public init (clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil) {
+
+        public init(clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil) {
             self.clusterId = clusterId
             self.expansionBusyTime = expansionBusyTime
             self.shrinkIdleTime = shrinkIdleTime
             self.queueConfigs = queueConfigs
             self.dryRun = dryRun
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case expansionBusyTime = "ExpansionBusyTime"
@@ -52,25 +52,25 @@ extension Thpc {
             case dryRun = "DryRun"
         }
     }
-    
+
     /// SetAutoScalingConfiguration返回参数结构体
     public struct SetAutoScalingConfigurationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置弹性伸缩配置信息
     ///
     /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
     @inlinable
-    public func setAutoScalingConfiguration(_ input: SetAutoScalingConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoScalingConfigurationResponse > {
+    public func setAutoScalingConfiguration(_ input: SetAutoScalingConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAutoScalingConfigurationResponse> {
         self.client.execute(action: "SetAutoScalingConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置弹性伸缩配置信息
     ///
     /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
@@ -78,15 +78,15 @@ extension Thpc {
     public func setAutoScalingConfiguration(_ input: SetAutoScalingConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoScalingConfigurationResponse {
         try await self.client.execute(action: "SetAutoScalingConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置弹性伸缩配置信息
     ///
     /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
     @inlinable
-    public func setAutoScalingConfiguration(clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoScalingConfigurationResponse > {
+    public func setAutoScalingConfiguration(clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAutoScalingConfigurationResponse> {
         self.setAutoScalingConfiguration(SetAutoScalingConfigurationRequest(clusterId: clusterId, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, queueConfigs: queueConfigs, dryRun: dryRun), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置弹性伸缩配置信息
     ///
     /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。

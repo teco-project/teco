@@ -19,44 +19,44 @@ extension Yunjing {
     public struct DeleteAttackLogsRequest: TCRequestModel {
         /// 日志ID数组，最大100条。
         public let ids: [UInt64]
-        
-        public init (ids: [UInt64]) {
+
+        public init(ids: [UInt64]) {
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
         }
     }
-    
+
     /// DeleteAttackLogs返回参数结构体
     public struct DeleteAttackLogsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除网络攻击日志
     @inlinable
-    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAttackLogsResponse > {
+    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
         self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网络攻击日志
     @inlinable
     public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
         try await self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除网络攻击日志
     @inlinable
-    public func deleteAttackLogs(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAttackLogsResponse > {
+    public func deleteAttackLogs(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
         self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网络攻击日志
     @inlinable
     public func deleteAttackLogs(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {

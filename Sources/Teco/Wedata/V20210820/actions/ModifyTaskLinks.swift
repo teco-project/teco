@@ -19,23 +19,23 @@ extension Wedata {
     public struct ModifyTaskLinksRequest: TCRequestModel {
         /// 项目Id
         public let projectId: String
-        
+
         /// 父任务ID
         public let taskFrom: String
-        
+
         /// 子任务ID
         public let taskTo: String
-        
+
         /// 子任务工作流
         public let workflowId: String
-        
+
         /// 父任务工作流
         public let realFromWorkflowId: String
-        
+
         /// 父子任务之间的依赖关系
         public let linkDependencyType: String?
-        
-        public init (projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil) {
+
+        public init(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil) {
             self.projectId = projectId
             self.taskFrom = taskFrom
             self.taskTo = taskTo
@@ -43,7 +43,7 @@ extension Wedata {
             self.realFromWorkflowId = realFromWorkflowId
             self.linkDependencyType = linkDependencyType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case taskFrom = "TaskFrom"
@@ -53,31 +53,31 @@ extension Wedata {
             case linkDependencyType = "LinkDependencyType"
         }
     }
-    
+
     /// ModifyTaskLinks返回参数结构体
     public struct ModifyTaskLinksResponse: TCResponseModel {
         /// 成功或者失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加父任务依赖【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 添加父任务依赖
     @inlinable
-    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskLinksResponse > {
+    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskLinksResponse> {
         self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加父任务依赖【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
@@ -86,16 +86,16 @@ extension Wedata {
     public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
         try await self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加父任务依赖【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 添加父任务依赖
     @inlinable
-    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskLinksResponse > {
+    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskLinksResponse> {
         self.modifyTaskLinks(ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加父任务依赖【Beta版本】
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>

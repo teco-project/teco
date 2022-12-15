@@ -19,49 +19,49 @@ extension Tci {
     public struct DeleteVocabRequest: TCRequestModel {
         /// 要删除词汇的词汇库名
         public let vocabLibName: String
-        
+
         /// 要删除的词汇列表
         public let vocabList: [String]
-        
-        public init (vocabLibName: String, vocabList: [String]) {
+
+        public init(vocabLibName: String, vocabList: [String]) {
             self.vocabLibName = vocabLibName
             self.vocabList = vocabList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vocabLibName = "VocabLibName"
             case vocabList = "VocabList"
         }
     }
-    
+
     /// DeleteVocab返回参数结构体
     public struct DeleteVocabResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除词汇
     @inlinable
-    public func deleteVocab(_ input: DeleteVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVocabResponse > {
+    public func deleteVocab(_ input: DeleteVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVocabResponse> {
         self.client.execute(action: "DeleteVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除词汇
     @inlinable
     public func deleteVocab(_ input: DeleteVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabResponse {
         try await self.client.execute(action: "DeleteVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除词汇
     @inlinable
-    public func deleteVocab(vocabLibName: String, vocabList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVocabResponse > {
+    public func deleteVocab(vocabLibName: String, vocabList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVocabResponse> {
         self.deleteVocab(DeleteVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除词汇
     @inlinable
     public func deleteVocab(vocabLibName: String, vocabList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabResponse {

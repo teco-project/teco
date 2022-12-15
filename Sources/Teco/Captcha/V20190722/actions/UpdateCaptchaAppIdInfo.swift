@@ -19,44 +19,44 @@ extension Captcha {
     public struct UpdateCaptchaAppIdInfoRequest: TCRequestModel {
         /// 验证码应用ID
         public let captchaAppId: Int64
-        
+
         /// 应用名
         public let appName: String
-        
+
         /// 域名限制
         public let domainLimit: String
-        
+
         /// 场景类型
         public let sceneType: Int64
-        
+
         /// 验证码类型
         public let capType: Int64
-        
+
         /// 风险级别
         public let evilInterceptGrade: Int64
-        
+
         /// 智能检测
         public let smartVerify: Int64
-        
+
         /// 开启智能引擎
         public let smartEngine: Int64
-        
+
         /// web风格
         public let schemeColor: String
-        
+
         /// 语言
         public let captchaLanguage: Int64
-        
+
         /// 告警邮箱
         public let mailAlarm: String
-        
+
         /// 是否全屏
         public let topFullScreen: Int64
-        
+
         /// 流量限制
         public let trafficThreshold: Int64
-        
-        public init (captchaAppId: Int64, appName: String, domainLimit: String, sceneType: Int64, capType: Int64, evilInterceptGrade: Int64, smartVerify: Int64, smartEngine: Int64, schemeColor: String, captchaLanguage: Int64, mailAlarm: String, topFullScreen: Int64, trafficThreshold: Int64) {
+
+        public init(captchaAppId: Int64, appName: String, domainLimit: String, sceneType: Int64, capType: Int64, evilInterceptGrade: Int64, smartVerify: Int64, smartEngine: Int64, schemeColor: String, captchaLanguage: Int64, mailAlarm: String, topFullScreen: Int64, trafficThreshold: Int64) {
             self.captchaAppId = captchaAppId
             self.appName = appName
             self.domainLimit = domainLimit
@@ -71,7 +71,7 @@ extension Captcha {
             self.topFullScreen = topFullScreen
             self.trafficThreshold = trafficThreshold
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case captchaAppId = "CaptchaAppId"
             case appName = "AppName"
@@ -88,44 +88,44 @@ extension Captcha {
             case trafficThreshold = "TrafficThreshold"
         }
     }
-    
+
     /// UpdateCaptchaAppIdInfo返回参数结构体
     public struct UpdateCaptchaAppIdInfoResponse: TCResponseModel {
         /// 返回码 0 成功，其它失败
         public let captchaCode: Int64
-        
+
         /// 返回操作信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let captchaMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case captchaCode = "CaptchaCode"
             case captchaMsg = "CaptchaMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新验证码应用APPId信息
     @inlinable
-    public func updateCaptchaAppIdInfo(_ input: UpdateCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCaptchaAppIdInfoResponse > {
+    public func updateCaptchaAppIdInfo(_ input: UpdateCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCaptchaAppIdInfoResponse> {
         self.client.execute(action: "UpdateCaptchaAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新验证码应用APPId信息
     @inlinable
     public func updateCaptchaAppIdInfo(_ input: UpdateCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCaptchaAppIdInfoResponse {
         try await self.client.execute(action: "UpdateCaptchaAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新验证码应用APPId信息
     @inlinable
-    public func updateCaptchaAppIdInfo(captchaAppId: Int64, appName: String, domainLimit: String, sceneType: Int64, capType: Int64, evilInterceptGrade: Int64, smartVerify: Int64, smartEngine: Int64, schemeColor: String, captchaLanguage: Int64, mailAlarm: String, topFullScreen: Int64, trafficThreshold: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCaptchaAppIdInfoResponse > {
+    public func updateCaptchaAppIdInfo(captchaAppId: Int64, appName: String, domainLimit: String, sceneType: Int64, capType: Int64, evilInterceptGrade: Int64, smartVerify: Int64, smartEngine: Int64, schemeColor: String, captchaLanguage: Int64, mailAlarm: String, topFullScreen: Int64, trafficThreshold: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCaptchaAppIdInfoResponse> {
         self.updateCaptchaAppIdInfo(UpdateCaptchaAppIdInfoRequest(captchaAppId: captchaAppId, appName: appName, domainLimit: domainLimit, sceneType: sceneType, capType: capType, evilInterceptGrade: evilInterceptGrade, smartVerify: smartVerify, smartEngine: smartEngine, schemeColor: schemeColor, captchaLanguage: captchaLanguage, mailAlarm: mailAlarm, topFullScreen: topFullScreen, trafficThreshold: trafficThreshold), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新验证码应用APPId信息
     @inlinable
     public func updateCaptchaAppIdInfo(captchaAppId: Int64, appName: String, domainLimit: String, sceneType: Int64, capType: Int64, evilInterceptGrade: Int64, smartVerify: Int64, smartEngine: Int64, schemeColor: String, captchaLanguage: Int64, mailAlarm: String, topFullScreen: Int64, trafficThreshold: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCaptchaAppIdInfoResponse {

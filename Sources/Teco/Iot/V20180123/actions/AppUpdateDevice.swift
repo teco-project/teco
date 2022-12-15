@@ -19,23 +19,23 @@ extension Iot {
     public struct AppUpdateDeviceRequest: TCRequestModel {
         /// 访问Token
         public let accessToken: String
-        
+
         /// 产品Id
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// 设备别名
         public let aliasName: String?
-        
-        public init (accessToken: String, productId: String, deviceName: String, aliasName: String? = nil) {
+
+        public init(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil) {
             self.accessToken = accessToken
             self.productId = productId
             self.deviceName = deviceName
             self.aliasName = aliasName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessToken = "AccessToken"
             case productId = "ProductId"
@@ -43,29 +43,29 @@ extension Iot {
             case aliasName = "AliasName"
         }
     }
-    
+
     /// AppUpdateDevice返回参数结构体
     public struct AppUpdateDeviceResponse: TCResponseModel {
         /// 设备信息
         public let appDevice: AppDevice
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case appDevice = "AppDevice"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改设备别名
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
-    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppUpdateDeviceResponse > {
+    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateDeviceResponse> {
         self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备别名
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称
@@ -73,15 +73,15 @@ extension Iot {
     public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
         try await self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改设备别名
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
-    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppUpdateDeviceResponse > {
+    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateDeviceResponse> {
         self.appUpdateDevice(AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改设备别名
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称

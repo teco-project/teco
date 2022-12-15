@@ -20,11 +20,11 @@ extension Cfw {
         /// 分页查询时，显示的当前页的页码。
         /// 默认值为1。
         public let pageNo: String
-        
+
         /// 分页查询时，显示的每页数据的最大条数。
         /// 可设置值最大为50。
         public let pageSize: String
-        
+
         /// 访问源示例：
         /// net：IP/CIDR(192.168.0.2)
         /// template：参数模板(ipm-dyodhpby)
@@ -34,7 +34,7 @@ extension Cfw {
         /// region：地域(ap-gaungzhou)
         /// 支持通配
         public let sourceContent: String?
-        
+
         /// 访问目的示例：
         /// net：IP/CIDR(192.168.0.2)
         /// template：参数模板(ipm-dyodhpby)
@@ -44,31 +44,31 @@ extension Cfw {
         /// region：地域(ap-gaungzhou)
         /// 支持通配
         public let destContent: String?
-        
+
         /// 规则描述，支持通配
         public let description: String?
-        
+
         /// 访问控制策略中设置的流量通过云防火墙的方式。取值：
         /// accept：放行
         /// drop：拒绝
         public let ruleAction: String?
-        
+
         /// 是否启用规则，默认为启用，取值：
         /// true为启用，false为不启用
         public let enable: String?
-        
+
         /// 访问控制策略的端口。取值：
         /// -1/-1：全部端口
         /// 80：80端口
         public let port: String?
-        
+
         /// 协议；TCP/UDP/ICMP/ANY
         public let `protocol`: String?
-        
+
         /// 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
         public let serviceTemplateId: String?
-        
-        public init (pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil) {
+
+        public init(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil) {
             self.pageNo = pageNo
             self.pageSize = pageSize
             self.sourceContent = sourceContent
@@ -80,7 +80,7 @@ extension Cfw {
             self.`protocol` = `protocol`
             self.serviceTemplateId = serviceTemplateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNo = "PageNo"
             case pageSize = "PageSize"
@@ -94,24 +94,24 @@ extension Cfw {
             case serviceTemplateId = "ServiceTemplateId"
         }
     }
-    
+
     /// DescribeEnterpriseSecurityGroupRule返回参数结构体
     public struct DescribeEnterpriseSecurityGroupRuleResponse: TCResponseModel {
         /// 分页查询时，显示的当前页的页码。
         public let pageNo: String
-        
+
         /// 分页查询时，显示的每页数据的最大条数。
         public let pageSize: String
-        
+
         /// 访问控制策略列表
         public let rules: [SecurityGroupRule]
-        
+
         /// 访问控制策略的总数量。
         public let totalCount: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNo = "PageNo"
             case pageSize = "PageSize"
@@ -120,25 +120,25 @@ extension Cfw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnterpriseSecurityGroupRuleResponse > {
+    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
         self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询新企业安全组规则
     @inlinable
     public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
         try await self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnterpriseSecurityGroupRuleResponse > {
+    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
         self.describeEnterpriseSecurityGroupRule(DescribeEnterpriseSecurityGroupRuleRequest(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询新企业安全组规则
     @inlinable
     public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {

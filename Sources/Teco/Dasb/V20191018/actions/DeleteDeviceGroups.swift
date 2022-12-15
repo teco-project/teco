@@ -19,44 +19,44 @@ extension Dasb {
     public struct DeleteDeviceGroupsRequest: TCRequestModel {
         /// 待删除的资产组ID集合
         public let idSet: [UInt64]
-        
-        public init (idSet: [UInt64]) {
+
+        public init(idSet: [UInt64]) {
             self.idSet = idSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idSet = "IdSet"
         }
     }
-    
+
     /// DeleteDeviceGroups返回参数结构体
     public struct DeleteDeviceGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除资产组
     @inlinable
-    public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupsResponse > {
+    public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupsResponse> {
         self.client.execute(action: "DeleteDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资产组
     @inlinable
     public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {
         try await self.client.execute(action: "DeleteDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除资产组
     @inlinable
-    public func deleteDeviceGroups(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupsResponse > {
+    public func deleteDeviceGroups(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupsResponse> {
         self.deleteDeviceGroups(DeleteDeviceGroupsRequest(idSet: idSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除资产组
     @inlinable
     public func deleteDeviceGroups(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {

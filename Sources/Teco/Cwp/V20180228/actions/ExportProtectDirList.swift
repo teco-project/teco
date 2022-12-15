@@ -20,48 +20,48 @@ extension Cwp {
         /// DirName 网站名称
         /// DirPath 网站防护目录地址
         public let filters: [AssetFilters]?
-        
+
         /// asc：升序/desc：降序
         public let order: String?
-        
+
         /// 排序字段
         public let by: String?
-        
-        public init (filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil) {
+
+        public init(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.order = order
             self.by = by
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case order = "Order"
             case by = "By"
         }
     }
-    
+
     /// ExportProtectDirList返回参数结构体
     public struct ExportProtectDirListResponse: TCResponseModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出防护目录列表
     ///
     /// 导出网页防篡改防护目录列表
     @inlinable
-    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportProtectDirListResponse > {
+    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportProtectDirListResponse> {
         self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出防护目录列表
     ///
     /// 导出网页防篡改防护目录列表
@@ -69,15 +69,15 @@ extension Cwp {
     public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
         try await self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出防护目录列表
     ///
     /// 导出网页防篡改防护目录列表
     @inlinable
-    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportProtectDirListResponse > {
+    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportProtectDirListResponse> {
         self.exportProtectDirList(ExportProtectDirListRequest(filters: filters, order: order, by: by), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出防护目录列表
     ///
     /// 导出网页防篡改防护目录列表

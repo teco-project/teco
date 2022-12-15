@@ -20,19 +20,19 @@ extension Tsf {
         /// 添加集群失败的节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedInstanceIds: [String]?
-        
+
         /// 添加集群成功的节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let succInstanceIds: [String]?
-        
+
         /// 添加集群超时的节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeoutInstanceIds: [String]?
-        
+
         /// 失败的节点的失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedReasons: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case failedInstanceIds = "FailedInstanceIds"
             case succInstanceIds = "SuccInstanceIds"
@@ -40,140 +40,140 @@ extension Tsf {
             case failedReasons = "FailedReasons"
         }
     }
-    
+
     /// 高级选项设置
     public struct AdvanceSettings: TCInputModel {
         /// 子任务单机并发数限制，默认值为2
         public let subTaskConcurrency: Int64?
-        
-        public init (subTaskConcurrency: Int64? = nil) {
+
+        public init(subTaskConcurrency: Int64? = nil) {
             self.subTaskConcurrency = subTaskConcurrency
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subTaskConcurrency = "SubTaskConcurrency"
         }
     }
-    
+
     /// 部署javaagent的类型、版本信息
     public struct AgentProfile: TCInputModel {
         /// Agent类型
         public let agentType: String?
-        
+
         /// Agent版本号
         public let agentVersion: String?
-        
-        public init (agentType: String? = nil, agentVersion: String? = nil) {
+
+        public init(agentType: String? = nil, agentVersion: String? = nil) {
             self.agentType = agentType
             self.agentVersion = agentVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agentType = "AgentType"
             case agentVersion = "AgentVersion"
         }
     }
-    
+
     /// API 对象类型描述
     public struct ApiDefinitionDescr: TCOutputModel {
         /// 对象名称
         public let name: String
-        
+
         /// 对象属性列表
         public let properties: [PropertyField]
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case properties = "Properties"
         }
     }
-    
+
     /// API 明细
     public struct ApiDetailInfo: TCOutputModel {
         /// API ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiId: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 服务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceId: String?
-        
+
         /// 服务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceName: String?
-        
+
         /// API 请求路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// Api 映射路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathMapping: String?
-        
+
         /// 请求方法
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let method: String?
-        
+
         /// 所属分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 是否禁用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usableStatus: String?
-        
+
         /// 发布状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseStatus: String?
-        
+
         /// 开启限流
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rateLimitStatus: String?
-        
+
         /// 是否开启mock
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mockStatus: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         /// 发布时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releasedTime: String?
-        
+
         /// 所属分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// API 超时，单位毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeout: Int64?
-        
+
         /// Api所在服务host
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let host: String?
-        
+
         /// API类型。 ms ： 微服务API； external :外部服务Api
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiType: String?
-        
+
         /// Api描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case apiId = "ApiId"
             case namespaceId = "NamespaceId"
@@ -198,35 +198,35 @@ extension Tsf {
             case description = "Description"
         }
     }
-    
+
     /// ApiDetailResponse描述
     public struct ApiDetailResponse: TCOutputModel {
         /// API 请求参数
         public let request: [ApiRequestDescr]
-        
+
         /// API 响应参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let response: [ApiResponseDescr]?
-        
+
         /// API 复杂结构定义
         public let definitions: [ApiDefinitionDescr]
-        
+
         /// API 的 content type
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestContentType: String?
-        
+
         /// API  能否调试
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let canRun: Bool?
-        
+
         /// API 状态 0:离线 1:在线，默认0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// API 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case request = "Request"
             case response = "Response"
@@ -237,81 +237,81 @@ extension Tsf {
             case description = "Description"
         }
     }
-    
+
     /// API分组信息
     public struct ApiGroupInfo: TCOutputModel {
         /// Api Group Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// Api Group 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 分组上下文
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupContext: String?
-        
+
         /// 鉴权类型。 secret： 密钥鉴权； none:无鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authType: String?
-        
+
         /// 发布状态, drafted: 未发布。 released: 发布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 分组创建时间 如:2019-06-20 15:51:28
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
-        
+
         /// 分组更新时间 如:2019-06-20 15:51:28
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         /// api分组已绑定的网关部署组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bindedGatewayDeployGroups: [GatewayDeployGroup]?
-        
+
         /// api 个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiCount: Int64?
-        
+
         /// 访问group的ACL类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aclMode: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 分组类型。 ms： 微服务分组； external:外部Api分组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupType: String?
-        
+
         /// 网关实例的类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayInstanceType: String?
-        
+
         /// 网关实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayInstanceId: String?
-        
+
         /// 命名空间参数key值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceNameKey: String?
-        
+
         /// 微服务名参数key值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceNameKey: String?
-        
+
         /// 命名空间参数位置，path，header或query，默认是path
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceNameKeyPosition: String?
-        
+
         /// 微服务名参数位置，path，header或query，默认是path
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceNameKeyPosition: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -333,31 +333,31 @@ extension Tsf {
             case serviceNameKeyPosition = "ServiceNameKeyPosition"
         }
     }
-    
+
     /// 微服务网关API信息
     public struct ApiInfo: TCInputModel {
         /// 命名空间Id，若为外部API,为固定值："namespace-external"
         public let namespaceId: String
-        
+
         /// 服务Id，若为外部API,为固定值："ms-external"
         public let microserviceId: String
-        
+
         /// API path
         public let path: String
-        
+
         /// Api 请求
         public let method: String
-        
+
         /// 请求映射
         public let pathMapping: String
-        
+
         /// api所在服务host,限定外部Api填写。格式: `http://127.0.0.1:8080`
         public let host: String?
-        
+
         /// api描述信息
         public let description: String?
-        
-        public init (namespaceId: String, microserviceId: String, path: String, method: String, pathMapping: String, host: String? = nil, description: String? = nil) {
+
+        public init(namespaceId: String, microserviceId: String, path: String, method: String, pathMapping: String, host: String? = nil, description: String? = nil) {
             self.namespaceId = namespaceId
             self.microserviceId = microserviceId
             self.path = path
@@ -366,7 +366,7 @@ extension Tsf {
             self.host = host
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceId = "NamespaceId"
             case microserviceId = "MicroserviceId"
@@ -377,49 +377,49 @@ extension Tsf {
             case description = "Description"
         }
     }
-    
+
     /// 微服务网关API限流规则
     public struct ApiRateLimitRule: TCOutputModel {
         /// rule Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?
-        
+
         /// API ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiId: String?
-        
+
         /// 限流名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleName: String?
-        
+
         /// 最大限流qps
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxQps: UInt64?
-        
+
         /// 生效/禁用, enabled/disabled
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usableStatus: String?
-        
+
         /// 规则内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleContent: String?
-        
+
         /// Tsf Rule ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tsfRuleId: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case apiId = "ApiId"
@@ -433,28 +433,28 @@ extension Tsf {
             case updatedTime = "UpdatedTime"
         }
     }
-    
+
     /// ApiRequestDescr
     public struct ApiRequestDescr: TCOutputModel {
         /// 参数名称
         public let name: String
-        
+
         /// 参数类型
         public let type: String
-        
+
         /// 参数位置
         public let `in`: String
-        
+
         /// 参数描述
         public let description: String
-        
+
         /// 参数是否必须
         public let required: Bool
-        
+
         /// 参数的默认值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defaultValue: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -464,139 +464,139 @@ extension Tsf {
             case defaultValue = "DefaultValue"
         }
     }
-    
+
     /// API 响应的参数结构描述
     public struct ApiResponseDescr: TCOutputModel {
         /// 参数描述
         public let name: String
-        
+
         /// 参数类型
         public let type: String
-        
+
         /// 参数描述
         public let description: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
             case description = "Description"
         }
     }
-    
+
     /// API 日统计数据点
     public struct ApiUseStatisticsEntity: TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 次数
         public let count: String
-        
+
         /// 比率
         public let ratio: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case count = "Count"
             case ratio = "Ratio"
         }
     }
-    
+
     /// API版本数组
     public struct ApiVersionArray: TCOutputModel {
         /// App ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// App 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// App 包版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgVersion: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationName = "ApplicationName"
             case pkgVersion = "PkgVersion"
         }
     }
-    
+
     /// 应用列表其它字段
     public struct ApplicationAttribute: TCOutputModel {
         /// 总实例个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceCount: Int64?
-        
+
         /// 运行实例个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runInstanceCount: Int64?
-        
+
         /// 应用下部署组个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceCount = "InstanceCount"
             case runInstanceCount = "RunInstanceCount"
             case groupCount = "GroupCount"
         }
     }
-    
+
     /// 分页的应用描述信息字段
     public struct ApplicationForPage: TCOutputModel {
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 应用描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationDesc: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 微服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceType: String?
-        
+
         /// 编程语言
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progLang: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 应用资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationResourceType: String?
-        
+
         /// 应用runtime类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationRuntimeType: String?
-        
+
         /// Apigateway的serviceId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apigatewayServiceId: String?
-        
+
         /// 应用备注名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationRemarkName: String?
-        
+
         /// 服务配置信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceConfigList: [ServiceConfig]?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationName = "ApplicationName"
@@ -613,53 +613,53 @@ extension Tsf {
             case serviceConfigList = "ServiceConfigList"
         }
     }
-    
+
     /// 业务日志配置关联部署组信息
     public struct BusinesLogConfigAssociatedGroup: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 部署组所属应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 部署组所属应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 部署组所属应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 部署组所属命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 部署组所属命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 部署组所属集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 部署组所属集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 部署组所属集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 部署组关联日志配置时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let associatedTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -674,48 +674,48 @@ extension Tsf {
             case associatedTime = "AssociatedTime"
         }
     }
-    
+
     /// 业务日志配置
     public struct BusinessLogConfig: TCInputModel, TCOutputModel {
         /// 配置项ID
         public let configId: String?
-        
+
         /// 配置项名称
         public let configName: String?
-        
+
         /// 配置项日志路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configPath: String?
-        
+
         /// 配置项描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configDesc: String?
-        
+
         /// 配置项标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configTags: String?
-        
+
         /// 配置项对应的ES管道
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configPipeline: String?
-        
+
         /// 配置项创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configCreateTime: String?
-        
+
         /// 配置项更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configUpdateTime: String?
-        
+
         /// 配置项解析规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configSchema: BusinessLogConfigSchema?
-        
+
         /// 配置项关联部署组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configAssociatedGroups: [BusinesLogConfigAssociatedGroup]?
-        
-        public init (configId: String? = nil, configName: String? = nil, configPath: String? = nil, configDesc: String? = nil, configTags: String? = nil, configPipeline: String? = nil, configCreateTime: String? = nil, configUpdateTime: String? = nil, configSchema: BusinessLogConfigSchema? = nil, configAssociatedGroups: [BusinesLogConfigAssociatedGroup]? = nil) {
+
+        public init(configId: String? = nil, configName: String? = nil, configPath: String? = nil, configDesc: String? = nil, configTags: String? = nil, configPipeline: String? = nil, configCreateTime: String? = nil, configUpdateTime: String? = nil, configSchema: BusinessLogConfigSchema? = nil, configAssociatedGroups: [BusinesLogConfigAssociatedGroup]? = nil) {
             self.configId = configId
             self.configName = configName
             self.configPath = configPath
@@ -727,7 +727,7 @@ extension Tsf {
             self.configSchema = configSchema
             self.configAssociatedGroups = configAssociatedGroups
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
@@ -741,33 +741,33 @@ extension Tsf {
             case configAssociatedGroups = "ConfigAssociatedGroups"
         }
     }
-    
+
     /// 业务日志配置解析规则
     public struct BusinessLogConfigSchema: TCInputModel, TCOutputModel {
         /// 解析规则类型
         public let schemaType: Int64
-        
+
         /// 解析规则内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaContent: String?
-        
+
         /// 解析规则时间格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaDateFormat: String?
-        
+
         /// 解析规则对应的多行匹配规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaMultilinePattern: String?
-        
+
         /// 解析规则创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaCreateTime: String?
-        
+
         /// 用户填写的解析规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaPatternLayout: String?
-        
-        public init (schemaType: Int64, schemaContent: String? = nil, schemaDateFormat: String? = nil, schemaMultilinePattern: String? = nil, schemaCreateTime: String? = nil, schemaPatternLayout: String? = nil) {
+
+        public init(schemaType: Int64, schemaContent: String? = nil, schemaDateFormat: String? = nil, schemaMultilinePattern: String? = nil, schemaCreateTime: String? = nil, schemaPatternLayout: String? = nil) {
             self.schemaType = schemaType
             self.schemaContent = schemaContent
             self.schemaDateFormat = schemaDateFormat
@@ -775,7 +775,7 @@ extension Tsf {
             self.schemaCreateTime = schemaCreateTime
             self.schemaPatternLayout = schemaPatternLayout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case schemaType = "SchemaType"
             case schemaContent = "SchemaContent"
@@ -785,33 +785,33 @@ extension Tsf {
             case schemaPatternLayout = "SchemaPatternLayout"
         }
     }
-    
+
     /// 业务日志
     public struct BusinessLogV2: TCOutputModel {
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 日志内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         /// 日志时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestamp: UInt64?
-        
+
         /// 实例IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceIp: String?
-        
+
         /// 日志ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logId: String?
-        
+
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case content = "Content"
@@ -821,121 +821,121 @@ extension Tsf {
             case groupId = "GroupId"
         }
     }
-    
+
     /// 集群
     public struct Cluster: TCOutputModel {
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 集群描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterDesc: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 集群所属私有网络ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// 集群状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterStatus: String?
-        
+
         /// 集群CIDR
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterCIDR: String?
-        
+
         /// 集群总CPU，单位: 核
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterTotalCpu: Float?
-        
+
         /// 集群总内存，单位: G
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterTotalMem: Float?
-        
+
         /// 集群已使用CPU，单位: 核
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterUsedCpu: Float?
-        
+
         /// 集群已使用内存，单位: G
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterUsedMem: Float?
-        
+
         /// 集群机器实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceCount: Int64?
-        
+
         /// 集群可用的机器实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runInstanceCount: Int64?
-        
+
         /// 集群正常状态的机器实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let normalInstanceCount: Int64?
-        
+
         /// 删除标记：true：可以删除；false：不可删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlag: Bool?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 集群所属TSF地域ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tsfRegionId: String?
-        
+
         /// 集群所属TSF地域名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tsfRegionName: String?
-        
+
         /// 集群所属TSF可用区ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tsfZoneId: String?
-        
+
         /// 集群所属TSF可用区名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tsfZoneName: String?
-        
+
         /// 集群不可删除的原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlagReason: String?
-        
+
         /// 集群最大CPU限制，单位：核
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterLimitCpu: Float?
-        
+
         /// 集群最大内存限制，单位：G
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterLimitMem: Float?
-        
+
         /// 集群可用的服务实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runServiceInstanceCount: Int64?
-        
+
         /// 集群所属子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 返回给前端的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operationInfo: OperationInfo?
-        
+
         /// 集群版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterVersion: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -967,57 +967,57 @@ extension Tsf {
             case clusterVersion = "ClusterVersion"
         }
     }
-    
+
     /// 配置项
     public struct Config: TCOutputModel {
         /// 配置项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
-        
+
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configName: String?
-        
+
         /// 配置项版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersion: String?
-        
+
         /// 配置项版本描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersionDesc: String?
-        
+
         /// 配置项值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configValue: String?
-        
+
         /// 配置项类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configType: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationTime: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 删除标识，true：可以删除；false：不可删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlag: Bool?
-        
+
         /// 最后更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpdateTime: String?
-        
+
         /// 配置项版本数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersionCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
@@ -1033,61 +1033,61 @@ extension Tsf {
             case configVersionCount = "ConfigVersionCount"
         }
     }
-    
+
     /// 配置项发布信息
     public struct ConfigRelease: TCOutputModel {
         /// 配置项发布ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configReleaseId: String?
-        
+
         /// 配置项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
-        
+
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configName: String?
-        
+
         /// 配置项版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersion: String?
-        
+
         /// 发布时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseTime: String?
-        
+
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 发布描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseDesc: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case configReleaseId = "ConfigReleaseId"
             case configId = "ConfigId"
@@ -1104,77 +1104,77 @@ extension Tsf {
             case applicationId = "ApplicationId"
         }
     }
-    
+
     /// 配置项发布日志
     public struct ConfigReleaseLog: TCOutputModel {
         /// 配置项发布日志ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configReleaseLogId: String?
-        
+
         /// 配置项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
-        
+
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configName: String?
-        
+
         /// 配置项版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersion: String?
-        
+
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 发布时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseTime: String?
-        
+
         /// 发布描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseDesc: String?
-        
+
         /// 发布状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseStatus: String?
-        
+
         /// 上次发布的配置项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastConfigId: String?
-        
+
         /// 上次发布的配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastConfigName: String?
-        
+
         /// 上次发布的配置项版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastConfigVersion: String?
-        
+
         /// 回滚标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rollbackFlag: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case configReleaseLogId = "ConfigReleaseLogId"
             case configId = "ConfigId"
@@ -1195,73 +1195,73 @@ extension Tsf {
             case rollbackFlag = "RollbackFlag"
         }
     }
-    
+
     /// 部署组列表（应用下钻界面的）
     public struct ContainGroup: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 镜像server
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
-        
+
         /// 镜像名，如/tsf/nginx
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoName: String?
-        
+
         /// 镜像版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagName: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 初始分配的 CPU 核数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuRequest: String?
-        
+
         /// 最大分配的 CPU 核数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuLimit: String?
-        
+
         /// 初始分配的内存 MiB 数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memRequest: String?
-        
+
         /// 最大分配的内存 MiB 数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memLimit: String?
-        
+
         /// 部署组备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
-        
+
         /// KubeInjectEnable值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeInjectEnable: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1281,56 +1281,56 @@ extension Tsf {
             case kubeInjectEnable = "KubeInjectEnable"
         }
     }
-    
+
     /// 部署组列表（应用下钻）
     public struct ContainGroupResult: TCOutputModel {
         /// 部署组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [ContainGroup]?
-        
+
         /// 总记录数
         public let totalCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
             case totalCount = "TotalCount"
         }
     }
-    
+
     /// 返回容器的事件，比如 k8s deployment 或者 pod 的 events
     public struct ContainerEvent: TCOutputModel {
         /// 第一次出现的时间，以 ms 为单位的时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstTimestamp: Int64?
-        
+
         /// 最后一次出现的时间，以 ms 为单位的时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastTimestamp: Int64?
-        
+
         /// 级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kind: String?
-        
+
         /// 资源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
-        
+
         /// 详细描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         /// 出现次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case firstTimestamp = "FirstTimestamp"
             case lastTimestamp = "LastTimestamp"
@@ -1342,161 +1342,161 @@ extension Tsf {
             case count = "Count"
         }
     }
-    
+
     ///  获取部署组
     public struct ContainerGroupDeploy: TCOutputModel {
         /// 部署组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 实例总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceNum: Int64?
-        
+
         /// 已启动实例总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentNum: Int64?
-        
+
         /// 镜像server
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
-        
+
         /// 镜像名，如/tsf/nginx
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reponame: String?
-        
+
         /// 镜像版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagName: String?
-        
+
         /// 业务容器初始分配的 CPU 核数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuRequest: String?
-        
+
         /// 业务容器最大分配的 CPU 核数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuLimit: String?
-        
+
         /// 业务容器初始分配的内存 MiB 数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memRequest: String?
-        
+
         /// 业务容器最大分配的内存 MiB 数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memLimit: String?
-        
+
         /// 0:公网 1:集群内访问 2：NodePort
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessType: Int64?
-        
+
         /// 端口映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protocolPorts: [ProtocolPort]?
-        
+
         /// 更新方式：0:快速更新 1:滚动更新
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateType: Int64?
-        
+
         /// 更新间隔,单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateIvl: Int64?
-        
+
         /// jvm参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jvmOpts: String?
-        
+
         /// 子网id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// agent容器初始分配的 CPU 核数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentCpuRequest: String?
-        
+
         /// agent容器最大分配的 CPU 核数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentCpuLimit: String?
-        
+
         /// agent容器初始分配的内存 MiB 数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentMemRequest: String?
-        
+
         /// agent容器最大分配的内存 MiB 数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentMemLimit: String?
-        
+
         /// istioproxy容器初始分配的 CPU 核数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let istioCpuRequest: String?
-        
+
         /// istioproxy容器最大分配的 CPU 核数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let istioCpuLimit: String?
-        
+
         /// istioproxy容器初始分配的内存 MiB 数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let istioMemRequest: String?
-        
+
         /// istioproxy容器最大分配的内存 MiB 数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let istioMemLimit: String?
-        
+
         /// 部署组的环境变量数组，这里没有展示 tsf 使用的环境变量，只展示了用户设置的环境变量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envs: [Env]?
-        
+
         /// 健康检查配置信息，若不指定该参数，则默认不设置健康检查。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheckSettings: HealthCheckSettings?
-        
+
         /// 是否部署Agent容器
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployAgent: Bool?
-        
+
         /// 部署组备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
-        
+
         /// 是否创建 k8s service
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disableService: Bool?
-        
+
         /// service 是否为 headless 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headlessService: Bool?
-        
+
         /// TcrRepoInfo值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcrRepoInfo: TcrRepoInfo?
-        
+
         /// 数据卷信息，list
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeInfos: [VolumeInfo]?
-        
+
         /// 数据卷挂载信息，list
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeMountInfos: [VolumeMountInfo]?
-        
+
         /// KubeInjectEnable值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeInjectEnable: Bool?
-        
+
         /// 仓库类型 (person, tcr)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoType: String?
-        
+
         /// 预热配置设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warmupSetting: WarmupSetting?
-        
+
         /// Envoy网关服务配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayConfig: GatewayConfig?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1538,157 +1538,157 @@ extension Tsf {
             case gatewayConfig = "GatewayConfig"
         }
     }
-    
+
     ///  容器部署组详情
     public struct ContainerGroupDetail: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 实例总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceNum: Int64?
-        
+
         /// 已启动实例总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentNum: Int64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 镜像server
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
-        
+
         /// 镜像名，如/tsf/nginx
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reponame: String?
-        
+
         /// 镜像版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagName: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 负载均衡ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lbIp: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// Service ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterIp: String?
-        
+
         /// NodePort端口，只有公网和NodePort访问方式才有值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodePort: Int64?
-        
+
         /// 最大分配的 CPU 核数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuLimit: String?
-        
+
         /// 最大分配的内存 MiB 数，对应 K8S limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memLimit: String?
-        
+
         /// 0:公网 1:集群内访问 2：NodePort
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessType: UInt64?
-        
+
         /// 更新方式：0:快速更新 1:滚动更新
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateType: Int64?
-        
+
         /// 更新间隔,单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateIvl: Int64?
-        
+
         /// 端口数组对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protocolPorts: [ProtocolPort]?
-        
+
         /// 环境变量数组对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envs: [Env]?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// pod错误信息描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         /// 部署组状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceType: String?
-        
+
         /// 初始分配的 CPU 核数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuRequest: String?
-        
+
         /// 初始分配的内存 MiB 数，对应 K8S request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memRequest: String?
-        
+
         /// 子网id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 部署组资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupResourceType: String?
-        
+
         /// 部署组实例个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceCount: UInt64?
-        
+
         /// 部署组更新时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: Int64?
-        
+
         /// kubernetes滚动更新策略的MaxSurge参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxSurge: String?
-        
+
         /// kubernetes滚动更新策略的MaxUnavailable参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxUnavailable: String?
-        
+
         /// 部署组健康检查设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheckSettings: HealthCheckSettings?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1729,33 +1729,33 @@ extension Tsf {
             case healthCheckSettings = "HealthCheckSettings"
         }
     }
-    
+
     /// cos临时帐号信息
     public struct CosCredentials: TCOutputModel {
         /// 会话Token
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionToken: String?
-        
+
         /// 临时应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tmpAppId: String?
-        
+
         /// 临时调用者身份ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tmpSecretId: String?
-        
+
         /// 临时密钥
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tmpSecretKey: String?
-        
+
         /// 过期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expiredTime: Int64?
-        
+
         /// 所在域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case sessionToken = "SessionToken"
             case tmpAppId = "TmpAppId"
@@ -1765,25 +1765,25 @@ extension Tsf {
             case domain = "Domain"
         }
     }
-    
+
     /// Cos下载所需信息
     public struct CosDownloadInfo: TCOutputModel {
         /// 桶名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 鉴权信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let credentials: CosCredentials?
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
             case region = "Region"
@@ -1791,28 +1791,28 @@ extension Tsf {
             case credentials = "Credentials"
         }
     }
-    
+
     /// cos上传所需信息
     public struct CosUploadInfo: TCOutputModel {
         /// 程序包ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgId: String?
-        
+
         /// 桶
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
-        
+
         /// 目标地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 存储路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 鉴权信息
         public let credentials: CosCredentials
-        
+
         enum CodingKeys: String, CodingKey {
             case pkgId = "PkgId"
             case bucket = "Bucket"
@@ -1821,72 +1821,72 @@ extension Tsf {
             case credentials = "Credentials"
         }
     }
-    
+
     /// 构成监控数据图的曲线坐标点
     public struct CurvePoint: TCOutputModel {
         /// 当前坐标 X轴的值 当前是日期格式:"yyyy-MM-dd HH:mm:ss"
         public let label: String
-        
+
         /// 当前坐标 Y轴的值
         public let value: String
-        
+
         /// 该坐标点时间戳
         public let timestamp: String
-        
+
         enum CodingKeys: String, CodingKey {
             case label = "Label"
             case value = "Value"
             case timestamp = "Timestamp"
         }
     }
-    
+
     /// 需要删除的镜像版本
     public struct DeleteImageTag: TCInputModel {
         /// 仓库名，如/tsf/nginx
         public let repoName: String
-        
+
         /// 版本号:如V1
         public let tagName: String
-        
-        public init (repoName: String, tagName: String) {
+
+        public init(repoName: String, tagName: String) {
             self.repoName = repoName
             self.tagName = tagName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
             case tagName = "TagName"
         }
     }
-    
+
     /// 描述投递配置项绑定的部署组
     public struct DeliveryConfigBindGroup: TCInputModel, TCOutputModel {
         /// 配置id
         public let configId: String
-        
+
         /// 配置名
         public let configName: String
-        
+
         /// 采集路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let collectPath: [String]?
-        
+
         /// 关联部署组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groups: [GroupInfo]?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
-        public init (configId: String, configName: String, collectPath: [String], groups: [GroupInfo], createTime: String) {
+
+        public init(configId: String, configName: String, collectPath: [String], groups: [GroupInfo], createTime: String) {
             self.configId = configId
             self.configName = configName
             self.collectPath = collectPath
             self.groups = groups
             self.createTime = createTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
@@ -1895,130 +1895,130 @@ extension Tsf {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 描述配置项绑定的部署组
     public struct DeliveryConfigBindGroups: TCOutputModel {
         /// 公共条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [DeliveryConfigBindGroup]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 环境变量
     public struct Env: TCInputModel, TCOutputModel {
         /// 环境变量名称
         public let name: String
-        
+
         /// 环境变量值
         public let value: String?
-        
+
         /// k8s ValueFrom
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueFrom: ValueFrom?
-        
-        public init (name: String, value: String? = nil, valueFrom: ValueFrom? = nil) {
+
+        public init(name: String, value: String? = nil, valueFrom: ValueFrom? = nil) {
             self.name = name
             self.value = value
             self.valueFrom = valueFrom
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
             case valueFrom = "ValueFrom"
         }
     }
-    
+
     /// 容器 env 的 FieldRef
     public struct FieldRef: TCInputModel, TCOutputModel {
         /// k8s 的 FieldPath
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldPath: String?
-        
-        public init (fieldPath: String? = nil) {
+
+        public init(fieldPath: String? = nil) {
             self.fieldPath = fieldPath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fieldPath = "FieldPath"
         }
     }
-    
+
     /// 文件配置项
     public struct FileConfig: TCInputModel, TCOutputModel {
         /// 配置项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
-        
+
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configName: String?
-        
+
         /// 配置项版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersion: String?
-        
+
         /// 配置项版本描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersionDesc: String?
-        
+
         /// 配置项文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configFileName: String?
-        
+
         /// 配置项文件内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configFileValue: String?
-        
+
         /// 配置项文件编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configFileCode: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationTime: String?
-        
+
         /// 配置项归属应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 删除标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlag: Bool?
-        
+
         /// 配置项版本数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersionCount: Int64?
-        
+
         /// 配置项最后更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpdateTime: String?
-        
+
         /// 发布路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configFilePath: String?
-        
+
         /// 后置命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configPostCmd: String?
-        
+
         /// 配置项文件长度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configFileValueLength: UInt64?
-        
-        public init (configId: String? = nil, configName: String? = nil, configVersion: String? = nil, configVersionDesc: String? = nil, configFileName: String? = nil, configFileValue: String? = nil, configFileCode: String? = nil, creationTime: String? = nil, applicationId: String? = nil, applicationName: String? = nil, deleteFlag: Bool? = nil, configVersionCount: Int64? = nil, lastUpdateTime: String? = nil, configFilePath: String? = nil, configPostCmd: String? = nil, configFileValueLength: UInt64? = nil) {
+
+        public init(configId: String? = nil, configName: String? = nil, configVersion: String? = nil, configVersionDesc: String? = nil, configFileName: String? = nil, configFileValue: String? = nil, configFileCode: String? = nil, creationTime: String? = nil, applicationId: String? = nil, applicationName: String? = nil, deleteFlag: Bool? = nil, configVersionCount: Int64? = nil, lastUpdateTime: String? = nil, configFilePath: String? = nil, configPostCmd: String? = nil, configFileValueLength: UInt64? = nil) {
             self.configId = configId
             self.configName = configName
             self.configVersion = configVersion
@@ -2036,7 +2036,7 @@ extension Tsf {
             self.configPostCmd = configPostCmd
             self.configFileValueLength = configFileValueLength
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
@@ -2056,57 +2056,57 @@ extension Tsf {
             case configFileValueLength = "ConfigFileValueLength"
         }
     }
-    
+
     /// 文件配置项发布信息
     public struct FileConfigRelease: TCOutputModel {
         /// 配置项发布ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configReleaseId: String?
-        
+
         /// 配置项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
-        
+
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configName: String?
-        
+
         /// 配置项版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configVersion: String?
-        
+
         /// 发布描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseDesc: String?
-        
+
         /// 发布时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseTime: String?
-        
+
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case configReleaseId = "ConfigReleaseId"
             case configId = "ConfigId"
@@ -2122,52 +2122,52 @@ extension Tsf {
             case clusterName = "ClusterName"
         }
     }
-    
+
     /// 用于请求参数中的条件过滤字段
     public struct Filter: TCInputModel {
         /// 过滤条件名
         public let name: String
-        
+
         /// 过滤条件匹配值，几个条件间是或关系
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 网关分组简单信息
     public struct GatewayApiGroupVo: TCOutputModel {
         /// 分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 分组下API个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupApiCount: UInt64?
-        
+
         /// 分组API列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupApis: [GatewayGroupApiVo]?
-        
+
         /// 网关实例的类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayInstanceType: String?
-        
+
         /// 网关实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayInstanceId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -2177,43 +2177,43 @@ extension Tsf {
             case gatewayInstanceId = "GatewayInstanceId"
         }
     }
-    
+
     /// TSF Envoy网关服务配置
     public struct GatewayConfig: TCInputModel, TCOutputModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// api分组已绑定的网关部署组
     public struct GatewayDeployGroup: TCOutputModel {
         /// 网关部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployGroupId: String?
-        
+
         /// 网关部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployGroupName: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 应用分类：V：虚拟机应用，C：容器应用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 部署组应用状态,取值: Running、Waiting、Paused、Updating、RollingBack、Abnormal、Unknown
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupStatus: String?
-        
+
         /// 集群类型，C ：容器，V：虚拟机
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case deployGroupId = "DeployGroupId"
             case deployGroupName = "DeployGroupName"
@@ -2224,26 +2224,26 @@ extension Tsf {
             case clusterType = "ClusterType"
         }
     }
-    
+
     /// 网关API简单信息
     public struct GatewayGroupApiVo: TCOutputModel {
         /// API ID
         public let apiId: String
-        
+
         /// API 请求路径
         public let path: String
-        
+
         /// API 微服务名称
         public let microserviceName: String
-        
+
         /// API 请求方法
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let method: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case apiId = "ApiId"
             case path = "Path"
@@ -2252,56 +2252,56 @@ extension Tsf {
             case namespaceName = "NamespaceName"
         }
     }
-    
+
     /// 网关部署组ID和网关API分组ID元组
     public struct GatewayGroupIds: TCInputModel {
         /// 网关部署组ID
         public let gatewayDeployGroupId: String
-        
+
         /// 分组id
         public let groupId: String
-        
-        public init (gatewayDeployGroupId: String, groupId: String) {
+
+        public init(gatewayDeployGroupId: String, groupId: String) {
             self.gatewayDeployGroupId = gatewayDeployGroupId
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayDeployGroupId = "GatewayDeployGroupId"
             case groupId = "GroupId"
         }
     }
-    
+
     /// 微服务网关插件实例对象
     public struct GatewayPlugin: TCOutputModel {
         /// 网关插件id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 插件名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 插件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 插件描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         /// 发布状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -2312,49 +2312,49 @@ extension Tsf {
             case status = "Status"
         }
     }
-    
+
     /// 微服务网关插件绑定对象
     public struct GatewayPluginBoundParam: TCInputModel {
         /// 插件id
         public let pluginId: String
-        
+
         /// 插件绑定到的对象类型:group/api
         public let scopeType: String
-        
+
         /// 插件绑定到的对象主键值，例如分组的ID/API的ID
         public let scopeValue: String
-        
-        public init (pluginId: String, scopeType: String, scopeValue: String) {
+
+        public init(pluginId: String, scopeType: String, scopeValue: String) {
             self.pluginId = pluginId
             self.scopeType = scopeType
             self.scopeValue = scopeValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginId = "PluginId"
             case scopeType = "ScopeType"
             case scopeValue = "ScopeValue"
         }
     }
-    
+
     /// 网关部署组、分组、API列表数据
     public struct GatewayVo: TCOutputModel {
         /// 网关部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayDeployGroupId: String?
-        
+
         /// 网关部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayDeployGroupName: String?
-        
+
         /// API 分组个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupNum: UInt64?
-        
+
         /// API 分组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groups: [GatewayApiGroupVo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayDeployGroupId = "GatewayDeployGroupId"
             case gatewayDeployGroupName = "GatewayDeployGroupName"
@@ -2362,74 +2362,74 @@ extension Tsf {
             case groups = "Groups"
         }
     }
-    
+
     /// API监控明细数据
     public struct GroupApiUseStatistics: TCOutputModel {
         /// 总调用数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topStatusCode: [ApiUseStatisticsEntity]?
-        
+
         /// 平均错误率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topTimeCost: [ApiUseStatisticsEntity]?
-        
+
         /// 分位值对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quantile: QuantileEntity?
-        
+
         enum CodingKeys: String, CodingKey {
             case topStatusCode = "TopStatusCode"
             case topTimeCost = "TopTimeCost"
             case quantile = "Quantile"
         }
     }
-    
+
     /// 分组日使用统计对象
     public struct GroupDailyUseStatistics: TCOutputModel {
         /// 总调用数
         public let topReqAmount: [GroupUseStatisticsEntity]
-        
+
         /// 平均错误率
         public let topFailureRate: [GroupUseStatisticsEntity]
-        
+
         /// 平均响应耗时
         public let topAvgTimeCost: [GroupUseStatisticsEntity]
-        
+
         enum CodingKeys: String, CodingKey {
             case topReqAmount = "TopReqAmount"
             case topFailureRate = "TopFailureRate"
             case topAvgTimeCost = "TopAvgTimeCost"
         }
     }
-    
+
     /// 日志投递kafka用，描述部署组信息
     public struct GroupInfo: TCInputModel, TCOutputModel {
         /// 部署组id
         public let groupId: String
-        
+
         /// 部署组名称
         public let groupName: String
-        
+
         /// 集群类型
         public let clusterType: String
-        
+
         /// 集群id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 绑定时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let associateTime: String?
-        
-        public init (groupId: String, groupName: String, clusterType: String, clusterId: String? = nil, clusterName: String? = nil, namespaceName: String? = nil, associateTime: String? = nil) {
+
+        public init(groupId: String, groupName: String, clusterType: String, clusterId: String? = nil, clusterName: String? = nil, namespaceName: String? = nil, associateTime: String? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.clusterType = clusterType
@@ -2438,7 +2438,7 @@ extension Tsf {
             self.namespaceName = namespaceName
             self.associateTime = associateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -2449,65 +2449,65 @@ extension Tsf {
             case associateTime = "AssociateTime"
         }
     }
-    
+
     /// 部署组实例列表
     public struct GroupPod: TCOutputModel {
         /// 实例名称(对应到kubernetes的pod名称)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podName: String?
-        
+
         /// 实例ID(对应到kubernetes的pod id)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podId: String?
-        
+
         /// 实例状态，请参考后面的实例以及容器的状态定义。启动中（pod 未 ready）：Starting；运行中：Running；异常：Abnormal；停止：Stopped；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 实例处于当前状态的原因，例如容器下载镜像失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
-        
+
         /// 主机IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeIp: String?
-        
+
         /// 实例IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         /// 实例中容器的重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: Int64?
-        
+
         /// 实例中已就绪容器的个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readyCount: Int64?
-        
+
         /// 运行时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runtime: String?
-        
+
         /// 实例启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdAt: String?
-        
+
         /// 服务实例状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceInstanceStatus: String?
-        
+
         /// 机器实例可使用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceAvailableStatus: String?
-        
+
         /// 机器实例状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceStatus: String?
-        
+
         /// 节点实例id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeInstanceId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case podName = "PodName"
             case podId = "PodId"
@@ -2525,57 +2525,57 @@ extension Tsf {
             case nodeInstanceId = "NodeInstanceId"
         }
     }
-    
+
     /// 部署组实例列表
     public struct GroupPodResult: TCOutputModel {
         /// 总记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [GroupPod]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 部署组配置发布相关信息
     public struct GroupRelease: TCOutputModel {
         /// 程序包ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageId: String?
-        
+
         /// 程序包名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageName: String?
-        
+
         /// 程序包版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageVersion: String?
-        
+
         /// 镜像名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoName: String?
-        
+
         /// 镜像版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagName: String?
-        
+
         /// 已发布的全局配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicConfigReleaseList: [ConfigRelease]?
-        
+
         /// 已发布的应用配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configReleaseList: [ConfigRelease]?
-        
+
         /// 已发布的文件配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileConfigReleaseList: [FileConfigRelease]?
-        
+
         enum CodingKeys: String, CodingKey {
             case packageId = "PackageId"
             case packageName = "PackageName"
@@ -2587,36 +2587,36 @@ extension Tsf {
             case fileConfigReleaseList = "FileConfigReleaseList"
         }
     }
-    
+
     /// 单元化API使用详情统计对象列表
     public struct GroupUnitApiDailyUseStatistics: TCOutputModel {
         /// 命名空间ID
         public let namespaceId: String
-        
+
         /// 命名空间名称
         public let namespaceName: String
-        
+
         /// 该API在该命名空间下的总调用次数
         public let sumReqAmount: String
-        
+
         /// 该API在该命名空间下的平均错误率
         public let avgFailureRate: String
-        
+
         /// 该API在该命名空间下的平均响应时间
         public let avgTimeCost: String
-        
+
         /// 监控数据曲线点位图Map集合
         public let metricDataPointMap: MetricDataPointMap
-        
+
         /// 状态码分布详情
         public let topStatusCode: [ApiUseStatisticsEntity]
-        
+
         /// 耗时分布详情
         public let topTimeCost: [ApiUseStatisticsEntity]
-        
+
         /// 分位值对象
         public let quantile: QuantileEntity
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceId = "NamespaceId"
             case namespaceName = "NamespaceName"
@@ -2629,39 +2629,39 @@ extension Tsf {
             case quantile = "Quantile"
         }
     }
-    
+
     /// 查询网关API监控明细数据（单元化网关使用详情）
     public struct GroupUnitApiUseStatistics: TCOutputModel {
         /// 总记录数
         public let totalCount: Int64
-        
+
         /// 查询网关API监控明细对象集合
         public let content: [GroupUnitApiDailyUseStatistics]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// API分组日使用统计对象数据点
     public struct GroupUseStatisticsEntity: TCOutputModel {
         /// API 路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiPath: String?
-        
+
         /// 服务名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceName: String?
-        
+
         /// 统计值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// API ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case apiPath = "ApiPath"
             case serviceName = "ServiceName"
@@ -2669,69 +2669,69 @@ extension Tsf {
             case apiId = "ApiId"
         }
     }
-    
+
     /// 健康检查配置
     public struct HealthCheckConfig: TCInputModel, TCOutputModel {
         /// 健康检查路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
-        public init (path: String? = nil) {
+
+        public init(path: String? = nil) {
             self.path = path
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
         }
     }
-    
+
     /// 健康检查配置信息，若不指定该参数，则默认不设置健康检查。
     public struct HealthCheckSetting: TCInputModel, TCOutputModel {
         /// 健康检查方法。HTTP：通过 HTTP 接口检查；CMD：通过执行命令检查；TCP：通过建立 TCP 连接检查。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionType: String?
-        
+
         /// 容器延时启动健康检查的时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let initialDelaySeconds: UInt64?
-        
+
         /// 每次健康检查响应的最大超时时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeoutSeconds: UInt64?
-        
+
         /// 进行健康检查的时间间隔。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let periodSeconds: UInt64?
-        
+
         /// 表示后端容器从失败到成功的连续健康检查成功次数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successThreshold: UInt64?
-        
+
         /// 表示后端容器从成功到失败的连续健康检查成功次数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureThreshold: UInt64?
-        
+
         /// HTTP 健康检查方法使用的检查协议。支持HTTP、HTTPS。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheme: String?
-        
+
         /// 健康检查端口，范围 1~65535 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: UInt64?
-        
+
         /// HTTP 健康检查接口的请求路径。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 执行命令检查方式，执行的命令。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let command: [String]?
-        
+
         /// TSF_DEFAULT：tsf 默认就绪探针。K8S_NATIVE：k8s 原生探针。不填默认为 k8s 原生探针。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (actionType: String, initialDelaySeconds: UInt64? = nil, timeoutSeconds: UInt64? = nil, periodSeconds: UInt64? = nil, successThreshold: UInt64? = nil, failureThreshold: UInt64? = nil, scheme: String? = nil, port: UInt64? = nil, path: String? = nil, command: [String]? = nil, type: String? = nil) {
+
+        public init(actionType: String, initialDelaySeconds: UInt64? = nil, timeoutSeconds: UInt64? = nil, periodSeconds: UInt64? = nil, successThreshold: UInt64? = nil, failureThreshold: UInt64? = nil, scheme: String? = nil, port: UInt64? = nil, path: String? = nil, command: [String]? = nil, type: String? = nil) {
             self.actionType = actionType
             self.initialDelaySeconds = initialDelaySeconds
             self.timeoutSeconds = timeoutSeconds
@@ -2744,7 +2744,7 @@ extension Tsf {
             self.command = command
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case actionType = "ActionType"
             case initialDelaySeconds = "InitialDelaySeconds"
@@ -2759,94 +2759,94 @@ extension Tsf {
             case type = "Type"
         }
     }
-    
+
     /// 健康检查参数
     public struct HealthCheckSettings: TCInputModel, TCOutputModel {
         /// 存活健康检查
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let livenessProbe: HealthCheckSetting?
-        
+
         /// 就绪健康检查
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readinessProbe: HealthCheckSetting?
-        
-        public init (livenessProbe: HealthCheckSetting? = nil, readinessProbe: HealthCheckSetting? = nil) {
+
+        public init(livenessProbe: HealthCheckSetting? = nil, readinessProbe: HealthCheckSetting? = nil) {
             self.livenessProbe = livenessProbe
             self.readinessProbe = readinessProbe
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case livenessProbe = "LivenessProbe"
             case readinessProbe = "ReadinessProbe"
         }
     }
-    
+
     /// 镜像仓库
     public struct ImageRepository: TCOutputModel {
         /// 仓库名,含命名空间,如tsf/nginx
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reponame: String?
-        
+
         /// 仓库类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repotype: String?
-        
+
         /// 镜像版本数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagCount: Int64?
-        
+
         /// 是否公共,1:公有,0:私有
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPublic: Int64?
-        
+
         /// 是否被用户收藏。true：是，false：否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUserFavor: Bool?
-        
+
         /// 是否是腾讯云官方仓库。 是否是腾讯云官方仓库。true：是，false：否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isQcloudOfficial: Bool?
-        
+
         /// 被所有用户收藏次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let favorCount: Int64?
-        
+
         /// 拉取次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pullCount: Int64?
-        
+
         /// 描述内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// TcrRepoInfo值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcrRepoInfo: TcrRepoInfo?
-        
+
         /// TcrBindingId值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcrBindingId: Int64?
-        
+
         /// applicationid值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// ApplicationName值（废弃）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: ScalableRule?
-        
+
         /// ApplicationName值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationNameReal: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case reponame = "Reponame"
             case repotype = "Repotype"
@@ -2866,74 +2866,74 @@ extension Tsf {
             case applicationNameReal = "ApplicationNameReal"
         }
     }
-    
+
     /// 镜像仓库列表
     public struct ImageRepositoryResult: TCOutputModel {
         /// 总记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 镜像服务器地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
-        
+
         /// 列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [ImageRepository]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case server = "Server"
             case content = "Content"
         }
     }
-    
+
     /// 列表信息
     public struct ImageTag: TCOutputModel {
         /// 仓库名
         public let repoName: String
-        
+
         /// 版本名称
         public let tagName: String
-        
+
         /// 版本ID
         public let tagId: String
-        
+
         /// 镜像ID
         public let imageId: String
-        
+
         /// 大小
         public let size: String
-        
+
         /// 创建时间
         public let creationTime: String
-        
+
         /// 更新时间
         public let updateTime: String
-        
+
         /// 镜像制作者
         public let author: String
-        
+
         /// CPU架构
         public let architecture: String
-        
+
         /// Docker客户端版本
         public let dockerVersion: String
-        
+
         /// 操作系统
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let os: String?
-        
+
         /// push时间
         public let pushTime: String
-        
+
         /// 单位为字节
         public let sizeByte: Int64
-        
+
         /// TcrRepoInfo值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcrRepoInfo: TcrRepoInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
             case tagName = "TagName"
@@ -2951,21 +2951,21 @@ extension Tsf {
             case tcrRepoInfo = "TcrRepoInfo"
         }
     }
-    
+
     /// 镜像版本列表
     public struct ImageTagsResult: TCOutputModel {
         /// 总记录数
         public let totalCount: Int64
-        
+
         /// 仓库名,含命名空间,如tsf/ngin
         public let repoName: String
-        
+
         /// 镜像服务器地址
         public let server: String
-        
+
         /// 列表信息
         public let content: [ImageTag]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case repoName = "RepoName"
@@ -2973,186 +2973,186 @@ extension Tsf {
             case content = "Content"
         }
     }
-    
+
     /// 监控指标坐标
     public struct IndicatorCoord: TCOutputModel {
         /// 指标横坐标值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coordX: String?
-        
+
         /// 指标纵坐标值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coordY: String?
-        
+
         /// 指标标签，用于标识附加信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coordTag: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case coordX = "CoordX"
             case coordY = "CoordY"
             case coordTag = "CoordTag"
         }
     }
-    
+
     /// 机器实例
     public struct Instance: TCOutputModel {
         /// 机器实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 机器名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 机器内网地址IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lanIp: String?
-        
+
         /// 机器外网地址IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wanIp: String?
-        
+
         /// 机器描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceDesc: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// VM的状态 虚机：虚机的状态 容器：Pod所在虚机的状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceStatus: String?
-        
+
         /// VM的可使用状态 虚机：虚机是否能够作为资源使用 容器：虚机是否能够作为资源部署POD
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceAvailableStatus: String?
-        
+
         /// 服务下的服务实例的状态 虚机：应用是否可用 + Agent状态 容器：Pod状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceInstanceStatus: String?
-        
+
         /// 标识此instance是否已添加在tsf中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let countInTsf: Int64?
-        
+
         /// 机器所属部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 机器所属应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 机器所属应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 机器实例在CVM的创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceCreatedTime: String?
-        
+
         /// 机器实例在CVM的过期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceExpiredTime: String?
-        
+
         /// 机器实例在CVM的计费模式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceChargeType: String?
-        
+
         /// 机器实例总CPU信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceTotalCpu: Float?
-        
+
         /// 机器实例总内存信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceTotalMem: Float?
-        
+
         /// 机器实例使用的CPU信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceUsedCpu: Float?
-        
+
         /// 机器实例使用的内存信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceUsedMem: Float?
-        
+
         /// 机器实例Limit CPU信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceLimitCpu: Float?
-        
+
         /// 机器实例Limit 内存信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceLimitMem: Float?
-        
+
         /// 包版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instancePkgVersion: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 机器实例业务状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restrictState: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 实例执行状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operationState: Int64?
-        
+
         /// NamespaceId Ns ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// InstanceZoneId 可用区ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceZoneId: String?
-        
+
         /// InstanceImportMode 导入模式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceImportMode: String?
-        
+
         /// ApplicationType应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// ApplicationResourceType 资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationResourceType: String?
-        
+
         /// sidecar状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceSidecarStatus: String?
-        
+
         /// 部署组名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// NS名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 健康检查原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
-        
+
         /// agent版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentVersion: String?
-        
+
         /// 容器母机实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeInstanceId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -3195,99 +3195,99 @@ extension Tsf {
             case nodeInstanceId = "NodeInstanceId"
         }
     }
-    
+
     /// 容器导入实例高级设置
     public struct InstanceAdvancedSettings: TCInputModel, TCOutputModel {
         /// 数据盘挂载点, 默认不挂载数据盘. 已格式化的 ext3，ext4，xfs 文件系统的数据盘将直接挂载，其他文件系统或未格式化的数据盘将自动格式化为ext4 并挂载，请注意备份数据! 无数据盘或有多块数据盘的云主机此设置不生效。
         /// 注意，注意，多盘场景请使用下方的DataDisks数据结构，设置对应的云盘类型、云盘大小、挂载路径、是否格式化等信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mountTarget: String
-        
+
         /// dockerd --graph 指定值, 默认为 /var/lib/docker
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dockerGraphPath: String
-        
-        public init (mountTarget: String, dockerGraphPath: String) {
+
+        public init(mountTarget: String, dockerGraphPath: String) {
             self.mountTarget = mountTarget
             self.dockerGraphPath = dockerGraphPath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mountTarget = "MountTarget"
             case dockerGraphPath = "DockerGraphPath"
         }
     }
-    
+
     /// 包含虚拟机所在TSF中的位置信息
     public struct InstanceEnrichedInfo: TCOutputModel {
         /// 机器ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 机器名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 机器内网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lanIp: String?
-        
+
         /// 机器外网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wanIp: String?
-        
+
         /// 机器所在VPC
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// 机器运行状态 Pending Running Stopped Rebooting Starting Stopping Abnormal Unknown
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceStatus: String?
-        
+
         /// 机器可用状态（表示机器上的Agent在线）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceAvailableStatus: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 机器所在部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -3308,57 +3308,57 @@ extension Tsf {
             case groupName = "GroupName"
         }
     }
-    
+
     /// InstanceEnrichedInfo列表结构
     public struct InstanceEnrichedInfoPage: TCOutputModel {
         /// 总数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [InstanceEnrichedInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 服务调用监控指标
     public struct InvocationIndicator: TCOutputModel {
         /// 总请求数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationQuantity: Int64?
-        
+
         /// 请求成功率，百分比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationSuccessRate: Float?
-        
+
         /// 请求平均耗时，单位毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationAvgDuration: Float?
-        
+
         /// 成功请求数时间分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationSuccessDistribution: [IndicatorCoord]?
-        
+
         /// 失败请求数时间分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationFailedDistribution: [IndicatorCoord]?
-        
+
         /// 状态码分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationStatusDistribution: [IndicatorCoord]?
-        
+
         /// 时延分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationDurationDistribution: [IndicatorCoord]?
-        
+
         /// 并发请求次数时间分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationQuantityDistribution: [IndicatorCoord]?
-        
+
         enum CodingKeys: String, CodingKey {
             case invocationQuantity = "InvocationQuantity"
             case invocationSuccessRate = "InvocationSuccessRate"
@@ -3370,22 +3370,22 @@ extension Tsf {
             case invocationQuantityDistribution = "InvocationQuantityDistribution"
         }
     }
-    
+
     /// 监控数据散点图
     public struct InvocationMetricScatterPlot: TCOutputModel {
         /// 时间轴截止时间，GMT，精确到毫秒
         public let endTime: Int64
-        
+
         /// 时间粒度
         public let startTime: Int64
-        
+
         /// 时间轴开始时间，GMT，精确到毫秒
         public let period: Int64
-        
+
         /// 多值数据点集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataPoints: [MultiValueDataPoints]?
-        
+
         enum CodingKeys: String, CodingKey {
             case endTime = "EndTime"
             case startTime = "StartTime"
@@ -3393,53 +3393,53 @@ extension Tsf {
             case dataPoints = "DataPoints"
         }
     }
-    
+
     /// DescribeJvmMonitor查询jvm监控数据接口返回数据封装
     public struct JvmMonitorData: TCOutputModel {
         /// 堆内存监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let heapMemory: MemoryPicture?
-        
+
         /// 非堆内存监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nonHeapMemory: MemoryPicture?
-        
+
         /// 伊甸园区监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let edenSpace: MemoryPicture?
-        
+
         /// 幸存者区监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let survivorSpace: MemoryPicture?
-        
+
         /// 老年代监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldSpace: MemoryPicture?
-        
+
         /// 元空间监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaSpace: MemoryPicture?
-        
+
         /// 线程监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let threadPicture: ThreadPicture?
-        
+
         /// youngGC增量监控图,一条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let youngGC: [CurvePoint]?
-        
+
         /// fullGC增量监控图,一条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullGC: [CurvePoint]?
-        
+
         /// cpu使用率,一条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuUsage: [CurvePoint]?
-        
+
         /// 加载类数,一条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classCount: [CurvePoint]?
-        
+
         enum CodingKeys: String, CodingKey {
             case heapMemory = "HeapMemory"
             case nonHeapMemory = "NonHeapMemory"
@@ -3454,37 +3454,37 @@ extension Tsf {
             case classCount = "ClassCount"
         }
     }
-    
+
     /// 投递kafka配置项
     public struct KafkaDeliveryConfig: TCOutputModel {
         /// 配置项id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
-        
+
         /// 配置名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configName: String?
-        
+
         /// 采集路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let collectPath: [String]?
-        
+
         /// kafka vip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kafkaVIp: String?
-        
+
         /// kafka vport
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kafkaVPort: String?
-        
+
         /// kafka topic
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topic: String?
-        
+
         /// 换行规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lineRule: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
@@ -3495,58 +3495,58 @@ extension Tsf {
             case lineRule = "LineRule"
         }
     }
-    
+
     /// 泳道部署组
     public struct LaneGroup: TCInputModel, TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 是否入口应用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let entrance: Bool?
-        
+
         /// 泳道部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let laneGroupId: String?
-        
+
         /// 泳道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let laneId: String?
-        
+
         /// 部署组名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: Int64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
-        public init (groupId: String, entrance: Bool, laneGroupId: String? = nil, laneId: String? = nil, groupName: String? = nil, applicationId: String? = nil, applicationName: String? = nil, namespaceId: String? = nil, namespaceName: String? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, clusterType: String? = nil) {
+
+        public init(groupId: String, entrance: Bool, laneGroupId: String? = nil, laneId: String? = nil, groupName: String? = nil, applicationId: String? = nil, applicationName: String? = nil, namespaceId: String? = nil, namespaceName: String? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, clusterType: String? = nil) {
             self.groupId = groupId
             self.entrance = entrance
             self.laneGroupId = laneGroupId
@@ -3560,7 +3560,7 @@ extension Tsf {
             self.updateTime = updateTime
             self.clusterType = clusterType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case entrance = "Entrance"
@@ -3576,41 +3576,41 @@ extension Tsf {
             case clusterType = "ClusterType"
         }
     }
-    
+
     /// 泳道
     public struct LaneInfo: TCOutputModel {
         /// 泳道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let laneId: String?
-        
+
         /// 泳道名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let laneName: String?
-        
+
         /// 泳道备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: Int64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         /// 泳道部署组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let laneGroupList: [LaneGroup]?
-        
+
         /// 是否入口应用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let entrance: Bool?
-        
+
         /// 泳道已经关联部署组的命名空间列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceIdList: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case laneId = "LaneId"
             case laneName = "LaneName"
@@ -3622,65 +3622,65 @@ extension Tsf {
             case namespaceIdList = "NamespaceIdList"
         }
     }
-    
+
     /// 泳道分页查询
     public struct LaneInfos: TCOutputModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 泳道信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [LaneInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 泳道规则
     public struct LaneRule: TCOutputModel {
         /// 泳道规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?
-        
+
         /// 泳道规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleName: String?
-        
+
         /// 优先级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let priority: Int64?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 泳道规则标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTagList: [LaneRuleTag]?
-        
+
         /// 泳道规则标签关系
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTagRelationship: String?
-        
+
         /// 泳道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let laneId: String?
-        
+
         /// 开启状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enable: Bool?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: Int64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case ruleName = "RuleName"
@@ -3694,37 +3694,37 @@ extension Tsf {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 泳道规则标签
     public struct LaneRuleTag: TCOutputModel {
         /// 标签ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagId: String?
-        
+
         /// 标签名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagName: String?
-        
+
         /// 标签操作符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagOperator: String?
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
-        
+
         /// 泳道规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let laneRuleId: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: Int64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case tagId = "TagId"
             case tagName = "TagName"
@@ -3735,138 +3735,138 @@ extension Tsf {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 泳道规则分页查询
     public struct LaneRules: TCOutputModel {
         /// 总数
         public let totalCount: Int64
-        
+
         /// 泳道规则列表
         public let content: [LaneRule]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// Jvm监控内存数据封装
     public struct MemoryPicture: TCOutputModel {
         /// 内存最大值
         public let max: [CurvePoint]
-        
+
         /// 已用内存大小
         public let used: [CurvePoint]
-        
+
         /// 系统分配内存大小
         public let committed: [CurvePoint]
-        
+
         enum CodingKeys: String, CodingKey {
             case max = "Max"
             case used = "Used"
             case committed = "Committed"
         }
     }
-    
+
     /// 指标
     public struct Metric: TCInputModel, TCOutputModel {
         /// 指标名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 指标计算方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let function: String?
-        
-        public init (name: String? = nil, function: String? = nil) {
+
+        public init(name: String? = nil, function: String? = nil) {
             self.name = name
             self.function = function
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case function = "Function"
         }
     }
-    
+
     /// 指标监控数据曲线
     public struct MetricDataCurve: TCOutputModel {
         /// 指标名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricName: String?
-        
+
         /// 指标计算方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricFunction: String?
-        
+
         /// 指标数据点集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricDataPoints: [MetricDataPoint]?
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case metricFunction = "MetricFunction"
             case metricDataPoints = "MetricDataPoints"
         }
     }
-    
+
     /// 监控统计数据点
     public struct MetricDataPoint: TCOutputModel {
         /// 数据点键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 数据点值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 数据点标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
             case tag = "Tag"
         }
     }
-    
+
     /// 监控统计数据点Map集合（单元化网关使用）
     public struct MetricDataPointMap: TCOutputModel {
         /// 总调用次数监控数据点集合
         public let sumReqAmount: [MetricDataPoint]
-        
+
         /// 平均错误率监控数据点集合
         public let avgFailureRate: [MetricDataPoint]
-        
+
         /// 平均响应时间监控数据点集合
         public let avgTimeCost: [MetricDataPoint]
-        
+
         enum CodingKeys: String, CodingKey {
             case sumReqAmount = "SumReqAmount"
             case avgFailureRate = "AvgFailureRate"
             case avgTimeCost = "AvgTimeCost"
         }
     }
-    
+
     /// 单值指标
     public struct MetricDataSingleValue: TCOutputModel {
         /// 指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricName: String?
-        
+
         /// 统计方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricFunction: String?
-        
+
         /// 指标值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricDataValue: String?
-        
+
         /// 日环比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dailyPercent: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case metricFunction = "MetricFunction"
@@ -3874,82 +3874,82 @@ extension Tsf {
             case dailyPercent = "DailyPercent"
         }
     }
-    
+
     /// 指标维度
     public struct MetricDimension: TCInputModel, TCOutputModel {
         /// 指标维度名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 指标维度取值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (name: String? = nil, value: String? = nil) {
+
+        public init(name: String? = nil, value: String? = nil) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 指标维度多值匹配
     public struct MetricDimensionValue: TCInputModel {
         /// 维度名
         public let name: String
-        
+
         /// 维度值
         public let value: [String]
-        
-        public init (name: String, value: [String]) {
+
+        public init(name: String, value: [String]) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 微服务
     public struct Microservice: TCInputModel, TCOutputModel {
         /// 微服务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceId: String?
-        
+
         /// 微服务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceName: String?
-        
+
         /// 微服务描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceDesc: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: Int64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 微服务的运行实例数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runInstanceCount: Int64?
-        
+
         /// 微服务的离线实例数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let criticalInstanceCount: Int64?
-        
-        public init (microserviceId: String? = nil, microserviceName: String? = nil, microserviceDesc: String? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, namespaceId: String? = nil, runInstanceCount: Int64? = nil, criticalInstanceCount: Int64? = nil) {
+
+        public init(microserviceId: String? = nil, microserviceName: String? = nil, microserviceDesc: String? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, namespaceId: String? = nil, runInstanceCount: Int64? = nil, criticalInstanceCount: Int64? = nil) {
             self.microserviceId = microserviceId
             self.microserviceName = microserviceName
             self.microserviceDesc = microserviceDesc
@@ -3959,7 +3959,7 @@ extension Tsf {
             self.runInstanceCount = runInstanceCount
             self.criticalInstanceCount = criticalInstanceCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case microserviceId = "MicroserviceId"
             case microserviceName = "MicroserviceName"
@@ -3971,33 +3971,33 @@ extension Tsf {
             case criticalInstanceCount = "CriticalInstanceCount"
         }
     }
-    
+
     /// 监控概览对象
     public struct MonitorOverview: TCOutputModel {
         /// 近24小时调用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationCountOfDay: String?
-        
+
         /// 总调用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invocationCount: String?
-        
+
         /// 近24小时调用错误数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorCountOfDay: String?
-        
+
         /// 总调用错误数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorCount: String?
-        
+
         /// 近24小时调用成功率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successRatioOfDay: String?
-        
+
         /// 总调用成功率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successRatio: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case invocationCountOfDay = "InvocationCountOfDay"
             case invocationCount = "InvocationCount"
@@ -4007,23 +4007,23 @@ extension Tsf {
             case successRatio = "SuccessRatio"
         }
     }
-    
+
     /// 微服务API数组
     public struct MsApiArray: TCOutputModel {
         /// API 请求路径
         public let path: String
-        
+
         /// 请求方法
         public let method: String
-        
+
         /// 方法描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// API状态 0:离线 1:在线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case method = "Method"
@@ -4031,109 +4031,109 @@ extension Tsf {
             case status = "Status"
         }
     }
-    
+
     /// 微服务实例信息
     public struct MsInstance: TCOutputModel {
         /// 机器实例ID信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 机器实例名称信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 服务运行的端口号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: String?
-        
+
         /// 机器实例内网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lanIp: String?
-        
+
         /// 机器实例外网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wanIp: String?
-        
+
         /// 机器可用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceAvailableStatus: String?
-        
+
         /// 服务运行状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceInstanceStatus: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 机器TSF可用状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceStatus: String?
-        
+
         /// 健康检查URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheckUrl: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 应用程序包版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationPackageVersion: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 服务状态，passing 在线，critical 离线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceStatus: String?
-        
+
         /// 注册时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registrationTime: Int64?
-        
+
         /// 上次心跳时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastHeartbeatTime: Int64?
-        
+
         /// 实例注册id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registrationId: String?
-        
+
         /// 屏蔽状态，hidden 为屏蔽，unhidden 为未屏蔽
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hiddenStatus: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -4162,98 +4162,98 @@ extension Tsf {
             case hiddenStatus = "HiddenStatus"
         }
     }
-    
+
     /// 多值数据
     public struct MultiValue: TCOutputModel {
         /// 数据点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [Float]?
-        
+
         enum CodingKeys: String, CodingKey {
             case values = "Values"
         }
     }
-    
+
     /// 多值数据点集合
     public struct MultiValueDataPoints: TCOutputModel {
         /// 多值数据点
         public let points: [MultiValue]
-        
+
         /// 指标名称
         public let metricName: String
-        
+
         /// 多值数据点key列表，每个值表示当前数据点所在区域的下限
         public let pointKeys: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case points = "Points"
             case metricName = "MetricName"
             case pointKeys = "PointKeys"
         }
     }
-    
+
     /// 命名空间
     public struct Namespace: TCOutputModel {
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceCode: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 命名空间描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceDesc: String?
-        
+
         /// 默认命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDefault: String?
-        
+
         /// 命名空间状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceStatus: String?
-        
+
         /// 删除标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlag: Bool?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 集群数组，仅携带集群ID，集群名称，集群类型等基础信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterList: [Cluster]?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceResourceType: String?
-        
+
         /// 命名空间类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceType: String?
-        
+
         /// 是否开启高可用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isHaEnable: String?
-        
+
         /// KubeInjectEnable值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeInjectEnable: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceId = "NamespaceId"
             case namespaceCode = "NamespaceCode"
@@ -4272,71 +4272,71 @@ extension Tsf {
             case kubeInjectEnable = "KubeInjectEnable"
         }
     }
-    
+
     /// 提供给前端，控制按钮是否显示
     public struct OperationInfo: TCOutputModel {
         /// 初始化按钮的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `init`: OperationInfoDetail?
-        
+
         /// 添加实例按钮的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addInstance: OperationInfoDetail?
-        
+
         /// 销毁机器的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let destroy: OperationInfoDetail?
-        
+
         enum CodingKeys: String, CodingKey {
             case `init` = "Init"
             case addInstance = "AddInstance"
             case destroy = "Destroy"
         }
     }
-    
+
     /// 提供给前端控制按钮显示逻辑的字段
     public struct OperationInfoDetail: TCOutputModel {
         /// 不显示的原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disabledReason: String?
-        
+
         /// 该按钮是否可点击
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
-        
+
         /// 是否显示该按钮
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let supported: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case disabledReason = "DisabledReason"
             case enabled = "Enabled"
             case supported = "Supported"
         }
     }
-    
+
     /// TSF基本资源信息概览
     public struct OverviewBasicResourceUsage: TCOutputModel {
         /// 应用总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationCount: Int64?
-        
+
         /// 命名空间总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceCount: Int64?
-        
+
         /// 部署组个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupCount: Int64?
-        
+
         /// 程序包存储空间用量，单位字节
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageSpaceUsed: Int64?
-        
+
         /// 已注册实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let consulInstanceCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationCount = "ApplicationCount"
             case namespaceCount = "NamespaceCount"
@@ -4345,41 +4345,41 @@ extension Tsf {
             case consulInstanceCount = "ConsulInstanceCount"
         }
     }
-    
+
     /// tsf-privilege模块，分页数据集列表
     public struct PagedProgram: TCOutputModel {
         /// 总条数
         public let totalCount: Int64
-        
+
         /// 数据集列表
         public let content: [Program]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 路径重写
     public struct PathRewrite: TCOutputModel {
         /// 路径重写规则ID
         public let pathRewriteId: String
-        
+
         /// 网关部署组ID
         public let gatewayGroupId: String
-        
+
         /// 正则表达式
         public let regex: String
-        
+
         /// 替换的内容
         public let replacement: String
-        
+
         /// 是否屏蔽映射后路径，Y: 是 N: 否
         public let blocked: String
-        
+
         /// 规则顺序，越小优先级越高
         public let order: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case pathRewriteId = "PathRewriteId"
             case gatewayGroupId = "GatewayGroupId"
@@ -4389,32 +4389,32 @@ extension Tsf {
             case order = "Order"
         }
     }
-    
+
     /// 路径重写创建对象
     public struct PathRewriteCreateObject: TCInputModel {
         /// 网关部署组ID
         public let gatewayGroupId: String
-        
+
         /// 正则表达式
         public let regex: String
-        
+
         /// 替换的内容
         public let replacement: String
-        
+
         /// 是否屏蔽映射后路径，Y: 是 N: 否
         public let blocked: String
-        
+
         /// 规则顺序，越小优先级越高
         public let order: Int64
-        
-        public init (gatewayGroupId: String, regex: String, replacement: String, blocked: String, order: Int64) {
+
+        public init(gatewayGroupId: String, regex: String, replacement: String, blocked: String, order: Int64) {
             self.gatewayGroupId = gatewayGroupId
             self.regex = regex
             self.replacement = replacement
             self.blocked = blocked
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayGroupId = "GatewayGroupId"
             case regex = "Regex"
@@ -4423,75 +4423,75 @@ extension Tsf {
             case order = "Order"
         }
     }
-    
+
     /// 路径重写翻页对象
     public struct PathRewritePage: TCOutputModel {
         /// 总记录数
         public let totalCount: Int64
-        
+
         /// 路径重写规则列表
         public let content: [PathRewrite]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 描述程序包关联信息
     public struct PkgBind: TCOutputModel {
         /// 应用id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 部署组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case groupId = "GroupId"
         }
     }
-    
+
     /// 包信息
     public struct PkgInfo: TCOutputModel {
         /// 程序包ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgId: String?
-        
+
         /// 程序包名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgName: String?
-        
+
         /// 程序包类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgType: String?
-        
+
         /// 程序包版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgVersion: String?
-        
+
         /// 程序包描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgDesc: String?
-        
+
         /// 上传时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uploadTime: String?
-        
+
         /// 程序包MD5
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5: String?
-        
+
         /// 程序包状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgPubStatus: Int64?
-        
+
         /// 程序包关联关系
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgBindInfo: [PkgBind]?
-        
+
         enum CodingKeys: String, CodingKey {
             case pkgId = "PkgId"
             case pkgName = "PkgName"
@@ -4504,28 +4504,28 @@ extension Tsf {
             case pkgBindInfo = "PkgBindInfo"
         }
     }
-    
+
     /// 包列表
     public struct PkgList: TCOutputModel {
         /// 程序包总量
         public let totalCount: Int64
-        
+
         /// 程序包信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [PkgInfo]?
-        
+
         /// 程序包仓库id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repositoryId: String?
-        
+
         /// 程序包仓库类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repositoryType: String?
-        
+
         /// 程序包仓库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repositoryName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
@@ -4534,57 +4534,57 @@ extension Tsf {
             case repositoryName = "RepositoryName"
         }
     }
-    
+
     /// 服务端口
     public struct Ports: TCInputModel, TCOutputModel {
         /// 服务端口
         public let targetPort: UInt64
-        
+
         /// 端口协议
         public let `protocol`: String
-        
-        public init (targetPort: UInt64, protocol: String) {
+
+        public init(targetPort: UInt64, protocol: String) {
             self.targetPort = targetPort
             self.`protocol` = `protocol`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetPort = "TargetPort"
             case `protocol` = "Protocol"
         }
     }
-    
+
     /// tsf-privilege模块 Program数据集
     public struct Program: TCInputModel, TCOutputModel {
         /// 数据集ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programId: String?
-        
+
         /// 数据集名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programName: String?
-        
+
         /// 数据集描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programDesc: String?
-        
+
         /// 删除标识，true: 可以删除; false: 不可删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlag: Bool?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationTime: Int64?
-        
+
         /// 最后更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpdateTime: Int64?
-        
+
         /// 数据项列表，无值时返回空数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programItemList: [ProgramItem]?
-        
-        public init (programId: String? = nil, programName: String? = nil, programDesc: String? = nil, deleteFlag: Bool? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, programItemList: [ProgramItem]? = nil) {
+
+        public init(programId: String? = nil, programName: String? = nil, programDesc: String? = nil, deleteFlag: Bool? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, programItemList: [ProgramItem]? = nil) {
             self.programId = programId
             self.programName = programName
             self.programDesc = programDesc
@@ -4593,7 +4593,7 @@ extension Tsf {
             self.lastUpdateTime = lastUpdateTime
             self.programItemList = programItemList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case programId = "ProgramId"
             case programName = "ProgramName"
@@ -4604,42 +4604,42 @@ extension Tsf {
             case programItemList = "ProgramItemList"
         }
     }
-    
+
     /// tsf-privilege模块，数据项
     public struct ProgramItem: TCInputModel, TCOutputModel {
         /// 数据项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programItemId: String?
-        
+
         /// 资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: Resource?
-        
+
         /// 数据值列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueList: [String]?
-        
+
         /// 全选标识，true: 全选；false: 非全选
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAll: Bool?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationTime: Int64?
-        
+
         /// 最后更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpdateTime: Int64?
-        
+
         /// 删除标识，true: 可删除；false: 不可删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlag: Bool?
-        
+
         /// 数据集ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programId: String?
-        
-        public init (programItemId: String? = nil, resource: Resource? = nil, valueList: [String]? = nil, isAll: Bool? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, deleteFlag: Bool? = nil, programId: String? = nil) {
+
+        public init(programItemId: String? = nil, resource: Resource? = nil, valueList: [String]? = nil, isAll: Bool? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, deleteFlag: Bool? = nil, programId: String? = nil) {
             self.programItemId = programItemId
             self.resource = resource
             self.valueList = valueList
@@ -4649,7 +4649,7 @@ extension Tsf {
             self.deleteFlag = deleteFlag
             self.programId = programId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case programItemId = "ProgramItemId"
             case resource = "Resource"
@@ -4661,48 +4661,48 @@ extension Tsf {
             case programId = "ProgramId"
         }
     }
-    
+
     /// 属性字段
     public struct PropertyField: TCOutputModel {
         /// 属性名称
         public let name: String
-        
+
         /// 属性类型
         public let type: String
-        
+
         /// 属性描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
             case description = "Description"
         }
     }
-    
+
     /// 	端口对象
     public struct ProtocolPort: TCInputModel, TCOutputModel {
         /// TCP UDP
         public let `protocol`: String
-        
+
         /// 服务端口
         public let port: Int64
-        
+
         /// 容器端口
         public let targetPort: Int64
-        
+
         /// 主机端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodePort: Int64?
-        
-        public init (protocol: String, port: Int64, targetPort: Int64, nodePort: Int64? = nil) {
+
+        public init(protocol: String, port: Int64, targetPort: Int64, nodePort: Int64? = nil) {
             self.`protocol` = `protocol`
             self.port = port
             self.targetPort = targetPort
             self.nodePort = nodePort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case port = "Port"
@@ -4710,25 +4710,25 @@ extension Tsf {
             case nodePort = "NodePort"
         }
     }
-    
+
     /// 分位数据模型
     public struct QuantileEntity: TCOutputModel {
         /// 最大值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxValue: String?
-        
+
         /// 最小值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minValue: String?
-        
+
         /// 五分位值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fifthPositionValue: String?
-        
+
         /// 九分位值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ninthPositionValue: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case maxValue = "MaxValue"
             case minValue = "MinValue"
@@ -4736,44 +4736,44 @@ extension Tsf {
             case ninthPositionValue = "NinthPositionValue"
         }
     }
-    
+
     /// 仓库信息
     public struct RepositoryInfo: TCOutputModel {
         /// 仓库ID
         public let repositoryId: String
-        
+
         /// 仓库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repositoryName: String?
-        
+
         /// 仓库类型（默认仓库：default，私有仓库：private）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repositoryType: String?
-        
+
         /// 仓库描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repositoryDesc: String?
-        
+
         /// 仓库是否正在被使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUsed: Bool?
-        
+
         /// 仓库创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 仓库桶名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucketName: String?
-        
+
         /// 仓库桶所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucketRegion: String?
-        
+
         /// 仓库目录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let directory: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case repositoryId = "RepositoryId"
             case repositoryName = "RepositoryName"
@@ -4786,85 +4786,85 @@ extension Tsf {
             case directory = "Directory"
         }
     }
-    
+
     /// 仓库列表
     public struct RepositoryList: TCOutputModel {
         /// 仓库总量
         public let totalCount: Int64
-        
+
         /// 仓库信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [RepositoryInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// tsf-privilege 模块，资源
     public struct Resource: TCInputModel, TCOutputModel {
         /// 资源ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceId: String?
-        
+
         /// 资源编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceCode: String?
-        
+
         /// 资源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
-        
+
         /// 资源所属产品编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceCode: String?
-        
+
         /// 选取资源使用的Action
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceAction: String?
-        
+
         /// 资源数据查询的ID字段名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idField: String?
-        
+
         /// 资源数据查询的名称字段名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameField: String?
-        
+
         /// 资源数据查询的ID过滤字段名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selectIdsField: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationTime: Int64?
-        
+
         /// 最后更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpdateTime: Int64?
-        
+
         /// 删除标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteFlag: Bool?
-        
+
         /// 资源描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceDesc: String?
-        
+
         /// 是否可以选择全部
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let canSelectAll: Bool?
-        
+
         /// 资源数据查询的模糊查询字段名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let searchWordField: String?
-        
+
         /// 排序
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let index: Int64?
-        
-        public init (resourceId: String? = nil, resourceCode: String? = nil, resourceName: String? = nil, serviceCode: String? = nil, resourceAction: String? = nil, idField: String? = nil, nameField: String? = nil, selectIdsField: String? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, deleteFlag: Bool? = nil, resourceDesc: String? = nil, canSelectAll: Bool? = nil, searchWordField: String? = nil, index: Int64? = nil) {
+
+        public init(resourceId: String? = nil, resourceCode: String? = nil, resourceName: String? = nil, serviceCode: String? = nil, resourceAction: String? = nil, idField: String? = nil, nameField: String? = nil, selectIdsField: String? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, deleteFlag: Bool? = nil, resourceDesc: String? = nil, canSelectAll: Bool? = nil, searchWordField: String? = nil, index: Int64? = nil) {
             self.resourceId = resourceId
             self.resourceCode = resourceCode
             self.resourceName = resourceName
@@ -4881,7 +4881,7 @@ extension Tsf {
             self.searchWordField = searchWordField
             self.index = index
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resourceCode = "ResourceCode"
@@ -4900,52 +4900,52 @@ extension Tsf {
             case index = "Index"
         }
     }
-    
+
     /// k8s env 的 ResourceFieldRef
     public struct ResourceFieldRef: TCInputModel, TCOutputModel {
         /// k8s 的 Resource
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: String?
-        
-        public init (resource: String? = nil) {
+
+        public init(resource: String? = nil) {
             self.resource = resource
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resource = "Resource"
         }
     }
-    
+
     /// ScalableRule值
     public struct ScalableRule: TCOutputModel {
         /// RuleId值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?
-        
+
         /// Name值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// ExpandVmCountLimit值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expandVmCountLimit: Int64?
-        
+
         /// ShrinkVmCountLimit值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shrinkVmCountLimit: Int64?
-        
+
         /// GroupCount值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupCount: Int64?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desc: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case name = "Name"
@@ -4956,82 +4956,82 @@ extension Tsf {
             case description = "Description"
         }
     }
-    
+
     /// tsf 容器集群节点调度策略
     public struct SchedulingStrategy: TCInputModel, TCOutputModel {
         /// NONE：不使用调度策略；CROSS_AZ：跨可用区部署
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
-        public init (type: String) {
+
+        public init(type: String) {
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
         }
     }
-    
+
     /// 服务配置
     public struct ServiceConfig: TCInputModel, TCOutputModel {
         /// 服务名
         public let name: String
-        
+
         /// 端口信息列表
         public let ports: [Ports]
-        
+
         /// 健康检查配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheck: HealthCheckConfig?
-        
-        public init (name: String, ports: [Ports], healthCheck: HealthCheckConfig? = nil) {
+
+        public init(name: String, ports: [Ports], healthCheck: HealthCheckConfig? = nil) {
             self.name = name
             self.ports = ports
             self.healthCheck = healthCheck
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case ports = "Ports"
             case healthCheck = "HealthCheck"
         }
     }
-    
+
     /// 容器网络设置。
     public struct ServiceSetting: TCInputModel, TCOutputModel {
         /// 0:公网, 1:集群内访问, 2：NodePort, 3: VPC 内网访问
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessType: Int64?
-        
+
         /// 容器端口映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protocolPorts: [ProtocolPort]?
-        
+
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 是否创建 k8s service，默认为 false
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disableService: Bool?
-        
+
         /// service 是否为 headless 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headlessService: Bool?
-        
+
         /// 当为 true 且 DisableService 也为 true 时，会删除之前创建的 service，请小心使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowDeleteService: Bool?
-        
+
         /// 开启SessionAffinity，true为开启，false为不开启，默认为false
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openSessionAffinity: Bool?
-        
+
         /// SessionAffinity会话时间，默认10800
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionAffinityTimeoutSeconds: Int64?
-        
-        public init (accessType: Int64, protocolPorts: [ProtocolPort], subnetId: String, disableService: Bool? = nil, headlessService: Bool? = nil, allowDeleteService: Bool? = nil, openSessionAffinity: Bool? = nil, sessionAffinityTimeoutSeconds: Int64? = nil) {
+
+        public init(accessType: Int64, protocolPorts: [ProtocolPort], subnetId: String, disableService: Bool? = nil, headlessService: Bool? = nil, allowDeleteService: Bool? = nil, openSessionAffinity: Bool? = nil, sessionAffinityTimeoutSeconds: Int64? = nil) {
             self.accessType = accessType
             self.protocolPorts = protocolPorts
             self.subnetId = subnetId
@@ -5041,7 +5041,7 @@ extension Tsf {
             self.openSessionAffinity = openSessionAffinity
             self.sessionAffinityTimeoutSeconds = sessionAffinityTimeoutSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessType = "AccessType"
             case protocolPorts = "ProtocolPorts"
@@ -5053,123 +5053,123 @@ extension Tsf {
             case sessionAffinityTimeoutSeconds = "SessionAffinityTimeoutSeconds"
         }
     }
-    
+
     /// 服务统计结果
     public struct ServiceStatisticsResult: TCOutputModel {
         /// 请求模版路径:type为接口时返回，服务时不返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 请求方法:type为接口时返回，服务时不返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let method: String?
-        
+
         /// 微服务Id
         public let microserviceId: String
-        
+
         /// 微服务名称
         public let microserviceName: String
-        
+
         /// 请求数
         public let requestCount: UInt64
-        
+
         /// 请求错误率，不带百分号
         public let errorRate: Float
-        
+
         /// 平均响应耗时ms
         public let avgTimeConsuming: Float
-        
+
         /// 响应耗时曲线
         public let metricDataCurves: [MetricDataCurve]
-        
+
         /// 实例id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 实例name
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
-        
+
         /// 部署组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组name
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 部署组类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 部署组是否存在
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupExist: Int64?
-        
+
         /// 实例是否存在，仅限cvm
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceExist: Int64?
-        
+
         /// 应用id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 微服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceType: String?
-        
+
         /// cpu使用率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuPercent: Int64?
-        
+
         /// 已用堆大小,单位KB
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let heapUsed: Int64?
-        
+
         /// 数据库
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbName: String?
-        
+
         /// Script值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let script: String?
-        
+
         /// 数据库类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbType: String?
-        
+
         /// Apdex值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apdex: Float?
-        
+
         /// Qps值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qps: Float?
-        
+
         /// 实例在线数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceOnlineCount: Int64?
-        
+
         /// 实例总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceTotalCount: Int64?
-        
+
         /// normal/error
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// normal/warn/error
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorRateLevel: String?
-        
+
         /// normal/warn/error
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let avgTimeConsumingLevel: String?
-        
+
         /// normal/warn/error
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apdexLevel: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case method = "Method"
@@ -5203,84 +5203,84 @@ extension Tsf {
             case apdexLevel = "ApdexLevel"
         }
     }
-    
+
     /// 服务统计结果集
     public struct ServiceStatisticsResults: TCOutputModel {
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [ServiceStatisticsResult]?
-        
+
         /// 条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
             case totalCount = "TotalCount"
         }
     }
-    
+
     /// 分片参数
     public struct ShardArgument: TCOutputModel {
         /// 分片参数 KEY，整形, 范围 [1,1000]
         public let shardKey: UInt64
-        
+
         /// 分片参数 VALUE
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shardValue: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case shardKey = "ShardKey"
             case shardValue = "ShardValue"
         }
     }
-    
+
     /// 简单应用
     public struct SimpleApplication: TCOutputModel {
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 应用微服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceType: String?
-        
+
         /// ApplicationDesc
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationDesc: String?
-        
+
         /// ProgLang
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progLang: String?
-        
+
         /// ApplicationResourceType
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationResourceType: String?
-        
+
         /// CreateTime
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// UpdateTime
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// ApigatewayServiceId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apigatewayServiceId: String?
-        
+
         /// ApplicationRuntimeType
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationRuntimeType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationName = "ApplicationName"
@@ -5295,61 +5295,61 @@ extension Tsf {
             case applicationRuntimeType = "ApplicationRuntimeType"
         }
     }
-    
+
     /// 部署组
     public struct SimpleGroup: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 启动参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startupParameters: String?
-        
+
         /// 部署组资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupResourceType: String?
-        
+
         /// 应用微服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appMicroServiceType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -5366,41 +5366,41 @@ extension Tsf {
             case appMicroServiceType = "AppMicroServiceType"
         }
     }
-    
+
     /// 日志投递kafka配置描述的缩简版
     public struct SimpleKafkaDeliveryConfig: TCOutputModel {
         /// 配置项id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
-        
+
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
         }
     }
-    
+
     /// 标准输出日志
     public struct StdoutLogV2: TCOutputModel {
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 日志内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         /// 日志时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestamp: UInt64?
-        
+
         /// 实例IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceIp: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case content = "Content"
@@ -5408,55 +5408,55 @@ extension Tsf {
             case instanceIp = "InstanceIp"
         }
     }
-    
+
     /// 工作流图中的边
     public struct TaskFlowEdge: TCOutputModel {
         /// 节点 ID
         public let nodeId: String
-        
+
         /// 子节点 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let childNodeId: String?
-        
+
         /// 是否核心任务,Y/N
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coreNode: String?
-        
+
         /// 边类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let edgeType: String?
-        
+
         /// 任务节点类型
         public let nodeType: String
-        
+
         /// X轴坐标位置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let positionX: String?
-        
+
         /// Y轴坐标位置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let positionY: String?
-        
+
         /// 图 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let graphId: String?
-        
+
         /// 工作流 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: String?
-        
+
         /// 节点名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
-        
+
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 任务历史ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskLogId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case childNodeId = "ChildNodeId"
@@ -5472,133 +5472,133 @@ extension Tsf {
             case taskLogId = "TaskLogId"
         }
     }
-    
+
     /// 工作流最近批次的状态
     public struct TaskFlowLastBatchState: TCOutputModel {
         /// 批次ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowBatchId: String?
-        
+
         /// 批次历史ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowBatchLogId: String?
-        
+
         /// 状态,WAITING/SUCCESS/FAILED/RUNNING/TERMINATING
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let state: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case flowBatchId = "FlowBatchId"
             case flowBatchLogId = "FlowBatchLogId"
             case state = "State"
         }
     }
-    
+
     /// 任务id
     public struct TaskId: TCOutputModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// 任务最近一次执行状态
     public struct TaskLastExecuteStatus: TCOutputModel {
         /// 批次ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchId: String?
-        
+
         /// 运行状态，RUNNING/SUCCESS/FAIL/HALF/TERMINATED
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let state: String?
-        
+
         /// 批次历史ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchLogId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case state = "State"
             case batchLogId = "BatchLogId"
         }
     }
-    
+
     /// 任务定义
     public struct TaskRecord: TCOutputModel {
         /// 任务名称
         public let taskName: String
-        
+
         /// 任务类型
         public let taskType: String
-        
+
         /// 执行类型
         public let executeType: String
-        
+
         /// 任务内容，长度限制65535字节
         public let taskContent: String?
-        
+
         /// 分组ID
         public let groupId: String?
-        
+
         /// 超时时间
         public let timeOut: Int64
-        
+
         /// 重试次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retryCount: Int64?
-        
+
         /// 重试间隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retryInterval: Int64?
-        
+
         /// 触发规则
         public let taskRule: TaskRule
-        
+
         /// 是否启用任务,ENABLED/DISABLED
         public let taskState: String
-        
+
         /// 任务ID
         public let taskId: String
-        
+
         /// 判断任务成功的操作符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successOperator: String?
-        
+
         /// 判断任务成功的阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successRatio: Int64?
-        
+
         /// 分片数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shardCount: Int64?
-        
+
         /// 高级设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advanceSettings: AdvanceSettings?
-        
+
         /// 分片参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shardArguments: [ShardArgument]?
-        
+
         /// 所属工作流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let belongFlowIds: [String]?
-        
+
         /// 任务历史ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskLogId: String?
-        
+
         /// 触发类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerType: String?
-        
+
         /// 任务参数，长度限制10000个字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskArgument: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case taskType = "TaskType"
@@ -5622,77 +5622,77 @@ extension Tsf {
             case taskArgument = "TaskArgument"
         }
     }
-    
+
     /// 翻页查询的任务记录返回
     public struct TaskRecordPage: TCOutputModel {
         /// 总数量
         public let totalCount: Int64
-        
+
         /// 任务记录列表
         public let content: [TaskRecord]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 任务规则
     public struct TaskRule: TCInputModel, TCOutputModel {
         /// 触发规则类型, Cron/Repeat
         public let ruleType: String
-        
+
         /// Cron类型规则，cron表达式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expression: String?
-        
+
         /// 时间间隔， 单位毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repeatInterval: UInt64?
-        
-        public init (ruleType: String, expression: String? = nil, repeatInterval: UInt64? = nil) {
+
+        public init(ruleType: String, expression: String? = nil, repeatInterval: UInt64? = nil) {
             self.ruleType = ruleType
             self.expression = expression
             self.repeatInterval = repeatInterval
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case expression = "Expression"
             case repeatInterval = "RepeatInterval"
         }
     }
-    
+
     /// tcr仓库信息
     public struct TcrRepoInfo: TCInputModel, TCOutputModel {
         /// 地域（填数字）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 实例id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryId: String?
-        
+
         /// 实例名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryName: String?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 仓库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoName: String?
-        
-        public init (region: String? = nil, registryId: String? = nil, registryName: String? = nil, namespace: String? = nil, repoName: String? = nil) {
+
+        public init(region: String? = nil, registryId: String? = nil, registryName: String? = nil, namespace: String? = nil, repoName: String? = nil) {
             self.region = region
             self.registryId = registryId
             self.registryName = registryName
             self.namespace = namespace
             self.repoName = repoName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case registryId = "RegistryId"
@@ -5701,119 +5701,119 @@ extension Tsf {
             case repoName = "RepoName"
         }
     }
-    
+
     /// jvm监控数据线程数据封装
     public struct ThreadPicture: TCOutputModel {
         /// 总线程数
         public let threadCount: [CurvePoint]
-        
+
         /// 活跃线程数
         public let threadActive: [CurvePoint]
-        
+
         /// 守护线程数
         public let deamonThreadCount: [CurvePoint]
-        
+
         enum CodingKeys: String, CodingKey {
             case threadCount = "ThreadCount"
             case threadActive = "ThreadActive"
             case deamonThreadCount = "DeamonThreadCount"
         }
     }
-    
+
     /// TsfApiListResponse
     public struct TsfApiListResponse: TCOutputModel {
         /// 数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// API 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [MsApiArray]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// ApiDetailInfo 翻页对象
     public struct TsfPageApiDetailInfo: TCOutputModel {
         /// 总记录数
         public let totalCount: Int64
-        
+
         /// API 信息列表
         public let content: [ApiDetailInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// ApiGroupInfo翻页结构体
     public struct TsfPageApiGroupInfo: TCOutputModel {
         /// 总记录数
         public let totalCount: Int64
-        
+
         /// API分组信息
         public let content: [ApiGroupInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 应用分页信息
     public struct TsfPageApplication: TCOutputModel {
         /// 应用总数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 应用信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [ApplicationForPage]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 业务日志配置项列表
     public struct TsfPageBusinessLogConfig: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 业务日志配置项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [BusinessLogConfig]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 业务日志列表
     public struct TsfPageBusinessLogV2: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 业务日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [BusinessLogV2]?
-        
+
         /// 游标ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scrollId: String?
-        
+
         /// 查询状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
@@ -5821,257 +5821,257 @@ extension Tsf {
             case status = "Status"
         }
     }
-    
+
     /// Tsf分页集群对象
     public struct TsfPageCluster: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 集群列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [Cluster]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// TsfPage<Config>
     public struct TsfPageConfig: TCOutputModel {
         /// TsfPageConfig
         public let totalCount: Int64
-        
+
         /// 配置项列表
         public let content: [Config]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// TSF配置项发布信息分页对象
     public struct TsfPageConfigRelease: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 配置项发布信息数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [ConfigRelease]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// TSF配置项发布日志分页对象
     public struct TsfPageConfigReleaseLog: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 配置项发布日志数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [ConfigReleaseLog]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 分页的 ContainerEvent
     public struct TsfPageContainerEvent: TCOutputModel {
         /// 返回个数
         public let totalCount: Int64
-        
+
         /// events 数组
         public let content: [ContainerEvent]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 维度分页
     public struct TsfPageDimension: TCOutputModel {
         /// 总数
         public let totalCount: Int64
-        
+
         /// 维度
         public let content: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 文件配置项列表
     public struct TsfPageFileConfig: TCOutputModel {
         /// 总数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 文件配置数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [FileConfig]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// GatewayDeployGroup 翻页对象
     public struct TsfPageGatewayDeployGroup: TCOutputModel {
         /// 记录总数
         public let totalCount: Int64
-        
+
         /// 记录实体列表
         public let content: [GatewayDeployGroup]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// GatewayPlugin 翻页对象
     public struct TsfPageGatewayPlugin: TCOutputModel {
         /// 记录总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 记录实体列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [GatewayPlugin]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// TSF机器实例分页对象
     public struct TsfPageInstance: TCOutputModel {
         /// 机器实例总数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 机器实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [Instance]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 微服务列表信息
     public struct TsfPageMicroservice: TCOutputModel {
         /// 微服务总数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 微服务列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [Microservice]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 微服务实例的分页内容
     public struct TsfPageMsInstance: TCOutputModel {
         /// 微服务实例总数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 微服务实例列表内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [MsInstance]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// Tsf命名空间分页对象
     public struct TsfPageNamespace: TCOutputModel {
         /// 命名空间总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 命名空间列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [Namespace]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// TSF分页简单应用对象
     public struct TsfPageSimpleApplication: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 简单应用列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [SimpleApplication]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// TSF简单部署组分页列表
     public struct TsfPageSimpleGroup: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 简单部署组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [SimpleGroup]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 标准输出日志列表
     public struct TsfPageStdoutLogV2: TCOutputModel {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 标准输出日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [StdoutLogV2]?
-        
+
         /// 游标ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scrollId: String?
-        
+
         /// 查询状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
@@ -6079,102 +6079,102 @@ extension Tsf {
             case status = "Status"
         }
     }
-    
+
     /// 单元化命名空间翻页对象
     public struct TsfPageUnitNamespace: TCOutputModel {
         /// 记录总数
         public let totalCount: Int64
-        
+
         /// 记录实体列表
         public let content: [UnitNamespace]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 单元化规则翻页对象
     public struct TsfPageUnitRule: TCOutputModel {
         /// 记录总数
         public let totalCount: Int64
-        
+
         /// 记录实体列表
         public let content: [UnitRule]
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 列表中部署组分页信息
     public struct TsfPageVmGroup: TCOutputModel {
         /// 虚拟机部署组总数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 虚拟机部署组列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [VmGroupSimple]?
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
         }
     }
-    
+
     /// 微服务网关单元化命名空间
     public struct UnitNamespace: TCInputModel, TCOutputModel {
         /// 命名空间ID
         public let namespaceId: String
-        
+
         /// 命名空间Name
         public let namespaceName: String
-        
+
         /// 单元化命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
-        public init (namespaceId: String, namespaceName: String, id: String? = nil) {
+
+        public init(namespaceId: String, namespaceName: String, id: String? = nil) {
             self.namespaceId = namespaceId
             self.namespaceName = namespaceName
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceId = "NamespaceId"
             case namespaceName = "NamespaceName"
             case id = "Id"
         }
     }
-    
+
     /// 微服务网关单元化规则
     public struct UnitRule: TCInputModel, TCOutputModel {
         /// 规则名称
         public let name: String
-        
+
         /// 规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 网关实体ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayInstanceId: String?
-        
+
         /// 规则描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 使用状态：enabled/disabled
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 规则项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleItemList: [UnitRuleItem]?
-        
-        public init (name: String, id: String? = nil, gatewayInstanceId: String? = nil, description: String? = nil, status: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
+
+        public init(name: String, id: String? = nil, gatewayInstanceId: String? = nil, description: String? = nil, status: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
             self.name = name
             self.id = id
             self.gatewayInstanceId = gatewayInstanceId
@@ -6182,7 +6182,7 @@ extension Tsf {
             self.status = status
             self.unitRuleItemList = unitRuleItemList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case id = "Id"
@@ -6192,42 +6192,42 @@ extension Tsf {
             case unitRuleItemList = "UnitRuleItemList"
         }
     }
-    
+
     /// 微服务网关单元化规则项
     public struct UnitRuleItem: TCInputModel, TCOutputModel {
         /// 逻辑关系：AND/OR
         public let relationship: String
-        
+
         /// 目的地命名空间ID
         public let destNamespaceId: String
-        
+
         /// 目的地命名空间名称
         public let destNamespaceName: String
-        
+
         /// 规则项名称
         public let name: String
-        
+
         /// 规则项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 单元化规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleId: String?
-        
+
         /// 规则顺序，越小优先级越高：默认为0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let priority: Int64?
-        
+
         /// 规则描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 规则标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleTagList: [UnitRuleTag]?
-        
-        public init (relationship: String, destNamespaceId: String, destNamespaceName: String, name: String, id: String? = nil, unitRuleId: String? = nil, priority: Int64? = nil, description: String? = nil, unitRuleTagList: [UnitRuleTag]? = nil) {
+
+        public init(relationship: String, destNamespaceId: String, destNamespaceName: String, name: String, id: String? = nil, unitRuleId: String? = nil, priority: Int64? = nil, description: String? = nil, unitRuleTagList: [UnitRuleTag]? = nil) {
             self.relationship = relationship
             self.destNamespaceId = destNamespaceId
             self.destNamespaceName = destNamespaceName
@@ -6238,7 +6238,7 @@ extension Tsf {
             self.description = description
             self.unitRuleTagList = unitRuleTagList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case relationship = "Relationship"
             case destNamespaceId = "DestNamespaceId"
@@ -6251,30 +6251,30 @@ extension Tsf {
             case unitRuleTagList = "UnitRuleTagList"
         }
     }
-    
+
     /// 微服务网关单元化规则标签
     public struct UnitRuleTag: TCInputModel, TCOutputModel {
         /// 标签类型 : U(用户标签)
         public let tagType: String
-        
+
         /// 标签名
         public let tagField: String
-        
+
         /// 操作符:IN/NOT_IN/EQUAL/NOT_EQUAL/REGEX
         public let tagOperator: String
-        
+
         /// 标签值
         public let tagValue: String
-        
+
         /// 单元化规则项ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleItemId: String?
-        
+
         /// 规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
-        public init (tagType: String, tagField: String, tagOperator: String, tagValue: String, unitRuleItemId: String? = nil, id: String? = nil) {
+
+        public init(tagType: String, tagField: String, tagOperator: String, tagValue: String, unitRuleItemId: String? = nil, id: String? = nil) {
             self.tagType = tagType
             self.tagField = tagField
             self.tagOperator = tagOperator
@@ -6282,7 +6282,7 @@ extension Tsf {
             self.unitRuleItemId = unitRuleItemId
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagType = "TagType"
             case tagField = "TagField"
@@ -6292,182 +6292,182 @@ extension Tsf {
             case id = "Id"
         }
     }
-    
+
     /// k8s env 的 ValueFrom
     public struct ValueFrom: TCInputModel, TCOutputModel {
         /// k8s env 的 FieldRef
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldRef: FieldRef?
-        
+
         /// k8s env 的 ResourceFieldRef
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceFieldRef: ResourceFieldRef?
-        
-        public init (fieldRef: FieldRef? = nil, resourceFieldRef: ResourceFieldRef? = nil) {
+
+        public init(fieldRef: FieldRef? = nil, resourceFieldRef: ResourceFieldRef? = nil) {
             self.fieldRef = fieldRef
             self.resourceFieldRef = resourceFieldRef
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fieldRef = "FieldRef"
             case resourceFieldRef = "ResourceFieldRef"
         }
     }
-    
+
     /// 虚拟机部署组信息
     public struct VmGroup: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 部署组状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupStatus: String?
-        
+
         /// 程序包ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageId: String?
-        
+
         /// 程序包名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageName: String?
-        
+
         /// 程序包版本号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageVersion: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 部署组机器数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceCount: Int64?
-        
+
         /// 部署组运行中机器数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runInstanceCount: Int64?
-        
+
         /// 部署组启动参数信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startupParameters: String?
-        
+
         /// 部署组创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 部署组更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 部署组停止机器数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offInstanceCount: Int64?
-        
+
         /// 部署组描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupDesc: String?
-        
+
         /// 微服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceType: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 部署组资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupResourceType: String?
-        
+
         /// 部署组更新时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: Int64?
-        
+
         /// 部署应用描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployDesc: String?
-        
+
         /// 滚动发布的更新方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateType: UInt64?
-        
+
         /// 发布是否启用beta批次
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployBetaEnable: Bool?
-        
+
         /// 滚动发布的批次比例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployBatch: [Float]?
-        
+
         /// 滚动发布的批次执行方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployExeMode: String?
-        
+
         /// 滚动发布的每个批次的等待时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployWaitTime: UInt64?
-        
+
         /// 是否开启了健康检查
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableHealthCheck: Bool?
-        
+
         /// 健康检查配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheckSettings: HealthCheckSettings?
-        
+
         /// 程序包类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageType: String?
-        
+
         /// 启动脚本 base64编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startScript: String?
-        
+
         /// 停止脚本 base64编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stopScript: String?
-        
+
         /// 部署组备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
-        
+
         /// javaagent信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentProfileList: [AgentProfile]?
-        
+
         /// 预热属性配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warmupSetting: WarmupSetting?
-        
+
         /// Envoy网关配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayConfig: GatewayConfig?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -6509,45 +6509,45 @@ extension Tsf {
             case gatewayConfig = "GatewayConfig"
         }
     }
-    
+
     /// 虚拟机部署组其他字段
     public struct VmGroupOther: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 程序包ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageId: String?
-        
+
         /// 程序包名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageName: String?
-        
+
         /// 程序包版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageVersion: String?
-        
+
         /// 部署组实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceCount: Int64?
-        
+
         /// 部署组运行中实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runInstanceCount: Int64?
-        
+
         /// 部署组中停止实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offInstanceCount: Int64?
-        
+
         /// 部署组状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupStatus: String?
-        
+
         /// 服务配置信息是否匹配
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isNotEqualServiceConfig: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case packageId = "PackageId"
@@ -6560,81 +6560,81 @@ extension Tsf {
             case isNotEqualServiceConfig = "IsNotEqualServiceConfig"
         }
     }
-    
+
     /// 虚拟机部署组列表简要字段
     public struct VmGroupSimple: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 部署组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationType: String?
-        
+
         /// 部署组描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupDesc: String?
-        
+
         /// 部署组更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 部署组启动参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startupParameters: String?
-        
+
         /// 命名空间ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceId: String?
-        
+
         /// 部署组创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 命名空间名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespaceName: String?
-        
+
         /// 应用微服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microserviceType: String?
-        
+
         /// 部署组资源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupResourceType: String?
-        
+
         /// 部署组更新时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: Int64?
-        
+
         /// 部署应用描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployDesc: String?
-        
+
         /// 部署组备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -6656,52 +6656,52 @@ extension Tsf {
             case alias = "Alias"
         }
     }
-    
+
     /// 容器卷挂载信息
     public struct VolumeInfo: TCInputModel {
         /// 数据卷类型
         public let volumeType: String
-        
+
         /// 数据卷名称
         public let volumeName: String
-        
+
         /// 数据卷配置
         public let volumeConfig: String?
-        
-        public init (volumeType: String, volumeName: String, volumeConfig: String? = nil) {
+
+        public init(volumeType: String, volumeName: String, volumeConfig: String? = nil) {
             self.volumeType = volumeType
             self.volumeName = volumeName
             self.volumeConfig = volumeConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case volumeType = "VolumeType"
             case volumeName = "VolumeName"
             case volumeConfig = "VolumeConfig"
         }
     }
-    
+
     /// 容器卷挂载点信息
     public struct VolumeMountInfo: TCInputModel {
         /// 挂载数据卷名称
         public let volumeMountName: String
-        
+
         /// 挂载路径
         public let volumeMountPath: String
-        
+
         /// 挂载子路径
         public let volumeMountSubPath: String?
-        
+
         /// 读写，1：读 2：读写
         public let readOrWrite: String?
-        
-        public init (volumeMountName: String, volumeMountPath: String, volumeMountSubPath: String? = nil, readOrWrite: String? = nil) {
+
+        public init(volumeMountName: String, volumeMountPath: String, volumeMountSubPath: String? = nil, readOrWrite: String? = nil) {
             self.volumeMountName = volumeMountName
             self.volumeMountPath = volumeMountPath
             self.volumeMountSubPath = volumeMountSubPath
             self.readOrWrite = readOrWrite
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case volumeMountName = "VolumeMountName"
             case volumeMountPath = "VolumeMountPath"
@@ -6709,28 +6709,28 @@ extension Tsf {
             case readOrWrite = "ReadOrWrite"
         }
     }
-    
+
     /// 预热配置
     public struct WarmupSetting: TCInputModel, TCOutputModel {
         /// 是否开启预热
         public let enabled: Bool?
-        
+
         /// 预热时间
         public let warmupTime: UInt64?
-        
+
         /// 预热曲率，取值 1~5
         public let curvature: UInt64?
-        
+
         /// 是否开启预热保护，在开启保护的情况下，超过 50% 的节点处于预热中，则会中止预热
         public let enabledProtection: Bool?
-        
-        public init (enabled: Bool? = nil, warmupTime: UInt64? = nil, curvature: UInt64? = nil, enabledProtection: Bool? = nil) {
+
+        public init(enabled: Bool? = nil, warmupTime: UInt64? = nil, curvature: UInt64? = nil, enabledProtection: Bool? = nil) {
             self.enabled = enabled
             self.warmupTime = warmupTime
             self.curvature = curvature
             self.enabledProtection = enabledProtection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
             case warmupTime = "WarmupTime"

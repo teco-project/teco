@@ -17,24 +17,24 @@
 extension Mmps {
     /// DescribeResourceUsageInfo请求参数结构体
     public struct DescribeResourceUsageInfoRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeResourceUsageInfo返回参数结构体
     public struct DescribeResourceUsageInfoResponse: TCResponseModel {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let ret: Int64
-        
+
         /// 安全资源数据列表
         public let data: [ResourceUsageInfoData]
-        
+
         /// 安全资源数量
         public let total: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ret = "Ret"
             case data = "Data"
@@ -42,15 +42,15 @@ extension Mmps {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全资源使用情况
     ///
     /// 查询翼扬安全资源使用情况
     @inlinable
-    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageInfoResponse > {
+    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageInfoResponse> {
         self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全资源使用情况
     ///
     /// 查询翼扬安全资源使用情况
@@ -58,15 +58,15 @@ extension Mmps {
     public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageInfoResponse {
         try await self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全资源使用情况
     ///
     /// 查询翼扬安全资源使用情况
     @inlinable
-    public func describeResourceUsageInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageInfoResponse > {
+    public func describeResourceUsageInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageInfoResponse> {
         self.describeResourceUsageInfo(DescribeResourceUsageInfoRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全资源使用情况
     ///
     /// 查询翼扬安全资源使用情况

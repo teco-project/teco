@@ -19,49 +19,49 @@ extension Tcss {
     public struct CheckRepeatAssetImageRegistryRequest: TCRequestModel {
         /// 仓库名
         public let name: String
-        
-        public init (name: String) {
+
+        public init(name: String) {
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
         }
     }
-    
+
     /// CheckRepeatAssetImageRegistry返回参数结构体
     public struct CheckRepeatAssetImageRegistryResponse: TCResponseModel {
         /// 是否重复
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isRepeat: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case isRepeat = "IsRepeat"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 检查单个镜像仓库名是否重复
     @inlinable
-    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRepeatAssetImageRegistryResponse > {
+    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRepeatAssetImageRegistryResponse> {
         self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 检查单个镜像仓库名是否重复
     @inlinable
     public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
         try await self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 检查单个镜像仓库名是否重复
     @inlinable
-    public func checkRepeatAssetImageRegistry(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRepeatAssetImageRegistryResponse > {
+    public func checkRepeatAssetImageRegistry(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRepeatAssetImageRegistryResponse> {
         self.checkRepeatAssetImageRegistry(CheckRepeatAssetImageRegistryRequest(name: name), logger: logger, on: eventLoop)
     }
-    
+
     /// 检查单个镜像仓库名是否重复
     @inlinable
     public func checkRepeatAssetImageRegistry(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {

@@ -19,34 +19,34 @@ extension Kms {
     public struct DisableKeyRequest: TCRequestModel {
         /// CMK唯一标识符
         public let keyId: String
-        
-        public init (keyId: String) {
+
+        public init(keyId: String) {
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
         }
     }
-    
+
     /// DisableKey返回参数结构体
     public struct DisableKeyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 禁用主密钥
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
     @inlinable
-    public func disableKey(_ input: DisableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeyResponse > {
+    public func disableKey(_ input: DisableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyResponse> {
         self.client.execute(action: "DisableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用主密钥
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
@@ -54,15 +54,15 @@ extension Kms {
     public func disableKey(_ input: DisableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyResponse {
         try await self.client.execute(action: "DisableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 禁用主密钥
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
     @inlinable
-    public func disableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeyResponse > {
+    public func disableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyResponse> {
         self.disableKey(DisableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 禁用主密钥
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。

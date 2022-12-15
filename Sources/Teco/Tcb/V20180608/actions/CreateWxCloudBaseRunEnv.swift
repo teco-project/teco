@@ -19,28 +19,28 @@ extension Tcb {
     public struct CreateWxCloudBaseRunEnvRequest: TCRequestModel {
         /// wx应用Id
         public let wxAppId: String
-        
+
         /// 环境别名，要以a-z开头，不能包含 a-z,0-9,- 以外的字符
         public let alias: String?
-        
+
         /// 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
         public let freeQuota: String?
-        
+
         /// 订单标记。建议使用方统一转大小写之后再判断。
         /// QuickStart：快速启动来源
         /// Activity：活动来源
         public let flag: String?
-        
+
         /// 私有网络Id
         public let vpcId: String?
-        
+
         /// 子网列表
         public let subNetIds: [String]?
-        
+
         /// 是否打开云调用
         public let isOpenCloudInvoke: Bool?
-        
-        public init (wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil) {
+
+        public init(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil) {
             self.wxAppId = wxAppId
             self.alias = alias
             self.freeQuota = freeQuota
@@ -49,7 +49,7 @@ extension Tcb {
             self.subNetIds = subNetIds
             self.isOpenCloudInvoke = isOpenCloudInvoke
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case wxAppId = "WxAppId"
             case alias = "Alias"
@@ -60,43 +60,43 @@ extension Tcb {
             case isOpenCloudInvoke = "IsOpenCloudInvoke"
         }
     }
-    
+
     /// CreateWxCloudBaseRunEnv返回参数结构体
     public struct CreateWxCloudBaseRunEnvResponse: TCResponseModel {
         /// 环境Id
         public let envId: String
-        
+
         /// 后付费订单号
         public let tranId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case tranId = "TranId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建微信云托管
     @inlinable
-    public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWxCloudBaseRunEnvResponse > {
+    public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunEnvResponse> {
         self.client.execute(action: "CreateWxCloudBaseRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建微信云托管
     @inlinable
     public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {
         try await self.client.execute(action: "CreateWxCloudBaseRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建微信云托管
     @inlinable
-    public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWxCloudBaseRunEnvResponse > {
+    public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunEnvResponse> {
         self.createWxCloudBaseRunEnv(CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建微信云托管
     @inlinable
     public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {

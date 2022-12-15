@@ -19,53 +19,53 @@ extension Tsf {
     public struct ModifyContainerReplicasRequest: TCRequestModel {
         /// 部署组ID，部署组唯一标识
         public let groupId: String
-        
+
         /// 实例数量
         public let instanceNum: Int64
-        
-        public init (groupId: String, instanceNum: Int64) {
+
+        public init(groupId: String, instanceNum: Int64) {
             self.groupId = groupId
             self.instanceNum = instanceNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case instanceNum = "InstanceNum"
         }
     }
-    
+
     /// ModifyContainerReplicas返回参数结构体
     public struct ModifyContainerReplicasResponse: TCResponseModel {
         /// 结果true：成功；false：失败；
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改容器部署组实例数
     @inlinable
-    public func modifyContainerReplicas(_ input: ModifyContainerReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerReplicasResponse > {
+    public func modifyContainerReplicas(_ input: ModifyContainerReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerReplicasResponse> {
         self.client.execute(action: "ModifyContainerReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器部署组实例数
     @inlinable
     public func modifyContainerReplicas(_ input: ModifyContainerReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerReplicasResponse {
         try await self.client.execute(action: "ModifyContainerReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改容器部署组实例数
     @inlinable
-    public func modifyContainerReplicas(groupId: String, instanceNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerReplicasResponse > {
+    public func modifyContainerReplicas(groupId: String, instanceNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerReplicasResponse> {
         self.modifyContainerReplicas(ModifyContainerReplicasRequest(groupId: groupId, instanceNum: instanceNum), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改容器部署组实例数
     @inlinable
     public func modifyContainerReplicas(groupId: String, instanceNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerReplicasResponse {

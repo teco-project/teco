@@ -23,68 +23,68 @@ extension TCFaceidError {
             case ruleIdNotExist = "InvalidParameterValue.RuleIdNotExist"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// BizToken过期。
         public static var bizTokenExpired: InvalidParameterValue {
             InvalidParameterValue(.bizTokenExpired)
         }
-        
+
         /// BizToken不合法。
         ///
         /// 输入正确的BizToken。
         public static var bizTokenIllegal: InvalidParameterValue {
             InvalidParameterValue(.bizTokenIllegal)
         }
-        
+
         /// 该ruleid已被您停用，请确认后重试。
         public static var ruleIdDisabled: InvalidParameterValue {
             InvalidParameterValue(.ruleIdDisabled)
         }
-        
+
         /// RuleId不存在，请到人脸核身控制台申请。
         public static var ruleIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.ruleIdNotExist)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asFaceidError() -> TCFaceidError {
             let code: TCFaceidError.Code
             switch self.error {
-            case .bizTokenExpired: 
+            case .bizTokenExpired:
                 code = .invalidParameterValue_BizTokenExpired
-            case .bizTokenIllegal: 
+            case .bizTokenIllegal:
                 code = .invalidParameterValue_BizTokenIllegal
-            case .ruleIdDisabled: 
+            case .ruleIdDisabled:
                 code = .invalidParameterValue_RuleIdDisabled
-            case .ruleIdNotExist: 
+            case .ruleIdNotExist:
                 code = .invalidParameterValue_RuleIdNotExist
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCFaceidError(code, context: self.context)

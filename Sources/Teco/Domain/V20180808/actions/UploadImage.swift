@@ -19,38 +19,38 @@ extension Domain {
     public struct UploadImageRequest: TCRequestModel {
         /// 资质照片，照片的base64编码。
         public let imageFile: String
-        
-        public init (imageFile: String) {
+
+        public init(imageFile: String) {
             self.imageFile = imageFile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageFile = "ImageFile"
         }
     }
-    
+
     /// UploadImage返回参数结构体
     public struct UploadImageResponse: TCResponseModel {
         /// 资质照片地址。
         public let accessUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accessUrl = "AccessUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 证件图片上传
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
-    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadImageResponse > {
+    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadImageResponse> {
         self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 证件图片上传
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
@@ -58,15 +58,15 @@ extension Domain {
     public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
         try await self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 证件图片上传
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
-    public func uploadImage(imageFile: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadImageResponse > {
+    public func uploadImage(imageFile: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadImageResponse> {
         self.uploadImage(UploadImageRequest(imageFile: imageFile), logger: logger, on: eventLoop)
     }
-    
+
     /// 证件图片上传
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。

@@ -19,44 +19,44 @@ extension Iecp {
     public struct DeleteIotDeviceRequest: TCRequestModel {
         /// 设备id
         public let deviceId: Int64
-        
-        public init (deviceId: Int64) {
+
+        public init(deviceId: Int64) {
             self.deviceId = deviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
         }
     }
-    
+
     /// DeleteIotDevice返回参数结构体
     public struct DeleteIotDeviceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除设备
     @inlinable
-    public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDeviceResponse > {
+    public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDeviceResponse> {
         self.client.execute(action: "DeleteIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除设备
     @inlinable
     public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceResponse {
         try await self.client.execute(action: "DeleteIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除设备
     @inlinable
-    public func deleteIotDevice(deviceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDeviceResponse > {
+    public func deleteIotDevice(deviceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDeviceResponse> {
         self.deleteIotDevice(DeleteIotDeviceRequest(deviceId: deviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除设备
     @inlinable
     public func deleteIotDevice(deviceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceResponse {

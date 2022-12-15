@@ -19,49 +19,49 @@ extension Tcb {
     public struct DeleteWxGatewayRouteRequest: TCRequestModel {
         /// 环境id
         public let envId: String
-        
+
         /// 服务名称
         public let gatewayRouteName: String
-        
-        public init (envId: String, gatewayRouteName: String) {
+
+        public init(envId: String, gatewayRouteName: String) {
             self.envId = envId
             self.gatewayRouteName = gatewayRouteName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case gatewayRouteName = "GatewayRouteName"
         }
     }
-    
+
     /// DeleteWxGatewayRoute返回参数结构体
     public struct DeleteWxGatewayRouteResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除安全网关路由
     @inlinable
-    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWxGatewayRouteResponse > {
+    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWxGatewayRouteResponse> {
         self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全网关路由
     @inlinable
     public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
         try await self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除安全网关路由
     @inlinable
-    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWxGatewayRouteResponse > {
+    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWxGatewayRouteResponse> {
         self.deleteWxGatewayRoute(DeleteWxGatewayRouteRequest(envId: envId, gatewayRouteName: gatewayRouteName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全网关路由
     @inlinable
     public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {

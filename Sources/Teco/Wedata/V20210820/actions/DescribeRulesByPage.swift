@@ -19,27 +19,27 @@ extension Wedata {
     public struct DescribeRulesByPageRequest: TCRequestModel {
         /// 分页序号
         public let pageNumber: UInt64?
-        
+
         /// 分页大小
         public let pageSize: UInt64?
-        
+
         /// 过滤条件
         public let filters: [Filter]?
-        
+
         /// 排序字段
         public let orderFields: [OrderField]?
-        
+
         /// 项目ID
         public let projectId: String?
-        
-        public init (pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil) {
+
+        public init(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.filters = filters
             self.orderFields = orderFields
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
             case pageSize = "PageSize"
@@ -48,40 +48,40 @@ extension Wedata {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeRulesByPage返回参数结构体
     public struct DescribeRulesByPageResponse: TCResponseModel {
         /// 规则质量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: RulePage?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 分页查询质量规则
     @inlinable
-    public func describeRulesByPage(_ input: DescribeRulesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByPageResponse > {
+    public func describeRulesByPage(_ input: DescribeRulesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByPageResponse> {
         self.client.execute(action: "DescribeRulesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 分页查询质量规则
     @inlinable
     public func describeRulesByPage(_ input: DescribeRulesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByPageResponse {
         try await self.client.execute(action: "DescribeRulesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 分页查询质量规则
     @inlinable
-    public func describeRulesByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByPageResponse > {
+    public func describeRulesByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByPageResponse> {
         self.describeRulesByPage(DescribeRulesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 分页查询质量规则
     @inlinable
     public func describeRulesByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByPageResponse {

@@ -19,23 +19,23 @@ extension Cfw {
     public struct DeleteSecurityGroupRuleRequest: TCRequestModel {
         /// 所需要删除规则的ID
         public let id: UInt64
-        
+
         /// 腾讯云地域的英文简写
         public let area: String
-        
+
         /// 方向，0：出站，1：入站
         public let direction: UInt64
-        
+
         /// 是否删除反向规则，0：否，1：是
         public let isDelReverse: UInt64?
-        
-        public init (id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64? = nil) {
+
+        public init(id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64? = nil) {
             self.id = id
             self.area = area
             self.direction = direction
             self.isDelReverse = isDelReverse
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case area = "Area"
@@ -43,34 +43,34 @@ extension Cfw {
             case isDelReverse = "IsDelReverse"
         }
     }
-    
+
     /// DeleteSecurityGroupRule返回参数结构体
     public struct DeleteSecurityGroupRuleResponse: TCResponseModel {
         /// 状态值，0：成功，非0：失败
         public let status: Int64
-        
+
         /// 返回多余的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let info: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case info = "Info"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除安全组规则
     ///
     /// 删除规则
     @inlinable
-    public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupRuleResponse > {
+    public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupRuleResponse> {
         self.client.execute(action: "DeleteSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全组规则
     ///
     /// 删除规则
@@ -78,15 +78,15 @@ extension Cfw {
     public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupRuleResponse {
         try await self.client.execute(action: "DeleteSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除安全组规则
     ///
     /// 删除规则
     @inlinable
-    public func deleteSecurityGroupRule(id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupRuleResponse > {
+    public func deleteSecurityGroupRule(id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupRuleResponse> {
         self.deleteSecurityGroupRule(DeleteSecurityGroupRuleRequest(id: id, area: area, direction: direction, isDelReverse: isDelReverse), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全组规则
     ///
     /// 删除规则

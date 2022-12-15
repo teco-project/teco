@@ -19,23 +19,23 @@ extension Kms {
     public struct ListKeysRequest: TCRequestModel {
         /// 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
         public let offset: UInt64?
-        
+
         /// 含义跟 SQL 查询的 Limit 一致，表示本次获最多获取 Limit 个元素。缺省值为10，最大值为200
         public let limit: UInt64?
-        
+
         /// 根据创建者角色筛选，默认 0 表示用户自己创建的cmk， 1 表示授权其它云产品自动创建的cmk
         public let role: UInt64?
-        
+
         /// KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
         public let hsmClusterId: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.role = role
             self.hsmClusterId = hsmClusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -43,34 +43,34 @@ extension Kms {
             case hsmClusterId = "HsmClusterId"
         }
     }
-    
+
     /// ListKeys返回参数结构体
     public struct ListKeysResponse: TCResponseModel {
         /// CMK列表数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [Key]?
-        
+
         /// CMK的总数量
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keys = "Keys"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取主密钥列表
     ///
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
     @inlinable
-    public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeysResponse > {
+    public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListKeysResponse> {
         self.client.execute(action: "ListKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主密钥列表
     ///
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
@@ -78,15 +78,15 @@ extension Kms {
     public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeysResponse {
         try await self.client.execute(action: "ListKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取主密钥列表
     ///
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
     @inlinable
-    public func listKeys(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeysResponse > {
+    public func listKeys(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListKeysResponse> {
         self.listKeys(ListKeysRequest(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取主密钥列表
     ///
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表

@@ -22,27 +22,27 @@ extension Cwp {
         /// <li>EventType - String - 是否必填：否 - 事件类型</li>
         /// <li>EventStatus - String - 是否必填：否 - 事件状态</li>
         public let filters: [AssetFilters]?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
-        
+
         /// 排序方式：CreateTime 或 RestoreTime，默认为CreateTime
         public let by: String?
-        
+
         /// 排序方式，0降序，1升序，默认为0
         public let order: UInt64?
-        
-        public init (filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil) {
+
+        public init(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
@@ -51,43 +51,43 @@ extension Cwp {
             case order = "Order"
         }
     }
-    
+
     /// DescribeWebPageEventList返回参数结构体
     public struct DescribeWebPageEventListResponse: TCResponseModel {
         /// 防护事件列表信息
         public let list: [ProtectEventLists]
-        
+
         /// 总数
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询篡改事件列表
     @inlinable
-    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageEventListResponse > {
+    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageEventListResponse> {
         self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询篡改事件列表
     @inlinable
     public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {
         try await self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询篡改事件列表
     @inlinable
-    public func describeWebPageEventList(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageEventListResponse > {
+    public func describeWebPageEventList(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageEventListResponse> {
         self.describeWebPageEventList(DescribeWebPageEventListRequest(filters: filters, offset: offset, limit: limit, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询篡改事件列表
     @inlinable
     public func describeWebPageEventList(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {

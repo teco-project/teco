@@ -19,23 +19,23 @@ extension Iecp {
     public struct ModifyEdgeUnitCloudApiRequest: TCRequestModel {
         /// 边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// 边缘单元名称，64字符内
         public let name: String?
-        
+
         /// 描述，200字符内
         public let description: String?
-        
+
         /// 是否开启监控
         public let openCloudMonitor: Bool?
-        
-        public init (edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil) {
+
+        public init(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil) {
             self.edgeUnitId = edgeUnitId
             self.name = name
             self.description = description
             self.openCloudMonitor = openCloudMonitor
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case name = "Name"
@@ -43,35 +43,35 @@ extension Iecp {
             case openCloudMonitor = "OpenCloudMonitor"
         }
     }
-    
+
     /// ModifyEdgeUnitCloudApi返回参数结构体
     public struct ModifyEdgeUnitCloudApiResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新边缘单元信息
     @inlinable
-    public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitCloudApiResponse > {
+    public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitCloudApiResponse> {
         self.client.execute(action: "ModifyEdgeUnitCloudApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新边缘单元信息
     @inlinable
     public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {
         try await self.client.execute(action: "ModifyEdgeUnitCloudApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新边缘单元信息
     @inlinable
-    public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitCloudApiResponse > {
+    public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitCloudApiResponse> {
         self.modifyEdgeUnitCloudApi(ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新边缘单元信息
     @inlinable
     public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {

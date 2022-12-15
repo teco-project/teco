@@ -19,27 +19,27 @@ extension Iotcloud {
     public struct BindDevicesRequest: TCRequestModel {
         /// 网关设备的产品ID
         public let gatewayProductId: String
-        
+
         /// 网关设备的设备名
         public let gatewayDeviceName: String
-        
+
         /// 被绑定设备的产品ID
         public let productId: String
-        
+
         /// 被绑定的多个设备名
         public let deviceNames: [String]
-        
+
         /// 中兴CLAA设备的绑定需要skey，普通的设备不需要
         public let skey: String?
-        
-        public init (gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil) {
+
+        public init(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil) {
             self.gatewayProductId = gatewayProductId
             self.gatewayDeviceName = gatewayDeviceName
             self.productId = productId
             self.deviceNames = deviceNames
             self.skey = skey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gatewayProductId = "GatewayProductId"
             case gatewayDeviceName = "GatewayDeviceName"
@@ -48,44 +48,44 @@ extension Iotcloud {
             case skey = "Skey"
         }
     }
-    
+
     /// BindDevices返回参数结构体
     public struct BindDevicesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量绑定子设备
     ///
-    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
+    /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
-    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDevicesResponse > {
+    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
         self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量绑定子设备
     ///
-    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
+    /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
     public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
         try await self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量绑定子设备
     ///
-    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
+    /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
-    public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDevicesResponse > {
+    public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
         self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量绑定子设备
     ///
-    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
+    /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
     public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
         try await self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), logger: logger, on: eventLoop)

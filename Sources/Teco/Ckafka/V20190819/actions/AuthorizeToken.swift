@@ -19,49 +19,49 @@ extension Ckafka {
     public struct AuthorizeTokenRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 用户
         public let user: String
-        
+
         /// token串
         public let tokens: String
-        
-        public init (instanceId: String, user: String, tokens: String) {
+
+        public init(instanceId: String, user: String, tokens: String) {
             self.instanceId = instanceId
             self.user = user
             self.tokens = tokens
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case user = "User"
             case tokens = "Tokens"
         }
     }
-    
+
     /// AuthorizeToken返回参数结构体
     public struct AuthorizeTokenResponse: TCResponseModel {
         /// 0 成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 实例授权token
     ///
     /// 给实例授权token
     @inlinable
-    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthorizeTokenResponse > {
+    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthorizeTokenResponse> {
         self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 实例授权token
     ///
     /// 给实例授权token
@@ -69,15 +69,15 @@ extension Ckafka {
     public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthorizeTokenResponse {
         try await self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 实例授权token
     ///
     /// 给实例授权token
     @inlinable
-    public func authorizeToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthorizeTokenResponse > {
+    public func authorizeToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthorizeTokenResponse> {
         self.authorizeToken(AuthorizeTokenRequest(instanceId: instanceId, user: user, tokens: tokens), logger: logger, on: eventLoop)
     }
-    
+
     /// 实例授权token
     ///
     /// 给实例授权token

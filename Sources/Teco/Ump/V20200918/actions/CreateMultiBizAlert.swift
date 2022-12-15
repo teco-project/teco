@@ -19,32 +19,32 @@ extension Ump {
     public struct CreateMultiBizAlertRequest: TCRequestModel {
         /// 集团编码
         public let groupCode: String
-        
+
         /// 广场ID
         public let mallId: UInt64
-        
+
         /// 点位ID
         public let zoneId: UInt64
-        
+
         /// 摄像头ID
         public let cameraId: UInt64
-        
+
         /// 时间戳，毫秒
         public let captureTime: UInt64
-        
-        /// 状态: 
+
+        /// 状态:
         /// 1: 侵占
         /// 2: 消失
         /// 3: 即侵占又消失
         public let state: Int64
-        
+
         /// 图片base64字符串
         public let image: String?
-        
+
         /// 告警列表
         public let warnings: [MultiBizWarning]?
-        
-        public init (groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil) {
+
+        public init(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil) {
             self.groupCode = groupCode
             self.mallId = mallId
             self.zoneId = zoneId
@@ -54,7 +54,7 @@ extension Ump {
             self.image = image
             self.warnings = warnings
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupCode = "GroupCode"
             case mallId = "MallId"
@@ -66,25 +66,25 @@ extension Ump {
             case warnings = "Warnings"
         }
     }
-    
+
     /// CreateMultiBizAlert返回参数结构体
     public struct CreateMultiBizAlertResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 多经点位告警
     ///
     /// 集团广场的多经点位告警
     @inlinable
-    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiBizAlertResponse > {
+    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiBizAlertResponse> {
         self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 多经点位告警
     ///
     /// 集团广场的多经点位告警
@@ -92,15 +92,15 @@ extension Ump {
     public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
         try await self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 多经点位告警
     ///
     /// 集团广场的多经点位告警
     @inlinable
-    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiBizAlertResponse > {
+    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiBizAlertResponse> {
         self.createMultiBizAlert(CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), logger: logger, on: eventLoop)
     }
-    
+
     /// 多经点位告警
     ///
     /// 集团广场的多经点位告警

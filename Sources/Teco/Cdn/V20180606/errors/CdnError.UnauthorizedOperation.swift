@@ -49,254 +49,254 @@ extension TCCdnError {
             case unknown = "UnauthorizedOperation.Unknown"
             case other = "UnauthorizedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 子账号禁止查询整体数据。
         public static var cdnAccountUnauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.cdnAccountUnauthorized)
         }
-        
+
         /// 子账号未配置cam策略。
         public static var cdnCamUnauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.cdnCamUnauthorized)
         }
-        
+
         /// 该账号未授权开通CLS。
         public static var cdnClsNotRegistered: UnauthorizedOperation {
             UnauthorizedOperation(.cdnClsNotRegistered)
         }
-        
+
         /// 域名解析未进行验证。
         public static var cdnDomainRecordNotVerified: UnauthorizedOperation {
             UnauthorizedOperation(.cdnDomainRecordNotVerified)
         }
-        
+
         /// 域名在内部系统已存在，请提工单处理。
         public static var cdnHostExistsInInternal: UnauthorizedOperation {
             UnauthorizedOperation(.cdnHostExistsInInternal)
         }
-        
+
         /// 该域名涉及违法违规风险，不可接入。
         ///
         /// 您可前往工业和信息化部政务服务平台-ICP/IP地址/域名信息备案管理系统查询。
         public static var cdnHostInIcpBlacklist: UnauthorizedOperation {
             UnauthorizedOperation(.cdnHostInIcpBlacklist)
         }
-        
+
         /// 该域名属于其他账号，您没有权限接入。
         public static var cdnHostIsOwnedByOther: UnauthorizedOperation {
             UnauthorizedOperation(.cdnHostIsOwnedByOther)
         }
-        
+
         /// 域名需要提工单申请接入。
         public static var cdnHostIsToApplyHost: UnauthorizedOperation {
             UnauthorizedOperation(.cdnHostIsToApplyHost)
         }
-        
+
         /// 域名已被其他账号接入，更多详情请提交工单联系我们。
         public static var cdnHostIsUsedByOther: UnauthorizedOperation {
             UnauthorizedOperation(.cdnHostIsUsedByOther)
         }
-        
+
         /// CDN子账号加速域名未授权。
         public static var cdnHostUnauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.cdnHostUnauthorized)
         }
-        
+
         /// 用户状态不合法，暂时无法使用服务。
         public static var cdnInvalidUserStatus: UnauthorizedOperation {
             UnauthorizedOperation(.cdnInvalidUserStatus)
         }
-        
+
         /// 子账号项目未授权。
         public static var cdnProjectUnauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.cdnProjectUnauthorized)
         }
-        
+
         /// 子账号标签未授权。
         public static var cdnTagUnauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.cdnTagUnauthorized)
         }
-        
+
         /// 域名解析记录值验证不通过。
         public static var cdnTxtRecordValueNotMatch: UnauthorizedOperation {
             UnauthorizedOperation(.cdnTxtRecordValueNotMatch)
         }
-        
+
         /// CDN用户认证失败。
         public static var cdnUserAuthFail: UnauthorizedOperation {
             UnauthorizedOperation(.cdnUserAuthFail)
         }
-        
+
         /// CDN用户待认证。
         public static var cdnUserAuthWait: UnauthorizedOperation {
             UnauthorizedOperation(.cdnUserAuthWait)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         public static var cdnUserInvalidCredential: UnauthorizedOperation {
             UnauthorizedOperation(.cdnUserInvalidCredential)
         }
-        
+
         /// 账号由于欠费被隔离，请冲正后重试。
         public static var cdnUserIsIsolated: UnauthorizedOperation {
             UnauthorizedOperation(.cdnUserIsIsolated)
         }
-        
+
         /// 加速服务已停服，请重启加速服务后重试。
         public static var cdnUserIsSuspended: UnauthorizedOperation {
             UnauthorizedOperation(.cdnUserIsSuspended)
         }
-        
+
         /// 非内测白名单用户，无该功能使用权限。
         public static var cdnUserNoWhitelist: UnauthorizedOperation {
             UnauthorizedOperation(.cdnUserNoWhitelist)
         }
-        
+
         /// 无效的授权。
         public static var clsInvalidAuthorization: UnauthorizedOperation {
             UnauthorizedOperation(.clsInvalidAuthorization)
         }
-        
+
         /// CLS服务未开通，请先在CLS控制台开通服务。
         ///
         /// 使用cdn-cls服务，需先在CLS控制台开通服务。
         public static var clsServiceNotActivated: UnauthorizedOperation {
             UnauthorizedOperation(.clsServiceNotActivated)
         }
-        
+
         /// 授权未通过。
         public static var clsUnauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.clsUnauthorized)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         public static var csrfError: UnauthorizedOperation {
             UnauthorizedOperation(.csrfError)
         }
-        
+
         /// 鉴权域名为空。
         public static var domainEmpty: UnauthorizedOperation {
             UnauthorizedOperation(.domainEmpty)
         }
-        
+
         /// 请前往CDN控制台进行操作。
         public static var ecdnMigratedCdn: UnauthorizedOperation {
             UnauthorizedOperation(.ecdnMigratedCdn)
         }
-        
+
         /// 未授权的操作。
         public static var noPermission: UnauthorizedOperation {
             UnauthorizedOperation(.noPermission)
         }
-        
+
         /// 暂不支持此操作，请联系腾讯云工程师处理。
         public static var opNoAuth: UnauthorizedOperation {
             UnauthorizedOperation(.opNoAuth)
         }
-        
+
         /// 操作超出调用频次限制。
         ///
         /// 接口有调用频率限制，请降低调用频率。如果您需要提升频率，请联系腾讯云工程师进一步处理。
         public static var operationTooOften: UnauthorizedOperation {
             UnauthorizedOperation(.operationTooOften)
         }
-        
+
         /// 未授权操作。
         public static var unknown: UnauthorizedOperation {
             UnauthorizedOperation(.unknown)
         }
-        
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-        
+
         public func asCdnError() -> TCCdnError {
             let code: TCCdnError.Code
             switch self.error {
-            case .cdnAccountUnauthorized: 
+            case .cdnAccountUnauthorized:
                 code = .unauthorizedOperation_CdnAccountUnauthorized
-            case .cdnCamUnauthorized: 
+            case .cdnCamUnauthorized:
                 code = .unauthorizedOperation_CdnCamUnauthorized
-            case .cdnClsNotRegistered: 
+            case .cdnClsNotRegistered:
                 code = .unauthorizedOperation_CdnClsNotRegistered
-            case .cdnDomainRecordNotVerified: 
+            case .cdnDomainRecordNotVerified:
                 code = .unauthorizedOperation_CdnDomainRecordNotVerified
-            case .cdnHostExistsInInternal: 
+            case .cdnHostExistsInInternal:
                 code = .unauthorizedOperation_CdnHostExistsInInternal
-            case .cdnHostInIcpBlacklist: 
+            case .cdnHostInIcpBlacklist:
                 code = .unauthorizedOperation_CdnHostInIcpBlacklist
-            case .cdnHostIsOwnedByOther: 
+            case .cdnHostIsOwnedByOther:
                 code = .unauthorizedOperation_CdnHostIsOwnedByOther
-            case .cdnHostIsToApplyHost: 
+            case .cdnHostIsToApplyHost:
                 code = .unauthorizedOperation_CdnHostIsToApplyHost
-            case .cdnHostIsUsedByOther: 
+            case .cdnHostIsUsedByOther:
                 code = .unauthorizedOperation_CdnHostIsUsedByOther
-            case .cdnHostUnauthorized: 
+            case .cdnHostUnauthorized:
                 code = .unauthorizedOperation_CdnHostUnauthorized
-            case .cdnInvalidUserStatus: 
+            case .cdnInvalidUserStatus:
                 code = .unauthorizedOperation_CdnInvalidUserStatus
-            case .cdnProjectUnauthorized: 
+            case .cdnProjectUnauthorized:
                 code = .unauthorizedOperation_CdnProjectUnauthorized
-            case .cdnTagUnauthorized: 
+            case .cdnTagUnauthorized:
                 code = .unauthorizedOperation_CdnTagUnauthorized
-            case .cdnTxtRecordValueNotMatch: 
+            case .cdnTxtRecordValueNotMatch:
                 code = .unauthorizedOperation_CdnTxtRecordValueNotMatch
-            case .cdnUserAuthFail: 
+            case .cdnUserAuthFail:
                 code = .unauthorizedOperation_CdnUserAuthFail
-            case .cdnUserAuthWait: 
+            case .cdnUserAuthWait:
                 code = .unauthorizedOperation_CdnUserAuthWait
-            case .cdnUserInvalidCredential: 
+            case .cdnUserInvalidCredential:
                 code = .unauthorizedOperation_CdnUserInvalidCredential
-            case .cdnUserIsIsolated: 
+            case .cdnUserIsIsolated:
                 code = .unauthorizedOperation_CdnUserIsIsolated
-            case .cdnUserIsSuspended: 
+            case .cdnUserIsSuspended:
                 code = .unauthorizedOperation_CdnUserIsSuspended
-            case .cdnUserNoWhitelist: 
+            case .cdnUserNoWhitelist:
                 code = .unauthorizedOperation_CdnUserNoWhitelist
-            case .clsInvalidAuthorization: 
+            case .clsInvalidAuthorization:
                 code = .unauthorizedOperation_ClsInvalidAuthorization
-            case .clsServiceNotActivated: 
+            case .clsServiceNotActivated:
                 code = .unauthorizedOperation_ClsServiceNotActivated
-            case .clsUnauthorized: 
+            case .clsUnauthorized:
                 code = .unauthorizedOperation_ClsUnauthorized
-            case .csrfError: 
+            case .csrfError:
                 code = .unauthorizedOperation_CsrfError
-            case .domainEmpty: 
+            case .domainEmpty:
                 code = .unauthorizedOperation_DomainEmpty
-            case .ecdnMigratedCdn: 
+            case .ecdnMigratedCdn:
                 code = .unauthorizedOperation_EcdnMigratedCdn
-            case .noPermission: 
+            case .noPermission:
                 code = .unauthorizedOperation_NoPermission
-            case .opNoAuth: 
+            case .opNoAuth:
                 code = .unauthorizedOperation_OpNoAuth
-            case .operationTooOften: 
+            case .operationTooOften:
                 code = .unauthorizedOperation_OperationTooOften
-            case .unknown: 
+            case .unknown:
                 code = .unauthorizedOperation_Unknown
-            case .other: 
+            case .other:
                 code = .unauthorizedOperation
             }
             return TCCdnError(code, context: self.context)

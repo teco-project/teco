@@ -22,10 +22,10 @@ extension Dayu {
     public struct DescribeBaradDataRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源实例ID
         public let id: String
-        
+
         /// 指标名，取值：
         /// connum表示TCP活跃连接数；
         /// new_conn表示新建TCP连接数；
@@ -36,10 +36,10 @@ extension Dayu {
         /// inpkg表示入包速率；
         /// outpkg表示出包速率；
         public let metricName: String
-        
+
         /// 统计时间粒度，单位秒（300表示5分钟；3600表示小时；86400表示天）
         public let period: UInt64
-        
+
         /// 统计开始时间，秒部分保持为0，分钟部分为5的倍数
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -47,7 +47,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 统计结束时间，秒部分保持为0，分钟部分为5的倍数
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -55,20 +55,20 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 统计方式，取值：
         /// max表示最大值；
         /// min表示最小值；
         /// avg表示均值；
         public let statistics: String
-        
+
         /// 协议端口数组
         public let protocolPort: [ProtocolPort]?
-        
+
         /// 资源实例下的IP，只有当Business=net(高防IP专业版)时才必须填写资源的一个IP（因为高防IP专业版资源实例有多个IP，才需要指定）；
         public let ip: String?
-        
-        public init (business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil) {
+
+        public init(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil) {
             self.business = business
             self.id = id
             self.metricName = metricName
@@ -79,7 +79,7 @@ extension Dayu {
             self.protocolPort = protocolPort
             self.ip = ip
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -92,29 +92,29 @@ extension Dayu {
             case ip = "Ip"
         }
     }
-    
+
     /// DescribeBaradData返回参数结构体
     public struct DescribeBaradDataResponse: TCResponseModel {
         /// 返回指标的值
         public let dataList: [BaradData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataList = "DataList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取转发报表数据
     ///
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
-    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaradDataResponse > {
+    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaradDataResponse> {
         self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转发报表数据
     ///
     /// 为大禹子产品提供业务转发指标数据的接口
@@ -122,15 +122,15 @@ extension Dayu {
     public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
         try await self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取转发报表数据
     ///
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
-    public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaradDataResponse > {
+    public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaradDataResponse> {
         self.describeBaradData(DescribeBaradDataRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取转发报表数据
     ///
     /// 为大禹子产品提供业务转发指标数据的接口

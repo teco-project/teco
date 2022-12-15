@@ -19,44 +19,44 @@ extension Dlc {
     public struct BindWorkGroupsToUserRequest: TCRequestModel {
         /// 绑定的用户和工作组信息
         public let addInfo: WorkGroupIdSetOfUserId
-        
-        public init (addInfo: WorkGroupIdSetOfUserId) {
+
+        public init(addInfo: WorkGroupIdSetOfUserId) {
             self.addInfo = addInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addInfo = "AddInfo"
         }
     }
-    
+
     /// BindWorkGroupsToUser返回参数结构体
     public struct BindWorkGroupsToUserResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定工作组到用户
     @inlinable
-    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindWorkGroupsToUserResponse > {
+    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
         self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定工作组到用户
     @inlinable
     public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
         try await self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定工作组到用户
     @inlinable
-    public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindWorkGroupsToUserResponse > {
+    public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
         self.bindWorkGroupsToUser(BindWorkGroupsToUserRequest(addInfo: addInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定工作组到用户
     @inlinable
     public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {

@@ -24,73 +24,73 @@ extension TCVmsError {
             case ssoSendRecvFail = "InternalError.SsoSendRecvFail"
             case upstreamError = "InternalError.UpstreamError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 访问上游超时网络，请稍后重试。
         public static var accessUpstreamTimeout: InternalError {
             InternalError(.accessUpstreamTimeout)
         }
-        
+
         /// 请求发起时间不正常，通常由您的服务器与腾讯云服务器之间的时间差超过10分钟引起。
         public static var requestTimeException: InternalError {
             InternalError(.requestTimeException)
         }
-        
+
         /// 后端不存在该 REST API 接口，请核查 REST API 接口说明。
         public static var restApiInterfaceNotExist: InternalError {
             InternalError(.restApiInterfaceNotExist)
         }
-        
+
         /// 后端 Sig 校验失败。
         public static var sigVerificationFail: InternalError {
             InternalError(.sigVerificationFail)
         }
-        
+
         /// 内部sso通道超时。
         public static var ssoSendRecvFail: InternalError {
             InternalError(.ssoSendRecvFail)
         }
-        
+
         /// 语音上游错误，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>沟通解决。
         public static var upstreamError: InternalError {
             InternalError(.upstreamError)
         }
-        
+
         public func asVmsError() -> TCVmsError {
             let code: TCVmsError.Code
             switch self.error {
-            case .accessUpstreamTimeout: 
+            case .accessUpstreamTimeout:
                 code = .internalError_AccessUpstreamTimeout
-            case .requestTimeException: 
+            case .requestTimeException:
                 code = .internalError_RequestTimeException
-            case .restApiInterfaceNotExist: 
+            case .restApiInterfaceNotExist:
                 code = .internalError_RestApiInterfaceNotExist
-            case .sigVerificationFail: 
+            case .sigVerificationFail:
                 code = .internalError_SigVerificationFail
-            case .ssoSendRecvFail: 
+            case .ssoSendRecvFail:
                 code = .internalError_SsoSendRecvFail
-            case .upstreamError: 
+            case .upstreamError:
                 code = .internalError_UpstreamError
             }
             return TCVmsError(code, context: self.context)

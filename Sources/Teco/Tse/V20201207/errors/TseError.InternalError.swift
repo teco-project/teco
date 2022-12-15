@@ -30,115 +30,115 @@ extension TCTseError {
             case updateError = "InternalError.UpdateError"
             case vpcFailure = "InternalError.VPCFailure"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建内部错误。
         public static var createError: InternalError {
             InternalError(.createError)
         }
-        
+
         /// 获取凭证失败。
         public static var getCredential: InternalError {
             InternalError(.getCredential)
         }
-        
+
         /// 角色获取错误。
         public static var getRoleError: InternalError {
             InternalError(.getRoleError)
         }
-        
+
         /// 服务内部错误。
         public static var internalError: InternalError {
             InternalError(.internalError)
         }
-        
+
         /// 内部服务调用异常。
         public static var ioError: InternalError {
             InternalError(.ioError)
         }
-        
+
         /// 操作失败。
         public static var operationFailed: InternalError {
             InternalError(.operationFailed)
         }
-        
+
         /// 查询内部错误。
         public static var queryError: InternalError {
             InternalError(.queryError)
         }
-        
+
         /// 标签操作失败。
         public static var tagFailure: InternalError {
             InternalError(.tagFailure)
         }
-        
+
         /// TKE相关操作失败。
         public static var tkeFailure: InternalError {
             InternalError(.tkeFailure)
         }
-        
+
         /// 未知错误。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-        
+
         /// 更新内部错误。
         public static var updateError: InternalError {
             InternalError(.updateError)
         }
-        
+
         /// 访问VPC内部错误。
         public static var vpcFailure: InternalError {
             InternalError(.vpcFailure)
         }
-        
+
         public func asTseError() -> TCTseError {
             let code: TCTseError.Code
             switch self.error {
-            case .createError: 
+            case .createError:
                 code = .internalError_CreateError
-            case .getCredential: 
+            case .getCredential:
                 code = .internalError_GetCredential
-            case .getRoleError: 
+            case .getRoleError:
                 code = .internalError_GetRoleError
-            case .internalError: 
+            case .internalError:
                 code = .internalError_InternalError
-            case .ioError: 
+            case .ioError:
                 code = .internalError_IOError
-            case .operationFailed: 
+            case .operationFailed:
                 code = .internalError_OperationFailed
-            case .queryError: 
+            case .queryError:
                 code = .internalError_QueryError
-            case .tagFailure: 
+            case .tagFailure:
                 code = .internalError_TagFailure
-            case .tkeFailure: 
+            case .tkeFailure:
                 code = .internalError_TKEFailure
-            case .unknownError: 
+            case .unknownError:
                 code = .internalError_UnknownError
-            case .updateError: 
+            case .updateError:
                 code = .internalError_UpdateError
-            case .vpcFailure: 
+            case .vpcFailure:
                 code = .internalError_VPCFailure
             }
             return TCTseError(code, context: self.context)

@@ -17,36 +17,36 @@
 extension Yunjing {
     /// DescribeOverviewStatistics请求参数结构体
     public struct DescribeOverviewStatisticsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeOverviewStatistics返回参数结构体
     public struct DescribeOverviewStatisticsResponse: TCResponseModel {
         /// 服务器在线数。
         public let onlineMachineNum: UInt64
-        
+
         /// 专业服务器数。
         public let proVersionMachineNum: UInt64
-        
+
         /// 木马文件数。
         public let malwareNum: UInt64
-        
+
         /// 异地登录数。
         public let nonlocalLoginNum: UInt64
-        
+
         /// 暴力破解成功数。
         public let bruteAttackSuccessNum: UInt64
-        
+
         /// 漏洞数。
         public let vulNum: UInt64
-        
+
         /// 安全基线数。
         public let baseLineNum: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case onlineMachineNum = "OnlineMachineNum"
             case proVersionMachineNum = "ProVersionMachineNum"
@@ -58,15 +58,15 @@ extension Yunjing {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取概览统计数据
     ///
     /// 本接口用于（DescribeOverviewStatistics）获取概览统计数据。
     @inlinable
-    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewStatisticsResponse > {
+    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewStatisticsResponse> {
         self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取概览统计数据
     ///
     /// 本接口用于（DescribeOverviewStatistics）获取概览统计数据。
@@ -74,15 +74,15 @@ extension Yunjing {
     public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
         try await self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取概览统计数据
     ///
     /// 本接口用于（DescribeOverviewStatistics）获取概览统计数据。
     @inlinable
-    public func describeOverviewStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewStatisticsResponse > {
+    public func describeOverviewStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewStatisticsResponse> {
         self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取概览统计数据
     ///
     /// 本接口用于（DescribeOverviewStatistics）获取概览统计数据。

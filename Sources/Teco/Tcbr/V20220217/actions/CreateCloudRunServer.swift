@@ -19,23 +19,23 @@ extension Tcbr {
     public struct CreateCloudRunServerRequest: TCRequestModel {
         /// 环境Id
         public let envId: String
-        
+
         /// 服务名
         public let serverName: String
-        
+
         /// 部署信息
         public let deployInfo: DeployParam
-        
+
         /// 服务配置信息
         public let serverConfig: ServerBaseConfig
-        
-        public init (envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig) {
+
+        public init(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig) {
             self.envId = envId
             self.serverName = serverName
             self.deployInfo = deployInfo
             self.serverConfig = serverConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case serverName = "ServerName"
@@ -43,29 +43,29 @@ extension Tcbr {
             case serverConfig = "ServerConfig"
         }
     }
-    
+
     /// CreateCloudRunServer返回参数结构体
     public struct CreateCloudRunServerResponse: TCResponseModel {
         /// 一键部署任务Id，微信云托管，暂时用不到
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建云托管服务
     ///
     /// 创建云托管服务接口
     @inlinable
-    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRunServerResponse > {
+    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunServerResponse> {
         self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建云托管服务
     ///
     /// 创建云托管服务接口
@@ -73,15 +73,15 @@ extension Tcbr {
     public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
         try await self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建云托管服务
     ///
     /// 创建云托管服务接口
     @inlinable
-    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRunServerResponse > {
+    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunServerResponse> {
         self.createCloudRunServer(CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建云托管服务
     ///
     /// 创建云托管服务接口

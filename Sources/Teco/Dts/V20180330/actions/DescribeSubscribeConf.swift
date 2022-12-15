@@ -19,108 +19,108 @@ extension Dts {
     public struct DescribeSubscribeConfRequest: TCRequestModel {
         /// 订阅实例ID
         public let subscribeId: String
-        
-        public init (subscribeId: String) {
+
+        public init(subscribeId: String) {
             self.subscribeId = subscribeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subscribeId = "SubscribeId"
         }
     }
-    
+
     /// DescribeSubscribeConf返回参数结构体
     public struct DescribeSubscribeConfResponse: TCResponseModel {
         /// 订阅实例ID
         public let subscribeId: String
-        
+
         /// 订阅实例名称
         public let subscribeName: String
-        
+
         /// 订阅通道
         public let channelId: String
-        
+
         /// 订阅数据库类型
         public let product: String
-        
+
         /// 被订阅的实例
         public let instanceId: String
-        
+
         /// 被订阅的实例的状态，可能的值有running,offline,isolate
         public let instanceStatus: String
-        
+
         /// 订阅实例状态，可能的值有unconfigure-未配置，configuring-配置中，configured-已配置
         public let subsStatus: String
-        
+
         /// 订阅实例生命周期状态，可能的值有：normal-正常，isolating-隔离中，isolated-已隔离，offlining-下线中
         public let status: String
-        
+
         /// 订阅实例创建时间
         public let createTime: String
-        
+
         /// 订阅实例被隔离时间
         public let isolateTime: String
-        
+
         /// 订阅实例到期时间
         public let expireTime: String
-        
+
         /// 订阅实例下线时间
         public let offlineTime: String
-        
+
         /// 订阅实例消费时间起点。
         public let consumeStartTime: String
-        
+
         /// 订阅实例计费类型，1-小时计费，0-包年包月
         public let payType: Int64
-        
+
         /// 订阅通道Vip
         public let vip: String
-        
+
         /// 订阅通道Port
         public let vport: Int64
-        
+
         /// 订阅通道所在VpcId
         public let uniqVpcId: String
-        
+
         /// 订阅通道所在SubnetId
         public let uniqSubnetId: String
-        
+
         /// 当前SDK消费时间位点
         public let sdkConsumedTime: String
-        
+
         /// 订阅SDK IP地址
         public let sdkHost: String
-        
+
         /// 订阅对象类型0-全实例订阅，1-DDL数据订阅，2-DML结构订阅，3-DDL数据订阅+DML结构订阅
         public let subscribeObjectType: Int64
-        
+
         /// 订阅对象，当SubscribeObjectType 为0时，此字段为空数组
         public let subscribeObjects: [SubscribeObject]
-        
+
         /// 修改时间
         public let modifyTime: String
-        
+
         /// 地域
         public let region: String
-        
+
         /// 订阅实例的标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagItem]?
-        
+
         /// 自动续费标识,0-不自动续费，1-自动续费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlag: Int64?
-        
+
         /// 数据订阅版本。老版订阅填txdts，kafka版填kafka
         public let subscribeVersion: String
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errors: [SubsErr]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subscribeId = "SubscribeId"
             case subscribeName = "SubscribeName"
@@ -153,15 +153,15 @@ extension Dts {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询订阅实例配置
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
     @inlinable
-    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribeConfResponse > {
+    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribeConfResponse> {
         self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询订阅实例配置
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
@@ -169,15 +169,15 @@ extension Dts {
     public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
         try await self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询订阅实例配置
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
     @inlinable
-    public func describeSubscribeConf(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribeConfResponse > {
+    public func describeSubscribeConf(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribeConfResponse> {
         self.describeSubscribeConf(DescribeSubscribeConfRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询订阅实例配置
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置

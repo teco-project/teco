@@ -19,33 +19,33 @@ extension Iecp {
     public struct DescribeConfigMapYamlErrorRequest: TCRequestModel {
         /// yaml文件
         public let yaml: String
-        
-        public init (yaml: String) {
+
+        public init(yaml: String) {
             self.yaml = yaml
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case yaml = "Yaml"
         }
     }
-    
+
     /// DescribeConfigMapYamlError返回参数结构体
     public struct DescribeConfigMapYamlErrorResponse: TCResponseModel {
         /// 校验是通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkPass: Bool?
-        
+
         /// 错误类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errType: UInt64?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errInfo: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case checkPass = "CheckPass"
             case errType = "ErrType"
@@ -53,25 +53,25 @@ extension Iecp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 校验ConfigMap的Yaml语法
     @inlinable
-    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapYamlErrorResponse > {
+    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapYamlErrorResponse> {
         self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 校验ConfigMap的Yaml语法
     @inlinable
     public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
         try await self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 校验ConfigMap的Yaml语法
     @inlinable
-    public func describeConfigMapYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapYamlErrorResponse > {
+    public func describeConfigMapYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapYamlErrorResponse> {
         self.describeConfigMapYamlError(DescribeConfigMapYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
     }
-    
+
     /// 校验ConfigMap的Yaml语法
     @inlinable
     public func describeConfigMapYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {

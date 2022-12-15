@@ -19,23 +19,23 @@ extension Apm {
     public struct DescribeApmInstancesRequest: TCRequestModel {
         /// Tag列表
         public let tags: [ApmTag]?
-        
+
         /// 搜索实例名
         public let instanceName: String?
-        
+
         /// 过滤实例ID
         public let instanceIds: [String]?
-        
+
         /// 是否查询官方demo实例
         public let demoInstanceFlag: Int64?
-        
-        public init (tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil) {
+
+        public init(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil) {
             self.tags = tags
             self.instanceName = instanceName
             self.instanceIds = instanceIds
             self.demoInstanceFlag = demoInstanceFlag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tags = "Tags"
             case instanceName = "InstanceName"
@@ -43,30 +43,30 @@ extension Apm {
             case demoInstanceFlag = "DemoInstanceFlag"
         }
     }
-    
+
     /// DescribeApmInstances返回参数结构体
     public struct DescribeApmInstancesResponse: TCResponseModel {
         /// apm实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instances: [ApmInstanceDetail]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instances = "Instances"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(_ input: DescribeApmInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApmInstancesResponse > {
+    public func describeApmInstances(_ input: DescribeApmInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
         self.client.execute(action: "DescribeApmInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取
@@ -74,15 +74,15 @@ extension Apm {
     public func describeApmInstances(_ input: DescribeApmInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
         try await self.client.execute(action: "DescribeApmInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApmInstancesResponse > {
+    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
         self.describeApmInstances(DescribeApmInstancesRequest(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取

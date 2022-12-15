@@ -19,39 +19,39 @@ extension Vod {
     public struct DescribeDrmDataKeyRequest: TCRequestModel {
         /// 加密后的数据密钥列表，最大支持10个。
         public let edkList: [String]
-        
-        public init (edkList: [String]) {
+
+        public init(edkList: [String]) {
             self.edkList = edkList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edkList = "EdkList"
         }
     }
-    
+
     /// DescribeDrmDataKey返回参数结构体
     public struct DescribeDrmDataKeyResponse: TCResponseModel {
         /// 密钥列表，包含加密的数据密钥。
         public let keyList: [SimpleAesEdkPair]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyList = "KeyList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取视频解密密钥
     ///
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
     /// 如果您是新接入点播加密的用户，不要使用该 API。请参考[视频加密综述](https://cloud.tencent.com/document/product/266/45552)使用。
     @inlinable
-    public func describeDrmDataKey(_ input: DescribeDrmDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDrmDataKeyResponse > {
+    public func describeDrmDataKey(_ input: DescribeDrmDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmDataKeyResponse> {
         self.client.execute(action: "DescribeDrmDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取视频解密密钥
     ///
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
@@ -60,16 +60,16 @@ extension Vod {
     public func describeDrmDataKey(_ input: DescribeDrmDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDrmDataKeyResponse {
         try await self.client.execute(action: "DescribeDrmDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取视频解密密钥
     ///
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
     /// 如果您是新接入点播加密的用户，不要使用该 API。请参考[视频加密综述](https://cloud.tencent.com/document/product/266/45552)使用。
     @inlinable
-    public func describeDrmDataKey(edkList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDrmDataKeyResponse > {
+    public func describeDrmDataKey(edkList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmDataKeyResponse> {
         self.describeDrmDataKey(DescribeDrmDataKeyRequest(edkList: edkList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取视频解密密钥
     ///
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。

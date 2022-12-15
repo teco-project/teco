@@ -17,42 +17,42 @@
 extension Cws {
     /// DescribeVulsNumber请求参数结构体
     public struct DescribeVulsNumberRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeVulsNumber返回参数结构体
     public struct DescribeVulsNumberResponse: TCResponseModel {
         /// 受影响的网站总数。
         public let impactSiteNumber: UInt64
-        
+
         /// 已验证的网站总数。
         public let siteNumber: UInt64
-        
+
         /// 高风险漏洞总数。
         public let vulsHighNumber: UInt64
-        
+
         /// 中风险漏洞总数。
         public let vulsMiddleNumber: UInt64
-        
+
         /// 低高风险漏洞总数。
         public let vulsLowNumber: UInt64
-        
+
         /// 风险提示总数。
         public let vulsNoticeNumber: UInt64
-        
+
         /// 扫描页面总数。
         public let pageCount: UInt64
-        
+
         /// 已验证的网站列表。
         public let sites: [MonitorMiniSite]
-        
+
         /// 受影响的网站列表。
         public let impactSites: [MonitorMiniSite]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case impactSiteNumber = "ImpactSiteNumber"
             case siteNumber = "SiteNumber"
@@ -66,15 +66,15 @@ extension Cws {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看当前漏洞总计数量
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
-    public func describeVulsNumber(_ input: DescribeVulsNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberResponse > {
+    public func describeVulsNumber(_ input: DescribeVulsNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberResponse> {
         self.client.execute(action: "DescribeVulsNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看当前漏洞总计数量
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
@@ -82,15 +82,15 @@ extension Cws {
     public func describeVulsNumber(_ input: DescribeVulsNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
         try await self.client.execute(action: "DescribeVulsNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看当前漏洞总计数量
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
-    public func describeVulsNumber(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberResponse > {
+    public func describeVulsNumber(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberResponse> {
         self.describeVulsNumber(DescribeVulsNumberRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看当前漏洞总计数量
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。

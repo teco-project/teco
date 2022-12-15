@@ -19,27 +19,27 @@ extension Tag {
     public struct DetachResourcesTagRequest: TCRequestModel {
         /// 资源所属业务名称（资源六段式中的第三段）
         public let serviceType: String
-        
+
         /// 资源ID数组，资源个数最多为50
         public let resourceIds: [String]
-        
+
         /// 需要解绑的标签键
         public let tagKey: String
-        
+
         /// 资源所在地域，不区分地域的资源不需要传入该字段，区分地域的资源必填
         public let resourceRegion: String?
-        
+
         /// 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
         public let resourcePrefix: String?
-        
-        public init (serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil) {
+
+        public init(serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil) {
             self.serviceType = serviceType
             self.resourceIds = resourceIds
             self.tagKey = tagKey
             self.resourceRegion = resourceRegion
             self.resourcePrefix = resourcePrefix
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceType = "ServiceType"
             case resourceIds = "ResourceIds"
@@ -48,25 +48,25 @@ extension Tag {
             case resourcePrefix = "ResourcePrefix"
         }
     }
-    
+
     /// DetachResourcesTag返回参数结构体
     public struct DetachResourcesTagResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签
     @inlinable
-    public func detachResourcesTag(_ input: DetachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachResourcesTagResponse > {
+    public func detachResourcesTag(_ input: DetachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachResourcesTagResponse> {
         self.client.execute(action: "DetachResourcesTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签
@@ -74,15 +74,15 @@ extension Tag {
     public func detachResourcesTag(_ input: DetachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachResourcesTagResponse {
         try await self.client.execute(action: "DetachResourcesTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签
     @inlinable
-    public func detachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachResourcesTagResponse > {
+    public func detachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachResourcesTagResponse> {
         self.detachResourcesTag(DetachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), logger: logger, on: eventLoop)
     }
-    
+
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签

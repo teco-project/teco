@@ -19,38 +19,38 @@ extension Cdn {
     public struct StartScdnDomainRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// StartScdnDomain返回参数结构体
     public struct StartScdnDomainResponse: TCResponseModel {
         /// 开启结果，Success表示成功
         public let result: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动SCDN域名安全防护
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
-    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartScdnDomainResponse > {
+    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartScdnDomainResponse> {
         self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动SCDN域名安全防护
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置
@@ -58,15 +58,15 @@ extension Cdn {
     public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
         try await self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动SCDN域名安全防护
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
-    public func startScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartScdnDomainResponse > {
+    public func startScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartScdnDomainResponse> {
         self.startScdnDomain(StartScdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动SCDN域名安全防护
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置

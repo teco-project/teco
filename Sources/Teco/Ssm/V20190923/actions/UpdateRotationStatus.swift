@@ -19,26 +19,26 @@ extension Ssm {
     public struct UpdateRotationStatusRequest: TCRequestModel {
         /// 云产品凭据名称。
         public let secretName: String
-        
+
         /// 是否开启轮转。
         /// true -- 开启轮转；
         /// false -- 禁止轮转。
         public let enableRotation: Bool
-        
+
         /// 轮转周期，以天为单位，最小为30天，最大为365天。
         public let frequency: Int64?
-        
+
         /// 用户设置的期望开始轮转时间，格式为：2006-01-02 15:04:05。
         /// 当EnableRotation为true时，如果不填RotationBeginTime，则默认填充为当前时间。
         public let rotationBeginTime: String?
-        
-        public init (secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil) {
+
+        public init(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil) {
             self.secretName = secretName
             self.enableRotation = enableRotation
             self.frequency = frequency
             self.rotationBeginTime = rotationBeginTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case enableRotation = "EnableRotation"
@@ -46,17 +46,17 @@ extension Ssm {
             case rotationBeginTime = "RotationBeginTime"
         }
     }
-    
+
     /// UpdateRotationStatus返回参数结构体
     public struct UpdateRotationStatusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置云产品凭据轮转策略
     ///
     /// 设置云产品凭据轮转策略，可以设置：
@@ -64,10 +64,10 @@ extension Ssm {
     /// 轮转周期
     /// 轮转开始时间
     @inlinable
-    public func updateRotationStatus(_ input: UpdateRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRotationStatusResponse > {
+    public func updateRotationStatus(_ input: UpdateRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
         self.client.execute(action: "UpdateRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置云产品凭据轮转策略
     ///
     /// 设置云产品凭据轮转策略，可以设置：
@@ -78,7 +78,7 @@ extension Ssm {
     public func updateRotationStatus(_ input: UpdateRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
         try await self.client.execute(action: "UpdateRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置云产品凭据轮转策略
     ///
     /// 设置云产品凭据轮转策略，可以设置：
@@ -86,10 +86,10 @@ extension Ssm {
     /// 轮转周期
     /// 轮转开始时间
     @inlinable
-    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRotationStatusResponse > {
+    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
         self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置云产品凭据轮转策略
     ///
     /// 设置云产品凭据轮转策略，可以设置：

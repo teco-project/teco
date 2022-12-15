@@ -19,34 +19,34 @@ extension Yunjing {
     public struct AddLoginWhiteListRequest: TCRequestModel {
         /// 白名单规则
         public let rules: LoginWhiteListsRule
-        
-        public init (rules: LoginWhiteListsRule) {
+
+        public init(rules: LoginWhiteListsRule) {
             self.rules = rules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case rules = "Rules"
         }
     }
-    
+
     /// AddLoginWhiteList返回参数结构体
     public struct AddLoginWhiteListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
     @inlinable
-    public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLoginWhiteListResponse > {
+    public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLoginWhiteListResponse> {
         self.client.execute(action: "AddLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
@@ -54,15 +54,15 @@ extension Yunjing {
     public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLoginWhiteListResponse {
         try await self.client.execute(action: "AddLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
     @inlinable
-    public func addLoginWhiteList(rules: LoginWhiteListsRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLoginWhiteListResponse > {
+    public func addLoginWhiteList(rules: LoginWhiteListsRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLoginWhiteListResponse> {
         self.addLoginWhiteList(AddLoginWhiteListRequest(rules: rules), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则

@@ -20,34 +20,34 @@ extension Cdn {
         /// 域名
         /// 域名状态需要为【已停用】
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// DeleteCdnDomain返回参数结构体
     public struct DeleteCdnDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名
     @inlinable
-    public func deleteCdnDomain(_ input: DeleteCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCdnDomainResponse > {
+    public func deleteCdnDomain(_ input: DeleteCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCdnDomainResponse> {
         self.client.execute(action: "DeleteCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名
@@ -55,15 +55,15 @@ extension Cdn {
     public func deleteCdnDomain(_ input: DeleteCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCdnDomainResponse {
         try await self.client.execute(action: "DeleteCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名
     @inlinable
-    public func deleteCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCdnDomainResponse > {
+    public func deleteCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCdnDomainResponse> {
         self.deleteCdnDomain(DeleteCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名

@@ -19,23 +19,23 @@ extension Cpdp {
     public struct UploadTaxListRequest: TCRequestModel {
         /// 平台渠道
         public let channel: Int64
-        
+
         /// 起始月份，YYYY-MM
         public let beginMonth: String
-        
+
         /// 结束月份。如果只上传一个月，结束月份等于起始月份
         public let endMonth: String
-        
+
         /// 完税列表下载地址
         public let fileUrl: String
-        
-        public init (channel: Int64, beginMonth: String, endMonth: String, fileUrl: String) {
+
+        public init(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String) {
             self.channel = channel
             self.beginMonth = beginMonth
             self.endMonth = endMonth
             self.fileUrl = fileUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channel = "Channel"
             case beginMonth = "BeginMonth"
@@ -43,39 +43,39 @@ extension Cpdp {
             case fileUrl = "FileUrl"
         }
     }
-    
+
     /// UploadTaxList返回参数结构体
     public struct UploadTaxListResponse: TCResponseModel {
         /// 完税ID
         public let taxId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taxId = "TaxId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 直播平台-上传代理商完税列表
     @inlinable
-    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadTaxListResponse > {
+    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadTaxListResponse> {
         self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 直播平台-上传代理商完税列表
     @inlinable
     public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
         try await self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 直播平台-上传代理商完税列表
     @inlinable
-    public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadTaxListResponse > {
+    public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadTaxListResponse> {
         self.uploadTaxList(UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 直播平台-上传代理商完税列表
     @inlinable
     public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {

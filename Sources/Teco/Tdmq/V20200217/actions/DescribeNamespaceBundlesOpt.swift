@@ -19,23 +19,23 @@ extension Tdmq {
     public struct DescribeNamespaceBundlesOptRequest: TCRequestModel {
         /// 物理集群名
         public let clusterName: String
-        
+
         /// 虚拟集群（租户）ID
         public let tenantId: String
-        
+
         /// 命名空间名
         public let namespaceName: String
-        
+
         /// 是否需要监控指标，若传false，则不需要传Limit和Offset分页参数
         public let needMetrics: Bool
-        
+
         /// 查询限制条数
         public let limit: Int64?
-        
+
         /// 查询偏移量
         public let offset: Int64?
-        
-        public init (clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil) {
             self.clusterName = clusterName
             self.tenantId = tenantId
             self.namespaceName = namespaceName
@@ -43,7 +43,7 @@ extension Tdmq {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterName = "ClusterName"
             case tenantId = "TenantId"
@@ -53,43 +53,43 @@ extension Tdmq {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeNamespaceBundlesOpt返回参数结构体
     public struct DescribeNamespaceBundlesOptResponse: TCResponseModel {
         /// 记录条数
         public let totalCount: Int64
-        
+
         /// bundle列表
         public let bundleSet: [BundleSetOpt]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case bundleSet = "BundleSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceBundlesOptResponse > {
+    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
         self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运营端获取命名空间bundle列表
     @inlinable
     public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
         try await self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceBundlesOptResponse > {
+    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
         self.describeNamespaceBundlesOpt(DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 运营端获取命名空间bundle列表
     @inlinable
     public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {

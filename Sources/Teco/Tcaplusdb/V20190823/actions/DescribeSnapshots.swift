@@ -19,23 +19,23 @@ extension Tcaplusdb {
     public struct DescribeSnapshotsRequest: TCRequestModel {
         /// 表格所属集群id
         public let clusterId: String
-        
+
         /// 所属表格组ID
         public let tableGroupId: String?
-        
+
         /// 表名称
         public let tableName: String?
-        
+
         /// 快照名称
         public let snapshotName: String?
-        
-        public init (clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil) {
+
+        public init(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil) {
             self.clusterId = clusterId
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.snapshotName = snapshotName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case tableGroupId = "TableGroupId"
@@ -43,43 +43,43 @@ extension Tcaplusdb {
             case snapshotName = "SnapshotName"
         }
     }
-    
+
     /// DescribeSnapshots返回参数结构体
     public struct DescribeSnapshotsResponse: TCResponseModel {
         /// 快照数量
         public let totalCount: UInt64
-        
+
         /// 快照结果列表
         public let tableResults: [SnapshotResult]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询快照列表
     @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
         self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询快照列表
     @inlinable
     public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
         try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询快照列表
     @inlinable
-    public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+    public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
         self.describeSnapshots(DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询快照列表
     @inlinable
     public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {

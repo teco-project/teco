@@ -17,24 +17,24 @@
 extension Cws {
     /// DescribeSiteQuota请求参数结构体
     public struct DescribeSiteQuotaRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeSiteQuota返回参数结构体
     public struct DescribeSiteQuotaResponse: TCResponseModel {
         /// 已购买的扫描次数。
         public let total: UInt64
-        
+
         /// 已使用的扫描次数。
         public let used: UInt64
-        
+
         /// 剩余可用的扫描次数。
         public let available: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case used = "Used"
@@ -42,15 +42,15 @@ extension Cws {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看站点购买配额
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
-    public func describeSiteQuota(_ input: DescribeSiteQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSiteQuotaResponse > {
+    public func describeSiteQuota(_ input: DescribeSiteQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSiteQuotaResponse> {
         self.client.execute(action: "DescribeSiteQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看站点购买配额
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
@@ -58,15 +58,15 @@ extension Cws {
     public func describeSiteQuota(_ input: DescribeSiteQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSiteQuotaResponse {
         try await self.client.execute(action: "DescribeSiteQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看站点购买配额
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
-    public func describeSiteQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSiteQuotaResponse > {
+    public func describeSiteQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSiteQuotaResponse> {
         self.describeSiteQuota(DescribeSiteQuotaRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看站点购买配额
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。

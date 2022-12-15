@@ -19,34 +19,34 @@ extension Mps {
     public struct DeleteImageSpriteTemplateRequest: TCRequestModel {
         /// 雪碧图模板唯一标识。
         public let definition: UInt64
-        
-        public init (definition: UInt64) {
+
+        public init(definition: UInt64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// DeleteImageSpriteTemplate返回参数结构体
     public struct DeleteImageSpriteTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。
     @inlinable
-    public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageSpriteTemplateResponse > {
+    public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageSpriteTemplateResponse> {
         self.client.execute(action: "DeleteImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。
@@ -54,15 +54,15 @@ extension Mps {
     public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
         try await self.client.execute(action: "DeleteImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。
     @inlinable
-    public func deleteImageSpriteTemplate(definition: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageSpriteTemplateResponse > {
+    public func deleteImageSpriteTemplate(definition: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageSpriteTemplateResponse> {
         self.deleteImageSpriteTemplate(DeleteImageSpriteTemplateRequest(definition: definition), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。

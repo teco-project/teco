@@ -19,38 +19,38 @@ extension Ssa {
     public struct DescribeVulListRequest: TCRequestModel {
         /// 查询过滤参数
         public let params: String
-        
-        public init (params: String) {
+
+        public init(params: String) {
             self.params = params
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case params = "Params"
         }
     }
-    
+
     /// DescribeVulList返回参数结构体
     public struct DescribeVulListResponse: TCResponseModel {
         /// 漏洞列表
         public let data: VulList
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 漏洞管理-漏洞列表
     ///
     /// 漏洞管理页，获取漏洞列表
     @inlinable
-    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulListResponse > {
+    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulListResponse> {
         self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞管理-漏洞列表
     ///
     /// 漏洞管理页，获取漏洞列表
@@ -58,15 +58,15 @@ extension Ssa {
     public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
         try await self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 漏洞管理-漏洞列表
     ///
     /// 漏洞管理页，获取漏洞列表
     @inlinable
-    public func describeVulList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulListResponse > {
+    public func describeVulList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulListResponse> {
         self.describeVulList(DescribeVulListRequest(params: params), logger: logger, on: eventLoop)
     }
-    
+
     /// 漏洞管理-漏洞列表
     ///
     /// 漏洞管理页，获取漏洞列表

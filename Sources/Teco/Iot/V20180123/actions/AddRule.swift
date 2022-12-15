@@ -19,27 +19,27 @@ extension Iot {
     public struct AddRuleRequest: TCRequestModel {
         /// 名称
         public let name: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 查询
         public let query: RuleQuery?
-        
+
         /// 转发动作列表
         public let actions: [Action]?
-        
+
         /// 数据类型（0：文本，1：二进制）
         public let dataType: UInt64?
-        
-        public init (name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil) {
+
+        public init(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil) {
             self.name = name
             self.description = description
             self.query = query
             self.actions = actions
             self.dataType = dataType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"
@@ -48,39 +48,39 @@ extension Iot {
             case dataType = "DataType"
         }
     }
-    
+
     /// AddRule返回参数结构体
     public struct AddRuleResponse: TCResponseModel {
         /// 规则
         public let rule: Rule
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rule = "Rule"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增规则
     @inlinable
-    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddRuleResponse > {
+    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRuleResponse> {
         self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增规则
     @inlinable
     public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {
         try await self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增规则
     @inlinable
-    public func addRule(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddRuleResponse > {
+    public func addRule(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRuleResponse> {
         self.addRule(AddRuleRequest(name: name, description: description, query: query, actions: actions, dataType: dataType), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增规则
     @inlinable
     public func addRule(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {

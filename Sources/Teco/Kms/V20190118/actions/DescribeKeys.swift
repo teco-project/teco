@@ -19,39 +19,39 @@ extension Kms {
     public struct DescribeKeysRequest: TCRequestModel {
         /// 查询CMK的ID列表，批量查询一次最多支持100个KeyId
         public let keyIds: [String]
-        
-        public init (keyIds: [String]) {
+
+        public init(keyIds: [String]) {
             self.keyIds = keyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
         }
     }
-    
+
     /// DescribeKeys返回参数结构体
     public struct DescribeKeysResponse: TCResponseModel {
         /// 返回的属性信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyMetadatas: [KeyMetadata]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keyMetadatas = "KeyMetadatas"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取多个主密钥属性
     ///
     /// 该接口用于批量获取主密钥属性信息。
     @inlinable
-    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeysResponse > {
+    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeysResponse> {
         self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取多个主密钥属性
     ///
     /// 该接口用于批量获取主密钥属性信息。
@@ -59,15 +59,15 @@ extension Kms {
     public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
         try await self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取多个主密钥属性
     ///
     /// 该接口用于批量获取主密钥属性信息。
     @inlinable
-    public func describeKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeysResponse > {
+    public func describeKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeysResponse> {
         self.describeKeys(DescribeKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取多个主密钥属性
     ///
     /// 该接口用于批量获取主密钥属性信息。

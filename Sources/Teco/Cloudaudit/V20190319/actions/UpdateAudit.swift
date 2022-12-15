@@ -19,44 +19,44 @@ extension Cloudaudit {
     public struct UpdateAuditRequest: TCRequestModel {
         /// 跟踪集名称
         public let auditName: String
-        
+
         /// 是否开启cmq消息通知。1：是，0：否。目前仅支持cmq的队列服务。如果开启cmq消息通知服务，云审计会将您的日志内容实时投递到您指定地域的指定队列中。
         public let isEnableCmqNotify: Int64?
-        
+
         /// 管理事件的读写属性。1：只读，2：只写，3：全部。
         public let readWriteAttribute: Int64?
-        
+
         /// CMK的全局唯一标识符，如果不是新创建的kms，该值是必填值。可以通过ListKeyAliasByRegion来获取。云审计不会校验KeyId的合法性，请您谨慎填写，避免给您的数据造成损失。
         public let keyId: String?
-        
+
         /// cos地域。目前支持的地域可以使用ListCosEnableRegion来获取。
         public let cosRegion: String?
-        
+
         /// 队列名称。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。如果IsEnableCmqNotify值是1的话，此值属于必填字段。如果不是新创建的队列，云审计不会去校验该队列是否真的存在，请谨慎填写，避免日志通知不成功，导致您的数据丢失。
         public let cmqQueueName: String?
-        
+
         /// 是否创建新的cos存储桶。1：是，0：否。
         public let isCreateNewBucket: Int64?
-        
+
         /// kms地域。目前支持的地域可以使用ListKmsEnableRegion来获取。必须要和cos的地域保持一致。
         public let kmsRegion: String?
-        
+
         /// 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
         public let isEnableKmsEncry: Int64?
-        
+
         /// cos的存储桶名称。仅支持小写英文字母和数字即[a-z，0-9]、中划线“-”及其组合。用户自定义的字符串支持1 - 40个字符。存储桶命名不能以“-”开头或结尾。如果不是新创建的存储桶，云审计不会去校验该存储桶是否真的存在，请谨慎填写，避免日志投递不成功，导致您的数据丢失。
         public let cosBucketName: String?
-        
+
         /// 队列所在的地域。可以通过ListCmqEnableRegion获取支持的cmq地域。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
         public let cmqRegion: String?
-        
+
         /// 日志文件前缀。3-40个字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9。
         public let logFilePrefix: String?
-        
+
         /// 是否创建新的队列。1：是，0：否。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
         public let isCreateNewQueue: Int64?
-        
-        public init (auditName: String, isEnableCmqNotify: Int64? = nil, readWriteAttribute: Int64? = nil, keyId: String? = nil, cosRegion: String? = nil, cmqQueueName: String? = nil, isCreateNewBucket: Int64? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cosBucketName: String? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil) {
+
+        public init(auditName: String, isEnableCmqNotify: Int64? = nil, readWriteAttribute: Int64? = nil, keyId: String? = nil, cosRegion: String? = nil, cmqQueueName: String? = nil, isCreateNewBucket: Int64? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cosBucketName: String? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil) {
             self.auditName = auditName
             self.isEnableCmqNotify = isEnableCmqNotify
             self.readWriteAttribute = readWriteAttribute
@@ -71,7 +71,7 @@ extension Cloudaudit {
             self.logFilePrefix = logFilePrefix
             self.isCreateNewQueue = isCreateNewQueue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case auditName = "AuditName"
             case isEnableCmqNotify = "IsEnableCmqNotify"
@@ -88,21 +88,21 @@ extension Cloudaudit {
             case isCreateNewQueue = "IsCreateNewQueue"
         }
     }
-    
+
     /// UpdateAudit返回参数结构体
     public struct UpdateAuditResponse: TCResponseModel {
         /// 是否更新成功
         public let isSuccess: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新跟踪集
     ///
     /// 参数要求：
@@ -111,10 +111,10 @@ extension Cloudaudit {
     /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
-    public func updateAudit(_ input: UpdateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAuditResponse > {
+    public func updateAudit(_ input: UpdateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAuditResponse> {
         self.client.execute(action: "UpdateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新跟踪集
     ///
     /// 参数要求：
@@ -126,7 +126,7 @@ extension Cloudaudit {
     public func updateAudit(_ input: UpdateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAuditResponse {
         try await self.client.execute(action: "UpdateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新跟踪集
     ///
     /// 参数要求：
@@ -135,10 +135,10 @@ extension Cloudaudit {
     /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
-    public func updateAudit(auditName: String, isEnableCmqNotify: Int64? = nil, readWriteAttribute: Int64? = nil, keyId: String? = nil, cosRegion: String? = nil, cmqQueueName: String? = nil, isCreateNewBucket: Int64? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cosBucketName: String? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAuditResponse > {
+    public func updateAudit(auditName: String, isEnableCmqNotify: Int64? = nil, readWriteAttribute: Int64? = nil, keyId: String? = nil, cosRegion: String? = nil, cmqQueueName: String? = nil, isCreateNewBucket: Int64? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cosBucketName: String? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAuditResponse> {
         self.updateAudit(UpdateAuditRequest(auditName: auditName, isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, keyId: keyId, cosRegion: cosRegion, cmqQueueName: cmqQueueName, isCreateNewBucket: isCreateNewBucket, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cosBucketName: cosBucketName, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新跟踪集
     ///
     /// 参数要求：

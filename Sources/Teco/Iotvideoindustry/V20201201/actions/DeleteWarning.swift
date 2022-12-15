@@ -19,49 +19,49 @@ extension Iotvideoindustry {
     public struct DeleteWarningRequest: TCRequestModel {
         /// 告警ID
         public let id: Int64?
-        
+
         /// 告警索引
         public let index: String?
-        
-        public init (id: Int64? = nil, index: String? = nil) {
+
+        public init(id: Int64? = nil, index: String? = nil) {
             self.id = id
             self.index = index
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case index = "Index"
         }
     }
-    
+
     /// DeleteWarning返回参数结构体
     public struct DeleteWarningResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设备告警-删除告警
     @inlinable
-    public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWarningResponse > {
+    public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWarningResponse> {
         self.client.execute(action: "DeleteWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设备告警-删除告警
     @inlinable
     public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWarningResponse {
         try await self.client.execute(action: "DeleteWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设备告警-删除告警
     @inlinable
-    public func deleteWarning(id: Int64? = nil, index: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWarningResponse > {
+    public func deleteWarning(id: Int64? = nil, index: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWarningResponse> {
         self.deleteWarning(DeleteWarningRequest(id: id, index: index), logger: logger, on: eventLoop)
     }
-    
+
     /// 设备告警-删除告警
     @inlinable
     public func deleteWarning(id: Int64? = nil, index: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWarningResponse {

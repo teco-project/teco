@@ -19,31 +19,31 @@ extension Cvm {
     public struct ModifyInstancesProjectRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。每次请求允许操作的实例数量上限是100。
         public let instanceIds: [String]
-        
+
         /// 项目ID。项目可以使用[AddProject](https://cloud.tencent.com/doc/api/403/4398)接口创建。可通过[`DescribeProject`](https://cloud.tencent.com/document/product/378/4400) API返回值中的`projectId`获取。后续使用[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)接口查询实例时，项目ID可用于过滤结果。
         public let projectId: Int64
-        
-        public init (instanceIds: [String], projectId: Int64) {
+
+        public init(instanceIds: [String], projectId: Int64) {
             self.instanceIds = instanceIds
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// ModifyInstancesProject返回参数结构体
     public struct ModifyInstancesProjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。
@@ -52,10 +52,10 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesProject(_ input: ModifyInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesProjectResponse > {
+    public func modifyInstancesProject(_ input: ModifyInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesProjectResponse> {
         self.client.execute(action: "ModifyInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。
@@ -67,7 +67,7 @@ extension Cvm {
     public func modifyInstancesProject(_ input: ModifyInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesProjectResponse {
         try await self.client.execute(action: "ModifyInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。
@@ -76,10 +76,10 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesProject(instanceIds: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesProjectResponse > {
+    public func modifyInstancesProject(instanceIds: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesProjectResponse> {
         self.modifyInstancesProject(ModifyInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。

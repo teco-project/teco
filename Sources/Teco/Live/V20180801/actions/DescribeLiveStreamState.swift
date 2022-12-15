@@ -19,26 +19,26 @@ extension Live {
     public struct DescribeLiveStreamStateRequest: TCRequestModel {
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
         public let appName: String
-        
+
         /// 您的推流域名。
         public let domainName: String
-        
+
         /// 流名称。
         public let streamName: String
-        
-        public init (appName: String, domainName: String, streamName: String) {
+
+        public init(appName: String, domainName: String, streamName: String) {
             self.appName = appName
             self.domainName = domainName
             self.streamName = streamName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
             case domainName = "DomainName"
             case streamName = "StreamName"
         }
     }
-    
+
     /// DescribeLiveStreamState返回参数结构体
     public struct DescribeLiveStreamStateResponse: TCResponseModel {
         /// 流状态，
@@ -46,16 +46,16 @@ extension Live {
         /// inactive：非活跃，
         /// forbid：禁播。
         public let streamState: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case streamState = "StreamState"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询流状态
     ///
     /// 返回直播中、无推流或者禁播等状态。
@@ -68,10 +68,10 @@ extension Live {
     /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
-    public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamStateResponse > {
+    public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamStateResponse> {
         self.client.execute(action: "DescribeLiveStreamState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询流状态
     ///
     /// 返回直播中、无推流或者禁播等状态。
@@ -87,7 +87,7 @@ extension Live {
     public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
         try await self.client.execute(action: "DescribeLiveStreamState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询流状态
     ///
     /// 返回直播中、无推流或者禁播等状态。
@@ -100,10 +100,10 @@ extension Live {
     /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
-    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamStateResponse > {
+    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamStateResponse> {
         self.describeLiveStreamState(DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询流状态
     ///
     /// 返回直播中、无推流或者禁播等状态。

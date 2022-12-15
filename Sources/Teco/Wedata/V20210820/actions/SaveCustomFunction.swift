@@ -19,35 +19,35 @@ extension Wedata {
     public struct SaveCustomFunctionRequest: TCRequestModel {
         /// 函数唯一标识
         public let functionId: String
-        
+
         /// 分类：窗口函数、聚合函数、日期函数......
         public let kind: String
-        
+
         /// 集群引擎实例
         public let clusterIdentifier: String
-        
+
         /// 类名
         public let className: String
-        
+
         /// 资源列表
         public let resourceList: [FunctionResource]
-        
+
         /// 函数说明
         public let description: String
-        
+
         /// 用法
         public let usage: String
-        
+
         /// 参数说明
         public let paramDesc: String
-        
+
         /// 返回值说明
         public let returnDesc: String
-        
+
         /// 示例
         public let example: String
-        
-        public init (functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String) {
+
+        public init(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String) {
             self.functionId = functionId
             self.kind = kind
             self.clusterIdentifier = clusterIdentifier
@@ -59,7 +59,7 @@ extension Wedata {
             self.returnDesc = returnDesc
             self.example = example
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionId = "FunctionId"
             case kind = "Kind"
@@ -73,45 +73,45 @@ extension Wedata {
             case example = "Example"
         }
     }
-    
+
     /// SaveCustomFunction返回参数结构体
     public struct SaveCustomFunctionResponse: TCResponseModel {
         /// 函数唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let functionId: String?
-        
+
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMessage: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case functionId = "FunctionId"
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 保存用户自定义函数
     @inlinable
-    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveCustomFunctionResponse > {
+    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveCustomFunctionResponse> {
         self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 保存用户自定义函数
     @inlinable
     public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
         try await self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 保存用户自定义函数
     @inlinable
-    public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveCustomFunctionResponse > {
+    public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveCustomFunctionResponse> {
         self.saveCustomFunction(SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example), logger: logger, on: eventLoop)
     }
-    
+
     /// 保存用户自定义函数
     @inlinable
     public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {

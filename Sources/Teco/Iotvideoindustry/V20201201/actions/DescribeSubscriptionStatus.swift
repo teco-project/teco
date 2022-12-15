@@ -19,48 +19,48 @@ extension Iotvideoindustry {
     public struct DescribeSubscriptionStatusRequest: TCRequestModel {
         /// 设备ID
         public let deviceId: String
-        
-        public init (deviceId: String) {
+
+        public init(deviceId: String) {
             self.deviceId = deviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
         }
     }
-    
+
     /// DescribeSubscriptionStatus返回参数结构体
     public struct DescribeSubscriptionStatusResponse: TCResponseModel {
         /// 设备GB28181报警订阅状态 1：未开启订阅；2：已开启订阅
         public let alarmStatus: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmStatus = "AlarmStatus"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询主设备订阅状态
     @inlinable
-    public func describeSubscriptionStatus(_ input: DescribeSubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscriptionStatusResponse > {
+    public func describeSubscriptionStatus(_ input: DescribeSubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscriptionStatusResponse> {
         self.client.execute(action: "DescribeSubscriptionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主设备订阅状态
     @inlinable
     public func describeSubscriptionStatus(_ input: DescribeSubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionStatusResponse {
         try await self.client.execute(action: "DescribeSubscriptionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询主设备订阅状态
     @inlinable
-    public func describeSubscriptionStatus(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscriptionStatusResponse > {
+    public func describeSubscriptionStatus(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscriptionStatusResponse> {
         self.describeSubscriptionStatus(DescribeSubscriptionStatusRequest(deviceId: deviceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主设备订阅状态
     @inlinable
     public func describeSubscriptionStatus(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionStatusResponse {

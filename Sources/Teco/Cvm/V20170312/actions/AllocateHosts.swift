@@ -19,26 +19,26 @@ extension Cvm {
     public struct AllocateHostsRequest: TCRequestModel {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         public let placement: Placement
-        
+
         /// 用于保证请求幂等性的字符串。
         public let clientToken: String?
-        
+
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         public let hostChargePrepaid: ChargePrepaid?
-        
+
         /// 实例计费类型。目前仅支持：PREPAID（预付费，即包年包月模式），默认为：'PREPAID'。
         public let hostChargeType: String?
-        
+
         /// CDH实例机型，默认为：'HS1'。
         public let hostType: String?
-        
+
         /// 购买CDH实例数量，默认为：1。
         public let hostCount: UInt64?
-        
+
         /// 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例。
         public let tagSpecification: [TagSpecification]?
-        
-        public init (placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil) {
+
+        public init(placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil) {
             self.placement = placement
             self.clientToken = clientToken
             self.hostChargePrepaid = hostChargePrepaid
@@ -47,7 +47,7 @@ extension Cvm {
             self.hostCount = hostCount
             self.tagSpecification = tagSpecification
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"
             case clientToken = "ClientToken"
@@ -58,30 +58,30 @@ extension Cvm {
             case tagSpecification = "TagSpecification"
         }
     }
-    
+
     /// AllocateHosts返回参数结构体
     public struct AllocateHostsResponse: TCResponseModel {
         /// 新创建云子机的实例ID列表。
         public let hostIdSet: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case hostIdSet = "HostIdSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建CDH实例
     ///
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
     /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
     @inlinable
-    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateHostsResponse > {
+    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateHostsResponse> {
         self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建CDH实例
     ///
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
@@ -90,16 +90,16 @@ extension Cvm {
     public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateHostsResponse {
         try await self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建CDH实例
     ///
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
     /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
     @inlinable
-    public func allocateHosts(placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateHostsResponse > {
+    public func allocateHosts(placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateHostsResponse> {
         self.allocateHosts(AllocateHostsRequest(placement: placement, clientToken: clientToken, hostChargePrepaid: hostChargePrepaid, hostChargeType: hostChargeType, hostType: hostType, hostCount: hostCount, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建CDH实例
     ///
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。

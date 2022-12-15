@@ -17,42 +17,42 @@
 extension Yunjing {
     /// ExportBashEvents请求参数结构体
     public struct ExportBashEventsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// ExportBashEvents返回参数结构体
     public struct ExportBashEventsResponse: TCResponseModel {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 导出高危命令事件
     @inlinable
-    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBashEventsResponse > {
+    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBashEventsResponse> {
         self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 导出高危命令事件
     @inlinable
     public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
         try await self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 导出高危命令事件
     @inlinable
-    public func exportBashEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBashEventsResponse > {
+    public func exportBashEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBashEventsResponse> {
         self.exportBashEvents(ExportBashEventsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 导出高危命令事件
     @inlinable
     public func exportBashEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {

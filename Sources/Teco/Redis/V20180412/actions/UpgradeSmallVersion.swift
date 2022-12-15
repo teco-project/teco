@@ -19,23 +19,23 @@ extension Redis {
     public struct UpgradeSmallVersionRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 当前redis版本
         public let currentRedisVersion: String
-        
+
         /// 可升级的redis版本
         public let upgradeRedisVersion: String
-        
+
         /// 1-立即升级   0-维护时间窗口升级
         public let instanceTypeUpgradeNow: Int64
-        
-        public init (instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64) {
+
+        public init(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64) {
             self.instanceId = instanceId
             self.currentRedisVersion = currentRedisVersion
             self.upgradeRedisVersion = upgradeRedisVersion
             self.instanceTypeUpgradeNow = instanceTypeUpgradeNow
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case currentRedisVersion = "CurrentRedisVersion"
@@ -43,29 +43,29 @@ extension Redis {
             case instanceTypeUpgradeNow = "InstanceTypeUpgradeNow"
         }
     }
-    
+
     /// UpgradeSmallVersion返回参数结构体
     public struct UpgradeSmallVersionResponse: TCResponseModel {
         /// 异步流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 实例小版本升级接口
     ///
     /// 实例小版本升级
     @inlinable
-    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeSmallVersionResponse > {
+    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeSmallVersionResponse> {
         self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 实例小版本升级接口
     ///
     /// 实例小版本升级
@@ -73,15 +73,15 @@ extension Redis {
     public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
         try await self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 实例小版本升级接口
     ///
     /// 实例小版本升级
     @inlinable
-    public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeSmallVersionResponse > {
+    public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeSmallVersionResponse> {
         self.upgradeSmallVersion(UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), logger: logger, on: eventLoop)
     }
-    
+
     /// 实例小版本升级接口
     ///
     /// 实例小版本升级

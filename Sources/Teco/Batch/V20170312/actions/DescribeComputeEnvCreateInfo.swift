@@ -19,56 +19,56 @@ extension Batch {
     public struct DescribeComputeEnvCreateInfoRequest: TCRequestModel {
         /// 计算环境ID
         public let envId: String
-        
-        public init (envId: String) {
+
+        public init(envId: String) {
             self.envId = envId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
         }
     }
-    
+
     /// DescribeComputeEnvCreateInfo返回参数结构体
     public struct DescribeComputeEnvCreateInfoResponse: TCResponseModel {
         /// 计算环境 ID
         public let envId: String
-        
+
         /// 计算环境名称
         public let envName: String
-        
+
         /// 计算环境描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envDescription: String?
-        
+
         /// 计算环境类型，仅支持“MANAGED”类型
         public let envType: String
-        
+
         /// 计算环境参数
         public let envData: EnvData
-        
+
         /// 数据盘挂载选项
         public let mountDataDisks: [MountDataDisk]
-        
+
         /// 输入映射
         public let inputMappings: [InputMapping]
-        
+
         /// 授权信息
         public let authentications: [Authentication]
-        
+
         /// 通知信息
         public let notifications: [Notification]
-        
+
         /// 计算节点期望个数
         public let desiredComputeNodeCount: Int64
-        
+
         /// 计算环境绑定的标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case envName = "EnvName"
@@ -84,15 +84,15 @@ extension Batch {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看计算环境的创建信息
     ///
     /// 查看计算环境的创建信息。
     @inlinable
-    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvCreateInfoResponse > {
+    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfoResponse> {
         self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看计算环境的创建信息
     ///
     /// 查看计算环境的创建信息。
@@ -100,15 +100,15 @@ extension Batch {
     public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
         try await self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看计算环境的创建信息
     ///
     /// 查看计算环境的创建信息。
     @inlinable
-    public func describeComputeEnvCreateInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvCreateInfoResponse > {
+    public func describeComputeEnvCreateInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfoResponse> {
         self.describeComputeEnvCreateInfo(DescribeComputeEnvCreateInfoRequest(envId: envId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看计算环境的创建信息
     ///
     /// 查看计算环境的创建信息。

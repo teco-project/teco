@@ -19,36 +19,36 @@ extension Ssm {
     public struct DescribeRotationDetailRequest: TCRequestModel {
         /// 指定需要获取凭据轮转详细信息的凭据名称。
         public let secretName: String
-        
-        public init (secretName: String) {
+
+        public init(secretName: String) {
             self.secretName = secretName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
         }
     }
-    
+
     /// DescribeRotationDetail返回参数结构体
     public struct DescribeRotationDetailResponse: TCResponseModel {
         /// 否允许轮转，true表示开启轮转，false表示禁止轮转。
         public let enableRotation: Bool
-        
+
         /// 轮转的频率，以天为单位，默认为1天。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frequency: Int64?
-        
+
         /// 最近一次轮转的时间，显式可见的时间字符串，格式 2006-01-02 15:04:05。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestRotateTime: String?
-        
+
         /// 下一次开始轮转的时间，显式可见的时间字符串，格式 2006-01-02 15:04:05。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextRotateBeginTime: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case enableRotation = "EnableRotation"
             case frequency = "Frequency"
@@ -57,16 +57,16 @@ extension Ssm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询凭据轮转详情
     ///
     /// 查询凭据轮转策略详情。
     /// 本接口只适用于云产品凭据。
     @inlinable
-    public func describeRotationDetail(_ input: DescribeRotationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRotationDetailResponse > {
+    public func describeRotationDetail(_ input: DescribeRotationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationDetailResponse> {
         self.client.execute(action: "DescribeRotationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询凭据轮转详情
     ///
     /// 查询凭据轮转策略详情。
@@ -75,16 +75,16 @@ extension Ssm {
     public func describeRotationDetail(_ input: DescribeRotationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationDetailResponse {
         try await self.client.execute(action: "DescribeRotationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询凭据轮转详情
     ///
     /// 查询凭据轮转策略详情。
     /// 本接口只适用于云产品凭据。
     @inlinable
-    public func describeRotationDetail(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRotationDetailResponse > {
+    public func describeRotationDetail(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationDetailResponse> {
         self.describeRotationDetail(DescribeRotationDetailRequest(secretName: secretName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询凭据轮转详情
     ///
     /// 查询凭据轮转策略详情。

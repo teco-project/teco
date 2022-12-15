@@ -19,48 +19,48 @@ extension Ssa {
     public struct DescribeCheckConfigDetailRequest: TCRequestModel {
         /// 检查项ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DescribeCheckConfigDetail返回参数结构体
     public struct DescribeCheckConfigDetailResponse: TCResponseModel {
         /// 检查项详情
         public let checkConfigDetail: CheckConfigDetail
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case checkConfigDetail = "CheckConfigDetail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 云安全配置检查项详情
     @inlinable
-    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckConfigDetailResponse > {
+    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigDetailResponse> {
         self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 云安全配置检查项详情
     @inlinable
     public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
         try await self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 云安全配置检查项详情
     @inlinable
-    public func describeCheckConfigDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckConfigDetailResponse > {
+    public func describeCheckConfigDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigDetailResponse> {
         self.describeCheckConfigDetail(DescribeCheckConfigDetailRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 云安全配置检查项详情
     @inlinable
     public func describeCheckConfigDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {

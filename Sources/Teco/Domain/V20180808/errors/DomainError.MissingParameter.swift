@@ -23,66 +23,66 @@ extension TCDomainError {
             case templateIdIsExist = "MissingParameter.TemplateIdIsExist"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名不能为空。
         public static var domainIsEmpty: MissingParameter {
             MissingParameter(.domainIsEmpty)
         }
-        
+
         /// 请求数据不能为空。
         public static var repDataIsNone: MissingParameter {
             MissingParameter(.repDataIsNone)
         }
-        
+
         /// 模板ID为空或者不合法。
         public static var templateIdIsEmpty: MissingParameter {
             MissingParameter(.templateIdIsEmpty)
         }
-        
+
         /// 模板已存在。
         public static var templateIdIsExist: MissingParameter {
             MissingParameter(.templateIdIsExist)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asDomainError() -> TCDomainError {
             let code: TCDomainError.Code
             switch self.error {
-            case .domainIsEmpty: 
+            case .domainIsEmpty:
                 code = .missingParameter_DomainIsEmpty
-            case .repDataIsNone: 
+            case .repDataIsNone:
                 code = .missingParameter_RepDataIsNone
-            case .templateIdIsEmpty: 
+            case .templateIdIsEmpty:
                 code = .missingParameter_TemplateIdIsEmpty
-            case .templateIdIsExist: 
+            case .templateIdIsExist:
                 code = .missingParameter_TemplateIdIsExist
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCDomainError(code, context: self.context)

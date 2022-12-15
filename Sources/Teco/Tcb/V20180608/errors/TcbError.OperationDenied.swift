@@ -20,47 +20,47 @@ extension TCTcbError {
             case resourceFrozen = "OperationDenied.ResourceFrozen"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 操作失败：资源被冻结。
         ///
         /// 相关资源被冻结，请前往 额度监控 控制台（https://console.cloud.tencent.com/tcb/env/safety?tabId=quota）手动解冻。
         public static var resourceFrozen: OperationDenied {
             OperationDenied(.resourceFrozen)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asTcbError() -> TCTcbError {
             let code: TCTcbError.Code
             switch self.error {
-            case .resourceFrozen: 
+            case .resourceFrozen:
                 code = .operationDenied_ResourceFrozen
-            case .other: 
+            case .other:
                 code = .operationDenied
             }
             return TCTcbError(code, context: self.context)

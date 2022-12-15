@@ -19,29 +19,29 @@ extension Privatedns {
     public struct ModifyPrivateZoneRecordRequest: TCRequestModel {
         /// 私有域ID
         public let zoneId: String
-        
+
         /// 记录ID
         public let recordId: String
-        
+
         /// 记录类型，可选的记录类型为："A", "AAAA", "CNAME", "MX", "TXT", "PTR"
         public let recordType: String
-        
+
         /// 子域名，例如 "www", "m", "@"
         public let subDomain: String
-        
+
         /// 记录值，例如 IP：192.168.10.2，CNAME：cname.qcloud.com.，MX：mail.qcloud.com.
         public let recordValue: String
-        
+
         /// 记录权重，值为1-100
         public let weight: Int64?
-        
+
         /// MX优先级：记录类型为MX时必填。取值范围：5,10,15,20,30,40,50
         public let mx: Int64?
-        
+
         /// 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
         public let ttl: Int64?
-        
-        public init (zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil) {
+
+        public init(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil) {
             self.zoneId = zoneId
             self.recordId = recordId
             self.recordType = recordType
@@ -51,7 +51,7 @@ extension Privatedns {
             self.mx = mx
             self.ttl = ttl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case recordId = "RecordId"
@@ -63,35 +63,35 @@ extension Privatedns {
             case ttl = "TTL"
         }
     }
-    
+
     /// ModifyPrivateZoneRecord返回参数结构体
     public struct ModifyPrivateZoneRecordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改私有域解析记录
     @inlinable
-    public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneRecordResponse > {
+    public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneRecordResponse> {
         self.client.execute(action: "ModifyPrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改私有域解析记录
     @inlinable
     public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
         try await self.client.execute(action: "ModifyPrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改私有域解析记录
     @inlinable
-    public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneRecordResponse > {
+    public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneRecordResponse> {
         self.modifyPrivateZoneRecord(ModifyPrivateZoneRecordRequest(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改私有域解析记录
     @inlinable
     public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {

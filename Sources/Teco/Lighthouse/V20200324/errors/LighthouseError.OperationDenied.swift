@@ -25,82 +25,82 @@ extension TCLighthouseError {
             case instanceOperationInProgress = "OperationDenied.InstanceOperationInProgress"
             case operationDeniedCreateSnapshotForStorageBundle = "OperationDenied.OperationDeniedCreateSnapshotForStorageBundle"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该实例不支持升级套餐操作。
         ///
         /// 请选择其他套餐完成升级套餐操作
         public static var bundleNotSupportModify: OperationDenied {
             OperationDenied(.bundleNotSupportModify)
         }
-        
+
         /// 磁盘处于创建过程中。
         public static var diskCreating: OperationDenied {
             OperationDenied(.diskCreating)
         }
-        
+
         /// 磁盘正在操作过程中，请稍后重试。
         public static var diskOperationInProgress: OperationDenied {
             OperationDenied(.diskOperationInProgress)
         }
-        
+
         /// 磁盘的云盘类型不支持该操作。
         public static var diskUsageNotSupportOperation: OperationDenied {
             OperationDenied(.diskUsageNotSupportOperation)
         }
-        
+
         /// 禁止对实例进行操作，实例在创建中，不允许进行该操作。
         public static var instanceCreating: OperationDenied {
             OperationDenied(.instanceCreating)
         }
-        
+
         /// 禁止对实例进行操作，实例最近一次的操作尚在进行中。
         public static var instanceOperationInProgress: OperationDenied {
             OperationDenied(.instanceOperationInProgress)
         }
-        
+
         /// 使用存储型套餐的实例不支持创建快照。
         public static var operationDeniedCreateSnapshotForStorageBundle: OperationDenied {
             OperationDenied(.operationDeniedCreateSnapshotForStorageBundle)
         }
-        
+
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
-            case .bundleNotSupportModify: 
+            case .bundleNotSupportModify:
                 code = .operationDenied_BundleNotSupportModify
-            case .diskCreating: 
+            case .diskCreating:
                 code = .operationDenied_DiskCreating
-            case .diskOperationInProgress: 
+            case .diskOperationInProgress:
                 code = .operationDenied_DiskOperationInProgress
-            case .diskUsageNotSupportOperation: 
+            case .diskUsageNotSupportOperation:
                 code = .operationDenied_DiskUsageNotSupportOperation
-            case .instanceCreating: 
+            case .instanceCreating:
                 code = .operationDenied_InstanceCreating
-            case .instanceOperationInProgress: 
+            case .instanceOperationInProgress:
                 code = .operationDenied_InstanceOperationInProgress
-            case .operationDeniedCreateSnapshotForStorageBundle: 
+            case .operationDeniedCreateSnapshotForStorageBundle:
                 code = .operationDenied_OperationDeniedCreateSnapshotForStorageBundle
             }
             return TCLighthouseError(code, context: self.context)

@@ -19,23 +19,23 @@ extension Sqlserver {
     public struct DescribeDBInstanceInterRequest: TCRequestModel {
         /// 分页，页大小，范围是1-100
         public let limit: Int64
-        
+
         /// 按照实例ID筛选
         public let instanceId: String?
-        
+
         /// 按照状态筛选 1-互通ip prot打开中；2-互通ip prot已经打开；3-加入到互通组中；4-已加入到互通组；5-互通ip prot回收中；6-互通ip prot已回收；7-从互通组移除中；8-已从互通组中移除
         public let status: Int64?
-        
+
         /// 实例版本代号列表
         public let versionSet: [String]?
-        
+
         /// 实例所在可用区，格式如：ap-guangzhou-2
         public let zone: String?
-        
+
         /// 分页，页数，默认是0
         public let offset: Int64?
-        
-        public init (limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil) {
+
+        public init(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil) {
             self.limit = limit
             self.instanceId = instanceId
             self.status = status
@@ -43,7 +43,7 @@ extension Sqlserver {
             self.zone = zone
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case instanceId = "InstanceId"
@@ -53,33 +53,33 @@ extension Sqlserver {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeDBInstanceInter返回参数结构体
     public struct DescribeDBInstanceInterResponse: TCResponseModel {
         /// 互通组内总条数
         public let totalCount: Int64
-        
+
         /// 互通组内实例信息详情
         public let interInstanceSet: [InterInstance]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case interInstanceSet = "InterInstanceSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
-    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceInterResponse > {
+    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInterResponse> {
         self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
@@ -87,15 +87,15 @@ extension Sqlserver {
     public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
         try await self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
-    public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceInterResponse > {
+    public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInterResponse> {
         self.describeDBInstanceInter(DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。

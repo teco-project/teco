@@ -23,66 +23,66 @@ extension TCCfsError {
             case unverifiedUser = "UnsupportedOperation.UnverifiedUser"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该可用区不支持基础网络。
         public static var basicNetInterfaceNotSupported: UnsupportedOperation {
             UnsupportedOperation(.basicNetInterfaceNotSupported)
         }
-        
+
         /// 用户已欠费, 请充值后重试。
         public static var outOfService: UnsupportedOperation {
             UnsupportedOperation(.outOfService)
         }
-        
+
         /// cfs角色未被授权。
         public static var unauthorizedCfsQcsRole: UnsupportedOperation {
             UnsupportedOperation(.unauthorizedCfsQcsRole)
         }
-        
+
         /// 用户未经过实名认证。
         public static var unverifiedUser: UnsupportedOperation {
             UnsupportedOperation(.unverifiedUser)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asCfsError() -> TCCfsError {
             let code: TCCfsError.Code
             switch self.error {
-            case .basicNetInterfaceNotSupported: 
+            case .basicNetInterfaceNotSupported:
                 code = .unsupportedOperation_BasicNetInterfaceNotSupported
-            case .outOfService: 
+            case .outOfService:
                 code = .unsupportedOperation_OutOfService
-            case .unauthorizedCfsQcsRole: 
+            case .unauthorizedCfsQcsRole:
                 code = .unsupportedOperation_UnauthorizedCfsQcsRole
-            case .unverifiedUser: 
+            case .unverifiedUser:
                 code = .unsupportedOperation_UnverifiedUser
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCCfsError(code, context: self.context)

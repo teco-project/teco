@@ -19,53 +19,53 @@ extension Tdid {
     public struct CreateSelectiveCredentialRequest: TCRequestModel {
         /// 参数集合
         public let functionArg: VerifyFunctionArg
-        
+
         /// 批露策略id
         public let policyId: UInt64
-        
-        public init (functionArg: VerifyFunctionArg, policyId: UInt64) {
+
+        public init(functionArg: VerifyFunctionArg, policyId: UInt64) {
             self.functionArg = functionArg
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case functionArg = "FunctionArg"
             case policyId = "PolicyId"
         }
     }
-    
+
     /// CreateSelectiveCredential返回参数结构体
     public struct CreateSelectiveCredentialResponse: TCResponseModel {
         /// 凭证字符串
         public let credentialData: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case credentialData = "CredentialData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建选择性批露凭证
     @inlinable
-    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSelectiveCredentialResponse > {
+    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
         self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建选择性批露凭证
     @inlinable
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
         try await self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建选择性批露凭证
     @inlinable
-    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSelectiveCredentialResponse > {
+    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
         self.createSelectiveCredential(CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建选择性批露凭证
     @inlinable
     public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {

@@ -19,57 +19,57 @@ extension Bma {
     public struct DescribeBPProtectURLsRequest: TCRequestModel {
         /// 页数
         public let pageSize: Int64?
-        
+
         /// 页码
         public let pageNumber: Int64?
-        
-        public init (pageSize: Int64? = nil, pageNumber: Int64? = nil) {
+
+        public init(pageSize: Int64? = nil, pageNumber: Int64? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageSize = "PageSize"
             case pageNumber = "PageNumber"
         }
     }
-    
+
     /// DescribeBPProtectURLs返回参数结构体
     public struct DescribeBPProtectURLsResponse: TCResponseModel {
         /// 保护网址列表
         public let protectURLInfos: [ProtectURLInfo]
-        
+
         /// 总量
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case protectURLInfos = "ProtectURLInfos"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询保护网站
     @inlinable
-    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPProtectURLsResponse > {
+    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPProtectURLsResponse> {
         self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询保护网站
     @inlinable
     public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
         try await self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询保护网站
     @inlinable
-    public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPProtectURLsResponse > {
+    public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPProtectURLsResponse> {
         self.describeBPProtectURLs(DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询保护网站
     @inlinable
     public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {

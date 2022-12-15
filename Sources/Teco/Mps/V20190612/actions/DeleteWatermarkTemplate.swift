@@ -19,34 +19,34 @@ extension Mps {
     public struct DeleteWatermarkTemplateRequest: TCRequestModel {
         /// 水印模板唯一标识。
         public let definition: Int64
-        
-        public init (definition: Int64) {
+
+        public init(definition: Int64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// DeleteWatermarkTemplate返回参数结构体
     public struct DeleteWatermarkTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。
     @inlinable
-    public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWatermarkTemplateResponse > {
+    public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWatermarkTemplateResponse> {
         self.client.execute(action: "DeleteWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。
@@ -54,15 +54,15 @@ extension Mps {
     public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
         try await self.client.execute(action: "DeleteWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。
     @inlinable
-    public func deleteWatermarkTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWatermarkTemplateResponse > {
+    public func deleteWatermarkTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWatermarkTemplateResponse> {
         self.deleteWatermarkTemplate(DeleteWatermarkTemplateRequest(definition: definition), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。

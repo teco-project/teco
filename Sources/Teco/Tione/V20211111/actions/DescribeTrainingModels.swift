@@ -29,23 +29,23 @@ extension Tione {
         /// 每次请求的Filters的上限为10，Filter.Values的上限为100
         /// Filter.Fuzzy取值：true/false，是否支持模糊匹配
         public let filters: [Filter]?
-        
+
         /// 排序字段，默认CreateTime
         public let orderField: String?
-        
+
         /// 排序方式，ASC/DESC，默认DESC
         public let order: String?
-        
+
         /// 偏移量
         public let offset: Int64?
-        
+
         /// 返回结果数量
         public let limit: Int64?
-        
+
         /// 标签过滤
         public let tagFilters: [TagFilter]?
-        
-        public init (filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil) {
+
+        public init(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil) {
             self.filters = filters
             self.orderField = orderField
             self.order = order
@@ -53,7 +53,7 @@ extension Tione {
             self.limit = limit
             self.tagFilters = tagFilters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case orderField = "OrderField"
@@ -63,43 +63,43 @@ extension Tione {
             case tagFilters = "TagFilters"
         }
     }
-    
+
     /// DescribeTrainingModels返回参数结构体
     public struct DescribeTrainingModelsResponse: TCResponseModel {
         /// 模型列表
         public let trainingModels: [TrainingModelDTO]
-        
+
         /// 模型总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trainingModels = "TrainingModels"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 模型列表
     @inlinable
-    public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelsResponse > {
+    public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelsResponse> {
         self.client.execute(action: "DescribeTrainingModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 模型列表
     @inlinable
     public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
         try await self.client.execute(action: "DescribeTrainingModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 模型列表
     @inlinable
-    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelsResponse > {
+    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelsResponse> {
         self.describeTrainingModels(DescribeTrainingModelsRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
     }
-    
+
     /// 模型列表
     @inlinable
     public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {

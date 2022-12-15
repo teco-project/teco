@@ -19,33 +19,33 @@ extension Mongodb {
     public struct DescribeDBInstanceDealRequest: TCRequestModel {
         /// 订单ID，通过CreateDBInstance等接口返回
         public let dealId: String
-        
-        public init (dealId: String) {
+
+        public init(dealId: String) {
             self.dealId = dealId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dealId = "DealId"
         }
     }
-    
+
     /// DescribeDBInstanceDeal返回参数结构体
     public struct DescribeDBInstanceDealResponse: TCResponseModel {
         /// 订单状态，1：未支付，2：已支付，3：发货中，4：发货成功，5：发货失败，6：退款，7：订单关闭，8：超时未支付关闭。
         public let status: Int64
-        
+
         /// 订单原价。
         public let originalPrice: Float
-        
+
         /// 订单折扣价格。
         public let discountPrice: Float
-        
+
         /// 订单行为，purchase：新购，renew：续费，upgrade：升配，downgrade：降配，refund：退货退款。
         public let action: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case originalPrice = "OriginalPrice"
@@ -54,15 +54,15 @@ extension Mongodb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取数据库实例订单详情
     ///
     /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。
     @inlinable
-    public func describeDBInstanceDeal(_ input: DescribeDBInstanceDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceDealResponse > {
+    public func describeDBInstanceDeal(_ input: DescribeDBInstanceDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceDealResponse> {
         self.client.execute(action: "DescribeDBInstanceDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据库实例订单详情
     ///
     /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。
@@ -70,15 +70,15 @@ extension Mongodb {
     public func describeDBInstanceDeal(_ input: DescribeDBInstanceDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceDealResponse {
         try await self.client.execute(action: "DescribeDBInstanceDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取数据库实例订单详情
     ///
     /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。
     @inlinable
-    public func describeDBInstanceDeal(dealId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceDealResponse > {
+    public func describeDBInstanceDeal(dealId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceDealResponse> {
         self.describeDBInstanceDeal(DescribeDBInstanceDealRequest(dealId: dealId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取数据库实例订单详情
     ///
     /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。

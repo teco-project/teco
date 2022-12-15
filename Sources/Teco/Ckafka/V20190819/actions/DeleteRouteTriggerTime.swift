@@ -19,34 +19,34 @@ extension Ckafka {
     public struct DeleteRouteTriggerTimeRequest: TCRequestModel {
         /// 修改时间
         public let delayTime: String
-        
-        public init (delayTime: String) {
+
+        public init(delayTime: String) {
             self.delayTime = delayTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case delayTime = "DelayTime"
         }
     }
-    
+
     /// DeleteRouteTriggerTime返回参数结构体
     public struct DeleteRouteTriggerTimeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
     @inlinable
-    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteTriggerTimeResponse > {
+    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
         self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
@@ -54,15 +54,15 @@ extension Ckafka {
     public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
         try await self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
     @inlinable
-    public func deleteRouteTriggerTime(delayTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteTriggerTimeResponse > {
+    public func deleteRouteTriggerTime(delayTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
         self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间

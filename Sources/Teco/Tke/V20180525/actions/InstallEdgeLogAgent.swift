@@ -19,34 +19,34 @@ extension Tke {
     public struct InstallEdgeLogAgentRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
-        public init (clusterId: String) {
+
+        public init(clusterId: String) {
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// InstallEdgeLogAgent返回参数结构体
     public struct InstallEdgeLogAgentResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 安装边缘日志采集组件
     ///
     /// 在tke@edge集群的边缘节点上安装日志采集组件
     @inlinable
-    public func installEdgeLogAgent(_ input: InstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallEdgeLogAgentResponse > {
+    public func installEdgeLogAgent(_ input: InstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallEdgeLogAgentResponse> {
         self.client.execute(action: "InstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 安装边缘日志采集组件
     ///
     /// 在tke@edge集群的边缘节点上安装日志采集组件
@@ -54,15 +54,15 @@ extension Tke {
     public func installEdgeLogAgent(_ input: InstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallEdgeLogAgentResponse {
         try await self.client.execute(action: "InstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 安装边缘日志采集组件
     ///
     /// 在tke@edge集群的边缘节点上安装日志采集组件
     @inlinable
-    public func installEdgeLogAgent(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallEdgeLogAgentResponse > {
+    public func installEdgeLogAgent(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallEdgeLogAgentResponse> {
         self.installEdgeLogAgent(InstallEdgeLogAgentRequest(clusterId: clusterId), logger: logger, on: eventLoop)
     }
-    
+
     /// 安装边缘日志采集组件
     ///
     /// 在tke@edge集群的边缘节点上安装日志采集组件

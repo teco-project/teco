@@ -20,45 +20,45 @@ extension TCCloudauditError {
             case overAmount = "LimitExceeded.OverAmount"
             case overTime = "LimitExceeded.OverTime"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 超过跟踪集的最大值
         public static var overAmount: LimitExceeded {
             LimitExceeded(.overAmount)
         }
-        
+
         /// 检索支持的有效时间范围是7天
         public static var overTime: LimitExceeded {
             LimitExceeded(.overTime)
         }
-        
+
         public func asCloudauditError() -> TCCloudauditError {
             let code: TCCloudauditError.Code
             switch self.error {
-            case .overAmount: 
+            case .overAmount:
                 code = .limitExceeded_OverAmount
-            case .overTime: 
+            case .overTime:
                 code = .limitExceeded_OverTime
             }
             return TCCloudauditError(code, context: self.context)

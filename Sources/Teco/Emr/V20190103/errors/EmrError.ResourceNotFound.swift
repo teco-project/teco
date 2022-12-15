@@ -26,103 +26,103 @@ extension TCEmrError {
             case tagsNotFound = "ResourceNotFound.TagsNotFound"
             case tkePreconditionNotFound = "ResourceNotFound.TKEPreconditionNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源不存在。
         ///
         /// 占位符
         public static var cdbInfoNotFound: ResourceNotFound {
             ResourceNotFound(.cdbInfoNotFound)
         }
-        
+
         /// 无法找到该实例。
         ///
         /// 占位符
         public static var clusterNotFound: ResourceNotFound {
             ResourceNotFound(.clusterNotFound)
         }
-        
+
         /// 无法找到硬件信息。
         ///
         /// 占位符
         public static var hardwareInfoNotFound: ResourceNotFound {
             ResourceNotFound(.hardwareInfoNotFound)
         }
-        
+
         /// 无法找到该实例。
         ///
         /// 占位符
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
         }
-        
+
         /// 无法找到监控元数据。
         ///
         /// 占位符
         public static var resourceNotFound: ResourceNotFound {
             ResourceNotFound(.resourceNotFound)
         }
-        
+
         /// 找不到对应的子网。
         ///
         /// 占位符
         public static var subnetNotFound: ResourceNotFound {
             ResourceNotFound(.subnetNotFound)
         }
-        
+
         /// 没有查找到指定标签。
         ///
         /// 占位符
         public static var tagsNotFound: ResourceNotFound {
             ResourceNotFound(.tagsNotFound)
         }
-        
+
         /// tke集群前置组件未部署。
         ///
         /// 占位符
         public static var tkePreconditionNotFound: ResourceNotFound {
             ResourceNotFound(.tkePreconditionNotFound)
         }
-        
+
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
-            case .cdbInfoNotFound: 
+            case .cdbInfoNotFound:
                 code = .resourceNotFound_CDBInfoNotFound
-            case .clusterNotFound: 
+            case .clusterNotFound:
                 code = .resourceNotFound_ClusterNotFound
-            case .hardwareInfoNotFound: 
+            case .hardwareInfoNotFound:
                 code = .resourceNotFound_HardwareInfoNotFound
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .resourceNotFound_InstanceNotFound
-            case .resourceNotFound: 
+            case .resourceNotFound:
                 code = .resourceNotFound_ResourceNotFound
-            case .subnetNotFound: 
+            case .subnetNotFound:
                 code = .resourceNotFound_SubnetNotFound
-            case .tagsNotFound: 
+            case .tagsNotFound:
                 code = .resourceNotFound_TagsNotFound
-            case .tkePreconditionNotFound: 
+            case .tkePreconditionNotFound:
                 code = .resourceNotFound_TKEPreconditionNotFound
             }
             return TCEmrError(code, context: self.context)

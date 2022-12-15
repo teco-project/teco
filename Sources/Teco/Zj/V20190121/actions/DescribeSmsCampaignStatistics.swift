@@ -19,53 +19,53 @@ extension Zj {
     public struct DescribeSmsCampaignStatisticsRequest: TCRequestModel {
         /// 活动id
         public let campaignId: UInt64
-        
+
         /// 商户证书
         public let license: String
-        
-        public init (campaignId: UInt64, license: String) {
+
+        public init(campaignId: UInt64, license: String) {
             self.campaignId = campaignId
             self.license = license
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case campaignId = "CampaignId"
             case license = "License"
         }
     }
-    
+
     /// DescribeSmsCampaignStatistics返回参数结构体
     public struct DescribeSmsCampaignStatisticsResponse: TCResponseModel {
         /// 响应数据
         public let data: SmsCampaignStatisticsData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取短信超短活动统计数据
     @inlinable
-    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsCampaignStatisticsResponse > {
+    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsCampaignStatisticsResponse> {
         self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取短信超短活动统计数据
     @inlinable
     public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
         try await self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取短信超短活动统计数据
     @inlinable
-    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsCampaignStatisticsResponse > {
+    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsCampaignStatisticsResponse> {
         self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取短信超短活动统计数据
     @inlinable
     public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {

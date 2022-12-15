@@ -19,23 +19,23 @@ extension Bm {
     public struct DescribeUserCmdTaskInfoRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 数量限制
         public let limit: UInt64?
-        
+
         /// 排序字段，支持： RunBeginTime,RunEndTime,Status
         public let orderField: String?
-        
+
         /// 排序方式，取值: 1倒序，0顺序；默认倒序
         public let order: UInt64?
-        
+
         /// 关键字搜索，可搜索ID或别名，支持模糊搜索
         public let searchKey: String?
-        
-        public init (taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil) {
+
+        public init(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil) {
             self.taskId = taskId
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Bm {
             self.order = order
             self.searchKey = searchKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case offset = "Offset"
@@ -53,43 +53,43 @@ extension Bm {
             case searchKey = "SearchKey"
         }
     }
-    
+
     /// DescribeUserCmdTaskInfo返回参数结构体
     public struct DescribeUserCmdTaskInfoResponse: TCResponseModel {
         /// 返回数量
         public let totalCount: UInt64
-        
+
         /// 自定义脚本任务详细信息列表
         public let userCmdTaskInfoSet: [UserCmdTaskInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case userCmdTaskInfoSet = "UserCmdTaskInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取自定义脚本任务详细信息
     @inlinable
-    public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTaskInfoResponse > {
+    public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTaskInfoResponse> {
         self.client.execute(action: "DescribeUserCmdTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自定义脚本任务详细信息
     @inlinable
     public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTaskInfoResponse {
         try await self.client.execute(action: "DescribeUserCmdTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取自定义脚本任务详细信息
     @inlinable
-    public func describeUserCmdTaskInfo(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTaskInfoResponse > {
+    public func describeUserCmdTaskInfo(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTaskInfoResponse> {
         self.describeUserCmdTaskInfo(DescribeUserCmdTaskInfoRequest(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取自定义脚本任务详细信息
     @inlinable
     public func describeUserCmdTaskInfo(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTaskInfoResponse {

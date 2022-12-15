@@ -17,36 +17,36 @@
 extension Tdmq {
     /// DescribeBindClusters请求参数结构体
     public struct DescribeBindClustersRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeBindClusters返回参数结构体
     public struct DescribeBindClustersResponse: TCResponseModel {
         /// 专享集群的数量
         public let totalCount: Int64
-        
+
         /// 专享集群的列表
         public let clusterSet: [BindCluster]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case clusterSet = "ClusterSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取专享集群列表
     ///
     /// 获取用户绑定的专享集群列表
     @inlinable
-    public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindClustersResponse > {
+    public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindClustersResponse> {
         self.client.execute(action: "DescribeBindClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专享集群列表
     ///
     /// 获取用户绑定的专享集群列表
@@ -54,15 +54,15 @@ extension Tdmq {
     public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindClustersResponse {
         try await self.client.execute(action: "DescribeBindClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取专享集群列表
     ///
     /// 获取用户绑定的专享集群列表
     @inlinable
-    public func describeBindClusters(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindClustersResponse > {
+    public func describeBindClusters(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindClustersResponse> {
         self.describeBindClusters(DescribeBindClustersRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取专享集群列表
     ///
     /// 获取用户绑定的专享集群列表

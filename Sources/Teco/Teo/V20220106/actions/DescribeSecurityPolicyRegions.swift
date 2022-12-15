@@ -17,46 +17,46 @@
 extension Teo {
     /// DescribeSecurityPolicyRegions请求参数结构体
     public struct DescribeSecurityPolicyRegionsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeSecurityPolicyRegions返回参数结构体
     public struct DescribeSecurityPolicyRegionsResponse: TCResponseModel {
         /// 总数
         public let count: Int64
-        
+
         /// 地域信息
         public let geoIp: [GeoIp]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case geoIp = "GeoIp"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询所有地域信息
     @inlinable
-    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyRegionsResponse > {
+    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyRegionsResponse> {
         self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所有地域信息
     @inlinable
     public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
         try await self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询所有地域信息
     @inlinable
-    public func describeSecurityPolicyRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyRegionsResponse > {
+    public func describeSecurityPolicyRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyRegionsResponse> {
         self.describeSecurityPolicyRegions(DescribeSecurityPolicyRegionsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所有地域信息
     @inlinable
     public func describeSecurityPolicyRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {

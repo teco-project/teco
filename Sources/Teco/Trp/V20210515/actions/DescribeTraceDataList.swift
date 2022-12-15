@@ -19,26 +19,26 @@ extension Trp {
     public struct DescribeTraceDataListRequest: TCRequestModel {
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 批次ID
         public let batchId: String?
-        
+
         /// 任务ID 用于外部溯源
         public let taskId: String?
-        
+
         /// 页数
         public let pageNumber: UInt64?
-        
+
         /// 二维码
         public let code: String?
-        
+
         /// 溯源阶段 0:商品 1:通用 2:内部溯源 3:外部溯源
         public let phase: UInt64?
-        
+
         /// 数量
         public let pageSize: UInt64?
-        
-        public init (corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil) {
+
+        public init(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil) {
             self.corpId = corpId
             self.batchId = batchId
             self.taskId = taskId
@@ -47,7 +47,7 @@ extension Trp {
             self.phase = phase
             self.pageSize = pageSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
             case batchId = "BatchId"
@@ -58,33 +58,33 @@ extension Trp {
             case pageSize = "PageSize"
         }
     }
-    
+
     /// DescribeTraceDataList返回参数结构体
     public struct DescribeTraceDataListResponse: TCResponseModel {
         /// 数量
         public let totalCount: UInt64
-        
+
         /// 无
         public let traceDataList: [TraceData]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case traceDataList = "TraceDataList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
-    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceDataListResponse > {
+    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceDataListResponse> {
         self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
@@ -92,15 +92,15 @@ extension Trp {
     public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
         try await self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
-    public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceDataListResponse > {
+    public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceDataListResponse> {
         self.describeTraceDataList(DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的

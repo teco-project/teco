@@ -23,7 +23,7 @@ extension Cbs {
         /// 过滤条件。支持以下条件：
         /// <li>snapshot-id - Array of String - 是否必填：是 - 按快照ID过滤，每个请求最多可指定10个快照ID。
         public let filters: [Filter]
-        
+
         /// 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -31,7 +31,7 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var beginTime: Date?
-        
+
         /// 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -39,43 +39,43 @@ extension Cbs {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endTime: Date?
-        
-        public init (filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil) {
+
+        public init(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil) {
             self.filters = filters
             self.beginTime = beginTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case beginTime = "BeginTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeSnapshotOperationLogs返回参数结构体
     public struct DescribeSnapshotOperationLogsResponse: TCResponseModel {
         /// 快照操作日志列表。
         public let snapshotOperationLogSet: [SnapshotOperationLog]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotOperationLogSet = "SnapshotOperationLogSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
-    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotOperationLogsResponse > {
+    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
         self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
@@ -84,16 +84,16 @@ extension Cbs {
     public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
         try await self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
-    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotOperationLogsResponse > {
+    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
         self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, beginTime: beginTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。

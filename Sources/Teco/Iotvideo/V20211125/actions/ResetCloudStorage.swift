@@ -19,23 +19,23 @@ extension Iotvideo {
     public struct ResetCloudStorageRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 设备名称
         public let deviceName: String
-        
+
         /// 通道ID 非NVR设备则不填 NVR设备则必填 默认为无
         public let channelId: UInt64?
-        
+
         /// 云存用户Id，为空则为默认云存空间。
         public let userId: String?
-        
-        public init (productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil) {
+
+        public init(productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.channelId = channelId
             self.userId = userId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
@@ -43,35 +43,35 @@ extension Iotvideo {
             case userId = "UserId"
         }
     }
-    
+
     /// ResetCloudStorage返回参数结构体
     public struct ResetCloudStorageResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重置云存服务
     @inlinable
-    public func resetCloudStorage(_ input: ResetCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetCloudStorageResponse > {
+    public func resetCloudStorage(_ input: ResetCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetCloudStorageResponse> {
         self.client.execute(action: "ResetCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重置云存服务
     @inlinable
     public func resetCloudStorage(_ input: ResetCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetCloudStorageResponse {
         try await self.client.execute(action: "ResetCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重置云存服务
     @inlinable
-    public func resetCloudStorage(productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetCloudStorageResponse > {
+    public func resetCloudStorage(productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetCloudStorageResponse> {
         self.resetCloudStorage(ResetCloudStorageRequest(productId: productId, deviceName: deviceName, channelId: channelId, userId: userId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重置云存服务
     @inlinable
     public func resetCloudStorage(productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetCloudStorageResponse {

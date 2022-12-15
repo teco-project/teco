@@ -19,23 +19,23 @@ extension Wedata {
     public struct DescribeInstanceLogRequest: TCRequestModel {
         /// 任务id
         public let taskId: String
-        
+
         /// 数据时间
         public let curRunDate: String
-        
+
         /// 服务器Ip
         public let brokerIp: String
-        
+
         /// 文件Name
         public let originFileName: String
-        
-        public init (taskId: String, curRunDate: String, brokerIp: String, originFileName: String) {
+
+        public init(taskId: String, curRunDate: String, brokerIp: String, originFileName: String) {
             self.taskId = taskId
             self.curRunDate = curRunDate
             self.brokerIp = brokerIp
             self.originFileName = originFileName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case curRunDate = "CurRunDate"
@@ -43,39 +43,39 @@ extension Wedata {
             case originFileName = "OriginFileName"
         }
     }
-    
+
     /// DescribeInstanceLog返回参数结构体
     public struct DescribeInstanceLogResponse: TCResponseModel {
         /// 返回结果
         public let data: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例运行日志
     @inlinable
-    public func describeInstanceLog(_ input: DescribeInstanceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogResponse > {
+    public func describeInstanceLog(_ input: DescribeInstanceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogResponse> {
         self.client.execute(action: "DescribeInstanceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例运行日志
     @inlinable
     public func describeInstanceLog(_ input: DescribeInstanceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogResponse {
         try await self.client.execute(action: "DescribeInstanceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例运行日志
     @inlinable
-    public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogResponse > {
+    public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogResponse> {
         self.describeInstanceLog(DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例运行日志
     @inlinable
     public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogResponse {

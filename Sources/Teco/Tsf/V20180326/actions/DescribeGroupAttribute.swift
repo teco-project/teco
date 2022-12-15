@@ -19,49 +19,49 @@ extension Tsf {
     public struct DescribeGroupAttributeRequest: TCRequestModel {
         /// 部署组ID字段
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DescribeGroupAttribute返回参数结构体
     public struct DescribeGroupAttributeResponse: TCResponseModel {
         /// 虚拟机部署组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: VmGroupOther?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取部署组其他属性
     @inlinable
-    public func describeGroupAttribute(_ input: DescribeGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupAttributeResponse > {
+    public func describeGroupAttribute(_ input: DescribeGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupAttributeResponse> {
         self.client.execute(action: "DescribeGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取部署组其他属性
     @inlinable
     public func describeGroupAttribute(_ input: DescribeGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAttributeResponse {
         try await self.client.execute(action: "DescribeGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取部署组其他属性
     @inlinable
-    public func describeGroupAttribute(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupAttributeResponse > {
+    public func describeGroupAttribute(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupAttributeResponse> {
         self.describeGroupAttribute(DescribeGroupAttributeRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取部署组其他属性
     @inlinable
     public func describeGroupAttribute(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAttributeResponse {

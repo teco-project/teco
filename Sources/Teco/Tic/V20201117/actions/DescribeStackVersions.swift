@@ -19,13 +19,13 @@ extension Tic {
     public struct DescribeStackVersionsRequest: TCRequestModel {
         /// 按照⼀个或者多个版本ID查询
         public let versionIds: [String]?
-        
+
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节
         public let limit: Int64?
-        
+
         /// <li>**Name**</li>
         /// 按照【**版本名称**】进行过滤
         /// 类型：string
@@ -36,14 +36,14 @@ extension Tic {
         /// 按照版本所属的【**资源栈ID**】进行过滤，形如`stk-xxxxxx`
         /// 类型：string
         public let filters: [Filter]?
-        
-        public init (versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
+
+        public init(versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.versionIds = versionIds
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case versionIds = "VersionIds"
             case offset = "Offset"
@@ -51,25 +51,25 @@ extension Tic {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeStackVersions返回参数结构体
     public struct DescribeStackVersionsResponse: TCResponseModel {
         /// 符合条件的版本数量
         public let totalCount: Int64
-        
+
         /// 版本详细信息列表
         public let versions: [VersionInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case versions = "Versions"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询版本列表
     ///
     /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
@@ -77,10 +77,10 @@ extension Tic {
     /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
     @inlinable
-    public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackVersionsResponse > {
+    public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackVersionsResponse> {
         self.client.execute(action: "DescribeStackVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询版本列表
     ///
     /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
@@ -91,7 +91,7 @@ extension Tic {
     public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackVersionsResponse {
         try await self.client.execute(action: "DescribeStackVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询版本列表
     ///
     /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
@@ -99,10 +99,10 @@ extension Tic {
     /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
     @inlinable
-    public func describeStackVersions(versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackVersionsResponse > {
+    public func describeStackVersions(versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackVersionsResponse> {
         self.describeStackVersions(DescribeStackVersionsRequest(versionIds: versionIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询版本列表
     ///
     /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。

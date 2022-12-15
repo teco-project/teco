@@ -19,38 +19,38 @@ extension Cfs {
     public struct DeleteAutoSnapshotPolicyRequest: TCRequestModel {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
-        
-        public init (autoSnapshotPolicyId: String) {
+
+        public init(autoSnapshotPolicyId: String) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
         }
     }
-    
+
     /// DeleteAutoSnapshotPolicy返回参数结构体
     public struct DeleteAutoSnapshotPolicyResponse: TCResponseModel {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除快照策略
     ///
     /// 删除快照定期策略
     @inlinable
-    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPolicyResponse > {
+    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPolicyResponse> {
         self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照策略
     ///
     /// 删除快照定期策略
@@ -58,15 +58,15 @@ extension Cfs {
     public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除快照策略
     ///
     /// 删除快照定期策略
     @inlinable
-    public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPolicyResponse > {
+    public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPolicyResponse> {
         self.deleteAutoSnapshotPolicy(DeleteAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照策略
     ///
     /// 删除快照定期策略

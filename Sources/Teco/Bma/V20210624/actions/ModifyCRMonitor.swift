@@ -19,44 +19,44 @@ extension Bma {
     public struct ModifyCRMonitorRequest: TCRequestModel {
         /// 作品ID
         public let workId: Int64
-        
+
         /// 监测状态：1-开启监测 2-关闭监测
         public let monitorStatus: String
-        
+
         /// 监测截止时间
         public let monitorEnd: String?
-        
-        public init (workId: Int64, monitorStatus: String, monitorEnd: String? = nil) {
+
+        public init(workId: Int64, monitorStatus: String, monitorEnd: String? = nil) {
             self.workId = workId
             self.monitorStatus = monitorStatus
             self.monitorEnd = monitorEnd
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workId = "WorkId"
             case monitorStatus = "MonitorStatus"
             case monitorEnd = "MonitorEnd"
         }
     }
-    
+
     /// ModifyCRMonitor返回参数结构体
     public struct ModifyCRMonitorResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测
     @inlinable
-    public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRMonitorResponse > {
+    public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRMonitorResponse> {
         self.client.execute(action: "ModifyCRMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测
@@ -64,15 +64,15 @@ extension Bma {
     public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
         try await self.client.execute(action: "ModifyCRMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测
     @inlinable
-    public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRMonitorResponse > {
+    public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRMonitorResponse> {
         self.modifyCRMonitor(ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd), logger: logger, on: eventLoop)
     }
-    
+
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测

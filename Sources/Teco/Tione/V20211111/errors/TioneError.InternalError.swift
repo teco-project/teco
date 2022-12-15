@@ -24,76 +24,76 @@ extension TCTioneError {
             case queryHDFSInfoFailed = "InternalError.QueryHDFSInfoFailed"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 冻结失败。
         ///
         /// 余额不足，请充值。
         public static var freezeBillFailed: InternalError {
             InternalError(.freezeBillFailed)
         }
-        
+
         /// 余额不足。
         ///
         /// 账户余额不足，无法创建任务，请充值后重新操作。
         public static var insufficientBalance: InternalError {
             InternalError(.insufficientBalance)
         }
-        
+
         /// 请检查相关权限是否允许操作。
         public static var noPermission: InternalError {
             InternalError(.noPermission)
         }
-        
+
         /// 请检查操作是否正确。
         public static var notAllow: InternalError {
             InternalError(.notAllow)
         }
-        
+
         public static var queryHDFSInfoFailed: InternalError {
             InternalError(.queryHDFSInfoFailed)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
-            case .freezeBillFailed: 
+            case .freezeBillFailed:
                 code = .internalError_FreezeBillFailed
-            case .insufficientBalance: 
+            case .insufficientBalance:
                 code = .internalError_InsufficientBalance
-            case .noPermission: 
+            case .noPermission:
                 code = .internalError_NoPermission
-            case .notAllow: 
+            case .notAllow:
                 code = .internalError_NotAllow
-            case .queryHDFSInfoFailed: 
+            case .queryHDFSInfoFailed:
                 code = .internalError_QueryHDFSInfoFailed
-            case .other: 
+            case .other:
                 code = .internalError
             }
             return TCTioneError(code, context: self.context)

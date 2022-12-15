@@ -19,38 +19,38 @@ extension Trp {
     public struct CreateTraceDataRequest: TCRequestModel {
         /// 企业ID
         public let corpId: UInt64?
-        
+
         /// 批次ID
         public let batchId: String?
-        
+
         /// 任务ID
         public let taskId: String?
-        
+
         /// 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
         public let phase: UInt64?
-        
+
         /// 溯源阶段名称
         public let phaseName: String?
-        
+
         /// [无效] 上链状态
         public let chainStatus: UInt64?
-        
+
         /// [无效] 码类型 0: 批次, 1: 码, 2: 生产任务, 3: 物流信息
         public let type: UInt64?
-        
+
         /// [无效] 溯源ID
         public let traceId: String?
-        
+
         /// 溯源信息
         public let traceItems: [TraceItem]?
-        
+
         /// 溯源状态 0: 无效, 1: 有效
         public let status: UInt64?
-        
+
         /// 环节数据
         public let phaseData: PhaseData?
-        
-        public init (corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil) {
+
+        public init(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil) {
             self.corpId = corpId
             self.batchId = batchId
             self.taskId = taskId
@@ -63,7 +63,7 @@ extension Trp {
             self.status = status
             self.phaseData = phaseData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
             case batchId = "BatchId"
@@ -78,39 +78,39 @@ extension Trp {
             case phaseData = "PhaseData"
         }
     }
-    
+
     /// CreateTraceData返回参数结构体
     public struct CreateTraceDataResponse: TCResponseModel {
         /// 溯源ID
         public let traceId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case traceId = "TraceId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增溯源信息
     @inlinable
-    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceDataResponse > {
+    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceDataResponse> {
         self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增溯源信息
     @inlinable
     public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {
         try await self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增溯源信息
     @inlinable
-    public func createTraceData(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceDataResponse > {
+    public func createTraceData(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceDataResponse> {
         self.createTraceData(CreateTraceDataRequest(corpId: corpId, batchId: batchId, taskId: taskId, phase: phase, phaseName: phaseName, chainStatus: chainStatus, type: type, traceId: traceId, traceItems: traceItems, status: status, phaseData: phaseData), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增溯源信息
     @inlinable
     public func createTraceData(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {

@@ -20,45 +20,45 @@ extension TCTdmqError {
             case needMoreParams = "MissingParameter.NeedMoreParams"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 必要参数没有传递。
         public static var needMoreParams: MissingParameter {
             MissingParameter(.needMoreParams)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
-            case .needMoreParams: 
+            case .needMoreParams:
                 code = .missingParameter_NeedMoreParams
-            case .other: 
+            case .other:
                 code = .missingParameter
             }
             return TCTdmqError(code, context: self.context)

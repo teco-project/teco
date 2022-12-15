@@ -19,23 +19,23 @@ extension Mmps {
     public struct CreateFlySecMiniAppScanTaskRepeatRequest: TCRequestModel {
         /// 小程序AppID
         public let miniAppID: String
-        
+
         /// 诊断模式 1:基础诊断
         public let mode: Int64
-        
+
         /// 原任务id
         public let orgTaskID: String
-        
+
         /// 小程序测试账号(自有账号体系需提供,其他情况不需要)
         public let miniAppTestAccount: String?
-        
+
         /// 小程序测试密码(自有账号体系需提供,其他情况不需要)
         public let miniAppTestPwd: String?
-        
+
         /// 诊断扫描版本 0:正式版 1:体验版
         public let scanVersion: Int64?
-        
-        public init (miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil) {
+
+        public init(miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil) {
             self.miniAppID = miniAppID
             self.mode = mode
             self.orgTaskID = orgTaskID
@@ -43,7 +43,7 @@ extension Mmps {
             self.miniAppTestPwd = miniAppTestPwd
             self.scanVersion = scanVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case miniAppID = "MiniAppID"
             case mode = "Mode"
@@ -53,33 +53,33 @@ extension Mmps {
             case scanVersion = "ScanVersion"
         }
     }
-    
+
     /// CreateFlySecMiniAppScanTaskRepeat返回参数结构体
     public struct CreateFlySecMiniAppScanTaskRepeatResponse: TCResponseModel {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let ret: Int64
-        
+
         /// 任务id
         public let taskID: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ret = "Ret"
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重新提交诊断任务
     ///
     /// 重新提交基础诊断任务
     @inlinable
-    public func createFlySecMiniAppScanTaskRepeat(_ input: CreateFlySecMiniAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlySecMiniAppScanTaskRepeatResponse > {
+    public func createFlySecMiniAppScanTaskRepeat(_ input: CreateFlySecMiniAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppScanTaskRepeatResponse> {
         self.client.execute(action: "CreateFlySecMiniAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重新提交诊断任务
     ///
     /// 重新提交基础诊断任务
@@ -87,15 +87,15 @@ extension Mmps {
     public func createFlySecMiniAppScanTaskRepeat(_ input: CreateFlySecMiniAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskRepeatResponse {
         try await self.client.execute(action: "CreateFlySecMiniAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重新提交诊断任务
     ///
     /// 重新提交基础诊断任务
     @inlinable
-    public func createFlySecMiniAppScanTaskRepeat(miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlySecMiniAppScanTaskRepeatResponse > {
+    public func createFlySecMiniAppScanTaskRepeat(miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppScanTaskRepeatResponse> {
         self.createFlySecMiniAppScanTaskRepeat(CreateFlySecMiniAppScanTaskRepeatRequest(miniAppID: miniAppID, mode: mode, orgTaskID: orgTaskID, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, scanVersion: scanVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 重新提交诊断任务
     ///
     /// 重新提交基础诊断任务

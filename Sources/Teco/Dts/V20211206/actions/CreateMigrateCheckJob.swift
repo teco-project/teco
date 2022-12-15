@@ -19,36 +19,36 @@ extension Dts {
     public struct CreateMigrateCheckJobRequest: TCRequestModel {
         /// 数据迁移任务ID
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// CreateMigrateCheckJob返回参数结构体
     public struct CreateMigrateCheckJobResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 校验迁移任务
     ///
     /// 校验迁移任务，
     /// 在开始迁移前, 必须调用本接口创建校验迁移任务, 且校验成功后才能开始迁移. 校验的结果可以通过DescribeMigrationCheckJob查看，
     /// 校验成功后,迁移任务若有修改, 则必须重新校验并通过后, 才能开始迁移
     @inlinable
-    public func createMigrateCheckJob(_ input: CreateMigrateCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrateCheckJobResponse > {
+    public func createMigrateCheckJob(_ input: CreateMigrateCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
         self.client.execute(action: "CreateMigrateCheckJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 校验迁移任务
     ///
     /// 校验迁移任务，
@@ -58,17 +58,17 @@ extension Dts {
     public func createMigrateCheckJob(_ input: CreateMigrateCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateCheckJobResponse {
         try await self.client.execute(action: "CreateMigrateCheckJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 校验迁移任务
     ///
     /// 校验迁移任务，
     /// 在开始迁移前, 必须调用本接口创建校验迁移任务, 且校验成功后才能开始迁移. 校验的结果可以通过DescribeMigrationCheckJob查看，
     /// 校验成功后,迁移任务若有修改, 则必须重新校验并通过后, 才能开始迁移
     @inlinable
-    public func createMigrateCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrateCheckJobResponse > {
+    public func createMigrateCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
         self.createMigrateCheckJob(CreateMigrateCheckJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 校验迁移任务
     ///
     /// 校验迁移任务，

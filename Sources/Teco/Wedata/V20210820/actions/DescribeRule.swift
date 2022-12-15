@@ -19,54 +19,54 @@ extension Wedata {
     public struct DescribeRuleRequest: TCRequestModel {
         /// 质量规则ID
         public let ruleId: UInt64?
-        
+
         /// 项目ID
         public let projectId: String?
-        
-        public init (ruleId: UInt64? = nil, projectId: String? = nil) {
+
+        public init(ruleId: UInt64? = nil, projectId: String? = nil) {
             self.ruleId = ruleId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// DescribeRule返回参数结构体
     public struct DescribeRuleResponse: TCResponseModel {
         /// 规则详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Rule?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询规则详情
     @inlinable
-    public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleResponse > {
+    public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
         self.client.execute(action: "DescribeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则详情
     @inlinable
     public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
         try await self.client.execute(action: "DescribeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询规则详情
     @inlinable
-    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleResponse > {
+    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
         self.describeRule(DescribeRuleRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询规则详情
     @inlinable
     public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {

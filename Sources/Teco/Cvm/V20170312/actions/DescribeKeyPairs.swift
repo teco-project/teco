@@ -19,7 +19,7 @@ extension Cvm {
     public struct DescribeKeyPairsRequest: TCRequestModel {
         /// 密钥对ID，密钥对ID形如：`skey-11112222`（此接口支持同时传入多个ID进行过滤。此参数的具体格式可参考 API [简介](https://cloud.tencent.com/document/api/213/15688)的 `id.N` 一节）。参数不支持同时指定 `KeyIds` 和 `Filters`。密钥对ID可以通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询。
         public let keyIds: [String]?
-        
+
         /// 过滤条件。
         /// <li> project-id - Integer - 是否必填：否 -（过滤条件）按照项目ID过滤。可以通过[项目列表](https://console.cloud.tencent.com/project)查询项目ID，或者调用接口 [DescribeProject](https://cloud.tencent.com/document/api/378/4400)，取返回信息中的projectId获取项目ID。</li>
         /// <li> key-name - String - 是否必填：否 -（过滤条件）按照密钥对名称过滤。</li>
@@ -28,20 +28,20 @@ extension Cvm {
         /// <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对过滤。tag-key使用具体的标签键进行替换。</li>
         /// 参数不支持同时指定 `KeyIds` 和 `Filters`。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
-        
-        public init (keyIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(keyIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.keyIds = keyIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case keyIds = "KeyIds"
             case filters = "Filters"
@@ -49,34 +49,34 @@ extension Cvm {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeKeyPairs返回参数结构体
     public struct DescribeKeyPairsResponse: TCResponseModel {
         /// 符合条件的密钥对数量。
         public let totalCount: Int64
-        
+
         /// 密钥对详细信息列表。
         public let keyPairSet: [KeyPair]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case keyPairSet = "KeyPairSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
     /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
     @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
         self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
@@ -85,16 +85,16 @@ extension Cvm {
     public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
         try await self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
     /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
     @inlinable
-    public func describeKeyPairs(keyIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
+    public func describeKeyPairs(keyIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
         self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。

@@ -19,23 +19,23 @@ extension Cfw {
     public struct DescribeNatFwVpcDnsLstRequest: TCRequestModel {
         /// natfw 防火墙实例id
         public let natFwInsId: String
-        
+
         /// natfw 过滤，以','分隔
         public let natInsIdFilter: String?
-        
+
         /// 分页页数
         public let offset: Int64?
-        
+
         /// 每页最多个数
         public let limit: Int64?
-        
-        public init (natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.natFwInsId = natFwInsId
             self.natInsIdFilter = natInsIdFilter
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natFwInsId = "NatFwInsId"
             case natInsIdFilter = "NatInsIdFilter"
@@ -43,24 +43,24 @@ extension Cfw {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeNatFwVpcDnsLst返回参数结构体
     public struct DescribeNatFwVpcDnsLstResponse: TCResponseModel {
         /// nat防火墙vpc dns 信息数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcDnsSwitchLst: [VpcDnsInfo]?
-        
+
         /// 返回参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnMsg: String?
-        
+
         /// 开关总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcDnsSwitchLst = "VpcDnsSwitchLst"
             case returnMsg = "ReturnMsg"
@@ -68,25 +68,25 @@ extension Cfw {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
-    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwVpcDnsLstResponse > {
+    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwVpcDnsLstResponse> {
         self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
     public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
         try await self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
-    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwVpcDnsLstResponse > {
+    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwVpcDnsLstResponse> {
         self.describeNatFwVpcDnsLst(DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
     public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {

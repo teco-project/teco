@@ -19,54 +19,54 @@ extension Ecm {
     public struct AttachNetworkInterfaceRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
         public let networkInterfaceId: String
-        
+
         /// 实例ID。形如：ein-r8hr2upy。
         public let instanceId: String
-        
+
         /// ECM 地域，形如ap-xian-ecm。
         public let ecmRegion: String
-        
-        public init (networkInterfaceId: String, instanceId: String, ecmRegion: String) {
+
+        public init(networkInterfaceId: String, instanceId: String, ecmRegion: String) {
             self.networkInterfaceId = networkInterfaceId
             self.instanceId = instanceId
             self.ecmRegion = ecmRegion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
             case instanceId = "InstanceId"
             case ecmRegion = "EcmRegion"
         }
     }
-    
+
     /// AttachNetworkInterface返回参数结构体
     public struct AttachNetworkInterfaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 弹性网卡绑定云主机
     @inlinable
-    public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
+    public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachNetworkInterfaceResponse> {
         self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡绑定云主机
     @inlinable
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
         try await self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 弹性网卡绑定云主机
     @inlinable
-    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
+    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachNetworkInterfaceResponse> {
         self.attachNetworkInterface(AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡绑定云主机
     @inlinable
     public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {

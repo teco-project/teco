@@ -22,7 +22,7 @@ extension Mongodb {
     public struct DescribeSlowLogRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
-        
+
         /// 慢日志起始时间，格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -30,7 +30,7 @@ extension Mongodb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 慢日志终止时间，格式：yyyy-mm-dd hh:mm:ss，如：2019-06-02 12:00:00。查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,17 +38,17 @@ extension Mongodb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 慢日志执行时间阈值，返回执行时间超过该阈值的慢日志，单位为毫秒(ms)，最小为100毫秒。
         public let slowMS: UInt64
-        
+
         /// 偏移量，最小值为0，最大值为10000，默认值为0。
         public let offset: UInt64?
-        
+
         /// 分页大小，最小值为1，最大值为100，默认值为20。
         public let limit: UInt64?
-        
-        public init (instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -56,7 +56,7 @@ extension Mongodb {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case startTime = "StartTime"
@@ -66,33 +66,33 @@ extension Mongodb {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeSlowLog返回参数结构体
     public struct DescribeSlowLogResponse: TCResponseModel {
         /// 符合查询条件的慢查询日志总数。
         public let totalCount: UInt64
-        
+
         /// 符合查询条件的慢查询日志详情。
         public let slowLogList: [String]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case slowLogList = "SlowLogList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例慢日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
-    public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogResponse > {
+    public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogResponse> {
         self.client.execute(action: "DescribeSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例慢日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
@@ -100,15 +100,15 @@ extension Mongodb {
     public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogResponse {
         try await self.client.execute(action: "DescribeSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例慢日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
-    public func describeSlowLog(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogResponse > {
+    public func describeSlowLog(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogResponse> {
         self.describeSlowLog(DescribeSlowLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例慢日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。

@@ -19,43 +19,43 @@ extension Ssm {
     public struct ListSecretVersionIdsRequest: TCRequestModel {
         /// 凭据名称。
         public let secretName: String
-        
-        public init (secretName: String) {
+
+        public init(secretName: String) {
             self.secretName = secretName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
         }
     }
-    
+
     /// ListSecretVersionIds返回参数结构体
     public struct ListSecretVersionIdsResponse: TCResponseModel {
         /// 凭据名称。
         public let secretName: String
-        
+
         /// VersionId列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versions: [VersionInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case versions = "Versions"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取指定凭据下的版本列表信息。
     ///
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
-    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretVersionIdsResponse > {
+    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretVersionIdsResponse> {
         self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定凭据下的版本列表信息。
     ///
     /// 该接口用于获取指定凭据下的版本列表信息
@@ -63,15 +63,15 @@ extension Ssm {
     public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
         try await self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取指定凭据下的版本列表信息。
     ///
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
-    public func listSecretVersionIds(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretVersionIdsResponse > {
+    public func listSecretVersionIds(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretVersionIdsResponse> {
         self.listSecretVersionIds(ListSecretVersionIdsRequest(secretName: secretName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取指定凭据下的版本列表信息。
     ///
     /// 该接口用于获取指定凭据下的版本列表信息

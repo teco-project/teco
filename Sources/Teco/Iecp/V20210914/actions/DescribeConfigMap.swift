@@ -19,51 +19,51 @@ extension Iecp {
     public struct DescribeConfigMapRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitID: UInt64
-        
+
         /// ConfigMap名称
         public let configMapName: String
-        
+
         /// ConfigMap命名空间
         public let configMapNamespace: String?
-        
-        public init (edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil) {
+
+        public init(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.configMapName = configMapName
             self.configMapNamespace = configMapNamespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitID = "EdgeUnitID"
             case configMapName = "ConfigMapName"
             case configMapNamespace = "ConfigMapNamespace"
         }
     }
-    
+
     /// DescribeConfigMap返回参数结构体
     public struct DescribeConfigMapResponse: TCResponseModel {
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// yaml配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yaml: String?
-        
+
         /// 配置项的json格式(base64编码)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let json: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -73,25 +73,25 @@ extension Iecp {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取ConfigMap详情
     @inlinable
-    public func describeConfigMap(_ input: DescribeConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapResponse > {
+    public func describeConfigMap(_ input: DescribeConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapResponse> {
         self.client.execute(action: "DescribeConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取ConfigMap详情
     @inlinable
     public func describeConfigMap(_ input: DescribeConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
         try await self.client.execute(action: "DescribeConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取ConfigMap详情
     @inlinable
-    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapResponse > {
+    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapResponse> {
         self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取ConfigMap详情
     @inlinable
     public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {

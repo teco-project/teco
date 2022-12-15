@@ -19,53 +19,53 @@ extension Dnspod {
     public struct DescribeDomainAliasListRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 域名ID,域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: Int64?
-        
-        public init (domain: String, domainId: Int64? = nil) {
+
+        public init(domain: String, domainId: Int64? = nil) {
             self.domain = domain
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
         }
     }
-    
+
     /// DescribeDomainAliasList返回参数结构体
     public struct DescribeDomainAliasListResponse: TCResponseModel {
         /// 域名别名列表
         public let domainAliasList: [DomainAliasInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainAliasList = "DomainAliasList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名别名列表
     @inlinable
-    public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainAliasListResponse > {
+    public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAliasListResponse> {
         self.client.execute(action: "DescribeDomainAliasList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名别名列表
     @inlinable
     public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {
         try await self.client.execute(action: "DescribeDomainAliasList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名别名列表
     @inlinable
-    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainAliasListResponse > {
+    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAliasListResponse> {
         self.describeDomainAliasList(DescribeDomainAliasListRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名别名列表
     @inlinable
     public func describeDomainAliasList(domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {

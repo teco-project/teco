@@ -19,23 +19,23 @@ extension Cynosdb {
     public struct ModifyClusterStorageRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 集群新存储大小（单位G）
         public let newStorageLimit: Int64
-        
+
         /// 集群原存储大小（单位G）
         public let oldStorageLimit: Int64
-        
+
         /// 交易模式 0-下单并支付 1-下单
         public let dealMode: Int64?
-        
-        public init (clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil) {
+
+        public init(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil) {
             self.clusterId = clusterId
             self.newStorageLimit = newStorageLimit
             self.oldStorageLimit = oldStorageLimit
             self.dealMode = dealMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case newStorageLimit = "NewStorageLimit"
@@ -43,24 +43,24 @@ extension Cynosdb {
             case dealMode = "DealMode"
         }
     }
-    
+
     /// ModifyClusterStorage返回参数结构体
     public struct ModifyClusterStorageResponse: TCResponseModel {
         /// 冻结流水ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranId: String?
-        
+
         /// 大订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bigDealIds: [String]?
-        
+
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealNames: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tranId = "TranId"
             case bigDealIds = "BigDealIds"
@@ -68,25 +68,25 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 升级预付费存储
     @inlinable
-    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterStorageResponse > {
+    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterStorageResponse> {
         self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 升级预付费存储
     @inlinable
     public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
         try await self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 升级预付费存储
     @inlinable
-    public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterStorageResponse > {
+    public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterStorageResponse> {
         self.modifyClusterStorage(ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 升级预付费存储
     @inlinable
     public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {

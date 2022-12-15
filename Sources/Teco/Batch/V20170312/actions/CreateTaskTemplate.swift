@@ -19,23 +19,23 @@ extension Batch {
     public struct CreateTaskTemplateRequest: TCRequestModel {
         /// 任务模板名称
         public let taskTemplateName: String
-        
+
         /// 任务模板内容，参数要求与任务一致
         public let taskTemplateInfo: Task
-        
+
         /// 任务模板描述
         public let taskTemplateDescription: String?
-        
+
         /// 标签列表。通过指定该参数可以支持绑定标签到任务模板。每个任务模板最多绑定10个标签。
         public let tags: [Tag]?
-        
-        public init (taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil) {
+
+        public init(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil) {
             self.taskTemplateName = taskTemplateName
             self.taskTemplateInfo = taskTemplateInfo
             self.taskTemplateDescription = taskTemplateDescription
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskTemplateName = "TaskTemplateName"
             case taskTemplateInfo = "TaskTemplateInfo"
@@ -43,29 +43,29 @@ extension Batch {
             case tags = "Tags"
         }
     }
-    
+
     /// CreateTaskTemplate返回参数结构体
     public struct CreateTaskTemplateResponse: TCResponseModel {
         /// 任务模板ID
         public let taskTemplateId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskTemplateId = "TaskTemplateId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建任务模板
     ///
     /// 用于创建任务模板
     @inlinable
-    public func createTaskTemplate(_ input: CreateTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskTemplateResponse > {
+    public func createTaskTemplate(_ input: CreateTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskTemplateResponse> {
         self.client.execute(action: "CreateTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建任务模板
     ///
     /// 用于创建任务模板
@@ -73,15 +73,15 @@ extension Batch {
     public func createTaskTemplate(_ input: CreateTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskTemplateResponse {
         try await self.client.execute(action: "CreateTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建任务模板
     ///
     /// 用于创建任务模板
     @inlinable
-    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskTemplateResponse > {
+    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskTemplateResponse> {
         self.createTaskTemplate(CreateTaskTemplateRequest(taskTemplateName: taskTemplateName, taskTemplateInfo: taskTemplateInfo, taskTemplateDescription: taskTemplateDescription, tags: tags), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建任务模板
     ///
     /// 用于创建任务模板

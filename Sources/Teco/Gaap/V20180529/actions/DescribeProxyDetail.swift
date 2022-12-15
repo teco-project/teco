@@ -19,38 +19,38 @@ extension Gaap {
     public struct DescribeProxyDetailRequest: TCRequestModel {
         /// 需查询的通道ID。
         public let proxyId: String
-        
-        public init (proxyId: String) {
+
+        public init(proxyId: String) {
             self.proxyId = proxyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyId = "ProxyId"
         }
     }
-    
+
     /// DescribeProxyDetail返回参数结构体
     public struct DescribeProxyDetailResponse: TCResponseModel {
         /// 通道详情信息。
         public let proxyDetail: ProxyInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyDetail = "ProxyDetail"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询通道详情
     ///
     /// 本接口（DescribeProxyDetail）用于查询通道详情。
     @inlinable
-    public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyDetailResponse > {
+    public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyDetailResponse> {
         self.client.execute(action: "DescribeProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道详情
     ///
     /// 本接口（DescribeProxyDetail）用于查询通道详情。
@@ -58,15 +58,15 @@ extension Gaap {
     public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyDetailResponse {
         try await self.client.execute(action: "DescribeProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询通道详情
     ///
     /// 本接口（DescribeProxyDetail）用于查询通道详情。
     @inlinable
-    public func describeProxyDetail(proxyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyDetailResponse > {
+    public func describeProxyDetail(proxyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyDetailResponse> {
         self.describeProxyDetail(DescribeProxyDetailRequest(proxyId: proxyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通道详情
     ///
     /// 本接口（DescribeProxyDetail）用于查询通道详情。

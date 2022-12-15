@@ -19,44 +19,44 @@ extension Antiddos {
     public struct DeleteWaterPrintConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DeleteWaterPrintConfig返回参数结构体
     public struct DeleteWaterPrintConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除DDoS防护的水印防护配置
     @inlinable
-    public func deleteWaterPrintConfig(_ input: DeleteWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWaterPrintConfigResponse > {
+    public func deleteWaterPrintConfig(_ input: DeleteWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWaterPrintConfigResponse> {
         self.client.execute(action: "DeleteWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DDoS防护的水印防护配置
     @inlinable
     public func deleteWaterPrintConfig(_ input: DeleteWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintConfigResponse {
         try await self.client.execute(action: "DeleteWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除DDoS防护的水印防护配置
     @inlinable
-    public func deleteWaterPrintConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWaterPrintConfigResponse > {
+    public func deleteWaterPrintConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWaterPrintConfigResponse> {
         self.deleteWaterPrintConfig(DeleteWaterPrintConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DDoS防护的水印防护配置
     @inlinable
     public func deleteWaterPrintConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintConfigResponse {

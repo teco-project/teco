@@ -19,39 +19,39 @@ extension Cwp {
     public struct DescribeBaselineBasicInfoRequest: TCRequestModel {
         /// 基线名称
         public let baselineName: String?
-        
-        public init (baselineName: String? = nil) {
+
+        public init(baselineName: String? = nil) {
             self.baselineName = baselineName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case baselineName = "BaselineName"
         }
     }
-    
+
     /// DescribeBaselineBasicInfo返回参数结构体
     public struct DescribeBaselineBasicInfoResponse: TCResponseModel {
         /// 基线基础信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baselineBasicInfoList: [BaselineBasicInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case baselineBasicInfoList = "BaselineBasicInfoList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询基线基础信息
     ///
     /// 查询基线基础信息列表
     @inlinable
-    public func describeBaselineBasicInfo(_ input: DescribeBaselineBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineBasicInfoResponse > {
+    public func describeBaselineBasicInfo(_ input: DescribeBaselineBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineBasicInfoResponse> {
         self.client.execute(action: "DescribeBaselineBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询基线基础信息
     ///
     /// 查询基线基础信息列表
@@ -59,15 +59,15 @@ extension Cwp {
     public func describeBaselineBasicInfo(_ input: DescribeBaselineBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineBasicInfoResponse {
         try await self.client.execute(action: "DescribeBaselineBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询基线基础信息
     ///
     /// 查询基线基础信息列表
     @inlinable
-    public func describeBaselineBasicInfo(baselineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineBasicInfoResponse > {
+    public func describeBaselineBasicInfo(baselineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineBasicInfoResponse> {
         self.describeBaselineBasicInfo(DescribeBaselineBasicInfoRequest(baselineName: baselineName), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询基线基础信息
     ///
     /// 查询基线基础信息列表

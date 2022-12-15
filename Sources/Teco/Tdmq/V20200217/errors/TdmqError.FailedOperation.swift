@@ -61,345 +61,345 @@ extension TCTdmqError {
             case vpcInUse = "FailedOperation.VpcInUse"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CMQ 后台服务错误。
         ///
         /// CMQ 后台服务错误，请再试一次。
         public static var cmqBackendError: FailedOperation {
             FailedOperation(.cmqBackendError)
         }
-        
+
         /// 创建vpc绑定关系失败。
         public static var createBindVpc: FailedOperation {
             FailedOperation(.createBindVpc)
         }
-        
+
         /// 创建集群失败。
         public static var createCluster: FailedOperation {
             FailedOperation(.createCluster)
         }
-        
+
         /// 环境创建失败。
         public static var createEnvironment: FailedOperation {
             FailedOperation(.createEnvironment)
         }
-        
+
         /// 创建环境角色失败。
         public static var createEnvironmentRole: FailedOperation {
             FailedOperation(.createEnvironmentRole)
         }
-        
+
         /// 创建命名空间失败。
         public static var createNamespace: FailedOperation {
             FailedOperation(.createNamespace)
         }
-        
+
         /// 创建producer出错。
         public static var createProducerError: FailedOperation {
             FailedOperation(.createProducerError)
         }
-        
+
         /// 创建TDMQ client的出错。
         public static var createPulsarClientError: FailedOperation {
             FailedOperation(.createPulsarClientError)
         }
-        
+
         /// 角色创建失败。
         public static var createRole: FailedOperation {
             FailedOperation(.createRole)
         }
-        
+
         /// 创建秘钥失败。
         public static var createSecretKey: FailedOperation {
             FailedOperation(.createSecretKey)
         }
-        
+
         /// 创建订阅关系失败。
         public static var createSubscription: FailedOperation {
             FailedOperation(.createSubscription)
         }
-        
+
         /// 主题创建失败。
         public static var createTopic: FailedOperation {
             FailedOperation(.createTopic)
         }
-        
+
         /// 删除集群失败。
         public static var deleteCluster: FailedOperation {
             FailedOperation(.deleteCluster)
         }
-        
+
         /// 删除环境角色失败。
         public static var deleteEnvironmentRoles: FailedOperation {
             FailedOperation(.deleteEnvironmentRoles)
         }
-        
+
         /// 环境删除失败。
         public static var deleteEnvironments: FailedOperation {
             FailedOperation(.deleteEnvironments)
         }
-        
+
         /// 删除命名空间失败。
         public static var deleteNamespace: FailedOperation {
             FailedOperation(.deleteNamespace)
         }
-        
+
         /// 角色删除失败。
         public static var deleteRoles: FailedOperation {
             FailedOperation(.deleteRoles)
         }
-        
+
         /// 删除订阅关系失败。
         public static var deleteSubscriptions: FailedOperation {
             FailedOperation(.deleteSubscriptions)
         }
-        
+
         /// 主题删除失败。
         public static var deleteTopics: FailedOperation {
             FailedOperation(.deleteTopics)
         }
-        
+
         /// 查询订阅数据失败。
         public static var describeSubscription: FailedOperation {
             FailedOperation(.describeSubscription)
         }
-        
+
         /// 获取环境属性失败。
         public static var getEnvironmentAttributesFailed: FailedOperation {
             FailedOperation(.getEnvironmentAttributesFailed)
         }
-        
+
         /// 获取主题分区数失败。
         public static var getTopicPartitionsFailed: FailedOperation {
             FailedOperation(.getTopicPartitionsFailed)
         }
-        
+
         /// 最大消息超过1MB。
         public static var maxMessageSizeError: FailedOperation {
             FailedOperation(.maxMessageSizeError)
         }
-        
+
         /// 上传的msgID错误。
         ///
         /// 请使用正确的MessageID的格式，否则服务端无法正确解析，
         public static var messageIDError: FailedOperation {
             FailedOperation(.messageIDError)
         }
-        
+
         /// 必须先清除关联命名空间才能继续操作。
         public static var namespaceInUse: FailedOperation {
             FailedOperation(.namespaceInUse)
         }
-        
+
         public static var pulsarAdminError: FailedOperation {
             FailedOperation(.pulsarAdminError)
         }
-        
+
         /// 接收消息出错。
         ///
         /// 这个是由于在接收消息时，client或者broker没有正确响应导致抛出 PulsarClientException 异常，可通过重试来尝试解决。
         public static var receiveError: FailedOperation {
             FailedOperation(.receiveError)
         }
-        
+
         /// 接收消息超时，请重试。
         ///
         /// 这里是因为接收消息超时导致的错误，一般由于网络抖动等因素会引起接收消息超时，可以通过重试来解决。
         public static var receiveTimeout: FailedOperation {
             FailedOperation(.receiveTimeout)
         }
-        
+
         /// 消息回溯设置失败。
         public static var resetMsgSubOffsetByTimestampFailed: FailedOperation {
             FailedOperation(.resetMsgSubOffsetByTimestampFailed)
         }
-        
+
         /// 必须先清除关联角色数据才能继续操作。
         public static var roleInUse: FailedOperation {
             FailedOperation(.roleInUse)
         }
-        
+
         /// 保存秘钥失败。
         public static var saveSecretKey: FailedOperation {
             FailedOperation(.saveSecretKey)
         }
-        
+
         /// 消息发送超时。
         ///
         /// 消息发送超时主要是由于broker侧的问题导致的，一般可以通过业务侧重试解决
         public static var sendMessageTimeoutError: FailedOperation {
             FailedOperation(.sendMessageTimeoutError)
         }
-        
+
         /// 发送消息失败。
         public static var sendMsgFailed: FailedOperation {
             FailedOperation(.sendMsgFailed)
         }
-        
+
         /// 设置消息保留策略失败。
         ///
         /// 调整参数后重试。
         public static var setRetentionPolicy: FailedOperation {
             FailedOperation(.setRetentionPolicy)
         }
-        
+
         /// 设置消息TTL失败。
         public static var setTTL: FailedOperation {
             FailedOperation(.setTTL)
         }
-        
+
         /// 必须先清除关联主题数据才能继续操作。
         public static var topicInUse: FailedOperation {
             FailedOperation(.topicInUse)
         }
-        
+
         /// 请使用partition topic。
         ///
         /// 创建的Topic类型不支持
         public static var topicTypeError: FailedOperation {
             FailedOperation(.topicTypeError)
         }
-        
+
         /// 环境更新失败。
         public static var updateEnvironment: FailedOperation {
             FailedOperation(.updateEnvironment)
         }
-        
+
         /// 更新环境角色失败。
         public static var updateEnvironmentRole: FailedOperation {
             FailedOperation(.updateEnvironmentRole)
         }
-        
+
         /// 角色更新失败。
         public static var updateRole: FailedOperation {
             FailedOperation(.updateRole)
         }
-        
+
         /// 主题更新失败。
         public static var updateTopic: FailedOperation {
             FailedOperation(.updateTopic)
         }
-        
+
         /// 必须先清除关联VPC路由数据才能继续操作。
         public static var vpcInUse: FailedOperation {
             FailedOperation(.vpcInUse)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
-            case .cmqBackendError: 
+            case .cmqBackendError:
                 code = .failedOperation_CmqBackendError
-            case .createBindVpc: 
+            case .createBindVpc:
                 code = .failedOperation_CreateBindVpc
-            case .createCluster: 
+            case .createCluster:
                 code = .failedOperation_CreateCluster
-            case .createEnvironment: 
+            case .createEnvironment:
                 code = .failedOperation_CreateEnvironment
-            case .createEnvironmentRole: 
+            case .createEnvironmentRole:
                 code = .failedOperation_CreateEnvironmentRole
-            case .createNamespace: 
+            case .createNamespace:
                 code = .failedOperation_CreateNamespace
-            case .createProducerError: 
+            case .createProducerError:
                 code = .failedOperation_CreateProducerError
-            case .createPulsarClientError: 
+            case .createPulsarClientError:
                 code = .failedOperation_CreatePulsarClientError
-            case .createRole: 
+            case .createRole:
                 code = .failedOperation_CreateRole
-            case .createSecretKey: 
+            case .createSecretKey:
                 code = .failedOperation_CreateSecretKey
-            case .createSubscription: 
+            case .createSubscription:
                 code = .failedOperation_CreateSubscription
-            case .createTopic: 
+            case .createTopic:
                 code = .failedOperation_CreateTopic
-            case .deleteCluster: 
+            case .deleteCluster:
                 code = .failedOperation_DeleteCluster
-            case .deleteEnvironmentRoles: 
+            case .deleteEnvironmentRoles:
                 code = .failedOperation_DeleteEnvironmentRoles
-            case .deleteEnvironments: 
+            case .deleteEnvironments:
                 code = .failedOperation_DeleteEnvironments
-            case .deleteNamespace: 
+            case .deleteNamespace:
                 code = .failedOperation_DeleteNamespace
-            case .deleteRoles: 
+            case .deleteRoles:
                 code = .failedOperation_DeleteRoles
-            case .deleteSubscriptions: 
+            case .deleteSubscriptions:
                 code = .failedOperation_DeleteSubscriptions
-            case .deleteTopics: 
+            case .deleteTopics:
                 code = .failedOperation_DeleteTopics
-            case .describeSubscription: 
+            case .describeSubscription:
                 code = .failedOperation_DescribeSubscription
-            case .getEnvironmentAttributesFailed: 
+            case .getEnvironmentAttributesFailed:
                 code = .failedOperation_GetEnvironmentAttributesFailed
-            case .getTopicPartitionsFailed: 
+            case .getTopicPartitionsFailed:
                 code = .failedOperation_GetTopicPartitionsFailed
-            case .maxMessageSizeError: 
+            case .maxMessageSizeError:
                 code = .failedOperation_MaxMessageSizeError
-            case .messageIDError: 
+            case .messageIDError:
                 code = .failedOperation_MessageIDError
-            case .namespaceInUse: 
+            case .namespaceInUse:
                 code = .failedOperation_NamespaceInUse
-            case .pulsarAdminError: 
+            case .pulsarAdminError:
                 code = .failedOperation_PulsarAdminError
-            case .receiveError: 
+            case .receiveError:
                 code = .failedOperation_ReceiveError
-            case .receiveTimeout: 
+            case .receiveTimeout:
                 code = .failedOperation_ReceiveTimeout
-            case .resetMsgSubOffsetByTimestampFailed: 
+            case .resetMsgSubOffsetByTimestampFailed:
                 code = .failedOperation_ResetMsgSubOffsetByTimestampFailed
-            case .roleInUse: 
+            case .roleInUse:
                 code = .failedOperation_RoleInUse
-            case .saveSecretKey: 
+            case .saveSecretKey:
                 code = .failedOperation_SaveSecretKey
-            case .sendMessageTimeoutError: 
+            case .sendMessageTimeoutError:
                 code = .failedOperation_SendMessageTimeoutError
-            case .sendMsgFailed: 
+            case .sendMsgFailed:
                 code = .failedOperation_SendMsgFailed
-            case .setRetentionPolicy: 
+            case .setRetentionPolicy:
                 code = .failedOperation_SetRetentionPolicy
-            case .setTTL: 
+            case .setTTL:
                 code = .failedOperation_SetTTL
-            case .topicInUse: 
+            case .topicInUse:
                 code = .failedOperation_TopicInUse
-            case .topicTypeError: 
+            case .topicTypeError:
                 code = .failedOperation_TopicTypeError
-            case .updateEnvironment: 
+            case .updateEnvironment:
                 code = .failedOperation_UpdateEnvironment
-            case .updateEnvironmentRole: 
+            case .updateEnvironmentRole:
                 code = .failedOperation_UpdateEnvironmentRole
-            case .updateRole: 
+            case .updateRole:
                 code = .failedOperation_UpdateRole
-            case .updateTopic: 
+            case .updateTopic:
                 code = .failedOperation_UpdateTopic
-            case .vpcInUse: 
+            case .vpcInUse:
                 code = .failedOperation_VpcInUse
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCTdmqError(code, context: self.context)

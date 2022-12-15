@@ -19,25 +19,25 @@ extension Ame {
     public struct DescribeMusicRequest: TCRequestModel {
         /// 歌曲ID
         public let itemId: String
-        
+
         /// 在应用前端播放音乐C端用户的唯一标识。无需是账户信息，用户唯一标识即可。
         public let identityId: String
-        
+
         /// MP3-320K-FTD-P  为获取320kbps歌曲热门片段。
         /// MP3-320K-FTD 为获取320kbps已核验歌曲完整资源。
         public let subItemType: String?
-        
+
         /// CDN URL Protocol:HTTP or HTTPS/SSL
         /// Values:Y , N(default)
         public let ssl: String?
-        
-        public init (itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil) {
+
+        public init(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil) {
             self.itemId = itemId
             self.identityId = identityId
             self.subItemType = subItemType
             self.ssl = ssl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case itemId = "ItemId"
             case identityId = "IdentityId"
@@ -45,30 +45,30 @@ extension Ame {
             case ssl = "Ssl"
         }
     }
-    
+
     /// DescribeMusic返回参数结构体
     public struct DescribeMusicResponse: TCResponseModel {
         /// 音乐相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let music: Music?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case music = "Music"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取曲库包歌曲播放信息
     ///
     /// 获取曲库包歌曲播放信息接口
     @inlinable
-    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMusicResponse > {
+    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicResponse> {
         self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取曲库包歌曲播放信息
     ///
     /// 获取曲库包歌曲播放信息接口
@@ -76,15 +76,15 @@ extension Ame {
     public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
         try await self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取曲库包歌曲播放信息
     ///
     /// 获取曲库包歌曲播放信息接口
     @inlinable
-    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMusicResponse > {
+    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicResponse> {
         self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取曲库包歌曲播放信息
     ///
     /// 获取曲库包歌曲播放信息接口

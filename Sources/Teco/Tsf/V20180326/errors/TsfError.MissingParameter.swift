@@ -40,185 +40,185 @@ extension TCTsfError {
             case serviceIdRequired = "MissingParameter.ServiceIdRequired"
             case taskParameterMissed = "MissingParameter.TaskParameterMissed"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 应用ID不能为空。
         public static var applicationIdNull: MissingParameter {
             MissingParameter(.applicationIdNull)
         }
-        
+
         /// 应用ID未填写。
         public static var applicationIdRequired: MissingParameter {
             MissingParameter(.applicationIdRequired)
         }
-        
+
         /// 应用类型不能为空。
         public static var applicationTypeNull: MissingParameter {
             MissingParameter(.applicationTypeNull)
         }
-        
+
         /// 集群ID未填写。
         public static var clusterIdRequired: MissingParameter {
             MissingParameter(.clusterIdRequired)
         }
-        
+
         /// 集群所属子网不能为空。
         public static var clusterSubnetRequired: MissingParameter {
             MissingParameter(.clusterSubnetRequired)
         }
-        
+
         /// 配置项ID未填写。
         public static var configIdRequired: MissingParameter {
             MissingParameter(.configIdRequired)
         }
-        
+
         /// 配置项名称未填写。
         public static var configNameRequired: MissingParameter {
             MissingParameter(.configNameRequired)
         }
-        
+
         /// 配置项发布信息ID未填写。
         public static var configReleaseIdRequired: MissingParameter {
             MissingParameter(.configReleaseIdRequired)
         }
-        
+
         /// 配置项类型未填写。
         public static var configTypeRequired: MissingParameter {
             MissingParameter(.configTypeRequired)
         }
-        
+
         /// 配置项值未填写。
         public static var configValueRequired: MissingParameter {
             MissingParameter(.configValueRequired)
         }
-        
+
         /// 配置项版本未填写。
         public static var configVersionRequired: MissingParameter {
             MissingParameter(.configVersionRequired)
         }
-        
+
         /// 文件配置项文件内容未填写。
         public static var fileConfigFileValueRequired: MissingParameter {
             MissingParameter(.fileConfigFileValueRequired)
         }
-        
+
         /// 缺少请求参数:%s。
         public static var gatewayParameterRequired: MissingParameter {
             MissingParameter(.gatewayParameterRequired)
         }
-        
+
         /// 分组所属应用不能为空。
         public static var groupApplicationNull: MissingParameter {
             MissingParameter(.groupApplicationNull)
         }
-        
+
         /// 分组ID不能为空。
         public static var groupIdNull: MissingParameter {
             MissingParameter(.groupIdNull)
         }
-        
+
         /// 部署组ID未填写。
         public static var groupIdRequired: MissingParameter {
             MissingParameter(.groupIdRequired)
         }
-        
+
         /// 分组所属命名空间不能为空。
         public static var groupNamespaceNull: MissingParameter {
             MissingParameter(.groupNamespaceNull)
         }
-        
+
         /// 虚拟机集群导入云主机导入方式为空。
         public static var instanceImportModeNull: MissingParameter {
             MissingParameter(.instanceImportModeNull)
         }
-        
+
         /// 命名空间ID不能为空。
         public static var namespaceIdRequired: MissingParameter {
             MissingParameter(.namespaceIdRequired)
         }
-        
+
         /// %s缺失。
         public static var requiredParameterMissing: MissingParameter {
             MissingParameter(.requiredParameterMissing)
         }
-        
+
         /// 未填写服务Id。
         public static var serviceIdRequired: MissingParameter {
             MissingParameter(.serviceIdRequired)
         }
-        
+
         /// 缺少必填参数。
         public static var taskParameterMissed: MissingParameter {
             MissingParameter(.taskParameterMissed)
         }
-        
+
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
-            case .applicationIdNull: 
+            case .applicationIdNull:
                 code = .missingParameter_ApplicationIdNull
-            case .applicationIdRequired: 
+            case .applicationIdRequired:
                 code = .missingParameter_ApplicationIdRequired
-            case .applicationTypeNull: 
+            case .applicationTypeNull:
                 code = .missingParameter_ApplicationTypeNull
-            case .clusterIdRequired: 
+            case .clusterIdRequired:
                 code = .missingParameter_ClusterIdRequired
-            case .clusterSubnetRequired: 
+            case .clusterSubnetRequired:
                 code = .missingParameter_ClusterSubnetRequired
-            case .configIdRequired: 
+            case .configIdRequired:
                 code = .missingParameter_ConfigIdRequired
-            case .configNameRequired: 
+            case .configNameRequired:
                 code = .missingParameter_ConfigNameRequired
-            case .configReleaseIdRequired: 
+            case .configReleaseIdRequired:
                 code = .missingParameter_ConfigReleaseIdRequired
-            case .configTypeRequired: 
+            case .configTypeRequired:
                 code = .missingParameter_ConfigTypeRequired
-            case .configValueRequired: 
+            case .configValueRequired:
                 code = .missingParameter_ConfigValueRequired
-            case .configVersionRequired: 
+            case .configVersionRequired:
                 code = .missingParameter_ConfigVersionRequired
-            case .fileConfigFileValueRequired: 
+            case .fileConfigFileValueRequired:
                 code = .missingParameter_FileConfigFileValueRequired
-            case .gatewayParameterRequired: 
+            case .gatewayParameterRequired:
                 code = .missingParameter_GatewayParameterRequired
-            case .groupApplicationNull: 
+            case .groupApplicationNull:
                 code = .missingParameter_GroupApplicationNull
-            case .groupIdNull: 
+            case .groupIdNull:
                 code = .missingParameter_GroupIdNull
-            case .groupIdRequired: 
+            case .groupIdRequired:
                 code = .missingParameter_GroupIdRequired
-            case .groupNamespaceNull: 
+            case .groupNamespaceNull:
                 code = .missingParameter_GroupNamespaceNull
-            case .instanceImportModeNull: 
+            case .instanceImportModeNull:
                 code = .missingParameter_InstanceImportModeNull
-            case .namespaceIdRequired: 
+            case .namespaceIdRequired:
                 code = .missingParameter_NamespaceIdRequired
-            case .requiredParameterMissing: 
+            case .requiredParameterMissing:
                 code = .missingParameter_RequiredParameterMissing
-            case .serviceIdRequired: 
+            case .serviceIdRequired:
                 code = .missingParameter_ServiceIdRequired
-            case .taskParameterMissed: 
+            case .taskParameterMissed:
                 code = .missingParameter_TaskParameterMissed
             }
             return TCTsfError(code, context: self.context)

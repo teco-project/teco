@@ -19,58 +19,58 @@ extension Tem {
     public struct DescribeConfigDataRequest: TCRequestModel {
         /// 环境 ID
         public let environmentId: String
-        
+
         /// 配置名
         public let name: String
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
-        public init (environmentId: String, name: String, sourceChannel: Int64? = nil) {
+
+        public init(environmentId: String, name: String, sourceChannel: Int64? = nil) {
             self.environmentId = environmentId
             self.name = name
             self.sourceChannel = sourceChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case name = "Name"
             case sourceChannel = "SourceChannel"
         }
     }
-    
+
     /// DescribeConfigData返回参数结构体
     public struct DescribeConfigDataResponse: TCResponseModel {
         /// 配置
         public let result: ConfigData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询配置详情
     @inlinable
-    public func describeConfigData(_ input: DescribeConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigDataResponse > {
+    public func describeConfigData(_ input: DescribeConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigDataResponse> {
         self.client.execute(action: "DescribeConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询配置详情
     @inlinable
     public func describeConfigData(_ input: DescribeConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataResponse {
         try await self.client.execute(action: "DescribeConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询配置详情
     @inlinable
-    public func describeConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigDataResponse > {
+    public func describeConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigDataResponse> {
         self.describeConfigData(DescribeConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询配置详情
     @inlinable
     public func describeConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataResponse {

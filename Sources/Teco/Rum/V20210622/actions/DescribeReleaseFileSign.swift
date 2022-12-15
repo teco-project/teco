@@ -19,36 +19,36 @@ extension Rum {
     public struct DescribeReleaseFileSignRequest: TCRequestModel {
         /// 超时时间，不填默认是 5 分钟
         public let timeout: Int64?
-        
-        public init (timeout: Int64? = nil) {
+
+        public init(timeout: Int64? = nil) {
             self.timeout = timeout
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case timeout = "Timeout"
         }
     }
-    
+
     /// DescribeReleaseFileSign返回参数结构体
     public struct DescribeReleaseFileSignResponse: TCResponseModel {
         /// 临时密钥key
         public let secretKey: String
-        
+
         /// 临时密钥 id
         public let secretID: String
-        
+
         /// 临时密钥临时 token
         public let sessionToken: String
-        
+
         /// 开始时间戳
         public let startTime: Int64
-        
+
         /// 过期时间戳
         public let expiredTime: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretKey = "SecretKey"
             case secretID = "SecretID"
@@ -58,15 +58,15 @@ extension Rum {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFileSignResponse > {
+    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
         self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥
@@ -74,15 +74,15 @@ extension Rum {
     public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
         try await self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFileSignResponse > {
+    public func describeReleaseFileSign(timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
         self.describeReleaseFileSign(DescribeReleaseFileSignRequest(timeout: timeout), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥

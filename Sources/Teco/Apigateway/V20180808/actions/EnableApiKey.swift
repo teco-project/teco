@@ -19,39 +19,39 @@ extension Apigateway {
     public struct EnableApiKeyRequest: TCRequestModel {
         /// 待启用的密钥 ID。
         public let accessKeyId: String
-        
-        public init (accessKeyId: String) {
+
+        public init(accessKeyId: String) {
             self.accessKeyId = accessKeyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accessKeyId = "AccessKeyId"
         }
     }
-    
+
     /// EnableApiKey返回参数结构体
     public struct EnableApiKeyResponse: TCResponseModel {
         /// 启动密钥操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用密钥
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
     @inlinable
-    public func enableApiKey(_ input: EnableApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableApiKeyResponse > {
+    public func enableApiKey(_ input: EnableApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApiKeyResponse> {
         self.client.execute(action: "EnableApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用密钥
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
@@ -59,15 +59,15 @@ extension Apigateway {
     public func enableApiKey(_ input: EnableApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApiKeyResponse {
         try await self.client.execute(action: "EnableApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用密钥
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
     @inlinable
-    public func enableApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableApiKeyResponse > {
+    public func enableApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApiKeyResponse> {
         self.enableApiKey(EnableApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用密钥
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。

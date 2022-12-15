@@ -19,49 +19,49 @@ extension Tke {
     public struct SyncPrometheusTemplateRequest: TCRequestModel {
         /// 实例id
         public let templateId: String
-        
+
         /// 同步目标
         public let targets: [PrometheusTemplateSyncTarget]
-        
-        public init (templateId: String, targets: [PrometheusTemplateSyncTarget]) {
+
+        public init(templateId: String, targets: [PrometheusTemplateSyncTarget]) {
             self.templateId = templateId
             self.targets = targets
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case targets = "Targets"
         }
     }
-    
+
     /// SyncPrometheusTemplate返回参数结构体
     public struct SyncPrometheusTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 同步模板到实例或者集群
     @inlinable
-    public func syncPrometheusTemplate(_ input: SyncPrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncPrometheusTemplateResponse > {
+    public func syncPrometheusTemplate(_ input: SyncPrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPrometheusTemplateResponse> {
         self.client.execute(action: "SyncPrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 同步模板到实例或者集群
     @inlinable
     public func syncPrometheusTemplate(_ input: SyncPrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPrometheusTemplateResponse {
         try await self.client.execute(action: "SyncPrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 同步模板到实例或者集群
     @inlinable
-    public func syncPrometheusTemplate(templateId: String, targets: [PrometheusTemplateSyncTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncPrometheusTemplateResponse > {
+    public func syncPrometheusTemplate(templateId: String, targets: [PrometheusTemplateSyncTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPrometheusTemplateResponse> {
         self.syncPrometheusTemplate(SyncPrometheusTemplateRequest(templateId: templateId, targets: targets), logger: logger, on: eventLoop)
     }
-    
+
     /// 同步模板到实例或者集群
     @inlinable
     public func syncPrometheusTemplate(templateId: String, targets: [PrometheusTemplateSyncTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPrometheusTemplateResponse {

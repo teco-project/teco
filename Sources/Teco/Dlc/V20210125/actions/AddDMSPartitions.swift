@@ -19,52 +19,52 @@ extension Dlc {
     public struct AddDMSPartitionsRequest: TCRequestModel {
         /// 分区
         public let partitions: [DMSPartition]?
-        
-        public init (partitions: [DMSPartition]? = nil) {
+
+        public init(partitions: [DMSPartition]? = nil) {
             self.partitions = partitions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case partitions = "Partitions"
         }
     }
-    
+
     /// AddDMSPartitions返回参数结构体
     public struct AddDMSPartitionsResponse: TCResponseModel {
         /// 成功数量
         public let total: Int64
-        
+
         /// 分区值
         public let partitions: [DMSPartition]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case partitions = "Partitions"
             case requestId = "RequestId"
         }
     }
-    
+
     /// DMS元数据新增分区
     @inlinable
-    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDMSPartitionsResponse > {
+    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDMSPartitionsResponse> {
         self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据新增分区
     @inlinable
     public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
         try await self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// DMS元数据新增分区
     @inlinable
-    public func addDMSPartitions(partitions: [DMSPartition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDMSPartitionsResponse > {
+    public func addDMSPartitions(partitions: [DMSPartition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDMSPartitionsResponse> {
         self.addDMSPartitions(AddDMSPartitionsRequest(partitions: partitions), logger: logger, on: eventLoop)
     }
-    
+
     /// DMS元数据新增分区
     @inlinable
     public func addDMSPartitions(partitions: [DMSPartition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {

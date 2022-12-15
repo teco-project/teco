@@ -19,44 +19,44 @@ extension Iecp {
     public struct DeleteEdgeUnitCloudRequest: TCRequestModel {
         /// 边缘集群ID
         public let edgeUnitId: UInt64
-        
-        public init (edgeUnitId: UInt64) {
+
+        public init(edgeUnitId: UInt64) {
             self.edgeUnitId = edgeUnitId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
         }
     }
-    
+
     /// DeleteEdgeUnitCloud返回参数结构体
     public struct DeleteEdgeUnitCloudResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除边缘单元
     @inlinable
-    public func deleteEdgeUnitCloud(_ input: DeleteEdgeUnitCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitCloudResponse > {
+    public func deleteEdgeUnitCloud(_ input: DeleteEdgeUnitCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitCloudResponse> {
         self.client.execute(action: "DeleteEdgeUnitCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘单元
     @inlinable
     public func deleteEdgeUnitCloud(_ input: DeleteEdgeUnitCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitCloudResponse {
         try await self.client.execute(action: "DeleteEdgeUnitCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除边缘单元
     @inlinable
-    public func deleteEdgeUnitCloud(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitCloudResponse > {
+    public func deleteEdgeUnitCloud(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitCloudResponse> {
         self.deleteEdgeUnitCloud(DeleteEdgeUnitCloudRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除边缘单元
     @inlinable
     public func deleteEdgeUnitCloud(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitCloudResponse {

@@ -19,27 +19,27 @@ extension Cloudstudio {
     public struct ModifyWorkspaceAttributesRequest: TCRequestModel {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
-        
+
         /// 工作空间ID
         public let workspaceId: Int64
-        
+
         /// 工作空间名称
         public let name: String?
-        
+
         /// 工作空间描述
         public let description: String?
-        
+
         /// xxx
         public let priceId: Int64?
-        
-        public init (cloudStudioSessionTeam: String, workspaceId: Int64, name: String? = nil, description: String? = nil, priceId: Int64? = nil) {
+
+        public init(cloudStudioSessionTeam: String, workspaceId: Int64, name: String? = nil, description: String? = nil, priceId: Int64? = nil) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.workspaceId = workspaceId
             self.name = name
             self.description = description
             self.priceId = priceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
             case workspaceId = "WorkspaceId"
@@ -48,35 +48,35 @@ extension Cloudstudio {
             case priceId = "PriceId"
         }
     }
-    
+
     /// ModifyWorkspaceAttributes返回参数结构体
     public struct ModifyWorkspaceAttributesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改工作空间的名称和描述
     @inlinable
-    public func modifyWorkspaceAttributes(_ input: ModifyWorkspaceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkspaceAttributesResponse > {
+    public func modifyWorkspaceAttributes(_ input: ModifyWorkspaceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkspaceAttributesResponse> {
         self.client.execute(action: "ModifyWorkspaceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改工作空间的名称和描述
     @inlinable
     public func modifyWorkspaceAttributes(_ input: ModifyWorkspaceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkspaceAttributesResponse {
         try await self.client.execute(action: "ModifyWorkspaceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改工作空间的名称和描述
     @inlinable
-    public func modifyWorkspaceAttributes(cloudStudioSessionTeam: String, workspaceId: Int64, name: String? = nil, description: String? = nil, priceId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkspaceAttributesResponse > {
+    public func modifyWorkspaceAttributes(cloudStudioSessionTeam: String, workspaceId: Int64, name: String? = nil, description: String? = nil, priceId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkspaceAttributesResponse> {
         self.modifyWorkspaceAttributes(ModifyWorkspaceAttributesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, workspaceId: workspaceId, name: name, description: description, priceId: priceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改工作空间的名称和描述
     @inlinable
     public func modifyWorkspaceAttributes(cloudStudioSessionTeam: String, workspaceId: Int64, name: String? = nil, description: String? = nil, priceId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkspaceAttributesResponse {

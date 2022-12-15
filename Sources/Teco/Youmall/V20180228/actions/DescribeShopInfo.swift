@@ -19,47 +19,47 @@ extension Youmall {
     public struct DescribeShopInfoRequest: TCRequestModel {
         /// 偏移量：分页控制参数，第一页传0，第n页Offset=(n-1)*Limit
         public let offset: UInt64
-        
+
         /// Limit:每页的数据项，最大100，超过100会被强制指定为100
         public let limit: UInt64
-        
-        public init (offset: UInt64, limit: UInt64) {
+
+        public init(offset: UInt64, limit: UInt64) {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeShopInfo返回参数结构体
     public struct DescribeShopInfoResponse: TCResponseModel {
         /// 门店总数
         public let totalCount: UInt64
-        
+
         /// 门店列表信息
         public let shopInfoSet: [ShopInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case shopInfoSet = "ShopInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
-    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopInfoResponse > {
+    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopInfoResponse> {
         self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
@@ -67,15 +67,15 @@ extension Youmall {
     public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
         try await self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
-    public func describeShopInfo(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopInfoResponse > {
+    public func describeShopInfo(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopInfoResponse> {
         self.describeShopInfo(DescribeShopInfoRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表

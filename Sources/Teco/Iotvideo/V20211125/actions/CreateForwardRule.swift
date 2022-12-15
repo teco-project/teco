@@ -19,35 +19,35 @@ extension Iotvideo {
     public struct CreateForwardRuleRequest: TCRequestModel {
         /// 产品ID
         public let productID: String
-        
+
         /// 消息类型
         public let msgType: UInt64
-        
+
         /// 控制台Skey
         public let skey: String
-        
+
         /// 队列区域
         public let queueRegion: String
-        
+
         /// 队列类型 0.CMQ  1.Ckafka
         public let queueType: UInt64
-        
+
         /// 临时密钥
         public let consecretid: String?
-        
+
         /// 实例ID
         public let instanceId: String?
-        
+
         /// 实例名称
         public let instanceName: String?
-        
+
         /// 队列或主题ID
         public let queueID: String?
-        
+
         /// 队列或主题名称
         public let queueName: String?
-        
-        public init (productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil) {
+
+        public init(productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil) {
             self.productID = productID
             self.msgType = msgType
             self.skey = skey
@@ -59,7 +59,7 @@ extension Iotvideo {
             self.queueID = queueID
             self.queueName = queueName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productID = "ProductID"
             case msgType = "MsgType"
@@ -73,48 +73,48 @@ extension Iotvideo {
             case queueName = "QueueName"
         }
     }
-    
+
     /// CreateForwardRule返回参数结构体
     public struct CreateForwardRuleResponse: TCResponseModel {
         /// 腾讯云账号
         public let endpoint: String
-        
+
         /// 队列名
         public let queueName: String
-        
+
         /// 产品ID
         public let productID: String
-        
+
         /// 消息类型
         public let msgType: UInt64
-        
+
         /// 结果
         public let result: UInt64
-        
+
         /// 角色名称
         public let roleName: String
-        
+
         /// 角色ID
         public let roleID: UInt64
-        
+
         /// 队列区
         public let queueRegion: String
-        
+
         /// 消息队列的类型。 0：CMQ，1：CKafaka
         public let queueType: UInt64
-        
+
         /// 实例id， 目前只有Ckafaka会用到
         public let instanceId: String
-        
+
         /// 实例名称，目前只有Ckafaka会用到
         public let instanceName: String
-        
+
         /// 错误消息
         public let errMsg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case endpoint = "Endpoint"
             case queueName = "QueueName"
@@ -131,25 +131,25 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建转发规则
     @inlinable
-    public func createForwardRule(_ input: CreateForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateForwardRuleResponse > {
+    public func createForwardRule(_ input: CreateForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateForwardRuleResponse> {
         self.client.execute(action: "CreateForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建转发规则
     @inlinable
     public func createForwardRule(_ input: CreateForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateForwardRuleResponse {
         try await self.client.execute(action: "CreateForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建转发规则
     @inlinable
-    public func createForwardRule(productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateForwardRuleResponse > {
+    public func createForwardRule(productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateForwardRuleResponse> {
         self.createForwardRule(CreateForwardRuleRequest(productID: productID, msgType: msgType, skey: skey, queueRegion: queueRegion, queueType: queueType, consecretid: consecretid, instanceId: instanceId, instanceName: instanceName, queueID: queueID, queueName: queueName), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建转发规则
     @inlinable
     public func createForwardRule(productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateForwardRuleResponse {

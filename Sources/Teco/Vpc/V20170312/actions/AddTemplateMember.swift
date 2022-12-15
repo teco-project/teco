@@ -19,39 +19,39 @@ extension Vpc {
     public struct AddTemplateMemberRequest: TCRequestModel {
         /// 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
         public let templateId: String
-        
+
         /// 需要添加的参数模板成员信息，支持IP地址、协议端口、IP地址组、协议端口组四种类型，类型需要与TemplateId参数类型一致。
         public let templateMember: [MemberInfo]
-        
-        public init (templateId: String, templateMember: [MemberInfo]) {
+
+        public init(templateId: String, templateMember: [MemberInfo]) {
             self.templateId = templateId
             self.templateMember = templateMember
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateMember = "TemplateMember"
         }
     }
-    
+
     /// AddTemplateMember返回参数结构体
     public struct AddTemplateMemberResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 增加模板对象成员
     ///
     /// 增加模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func addTemplateMember(_ input: AddTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTemplateMemberResponse > {
+    public func addTemplateMember(_ input: AddTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTemplateMemberResponse> {
         self.client.execute(action: "AddTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 增加模板对象成员
     ///
     /// 增加模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
@@ -59,15 +59,15 @@ extension Vpc {
     public func addTemplateMember(_ input: AddTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTemplateMemberResponse {
         try await self.client.execute(action: "AddTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 增加模板对象成员
     ///
     /// 增加模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func addTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTemplateMemberResponse > {
+    public func addTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTemplateMemberResponse> {
         self.addTemplateMember(AddTemplateMemberRequest(templateId: templateId, templateMember: templateMember), logger: logger, on: eventLoop)
     }
-    
+
     /// 增加模板对象成员
     ///
     /// 增加模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。

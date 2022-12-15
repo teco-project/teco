@@ -19,59 +19,59 @@ extension Bma {
     public struct CreateCRRightRequest: TCRequestModel {
         /// 作品ID
         public let workId: Int64
-        
+
         /// 侵权链接
         public let tortUrl: String
-        
+
         /// 侵权标题
         public let tortTitle: String?
-        
+
         /// 侵权平台
         public let tortPlat: String?
-        
+
         /// 发函结果回调地址
         public let rightUrl: String?
-        
+
         /// 授权书下载地址
         public let fileUrl: String?
-        
+
         /// 授权书生效日期
         public let validStartDate: String?
-        
+
         /// 授权书截止日期
         public let validEndDate: String?
-        
+
         /// 委托书下载地址
         public let commFileUrl: String?
-        
+
         /// 委托书生效日期
         public let commValidStartDate: String?
-        
+
         /// 委托书截止日期
         public let commValidEndDate: String?
-        
+
         /// 主页下载地址
         public let homeFileUrl: String?
-        
+
         /// 主页生效日期
         public let homeValidStartDate: String?
-        
+
         /// 主页截止日期
         public let homeValidEndDate: String?
-        
+
         /// 是否著作权人：0-否 1-是
         public let isProducer: String?
-        
+
         /// 存证证书下载地址
         public let evidenceFileUrl: String?
-        
+
         /// 存证证书生效日期
         public let evidenceValidStartDate: String?
-        
+
         /// 存证证书截止日期
         public let evidenceValidEndDate: String?
-        
-        public init (workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, rightUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, homeFileUrl: String? = nil, homeValidStartDate: String? = nil, homeValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil) {
+
+        public init(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, rightUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, homeFileUrl: String? = nil, homeValidStartDate: String? = nil, homeValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil) {
             self.workId = workId
             self.tortUrl = tortUrl
             self.tortTitle = tortTitle
@@ -91,7 +91,7 @@ extension Bma {
             self.evidenceValidStartDate = evidenceValidStartDate
             self.evidenceValidEndDate = evidenceValidEndDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workId = "WorkId"
             case tortUrl = "TortUrl"
@@ -113,33 +113,33 @@ extension Bma {
             case evidenceValidEndDate = "EvidenceValidEndDate"
         }
     }
-    
+
     /// CreateCRRight返回参数结构体
     public struct CreateCRRightResponse: TCResponseModel {
         /// 侵权ID
         public let tortId: Int64
-        
+
         /// 该字段已废弃
         public let tortNum: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tortId = "TortId"
             case tortNum = "TortNum"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建发函
     ///
     /// 版权保护-新建发函接口
     @inlinable
-    public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRRightResponse > {
+    public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRRightResponse> {
         self.client.execute(action: "CreateCRRight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建发函
     ///
     /// 版权保护-新建发函接口
@@ -147,15 +147,15 @@ extension Bma {
     public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightResponse {
         try await self.client.execute(action: "CreateCRRight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建发函
     ///
     /// 版权保护-新建发函接口
     @inlinable
-    public func createCRRight(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, rightUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, homeFileUrl: String? = nil, homeValidStartDate: String? = nil, homeValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRRightResponse > {
+    public func createCRRight(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, rightUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, homeFileUrl: String? = nil, homeValidStartDate: String? = nil, homeValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRRightResponse> {
         self.createCRRight(CreateCRRightRequest(workId: workId, tortUrl: tortUrl, tortTitle: tortTitle, tortPlat: tortPlat, rightUrl: rightUrl, fileUrl: fileUrl, validStartDate: validStartDate, validEndDate: validEndDate, commFileUrl: commFileUrl, commValidStartDate: commValidStartDate, commValidEndDate: commValidEndDate, homeFileUrl: homeFileUrl, homeValidStartDate: homeValidStartDate, homeValidEndDate: homeValidEndDate, isProducer: isProducer, evidenceFileUrl: evidenceFileUrl, evidenceValidStartDate: evidenceValidStartDate, evidenceValidEndDate: evidenceValidEndDate), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建发函
     ///
     /// 版权保护-新建发函接口

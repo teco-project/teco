@@ -19,48 +19,48 @@ extension Tbaas {
     public struct GetBcosBlockByNumberRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
-        
+
         /// 群组编号，可在群组列表中获取
         public let groupId: Int64
-        
+
         /// 区块高度，可以从InvokeBcosTrans接口的返回值中解析获取
         public let blockNumber: Int64
-        
-        public init (clusterId: String, groupId: Int64, blockNumber: Int64) {
+
+        public init(clusterId: String, groupId: Int64, blockNumber: Int64) {
             self.clusterId = clusterId
             self.groupId = groupId
             self.blockNumber = blockNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case groupId = "GroupId"
             case blockNumber = "BlockNumber"
         }
     }
-    
+
     /// GetBcosBlockByNumber返回参数结构体
     public struct GetBcosBlockByNumberResponse: TCResponseModel {
         /// 返回区块json字符串
         public let blockJson: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case blockJson = "BlockJson"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 使用块高查询区块信息
     ///
     /// 使用块高查询Bcos区块信息
     @inlinable
-    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosBlockByNumberResponse > {
+    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockByNumberResponse> {
         self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 使用块高查询区块信息
     ///
     /// 使用块高查询Bcos区块信息
@@ -68,15 +68,15 @@ extension Tbaas {
     public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
         try await self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 使用块高查询区块信息
     ///
     /// 使用块高查询Bcos区块信息
     @inlinable
-    public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosBlockByNumberResponse > {
+    public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockByNumberResponse> {
         self.getBcosBlockByNumber(GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber), logger: logger, on: eventLoop)
     }
-    
+
     /// 使用块高查询区块信息
     ///
     /// 使用块高查询Bcos区块信息

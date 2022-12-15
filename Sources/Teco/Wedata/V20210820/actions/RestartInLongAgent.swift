@@ -19,49 +19,49 @@ extension Wedata {
     public struct RestartInLongAgentRequest: TCRequestModel {
         /// 采集器ID
         public let agentId: String
-        
+
         /// WeData项目ID
         public let projectId: String
-        
-        public init (agentId: String, projectId: String) {
+
+        public init(agentId: String, projectId: String) {
             self.agentId = agentId
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// RestartInLongAgent返回参数结构体
     public struct RestartInLongAgentResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重启采集器
     @inlinable
-    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInLongAgentResponse > {
+    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
         self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重启采集器
     @inlinable
     public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
         try await self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重启采集器
     @inlinable
-    public func restartInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInLongAgentResponse > {
+    public func restartInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
         self.restartInLongAgent(RestartInLongAgentRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重启采集器
     @inlinable
     public func restartInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {

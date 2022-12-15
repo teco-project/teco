@@ -19,23 +19,23 @@ extension Dlc {
     public struct DescribeUsersRequest: TCRequestModel {
         /// 指定查询的子用户uin，用户需要通过CreateUser接口创建。
         public let userId: String?
-        
+
         /// 偏移量，默认为0
         public let offset: Int64?
-        
+
         /// 返回数量，默认20，最大值100
         public let limit: Int64?
-        
+
         /// 排序字段，支持如下字段类型，create-time
         public let sortBy: String?
-        
+
         /// 排序方式，desc表示正序，asc表示反序， 默认为asc
         public let sorting: String?
-        
+
         /// 过滤条件，支持如下字段类型，user-type：根据用户类型过滤。user-keyword：根据用户名称过滤
         public let filters: [Filter]?
-        
-        public init (userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil) {
+
+        public init(userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil) {
             self.userId = userId
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Dlc {
             self.sorting = sorting
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case offset = "Offset"
@@ -53,43 +53,43 @@ extension Dlc {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeUsers返回参数结构体
     public struct DescribeUsersResponse: TCResponseModel {
         /// 查询到的用户总数
         public let totalCount: Int64
-        
+
         /// 查询到的授权用户信息集合
         public let userSet: [UserInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case userSet = "UserSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取用户列表信息
     @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
+    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
         self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户列表信息
     @inlinable
     public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
         try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取用户列表信息
     @inlinable
-    public func describeUsers(userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
+    public func describeUsers(userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
         self.describeUsers(DescribeUsersRequest(userId: userId, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取用户列表信息
     @inlinable
     public func describeUsers(userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {

@@ -19,23 +19,23 @@ extension Ds {
     public struct DeleteSealRequest: TCRequestModel {
         /// 模块名SealMng
         public let module: String
-        
+
         /// 操作名DeleteSeal
         public let operation: String
-        
+
         /// 帐号ID
         public let accountResId: String
-        
+
         /// 签章ID
         public let sealResId: String
-        
-        public init (module: String, operation: String, accountResId: String, sealResId: String) {
+
+        public init(module: String, operation: String, accountResId: String, sealResId: String) {
             self.module = module
             self.operation = operation
             self.accountResId = accountResId
             self.sealResId = sealResId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case operation = "Operation"
@@ -43,29 +43,29 @@ extension Ds {
             case sealResId = "SealResId"
         }
     }
-    
+
     /// DeleteSeal返回参数结构体
     public struct DeleteSealResponse: TCResponseModel {
         /// 签章ID
         public let sealResId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sealResId = "SealResId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除签章
     ///
     /// 删除印章接口，删除指定账号的某个印章
     @inlinable
-    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSealResponse > {
+    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
         self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除签章
     ///
     /// 删除印章接口，删除指定账号的某个印章
@@ -73,15 +73,15 @@ extension Ds {
     public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
         try await self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除签章
     ///
     /// 删除印章接口，删除指定账号的某个印章
     @inlinable
-    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSealResponse > {
+    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
         self.deleteSeal(DeleteSealRequest(module: module, operation: operation, accountResId: accountResId, sealResId: sealResId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除签章
     ///
     /// 删除印章接口，删除指定账号的某个印章

@@ -19,23 +19,23 @@ extension Tke {
     public struct DeleteClusterInstancesRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 主机InstanceId列表
         public let instanceIds: [String]
-        
+
         /// 集群实例删除时的策略：terminate（销毁实例，仅支持按量计费云主机实例） retain （仅移除，保留实例）
         public let instanceDeleteMode: String?
-        
+
         /// 是否强制删除(当节点在初始化时，可以指定参数为TRUE)
         public let forceDelete: Bool?
-        
-        public init (clusterId: String, instanceIds: [String], instanceDeleteMode: String? = nil, forceDelete: Bool? = nil) {
+
+        public init(clusterId: String, instanceIds: [String], instanceDeleteMode: String? = nil, forceDelete: Bool? = nil) {
             self.clusterId = clusterId
             self.instanceIds = instanceIds
             self.instanceDeleteMode = instanceDeleteMode
             self.forceDelete = forceDelete
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case instanceIds = "InstanceIds"
@@ -43,24 +43,24 @@ extension Tke {
             case forceDelete = "ForceDelete"
         }
     }
-    
+
     /// DeleteClusterInstances返回参数结构体
     public struct DeleteClusterInstancesResponse: TCResponseModel {
         /// 删除成功的实例ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let succInstanceIds: [String]?
-        
+
         /// 删除失败的实例ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedInstanceIds: [String]?
-        
+
         /// 未匹配到的实例ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notFoundInstanceIds: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case succInstanceIds = "SuccInstanceIds"
             case failedInstanceIds = "FailedInstanceIds"
@@ -68,15 +68,15 @@ extension Tke {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除集群中的节点
     ///
     /// 删除集群中的实例
     @inlinable
-    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterInstancesResponse > {
+    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
         self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群中的节点
     ///
     /// 删除集群中的实例
@@ -84,15 +84,15 @@ extension Tke {
     public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
         try await self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除集群中的节点
     ///
     /// 删除集群中的实例
     @inlinable
-    public func deleteClusterInstances(clusterId: String, instanceIds: [String], instanceDeleteMode: String? = nil, forceDelete: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterInstancesResponse > {
+    public func deleteClusterInstances(clusterId: String, instanceIds: [String], instanceDeleteMode: String? = nil, forceDelete: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
         self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceDeleteMode: instanceDeleteMode, forceDelete: forceDelete), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除集群中的节点
     ///
     /// 删除集群中的实例

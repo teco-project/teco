@@ -19,51 +19,51 @@ extension Cdb {
     public struct DescribeDataBackupOverviewRequest: TCRequestModel {
         /// 需要查询的云数据库产品类型，目前仅支持 "mysql"。
         public let product: String
-        
-        public init (product: String) {
+
+        public init(product: String) {
             self.product = product
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case product = "Product"
         }
     }
-    
+
     /// DescribeDataBackupOverview返回参数结构体
     public struct DescribeDataBackupOverviewResponse: TCResponseModel {
         /// 当前地域的数据备份总容量（包含自动备份和手动备份，单位为字节）。
         public let dataBackupVolume: Int64
-        
+
         /// 当前地域的数据备份总个数。
         public let dataBackupCount: Int64
-        
+
         /// 当前地域的自动备份总容量。
         public let autoBackupVolume: Int64
-        
+
         /// 当前地域的自动备份总个数。
         public let autoBackupCount: Int64
-        
+
         /// 当前地域的手动备份总容量。
         public let manualBackupVolume: Int64
-        
+
         /// 当前地域的手动备份总个数。
         public let manualBackupCount: Int64
-        
+
         /// 异地备份总容量。
         public let remoteBackupVolume: Int64
-        
+
         /// 异地备份总个数。
         public let remoteBackupCount: Int64
-        
+
         /// 当前地域归档备份总容量。
         public let dataBackupArchiveVolume: Int64
-        
+
         /// 当前地域归档备份总个数。
         public let dataBackupArchiveCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataBackupVolume = "DataBackupVolume"
             case dataBackupCount = "DataBackupCount"
@@ -78,15 +78,15 @@ extension Cdb {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询数据备份概览
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
     @inlinable
-    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBackupOverviewResponse > {
+    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBackupOverviewResponse> {
         self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据备份概览
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
@@ -94,15 +94,15 @@ extension Cdb {
     public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
         try await self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询数据备份概览
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
     @inlinable
-    public func describeDataBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBackupOverviewResponse > {
+    public func describeDataBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBackupOverviewResponse> {
         self.describeDataBackupOverview(DescribeDataBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据备份概览
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。

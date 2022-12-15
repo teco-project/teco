@@ -19,44 +19,44 @@ extension Dlc {
     public struct UnbindWorkGroupsFromUserRequest: TCRequestModel {
         /// 解绑的工作组Id和用户Id的关联关系
         public let addInfo: WorkGroupIdSetOfUserId
-        
-        public init (addInfo: WorkGroupIdSetOfUserId) {
+
+        public init(addInfo: WorkGroupIdSetOfUserId) {
             self.addInfo = addInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case addInfo = "AddInfo"
         }
     }
-    
+
     /// UnbindWorkGroupsFromUser返回参数结构体
     public struct UnbindWorkGroupsFromUserResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑用户上的用户组
     @inlinable
-    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindWorkGroupsFromUserResponse > {
+    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
         self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑用户上的用户组
     @inlinable
     public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
         try await self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑用户上的用户组
     @inlinable
-    public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindWorkGroupsFromUserResponse > {
+    public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
         self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑用户上的用户组
     @inlinable
     public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {

@@ -19,49 +19,49 @@ extension Tsf {
     public struct DeleteUnitRuleRequest: TCRequestModel {
         /// 规则ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
         }
     }
-    
+
     /// DeleteUnitRule返回参数结构体
     public struct DeleteUnitRuleResponse: TCResponseModel {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除单元化规则
     @inlinable
-    public func deleteUnitRule(_ input: DeleteUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUnitRuleResponse > {
+    public func deleteUnitRule(_ input: DeleteUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitRuleResponse> {
         self.client.execute(action: "DeleteUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除单元化规则
     @inlinable
     public func deleteUnitRule(_ input: DeleteUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitRuleResponse {
         try await self.client.execute(action: "DeleteUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除单元化规则
     @inlinable
-    public func deleteUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUnitRuleResponse > {
+    public func deleteUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitRuleResponse> {
         self.deleteUnitRule(DeleteUnitRuleRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除单元化规则
     @inlinable
     public func deleteUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitRuleResponse {

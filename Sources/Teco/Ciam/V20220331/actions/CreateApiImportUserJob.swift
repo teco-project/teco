@@ -19,53 +19,53 @@ extension Ciam {
     public struct CreateApiImportUserJobRequest: TCRequestModel {
         /// 用户目录ID
         public let userStoreId: String
-        
+
         /// 导入的用户数据
         public let dataFlowUserCreateList: [ImportUser]
-        
-        public init (userStoreId: String, dataFlowUserCreateList: [ImportUser]) {
+
+        public init(userStoreId: String, dataFlowUserCreateList: [ImportUser]) {
             self.userStoreId = userStoreId
             self.dataFlowUserCreateList = dataFlowUserCreateList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userStoreId = "UserStoreId"
             case dataFlowUserCreateList = "DataFlowUserCreateList"
         }
     }
-    
+
     /// CreateApiImportUserJob返回参数结构体
     public struct CreateApiImportUserJobResponse: TCResponseModel {
         /// 数据流任务
         public let job: Job
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case job = "Job"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新建接口导入用户任务
     @inlinable
-    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiImportUserJobResponse > {
+    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiImportUserJobResponse> {
         self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新建接口导入用户任务
     @inlinable
     public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
         try await self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新建接口导入用户任务
     @inlinable
-    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiImportUserJobResponse > {
+    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiImportUserJobResponse> {
         self.createApiImportUserJob(CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), logger: logger, on: eventLoop)
     }
-    
+
     /// 新建接口导入用户任务
     @inlinable
     public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {

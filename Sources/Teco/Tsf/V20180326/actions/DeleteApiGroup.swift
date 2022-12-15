@@ -19,48 +19,48 @@ extension Tsf {
     public struct DeleteApiGroupRequest: TCRequestModel {
         /// API 分组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DeleteApiGroup返回参数结构体
     public struct DeleteApiGroupResponse: TCResponseModel {
         /// 成功失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Api分组
     @inlinable
-    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiGroupResponse > {
+    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiGroupResponse> {
         self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Api分组
     @inlinable
     public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
         try await self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Api分组
     @inlinable
-    public func deleteApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiGroupResponse > {
+    public func deleteApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiGroupResponse> {
         self.deleteApiGroup(DeleteApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Api分组
     @inlinable
     public func deleteApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {

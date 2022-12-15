@@ -19,23 +19,23 @@ extension Wedata {
     public struct ModifyTaskNameRequest: TCRequestModel {
         /// 名称
         public let taskName: String
-        
+
         /// id
         public let taskId: String
-        
+
         /// 项目/工作空间id
         public let projectId: String
-        
+
         /// 备注
         public let notes: String?
-        
-        public init (taskName: String, taskId: String, projectId: String, notes: String? = nil) {
+
+        public init(taskName: String, taskId: String, projectId: String, notes: String? = nil) {
             self.taskName = taskName
             self.taskId = taskId
             self.projectId = projectId
             self.notes = notes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case taskId = "TaskId"
@@ -43,39 +43,39 @@ extension Wedata {
             case notes = "Notes"
         }
     }
-    
+
     /// ModifyTaskName返回参数结构体
     public struct ModifyTaskNameResponse: TCResponseModel {
         /// 结果
         public let data: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重命名任务（任务编辑）
     @inlinable
-    public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskNameResponse > {
+    public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskNameResponse> {
         self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重命名任务（任务编辑）
     @inlinable
     public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {
         try await self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重命名任务（任务编辑）
     @inlinable
-    public func modifyTaskName(taskName: String, taskId: String, projectId: String, notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskNameResponse > {
+    public func modifyTaskName(taskName: String, taskId: String, projectId: String, notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskNameResponse> {
         self.modifyTaskName(ModifyTaskNameRequest(taskName: taskName, taskId: taskId, projectId: projectId, notes: notes), logger: logger, on: eventLoop)
     }
-    
+
     /// 重命名任务（任务编辑）
     @inlinable
     public func modifyTaskName(taskName: String, taskId: String, projectId: String, notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {

@@ -19,42 +19,42 @@ extension Sqlserver {
     public struct DescribeDBsNormalRequest: TCRequestModel {
         /// 实例ID，形如mssql-7vfv3rk3
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeDBsNormal返回参数结构体
     public struct DescribeDBsNormalResponse: TCResponseModel {
         /// 表示当前实例下的数据库总个数
         public let totalCount: Int64
-        
+
         /// 返回数据库的详细配置信息，例如：数据库是否开启CDC、CT等
         public let dbList: [DbNormalDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case dbList = "DBList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询数据库配置信息
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
-    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsNormalResponse > {
+    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsNormalResponse> {
         self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库配置信息
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
@@ -62,15 +62,15 @@ extension Sqlserver {
     public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
         try await self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询数据库配置信息
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
-    public func describeDBsNormal(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsNormalResponse > {
+    public func describeDBsNormal(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsNormalResponse> {
         self.describeDBsNormal(DescribeDBsNormalRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询数据库配置信息
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号

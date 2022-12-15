@@ -19,13 +19,13 @@ extension Cvm {
     public struct DescribeReservedInstancesRequest: TCRequestModel {
         /// 试运行。默认为 false。
         public let dryRun: Bool?
-        
+
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
-        
+
         /// <li><strong>zone</strong></li>
         /// <p style="padding-left: 30px;">按照预留实例计费可购买的【<strong>可用区</strong>】进行过滤。形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
         /// <li><strong>duration</strong></li>
@@ -45,14 +45,14 @@ extension Cvm {
         /// <p style="padding-left: 30px;">按照已购买【<strong>预留实例计费状态</strong>】进行过滤。形如：active。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：active (已创建) | pending (等待被创建) | retired (过期)</p>
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
         public let filters: [Filter]?
-        
-        public init (dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
+
+        public init(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.dryRun = dryRun
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dryRun = "DryRun"
             case offset = "Offset"
@@ -60,33 +60,33 @@ extension Cvm {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeReservedInstances返回参数结构体
     public struct DescribeReservedInstancesResponse: TCResponseModel {
         /// 符合条件的预留实例计费数量。
         public let totalCount: Int64
-        
+
         /// 符合条件的预留实例计费列表。
         public let reservedInstancesSet: [ReservedInstances]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case reservedInstancesSet = "ReservedInstancesSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出已购买的预留实例
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
     @inlinable
-    public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesResponse > {
+    public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReservedInstancesResponse> {
         self.client.execute(action: "DescribeReservedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出已购买的预留实例
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
@@ -94,15 +94,15 @@ extension Cvm {
     public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesResponse {
         try await self.client.execute(action: "DescribeReservedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出已购买的预留实例
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
     @inlinable
-    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesResponse > {
+    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReservedInstancesResponse> {
         self.describeReservedInstances(DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出已购买的预留实例
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例

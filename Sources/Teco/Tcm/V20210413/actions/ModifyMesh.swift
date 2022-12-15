@@ -19,23 +19,23 @@ extension Tcm {
     public struct ModifyMeshRequest: TCRequestModel {
         /// 需要修改的网格Id
         public let meshId: String
-        
+
         /// 修改的网格名称
         public let displayName: String?
-        
+
         /// 修改的网格配置
         public let config: MeshConfig?
-        
+
         /// 修改的集群配置
         public let clusterList: [Cluster]?
-        
-        public init (meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil) {
+
+        public init(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil) {
             self.meshId = meshId
             self.displayName = displayName
             self.config = config
             self.clusterList = clusterList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case meshId = "MeshId"
             case displayName = "DisplayName"
@@ -43,35 +43,35 @@ extension Tcm {
             case clusterList = "ClusterList"
         }
     }
-    
+
     /// ModifyMesh返回参数结构体
     public struct ModifyMeshResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改网格
     @inlinable
-    public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMeshResponse > {
+    public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMeshResponse> {
         self.client.execute(action: "ModifyMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改网格
     @inlinable
     public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {
         try await self.client.execute(action: "ModifyMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改网格
     @inlinable
-    public func modifyMesh(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMeshResponse > {
+    public func modifyMesh(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMeshResponse> {
         self.modifyMesh(ModifyMeshRequest(meshId: meshId, displayName: displayName, config: config, clusterList: clusterList), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改网格
     @inlinable
     public func modifyMesh(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {

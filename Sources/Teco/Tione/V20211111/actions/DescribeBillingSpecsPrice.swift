@@ -19,38 +19,38 @@ extension Tione {
     public struct DescribeBillingSpecsPriceRequest: TCRequestModel {
         /// 询价参数，支持批量询价
         public let specsParam: [SpecUnit]
-        
-        public init (specsParam: [SpecUnit]) {
+
+        public init(specsParam: [SpecUnit]) {
             self.specsParam = specsParam
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case specsParam = "SpecsParam"
         }
     }
-    
+
     /// DescribeBillingSpecsPrice返回参数结构体
     public struct DescribeBillingSpecsPriceResponse: TCResponseModel {
         /// 计费项价格，支持批量返回
         public let specsPrice: [SpecPrice]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case specsPrice = "SpecsPrice"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询计费项价格
     ///
     /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
     @inlinable
-    public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsPriceResponse > {
+    public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsPriceResponse> {
         self.client.execute(action: "DescribeBillingSpecsPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询计费项价格
     ///
     /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
@@ -58,15 +58,15 @@ extension Tione {
     public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsPriceResponse {
         try await self.client.execute(action: "DescribeBillingSpecsPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询计费项价格
     ///
     /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
     @inlinable
-    public func describeBillingSpecsPrice(specsParam: [SpecUnit], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsPriceResponse > {
+    public func describeBillingSpecsPrice(specsParam: [SpecUnit], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsPriceResponse> {
         self.describeBillingSpecsPrice(DescribeBillingSpecsPriceRequest(specsParam: specsParam), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询计费项价格
     ///
     /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。

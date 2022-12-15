@@ -29,108 +29,108 @@ extension TCScfError {
             case vpcConfig = "UnsupportedOperation.VpcConfig"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源还有别名绑定，不支持当前操作，请解绑别名后重试。
         public static var aliasBind: UnsupportedOperation {
             UnsupportedOperation(.aliasBind)
         }
-        
+
         /// 指定的配置AsyncRunEnable暂不支持，请修正后再试。
         public static var asyncRunEnable: UnsupportedOperation {
             UnsupportedOperation(.asyncRunEnable)
         }
-        
+
         /// Cdn不支持。
         public static var cdn: UnsupportedOperation {
             UnsupportedOperation(.cdn)
         }
-        
+
         /// Cos操作不支持。
         public static var cos: UnsupportedOperation {
             UnsupportedOperation(.cos)
         }
-        
+
         /// 指定的配置EipFixed暂不支持。
         public static var eipFixed: UnsupportedOperation {
             UnsupportedOperation(.eipFixed)
         }
-        
+
         /// 请传递正确的地域。
         public static var notSupportRegion: UnsupportedOperation {
             UnsupportedOperation(.notSupportRegion)
         }
-        
+
         /// 不支持此地域。
         public static var region: UnsupportedOperation {
             UnsupportedOperation(.region)
         }
-        
+
         /// Trigger操作不支持。
         public static var trigger: UnsupportedOperation {
             UnsupportedOperation(.trigger)
         }
-        
+
         /// 指定的配置暂不支持，请修正后再试。
         public static var updateFunctionEventInvokeConfig: UnsupportedOperation {
             UnsupportedOperation(.updateFunctionEventInvokeConfig)
         }
-        
+
         /// 指定的配置VpcConfig暂不支持。
         public static var vpcConfig: UnsupportedOperation {
             UnsupportedOperation(.vpcConfig)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
-            case .aliasBind: 
+            case .aliasBind:
                 code = .unsupportedOperation_AliasBind
-            case .asyncRunEnable: 
+            case .asyncRunEnable:
                 code = .unsupportedOperation_AsyncRunEnable
-            case .cdn: 
+            case .cdn:
                 code = .unsupportedOperation_Cdn
-            case .cos: 
+            case .cos:
                 code = .unsupportedOperation_Cos
-            case .eipFixed: 
+            case .eipFixed:
                 code = .unsupportedOperation_EipFixed
-            case .notSupportRegion: 
+            case .notSupportRegion:
                 code = .unsupportedOperation_NotSupportRegion
-            case .region: 
+            case .region:
                 code = .unsupportedOperation_Region
-            case .trigger: 
+            case .trigger:
                 code = .unsupportedOperation_Trigger
-            case .updateFunctionEventInvokeConfig: 
+            case .updateFunctionEventInvokeConfig:
                 code = .unsupportedOperation_UpdateFunctionEventInvokeConfig
-            case .vpcConfig: 
+            case .vpcConfig:
                 code = .unsupportedOperation_VpcConfig
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCScfError(code, context: self.context)

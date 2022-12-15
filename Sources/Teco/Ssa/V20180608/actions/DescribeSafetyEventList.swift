@@ -22,19 +22,19 @@ extension Ssa {
     public struct DescribeSafetyEventListRequest: TCRequestModel {
         /// 搜索过滤查询参数
         public let filter: String
-        
+
         /// 限制数目
         public let limit: UInt64
-        
+
         /// 页偏移
         public let offset: UInt64
-        
+
         /// 排序列名
         public let order: String?
-        
+
         /// 排序升降：desc-降序 asc-升序
         public let by: String?
-        
+
         /// 开始查询时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -42,7 +42,7 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date?
-        
+
         /// 结束查询时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -50,11 +50,11 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date?
-        
+
         /// 是否过滤响应时间
         public let isFilterResponseTime: Bool?
-        
-        public init (filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil) {
+
+        public init(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil) {
             self.filter = filter
             self.limit = limit
             self.offset = offset
@@ -64,7 +64,7 @@ extension Ssa {
             self.endTime = endTime
             self.isFilterResponseTime = isFilterResponseTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filter = "Filter"
             case limit = "Limit"
@@ -76,43 +76,43 @@ extension Ssa {
             case isFilterResponseTime = "IsFilterResponseTime"
         }
     }
-    
+
     /// DescribeSafetyEventList返回参数结构体
     public struct DescribeSafetyEventListResponse: TCResponseModel {
         /// 事件列表
         public let list: [DataEvent]
-        
+
         /// 事件总条数
         public let total: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case total = "Total"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取安全事件列表
     @inlinable
-    public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafetyEventListResponse > {
+    public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafetyEventListResponse> {
         self.client.execute(action: "DescribeSafetyEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全事件列表
     @inlinable
     public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafetyEventListResponse {
         try await self.client.execute(action: "DescribeSafetyEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取安全事件列表
     @inlinable
-    public func describeSafetyEventList(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafetyEventListResponse > {
+    public func describeSafetyEventList(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafetyEventListResponse> {
         self.describeSafetyEventList(DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取安全事件列表
     @inlinable
     public func describeSafetyEventList(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafetyEventListResponse {

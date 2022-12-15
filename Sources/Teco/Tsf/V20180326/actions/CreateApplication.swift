@@ -19,38 +19,38 @@ extension Tsf {
     public struct CreateApplicationRequest: TCRequestModel {
         /// 应用名称
         public let applicationName: String
-        
+
         /// 应用类型，V：虚拟机应用；C：容器应用；S：serverless应用
         public let applicationType: String
-        
+
         /// 应用微服务类型，M：service mesh应用；N：普通应用；G：网关应用
         public let microserviceType: String
-        
+
         /// 应用描述
         public let applicationDesc: String?
-        
+
         /// 应用日志配置项，废弃参数
         public let applicationLogConfig: String?
-        
+
         /// 应用资源类型，废弃参数
         public let applicationResourceType: String?
-        
+
         /// 应用runtime类型
         public let applicationRuntimeType: String?
-        
+
         /// 需要绑定的数据集ID
         public let programId: String?
-        
+
         /// 服务配置信息列表
         public let serviceConfigList: [ServiceConfig]?
-        
+
         /// 忽略创建镜像仓库
         public let ignoreCreateImageRepository: Bool?
-        
+
         /// 无
         public let programIdList: [String]?
-        
-        public init (applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil) {
+
+        public init(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil) {
             self.applicationName = applicationName
             self.applicationType = applicationType
             self.microserviceType = microserviceType
@@ -63,7 +63,7 @@ extension Tsf {
             self.ignoreCreateImageRepository = ignoreCreateImageRepository
             self.programIdList = programIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationName = "ApplicationName"
             case applicationType = "ApplicationType"
@@ -78,40 +78,40 @@ extension Tsf {
             case programIdList = "ProgramIdList"
         }
     }
-    
+
     /// CreateApplication返回参数结构体
     public struct CreateApplicationResponse: TCResponseModel {
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建应用
     @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
+    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
         self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用
     @inlinable
     public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
         try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建应用
     @inlinable
-    public func createApplication(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
+    public func createApplication(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
         self.createApplication(CreateApplicationRequest(applicationName: applicationName, applicationType: applicationType, microserviceType: microserviceType, applicationDesc: applicationDesc, applicationLogConfig: applicationLogConfig, applicationResourceType: applicationResourceType, applicationRuntimeType: applicationRuntimeType, programId: programId, serviceConfigList: serviceConfigList, ignoreCreateImageRepository: ignoreCreateImageRepository, programIdList: programIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建应用
     @inlinable
     public func createApplication(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {

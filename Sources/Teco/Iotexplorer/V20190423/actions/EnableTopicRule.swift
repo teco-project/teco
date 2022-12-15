@@ -19,44 +19,44 @@ extension Iotexplorer {
     public struct EnableTopicRuleRequest: TCRequestModel {
         /// 规则名称
         public let ruleName: String
-        
-        public init (ruleName: String) {
+
+        public init(ruleName: String) {
             self.ruleName = ruleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleName = "RuleName"
         }
     }
-    
+
     /// EnableTopicRule返回参数结构体
     public struct EnableTopicRuleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用规则
     @inlinable
-    public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTopicRuleResponse > {
+    public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableTopicRuleResponse> {
         self.client.execute(action: "EnableTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用规则
     @inlinable
     public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTopicRuleResponse {
         try await self.client.execute(action: "EnableTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用规则
     @inlinable
-    public func enableTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTopicRuleResponse > {
+    public func enableTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableTopicRuleResponse> {
         self.enableTopicRule(EnableTopicRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用规则
     @inlinable
     public func enableTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTopicRuleResponse {

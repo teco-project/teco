@@ -22,59 +22,59 @@ extension TCAmsError {
             case parameterError = "InvalidParameter.ParameterError"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// InvalidParameter.ImageSizeTooSmall
         public static var imageSizeTooSmall: InvalidParameter {
             InvalidParameter(.imageSizeTooSmall)
         }
-        
+
         /// InvalidParameter.InvalidImageContent
         public static var invalidImageContent: InvalidParameter {
             InvalidParameter(.invalidImageContent)
         }
-        
+
         /// InvalidParameter.ParameterError
         public static var parameterError: InvalidParameter {
             InvalidParameter(.parameterError)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asAmsError() -> TCAmsError {
             let code: TCAmsError.Code
             switch self.error {
-            case .imageSizeTooSmall: 
+            case .imageSizeTooSmall:
                 code = .invalidParameter_ImageSizeTooSmall
-            case .invalidImageContent: 
+            case .invalidImageContent:
                 code = .invalidParameter_InvalidImageContent
-            case .parameterError: 
+            case .parameterError:
                 code = .invalidParameter_ParameterError
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCAmsError(code, context: self.context)

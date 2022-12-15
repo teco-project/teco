@@ -19,53 +19,53 @@ extension Smpn {
     public struct DescribeSmpnMhmRequest: TCRequestModel {
         /// 号码营销监控请求内容
         public let requestData: MHMRequest
-        
+
         /// 用于计费的资源ID
         public let resourceId: String
-        
-        public init (requestData: MHMRequest, resourceId: String) {
+
+        public init(requestData: MHMRequest, resourceId: String) {
             self.requestData = requestData
             self.resourceId = resourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case requestData = "RequestData"
             case resourceId = "ResourceId"
         }
     }
-    
+
     /// DescribeSmpnMhm返回参数结构体
     public struct DescribeSmpnMhmResponse: TCResponseModel {
         /// 号码营销监控回应内容
         public let responseData: MHMResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 号码营销监控
     @inlinable
-    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMhmResponse > {
+    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnMhmResponse> {
         self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 号码营销监控
     @inlinable
     public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {
         try await self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 号码营销监控
     @inlinable
-    public func describeSmpnMhm(requestData: MHMRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMhmResponse > {
+    public func describeSmpnMhm(requestData: MHMRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnMhmResponse> {
         self.describeSmpnMhm(DescribeSmpnMhmRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 号码营销监控
     @inlinable
     public func describeSmpnMhm(requestData: MHMRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {

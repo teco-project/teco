@@ -19,63 +19,63 @@ extension Tdmq {
     public struct DescribeRabbitMQNodeListRequest: TCRequestModel {
         /// rabbitmq集群ID
         public let instanceId: String
-        
+
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 一页限制
         public let limit: UInt64?
-        
-        public init (instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
+
+        public init(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeRabbitMQNodeList返回参数结构体
     public struct DescribeRabbitMQNodeListResponse: TCResponseModel {
         /// 集群列表数量
         public let totalCount: UInt64
-        
+
         /// 集群列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeList: [RabbitMQPrivateNode]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case nodeList = "NodeList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQNodeListResponse > {
+    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
         self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// RabbitMQ专享版查询节点列表
     @inlinable
     public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
         try await self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQNodeListResponse > {
+    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
         self.describeRabbitMQNodeList(DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// RabbitMQ专享版查询节点列表
     @inlinable
     public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {

@@ -19,49 +19,49 @@ extension Dlc {
     public struct AttachUserPolicyRequest: TCRequestModel {
         /// 用户Id，和子用户uin相同，需要先使用CreateUser接口创建用户。可以使用DescribeUsers接口查看。
         public let userId: String
-        
+
         /// 鉴权策略集合
         public let policySet: [Policy]?
-        
-        public init (userId: String, policySet: [Policy]? = nil) {
+
+        public init(userId: String, policySet: [Policy]? = nil) {
             self.userId = userId
             self.policySet = policySet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case policySet = "PolicySet"
         }
     }
-    
+
     /// AttachUserPolicy返回参数结构体
     public struct AttachUserPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定鉴权策略到用户
     @inlinable
-    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
+    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
         self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定鉴权策略到用户
     @inlinable
     public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
         try await self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定鉴权策略到用户
     @inlinable
-    public func attachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
+    public func attachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
         self.attachUserPolicy(AttachUserPolicyRequest(userId: userId, policySet: policySet), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定鉴权策略到用户
     @inlinable
     public func attachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {

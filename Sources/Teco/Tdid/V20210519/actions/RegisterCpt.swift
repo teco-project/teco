@@ -19,23 +19,23 @@ extension Tdid {
     public struct RegisterCptRequest: TCRequestModel {
         /// 群组ID
         public let groupId: UInt64
-        
+
         /// 网络ID
         public let clusterId: String
-        
+
         /// CptJson的具体信息
         public let cptJson: String
-        
+
         /// cptId 不填默认自增
         public let cptId: UInt64?
-        
-        public init (groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil) {
+
+        public init(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil) {
             self.groupId = groupId
             self.clusterId = clusterId
             self.cptJson = cptJson
             self.cptId = cptId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case clusterId = "ClusterId"
@@ -43,43 +43,43 @@ extension Tdid {
             case cptId = "CptId"
         }
     }
-    
+
     /// RegisterCpt返回参数结构体
     public struct RegisterCptResponse: TCResponseModel {
         /// 凭证模板索引
         public let id: UInt64
-        
+
         /// 凭证模板id
         public let cptId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case cptId = "CptId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 凭证模版新建
     @inlinable
-    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterCptResponse > {
+    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
         self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 凭证模版新建
     @inlinable
     public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
         try await self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 凭证模版新建
     @inlinable
-    public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterCptResponse > {
+    public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
         self.registerCpt(RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), logger: logger, on: eventLoop)
     }
-    
+
     /// 凭证模版新建
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {

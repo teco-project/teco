@@ -19,27 +19,27 @@ extension Dayu {
     public struct ModifyDDoSAlarmThresholdRequest: TCRequestModel {
         /// 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID,字符串类型
         public let rsId: String
-        
+
         /// 告警阈值类型，0-未设置，1-入流量，2-清洗流量
         public let alarmType: UInt64
-        
+
         /// 告警阈值，大于0（目前暂定的值）
         public let alarmThreshold: UInt64
-        
+
         /// 资源关联的IP列表，高防包未绑定时，传空数组，高防IP专业版传多个IP的数据
         public let ipList: [String]
-        
-        public init (business: String, rsId: String, alarmType: UInt64, alarmThreshold: UInt64, ipList: [String]) {
+
+        public init(business: String, rsId: String, alarmType: UInt64, alarmThreshold: UInt64, ipList: [String]) {
             self.business = business
             self.rsId = rsId
             self.alarmType = alarmType
             self.alarmThreshold = alarmThreshold
             self.ipList = ipList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case rsId = "RsId"
@@ -48,29 +48,29 @@ extension Dayu {
             case ipList = "IpList"
         }
     }
-    
+
     /// ModifyDDoSAlarmThreshold返回参数结构体
     public struct ModifyDDoSAlarmThresholdResponse: TCResponseModel {
         /// 成功码
         public let success: SuccessCode
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case success = "Success"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置DDoS告警通知阈值
     ///
     /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
     @inlinable
-    public func modifyDDoSAlarmThreshold(_ input: ModifyDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAlarmThresholdResponse > {
+    public func modifyDDoSAlarmThreshold(_ input: ModifyDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAlarmThresholdResponse> {
         self.client.execute(action: "ModifyDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置DDoS告警通知阈值
     ///
     /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
@@ -78,15 +78,15 @@ extension Dayu {
     public func modifyDDoSAlarmThreshold(_ input: ModifyDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAlarmThresholdResponse {
         try await self.client.execute(action: "ModifyDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置DDoS告警通知阈值
     ///
     /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
     @inlinable
-    public func modifyDDoSAlarmThreshold(business: String, rsId: String, alarmType: UInt64, alarmThreshold: UInt64, ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAlarmThresholdResponse > {
+    public func modifyDDoSAlarmThreshold(business: String, rsId: String, alarmType: UInt64, alarmThreshold: UInt64, ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAlarmThresholdResponse> {
         self.modifyDDoSAlarmThreshold(ModifyDDoSAlarmThresholdRequest(business: business, rsId: rsId, alarmType: alarmType, alarmThreshold: alarmThreshold, ipList: ipList), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置DDoS告警通知阈值
     ///
     /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值

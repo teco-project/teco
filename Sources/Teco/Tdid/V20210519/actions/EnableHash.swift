@@ -19,44 +19,44 @@ extension Tdid {
     public struct EnableHashRequest: TCRequestModel {
         /// 合约CNS地址
         public let hash: String
-        
-        public init (hash: String) {
+
+        public init(hash: String) {
             self.hash = hash
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hash = "Hash"
         }
     }
-    
+
     /// EnableHash返回参数结构体
     public struct EnableHashResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用合约
     @inlinable
-    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableHashResponse > {
+    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
         self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用合约
     @inlinable
     public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
         try await self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用合约
     @inlinable
-    public func enableHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableHashResponse > {
+    public func enableHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
         self.enableHash(EnableHashRequest(hash: hash), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用合约
     @inlinable
     public func enableHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {

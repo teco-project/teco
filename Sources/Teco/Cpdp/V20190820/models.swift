@@ -23,31 +23,31 @@ extension Cpdp {
         /// STRING(50)，见证子账户的账号（可重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctNo: String?
-        
+
         /// STRING(10)，见证子账户的属性（可重复。1: 普通会员子账号; 2: 挂账子账号; 3: 手续费子账号; 4: 利息子账号; 5: 平台担保子账号）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctProperty: String?
-        
+
         /// STRING(32)，交易网会员代码（可重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranNetMemberCode: String?
-        
+
         /// STRING(150)，见证子账户的名称（可重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctName: String?
-        
+
         /// STRING(20)，见证子账户可用余额（可重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let acctAvailBal: String?
-        
+
         /// STRING(20)，见证子账户可提现金额（可重复。开户日期或修改日期）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cashAmt: String?
-        
+
         /// STRING(8)，维护日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maintenanceDate: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case subAcctNo = "SubAcctNo"
             case subAcctProperty = "SubAcctProperty"
@@ -58,61 +58,61 @@ extension Cpdp {
             case maintenanceDate = "MaintenanceDate"
         }
     }
-    
+
     /// 添加合同响应对象
     public struct AddContractResult: TCOutputModel {
         /// 合同主键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case contractId = "ContractId"
         }
     }
-    
+
     /// 添加商户响应对象
     public struct AddMerchantResult: TCOutputModel {
         /// 系统商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantNo = "MerchantNo"
         }
     }
-    
+
     /// 添加门店响应对象
     public struct AddShopResult: TCOutputModel {
         /// 门店编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case shopNo = "ShopNo"
         }
     }
-    
+
     /// 经办人信息
     public struct AgencyClientInfo: TCInputModel {
         /// 经办人姓名，存在经办人必输
         public let agencyClientName: String
-        
+
         /// 经办人证件类型，存在经办人必输
         public let agencyClientGlobalType: String
-        
+
         /// 经办人证件号，存在经办人必输
         public let agencyClientGlobalId: String
-        
+
         /// 经办人手机号，存在经办人必输
         public let agencyClientMobile: String
-        
-        public init (agencyClientName: String, agencyClientGlobalType: String, agencyClientGlobalId: String, agencyClientMobile: String) {
+
+        public init(agencyClientName: String, agencyClientGlobalType: String, agencyClientGlobalId: String, agencyClientMobile: String) {
             self.agencyClientName = agencyClientName
             self.agencyClientGlobalType = agencyClientGlobalType
             self.agencyClientGlobalId = agencyClientGlobalId
             self.agencyClientMobile = agencyClientMobile
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case agencyClientName = "AgencyClientName"
             case agencyClientGlobalType = "AgencyClientGlobalType"
@@ -120,31 +120,31 @@ extension Cpdp {
             case agencyClientMobile = "AgencyClientMobile"
         }
     }
-    
+
     /// 代理商完税证明
     public struct AgentTaxPayment: TCInputModel {
         /// 主播银行账号
         public let anchorId: String
-        
+
         /// 主播姓名
         public let anchorName: String
-        
+
         /// 主播身份证
         public let anchorIDCard: String
-        
+
         /// 纳税的开始时间，格式yyyy-MM-dd
         public let startTime: String
-        
+
         /// 纳税的结束时间，格式yyyy-MM-dd
         public let endTime: String
-        
+
         /// 流水金额。以“分”为单位
         public let amount: Int64
-        
+
         /// 应缴税款。以“分”为单位
         public let tax: Int64
-        
-        public init (anchorId: String, anchorName: String, anchorIDCard: String, startTime: String, endTime: String, amount: Int64, tax: Int64) {
+
+        public init(anchorId: String, anchorName: String, anchorIDCard: String, startTime: String, endTime: String, amount: Int64, tax: Int64) {
             self.anchorId = anchorId
             self.anchorName = anchorName
             self.anchorIDCard = anchorIDCard
@@ -153,7 +153,7 @@ extension Cpdp {
             self.amount = amount
             self.tax = tax
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case anchorId = "AnchorId"
             case anchorName = "AnchorName"
@@ -164,36 +164,36 @@ extension Cpdp {
             case tax = "Tax"
         }
     }
-    
+
     /// 代理商完税证明批次信息
     public struct AgentTaxPaymentBatch: TCOutputModel {
         /// 状态消息
         public let statusMsg: String
-        
+
         /// 批次号
         public let batchNum: Int64
-        
+
         /// 录入记录的条数
         public let infoNum: Int64
-        
+
         /// 源电子凭证下载地址
         public let rawElectronicCertUrl: String
-        
+
         /// 代理商账号
         public let agentId: String
-        
+
         /// 文件名
         public let fileName: String
-        
+
         /// 状态码。0表示下载成功
         public let statusCode: Int64
-        
+
         /// 渠道号
         public let channel: Int64
-        
+
         /// 0-视同，1-个体工商户
         public let type: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case statusMsg = "StatusMsg"
             case batchNum = "BatchNum"
@@ -206,40 +206,40 @@ extension Cpdp {
             case type = "Type"
         }
     }
-    
+
     /// 税前金额结果
     public struct AmountBeforeTaxResult: TCOutputModel {
         /// 税前金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amountBeforeTax: String?
-        
+
         /// 两位精度税前金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amountBeforeTaxWithTwoDigitPrecision: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case amountBeforeTax = "AmountBeforeTax"
             case amountBeforeTaxWithTwoDigitPrecision = "AmountBeforeTaxWithTwoDigitPrecision"
         }
     }
-    
+
     /// 主播签约信息
     public struct AnchorContractInfo: TCOutputModel {
         /// 主播ID
         public let anchorId: String
-        
+
         /// 主播名称
         public let anchorName: String
-        
+
         /// 代理商ID
         public let agentId: String
-        
+
         /// 代理商名称
         public let agentName: String
-        
+
         /// 主播身份证号
         public let idNo: String
-        
+
         enum CodingKeys: String, CodingKey {
             case anchorId = "AnchorId"
             case anchorName = "AnchorName"
@@ -248,7 +248,7 @@ extension Cpdp {
             case idNo = "IdNo"
         }
     }
-    
+
     /// 主播扩展信息
     public struct AnchorExtendInfo: TCInputModel {
         /// 扩展信息类型
@@ -259,42 +259,42 @@ extension Cpdp {
         /// __tax_type__:完税类型:0-自然人,1-个体工商户
         /// __channel_account__:渠道账号(_敏感信息_ 使用 __AES128-CBC-PKCS#7__ 加密)
         public let type: String
-        
+
         /// 扩展信息
         public let value: String
-        
-        public init (type: String, value: String) {
+
+        public init(type: String, value: String) {
             self.type = type
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case value = "Value"
         }
     }
-    
+
     /// 提交申报材料结果
     public struct ApplyDeclareData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 第三方指令编号
         public let transactionId: String
-        
+
         /// 受理状态
         public let status: String
-        
+
         /// 申报流水号
         public let declareId: String
-        
+
         /// 原申报流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalDeclareId: String?
-        
+
         /// 付款人ID
         public let payerId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case transactionId = "TransactionId"
@@ -304,51 +304,51 @@ extension Cpdp {
             case payerId = "PayerId"
         }
     }
-    
+
     /// 提交申报材料结果
     public struct ApplyDeclareResult: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 提交申报材料数据
         public let data: ApplyDeclareData
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 付款结果
     public struct ApplyFlexPaymentResult: TCOutputModel {
         /// 订单ID
         public let orderId: String
-        
+
         /// 税前金额
         public let amountBeforeTax: String
-        
+
         /// 税后金额
         public let amountAfterTax: String
-        
+
         /// 税金
         public let tax: String
-        
+
         /// 增值税
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vat: String?
-        
+
         /// 个人所得税
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let individualIncomeTax: String?
-        
+
         /// 附加税总税额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let additionalTaxSum: String?
-        
+
         /// 附加税税项。格式为JSON格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let additionalTaxItem: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case amountBeforeTax = "AmountBeforeTax"
@@ -360,21 +360,21 @@ extension Cpdp {
             case additionalTaxItem = "AdditionalTaxItem"
         }
     }
-    
+
     /// 结算结果
     public struct ApplyFlexSettlementResult: TCOutputModel {
         /// 订单ID
         public let orderId: String
-        
+
         /// 税前金额
         public let amountBeforeTax: String
-        
+
         /// 税后金额
         public let amountAfterTax: String
-        
+
         /// 税金
         public let tax: String
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case amountBeforeTax = "AmountBeforeTax"
@@ -382,31 +382,31 @@ extension Cpdp {
             case tax = "Tax"
         }
     }
-    
+
     /// 申请单笔交易回单结果
     public struct ApplyOpenBankOrderDetailReceiptResult: TCOutputModel {
         /// 渠道回单申请ID
         public let channelApplyId: String
-        
+
         /// 申请状态。
         /// SUCCESS：申请成功；
         /// FAILED：申请失败；
         /// PROCESSING：申请中。
         /// 注意：若返回申请中，需要再次调用回单申请结果查询接口，查询结果。
         public let receiptStatus: String
-        
+
         /// 申请返回描述，例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiptMessage: String?
-        
+
         /// 回单下载链接，申请成功时返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 过期时间，yyyy-MM-dd HH:mm:ss格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelApplyId = "ChannelApplyId"
             case receiptStatus = "ReceiptStatus"
@@ -415,15 +415,15 @@ extension Cpdp {
             case expireTime = "ExpireTime"
         }
     }
-    
+
     /// 云企付结算申请结果
     public struct ApplyOpenBankSettleOrderResult: TCOutputModel {
         /// 外部结算流水号
         public let outSettleId: String
-        
+
         /// 渠道结算流水号
         public let channelSettleId: String
-        
+
         /// 退款状态。
         /// SUCCESS：结算成功；
         /// FAILED：结算失败；
@@ -433,14 +433,14 @@ extension Cpdp {
         /// ACCEPTED：受理成功
         /// _UNKNOWN：默认未知
         public let settleStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case outSettleId = "OutSettleId"
             case channelSettleId = "ChannelSettleId"
             case settleStatus = "SettleStatus"
         }
     }
-    
+
     /// 子商户在线签约返回结果
     public struct ApplyOpenBankSubMerchantSignOnlineResult: TCOutputModel {
         /// 处理状态
@@ -448,69 +448,69 @@ extension Cpdp {
         ///   FAILED：签约失败
         ///   PROCESSING：签约中
         public let signStatus: String
-        
+
         /// 上传返回描述，例如失败原因等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signMessage: String?
-        
+
         /// 第三方渠道返回信息，见渠道特殊说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnData: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case signStatus = "SignStatus"
             case signMessage = "SignMessage"
             case externalReturnData = "ExternalReturnData"
         }
     }
-    
+
     /// 汇出指令申请数据
     public struct ApplyOutwardOrderData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 对接方汇出指令编号
         public let transactionId: String
-        
+
         /// 受理状态
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case transactionId = "TransactionId"
             case status = "Status"
         }
     }
-    
+
     /// 汇出指令申请结果
     public struct ApplyOutwardOrderResult: TCOutputModel {
         /// 汇出指令申请数据
         public let data: ApplyOutwardOrderData
-        
+
         /// 错误码
         public let code: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case code = "Code"
         }
     }
-    
+
     /// 付款人申请结果
     public struct ApplyPayerinfoData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 付款人ID
         public let payerId: String
-        
+
         /// 状态
         public let status: String
-        
+
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case payerId = "PayerId"
@@ -518,63 +518,63 @@ extension Cpdp {
             case failReason = "FailReason"
         }
     }
-    
+
     /// 付款人申请结果
     public struct ApplyPayerinfoResult: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 数据
         public let data: ApplyPayerinfoData
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 申请对账文件结果
     public struct ApplyReconciliationFileResult: TCOutputModel {
         /// 申请对账文件的任务ID。
         public let applyFileId: String
-        
+
         /// 对账文件申请状态。
         /// __I__：申请中
         /// __S__：申请成功
         /// __F__：申请失败
         public let applyStatus: String
-        
+
         /// 申请结果描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applyMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case applyFileId = "ApplyFileId"
             case applyStatus = "ApplyStatus"
             case applyMessage = "ApplyMessage"
         }
     }
-    
+
     /// 提交贸易材料结果
     public struct ApplyTradeData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 贸易材料流水号
         public let tradeFileId: String
-        
+
         /// 交易币种
         public let tradeCurrency: String
-        
+
         /// 交易金额
         public let tradeAmount: String
-        
+
         /// 付款人ID
         public let payerId: String
-        
+
         /// 状态
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case tradeFileId = "TradeFileId"
@@ -584,35 +584,35 @@ extension Cpdp {
             case status = "Status"
         }
     }
-    
+
     /// 提交贸易材料结果
     public struct ApplyTradeResult: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 提交贸易材料数据
         public let data: ApplyTradeData
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 分配关系
     public struct AssignmentData: TCOutputModel {
         /// 主播ID
         public let anchorId: String
-        
+
         /// 主播名称
         public let anchorName: String
-        
+
         /// 代理商ID
         public let agentId: String
-        
+
         /// 代理商名称
         public let agentName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case anchorId = "AnchorId"
             case anchorName = "AnchorName"
@@ -620,21 +620,21 @@ extension Cpdp {
             case agentName = "AgentName"
         }
     }
-    
+
     /// 支行信息
     public struct BankBranchInfo: TCOutputModel {
         /// 银行名称。
         public let bankName: String
-        
+
         /// 银行简称。
         public let bankAbbreviation: String
-        
+
         /// 支行名。
         public let bankBranchName: String
-        
+
         /// 联行号。
         public let bankBranchId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bankName = "BankName"
             case bankAbbreviation = "BankAbbreviation"
@@ -642,51 +642,51 @@ extension Cpdp {
             case bankBranchId = "BankBranchId"
         }
     }
-    
+
     /// 绑卡列表
     public struct BankCardItem: TCOutputModel {
         /// 超级网银行号
         public let eiconBankBranchId: String
-        
+
         /// 大小额行号
         public let cnapsBranchId: String
-        
+
         /// 结算账户类型
         /// 1 – 本行账户
         /// 2 – 他行账户
         public let settleAcctType: Int64
-        
+
         /// 结算账户户名
         /// <敏感信息>
         public let settleAcctName: String
-        
+
         /// 开户行名称
         public let acctBranchName: String
-        
+
         /// 用于提现
         /// <敏感信息>
         public let settleAcctNo: String
-        
+
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String
-        
+
         /// 验证类型
         /// 1 – 小额转账验证
         /// 2 – 短信验证
         public let bindType: Int64
-        
+
         /// 用于短信验证
         /// BindType==2时必填
         /// <敏感信息>
         public let mobile: String
-        
+
         /// 证件类型
         public let idType: String
-        
+
         /// 证件号码
         /// <敏感信息>
         public let idCode: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eiconBankBranchId = "EiconBankBranchId"
             case cnapsBranchId = "CnapsBranchId"
@@ -701,42 +701,42 @@ extension Cpdp {
             case idCode = "IdCode"
         }
     }
-    
+
     /// 机构账单文件下载地址响应对象
     public struct BillDownloadUrlResult: TCOutputModel {
         /// 对账单下载地址。GET方式访问，返回zip包，解压后为csv格式文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
         }
     }
-    
+
     /// 第三方子商户银行卡绑定返回结果
     public struct BindOpenBankExternalSubMerchantBankAccountResult: TCOutputModel {
         /// 渠道申请编号。
         public let channelApplyId: String
-        
+
         /// 绑定状态。
         /// __SUCCESS__: 绑定成功
         /// __FAILED__: 绑定失败
         /// __PROCESSING__: 绑定中。
         /// 注意：若返回绑定中，需要再次调用绑定结果查询接口,查询结果。
         public let bindStatus: String
-        
+
         /// 绑定返回描述, 例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bindMessage: String?
-        
+
         /// 渠道子商户银行账户信息, 为JSON格式字符串（绑定成功状态下返回）。详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalSubMerchantBankAccountReturnData: String?
-        
+
         /// 绑卡序列号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bindSerialNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelApplyId = "ChannelApplyId"
             case bindStatus = "BindStatus"
@@ -745,54 +745,54 @@ extension Cpdp {
             case bindSerialNo = "BindSerialNo"
         }
     }
-    
+
     /// 绑定分账收款方响应
     public struct BindOpenBankProfitSharePayeeResult: TCOutputModel {
         /// 账户ID。受益人ID
         public let accountId: String
-        
+
         /// 账户号，通联渠道指客户银行账号
         public let accountNo: String
-        
+
         /// 账户货币。参考附录“币种类型”。
         public let currency: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case accountNo = "AccountNo"
             case currency = "Currency"
         }
     }
-    
+
     /// 营业证件信息
     public struct BusinessLicenseInfo: TCInputModel {
         /// 营业证件类型
         ///  IDCARD：身份证
         ///  CREDITCODE：统一社会信用代码
         public let businessLicenseType: String
-        
+
         /// 营业证件号码 非个人商户上送统一社会信用代码，个人商户上送身份证号码
         public let businessLicenseNumber: String
-        
-        /// 营业证件有效期类型 
+
+        /// 营业证件有效期类型
         /// LONGTERM：长期有效
         /// OTHER：非长期有效
         public let businessLicenseValidityType: String
-        
+
         /// 营业证件生效日期，yyyy-MM-dd
         public let businessLicenseEffectiveDate: String
-        
+
         /// 营业证件失效日期，yyyy-MM-dd
         public let businessLicenseExpireDate: String?
-        
-        public init (businessLicenseType: String, businessLicenseNumber: String, businessLicenseValidityType: String, businessLicenseEffectiveDate: String, businessLicenseExpireDate: String? = nil) {
+
+        public init(businessLicenseType: String, businessLicenseNumber: String, businessLicenseValidityType: String, businessLicenseEffectiveDate: String, businessLicenseExpireDate: String? = nil) {
             self.businessLicenseType = businessLicenseType
             self.businessLicenseNumber = businessLicenseNumber
             self.businessLicenseValidityType = businessLicenseValidityType
             self.businessLicenseEffectiveDate = businessLicenseEffectiveDate
             self.businessLicenseExpireDate = businessLicenseExpireDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessLicenseType = "BusinessLicenseType"
             case businessLicenseNumber = "BusinessLicenseNumber"
@@ -801,21 +801,21 @@ extension Cpdp {
             case businessLicenseExpireDate = "BusinessLicenseExpireDate"
         }
     }
-    
+
     /// 米大师内部存放的合约信息
     public struct ChannelContractInfo: TCOutputModel {
         /// 外部合约协议号
         public let outContractCode: String
-        
+
         /// 米大师内部生成的合约协议号
         public let channelContractCode: String
-        
+
         enum CodingKeys: String, CodingKey {
             case outContractCode = "OutContractCode"
             case channelContractCode = "ChannelContractCode"
         }
     }
-    
+
     /// 米大师内部生成的合约信息
     public struct ChannelReturnContractInfo: TCOutputModel {
         /// 平台合约状态
@@ -824,34 +824,34 @@ extension Cpdp {
         /// CONTRACT_STATUS_TERMINATED：未签约
         /// CONTRACT_STATUS_PENDING：签约进行中
         public let contractStatus: String
-        
+
         /// 米大师内部存放的合约信息
         public let channelContractInfo: ChannelContractInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case contractStatus = "ContractStatus"
             case channelContractInfo = "ChannelContractInfo"
         }
     }
-    
+
     /// 查询城市编码响应对象
     public struct CityCodeResult: TCOutputModel {
         /// 城市编码cityid，数字与字母的结合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cityId: String?
-        
+
         /// 省份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let province: String?
-        
+
         /// 县区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let district: String?
-        
+
         /// 城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let city: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case cityId = "CityId"
             case province = "Province"
@@ -859,37 +859,37 @@ extension Cpdp {
             case city = "City"
         }
     }
-    
+
     /// 银行在途清算结果信息
     public struct ClearItem: TCOutputModel {
         /// STRING(8)，日期（格式: 20190101）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let date: String?
-        
+
         /// STRING(40)，子账号类型（子帐号类型。1: 普通会员子账号; 2: 挂账子账号; 3: 手续费子账号; 4: 利息子账号; 5: 平台担保子账号; 7: 在途; 8: 理财购买子帐号; 9: 理财赎回子帐号; 10: 平台子拥有结算子帐号）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctType: String?
-        
+
         /// STRING(3)，对账状态（0: 成功; 1: 失败）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reconcileStatus: String?
-        
+
         /// STRING(300)，对账返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reconcileReturnMsg: String?
-        
+
         /// STRING(20)，清算状态（0: 成功; 1: 失败; 2: 异常; 3: 待处理）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clearingStatus: String?
-        
+
         /// STRING(2)，清算返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clearingReturnMsg: String?
-        
+
         /// STRING(300)，待清算总金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalAmt: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case subAcctType = "SubAcctType"
@@ -900,53 +900,53 @@ extension Cpdp {
             case totalAmt = "TotalAmt"
         }
     }
-    
+
     /// 云企付-关单响应
     public struct CloseOpenBankPaymentOrderResult: TCOutputModel {
         /// 外部商户订单号
         public let outOrderId: String
-        
+
         /// 云企付平台订单号
         public let channelOrderId: String
-        
+
         /// 订单状态。关单成功CLOSED
         public let orderStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case outOrderId = "OutOrderId"
             case channelOrderId = "ChannelOrderId"
             case orderStatus = "OrderStatus"
         }
     }
-    
+
     /// 附加项信息对象
     public struct CloudAttachmentInfo: TCInputModel {
         /// 附加项金额。
         /// 附加项的金额（必须是正数，单位：分），代表积分的数量、抵扣的金额、溢价的金额、补贴的金额
         public let attachmentAmount: Int64
-        
+
         /// 附加项类型。
         /// Add：加项；
         /// Sub：减项；
         /// Point：积分项；
         /// Subsidy：补贴项。
         public let attachmentType: String
-        
+
         /// 附加项名称。
         /// 当银行作为收单机构可能会对该字段有要求，请向米大师确认。
         public let attachmentName: String
-        
+
         /// 附加项编号。
         /// 当银行作为收单机构可能会对该字段有要求，请向米大师确认。
         public let attachmentCode: String
-        
-        public init (attachmentAmount: Int64, attachmentType: String, attachmentName: String, attachmentCode: String) {
+
+        public init(attachmentAmount: Int64, attachmentType: String, attachmentName: String, attachmentCode: String) {
             self.attachmentAmount = attachmentAmount
             self.attachmentType = attachmentType
             self.attachmentName = attachmentName
             self.attachmentCode = attachmentCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case attachmentAmount = "AttachmentAmount"
             case attachmentType = "AttachmentType"
@@ -954,23 +954,23 @@ extension Cpdp {
             case attachmentCode = "AttachmentCode"
         }
     }
-    
+
     /// 渠道方用户信息
     public struct CloudChannelExternalUserInfo: TCOutputModel {
         /// 渠道方用户类型，枚举值:
         /// WX_OPENID 微信支付类型
         /// ALIPAY_BUYERID 支付宝支付类型
         public let channelExternalUserType: String
-        
+
         /// 渠道方用户Id
         public let channelExternalUserId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case channelExternalUserType = "ChannelExternalUserType"
             case channelExternalUserId = "ChannelExternalUserId"
         }
     }
-    
+
     /// 客户端信息
     public struct CloudClientInfo: TCInputModel {
         /// 场景类型。
@@ -982,27 +982,27 @@ extension Cpdp {
         /// CLIENT_TYPE_WAP WAP场景;
         /// CLIENT_TYPE_H5 H5场景;
         public let clientType: String?
-        
+
         /// 应用名称。
         public let appName: String?
-        
+
         /// 网站URL。
         public let appUrl: String?
-        
+
         /// IOS平台BundleID。
         public let bundleId: String?
-        
+
         /// Android平台PackageName
         public let packageName: String?
-        
-        public init (clientType: String? = nil, appName: String? = nil, appUrl: String? = nil, bundleId: String? = nil, packageName: String? = nil) {
+
+        public init(clientType: String? = nil, appName: String? = nil, appUrl: String? = nil, bundleId: String? = nil, packageName: String? = nil) {
             self.clientType = clientType
             self.appName = appName
             self.appUrl = appUrl
             self.bundleId = bundleId
             self.packageName = packageName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clientType = "ClientType"
             case appName = "AppName"
@@ -1011,26 +1011,26 @@ extension Cpdp {
             case packageName = "PackageName"
         }
     }
-    
+
     /// 渠道透传字段
     public struct CloudExternalAttachmentData: TCInputModel {
         /// 渠道名
         public let channelName: String
-        
+
         /// 渠道透传字段，由各个渠道自行定义
         public let attachmentData: String
-        
-        public init (channelName: String, attachmentData: String) {
+
+        public init(channelName: String, attachmentData: String) {
             self.channelName = channelName
             self.attachmentData = attachmentData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelName = "ChannelName"
             case attachmentData = "AttachmentData"
         }
     }
-    
+
     /// 第三方渠道数据信息
     public struct CloudExternalChannelData: TCOutputModel {
         /// 第三方渠道数据名。
@@ -1039,144 +1039,144 @@ extension Cpdp {
         /// PAYMENT_ORDER_EXTERNAL_NOTIFY_DATA: 支付通知数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalChannelDataName: String?
-        
+
         /// 第三方渠道数据值。
         /// 当ExternalChannelDataType=PAYMENT时，反序列化格式请参考[ExternalChannelPaymentDataValue](https://dev.tke.midas.qq.com/juxin-doc-next/apidocs/external-channel-data/QueryExternalChannelData.html#externalchannelpaymentdatavalue)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalChannelDataValue: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case externalChannelDataName = "ExternalChannelDataName"
             case externalChannelDataValue = "ExternalChannelDataValue"
         }
     }
-    
+
     /// 渠道扩展促销信息
     public struct CloudExternalPromptGroup: TCInputModel {
         /// 渠道名。
         /// 为米大师定义的枚举值：
         /// wechat 微信渠道
         public let channelName: String
-        
+
         /// 渠道扩展促销信息列表，由各个渠道自行定义。
         /// ChannelName为wechat时，组成为 <Wechat-ExternalPromptInfo>
         public let externalPromptInfoList: [CloudExternalPromptInfo]
-        
-        public init (channelName: String, externalPromptInfoList: [CloudExternalPromptInfo]) {
+
+        public init(channelName: String, externalPromptInfoList: [CloudExternalPromptInfo]) {
             self.channelName = channelName
             self.externalPromptInfoList = externalPromptInfoList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelName = "ChannelName"
             case externalPromptInfoList = "ExternalPromptInfoList"
         }
     }
-    
+
     /// 渠道扩展促销信息
     public struct CloudExternalPromptInfo: TCInputModel {
         /// 优惠商品信息类型。
         public let externalPromptType: String
-        
+
         /// 优惠商品信息数据。
         public let externalPromptValue: String
-        
+
         /// 优惠商品名称。
         public let externalPromptName: String?
-        
-        public init (externalPromptType: String, externalPromptValue: String, externalPromptName: String? = nil) {
+
+        public init(externalPromptType: String, externalPromptValue: String, externalPromptName: String? = nil) {
             self.externalPromptType = externalPromptType
             self.externalPromptValue = externalPromptValue
             self.externalPromptName = externalPromptName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case externalPromptType = "ExternalPromptType"
             case externalPromptValue = "ExternalPromptValue"
             case externalPromptName = "ExternalPromptName"
         }
     }
-    
+
     /// 渠道方用户信息
     public struct CloudExternalUserInfo: TCInputModel {
         /// 渠道方用户类型
         public let externalUserType: String?
-        
+
         /// 渠道方用户ID
         public let externalUserId: String?
-        
-        public init (externalUserType: String? = nil, externalUserId: String? = nil) {
+
+        public init(externalUserType: String? = nil, externalUserId: String? = nil) {
             self.externalUserType = externalUserType
             self.externalUserId = externalUserId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case externalUserType = "ExternalUserType"
             case externalUserId = "ExternalUserId"
         }
     }
-    
+
     /// 全局支付时间信息
     public struct CloudGlobalPayTimeInfo: TCInputModel {
         /// 订单开始时间。
         /// 不指定时默认为当前时间。
         public let startTimestamp: Int64?
-        
+
         /// 订单结束时间。
         /// 逾期将会拒绝下单。不指定时默认为当前时间的7天后结束。
         public let expireTimestamp: Int64?
-        
+
         /// 时区。
         /// 不指定时默认为28800，表示北京时间（东八区）。
         public let timeOffset: Int64?
-        
-        public init (startTimestamp: Int64? = nil, expireTimestamp: Int64? = nil, timeOffset: Int64? = nil) {
+
+        public init(startTimestamp: Int64? = nil, expireTimestamp: Int64? = nil, timeOffset: Int64? = nil) {
             self.startTimestamp = startTimestamp
             self.expireTimestamp = expireTimestamp
             self.timeOffset = timeOffset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTimestamp = "StartTimestamp"
             case expireTimestamp = "ExpireTimestamp"
             case timeOffset = "TimeOffset"
         }
     }
-    
+
     /// 返回订单信息
     public struct CloudOrderReturn: TCOutputModel {
         /// 米大师分配的支付主MidasAppId
         public let appId: String
-        
+
         /// 开发者支付订单号
         public let outTradeNo: String
-        
+
         /// 调用下单接口传进来的子单列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subOrderList: [CloudSubOrderReturn]?
-        
+
         /// 调用下单接口获取的米大师交易订单号
         public let transactionId: String
-        
+
         /// 用户Id
         public let userId: String
-        
+
         /// 支付渠道
         /// wechat:微信支付
         public let channel: String
-        
+
         /// 物品Id
         public let productId: String
-        
+
         /// 发货标识，由开发者在调用下单接口的时候传入
         public let metadata: String
-        
+
         /// ISO货币代码
         public let currencyType: String
-        
+
         /// 支付金额，单位：分
         public let amt: Int64
-        
+
         /// 订单状态
         /// 0:初始状态，获取米大师交易订单成功
         /// 1:拉起米大师支付页面成功，用户未支付
@@ -1186,76 +1186,76 @@ extension Cpdp {
         /// 5:关单中
         /// 6:已关单
         public let orderState: String
-        
+
         /// 下单时间，unix时间戳
         public let orderTime: String
-        
+
         /// 支付时间，unix时间戳
         public let payTime: String
-        
+
         /// 支付回调时间，unix时间戳
         public let callBackTime: String
-        
+
         /// 支付机构订单号
         public let channelExternalOrderId: String
-        
+
         /// 米大师内部渠道订单号
         public let channelOrderId: String
-        
+
         /// 是否曾退款
         public let refundFlag: String
-        
+
         /// 用户支付金额
         public let cashAmt: String
-        
+
         /// 抵扣券金额
         public let couponAmt: String
-        
+
         /// 商品名称
         public let productName: String
-        
+
         /// 结算信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settleInfo: CloudSettleInfo?
-        
+
         /// 附加项信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachmentInfoList: [CloudAttachmentInfo]?
-        
+
         /// 渠道方返回的用户信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalUserInfoList: [CloudChannelExternalUserInfo]?
-        
+
         /// 渠道扩展促销列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnPromptGroupList: [CloudExternalPromptGroup]?
-        
+
         /// 场景扩展信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sceneInfo: String?
-        
+
         /// 子应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAppId: String?
-        
+
         /// 支付场景
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payScene: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentMethod: String?
-        
+
         /// 平台应收金额
         /// 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalPlatformIncome: Int64?
-        
+
         /// 商户应收金额
         /// 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalMchIncome: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case outTradeNo = "OutTradeNo"
@@ -1289,7 +1289,7 @@ extension Cpdp {
             case totalMchIncome = "TotalMchIncome"
         }
     }
-    
+
     /// 结算信息对象
     public struct CloudSettleInfo: TCInputModel {
         /// 是否需要支付确认。
@@ -1297,49 +1297,49 @@ extension Cpdp {
         /// 1: 需要支付确认
         /// 传1时，需要在支付完成后成功调用了《支付确认》接口，该笔订单才会被清分出去
         public let needToBeConfirmed: Int64?
-        
+
         /// 是否指定分账。
         /// 0: 不指定分账
         /// 1: 指定分账
         public let profitSharing: Int64?
-        
-        public init (needToBeConfirmed: Int64? = nil, profitSharing: Int64? = nil) {
+
+        public init(needToBeConfirmed: Int64? = nil, profitSharing: Int64? = nil) {
             self.needToBeConfirmed = needToBeConfirmed
             self.profitSharing = profitSharing
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case needToBeConfirmed = "NeedToBeConfirmed"
             case profitSharing = "ProfitSharing"
         }
     }
-    
+
     /// 门店信息
     public struct CloudStoreInfo: TCInputModel {
         /// 门店ID。
         public let storeId: String?
-        
+
         /// 门店名称。
         public let storeName: String?
-        
+
         /// 门店地址。
         public let storeAddress: String?
-        
+
         /// 门店地区代码。
         public let storeAreaCode: String?
-        
+
         /// 设备ID。
         /// wechat_ecommerce渠道 - h5支付方式，此字段必填。
         public let storeDeviceId: String?
-        
-        public init (storeId: String? = nil, storeName: String? = nil, storeAddress: String? = nil, storeAreaCode: String? = nil, storeDeviceId: String? = nil) {
+
+        public init(storeId: String? = nil, storeName: String? = nil, storeAddress: String? = nil, storeAreaCode: String? = nil, storeDeviceId: String? = nil) {
             self.storeId = storeId
             self.storeName = storeName
             self.storeAddress = storeAddress
             self.storeAreaCode = storeAreaCode
             self.storeDeviceId = storeDeviceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case storeId = "StoreId"
             case storeName = "StoreName"
@@ -1348,61 +1348,61 @@ extension Cpdp {
             case storeDeviceId = "StoreDeviceId"
         }
     }
-    
+
     /// 子订单对象
     public struct CloudSubOrder: TCInputModel {
         /// 子订单号。
         /// 长度32个字符供参考，部分渠道存在长度更短的情况接入时请联系开发咨询。
         public let subOutTradeNo: String
-        
+
         /// 支付子商户ID。
         /// 米大师计费SubAppId，代表子商户。
         public let subAppId: String
-        
+
         /// 商品名称。
         /// 业务自定义的子订单商品名称，无需URL编码，长度限制以具体所接入渠道为准。
         public let productName: String
-        
+
         /// 商品详情。
         /// 业务自定义的子订单商品详情，无需URL编码，长度限制以具体所接入渠道为准。
         public let productDetail: String
-        
+
         /// 平台应收。
         /// 子订单平台应收金额，单位：分，需要注意的是Amt = PlatformIncome+SubMchIncome。
         public let platformIncome: Int64
-        
+
         /// 商户应收。
         /// 子订单结算应收金额，单位：分，需要注意的是Amt = PlatformIncome+SubMchIncome。
         public let subMchIncome: Int64
-        
+
         /// 透传字段。
         /// 发货标识，由开发者在调用米大师下单接口的 时候下发。
         public let metadata: String
-        
+
         /// 支付金额。
         /// 子订单支付金额，需要注意的是Amt = PlatformIncome+SubMchIncome。
         public let amt: Int64
-        
+
         /// 原始金额。
         /// 子订单原始金额，OriginalAmt>=Amt。
         public let originalAmt: Int64
-        
+
         /// 微信子商户号。
         public let wxSubMchId: String?
-        
+
         /// 结算信息。
         /// 例如是否需要分账、是否需要支付确认等。
         public let settleInfo: CloudSettleInfo?
-        
+
         /// 附加项信息列表。
         /// 例如溢价信息、抵扣信息、积分信息、补贴信息
         /// 通过该字段可以实现渠道方的优惠抵扣补贴等营销功能。
         public let attachmentInfoList: [CloudAttachmentInfo]?
-        
+
         /// 渠道透传数据列表。
         public let externalAttachmentDataList: [CloudExternalAttachmentData]?
-        
-        public init (subOutTradeNo: String, subAppId: String, productName: String, productDetail: String, platformIncome: Int64, subMchIncome: Int64, metadata: String, amt: Int64, originalAmt: Int64, wxSubMchId: String? = nil, settleInfo: CloudSettleInfo? = nil, attachmentInfoList: [CloudAttachmentInfo]? = nil, externalAttachmentDataList: [CloudExternalAttachmentData]? = nil) {
+
+        public init(subOutTradeNo: String, subAppId: String, productName: String, productDetail: String, platformIncome: Int64, subMchIncome: Int64, metadata: String, amt: Int64, originalAmt: Int64, wxSubMchId: String? = nil, settleInfo: CloudSettleInfo? = nil, attachmentInfoList: [CloudAttachmentInfo]? = nil, externalAttachmentDataList: [CloudExternalAttachmentData]? = nil) {
             self.subOutTradeNo = subOutTradeNo
             self.subAppId = subAppId
             self.productName = productName
@@ -1417,7 +1417,7 @@ extension Cpdp {
             self.attachmentInfoList = attachmentInfoList
             self.externalAttachmentDataList = externalAttachmentDataList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subOutTradeNo = "SubOutTradeNo"
             case subAppId = "SubAppId"
@@ -1434,32 +1434,32 @@ extension Cpdp {
             case externalAttachmentDataList = "ExternalAttachmentDataList"
         }
     }
-    
+
     /// 退款子单
     public struct CloudSubOrderRefund: TCInputModel {
         /// 子订单退款金额
         public let refundAmt: Int64
-        
+
         /// 平台应退金额
         public let platformRefundAmt: Int64
-        
+
         /// 商家应退金额
         public let subMchRefundAmt: Int64
-        
+
         /// 子订单号
         public let subOutTradeNo: String
-        
+
         /// 子退款单号，调用方需要保证全局唯一性
         public let subRefundId: String
-        
-        public init (refundAmt: Int64, platformRefundAmt: Int64, subMchRefundAmt: Int64, subOutTradeNo: String, subRefundId: String) {
+
+        public init(refundAmt: Int64, platformRefundAmt: Int64, subMchRefundAmt: Int64, subOutTradeNo: String, subRefundId: String) {
             self.refundAmt = refundAmt
             self.platformRefundAmt = platformRefundAmt
             self.subMchRefundAmt = subMchRefundAmt
             self.subOutTradeNo = subOutTradeNo
             self.subRefundId = subRefundId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case refundAmt = "RefundAmt"
             case platformRefundAmt = "PlatformRefundAmt"
@@ -1468,61 +1468,61 @@ extension Cpdp {
             case subRefundId = "SubRefundId"
         }
     }
-    
+
     /// 子订单详情
     public struct CloudSubOrderReturn: TCOutputModel {
         /// 子订单号
         public let subOutTradeNo: String
-        
+
         /// 米大师计费SubAppId，代表子商户
         public let subAppId: String
-        
+
         /// 子订单商品名称
         public let productName: String
-        
+
         /// 子订单商品详情
         public let productDetail: String
-        
+
         /// 子订单平台应收金额，单位：分
         public let platformIncome: Int64
-        
+
         /// 子订单结算应收金额，单位：分
         public let subMchIncome: Int64
-        
+
         /// 子订单支付金额
         public let amt: Int64
-        
+
         /// 子订单原始金额
         public let originalAmt: Int64
-        
+
         /// 核销状态，1表示核销，0表示未核销
         public let settleCheck: Int64
-        
+
         /// 结算信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settleInfo: CloudSettleInfo?
-        
+
         /// 透传字段，由开发者在调用米大师下单接口的时候下发
         public let metadata: String
-        
+
         /// 附加项信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachmentInfoList: CloudAttachmentInfo?
-        
+
         /// 渠道方应答的订单号，透传处理
         public let channelExternalSubOrderId: String
-        
+
         /// 微信子商户号
         public let wxSubMchId: String
-        
+
         /// 米大师侧渠道子订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelSubPayOrderId: String?
-        
+
         /// 物品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case subOutTradeNo = "SubOutTradeNo"
             case subAppId = "SubAppId"
@@ -1542,41 +1542,41 @@ extension Cpdp {
             case productId = "ProductId"
         }
     }
-    
+
     /// 子单退款信息
     public struct CloudSubRefundItem: TCOutputModel {
         /// 渠道方应答的退款ID，透传处理
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalRefundId: String?
-        
+
         /// 渠道方应答的订单号，透传处理
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalOrderId: String?
-        
+
         /// 子单退款金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundAmt: Int64?
-        
+
         /// 子单订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subOutTradeNo: String?
-        
+
         /// 子单退款id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subRefundId: String?
-        
+
         /// 子应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAppId: String?
-        
+
         /// 渠道子单支付订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelSubOrderId: String?
-        
+
         /// 渠道子退款订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelSubRefundId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelExternalRefundId = "ChannelExternalRefundId"
             case channelExternalOrderId = "ChannelExternalOrderId"
@@ -1588,33 +1588,33 @@ extension Cpdp {
             case channelSubRefundId = "ChannelSubRefundId"
         }
     }
-    
+
     /// 公司抬头结果
     public struct CompanyTitleResult: TCOutputModel {
         /// 公司银行账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let companyBankAccount: String?
-        
+
         /// 公司地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let companyAddress: String?
-        
+
         /// 公司税号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let companyTaxpayerNum: String?
-        
+
         /// 公司名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let companyName: String?
-        
+
         /// 公司银行名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let companyBankName: String?
-        
+
         /// 公司电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let companyPhone: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case companyBankAccount = "CompanyBankAccount"
             case companyAddress = "CompanyAddress"
@@ -1624,44 +1624,44 @@ extension Cpdp {
             case companyPhone = "CompanyPhone"
         }
     }
-    
+
     /// 合约信息
     public struct ContractInfo: TCOutputModel {
         /// 米大师内部签约商户号
         public let channelContractMerchantId: String
-        
+
         /// 米大师内部签约子商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelContractSubMerchantId: String?
-        
+
         /// 米大师内部签约应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelContractAppId: String?
-        
+
         /// 米大师内部签约子应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelContractSubAppId: String?
-        
+
         /// 业务合约协议号
         public let outContractCode: String
-        
+
         /// 第三方渠道用户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalContractUserInfoList: [ExternalContractUserInfo]?
-        
+
         /// 签约方式，如 wechat_app ，使用app方式下的微信签
         public let contractMethod: String
-        
+
         /// 合约场景id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractSceneId: String?
-        
+
         /// 用户信息
         public let userInfo: ContractUserInfo
-        
+
         /// 第三方渠道签约数据
         public let externalContractData: String
-        
+
         enum CodingKeys: String, CodingKey {
             case channelContractMerchantId = "ChannelContractMerchantId"
             case channelContractSubMerchantId = "ChannelContractSubMerchantId"
@@ -1675,37 +1675,37 @@ extension Cpdp {
             case externalContractData = "ExternalContractData"
         }
     }
-    
+
     /// 支付中签约子订单列表
     public struct ContractOrderInSubOrder: TCInputModel {
         /// 子订单结算应收金额，单位： 分
         public let subMchIncome: Int64
-        
+
         /// 子订单平台应收金额，单位：分
         public let platformIncome: Int64
-        
+
         /// 子订单商品详情
         public let productDetail: String
-        
+
         /// 子订单商品名称
         public let productName: String
-        
+
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String
-        
+
         /// 子订单号
         public let subOutTradeNo: String
-        
+
         /// 子订单支付金额
         public let amt: Int64
-        
+
         /// 子订单原始金额
         public let originalAmt: Int64
-        
+
         /// 发货标识，由业务在调用聚鑫下单接口的 时候下发
         public let metadata: String?
-        
-        public init (subMchIncome: Int64, platformIncome: Int64, productDetail: String, productName: String, subAppId: String, subOutTradeNo: String, amt: Int64, originalAmt: Int64, metadata: String? = nil) {
+
+        public init(subMchIncome: Int64, platformIncome: Int64, productDetail: String, productName: String, subAppId: String, subOutTradeNo: String, amt: Int64, originalAmt: Int64, metadata: String? = nil) {
             self.subMchIncome = subMchIncome
             self.platformIncome = platformIncome
             self.productDetail = productDetail
@@ -1716,7 +1716,7 @@ extension Cpdp {
             self.originalAmt = originalAmt
             self.metadata = metadata
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subMchIncome = "SubMchIncome"
             case platformIncome = "PlatformIncome"
@@ -1729,73 +1729,73 @@ extension Cpdp {
             case metadata = "Metadata"
         }
     }
-    
+
     /// 合同-支付方式列表响应对象
     public struct ContractPayListResult: TCOutputModel {
         /// 支付方式编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentId: String?
-        
+
         /// 支持的交易类型（多个以小写逗号分开，0现金，1刷卡，2主扫，3被扫，4JSPAY，5预授权）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentType: String?
-        
+
         /// 支付标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentTag: String?
-        
+
         /// 支付方式图片url路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentIcon: String?
-        
+
         /// 付款方式名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentName: String?
-        
+
         /// 付款方式名称（内部名称）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentInternalName: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionOne: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionTwo: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionThree: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionFour: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionFive: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionSix: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionSeven: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionOther: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionNine: String?
-        
+
         /// 支付方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionTen: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case paymentId = "PaymentId"
             case paymentType = "PaymentType"
@@ -1815,15 +1815,15 @@ extension Cpdp {
             case paymentOptionTen = "PaymentOptionTen"
         }
     }
-    
+
     /// 签约同步信息
     public struct ContractSyncInfo: TCInputModel {
         /// 第三方渠道合约信息
         public let externalReturnContractInfo: ExternalReturnContractInfo
-        
+
         /// 第三方渠道用户信息
         public let externalContractUserInfo: [ExternalContractUserInfo]
-        
+
         /// 签约方式，枚举值，
         /// <br/>CONTRACT_METHOD_WECHAT_INVALID: 无效
         /// CONTRACT_METHOD_WECHAT_APP: 微信APP
@@ -1831,21 +1831,21 @@ extension Cpdp {
         /// CONTRACT_METHOD_WECHAT_MINIPROGRAM: 微信小程序
         /// CONTRACT_METHOD_WECHAT_H5: 微信H5
         public let contractMethod: String?
-        
+
         /// 在米大师侧分配的场景id
         public let contractSceneId: String?
-        
+
         /// 调用方从第三方渠道查询到的签约数据，由各个渠道定义
         public let externalReturnContractData: String?
-        
-        public init (externalReturnContractInfo: ExternalReturnContractInfo, externalContractUserInfo: [ExternalContractUserInfo], contractMethod: String? = nil, contractSceneId: String? = nil, externalReturnContractData: String? = nil) {
+
+        public init(externalReturnContractInfo: ExternalReturnContractInfo, externalContractUserInfo: [ExternalContractUserInfo], contractMethod: String? = nil, contractSceneId: String? = nil, externalReturnContractData: String? = nil) {
             self.externalReturnContractInfo = externalReturnContractInfo
             self.externalContractUserInfo = externalContractUserInfo
             self.contractMethod = contractMethod
             self.contractSceneId = contractSceneId
             self.externalReturnContractData = externalReturnContractData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case externalReturnContractInfo = "ExternalReturnContractInfo"
             case externalContractUserInfo = "ExternalContractUserInfo"
@@ -1854,38 +1854,38 @@ extension Cpdp {
             case externalReturnContractData = "ExternalReturnContractData"
         }
     }
-    
+
     /// 用户信息
     public struct ContractUserInfo: TCOutputModel {
         /// USER_ID: 用户ID
         /// ANONYMOUS: 匿名类型用户ID
         public let userType: String
-        
+
         /// 用户类型
         public let userId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userType = "UserType"
             case userId = "UserId"
         }
     }
-    
+
     /// CreateBatchPayment接口BatchInfo对象
     public struct CreateBatchPaymentBatchData: TCOutputModel {
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?
-        
+
         /// 交易流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeSerialNo: String?
-        
+
         /// 交易状态。
-        /// 0 处理中  
-        /// 1 预占成功 
-        /// 2 交易成功 
-        /// 3 交易失败 
-        /// 4 未知渠道异常 
+        /// 0 处理中
+        /// 1 预占成功
+        /// 2 交易成功
+        /// 3 交易失败
+        /// 4 未知渠道异常
         /// 5 预占额度失败
         /// 6 提交成功
         /// 7 提交失败
@@ -1893,19 +1893,19 @@ extension Cpdp {
         /// 99 未知系统异常
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 状态描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusDesc: String?
-        
+
         /// 代理商ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentId: String?
-        
+
         /// 代理商名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case tradeSerialNo = "TradeSerialNo"
@@ -1915,46 +1915,46 @@ extension Cpdp {
             case agentName = "AgentName"
         }
     }
-    
+
     /// CreateBatchPayment接口返回响应
     public struct CreateBatchPaymentData: TCOutputModel {
         /// 批次号
         public let batchId: String
-        
+
         /// 批次列表详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchInfoList: [CreateBatchPaymentBatchData]?
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case batchInfoList = "BatchInfoList"
         }
     }
-    
+
     /// CreateBatchPayment转账明细
     public struct CreateBatchPaymentRecipient: TCInputModel {
         /// 转账金额
         public let transferAmount: Int64
-        
+
         /// 订单号
         public let orderId: String
-        
+
         /// 主播ID（与主播业务ID不能同时为空，两者都填取主播ID）
         public let anchorId: String?
-        
+
         /// 主播业务ID（与主播业务ID不能同时为空，两者都填取主播ID）
         public let uid: String?
-        
+
         /// 主播名称。如果该字段填入，则会对AnchorName和AnchorId/Uid进行校验。
         public let anchorName: String?
-        
+
         /// 业务备注
         public let remark: String?
-        
+
         /// 子单请求预留字段
         public let reqReserved: String?
-        
-        public init (transferAmount: Int64, orderId: String, anchorId: String? = nil, uid: String? = nil, anchorName: String? = nil, remark: String? = nil, reqReserved: String? = nil) {
+
+        public init(transferAmount: Int64, orderId: String, anchorId: String? = nil, uid: String? = nil, anchorName: String? = nil, remark: String? = nil, reqReserved: String? = nil) {
             self.transferAmount = transferAmount
             self.orderId = orderId
             self.anchorId = anchorId
@@ -1963,7 +1963,7 @@ extension Cpdp {
             self.remark = remark
             self.reqReserved = reqReserved
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case transferAmount = "TransferAmount"
             case orderId = "OrderId"
@@ -1974,7 +1974,7 @@ extension Cpdp {
             case reqReserved = "ReqReserved"
         }
     }
-    
+
     /// 创建第三方电子记账本返回值
     public struct CreateExternalAccountBookResult: TCOutputModel {
         /// 处理状态。
@@ -1982,19 +1982,19 @@ extension Cpdp {
         /// __FAILED__: 失败
         /// __PROCESSING__: 进行中。
         public let dealStatus: String
-        
+
         /// 处理返回描述，例如失败原因等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealMessage: String?
-        
+
         /// 渠道电子记账本ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelAccountBookId: String?
-        
+
         /// 电子记账本对外收款的账户信息。为JSON格式字符串（成功状态下返回）。详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let collectMoneyAccountInfo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case dealStatus = "DealStatus"
             case dealMessage = "DealMessage"
@@ -2002,65 +2002,65 @@ extension Cpdp {
             case collectMoneyAccountInfo = "CollectMoneyAccountInfo"
         }
     }
-    
+
     /// CreateExternalAnchor接口返回参数
     public struct CreateExternalAnchorData: TCOutputModel {
         /// 主播Id
         public let anchorId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case anchorId = "AnchorId"
         }
     }
-    
+
     /// 账户开立结果
     public struct CreateFlexPayeeResult: TCOutputModel {
         /// 收款用户ID
         public let payeeId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case payeeId = "PayeeId"
         }
     }
-    
+
     /// 发票开具明细
     public struct CreateInvoiceItem: TCInputModel {
         /// 商品名称
         public let name: String
-        
+
         /// 税收商品编码
         public let taxCode: String
-        
+
         /// 不含税商品总价（商品含税价总额/（1+税率））。InvoicePlatformId 为1时，该金额为含税总金额。单位为分。
         public let totalPrice: Int64
-        
+
         /// 商品税率
         public let taxRate: Int64
-        
+
         /// 商品税额（不含税商品总价*税率）。单位为分
         public let taxAmount: Int64
-        
+
         /// 税收商品类别
         public let taxType: String?
-        
+
         /// 商品规格
         public let models: String?
-        
+
         /// 商品单位
         public let unit: String?
-        
+
         /// 商品数量
         public let total: String?
-        
+
         /// 不含税商品单价。InvoicePlatformId 为1时，该金额为含税单价。
         public let price: String?
-        
+
         /// 含税折扣总额。单位为分
         public let discount: Int64?
-        
+
         /// 优惠政策标志。0：不使用优惠政策；1：使用优惠政策。
         public let preferentialPolicyFlag: String?
-        
+
         /// 零税率标识：
         /// 空：非零税率；
         /// 0：出口零税率；
@@ -2068,11 +2068,11 @@ extension Cpdp {
         /// 2：不征税；
         /// 3：普通零税率。
         public let zeroTaxFlag: String?
-        
+
         /// 增值税特殊管理。PreferentialPolicyFlag字段为1时，必填。目前仅支持5%(3%，2%，1.5%)简易征税、免税、不征税。
         public let vatSpecialManagement: String?
-        
-        public init (name: String, taxCode: String, totalPrice: Int64, taxRate: Int64, taxAmount: Int64, taxType: String? = nil, models: String? = nil, unit: String? = nil, total: String? = nil, price: String? = nil, discount: Int64? = nil, preferentialPolicyFlag: String? = nil, zeroTaxFlag: String? = nil, vatSpecialManagement: String? = nil) {
+
+        public init(name: String, taxCode: String, totalPrice: Int64, taxRate: Int64, taxAmount: Int64, taxType: String? = nil, models: String? = nil, unit: String? = nil, total: String? = nil, price: String? = nil, discount: Int64? = nil, preferentialPolicyFlag: String? = nil, zeroTaxFlag: String? = nil, vatSpecialManagement: String? = nil) {
             self.name = name
             self.taxCode = taxCode
             self.totalPrice = totalPrice
@@ -2088,7 +2088,7 @@ extension Cpdp {
             self.zeroTaxFlag = zeroTaxFlag
             self.vatSpecialManagement = vatSpecialManagement
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case taxCode = "TaxCode"
@@ -2106,110 +2106,110 @@ extension Cpdp {
             case vatSpecialManagement = "VatSpecialManagement"
         }
     }
-    
+
     /// 发票结果
     public struct CreateInvoiceResult: TCOutputModel {
         /// 错误消息
         public let message: String
-        
+
         /// 错误码
         public let code: Int64
-        
+
         /// 数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CreateInvoiceResultData?
-        
+
         enum CodingKeys: String, CodingKey {
             case message = "Message"
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 蓝票结果数据
     public struct CreateInvoiceResultData: TCOutputModel {
         /// 开票状态
         public let state: Int64
-        
+
         /// 发票ID
         public let invoiceId: String
-        
+
         /// 业务开票号
         public let orderSn: String
-        
+
         enum CodingKeys: String, CodingKey {
             case state = "State"
             case invoiceId = "InvoiceId"
             case orderSn = "OrderSn"
         }
     }
-    
+
     /// 发票结果V2
     public struct CreateInvoiceResultV2: TCOutputModel {
         /// 发票ID
         public let invoiceId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case invoiceId = "InvoiceId"
         }
     }
-    
+
     /// 创建商户结果
     public struct CreateMerchantResult: TCOutputModel {
         /// 状态码
         public let code: Int64
-        
+
         /// 响应消息
         public let message: String
-        
+
         /// 创建商户结果数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CreateMerchantResultData?
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"
             case data = "Data"
         }
     }
-    
+
     /// 创建商户结果数据
     public struct CreateMerchantResultData: TCOutputModel {
         /// 企业名称
         public let taxpayerName: String
-        
+
         /// 请求流水号
         public let serialNo: String
-        
+
         /// 纳税号
         public let taxpayerNum: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taxpayerName = "TaxpayerName"
             case serialNo = "SerialNo"
             case taxpayerNum = "TaxpayerNum"
         }
     }
-    
+
     /// 聚合支付子商户线上入驻结果
     public struct CreateOpenBankExternalAggregatedSubMerchantRegistrationResult: TCOutputModel {
-        /// 进件状态 
-        /// SUCCESS: 进件成功 
+        /// 进件状态
+        /// SUCCESS: 进件成功
         /// FAILED: 进件失败
-        /// PROCESSING: 进件中 
+        /// PROCESSING: 进件中
         /// 注意：若返回进件中，需要再次调用进件结果查询接口，查询结果。
         public let registrationStatus: String
-        
+
         /// 进件返回描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registrationMessage: String?
-        
+
         /// 渠道进件序列号
         public let channelRegistrationNo: String
-        
+
         /// 渠道子商户ID
         public let channelSubMerchantId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case registrationStatus = "RegistrationStatus"
             case registrationMessage = "RegistrationMessage"
@@ -2217,7 +2217,7 @@ extension Cpdp {
             case channelSubMerchantId = "ChannelSubMerchantId"
         }
     }
-    
+
     /// 子商户进件返回结果
     public struct CreateOpenBankExternalSubMerchantRegistrationResult: TCOutputModel {
         /// 进件状态。
@@ -2226,21 +2226,21 @@ extension Cpdp {
         /// __PROCESSING__: 进件中
         /// 注意：若返回进件中，需要再次调用进件结果查询接口，查询结果。
         public let registrationStatus: String
-        
+
         /// 进件返回描述, 例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registrationMessage: String?
-        
+
         /// 渠道进件序列号。
         public let channelRegistrationNo: String
-        
+
         /// 渠道子商户ID。
         public let channelSubMerchantId: String
-        
+
         /// 第三方渠道返回信息, 为JSON格式字符串。详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnData: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case registrationStatus = "RegistrationStatus"
             case registrationMessage = "RegistrationMessage"
@@ -2249,42 +2249,42 @@ extension Cpdp {
             case externalReturnData = "ExternalReturnData"
         }
     }
-    
+
     /// 创建渠道商户返回结果
     public struct CreateOpenBankMerchantResult: TCOutputModel {
         /// 渠道商户ID。
         public let channelMerchantId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case channelMerchantId = "ChannelMerchantId"
         }
     }
-    
+
     /// 云企付-支付下单返回响应
     public struct CreateOpenBankOrderPaymentResult: TCOutputModel {
         /// 云企付平台订单号。
         public let channelOrderId: String
-        
+
         /// 第三方支付平台返回支付订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let thirdPayOrderId: String?
-        
+
         /// 跳转参数
         /// 渠道为TENPAY，付款方式为EBANK_PAYMENT时必选。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectInfo: OpenBankRedirectInfo?
-        
+
         /// 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         public let outOrderId: String
-        
+
         /// 渠道扩展支付信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payInfo: String?
-        
+
         /// 渠道扩展支付信息类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payInfoType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelOrderId = "ChannelOrderId"
             case thirdPayOrderId = "ThirdPayOrderId"
@@ -2294,35 +2294,35 @@ extension Cpdp {
             case payInfoType = "PayInfoType"
         }
     }
-    
+
     /// 云企付-充值下单返回响应
     public struct CreateOpenBankOrderRechargeResult: TCOutputModel {
         /// 云企付平台订单号。
         public let channelOrderId: String
-        
+
         /// 第三方支付平台返回支付订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let thirdPayOrderId: String?
-        
+
         /// 跳转参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectInfo: OpenBankRechargeRedirectInfo?
-        
+
         /// 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         public let outOrderId: String
-        
+
         /// 充值状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealStatus: String?
-        
+
         /// 充值返回描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealMessage: String?
-        
+
         /// PC web端跳转链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pcWebUrl: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelOrderId = "ChannelOrderId"
             case thirdPayOrderId = "ThirdPayOrderId"
@@ -2333,55 +2333,55 @@ extension Cpdp {
             case pcWebUrl = "PcWebUrl"
         }
     }
-    
+
     /// 聚合支付子商户费率配置结果
     public struct CreateOpenBankSubMerchantRateConfigureResult: TCOutputModel {
-        /// 处理状态 
-        /// SUCCESS: 开通成功 
+        /// 处理状态
+        /// SUCCESS: 开通成功
         /// FAILED: 开通失败
-        /// PROCESSING: 开通中 
+        /// PROCESSING: 开通中
         /// 注意：若返回开通中，需要再次调用费率配置结果查询接口，查询结果。
         public let dealStatus: String
-        
+
         /// 处理描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealMessage: String?
-        
+
         /// 渠道产品费率序列号
         public let channelProductFeeNo: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealStatus = "DealStatus"
             case dealMessage = "DealMessage"
             case channelProductFeeNo = "ChannelProductFeeNo"
         }
     }
-    
+
     /// 云企付-支付下单返回响应
     public struct CreateOpenBankUnifiedOrderPaymentResult: TCOutputModel {
         /// 云企付平台订单号。
         public let channelOrderId: String
-        
+
         /// 第三方支付平台返回支付订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let thirdPayOrderId: String?
-        
+
         /// 跳转参数
         /// 渠道为TENPAY，付款方式为EBANK_PAYMENT时必选。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectInfo: OpenBankOrderRedirectInfo?
-        
+
         /// 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         public let outOrderId: String
-        
+
         /// 渠道扩展支付信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payInfo: String?
-        
+
         /// 渠道扩展支付信息类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payInfoType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelOrderId = "ChannelOrderId"
             case thirdPayOrderId = "ThirdPayOrderId"
@@ -2391,29 +2391,29 @@ extension Cpdp {
             case payInfoType = "PayInfoType"
         }
     }
-    
+
     /// 云企付-核销确认收货申请响应结果
     public struct CreateOpenBankVerificationResult: TCOutputModel {
         /// 云企付渠道核销订单号
         public let channelVerificationId: String
-        
+
         /// 第三方支付渠道核销订单号
         public let thirdVerificationId: String
-        
+
         /// 核销状态
         /// INIT("INIT","初始化"),
         /// SUCCESS("SUCCESS","核销成功"),
         /// FAILED("FAILED","核销失败"),
         /// PROCESSING("PROCESSING","核销中");
         public let verificationStatus: String
-        
+
         /// 核销金额，单位分
         public let verificationAmount: Int64
-        
+
         /// 渠道附加返回信息，一般情况可以不关注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let thirdVerificationReturnInfo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelVerificationId = "ChannelVerificationId"
             case thirdVerificationId = "ThirdVerificationId"
@@ -2422,32 +2422,32 @@ extension Cpdp {
             case thirdVerificationReturnInfo = "ThirdVerificationReturnInfo"
         }
     }
-    
+
     /// 创建红票明细
     public struct CreateRedInvoiceItem: TCInputModel {
         /// 订单号
         public let orderId: String
-        
+
         /// 发票结果回传地址
         public let callbackUrl: String?
-        
+
         /// 业务开票号
         public let orderSn: String?
-        
+
         /// 红字信息表编码
         public let redSerialNo: String?
-        
+
         /// 门店编号
         public let storeNo: String?
-        
-        public init (orderId: String, callbackUrl: String? = nil, orderSn: String? = nil, redSerialNo: String? = nil, storeNo: String? = nil) {
+
+        public init(orderId: String, callbackUrl: String? = nil, orderSn: String? = nil, redSerialNo: String? = nil, storeNo: String? = nil) {
             self.orderId = orderId
             self.callbackUrl = callbackUrl
             self.orderSn = orderSn
             self.redSerialNo = redSerialNo
             self.storeNo = storeNo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case callbackUrl = "CallbackUrl"
@@ -2456,40 +2456,40 @@ extension Cpdp {
             case storeNo = "StoreNo"
         }
     }
-    
+
     /// 红票结果
     public struct CreateRedInvoiceResult: TCOutputModel {
         /// 错误消息
         public let message: String
-        
+
         /// 错误码
         public let code: Int64
-        
+
         /// 红票数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [CreateRedInvoiceResultData]?
-        
+
         enum CodingKeys: String, CodingKey {
             case message = "Message"
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 红票结果数据
     public struct CreateRedInvoiceResultData: TCOutputModel {
         /// 红冲状态码
         public let code: Int64
-        
+
         /// 红冲状态消息
         public let message: String
-        
+
         /// 发票ID
         public let invoiceId: String
-        
+
         /// 业务开票号
         public let orderSn: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"
@@ -2497,92 +2497,92 @@ extension Cpdp {
             case orderSn = "OrderSn"
         }
     }
-    
+
     /// 红票结果V2
     public struct CreateRedInvoiceResultV2: TCOutputModel {
         /// 红票ID
         public let invoiceId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case invoiceId = "InvoiceId"
         }
     }
-    
+
     /// CreateSinglePayment接口返回响应
     public struct CreateSinglePaymentData: TCOutputModel {
         /// 平台交易流水号，唯一
         public let tradeSerialNo: String
-        
+
         /// 代理商ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentId: String?
-        
+
         /// 代理商名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case tradeSerialNo = "TradeSerialNo"
             case agentId = "AgentId"
             case agentName = "AgentName"
         }
     }
-    
+
     /// 分账授权申请查询响应对象
     public struct DistributeAccreditQueryResult: TCOutputModel {
         /// 状态（0-未开通，1-已开通，2-商户主动关闭，3-待审核，4-冻结，5-注销，6-待签合同）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 合同h5地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractUrl: String?
-        
+
         /// 说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case contractUrl = "ContractUrl"
             case remark = "Remark"
         }
     }
-    
+
     /// 授权申请响应对象
     public struct DistributeAccreditResult: TCOutputModel {
         /// 合同h5地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractUrl: String?
-        
+
         /// 系统商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case contractUrl = "ContractUrl"
             case merchantNo = "MerchantNo"
         }
     }
-    
+
     /// 分账撤销响应对象
     public struct DistributeCancelResult: TCOutputModel {
         /// 分账订单状态（0初始1成功2失败3撤销）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 平台交易订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderNo: String?
-        
+
         /// 商户分账单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outDistributeNo: String?
-        
+
         /// 平台分账单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let distributeNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case orderNo = "OrderNo"
@@ -2590,33 +2590,33 @@ extension Cpdp {
             case distributeNo = "DistributeNo"
         }
     }
-    
+
     /// 分账申请响应对象
     public struct DistributeMultiApplyResult: TCOutputModel {
         /// 分账状态（0分账初始 1分账成功 2分账失败）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 平台分账单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let distributeNo: String?
-        
+
         /// 入账日期，yyyy-MM-dd格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inDate: String?
-        
+
         /// 分账金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amount: String?
-        
+
         /// 商户分账单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outDistributeNo: String?
-        
+
         /// 平台支付单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case distributeNo = "DistributeNo"
@@ -2626,73 +2626,73 @@ extension Cpdp {
             case orderNo = "OrderNo"
         }
     }
-    
+
     /// 分账结果响应对象
     public struct DistributeQueryResult: TCOutputModel {
         /// 分账订单列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orders: [MultiApplyOrder]?
-        
+
         enum CodingKeys: String, CodingKey {
             case orders = "Orders"
         }
     }
-    
+
     /// 分账接收方响应对象
     public struct DistributeReceiverResult: TCOutputModel {
         /// 商户编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantNo = "MerchantNo"
         }
     }
-    
+
     /// 上传下载响应对象
     public struct DownloadFileResult: TCOutputModel {
         /// 文件内容（base64加密的二进制内容）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
-        
+
         /// 存储区域（0私密区，1公共区），请严格按文件要求，上传到不同的区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
             case storage = "Storage"
         }
     }
-    
+
     /// 第三方渠道用户信息
     public struct ExternalContractUserInfo: TCOutputModel {
         /// 第三方用户类型，例如:  WX_OPENID, WX_SUB_OPENID,WX_PAYER_OPENID
         public let externalUserType: String
-        
+
         /// 第三方用户ID
         public let externalUserId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case externalUserType = "ExternalUserType"
             case externalUserId = "ExternalUserId"
         }
     }
-    
+
     /// 第三方渠道合约信息
     public struct ExternalReturnContractInfo: TCInputModel, TCOutputModel {
         /// 第三方渠道协议id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnAgreementId: String?
-        
+
         /// 第三方渠道协议生效时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractEffectiveTimestamp: String?
-        
+
         /// 第三方渠道协议解约时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractTerminationTimestamp: String?
-        
+
         /// 平台合约状态
         /// 协议状态，枚举值：
         /// CONTRACT_STATUS_SIGNED：已签约
@@ -2700,32 +2700,32 @@ extension Cpdp {
         /// CONTRACT_STATUS_PENDING：签约进行中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractStatus: String?
-        
+
         /// 第三方渠道请求序列号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnRequestId: String?
-        
+
         /// 第三方渠道协议签署时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractSignedTimestamp: String?
-        
+
         /// 第三方渠道协议到期时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractExpiredTimestamp: String?
-        
+
         /// 第三方渠道返回的合约数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractData: String?
-        
+
         /// 第三方渠道解约备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractTerminationRemark: String?
-        
+
         /// 第三方渠道协议解约方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractTerminationMode: String?
-        
-        public init (externalReturnAgreementId: String, externalReturnContractEffectiveTimestamp: String, externalReturnContractTerminationTimestamp: String, externalReturnContractStatus: String, externalReturnRequestId: String, externalReturnContractSignedTimestamp: String, externalReturnContractExpiredTimestamp: String, externalReturnContractData: String, externalReturnContractTerminationRemark: String? = nil, externalReturnContractTerminationMode: String? = nil) {
+
+        public init(externalReturnAgreementId: String, externalReturnContractEffectiveTimestamp: String, externalReturnContractTerminationTimestamp: String, externalReturnContractStatus: String, externalReturnRequestId: String, externalReturnContractSignedTimestamp: String, externalReturnContractExpiredTimestamp: String, externalReturnContractData: String, externalReturnContractTerminationRemark: String? = nil, externalReturnContractTerminationMode: String? = nil) {
             self.externalReturnAgreementId = externalReturnAgreementId
             self.externalReturnContractEffectiveTimestamp = externalReturnContractEffectiveTimestamp
             self.externalReturnContractTerminationTimestamp = externalReturnContractTerminationTimestamp
@@ -2737,7 +2737,7 @@ extension Cpdp {
             self.externalReturnContractTerminationRemark = externalReturnContractTerminationRemark
             self.externalReturnContractTerminationMode = externalReturnContractTerminationMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case externalReturnAgreementId = "ExternalReturnAgreementId"
             case externalReturnContractEffectiveTimestamp = "ExternalReturnContractEffectiveTimestamp"
@@ -2751,35 +2751,35 @@ extension Cpdp {
             case externalReturnContractTerminationMode = "ExternalReturnContractTerminationMode"
         }
     }
-    
+
     /// 分段计费区间信息
     public struct FeeRangInfo: TCInputModel {
-        /// 卡类型，银联产品使用 
-        /// DEBIT：借记卡 
+        /// 卡类型，银联产品使用
+        /// DEBIT：借记卡
         /// CREDIT：贷记卡
         public let cardType: String
-        
+
         /// 区间起始金额，单位（分）
         public let rangeStartValue: UInt64
-        
+
         /// 区间结束金额，单位（分）
         public let rangeEndValue: UInt64
-        
-        /// 分段计费模式 
-        /// SINGLE：按金额计费 
+
+        /// 分段计费模式
+        /// SINGLE：按金额计费
         /// RATIO：按费率计费
         public let rangeFeeMode: String
-        
+
         /// 费用值，单位（0.01%或分）
         public let feeValue: UInt64
-        
+
         /// 最低收费金额，单位（分）
         public let minFee: UInt64?
-        
+
         /// 最高收费金额，单位（分）
         public let maxFee: UInt64?
-        
-        public init (cardType: String, rangeStartValue: UInt64, rangeEndValue: UInt64, rangeFeeMode: String, feeValue: UInt64, minFee: UInt64? = nil, maxFee: UInt64? = nil) {
+
+        public init(cardType: String, rangeStartValue: UInt64, rangeEndValue: UInt64, rangeFeeMode: String, feeValue: UInt64, minFee: UInt64? = nil, maxFee: UInt64? = nil) {
             self.cardType = cardType
             self.rangeStartValue = rangeStartValue
             self.rangeEndValue = rangeEndValue
@@ -2788,7 +2788,7 @@ extension Cpdp {
             self.minFee = minFee
             self.maxFee = maxFee
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cardType = "CardType"
             case rangeStartValue = "RangeStartValue"
@@ -2799,25 +2799,25 @@ extension Cpdp {
             case maxFee = "MaxFee"
         }
     }
-    
+
     /// 对账文件信息
     public struct FileItem: TCOutputModel {
         /// STRING(256)，文件名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileName: String?
-        
+
         /// STRING(120)，随机密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let randomPassword: String?
-        
+
         /// STRING(512)，文件路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filePath: String?
-        
+
         /// STRING(64)，提取码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drawCode: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case randomPassword = "RandomPassword"
@@ -2825,42 +2825,42 @@ extension Cpdp {
             case drawCode = "DrawCode"
         }
     }
-    
+
     /// 对账单文件下载链接
     public struct FlexBillDownloadUrlResult: TCOutputModel {
         /// 对账单文件下载链接
         public let url: String
-        
+
         /// 下载链接过期时间
         public let expireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
             case expireTime = "ExpireTime"
         }
     }
-    
+
     /// 灵云V2-银行信息
     public struct FlexFundingAccountInfo: TCInputModel {
         /// 资金账户号
         public let fundingAccountNo: String?
-        
+
         /// 资金账户类型
         public let fundingAccountType: String?
-        
+
         /// 资金账户绑定序列号
         public let fundingAccountBindSerialNo: String?
-        
+
         /// 资金账户名称
         public let fundingAccountName: String?
-        
-        public init (fundingAccountNo: String? = nil, fundingAccountType: String? = nil, fundingAccountBindSerialNo: String? = nil, fundingAccountName: String? = nil) {
+
+        public init(fundingAccountNo: String? = nil, fundingAccountType: String? = nil, fundingAccountBindSerialNo: String? = nil, fundingAccountName: String? = nil) {
             self.fundingAccountNo = fundingAccountNo
             self.fundingAccountType = fundingAccountType
             self.fundingAccountBindSerialNo = fundingAccountBindSerialNo
             self.fundingAccountName = fundingAccountName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fundingAccountNo = "FundingAccountNo"
             case fundingAccountType = "FundingAccountType"
@@ -2868,65 +2868,65 @@ extension Cpdp {
             case fundingAccountName = "FundingAccountName"
         }
     }
-    
+
     /// 冻结余额结果
     public struct FreezeFlexBalanceResult: TCOutputModel {
         /// 冻结订单ID
         public let orderId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
         }
     }
-    
+
     /// 冻结单结果
     public struct FreezeOrderResult: TCOutputModel {
         /// 税前金额
         public let amountBeforeTax: String
-        
+
         /// 收入类型
         /// LABOR:劳务所得
         /// OCCASION:偶然所得
         public let incomeType: String
-        
+
         /// 外部订单ID
         public let outOrderId: String
-        
+
         /// 订单ID
         public let orderId: String
-        
+
         /// 操作类型
         /// FREEZE:冻结
         /// UNFREEZE:解冻
         public let operationType: String
-        
+
         /// 发起时间
         public let initiateTime: String
-        
+
         /// 完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finishTime: String?
-        
+
         /// 状态
         /// ACCEPTED:已受理
         /// ACCOUNTED:已记账
         /// SUCCEED:已成功
         /// FAILED:已失败
         public let status: String
-        
+
         /// 状态描述
         public let statusDesc: String
-        
+
         /// 冻结备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 收款用户ID
         public let payeeId: String
-        
+
         /// 外部用户ID
         public let outUserId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case amountBeforeTax = "AmountBeforeTax"
             case incomeType = "IncomeType"
@@ -2942,75 +2942,75 @@ extension Cpdp {
             case outUserId = "OutUserId"
         }
     }
-    
+
     /// 冻结订单列表
     public struct FreezeOrders: TCOutputModel {
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [FreezeOrderResult]?
-        
+
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case count = "Count"
         }
     }
-    
+
     /// 会员资金交易明细信息
     public struct FundsTransactionItem: TCOutputModel {
         /// 资金交易类型。
         /// __1__：提现/退款
         /// __2__：清分/充值
         public let transType: String
-        
+
         /// 银行记账说明。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankBookingMessage: String?
-        
+
         /// 交易状态。
         /// __0__：成功
         public let tranStatus: String
-        
+
         /// 业务方会员标识。
         /// _平安渠道为交易网会员代码_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transNetMemberCode: String?
-        
+
         /// 子账户账号。
         /// _平安渠道为见证子账户的账号_
         public let subAccountNumber: String
-        
+
         /// 子账户名称。
         /// _平安渠道为见证子账户的户名_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountName: String?
-        
+
         /// 交易金额。
         public let transAmount: String
-        
+
         /// 交易手续费。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transFee: String?
-        
+
         /// 交易日期，格式：yyyyMMdd。
         public let transDate: String
-        
+
         /// 交易时间，格式：HHmmss。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transTime: String?
-        
+
         /// 银行系统流水号。
         /// _平安渠道为见证系统流水号_
         public let bankSequenceNumber: String
-        
+
         /// 备注。
         /// _平安渠道，如果是见证+收单的交易，返回交易订单号_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case transType = "TransType"
             case bankBookingMessage = "BankBookingMessage"
@@ -3026,42 +3026,42 @@ extension Cpdp {
             case remark = "Remark"
         }
     }
-    
+
     /// 商户法人代表信息
     public struct LegalPersonInfo: TCInputModel {
-        /// 证件类型 
-        /// IDCARD：身份证 
-        /// PASSPORT：护照 SOLDIERSCERTIFICATE：士兵证 OFFICERSCERTIFICATE：军官证 GATXCERTIFICATE：香港居民来往内地通行证 TWNDCERTIFICATE：台湾同胞来往内地通行证 
+        /// 证件类型
+        /// IDCARD：身份证
+        /// PASSPORT：护照 SOLDIERSCERTIFICATE：士兵证 OFFICERSCERTIFICATE：军官证 GATXCERTIFICATE：香港居民来往内地通行证 TWNDCERTIFICATE：台湾同胞来往内地通行证
         /// MACAOCERTIFICATE：澳门来往内地通行证
         public let idType: String
-        
+
         /// 证件号码
         public let idNumber: String
-        
+
         /// 姓名
         public let personName: String
-        
-        /// 证件有效期类型 
-        /// LONGTERM：长期有效 
+
+        /// 证件有效期类型
+        /// LONGTERM：长期有效
         /// OTHER：非长期有效
         public let idValidityType: String
-        
+
         /// 证件生效日期，yyyy-MM-dd
         public let idEffectiveDate: String
-        
+
         /// 联系电话
         public let contactPhone: String
-        
+
         /// 证件失效日期，yyyy-MM-dd
         public let idExpireDate: String?
-        
+
         /// 联系地址
         public let contactAddress: String?
-        
+
         /// 邮箱地址
         public let emailAddress: String?
-        
-        public init (idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, contactPhone: String, idExpireDate: String? = nil, contactAddress: String? = nil, emailAddress: String? = nil) {
+
+        public init(idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, contactPhone: String, idExpireDate: String? = nil, contactAddress: String? = nil, emailAddress: String? = nil) {
             self.idType = idType
             self.idNumber = idNumber
             self.personName = personName
@@ -3072,7 +3072,7 @@ extension Cpdp {
             self.contactAddress = contactAddress
             self.emailAddress = emailAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idType = "IdType"
             case idNumber = "IdNumber"
@@ -3085,32 +3085,32 @@ extension Cpdp {
             case emailAddress = "EmailAddress"
         }
     }
-    
+
     /// 会员间交易明细信息
     public struct MemberTransactionItem: TCOutputModel {
         /// 交易类型。
         /// __1__：转出
         /// __2__：转入
         public let transType: String
-        
+
         /// 交易状态。
         /// __0__：成功
         public let tranStatus: String
-        
+
         /// 交易金额。
         public let transAmount: String
-        
+
         /// 交易日期，格式：yyyyMMdd。
         public let transDate: String
-        
+
         /// 交易时间，格式：HHmmss。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transTime: String?
-        
+
         /// 银行系统流水号。
         /// _平安渠道为见证系统流水号_
         public let bankSequenceNumber: String
-        
+
         /// 银行记账类型。
         /// _平安渠道为：_
         /// _1：会员支付_
@@ -3126,20 +3126,20 @@ extension Cpdp {
         /// _25：会员间交易退款_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankBookingType: String?
-        
+
         /// 转入方子账户账号。
         /// _平安渠道为转入见证子账户的账号_
         public let inSubAccountNumber: String
-        
+
         /// 转出方子账户账号。
         /// _平安渠道为转出见证子账户的账号_
         public let outSubAccountNumber: String
-        
+
         /// 备注。
         /// _平安渠道，如果是见证+收单的交易，返回交易订单号_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case transType = "TransType"
             case tranStatus = "TranStatus"
@@ -3153,45 +3153,45 @@ extension Cpdp {
             case remark = "Remark"
         }
     }
-    
+
     /// 商户分类
     public struct MerchantClassificationId: TCInputModel {
         /// 分类编号
         public let code: String?
-        
+
         /// 分类名称
         public let name: String?
-        
+
         /// 父级编号（0为一级编号，大于0为父级分类编号）
         public let parent: String?
-        
-        public init (code: String? = nil, name: String? = nil, parent: String? = nil) {
+
+        public init(code: String? = nil, name: String? = nil, parent: String? = nil) {
             self.code = code
             self.name = name
             self.parent = parent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case name = "Name"
             case parent = "Parent"
         }
     }
-    
+
     /// 商户查询管理端列表
     public struct MerchantManagementList: TCOutputModel {
         /// 企业名称。
         public let taxpayerName: String
-        
+
         /// 纳税人识别号(税号)	。
         public let taxpayerNum: String
-        
+
         /// 请求流水号。
         public let serialNo: String
-        
+
         /// 开票系统ID
         public let invoicePlatformId: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case taxpayerName = "TaxpayerName"
             case taxpayerNum = "TaxpayerNum"
@@ -3199,59 +3199,59 @@ extension Cpdp {
             case invoicePlatformId = "InvoicePlatformId"
         }
     }
-    
+
     /// 商户管理端结果
     public struct MerchantManagementResult: TCOutputModel {
         /// 总数。
         public let total: Int64
-        
+
         /// 商户列表。
         public let list: [MerchantManagementList]
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case list = "List"
         }
     }
-    
+
     /// 商户支付方式数据
     public struct MerchantPayWayData: TCOutputModel {
         /// 支付币种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payCurrency: String?
-        
+
         /// 支付图标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payIcon: String?
-        
+
         /// 支付名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payInternalName: String?
-        
+
         /// 支付简称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payName: String?
-        
+
         /// 是否支持退款
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paySplitRefund: String?
-        
+
         /// 支付标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payTag: String?
-        
+
         /// 支付凭证图标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payTicketIcon: String?
-        
+
         /// 支付类型，逗号分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payType: String?
-        
+
         /// 凭证名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ticketName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case payCurrency = "PayCurrency"
             case payIcon = "PayIcon"
@@ -3264,77 +3264,77 @@ extension Cpdp {
             case ticketName = "TicketName"
         }
     }
-    
+
     /// 商户风险信息
     public struct MerchantRiskInfo: TCOutputModel {
         /// 恶意注册等级，0-9级，9级最高
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskLevel: Int64?
-        
+
         /// 恶意注册代码，代码以|分割，如"G001|T002"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskTypes: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case riskLevel = "RiskLevel"
             case riskTypes = "RiskTypes"
         }
     }
-    
+
     /// 分账明细
     public struct MultiApplyDetail: TCInputModel {
         /// 商户编号
         public let merchantNo: String
-        
+
         /// 分账金额
         public let amount: String
-        
+
         /// 备注
         public let remark: String?
-        
-        public init (merchantNo: String, amount: String, remark: String? = nil) {
+
+        public init(merchantNo: String, amount: String, remark: String? = nil) {
             self.merchantNo = merchantNo
             self.amount = amount
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantNo = "MerchantNo"
             case amount = "Amount"
             case remark = "Remark"
         }
     }
-    
+
     /// 分账订单信息
     public struct MultiApplyOrder: TCOutputModel {
         /// 商户分账单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outDistributeNo: String?
-        
+
         /// 平台分账单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let distributeNo: String?
-        
+
         /// 平台交易订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderNo: String?
-        
+
         /// 分账订单状态（0初始1成功2失败3撤销）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 入账日期，格式yyyy-MM-dd
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inDate: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 分账明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let details: [MultiApplyDetail]?
-        
+
         enum CodingKeys: String, CodingKey {
             case outDistributeNo = "OutDistributeNo"
             case distributeNo = "DistributeNo"
@@ -3345,52 +3345,52 @@ extension Cpdp {
             case details = "Details"
         }
     }
-    
+
     /// 自然人信息
     public struct NaturalPersonInfo: TCInputModel {
-        /// 自然人类型 
-        /// 2：商户负责人 
+        /// 自然人类型
+        /// 2：商户负责人
         /// 3：授权经办人
-        /// 4：业务联系人 
-        /// 5：实际控制人 
-        /// 6：控股股东 
-        /// 7：受益人 
+        /// 4：业务联系人
+        /// 5：实际控制人
+        /// 6：控股股东
+        /// 7：受益人
         /// 8：结算人
         /// 注意：HELIPAY渠道必传业务联系人
         public let personType: String
-        
-        /// 证件类型 
-        /// IDCARD：身份证 
+
+        /// 证件类型
+        /// IDCARD：身份证
         /// PASSPORT：护照 SOLDIERSCERTIFICATE：士兵证 OFFICERSCERTIFICATE：军官证 GATXCERTIFICATE：香港居民来往内地通行证 TWNDCERTIFICATE：台湾同胞来往内地通行证 MACAOCERTIFICATE：澳门来往内地通行证
         public let idType: String
-        
+
         /// 证件号码
         public let idNumber: String
-        
+
         /// 姓名
         public let personName: String
-        
-        /// 证件有效期类型 
-        /// LONGTERM：长期有效 
+
+        /// 证件有效期类型
+        /// LONGTERM：长期有效
         /// OTHER：非长期有效
         public let idValidityType: String
-        
+
         /// 证件生效日期，yyyy-MM-dd
         public let idEffectiveDate: String
-        
+
         /// 证件失效日期，yyyy-MM-dd
         public let idExpireDate: String
-        
+
         /// 联系电话，HELIPAY渠道业务联系人必传
         public let contactPhone: String?
-        
+
         /// 联系地址
         public let contactAddress: String?
-        
+
         /// 邮箱地址
         public let emailAddress: String?
-        
-        public init (personType: String, idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, idExpireDate: String, contactPhone: String? = nil, contactAddress: String? = nil, emailAddress: String? = nil) {
+
+        public init(personType: String, idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, idExpireDate: String, contactPhone: String? = nil, contactAddress: String? = nil, emailAddress: String? = nil) {
             self.personType = personType
             self.idType = idType
             self.idNumber = idNumber
@@ -3402,7 +3402,7 @@ extension Cpdp {
             self.contactAddress = contactAddress
             self.emailAddress = emailAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case personType = "PersonType"
             case idType = "IdType"
@@ -3416,25 +3416,25 @@ extension Cpdp {
             case emailAddress = "EmailAddress"
         }
     }
-    
+
     /// 附加项信息
     public struct OldAttachmentInfo: TCOutputModel {
         /// 附加项金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachmentAmount: Int64?
-        
+
         /// 附加项类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachmentType: String?
-        
+
         /// 附加项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachmentName: String?
-        
+
         /// 附加项编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachmentCode: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case attachmentAmount = "AttachmentAmount"
             case attachmentType = "AttachmentType"
@@ -3442,45 +3442,45 @@ extension Cpdp {
             case attachmentCode = "AttachmentCode"
         }
     }
-    
+
     /// 渠道方用户信息
     public struct OldChannelExternalUserInfo: TCOutputModel {
         /// 渠道方用户类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalUserType: String?
-        
+
         /// 渠道方用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalUserId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelExternalUserType = "ChannelExternalUserType"
             case channelExternalUserId = "ChannelExternalUserId"
         }
     }
-    
+
     /// 子单退款信息
     public struct OldSubRefund: TCOutputModel {
         /// 支付机构退款流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalRefundId: String?
-        
+
         /// 支付机构支付订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalOrderId: String?
-        
+
         /// 渠道退款订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelRefundId: String?
-        
+
         /// 子订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subOutTradeNo: String?
-        
+
         /// 子单退款金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundAmt: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelExternalRefundId = "ChannelExternalRefundId"
             case channelExternalOrderId = "ChannelExternalOrderId"
@@ -3489,52 +3489,52 @@ extension Cpdp {
             case refundAmt = "RefundAmt"
         }
     }
-    
+
     /// 银行复核指引。银行侧返回网银授权指引链接，一般PC网银，手机网银链接
     public struct OpenBankApprovalGuideInfo: TCOutputModel {
         /// PC网银指引
         public let pcGuideUrl: String
-        
+
         /// 手机网银指引
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mobileGuideUrl: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case pcGuideUrl = "PcGuideUrl"
             case mobileGuideUrl = "MobileGuideUrl"
         }
     }
-    
+
     /// 云企付-账单信息
     public struct OpenBankBillingInfo: TCInputModel {
         /// 账单人名字
         public let firstName: String?
-        
+
         /// 账单人姓氏
         public let lastName: String?
-        
+
         /// 账单地址1
         public let addressOne: String?
-        
+
         /// 账单地址1
         public let addressTwo: String?
-        
+
         /// 账单地址所在城市
         public let city: String?
-        
+
         /// 账单地址所在州/省，当国家是美国或加拿大时，使用ISO-3166-2:US或ISO -3166-2:CA 中该国家地区编 码标准中的两位字母编码。
         public let state: String?
-        
+
         /// 账单地址所在国家，使用ISO-3166-1标准中的两位字母编码。
         public let country: String?
-        
+
         /// 账单地址邮编
         public let zipCode: String?
-        
+
         /// 账单人手机号
         public let phone: String?
-        
-        public init (firstName: String? = nil, lastName: String? = nil, addressOne: String? = nil, addressTwo: String? = nil, city: String? = nil, state: String? = nil, country: String? = nil, zipCode: String? = nil, phone: String? = nil) {
+
+        public init(firstName: String? = nil, lastName: String? = nil, addressOne: String? = nil, addressTwo: String? = nil, city: String? = nil, state: String? = nil, country: String? = nil, zipCode: String? = nil, phone: String? = nil) {
             self.firstName = firstName
             self.lastName = lastName
             self.addressOne = addressOne
@@ -3545,7 +3545,7 @@ extension Cpdp {
             self.zipCode = zipCode
             self.phone = phone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case firstName = "FirstName"
             case lastName = "LastName"
@@ -3558,53 +3558,53 @@ extension Cpdp {
             case phone = "Phone"
         }
     }
-    
+
     /// 网银页面提交html
     public struct OpenBankFormInfo: TCOutputModel {
         /// 网银页面提交html
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let formHtml: String?
-        
+
         /// 网银提交页面字符集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let formEncoding: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case formHtml = "FormHtml"
             case formEncoding = "FormEncoding"
         }
     }
-    
+
     /// 云企付-商品信息
     public struct OpenBankGoodsInfo: TCInputModel {
         /// 商品标题。默认值“商品支付”。
         public let goodsName: String?
-        
+
         /// 商品详细描述（商品列表）。
         public let goodsDetail: String?
-        
+
         /// 银行附言。不可以有以下字符：<>+{}()%*&';"[]等特殊符号
         public let goodsDescription: String?
-        
+
         /// 业务类型。汇付渠道必填，汇付渠道传入固定值100099。
         public let goodsBizType: String?
-        
+
         /// 商品编号。
         public let sku: String?
-        
+
         /// 商品单价。
         public let price: String?
-        
+
         /// 商品数量
         public let quantity: String?
-        
+
         /// 商品图片url
         public let productImage: String?
-        
+
         /// 商品链接url
         public let productUrl: String?
-        
-        public init (goodsName: String? = nil, goodsDetail: String? = nil, goodsDescription: String? = nil, goodsBizType: String? = nil, sku: String? = nil, price: String? = nil, quantity: String? = nil, productImage: String? = nil, productUrl: String? = nil) {
+
+        public init(goodsName: String? = nil, goodsDetail: String? = nil, goodsDescription: String? = nil, goodsBizType: String? = nil, sku: String? = nil, price: String? = nil, quantity: String? = nil, productImage: String? = nil, productUrl: String? = nil) {
             self.goodsName = goodsName
             self.goodsDetail = goodsDetail
             self.goodsDescription = goodsDescription
@@ -3615,7 +3615,7 @@ extension Cpdp {
             self.productImage = productImage
             self.productUrl = productUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case goodsName = "GoodsName"
             case goodsDetail = "GoodsDetail"
@@ -3628,41 +3628,41 @@ extension Cpdp {
             case productUrl = "ProductUrl"
         }
     }
-    
+
     /// 云企付-下单跳转参数，用于小程序前端跳转
     public struct OpenBankOrderRedirectInfo: TCOutputModel {
         /// 生成二维码，引导用户扫码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qrCodeUrl: String?
-        
+
         /// 二维码凭证
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qrCodeKey: String?
-        
+
         /// 跳转 URL,用于客户端跳转，订单未支付时返回该参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 跳转凭证过期时间,yyyy-MM-dd HH:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTime: String?
-        
+
         /// 小程序 appid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mpAppId: String?
-        
+
         /// 小程序路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mpPath: String?
-        
+
         /// 小程序原始 id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mpUserName: String?
-        
+
         /// 网银支付提交页面信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let formInfo: OpenBankFormInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case qrCodeUrl = "QRCodeUrl"
             case qrCodeKey = "QRCodeKey"
@@ -3674,26 +3674,26 @@ extension Cpdp {
             case formInfo = "FormInfo"
         }
     }
-    
+
     /// 云企付-支付限制
     public struct OpenBankPayLimitInfo: TCInputModel {
         /// 限制类型
         public let payLimitType: String
-        
+
         /// 限制类型值
         public let payLimitValue: String
-        
-        public init (payLimitType: String, payLimitValue: String) {
+
+        public init(payLimitType: String, payLimitValue: String) {
             self.payLimitType = payLimitType
             self.payLimitValue = payLimitValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payLimitType = "PayLimitType"
             case payLimitValue = "PayLimitValue"
         }
     }
-    
+
     /// 云企付-收款人信息
     public struct OpenBankPayeeInfo: TCInputModel {
         /// 收款方唯一标识。
@@ -3701,27 +3701,27 @@ extension Cpdp {
         /// 付款方式为OPENBANK_PAYMENT时，非必填，输入外部收款方的标识ID
         /// 渠道为WECHAT，付款方式为TRANS_TO_CHANGE时，上送微信OPEN_ID；
         public let payeeId: String?
-        
+
         /// 支行名称。
         public let bankBranchName: String?
-        
+
         /// 银行账号。渠道为TENPAY，付款方式为OPENBANK_PAYMENT时必选
         public let bankAccountNumber: String?
-        
+
         /// 收款方名称。
         /// 当渠道为TENPAY，付款方式为EBANK_PAYMENT时，上送收款方入驻云企付的商户名称；
         /// 渠道为TENPAY，付款方式为OPENBANK_PAYMENT时必选，上送收款方账户名称；
         /// 渠道为ALIPAY，付款方式为SAFT_ISV时，收款账户标识类型为ALIPAY_LOGON_ID时必传，上送收款方真实姓名。
         /// 渠道为WECHAT，付款方式为TRANS_TO_CHANGE时，上送收款人姓名。
         public let payeeName: String?
-        
+
         /// 联行号。渠道为TENPAY，付款方式为OPENBANK_PAYMENT时必选
         public let bankBranchId: String?
-        
+
         /// 收款方绑卡序列号。
         /// 当渠道为TENPAY，付款方式为EBANK_PAYMENT时，必填，上送收款方入驻云企付平台时，下发的绑卡序列号；当渠道为ALIPAY，付款方式为SAFT_ISV时，必填，根据收款账户标识类型上送。
         public let bindSerialNo: String?
-        
+
         /// 收款账户标识类型
         /// BANK_ACCOUNT：绑定银行账户
         /// ACCOUNT_BOOK_ID：电子记账本ID
@@ -3729,8 +3729,8 @@ extension Cpdp {
         /// ALIPAY_LOGON_ID：支付宝登录号。
         /// 付款方式为SAFT_ISV时，必填。
         public let accountType: String?
-        
-        public init (payeeId: String? = nil, bankBranchName: String? = nil, bankAccountNumber: String? = nil, payeeName: String? = nil, bankBranchId: String? = nil, bindSerialNo: String? = nil, accountType: String? = nil) {
+
+        public init(payeeId: String? = nil, bankBranchName: String? = nil, bankAccountNumber: String? = nil, payeeName: String? = nil, bankBranchId: String? = nil, bindSerialNo: String? = nil, accountType: String? = nil) {
             self.payeeId = payeeId
             self.bankBranchName = bankBranchName
             self.bankAccountNumber = bankAccountNumber
@@ -3739,7 +3739,7 @@ extension Cpdp {
             self.bindSerialNo = bindSerialNo
             self.accountType = accountType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payeeId = "PayeeId"
             case bankBranchName = "BankBranchName"
@@ -3750,39 +3750,39 @@ extension Cpdp {
             case accountType = "AccountType"
         }
     }
-    
+
     /// 云企付-付款人信息
     public struct OpenBankPayerInfo: TCInputModel {
         /// 付款方唯一标识。当TENPAY时，必填上送
         /// 付款方入驻云企付商户ID。
         public let payerId: String?
-        
+
         /// 付款方名称。当TENPAY上送付款方入驻云企付的商户名称。
         public let payerName: String?
-        
+
         /// 付款方付款账户标识。
         /// 当付款方式为OPENBANK_PAYMENT时，必输表示企业账户ID；当付款方式为SAFT_ISV时，必须上送付款方的渠道电子记账本ID；当付款方式为ONLINEBANK，上送付款方银行编号BankId。
         public let bindSerialNo: String?
-        
+
         /// 付款账户标识类型
         /// BANK_ACCOUNT：绑定银行账户
         /// ACCOUNT_BOOK_ID：电子记账本ID。
         /// 当付款方式为SAFT_ISV时，必须上送类型为ACCOUNT_BOOK_ID。
         public let accountType: String?
-        
+
         /// 付款卡类型。汇付渠道必填。
         /// DEBIT_CARD：借记卡
         /// CREDIT_CARD：信用卡
         public let bankCardType: String?
-        
-        public init (payerId: String? = nil, payerName: String? = nil, bindSerialNo: String? = nil, accountType: String? = nil, bankCardType: String? = nil) {
+
+        public init(payerId: String? = nil, payerName: String? = nil, bindSerialNo: String? = nil, accountType: String? = nil, bankCardType: String? = nil) {
             self.payerId = payerId
             self.payerName = payerName
             self.bindSerialNo = bindSerialNo
             self.accountType = accountType
             self.bankCardType = bankCardType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payerId = "PayerId"
             case payerName = "PayerName"
@@ -3791,109 +3791,109 @@ extension Cpdp {
             case bankCardType = "BankCardType"
         }
     }
-    
+
     /// 云企付-分润信息
     public struct OpenBankProfitShareInfo: TCInputModel {
         /// 分润接收方，渠道商户号ID
         public let recvId: String?
-        
+
         /// 分润金额，单位分
         public let profitShareFee: Int64?
-        
-        public init (recvId: String? = nil, profitShareFee: Int64? = nil) {
+
+        public init(recvId: String? = nil, profitShareFee: Int64? = nil) {
             self.recvId = recvId
             self.profitShareFee = profitShareFee
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case recvId = "RecvId"
             case profitShareFee = "ProfitShareFee"
         }
     }
-    
+
     /// 分账收款人信息
     public struct OpenBankProfitSharePayeeInfo: TCInputModel {
         /// 收款人账户名称
         public let accountName: String
-        
+
         /// 银行名称
         /// 可大体识别银行就行
         public let bankName: String
-        
+
         /// 账户货币
         public let currency: String
-        
+
         /// 账户类型。
         /// 00:借记卡
-        /// 01:存折 
-        /// 02:信用卡 
-        /// 03:准贷记卡 
-        /// 04:预付卡费 
+        /// 01:存折
+        /// 02:信用卡
+        /// 03:准贷记卡
+        /// 04:预付卡费
         /// 05:境外卡
         public let nature: String
-        
+
         /// 账户地区/受益人所在国家。参考附录“国家代码”表——“代码”字段
         public let country: String
-        
+
         /// 账户开户所在国家
         /// 参考附录“国家代码”表——“代码”字段
         public let depositCountry: String
-        
+
         /// 合作有效期
         /// yyyy-MM-dd
         public let expireDate: String
-        
+
         /// 0:个人(对私) 1:公司(对公)
         public let flag: String
-        
+
         /// 开户行地址
         /// 账户地区非中国必填，【账户名+开户行地址不可超过114个字符（只允许【英文字母数字空格.,/-()'】），否则可能导致境外银行付款失败】
         public let bankAddress: String?
-        
+
         /// 客户地址
         /// 非中国内地账户的客户地址不能为空
         public let address: String?
-        
+
         /// 账户属性
         /// 账户开户所在国家为中国则必填。
         /// 1-离岸账户 0-在岸账户
         public let isOSA: String?
-        
+
         /// 账户省份
         /// 参考附录“地区代码”
         public let province: String?
-        
+
         /// 账户城市
         /// 参考附录“地区代码
         public let city: String?
-        
+
         /// 证件号/统一信用证代码
         /// 如果country与depositcountry字段都是CHN时，必填
         /// 对公账户填统一信用证代码，对私账户填身份证号码
         /// 离岸账户非必填
         public let legalIdNo: String?
-        
+
         /// 手机号。
         /// 账户地区是日本则必填
         public let telephone: String?
-        
+
         /// 参考接口说明。
         public let bicCode: String?
-        
+
         /// 参考接口说明。
         public let swiftCode: String?
-        
+
         /// 大额支付行号/支付行号
         /// 参考接口说明。境外（大额支付行号）参考附录【大额行号】，境内（支付行号）参考附录【支付行号】
         public let cnaps: String?
-        
+
         /// 中转行号，参考接口说明。
         public let transferBankNo: String?
-        
+
         /// 关联附件。上传的文件ID
         public let fid: String?
-        
-        public init (accountName: String, bankName: String, currency: String, nature: String, country: String, depositCountry: String, expireDate: String, flag: String, bankAddress: String? = nil, address: String? = nil, isOSA: String? = nil, province: String? = nil, city: String? = nil, legalIdNo: String? = nil, telephone: String? = nil, bicCode: String? = nil, swiftCode: String? = nil, cnaps: String? = nil, transferBankNo: String? = nil, fid: String? = nil) {
+
+        public init(accountName: String, bankName: String, currency: String, nature: String, country: String, depositCountry: String, expireDate: String, flag: String, bankAddress: String? = nil, address: String? = nil, isOSA: String? = nil, province: String? = nil, city: String? = nil, legalIdNo: String? = nil, telephone: String? = nil, bicCode: String? = nil, swiftCode: String? = nil, cnaps: String? = nil, transferBankNo: String? = nil, fid: String? = nil) {
             self.accountName = accountName
             self.bankName = bankName
             self.currency = currency
@@ -3915,7 +3915,7 @@ extension Cpdp {
             self.transferBankNo = transferBankNo
             self.fid = fid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountName = "AccountName"
             case bankName = "BankName"
@@ -3939,27 +3939,27 @@ extension Cpdp {
             case fid = "Fid"
         }
     }
-    
+
     /// 分账信息结果
     public struct OpenBankProfitShareRespInfo: TCOutputModel {
         /// 接收方企业ID
         public let recvId: String
-        
+
         /// 分润金额（分）
         public let profitShareFee: Int64
-        
+
         /// 实际分账金额
         public let realProfitShareFee: Int64
-        
+
         /// 分账状态
         public let profitShareStatus: String
-        
+
         /// 分账完成时间
         public let profitFinishTime: String
-        
+
         /// 分账类型
         public let profitShareType: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case recvId = "RecvId"
             case profitShareFee = "ProfitShareFee"
@@ -3969,57 +3969,57 @@ extension Cpdp {
             case profitShareType = "ProfitShareType"
         }
     }
-    
+
     /// 云企付-退款查询结果
     public struct OpenBankQueryRefundOrderResult: TCOutputModel {
         /// 外部商户退款单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outRefundId: String?
-        
+
         /// 渠道退款单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelRefundId: String?
-        
+
         /// 退款原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundReason: String?
-        
+
         /// 退款金额，单位分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundAmount: Int64?
-        
+
         /// 实际退款金额，单位分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realRefundAmount: Int64?
-        
+
         /// 原支付订单总金额，单位分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalAmount: Int64?
-        
+
         /// 退款完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeFinish: String?
-        
+
         /// 退款订单状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundStatus: String?
-        
+
         /// 退款明细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundInfo: String?
-        
+
         /// 退款手续费金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let feeAmount: Int64?
-        
+
         /// 退款返回描述，比如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundMessage: String?
-        
+
         /// 分账信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let profitShareRespInfoList: [OpenBankProfitShareRespInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case outRefundId = "OutRefundId"
             case channelRefundId = "ChannelRefundId"
@@ -4035,72 +4035,72 @@ extension Cpdp {
             case profitShareRespInfoList = "ProfitShareRespInfoList"
         }
     }
-    
+
     /// 云企付-充值单收款人信息
     public struct OpenBankRechargePayeeInfo: TCInputModel {
         /// 收款方标识
         /// 收款方类型为电子记账本时，上送渠道电子记账本ID
         public let payeeId: String
-        
+
         /// 收款方标识类型
         /// ACCOUNT_BOOK_ID：电子记账本ID
         public let payeeIdType: String
-        
+
         /// 收款方名称
         public let payeeName: String?
-        
-        public init (payeeId: String, payeeIdType: String, payeeName: String? = nil) {
+
+        public init(payeeId: String, payeeIdType: String, payeeName: String? = nil) {
             self.payeeId = payeeId
             self.payeeIdType = payeeIdType
             self.payeeName = payeeName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payeeId = "PayeeId"
             case payeeIdType = "PayeeIdType"
             case payeeName = "PayeeName"
         }
     }
-    
+
     /// 云企付-充值跳转参数
     public struct OpenBankRechargeRedirectInfo: TCOutputModel {
         /// 跳转URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
         }
     }
-    
+
     /// 云企付-跳转参数，用于小程序前端跳转
     public struct OpenBankRedirectInfo: TCOutputModel {
         /// 生成二维码，引导用户扫码
         public let qrCodeUrl: String
-        
+
         /// 二维码凭证
         public let qrCodeKey: String
-        
+
         /// 跳转 URL,用于客户端跳转，订单未支付时返回该参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
+
         /// 跳转凭证过期时间,yyyy-MM-dd HH:mm:ss
         public let expireTime: String
-        
+
         /// 小程序 appid
         public let mpAppId: String
-        
+
         /// 小程序路径
         public let mpPath: String
-        
+
         /// 小程序原始 id
         public let mpUserName: String
-        
+
         /// 网银支付提交页面信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let formInfo: OpenBankFormInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case qrCodeUrl = "QRCodeUrl"
             case qrCodeKey = "QRCodeKey"
@@ -4112,41 +4112,41 @@ extension Cpdp {
             case formInfo = "FormInfo"
         }
     }
-    
+
     /// 云企付-退款申请结果
     public struct OpenBankRefundOrderApplyResult: TCOutputModel {
         /// 云企付订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelOrderId: String?
-        
+
         /// 云企付退款流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelRefundId: String?
-        
+
         /// 外部商户退款单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outRefundId: String?
-        
+
         /// 外部商户订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outOrderId: String?
-        
+
         /// 退款返回描述，比如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundMessage: String?
-        
+
         /// 退款金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundAmount: Int64?
-        
+
         /// 退款手续费金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let feeAmount: Int64?
-        
+
         /// 退款状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundStatus: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelOrderId = "ChannelOrderId"
             case channelRefundId = "ChannelRefundId"
@@ -4158,33 +4158,33 @@ extension Cpdp {
             case refundStatus = "RefundStatus"
         }
     }
-    
+
     /// 云企付-设备信息
     public struct OpenBankSceneInfo: TCInputModel {
         /// 用户端实际 ip。汇付渠道必填。
         public let payerClientIp: String?
-        
+
         /// 浏览器 User-Agent。
         public let payerUa: String?
-        
+
         /// 用户下单时间。若不上送，服务端默认当前时间。
         public let orderTime: String?
-        
+
         /// 终端设备号（门店号或收银设备 ID），示例值：POS1:1。
         public let deviceId: String?
-        
+
         /// 终端设备类型。MOBILE_BROWSER:手机浏览器，MOBILE_APP:手机应用程序，TABLET:平板；WATCH:手表，PC:电脑PC，OTHER:其他。
         /// 汇付渠道必填。
         public let deviceType: String?
-        
-        public init (payerClientIp: String? = nil, payerUa: String? = nil, orderTime: String? = nil, deviceId: String? = nil, deviceType: String? = nil) {
+
+        public init(payerClientIp: String? = nil, payerUa: String? = nil, orderTime: String? = nil, deviceId: String? = nil, deviceType: String? = nil) {
             self.payerClientIp = payerClientIp
             self.payerUa = payerUa
             self.orderTime = orderTime
             self.deviceId = deviceId
             self.deviceType = deviceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case payerClientIp = "PayerClientIp"
             case payerUa = "PayerUa"
@@ -4193,61 +4193,61 @@ extension Cpdp {
             case deviceType = "DeviceType"
         }
     }
-    
+
     /// 云企付-结算规则信息
     public struct OpenBankSettlementRulesInfo: TCInputModel {
         /// ONCE：仅单次解冻（默认）
         /// MULTI：多次解冻
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unfreezeRule: String?
-        
+
         /// ONCE：仅单次退款（默认）
         /// MULTI：多次退款
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundRule: String?
-        
-        public init (unfreezeRule: String? = nil, refundRule: String? = nil) {
+
+        public init(unfreezeRule: String? = nil, refundRule: String? = nil) {
             self.unfreezeRule = unfreezeRule
             self.refundRule = refundRule
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case unfreezeRule = "UnfreezeRule"
             case refundRule = "RefundRule"
         }
     }
-    
+
     /// 云企付-邮寄信息
     public struct OpenBankShippingInfo: TCInputModel {
         /// 收货人名字
         public let firstName: String?
-        
+
         /// 收货人姓氏
         public let lastName: String?
-        
+
         /// 收货地址1
         public let addressOne: String?
-        
+
         /// 收货地址2
         public let addressTwo: String?
-        
+
         /// 收货地址所在城市
         public let city: String?
-        
+
         /// 收货地址所在州，当国家是美国或加拿大时，使用ISO-3166-2:US或ISO -3166-2:CA 中该
         /// 国家地区编码标准中的两位字母编码
         public let state: String?
-        
+
         /// 使用ISO-3166-1标准中的两位字母编码
         public let country: String?
-        
+
         /// 收货地址邮编
         public let zipCode: String?
-        
+
         /// 收货联系电话
         public let phone: String?
-        
-        public init (firstName: String? = nil, lastName: String? = nil, addressOne: String? = nil, addressTwo: String? = nil, city: String? = nil, state: String? = nil, country: String? = nil, zipCode: String? = nil, phone: String? = nil) {
+
+        public init(firstName: String? = nil, lastName: String? = nil, addressOne: String? = nil, addressTwo: String? = nil, city: String? = nil, state: String? = nil, country: String? = nil, zipCode: String? = nil, phone: String? = nil) {
             self.firstName = firstName
             self.lastName = lastName
             self.addressOne = addressOne
@@ -4258,7 +4258,7 @@ extension Cpdp {
             self.zipCode = zipCode
             self.phone = phone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case firstName = "FirstName"
             case lastName = "LastName"
@@ -4271,28 +4271,28 @@ extension Cpdp {
             case phone = "Phone"
         }
     }
-    
+
     /// 云企付-门店信息
     public struct OpenBankStoreInfo: TCInputModel {
         /// 门店名称
         public let name: String
-        
+
         /// 地区编码
         public let areaCode: String
-        
+
         /// 详细地址
         public let address: String
-        
+
         /// 门店编号
         public let id: String?
-        
-        public init (name: String, areaCode: String, address: String, id: String? = nil) {
+
+        public init(name: String, areaCode: String, address: String, id: String? = nil) {
             self.name = name
             self.areaCode = areaCode
             self.address = address
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case areaCode = "AreaCode"
@@ -4300,49 +4300,49 @@ extension Cpdp {
             case id = "Id"
         }
     }
-    
+
     /// 线下查票-订单信息
     public struct Order: TCOutputModel {
         /// 含税金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amountHasTax: Float?
-        
+
         /// 优惠金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discount: Float?
-        
+
         /// 销方名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sellerName: String?
-        
+
         /// 发票类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let invoiceType: Int64?
-        
+
         /// 默认“”
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 支付金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amount: Float?
-        
+
         /// 下单日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderDate: String?
-        
+
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?
-        
+
         /// 门店号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storeNo: String?
-        
+
         /// 明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [OrderItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case amountHasTax = "AmountHasTax"
             case discount = "Discount"
@@ -4356,45 +4356,45 @@ extension Cpdp {
             case items = "Items"
         }
     }
-    
+
     /// 线下查票-订单明细
     public struct OrderItem: TCOutputModel {
         /// 明细金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amountHasTax: Float?
-        
+
         /// 优惠金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discount: Float?
-        
+
         /// 商品名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 型号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let models: String?
-        
+
         /// 数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 数量单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?
-        
+
         /// 默认“0”
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 单价
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let price: Float?
-        
+
         /// 商品编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taxCode: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case amountHasTax = "AmountHasTax"
             case discount = "Discount"
@@ -4407,47 +4407,47 @@ extension Cpdp {
             case taxCode = "TaxCode"
         }
     }
-    
+
     /// 订单汇总列表
     public struct OrderSummaries: TCOutputModel {
         /// 汇总列表
         public let list: [OrderSummaryResult]
-        
+
         /// 总数
         public let count: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case count = "Count"
         }
     }
-    
+
     /// 订单汇总结果
     public struct OrderSummaryResult: TCOutputModel {
         /// 汇总ID
         public let summaryId: String
-        
+
         /// 收款账户ID
         public let payeeId: String
-        
+
         /// 收款账户名称
         public let name: String
-        
+
         /// 收入类型
         public let incomeType: String
-        
+
         /// 汇总金额
         public let summaryAmount: String
-        
+
         /// 汇总日期
         public let summaryTime: String
-        
+
         /// 汇总记录数量
         public let summaryCount: Int64
-        
+
         /// 外部用户ID
         public let outUserId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case summaryId = "SummaryId"
             case payeeId = "PayeeId"
@@ -4459,30 +4459,30 @@ extension Cpdp {
             case outUserId = "OutUserId"
         }
     }
-    
+
     /// 公司信息
     public struct OrganizationInfo: TCInputModel {
         /// 公司名称，个体工商户必输
         public let organizationName: String?
-        
+
         /// 公司证件类型，个体工商户必输，证件类型仅支持73
         public let organizationType: String?
-        
+
         /// 公司证件号码，个体工商户必输
         public let organizationCode: String?
-        
+
         /// 法人名称，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
         /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         public let legalPersonName: String?
-        
+
         /// 法人证件类型，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
         public let legalPersonIdType: String?
-        
+
         /// 法人证件号码，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
         /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         public let legalPersonIdCode: String?
-        
-        public init (organizationName: String? = nil, organizationType: String? = nil, organizationCode: String? = nil, legalPersonName: String? = nil, legalPersonIdType: String? = nil, legalPersonIdCode: String? = nil) {
+
+        public init(organizationName: String? = nil, organizationType: String? = nil, organizationCode: String? = nil, legalPersonName: String? = nil, legalPersonIdType: String? = nil, legalPersonIdCode: String? = nil) {
             self.organizationName = organizationName
             self.organizationType = organizationType
             self.organizationCode = organizationCode
@@ -4490,7 +4490,7 @@ extension Cpdp {
             self.legalPersonIdType = legalPersonIdType
             self.legalPersonIdCode = legalPersonIdCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case organizationName = "OrganizationName"
             case organizationType = "OrganizationType"
@@ -4500,33 +4500,33 @@ extension Cpdp {
             case legalPersonIdCode = "LegalPersonIdCode"
         }
     }
-    
+
     /// 外部子商户扩展信息
     public struct OutSubMerchantExtensionInfo: TCInputModel {
         /// 地区代码，国标码
         /// HELIPAY渠道必传
         public let regionCode: String?
-        
+
         /// 注册地址
         public let registerAddress: String?
-        
+
         /// 通讯地址
         /// HELIPAY渠道必传
         public let mailingAddress: String?
-        
+
         /// 营业地址/经营地址
         public let businessAddress: String?
-        
+
         /// 客服电话
         public let servicePhone: String?
-        
+
         /// 网站url
         public let webSiteUrl: String?
-        
+
         /// 邮箱地址
         public let emailAddress: String?
-        
-        public init (regionCode: String? = nil, registerAddress: String? = nil, mailingAddress: String? = nil, businessAddress: String? = nil, servicePhone: String? = nil, webSiteUrl: String? = nil, emailAddress: String? = nil) {
+
+        public init(regionCode: String? = nil, registerAddress: String? = nil, mailingAddress: String? = nil, businessAddress: String? = nil, servicePhone: String? = nil, webSiteUrl: String? = nil, emailAddress: String? = nil) {
             self.regionCode = regionCode
             self.registerAddress = registerAddress
             self.mailingAddress = mailingAddress
@@ -4535,7 +4535,7 @@ extension Cpdp {
             self.webSiteUrl = webSiteUrl
             self.emailAddress = emailAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regionCode = "RegionCode"
             case registerAddress = "RegisterAddress"
@@ -4546,82 +4546,82 @@ extension Cpdp {
             case emailAddress = "EmailAddress"
         }
     }
-    
+
     /// 分页参数
     public struct Paging: TCInputModel {
         /// 页码
         public let index: Int64
-        
+
         /// 页长
         public let count: Int64
-        
-        public init (index: Int64, count: Int64) {
+
+        public init(index: Int64, count: Int64) {
             self.index = index
             self.count = count
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case index = "Index"
             case count = "Count"
         }
     }
-    
+
     /// pay支付方式json数据
     public struct PayDataResult: TCOutputModel {
         /// 支付标签（唯一性）
         public let paymentTag: String
-        
+
         /// 添加合同时需要隐藏的选项（多个以小写逗号分开）
         public let paymentOptionHide: String?
-        
+
         /// 支付方式图片url路径
         public let paymentIcon: String
-        
+
         /// 合同选项名称6
         public let paymentOptionSix: String?
-        
+
         /// 付款方式名称
         public let paymentName: String
-        
+
         /// 合同选项名称7
         public let paymentOptionSeven: String?
-        
+
         /// 合同选项名称8
         public let paymentOptionOther: String?
-        
+
         /// 合同选项名称2
         public let paymentOptionTwo: String?
-        
+
         /// 合同选项名称1
         public let paymentOptionOne: String?
-        
+
         /// 是否开启智能扣率（1是，0否）
         public let paymentDiscountFee: String
-        
+
         /// 支持的交易类型（多个以小写逗号分开，0现金，1刷卡，2主扫，3被扫，4JSPAY，5预授权）
         public let paymentType: String
-        
+
         /// 合同选项名称5
         public let paymentOptionFive: String?
-        
+
         /// 合同选项名称9
         public let paymentOptionNine: String?
-        
+
         /// 支付方式编号
         public let paymentId: String
-        
+
         /// 合同选项名称3
         public let paymentOptionThree: String?
-        
+
         /// 付款方式名称（内部名称）
         public let paymentInternalName: String
-        
+
         /// 合同选项名称4
         public let paymentOptionFour: String?
-        
+
         /// 合同选项名称10
         public let paymentOptionTen: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case paymentTag = "PaymentTag"
             case paymentOptionHide = "PaymentOptionHide"
@@ -4643,30 +4643,30 @@ extension Cpdp {
             case paymentOptionTen = "PaymentOptionTen"
         }
     }
-    
+
     /// pay_fee支付方式行业分类费率json数据
     public struct PayFeeDataResult: TCOutputModel {
         /// 机构的分佣扣率扣率
         public let organizationFee: String
-        
+
         /// 商户手续费封顶值，0为不限封顶
         public let paymentClassificationLimit: String
-        
+
         /// 机构的分佣扣率类型(1按签约扣率，2按收单收益)
         public let organizationFeeType: String
-        
+
         /// 商户扣率最大值
         public let paymentClassificationMaxFee: String
-        
+
         /// 商户扣率最小值
         public let paymentClassificationMinFee: String
-        
+
         /// 行业会类编号
         public let paymentClassificationId: String
-        
+
         /// 行业分类名称
         public let paymentClassificationName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case organizationFee = "OrganizationFee"
             case paymentClassificationLimit = "PaymentClassificationLimit"
@@ -4677,89 +4677,89 @@ extension Cpdp {
             case paymentClassificationName = "PaymentClassificationName"
         }
     }
-    
+
     /// 订单支付响应对象
     public struct PayOrderResult: TCOutputModel {
         /// 付款订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderNo: String?
-        
+
         /// 开发者流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let developerNo: String?
-        
+
         /// 交易优惠金额（免充值券）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeDiscountAmount: String?
-        
+
         /// 付款方式名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payName: String?
-        
+
         /// 商户流水号（从1开始自增长不重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderMerchantId: String?
-        
+
         /// 交易帐号（银行卡号、支付宝帐号、微信帐号等，某些收单机构没有此数据）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeAccount: String?
-        
+
         /// 实际交易金额（以分为单位，没有小数点）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeAmount: String?
-        
+
         /// 币种签名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currencySign: String?
-        
+
         /// 付款完成时间（以收单机构为准）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradePayTime: String?
-        
+
         /// 门店流水号（从1开始自增长不重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopOrderId: String?
-        
+
         /// 支付标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payTag: String?
-        
+
         /// 订单状态（1交易成功，2待支付，4已取消，9等待用户输入密码确认
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 币种代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderCurrency: String?
-        
+
         /// 二维码字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeQrcode: String?
-        
+
         /// 微信返回调起小程序/原生JS支付的appid参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wechatAppId: String?
-        
+
         /// 微信返回调起小程序/原生JS支付的timeStamp参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wechatTimeStamp: String?
-        
+
         /// 微信返回调起小程序/原生JS支付的nonceStr参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wechatNonceStr: String?
-        
+
         /// 微信返回调起小程序/原生JS支付的signType参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wechatSignType: String?
-        
+
         /// 微信返回调起小程序/原生JS支付的package参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wechatPackage: String?
-        
+
         /// 微信返回调起小程序/原生JS支付的paySign参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wechatPaySign: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case orderNo = "OrderNo"
             case developerNo = "DeveloperNo"
@@ -4783,48 +4783,48 @@ extension Cpdp {
             case wechatPaySign = "WechatPaySign"
         }
     }
-    
+
     /// 微工卡核身结果
     public struct PayRollAuthResult: TCOutputModel {
         /// 结果为核身失败时的原因描述，仅在失败记录返回，空字符串等同null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authFailedReason: String?
-        
+
         /// 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
         public let authNumber: String
-        
+
         /// 核身渠道，发起核身时的来源渠道，如通过小程序，硬件设备等
         /// FROM_MINI_APP：来自小程序方式核身
         /// FROM_HARDWARE：来自硬件设备方式核身
         public let authScene: String
-        
+
         /// 核身渠道标识，用于定位渠道具体来源，如果是扫码打卡渠道标识就是具体的小程序appid，若是硬件设备，则是设备的序列号等
         public let authSource: String
-        
+
         /// 核身状态
         /// AUTHENTICATE_PROCESSING：核身中
         /// AUTHENTICATE_SUCCESS：核身成功
         /// AUTHENTICATE_FAILED：核身失败
         public let authStatus: String
-        
+
         /// 核身时间，遵循[rfc3339](https://datatracker.ietf.org/doc/html/rfc3339)标准格式，格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE
         public let authTime: String
-        
+
         /// 该用户所属的单位名称
         public let companyName: String
-        
+
         /// 微信服务商商户的商户号，由微信支付生成并下发
         public let merchantId: String
-        
+
         /// 用户在商户对应appid下的唯一标识
         public let openId: String
-        
+
         /// 该项目的名称
         public let projectName: String
-        
+
         /// 微信服务商下特约商户的商户号，由微信支付生成并下发
         public let subMerchantId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case authFailedReason = "AuthFailedReason"
             case authNumber = "AuthNumber"
@@ -4839,47 +4839,47 @@ extension Cpdp {
             case subMerchantId = "SubMerchantId"
         }
     }
-    
+
     /// 账户余额信息
     public struct PayeeAccountBalanceResult: TCOutputModel {
         /// 账户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountId: String?
-        
+
         /// 收入类型
         /// LABOR:劳务所得
         /// OCCASION:偶然所得
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let incomeType: Int64?
-        
+
         /// 总余额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let balance: String?
-        
+
         /// 系统冻结余额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let systemFreezeBalance: String?
-        
+
         /// 人工冻结余额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manualFreezeBalance: String?
-        
+
         /// 可提现余额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payableBalance: String?
-        
+
         /// 已提现余额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paidBalance: String?
-        
+
         /// 提现中余额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inPayBalance: String?
-        
+
         /// 累计结算金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sumSettlementAmount: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case incomeType = "IncomeType"
@@ -4892,33 +4892,33 @@ extension Cpdp {
             case sumSettlementAmount = "SumSettlementAmount"
         }
     }
-    
+
     /// 账户信息结果
     public struct PayeeAccountInfoResult: TCOutputModel {
         /// 账户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountId: String?
-        
+
         /// 账户名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountName: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 用户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userInfo: PayeeAccountUserInfo?
-        
+
         /// 属性信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let propertyInfo: PayeeAccountPropertyInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case accountName = "AccountName"
@@ -4928,23 +4928,23 @@ extension Cpdp {
             case propertyInfo = "PropertyInfo"
         }
     }
-    
+
     /// 账户信息列表
     public struct PayeeAccountInfos: TCOutputModel {
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [PayeeAccountInfoResult]?
-        
+
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case count = "Count"
         }
     }
-    
+
     /// 账户属性信息
     public struct PayeeAccountPropertyInfo: TCInputModel, TCOutputModel {
         /// 结算权益状态
@@ -4952,50 +4952,50 @@ extension Cpdp {
         /// DISABLE:停用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settleRightStatus: String?
-        
+
         /// 付款权益状态
         /// ENABLE:启用
         /// DISABLE:停用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentRightStatus: String?
-        
-        public init (settleRightStatus: String? = nil, paymentRightStatus: String? = nil) {
+
+        public init(settleRightStatus: String? = nil, paymentRightStatus: String? = nil) {
             self.settleRightStatus = settleRightStatus
             self.paymentRightStatus = paymentRightStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case settleRightStatus = "SettleRightStatus"
             case paymentRightStatus = "PaymentRightStatus"
         }
     }
-    
+
     /// 账户用户信息
     public struct PayeeAccountUserInfo: TCOutputModel {
         /// 外部用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outUserId: String?
-        
+
         /// 用户类型
         /// 0:B端用户
         /// 1:C端用户
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userType: Int64?
-        
+
         /// 证件类型
         /// 0:身份证
         /// 1:社会信用代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idType: Int64?
-        
+
         /// 证件号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idNo: String?
-        
+
         /// 姓名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case outUserId = "OutUserId"
             case userType = "UserType"
@@ -5004,34 +5004,34 @@ extension Cpdp {
             case name = "Name"
         }
     }
-    
+
     /// 收款用户信息结果
     public struct PayeeInfoResult: TCOutputModel {
         /// 收款用户ID
         public let payeeId: String
-        
+
         /// 用户外部业务ID
         public let outUserId: String
-        
+
         /// 姓名
         public let name: String
-        
+
         /// 证件类型
         /// 0:身份证
         /// 1:社会信用代码
         public let idType: Int64
-        
+
         /// 证件号
         public let idNo: String
-        
+
         /// 服务商ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceProviderId: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case payeeId = "PayeeId"
             case outUserId = "OutUserId"
@@ -5042,30 +5042,30 @@ extension Cpdp {
             case remark = "Remark"
         }
     }
-    
+
     /// 计税信息
     public struct PayeeTaxInfo: TCInputModel {
         /// 计税模板列表
         public let taxTemplateInfoList: [PayeeTaxTemplateInfo]
-        
+
         /// 纳税人识别号
         public let taxpayerIdNo: String
-        
+
         /// 纳税主体类型
         /// NATURAL:自然人
         /// NON_NATURAL:非自然人
         public let taxEntityType: String
-        
+
         /// 财税服务商ID
         public let taxServiceProviderId: String
-        
-        public init (taxTemplateInfoList: [PayeeTaxTemplateInfo], taxpayerIdNo: String, taxEntityType: String, taxServiceProviderId: String) {
+
+        public init(taxTemplateInfoList: [PayeeTaxTemplateInfo], taxpayerIdNo: String, taxEntityType: String, taxServiceProviderId: String) {
             self.taxTemplateInfoList = taxTemplateInfoList
             self.taxpayerIdNo = taxpayerIdNo
             self.taxEntityType = taxEntityType
             self.taxServiceProviderId = taxServiceProviderId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taxTemplateInfoList = "TaxTemplateInfoList"
             case taxpayerIdNo = "TaxpayerIdNo"
@@ -5073,57 +5073,57 @@ extension Cpdp {
             case taxServiceProviderId = "TaxServiceProviderId"
         }
     }
-    
+
     /// 收款用户计税模板信息
     public struct PayeeTaxTemplateInfo: TCInputModel {
         /// 收入类型
         /// LABOR: 劳务所得
         /// OCCASION: 偶然所得
         public let incomeType: String
-        
+
         /// 计税模板ID
         public let taxTemplateId: String
-        
-        public init (incomeType: String, taxTemplateId: String) {
+
+        public init(incomeType: String, taxTemplateId: String) {
             self.incomeType = incomeType
             self.taxTemplateId = taxTemplateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case incomeType = "IncomeType"
             case taxTemplateId = "TaxTemplateId"
         }
     }
-    
+
     /// 付款订单结果
     public struct PaymentOrderResult: TCOutputModel {
         /// 收入类型
         /// LABOR:劳务所得
         /// OCCASION:偶然所得
         public let incomeType: String
-        
+
         /// 税前金额
         public let amountBeforeTax: String
-        
+
         /// 税后金额
         public let amountAfterTax: String
-        
+
         /// 税金
         public let tax: String
-        
+
         /// 外部订单ID
         public let outOrderId: String
-        
+
         /// 订单ID
         public let orderId: String
-        
+
         /// 发起时间
         public let initiateTime: String
-        
+
         /// 完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finishTime: String?
-        
+
         /// 状态
         /// ACCEPTED:已受理
         /// ACCOUNTED:已记账
@@ -5132,44 +5132,44 @@ extension Cpdp {
         /// SUCCEED:已成功
         /// FAILED:已失败
         public let status: String
-        
+
         /// 状态描述
         public let statusDesc: String
-        
+
         /// 提现备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 收款用户ID
         public let payeeId: String
-        
+
         /// 外部用户ID
         public let outUserId: String
-        
+
         /// 渠道支付订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelOrderId: String?
-        
+
         /// 增值税
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vat: String?
-        
+
         /// 个人所得税
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let individualIncomeTax: String?
-        
+
         /// 附加税总税额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let additionalTaxSum: String?
-        
+
         /// 附加税税项。格式为JSON格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let additionalTaxItem: String?
-        
+
         /// 失败原因。当Status为FAILED时，改字段为失败的原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case incomeType = "IncomeType"
             case amountBeforeTax = "AmountBeforeTax"
@@ -5192,7 +5192,7 @@ extension Cpdp {
             case failReason = "FailReason"
         }
     }
-    
+
     /// 付款订单状态结果
     public struct PaymentOrderStatusResult: TCOutputModel {
         /// 状态
@@ -5203,35 +5203,35 @@ extension Cpdp {
         /// SUCCEED:已成功
         /// FAILED:已失败
         public let status: String
-        
+
         /// 状态描述
         public let statusDesc: String
-        
+
         /// 失败原因。当Status为FAILED时，改字段为失败的原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case statusDesc = "StatusDesc"
             case failReason = "FailReason"
         }
     }
-    
+
     /// 付款订单列表
     public struct PaymentOrders: TCOutputModel {
         /// 列表
         public let list: [PaymentOrderResult]
-        
+
         /// 总数
         public let count: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case count = "Count"
         }
     }
-    
+
     /// 查询账户列表接口
     public struct QueryAcctItem: TCOutputModel {
         /// 子商户类型：
@@ -5239,44 +5239,44 @@ extension Cpdp {
         /// 企业：enterprise
         /// 缺省： enterprise
         public let subMchType: String
-        
+
         /// 子商户名称
         public let subMchName: String
-        
+
         /// 子账号
         public let subAcctNo: String
-        
+
         /// 不填则默认子商户名称
         public let shortName: String
-        
+
         /// 业务平台的子商户Id，唯一
         public let subMchId: String
-        
+
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String
-        
+
         /// 子商户联系人
         /// <敏感信息>
         public let contact: String
-        
+
         /// 子商户地址
         public let address: String
-        
+
         /// 联系人手机号
         /// <敏感信息>
         public let mobile: String
-        
-        /// 邮箱 
+
+        /// 邮箱
         /// <敏感信息>
         public let email: String
-        
+
         /// 子商户会员类型：
         /// general:普通子账户
         /// merchant:商户子账户
         /// 缺省： general
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subMerchantMemberType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case subMchType = "SubMchType"
             case subMchName = "SubMchName"
@@ -5291,37 +5291,37 @@ extension Cpdp {
             case subMerchantMemberType = "SubMerchantMemberType"
         }
     }
-    
+
     /// QueryBatchPaymentResult接口返回响应
     public struct QueryBatchPaymentResultData: TCOutputModel {
         /// 批次号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchId: String?
-        
+
         /// 批次总额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalAmount: Int64?
-        
+
         /// 批次总量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
-        
+
         /// 批次预留字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reqReserved: String?
-        
+
         /// 批次备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 渠道类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferType: Int64?
-        
+
         /// 转账明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferInfoList: [QueryBatchPaymentResultDataInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case totalAmount = "TotalAmount"
@@ -5332,27 +5332,27 @@ extension Cpdp {
             case transferInfoList = "TransferInfoList"
         }
     }
-    
+
     /// QueryBatchPaymentResultData复杂类型中的TransferInfoList
     public struct QueryBatchPaymentResultDataInfo: TCOutputModel {
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?
-        
+
         /// 代理商ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentId: String?
-        
+
         /// 代理商名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentName: String?
-        
+
         /// 交易状态。
-        /// 0 处理中  
-        /// 1 预占成功 
-        /// 2 交易成功 
-        /// 3 交易失败 
-        /// 4 未知渠道异常 
+        /// 0 处理中
+        /// 1 预占成功
+        /// 2 交易成功
+        /// 3 交易失败
+        /// 4 未知渠道异常
         /// 5 预占额度失败
         /// 6 提交成功
         /// 7 提交失败
@@ -5360,15 +5360,15 @@ extension Cpdp {
         /// 99 未知系统异常
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 状态描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusDesc: String?
-        
+
         /// 转账金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferAmount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case agentId = "AgentId"
@@ -5378,97 +5378,97 @@ extension Cpdp {
             case transferAmount = "TransferAmount"
         }
     }
-    
+
     /// 智能代发-单笔代发转账对账单返回数据
     public struct QueryBillDownloadURLData: TCOutputModel {
         /// 统一对账单下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let billDownloadURL: String?
-        
+
         /// 渠道原始对账单下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalBillDownloadURL: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case billDownloadURL = "BillDownloadURL"
             case originalBillDownloadURL = "OriginalBillDownloadURL"
         }
     }
-    
+
     /// 支付方式费率及自定义表单项
     public struct QueryContractPayFeeResult: TCOutputModel {
         /// pay支付方式json数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pay: PayDataResult?
-        
+
         /// 合同扩展自定义字段
         public let extraInput: [String]?
-        
+
         /// pay_fee支付方式行业分类费率json数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payFee: [PayFeeDataResult]?
-        
+
         enum CodingKeys: String, CodingKey {
             case pay = "Pay"
             case extraInput = "ExtraInput"
             case payFee = "PayFee"
         }
     }
-    
+
     /// 合同可关联门店响应对象
     public struct QueryContractRelateShopResult: TCOutputModel {
         /// 省份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let province: String?
-        
+
         /// 城市编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cityId: String?
-        
+
         /// 门店简称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopName: String?
-        
+
         /// 终端数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terminalCount: String?
-        
+
         /// 城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let city: String?
-        
+
         /// 门店状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopStatus: String?
-        
+
         /// 若是支付宝合同，支付宝上线状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aliPayOnline: String?
-        
+
         /// 门店编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopNo: String?
-        
+
         /// 县/区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let country: String?
-        
+
         /// 若是支付宝合同，支付宝审核状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aliPayStatus: String?
-        
+
         /// 为空或者0表示未关联，大于0表示已关联
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isChecked: String?
-        
+
         /// 详细地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: String?
-        
+
         /// 若是支付宝合同，支付宝审核描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aliPayDesc: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case province = "Province"
             case cityId = "CityId"
@@ -5485,46 +5485,46 @@ extension Cpdp {
             case aliPayDesc = "AliPayDesc"
         }
     }
-    
+
     /// 成功申报材料查询数据
     public struct QueryDeclareData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 对接方汇出指令编号
         public let transactionId: String
-        
+
         /// 申报流水号
         public let declareId: String
-        
+
         /// 原申报流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalDeclareId: String?
-        
+
         /// 付款人ID
         public let payerId: String
-        
+
         /// 源币种
         public let sourceCurrency: String
-        
+
         /// 源金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceAmount: String?
-        
+
         /// 目的币种
         public let targetCurrency: String
-        
+
         /// 目的金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetAmount: String?
-        
+
         /// 交易编码
         public let tradeCode: String
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case transactionId = "TransactionId"
@@ -5539,44 +5539,44 @@ extension Cpdp {
             case status = "Status"
         }
     }
-    
+
     /// 成功申报材料查询结果
     public struct QueryDeclareResult: TCOutputModel {
         /// 成功申报材料查询数据
         public let data: QueryDeclareData
-        
+
         /// 错误码
         public let code: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case code = "Code"
         }
     }
-    
+
     /// 超额信息数据
     public struct QueryExceedingInfoData: TCOutputModel {
         /// 代理商ID。
         public let agentId: String
-        
+
         /// 代理商名称。
         public let agentName: String
-        
+
         /// 主播ID。当入参Dimension为ANCHOR或ORDER时，该字段才会有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let anchorId: String?
-        
+
         /// 主播名称。当入参Dimension为ANCHOR或ORDER时，该字段才会有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let anchorName: String?
-        
+
         /// 订单号。当入参Dimension为ORDER时，该字段才会有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?
-        
+
         /// 超额类型。目前支持 AGENT_EXCEED_100 和 ANCHOR_EXCEED_100_12 两种类型。
         public let exceedingType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case agentName = "AgentName"
@@ -5586,39 +5586,39 @@ extension Cpdp {
             case exceedingType = "ExceedingType"
         }
     }
-    
+
     /// 超额信息结果
     public struct QueryExceedingInfoResult: TCOutputModel {
         /// 记录总数。
         public let count: Int64
-        
+
         /// 超额信息数据。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [QueryExceedingInfoData]?
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case data = "Data"
         }
     }
-    
+
     /// 查询汇率数据
     public struct QueryExchangerateData: TCOutputModel {
         /// 汇率
         public let rate: String
-        
+
         /// 源币种
         public let sourceCurrency: String
-        
+
         /// 目的币种
         public let targetCurrency: String
-        
+
         /// 汇率时间
         public let rateTime: String
-        
+
         /// 基准币种
         public let baseCurrency: String
-        
+
         enum CodingKeys: String, CodingKey {
             case rate = "Rate"
             case sourceCurrency = "SourceCurrency"
@@ -5627,60 +5627,60 @@ extension Cpdp {
             case baseCurrency = "BaseCurrency"
         }
     }
-    
+
     /// 查询汇率结果
     public struct QueryExchangerateResult: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 查询汇率数据数组
         public let data: [QueryExchangerateData]
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 查询第三方电子记账本余额返回值
     public struct QueryExternalAccountBookResult: TCOutputModel {
         /// 渠道记账本ID
         public let channelAccountBookId: String
-        
+
         /// 可用余额。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availableBalance: String?
-        
+
         /// 电子记账本对外收款的账户信息。为JSON格式字符串（成功状态下返回）。详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let collectMoneyAccountInfo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelAccountBookId = "ChannelAccountBookId"
             case availableBalance = "AvailableBalance"
             case collectMoneyAccountInfo = "CollectMoneyAccountInfo"
         }
     }
-    
+
     /// 查询会员资金交易信息列表结果
     public struct QueryFundsTransactionDetailsResult: TCOutputModel {
         /// 本次交易返回查询结果记录数。
         public let resultCount: UInt64
-        
+
         /// 符合业务查询条件的记录总数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 结束标志。
         /// __0__：否
         /// __1__：是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endFlag: String?
-        
+
         /// 会员资金交易信息数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranItemArray: [FundsTransactionItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case resultCount = "ResultCount"
             case totalCount = "TotalCount"
@@ -5688,23 +5688,23 @@ extension Cpdp {
             case tranItemArray = "TranItemArray"
         }
     }
-    
+
     /// 查询发票结果
     public struct QueryInvoiceResult: TCOutputModel {
         /// 错误消息
         public let message: String
-        
+
         /// 错误码
         public let code: Int64
-        
+
         /// 查询发票数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: QueryInvoiceResultData?
-        
+
         /// 订单数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let order: Order?
-        
+
         enum CodingKeys: String, CodingKey {
             case message = "Message"
             case code = "Code"
@@ -5712,52 +5712,52 @@ extension Cpdp {
             case order = "Order"
         }
     }
-    
+
     /// 查询发票结果数据
     public struct QueryInvoiceResultData: TCOutputModel {
         /// 订单号
         public let orderId: String
-        
+
         /// 业务开票号
         public let orderSn: String
-        
+
         /// 发票状态
         public let status: Int64
-        
+
         /// 开票描述
         public let message: String
-        
+
         /// 开票日期
         public let ticketDate: String
-        
+
         /// 发票号码
         public let ticketSn: String
-        
+
         /// 发票代码
         public let ticketCode: String
-        
+
         /// 检验码
         public let checkCode: String
-        
+
         /// 含税金额(元)
         public let amountWithTax: String
-        
+
         /// 不含税金额(元)
         public let amountWithoutTax: String
-        
+
         /// 税额(元)
         public let taxAmount: String
-        
+
         /// 是否被红冲
         public let isRedWashed: Int64
-        
+
         /// pdf地址
         public let pdfUrl: String
-        
+
         /// png地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageUrl: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case orderId = "OrderId"
             case orderSn = "OrderSn"
@@ -5775,35 +5775,35 @@ extension Cpdp {
             case imageUrl = "ImageUrl"
         }
     }
-    
+
     /// 聚鑫商户余额查询输出项
     public struct QueryItem: TCOutputModel {
         /// 子商户账户
         public let subAcctNo: String
-        
-        /// 子账户属性 
-        /// 1：普通会员子账号 
-        /// 2：挂账子账号 
-        /// 3：手续费子账号 
+
+        /// 子账户属性
+        /// 1：普通会员子账号
+        /// 2：挂账子账号
+        /// 3：手续费子账号
         /// 4：利息子账号
         /// 5：平台担保子账号
         public let subAcctProperty: String
-        
+
         /// 业务平台的子商户Id，唯一
         public let subMchId: String
-        
+
         /// 子账户名称
         public let subAcctName: String
-        
+
         /// 账户可用余额
         public let acctAvailBal: String
-        
+
         /// 可提现金额
         public let cashAmt: String
-        
+
         /// 维护日期 开户日期或修改日期
         public let maintenanceDate: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subAcctNo = "SubAcctNo"
             case subAcctProperty = "SubAcctProperty"
@@ -5814,26 +5814,26 @@ extension Cpdp {
             case maintenanceDate = "MaintenanceDate"
         }
     }
-    
+
     /// 聚鑫-查询会员间交易信息列表结果
     public struct QueryMemberTransactionDetailsResult: TCOutputModel {
         /// 本次交易返回查询结果记录数。
         public let resultCount: UInt64
-        
+
         /// 符合业务查询条件的记录总数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?
-        
+
         /// 结束标志。
         /// __0__：否
         /// __1__：是
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endFlag: String?
-        
+
         /// 会员间交易信息数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranItemArray: [MemberTransactionItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case resultCount = "ResultCount"
             case totalCount = "TotalCount"
@@ -5841,157 +5841,157 @@ extension Cpdp {
             case tranItemArray = "TranItemArray"
         }
     }
-    
+
     /// 对接账户余额查询数据
     public struct QueryMerchantBalanceData: TCOutputModel {
         /// 余额币种
         public let currency: String
-        
+
         /// 账户余额
         public let balance: String
-        
+
         /// 商户ID
         public let merchantId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case currency = "Currency"
             case balance = "Balance"
             case merchantId = "MerchantId"
         }
     }
-    
+
     /// 对接账户余额查询结果
     public struct QueryMerchantBalanceResult: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 对接账户余额查询数据
         public let data: QueryMerchantBalanceData
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 云企付-查询账户余额
     public struct QueryOpenBankBankAccountBalanceResult: TCOutputModel {
         /// 总余额，单位分
         public let totalBalance: String
-        
+
         /// 昨日余额，单位分
         public let yesterdayBalance: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalBalance = "TotalBalance"
             case yesterdayBalance = "YesterdayBalance"
         }
     }
-    
+
     /// 查询联行号返回结果
     public struct QueryOpenBankBankBranchListResult: TCOutputModel {
         /// 支行列表。
         public let bankBranchList: [BankBranchInfo]
-        
+
         /// 列表总数。
         public let count: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case bankBranchList = "BankBranchList"
             case count = "Count"
         }
     }
-    
+
     /// 云企付-分页查询对账单数据结果
     public struct QueryOpenBankBillData: TCOutputModel {
         /// 交易日期
         public let billDate: String
-        
+
         /// 渠道编码
         public let channel: String
-        
+
         /// 二级渠道
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subChannel: String?
-        
+
         /// 系统父商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parentMerchantId: String?
-        
+
         /// 外部商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outMerchantId: String?
-        
+
         /// 系统商户号
         public let merchantId: String
-        
+
         /// 第三方商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endMerchantId: String?
-        
+
         /// 外部订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outTradeNo: String?
-        
+
         /// 系统订单号
         public let tradeNo: String
-        
+
         /// 第三方订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTradeNo: String?
-        
+
         /// 收付类型，PAYMENT:付款，INCOME:收款
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentType: String?
-        
+
         /// 业务类型，WITHDRAW:提现，PAY:支付，RECHARGE:充值，TRANSFER:转账，REFUND:退款
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessType: String?
-        
+
         /// 发起交易时间，格式yyyy-MM-dd HH:mm:ss
         public let tradeTime: String
-        
+
         /// 交易完成时间，格式yyyy-MM-dd HH:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finishTime: String?
-        
+
         /// 交易状态，0:未知，1:成功，2:失败
         public let tradeStatus: String
-        
+
         /// 对账状态，1:成功，2:失败 3:长账 4:短账
         public let checkStatus: String
-        
+
         /// 对账失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkFailReason: String?
-        
+
         /// 交易金额（元）
         public let orderAmount: String
-        
+
         /// 服务费（元）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceFee: String?
-        
+
         /// 收款人账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payeeAccount: String?
-        
+
         /// 收款人名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payeeName: String?
-        
+
         /// 付款人账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payerAccount: String?
-        
+
         /// 付款人名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payerName: String?
-        
+
         /// 支付信息描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case billDate = "BillDate"
             case channel = "Channel"
@@ -6019,22 +6019,22 @@ extension Cpdp {
             case description = "Description"
         }
     }
-    
+
     /// 云企付-分页查询对账单数据结果
     public struct QueryOpenBankBillDataPageResult: TCOutputModel {
         /// 页码
         public let pageNo: UInt64
-        
+
         /// 分页大小
         public let pageSize: UInt64
-        
+
         /// 总数
         public let count: UInt64
-        
+
         /// 账单数据明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataList: [QueryOpenBankBillData]?
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNo = "PageNo"
             case pageSize = "PageSize"
@@ -6042,30 +6042,30 @@ extension Cpdp {
             case dataList = "DataList"
         }
     }
-    
+
     /// 子商户银行卡绑定结果查询返回结果
     public struct QueryOpenBankBindExternalSubMerchantBankAccountResult: TCOutputModel {
         /// 渠道子商户收款方银行卡信息, 为JSON格式字符串（绑定成功状态下返回）。详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalSubMerchantBankAccountReturnData: String?
-        
+
         /// 渠道申请编号。
         public let channelApplyId: String
-        
+
         /// 绑定状态。
         /// __SUCCESS__: 绑定成功
         /// __FAILED__: 绑定失败
         /// __PROCESSING__: 绑定中
         public let bindStatus: String
-        
+
         /// 绑定返回描述, 例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bindMessage: String?
-        
+
         /// 绑卡序列号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bindSerialNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case externalSubMerchantBankAccountReturnData = "ExternalSubMerchantBankAccountReturnData"
             case channelApplyId = "ChannelApplyId"
@@ -6074,66 +6074,66 @@ extension Cpdp {
             case bindSerialNo = "BindSerialNo"
         }
     }
-    
+
     /// 云企付-按日期查询回单下载地址
     public struct QueryOpenBankDailyReceiptDownloadUrlResult: TCOutputModel {
         /// 回单文件下载链接
         public let downloadUrl: String
-        
+
         /// 过期时间
         public let expireTime: String
-        
+
         /// 回单状态
         /// PENDING: 处理中
         /// READY: 可以下载
         public let receiptStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case expireTime = "ExpireTime"
             case receiptStatus = "ReceiptStatus"
         }
     }
-    
+
     /// 云企付-查询对账单文件下载url
     public struct QueryOpenBankDownLoadUrlResult: TCOutputModel {
         /// 供下一步请求账单文件的下载地址。
         public let downloadUrl: String
-        
+
         /// 从 download_url 下载的文件的哈希值，用于校验文件的完整性。
         public let hashValue: String
-        
+
         /// 从 download_url 下载的文件的哈希类型，用于校验文件的完整性。
         public let hashType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case downloadUrl = "DownloadUrl"
             case hashValue = "HashValue"
             case hashType = "HashType"
         }
     }
-    
+
     /// 第三方子商户银行卡列表查询返回数据
     public struct QueryOpenBankExternalSubMerchantBankAccountData: TCOutputModel {
         /// 开户银行。
         public let accountBank: String
-        
+
         /// 绑卡序列号。
         public let bindSerialNo: String
-        
+
         /// 账号类型。
         /// __COLLECT_MONEY__: 收款卡
         /// __PAYMENT__: 付款卡
         public let accountType: String
-        
+
         /// 支行号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankBranchId: String?
-        
+
         /// 银行卡卡后四位。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountNumberLastFour: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case accountBank = "AccountBank"
             case bindSerialNo = "BindSerialNo"
@@ -6142,17 +6142,17 @@ extension Cpdp {
             case accountNumberLastFour = "AccountNumberLastFour"
         }
     }
-    
+
     /// 第三方子商户银行卡列表查询返回结果
     public struct QueryOpenBankExternalSubMerchantBankAccountResult: TCOutputModel {
         /// 第三方渠道子商户查询银行账户返回。
         public let accountList: [QueryOpenBankExternalSubMerchantBankAccountData]
-        
+
         enum CodingKeys: String, CodingKey {
             case accountList = "AccountList"
         }
     }
-    
+
     /// 第三方子商户进件结果查询返回结果
     public struct QueryOpenBankExternalSubMerchantRegistrationResult: TCOutputModel {
         /// 进件状态。
@@ -6160,47 +6160,47 @@ extension Cpdp {
         /// __FAILED__: 进件失败
         /// __PROCESSING__: 进件中
         public let registrationStatus: String
-        
+
         /// 进件返回描述, 例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registrationMessage: String?
-        
+
         /// 渠道进件号。
         public let channelRegistrationNo: String
-        
+
         /// 渠道子商户ID（进件成功返回）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelSubMerchantId: String?
-        
+
         /// 外部子商户名称（进件成功返回）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outSubMerchantName: String?
-        
+
         /// 渠道名称（进件成功返回）。
         /// __TENPAY__: 商企付
         /// __WECHAT__: 微信支付
         /// __ALIPAY__: 支付宝
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelName: String?
-        
+
         /// 支付方式（进件成功返回）。
         /// __EBANK_PAYMENT__: ebank支付
         /// __OPENBANK_PAYMENT__: openbank支付
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentMethod: String?
-        
+
         /// 社会信用代码。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessLicenseNumber: String?
-        
+
         /// 法人姓名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let legalName: String?
-        
+
         /// 第三方渠道查询进件返回数据。详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnData: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case registrationStatus = "RegistrationStatus"
             case registrationMessage = "RegistrationMessage"
@@ -6214,31 +6214,31 @@ extension Cpdp {
             case externalReturnData = "ExternalReturnData"
         }
     }
-    
+
     /// 单笔交易回单申请结果查询
     public struct QueryOpenBankOrderDetailReceiptInfoResult: TCOutputModel {
         /// 渠道回单申请ID
         public let channelApplyId: String
-        
+
         /// 申请状态。
         /// SUCCESS：申请成功；
         /// FAILED：申请失败；
         /// PROCESSING：申请中。
         /// 注意：若返回申请中，需要再次调用回单申请结果查询接口，查询结果。
         public let receiptStatus: String
-        
+
         /// 申请返回描述，例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiptMessage: String?
-        
+
         /// 回单下载链接，申请成功时返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?
-        
+
         /// 过期时间，yyyy-MM-dd HH:mm:ss格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelApplyId = "ChannelApplyId"
             case receiptStatus = "ReceiptStatus"
@@ -6247,21 +6247,21 @@ extension Cpdp {
             case expireTime = "ExpireTime"
         }
     }
-    
+
     /// 云企付-查询订单支付结果
     public struct QueryOpenBankPaymentOrderResult: TCOutputModel {
         /// 渠道商户号。外部接入平台入驻云企付平台下发
         public let channelMerchantId: String
-        
+
         /// 外部商户订单号
         public let outOrderId: String
-        
+
         /// 云企付平台订单号
         public let channelOrderId: String
-        
+
         /// 第三方支付平台订单号
         public let thirdPayOrderId: String
-        
+
         /// 订单状态。
         /// INIT：初始化
         /// PAYING：支付中
@@ -6273,57 +6273,57 @@ extension Cpdp {
         /// PART_REFUND：部分退款
         /// FULL_REFUND：全部退款
         public let orderStatus: String
-        
+
         /// 支付渠道名称，如TENPAY
         public let channelName: String
-        
+
         /// 付款方式。如EBANK_PAYMENT
         /// OPENBANK_PAYMENT
         public let paymentMethod: String
-        
+
         /// 订单金额。单位分
         public let totalAmount: Int64
-        
+
         /// 实际支付金额。单位分，支付成功时返回
         public let payAmount: Int64
-        
+
         /// 失败原因，若失败的返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         /// 附加信息，查询时原样透传
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachment: String?
-        
+
         /// 重定向参数，用于客户端跳转，订单未支付时返回该参数
         /// 渠道为TENPAY，付款方式为EBANK_PAYMENT时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectInfo: OpenBankRedirectInfo?
-        
+
         /// 第三方渠道返回信息，见渠道特殊说明,详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnData: String?
-        
+
         /// 银行复核指引。当TENPAY下OPENBANT_PAYMENT时，下单受理成功是返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankApprovalGuideInfo: OpenBankApprovalGuideInfo?
-        
+
         /// 手续费金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let feeAmount: Int64?
-        
+
         /// 手续费费率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let feeRate: Int64?
-        
+
         /// 分账信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let profitShareRespInfoList: [OpenBankProfitShareRespInfo]?
-        
+
         /// 支付完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeFinish: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelMerchantId = "ChannelMerchantId"
             case outOrderId = "OutOrderId"
@@ -6345,42 +6345,42 @@ extension Cpdp {
             case timeFinish = "TimeFinish"
         }
     }
-    
+
     /// 绑定分账收款方查询响应
     public struct QueryOpenBankProfitSharePayeeResult: TCOutputModel {
         /// 账户ID（受益ID）
         public let accountId: String
-        
+
         /// 账户号。通联国际指客户银行账户号
         public let accountNo: String
-        
+
         /// 账户货币。参考附录“币种类型”。
         public let currency: String
-        
+
         /// 收款人账户名称
         public let accountName: String
-        
+
         /// 银行名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankName: String?
-        
+
         /// 账户类型。
         /// 00:借记卡
-        /// 01:存折 
-        /// 02:信用卡 
-        /// 03:准贷记卡 
-        /// 04:预付卡费 
+        /// 01:存折
+        /// 02:信用卡
+        /// 03:准贷记卡
+        /// 04:预付卡费
         /// 05:境外卡
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nature: String?
-        
+
         /// 状态
         /// 0-待审核；1-审核通过；2-审核不通过 3-关联实体未审核
         public let bindState: String
-        
+
         /// 状态描述
         public let stateExplain: String
-        
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case accountNo = "AccountNo"
@@ -6392,15 +6392,15 @@ extension Cpdp {
             case stateExplain = "StateExplain"
         }
     }
-    
+
     /// 云企付结算查询结果
     public struct QueryOpenBankSettleOrderResult: TCOutputModel {
         /// 外部结算流水号
         public let outSettleId: String
-        
+
         /// 渠道结算流水号
         public let channelSettleId: String
-        
+
         /// 退款状态。
         /// SUCCESS：结算成功；
         /// FAILED：结算失败；
@@ -6411,33 +6411,33 @@ extension Cpdp {
         /// _UNKNOWN：默认未知
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settleStatus: String?
-        
+
         /// 结算金额
         public let settleAmount: Int64
-        
+
         /// 结算日期，格式YYYYMMdd
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settleDate: String?
-        
+
         /// 结算类型（T1/D1）
         public let settleType: String
-        
+
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         /// 完成时间，格式yyyy-MM-dd HH:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeFinish: String?
-        
+
         /// 结算手续费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settleFee: String?
-        
+
         /// 账户货币。参考附录“币种类型”。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currency: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case outSettleId = "OutSettleId"
             case channelSettleId = "ChannelSettleId"
@@ -6451,40 +6451,40 @@ extension Cpdp {
             case currency = "Currency"
         }
     }
-    
+
     /// 子商户资质文件查询
     public struct QueryOpenBankSubMerchantCredentialResult: TCOutputModel {
         /// 上传状态
         public let uploadStatus: String
-        
+
         /// 上传描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uploadMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case uploadStatus = "UploadStatus"
             case uploadMessage = "UploadMessage"
         }
     }
-    
+
     /// 子商户费率配置查询结果
     public struct QueryOpenBankSubMerchantRateConfigureResult: TCOutputModel {
-        /// 处理状态 
-        /// SUCCESS: 开通成功 
+        /// 处理状态
+        /// SUCCESS: 开通成功
         /// FAILED: 开通失败
         /// PROCESSING: 开通中
         public let dealStatus: String
-        
+
         /// 处理描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case dealStatus = "DealStatus"
             case dealMessage = "DealMessage"
         }
     }
-    
+
     /// 子商户查询签约返回结果
     public struct QueryOpenBankSubMerchantSignOnlineResult: TCOutputModel {
         /// 处理状态
@@ -6492,75 +6492,75 @@ extension Cpdp {
         ///   FAILED：签约失败
         ///   PROCESSING：签约中
         public let signStatus: String
-        
+
         /// 上传返回描述，例如失败原因等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case signStatus = "SignStatus"
             case signMessage = "SignMessage"
         }
     }
-    
+
     /// 查询支持的银行列表返回结果
     public struct QueryOpenBankSupportBankListResult: TCOutputModel {
         /// 支持的银行列表
         public let supportBankList: [SupportBankInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case supportBankList = "SupportBankList"
         }
     }
-    
+
     /// 第三方子商户银行卡解绑结果查询返回结果
     public struct QueryOpenBankUnbindExternalSubMerchantBankAccountResult: TCOutputModel {
         /// 渠道申请编号。
         public let channelApplyId: String
-        
+
         /// 解绑状态。
         /// __SUCCESS__: 解绑成功
         /// __FAILED__: 解绑失败
         /// __PROCESSING__: 解绑中
         public let unbindStatus: String
-        
+
         /// 解绑返回描述, 例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unbindMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelApplyId = "ChannelApplyId"
             case unbindStatus = "UnbindStatus"
             case unbindMessage = "UnbindMessage"
         }
     }
-    
+
     /// 云企付-查询核销申请结果
     public struct QueryOpenBankVerificationResult: TCOutputModel {
         /// 云企付渠道核销订单号
         public let channelVerificationId: String
-        
+
         /// 第三方支付渠道核销订单号
         public let thirdVerificationId: String
-        
+
         /// 核销金额，单位分
         public let verificationAmount: Int64
-        
+
         /// 核销状态
         /// INIT("INIT","初始化"),
         /// SUCCESS("SUCCESS","核销成功"),
         /// FAILED("FAILED","核销失败"),
         /// PROCESSING("PROCESSING","核销中");
         public let verificationStatus: String
-        
+
         /// 失败原因，若核销失败，附上原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         /// 渠道附加返回信息，一般情况可以不关注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let thirdVerificationReturnData: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelVerificationId = "ChannelVerificationId"
             case thirdVerificationId = "ThirdVerificationId"
@@ -6570,41 +6570,41 @@ extension Cpdp {
             case thirdVerificationReturnData = "ThirdVerificationReturnData"
         }
     }
-    
+
     /// 查询订单接口的出参，订单列表
     public struct QueryOrderOutOrderList: TCOutputModel {
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
-        
+
         /// 支付金额，单位：分
         public let amt: Int64
-        
+
         /// 用户Id
         public let userId: String
-        
+
         /// 现金支付金额
         public let cashAmt: String
-        
+
         /// 发货标识，由业务在调用聚鑫下单 接口的时候下发
         public let metadata: String
-        
+
         /// 支付时间unix时间戳
         public let payTime: String
-        
+
         /// 抵扣券金额
         public let couponAmt: String
-        
+
         /// 下单时间unix时间戳
         public let orderTime: String
-        
+
         /// 物品id
         public let productId: String
-        
+
         /// 高速场景信息
         public let sceneInfo: String
-        
-        /// 当前订单的订单状态 
-        /// 0：初始状态，获取聚鑫交易订单成功；  
+
+        /// 当前订单的订单状态
+        /// 0：初始状态，获取聚鑫交易订单成功；
         /// 1：拉起聚鑫支付页面成功，用户未 支付；
         /// 2：用户支付成功，正在发货；
         /// 3：用户支付成功，发货失败；
@@ -6612,54 +6612,54 @@ extension Cpdp {
         /// 5：聚鑫支付页面正在失效中；
         /// 6：聚鑫支付页面已经失效；
         public let orderState: String
-        
+
         /// 支付渠道：wechat：微信支付;
         /// qqwallet：QQ钱包;
         /// bank：网银
         public let channel: String
-        
+
         /// 是否曾退款
         public let refundFlag: String
-        
+
         /// 务支付订单号
         public let outTradeNo: String
-        
+
         /// 商品名称
         public let productName: String
-        
+
         /// 支付回调时间，unix时间戳
         public let callBackTime: String
-        
+
         /// ISO 货币代码，CNY
         public let currencyType: String
-        
+
         /// 微校场景账户Id
         public let acctSubAppId: String
-        
+
         /// 调用下单接口获取的聚鑫交易订单
         public let transactionId: String
-        
+
         /// 聚鑫内部渠道订单号
         public let channelOrderId: String
-        
+
         /// 调用下单接口传进来的 SubOutTradeNoList
         public let subOrderList: [QueryOrderOutSubOrderList]
-        
+
         /// 支付机构订单号
         public let channelExternalOrderId: String
-        
+
         /// 主单核销状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settleCheck: Int64?
-        
+
         /// 渠道方用户信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExternalUserInfoList: [OldChannelExternalUserInfo]?
-        
+
         /// 附加项信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachmentInfoList: [OldAttachmentInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case midasAppId = "MidasAppId"
             case amt = "Amt"
@@ -6688,39 +6688,39 @@ extension Cpdp {
             case attachmentInfoList = "AttachmentInfoList"
         }
     }
-    
+
     /// 子订单列表
     public struct QueryOrderOutSubOrderList: TCOutputModel {
         /// 子订单支付金额
         public let amt: Int64
-        
+
         /// 子订单结算应收金额，单位：分
         public let subMchIncome: Int64
-        
+
         /// 发货标识，由业务在调用Midas下单接口的时候下发。
         public let metadata: String
-        
+
         /// 子订单原始金额
         public let originalAmt: Int64
-        
+
         /// 子订单平台应收金额，单位：分
         public let platformIncome: Int64
-        
+
         /// 子订单商品详情
         public let productDetail: String
-        
+
         /// 子订单商品名称
         public let productName: String
-        
+
         /// 核销状态，1表示核销，0表示未核销
         public let settleCheck: Int64
-        
+
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String
-        
+
         /// 子订单号
         public let subOutTradeNo: String
-        
+
         enum CodingKeys: String, CodingKey {
             case amt = "Amt"
             case subMchIncome = "SubMchIncome"
@@ -6734,137 +6734,137 @@ extension Cpdp {
             case subOutTradeNo = "SubOutTradeNo"
         }
     }
-    
+
     /// 查询订单付款状态响应对象
     public struct QueryOrderStatusResult: TCOutputModel {
         /// 付款订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderNo: String?
-        
+
         /// 开发者流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let developerNo: String?
-        
+
         /// 交易优惠金额（免充值券）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeDiscountAmount: String?
-        
+
         /// 付款方式名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payName: String?
-        
+
         /// 商户流水号（从1开始自增长不重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderMerchantId: String?
-        
+
         /// 交易帐号（银行卡号、支付宝帐号、微信帐号等，某些收单机构没有此数据）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeAccount: String?
-        
+
         /// 实际交易金额（以分为单位，没有小数点）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeAmount: String?
-        
+
         /// 币种签名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currencySign: String?
-        
+
         /// 付款完成时间（以收单机构为准）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradePayTime: String?
-        
+
         /// 门店流水号（从1开始自增长不重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopOrderId: String?
-        
+
         /// 支付标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payTag: String?
-        
+
         /// 订单状态（1交易成功，2待支付，4已取消，9等待用户输入密码确认
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 币种代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderCurrency: String?
-        
+
         /// 二维码字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeQrcode: String?
-        
+
         /// 开始交易时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeTime: String?
-        
+
         /// 折扣金额（以分为单位，没有小数点）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountAmount: String?
-        
+
         /// 商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         /// 订单备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 订单标题
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderName: String?
-        
+
         /// 原始金额（以分为单位，没有小数点）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalAmount: String?
-        
+
         /// 门店编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopNo: String?
-        
+
         /// 收单机构原始交易数据，如果返回非标准json数据，请自行转换
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeResult: String?
-        
+
         /// 订单流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?
-        
+
         /// 订单类型（1消费，2辙单）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderType: String?
-        
+
         /// 收单机构交易号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeNo: String?
-        
+
         /// 原始订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalOrderNo: String?
-        
+
         /// 订单标记，订单附加数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: String?
-        
+
         /// 下单时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addTime: String?
-        
+
         /// 收银员编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cashierId: String?
-        
+
         /// 收银员名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cashierRealName: String?
-        
+
         /// 店铺全称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopFullName: String?
-        
+
         /// 店铺名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case orderNo = "OrderNo"
             case developerNo = "DeveloperNo"
@@ -6900,58 +6900,58 @@ extension Cpdp {
             case shopName = "ShopName"
         }
     }
-    
+
     /// 查询汇出数据
     public struct QueryOutwardOrderData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 对接方汇出指令编号
         public let transactionId: String
-        
+
         /// 财务日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let acctDate: String?
-        
+
         /// 定价币种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pricingCurrency: String?
-        
+
         /// 源币种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceCurrency: String?
-        
+
         /// 源金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceAmount: String?
-        
+
         /// 目的币种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetCurrency: String?
-        
+
         /// 目的金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetAmount: String?
-        
+
         /// 汇率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fxRate: String?
-        
+
         /// 指令状态
         public let status: String
-        
+
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         /// 退汇金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundAmount: String?
-        
+
         /// 退汇币种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundCurrency: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case transactionId = "TransactionId"
@@ -6968,63 +6968,63 @@ extension Cpdp {
             case refundCurrency = "RefundCurrency"
         }
     }
-    
+
     /// 查询汇出结果
     public struct QueryOutwardOrderResult: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 查询汇出数据
         public let data: QueryOutwardOrderData
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 付款人查询数据
     public struct QueryPayerinfoData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 付款人ID
         public let payerId: String
-        
+
         /// 审核状态
         public let status: String
-        
+
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         /// 付款人类型
         public let payerType: String
-        
+
         /// 付款人姓名
         public let payerName: String
-        
+
         /// 付款人证件类型
         public let payerIdType: String
-        
+
         /// 付款人证件号
         public let payerIdNo: String
-        
+
         /// 付款人联系电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payerContactNumber: String?
-        
+
         /// 付款人联系邮箱
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payerEmailAddress: String?
-        
+
         /// 付款人常驻国家或地区编码
         public let payerCountryCode: String
-        
+
         /// 付款人联系名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payerContactName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case payerId = "PayerId"
@@ -7040,40 +7040,40 @@ extension Cpdp {
             case payerContactName = "PayerContactName"
         }
     }
-    
+
     /// 付款人查询结果
     public struct QueryPayerinfoResult: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 付款人查询数据
         public let data: QueryPayerinfoData
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case data = "Data"
         }
     }
-    
+
     /// 查询对账文件申请结果
     public struct QueryReconciliationFileApplyInfoResult: TCOutputModel {
         /// 申请对账文件的任务ID。
         public let applyFileId: String
-        
+
         /// 对账文件申请状态。
         /// __I__：申请中
         /// __S__：申请成功
         /// __F__：申请失败
         public let applyStatus: String
-        
+
         /// 申请结果描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applyMessage: String?
-        
+
         /// 对账文件下载地址列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileUrlArray: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case applyFileId = "ApplyFileId"
             case applyStatus = "ApplyStatus"
@@ -7081,65 +7081,65 @@ extension Cpdp {
             case fileUrlArray = "FileUrlArray"
         }
     }
-    
+
     /// 获取门店OpenId响应对象
     public struct QueryShopOpenIdResult: TCOutputModel {
         /// 省份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let province: String?
-        
+
         /// 城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let city: String?
-        
+
         /// 门店简称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopName: String?
-        
+
         /// 商户编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         /// 城市编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cityId: String?
-        
+
         /// open_id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openId: String?
-        
+
         /// 门店电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let telephone: String?
-        
+
         /// 门店编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopNo: String?
-        
+
         /// 县/区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let county: String?
-        
+
         /// 门店全称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopFullName: String?
-        
+
         /// 品牌名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let brandName: String?
-        
+
         /// 详细地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: String?
-        
+
         /// open_key
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openKey: String?
-        
+
         /// 商户名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case province = "Province"
             case city = "City"
@@ -7157,23 +7157,23 @@ extension Cpdp {
             case merchantName = "MerchantName"
         }
     }
-    
+
     /// QuerySinglePaymentResult接口返回响应
     public struct QuerySinglePaymentResultData: TCOutputModel {
         /// 平台交易流水号，唯一
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeSerialNo: String?
-        
+
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?
-        
+
         /// 交易状态。
-        /// 0 处理中  
-        /// 1 预占成功 
-        /// 2 交易成功 
-        /// 3 交易失败 
-        /// 4 未知渠道异常 
+        /// 0 处理中
+        /// 1 预占成功
+        /// 2 交易成功
+        /// 3 交易失败
+        /// 4 未知渠道异常
         /// 5 预占额度失败
         /// 6 提交成功
         /// 7 提交失败
@@ -7181,23 +7181,23 @@ extension Cpdp {
         /// 99 未知系统异常
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeStatus: Int64?
-        
+
         /// 业务备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 代理商ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentId: String?
-        
+
         /// 代理商名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentName: String?
-        
+
         /// 交易状态描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeStatusDesc: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case tradeSerialNo = "TradeSerialNo"
             case orderId = "OrderId"
@@ -7208,64 +7208,64 @@ extension Cpdp {
             case tradeStatusDesc = "TradeStatusDesc"
         }
     }
-    
+
     /// 贸易材料明细查询数据
     public struct QueryTradeData: TCOutputModel {
         /// 商户号
         public let merchantId: String
-        
+
         /// 贸易材料流水号
         public let tradeFileId: String
-        
+
         /// 贸易材料订单号
         public let tradeOrderId: String
-        
+
         /// 审核状态
         public let status: String
-        
+
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
-        
+
         /// 付款人ID
         public let payerId: String
-        
+
         /// 收款人姓名
         public let payeeName: String
-        
+
         /// 收款人常驻国家或地区编码
         public let payeeCountryCode: String
-        
+
         /// 交易类型
         public let tradeType: String
-        
+
         /// 交易日期
         public let tradeTime: String
-        
+
         /// 交易币种
         public let tradeCurrency: String
-        
+
         /// 交易金额
         public let tradeAmount: String
-        
+
         /// 交易名称
         public let tradeName: String
-        
+
         /// 交易数量
         public let tradeCount: Int64
-        
+
         /// 货贸承运人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let goodsCarrier: String?
-        
+
         /// 服贸交易细节
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceDetail: String?
-        
+
         /// 服贸服务时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case tradeFileId = "TradeFileId"
@@ -7286,42 +7286,42 @@ extension Cpdp {
             case serviceTime = "ServiceTime"
         }
     }
-    
+
     /// 贸易材料明细查询结果
     public struct QueryTradeResult: TCOutputModel {
         /// 贸易材料明细查询数据
         public let data: QueryTradeData
-        
+
         /// 错误码
         public let code: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case code = "Code"
         }
     }
-    
+
     /// 智能代发-单笔代发转账查询接口返回内容
     public struct QueryTransferResultData: TCOutputModel {
         /// 平台交易流水号
         public let tradeSerialNo: String
-        
+
         /// 订单号
         public let orderId: String
-        
+
         /// 交易状态。
-        /// 0 处理中  
-        /// 1 提交成功 
-        /// 2 交易成功 
-        /// 3 交易失败 
-        /// 4 未知渠道异常 
+        /// 0 处理中
+        /// 1 提交成功
+        /// 2 交易成功
+        /// 3 交易失败
+        /// 4 未知渠道异常
         /// 99 未知系统异常
         public let tradeStatus: Int64
-        
+
         /// 业务备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case tradeSerialNo = "TradeSerialNo"
             case orderId = "OrderId"
@@ -7329,69 +7329,69 @@ extension Cpdp {
             case remark = "Remark"
         }
     }
-    
+
     /// 订单退款响应对象
     public struct RefundOrderResult: TCOutputModel {
         /// 付款订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderNo: String?
-        
+
         /// 开发者流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let developerNo: String?
-        
+
         /// 交易优惠金额（免充值券）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeDiscountAmount: String?
-        
+
         /// 付款方式名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payName: String?
-        
+
         /// 商户流水号（从1开始自增长不重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderMerchantId: String?
-        
+
         /// 实际交易金额（以分为单位，没有小数点）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeAmount: String?
-        
+
         /// 币种签名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currencySign: String?
-        
+
         /// 付款完成时间（以收单机构为准）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradePayTime: String?
-        
+
         /// 门店流水号（从1开始自增长不重复）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopOrderId: String?
-        
+
         /// 支付标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payTag: String?
-        
+
         /// 订单状态（1交易成功，2待支付，4已取消，9等待用户输入密码确认
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 币种代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderCurrency: String?
-        
+
         /// 开始交易时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeTime: String?
-        
+
         /// 折扣金额（以分为单位，没有小数点）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountAmount: String?
-        
+
         /// 原始订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalOrderNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case orderNo = "OrderNo"
             case developerNo = "DeveloperNo"
@@ -7410,32 +7410,32 @@ extension Cpdp {
             case originalOrderNo = "OriginalOrderNo"
         }
     }
-    
+
     /// 退款子订单列表
     public struct RefundOutSubOrderRefundList: TCInputModel {
         /// 平台应退金额
         public let platformRefundAmt: Int64
-        
+
         /// 子订单退款金额
         public let refundAmt: Int64
-        
+
         /// 商家应退金额
         public let subMchRefundAmt: Int64
-        
+
         /// 子订单号
         public let subOutTradeNo: String
-        
+
         /// 子退款单号，调用方需要保证 全局唯一性
         public let subRefundId: String
-        
-        public init (platformRefundAmt: Int64, refundAmt: Int64, subMchRefundAmt: Int64, subOutTradeNo: String, subRefundId: String) {
+
+        public init(platformRefundAmt: Int64, refundAmt: Int64, subMchRefundAmt: Int64, subOutTradeNo: String, subRefundId: String) {
             self.platformRefundAmt = platformRefundAmt
             self.refundAmt = refundAmt
             self.subMchRefundAmt = subMchRefundAmt
             self.subOutTradeNo = subOutTradeNo
             self.subRefundId = subRefundId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case platformRefundAmt = "PlatformRefundAmt"
             case refundAmt = "RefundAmt"
@@ -7444,33 +7444,33 @@ extension Cpdp {
             case subRefundId = "SubRefundId"
         }
     }
-    
+
     /// 签约信息
     public struct RegisterInfo: TCOutputModel {
         /// 法人证件号码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let legalPersonIdCode: String?
-        
+
         /// 法人证件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let legalPersonIdType: String?
-        
+
         /// 法人名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let legalPersonName: String?
-        
+
         /// 公司证件号码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationCode: String?
-        
+
         /// 公司名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationName: String?
-        
+
         /// 公司证件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case legalPersonIdCode = "LegalPersonIdCode"
             case legalPersonIdType = "LegalPersonIdType"
@@ -7480,46 +7480,46 @@ extension Cpdp {
             case organizationType = "OrganizationType"
         }
     }
-    
+
     /// 签约数据
     public struct ResponseQueryContract: TCOutputModel {
         /// 第三方渠道错误码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnCode: String?
-        
+
         /// 第三方渠道错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnMessage: String?
-        
+
         /// 第三方渠道返回的原始数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnData: String?
-        
+
         /// 米大师内部商户号
         public let channelMerchantId: String
-        
+
         /// 米大师内部子商户号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelSubMerchantId: String?
-        
+
         /// 米大师内部应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelAppId: String?
-        
+
         /// 米大师内部子应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelSubAppId: String?
-        
+
         /// 渠道名称
         public let channelName: String
-        
+
         /// 返回的合约信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnContractInfo: ReturnContractInfo?
-        
+
         /// 签约通知地址
         public let notifyUrl: String
-        
+
         enum CodingKeys: String, CodingKey {
             case externalReturnCode = "ExternalReturnCode"
             case externalReturnMessage = "ExternalReturnMessage"
@@ -7533,104 +7533,104 @@ extension Cpdp {
             case notifyUrl = "NotifyUrl"
         }
     }
-    
+
     /// 解约数据
     public struct ResponseTerminateContract: TCOutputModel {
         /// 第三方渠道错误码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnCode: String?
-        
+
         /// 第三方渠道错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnMessage: String?
-        
+
         /// 第三方渠道返回的原始数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnData: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case externalReturnCode = "ExternalReturnCode"
             case externalReturnMessage = "ExternalReturnMessage"
             case externalReturnData = "ExternalReturnData"
         }
     }
-    
+
     /// 返回的合约信息
     public struct ReturnContractInfo: TCOutputModel {
         /// 合约信息
         public let contractInfo: ContractInfo
-        
+
         /// 米大师内部生成的合约信息
         public let channelReturnContractInfo: ChannelReturnContractInfo
-        
+
         /// 第三方渠道合约信息
         public let externalReturnContractInfo: ExternalReturnContractInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case contractInfo = "ContractInfo"
             case channelReturnContractInfo = "ChannelReturnContractInfo"
             case externalReturnContractInfo = "ExternalReturnContractInfo"
         }
     }
-    
+
     /// 场景信息
     public struct SceneInfo: TCOutputModel {
         /// 语言代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let localeCode: String?
-        
+
         /// 地区代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionCode: String?
-        
+
         /// 用户IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userClientIp: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case localeCode = "LocaleCode"
             case regionCode = "RegionCode"
             case userClientIp = "UserClientIp"
         }
     }
-    
+
     /// 商户结算信息
     public struct SettleInfo: TCInputModel {
-        /// 结算账户类型 
-        /// PRIVATE：对私 
+        /// 结算账户类型
+        /// PRIVATE：对私
         /// BUSINESS：对公
         /// HELIPAY渠道必传
         public let settleAccountType: String?
-        
+
         /// 结算账号
         /// HELIPAY渠道必传
         public let settleAccountNumber: String?
-        
+
         /// 结算账户名称
         /// HELIPAY渠道必传
         public let settleAccountName: String?
-        
+
         /// 支行号
         /// HELIPAY渠道必传
         public let bankBranchId: String?
-        
+
         /// 支行名称
         public let bankBranchName: String?
-        
-        /// 结算方式 
-        /// AUTO：自动结算 
+
+        /// 结算方式
+        /// AUTO：自动结算
         /// SELF：自主结算
         /// HELIPAY渠道必传
         public let settleMode: String?
-        
-        /// 结算周期 
-        /// T1：工作日隔天结算 
-        /// D1：自然日隔天结算 
+
+        /// 结算周期
+        /// T1：工作日隔天结算
+        /// D1：自然日隔天结算
         /// D0：当日结算
         /// HELIPAY渠道必传
         public let settlePeriod: String?
-        
-        public init (settleAccountType: String? = nil, settleAccountNumber: String? = nil, settleAccountName: String? = nil, bankBranchId: String? = nil, bankBranchName: String? = nil, settleMode: String? = nil, settlePeriod: String? = nil) {
+
+        public init(settleAccountType: String? = nil, settleAccountNumber: String? = nil, settleAccountName: String? = nil, bankBranchId: String? = nil, bankBranchName: String? = nil, settleMode: String? = nil, settlePeriod: String? = nil) {
             self.settleAccountType = settleAccountType
             self.settleAccountNumber = settleAccountNumber
             self.settleAccountName = settleAccountName
@@ -7639,7 +7639,7 @@ extension Cpdp {
             self.settleMode = settleMode
             self.settlePeriod = settlePeriod
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case settleAccountType = "SettleAccountType"
             case settleAccountNumber = "SettleAccountNumber"
@@ -7650,61 +7650,61 @@ extension Cpdp {
             case settlePeriod = "SettlePeriod"
         }
     }
-    
+
     /// 结算订单结果
     public struct SettlementOrderResult: TCOutputModel {
         /// 收入类型
         /// LABOR:劳务所得
         /// OCCASION:偶然所得
         public let incomeType: String
-        
+
         /// 税前金额
         public let amountBeforeTax: String
-        
+
         /// 税后金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amountAfterTax: String?
-        
+
         /// 税金
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tax: String?
-        
+
         /// 外部订单ID
         public let outOrderId: String
-        
+
         /// 订单ID
         public let orderId: String
-        
+
         /// 发起时间
         public let initiateTime: String
-        
+
         /// 完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finishTime: String?
-        
+
         /// 状态
         /// ACCEPTED:已受理
         /// ACCOUNTED:已记账
         /// SUCCEED:已成功
         /// FAILED:已失败
         public let status: String
-        
+
         /// 状态描述
         public let statusDesc: String
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 收款用户ID
         public let payeeId: String
-        
+
         /// 外部用户ID
         public let outUserId: String
-        
+
         /// 操作类型
         public let operationType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case incomeType = "IncomeType"
             case amountBeforeTax = "AmountBeforeTax"
@@ -7722,50 +7722,50 @@ extension Cpdp {
             case operationType = "OperationType"
         }
     }
-    
+
     /// 结算订单列表
     public struct SettlementOrders: TCOutputModel {
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [SettlementOrderResult]?
-        
+
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case count = "Count"
         }
     }
-    
+
     /// 支持的银行信息
     public struct SupportBankInfo: TCOutputModel {
         /// 银行简称。
         public let bankCode: String
-        
+
         /// 银行名称。
         public let bankName: String
-        
+
         /// 状态。
         /// __MAINTAINING__: 维护中
         /// __WORKING__: 正常工作
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maintainStatus: String?
-        
+
         /// 银行渠道维护公告。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankNotice: String?
-        
+
         /// 支持银行代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankId: String?
-        
+
         /// 卡类型。
         /// D：借记卡，C：信用卡，Z：借贷合一卡。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cardType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case bankCode = "BankCode"
             case bankName = "BankName"
@@ -7775,57 +7775,57 @@ extension Cpdp {
             case cardType = "CardType"
         }
     }
-    
+
     /// 交易信息
     public struct TranItem: TCOutputModel {
         /// STRING(50)，资金汇总账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fundSummaryAcctNo: String?
-        
+
         /// STRING(50)，见证子账户的账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctNo: String?
-        
+
         /// STRING(32)，交易网会员代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranNetMemberCode: String?
-        
+
         /// STRING(150)，会员名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memberName: String?
-        
+
         /// STRING(5)，会员证件类型（详情见“常见问题”）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memberGlobalType: String?
-        
+
         /// STRING(32)，会员证件号码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memberGlobalId: String?
-        
+
         /// STRING(50)，会员绑定账户的账号（提现的银行卡）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memberAcctNo: String?
-        
+
         /// STRING(10)，会员绑定账户的本他行类型（1: 本行; 2: 他行）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankType: String?
-        
+
         /// STRING(150)，会员绑定账户的开户行名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let acctOpenBranchName: String?
-        
+
         /// STRING(20)，会员绑定账户的开户行的联行号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cnapsBranchId: String?
-        
+
         /// STRING(20)，会员绑定账户的开户行的超级网银行号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eiconBankBranchId: String?
-        
+
         /// STRING(30)，会员的手机号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mobile: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case fundSummaryAcctNo = "FundSummaryAcctNo"
             case subAcctNo = "SubAcctNo"
@@ -7841,49 +7841,49 @@ extension Cpdp {
             case mobile = "Mobile"
         }
     }
-    
+
     /// 交易明细信息
     public struct TransactionItem: TCOutputModel {
         /// STRING(2)，记账标志（1: 转出; 2: 转入）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bookingFlag: String?
-        
+
         /// STRING(32)，交易状态（0: 成功）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranStatus: String?
-        
+
         /// STRING(20)，交易金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranAmt: String?
-        
+
         /// STRING(8)，交易日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranDate: String?
-        
+
         /// STRING(20)，交易时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranTime: String?
-        
+
         /// STRING(52)，见证系统流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frontSeqNo: String?
-        
+
         /// STRING(20)，记账类型（详情见“常见问题”）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bookingType: String?
-        
+
         /// STRING(50)，转入见证子账户的帐号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inSubAcctNo: String?
-        
+
         /// STRING(50)，转出见证子账户的帐号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outSubAcctNo: String?
-        
+
         /// STRING(300)，备注（返回交易订单号）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case bookingFlag = "BookingFlag"
             case tranStatus = "TranStatus"
@@ -7897,41 +7897,41 @@ extension Cpdp {
             case remark = "Remark"
         }
     }
-    
+
     /// 批量转账明细实体
     public struct TransferDetailRequest: TCInputModel {
         /// 商家明细单号。
         /// 商户系统内部区分转账批次单下不同转账明细单的唯一标识，要求此参数只能由数字、大小写字母组成。
         /// 示例值：x23zy545Bd5436
         public let merchantDetailNo: String
-        
+
         /// 转账金额。
         /// 转账金额单位为分。
         /// 示例值：200000
         public let transferAmount: UInt64
-        
+
         /// 转账备注。
         /// 单条转账备注（微信用户会收到该备注）。UTF8编码，最多32字符。
         /// 示例值：2020年4月报销
         public let transferRemark: String
-        
+
         /// 用户在直连商户下的唯一标识。
         /// 示例值：o-MYE42l80oelYMDE34nYD456Xoy
         public let openId: String
-        
+
         /// 收款用户姓名。
         /// 收款方姓名。
         /// 示例值：张三
         public let userName: String
-        
-        public init (merchantDetailNo: String, transferAmount: UInt64, transferRemark: String, openId: String, userName: String) {
+
+        public init(merchantDetailNo: String, transferAmount: UInt64, transferRemark: String, openId: String, userName: String) {
             self.merchantDetailNo = merchantDetailNo
             self.transferAmount = transferAmount
             self.transferRemark = transferRemark
             self.openId = openId
             self.userName = userName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantDetailNo = "MerchantDetailNo"
             case transferAmount = "TransferAmount"
@@ -7940,79 +7940,79 @@ extension Cpdp {
             case userName = "UserName"
         }
     }
-    
+
     /// 批量转账查询返回批次明细实体
     public struct TransferDetailResponse: TCOutputModel {
         /// 商家明细单号。
         /// 商户系统内部的商家明细单号
         /// 示例值：plfk2020042013
         public let merchantDetailNo: String
-        
+
         /// 微信明细单号。
         /// 微信区分明细单返回的唯一标识。
         /// 示例值：1030000071100999991182020050700019480001
         public let detailId: String
-        
+
         /// 明细状态。
         /// PROCESSING：转账中，正在处理，结果未明；
         /// SUCCESS：转账成功；
         /// FAIL：转账失败，需要确认失败原因以后，再决定是否重新发起地该笔明细的转账。
         /// 示例值：SUCCESS
         public let detailStatus: String
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantDetailNo = "MerchantDetailNo"
             case detailId = "DetailId"
             case detailStatus = "DetailStatus"
         }
     }
-    
+
     /// 转账充值明细信息
     public struct TransferItem: TCOutputModel {
         /// STRING(10)，入账类型（02: 会员充值; 03: 资金挂账）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inAcctType: String?
-        
+
         /// STRING(32)，交易网会员代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranNetMemberCode: String?
-        
+
         /// STRING(50)，见证子帐户的帐号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctNo: String?
-        
+
         /// STRING(20)，入金金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranAmt: String?
-        
+
         /// STRING(50)，入金账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inAcctNo: String?
-        
+
         /// STRING(150)，入金账户名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inAcctName: String?
-        
+
         /// STRING(3)，币种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ccy: String?
-        
+
         /// STRING(8)，会计日期（即银行主机记账日期）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountingDate: String?
-        
+
         /// STRING(150)，银行名称（付款账户银行名称）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankName: String?
-        
+
         /// STRING(300)，转账备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// STRING(52)，见证系统流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frontSeqNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case inAcctType = "InAcctType"
             case tranNetMemberCode = "TranNetMemberCode"
@@ -8027,70 +8027,70 @@ extension Cpdp {
             case frontSeqNo = "FrontSeqNo"
         }
     }
-    
+
     /// 智能代发-单笔代发转账接口返回数据
     public struct TransferSinglePayData: TCOutputModel {
         /// 平台交易流水号，唯一
         public let tradeSerialNo: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tradeSerialNo = "TradeSerialNo"
         }
     }
-    
+
     /// 第三方子商户银行卡解绑返回结果
     public struct UnbindOpenBankExternalSubMerchantBankAccountResult: TCOutputModel {
         /// 渠道申请编号。
         public let channelApplyId: String
-        
+
         /// 解绑状态。
         /// __SUCCESS__: 解绑成功
         /// __FAILED__: 解绑失败
         /// __PROCESSING__: 解绑中
         /// 注意：若返回解绑中，需要再次调用解绑结果查询接口查询结果。
         public let unbindStatus: String
-        
+
         /// 解绑返回描述, 例如失败原因等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unbindMessage: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case channelApplyId = "ChannelApplyId"
             case unbindStatus = "UnbindStatus"
             case unbindMessage = "UnbindMessage"
         }
     }
-    
+
     /// 子订单列表
     public struct UnifiedOrderInSubOrderList: TCInputModel {
         /// 子订单结算应收金额，单位： 分
         public let subMchIncome: Int64
-        
+
         /// 子订单平台应收金额，单位：分
         public let platformIncome: Int64
-        
+
         /// 子订单商品详情
         public let productDetail: String
-        
+
         /// 子订单商品名称
         public let productName: String
-        
+
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String
-        
+
         /// 子订单号
         public let subOutTradeNo: String
-        
+
         /// 子订单支付金额
         public let amt: Int64
-        
+
         /// 发货标识，由业务在调用聚鑫下单接口的 时候下发
         public let metadata: String
-        
+
         /// 子订单原始金额
         public let originalAmt: Int64
-        
-        public init (subMchIncome: Int64, platformIncome: Int64, productDetail: String, productName: String, subAppId: String, subOutTradeNo: String, amt: Int64, metadata: String, originalAmt: Int64) {
+
+        public init(subMchIncome: Int64, platformIncome: Int64, productDetail: String, productName: String, subAppId: String, subOutTradeNo: String, amt: Int64, metadata: String, originalAmt: Int64) {
             self.subMchIncome = subMchIncome
             self.platformIncome = platformIncome
             self.productDetail = productDetail
@@ -8101,7 +8101,7 @@ extension Cpdp {
             self.metadata = metadata
             self.originalAmt = originalAmt
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subMchIncome = "SubMchIncome"
             case platformIncome = "PlatformIncome"
@@ -8114,23 +8114,23 @@ extension Cpdp {
             case originalAmt = "OriginalAmt"
         }
     }
-    
+
     /// 上传文件响应对象
     public struct UploadFileResult: TCOutputModel {
         /// 存储区域（0私密区，1公共区），请严格按文件要求，上传到不同的区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storage: String?
-        
+
         /// 文件路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filePath: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case storage = "Storage"
             case filePath = "FilePath"
         }
     }
-    
+
     /// 上传子商户资质文件返回值
     public struct UploadOpenBankSubMerchantCredentialResult: TCOutputModel {
         /// 上传状态
@@ -8138,21 +8138,21 @@ extension Cpdp {
         /// FAILED：上传失败
         /// PROCESSING:上传中
         public let uploadStatus: String
-        
+
         /// 上传描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uploadMessage: String?
-        
+
         /// 渠道上传流水号
         public let channelApplyId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case uploadStatus = "UploadStatus"
             case uploadMessage = "UploadMessage"
             case channelApplyId = "ChannelApplyId"
         }
     }
-    
+
     /// 打款验证响应结果结构体
     public struct VerifyOpenBankAccountResult: TCOutputModel {
         /// 打款验证状态。
@@ -8162,250 +8162,250 @@ extension Cpdp {
         /// FAILED("打款失败"),
         /// VERIFY_FAILED("验证失败")
         public let verifyState: String
-        
+
         /// 重定向参数，用于客户端跳转，收款商户未完成打款验证时返回该参数
         public let redirectInfo: OpenBankRedirectInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case verifyState = "VerifyState"
             case redirectInfo = "RedirectInfo"
         }
     }
-    
+
     /// 合同明细响应对象
     public struct ViewContractResult: TCOutputModel {
         /// 支付标签（唯一性）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentTag: String?
-        
+
         /// 城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let city: String?
-        
+
         /// 机构编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentNo: String?
-        
+
         /// 合同选项值4
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionFour: String?
-        
+
         /// 合同选项值2
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionTwo: String?
-        
+
         /// 合同状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 支付方式编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentId: String?
-        
+
         /// 商户签约扣率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fee: String?
-        
+
         /// 合同选项名称5
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionFive: String?
-        
+
         /// 机构合同主键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outContractId: String?
-        
+
         /// 不同的支付方式对于进件有不同的个性化需求，支付方式字段都是以双下划写开头的字段名称，请以支付方式规定的格式传值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelExtJson: String?
-        
+
         /// 合同选项值5
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionFive: String?
-        
+
         /// 省份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let province: String?
-        
+
         /// 生效日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startDate: String?
-        
+
         /// 详细地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: String?
-        
+
         /// 过期日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endDate: String?
-        
+
         /// 合同选项值6
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionSix: String?
-        
+
         /// 合同选项名称7
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionSeven: String?
-        
+
         /// 合同照片补充【私密区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pictureTwo: String?
-        
+
         /// 商户编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         /// 机构名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentName: String?
-        
+
         /// 合同选项值8
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionOther: String?
-        
+
         /// 合同选项值3
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionThree: String?
-        
+
         /// 县/区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let country: String?
-        
+
         /// 合同关联的门店数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopCount: String?
-        
+
         /// 合同选项名称3
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionThree: String?
-        
+
         /// 支付方式行业名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentClassificationName: String?
-        
+
         /// 合同选项值7
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionSeven: String?
-        
+
         /// 合同选项名称4
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionFour: String?
-        
+
         /// 商户签约扣率封顶值（分为单位）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentClassificationLimit: String?
-        
+
         /// 审核备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 合同选项名称6
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionSix: String?
-        
+
         /// 品牌名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantName: String?
-        
+
         /// 合同选项值1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionOne: String?
-        
+
         /// 合同选项名称8
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionOther: String?
-        
+
         /// 合同选项名称2
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionTwo: String?
-        
+
         /// 合同选项名称1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionOne: String?
-        
+
         /// 更新时间（yyyy-mm-dd hh:ii:ss）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 联系人电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contactTelephone: String?
-        
+
         /// 联系人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contact: String?
-        
+
         /// 签约日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signDate: String?
-        
+
         /// 合同选项名称9
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionNine: String?
-        
+
         /// 付款方式名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentName: String?
-        
+
         /// 付款方式名称（内部名称）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentInternalName: String?
-        
+
         /// 合同选项值10
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionTen: String?
-        
+
         /// 合同编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: String?
-        
+
         /// 合同照片【私密区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pictureOne: String?
-        
+
         /// 签约人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signMan: String?
-        
+
         /// 渠道号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelNo: String?
-        
+
         /// 添加时间（yyyy-mm-dd hh:ii:ss）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addTime: String?
-        
+
         /// 是否自动续签（1是，0否）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoSign: String?
-        
+
         /// 合同选项值9
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractOptionNine: String?
-        
+
         /// 城市编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cityId: String?
-        
+
         /// 交易类型（多个以小写逗号分开，0现金，1刷卡，2主扫，3被扫，4JSPAY，5预授权）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentType: String?
-        
+
         /// 支付方式行业编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentClassificationId: String?
-        
+
         /// 品牌名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let brandName: String?
-        
+
         /// 合同选项名称10
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentOptionTen: String?
-        
+
         /// 合同主键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case paymentTag = "PaymentTag"
             case city = "City"
@@ -8467,289 +8467,289 @@ extension Cpdp {
             case contractId = "ContractId"
         }
     }
-    
+
     /// 商户明细响应对象
     public struct ViewMerchantResult: TCOutputModel {
         /// 城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let city: String?
-        
+
         /// 税务登记证图片【私密区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taxCollectionPicture: String?
-        
+
         /// 法人证件号码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossIdNo: String?
-        
+
         /// 法人亲属证件号码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountIdNo: String?
-        
+
         /// 其他资料3
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let otherPictureThree: String?
-        
+
         /// 法人亲属证件类型（1居民身份证,2临时居民身份证,3居民户口簿,4护照,5港澳居民来往内地通行证,6回乡证,7军人证,8武警身份证,9其他法定文件）结算账户人身份为法人亲属时必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountIdType: String?
-        
+
         /// 商户状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 营业执照图片【私密区】（系统返回的图片路径）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessLicensePicture: String?
-        
+
         /// 品牌名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let brandName: String?
-        
+
         /// 法人身份证正面【私密区】（系统返回的图片路径）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossPositive: String?
-        
+
         /// 开通应用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appCount: String?
-        
+
         /// 法人身份证背面【私密区】（系统返回的图片路径）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossBack: String?
-        
+
         /// 组织机构代码证图片【私密区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationCodePicture: String?
-        
+
         /// 营业执照过期时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessLicenseEndDate: String?
-        
+
         /// 组织机构代码证号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationCodeNo: String?
-        
+
         /// 机构编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentNo: String?
-        
+
         /// 省份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let province: String?
-        
+
         /// 法人证件生效时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossStartDate: String?
-        
+
         /// 更新时间（yyyy-mm-dd hh:ii:ss）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 清算联行号，开户行行号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankNo: String?
-        
+
         /// 税务登记证生效时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taxCollectionStartDate: String?
-        
+
         /// 营业执照生效时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessLicenseStartDate: String?
-        
+
         /// 客户经理用户编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountManagerId: String?
-        
+
         /// 分类编号(多个以小写逗号分开)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classificationIds: String?
-        
+
         /// 营业执照类型（1三证合一，2非三证合一）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessLicenseType: String?
-        
+
         /// 法人证件过期时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossEndDate: String?
-        
+
         /// 营业执照编号（系统有唯一性校验）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessLicenseNo: String?
-        
+
         /// 机构名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentName: String?
-        
+
         /// 商户简介
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intro: String?
-        
+
         /// 法人证件类型（1居民身份证,2临时居民身份证,3居民户口簿,4护照,5港澳居民来往内地通行证,6回乡证,7军人证,8武警身份证,9其他法定文件）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossIdType: String?
-        
+
         /// 添加时间（yyyy-mm-dd hh:ii:ss）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addTime: String?
-        
+
         /// 门店数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopCount: String?
-        
+
         /// 结算账户人身份（1法人，2法人亲属），结算帐户为对私时必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountBoss: String?
-        
+
         /// 分类名称(多个以小写逗号分开)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classificationNames: String?
-        
+
         /// 法人电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossTelephone: String?
-        
+
         /// 客户经理姓名，必须为系统后台的管理员真实姓名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountManagerName: String?
-        
+
         /// 终端数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terminalCount: String?
-        
+
         /// 审核备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 财务联系人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let financialContact: String?
-        
+
         /// 商户名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantName: String?
-        
+
         /// 法人性别（1男，2女）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossSex: String?
-        
+
         /// 商户编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         /// 法人住址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossAddress: String?
-        
+
         /// 县/区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let country: String?
-        
+
         /// 详细地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: String?
-        
+
         /// 法人职业
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossJob: String?
-        
+
         /// 许可证图片【私密区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let licencePicture: String?
-        
+
         /// 组织机构代码证过期时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationCodeEndDate: String?
-        
+
         /// 营业时间，多个以小写逗号分开(9:00-12:00,13:00-18:00)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openHours: String?
-        
+
         /// 其他资料2
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let otherPictureTwo: String?
-        
+
         /// 其他资料1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let otherPictureOne: String?
-        
+
         /// 银行户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountName: String?
-        
+
         /// 合同数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractCount: String?
-        
+
         /// 授权文件【私密区】（当结算帐户身份为法人亲属时必传）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let licencePictureTwo: String?
-        
+
         /// 银行账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountNo: String?
-        
+
         /// 法人邮箱
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossEmail: String?
-        
+
         /// 结算账户类型（2对私，1对公）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountType: String?
-        
+
         /// 税务登记证过期时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taxCollectionEndDate: String?
-        
+
         /// 开户行名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bankName: String?
-        
+
         /// 联系电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let telephone: String?
-        
+
         /// 外部商户主键编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outMerchantId: String?
-        
+
         /// 城市编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cityId: String?
-        
+
         /// 法人证件国别/地区（中国CHN，香港HKG，澳门MAC，台湾CTN）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossIdCount: String?
-        
+
         /// 商户标记，自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: String?
-        
+
         /// 财务联系人电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let financialTelephone: String?
-        
+
         /// 法人姓名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bossName: String?
-        
+
         /// 组织机构代码证生效时间（yyyy-mm-dd）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationCodeStartDate: String?
-        
+
         /// 商户logo【公共区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logo: String?
-        
+
         /// 其他资料4
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let otherPictureFour: String?
-        
+
         /// 税务登记证号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taxCollectionNo: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case city = "City"
             case taxCollectionPicture = "TaxCollectionPicture"
@@ -8823,133 +8823,133 @@ extension Cpdp {
             case taxCollectionNo = "TaxCollectionNo"
         }
     }
-    
+
     /// 门店明细响应对象
     public struct ViewShopResult: TCOutputModel {
         /// 城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let city: String?
-        
+
         /// 门店简称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopName: String?
-        
+
         /// 百度地图纬度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latitude: String?
-        
+
         /// 品牌名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let brandName: String?
-        
+
         /// 开通应用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appCount: String?
-        
+
         /// 负责人手机号码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contactTelephone: String?
-        
+
         /// 商户名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantName: String?
-        
+
         /// 省份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let province: String?
-        
+
         /// 县/区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let county: String?
-        
+
         /// 更新时间（yyyy-mm-dd hh:ii:ss）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 终端数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terminalCount: String?
-        
+
         /// 收银台图片【公共区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pictureTwo: String?
-        
+
         /// 高德地图纬度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latitudeTwo: String?
-        
+
         /// 机构名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentName: String?
-        
+
         /// 其他照片【公共区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pictureFour: String?
-        
+
         /// 高德地图经度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let longitudeTwo: String?
-        
+
         /// 门店状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 审核备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 机构编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentNo: String?
-        
+
         /// 商户编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantNo: String?
-        
+
         /// 添加时间（yyyy-mm-dd hh:ii:ss）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addTime: String?
-        
+
         /// 详细地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: String?
-        
+
         /// 百度地图经度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let longitude: String?
-        
+
         /// 门店编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopNo: String?
-        
+
         /// 门店全称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shopFullName: String?
-        
+
         /// 门店负责人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contact: String?
-        
+
         /// 店内环境图片【公共区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pictureThree: String?
-        
+
         /// 整体门面（含招牌）图片【公共区】
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pictureOne: String?
-        
+
         /// 门店电话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let telephone: String?
-        
+
         /// 机构门店主键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outShopId: String?
-        
+
         /// 城市编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cityId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case city = "City"
             case shopName = "ShopName"
@@ -8984,12 +8984,12 @@ extension Cpdp {
             case cityId = "CityId"
         }
     }
-    
+
     /// 聚鑫提现订单内容
     public struct WithdrawBill: TCInputModel {
         /// 业务提现订单号
         public let withdrawOrderId: String
-        
+
         /// 提现日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -8997,26 +8997,26 @@ extension Cpdp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 提现金额，单位： 分
         public let payAmt: String
-        
+
         /// 聚鑫分配转入账户appid
         public let inSubAppId: String
-        
+
         /// 聚鑫分配转出账户appid
         public let outSubAppId: String
-        
+
         /// ISO货币代码
         public let currencyType: String
-        
+
         /// 透传字段
         public let metaData: String?
-        
+
         /// 扩展字段
         public let extendFieldData: String?
-        
-        public init (withdrawOrderId: String, date: Date, payAmt: String, inSubAppId: String, outSubAppId: String, currencyType: String, metaData: String? = nil, extendFieldData: String? = nil) {
+
+        public init(withdrawOrderId: String, date: Date, payAmt: String, inSubAppId: String, outSubAppId: String, currencyType: String, metaData: String? = nil, extendFieldData: String? = nil) {
             self.withdrawOrderId = withdrawOrderId
             self.date = date
             self.payAmt = payAmt
@@ -9026,7 +9026,7 @@ extension Cpdp {
             self.metaData = metaData
             self.extendFieldData = extendFieldData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case withdrawOrderId = "WithdrawOrderId"
             case date = "Date"
@@ -9038,57 +9038,57 @@ extension Cpdp {
             case extendFieldData = "ExtendFieldData"
         }
     }
-    
+
     /// 清分提现明细信息
     public struct WithdrawItem: TCOutputModel {
         /// STRING(2)，记账标志（01: 提现; 02: 清分 ）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bookingFlag: String?
-        
+
         /// STRING(32)，交易状态（0: 成功）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranStatus: String?
-        
+
         /// STRING(200)，记账说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bookingMsg: String?
-        
+
         /// STRING(32)，交易网会员代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranNetMemberCode: String?
-        
+
         /// STRING(50)，见证子帐户的帐号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctNo: String?
-        
+
         /// STRING(150)，见证子账户的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctName: String?
-        
+
         /// STRING(20)，交易金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranAmt: String?
-        
+
         /// STRING(20)，手续费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let commission: String?
-        
+
         /// STRING(8)，交易日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranDate: String?
-        
+
         /// STRING(20)，交易时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranTime: String?
-        
+
         /// STRING(52)，见证系统流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frontSeqNo: String?
-        
+
         /// STRING(300)，备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case bookingFlag = "BookingFlag"
             case tranStatus = "TranStatus"

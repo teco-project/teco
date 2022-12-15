@@ -19,38 +19,38 @@ extension Monitor {
     public struct DescribeGrafanaConfigRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeGrafanaConfig返回参数结构体
     public struct DescribeGrafanaConfigResponse: TCResponseModel {
         /// JSON 编码后的字符串
         public let config: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case config = "Config"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 列出 Grafana 的设置
     ///
     /// 列出 Grafana 的设置，即 grafana.ini 文件内容
     @inlinable
-    public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaConfigResponse > {
+    public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaConfigResponse> {
         self.client.execute(action: "DescribeGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Grafana 的设置
     ///
     /// 列出 Grafana 的设置，即 grafana.ini 文件内容
@@ -58,15 +58,15 @@ extension Monitor {
     public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaConfigResponse {
         try await self.client.execute(action: "DescribeGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 列出 Grafana 的设置
     ///
     /// 列出 Grafana 的设置，即 grafana.ini 文件内容
     @inlinable
-    public func describeGrafanaConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaConfigResponse > {
+    public func describeGrafanaConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaConfigResponse> {
         self.describeGrafanaConfig(DescribeGrafanaConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 列出 Grafana 的设置
     ///
     /// 列出 Grafana 的设置，即 grafana.ini 文件内容

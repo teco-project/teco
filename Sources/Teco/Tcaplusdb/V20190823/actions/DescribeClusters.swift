@@ -19,27 +19,27 @@ extension Tcaplusdb {
     public struct DescribeClustersRequest: TCRequestModel {
         /// 指定查询的集群ID列表
         public let clusterIds: [String]?
-        
+
         /// 查询过滤条件
         public let filters: [Filter]?
-        
+
         /// 查询列表偏移量
         public let offset: Int64?
-        
+
         /// 查询列表返回记录数，默认值20
         public let limit: Int64?
-        
+
         /// 是否启用Ipv6
         public let ipv6Enable: Int64?
-        
-        public init (clusterIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ipv6Enable: Int64? = nil) {
+
+        public init(clusterIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ipv6Enable: Int64? = nil) {
             self.clusterIds = clusterIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
             self.ipv6Enable = ipv6Enable
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterIds = "ClusterIds"
             case filters = "Filters"
@@ -48,33 +48,33 @@ extension Tcaplusdb {
             case ipv6Enable = "Ipv6Enable"
         }
     }
-    
+
     /// DescribeClusters返回参数结构体
     public struct DescribeClustersResponse: TCResponseModel {
         /// 集群实例数
         public let totalCount: Int64
-        
+
         /// 集群实例列表
         public let clusters: [ClusterInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case clusters = "Clusters"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询集群信息列表
     ///
     /// 查询TcaplusDB集群列表，包含集群详细信息。
     @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
         self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群信息列表
     ///
     /// 查询TcaplusDB集群列表，包含集群详细信息。
@@ -82,15 +82,15 @@ extension Tcaplusdb {
     public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
         try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询集群信息列表
     ///
     /// 查询TcaplusDB集群列表，包含集群详细信息。
     @inlinable
-    public func describeClusters(clusterIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ipv6Enable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+    public func describeClusters(clusterIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ipv6Enable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
         self.describeClusters(DescribeClustersRequest(clusterIds: clusterIds, filters: filters, offset: offset, limit: limit, ipv6Enable: ipv6Enable), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询集群信息列表
     ///
     /// 查询TcaplusDB集群列表，包含集群详细信息。

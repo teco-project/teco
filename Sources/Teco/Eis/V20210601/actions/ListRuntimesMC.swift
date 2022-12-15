@@ -19,38 +19,38 @@ extension Eis {
     public struct ListRuntimesMCRequest: TCRequestModel {
         /// 环境运行类型：0:运行时类型、1:api类型
         public let runtimeClass: Int64?
-        
-        public init (runtimeClass: Int64? = nil) {
+
+        public init(runtimeClass: Int64? = nil) {
             self.runtimeClass = runtimeClass
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case runtimeClass = "RuntimeClass"
         }
     }
-    
+
     /// ListRuntimesMC返回参数结构体
     public struct ListRuntimesMCResponse: TCResponseModel {
         /// 运行时列表
         public let runtimes: [RuntimeMC]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case runtimes = "Runtimes"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(_ input: ListRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRuntimesMCResponse > {
+    public func listRuntimesMC(_ input: ListRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
         self.client.execute(action: "ListRuntimesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
@@ -58,15 +58,15 @@ extension Eis {
     public func listRuntimesMC(_ input: ListRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
         try await self.client.execute(action: "ListRuntimesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRuntimesMCResponse > {
+    public func listRuntimesMC(runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
         self.listRuntimesMC(ListRuntimesMCRequest(runtimeClass: runtimeClass), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时

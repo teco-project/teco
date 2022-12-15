@@ -19,40 +19,40 @@ extension Vod {
     public struct DeleteClassRequest: TCRequestModel {
         /// 分类 ID
         public let classId: Int64
-        
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
-        
-        public init (classId: Int64, subAppId: UInt64? = nil) {
+
+        public init(classId: Int64, subAppId: UInt64? = nil) {
             self.classId = classId
             self.subAppId = subAppId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case classId = "ClassId"
             case subAppId = "SubAppId"
         }
     }
-    
+
     /// DeleteClass返回参数结构体
     public struct DeleteClassResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除分类
     ///
     /// * 仅当待删分类无子分类且无媒体关联情况下，可删除分类；
     /// * 否则，请先执行[删除媒体](/document/product/266/31764)及子分类，再删除该分类；
     @inlinable
-    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClassResponse > {
+    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
         self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除分类
     ///
     /// * 仅当待删分类无子分类且无媒体关联情况下，可删除分类；
@@ -61,16 +61,16 @@ extension Vod {
     public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
         try await self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除分类
     ///
     /// * 仅当待删分类无子分类且无媒体关联情况下，可删除分类；
     /// * 否则，请先执行[删除媒体](/document/product/266/31764)及子分类，再删除该分类；
     @inlinable
-    public func deleteClass(classId: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClassResponse > {
+    public func deleteClass(classId: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
         self.deleteClass(DeleteClassRequest(classId: classId, subAppId: subAppId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除分类
     ///
     /// * 仅当待删分类无子分类且无媒体关联情况下，可删除分类；

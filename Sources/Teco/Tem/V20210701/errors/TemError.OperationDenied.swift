@@ -20,44 +20,44 @@ extension TCTemError {
             case balanceNotEnough = "OperationDenied.BalanceNotEnough"
             case resourceIsolated = "OperationDenied.ResourceIsolated"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var balanceNotEnough: OperationDenied {
             OperationDenied(.balanceNotEnough)
         }
-        
+
         /// 账户欠费，请充值。
         public static var resourceIsolated: OperationDenied {
             OperationDenied(.resourceIsolated)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {
-            case .balanceNotEnough: 
+            case .balanceNotEnough:
                 code = .operationDenied_BalanceNotEnough
-            case .resourceIsolated: 
+            case .resourceIsolated:
                 code = .operationDenied_ResourceIsolated
             }
             return TCTemError(code, context: self.context)

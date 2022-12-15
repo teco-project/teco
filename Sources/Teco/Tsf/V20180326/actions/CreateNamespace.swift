@@ -19,32 +19,32 @@ extension Tsf {
     public struct CreateNamespaceRequest: TCRequestModel {
         /// 命名空间名称
         public let namespaceName: String
-        
+
         /// 集群ID
         public let clusterId: String?
-        
+
         /// 命名空间描述
         public let namespaceDesc: String?
-        
+
         /// 命名空间资源类型(默认值为DEF)
         public let namespaceResourceType: String?
-        
+
         /// 是否是全局命名空间(默认是DEF，表示普通命名空间；GLOBAL表示全局命名空间)
         public let namespaceType: String?
-        
+
         /// 命名空间ID
         public let namespaceId: String?
-        
+
         /// 是否开启高可用
         public let isHaEnable: String?
-        
+
         /// 需要绑定的数据集ID
         public let programId: String?
-        
+
         /// 无
         public let programIdList: [String]?
-        
-        public init (namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil) {
+
+        public init(namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil) {
             self.namespaceName = namespaceName
             self.clusterId = clusterId
             self.namespaceDesc = namespaceDesc
@@ -55,7 +55,7 @@ extension Tsf {
             self.programId = programId
             self.programIdList = programIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespaceName = "NamespaceName"
             case clusterId = "ClusterId"
@@ -68,40 +68,40 @@ extension Tsf {
             case programIdList = "ProgramIdList"
         }
     }
-    
+
     /// CreateNamespace返回参数结构体
     public struct CreateNamespaceResponse: TCResponseModel {
         /// 成功时为命名空间ID，失败为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建命名空间
     @inlinable
-    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
         self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建命名空间
     @inlinable
     public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
         try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建命名空间
     @inlinable
-    public func createNamespace(namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+    public func createNamespace(namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
         self.createNamespace(CreateNamespaceRequest(namespaceName: namespaceName, clusterId: clusterId, namespaceDesc: namespaceDesc, namespaceResourceType: namespaceResourceType, namespaceType: namespaceType, namespaceId: namespaceId, isHaEnable: isHaEnable, programId: programId, programIdList: programIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建命名空间
     @inlinable
     public func createNamespace(namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {

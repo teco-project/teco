@@ -19,31 +19,31 @@ extension Live {
     public struct AddLiveDomainRequest: TCRequestModel {
         /// 域名名称。
         public let domainName: String
-        
+
         /// 域名类型，
         /// 0：推流域名，
         /// 1：播放域名。
         public let domainType: UInt64
-        
+
         /// 拉流域名类型：
         /// 1：国内，
         /// 2：全球，
         /// 3：境外。
         /// 默认值：1。
         public let playType: UInt64?
-        
+
         /// 是否是慢直播：
         /// 0： 普通直播，
         /// 1 ：慢直播 。
         /// 默认值： 0。
         public let isDelayLive: Int64?
-        
+
         /// 是否是小程序直播：
         /// 0： 标准直播，
         /// 1 ：小程序直播 。
         /// 默认值： 0。
         public let isMiniProgramLive: Int64?
-        
+
         /// 域名归属校验类型。
         /// 可取值（与 AuthenticateDomainOwner 接口的 VerifyType 参数一致。）：
         /// dnsCheck ：立即验证配置 dns 的解析记录是否与待验证内容一致，成功则保存记录。
@@ -51,8 +51,8 @@ extension Live {
         /// dbCheck :  检查是否已经验证成功过。
         /// 若不传默认为 dbCheck 。
         public let verifyOwnerType: String?
-        
-        public init (domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil) {
+
+        public init(domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil) {
             self.domainName = domainName
             self.domainType = domainType
             self.playType = playType
@@ -60,7 +60,7 @@ extension Live {
             self.isMiniProgramLive = isMiniProgramLive
             self.verifyOwnerType = verifyOwnerType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
             case domainType = "DomainType"
@@ -70,25 +70,25 @@ extension Live {
             case verifyOwnerType = "VerifyOwnerType"
         }
     }
-    
+
     /// AddLiveDomain返回参数结构体
     public struct AddLiveDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 添加域名
     ///
     /// 添加域名，一次只能提交一个域名。域名必须已备案。
     @inlinable
-    public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLiveDomainResponse > {
+    public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveDomainResponse> {
         self.client.execute(action: "AddLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 添加域名
     ///
     /// 添加域名，一次只能提交一个域名。域名必须已备案。
@@ -96,15 +96,15 @@ extension Live {
     public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveDomainResponse {
         try await self.client.execute(action: "AddLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 添加域名
     ///
     /// 添加域名，一次只能提交一个域名。域名必须已备案。
     @inlinable
-    public func addLiveDomain(domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLiveDomainResponse > {
+    public func addLiveDomain(domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveDomainResponse> {
         self.addLiveDomain(AddLiveDomainRequest(domainName: domainName, domainType: domainType, playType: playType, isDelayLive: isDelayLive, isMiniProgramLive: isMiniProgramLive, verifyOwnerType: verifyOwnerType), logger: logger, on: eventLoop)
     }
-    
+
     /// 添加域名
     ///
     /// 添加域名，一次只能提交一个域名。域名必须已备案。

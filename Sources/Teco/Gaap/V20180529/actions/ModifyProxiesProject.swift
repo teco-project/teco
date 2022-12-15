@@ -19,24 +19,24 @@ extension Gaap {
     public struct ModifyProxiesProjectRequest: TCRequestModel {
         /// 需要修改到的项目ID。
         public let projectId: Int64
-        
+
         /// （旧参数，请切换到ProxyIds）一个或多个待操作的通道ID。
         public let instanceIds: [String]?
-        
+
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         /// 更多详细信息请参阅：如何保证幂等性。
         public let clientToken: String?
-        
+
         /// （新参数）一个或多个待操作的通道ID。
         public let proxyIds: [String]?
-        
-        public init (projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil) {
+
+        public init(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil) {
             self.projectId = projectId
             self.instanceIds = instanceIds
             self.clientToken = clientToken
             self.proxyIds = proxyIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case instanceIds = "InstanceIds"
@@ -44,25 +44,25 @@ extension Gaap {
             case proxyIds = "ProxyIds"
         }
     }
-    
+
     /// ModifyProxiesProject返回参数结构体
     public struct ModifyProxiesProjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
     @inlinable
-    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxiesProjectResponse > {
+    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
         self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
@@ -70,15 +70,15 @@ extension Gaap {
     public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
         try await self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
     @inlinable
-    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxiesProjectResponse > {
+    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
         self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。

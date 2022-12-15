@@ -19,40 +19,40 @@ extension Iotvideo {
     public struct ModifyProductDynamicRegisterRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
         public let registerType: UInt64
-        
+
         /// 动态注册设备上限
         public let registerLimit: UInt64
-        
-        public init (productId: String, registerType: UInt64, registerLimit: UInt64) {
+
+        public init(productId: String, registerType: UInt64, registerLimit: UInt64) {
             self.productId = productId
             self.registerType = registerType
             self.registerLimit = registerLimit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case registerType = "RegisterType"
             case registerLimit = "RegisterLimit"
         }
     }
-    
+
     /// ModifyProductDynamicRegister返回参数结构体
     public struct ModifyProductDynamicRegisterResponse: TCResponseModel {
         /// 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
         public let registerType: UInt64
-        
+
         /// 动态注册产品密钥
         public let productSecret: String
-        
+
         /// 动态注册设备上限
         public let registerLimit: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case registerType = "RegisterType"
             case productSecret = "ProductSecret"
@@ -60,25 +60,25 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改产品动态注册
     @inlinable
-    public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductDynamicRegisterResponse > {
+    public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductDynamicRegisterResponse> {
         self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改产品动态注册
     @inlinable
     public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductDynamicRegisterResponse {
         try await self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改产品动态注册
     @inlinable
-    public func modifyProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductDynamicRegisterResponse > {
+    public func modifyProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductDynamicRegisterResponse> {
         self.modifyProductDynamicRegister(ModifyProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改产品动态注册
     @inlinable
     public func modifyProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductDynamicRegisterResponse {

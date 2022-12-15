@@ -19,54 +19,54 @@ extension Iecp {
     public struct DescribeNamespaceResourcesRequest: TCRequestModel {
         /// 单元ID
         public let edgeUnitID: UInt64
-        
+
         /// 命名空间
         public let namespace: String
-        
-        public init (edgeUnitID: UInt64, namespace: String) {
+
+        public init(edgeUnitID: UInt64, namespace: String) {
             self.edgeUnitID = edgeUnitID
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitID = "EdgeUnitID"
             case namespace = "Namespace"
         }
     }
-    
+
     /// DescribeNamespaceResources返回参数结构体
     public struct DescribeNamespaceResourcesResponse: TCResponseModel {
         /// 资源列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resources: [NamespaceResource]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case resources = "Resources"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取命名空间下的资源信息
     @inlinable
-    public func describeNamespaceResources(_ input: DescribeNamespaceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceResourcesResponse > {
+    public func describeNamespaceResources(_ input: DescribeNamespaceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceResourcesResponse> {
         self.client.execute(action: "DescribeNamespaceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取命名空间下的资源信息
     @inlinable
     public func describeNamespaceResources(_ input: DescribeNamespaceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResourcesResponse {
         try await self.client.execute(action: "DescribeNamespaceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取命名空间下的资源信息
     @inlinable
-    public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceResourcesResponse > {
+    public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceResourcesResponse> {
         self.describeNamespaceResources(DescribeNamespaceResourcesRequest(edgeUnitID: edgeUnitID, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取命名空间下的资源信息
     @inlinable
     public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResourcesResponse {

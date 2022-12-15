@@ -19,49 +19,49 @@ extension Dlc {
     public struct DetachWorkGroupPolicyRequest: TCRequestModel {
         /// 工作组Id
         public let workGroupId: Int64
-        
+
         /// 解绑的权限集合
         public let policySet: [Policy]?
-        
-        public init (workGroupId: Int64, policySet: [Policy]? = nil) {
+
+        public init(workGroupId: Int64, policySet: [Policy]? = nil) {
             self.workGroupId = workGroupId
             self.policySet = policySet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupId = "WorkGroupId"
             case policySet = "PolicySet"
         }
     }
-    
+
     /// DetachWorkGroupPolicy返回参数结构体
     public struct DetachWorkGroupPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑工作组鉴权策略
     @inlinable
-    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachWorkGroupPolicyResponse > {
+    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
         self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑工作组鉴权策略
     @inlinable
     public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
         try await self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑工作组鉴权策略
     @inlinable
-    public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachWorkGroupPolicyResponse > {
+    public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
         self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑工作组鉴权策略
     @inlinable
     public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {

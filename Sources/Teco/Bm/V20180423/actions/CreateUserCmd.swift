@@ -19,58 +19,58 @@ extension Bm {
     public struct CreateUserCmdRequest: TCRequestModel {
         /// 用户自定义脚本的名称
         public let alias: String
-        
+
         /// 命令适用的操作系统类型，取值linux或xserver
         public let osType: String
-        
+
         /// 脚本内容，必须经过base64编码
         public let content: String
-        
-        public init (alias: String, osType: String, content: String) {
+
+        public init(alias: String, osType: String, content: String) {
             self.alias = alias
             self.osType = osType
             self.content = content
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alias = "Alias"
             case osType = "OsType"
             case content = "Content"
         }
     }
-    
+
     /// CreateUserCmd返回参数结构体
     public struct CreateUserCmdResponse: TCResponseModel {
         /// 脚本ID
         public let cmdId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cmdId = "CmdId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建自定义脚本
     @inlinable
-    public func createUserCmd(_ input: CreateUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserCmdResponse > {
+    public func createUserCmd(_ input: CreateUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserCmdResponse> {
         self.client.execute(action: "CreateUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义脚本
     @inlinable
     public func createUserCmd(_ input: CreateUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserCmdResponse {
         try await self.client.execute(action: "CreateUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建自定义脚本
     @inlinable
-    public func createUserCmd(alias: String, osType: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserCmdResponse > {
+    public func createUserCmd(alias: String, osType: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserCmdResponse> {
         self.createUserCmd(CreateUserCmdRequest(alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义脚本
     @inlinable
     public func createUserCmd(alias: String, osType: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserCmdResponse {

@@ -19,24 +19,24 @@ extension Drm {
     public struct DescribeAllKeysRequest: TCRequestModel {
         /// 使用的DRM方案类型，接口取值WIDEVINE、FAIRPLAY、NORMALAES。
         public let drmType: String
-        
+
         /// Base64编码的Rsa公钥，用来加密出参中的SessionKey。
         /// 如果该参数为空，则出参中SessionKey为明文。
         public let rsaPublicKey: String?
-        
+
         /// 一个加密内容的唯一标识。
         public let contentId: String?
-        
+
         /// 内容类型。接口取值VodVideo,LiveVideo。
         public let contentType: String?
-        
-        public init (drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil) {
+
+        public init(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil) {
             self.drmType = drmType
             self.rsaPublicKey = rsaPublicKey
             self.contentId = contentId
             self.contentType = contentType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case drmType = "DrmType"
             case rsaPublicKey = "RsaPublicKey"
@@ -44,26 +44,26 @@ extension Drm {
             case contentType = "ContentType"
         }
     }
-    
+
     /// DescribeAllKeys返回参数结构体
     public struct DescribeAllKeysResponse: TCResponseModel {
         /// 加密密钥列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [Key]?
-        
+
         /// 用来加密密钥。
         /// 如果入参中带有RsaPublicKey，则SessionKey为使用Rsa公钥加密后的二进制数据，Base64编码字符串。
         /// 如果入参中没有RsaPublicKey，则SessionKey为原始数据的字符串形式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionKey: String?
-        
+
         /// 内容ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentId: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case keys = "Keys"
             case sessionKey = "SessionKey"
@@ -71,15 +71,15 @@ extension Drm {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询所有加密密钥列表
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
-    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllKeysResponse > {
+    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllKeysResponse> {
         self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所有加密密钥列表
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
@@ -87,15 +87,15 @@ extension Drm {
     public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
         try await self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询所有加密密钥列表
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
-    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllKeysResponse > {
+    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllKeysResponse> {
         self.describeAllKeys(DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询所有加密密钥列表
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥

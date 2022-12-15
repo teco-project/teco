@@ -19,27 +19,27 @@ extension Iecp {
     public struct ModifyEdgeUnitDeployGridItemRequest: TCRequestModel {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
-        
+
         /// Grid名称
         public let gridItemName: String
-        
+
         /// 负载类型（StatefulSetGrid｜DeploymentGrid）
         public let workloadKind: String
-        
+
         /// 副本数
         public let replicas: Int64
-        
+
         /// 命名空间，默认default
         public let namespace: String?
-        
-        public init (edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil) {
+
+        public init(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.gridItemName = gridItemName
             self.workloadKind = workloadKind
             self.replicas = replicas
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeUnitId = "EdgeUnitId"
             case gridItemName = "GridItemName"
@@ -48,35 +48,35 @@ extension Iecp {
             case namespace = "Namespace"
         }
     }
-    
+
     /// ModifyEdgeUnitDeployGridItem返回参数结构体
     public struct ModifyEdgeUnitDeployGridItemResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
-    public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitDeployGridItemResponse > {
+    public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
         self.client.execute(action: "ModifyEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
     public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
         try await self.client.execute(action: "ModifyEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
-    public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitDeployGridItemResponse > {
+    public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
         self.modifyEdgeUnitDeployGridItem(ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
     public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {

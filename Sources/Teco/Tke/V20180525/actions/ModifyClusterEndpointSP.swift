@@ -19,44 +19,44 @@ extension Tke {
     public struct ModifyClusterEndpointSPRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
-        
+
         /// 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
         public let securityPolicies: [String]?
-        
+
         /// 修改外网访问安全组
         public let securityGroup: String?
-        
-        public init (clusterId: String, securityPolicies: [String]? = nil, securityGroup: String? = nil) {
+
+        public init(clusterId: String, securityPolicies: [String]? = nil, securityGroup: String? = nil) {
             self.clusterId = clusterId
             self.securityPolicies = securityPolicies
             self.securityGroup = securityGroup
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case securityPolicies = "SecurityPolicies"
             case securityGroup = "SecurityGroup"
         }
     }
-    
+
     /// ModifyClusterEndpointSP返回参数结构体
     public struct ModifyClusterEndpointSPResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
     @inlinable
-    public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterEndpointSPResponse > {
+    public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterEndpointSPResponse> {
         self.client.execute(action: "ModifyClusterEndpointSP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
@@ -64,15 +64,15 @@ extension Tke {
     public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointSPResponse {
         try await self.client.execute(action: "ModifyClusterEndpointSP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
     @inlinable
-    public func modifyClusterEndpointSP(clusterId: String, securityPolicies: [String]? = nil, securityGroup: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterEndpointSPResponse > {
+    public func modifyClusterEndpointSP(clusterId: String, securityPolicies: [String]? = nil, securityGroup: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterEndpointSPResponse> {
         self.modifyClusterEndpointSP(ModifyClusterEndpointSPRequest(clusterId: clusterId, securityPolicies: securityPolicies, securityGroup: securityGroup), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）

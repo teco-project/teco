@@ -19,54 +19,54 @@ extension Tem {
     public struct ModifyIngressRequest: TCRequestModel {
         /// Ingress 规则配置
         public let ingress: IngressInfo
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
-        public init (ingress: IngressInfo, sourceChannel: Int64? = nil) {
+
+        public init(ingress: IngressInfo, sourceChannel: Int64? = nil) {
             self.ingress = ingress
             self.sourceChannel = sourceChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ingress = "Ingress"
             case sourceChannel = "SourceChannel"
         }
     }
-    
+
     /// ModifyIngress返回参数结构体
     public struct ModifyIngressResponse: TCResponseModel {
         /// 创建成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建或者更新 Ingress 规则
     @inlinable
-    public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIngressResponse > {
+    public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIngressResponse> {
         self.client.execute(action: "ModifyIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建或者更新 Ingress 规则
     @inlinable
     public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIngressResponse {
         try await self.client.execute(action: "ModifyIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建或者更新 Ingress 规则
     @inlinable
-    public func modifyIngress(ingress: IngressInfo, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIngressResponse > {
+    public func modifyIngress(ingress: IngressInfo, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIngressResponse> {
         self.modifyIngress(ModifyIngressRequest(ingress: ingress, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建或者更新 Ingress 规则
     @inlinable
     public func modifyIngress(ingress: IngressInfo, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIngressResponse {

@@ -19,23 +19,23 @@ extension Wss {
     public struct UploadCertRequest: TCRequestModel {
         /// 证书内容。
         public let cert: String
-        
+
         /// 证书类型（目前支持：CA 为客户端证书，SVR 为服务器证书）。
         public let certType: String
-        
+
         /// 项目ID，详见用户指南的 [项目与标签](https://cloud.tencent.com/document/product/598/32738)。
         public let projectId: String
-        
+
         /// 模块名称，应填 ssl。
         public let moduleType: String
-        
+
         /// 证书私钥，certType=SVR 时必填。
         public let key: String?
-        
+
         /// 证书备注。
         public let alias: String?
-        
-        public init (cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil) {
+
+        public init(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil) {
             self.cert = cert
             self.certType = certType
             self.projectId = projectId
@@ -43,7 +43,7 @@ extension Wss {
             self.key = key
             self.alias = alias
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cert = "Cert"
             case certType = "CertType"
@@ -53,29 +53,29 @@ extension Wss {
             case alias = "Alias"
         }
     }
-    
+
     /// UploadCert返回参数结构体
     public struct UploadCertResponse: TCResponseModel {
         /// 证书ID。
         public let id: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertResponse > {
+    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
         self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCert）用于上传证书。
@@ -83,15 +83,15 @@ extension Wss {
     public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
         try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
-    public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertResponse > {
+    public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
         self.uploadCert(UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias), logger: logger, on: eventLoop)
     }
-    
+
     /// 上传证书
     ///
     /// 本接口（UploadCert）用于上传证书。

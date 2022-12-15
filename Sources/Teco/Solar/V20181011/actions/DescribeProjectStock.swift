@@ -19,48 +19,48 @@ extension Solar {
     public struct DescribeProjectStockRequest: TCRequestModel {
         /// 子项目id
         public let subProjectId: String
-        
-        public init (subProjectId: String) {
+
+        public init(subProjectId: String) {
             self.subProjectId = subProjectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subProjectId = "SubProjectId"
         }
     }
-    
+
     /// DescribeProjectStock返回参数结构体
     public struct DescribeProjectStockResponse: TCResponseModel {
         /// 项目库存列表
         public let projectStocks: [ProjectStock]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectStocks = "ProjectStocks"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 项目库存详情
     @inlinable
-    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectStockResponse > {
+    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectStockResponse> {
         self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 项目库存详情
     @inlinable
     public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
         try await self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 项目库存详情
     @inlinable
-    public func describeProjectStock(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectStockResponse > {
+    public func describeProjectStock(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectStockResponse> {
         self.describeProjectStock(DescribeProjectStockRequest(subProjectId: subProjectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 项目库存详情
     @inlinable
     public func describeProjectStock(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {

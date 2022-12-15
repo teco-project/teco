@@ -19,29 +19,29 @@ extension Iotexplorer {
     public struct CreateDeviceRequest: TCRequestModel {
         /// 产品ID。
         public let productId: String
-        
+
         /// 设备名称。命名规则：[a-zA-Z0-9:_-]{1,48}。
         public let deviceName: String
-        
+
         /// LoRaWAN 设备地址
         public let devAddr: String?
-        
+
         /// LoRaWAN 应用密钥
         public let appKey: String?
-        
+
         /// LoRaWAN 设备唯一标识
         public let devEUI: String?
-        
+
         /// LoRaWAN 应用会话密钥
         public let appSKey: String?
-        
+
         /// LoRaWAN 网络会话密钥
         public let nwkSKey: String?
-        
+
         /// 手动指定设备的PSK密钥
         public let definedPsk: String?
-        
-        public init (productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil) {
+
+        public init(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.devAddr = devAddr
@@ -51,7 +51,7 @@ extension Iotexplorer {
             self.nwkSKey = nwkSKey
             self.definedPsk = definedPsk
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
@@ -63,39 +63,39 @@ extension Iotexplorer {
             case definedPsk = "DefinedPsk"
         }
     }
-    
+
     /// CreateDevice返回参数结构体
     public struct CreateDeviceResponse: TCResponseModel {
         /// 设备参数描述。
         public let data: DeviceData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建设备
     @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
+    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
         self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建设备
     @inlinable
     public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
         try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建设备
     @inlinable
-    public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
+    public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
         self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建设备
     @inlinable
     public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {

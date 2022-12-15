@@ -45,220 +45,220 @@ extension TCEcmError {
             case vpcMismatch = "UnsupportedOperation.VpcMismatch"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 未找到相关IP。
         public static var addressIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.addressIdNotFound)
         }
-        
+
         /// 指定实例已经绑定了EIP。需先解绑当前的EIP才能再次进行绑定操作。
         public static var alreadyBindEip: UnsupportedOperation {
             UnsupportedOperation(.alreadyBindEip)
         }
-        
+
         /// 弹性网卡与实例是已关联的。
         public static var attachmentAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.attachmentAlreadyExists)
         }
-        
+
         /// 实例是未关联的。
         public static var attachmentNotFound: UnsupportedOperation {
             UnsupportedOperation(.attachmentNotFound)
         }
-        
+
         /// 禁止删除默认路由表。
         public static var delDefaultRoute: UnsupportedOperation {
             UnsupportedOperation(.delDefaultRoute)
         }
-        
+
         /// 禁止删除已关联子网的路由表。
         public static var delRouteWithSubnet: UnsupportedOperation {
             UnsupportedOperation(.delRouteWithSubnet)
         }
-        
+
         /// 安全组规则重复。
         public static var duplicatePolicy: UnsupportedOperation {
             UnsupportedOperation(.duplicatePolicy)
         }
-        
+
         /// 不支持ECMP。
         public static var ecmp: UnsupportedOperation {
             UnsupportedOperation(.ecmp)
         }
-        
+
         /// 和云联网的路由形成ECMP。
         public static var ecmpWithCcnRoute: UnsupportedOperation {
             UnsupportedOperation(.ecmpWithCcnRoute)
         }
-        
+
         /// 和用户自定义的路由形成ECMP。
         public static var ecmpWithUserRoute: UnsupportedOperation {
             UnsupportedOperation(.ecmpWithUserRoute)
         }
-        
+
         /// 无效实例ID。指定的实例ID不存在。
         public static var instanceIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.instanceIdNotFound)
         }
-        
+
         /// 不被支持的实例。
         public static var instanceIdNotSupported: UnsupportedOperation {
             UnsupportedOperation(.instanceIdNotSupported)
         }
-        
+
         /// 当前机型不支持所选镜像。
         public static var instanceTypeNotSupportImage: UnsupportedOperation {
             UnsupportedOperation(.instanceTypeNotSupportImage)
         }
-        
+
         /// 当前状态不能进行该操作。
         public static var invalidInstanceState: UnsupportedOperation {
             UnsupportedOperation(.invalidInstanceState)
         }
-        
+
         /// 指定 NetworkInterfaceId 不存在或指定的PrivateIpAddress不在NetworkInterfaceId上。
         public static var invalidNetworkInterfaceIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.invalidNetworkInterfaceIdNotFound)
         }
-        
+
         /// 指定弹性网卡的指定内网IP已经绑定了EIP，不能重复绑定。
         public static var invalidPrivateIpAddressAlreadyBindEip: UnsupportedOperation {
             UnsupportedOperation(.invalidPrivateIpAddressAlreadyBindEip)
         }
-        
+
         /// 资源状态不合法。
         public static var invalidState: UnsupportedOperation {
             UnsupportedOperation(.invalidState)
         }
-        
+
         /// 请确认提供的IP地址是否完整。
         public static var malformed: UnsupportedOperation {
             UnsupportedOperation(.malformed)
         }
-        
+
         /// 资源互斥操作任务正在执行。
         public static var mutexOperationTaskRunning: UnsupportedOperation {
             UnsupportedOperation(.mutexOperationTaskRunning)
         }
-        
+
         /// 实例规格仅支持绑定三个EIP。
         public static var quotaLimitExceeded: UnsupportedOperation {
             UnsupportedOperation(.quotaLimitExceeded)
         }
-        
+
         /// UnsupportedOperation.SnapHasShared
         public static var snapHasShared: UnsupportedOperation {
             UnsupportedOperation(.snapHasShared)
         }
-        
+
         /// UnsupportedOperation.SnapshotHasBindedImage
         public static var snapshotHasBindedImage: UnsupportedOperation {
             UnsupportedOperation(.snapshotHasBindedImage)
         }
-        
+
         /// 当前状态不能进行此操作。
         public static var statusNotPermit: UnsupportedOperation {
             UnsupportedOperation(.statusNotPermit)
         }
-        
+
         /// 系统路由，禁止操作。
         public static var systemRoute: UnsupportedOperation {
             UnsupportedOperation(.systemRoute)
         }
-        
+
         /// 指定安全组规则版本号和当前最新版本不一致。
         public static var versionMismatch: UnsupportedOperation {
             UnsupportedOperation(.versionMismatch)
         }
-        
+
         /// 资源不属于同一个VPC。
         public static var vpcMismatch: UnsupportedOperation {
             UnsupportedOperation(.vpcMismatch)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
-            case .addressIdNotFound: 
+            case .addressIdNotFound:
                 code = .unsupportedOperation_AddressIdNotFound
-            case .alreadyBindEip: 
+            case .alreadyBindEip:
                 code = .unsupportedOperation_AlreadyBindEip
-            case .attachmentAlreadyExists: 
+            case .attachmentAlreadyExists:
                 code = .unsupportedOperation_AttachmentAlreadyExists
-            case .attachmentNotFound: 
+            case .attachmentNotFound:
                 code = .unsupportedOperation_AttachmentNotFound
-            case .delDefaultRoute: 
+            case .delDefaultRoute:
                 code = .unsupportedOperation_DelDefaultRoute
-            case .delRouteWithSubnet: 
+            case .delRouteWithSubnet:
                 code = .unsupportedOperation_DelRouteWithSubnet
-            case .duplicatePolicy: 
+            case .duplicatePolicy:
                 code = .unsupportedOperation_DuplicatePolicy
-            case .ecmp: 
+            case .ecmp:
                 code = .unsupportedOperation_Ecmp
-            case .ecmpWithCcnRoute: 
+            case .ecmpWithCcnRoute:
                 code = .unsupportedOperation_EcmpWithCcnRoute
-            case .ecmpWithUserRoute: 
+            case .ecmpWithUserRoute:
                 code = .unsupportedOperation_EcmpWithUserRoute
-            case .instanceIdNotFound: 
+            case .instanceIdNotFound:
                 code = .unsupportedOperation_InstanceIdNotFound
-            case .instanceIdNotSupported: 
+            case .instanceIdNotSupported:
                 code = .unsupportedOperation_InstanceIdNotSupported
-            case .instanceTypeNotSupportImage: 
+            case .instanceTypeNotSupportImage:
                 code = .unsupportedOperation_InstanceTypeNotSupportImage
-            case .invalidInstanceState: 
+            case .invalidInstanceState:
                 code = .unsupportedOperation_InvalidInstanceState
-            case .invalidNetworkInterfaceIdNotFound: 
+            case .invalidNetworkInterfaceIdNotFound:
                 code = .unsupportedOperation_InvalidNetworkInterfaceIdNotFound
-            case .invalidPrivateIpAddressAlreadyBindEip: 
+            case .invalidPrivateIpAddressAlreadyBindEip:
                 code = .unsupportedOperation_InvalidPrivateIpAddressAlreadyBindEip
-            case .invalidState: 
+            case .invalidState:
                 code = .unsupportedOperation_InvalidState
-            case .malformed: 
+            case .malformed:
                 code = .unsupportedOperation_Malformed
-            case .mutexOperationTaskRunning: 
+            case .mutexOperationTaskRunning:
                 code = .unsupportedOperation_MutexOperationTaskRunning
-            case .quotaLimitExceeded: 
+            case .quotaLimitExceeded:
                 code = .unsupportedOperation_QuotaLimitExceeded
-            case .snapHasShared: 
+            case .snapHasShared:
                 code = .unsupportedOperation_SnapHasShared
-            case .snapshotHasBindedImage: 
+            case .snapshotHasBindedImage:
                 code = .unsupportedOperation_SnapshotHasBindedImage
-            case .statusNotPermit: 
+            case .statusNotPermit:
                 code = .unsupportedOperation_StatusNotPermit
-            case .systemRoute: 
+            case .systemRoute:
                 code = .unsupportedOperation_SystemRoute
-            case .versionMismatch: 
+            case .versionMismatch:
                 code = .unsupportedOperation_VersionMismatch
-            case .vpcMismatch: 
+            case .vpcMismatch:
                 code = .unsupportedOperation_VpcMismatch
-            case .other: 
+            case .other:
                 code = .unsupportedOperation
             }
             return TCEcmError(code, context: self.context)

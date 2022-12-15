@@ -17,27 +17,27 @@
 extension Privatedns {
     /// DescribeDashboard请求参数结构体
     public struct DescribeDashboardRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeDashboard返回参数结构体
     public struct DescribeDashboardResponse: TCResponseModel {
         /// 私有域解析总数
         public let zoneTotal: Int64
-        
+
         /// 私有域关联VPC数量
         public let zoneVpcCount: Int64
-        
+
         /// 历史请求量总数
         public let requestTotalCount: Int64
-        
+
         /// 流量包用量
         public let flowUsage: [FlowUsage]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneTotal = "ZoneTotal"
             case zoneVpcCount = "ZoneVpcCount"
@@ -46,25 +46,25 @@ extension Privatedns {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取私有域解析概览
     @inlinable
-    public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDashboardResponse > {
+    public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDashboardResponse> {
         self.client.execute(action: "DescribeDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有域解析概览
     @inlinable
     public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDashboardResponse {
         try await self.client.execute(action: "DescribeDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取私有域解析概览
     @inlinable
-    public func describeDashboard(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDashboardResponse > {
+    public func describeDashboard(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDashboardResponse> {
         self.describeDashboard(DescribeDashboardRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取私有域解析概览
     @inlinable
     public func describeDashboard(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDashboardResponse {

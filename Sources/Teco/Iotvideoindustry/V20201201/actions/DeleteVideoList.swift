@@ -19,44 +19,44 @@ extension Iotvideoindustry {
     public struct DeleteVideoListRequest: TCRequestModel {
         /// 视频ID列表长度限制100内
         public let initIDs: [Int64]
-        
-        public init (initIDs: [Int64]) {
+
+        public init(initIDs: [Int64]) {
             self.initIDs = initIDs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case initIDs = "InitIDs"
         }
     }
-    
+
     /// DeleteVideoList返回参数结构体
     public struct DeleteVideoListResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除录像存储列表
     @inlinable
-    public func deleteVideoList(_ input: DeleteVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVideoListResponse > {
+    public func deleteVideoList(_ input: DeleteVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVideoListResponse> {
         self.client.execute(action: "DeleteVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录像存储列表
     @inlinable
     public func deleteVideoList(_ input: DeleteVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVideoListResponse {
         try await self.client.execute(action: "DeleteVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除录像存储列表
     @inlinable
-    public func deleteVideoList(initIDs: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVideoListResponse > {
+    public func deleteVideoList(initIDs: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVideoListResponse> {
         self.deleteVideoList(DeleteVideoListRequest(initIDs: initIDs), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录像存储列表
     @inlinable
     public func deleteVideoList(initIDs: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVideoListResponse {

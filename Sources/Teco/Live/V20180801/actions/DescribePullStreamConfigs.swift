@@ -20,38 +20,38 @@ extension Live {
         /// 配置 ID。
         /// 获取途径：从 CreatePullStreamConfig 接口返回值获取。
         public let configId: String?
-        
-        public init (configId: String? = nil) {
+
+        public init(configId: String? = nil) {
             self.configId = configId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
         }
     }
-    
+
     /// DescribePullStreamConfigs返回参数结构体
     public struct DescribePullStreamConfigsResponse: TCResponseModel {
         /// 拉流配置。
         public let pullStreamConfigs: [PullStreamConfig]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pullStreamConfigs = "PullStreamConfigs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询拉流配置(该接口已下线,请使用新接口 DescribeLivePullStreamTasks)
     ///
     /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
     @inlinable
-    public func describePullStreamConfigs(_ input: DescribePullStreamConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePullStreamConfigsResponse > {
+    public func describePullStreamConfigs(_ input: DescribePullStreamConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePullStreamConfigsResponse> {
         self.client.execute(action: "DescribePullStreamConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询拉流配置(该接口已下线,请使用新接口 DescribeLivePullStreamTasks)
     ///
     /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
@@ -59,15 +59,15 @@ extension Live {
     public func describePullStreamConfigs(_ input: DescribePullStreamConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePullStreamConfigsResponse {
         try await self.client.execute(action: "DescribePullStreamConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询拉流配置(该接口已下线,请使用新接口 DescribeLivePullStreamTasks)
     ///
     /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
     @inlinable
-    public func describePullStreamConfigs(configId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePullStreamConfigsResponse > {
+    public func describePullStreamConfigs(configId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePullStreamConfigsResponse> {
         self.describePullStreamConfigs(DescribePullStreamConfigsRequest(configId: configId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询拉流配置(该接口已下线,请使用新接口 DescribeLivePullStreamTasks)
     ///
     /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。

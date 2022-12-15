@@ -19,23 +19,23 @@ extension Wav {
     public struct QueryCrmStatisticsRequest: TCRequestModel {
         /// 查询开始时间， 单位秒
         public let beginTime: UInt64
-        
+
         /// 查询结束时间， 单位秒
         public let endTime: UInt64
-        
+
         /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
         public let cursor: String?
-        
+
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
-        
+
         /// 请求的企业成员id，为空时默认全租户
         public let salesId: String?
-        
+
         /// 请求的部门id，为空时默认全租户
         public let orgId: UInt64?
-        
-        public init (beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil) {
+
+        public init(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.cursor = cursor
@@ -43,7 +43,7 @@ extension Wav {
             self.salesId = salesId
             self.orgId = orgId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginTime = "BeginTime"
             case endTime = "EndTime"
@@ -53,35 +53,35 @@ extension Wav {
             case orgId = "OrgId"
         }
     }
-    
+
     /// QueryCrmStatistics返回参数结构体
     public struct QueryCrmStatisticsResponse: TCResponseModel {
         /// 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextCursor: String?
-        
+
         /// CRM统计响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageData: [CrmStatisticsData]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case nextCursor = "NextCursor"
             case pageData = "PageData"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
-    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCrmStatisticsResponse > {
+    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCrmStatisticsResponse> {
         self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
@@ -89,15 +89,15 @@ extension Wav {
     public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
         try await self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
-    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCrmStatisticsResponse > {
+    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCrmStatisticsResponse> {
         self.queryCrmStatistics(QueryCrmStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit, salesId: salesId, orgId: orgId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据

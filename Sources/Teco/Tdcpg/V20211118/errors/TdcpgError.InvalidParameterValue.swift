@@ -39,178 +39,178 @@ extension TCTdcpgError {
             case vpcSubnetIpLack = "InvalidParameterValue.VpcSubnetIpLack"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号不存在。
         public static var accountNotFound: InvalidParameterValue {
             InvalidParameterValue(.accountNotFound)
         }
-        
+
         /// 未找到可回档的时间,请确认指定时间点是否在(创建集群时间点,当前时间点)之间。
         public static var backupDataPointInvalid: InvalidParameterValue {
             InvalidParameterValue(.backupDataPointInvalid)
         }
-        
+
         /// 集群不存在。
         public static var clusterNotFound: InvalidParameterValue {
             InvalidParameterValue(.clusterNotFound)
         }
-        
+
         /// DBMajorVersion、DBVersion、DBKernelVersion三个参数只能选择一个传递，且必须传递一个。
         public static var databaseVersionParamCountError: InvalidParameterValue {
             InvalidParameterValue(.databaseVersionParamCountError)
         }
-        
+
         /// 订单未找到。
         public static var dealNameNotFound: InvalidParameterValue {
             InvalidParameterValue(.dealNameNotFound)
         }
-        
+
         /// 接入点不存在。
         public static var endpointNotFound: InvalidParameterValue {
             InvalidParameterValue(.endpointNotFound)
         }
-        
+
         /// 集群/实例名字非法，需要满足：长度在1-60个字符，只能由中文、字母、数字、'-'或'.'或'_'组成，区分大小写。
         public static var illegalInstanceName: InvalidParameterValue {
             InvalidParameterValue(.illegalInstanceName)
         }
-        
+
         /// 密码设置无效，需要满足： 8-64个字符，至少包含 大写字母、小写字母、数字和符号~!@#$%^&amp;*_-+=`|(){}[]:;'&lt;&gt;,.?/中的任意三种
         public static var illegalPassword: InvalidParameterValue {
             InvalidParameterValue(.illegalPassword)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: InvalidParameterValue {
             InvalidParameterValue(.instanceNotFound)
         }
-        
+
         /// 数据库版本信息无法被识别。
         public static var invalidDBVersion: InvalidParameterValue {
             InvalidParameterValue(.invalidDBVersion)
         }
-        
+
         /// 请检查DBMajorVersion、DBVersion、DBKernelVersion参数值是否合法。
         public static var invalidDatabaseVersion: InvalidParameterValue {
             InvalidParameterValue(.invalidDatabaseVersion)
         }
-        
+
         /// 传入的参数非法。
         public static var invalidParameterValueError: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueError)
         }
-        
+
         /// 规格信息(CPU/Memory)信息无法被识别。
         public static var invalidSpec: InvalidParameterValue {
             InvalidParameterValue(.invalidSpec)
         }
-        
+
         /// 参数不合法。
         public static var parameterOutRangeError: InvalidParameterValue {
             InvalidParameterValue(.parameterOutRangeError)
         }
-        
+
         /// 不支持当前地域/可用区的售卖。
         public static var regionZoneUnavailable: InvalidParameterValue {
             InvalidParameterValue(.regionZoneUnavailable)
         }
-        
+
         /// 使用的备份数据来源集群ID非法。
         public static var sourceBackupClusterIdInvalid: InvalidParameterValue {
             InvalidParameterValue(.sourceBackupClusterIdInvalid)
         }
-        
+
         /// 集群对应的存储已经被删除。
         public static var storagePoolNotFound: InvalidParameterValue {
             InvalidParameterValue(.storagePoolNotFound)
         }
-        
+
         /// 您没有权限操作该VPC网络。
         public static var vpcDeniedError: InvalidParameterValue {
             InvalidParameterValue(.vpcDeniedError)
         }
-        
+
         /// 未获取到VPC信息，请检查输入的VPC相关参数。
         public static var vpcNotFound: InvalidParameterValue {
             InvalidParameterValue(.vpcNotFound)
         }
-        
+
         /// VPC子网中IP数量不够。
         public static var vpcSubnetIpLack: InvalidParameterValue {
             InvalidParameterValue(.vpcSubnetIpLack)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asTdcpgError() -> TCTdcpgError {
             let code: TCTdcpgError.Code
             switch self.error {
-            case .accountNotFound: 
+            case .accountNotFound:
                 code = .invalidParameterValue_AccountNotFound
-            case .backupDataPointInvalid: 
+            case .backupDataPointInvalid:
                 code = .invalidParameterValue_BackupDataPointInvalid
-            case .clusterNotFound: 
+            case .clusterNotFound:
                 code = .invalidParameterValue_ClusterNotFound
-            case .databaseVersionParamCountError: 
+            case .databaseVersionParamCountError:
                 code = .invalidParameterValue_DatabaseVersionParamCountError
-            case .dealNameNotFound: 
+            case .dealNameNotFound:
                 code = .invalidParameterValue_DealNameNotFound
-            case .endpointNotFound: 
+            case .endpointNotFound:
                 code = .invalidParameterValue_EndpointNotFound
-            case .illegalInstanceName: 
+            case .illegalInstanceName:
                 code = .invalidParameterValue_IllegalInstanceName
-            case .illegalPassword: 
+            case .illegalPassword:
                 code = .invalidParameterValue_IllegalPassword
-            case .instanceNotFound: 
+            case .instanceNotFound:
                 code = .invalidParameterValue_InstanceNotFound
-            case .invalidDBVersion: 
+            case .invalidDBVersion:
                 code = .invalidParameterValue_InvalidDBVersion
-            case .invalidDatabaseVersion: 
+            case .invalidDatabaseVersion:
                 code = .invalidParameterValue_InvalidDatabaseVersion
-            case .invalidParameterValueError: 
+            case .invalidParameterValueError:
                 code = .invalidParameterValue_InvalidParameterValueError
-            case .invalidSpec: 
+            case .invalidSpec:
                 code = .invalidParameterValue_InvalidSpec
-            case .parameterOutRangeError: 
+            case .parameterOutRangeError:
                 code = .invalidParameterValue_ParameterOutRangeError
-            case .regionZoneUnavailable: 
+            case .regionZoneUnavailable:
                 code = .invalidParameterValue_RegionZoneUnavailable
-            case .sourceBackupClusterIdInvalid: 
+            case .sourceBackupClusterIdInvalid:
                 code = .invalidParameterValue_SourceBackupClusterIdInvalid
-            case .storagePoolNotFound: 
+            case .storagePoolNotFound:
                 code = .invalidParameterValue_StoragePoolNotFound
-            case .vpcDeniedError: 
+            case .vpcDeniedError:
                 code = .invalidParameterValue_VpcDeniedError
-            case .vpcNotFound: 
+            case .vpcNotFound:
                 code = .invalidParameterValue_VpcNotFound
-            case .vpcSubnetIpLack: 
+            case .vpcSubnetIpLack:
                 code = .invalidParameterValue_VpcSubnetIpLack
-            case .other: 
+            case .other:
                 code = .invalidParameterValue
             }
             return TCTdcpgError(code, context: self.context)

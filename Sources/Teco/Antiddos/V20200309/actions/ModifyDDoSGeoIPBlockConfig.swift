@@ -19,49 +19,49 @@ extension Antiddos {
     public struct ModifyDDoSGeoIPBlockConfigRequest: TCRequestModel {
         /// 资源实例ID
         public let instanceId: String
-        
+
         /// DDoS区域封禁配置，填写参数时配置ID不能为空
         public let dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig
-        
-        public init (instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig) {
+
+        public init(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig) {
             self.instanceId = instanceId
             self.dDoSGeoIPBlockConfig = dDoSGeoIPBlockConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case dDoSGeoIPBlockConfig = "DDoSGeoIPBlockConfig"
         }
     }
-    
+
     /// ModifyDDoSGeoIPBlockConfig返回参数结构体
     public struct ModifyDDoSGeoIPBlockConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改DDoS防护的区域封禁配置
     @inlinable
-    public func modifyDDoSGeoIPBlockConfig(_ input: ModifyDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSGeoIPBlockConfigResponse > {
+    public func modifyDDoSGeoIPBlockConfig(_ input: ModifyDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSGeoIPBlockConfigResponse> {
         self.client.execute(action: "ModifyDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护的区域封禁配置
     @inlinable
     public func modifyDDoSGeoIPBlockConfig(_ input: ModifyDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSGeoIPBlockConfigResponse {
         try await self.client.execute(action: "ModifyDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改DDoS防护的区域封禁配置
     @inlinable
-    public func modifyDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSGeoIPBlockConfigResponse > {
+    public func modifyDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSGeoIPBlockConfigResponse> {
         self.modifyDDoSGeoIPBlockConfig(ModifyDDoSGeoIPBlockConfigRequest(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改DDoS防护的区域封禁配置
     @inlinable
     public func modifyDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSGeoIPBlockConfigResponse {

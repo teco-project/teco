@@ -19,49 +19,49 @@ extension Tiw {
     public struct ResumeOnlineRecordRequest: TCRequestModel {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
-        
+
         /// 恢复录制的实时录制任务 Id
         public let taskId: String
-        
-        public init (sdkAppId: Int64, taskId: String) {
+
+        public init(sdkAppId: Int64, taskId: String) {
             self.sdkAppId = sdkAppId
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case taskId = "TaskId"
         }
     }
-    
+
     /// ResumeOnlineRecord返回参数结构体
     public struct ResumeOnlineRecordResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 恢复实时录制
     @inlinable
-    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeOnlineRecordResponse > {
+    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeOnlineRecordResponse> {
         self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复实时录制
     @inlinable
     public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
         try await self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 恢复实时录制
     @inlinable
-    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeOnlineRecordResponse > {
+    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeOnlineRecordResponse> {
         self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 恢复实时录制
     @inlinable
     public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {

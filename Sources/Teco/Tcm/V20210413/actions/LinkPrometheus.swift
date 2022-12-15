@@ -19,49 +19,49 @@ extension Tcm {
     public struct LinkPrometheusRequest: TCRequestModel {
         /// 网格ID
         public let meshID: String
-        
+
         /// 配置
         public let prometheus: PrometheusConfig
-        
-        public init (meshID: String, prometheus: PrometheusConfig) {
+
+        public init(meshID: String, prometheus: PrometheusConfig) {
             self.meshID = meshID
             self.prometheus = prometheus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case meshID = "MeshID"
             case prometheus = "Prometheus"
         }
     }
-    
+
     /// LinkPrometheus返回参数结构体
     public struct LinkPrometheusResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关联Prometheus
     @inlinable
-    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkPrometheusResponse > {
+    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
         self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关联Prometheus
     @inlinable
     public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
         try await self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关联Prometheus
     @inlinable
-    public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkPrometheusResponse > {
+    public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
         self.linkPrometheus(LinkPrometheusRequest(meshID: meshID, prometheus: prometheus), logger: logger, on: eventLoop)
     }
-    
+
     /// 关联Prometheus
     @inlinable
     public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {

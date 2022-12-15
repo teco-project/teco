@@ -19,53 +19,53 @@ extension Teo {
     public struct DescribeDDoSPolicyRequest: TCRequestModel {
         /// 站点Id。
         public let zoneId: String
-        
+
         /// 策略Id。
         public let policyId: Int64
-        
-        public init (zoneId: String, policyId: Int64) {
+
+        public init(zoneId: String, policyId: Int64) {
             self.zoneId = zoneId
             self.policyId = policyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case policyId = "PolicyId"
         }
     }
-    
+
     /// DescribeDDoSPolicy返回参数结构体
     public struct DescribeDDoSPolicyResponse: TCResponseModel {
         /// DDoS防护配置。
         public let dDoSRule: DDoSRule
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dDoSRule = "DDoSRule"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询DDoS防护配置详情
     @inlinable
-    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSPolicyResponse > {
+    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSPolicyResponse> {
         self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDoS防护配置详情
     @inlinable
     public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
         try await self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询DDoS防护配置详情
     @inlinable
-    public func describeDDoSPolicy(zoneId: String, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSPolicyResponse > {
+    public func describeDDoSPolicy(zoneId: String, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSPolicyResponse> {
         self.describeDDoSPolicy(DescribeDDoSPolicyRequest(zoneId: zoneId, policyId: policyId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询DDoS防护配置详情
     @inlinable
     public func describeDDoSPolicy(zoneId: String, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {

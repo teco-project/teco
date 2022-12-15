@@ -19,23 +19,23 @@ extension Cfw {
     public struct ModifyNatFwSwitchRequest: TCRequestModel {
         /// 开关，0：关闭，1：开启
         public let enable: Int64
-        
+
         /// 防火墙实例id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。
         public let cfwInsIdList: [String]?
-        
+
         /// 子网id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。
         public let subnetIdList: [String]?
-        
+
         /// 路由表id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。
         public let routeTableIdList: [String]?
-        
-        public init (enable: Int64, cfwInsIdList: [String]? = nil, subnetIdList: [String]? = nil, routeTableIdList: [String]? = nil) {
+
+        public init(enable: Int64, cfwInsIdList: [String]? = nil, subnetIdList: [String]? = nil, routeTableIdList: [String]? = nil) {
             self.enable = enable
             self.cfwInsIdList = cfwInsIdList
             self.subnetIdList = subnetIdList
             self.routeTableIdList = routeTableIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enable = "Enable"
             case cfwInsIdList = "CfwInsIdList"
@@ -43,35 +43,35 @@ extension Cfw {
             case routeTableIdList = "RouteTableIdList"
         }
     }
-    
+
     /// ModifyNatFwSwitch返回参数结构体
     public struct ModifyNatFwSwitchResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改NAT防火墙开关
     @inlinable
-    public func modifyNatFwSwitch(_ input: ModifyNatFwSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwSwitchResponse > {
+    public func modifyNatFwSwitch(_ input: ModifyNatFwSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatFwSwitchResponse> {
         self.client.execute(action: "ModifyNatFwSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改NAT防火墙开关
     @inlinable
     public func modifyNatFwSwitch(_ input: ModifyNatFwSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwSwitchResponse {
         try await self.client.execute(action: "ModifyNatFwSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改NAT防火墙开关
     @inlinable
-    public func modifyNatFwSwitch(enable: Int64, cfwInsIdList: [String]? = nil, subnetIdList: [String]? = nil, routeTableIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwSwitchResponse > {
+    public func modifyNatFwSwitch(enable: Int64, cfwInsIdList: [String]? = nil, subnetIdList: [String]? = nil, routeTableIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatFwSwitchResponse> {
         self.modifyNatFwSwitch(ModifyNatFwSwitchRequest(enable: enable, cfwInsIdList: cfwInsIdList, subnetIdList: subnetIdList, routeTableIdList: routeTableIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改NAT防火墙开关
     @inlinable
     public func modifyNatFwSwitch(enable: Int64, cfwInsIdList: [String]? = nil, subnetIdList: [String]? = nil, routeTableIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwSwitchResponse {

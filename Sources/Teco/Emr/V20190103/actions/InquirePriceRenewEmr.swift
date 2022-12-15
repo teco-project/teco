@@ -19,25 +19,25 @@ extension Emr {
     public struct InquirePriceRenewEmrRequest: TCRequestModel {
         /// 实例续费的时长。需要结合TimeUnit一起使用。1表示续费1一个月
         public let timeSpan: UInt64
-        
+
         /// 待续费集群ID列表。
         public let instanceId: String
-        
+
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         public let placement: Placement
-        
+
         /// 实例计费模式。此处只支持取值为1，表示包年包月。
         public let payMode: Int64
-        
+
         /// 实例续费的时间单位。取值范围：
         /// <li>m：表示月份。</li>
         public let timeUnit: String?
-        
+
         /// 货币种类。取值范围：
         /// <li>CNY：表示人民币。</li>
         public let currency: String?
-        
-        public init (timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil) {
+
+        public init(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil) {
             self.timeSpan = timeSpan
             self.instanceId = instanceId
             self.placement = placement
@@ -45,7 +45,7 @@ extension Emr {
             self.timeUnit = timeUnit
             self.currency = currency
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case timeSpan = "TimeSpan"
             case instanceId = "InstanceId"
@@ -55,29 +55,29 @@ extension Emr {
             case currency = "Currency"
         }
     }
-    
+
     /// InquirePriceRenewEmr返回参数结构体
     public struct InquirePriceRenewEmrResponse: TCResponseModel {
         /// 原价，单位为元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalCost: Float?
-        
+
         /// 折扣价，单位为元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountCost: Float?
-        
+
         /// 实例续费的时间单位。取值范围：
         /// <li>m：表示月份。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeUnit: String?
-        
+
         /// 实例续费的时长。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeSpan: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case originalCost = "OriginalCost"
             case discountCost = "DiscountCost"
@@ -86,15 +86,15 @@ extension Emr {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 集群续费询价
     ///
     /// 集群续费询价。
     @inlinable
-    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewEmrResponse > {
+    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewEmrResponse> {
         self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 集群续费询价
     ///
     /// 集群续费询价。
@@ -102,15 +102,15 @@ extension Emr {
     public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
         try await self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 集群续费询价
     ///
     /// 集群续费询价。
     @inlinable
-    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewEmrResponse > {
+    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewEmrResponse> {
         self.inquirePriceRenewEmr(InquirePriceRenewEmrRequest(timeSpan: timeSpan, instanceId: instanceId, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency), logger: logger, on: eventLoop)
     }
-    
+
     /// 集群续费询价
     ///
     /// 集群续费询价。

@@ -22,13 +22,13 @@ extension Dayu {
     public struct DescribeDDoSIpLogRequest: TCRequestModel {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 资源的IP
         public let ip: String
-        
+
         /// 攻击开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -36,7 +36,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 攻击结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -44,15 +44,15 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
-        public init (business: String, id: String, ip: String, startTime: Date, endTime: Date) {
+
+        public init(business: String, id: String, ip: String, startTime: Date, endTime: Date) {
             self.business = business
             self.id = id
             self.ip = ip
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -61,18 +61,18 @@ extension Dayu {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeDDoSIpLog返回参数结构体
     public struct DescribeDDoSIpLogResponse: TCResponseModel {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 资源的IP
         public let ip: String
-        
+
         /// 攻击开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -80,7 +80,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 攻击结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -88,15 +88,15 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// IP攻击日志，KeyValue数组，Key-Value取值说明：
         /// Key为"LogTime"时，Value值为IP日志时间
         /// Key为"LogMessage"时，Value值为Ip日志内容
         public let data: [KeyValueRecord]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -107,25 +107,25 @@ extension Dayu {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取DDoSIP攻击日志
     @inlinable
-    public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSIpLogResponse > {
+    public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSIpLogResponse> {
         self.client.execute(action: "DescribeDDoSIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoSIP攻击日志
     @inlinable
     public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {
         try await self.client.execute(action: "DescribeDDoSIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取DDoSIP攻击日志
     @inlinable
-    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSIpLogResponse > {
+    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSIpLogResponse> {
         self.describeDDoSIpLog(DescribeDDoSIpLogRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取DDoSIP攻击日志
     @inlinable
     public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {

@@ -17,33 +17,33 @@
 extension Advisor {
     /// DescribeStrategies请求参数结构体
     public struct DescribeStrategiesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeStrategies返回参数结构体
     public struct DescribeStrategiesResponse: TCResponseModel {
         /// 评估项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let strategies: [DescribeStrategie]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case strategies = "Strategies"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询评估项信息
     ///
     /// 用于查询评估项的信息
     @inlinable
-    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategiesResponse > {
+    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategiesResponse> {
         self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询评估项信息
     ///
     /// 用于查询评估项的信息
@@ -51,15 +51,15 @@ extension Advisor {
     public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
         try await self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询评估项信息
     ///
     /// 用于查询评估项的信息
     @inlinable
-    public func describeStrategies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategiesResponse > {
+    public func describeStrategies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategiesResponse> {
         self.describeStrategies(DescribeStrategiesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询评估项信息
     ///
     /// 用于查询评估项的信息

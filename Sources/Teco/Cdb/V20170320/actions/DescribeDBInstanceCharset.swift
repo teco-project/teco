@@ -19,38 +19,38 @@ extension Cdb {
     public struct DescribeDBInstanceCharsetRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeDBInstanceCharset返回参数结构体
     public struct DescribeDBInstanceCharsetResponse: TCResponseModel {
         /// 实例的默认字符集，如 "latin1"，"utf8" 等。
         public let charset: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case charset = "Charset"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云数据库实例的字符集
     ///
     /// 本接口(DescribeDBInstanceCharset)用于查询云数据库实例的字符集，获取字符集的名称。
     @inlinable
-    public func describeDBInstanceCharset(_ input: DescribeDBInstanceCharsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceCharsetResponse > {
+    public func describeDBInstanceCharset(_ input: DescribeDBInstanceCharsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceCharsetResponse> {
         self.client.execute(action: "DescribeDBInstanceCharset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库实例的字符集
     ///
     /// 本接口(DescribeDBInstanceCharset)用于查询云数据库实例的字符集，获取字符集的名称。
@@ -58,15 +58,15 @@ extension Cdb {
     public func describeDBInstanceCharset(_ input: DescribeDBInstanceCharsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceCharsetResponse {
         try await self.client.execute(action: "DescribeDBInstanceCharset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云数据库实例的字符集
     ///
     /// 本接口(DescribeDBInstanceCharset)用于查询云数据库实例的字符集，获取字符集的名称。
     @inlinable
-    public func describeDBInstanceCharset(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceCharsetResponse > {
+    public func describeDBInstanceCharset(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceCharsetResponse> {
         self.describeDBInstanceCharset(DescribeDBInstanceCharsetRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库实例的字符集
     ///
     /// 本接口(DescribeDBInstanceCharset)用于查询云数据库实例的字符集，获取字符集的名称。

@@ -19,43 +19,43 @@ extension Dcdb {
     public struct CloseDBExtranetAccessRequest: TCRequestModel {
         /// 待关闭外网访问的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
         public let instanceId: String
-        
+
         /// 是否IPv6，默认0
         public let ipv6Flag: Int64?
-        
-        public init (instanceId: String, ipv6Flag: Int64? = nil) {
+
+        public init(instanceId: String, ipv6Flag: Int64? = nil) {
             self.instanceId = instanceId
             self.ipv6Flag = ipv6Flag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case ipv6Flag = "Ipv6Flag"
         }
     }
-    
+
     /// CloseDBExtranetAccess返回参数结构体
     public struct CloseDBExtranetAccessResponse: TCResponseModel {
         /// 异步任务ID，可通过 DescribeFlow 查询任务状态。
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭外网访问
     ///
     /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。
     @inlinable
-    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseDBExtranetAccessResponse > {
+    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseDBExtranetAccessResponse> {
         self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭外网访问
     ///
     /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。
@@ -63,15 +63,15 @@ extension Dcdb {
     public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseDBExtranetAccessResponse {
         try await self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭外网访问
     ///
     /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。
     @inlinable
-    public func closeDBExtranetAccess(instanceId: String, ipv6Flag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseDBExtranetAccessResponse > {
+    public func closeDBExtranetAccess(instanceId: String, ipv6Flag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseDBExtranetAccessResponse> {
         self.closeDBExtranetAccess(CloseDBExtranetAccessRequest(instanceId: instanceId, ipv6Flag: ipv6Flag), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭外网访问
     ///
     /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。

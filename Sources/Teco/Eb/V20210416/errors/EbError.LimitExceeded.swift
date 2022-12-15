@@ -30,113 +30,113 @@ extension TCEbError {
             case trigger = "LimitExceeded.Trigger"
             case userPrivateLinkExceeded = "LimitExceeded.UserPrivateLinkExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 事件投递失败，因欠费或违规等原因，账号已被禁用，请联系官网账户端客服处理。
         public static var bannedAccount: LimitExceeded {
             LimitExceeded(.bannedAccount)
         }
-        
+
         public static var clusterPrivateLinkExceeded: LimitExceeded {
             LimitExceeded(.clusterPrivateLinkExceeded)
         }
-        
+
         /// Connection数量达到限制，可提交工单申请提升限制。
         public static var connection: LimitExceeded {
             LimitExceeded(.connection)
         }
-        
+
         /// EventBus数量达到限制，可提交工单申请提升限制。
         public static var eventBus: LimitExceeded {
             LimitExceeded(.eventBus)
         }
-        
+
         /// 资源创建失败，可冻结余额不足，请充值后重新创建。
         public static var insufficientBalance: LimitExceeded {
             LimitExceeded(.insufficientBalance)
         }
-        
+
         /// Logset数量达到限制，可提交工单申请提升限制。
         public static var logset: LimitExceeded {
             LimitExceeded(.logset)
         }
-        
+
         /// ResourceLimit数量达到限制，可提交工单申请提升限制。
         public static var resourceLimit: LimitExceeded {
             LimitExceeded(.resourceLimit)
         }
-        
+
         /// RouteOverLimit数量达到限制，可提交工单申请提升限制。
         public static var routeOverLimit: LimitExceeded {
             LimitExceeded(.routeOverLimit)
         }
-        
+
         /// Rule数量达到限制，可提交工单申请提升限制。
         public static var rule: LimitExceeded {
             LimitExceeded(.rule)
         }
-        
+
         /// Target数量达到限制，可提交工单申请提升限制。
         public static var target: LimitExceeded {
             LimitExceeded(.target)
         }
-        
+
         /// 投递目标创建失败，函数触发器数量达到限制，可提交工单申请提升限制。
         public static var trigger: LimitExceeded {
             LimitExceeded(.trigger)
         }
-        
+
         public static var userPrivateLinkExceeded: LimitExceeded {
             LimitExceeded(.userPrivateLinkExceeded)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {
-            case .bannedAccount: 
+            case .bannedAccount:
                 code = .limitExceeded_BannedAccount
-            case .clusterPrivateLinkExceeded: 
+            case .clusterPrivateLinkExceeded:
                 code = .limitExceeded_ClusterPrivateLinkExceeded
-            case .connection: 
+            case .connection:
                 code = .limitExceeded_Connection
-            case .eventBus: 
+            case .eventBus:
                 code = .limitExceeded_EventBus
-            case .insufficientBalance: 
+            case .insufficientBalance:
                 code = .limitExceeded_InsufficientBalance
-            case .logset: 
+            case .logset:
                 code = .limitExceeded_Logset
-            case .resourceLimit: 
+            case .resourceLimit:
                 code = .limitExceeded_ResourceLimit
-            case .routeOverLimit: 
+            case .routeOverLimit:
                 code = .limitExceeded_RouteOverLimit
-            case .rule: 
+            case .rule:
                 code = .limitExceeded_Rule
-            case .target: 
+            case .target:
                 code = .limitExceeded_Target
-            case .trigger: 
+            case .trigger:
                 code = .limitExceeded_Trigger
-            case .userPrivateLinkExceeded: 
+            case .userPrivateLinkExceeded:
                 code = .limitExceeded_UserPrivateLinkExceeded
             }
             return TCEbError(code, context: self.context)

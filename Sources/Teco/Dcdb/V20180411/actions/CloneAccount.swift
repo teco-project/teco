@@ -19,23 +19,23 @@ extension Dcdb {
     public struct CloneAccountRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 源用户账户名
         public let srcUser: String
-        
+
         /// 源用户HOST
         public let srcHost: String
-        
+
         /// 目的用户账户名
         public let dstUser: String
-        
+
         /// 目的用户HOST
         public let dstHost: String
-        
+
         /// 目的用户账户描述
         public let dstDesc: String?
-        
-        public init (instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil) {
+
+        public init(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil) {
             self.instanceId = instanceId
             self.srcUser = srcUser
             self.srcHost = srcHost
@@ -43,7 +43,7 @@ extension Dcdb {
             self.dstHost = dstHost
             self.dstDesc = dstDesc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case srcUser = "SrcUser"
@@ -53,29 +53,29 @@ extension Dcdb {
             case dstDesc = "DstDesc"
         }
     }
-    
+
     /// CloneAccount返回参数结构体
     public struct CloneAccountResponse: TCResponseModel {
         /// 异步任务流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 克隆实例账户
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。
     @inlinable
-    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneAccountResponse > {
+    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneAccountResponse> {
         self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 克隆实例账户
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。
@@ -83,15 +83,15 @@ extension Dcdb {
     public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
         try await self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 克隆实例账户
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。
     @inlinable
-    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneAccountResponse > {
+    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneAccountResponse> {
         self.cloneAccount(CloneAccountRequest(instanceId: instanceId, srcUser: srcUser, srcHost: srcHost, dstUser: dstUser, dstHost: dstHost, dstDesc: dstDesc), logger: logger, on: eventLoop)
     }
-    
+
     /// 克隆实例账户
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。

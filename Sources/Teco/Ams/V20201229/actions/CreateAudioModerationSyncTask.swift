@@ -19,26 +19,26 @@ extension Ams {
     public struct CreateAudioModerationSyncTaskRequest: TCRequestModel {
         /// Biztype为策略的具体的编号，用于接口调度，在内容安全控制台中可配置。不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；调用时不传入Biztype代表采用默认的识别策略。
         public let bizType: String
-        
+
         /// 数据标识，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符
         public let dataId: String
-        
+
         /// 音频文件资源格式，当前支持格式：wav、mp3、m4a，请按照实际文件格式填入。
         public let fileFormat: String
-        
+
         /// 文件名称，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符
         public let name: String?
-        
+
         /// 数据Base64编码，短音频同步接口仅传入可音频内容；
         /// 支持范围：文件大小不能超过5M，时长不可超过60s；
         /// 支持格式：wav (PCM编码)、mp3、m4a (采样率：16kHz~48kHz，位深：16bit 小端，声道数：单声道/双声道，建议格式：16kHz/16bit/单声道)。
         public let fileContent: String?
-        
+
         /// 音频资源访问链接，与FileContent参数必须二选一输入；
         /// 支持范围及格式：同FileContent；
         public let fileUrl: String?
-        
-        public init (bizType: String, dataId: String, fileFormat: String, name: String? = nil, fileContent: String? = nil, fileUrl: String? = nil) {
+
+        public init(bizType: String, dataId: String, fileFormat: String, name: String? = nil, fileContent: String? = nil, fileUrl: String? = nil) {
             self.bizType = bizType
             self.dataId = dataId
             self.fileFormat = fileFormat
@@ -46,7 +46,7 @@ extension Ams {
             self.fileContent = fileContent
             self.fileUrl = fileUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizType = "BizType"
             case dataId = "DataId"
@@ -56,63 +56,63 @@ extension Ams {
             case fileUrl = "FileUrl"
         }
     }
-    
+
     /// CreateAudioModerationSyncTask返回参数结构体
     public struct CreateAudioModerationSyncTaskResponse: TCResponseModel {
         /// 请求接口时传入的数据标识
         public let dataId: String
-        
+
         /// 文件名称，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// Biztype为策略的具体的编号，用于接口调度，在内容安全控制台中可配置。不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；调用时不传入Biztype代表采用默认的识别策略。
         public let bizType: String
-        
+
         /// 智能审核服务对于内容违规类型的等级，可选值：
         /// Pass 建议通过；
         /// Reveiw 建议复审；
         /// Block 建议屏蔽；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 智能审核服务对于内容违规类型的判断，详见返回值列表
         /// 如：Label：Porn（色情）；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
-        
+
         /// 音频文本，备注：这里的文本最大只返回前1000个字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asrText: String?
-        
+
         /// 音频中对话内容审核结果；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textResults: [TextResult]?
-        
+
         /// 音频中低俗内容审核结果；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let moanResults: [MoanResult]?
-        
+
         /// 该字段用于返回当前标签（Lable）下的二级标签。
         /// 注意：此字段可能返回null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         /// 该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let languageResults: [AudioResultDetailLanguageResult]?
-        
+
         /// 音频中说话人识别返回结果；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let speakerResults: [AudioResultDetailSpeakerResult]?
-        
+
         /// 识别类标签结果信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recognitionResults: [RecognitionResult]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dataId = "DataId"
             case name = "Name"
@@ -129,7 +129,7 @@ extension Ams {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 短音频审核同步接口
     ///
     /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。
@@ -144,10 +144,10 @@ extension Ams {
     /// - 接口**默认QPS为20**，如需自定义配置并发或请求频率，请工单咨询；
     /// - 接口**默认超时为5s**，请求如超过该时长则接口会报错。
     @inlinable
-    public func createAudioModerationSyncTask(_ input: CreateAudioModerationSyncTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAudioModerationSyncTaskResponse > {
+    public func createAudioModerationSyncTask(_ input: CreateAudioModerationSyncTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationSyncTaskResponse> {
         self.client.execute(action: "CreateAudioModerationSyncTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 短音频审核同步接口
     ///
     /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。
@@ -165,7 +165,7 @@ extension Ams {
     public func createAudioModerationSyncTask(_ input: CreateAudioModerationSyncTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationSyncTaskResponse {
         try await self.client.execute(action: "CreateAudioModerationSyncTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 短音频审核同步接口
     ///
     /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。
@@ -180,10 +180,10 @@ extension Ams {
     /// - 接口**默认QPS为20**，如需自定义配置并发或请求频率，请工单咨询；
     /// - 接口**默认超时为5s**，请求如超过该时长则接口会报错。
     @inlinable
-    public func createAudioModerationSyncTask(bizType: String, dataId: String, fileFormat: String, name: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAudioModerationSyncTaskResponse > {
+    public func createAudioModerationSyncTask(bizType: String, dataId: String, fileFormat: String, name: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationSyncTaskResponse> {
         self.createAudioModerationSyncTask(CreateAudioModerationSyncTaskRequest(bizType: bizType, dataId: dataId, fileFormat: fileFormat, name: name, fileContent: fileContent, fileUrl: fileUrl), logger: logger, on: eventLoop)
     }
-    
+
     /// 短音频审核同步接口
     ///
     /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。

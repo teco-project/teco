@@ -19,53 +19,53 @@ extension Ckafka {
     public struct DeleteAclRuleRequest: TCRequestModel {
         /// 实例id信息
         public let instanceId: String
-        
+
         /// acl规则名称
         public let ruleName: String
-        
-        public init (instanceId: String, ruleName: String) {
+
+        public init(instanceId: String, ruleName: String) {
             self.instanceId = instanceId
             self.ruleName = ruleName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case ruleName = "RuleName"
         }
     }
-    
+
     /// DeleteAclRule返回参数结构体
     public struct DeleteAclRuleResponse: TCResponseModel {
         /// 返回被删除的规则的ID
         public let result: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除ACL规则
     @inlinable
-    public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclRuleResponse > {
+    public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclRuleResponse> {
         self.client.execute(action: "DeleteAclRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除ACL规则
     @inlinable
     public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclRuleResponse {
         try await self.client.execute(action: "DeleteAclRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除ACL规则
     @inlinable
-    public func deleteAclRule(instanceId: String, ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclRuleResponse > {
+    public func deleteAclRule(instanceId: String, ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclRuleResponse> {
         self.deleteAclRule(DeleteAclRuleRequest(instanceId: instanceId, ruleName: ruleName), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除ACL规则
     @inlinable
     public func deleteAclRule(instanceId: String, ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclRuleResponse {

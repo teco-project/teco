@@ -19,44 +19,44 @@ extension Solar {
     public struct OffLineProjectRequest: TCRequestModel {
         /// 项目ID
         public let projectId: String
-        
-        public init (projectId: String) {
+
+        public init(projectId: String) {
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
         }
     }
-    
+
     /// OffLineProject返回参数结构体
     public struct OffLineProjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 下线项目
     @inlinable
-    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OffLineProjectResponse > {
+    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
         self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 下线项目
     @inlinable
     public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
         try await self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 下线项目
     @inlinable
-    public func offLineProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OffLineProjectResponse > {
+    public func offLineProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
         self.offLineProject(OffLineProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 下线项目
     @inlinable
     public func offLineProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {

@@ -20,45 +20,45 @@ extension TCNlpError {
             case dataNotFound = "ResourceNotFound.DataNotFound"
             case fileNotFound = "ResourceNotFound.FileNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 数据资源不存在
         public static var dataNotFound: ResourceNotFound {
             ResourceNotFound(.dataNotFound)
         }
-        
+
         /// 文件资源不存在
         public static var fileNotFound: ResourceNotFound {
             ResourceNotFound(.fileNotFound)
         }
-        
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .dataNotFound: 
+            case .dataNotFound:
                 code = .resourceNotFound_DataNotFound
-            case .fileNotFound: 
+            case .fileNotFound:
                 code = .resourceNotFound_FileNotFound
             }
             return TCNlpError(code, context: self.context)

@@ -19,39 +19,39 @@ extension Postgres {
     public struct DeleteServerlessDBInstanceRequest: TCRequestModel {
         /// DB实例名称，实例名和实例ID必须至少传一个，如果同时存在，将只以实例ID为准。
         public let dbInstanceName: String?
-        
+
         /// DB实例ID，实例名和实例ID必须至少传一个，如果同时存在，将只以实例ID为准。
         public let dbInstanceId: String?
-        
-        public init (dbInstanceName: String? = nil, dbInstanceId: String? = nil) {
+
+        public init(dbInstanceName: String? = nil, dbInstanceId: String? = nil) {
             self.dbInstanceName = dbInstanceName
             self.dbInstanceId = dbInstanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbInstanceName = "DBInstanceName"
             case dbInstanceId = "DBInstanceId"
         }
     }
-    
+
     /// DeleteServerlessDBInstance返回参数结构体
     public struct DeleteServerlessDBInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable
-    public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServerlessDBInstanceResponse > {
+    public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
         self.client.execute(action: "DeleteServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
@@ -59,15 +59,15 @@ extension Postgres {
     public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
         try await self.client.execute(action: "DeleteServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable
-    public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServerlessDBInstanceResponse > {
+    public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
         self.deleteServerlessDBInstance(DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。

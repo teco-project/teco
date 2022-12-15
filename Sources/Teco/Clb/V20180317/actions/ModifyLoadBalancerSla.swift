@@ -19,34 +19,34 @@ extension Clb {
     public struct ModifyLoadBalancerSlaRequest: TCRequestModel {
         /// 负载均衡实例信息
         public let loadBalancerSla: [SlaUpdateParam]
-        
-        public init (loadBalancerSla: [SlaUpdateParam]) {
+
+        public init(loadBalancerSla: [SlaUpdateParam]) {
             self.loadBalancerSla = loadBalancerSla
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerSla = "LoadBalancerSla"
         }
     }
-    
+
     /// ModifyLoadBalancerSla返回参数结构体
     public struct ModifyLoadBalancerSlaResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 性能容量型变配
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
     @inlinable
-    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerSlaResponse > {
+    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
         self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 性能容量型变配
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
@@ -54,15 +54,15 @@ extension Clb {
     public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
         try await self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 性能容量型变配
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
     @inlinable
-    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerSlaResponse > {
+    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
         self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), logger: logger, on: eventLoop)
     }
-    
+
     /// 性能容量型变配
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。

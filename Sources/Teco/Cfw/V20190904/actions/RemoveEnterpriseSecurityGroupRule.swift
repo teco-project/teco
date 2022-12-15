@@ -19,58 +19,58 @@ extension Cfw {
     public struct RemoveEnterpriseSecurityGroupRuleRequest: TCRequestModel {
         /// 规则的uuid，可通过查询规则列表获取
         public let ruleUuid: Int64
-        
+
         /// 删除类型，0是单条删除，RuleUuid填写删除规则id，1为全部删除，RuleUuid填0即可
         public let removeType: Int64
-        
-        public init (ruleUuid: Int64, removeType: Int64) {
+
+        public init(ruleUuid: Int64, removeType: Int64) {
             self.ruleUuid = ruleUuid
             self.removeType = removeType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleUuid = "RuleUuid"
             case removeType = "RemoveType"
         }
     }
-    
+
     /// RemoveEnterpriseSecurityGroupRule返回参数结构体
     public struct RemoveEnterpriseSecurityGroupRuleResponse: TCResponseModel {
         /// 删除成功后返回被删除策略的uuid
         public let ruleUuid: Int64
-        
+
         /// 0代表成功，-1代表失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleUuid = "RuleUuid"
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除新企业安全组规则
     @inlinable
-    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveEnterpriseSecurityGroupRuleResponse > {
+    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveEnterpriseSecurityGroupRuleResponse> {
         self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除新企业安全组规则
     @inlinable
     public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
         try await self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除新企业安全组规则
     @inlinable
-    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveEnterpriseSecurityGroupRuleResponse > {
+    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveEnterpriseSecurityGroupRuleResponse> {
         self.removeEnterpriseSecurityGroupRule(RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除新企业安全组规则
     @inlinable
     public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {

@@ -19,29 +19,29 @@ extension Dtf {
     public struct DescribeTransactionsRequest: TCRequestModel {
         /// 事务分组ID
         public let groupId: String
-        
+
         /// 事务开始时间查询起始时间戳，UTC，精确到毫秒
         public let transactionBeginFrom: Int64?
-        
+
         /// 事务开始时间查询截止时间戳，UTC，精确到毫秒
         public let transactionBeginTo: Int64?
-        
+
         /// 仅查询异常状态的事务，true：仅查询异常，false或不传入：查询所有
         public let searchError: Bool?
-        
+
         /// 主事务ID，不传入时查询全量，高优先级
         public let transactionId: Int64?
-        
+
         /// 主事务ID列表，不传入时查询全量，低优先级
         public let transactionIdList: [Int64]?
-        
+
         /// 每页数量
         public let limit: Int64?
-        
+
         /// 起始偏移量
         public let offset: Int64?
-        
-        public init (groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.groupId = groupId
             self.transactionBeginFrom = transactionBeginFrom
             self.transactionBeginTo = transactionBeginTo
@@ -51,7 +51,7 @@ extension Dtf {
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case transactionBeginFrom = "TransactionBeginFrom"
@@ -63,39 +63,39 @@ extension Dtf {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeTransactions返回参数结构体
     public struct DescribeTransactionsResponse: TCResponseModel {
         /// 主事务分页列表
         public let result: PagedTransaction
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询主事务列表
     @inlinable
-    public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTransactionsResponse > {
+    public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTransactionsResponse> {
         self.client.execute(action: "DescribeTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主事务列表
     @inlinable
     public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransactionsResponse {
         try await self.client.execute(action: "DescribeTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询主事务列表
     @inlinable
-    public func describeTransactions(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTransactionsResponse > {
+    public func describeTransactions(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTransactionsResponse> {
         self.describeTransactions(DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询主事务列表
     @inlinable
     public func describeTransactions(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransactionsResponse {

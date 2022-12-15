@@ -19,49 +19,49 @@ extension Dlc {
     public struct AttachWorkGroupPolicyRequest: TCRequestModel {
         /// 工作组Id
         public let workGroupId: Int64
-        
+
         /// 要绑定的策略集合
         public let policySet: [Policy]?
-        
-        public init (workGroupId: Int64, policySet: [Policy]? = nil) {
+
+        public init(workGroupId: Int64, policySet: [Policy]? = nil) {
             self.workGroupId = workGroupId
             self.policySet = policySet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupId = "WorkGroupId"
             case policySet = "PolicySet"
         }
     }
-    
+
     /// AttachWorkGroupPolicy返回参数结构体
     public struct AttachWorkGroupPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 绑定鉴权策略到工作组
     @inlinable
-    public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachWorkGroupPolicyResponse > {
+    public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachWorkGroupPolicyResponse> {
         self.client.execute(action: "AttachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定鉴权策略到工作组
     @inlinable
     public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {
         try await self.client.execute(action: "AttachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 绑定鉴权策略到工作组
     @inlinable
-    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachWorkGroupPolicyResponse > {
+    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachWorkGroupPolicyResponse> {
         self.attachWorkGroupPolicy(AttachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
     }
-    
+
     /// 绑定鉴权策略到工作组
     @inlinable
     public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {

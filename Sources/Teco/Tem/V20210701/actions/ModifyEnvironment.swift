@@ -19,26 +19,26 @@ extension Tem {
     public struct ModifyEnvironmentRequest: TCRequestModel {
         /// 环境id
         public let environmentId: String
-        
+
         /// 环境名称
         public let environmentName: String?
-        
+
         /// 环境描述
         public let description: String?
-        
+
         /// 私有网络名称
         public let vpc: String?
-        
+
         /// 子网网络
         public let subnetIds: [String]?
-        
+
         /// 来源渠道
         public let sourceChannel: Int64?
-        
+
         /// 环境类型：test、pre、prod
         public let envType: String?
-        
-        public init (environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil) {
+
+        public init(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil) {
             self.environmentId = environmentId
             self.environmentName = environmentName
             self.description = description
@@ -47,7 +47,7 @@ extension Tem {
             self.sourceChannel = sourceChannel
             self.envType = envType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case environmentName = "EnvironmentName"
@@ -58,40 +58,40 @@ extension Tem {
             case envType = "EnvType"
         }
     }
-    
+
     /// ModifyEnvironment返回参数结构体
     public struct ModifyEnvironmentResponse: TCResponseModel {
         /// 成功时为环境ID，失败为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 编辑环境
     @inlinable
-    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentResponse > {
+    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentResponse> {
         self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑环境
     @inlinable
     public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
         try await self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 编辑环境
     @inlinable
-    public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentResponse > {
+    public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentResponse> {
         self.modifyEnvironment(ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType), logger: logger, on: eventLoop)
     }
-    
+
     /// 编辑环境
     @inlinable
     public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {

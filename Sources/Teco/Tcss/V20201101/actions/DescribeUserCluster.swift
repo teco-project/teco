@@ -19,28 +19,28 @@ extension Tcss {
     public struct DescribeUserClusterRequest: TCRequestModel {
         /// 偏移量
         public let offset: UInt64?
-        
+
         /// 每次查询的最大记录数量
         public let limit: UInt64?
-        
+
         /// Name - String
         /// Name 可取值：ClusterName,ClusterId,ClusterType,Region,ClusterCheckMode,ClusterAutoCheck
         public let filters: [ComplianceFilters]?
-        
+
         /// 排序字段
         public let by: String?
-        
+
         /// 排序方式 asc,desc
         public let order: String?
-        
-        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
             self.by = by
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -49,33 +49,33 @@ extension Tcss {
             case order = "Order"
         }
     }
-    
+
     /// DescribeUserCluster返回参数结构体
     public struct DescribeUserClusterResponse: TCResponseModel {
         /// 集群总数
         public let totalCount: UInt64
-        
+
         /// 集群的详细信息
         public let clusterInfoList: [ClusterInfoItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case clusterInfoList = "ClusterInfoList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 用户集群资产查询
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
-    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserClusterResponse > {
+    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserClusterResponse> {
         self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 用户集群资产查询
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
@@ -83,15 +83,15 @@ extension Tcss {
     public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
         try await self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 用户集群资产查询
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
-    public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserClusterResponse > {
+    public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserClusterResponse> {
         self.describeUserCluster(DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
     }
-    
+
     /// 用户集群资产查询
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。

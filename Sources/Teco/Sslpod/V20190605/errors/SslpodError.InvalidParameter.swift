@@ -24,73 +24,73 @@ extension TCSslpodError {
             case invalidTagName = "InvalidParameter.InvalidTagName"
             case tooManyTag = "InvalidParameter.TooManyTag"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的域名。
         public static var invalidDomain: InvalidParameter {
             InvalidParameter(.invalidDomain)
         }
-        
+
         /// 无效的IP。
         public static var invalidIP: InvalidParameter {
             InvalidParameter(.invalidIP)
         }
-        
+
         /// 无效的端口。
         public static var invalidPort: InvalidParameter {
             InvalidParameter(.invalidPort)
         }
-        
+
         /// 无效的监控类型。
         public static var invalidServerType: InvalidParameter {
             InvalidParameter(.invalidServerType)
         }
-        
+
         /// 标签不合规。
         public static var invalidTagName: InvalidParameter {
             InvalidParameter(.invalidTagName)
         }
-        
+
         /// 添加标签过多。
         public static var tooManyTag: InvalidParameter {
             InvalidParameter(.tooManyTag)
         }
-        
+
         public func asSslpodError() -> TCSslpodError {
             let code: TCSslpodError.Code
             switch self.error {
-            case .invalidDomain: 
+            case .invalidDomain:
                 code = .invalidParameter_InvalidDomain
-            case .invalidIP: 
+            case .invalidIP:
                 code = .invalidParameter_InvalidIP
-            case .invalidPort: 
+            case .invalidPort:
                 code = .invalidParameter_InvalidPort
-            case .invalidServerType: 
+            case .invalidServerType:
                 code = .invalidParameter_InvalidServerType
-            case .invalidTagName: 
+            case .invalidTagName:
                 code = .invalidParameter_InvalidTagName
-            case .tooManyTag: 
+            case .tooManyTag:
                 code = .invalidParameter_TooManyTag
             }
             return TCSslpodError(code, context: self.context)

@@ -19,24 +19,24 @@ extension Iotvideo {
     public struct DescribeDevicesRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 是否返回全量数据
         /// 当该值为false时，返回值中的设备物模型、固件版本、在线状态、最后在线时间字段等字段，都将返回数据类型的零值。
         public let returnModel: Bool
-        
+
         /// 分页数量,0<取值范围<=100
         public let limit: UInt64
-        
+
         /// 分页偏移，取值＞0
         public let offset: UInt64
-        
+
         /// 指定固件版本号，为空查询此产品下所有设备
         public let otaVersion: String?
-        
+
         /// 设备名称，支持左前缀模糊匹配
         public let deviceName: String?
-        
-        public init (productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil) {
+
+        public init(productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil) {
             self.productId = productId
             self.returnModel = returnModel
             self.limit = limit
@@ -44,7 +44,7 @@ extension Iotvideo {
             self.otaVersion = otaVersion
             self.deviceName = deviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case returnModel = "ReturnModel"
@@ -54,34 +54,34 @@ extension Iotvideo {
             case deviceName = "DeviceName"
         }
     }
-    
+
     /// DescribeDevices返回参数结构体
     public struct DescribeDevicesResponse: TCResponseModel {
         /// 设备信息 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DevicesData]?
-        
+
         /// 设备总数
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取设备信息列表
     ///
     /// 本接口（DescribeDevices）用于获取设备信息列表。
     @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
         self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备信息列表
     ///
     /// 本接口（DescribeDevices）用于获取设备信息列表。
@@ -89,15 +89,15 @@ extension Iotvideo {
     public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
         try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取设备信息列表
     ///
     /// 本接口（DescribeDevices）用于获取设备信息列表。
     @inlinable
-    public func describeDevices(productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+    public func describeDevices(productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
         self.describeDevices(DescribeDevicesRequest(productId: productId, returnModel: returnModel, limit: limit, offset: offset, otaVersion: otaVersion, deviceName: deviceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取设备信息列表
     ///
     /// 本接口（DescribeDevices）用于获取设备信息列表。

@@ -19,32 +19,32 @@ extension Ckafka {
     public struct DescribeInstancesDetailRequest: TCRequestModel {
         /// （过滤条件）按照实例ID过滤
         public let instanceId: String?
-        
+
         /// （过滤条件）按照实例名称过滤，支持模糊查询
         public let searchWord: String?
-        
+
         /// （过滤条件）实例的状态。0：创建中，1：运行中，2：删除中，不填默认返回全部
         public let status: [Int64]?
-        
+
         /// 偏移量，不填默认为0。
         public let offset: Int64?
-        
+
         /// 返回数量，不填则默认10，最大值20。
         public let limit: Int64?
-        
+
         /// 匹配标签key值。
         public let tagKey: String?
-        
+
         /// 过滤器。filter.Name 支持('Ip', 'VpcId', 'SubNetId', 'InstanceType','InstanceId') ,filter.Values最多传递10个值.
         public let filters: [Filter]?
-        
+
         /// 已经废弃， 使用InstanceIdList
         public let instanceIds: String?
-        
+
         /// 按照实例ID过滤
         public let instanceIdList: [String]?
-        
-        public init (instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil) {
+
+        public init(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.status = status
@@ -55,7 +55,7 @@ extension Ckafka {
             self.instanceIds = instanceIds
             self.instanceIdList = instanceIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case searchWord = "SearchWord"
@@ -68,29 +68,29 @@ extension Ckafka {
             case instanceIdList = "InstanceIdList"
         }
     }
-    
+
     /// DescribeInstancesDetail返回参数结构体
     public struct DescribeInstancesDetailResponse: TCResponseModel {
         /// 返回的实例详情结果对象
         public let result: InstanceDetailResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取实例列表详情
     ///
     /// 用户账户下获取实例列表详情
     @inlinable
-    public func describeInstancesDetail(_ input: DescribeInstancesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDetailResponse > {
+    public func describeInstancesDetail(_ input: DescribeInstancesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDetailResponse> {
         self.client.execute(action: "DescribeInstancesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例列表详情
     ///
     /// 用户账户下获取实例列表详情
@@ -98,15 +98,15 @@ extension Ckafka {
     public func describeInstancesDetail(_ input: DescribeInstancesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDetailResponse {
         try await self.client.execute(action: "DescribeInstancesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取实例列表详情
     ///
     /// 用户账户下获取实例列表详情
     @inlinable
-    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDetailResponse > {
+    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDetailResponse> {
         self.describeInstancesDetail(DescribeInstancesDetailRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取实例列表详情
     ///
     /// 用户账户下获取实例列表详情

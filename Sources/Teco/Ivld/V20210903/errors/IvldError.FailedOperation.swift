@@ -50,317 +50,317 @@ extension TCIvldError {
             case uploadFailed = "FailedOperation.UploadFailed"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 匹配的模板不存在。
         ///
         /// 重新选择模板类型
         public static var aiTemplateNotExist: FailedOperation {
             FailedOperation(.aiTemplateNotExist)
         }
-        
+
         /// 自定义人物分类已存在。
         ///
         /// 检查自定义类型是否重复
         public static var categoryExist: FailedOperation {
             FailedOperation(.categoryExist)
         }
-        
+
         /// 自定义类型层级变化。
         ///
         /// 检查自定义类型层级是否变化
         public static var categoryLevelChanged: FailedOperation {
             FailedOperation(.categoryLevelChanged)
         }
-        
+
         /// 自定义人物分类被引用，不能删除。
         ///
         /// 删除引用分类的自定义人物
         public static var categoryReferred: FailedOperation {
             FailedOperation(.categoryReferred)
         }
-        
+
         /// 自定义人物库已存在。
         ///
         /// 人脸库已存在，无需重建
         public static var customGroupAlreadyExist: FailedOperation {
             FailedOperation(.customGroupAlreadyExist)
         }
-        
+
         /// 内部DB连接失败。
         ///
         /// 请稍后重试
         public static var dbConnectionError: FailedOperation {
             FailedOperation(.dbConnectionError)
         }
-        
+
         /// 媒资文件下载失败。
         ///
         /// 检查文件是否正确，或者稍后重试
         public static var downloadFailed: FailedOperation {
             FailedOperation(.downloadFailed)
         }
-        
+
         /// 图片特征提取失败。
         ///
         /// 换一张含人脸图片
         public static var featureAlgoFailed: FailedOperation {
             FailedOperation(.featureAlgoFailed)
         }
-        
+
         /// 获取CAM临时鉴权失败。
         ///
         /// 检查文件权限是否正确配置，检查是否授予IVLD产品“服务相关角色”
         public static var getCAMTokenFailed: FailedOperation {
             FailedOperation(.getCAMTokenFailed)
         }
-        
+
         /// 获取任务列表失败。
         ///
         /// 确认该用户是否成功创建过任务
         public static var getTaskListFailed: FailedOperation {
             FailedOperation(.getTaskListFailed)
         }
-        
+
         /// 获取媒资信息失败。
         ///
         /// 检查视频文件格式是否满足要求
         public static var getVideoMetadataFailed: FailedOperation {
             FailedOperation(.getVideoMetadataFailed)
         }
-        
+
         /// 图片数量过多。
         ///
         /// 删除不用的自定义人物图片
         public static var imageNumExceeded: FailedOperation {
             FailedOperation(.imageNumExceeded)
         }
-        
+
         /// MD5不匹配。
         ///
         /// 检查文件MD5是否正确
         public static var md5Mismatch: FailedOperation {
             FailedOperation(.md5Mismatch)
         }
-        
+
         /// 媒资文件已经存在。
         ///
         /// 媒资文件已存在，请勿重复导入
         public static var mediaAlreadyExist: FailedOperation {
             FailedOperation(.mediaAlreadyExist)
         }
-        
+
         /// 媒资文件已经过期。
         ///
         /// 媒资文件已过期，请重新导入
         public static var mediaExpired: FailedOperation {
             FailedOperation(.mediaExpired)
         }
-        
+
         /// 媒资正在使用。
         ///
         /// 媒资正在使用，无法修改，请稍后重试
         public static var mediaInUse: FailedOperation {
             FailedOperation(.mediaInUse)
         }
-        
+
         /// 媒体文件未就绪。
         ///
         /// 检查MediaId状态是否正确
         public static var mediaNotReady: FailedOperation {
             FailedOperation(.mediaNotReady)
         }
-        
+
         /// 图片中包含多张人脸。
         ///
         /// 换一张单人脸图片
         public static var multipleFacesInImage: FailedOperation {
             FailedOperation(.multipleFacesInImage)
         }
-        
+
         /// 图片中不包含人脸。
         ///
         /// 换一张含人脸图片
         public static var noFaceInImage: FailedOperation {
             FailedOperation(.noFaceInImage)
         }
-        
+
         /// 计费开通失败。
         ///
         /// 请查看失败原因，或稍后重试
         public static var openChargeFailed: FailedOperation {
             FailedOperation(.openChargeFailed)
         }
-        
+
         /// 人脸库中存在相似的人脸: %!s(MISSING)。
         ///
         /// 检查入库图片是否正确
         public static var personDuplicated: FailedOperation {
             FailedOperation(.personDuplicated)
         }
-        
+
         /// 人脸图片不属于已知人物。
         ///
         /// 检查输入PersonId是否正确
         public static var personNotMatched: FailedOperation {
             FailedOperation(.personNotMatched)
         }
-        
+
         /// 自定义人物数量过多。
         ///
         /// 删除不用的自定义人物
         public static var personNumExceeded: FailedOperation {
             FailedOperation(.personNumExceeded)
         }
-        
+
         /// 图片质量分检测失败。
         ///
         /// 换一张含人脸图片
         public static var qualityAlgoFailed: FailedOperation {
             FailedOperation(.qualityAlgoFailed)
         }
-        
+
         /// 图片质量分过低。
         ///
         /// 换一张高质量含人脸图片
         public static var qualityTooLow: FailedOperation {
             FailedOperation(.qualityTooLow)
         }
-        
+
         /// 结果快照反序列化失败。
         ///
         /// 重新分析该视频
         public static var snapshotDeserializeFailed: FailedOperation {
             FailedOperation(.snapshotDeserializeFailed)
         }
-        
+
         /// 停止AI工作室任务失败。
         ///
         /// 确认AI工作室状态后重试本操作
         public static var stopFlowFailed: FailedOperation {
             FailedOperation(.stopFlowFailed)
         }
-        
+
         /// 存在相同的任务。
         ///
         /// 停止相同的任务
         public static var taskAlreadyExist: FailedOperation {
             FailedOperation(.taskAlreadyExist)
         }
-        
+
         /// 视频分析未完成。
         ///
         /// 等待任务分析完成后重新调用该接口
         public static var taskNotFinished: FailedOperation {
             FailedOperation(.taskNotFinished)
         }
-        
+
         /// 转码失败。
         ///
         /// 请查看失败原因，或稍后重试
         public static var transcodeFailed: FailedOperation {
             FailedOperation(.transcodeFailed)
         }
-        
+
         /// 上传文件失败。
         ///
         /// 请稍后重试
         public static var uploadFailed: FailedOperation {
             FailedOperation(.uploadFailed)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asIvldError() -> TCIvldError {
             let code: TCIvldError.Code
             switch self.error {
-            case .aiTemplateNotExist: 
+            case .aiTemplateNotExist:
                 code = .failedOperation_AiTemplateNotExist
-            case .categoryExist: 
+            case .categoryExist:
                 code = .failedOperation_CategoryExist
-            case .categoryLevelChanged: 
+            case .categoryLevelChanged:
                 code = .failedOperation_CategoryLevelChanged
-            case .categoryReferred: 
+            case .categoryReferred:
                 code = .failedOperation_CategoryReferred
-            case .customGroupAlreadyExist: 
+            case .customGroupAlreadyExist:
                 code = .failedOperation_CustomGroupAlreadyExist
-            case .dbConnectionError: 
+            case .dbConnectionError:
                 code = .failedOperation_DBConnectionError
-            case .downloadFailed: 
+            case .downloadFailed:
                 code = .failedOperation_DownloadFailed
-            case .featureAlgoFailed: 
+            case .featureAlgoFailed:
                 code = .failedOperation_FeatureAlgoFailed
-            case .getCAMTokenFailed: 
+            case .getCAMTokenFailed:
                 code = .failedOperation_GetCAMTokenFailed
-            case .getTaskListFailed: 
+            case .getTaskListFailed:
                 code = .failedOperation_GetTaskListFailed
-            case .getVideoMetadataFailed: 
+            case .getVideoMetadataFailed:
                 code = .failedOperation_GetVideoMetadataFailed
-            case .imageNumExceeded: 
+            case .imageNumExceeded:
                 code = .failedOperation_ImageNumExceeded
-            case .md5Mismatch: 
+            case .md5Mismatch:
                 code = .failedOperation_MD5Mismatch
-            case .mediaAlreadyExist: 
+            case .mediaAlreadyExist:
                 code = .failedOperation_MediaAlreadyExist
-            case .mediaExpired: 
+            case .mediaExpired:
                 code = .failedOperation_MediaExpired
-            case .mediaInUse: 
+            case .mediaInUse:
                 code = .failedOperation_MediaInUse
-            case .mediaNotReady: 
+            case .mediaNotReady:
                 code = .failedOperation_MediaNotReady
-            case .multipleFacesInImage: 
+            case .multipleFacesInImage:
                 code = .failedOperation_MultipleFacesInImage
-            case .noFaceInImage: 
+            case .noFaceInImage:
                 code = .failedOperation_NoFaceInImage
-            case .openChargeFailed: 
+            case .openChargeFailed:
                 code = .failedOperation_OpenChargeFailed
-            case .personDuplicated: 
+            case .personDuplicated:
                 code = .failedOperation_PersonDuplicated
-            case .personNotMatched: 
+            case .personNotMatched:
                 code = .failedOperation_PersonNotMatched
-            case .personNumExceeded: 
+            case .personNumExceeded:
                 code = .failedOperation_PersonNumExceeded
-            case .qualityAlgoFailed: 
+            case .qualityAlgoFailed:
                 code = .failedOperation_QualityAlgoFailed
-            case .qualityTooLow: 
+            case .qualityTooLow:
                 code = .failedOperation_QualityTooLow
-            case .snapshotDeserializeFailed: 
+            case .snapshotDeserializeFailed:
                 code = .failedOperation_SnapshotDeserializeFailed
-            case .stopFlowFailed: 
+            case .stopFlowFailed:
                 code = .failedOperation_StopFlowFailed
-            case .taskAlreadyExist: 
+            case .taskAlreadyExist:
                 code = .failedOperation_TaskAlreadyExist
-            case .taskNotFinished: 
+            case .taskNotFinished:
                 code = .failedOperation_TaskNotFinished
-            case .transcodeFailed: 
+            case .transcodeFailed:
                 code = .failedOperation_TranscodeFailed
-            case .uploadFailed: 
+            case .uploadFailed:
                 code = .failedOperation_UploadFailed
-            case .other: 
+            case .other:
                 code = .failedOperation
             }
             return TCIvldError(code, context: self.context)

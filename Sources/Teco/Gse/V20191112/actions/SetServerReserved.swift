@@ -19,46 +19,46 @@ extension Gse {
     public struct SetServerReservedRequest: TCRequestModel {
         /// 扩缩容配置服务器舰队ID
         public let fleetId: String
-        
+
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例是否保留, 1-保留，0-不保留,默认
         public let reserveValue: Int64?
-        
-        public init (fleetId: String, instanceId: String, reserveValue: Int64? = nil) {
+
+        public init(fleetId: String, instanceId: String, reserveValue: Int64? = nil) {
             self.fleetId = fleetId
             self.instanceId = instanceId
             self.reserveValue = reserveValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
             case instanceId = "InstanceId"
             case reserveValue = "ReserveValue"
         }
     }
-    
+
     /// SetServerReserved返回参数结构体
     public struct SetServerReservedResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 设置实例保留
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
     /// 字段ReserveValue：0默认值，不保留；1 保留
     @inlinable
-    public func setServerReserved(_ input: SetServerReservedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetServerReservedResponse > {
+    public func setServerReserved(_ input: SetServerReservedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerReservedResponse> {
         self.client.execute(action: "SetServerReserved", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 设置实例保留
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -68,17 +68,17 @@ extension Gse {
     public func setServerReserved(_ input: SetServerReservedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerReservedResponse {
         try await self.client.execute(action: "SetServerReserved", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 设置实例保留
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
     /// 字段ReserveValue：0默认值，不保留；1 保留
     @inlinable
-    public func setServerReserved(fleetId: String, instanceId: String, reserveValue: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetServerReservedResponse > {
+    public func setServerReserved(fleetId: String, instanceId: String, reserveValue: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerReservedResponse> {
         self.setServerReserved(SetServerReservedRequest(fleetId: fleetId, instanceId: instanceId, reserveValue: reserveValue), logger: logger, on: eventLoop)
     }
-    
+
     /// 设置实例保留
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

@@ -25,80 +25,80 @@ extension TCScfError {
             case roleCheck = "InvalidParameter.RoleCheck"
             case routingConfig = "InvalidParameter.RoutingConfig"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请传递有效的日志相关参数。
         public static var cls: InvalidParameter {
             InvalidParameter(.cls)
         }
-        
+
         /// FunctionName取值与规范不符，请修正后再试。可参考：https://tencentcs.com/5jXKFnBW。
         public static var functionName: InvalidParameter {
             InvalidParameter(.functionName)
         }
-        
+
         /// 创建函数传参异常。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         /// 请求参数不合法。
         public static var payload: InvalidParameter {
             InvalidParameter(.payload)
         }
-        
+
         /// 请求大小超限，请参照官方文档
         public static var requestTooLarge: InvalidParameter {
             InvalidParameter(.requestTooLarge)
         }
-        
+
         /// RoleCheck 传参有误。
         public static var roleCheck: InvalidParameter {
             InvalidParameter(.roleCheck)
         }
-        
+
         /// RoutingConfig参数传入错误。
         public static var routingConfig: InvalidParameter {
             InvalidParameter(.routingConfig)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
-            case .cls: 
+            case .cls:
                 code = .invalidParameter_Cls
-            case .functionName: 
+            case .functionName:
                 code = .invalidParameter_FunctionName
-            case .paramError: 
+            case .paramError:
                 code = .invalidParameter_ParamError
-            case .payload: 
+            case .payload:
                 code = .invalidParameter_Payload
-            case .requestTooLarge: 
+            case .requestTooLarge:
                 code = .invalidParameter_RequestTooLarge
-            case .roleCheck: 
+            case .roleCheck:
                 code = .invalidParameter_RoleCheck
-            case .routingConfig: 
+            case .routingConfig:
                 code = .invalidParameter_RoutingConfig
             }
             return TCScfError(code, context: self.context)

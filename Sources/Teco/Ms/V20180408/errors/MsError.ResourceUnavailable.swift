@@ -21,52 +21,52 @@ extension TCMsError {
             case notFound = "ResourceUnavailable.NotFound"
             case other = "ResourceUnavailable"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 资源未绑定应用包名。
         public static var notBind: ResourceUnavailable {
             ResourceUnavailable(.notBind)
         }
-        
+
         /// 找不到该资源。
         public static var notFound: ResourceUnavailable {
             ResourceUnavailable(.notFound)
         }
-        
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-        
+
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {
-            case .notBind: 
+            case .notBind:
                 code = .resourceUnavailable_NotBind
-            case .notFound: 
+            case .notFound:
                 code = .resourceUnavailable_NotFound
-            case .other: 
+            case .other:
                 code = .resourceUnavailable
             }
             return TCMsError(code, context: self.context)

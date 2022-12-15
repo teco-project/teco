@@ -19,48 +19,48 @@ extension Redis {
     public struct ModfiyInstancePasswordRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 实例旧密码
         public let oldPassword: String
-        
+
         /// 实例新密码
         public let password: String
-        
-        public init (instanceId: String, oldPassword: String, password: String) {
+
+        public init(instanceId: String, oldPassword: String, password: String) {
             self.instanceId = instanceId
             self.oldPassword = oldPassword
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case oldPassword = "OldPassword"
             case password = "Password"
         }
     }
-    
+
     /// ModfiyInstancePassword返回参数结构体
     public struct ModfiyInstancePasswordResponse: TCResponseModel {
         /// 任务ID
         public let taskId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改Redis密码
     ///
     /// 修改redis密码
     @inlinable
-    public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModfiyInstancePasswordResponse > {
+    public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModfiyInstancePasswordResponse> {
         self.client.execute(action: "ModfiyInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改Redis密码
     ///
     /// 修改redis密码
@@ -68,15 +68,15 @@ extension Redis {
     public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModfiyInstancePasswordResponse {
         try await self.client.execute(action: "ModfiyInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改Redis密码
     ///
     /// 修改redis密码
     @inlinable
-    public func modfiyInstancePassword(instanceId: String, oldPassword: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModfiyInstancePasswordResponse > {
+    public func modfiyInstancePassword(instanceId: String, oldPassword: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModfiyInstancePasswordResponse> {
         self.modfiyInstancePassword(ModfiyInstancePasswordRequest(instanceId: instanceId, oldPassword: oldPassword, password: password), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改Redis密码
     ///
     /// 修改redis密码

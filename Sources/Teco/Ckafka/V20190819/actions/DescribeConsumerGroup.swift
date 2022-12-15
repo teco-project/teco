@@ -19,27 +19,27 @@ extension Ckafka {
     public struct DescribeConsumerGroupRequest: TCRequestModel {
         /// ckafka实例id。
         public let instanceId: String
-        
+
         /// 可选，用户需要查询的group名称。
         public let groupName: String?
-        
+
         /// 可选，用户需要查询的group中的对应的topic名称，如果指定了该参数，而group又未指定则忽略该参数。
         public let topicName: String?
-        
+
         /// 本次返回个数限制
         public let limit: Int64?
-        
+
         /// 偏移位置
         public let offset: Int64?
-        
-        public init (instanceId: String, groupName: String? = nil, topicName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+
+        public init(instanceId: String, groupName: String? = nil, topicName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.groupName = groupName
             self.topicName = topicName
             self.limit = limit
             self.offset = offset
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case groupName = "GroupName"
@@ -48,39 +48,39 @@ extension Ckafka {
             case offset = "Offset"
         }
     }
-    
+
     /// DescribeConsumerGroup返回参数结构体
     public struct DescribeConsumerGroupResponse: TCResponseModel {
         /// 返回的消费分组信息
         public let result: ConsumerGroupResponse
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询消费分组信息
     @inlinable
-    public func describeConsumerGroup(_ input: DescribeConsumerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConsumerGroupResponse > {
+    public func describeConsumerGroup(_ input: DescribeConsumerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConsumerGroupResponse> {
         self.client.execute(action: "DescribeConsumerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询消费分组信息
     @inlinable
     public func describeConsumerGroup(_ input: DescribeConsumerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerGroupResponse {
         try await self.client.execute(action: "DescribeConsumerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询消费分组信息
     @inlinable
-    public func describeConsumerGroup(instanceId: String, groupName: String? = nil, topicName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConsumerGroupResponse > {
+    public func describeConsumerGroup(instanceId: String, groupName: String? = nil, topicName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConsumerGroupResponse> {
         self.describeConsumerGroup(DescribeConsumerGroupRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, limit: limit, offset: offset), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询消费分组信息
     @inlinable
     public func describeConsumerGroup(instanceId: String, groupName: String? = nil, topicName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerGroupResponse {

@@ -23,23 +23,23 @@ extension Teo {
         /// <li>rate：速率限制规则；</li>
         /// <li>bot：Bot基础规则。</li>
         public let ruleType: String
-        
+
         /// 子域名/应用名。
         public let entity: String?
-        
+
         /// 规则Id数组。 当为空时查询 子域名或者应用名下所有规则
         public let ruleIdList: [Int64]?
-        
+
         /// 子域名数组。
         public let domains: [String]?
-        
-        public init (ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil) {
+
+        public init(ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil) {
             self.ruleType = ruleType
             self.entity = entity
             self.ruleIdList = ruleIdList
             self.domains = domains
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleType = "RuleType"
             case entity = "Entity"
@@ -47,45 +47,45 @@ extension Teo {
             case domains = "Domains"
         }
     }
-    
+
     /// DescribeSecurityRuleId返回参数结构体
     public struct DescribeSecurityRuleIdResponse: TCResponseModel {
         /// 托管规则类型的规则列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wafGroupRules: [WafGroupRule]?
-        
+
         /// 自定义规则、速率限制、Bot规则的规则列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityRules: [SecurityRule]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case wafGroupRules = "WafGroupRules"
             case securityRules = "SecurityRules"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询安全规则详情
     @inlinable
-    public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRuleIdResponse > {
+    public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityRuleIdResponse> {
         self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全规则详情
     @inlinable
     public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRuleIdResponse {
         try await self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询安全规则详情
     @inlinable
-    public func describeSecurityRuleId(ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRuleIdResponse > {
+    public func describeSecurityRuleId(ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityRuleIdResponse> {
         self.describeSecurityRuleId(DescribeSecurityRuleIdRequest(ruleType: ruleType, entity: entity, ruleIdList: ruleIdList, domains: domains), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询安全规则详情
     @inlinable
     public func describeSecurityRuleId(ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRuleIdResponse {

@@ -19,23 +19,23 @@ extension Tcr {
     public struct ModifyImmutableTagRulesRequest: TCRequestModel {
         /// 实例 Id
         public let registryId: String
-        
+
         /// 命名空间
         public let namespaceName: String
-        
+
         /// 规则 Id
         public let ruleId: Int64
-        
+
         /// 规则
         public let rule: ImmutableTagRule
-        
-        public init (registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule) {
+
+        public init(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.ruleId = ruleId
             self.rule = rule
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case namespaceName = "NamespaceName"
@@ -43,35 +43,35 @@ extension Tcr {
             case rule = "Rule"
         }
     }
-    
+
     /// ModifyImmutableTagRules返回参数结构体
     public struct ModifyImmutableTagRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新镜像不可变规则
     @inlinable
-    public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImmutableTagRulesResponse > {
+    public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
         self.client.execute(action: "ModifyImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新镜像不可变规则
     @inlinable
     public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
         try await self.client.execute(action: "ModifyImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新镜像不可变规则
     @inlinable
-    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImmutableTagRulesResponse > {
+    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
         self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新镜像不可变规则
     @inlinable
     public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {

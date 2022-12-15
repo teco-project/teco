@@ -20,23 +20,23 @@ extension Tke {
         /// 集群ID列表(为空时，
         /// 表示获取账号下所有集群)
         public let clusterIds: [String]?
-        
+
         /// 偏移量,默认0
         public let offset: UInt64?
-        
+
         /// 最大输出条数，默认20
         public let limit: UInt64?
-        
+
         /// 过滤条件,当前只支持按照单个条件ClusterName进行过滤
         public let filters: [Filter]?
-        
-        public init (clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
+
+        public init(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.clusterIds = clusterIds
             self.offset = offset
             self.limit = limit
             self.filters = filters
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterIds = "ClusterIds"
             case offset = "Offset"
@@ -44,43 +44,43 @@ extension Tke {
             case filters = "Filters"
         }
     }
-    
+
     /// DescribeEKSClusters返回参数结构体
     public struct DescribeEKSClustersResponse: TCResponseModel {
         /// 集群总个数
         public let totalCount: UInt64
-        
+
         /// 集群信息列表
         public let clusters: [EksCluster]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case clusters = "Clusters"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询弹性集群列表
     @inlinable
-    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClustersResponse > {
+    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClustersResponse> {
         self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询弹性集群列表
     @inlinable
     public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
         try await self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询弹性集群列表
     @inlinable
-    public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClustersResponse > {
+    public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClustersResponse> {
         self.describeEKSClusters(DescribeEKSClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询弹性集群列表
     @inlinable
     public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {

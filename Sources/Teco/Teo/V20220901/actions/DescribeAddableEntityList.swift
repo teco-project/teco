@@ -19,7 +19,7 @@ extension Teo {
     public struct DescribeAddableEntityListRequest: TCRequestModel {
         /// 站点ID。
         public let zoneId: String
-        
+
         /// 推送数据类型，取值有:
         /// <li>domain：七层加速日志；</li>
         /// <li>application：四层加速日志；</li>
@@ -28,45 +28,45 @@ extension Teo {
         /// <li>web-rule：自定义规则日志；</li>
         /// <li>web-bot：Bot管理日志。</li>
         public let entityType: String
-        
-        public init (zoneId: String, entityType: String) {
+
+        public init(zoneId: String, entityType: String) {
             self.zoneId = zoneId
             self.entityType = entityType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case entityType = "EntityType"
         }
     }
-    
+
     /// DescribeAddableEntityList返回参数结构体
     public struct DescribeAddableEntityListResponse: TCResponseModel {
         /// 查询结果的总条数。
         public let totalCount: Int64
-        
+
         /// 可添加的实体列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let entityList: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case entityList = "EntityList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddableEntityListResponse > {
+    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
         self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
@@ -74,15 +74,15 @@ extension Teo {
     public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
         try await self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(zoneId: String, entityType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddableEntityListResponse > {
+    public func describeAddableEntityList(zoneId: String, entityType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
         self.describeAddableEntityList(DescribeAddableEntityListRequest(zoneId: zoneId, entityType: entityType), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。

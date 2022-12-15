@@ -22,59 +22,59 @@ extension TCLiveError {
             case rateLimitExceeded = "LimitExceeded.RateLimitExceeded"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 当前并发任务数超限制。
         public static var maximumRunningTask: LimitExceeded {
             LimitExceeded(.maximumRunningTask)
         }
-        
+
         /// 当天已创建任务数超限制。
         public static var maximumTask: LimitExceeded {
             LimitExceeded(.maximumTask)
         }
-        
+
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var rateLimitExceeded: LimitExceeded {
             LimitExceeded(.rateLimitExceeded)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asLiveError() -> TCLiveError {
             let code: TCLiveError.Code
             switch self.error {
-            case .maximumRunningTask: 
+            case .maximumRunningTask:
                 code = .limitExceeded_MaximumRunningTask
-            case .maximumTask: 
+            case .maximumTask:
                 code = .limitExceeded_MaximumTask
-            case .rateLimitExceeded: 
+            case .rateLimitExceeded:
                 code = .limitExceeded_RateLimitExceeded
-            case .other: 
+            case .other:
                 code = .limitExceeded
             }
             return TCLiveError(code, context: self.context)

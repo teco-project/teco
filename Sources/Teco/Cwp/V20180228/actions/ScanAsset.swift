@@ -19,54 +19,54 @@ extension Cwp {
     public struct ScanAssetRequest: TCRequestModel {
         /// 资产指纹类型id列表
         public let assetTypeIds: [UInt64]?
-        
+
         /// Quuid列表
         public let quuids: [String]?
-        
-        public init (assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil) {
+
+        public init(assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil) {
             self.assetTypeIds = assetTypeIds
             self.quuids = quuids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case assetTypeIds = "AssetTypeIds"
             case quuids = "Quuids"
         }
     }
-    
+
     /// ScanAsset返回参数结构体
     public struct ScanAssetResponse: TCResponseModel {
         /// 任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: UInt64?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 资产指纹启动扫描
     @inlinable
-    public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanAssetResponse > {
+    public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanAssetResponse> {
         self.client.execute(action: "ScanAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 资产指纹启动扫描
     @inlinable
     public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanAssetResponse {
         try await self.client.execute(action: "ScanAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 资产指纹启动扫描
     @inlinable
-    public func scanAsset(assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanAssetResponse > {
+    public func scanAsset(assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanAssetResponse> {
         self.scanAsset(ScanAssetRequest(assetTypeIds: assetTypeIds, quuids: quuids), logger: logger, on: eventLoop)
     }
-    
+
     /// 资产指纹启动扫描
     @inlinable
     public func scanAsset(assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanAssetResponse {

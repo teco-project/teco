@@ -17,32 +17,32 @@
 extension Mariadb {
     /// DescribeDBInstanceSpecs请求参数结构体
     public struct DescribeDBInstanceSpecsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeDBInstanceSpecs返回参数结构体
     public struct DescribeDBInstanceSpecsResponse: TCResponseModel {
         /// 按机型分类的可售卖规格列表
         public let specs: [InstanceSpec]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case specs = "Specs"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询云数据库可售卖规格
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
-    public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceSpecsResponse > {
+    public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSpecsResponse> {
         self.client.execute(action: "DescribeDBInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库可售卖规格
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
@@ -50,15 +50,15 @@ extension Mariadb {
     public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
         try await self.client.execute(action: "DescribeDBInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询云数据库可售卖规格
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
-    public func describeDBInstanceSpecs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceSpecsResponse > {
+    public func describeDBInstanceSpecs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSpecsResponse> {
         self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询云数据库可售卖规格
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。

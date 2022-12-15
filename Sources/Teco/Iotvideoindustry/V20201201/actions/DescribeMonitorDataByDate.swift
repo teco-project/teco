@@ -19,54 +19,54 @@ extension Iotvideoindustry {
     public struct DescribeMonitorDataByDateRequest: TCRequestModel {
         /// 开始时间戳
         public let startTime: Int64
-        
+
         /// 结束时间戳 最多显示30天数据
         public let endTime: Int64
-        
-        public init (startTime: Int64, endTime: Int64) {
+
+        public init(startTime: Int64, endTime: Int64) {
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeMonitorDataByDate返回参数结构体
     public struct DescribeMonitorDataByDateResponse: TCResponseModel {
         /// 统计数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [RecordStatistic]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 运营中心-设备录像存储统计
     @inlinable
-    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorDataByDateResponse > {
+    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorDataByDateResponse> {
         self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 运营中心-设备录像存储统计
     @inlinable
     public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
         try await self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 运营中心-设备录像存储统计
     @inlinable
-    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorDataByDateResponse > {
+    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorDataByDateResponse> {
         self.describeMonitorDataByDate(DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 运营中心-设备录像存储统计
     @inlinable
     public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {

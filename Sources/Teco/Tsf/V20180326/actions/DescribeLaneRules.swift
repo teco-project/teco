@@ -19,27 +19,27 @@ extension Tsf {
     public struct DescribeLaneRulesRequest: TCRequestModel {
         /// 每页展示的条数
         public let limit: Int64
-        
+
         /// 翻页偏移量
         public let offset: Int64
-        
+
         /// 搜索关键词
         public let searchWord: String?
-        
+
         /// 泳道规则ID（用于精确搜索）
         public let ruleId: String?
-        
+
         /// 无
         public let ruleIdList: [String]?
-        
-        public init (limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil) {
+
+        public init(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.searchWord = searchWord
             self.ruleId = ruleId
             self.ruleIdList = ruleIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
@@ -48,40 +48,40 @@ extension Tsf {
             case ruleIdList = "RuleIdList"
         }
     }
-    
+
     /// DescribeLaneRules返回参数结构体
     public struct DescribeLaneRulesResponse: TCResponseModel {
         /// 泳道规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: LaneRules?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询泳道规则列表
     @inlinable
-    public func describeLaneRules(_ input: DescribeLaneRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaneRulesResponse > {
+    public func describeLaneRules(_ input: DescribeLaneRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaneRulesResponse> {
         self.client.execute(action: "DescribeLaneRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询泳道规则列表
     @inlinable
     public func describeLaneRules(_ input: DescribeLaneRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {
         try await self.client.execute(action: "DescribeLaneRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询泳道规则列表
     @inlinable
-    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaneRulesResponse > {
+    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaneRulesResponse> {
         self.describeLaneRules(DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询泳道规则列表
     @inlinable
     public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {

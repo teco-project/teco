@@ -19,23 +19,23 @@ extension Drm {
     public struct StartEncryptionRequest: TCRequestModel {
         /// cos的end point。
         public let cosEndPoint: String
-        
+
         /// cos api密钥id。
         public let cosSecretId: String
-        
+
         /// cos api密钥。
         public let cosSecretKey: String
-        
+
         /// 使用的DRM方案类型，接口取值WIDEVINE,FAIRPLAY
         public let drmType: String
-        
+
         /// 存储在COS上的原始内容信息
         public let sourceObject: DrmSourceObject
-        
+
         /// 加密后的内容存储到COS的对象
         public let outputObjects: [DrmOutputObject]
-        
-        public init (cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject]) {
+
+        public init(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject]) {
             self.cosEndPoint = cosEndPoint
             self.cosSecretId = cosSecretId
             self.cosSecretKey = cosSecretKey
@@ -43,7 +43,7 @@ extension Drm {
             self.sourceObject = sourceObject
             self.outputObjects = outputObjects
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cosEndPoint = "CosEndPoint"
             case cosSecretId = "CosSecretId"
@@ -53,26 +53,26 @@ extension Drm {
             case outputObjects = "OutputObjects"
         }
     }
-    
+
     /// StartEncryption返回参数结构体
     public struct StartEncryptionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动DRM加密(该接口已下线)
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
     /// 注意：该接口已下线。
     @inlinable
-    public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartEncryptionResponse > {
+    public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEncryptionResponse> {
         self.client.execute(action: "StartEncryption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动DRM加密(该接口已下线)
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
@@ -81,16 +81,16 @@ extension Drm {
     public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
         try await self.client.execute(action: "StartEncryption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动DRM加密(该接口已下线)
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
     /// 注意：该接口已下线。
     @inlinable
-    public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartEncryptionResponse > {
+    public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEncryptionResponse> {
         self.startEncryption(StartEncryptionRequest(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动DRM加密(该接口已下线)
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。

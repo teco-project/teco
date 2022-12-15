@@ -19,23 +19,23 @@ extension Wedata {
     public struct DryRunDIOfflineTaskRequest: TCRequestModel {
         /// 任务Id
         public let taskId: String
-        
+
         /// 项目Id
         public let projectId: String
-        
+
         /// 资源组Id
         public let resourceGroup: String?
-        
+
         /// 默认 27
         public let taskTypeId: UInt64?
-        
-        public init (taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil) {
+
+        public init(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil) {
             self.taskId = taskId
             self.projectId = projectId
             self.resourceGroup = resourceGroup
             self.taskTypeId = taskTypeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
@@ -43,27 +43,27 @@ extension Wedata {
             case taskTypeId = "TaskTypeId"
         }
     }
-    
+
     /// DryRunDIOfflineTask返回参数结构体
     public struct DryRunDIOfflineTaskResponse: TCResponseModel {
         /// 数据时间
         public let currentRunDate: String
-        
+
         /// 项目Id
         public let projectId: String
-        
+
         /// 任务状态
         public let status: String
-        
+
         /// 任务Id
         public let taskId: String
-        
+
         /// 任务实例唯一key
         public let taskInstanceKey: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case currentRunDate = "CurrentRunDate"
             case projectId = "ProjectId"
@@ -73,25 +73,25 @@ extension Wedata {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 调试运行集成任务
     @inlinable
-    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DryRunDIOfflineTaskResponse > {
+    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DryRunDIOfflineTaskResponse> {
         self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 调试运行集成任务
     @inlinable
     public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
         try await self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 调试运行集成任务
     @inlinable
-    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DryRunDIOfflineTaskResponse > {
+    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DryRunDIOfflineTaskResponse> {
         self.dryRunDIOfflineTask(DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 调试运行集成任务
     @inlinable
     public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {

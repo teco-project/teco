@@ -19,54 +19,54 @@ extension Tbaas {
     public struct ApplyChainMakerBatchUserCertRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
-        
+
         /// 证书标识和证书请求文件，可参考TBaaS证书生成相关文档生成证书请求文件
         public let signUserCsrList: [SignCertCsr]
-        
-        public init (clusterId: String, signUserCsrList: [SignCertCsr]) {
+
+        public init(clusterId: String, signUserCsrList: [SignCertCsr]) {
             self.clusterId = clusterId
             self.signUserCsrList = signUserCsrList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case signUserCsrList = "SignUserCsrList"
         }
     }
-    
+
     /// ApplyChainMakerBatchUserCert返回参数结构体
     public struct ApplyChainMakerBatchUserCertResponse: TCResponseModel {
         /// 成功生成的用户证书的base64编码字符串列表，与SignUserCsrList一一对应
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signUserCrtList: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case signUserCrtList = "SignUserCrtList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量申请长安链用户签名证书
     @inlinable
-    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyChainMakerBatchUserCertResponse > {
+    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChainMakerBatchUserCertResponse> {
         self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量申请长安链用户签名证书
     @inlinable
     public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
         try await self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量申请长安链用户签名证书
     @inlinable
-    public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyChainMakerBatchUserCertResponse > {
+    public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChainMakerBatchUserCertResponse> {
         self.applyChainMakerBatchUserCert(ApplyChainMakerBatchUserCertRequest(clusterId: clusterId, signUserCsrList: signUserCsrList), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量申请长安链用户签名证书
     @inlinable
     public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {

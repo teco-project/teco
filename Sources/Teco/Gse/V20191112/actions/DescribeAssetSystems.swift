@@ -19,44 +19,44 @@ extension Gse {
     public struct DescribeAssetSystemsRequest: TCRequestModel {
         /// 生成包支持的操作系统类型
         public let osType: String?
-        
+
         /// 生成包支持的操作系统位数
         public let osBit: Int64?
-        
-        public init (osType: String? = nil, osBit: Int64? = nil) {
+
+        public init(osType: String? = nil, osBit: Int64? = nil) {
             self.osType = osType
             self.osBit = osBit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case osType = "OsType"
             case osBit = "OsBit"
         }
     }
-    
+
     /// DescribeAssetSystems返回参数结构体
     public struct DescribeAssetSystemsResponse: TCResponseModel {
         /// 生成包支持的操作系统类型列表
         public let assetSupportSys: [AssetSupportSys]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case assetSupportSys = "AssetSupportSys"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
     @inlinable
-    public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSystemsResponse > {
+    public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
         self.client.execute(action: "DescribeAssetSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -65,16 +65,16 @@ extension Gse {
     public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemsResponse {
         try await self.client.execute(action: "DescribeAssetSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
     @inlinable
-    public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSystemsResponse > {
+    public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
         self.describeAssetSystems(DescribeAssetSystemsRequest(osType: osType, osBit: osBit), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

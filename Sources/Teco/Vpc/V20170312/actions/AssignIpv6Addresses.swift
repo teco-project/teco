@@ -19,40 +19,40 @@ extension Vpc {
     public struct AssignIpv6AddressesRequest: TCRequestModel {
         /// 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
         public let networkInterfaceId: String
-        
+
         /// 指定的`IPv6`地址列表，单次最多指定10个。与入参`Ipv6AddressCount`合并计算配额。与Ipv6AddressCount必填一个。
         public let ipv6Addresses: [Ipv6Address]?
-        
+
         /// 自动分配`IPv6`地址个数，内网IP地址个数总和不能超过配数。与入参`Ipv6Addresses`合并计算配额。与Ipv6Addresses必填一个。
         public let ipv6AddressCount: UInt64?
-        
-        public init (networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: UInt64? = nil) {
+
+        public init(networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: UInt64? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.ipv6Addresses = ipv6Addresses
             self.ipv6AddressCount = ipv6AddressCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
             case ipv6Addresses = "Ipv6Addresses"
             case ipv6AddressCount = "Ipv6AddressCount"
         }
     }
-    
+
     /// AssignIpv6Addresses返回参数结构体
     public struct AssignIpv6AddressesResponse: TCResponseModel {
         /// 分配给弹性网卡的`IPv6`地址列表。
         public let ipv6AddressSet: [Ipv6Address]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ipv6AddressSet = "Ipv6AddressSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
@@ -62,10 +62,10 @@ extension Vpc {
     /// * 地址必须要在弹性网卡所在子网内，而且不能被占用。
     /// * 在弹性网卡上申请一个到多个辅助`IPv6`地址，接口会在弹性网卡所在子网段内返回指定数量的辅助`IPv6`地址。
     @inlinable
-    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6AddressesResponse > {
+    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
         self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
@@ -78,7 +78,7 @@ extension Vpc {
     public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
         try await self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
@@ -88,10 +88,10 @@ extension Vpc {
     /// * 地址必须要在弹性网卡所在子网内，而且不能被占用。
     /// * 在弹性网卡上申请一个到多个辅助`IPv6`地址，接口会在弹性网卡所在子网段内返回指定数量的辅助`IPv6`地址。
     @inlinable
-    public func assignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6AddressesResponse > {
+    public func assignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
         self.assignIpv6Addresses(AssignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount), logger: logger, on: eventLoop)
     }
-    
+
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />

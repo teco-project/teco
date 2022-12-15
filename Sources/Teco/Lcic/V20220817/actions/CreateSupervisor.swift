@@ -17,38 +17,38 @@
 extension Lcic {
     /// CreateSupervisor请求参数结构体
     public struct CreateSupervisorRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// CreateSupervisor返回参数结构体
     public struct CreateSupervisorResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建巡课
     @inlinable
-    public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSupervisorResponse > {
+    public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSupervisorResponse> {
         self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建巡课
     @inlinable
     public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
         try await self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建巡课
     @inlinable
-    public func createSupervisor(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSupervisorResponse > {
+    public func createSupervisor(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSupervisorResponse> {
         self.createSupervisor(CreateSupervisorRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建巡课
     @inlinable
     public func createSupervisor(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {

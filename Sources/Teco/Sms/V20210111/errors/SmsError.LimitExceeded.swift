@@ -30,115 +30,115 @@ extension TCSmsError {
             case phoneNumberSameContentDailyLimit = "LimitExceeded.PhoneNumberSameContentDailyLimit"
             case phoneNumberThirtySecondLimit = "LimitExceeded.PhoneNumberThirtySecondLimit"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 业务短信国家/地区日下发条数超过设定的上限，可自行到控制台应用管理&gt;基础配置下调整国际港澳台短信发送限制。
         public static var appCountryOrRegionDailyLimit: LimitExceeded {
             LimitExceeded(.appCountryOrRegionDailyLimit)
         }
-        
+
         /// 业务短信国家/地区不在国际港澳台短信发送限制设置的列表中而禁发，可自行到控制台应用管理&gt;基础配置下调整国际港澳台短信发送限制。
         public static var appCountryOrRegionInBlacklist: LimitExceeded {
             LimitExceeded(.appCountryOrRegionInBlacklist)
         }
-        
+
         /// 业务短信日下发条数超过设定的上限 ，可自行到控制台调整短信频率限制策略。
         public static var appDailyLimit: LimitExceeded {
             LimitExceeded(.appDailyLimit)
         }
-        
+
         /// 业务短信国际/港澳台日下发条数超过设定的上限，可自行到控制台应用管理&gt;基础配置下调整发送总量阈值。
         public static var appGlobalDailyLimit: LimitExceeded {
             LimitExceeded(.appGlobalDailyLimit)
         }
-        
+
         /// 业务短信中国大陆日下发条数超过设定的上限，可自行到控制台应用管理&gt;基础配置下调整发送总量阈值。
         public static var appMainlandChinaDailyLimit: LimitExceeded {
             LimitExceeded(.appMainlandChinaDailyLimit)
         }
-        
+
         /// 短信日下发条数超过设定的上限 (国际/港澳台)，如需调整限制，可联系 <a href="https://cloud.tencent.com/document/product/382/3773">腾讯云短信小助手</a>。
         public static var dailyLimit: LimitExceeded {
             LimitExceeded(.dailyLimit)
         }
-        
+
         /// 下发短信命中了频率限制策略，可自行到控制台调整短信频率限制策略，如有其他需求请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
         public static var deliveryFrequencyLimit: LimitExceeded {
             LimitExceeded(.deliveryFrequencyLimit)
         }
-        
+
         /// 调用接口单次提交的手机号个数超过200个，请遵守 API 接口输入参数 PhoneNumberSet 描述。
         public static var phoneNumberCountLimit: LimitExceeded {
             LimitExceeded(.phoneNumberCountLimit)
         }
-        
+
         /// 单个手机号日下发短信条数超过设定的上限，可自行到控制台调整短信频率限制策略。
         public static var phoneNumberDailyLimit: LimitExceeded {
             LimitExceeded(.phoneNumberDailyLimit)
         }
-        
+
         /// 单个手机号1小时内下发短信条数超过设定的上限，可自行到控制台调整短信频率限制策略。
         public static var phoneNumberOneHourLimit: LimitExceeded {
             LimitExceeded(.phoneNumberOneHourLimit)
         }
-        
+
         /// 单个手机号下发相同内容超过设定的上限，可自行到控制台调整短信频率限制策略。
         public static var phoneNumberSameContentDailyLimit: LimitExceeded {
             LimitExceeded(.phoneNumberSameContentDailyLimit)
         }
-        
+
         /// 单个手机号30秒内下发短信条数超过设定的上限，可自行到控制台调整短信频率限制策略。
         public static var phoneNumberThirtySecondLimit: LimitExceeded {
             LimitExceeded(.phoneNumberThirtySecondLimit)
         }
-        
+
         public func asSmsError() -> TCSmsError {
             let code: TCSmsError.Code
             switch self.error {
-            case .appCountryOrRegionDailyLimit: 
+            case .appCountryOrRegionDailyLimit:
                 code = .limitExceeded_AppCountryOrRegionDailyLimit
-            case .appCountryOrRegionInBlacklist: 
+            case .appCountryOrRegionInBlacklist:
                 code = .limitExceeded_AppCountryOrRegionInBlacklist
-            case .appDailyLimit: 
+            case .appDailyLimit:
                 code = .limitExceeded_AppDailyLimit
-            case .appGlobalDailyLimit: 
+            case .appGlobalDailyLimit:
                 code = .limitExceeded_AppGlobalDailyLimit
-            case .appMainlandChinaDailyLimit: 
+            case .appMainlandChinaDailyLimit:
                 code = .limitExceeded_AppMainlandChinaDailyLimit
-            case .dailyLimit: 
+            case .dailyLimit:
                 code = .limitExceeded_DailyLimit
-            case .deliveryFrequencyLimit: 
+            case .deliveryFrequencyLimit:
                 code = .limitExceeded_DeliveryFrequencyLimit
-            case .phoneNumberCountLimit: 
+            case .phoneNumberCountLimit:
                 code = .limitExceeded_PhoneNumberCountLimit
-            case .phoneNumberDailyLimit: 
+            case .phoneNumberDailyLimit:
                 code = .limitExceeded_PhoneNumberDailyLimit
-            case .phoneNumberOneHourLimit: 
+            case .phoneNumberOneHourLimit:
                 code = .limitExceeded_PhoneNumberOneHourLimit
-            case .phoneNumberSameContentDailyLimit: 
+            case .phoneNumberSameContentDailyLimit:
                 code = .limitExceeded_PhoneNumberSameContentDailyLimit
-            case .phoneNumberThirtySecondLimit: 
+            case .phoneNumberThirtySecondLimit:
                 code = .limitExceeded_PhoneNumberThirtySecondLimit
             }
             return TCSmsError(code, context: self.context)

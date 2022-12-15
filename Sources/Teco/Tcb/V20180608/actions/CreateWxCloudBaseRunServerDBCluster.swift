@@ -19,29 +19,29 @@ extension Tcb {
     public struct CreateWxCloudBaseRunServerDBClusterRequest: TCRequestModel {
         /// 账户密码
         public let accountPassword: String
-        
+
         /// 环境ID
         public let envId: String
-        
+
         /// 微信appid
         public let wxAppId: String?
-        
+
         /// mysql内核版本，支持5.7,8.0
         public let dbVersion: String?
-        
+
         /// 0: 非大小写敏感
         /// 1: 大小写敏感
         /// 默认 0
         public let lowerCaseTableName: String?
-        
-        public init (accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil) {
+
+        public init(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil) {
             self.accountPassword = accountPassword
             self.envId = envId
             self.wxAppId = wxAppId
             self.dbVersion = dbVersion
             self.lowerCaseTableName = lowerCaseTableName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case accountPassword = "AccountPassword"
             case envId = "EnvId"
@@ -50,35 +50,35 @@ extension Tcb {
             case lowerCaseTableName = "LowerCaseTableName"
         }
     }
-    
+
     /// CreateWxCloudBaseRunServerDBCluster返回参数结构体
     public struct CreateWxCloudBaseRunServerDBClusterResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 开通微信云托管MySQL数据库服务
     @inlinable
-    public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWxCloudBaseRunServerDBClusterResponse > {
+    public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunServerDBClusterResponse> {
         self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 开通微信云托管MySQL数据库服务
     @inlinable
     public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {
         try await self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 开通微信云托管MySQL数据库服务
     @inlinable
-    public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWxCloudBaseRunServerDBClusterResponse > {
+    public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunServerDBClusterResponse> {
         self.createWxCloudBaseRunServerDBCluster(CreateWxCloudBaseRunServerDBClusterRequest(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName), logger: logger, on: eventLoop)
     }
-    
+
     /// 开通微信云托管MySQL数据库服务
     @inlinable
     public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {

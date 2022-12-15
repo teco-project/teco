@@ -19,57 +19,57 @@ extension Dnspod {
     public struct DescribeDomainShareInfoRequest: TCRequestModel {
         /// 域名
         public let domain: String
-        
+
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
-        
-        public init (domain: String, domainId: UInt64? = nil) {
+
+        public init(domain: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case domainId = "DomainId"
         }
     }
-    
+
     /// DescribeDomainShareInfo返回参数结构体
     public struct DescribeDomainShareInfoResponse: TCResponseModel {
         /// 域名共享信息
         public let shareList: [DomainShareInfo]
-        
+
         /// 域名拥有者账号
         public let owner: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case shareList = "ShareList"
             case owner = "Owner"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名共享信息
     @inlinable
-    public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainShareInfoResponse > {
+    public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainShareInfoResponse> {
         self.client.execute(action: "DescribeDomainShareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名共享信息
     @inlinable
     public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainShareInfoResponse {
         try await self.client.execute(action: "DescribeDomainShareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名共享信息
     @inlinable
-    public func describeDomainShareInfo(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainShareInfoResponse > {
+    public func describeDomainShareInfo(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainShareInfoResponse> {
         self.describeDomainShareInfo(DescribeDomainShareInfoRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名共享信息
     @inlinable
     public func describeDomainShareInfo(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainShareInfoResponse {

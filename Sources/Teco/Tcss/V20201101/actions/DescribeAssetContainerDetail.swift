@@ -19,87 +19,87 @@ extension Tcss {
     public struct DescribeAssetContainerDetailRequest: TCRequestModel {
         /// 容器id
         public let containerId: String
-        
-        public init (containerId: String) {
+
+        public init(containerId: String) {
             self.containerId = containerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case containerId = "ContainerId"
         }
     }
-    
+
     /// DescribeAssetContainerDetail返回参数结构体
     public struct DescribeAssetContainerDetailResponse: TCResponseModel {
         /// 主机id
         public let hostID: String
-        
+
         /// 主机ip
         public let hostIP: String
-        
+
         /// 容器名称
         public let containerName: String
-        
+
         /// 运行状态
         public let status: String
-        
+
         /// 运行账户
         public let runAs: String
-        
+
         /// 命令行
         public let cmd: String
-        
+
         /// CPU使用率 * 1000
         public let cpuUsage: UInt64
-        
+
         /// 内存使用 KB
         public let ramUsage: UInt64
-        
+
         /// 镜像名
         public let imageName: String
-        
+
         /// 镜像ID
         public let imageID: String
-        
+
         /// 归属POD
         public let pod: String
-        
+
         /// k8s 主节点
         public let k8sMaster: String
-        
+
         /// 容器内进程数
         public let processCnt: UInt64
-        
+
         /// 容器内端口数
         public let portCnt: UInt64
-        
+
         /// 组件数
         public let componentCnt: UInt64
-        
+
         /// app数
         public let appCnt: UInt64
-        
+
         /// websvc数
         public let webServiceCnt: UInt64
-        
+
         /// 挂载
         public let mounts: [ContainerMount]
-        
+
         /// 容器网络信息
         public let network: ContainerNetwork
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 镜像创建时间
         public let imageCreateTime: String
-        
+
         /// 镜像大小
         public let imageSize: UInt64
-        
+
         /// 主机状态 offline,online,pause
         public let hostStatus: String
-        
+
         /// 网络状态
         /// 未隔离  	NORMAL
         /// 已隔离		ISOLATED
@@ -108,21 +108,21 @@ extension Tcss {
         /// 解除隔离中  RESTORING
         /// 解除隔离失败 RESTORE_FAILED
         public let netStatus: String
-        
+
         /// 网络子状态
         public let netSubStatus: String
-        
+
         /// 隔离来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isolateSource: String?
-        
+
         /// 隔离时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isolateTime: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case hostID = "HostID"
             case hostIP = "HostIP"
@@ -154,15 +154,15 @@ extension Tcss {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询容器信息
     ///
     /// 查询容器详细信息
     @inlinable
-    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerDetailResponse > {
+    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerDetailResponse> {
         self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器信息
     ///
     /// 查询容器详细信息
@@ -170,15 +170,15 @@ extension Tcss {
     public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
         try await self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询容器信息
     ///
     /// 查询容器详细信息
     @inlinable
-    public func describeAssetContainerDetail(containerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerDetailResponse > {
+    public func describeAssetContainerDetail(containerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerDetailResponse> {
         self.describeAssetContainerDetail(DescribeAssetContainerDetailRequest(containerId: containerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询容器信息
     ///
     /// 查询容器详细信息

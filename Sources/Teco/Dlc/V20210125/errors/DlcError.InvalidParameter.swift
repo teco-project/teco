@@ -41,201 +41,201 @@ extension TCDlcError {
             case taskAlreadyFinished = "InvalidParameter.TaskAlreadyFinished"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 重复的工作组名称。
         public static var duplicateGroupName: InvalidParameter {
             InvalidParameter(.duplicateGroupName)
         }
-        
+
         /// 重复的用户名。
         public static var duplicateUserName: InvalidParameter {
             InvalidParameter(.duplicateUserName)
         }
-        
+
         /// 无效的访问策略。
         public static var invalidAccessPolicy: InvalidParameter {
             InvalidParameter(.invalidAccessPolicy)
         }
-        
+
         /// 无效的数据引擎名。
         ///
         /// 一般是引擎名字重复或包含不支持的符号。
         public static var invalidDataEngineName: InvalidParameter {
             InvalidParameter(.invalidDataEngineName)
         }
-        
+
         /// 无效的描述信息。
         public static var invalidDescription: InvalidParameter {
             InvalidParameter(.invalidDescription)
         }
-        
+
         /// 无效的容错策略。
         public static var invalidFailureTolerance: InvalidParameter {
             InvalidParameter(.invalidFailureTolerance)
         }
-        
+
         /// 请更换过滤条件。
         public static var invalidFilterKey: InvalidParameter {
             InvalidParameter(.invalidFilterKey)
         }
-        
+
         /// 无效的工作组Id。
         public static var invalidGroupId: InvalidParameter {
             InvalidParameter(.invalidGroupId)
         }
-        
+
         /// 无效的Offset值。
         public static var invalidOffset: InvalidParameter {
             InvalidParameter(.invalidOffset)
         }
-        
+
         /// 请使用正确的已经授权的CAM role arn
         public static var invalidRoleArn: InvalidParameter {
             InvalidParameter(.invalidRoleArn)
         }
-        
+
         /// SQL解析失败。
         public static var invalidSQL: InvalidParameter {
             InvalidParameter(.invalidSQL)
         }
-        
+
         /// SQL数量不符合规范。
         ///
         /// 单次提交的SQL数量应该小于等于50，大于等于1。
         public static var invalidSQLNum: InvalidParameter {
             InvalidParameter(.invalidSQLNum)
         }
-        
+
         /// 不支持的排序类型。
         public static var invalidSortByType: InvalidParameter {
             InvalidParameter(.invalidSortByType)
         }
-        
+
         public static var invalidSparkAppParam: InvalidParameter {
             InvalidParameter(.invalidSparkAppParam)
         }
-        
+
         /// 存储位置错误。
         public static var invalidStoreLocation: InvalidParameter {
             InvalidParameter(.invalidStoreLocation)
         }
-        
+
         /// 无效的taskid。
         public static var invalidTaskId: InvalidParameter {
             InvalidParameter(.invalidTaskId)
         }
-        
+
         /// 无效的任务类型。
         ///
         /// 填写正确的任务类型SQLTask
         public static var invalidTaskType: InvalidParameter {
             InvalidParameter(.invalidTaskType)
         }
-        
+
         /// 无效用户名称。
         public static var invalidUserAlias: InvalidParameter {
             InvalidParameter(.invalidUserAlias)
         }
-        
+
         /// 无效的用户名。
         public static var invalidUserName: InvalidParameter {
             InvalidParameter(.invalidUserName)
         }
-        
+
         /// 无效的用户类型。
         ///
         /// 请检查用户类型是否存在或者其余入参是否符合所选用户类型的要求。
         public static var invalidUserType: InvalidParameter {
             InvalidParameter(.invalidUserType)
         }
-        
+
         /// 无效的工作组名。
         public static var invalidWorkGroupName: InvalidParameter {
             InvalidParameter(.invalidWorkGroupName)
         }
-        
+
         /// 任务已经结束，不能取消。
         ///
         /// 等待任务状态更新。
         public static var taskAlreadyFinished: InvalidParameter {
             InvalidParameter(.taskAlreadyFinished)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asDlcError() -> TCDlcError {
             let code: TCDlcError.Code
             switch self.error {
-            case .duplicateGroupName: 
+            case .duplicateGroupName:
                 code = .invalidParameter_DuplicateGroupName
-            case .duplicateUserName: 
+            case .duplicateUserName:
                 code = .invalidParameter_DuplicateUserName
-            case .invalidAccessPolicy: 
+            case .invalidAccessPolicy:
                 code = .invalidParameter_InvalidAccessPolicy
-            case .invalidDataEngineName: 
+            case .invalidDataEngineName:
                 code = .invalidParameter_InvalidDataEngineName
-            case .invalidDescription: 
+            case .invalidDescription:
                 code = .invalidParameter_InvalidDescription
-            case .invalidFailureTolerance: 
+            case .invalidFailureTolerance:
                 code = .invalidParameter_InvalidFailureTolerance
-            case .invalidFilterKey: 
+            case .invalidFilterKey:
                 code = .invalidParameter_InvalidFilterKey
-            case .invalidGroupId: 
+            case .invalidGroupId:
                 code = .invalidParameter_InvalidGroupId
-            case .invalidOffset: 
+            case .invalidOffset:
                 code = .invalidParameter_InvalidOffset
-            case .invalidRoleArn: 
+            case .invalidRoleArn:
                 code = .invalidParameter_InvalidRoleArn
-            case .invalidSQL: 
+            case .invalidSQL:
                 code = .invalidParameter_InvalidSQL
-            case .invalidSQLNum: 
+            case .invalidSQLNum:
                 code = .invalidParameter_InvalidSQLNum
-            case .invalidSortByType: 
+            case .invalidSortByType:
                 code = .invalidParameter_InvalidSortByType
-            case .invalidSparkAppParam: 
+            case .invalidSparkAppParam:
                 code = .invalidParameter_InvalidSparkAppParam
-            case .invalidStoreLocation: 
+            case .invalidStoreLocation:
                 code = .invalidParameter_InvalidStoreLocation
-            case .invalidTaskId: 
+            case .invalidTaskId:
                 code = .invalidParameter_InvalidTaskId
-            case .invalidTaskType: 
+            case .invalidTaskType:
                 code = .invalidParameter_InvalidTaskType
-            case .invalidUserAlias: 
+            case .invalidUserAlias:
                 code = .invalidParameter_InvalidUserAlias
-            case .invalidUserName: 
+            case .invalidUserName:
                 code = .invalidParameter_InvalidUserName
-            case .invalidUserType: 
+            case .invalidUserType:
                 code = .invalidParameter_InvalidUserType
-            case .invalidWorkGroupName: 
+            case .invalidWorkGroupName:
                 code = .invalidParameter_InvalidWorkGroupName
-            case .taskAlreadyFinished: 
+            case .taskAlreadyFinished:
                 code = .invalidParameter_TaskAlreadyFinished
-            case .other: 
+            case .other:
                 code = .invalidParameter
             }
             return TCDlcError(code, context: self.context)

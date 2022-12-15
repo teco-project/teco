@@ -19,49 +19,49 @@ extension Monitor {
     public struct ModifyGrafanaInstanceRequest: TCRequestModel {
         /// 实例 ID
         public let instanceId: String
-        
+
         /// 实例名称
         public let instanceName: String
-        
-        public init (instanceId: String, instanceName: String) {
+
+        public init(instanceId: String, instanceName: String) {
             self.instanceId = instanceId
             self.instanceName = instanceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
         }
     }
-    
+
     /// ModifyGrafanaInstance返回参数结构体
     public struct ModifyGrafanaInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改 Grafana 实例属性
     @inlinable
-    public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGrafanaInstanceResponse > {
+    public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
         self.client.execute(action: "ModifyGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改 Grafana 实例属性
     @inlinable
     public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {
         try await self.client.execute(action: "ModifyGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改 Grafana 实例属性
     @inlinable
-    public func modifyGrafanaInstance(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGrafanaInstanceResponse > {
+    public func modifyGrafanaInstance(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
         self.modifyGrafanaInstance(ModifyGrafanaInstanceRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改 Grafana 实例属性
     @inlinable
     public func modifyGrafanaInstance(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {

@@ -19,39 +19,39 @@ extension Cdb {
     public struct DeleteAuditPolicyRequest: TCRequestModel {
         /// 审计策略 ID。
         public let policyId: String
-        
+
         /// 实例 ID。
         public let instanceId: String?
-        
-        public init (policyId: String, instanceId: String? = nil) {
+
+        public init(policyId: String, instanceId: String? = nil) {
             self.policyId = policyId
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DeleteAuditPolicy返回参数结构体
     public struct DeleteAuditPolicyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除审计策略
     ///
     /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
     @inlinable
-    public func deleteAuditPolicy(_ input: DeleteAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditPolicyResponse > {
+    public func deleteAuditPolicy(_ input: DeleteAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditPolicyResponse> {
         self.client.execute(action: "DeleteAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除审计策略
     ///
     /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
@@ -59,15 +59,15 @@ extension Cdb {
     public func deleteAuditPolicy(_ input: DeleteAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditPolicyResponse {
         try await self.client.execute(action: "DeleteAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除审计策略
     ///
     /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
     @inlinable
-    public func deleteAuditPolicy(policyId: String, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditPolicyResponse > {
+    public func deleteAuditPolicy(policyId: String, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditPolicyResponse> {
         self.deleteAuditPolicy(DeleteAuditPolicyRequest(policyId: policyId, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除审计策略
     ///
     /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
